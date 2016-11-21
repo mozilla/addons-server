@@ -41,7 +41,7 @@ from olympia.api.models import APIKey
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import CheckCompatibilityForm
-from olympia.devhub.models import ActivityLog, BlogPost, RssKey
+from olympia.devhub.models import ActivityLog, BlogPost, RssKey, VersionLog
 from olympia.devhub.utils import (
     ValidationAnnotator, ValidationComparator, process_validation)
 from olympia.editors.decorators import addons_reviewer_required
@@ -1172,31 +1172,46 @@ def version_edit(request, addon_id, addon, version_id):
                 version.update(has_info_request=False)
                 if waffle.switch_is_active('activity-email'):
                     log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED,
-                                   _('Approval notes were updated.'),
+                                   u'Approval notes were updated.',
                                    request.user,
                                    version)
                 else:
                     amo.log(amo.LOG.APPROVAL_NOTES_CHANGED,
-                            addon,
+                            version,
                             request.user)
             else:
                 amo.log(amo.LOG.APPROVAL_NOTES_CHANGED,
-                        addon,
+                        version,
                         request.user)
 
-        if 'source' in version_form.changed_data:
+        if ('source' in version_form.changed_data and
+                version_form.cleaned_data['source']):
             addon.update(admin_review=True)
             if version.has_info_request:
                 version.update(has_info_request=False)
                 if waffle.switch_is_active('activity-email'):
                     log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED,
-                                   _('Source code was uploaded.'),
+                                   u'Source code was uploaded.',
                                    request.user,
                                    version)
                 else:
-                    amo.log(amo.LOG.SOURCE_CODE_UPLOADED, addon, request.user)
+                    amo.log(amo.LOG.SOURCE_CODE_UPLOADED,
+                            version,
+                            request.user,
+                            details={
+                                'comments': (u'This version has been '
+                                             u'automatically flagged for '
+                                             u'admin review, as source files '
+                                             u'have been uploaded.')})
             else:
-                amo.log(amo.LOG.SOURCE_CODE_UPLOADED, addon, request.user)
+                amo.log(amo.LOG.SOURCE_CODE_UPLOADED,
+                        version,
+                        request.user,
+                        details={
+                            'comments': (u'This version has been '
+                                         u'automatically flagged for '
+                                         u'admin review, as source files '
+                                         u'have been uploaded.')})
 
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
@@ -1333,6 +1348,16 @@ def version_add(request, addon_id, addon):
         addon.update(status=amo.STATUS_NOMINATED)
     if form.cleaned_data['source']:
         addon.update(admin_review=True)
+        activity_log = ActivityLog.objects.create(
+            action=amo.LOG.SOURCE_CODE_UPLOADED.id,
+            user=request.user,
+            details={
+                'comments': (u'This version has been '
+                             u'automatically flagged for '
+                             u'admin review, as source files '
+                             u'have been uploaded.')})
+        VersionLog.objects.create(version_id=version.id,
+                                  activity_log=activity_log)
     url = reverse('devhub.versions.edit',
                   args=[addon.slug, str(version.id)])
 
@@ -1361,6 +1386,15 @@ def version_add_file(request, addon_id, addon, version_id):
     if source:
         version.update(source=source)
         addon.update(admin_review=True)
+        activity_log = ActivityLog.objects.create(
+            action=amo.LOG.SOURCE_CODE_UPLOADED.id,
+            user=request.user,
+            details={
+                'comments': (u'This version has been automatically flagged '
+                             u'for admin review, as it had source files '
+                             u'attached when submitted.')})
+        VersionLog.objects.create(version_id=version.id,
+                                  activity_log=activity_log)
     storage.delete(upload.path)
     check_validation_override(request, new_file_form, addon, new_file.version)
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
@@ -1491,6 +1525,15 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted):
         addon_update = {}
         if data['source']:
             addon_update['admin_review'] = True
+            activity_log = ActivityLog.objects.create(
+                action=amo.LOG.SOURCE_CODE_UPLOADED.id,
+                user=request.user,
+                details={
+                    'comments': (u'This version has been automatically '
+                                 u'flagged for admin review, as it had source '
+                                 u'files attached when submitted.')})
+            VersionLog.objects.create(version_id=version.id,
+                                      activity_log=activity_log)
         if (addon.status == amo.STATUS_NULL and
                 addon.has_complete_metadata() and
                 channel == amo.RELEASE_CHANNEL_LISTED):
