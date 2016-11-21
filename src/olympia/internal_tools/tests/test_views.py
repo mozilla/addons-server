@@ -89,7 +89,6 @@ class TestInternalAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon.pk
-        assert result['is_listed'] is False
         assert result['status'] == 'public'
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'

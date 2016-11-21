@@ -158,7 +158,6 @@ class AddonSerializerOutputTestMixin(object):
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_experimental'] == self.addon.is_experimental is False
-        assert result['is_listed'] == self.addon.is_listed
         assert result['is_source_public'] == self.addon.view_source
         assert result['last_updated'] == (
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
@@ -256,12 +255,6 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['is_disabled'] is True
 
-    def test_is_listed(self):
-        self.addon = addon_factory(is_listed=False)
-        result = self.serialize()
-
-        assert result['is_listed'] is False
-
     def test_is_source_public(self):
         self.addon = addon_factory(view_source=True)
         result = self.serialize()
@@ -312,13 +305,6 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['id'] == self.addon.pk
         assert result['status'] == 'deleted'
-
-    def test_unlisted(self):
-        self.addon = addon_factory(name=u'My Unlisted Addôn', is_listed=False)
-        result = self.serialize()
-
-        assert result['id'] == self.addon.pk
-        assert result['is_listed'] == self.addon.is_listed
 
     def test_has_policies(self):
         self.addon = addon_factory()
