@@ -1293,7 +1293,7 @@ def auto_sign_version(version, **kwargs):
 @post_required
 @waffle_switch('!step-version-upload')
 def version_add(request, addon_id, addon):
-    form = forms.NewVersionForm(
+    form = forms.NewUploadForm(
         request.POST,
         request.FILES,
         addon=addon,
@@ -1376,7 +1376,7 @@ def version_add_file(request, addon_id, addon, version_id):
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo_utils.paginate(request, qs)
-    new_file_form = forms.NewVersionForm(None, addon=addon, request=request)
+    new_file_form = forms.NewUploadForm(None, addon=addon, request=request)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
     token = request.COOKIES.get('jwt_api_auth_token', None)
@@ -1460,7 +1460,7 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted,
     """ If this is a new addon upload `addon` will be None (and `version`);
     if this is a new version upload `version` will be None; a new file for a
     version will need both an addon and a version supplied."""
-    form = forms.NewVersionForm(
+    form = forms.NewUploadForm(
         request.POST or None,
         request.FILES or None,
         addon=addon,

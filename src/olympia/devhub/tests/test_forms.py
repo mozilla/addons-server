@@ -27,11 +27,11 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, License, Version
 
 
-class TestNewVersionForm(TestCase):
+class TestNewUploadForm(TestCase):
 
     def test_only_valid_uploads(self):
         upload = FileUpload.objects.create(valid=False)
-        form = forms.NewVersionForm(
+        form = forms.NewUploadForm(
             {'upload': upload.uuid, 'supported_platforms': [1]},
             request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' in
@@ -40,7 +40,7 @@ class TestNewVersionForm(TestCase):
         upload.validation = '{"errors": 0}'
         upload.save()
         addon = Addon.objects.create()
-        form = forms.NewVersionForm(
+        form = forms.NewUploadForm(
             {'upload': upload.uuid, 'supported_platforms': [1]},
             addon=addon, request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' not in
@@ -64,7 +64,7 @@ class TestNewVersionForm(TestCase):
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
         upload = FileUpload.objects.create(valid=True)
         addon = Addon.objects.create()
-        form = forms.NewVersionForm(
+        form = forms.NewUploadForm(
             {'upload': upload.uuid, 'supported_platforms': [1]},
             addon=addon, request=mock.Mock())
         form.clean()

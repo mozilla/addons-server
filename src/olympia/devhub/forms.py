@@ -540,7 +540,7 @@ class StandaloneValidationForm(AddonUploadForm):
             u'your own and only need it to be signed by Mozilla.'))
 
 
-class NewVersionForm(AddonUploadForm):
+class NewUploadForm(AddonUploadForm):
     supported_platforms = forms.TypedMultipleChoiceField(
         choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
@@ -558,7 +558,7 @@ class NewVersionForm(AddonUploadForm):
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon', None)
         self.version = kw.pop('version', None)
-        super(NewVersionForm, self).__init__(*args, **kw)
+        super(NewUploadForm, self).__init__(*args, **kw)
 
         # If we have a version reset platform choices to just those compatible.
         if self.version:
@@ -569,11 +569,10 @@ class NewVersionForm(AddonUploadForm):
             to_exclude = set(File.objects.filter(version=self.version)
                                          .values_list('platform', flat=True))
             # Don't allow platform=ALL if we already have platform files.
-            if len(to_exclude):
+            if to_exclude:
                 to_exclude.add(amo.PLATFORM_ALL.id)
-
-            field.choices = [p for p in field.choices
-                             if p[0] not in to_exclude]
+                field.choices = [p for p in field.choices
+                                 if p[0] not in to_exclude]
 
     def clean(self):
         if self.version and not self.version.is_allowed_upload():
