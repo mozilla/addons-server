@@ -473,6 +473,11 @@ class TestFileViewer(FilesBase, TestCase):
         self.file.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.client.get(self.file_url()).status_code == 404
 
+    def test_content_file_size_uses_binary_prefix(self):
+        self.file_viewer.extract()
+        response = self.client.get(self.file_url('dictionaries/license.txt'))
+        assert '17.6 KiB' in response.content
+
 
 class TestDiffViewer(FilesBase, TestCase):
     fixtures = ['base/addon_3615', 'base/users']

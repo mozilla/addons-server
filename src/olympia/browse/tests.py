@@ -258,6 +258,10 @@ class TestLanguageTools(TestCase):
         self._get()
         assert self.all_locales_addons == []
 
+    def test_file_sizes_use_binary_prefixes(self):
+        response = self.client.get(self.url, follow=True)
+        assert '223.0 KiB' in response.content
+
 
 class TestThemes(TestCase):
     fixtures = ('base/category', 'base/addon_6704_grapple', 'base/addon_3615')
