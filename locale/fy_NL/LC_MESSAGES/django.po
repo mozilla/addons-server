@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-18 14:17+0000\n"
+"PO-Revision-Date: 2016-11-21 07:55+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5064,9 +5064,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "In nije add-on yntsjinje"
+msgstr "In nije ferzje yntsjinje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
@@ -5133,19 +5132,16 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Submit Version for Review"
-msgstr "Beoardieling yntsjinje"
+msgstr "Ferzje foar beoardieling yntsjinje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Describe Version"
-msgstr "Beskriuwing"
+msgstr "Ferzje beskriuwe"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Utjefte"
+msgstr "Utjefteopmerkingen:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Let your users know what's new and what's changed in this version."
@@ -5228,9 +5224,8 @@ msgid "Where to Host Version"
 msgstr "Wêr't de ferzje host wurdt"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Version"
-msgstr "Tapassingsferzje"
+msgstr "Ferzje oplade"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5245,9 +5240,8 @@ msgid "Administrative overrides"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "Add-on"
+msgstr "Add-on ûndertekenje"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
