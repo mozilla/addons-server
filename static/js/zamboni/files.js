@@ -207,7 +207,7 @@ if (typeof SyntaxHighlighter !== 'undefined') {
         //   https://github.com/mozilla/olympia/blob/a35ab083/static/js/lib/syntaxhighlighter/shCore.js#L1552
 
         // find matches in the code using brushes regex list
-        var matches = this.findMatches(this.regexList, code);
+        var matches = this.findMatchesNew(this.regexList, code);
 
         // processes found matches into the html
         var html = this.getMatchesHtml(code, matches);
@@ -228,19 +228,19 @@ if (typeof SyntaxHighlighter !== 'undefined') {
     // newer keywords:
     new function() {
         function JSBrush() {
-            var keywords =  'break case catch continue ' +
-                            'default delete do else false  ' +
-                            'for function if in instanceof ' +
-                            'new null return super switch ' +
-                            'this throw true try typeof var while with ' +
-                            'const let of debugger'
-                            ;
+            var keywords = 'break case catch class const continue debugger' +
+                           'default delete do else enum export extends false finally ' +
+                           'for function if implements import in instanceof ' +
+                           'interface let new null package private protected public' +
+                           'static return super switch this throw true try typeof ' +
+                           'var void while with yield';
 
             var r = SyntaxHighlighter.regexLib;
 
             this.regexList = [
                 { regex: r.multiLineDoubleQuotedString,                 css: 'string' },            // double quoted strings
                 { regex: r.multiLineSingleQuotedString,                 css: 'string' },            // single quoted strings
+                { regex: /`([^`])*`/g,                                  css: 'string' },            // template literals
                 { regex: r.singleLineCComments,                         css: 'comments' },          // one line comments
                 { regex: r.multiLineCComments,                          css: 'comments' },          // multiline comments
                 { regex: /\s*#.*/gm,                                    css: 'preprocessor' },      // preprocessor tags like #region and #endregion
