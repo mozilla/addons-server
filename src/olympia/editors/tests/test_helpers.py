@@ -116,8 +116,8 @@ class TestUnlistedViewAllListTable(TestCase):
         self.table.set_page(page)
         a = pq(self.table.render_addon_name(row))
 
-        assert (a.attr('href') == reverse('editors.review',
-                                          args=[str(row.addon_slug)]))
+        assert (a.attr('href') == reverse(
+            'editors.review', args=['unlisted', str(row.addon_slug)]))
         assert a.text() == 'フォクすけといっしょ 0.12'.decode('utf8')
 
     def test_last_review(self):

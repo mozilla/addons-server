@@ -12,6 +12,7 @@ from django.core.files.base import File as DjangoFile
 from django.utils.datastructures import SortedDict
 from django.test.utils import override_settings
 
+from lxml.html import fromstring, HTMLParser
 import mock
 from mock import Mock, patch
 from pyquery import PyQuery as pq
@@ -687,7 +688,8 @@ class QueueTest(EditorTest):
             assert latest_version
             name = '%s %s' % (unicode(addon.name),
                               latest_version.version)
-            url = reverse('editors.review', args=[addon.slug])
+            channel = ['unlisted'] if not self.listed else []
+            url = reverse('editors.review', args=channel + [addon.slug])
             expected.append((name, url))
         check_links(
             expected,
@@ -1586,7 +1588,9 @@ class ReviewBase(QueueTest):
         self.version = self.addon.current_version
         self.file = self.version.files.get()
         self.editor = UserProfile.objects.get(username='editor')
-        self.editor.update(display_name='An editor')
+        self.editor.update(display_name=u'An edítor')
+        self.senior_editor = UserProfile.objects.get(username='senioreditor')
+        self.senior_editor.update(display_name=u'A señor editor')
         self.url = reverse('editors.review', args=[self.addon.slug])
 
         AddonUser.objects.create(addon=self.addon, user_id=999)
@@ -1615,10 +1619,20 @@ class TestReview(ReviewBase):
         AddonUser.objects.create(addon=self.addon, user=self.editor)
         assert self.client.head(self.url).status_code == 302
 
-    def test_needs_unlisted_reviewer_for_unlisted_addons(self):
-        self.addon.update(is_listed=False)
+    def test_needs_unlisted_reviewer_for_only_unlisted(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.client.head(self.url).status_code == 404
+        self.login_as_senior_editor()
+        assert self.client.head(self.url).status_code == 200
+
+    def test_dont_need_unlisted_reviewer_for_mixed_channels(self):
+        create_addon_file(
+            'Public', '9.9', amo.STATUS_PUBLIC, amo.STATUS_PUBLIC,
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        assert self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert self.addon.current_version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert self.client.head(self.url).status_code == 200
         self.login_as_senior_editor()
         assert self.client.head(self.url).status_code == 200
 
@@ -1702,7 +1716,7 @@ class TestReview(ReviewBase):
         self._test_breadcrumbs(expected)
 
     def test_breadcrumbs_unlisted_addons(self):
-        self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
+        self.addon.update(is_listed=False, status=amo.STATUS_NULL)
         self.generate_files()
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.versions.latest().files.update(status=amo.STATUS_PUBLIC)
@@ -1713,6 +1727,8 @@ class TestReview(ReviewBase):
              reverse('editors.unlisted_queue_all')),
             (unicode(self.addon.name), None),
         ]
+        self.url = reverse('editors.review',
+                           args=['unlisted', self.addon.slug])
         self._test_breadcrumbs(expected)
 
     def test_files_shown(self):
@@ -1731,21 +1747,26 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, items.find('a'), verify=False)
 
-    def test_item_history(self):
+    def test_item_history(self, channel=amo.RELEASE_CHANNEL_LISTED):
         self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
-                        amo.STATUS_AWAITING_REVIEW)
-        assert self.addon.versions.count() == 1
+                        amo.STATUS_AWAITING_REVIEW,
+                        version_kw={'channel': channel})
+        assert self.addon.versions.filter(channel=channel).count() == 1
         self.review_version(self.version, self.url)
 
         v2 = self.addons['something'].versions.all()[0]
         v2.addon = self.addon
         v2.created = v2.created + timedelta(days=1)
         v2.save()
-        self.review_version(v2, self.url)
-        assert self.addon.versions.count() == 2
+        assert self.addon.versions.filter(channel=channel).count() == 2
+        action = self.review_version(v2, self.url)
 
         r = self.client.get(self.url)
-        table = pq(r.content)('#review-files')
+        # The 2 following lines replace pq(res.content), it's a workaround for
+        # https://github.com/gawel/pyquery/issues/31
+        UTF8_PARSER = HTMLParser(encoding='utf-8')
+        doc = pq(fromstring(r.content, parser=UTF8_PARSER))
+        table = doc('#review-files')
 
         # Check the history for both versions.
         ths = table.children('tr > th')
@@ -1762,8 +1783,31 @@ class TestReview(ReviewBase):
         for idx in xrange(comments.length):
             td = comments.eq(idx)
             assert td.find('.history-comment').text() == 'something'
-            assert td.find('th').text() == 'Approved'
-            assert td.find('td a').text() == self.editor.display_name
+            assert td.find('th').text() == {
+                'public': 'Approved',
+                'info': 'More information requested'}[action]
+            editor_name = td.find('td a').text()
+            assert ((editor_name == self.editor.display_name) or
+                    (editor_name == self.senior_editor.display_name))
+
+    def test_item_history_with_unlisted_versions_too(self):
+        # Throw in an unlisted version to be ignored.
+        self.addon_file(self.addon.name, u'0.2', amo.STATUS_PUBLIC,
+                        amo.STATUS_PUBLIC,
+                        version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        self.test_item_history()
+
+    def test_item_history_with_unlisted_review_page(self):
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.reload()
+        # Throw in an listed version to be ignored.
+        self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
+                        amo.STATUS_PUBLIC,
+                        version_kw={'channel': amo.RELEASE_CHANNEL_LISTED})
+        self.url = reverse('editors.review', args=[
+            'unlisted', self.addon.slug])
+        self.login_as_senior_editor()
+        self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     def generate_deleted_versions(self):
         self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
@@ -2047,7 +2091,8 @@ class TestReview(ReviewBase):
         assert '0.1' in ths.text()
 
     def test_no_versions(self):
-        """The review page should still load if there are no versions."""
+        """The review page should still load if there are no versions. But not
+        unless you have unlisted permissions."""
         assert self.client.get(self.url).status_code == 200
         response = self.client.post(self.url, {'action': 'info',
                                                'comments': 'hello sailor'})
@@ -2056,7 +2101,10 @@ class TestReview(ReviewBase):
                        status_code=302)
 
         self.version.delete()
-
+        # Regular reviewer gets a 404.
+        assert self.client.get(self.url).status_code == 404
+        self.login_as_senior_editor()
+        # Reviewer with more powers can look.
         assert self.client.get(self.url).status_code == 200
         response = self.client.post(self.url, {'action': 'info',
                                                'comments': 'hello sailor'})
@@ -2078,12 +2126,19 @@ class TestReview(ReviewBase):
 
     @patch('olympia.editors.helpers.sign_file')
     def review_version(self, version, url, mock_sign):
-        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
-        data = dict(action='public', operating_systems='win',
+        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+            version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
+            action = 'public'
+        else:
+            action = 'info'
+
+        data = dict(action=action, operating_systems='win',
                     applications='something', comments='something')
         self.client.post(url, data)
 
-        assert mock_sign.called
+        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+            assert mock_sign.called
+        return action
 
     def test_dependencies_listed(self):
         AddonDependency.objects.create(addon=self.addon,
@@ -2387,6 +2442,14 @@ class TestReview(ReviewBase):
         self.client.get(self.url)
 
         assert not validate.called
+
+    def test_review_is_review_listed(self):
+        review_page = self.client.get(
+            reverse('editors.review', args=[self.addon.slug]))
+        listed_review_page = self.client.get(
+            reverse('editors.review', args=['listed', self.addon.slug]))
+        assert (pq(review_page.content)('#review-files').text() ==
+                pq(listed_review_page.content)('#review-files').text())
 
 
 class TestReviewPending(ReviewBase):
@@ -2782,4 +2845,4 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
             channel=amo.RELEASE_CHANNEL_LISTED)
         version.delete()
         response = self.client.get(self.url)
-        assert response.status_code == 200
+        assert response.status_code == 404

@@ -534,18 +534,56 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
+def _get_deleted_versions(addon):
+    class PseudoVersion(object):
+        def __init__(self):
+            self.all_activity = []
+
+        all_files = ()
+        approvalnotes = None
+        compatible_apps_ordered = ()
+        releasenotes = None
+        status = 'Deleted'
+        deleted = True
+        channel = amo.RELEASE_CHANNEL_LISTED
+
+        @property
+        def created(self):
+            return self.all_activity[0].created
+
+        @property
+        def version(self):
+            return (self.all_activity[0].activity_log
+                        .details.get('version', '[deleted]'))
+
+    # Grab review history for deleted versions of this add-on
+    # Version are soft-deleted now but we need this for older deletions.
+    comments = (CommentLog.objects
+                .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
+                        activity_log__versionlog=None,
+                        activity_log__addonlog__addon=addon)
+                .order_by('created')
+                .select_related('activity_log'))
+
+    comment_versions = defaultdict(PseudoVersion)
+    for c in comments:
+        c.version = c.activity_log.details.get('version', c.created)
+        comment_versions[c.version].all_activity.append(c)
+    return comment_versions.values()
+
+
 @addons_reviewer_required
 @addon_view_factory(qs=Addon.unfiltered.all)
-def review(request, addon):
-    # This is a short term fix that will prevent all but admin reviewers from
-    # looking at addons with mixed unlisted/listed versions.
-    if (addon.has_unlisted_versions() and
-            not acl.check_unlisted_addons_reviewer(request)):
+def review(request, addon, channel=None):
+    # channel is passed in as text, but we want the constant.
+    channel = amo.CHANNEL_CHOICES_LOOKUP.get(
+        channel, amo.RELEASE_CHANNEL_LISTED)
+    unlisted_only = (channel == amo.RELEASE_CHANNEL_UNLISTED or
+                     not addon.has_listed_versions())
+    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
         raise http.Http404
 
-    version = addon.find_latest_version_including_rejected()
-    # Have to handle the no version case... doesn't matter much which channel.
-    channel = version.channel if version else amo.RELEASE_CHANNEL_LISTED
+    version = addon.find_latest_version_including_rejected(channel=channel)
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
@@ -587,7 +625,9 @@ def review(request, addon):
     try:
         show_diff = version and (
             addon.versions.exclude(id=version.id).filter(
-                files__isnull=False, created__lt=version.created,
+                channel=channel,
+                files__isnull=False,
+                created__lt=version.created,
                 files__status=amo.STATUS_PUBLIC).latest())
     except Version.DoesNotExist:
         show_diff = None
@@ -595,48 +635,14 @@ def review(request, addon):
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
-    versions = (Version.unfiltered.filter(addon=addon)
+    versions = (Version.unfiltered.filter(addon=addon, channel=channel)
                                   .exclude(files__status=amo.STATUS_BETA)
                                   .order_by('-created')
                                   .transform(Version.transformer_activity)
                                   .transform(Version.transformer))
 
-    class PseudoVersion(object):
-        def __init__(self):
-            self.all_activity = []
-
-        all_files = ()
-        approvalnotes = None
-        compatible_apps_ordered = ()
-        releasenotes = None
-        status = 'Deleted'
-        deleted = True
-        channel = amo.RELEASE_CHANNEL_LISTED
-
-        @property
-        def created(self):
-            return self.all_activity[0].created
-
-        @property
-        def version(self):
-            return (self.all_activity[0].activity_log
-                        .details.get('version', '[deleted]'))
-
-    # Grab review history for deleted versions of this add-on
-    # Version are soft-deleted now but we need this for older deletions.
-    comments = (CommentLog.objects
-                .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
-                        activity_log__versionlog=None,
-                        activity_log__addonlog__addon=addon)
-                .order_by('created')
-                .select_related('activity_log'))
-
-    comment_versions = defaultdict(PseudoVersion)
-    for c in comments:
-        c.version = c.activity_log.details.get('version', c.created)
-        comment_versions[c.version].all_activity.append(c)
-
-    all_versions = comment_versions.values()
+    all_versions = (_get_deleted_versions(addon)
+                    if channel == amo.RELEASE_CHANNEL_LISTED else [])
     all_versions.extend(versions)
     all_versions.sort(key=lambda v: v.created,
                       reverse=True)
