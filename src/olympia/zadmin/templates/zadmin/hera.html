@@ -47,7 +47,7 @@
           {% set hit_percentage = 0 %}
         {% endif %}
         <ul>
-          <li>Using {{ i.stats.bytes_used|filesizeformat }} ({{ i.stats.percent_used }}% of total space) for {{ i.stats.entries|numberfmt }} objects.</li>
+          <li>Using {{ i.stats.bytes_used|filesizeformat(binary=True) }} ({{ i.stats.percent_used }}% of total space) for {{ i.stats.entries|numberfmt }} objects.</li>
           <li>We've had {{ i.stats.num_hits|numberfmt }} hits out of {{ i.stats.num_lookups|numberfmt }} lookups ({{ hit_percentage|round(2) }}%).</li>
         </ul>
       {% else %}
