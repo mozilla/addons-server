@@ -2669,15 +2669,13 @@ class TestSearchSignals(amo.tests.ESTestCase):
         assert Addon.search_public().count() == 0
 
     def test_create(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
-                                     status=amo.STATUS_PUBLIC)
+        addon = addon_factory(name='woo')
         self.refresh()
         assert Addon.search_public().count() == 1
         assert Addon.search_public().query(name='woo')[0].id == addon.id
 
     def test_update(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
-                                     status=amo.STATUS_PUBLIC)
+        addon = addon_factory(name='woo')
         self.refresh()
         assert Addon.search_public().count() == 1
 
@@ -2692,13 +2690,11 @@ class TestSearchSignals(amo.tests.ESTestCase):
     def test_user_disable(self):
         """Test that add-ons are removed from search results after being
         disabled by their developers."""
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
-                                     status=amo.STATUS_PUBLIC)
+        addon = addon_factory(name='woo')
         self.refresh()
         assert Addon.search_public().count() == 1
 
-        addon.disabled_by_user = True
-        addon.save()
+        addon.update(disabled_by_user=True)
         self.refresh()
 
         assert Addon.search_public().count() == 0
@@ -2706,13 +2702,11 @@ class TestSearchSignals(amo.tests.ESTestCase):
     def test_switch_to_unlisted(self):
         """Test that add-ons are removed from search results after being
         switched to unlisted."""
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
-                                     status=amo.STATUS_PUBLIC)
+        addon = addon_factory(name='woo')
         self.refresh()
         assert Addon.search_public().count() == 1
 
-        addon.is_listed = False
-        addon.save()
+        addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.refresh()
 
         assert Addon.search_public().count() == 0
@@ -2720,20 +2714,22 @@ class TestSearchSignals(amo.tests.ESTestCase):
     def test_switch_to_listed(self):
         """Test that add-ons created as unlisted do not appear in search
         results until switched to listed."""
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
-                                     status=amo.STATUS_PUBLIC, is_listed=False)
+        addon = addon_factory(
+            name='woo', version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            status=amo.STATUS_NULL)
         self.refresh()
         assert Addon.search_public().count() == 0
 
-        addon.is_listed = True
-        addon.save()
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version.update(channel=amo.RELEASE_CHANNEL_LISTED)
+        addon.update(status=amo.STATUS_PUBLIC)
         self.refresh()
 
         assert Addon.search_public().count() == 1
 
     def test_delete(self):
-        addon = Addon.objects.create(type=amo.ADDON_EXTENSION, name='woo',
-                                     status=amo.STATUS_PUBLIC)
+        addon = addon_factory(name='woo')
         self.refresh()
         assert Addon.search_public().count() == 1
 

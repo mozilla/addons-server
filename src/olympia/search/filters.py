@@ -297,7 +297,6 @@ class ReviewedContentFilter(BaseFilterBackend):
             Bool(must=[F('terms', status=amo.REVIEWED_STATUSES),
                        F('exists', field='current_version')],
                  must_not=[F('term', is_deleted=True),
-                           F('term', is_listed=False),
                            F('term', is_disabled=True)]))
 
 

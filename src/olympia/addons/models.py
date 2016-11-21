@@ -376,16 +376,21 @@ class Addon(OnChangeMixin, ModelBase):
         self.clean_slug()
         super(Addon, self).save(**kw)
 
-    # Like the above Manager objects (`objects`, `with_unlisted`, ...), but
-    # for ElasticSearch queries.
     @classmethod
     def search_public(cls):
-        return cls.search_with_unlisted().filter(is_listed=True)
+        """Legacy search method for public add-ons.
 
-    @classmethod
-    def search_with_unlisted(cls):
+        Note that typically, code using this method do a search in ES but then
+        will fetch the relevant objects from the database using Addon.objects,
+        so deleted addons won't be returned no matter what ES returns. See
+        amo.search.ES and amo.search.ObjectSearchResults for more details.
+
+        In new code, use elasticsearch-dsl instead.
+        """
         return cls.search().filter(
-            is_disabled=False, status__in=amo.REVIEWED_STATUSES)
+            is_disabled=False,
+            status__in=amo.REVIEWED_STATUSES,
+            current_version__exists=True)
 
     @use_master
     def clean_slug(self, slug_field='slug'):

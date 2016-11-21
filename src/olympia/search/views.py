@@ -445,7 +445,8 @@ def search(request, tag_name=None, template=None):
     qs = (Addon.search_public().filter(app=APP.id)
           .aggregate(tags={'terms': {'field': 'tags'}},
                      appversions={'terms': {'field': appversion_field}},
-                     categories={'terms': {'field': 'category', 'size': 200}}))
+                     categories={'terms': {'field': 'category', 'size': 200}})
+          )
 
     filters = ['atype', 'appver', 'cat', 'sort', 'tag', 'platform']
     mapping = {'users': '-average_daily_users',

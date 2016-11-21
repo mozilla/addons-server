@@ -106,7 +106,6 @@ class TestReviewedContentFilter(FilterTestsBase):
         assert {'exists': {'field': 'current_version'}} in must
         assert {'term': {'is_disabled': True}} in must_not
         assert {'term': {'is_deleted': True}} in must_not
-        assert {'term': {'is_listed': False}} in must_not
 
 
 class TestSortingFilter(FilterTestsBase):

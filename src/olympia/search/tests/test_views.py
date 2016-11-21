@@ -620,7 +620,7 @@ class TestESSearch(SearchBase):
             addon=a, tag=Tag.objects.create(tag_text=tag_name))
 
         a.save()
-        self.refresh(timesleep=1)
+        self.refresh()
         r = self.client.get(self.url, dict(q=tag_name))
         assert self.get_results(r) == [a.id]
 
@@ -629,19 +629,21 @@ class TestESSearch(SearchBase):
         AddonTag.objects.create(
             addon=a, tag=Tag.objects.create(tag_text=tag_name_2))
         a.save()
-        self.refresh(timesleep=1)
+        self.refresh()
         r = self.client.get(self.url, dict(q='%s %s' % (tag_name, tag_name_2)))
         assert self.get_results(r) == [a.id]
 
     def test_search_doesnt_return_unlisted_addons(self):
-        unlisted_addon = self.addons[0]
-        r = self.client.get(self.url, {'q': 'Addon'})
-        assert unlisted_addon.pk in self.get_results(r)
+        addon = self.addons[0]
+        response = self.client.get(self.url, {'q': 'Addon'})
+        assert addon.pk in self.get_results(response)
 
-        unlisted_addon.update(is_listed=False)
+        addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        addon.reload()
+        addon.update(is_listed=False)
         self.refresh()
-        r = self.client.get(self.url, {'q': 'Addon'})
-        assert unlisted_addon.pk not in self.get_results(r)
+        response = self.client.get(self.url, {'q': 'Addon'})
+        assert addon.pk not in self.get_results(response)
 
 
 class TestPersonaSearch(SearchBase):
@@ -937,7 +939,7 @@ class TestCollectionSearch(SearchBase):
         c2.name = 'The Life Aquatic with SeaVan: An Underwater Collection'
         c2.save()
 
-        self.refresh(timesleep=1)
+        self.refresh()
 
         # These contain terms that are in every result - so return everything.
         for term in ('collection',
@@ -1125,7 +1127,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
         if addons is None:
             addons = []
         [a.save() for a in Addon.objects.all()]
-        self.refresh(timesleep=1)
+        self.refresh()
         super(TestGenericAjaxSearch, self).search_addons(
             reverse('search.ajax'), params, addons)
 
@@ -1169,7 +1171,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
             type=amo.ADDON_EXTENSION,
         )
         self._addons.append(addon)
-        self.refresh(timesleep=1)
+        self.refresh()
         self.search_addons('q=' + unicode(addon.name), [addon])
 
     def test_ajax_search_by_bad_name(self):
@@ -1189,7 +1191,7 @@ class TestSearchSuggestions(TestAjaxSearch):
                                     disabled_by_user=True,
                                     status=amo.STATUS_NULL),
         ]
-        self.refresh(timesleep=1)
+        self.refresh()
 
     def search_addons(self, params, addons=None,
                       types=views.AddonSuggestionsAjax.types):

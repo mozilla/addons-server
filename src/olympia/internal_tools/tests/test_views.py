@@ -76,8 +76,10 @@ class TestInternalAddonSearchView(ESTestCase):
         assert response.status_code == 401
 
     def test_basic(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=666, is_listed=False)
+        addon = addon_factory(
+            name=u'My Addôn', slug='my-addon', status=amo.STATUS_NULL,
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            weekly_downloads=666)
         addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn',
                                weekly_downloads=555)
         addon2.delete()
@@ -89,7 +91,7 @@ class TestInternalAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon.pk
-        assert result['status'] == 'public'
+        assert result['status'] == 'incomplete'
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
         assert result['last_updated'] == addon.last_updated.isoformat() + 'Z'
