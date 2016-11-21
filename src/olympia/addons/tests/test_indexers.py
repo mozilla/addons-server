@@ -48,7 +48,9 @@ class TestAddonIndexer(TestCase):
         complex_fields = [
             'app', 'boost', 'category', 'current_beta_version',
             'current_version', 'description', 'has_eula', 'has_privacy_policy',
-            'has_theme_rereview', 'has_version', 'latest_unlisted_version',
+            'has_theme_rereview', 'latest_unlisted_version', 'listed_authors',
+            'name', 'name_sort', 'platforms', 'previews', 'public_stats',
+            'ratings', 'summary', 'tags', 'has_theme_rereview',
             'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
             'public_stats', 'ratings', 'summary', 'tags',
         ]
@@ -166,6 +168,12 @@ class TestAddonIndexer(TestCase):
         assert extracted['has_eula'] is False
         assert extracted['has_privacy_policy'] is False
 
+    def test_extract_no_current_version(self):
+        self.addon.current_version.delete()
+        extracted = self._extract()
+
+        assert extracted['current_version'] is None
+
     def test_extract_version_and_files(self):
         version = self.addon.current_version
         file_factory(version=version, platform=PLATFORM_MAC.id)
@@ -201,7 +209,6 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
 
-        assert extracted['has_version']
         assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
                                                    PLATFORM_ALL.id])
         version = current_beta_version

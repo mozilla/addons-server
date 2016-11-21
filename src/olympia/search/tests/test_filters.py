@@ -103,7 +103,7 @@ class TestReviewedContentFilter(FilterTestsBase):
         must_not = qs['query']['filtered']['filter']['bool']['must_not']
 
         assert {'terms': {'status': amo.REVIEWED_STATUSES}} in must
-        assert {'term': {'has_version': True}} in must
+        assert {'exists': {'field': 'current_version'}} in must
         assert {'term': {'is_disabled': True}} in must_not
         assert {'term': {'is_deleted': True}} in must_not
         assert {'term': {'is_listed': False}} in must_not

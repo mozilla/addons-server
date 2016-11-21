@@ -349,7 +349,7 @@ class SearchView(APIView):
             'is_listed': True,
             'is_experimental': False,
             'is_disabled': False,
-            'has_version': True,
+            'current_version__exists': True,
         }
 
         # Opts may get overridden by query string filters.
