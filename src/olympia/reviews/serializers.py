@@ -29,12 +29,15 @@ class BaseReviewSerializer(serializers.ModelSerializer):
                   'previous_count', 'title', 'user')
 
     def get_addon(self, obj):
-        # We only return the addon id for convenience, so just return the
-        # addon_id field from the review obj, no need to do any extra queries
-        # or instantiate a full serializer.
+        # We only return the addon id and slug for convenience, so just return
+        # them directly to avoid instantiating a full serializer. Also avoid
+        # database queries if possible by re-using the addon object from the
+        # view if there is one.
+        addon = self.context['view'].get_addon_object() or obj.addon
 
         return {
-            'id': obj.addon_id
+            'id': addon.id,
+            'slug': addon.slug
         }
 
     def validate(self, data):

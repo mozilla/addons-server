@@ -11,16 +11,21 @@ from olympia.reviews.serializers import ReviewSerializer
 class TestBaseReviewSerializer(TestCase):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
+        self.view = Mock(spec=['get_addon_object'])
         self.user = user_factory()
 
     def serialize(self, **extra_context):
-        context = {'request': self.request, 'view': Mock(spec=[])}
+        context = {
+            'request': self.request,
+            'view': self.view,
+        }
         context.update(extra_context)
         serializer = ReviewSerializer(context=context)
         return serializer.to_representation(self.review)
 
     def test_basic(self):
         addon = addon_factory()
+        self.view.get_addon_object.return_value = addon
         self.review = Review.objects.create(
             addon=addon, user=self.user, rating=4,
             version=addon.current_version, body=u'This is my rëview. Like ît?',
@@ -29,7 +34,10 @@ class TestBaseReviewSerializer(TestCase):
         result = self.serialize()
 
         assert result['id'] == self.review.pk
-        assert result['addon'] == {'id': addon.pk}
+        assert result['addon'] == {
+            'id': addon.pk,
+            'slug': addon.slug,
+        }
         assert result['body'] == unicode(self.review.body)
         assert result['created'] == (
             self.review.created.replace(microsecond=0).isoformat() + 'Z')
@@ -51,6 +59,22 @@ class TestBaseReviewSerializer(TestCase):
         self.review.update(version=None)
         result = self.serialize()
         assert result['version'] is None
+
+    def test_addon_slug_even_if_view_doesnt_return_addon_object(self):
+        addon = addon_factory()
+        self.view.get_addon_object.return_value = None
+        self.review = Review.objects.create(
+            addon=addon, user=self.user, rating=4,
+            version=addon.current_version, body=u'This is my rëview. Like ît?',
+            title=u'My Review Titlé')
+
+        result = self.serialize()
+
+        assert result['id'] == self.review.pk
+        assert result['addon'] == {
+            'id': addon.pk,
+            'slug': addon.slug,
+        }
 
     def test_with_previous_count(self):
         addon = addon_factory()
@@ -108,6 +132,8 @@ class TestBaseReviewSerializer(TestCase):
 
     def test_with_deleted_reply_but_view_allowing_it_to_be_shown(self):
         addon = addon_factory()
+        self.view.get_addon_object.return_value = addon
+        self.view.should_access_deleted_reviews = True
         reply_user = user_factory()
         self.review = Review.objects.create(
             addon=addon, user=self.user, version=addon.current_version,
@@ -116,9 +142,7 @@ class TestBaseReviewSerializer(TestCase):
             addon=addon, user=reply_user, version=addon.current_version,
             body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.review)
 
-        view = Mock(spec=[], should_access_deleted_reviews=True)
-        view.should_access_deleted_reviews = True
-        result = self.serialize(view=view)
+        result = self.serialize()
 
         assert result['reply']
         assert 'rating' not in result['reply']

@@ -326,6 +326,8 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
     queryset = Review.objects.all()
 
     def get_addon_object(self):
+        if 'addon_pk' not in self.kwargs:
+            return None
         # When loading the add-on, pass a specific permission class - the
         # default from AddonViewSet is too restrictive, we are not modifying
         # the add-on itself so we don't need all the permission checks it does.
