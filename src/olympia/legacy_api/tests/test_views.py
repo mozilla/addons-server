@@ -1000,6 +1000,8 @@ class SearchTest(ESTestCase):
         Test that unlisted add-ons are not shown.
         """
         addon = Addon.objects.get(pk=3615)
+        addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        addon.reload()
         addon.update(is_listed=False)
         self.refresh()
         response = self.client.get(

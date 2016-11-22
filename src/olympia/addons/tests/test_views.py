@@ -2177,6 +2177,16 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 0
         assert len(data['results']) == 0
 
+    def test_no_unlisted(self):
+        addon_factory(slug='my-addon', name=u'My Addôn',
+                      status=amo.STATUS_NULL,
+                      weekly_downloads=666,
+                      version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        self.refresh()
+        data = self.perform_search(self.url)
+        assert data['count'] == 0
+        assert len(data['results']) == 0
+
     def test_pagination(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
                               weekly_downloads=33)

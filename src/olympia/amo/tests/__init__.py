@@ -869,7 +869,7 @@ class ESTestCase(TestCase):
         process.send(None)
 
     @classmethod
-    def refresh(cls, index='default', timesleep=0):
+    def refresh(cls, index='default'):
         process.send(None)
         cls.es.indices.refresh(settings.ES_INDEXES[index])
 
