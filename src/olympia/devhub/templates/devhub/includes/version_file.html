@@ -4,7 +4,7 @@
       <a href="{{ file.get_url_path('devhub') }}">
         {{ file.pretty_filename() }}</a>
     </td>
-    <td>{{ file.size|filesizeformat }}</td>
+    <td>{{ file.size|filesizeformat(binary=True) }}</td>
     <td>{{ form.platform }}</td>
     <td>{{ choices[file.status] }}</td>
     <td>

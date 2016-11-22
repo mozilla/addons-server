@@ -676,6 +676,11 @@ class TestViews(TestCase):
             reverse('addons.versions', args=[self.addon.slug, version_number]))
         assert response.status_code == 404
 
+    def test_version_list_file_size_uses_binary_prefix(self):
+        url = reverse('addons.versions', args=[self.addon.slug])
+        response = self.client.get(url)
+        assert '1.0 KiB' in response.content
+
 
 class TestFeeds(TestCase):
     fixtures = ['addons/eula+contrib-addon', 'addons/default-to-compat']

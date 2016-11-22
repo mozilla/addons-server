@@ -1951,6 +1951,11 @@ class TestVersionAddFile(UploadTest):
         assert new_file != existing_file
         assert mock_sign_file.called
 
+    def test_file_Size_uses_binary_prefix(self):
+        response = self.client.get(self.edit_url)
+        table = pq(response.content)('#file-list')
+        assert '379.0 KiB' in table.find('td').eq(1).text()
+
 
 class TestUploadErrors(UploadTest):
     fixtures = ['base/users', 'base/addon_3615']
