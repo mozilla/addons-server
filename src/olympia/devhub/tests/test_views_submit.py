@@ -980,6 +980,11 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert doc('.beta-status').length
 
+    def test_url_is_404_for_disabled_addons(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        r = self.client.get(self.url)
+        assert r.status_code == 404
+
 
 @override_switch('step-version-upload', active=True)
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):

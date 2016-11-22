@@ -127,6 +127,12 @@ class VersionView(APIView):
                 _(u'You cannot submit this type of add-on'),
                 status.HTTP_400_BAD_REQUEST)
 
+        if addon is not None and addon.status == amo.STATUS_DISABLED:
+            raise forms.ValidationError(
+                _('You cannot add versions to an addon that has status: %s.' %
+                  amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED]),
+                status.HTTP_400_BAD_REQUEST)
+
         version_string = version_string or pkg['version']
 
         if version_string and pkg['version'] != version_string:

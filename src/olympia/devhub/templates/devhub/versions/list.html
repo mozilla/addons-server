@@ -220,6 +220,7 @@
   <div class="item" id="version-list"
        data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
     <div class="item_wrapper">
+      {% if addon.status != amo.STATUS_DISABLED %}{# i.e. Admin disabled #}
       <div>
         {% if waffle.switch('step-version-upload') %}
           {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
@@ -228,6 +229,7 @@
         {% endif %}
         <a href="{{ version_upload_url }}" class="button version-upload">{{ _('Upload a New Version') }}</a>
       </div>
+      {% endif %}
       <table>
         <tr>
           <th>{{ _('Version') }}</th>

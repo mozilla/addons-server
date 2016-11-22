@@ -39,7 +39,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import escape_all, MenuItem, send_mail, render
 from olympia.api.models import APIKey
 from olympia.applications.models import AppVersion
-from olympia.devhub.decorators import dev_required
+from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import CheckCompatibilityForm
 from olympia.devhub.models import ActivityLog, BlogPost, RssKey, VersionLog
 from olympia.devhub.utils import (
@@ -1306,6 +1306,7 @@ def auto_sign_version(version, **kwargs):
 @json_view
 @dev_required
 @post_required
+@no_admin_disabled
 @waffle_switch('!step-version-upload')
 def version_add(request, addon_id, addon):
     form = forms.NewUploadForm(
@@ -1585,6 +1586,7 @@ def submit_addon_upload(request, channel):
 
 
 @dev_required
+@no_admin_disabled
 @waffle_switch('step-version-upload')
 def submit_version_upload(request, addon_id, addon, channel):
     if waffle.switch_is_active('mixed-listed-unlisted'):
@@ -1599,6 +1601,7 @@ def submit_version_upload(request, addon_id, addon, channel):
 
 
 @dev_required
+@no_admin_disabled
 @waffle_switch('step-version-upload')
 def submit_version(request, addon_id, addon):
     if waffle.switch_is_active('mixed-listed-unlisted'):
