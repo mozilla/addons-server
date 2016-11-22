@@ -321,9 +321,7 @@ class Addon(OnChangeMixin, ModelBase):
     _current_version = models.ForeignKey(Version, db_column='current_version',
                                          related_name='+', null=True,
                                          on_delete=models.SET_NULL)
-    _latest_version = models.ForeignKey(Version, db_column='latest_version',
-                                        on_delete=models.SET_NULL,
-                                        null=True, related_name='+')
+
     whiteboard = models.TextField(blank=True)
 
     # Whether the add-on is listed on AMO or not.
@@ -736,7 +734,9 @@ class Addon(OnChangeMixin, ModelBase):
     @write
     def update_version(self, ignore=None, _signal=True):
         """
-        Returns true if we updated the field.
+        Update the current_version field on this add-on if necessary.
+
+        Returns True if we updated the current_version field.
 
         The optional ``ignore`` parameter, if present, is a a version
         to not consider as part of the update, since it may be in the
@@ -745,56 +745,32 @@ class Addon(OnChangeMixin, ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
-        new_current_version = self.find_latest_public_listed_version()
-        new_latest_version = self.find_latest_version(ignore=ignore)
-
         if self.is_persona():
             # Themes should only have a single version. So, if there is not
             # current version set, we just need to copy over the latest version
             # to current_version and we should never have to set it again.
             if not self._current_version:
-                if new_latest_version:
-                    self.update(_current_version=new_latest_version,
-                                _latest_version=new_latest_version,
-                                _signal=False)
+                latest_version = self.find_latest_version()
+                if latest_version:
+                    self.update(_current_version=latest_version, _signal=False)
                 return True
             return False
 
-        latest_id = new_latest_version and new_latest_version.id
-        diff = [self._current_version, new_current_version]
-
-        # Sometimes the DB is in an inconsistent state when this
-        # signal is dispatched.
-        try:
-            if self._latest_version:
-                # Make sure stringifying this does not trigger
-                # Version.DoesNotExist before trying to use it for
-                # logging.
-                unicode(self._latest_version)
-            diff += [self._latest_version, new_latest_version]
-        except Version.DoesNotExist:
-            diff += [self._latest_version_id, latest_id]
-
+        new_current_version = self.find_latest_public_listed_version()
         updated = {}
         send_signal = False
         if self._current_version != new_current_version:
-            updated.update({'_current_version': new_current_version})
+            updated['_current_version'] = new_current_version
             send_signal = True
-        # Don't use _latest_version here. It may throw Version.DoesNotExist
-        # if we're called from a post_delete signal. We also don't set
-        # send_signal since we only want this fired if the public version
-        # changes.
-        if self._latest_version_id != latest_id:
-            updated.update({'_latest_version': new_latest_version})
 
         # update_version can be called by a post_delete signal (such
         # as File's) when deleting a version. If so, we should avoid putting
         # that version-being-deleted in any fields.
         if ignore is not None:
-            updated = dict([(k, v) for (k, v) in updated.iteritems()
-                            if v != ignore])
+            updated = {k: v for k, v in updated.iteritems() if v != ignore}
 
         if updated:
+            diff = [self._current_version, new_current_version]
             # Pass along _signal to the .update() to prevent it from firing
             # signals if we don't want them.
             updated['_signal'] = _signal
@@ -802,12 +778,12 @@ class Addon(OnChangeMixin, ModelBase):
                 self.update(**updated)
                 if send_signal and _signal:
                     signals.version_changed.send(sender=self)
-                log.info(u'Version changed from current: %s to %s, '
-                         u'latest: %s to %s for addon %s'
+                log.info(u'Version changed from current: %s to %s '
+                         u'for addon %s'
                          % tuple(diff + [self]))
             except Exception, e:
-                log.error(u'Could not save version changes current: %s to %s, '
-                          u'latest: %s to %s for addon %s (%s)' %
+                log.error(u'Could not save version changes current: %s to %s '
+                          u'for addon %s (%s)' %
                           tuple(diff + [self, e]))
 
         return bool(updated)
@@ -1096,10 +1072,7 @@ class Addon(OnChangeMixin, ModelBase):
         if addon_dict is None:
             addon_dict = dict((a.id, a) for a in addons)
 
-        current_ids = filter(None, (a._current_version_id for a in addons))
-        latest_ids = filter(None, (a._latest_version_id for a in addons))
-        all_ids = set(current_ids) | set(latest_ids)
-
+        all_ids = set(filter(None, (a._current_version_id for a in addons)))
         versions = list(Version.objects.filter(id__in=all_ids).order_by())
         for version in versions:
             try:
@@ -1109,8 +1082,6 @@ class Addon(OnChangeMixin, ModelBase):
                 continue
             if addon._current_version_id == version.id:
                 addon._current_version = version
-            if addon._latest_version_id == version.id:
-                addon._latest_version = version
 
             version.addon = addon
 
@@ -1177,7 +1148,7 @@ class Addon(OnChangeMixin, ModelBase):
         personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
-        # Set _latest_version, _current_version
+        # Set _current_version.
         Addon.attach_related_versions(addons, addon_dict=addon_dict)
 
         # Attach listed authors.

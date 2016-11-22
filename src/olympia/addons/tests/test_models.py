@@ -1831,7 +1831,7 @@ class TestBackupVersion(TestCase):
 
     def test_firefox_versions(self):
         self.setup_new_version()
-        assert self.addon.update_version()
+        self.addon.update_version()
         current = self.addon.current_version.compatible_apps[amo.FIREFOX]
         assert current.max.version == '4.0b8pre'
         assert current.min.version == '3.0.12'
