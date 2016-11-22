@@ -60,7 +60,8 @@ cffi==1.8.3 \
     --hash=sha256:c321bd46faa7847261b89c0469569530cad5a41976bb6dba8202c0159f476568
 # click is required by dennis
 click==6.6 \
-    --hash=sha256:cc6a19da8ebff6e7074f731447ef7e112bd23adf3de5c597cf9989f2fd8defe9
+    --hash=sha256:cc6a19da8ebff6e7074f731447ef7e112bd23adf3de5c597cf9989f2fd8defe9 \
+    --hash=sha256:fcf697e1fd4b567d817c69dab10a4035937fe6af175c05fd6806b69f74cbc6c4
 commonware==0.4.3 \
     --hash=sha256:a7b02a5f76d89a79f861926fb34e029cc4343c13802525c818542a39fe788cce
 # contextlib2 is required by raven
