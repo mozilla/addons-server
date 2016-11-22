@@ -74,43 +74,11 @@ class USER_ENABLE(_LOG):
     keep = True
 
 
-# TODO(davedash): Log these types when pages are present
-class SET_PUBLIC_STATS(_LOG):
-    id = 10
-    format = _(u'Stats set public for {addon}.')
-    keep = True
-
-
-# TODO(davedash): Log these types when pages are present
-class UNSET_PUBLIC_STATS(_LOG):
-    id = 11
-    format = _(u'{addon} stats set to private.')
-    keep = True
-
-
 class CHANGE_STATUS(_LOG):
     id = 12
     # L10n: {0} is the status
     format = _(u'{addon} status changed to {0}.')
     keep = True
-
-
-class ADD_PREVIEW(_LOG):
-    id = 13
-    action_class = 'add'
-    format = _(u'Preview added to {addon}.')
-
-
-class EDIT_PREVIEW(_LOG):
-    id = 14
-    action_class = 'edit'
-    format = _(u'Preview edited for {addon}.')
-
-
-class DELETE_PREVIEW(_LOG):
-    id = 15
-    action_class = 'delete'
-    format = _(u'Preview deleted from {addon}.')
 
 
 class ADD_VERSION(_LOG):
@@ -381,16 +349,6 @@ class CHANGE_PASSWORD(_LOG):
     format = _(u'Password changed.')
 
 
-class PAYPAL_FAILED(_LOG):
-    id = 51
-    format = _(u'{addon} failed checks with PayPal.')
-
-
-class MANIFEST_UPDATED(_LOG):
-    id = 52
-    format = _(u'{addon} manifest updated.')
-
-
 class APPROVE_VERSION_WAITING(_LOG):
     id = 53
     action_class = 'approve'
@@ -401,75 +359,9 @@ class APPROVE_VERSION_WAITING(_LOG):
     review_queue = True
 
 
-class PURCHASE_ADDON(_LOG):
-    id = 54
-    format = _(u'{addon} purchased.')
-
-
-class INSTALL_ADDON(_LOG):
-    id = 55
-    format = _(u'{addon} installed.')
-
-
 class USER_EDITED(_LOG):
     id = 60
     format = _(u'Account updated.')
-
-
-class ESCALATION_CLEARED(_LOG):
-    id = 66
-    format = _(u'Escalation cleared for {addon}.')
-    short = _(u'Escalation cleared')
-    keep = True
-    review_queue = True
-
-
-class APP_DISABLED(_LOG):
-    id = 67
-    format = _(u'{addon} disabled.')
-    short = _(u'App disabled')
-    keep = True
-    review_queue = True
-
-
-class ESCALATED_HIGH_ABUSE(_LOG):
-    id = 68
-    format = _(u'{addon} escalated because of high number of abuse reports.')
-    short = _(u'High Abuse Reports')
-    keep = True
-    review_queue = True
-
-
-class ESCALATE_MANUAL(_LOG):
-    id = 73
-    format = _(u'{addon} escalated by reviewer.')
-    short = _(u'Reviewer escalation')
-    keep = True
-    review_queue = True
-# TODO(robhudson): Escalation log for editor escalation..
-
-
-class VIDEO_ERROR(_LOG):
-    id = 74
-    format = _(u'Video removed from {addon} because of a problem with '
-               u'the video. ')
-    short = _(u'Video removed')
-
-
-class REREVIEW_DEVICES_ADDED(_LOG):
-    id = 75
-    format = _(u'{addon} re-review because of new device(s) added.')
-    short = _(u'Device(s) Added')
-    keep = True
-    review_queue = True
-
-
-class REVIEW_DEVICE_OVERRIDE(_LOG):
-    id = 76
-    format = _(u'{addon} device support manually changed by reviewer.')
-    short = _(u'Device(s) Changed by Reviewer')
-    keep = True
-    review_queue = True
 
 
 class CUSTOM_TEXT(_LOG):
@@ -550,47 +442,6 @@ class GROUP_USER_REMOVED(_LOG):
     format = _(u'User {0.name} removed from {group}.')
     keep = True
     admin_event = True
-
-
-class REVIEW_FEATURES_OVERRIDE(_LOG):
-    id = 122
-    format = _(u'{addon} minimum requirements manually changed by reviewer.')
-    short = _(u'Requirements Changed by Reviewer')
-    keep = True
-    review_queue = True
-
-
-class REREVIEW_FEATURES_CHANGED(_LOG):
-    id = 123
-    format = _(u'{addon} minimum requirements manually changed.')
-    short = _(u'Requirements Changed')
-    keep = True
-    review_queue = True
-
-
-class CHANGE_VERSION_STATUS(_LOG):
-    id = 124
-    # L10n: {0} is the status
-    format = _(u'{version} status changed to {0}.')
-    keep = True
-
-
-class DELETE_USER_LOOKUP(_LOG):
-    id = 125
-    # L10n: {0} is the status
-    format = _(u'User {0.name} {0.id} deleted via lookup tool.')
-    keep = True
-
-
-class CONTENT_RATING_TO_ADULT(_LOG):
-    id = 126
-    format = _('{addon} content rating changed to Adult.')
-    review_queue = True
-
-
-class CONTENT_RATING_CHANGED(_LOG):
-    id = 127
-    format = _('{addon} content rating changed.')
 
 
 class ADDON_UNLISTED(_LOG):
