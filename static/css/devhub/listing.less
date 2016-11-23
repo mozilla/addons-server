@@ -47,6 +47,23 @@
     }
     .item-details {
         width: 68%;
+        li.distribution-tag-unlisted,
+        li.distribution-tag-listed {
+            padding-top: 5px;
+            border-top: 1px dotted #94bfce;
+        }
+        span.distribution-tag-listed, span.distribution-tag-unlisted {
+            color: white;
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-size: smaller
+        }
+        span.distribution-tag-listed {
+            background-color: #01BDAD;
+        }
+        span.distribution-tag-unlisted {
+            background-color: #7A2F7A;
+        }
     }
     &:hover {
         a {

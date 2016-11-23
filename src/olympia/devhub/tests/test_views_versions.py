@@ -63,7 +63,7 @@ class TestVersion(TestCase):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
         doc = self.get_doc()
         assert doc('.addon-status .status-disabled').text() == (
-            'You have disabled this add-on')
+            'Invisible')
 
     def test_no_validation_results(self):
         doc = self.get_doc()
