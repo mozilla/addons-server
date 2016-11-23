@@ -1,0 +1,11 @@
+<nav class="DevHub-Navigation {% if request.user.is_authenticated() %}DevHub-Navigation--signedin{% endif %}">
+  <ul>
+    <li><a href="#"><div class="Logo{% if request.user.is_authenticated() %} Logo--secondary{% endif %}" alt="{{ dev_page_title() }}" /></a></li>
+    <li><a href="#">Docs</a></li>
+    <li><a href="#">Support</a></li>
+    <li><a href="#">Blog</a></li>
+    {% if request.user.is_authenticated() %}
+      <li class="avatar"><a href="#"><img src="{{ request.user.picture_url }}" /></a></li>
+    {% endif %}
+  </ul>
+</nav>
