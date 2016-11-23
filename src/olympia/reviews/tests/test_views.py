@@ -1749,6 +1749,7 @@ class TestReviewViewSetFlag(TestCase):
         assert self.review.reload().editorreview is True
 
     def test_flag_logged_in_addon_denied(self):
+        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update(is_listed=False)
         self.user = user_factory()
         self.client.login_api(self.user)
