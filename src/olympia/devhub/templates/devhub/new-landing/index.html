@@ -37,26 +37,21 @@
         data-raven-urls="{{ settings.RAVEN_ALLOW_LIST }}"
         {% block bodyattrs %}{% endblock %}>
 
-    <nav class="DevHub-Navigation">
-      <ul>
-        <li><a href="#"><div class="Logo" alt="{{ dev_page_title() }}" /></a></li>
-        <li><a href="#">Docs</a></li>
-        <li><a href="#">Support</a></li>
-        <li><a href="#">Blog</a></li>
-      </ul>
-    </nav>
+    {% include 'devhub/new-landing/components/navigation.html' %}
 
-    <section class="DevHub-Header">
-      <h1>{{ _('Customize Your Firefox') }}</h1>
-      <p>
-        {% trans %}
-        Add-ons let millions of Firefox users enhance their browsing experience.
-        If you know <a href="#">HTML</a>, <a href="#">JavaScript</a>, and <a href="#">CSS</a>,
-        you already have all the necessary skills to make a great add-on.
-        {% endtrans %}
-      </p>
-      <a href="#" class="Button Button--primary">Learn How to make an Add-on</a>
-    </section>
+    {% if not request.user.is_authenticated() %}
+      <section class="DevHub-Header">
+        <h1>{{ _('Customize Your Firefox') }}</h1>
+        <p>
+          {% trans %}
+          Add-ons let millions of Firefox users enhance their browsing experience.
+          If you know <a href="#">HTML</a>, <a href="#">JavaScript</a>, and <a href="#">CSS</a>,
+          you already have all the necessary skills to make a great add-on.
+          {% endtrans %}
+        </p>
+        <a href="#" class="Button Button--primary">Learn How to make an Add-on</a>
+      </section>
+    {% endif %}
 
     {% block site_js %}
     {% endblock %}

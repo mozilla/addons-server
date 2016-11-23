@@ -4,10 +4,20 @@
 // Colors
 @primary-font: 'Fira Sans', sans-serif;
 @primary-font-color: #fff;
+@secondary-font-color: #333;
 
 @button-border: #979797;
 @primary-button-background: #29c978;
+
 @primary-section-background: #0568ba;
+@secondary-section-background: #f3f5f8;
+
+@retina: ~"only screen and (-webkit-min-device-pixel-ratio: 1.3),
+  only screen and (-o-min-device-pixel-ratio: 13/10),
+  only screen and (min-resolution: 120dpi)";
+
+@tablet: ~"only screen and (min-device-width: 768px)";
+
 
 // Common styles
 * {
@@ -68,6 +78,20 @@ section {
   }
 }
 
+
+.Logo {
+  content: '';
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+  background: url('../../img/developers/addons-logo.svg') 50% 50% no-repeat;
+  background-size: cover;
+}
+
+.Logo--secondary {
+  background: url('../../img/developers/addons-logo-black.svg') 50% 50% no-repeat;
+}
+
 .DevHub-Navigation {
   background-color: @primary-section-background;
   padding: 0 20px 20px;
@@ -87,15 +111,6 @@ section {
         margin-left: 0;
         margin-right: auto;
       }
-
-      .Logo {
-        content: '';
-        display: inline-block;
-        height: 48px;
-        width: 48px;
-        background: url('../../img/developers/addons-logo.svg') 50% 50% no-repeat;
-        background-size: cover;
-      }
     }
 
     a {
@@ -105,8 +120,27 @@ section {
   }
 }
 
-// Swap for higher-resolution (background) images
-// Only boilerplate for now... might just go away if not needed...
-// @media  only screen and (-webkit-min-device-pixel-ratio: 1.3),
-//   only screen and (-o-min-device-pixel-ratio: 13/10),
-//   only screen and (min-resolution: 120dpi) {}
+.DevHub-Navigation--signedin {
+  background-color: @secondary-section-background;
+
+  ul {
+    li {
+      a {
+        color: @secondary-font-color;
+      }
+
+      &.avatar {
+        display: none;
+
+        @media @tablet {
+          display: inline;
+        }
+
+        img {
+          width: 40px;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
