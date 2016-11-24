@@ -204,6 +204,7 @@ class TestActivity(HubTest):
     def test_rss_unlisted_addon(self):
         """Unlisted addon logs appear in the rss feed."""
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.log_creates(5)
 
         # This will give us a new RssKey
@@ -231,6 +232,7 @@ class TestActivity(HubTest):
         self.addon.name = ("<script>alert('Buy more Diet Mountain Dew.')"
                            '</script>')
         self.addon.is_listed = False
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.save()
         self.log_creates(1)
         doc = self.get_pq()
@@ -247,6 +249,7 @@ class TestActivity(HubTest):
 
     def test_xss_collections_unlisted_addon(self):
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
         assert len(doc('.item')) == 1
@@ -262,6 +265,7 @@ class TestActivity(HubTest):
 
     def test_xss_tags_unlisted_addon(self):
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.log_tag(1, "<script src='x.js'>")
         doc = self.get_pq()
         assert len(doc('.item')) == 1
@@ -277,6 +281,7 @@ class TestActivity(HubTest):
 
     def test_xss_versions_unlisted_addon(self):
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.log_updates(1, "<script src='x.js'>")
         doc = self.get_pq()
         assert len(doc('.item')) == 2

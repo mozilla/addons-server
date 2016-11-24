@@ -120,6 +120,7 @@ class TestNav(HubTest):
         addon = Addon.objects.get(id=57132)
         addon.name = 'Test'
         addon.is_listed = False
+        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         addon.save()
         addon.addonuser_set.create(user=self.user_profile)
 
@@ -632,14 +633,15 @@ class TestEditPayments(TestCase):
         assert doc('.intro.full-intro').length == 0
 
     def test_no_voluntary_contributions_for_unlisted_addons(self):
+        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update(is_listed=False)
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('.intro').length == 1
         assert doc('.intro.full-intro').length == 0
         assert not doc('#do-setup')  # No way to setup the payment.
-        assert doc('.intro .error').text() == (
-            'Contributions are only available for listed add-ons.')
+        assert doc('.intro .error').text().startswith(
+            'Contributions are only available for add-ons with listed')
 
 
 class TestDisablePayments(TestCase):
@@ -854,10 +856,10 @@ class TestHome(TestCase):
             if self.addon.is_listed and self.addon.current_version:
                 # We don't display a link to the inexistent public page for
                 # unlisted addons.
-                assert addon_item.find('p').eq(3).find('a').attr('href') == (
+                assert addon_item.find('p').eq(2).find('a').attr('href') == (
                     self.addon.current_version.get_url_path())
                 assert 'Queue Position: 1 of 1' == (
-                    addon_item.find('p').eq(4).text())
+                    addon_item.find('p').eq(3).text())
 
             assert addon_item.find(
                 '.upload-new-version a').attr('href') == (
@@ -926,13 +928,10 @@ class TestHome(TestCase):
             assert addon_item.length == 1
             assert addon_item.find('.addon-name').attr('href') == (
                 self.addon.get_dev_url('edit'))
-            if self.addon.is_listed and self.addon.current_version:
-                # We don't display a link to the inexistent public page for
-                # unlisted addons.
-                assert addon_item.find('p').eq(3).find('a').attr('href') == (
-                    self.addon.current_version.get_url_path())
-                assert 'Queue Position: 1 of 1' == (
-                    addon_item.find('p').eq(4).text())
+            assert addon_item.find('p').eq(2).find('a').attr('href') == (
+                self.addon.current_version.get_url_path())
+            assert 'Queue Position: 1 of 1' == (
+                addon_item.find('p').eq(3).text())
 
             assert addon_item.find(
                 '.upload-new-version a').attr('href') == (
@@ -949,39 +948,53 @@ class TestHome(TestCase):
 
     @override_switch('step-version-upload', active=True)
     def test_my_addons_disabled(self):
-        statuses = [(amo.STATUS_DISABLED, amo.STATUS_DISABLED)]
+        latest_version = self.addon.find_latest_version()
+        file = latest_version.files.all()[0]
+        file.update(status=amo.STATUS_DISABLED)
+        self.addon.update(status=amo.STATUS_DISABLED)
 
-        for addon_status, file_status in statuses:
-            latest_version = self.addon.find_latest_version()
-            file = latest_version.files.all()[0]
-            file.update(status=file_status)
+        doc = self.get_pq()
+        addon_item = doc('#my-addons .addon-item')
+        assert addon_item.length == 1
+        assert addon_item.find('.addon-name').attr('href') == (
+            self.addon.get_dev_url('edit'))
+        assert not addon_item.find('p').eq(3).find('a').attr('href')
+        assert not addon_item.find('.upload-new-version a')
 
-            self.addon.update(status=addon_status)
-
-            doc = self.get_pq()
-            addon_item = doc('#my-addons .addon-item')
-            assert addon_item.length == 1
-            assert addon_item.find('.addon-name').attr('href') == (
-                self.addon.get_dev_url('edit'))
-            if self.addon.is_listed and self.addon.current_version:
-                # We don't display a link to the inexistent public page for
-                # unlisted addons.
-                assert addon_item.find('p').eq(3).find('a').attr('href') == (
-                    self.addon.current_version.get_url_path())
-            assert not addon_item.find('.upload-new-version a')
-
-            doc = self.get_pq()
-            addon_item = doc('#my-addons .addon-item')
-            status_str = 'Status: ' + unicode(
-                self.addon.STATUS_CHOICES[self.addon.status])
-            assert status_str == addon_item.find('p').eq(1).text()
+        doc = self.get_pq()
+        addon_item = doc('#my-addons .addon-item')
+        status_str = 'Status: ' + unicode(
+            self.addon.STATUS_CHOICES[self.addon.status])
+        assert status_str == addon_item.find('p').eq(1).text()
 
         Addon.with_unlisted.all().delete()
         assert self.get_pq()('#my-addons').length == 0
 
+    @override_switch('step-version-upload', active=True)
     def test_my_unlisted_addons(self):
         self.addon.update(is_listed=False)
-        self.test_my_addons()  # Run the test again but with an unlisted addon.
+        for v in self.addon.versions.all():
+            v.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert self.addon.status == amo.STATUS_NULL
+
+        doc = self.get_pq()
+        addon_item = doc('#my-addons .addon-item')
+        assert addon_item.length == 1
+        assert addon_item.find('.addon-name').attr('href') == (
+            self.addon.get_dev_url('edit'))
+
+        assert addon_item.find(
+            '.upload-new-version a').attr('href') == (
+            reverse('devhub.submit.version', args=[self.addon.slug]))
+
+        doc = self.get_pq()
+        addon_item = doc('#my-addons .addon-item')
+        status_str = 'Status: ' + unicode(
+            self.addon.STATUS_CHOICES[self.addon.status])
+        assert status_str == addon_item.find('p').eq(1).text()
+
+        Addon.with_unlisted.all().delete()
+        assert self.get_pq()('#my-addons').length == 0
 
     def test_incomplete_no_new_version(self):
         def no_link():
@@ -1059,6 +1072,7 @@ class TestActivityFeed(TestCase):
     def test_unlisted_addons_dashboard(self):
         """Unlisted addons are displayed in the feed on the dashboard page."""
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.add_log()
         res = self.client.get(reverse('devhub.addons'))
         doc = pq(res.content)
@@ -1067,6 +1081,7 @@ class TestActivityFeed(TestCase):
     def test_unlisted_addons_feed_sidebar(self):
         """Unlisted addons are displayed in the left side in the feed page."""
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.add_log()
         res = self.client.get(reverse('devhub.feed_all'))
         doc = pq(res.content)
@@ -1076,6 +1091,7 @@ class TestActivityFeed(TestCase):
     def test_unlisted_addons_feed(self):
         """Unlisted addons are displayed in the feed page."""
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.add_log()
         res = self.client.get(reverse('devhub.feed_all'))
         doc = pq(res.content)
@@ -1084,6 +1100,7 @@ class TestActivityFeed(TestCase):
     def test_unlisted_addons_feed_filter(self):
         """Feed page can be filtered on unlisted addon."""
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.add_log()
         res = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(res.content)
@@ -1491,6 +1508,7 @@ class TestUploadDetail(BaseUploadTest):
     def test_upload_detail_for_version_unlisted(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory(is_listed=False)
+        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         addon.addonuser_set.create(user=user)
         self.post()
 
@@ -2239,9 +2257,9 @@ class TestAddVersion(AddVersionTest):
     @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation are also auto signed/reviewed."""
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update(
-            is_listed=False, status=amo.STATUS_PUBLIC)
-        assert self.addon.status == amo.STATUS_PUBLIC
+            is_listed=False, status=amo.STATUS_NULL)
         # Make sure the file has validation warnings or errors.
         self.upload.update(
             validation=json.dumps({
@@ -2253,7 +2271,7 @@ class TestAddVersion(AddVersionTest):
         self.post()
         file_ = File.objects.latest()
         # Status is changed to reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_NULL
         assert file_.status == amo.STATUS_PUBLIC
         assert file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert mock_sign_file.called
@@ -2265,8 +2283,9 @@ class TestAddVersion(AddVersionTest):
     @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed."""
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update(
-            is_listed=False, status=amo.STATUS_PUBLIC)
+            is_listed=False, status=amo.STATUS_NULL)
         # Make sure the file has no validation warnings nor errors.
         self.upload.update(
             validation=json.dumps({
@@ -2275,11 +2294,11 @@ class TestAddVersion(AddVersionTest):
                 "signing_summary": {"trivial": 1, "low": 0,
                                     "medium": 0, "high": 0},
                 "passed_auto_validation": 1}))
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_NULL
         self.post()
         file_ = File.objects.latest()
         # Status is changed to reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_NULL
         assert file_.status == amo.STATUS_PUBLIC
         assert file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert mock_sign_file.called

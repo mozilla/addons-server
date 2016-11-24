@@ -158,13 +158,13 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.client.post(reverse('devhub.submit.agreement'))
 
     def post(self, supported_platforms=None, expect_errors=False,
-             source=None, is_listed=True, status_code=200):
+             source=None, listed=True, status_code=200):
         if supported_platforms is None:
             supported_platforms = [amo.PLATFORM_ALL]
         d = dict(upload=self.upload.uuid.hex, source=source,
                  supported_platforms=[p.id for p in supported_platforms])
         url = reverse('devhub.submit.upload',
-                      args=['listed' if is_listed else 'unlisted'])
+                      args=['listed' if listed else 'unlisted'])
         r = self.client.post(url, d, follow=True)
         assert r.status_code == status_code
         if not expect_errors:
@@ -232,7 +232,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
                                            'high': 0},
                                        passed_auto_validation=True
                                        )))
-        self.post(is_listed=False)
+        self.post(listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         version = addon.find_latest_version(
@@ -254,7 +254,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
                                            'high': 0},
                                        passed_auto_validation=False
                                        )))
-        self.post(is_listed=False)
+        self.post(listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
         version = addon.find_latest_version(
@@ -289,7 +289,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert Addon.objects.count() == 0
         r = self.post(supported_platforms=[amo.PLATFORM_MAC,
                                            amo.PLATFORM_LINUX],
-                      is_listed=False)
+                      listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -412,8 +412,10 @@ class TestAddonSubmitDetails(TestSubmitBase):
     def test_submit_name_unique_only_for_listed(self):
         """A listed add-on can use the same name as unlisted add-ons."""
         # Change the existing add-on with the 'Cooliris' name to be unlisted.
-        Addon.objects.get(name__localized_string='Cooliris').update(
-            is_listed=False)
+        coolris = Addon.objects.get(name__localized_string='Cooliris')
+        coolris.update(is_listed=False)
+        coolris.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
         assert get_addon_count('Cooliris') == 1
         # It's allowed for the '3615' listed add-on to reuse the same name as
         # the other 'Cooliris' unlisted add-on.

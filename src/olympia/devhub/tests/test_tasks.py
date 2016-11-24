@@ -158,13 +158,13 @@ class TestValidator(ValidatorTestCase):
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_pass_validation(self, _mock):
         _mock.return_value = '{"errors": 0}'
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         assert self.get_upload().valid
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_fail_validation(self, _mock):
         _mock.return_value = '{"errors": 2}'
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         assert not self.get_upload().valid
 
     @mock.patch('validator.submain.test_package')
@@ -175,7 +175,7 @@ class TestValidator(ValidatorTestCase):
 
         assert self.upload.validation is None
 
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         self.upload.reload()
         validation = self.upload.processed_validation
         assert validation
@@ -191,7 +191,7 @@ class TestValidator(ValidatorTestCase):
 
         assert self.upload.validation is None
 
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         self.upload.reload()
         validation = self.upload.processed_validation
         assert validation
@@ -212,7 +212,7 @@ class TestValidator(ValidatorTestCase):
 
         assert self.upload.validation is None
 
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         self.upload.reload()
 
         validation = self.upload.processed_validation
@@ -227,7 +227,7 @@ class TestValidator(ValidatorTestCase):
     def test_validation_signing_warning(self, _mock):
         """If we sign addons, warn on signed addon submission."""
         _mock.return_value = self.mock_sign_addon_warning
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         validation = json.loads(self.get_upload().validation)
         assert validation['warnings'] == 1
         assert len(validation['messages']) == 1
@@ -237,7 +237,7 @@ class TestValidator(ValidatorTestCase):
     def test_validation_no_signing_warning(self, _mock):
         """If we're not signing addon don't warn on signed addon submission."""
         _mock.return_value = self.mock_sign_addon_warning
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         validation = json.loads(self.get_upload().validation)
         assert validation['warnings'] == 0
         assert len(validation['messages']) == 0
@@ -250,7 +250,7 @@ class TestValidator(ValidatorTestCase):
                   'errors': 0}
 
         _mock.return_value = json.dumps(result)
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         validation = json.loads(self.get_upload().validation)
         assert validation['passed_auto_validation']
 
@@ -262,7 +262,7 @@ class TestValidator(ValidatorTestCase):
                   'errors': 0}
 
         _mock.return_value = json.dumps(result)
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         validation = json.loads(self.get_upload().validation)
         assert not validation['passed_auto_validation']
 
@@ -270,7 +270,7 @@ class TestValidator(ValidatorTestCase):
     def test_annotate_passed_auto_validation_bogus_result(self, _mock):
         """Don't set passed_auto_validation, don't fail if results is bogus."""
         _mock.return_value = '{"errors": 0}'
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         assert (json.loads(self.get_upload().validation) ==
                 {"passed_auto_validation": True, "errors": 0,
                  "signing_summary": {"high": 0, "medium": 0,
@@ -280,7 +280,7 @@ class TestValidator(ValidatorTestCase):
     @mock.patch('olympia.devhub.tasks.track_validation_stats')
     def test_track_validation_stats(self, mock_track, mock_validate):
         mock_validate.return_value = '{"errors": 0}'
-        tasks.validate(self.upload)
+        tasks.validate(self.upload, listed=True)
         mock_track.assert_called_with(mock_validate.return_value)
 
 
@@ -313,9 +313,11 @@ class TestMeasureValidationTime(TestValidator):
         assert (actual_ms >= (calculated_ms - fuzz) and
                 actual_ms <= (calculated_ms + fuzz))
 
-    def handle_upload_validation_result(self):
+    def handle_upload_validation_result(self,
+                                        channel=amo.RELEASE_CHANNEL_LISTED):
         validation = amo.VALIDATOR_SKELETON_RESULTS.copy()
-        tasks.handle_upload_validation_result(validation, self.upload.pk)
+        tasks.handle_upload_validation_result(validation, self.upload.pk,
+                                              channel)
 
     def test_track_upload_validation_results_time(self):
         with self.statsd_timing_mock() as statsd_calls:
@@ -530,13 +532,13 @@ class TestRunAddonsLinter(ValidatorTestCase):
 
         assert not self.valid_upload.valid
 
-        tasks.validate(self.valid_upload)
+        tasks.validate(self.valid_upload, listed=True)
 
         upload = self.get_upload(self.valid_upload)
         assert upload.valid, upload.validation
 
     def test_run_linter_fail(self):
-        tasks.validate(self.invalid_upload)
+        tasks.validate(self.invalid_upload, listed=True)
         assert not self.get_upload(self.invalid_upload).valid
 
     def test_run_linter_path_doesnt_exist(self):
@@ -635,7 +637,7 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         file_ = get_addon_file('valid_webextension.xpi')
         upload = FileUpload.objects.create(path=file_, addon=self.addon)
 
-        tasks.validate(upload)
+        tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
         assert upload.processed_validation['is_upgrade_to_webextension']
@@ -655,7 +657,7 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         file_ = get_addon_file('valid_webextension.xpi')
         upload = FileUpload.objects.create(path=file_, addon=self.addon)
 
-        tasks.validate(upload)
+        tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
         validation = upload.processed_validation
@@ -674,7 +676,7 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         file_ = get_addon_file('valid_webextension.xpi')
         upload = FileUpload.objects.create(path=file_, addon=self.addon)
 
-        tasks.validate(upload)
+        tasks.validate(upload, listed=True)
         upload.refresh_from_db()
 
         validation = upload.processed_validation
@@ -690,7 +692,7 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
             'delicious_bookmarks-2.1.106-fx.xpi')
         upload = FileUpload.objects.create(path=file_, addon=self.addon)
 
-        tasks.validate(upload)
+        tasks.validate(upload, listed=True)
         upload.refresh_from_db()
 
         validation = upload.processed_validation
@@ -706,7 +708,7 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
             'delicious_bookmarks-2.1.106-fx.xpi')
         upload = FileUpload.objects.create(path=file_, addon=self.addon)
 
-        tasks.validate(upload)
+        tasks.validate(upload, listed=True)
         upload.refresh_from_db()
 
         expected = ['validation', 'messages', 'webext_downgrade']
@@ -719,12 +721,13 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         self.update_files(is_webextension=True)
         self.addon.is_listed = False
         self.addon.save(update_fields=('is_listed',))
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         file_ = amo.tests.AMOPaths().file_fixture_path(
             'delicious_bookmarks-2.1.106-fx.xpi')
         upload = FileUpload.objects.create(path=file_, addon=self.addon)
 
-        tasks.validate(upload)
+        tasks.validate(upload, listed=False)
         upload.refresh_from_db()
 
         expected = ['validation', 'messages', 'webext_downgrade']
@@ -746,7 +749,7 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
 
         upload = FileUpload.objects.create(path=file_, addon=self.addon)
 
-        tasks.validate(upload)
+        tasks.validate(upload, listed=True)
         upload.refresh_from_db()
 
         expected = ['validation', 'messages', 'webext_downgrade']
@@ -775,7 +778,7 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         upload.save(update_fields=('version',))
         upload.refresh_from_db()
 
-        tasks.validate(upload)
+        tasks.validate(upload, listed=True)
         upload.refresh_from_db()
 
         expected = [u'testcases_installrdf', u'_test_rdf', u'missing_addon']

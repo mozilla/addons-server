@@ -44,7 +44,10 @@ log = logging.getLogger('z.devhub.task')
 def validate(file_, listed=None, subtask=None):
     """Run the validator on the given File or FileUpload object, and annotate
     the results using the ValidationAnnotator. If a task has already begun
-    for this file, instead return an AsyncResult object for that task."""
+    for this file, instead return an AsyncResult object for that task.
+
+    file_ can be either a File or FileUpload; if File then listed must be
+    None; if FileUpload listed must be specified."""
 
     # Import loop.
     from .utils import ValidationAnnotator
@@ -172,17 +175,19 @@ def validate_file(file_id, hash_, is_webextension=False, **kw):
     try:
         return file_.validation.validation
     except FileValidation.DoesNotExist:
+        listed = file_.version.channel == amo.RELEASE_CHANNEL_LISTED
         if is_webextension:
             return run_addons_linter(
-                file_.current_file_path, listed=file_.version.addon.is_listed)
+                file_.current_file_path, listed=listed)
 
         return run_validator(file_.current_file_path,
-                             listed=file_.version.addon.is_listed)
+                             listed=listed)
 
 
 @task
 @write
-def handle_upload_validation_result(results, upload_pk, annotate=True):
+def handle_upload_validation_result(results, upload_pk, channel,
+                                    annotate=True):
     """Annotates a set of validation results, unless `annotate` is false, and
     saves them to the given FileUpload instance."""
     if annotate:
@@ -193,7 +198,7 @@ def handle_upload_validation_result(results, upload_pk, annotate=True):
     if upload.addon_id and upload.version:
         results = annotate_webext_incompatibilities(
             results=results, file_=None, addon=upload.addon,
-            version_string=upload.version)
+            version_string=upload.version, channel=channel)
 
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
@@ -257,12 +262,13 @@ def handle_file_validation_result(results, file_id, annotate=True):
 
     annotate_webext_incompatibilities(
         results=results, file_=file_, addon=file_.version.addon,
-        version_string=file_.version.version)
+        version_string=file_.version.version, channel=file_.version.channel)
 
     return FileValidation.from_json(file_, results)
 
 
-def annotate_webext_incompatibilities(results, file_, addon, version_string):
+def annotate_webext_incompatibilities(results, file_, addon, version_string,
+                                      channel):
     """Check for WebExtension upgrades or downgrades.
 
     We avoid developers to downgrade their webextension to a XUL add-on
@@ -276,7 +282,8 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string):
     """
     from .utils import find_previous_version
 
-    previous_version = find_previous_version(addon, file_, version_string)
+    previous_version = find_previous_version(
+        addon, file_, version_string, channel)
 
     if not previous_version:
         return results
@@ -308,7 +315,8 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string):
         messages = results['messages']
         messages.insert(0, {
             'tier': 1,
-            'type': 'error' if addon.is_listed else 'warning',
+            'type': ('error' if channel == amo.RELEASE_CHANNEL_LISTED
+                     else 'warning'),
             'id': ['validation', 'messages', 'webext_downgrade'],
             'message': msg,
             'description': [],
