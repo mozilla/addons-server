@@ -1,11 +1,25 @@
-<nav class="DevHub-Navigation {% if request.user.is_authenticated() %}DevHub-Navigation--signedin{% endif %}">
+<nav class="DevHub-Navigation {% if user_authenticated %}DevHub-Navigation--signedin{% endif %}">
   <ul>
-    <li><a href="#"><div class="Logo{% if request.user.is_authenticated() %} Logo--secondary{% endif %}" alt="{{ dev_page_title() }}" /></a></li>
-    <li><a href="#">Docs</a></li>
-    <li><a href="#">Support</a></li>
-    <li><a href="#">Blog</a></li>
-    {% if request.user.is_authenticated() %}
+    <li>
+      <a href="#" class="Logo {% if user_authenticated %}Logo--secondary{% endif %}">
+        <span>{{ _('Add-on Developer Hub') }}</span>
+      </a>
+    </li>
+
+    {% if user_authenticated %}
+      <li class="show-on-desktop"><a href="#">{{ _('My Add-ons') }}</a></li>
+    {% endif %}
+
+    <li class="hide-on-desktop"><a href="#">{{ _('Docs') }}</a></li>
+    <li class="show-on-desktop"><a href="#">{{ _('Documentation') }}</a></li>
+
+    <li class="show-on-desktop"><a href="#">{{ _('Support') }}</a></li>
+    <li><a href="#">{{ _('Support') }}</a></li>
+    <li><a href="#">{{ _('Blog') }}</a></li>
+    {% if user_authenticated %}
       <li class="avatar"><a href="#"><img src="{{ request.user.picture_url }}" /></a></li>
+    {% else %}
+      <li class="show-on-desktop"><a href="#">{{ _('Sign In') }}</a></li>
     {% endif %}
   </ul>
 </nav>
