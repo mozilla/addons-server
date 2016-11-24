@@ -278,7 +278,7 @@ class EditorQueueTable(tables.Table, ItemStateTable):
         return '-waiting_time_min'
 
 
-class EditorAllListTable(tables.Table, ItemStateTable):
+class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
     addon_name = tables.Column(verbose_name=_lazy(u'Add-on'))
     guid = tables.Column(verbose_name=_lazy(u'GUID'))
     authors = tables.Column(verbose_name=_lazy(u'Authors'),
@@ -286,12 +286,14 @@ class EditorAllListTable(tables.Table, ItemStateTable):
     review_date = tables.Column(verbose_name=_lazy(u'Last Review'))
     version_date = tables.Column(verbose_name=_lazy(u'Last Update'))
 
-    class Meta:
-        pass
+    class Meta(EditorQueueTable.Meta):
+        model = ViewUnlistedAllList
 
     def render_addon_name(self, record):
         url = reverse('editors.review', args=[
-            record.addon_slug if record.addon_slug is not None else record.id])
+            'unlisted',
+            record.addon_slug if record.addon_slug is not None else record.id,
+        ])
         self.increment_item()
         return safe_substitute(u'<a href="%s">%s <em>%s</em></a>',
                                url, record.addon_name, record.latest_version)
@@ -339,12 +341,6 @@ class ViewFullReviewQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewFullReviewQueue
-
-
-class ViewUnlistedAllListTable(EditorAllListTable):
-
-    class Meta(EditorQueueTable.Meta):
-        model = ViewUnlistedAllList
 
 
 log = commonware.log.getLogger('z.mailer')
