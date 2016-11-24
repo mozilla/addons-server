@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-24 10:57+0000\n"
+"PO-Revision-Date: 2016-11-24 12:40+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -823,6 +823,8 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
+"As jo tinke dat dizze add-on yn striid is mei <a href=\"%(url)s\">ús belied</a> of befeiligings- of privacyproblemen feroarsaket, brûk dan ûndersteand formulier om jo soargen kenber te meitsjen. "
+"Brûk dit formulier net foar wat oars."
 
 #: src/olympia/addons/templates/addons/report_abuse.html src/olympia/users/templates/users/report_abuse.html
 msgid "Send Report"
@@ -845,7 +847,7 @@ msgstr "Wat fine jo der fan?"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "<a href=\"%(login)s\">Meld jo oan</a> om in beoardieling yn te tsjinjen"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Title:"
@@ -867,15 +869,16 @@ msgstr "Beoardieling yntsjinje"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
 msgstr ""
+"Pleats gjin bugrapporten yn beoardielingen. Wy stelle jo e-mailadres net beskikber oan ûntwikkelers fan add-ons, wêrtroch gjin kontakt mei jo opnimmen wurde kin as se jo probleem ferhelpe wolle."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
-msgstr ""
+msgstr "Sjoch yn de <a href=\"%(support)s\">stipeseksje</a> wêr't jo help krije kinne foar dizze add-on."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Beoardielingsrjochtlinen"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/review_list.html
@@ -889,14 +892,14 @@ msgstr "troch %(user)s op %(date)s"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/addons/templates/addons/review_list_box.html
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "Antwurd fan de ûntwikkeler op dizze beoardieling werjaan"
 
 #: src/olympia/addons/templates/addons/review_list_box.html
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Alle beoardielingen fan dizze add-on besjen"
+msgstr[1] "Alle %(cnt)s beoardielingen fan dizze add-on besjen"
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
@@ -914,39 +917,39 @@ msgstr "troch %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "Dizze add-on is troch de ûntwikkelers derfan markearre as eksperiminteel"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
-msgstr ""
+msgstr "Dochs downloade"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "<b>%(amt)s</b> foarsteld"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "Tefreden oer dizze add-on?"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "De <a href=\"%(meet_url)s\">ûntwikkeler fan dizze add-on</a> freget om jo help by de fierdere ûntwikkeling middels in lytse finansjele bydrage."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "De <a href=\"%(meet_url)s\">ûntwikkeler fan dizze add-on</a> freget jo jo stipe te uterjen middels in donaasje oan <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "De <a href=\"%(meet_url)s\">ûntwikkeler fan dizze add-on</a> freget jo jo stipe te uterjen middels in lytse finansjele bydrage oan <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/impala/dependencies_note.html
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "Foar dizze add-on moatte de folgjende add-ons goed wurkje:"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Average"
@@ -954,33 +957,33 @@ msgstr "Gemiddeld"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Write a review"
-msgstr ""
+msgstr "Skriuw in beoardieling"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Related Categories"
-msgstr ""
+msgstr "Sibbe kategoryen"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Underdiel fan dizze kolleksjes"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Oare add-ons troch %(author)s"
+msgstr[1] "Oare add-ons troch dizze skriuwers"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> brûkers&shy;beoardieling"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> brûkers&shy;beoardielingen"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "View statistics"
-msgstr ""
+msgstr "Statistiken besjen"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Manage"
@@ -989,45 +992,45 @@ msgstr "Beheare"
 # Plural in this context means many of the add-on type
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Editor Review"
-msgstr ""
+msgstr "Beoardieling troch editor"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Admin Manage"
-msgstr ""
+msgstr "Beheardersbehear"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Piktogram fan {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kom yn 'e kunde mei de ûntwikkeler: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Kom yn 'e kunde mei de ûntwikkelers</a>"
 
 # {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr ""
+msgstr "Lês wêrom {0} makke is en ûntdek wat de takomst biedt foar dizze add-on."
 
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Skermôfbylding add-on nr. {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on home page"
-msgstr ""
+msgstr "Add-on-startside"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support site"
-msgstr ""
+msgstr "Stipewebsite"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support E-mail"
-msgstr ""
+msgstr "E-mailadres foar stipe"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/models.py src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
@@ -1040,16 +1043,16 @@ msgstr "Ynformaasje"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Last Updated:"
-msgstr ""
+msgstr "Lêst bywurke:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Utjûn ûnder <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
-msgstr ""
+msgstr "Oanpaste lisinsje"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -1057,21 +1060,23 @@ msgstr "Oer dizze add-on"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Untwikkelersopmerkingen"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Version Information"
-msgstr ""
+msgstr "Ferzje-ynformaasje"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete version history"
-msgstr ""
+msgstr "Folsleine ferzjeskiednis besjen"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"Fia it Untwikkelingskanaal kinne jo in eksperimintele nije ferzje fan dizze add-on teste eardat dizze frijjûn wurdt foar algemien gebrûk. Nei ynstallaasje fan de ûntwikkelferzje krije jo fan no ôf "
+"fernijingen fia dit kanaal. Ynstallearje de standertferzje fia boppesteande keppeling om gjin ûntwikkelfernijingen mear te ûntfangen."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
