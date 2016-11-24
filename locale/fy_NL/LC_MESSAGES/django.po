@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-24 10:36+0000\n"
+"PO-Revision-Date: 2016-11-24 10:57+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -797,7 +797,7 @@ msgstr "Oare ferzjes besjen"
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Dizze add-on is net kompatibel mei jo ferzje fan %(app)s."
 
 #. {0} is the name of the add-on.
 #: src/olympia/addons/templates/addons/privacy.html
@@ -810,7 +810,7 @@ msgstr "QR-koade foar add-on"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
+msgstr "Wolle jo {0} op jo mobile Firefox? Skan dizze QR-koade om daliks op jo telefoan te ynstallearjen. (Jo hawwe in QR-lêzer nedich. Sykje op de merke fan jo telefoan as jo net ien hawwe.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
