@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-24 09:59+0000\n"
+"PO-Revision-Date: 2016-11-24 10:36+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -778,19 +778,21 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
+"<strong>Let op:</strong> dizze add-on is net troch Mozilla beoardiele en kin net ynstallearre wurde yn Firefox-ferzjes 43 en heger. Wês foarsichtich by it ynstallearjen fan software fan tredden dy't"
+" mooglik skea oan jo kompjûter tabringe kin."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr ""
+msgstr "<strong>Opmerking:</strong> dizze add-on is net kompatibel mei jo bestjoeringssysteem."
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr ""
+msgstr "Dizze add-on is net kompatibel mei jo ferzje fan %(app)s fanwegen it folgjende:"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "View other versions"
-msgstr ""
+msgstr "Oare ferzjes besjen"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
