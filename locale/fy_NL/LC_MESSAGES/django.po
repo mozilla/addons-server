@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-24 12:40+0000\n"
+"PO-Revision-Date: 2016-11-24 12:57+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1080,11 +1080,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>Warskôging:</strong> ûntwikkelferzjes fan dizze add-on binne net beoardiele troch Mozilla."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Folsleine skiednis fan ûntwikkelingskanaal besjen"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/stats/templates/stats/popup.html
 #: src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
@@ -1094,33 +1094,33 @@ msgstr "slute"
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Thank you for installing {0}"
-msgstr ""
+msgstr "Tank foar it ynstallearjen fan {0}"
 
 #. {0} is an add-on name.
 # %1 is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Meet the {0} Developer"
-msgstr ""
+msgstr "Kom yn 'e kunde mei de ûntwikkeler fan {0}"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr ""
+msgstr "Nim ris yn beried eardat jo dizze add-on downloade de ûntwikkeling fan dizze add-on te stypjen troch middel fan in lytse bydrage."
 
 # %1 is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Why was {0} created?"
-msgstr ""
+msgstr "Wêrom is {0} makke?"
 
 # %1 is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "What's next for {0}"
-msgstr ""
+msgstr "Wat biedt de takomst foar {0}"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Oer de ûntwikkeler"
+msgstr[1] "Oer de ûntwikkelers"
 
 #: src/olympia/addons/templates/addons/impala/developers.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/profile.html
 msgid "No Photo"
@@ -1132,19 +1132,19 @@ msgstr "Wa is {0}?"
 
 #: src/olympia/addons/templates/addons/impala/disabled.html
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Dizze add-on is fuortsmiten troch de skriuwer."
 
 #: src/olympia/addons/templates/addons/impala/disabled.html
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Dizze add-on is útskeakele troch in behearder."
 
 #: src/olympia/addons/templates/addons/impala/license.html
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "Boarnekoadelisinsje foar {addon}"
 
 #: src/olympia/addons/templates/addons/impala/license.html src/olympia/versions/templates/versions/mobile/version.html
 msgid "Source Code License"
-msgstr ""
+msgstr "Boarnekoadelisinsje"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
@@ -1158,16 +1158,16 @@ msgstr "oersette"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Alle brûkersbeoardielingen besjen"
+msgstr[1] "Alle %(cnt)s brûkersbeoardielingen besjen"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Dizze add-on is noch net beoardiele."
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 msgid "Be the first!"
-msgstr ""
+msgstr "Wês de earste!"
 
 #: src/olympia/addons/templates/addons/impala/toplist.html
 msgid "{0} users"
@@ -1179,7 +1179,7 @@ msgstr "Mear"
 
 #: src/olympia/addons/templates/addons/includes/collection_add_widget.html
 msgid "Add to collection"
-msgstr ""
+msgstr "Tafoegje oan kolleksje"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
 msgid "My Add-ons"
@@ -1211,34 +1211,34 @@ msgstr "Sorry, dit tema stiet yn de wachtrige. Probearje it letter nochris."
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Dit tema stiet yn de wachtrige. It is net sichtber foar elkenien útein jo."
 
 #: src/olympia/addons/templates/addons/listing/items.html
 msgid "Collector's Note"
-msgstr ""
+msgstr "Opmerking sammeler"
 
 #: src/olympia/addons/templates/addons/listing/items_mobile.html
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "Noch net wurdearre"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> wyklikse download"
+msgstr[1] "<strong>{0}</strong> wyklikse downloads"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Read More"
-msgstr ""
+msgstr "Mear lêze"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Users"
-msgstr ""
+msgstr "Brûkers"
 
 #: src/olympia/addons/templates/addons/mobile/details.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Wyklikse downloads"
 
 #: src/olympia/addons/templates/addons/mobile/details.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Version"
@@ -1247,15 +1247,15 @@ msgstr "Ferzje"
 #. {0} is a version number.
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (ferzjeopmerkingen)"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "View All Versions"
-msgstr ""
+msgstr "Alle ferzjes besjen"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "View Development Version"
-msgstr ""
+msgstr "Untwikkelferzje besjen"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Caution"
@@ -1271,7 +1271,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "License Agreement"
-msgstr ""
+msgstr "Lisinsje-oerienkomst"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 #, python-format
@@ -1280,7 +1280,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "Accept"
-msgstr ""
+msgstr "Akseptearje"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons are not currently available on Firefox for iOS."
@@ -1303,7 +1303,7 @@ msgstr "Add-ons"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "Easy ways to personalize."
-msgstr ""
+msgstr "Ienfâldige manieren om te personalisearjen."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
@@ -1315,6 +1315,8 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
+"Add-ons binne tapassingen wêrmei jo Firefox fan ekstra funksjonaliteit en styl foarsjen kinne. Oft jo no de namme fan in website ferkeard yntype of in drokke side net lêze kinne, der is altyd wol in"
+" add-on dy't jo sneupûnderfining ferbettert."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1544,7 +1546,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Retained"
-msgstr ""
+msgstr "Behâlde"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} escalated."
@@ -1584,7 +1586,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Comment"
-msgstr ""
+msgstr "Opmerking"
 
 #: src/olympia/amo/log.py
 msgid "{tag} added to {addon}."
@@ -1676,7 +1678,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Password changed."
-msgstr ""
+msgstr "Wachtwurd wizige."
 
 #: src/olympia/amo/log.py
 msgid "{addon} failed checks with PayPal."
@@ -1760,7 +1762,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
-msgstr ""
+msgstr "Makke: {0}."
 
 #: src/olympia/amo/log.py
 msgid "Edited field: {2} set to: {0}."
