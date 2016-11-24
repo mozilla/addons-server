@@ -29,7 +29,7 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowIfReviewedAndListed, AllowOwner,
+    AllowAddonAuthor, AllowIfReviewed, AllowOwner,
     AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)
 
 from .helpers import user_can_delete_review
@@ -332,7 +332,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         # default from AddonViewSet is too restrictive, we are not modifying
         # the add-on itself so we don't need all the permission checks it does.
         return super(ReviewViewSet, self).get_addon_object(
-            permission_classes=[AllowIfReviewedAndListed])
+            permission_classes=[AllowIfReviewed])
 
     def check_permissions(self, request):
         if 'addon_pk' in self.kwargs:

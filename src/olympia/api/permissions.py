@@ -90,7 +90,7 @@ class AllowOwner(BasePermission):
 
 
 class AllowReviewer(BasePermission):
-    """Allow addons reviewer access.
+    """Allow reviewers to access add-ons with listed versions.
 
     Like editors.decorators.addons_reviewer_required, but as a permission class
     and not a decorator.
@@ -107,11 +107,12 @@ class AllowReviewer(BasePermission):
                 acl.check_addons_reviewer(request))
 
     def has_object_permission(self, request, view, obj):
-        return obj.is_listed and self.has_permission(request, view)
+        return obj.has_listed_versions() and self.has_permission(request, view)
 
 
 class AllowReviewerUnlisted(AllowReviewer):
-    """Allow unlisted addons reviewer access.
+    """Allow unlisted reviewers to access add-ons with unlisted versions, or
+    add-ons with no listed versions at all.
 
     Like editors.decorators.unlisted_addons_reviewer_required, but as a
     permission class and not a decorator.
@@ -125,26 +126,28 @@ class AllowReviewerUnlisted(AllowReviewer):
         return acl.check_unlisted_addons_reviewer(request)
 
     def has_object_permission(self, request, view, obj):
-        return not obj.is_listed and self.has_permission(request, view)
+        return (
+            (obj.has_unlisted_versions() or not obj.has_listed_versions()) and
+            self.has_permission(request, view))
 
 
-class AllowIfReviewedAndListed(BasePermission):
+class AllowIfReviewed(BasePermission):
     """
-    Allow access when the object's is_reviewed() method and is_listed property
-    both return True, and the disabled_by_user property is False.
+    Allow access when the object's is_reviewed() method returns True, and the
+    disabled_by_user property is False.
     """
     def has_permission(self, request, view):
         return True
 
     def has_object_permission(self, request, view, obj):
         return (obj.is_reviewed() and not obj.disabled_by_user and
-                obj.is_listed and self.has_permission(request, view))
+                self.has_permission(request, view))
 
 
-class AllowReadOnlyIfReviewedAndListed(AllowIfReviewedAndListed):
+class AllowReadOnlyIfReviewed(AllowIfReviewed):
     """
-    Allow access when the object's is_public() method and is_listed property
-    both return True and the request HTTP method is GET/OPTIONS/HEAD.
+    Allow access when the object's is_reviewed() method returns True and the
+    request HTTP method is GET/OPTIONS/HEAD.
     """
     def has_permission(self, request, view):
         return request.method in SAFE_METHODS

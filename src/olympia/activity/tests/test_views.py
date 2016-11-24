@@ -41,6 +41,11 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         self.grant_permission(user, permission)
         self.client.login_api(user)
 
+    def _login_unlisted_reviewer(self, permission='Addons:ReviewUnlisted'):
+        user = UserProfile.objects.create(username='reviewer-unlisted')
+        self.grant_permission(user, permission)
+        self.client.login_api(user)
+
     def test_get_by_id(self):
         self._login_developer()
         self._test_url()
@@ -121,8 +126,16 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
 
     def test_deleted_version_reviewer(self):
         self.version.delete()
-        self._login_reviewer()
+        self._login_unlisted_reviewer()
         self._test_url()
+
+    def test_deleted_version_regular_reviewer(self):
+        self.version.delete()
+
+        # No version left, only unlisted reviewers can access.
+        self._login_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
     def test_deleted_version_developer(self):
         self.version.delete()

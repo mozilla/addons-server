@@ -1590,6 +1590,11 @@ class AddonAndVersionViewSetDetailMixin(object):
     def _set_tested_url(self, param):
         raise NotImplementedError
 
+    def _make_unlisted(self):
+        self.addon.update(is_listed=False)
+        for version in self.addon.versions.all():
+            version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
     def test_get_by_id(self):
         self._test_url()
 
@@ -1654,13 +1659,13 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 401
 
     def test_get_not_listed(self):
-        self.addon.update(is_listed=False)
+        self._make_unlisted()
         response = self.client.get(self.url)
         assert response.status_code == 401
 
     def test_get_not_listed_no_rights(self):
         user = UserProfile.objects.create(username='simpleuser')
-        self.addon.update(is_listed=False)
+        self._make_unlisted()
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
@@ -1668,7 +1673,7 @@ class AddonAndVersionViewSetDetailMixin(object):
     def test_get_not_listed_simple_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
-        self.addon.update(is_listed=False)
+        self._make_unlisted()
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
@@ -1676,7 +1681,7 @@ class AddonAndVersionViewSetDetailMixin(object):
     def test_get_not_listed_specific_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.addon.update(is_listed=False)
+        self._make_unlisted()
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1684,7 +1689,7 @@ class AddonAndVersionViewSetDetailMixin(object):
     def test_get_not_listed_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
-        self.addon.update(is_listed=False)
+        self._make_unlisted()
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1896,6 +1901,47 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
+    def test_unlisted_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_unlisted_version_unlisted_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self._test_url()
+
+    def test_unlisted_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self._test_url()
+
+    def test_unlisted_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self._test_url()
+
+    def test_unlisted_version_anonymous(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_unlisted_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
 
 class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClient
@@ -1905,11 +1951,20 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.old_version = self.addon.current_version
-        self.old_version.update(created=self.days_ago(1))
+        self.old_version.update(created=self.days_ago(2))
 
         # Don't use addon.current_version, changing its state as we do in
         # the tests might render the add-on itself inaccessible.
         self.version = version_factory(addon=self.addon, version='1.0.1')
+        self.version.update(created=self.days_ago(1))
+
+        # This version is unlisted and should be hidden by default, only
+        # shown when requesting to see unlisted stuff explicitly, with the
+        # right permissions.
+        self.unlisted_version = version_factory(
+            addon=self.addon, version='42.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+
         self._set_tested_url(self.addon.pk)
 
     def _test_url(self, **kwargs):
@@ -1922,6 +1977,22 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result_version['id'] == self.version.pk
         assert result_version['version'] == self.version.version
         result_version = result['results'][1]
+        assert result_version['id'] == self.old_version.pk
+        assert result_version['version'] == self.old_version.version
+
+    def _test_url_contains_all(self, **kwargs):
+        response = self.client.get(self.url, data=kwargs)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['results']
+        assert len(result['results']) == 3
+        result_version = result['results'][0]
+        assert result_version['id'] == self.unlisted_version.pk
+        assert result_version['version'] == self.unlisted_version.version
+        result_version = result['results'][1]
+        assert result_version['id'] == self.version.pk
+        assert result_version['version'] == self.version.version
+        result_version = result['results'][2]
         assert result_version['id'] == self.old_version.pk
         assert result_version['version'] == self.old_version.version
 
@@ -2000,6 +2071,9 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(
             self.url, data={'filter': 'all_with_deleted'})
         assert response.status_code == 403
+        response = self.client.get(
+            self.url, data={'filter': 'all_with_unlisted'})
+        assert response.status_code == 403
 
     def test_deleted_version_author(self):
         user = UserProfile.objects.create(username='author')
@@ -2020,18 +2094,44 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self._test_url_only_contains_old_version()
         self._test_url_only_contains_old_version(filter='all_without_unlisted')
 
-        # An admin can see deleted versions when explicitly asking for them.
-        self._test_url(filter='all_with_deleted')
+        # An admin can see deleted versions when explicitly asking
+        # for them.
+        self._test_url_contains_all(filter='all_with_deleted')
+
+    def test_all_with_unlisted_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self._test_url_contains_all(filter='all_with_unlisted')
+
+    def test_with_unlisted_unlisted_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+
+        self._test_url_contains_all(filter='all_with_unlisted')
+
+    def test_with_unlisted_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+
+        self._test_url_contains_all(filter='all_with_unlisted')
 
     def test_deleted_version_anonymous(self):
         self.version.delete()
         self._test_url_only_contains_old_version()
 
         response = self.client.get(
+            self.url, data={'filter': 'all_with_deleted'})
+        assert response.status_code == 401
+
+    def test_all_without_and_with_unlisted_anonymous(self):
+        response = self.client.get(
             self.url, data={'filter': 'all_without_unlisted'})
         assert response.status_code == 401
         response = self.client.get(
-            self.url, data={'filter': 'all_with_deleted'})
+            self.url, data={'filter': 'all_with_unlisted'})
         assert response.status_code == 401
 
     def test_deleted_version_user_but_not_author(self):
@@ -2039,11 +2139,20 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
         self.version.delete()
         self._test_url_only_contains_old_version()
+
+        response = self.client.get(
+            self.url, data={'filter': 'all_with_deleted'})
+        assert response.status_code == 403
+
+    def test_all_without_and_with_unlisted_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.delete()
         response = self.client.get(
             self.url, data={'filter': 'all_without_unlisted'})
         assert response.status_code == 403
         response = self.client.get(
-            self.url, data={'filter': 'all_with_deleted'})
+            self.url, data={'filter': 'all_with_unlisted'})
         assert response.status_code == 403
 
     def test_beta_version(self):
