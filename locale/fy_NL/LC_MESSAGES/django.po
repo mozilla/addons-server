@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-21 07:55+0000\n"
+"PO-Revision-Date: 2016-11-24 09:59+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -726,7 +726,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
+msgstr "Om dit tema te ynstallearjen moatte jo <b>Thunderbird downloade</b>, in fergees en iepenboarne e-mailprogramma fan Mozilla Messaging, en de add-on Personas Plus ynstallearje."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Thunderbird"
@@ -734,12 +734,12 @@ msgstr "Mear oer Thunderbird"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "Om dit tema en noch tûzenen oare te ynstallearjen moatte jo <b>Firefox downloade</b>, in fergees en iepen webbrowser fan Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr ""
+msgstr "Dizze add-on is noch net bywurke om mei jo ferzje fan %(app)s wurkje te kinnen."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Install Anyway"
@@ -747,31 +747,31 @@ msgstr "Dochs ynstallearje"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "Dizze add-on fereasket in ferzje fan Firefox dy't noch net frijjûn is."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "Help mei testen fan nije Firefox-ferzjes"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Dizze add-on fereasket %(app)s {new_version}. Jo brûke op dit stuit %(app)s {old_version}."
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "{0} bywurkje"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
+msgstr "of besjoch <a href=\"%(href)s\">âldere ferzjes fan dizze add-on</a>."
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Dizze persona fereasket %(app)s %(new_version)s. Jo brûke op dit stuit %(app)s {old_version}."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
