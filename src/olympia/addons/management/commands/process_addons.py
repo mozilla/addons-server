@@ -5,27 +5,15 @@ from django.db.models import Q
 
 from celery import chord, group
 
-from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import update_current_version
 from olympia.amo.utils import chunked
-from olympia.devhub.tasks import (
-    convert_purified, flag_binary, get_preview_sizes)
+from olympia.devhub.tasks import convert_purified, get_preview_sizes
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.reviews.tasks import addon_review_aggregates
 
 
 tasks = {
-    # binary-components depend on having a chrome manifest.
-    'flag_binary_components': {'method': flag_binary,
-                               'qs': [Q(type__in=[amo.ADDON_EXTENSION,
-                                                  amo.ADDON_DICT,
-                                                  amo.ADDON_LPADDON,
-                                                  amo.ADDON_PLUGIN,
-                                                  amo.ADDON_API]),
-                                      Q(disabled_by_user=False)],
-                               'kwargs': dict(latest=False)},
-    'flag_binary': {'method': flag_binary, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []},
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
