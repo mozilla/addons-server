@@ -12,12 +12,10 @@
 @primary-section-background: #0568ba;
 @secondary-section-background: #f3f5f8;
 
-@retina: ~"only screen and (-webkit-min-device-pixel-ratio: 1.3),
-  only screen and (-o-min-device-pixel-ratio: 13/10),
-  only screen and (min-resolution: 120dpi)";
-
-@tablet: ~"only screen and (min-device-width: 768px)";
-
+@phone-large: ~"only screen and (min-width: 428px)";
+@phone: ~"only screen and (max-width: 768px)";
+@tablet: ~"only screen and (min-width: 768px)";
+@desktop: ~"only screen and (min-width: 1024px)";
 
 // Common styles
 * {
@@ -38,13 +36,31 @@ h1 {
 }
 
 section {
-  padding: 0 20px 60px;
+  padding: 20px 20px 60px;
 
   > p {
     font-weight: 300;
     margin-top: 10px;
   }
 }
+
+// Utilities
+
+.show-on-desktop {
+  display: none;
+
+  @media @desktop {
+    display: inline;
+  }
+}
+
+.hide-on-desktop {
+  @media @desktop {
+    display: none;
+  }
+}
+
+// Components
 
 .Button {
   border-radius: 2px;
@@ -61,8 +77,40 @@ section {
   background-color: @primary-button-background;
 }
 
+.Logo {
+  display: flex;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    background: url('../../img/developers/addons-logo.svg') no-repeat left center;
+    background-size: contain;
+  }
+
+  span {
+    display: none;
+    align-self: center;
+
+    @media @desktop {
+      display: inline;
+      margin-left: 10px;
+    }
+  }
+}
+
+.Logo--secondary::before {
+  background: url('../../img/developers/addons-logo-black.svg') no-repeat left center;
+  background-size: contain;
+}
+
 .DevHub-Header {
   background-color: @primary-section-background;
+
+  @media @phone-large {
+    text-align: center;
+  }
 
   h1,
   p {
@@ -71,25 +119,18 @@ section {
 
   p {
     font-weight: 300;
+    font-size: 24px;
+    margin: 20px auto;
+    max-width: 560px;
 
     > a {
       color: @primary-font-color;
     }
+
+    @media @phone {
+      font-size: 20px;
+    }
   }
-}
-
-
-.Logo {
-  content: '';
-  display: inline-block;
-  height: 48px;
-  width: 48px;
-  background: url('../../img/developers/addons-logo.svg') 50% 50% no-repeat;
-  background-size: cover;
-}
-
-.Logo--secondary {
-  background: url('../../img/developers/addons-logo-black.svg') 50% 50% no-repeat;
 }
 
 .DevHub-Navigation {
@@ -110,6 +151,14 @@ section {
       &:first-child {
         margin-left: 0;
         margin-right: auto;
+
+        @media @phone-large {
+          margin-left: 20px;
+        }
+
+        @media @tablet {
+          margin-left: 60px;
+        }
       }
     }
 
@@ -132,7 +181,7 @@ section {
       &.avatar {
         display: none;
 
-        @media @tablet {
+        @media @desktop {
           display: inline;
         }
 
