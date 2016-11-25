@@ -69,10 +69,10 @@ def owner_required(f=None, require_owner=True):
 def legacy_redirect(request, uuid, edit=False):
     # Nicknames have a limit of 30, so len == 36 implies a uuid.
     key = 'uuid' if len(uuid) == 36 else 'nickname'
-    c = get_object_or_404(Collection.objects, **{key: uuid})
+    collection = get_object_or_404(Collection.objects, **{key: uuid})
     if edit:
-        return http.HttpResponseRedirect(c.edit_url())
-    to = c.get_url_path() + '?' + request.GET.urlencode()
+        return http.HttpResponseRedirect(collection.edit_url())
+    to = collection.get_url_path() + '?' + request.GET.urlencode()
     return http.HttpResponseRedirect(to)
 
 
@@ -207,62 +207,66 @@ class CollectionAddonFilter(BaseFilter):
 @allow_mine
 @non_atomic_requests
 def collection_detail(request, username, slug):
-    c = get_collection(request, username, slug)
-    if not c.listed:
+    collection = get_collection(request, username, slug)
+    if not collection.listed:
         if not request.user.is_authenticated():
             return redirect_for_login(request)
-        if not acl.check_collection_ownership(request, c):
+        if not acl.check_collection_ownership(request, collection):
             raise PermissionDenied
 
     if request.GET.get('format') == 'rss':
-        return http.HttpResponsePermanentRedirect(c.feed_url())
+        return http.HttpResponsePermanentRedirect(collection.feed_url())
 
-    base = Addon.objects.valid() & c.addons.all()
+    base = Addon.objects.valid() & collection.addons.all()
     filter = CollectionAddonFilter(request, base,
                                    key='sort', default='popular')
-    notes = get_notes(c)
+    notes = get_notes(collection)
     # Go directly to CollectionAddon for the count to avoid joins.
     count = CollectionAddon.objects.filter(
         Addon.objects.valid_q(amo.VALID_ADDON_STATUSES, prefix='addon__'),
-        collection=c.id)
+        collection=collection.id)
     addons = paginate(request, filter.qs, per_page=15, count=count.count())
 
     # The add-on query is not related to the collection, so we need to manually
     # hook them up for invalidation.  Bonus: count invalidation.
     keys = [addons.object_list.flush_key(), count.flush_key()]
-    caching.invalidator.add_to_flush_list({c.flush_key(): keys})
+    caching.invalidator.add_to_flush_list({collection.flush_key(): keys})
 
-    if c.author_id:
-        qs = Collection.objects.listed().filter(author=c.author)
-        others = amo.utils.randslice(qs, limit=4, exclude=c.id)
+    if collection.author_id:
+        qs = Collection.objects.listed().filter(author=collection.author)
+        others = amo.utils.randslice(qs, limit=4, exclude=collection.id)
     else:
         others = []
 
     # `perms` is defined in django.contrib.auth.context_processors. Gotcha!
     user_perms = {
-        'view_stats': acl.check_ownership(request, c, require_owner=False),
+        'view_stats': acl.check_ownership(
+            request, collection, require_owner=False),
     }
 
-    tags = Tag.objects.filter(id__in=c.top_tags) if c.top_tags else []
+    tags = Tag.objects.filter(
+        id__in=collection.top_tags) if collection.top_tags else []
     return render_cat(request, 'bandwagon/collection_detail.html',
-                      {'collection': c, 'filter': filter, 'addons': addons,
-                       'notes': notes, 'author_collections': others,
-                       'tags': tags, 'user_perms': user_perms})
+                      {'collection': collection, 'filter': filter,
+                       'addons': addons, 'notes': notes,
+                       'author_collections': others, 'tags': tags,
+                       'user_perms': user_perms})
 
 
 @json_view(has_trans=True)
 @allow_mine
 @non_atomic_requests
 def collection_detail_json(request, username, slug):
-    c = get_collection(request, username, slug)
-    if not (c.listed or acl.check_collection_ownership(request, c)):
+    collection = get_collection(request, username, slug)
+    if not (collection.listed or acl.check_collection_ownership(
+            request, collection)):
         raise PermissionDenied
     # We evaluate the QuerySet with `list` to work around bug 866454.
-    addons_dict = [addon_to_dict(a) for a in list(c.addons.valid())]
+    addons_dict = [addon_to_dict(a) for a in list(collection.addons.valid())]
     return {
-        'name': c.name,
-        'url': c.get_abs_url(),
-        'iconUrl': c.icon_url,
+        'name': collection.name,
+        'url': collection.get_abs_url(),
+        'iconUrl': collection.icon_url,
         'addons': addons_dict
     }
 
@@ -284,13 +288,13 @@ def get_notes(collection, raw=False):
 @write
 @login_required
 def collection_vote(request, username, slug, direction):
-    c = get_collection(request, username, slug)
+    collection = get_collection(request, username, slug)
     if request.method != 'POST':
-        return http.HttpResponseRedirect(c.get_url_path())
+        return http.HttpResponseRedirect(collection.get_url_path())
 
     vote = {'up': 1, 'down': -1}[direction]
     qs = (CollectionVote.objects.using('default')
-          .filter(collection=c, user=request.user))
+          .filter(collection=collection, user=request.user))
 
     if qs:
         cv = qs[0]
@@ -300,13 +304,13 @@ def collection_vote(request, username, slug, direction):
             cv.vote = vote
             cv.save(force_update=True)
     else:
-        CollectionVote.objects.create(collection=c, user=request.user,
+        CollectionVote.objects.create(collection=collection, user=request.user,
                                       vote=vote)
 
     if request.is_ajax():
         return http.HttpResponse()
     else:
-        return http.HttpResponseRedirect(c.get_url_path())
+        return http.HttpResponseRedirect(collection.get_url_path())
 
 
 def initial_data_from_request(request):
@@ -402,8 +406,8 @@ def ajax_list(request):
 @login_required
 @post_required
 def collection_alter(request, username, slug, action):
-    c = get_collection(request, username, slug)
-    return change_addon(request, c, action)
+    collection = get_collection(request, username, slug)
+    return change_addon(request, collection, action)
 
 
 def change_addon(request, collection, action):
@@ -431,10 +435,11 @@ def change_addon(request, collection, action):
 @post_required
 def ajax_collection_alter(request, action):
     try:
-        c = get_object_or_404(Collection.objects, pk=request.POST['id'])
+        collection = get_object_or_404(
+            Collection.objects, pk=request.POST['id'])
     except (ValueError, KeyError):
         return http.HttpResponseBadRequest()
-    return change_addon(request, c, action)
+    return change_addon(request, collection, action)
 
 
 @write
