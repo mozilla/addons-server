@@ -786,38 +786,6 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         assert validation['messages'][0]['type'] == 'error'
 
 
-class TestFlagBinary(TestCase):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        super(TestFlagBinary, self).setUp()
-        self.addon = Addon.objects.get(pk=3615)
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_flag_binary(self, _mock):
-        _mock.return_value = ('{"metadata":{"contains_binary_extension": 1, '
-                              '"contains_binary_content": 0}}')
-        tasks.flag_binary([self.addon.pk])
-        assert Addon.objects.get(pk=self.addon.pk).binary
-        _mock.return_value = ('{"metadata":{"contains_binary_extension": 0, '
-                              '"contains_binary_content": 1}}')
-        tasks.flag_binary([self.addon.pk])
-        assert Addon.objects.get(pk=self.addon.pk).binary
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_flag_not_binary(self, _mock):
-        _mock.return_value = ('{"metadata":{"contains_binary_extension": 0, '
-                              '"contains_binary_content": 0}}')
-        tasks.flag_binary([self.addon.pk])
-        assert not Addon.objects.get(pk=self.addon.pk).binary
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_flag_error(self, _mock):
-        _mock.side_effect = RuntimeError()
-        tasks.flag_binary([self.addon.pk])
-        assert not Addon.objects.get(pk=self.addon.pk).binary
-
-
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
 def test_send_welcome_email(send_html_mail_jinja_mock):
     tasks.send_welcome_email(3615, ['del@icio.us'], {'omg': 'yes'})

@@ -540,38 +540,6 @@ def track_validation_stats(json_result, addons_linter=False):
                 .format(runner, listed_tag, signable_tag))
 
 
-@task(rate_limit='4/m')
-@write
-def flag_binary(ids, **kw):
-    log.info('[%s@%s] Flagging binary addons starting with id: %s...'
-             % (len(ids), flag_binary.rate_limit, ids[0]))
-    addons = Addon.objects.filter(pk__in=ids).no_transforms()
-
-    latest = kw.pop('latest', True)
-
-    for addon in addons:
-        try:
-            log.info('Validating addon with id: %s' % addon.pk)
-            files = (File.objects.filter(version__addon=addon)
-                                 .exclude(status=amo.STATUS_DISABLED)
-                                 .order_by('-created'))
-            if latest:
-                files = [files[0]]
-            for file in files:
-                result = json.loads(run_validator(file.file_path))
-                metadata = result['metadata']
-                binary = (metadata.get('contains_binary_extension', False) or
-                          metadata.get('contains_binary_content', False))
-                binary_components = metadata.get('binary_components', False)
-                log.info('Updating binary flags for addon with id=%s: '
-                         'binary -> %s, binary_components -> %s' % (
-                             addon.pk, binary, binary_components))
-                file.update(binary=binary, binary_components=binary_components)
-        except Exception, err:
-            log.error('Failed to run validation on addon id: %s, %s'
-                      % (addon.pk, err))
-
-
 @task
 @set_modified_on
 def resize_icon(src, dst, size, locally=False, **kw):
