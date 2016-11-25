@@ -1435,6 +1435,8 @@ class TestAddonModels(TestCase):
         addon.categories.all().delete()
         addon = Addon.objects.get(id=3615)
         assert not addon.has_complete_metadata()
+        assert addon.has_complete_metadata(
+            for_channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     def test_listed_has_complete_metadata_no_summary(self):
         addon = Addon.objects.get(id=3615)
@@ -1443,6 +1445,8 @@ class TestAddonModels(TestCase):
         delete_translation(addon, 'summary')
         addon = Addon.objects.get(id=3615)
         assert not addon.has_complete_metadata()
+        assert addon.has_complete_metadata(
+            for_channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     def test_listed_has_complete_metadata_no_license(self):
         addon = Addon.objects.get(id=3615)
@@ -1451,6 +1455,8 @@ class TestAddonModels(TestCase):
         addon.current_version.update(license=None)
         addon = Addon.objects.get(id=3615)
         assert not addon.has_complete_metadata()
+        assert addon.has_complete_metadata(
+            for_channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     def test_unlisted_has_complete_metadata(self):
         addon = Addon.objects.get(id=3615)
@@ -1463,6 +1469,8 @@ class TestAddonModels(TestCase):
         delete_translation(addon, 'summary')
         addon = Addon.with_unlisted.get(id=3615)
         assert addon.has_complete_metadata()  # Still complete
+        assert not addon.has_complete_metadata(
+            for_channel=amo.RELEASE_CHANNEL_LISTED)
 
 
 class TestHasListedAndUnlistedVersions(TestCase):
