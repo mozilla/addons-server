@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-25 13:01+0000\n"
+"PO-Revision-Date: 2016-11-25 13:12+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3579,175 +3579,175 @@ msgstr "Sosjaal en persoanen"
 
 #: src/olympia/constants/categories.py
 msgid "Travel"
-msgstr ""
+msgstr "Reizigje"
 
 #: src/olympia/constants/categories.py
 msgid "Video"
-msgstr ""
+msgstr "Fideo"
 
 #: src/olympia/constants/categories.py
 msgid "Abstract"
-msgstr ""
+msgstr "Abstrakt"
 
 #: src/olympia/constants/categories.py
 msgid "Causes"
-msgstr ""
+msgstr "Goede doelen"
 
 #: src/olympia/constants/categories.py
 msgid "Fashion"
-msgstr ""
+msgstr "Moade"
 
 #: src/olympia/constants/categories.py
 msgid "Film and TV"
-msgstr ""
+msgstr "Film en telefyzje"
 
 #: src/olympia/constants/categories.py
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py
 msgid "Holiday"
-msgstr ""
+msgstr "Fakânsje"
 
 #: src/olympia/constants/categories.py
 msgid "Scenery"
-msgstr ""
+msgstr "Lânskip"
 
 #: src/olympia/constants/categories.py
 msgid "Seasonal"
-msgstr ""
+msgstr "Seizoensbûn"
 
 #: src/olympia/constants/categories.py
 msgid "Solid"
-msgstr ""
+msgstr "Fêst"
 
 #: src/olympia/constants/categories.py
 msgid "Websites"
-msgstr ""
+msgstr "Websites"
 
 #: src/olympia/constants/categories.py
 msgid "Device Features & Location"
-msgstr ""
+msgstr "Apparaatfunksjes en -lokaasje"
 
 #: src/olympia/constants/categories.py
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperiminteel"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "Feeds, nijs en blogging"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 msgid "Performance"
-msgstr ""
+msgstr "Prestaasjes"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
-msgstr ""
+msgstr "Foto’s en media"
 
 #: src/olympia/constants/categories.py
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Befeiliging en privacy"
 
 #: src/olympia/constants/categories.py
 msgid "Social Networking"
-msgstr ""
+msgstr "Sosjale netwurken"
 
 #: src/olympia/constants/categories.py
 msgid "Sports & Games"
-msgstr ""
+msgstr "Sport en spul"
 
 #: src/olympia/constants/categories.py
 msgid "User Interface"
-msgstr ""
+msgstr "Brûkersinterface"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "Foarmjouwing en oanpassing"
 
 #: src/olympia/constants/categories.py
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "Aginda en datum/tiid"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
-msgstr ""
+msgstr "Chatte en IM"
 
 #: src/olympia/constants/categories.py
 msgid "Message Composition"
-msgstr ""
+msgstr "Berjochten opstelle"
 
 #: src/olympia/constants/categories.py
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakten"
 
 #: src/olympia/constants/categories.py
 msgid "Folders and Filters"
-msgstr ""
+msgstr "Mappen en filters"
 
 #: src/olympia/constants/categories.py
 msgid "Import/Export"
-msgstr ""
+msgstr "Ymportearje/eksportearje"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
-msgstr ""
+msgstr "Berjochten en nijs lêze"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Privacy en befeiliging"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "Downloade en bestânsbehear"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
-msgstr ""
+msgstr "Interfaceoanpassingen"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "Taalstipe en oersetting"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
-msgstr ""
+msgstr "Foto’s en media"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, nijs en blogge"
 
 #: src/olympia/constants/categories.py
 msgid "Site-specific"
-msgstr ""
+msgstr "Website-spesifyk"
 
 #: src/olympia/constants/categories.py
 msgid "Web and Developer Tools"
-msgstr ""
+msgstr "Web- en ûntwikkelhelpmiddelen"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
-msgstr ""
+msgstr "Mear ynformaasje freegje"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flag"
-msgstr ""
+msgstr "Label"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikaat"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Reject"
-msgstr ""
+msgstr "Ofwize"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
-msgstr ""
+msgstr "Goedkarre"
 
 #: src/olympia/constants/editors.py
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Seksuele of pornografyske ynhâld"
 
 #: src/olympia/constants/editors.py
 msgid "Inappropriate or offensive content"
@@ -3815,31 +3815,31 @@ msgstr ""
 
 #: src/olympia/constants/platforms.py
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #: src/olympia/constants/platforms.py
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 #: src/olympia/constants/platforms.py
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 #: src/olympia/constants/platforms.py
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: src/olympia/constants/platforms.py
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 #: src/olympia/constants/platforms.py
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: src/olympia/core/apps.py
 msgid "Core"
-msgstr ""
+msgstr "Kearn"
 
 #: src/olympia/devhub/feeds.py
 #, python-format
@@ -4017,7 +4017,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
-msgstr ""
+msgstr "Tapassing"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -4048,31 +4048,31 @@ msgstr ""
 
 #: src/olympia/devhub/helpers.py
 msgid "My Submissions"
-msgstr ""
+msgstr "Myn bydragen"
 
 #: src/olympia/devhub/helpers.py
 msgid "Developer Docs"
-msgstr ""
+msgstr "Untwikkelersdokuminten"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} flater"
+msgstr[1] "{0} flaters"
 
 #. L10n: first parameter is the number of warnings
 # {0} is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} warskôging"
+msgstr[1] "{0} warskôgingen"
 
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
-msgstr ""
+msgstr "Beoardieling"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -4104,19 +4104,19 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Al myn add-ons"
 
 #: src/olympia/devhub/views.py
 msgid "All Activity"
-msgstr ""
+msgstr "Alle aktiviteit"
 
 #: src/olympia/devhub/views.py
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Add-on-fernijingen"
 
 #: src/olympia/devhub/views.py
 msgid "Add-on Status"
-msgstr ""
+msgstr "Add-on-steat"
 
 #: src/olympia/devhub/views.py
 msgid "User Collections"
@@ -4277,11 +4277,11 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/mobile/results.html
 #: src/olympia/search/templates/search/personas.html src/olympia/search/templates/search/results.html src/olympia/templates/impala/search.html src/olympia/templates/search.html
 msgid "Search"
-msgstr ""
+msgstr "Sykje"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
 msgid "Search Results"
-msgstr ""
+msgstr "Sykresultaten"
 
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
@@ -4294,7 +4294,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Resultaten lade…"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
@@ -4334,7 +4334,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Status:"
-msgstr ""
+msgstr "Steat:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Visibility:"
@@ -4385,7 +4385,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
-msgstr ""
+msgstr "mear add-ons…"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Documentation"
