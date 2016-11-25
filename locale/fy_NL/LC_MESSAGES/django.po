@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-25 07:40+0000\n"
+"PO-Revision-Date: 2016-11-25 07:55+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1284,16 +1284,16 @@ msgstr "Akseptearje"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "Add-ons binne op dit stuit net beskikber yn Firefox foar iOS."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr ""
+msgstr "Jo hawwe Firefox nedich om add-ons ynstallearje te kinnen. <a href=\"http://mozilla.com/mobile\">Mear hjiroer&nbsp;&raquo;</a>"
 
 # {0} is the application name.  Example:  Firefox
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/header_title.html src/olympia/templates/impala/header_title.html
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "Tebek nei de {0}-add-ons-startside"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
@@ -1330,11 +1330,11 @@ msgstr "Tema’s"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "Alle oanrekommandearre add-ons besjen"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Popular add-ons"
-msgstr ""
+msgstr "Alle Populêre add-ons besjen"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "More Add-ons"
@@ -1419,11 +1419,11 @@ msgstr "Net krekt, probearje it opnij."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Flater by kontrolearjen ynfier, probearje it opnij."
 
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Dit moat in jildige hex-kleurkoade wêze, lykas #000000."
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
@@ -1459,90 +1459,90 @@ msgstr "Kategoryen foar {addon} bewurke."
 
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) tafoege oan {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) fuortsmiten fan {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Bydragen foar {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} útskeakele."
 
 #: src/olympia/amo/log.py
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} ynskeakele."
 
 #: src/olympia/amo/log.py
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Statistiken foar {addon} harren publyk."
 
 #: src/olympia/amo/log.py
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "Statistiken foar {addon} ynsteld op privee."
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "Steat fan {addon} wizige yn {0}."
 
 #: src/olympia/amo/log.py
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "Foarbyld oan {addon} tafoege."
 
 #: src/olympia/amo/log.py
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "Foarbyld foar {addon} bewurke."
 
 #: src/olympia/amo/log.py
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "Foarbyld fan {addon} fuortsmiten."
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} oan {addon} tafoege."
 
 #: src/olympia/amo/log.py
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} foar {addon} bewurke."
 
 #. L10n: {0} is the version number
 #: src/olympia/amo/log.py
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Ferzje {0} út {addon} fuortsmiten."
 
 #: src/olympia/amo/log.py
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Bestân {0.name} oan {version} fan {addon} tafoege."
 
 #: src/olympia/amo/log.py
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Bestân {0} út {version} fan {addon} fuortsmiten."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} goedkard."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} is foarearst beoardiele."
 
 #: src/olympia/amo/log.py
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Foarearst beoardiele"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} ôfwêzen."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} behâlde."
 
 #: src/olympia/amo/log.py
 msgid "Retained"
@@ -1550,39 +1550,41 @@ msgstr "Behâlde"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} is eskalearre."
 
 #: src/olympia/amo/log.py
 msgid "Super review requested"
-msgstr ""
+msgstr "Superbeoardieling oanfrege"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "Beoardieling foar {addon} {version} oanfrege."
 
 #: src/olympia/amo/log.py
 msgid "Review requested"
-msgstr ""
+msgstr "Beoardieling oanfrege"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "Mear ynformaasje oer {addon} {version} frege."
 
 #: src/olympia/amo/log.py
 msgid "More information requested"
-msgstr ""
+msgstr "Mear ynformaasje frege"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "Superbeoardiling foar {addon} {version} oanfrege."
 
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"De add-on is labele foar beoardieling troch in behearder. Hy stiet noch yn ús beoardielingswachtrige, mar hy moat kontrolearre wurde troch ien fan ús behearders. De beoardieling soe langer as "
+"gebrûklik duorje kinne."
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Opmerking oer {addon} {version}."
 
 #: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Comment"
@@ -1590,23 +1592,23 @@ msgstr "Opmerking"
 
 #: src/olympia/amo/log.py
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} oan {addon} tafoege."
 
 #: src/olympia/amo/log.py
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} fan {addon} fuortsmiten."
 
 #: src/olympia/amo/log.py
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} oan {collection} tafoege."
 
 #: src/olympia/amo/log.py
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} út {collection} fuortsmiten."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} foar {addon} skreaun."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
