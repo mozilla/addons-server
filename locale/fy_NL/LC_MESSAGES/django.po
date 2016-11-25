@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-25 13:12+0000\n"
+"PO-Revision-Date: 2016-11-25 13:47+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4389,7 +4389,7 @@ msgstr "mear add-ons…"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumintaasje"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Extension Development"
@@ -4401,7 +4401,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Policies"
-msgstr ""
+msgstr "Add-onbelied"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Validator"
@@ -4421,11 +4421,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Add-onsblog"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Add-onsfoarum"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "More Resources"
@@ -4492,7 +4492,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Activity"
-msgstr ""
+msgstr "Aktiviteit"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "Subscribe to this feed"
@@ -4537,7 +4537,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/owner.html
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
 msgid "Close"
-msgstr ""
+msgstr "Slute"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
@@ -4561,7 +4561,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
-msgstr ""
+msgstr "Gjin"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Authors & License"
@@ -4569,7 +4569,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Authors"
-msgstr ""
+msgstr "Skriuwers"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid "About author roles"
@@ -4606,11 +4606,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Create Profile"
-msgstr ""
+msgstr "Profyl oanmeitsje"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information"
-msgstr ""
+msgstr "Basisgegevens"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -4619,7 +4619,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Add-on URL"
-msgstr ""
+msgstr "Add-on-URL"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Choose a short, unique URL slug for your add-on."
@@ -4632,7 +4632,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Summary"
-msgstr ""
+msgstr "Gearfetting"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid ""
@@ -4641,7 +4641,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Experimental?"
-msgstr ""
+msgstr "Eksperiminteel?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
@@ -4686,11 +4686,11 @@ msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
-msgstr ""
+msgstr "Add-ondetails"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Add-ondetails foar {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
@@ -4706,7 +4706,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
-msgstr ""
+msgstr "Startside"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid ""
@@ -4716,7 +4716,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html
 msgid "Images"
-msgstr ""
+msgstr "Ofbyldingen"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information"
@@ -4756,11 +4756,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Limit 3"
-msgstr ""
+msgstr "Maksimaal 3"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Add-on Flags"
-msgstr ""
+msgstr "Add-onmarkearingen"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
@@ -4828,7 +4828,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
@@ -4858,7 +4858,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on icon"
-msgstr ""
+msgstr "Add-onpiktogram"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid ""
@@ -4873,7 +4873,7 @@ msgstr ""
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Used in listings of add-ons, like search results and featured add-ons."
@@ -4882,7 +4882,7 @@ msgstr ""
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Used in add-on detail pages."
@@ -4898,7 +4898,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Screenshots"
-msgstr ""
+msgstr "Skermôfbyldingen"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Please provide at least one screen shot of your add-on:"
@@ -4914,11 +4914,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html
 msgid "Tests"
-msgstr ""
+msgstr "Tests"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "General Tests"
-msgstr ""
+msgstr "Algemiene tests"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Security Tests"
@@ -4946,7 +4946,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Top"
-msgstr ""
+msgstr "Boppeside"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Delete Theme"
@@ -4978,7 +4978,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/editors/templates/editors/review.html
 msgid "Actions"
-msgstr ""
+msgstr "Aksjes"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Resume the submission process for this add-on."
@@ -4986,7 +4986,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Resume"
-msgstr ""
+msgstr "Ferfetsje"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Delete this add-on."
@@ -5002,7 +5002,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "New Version"
-msgstr ""
+msgstr "Nije ferzje"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Daily statistics on downloads and users."
