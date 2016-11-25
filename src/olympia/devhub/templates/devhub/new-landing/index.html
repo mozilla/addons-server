@@ -41,9 +41,15 @@
 
     {% include 'devhub/new-landing/components/navigation.html' %}
 
-    {% if not user_authenticated %}
-      {% include 'devhub/new-landing/components/overview.html' %}
-    {% endif %}
+    <div class="DevHub-Content">
+      {% if not user_authenticated %}
+        {% include 'devhub/new-landing/components/overview.html' %}
+      {% endif %}
+
+      {% if not user_authenticated %}
+        {% include 'devhub/new-landing/components/blog_posts.html' %}
+      {% endif %}
+    </div>
 
     {% block site_js %}
     {% endblock %}
