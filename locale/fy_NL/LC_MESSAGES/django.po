@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-25 12:02+0000\n"
+"PO-Revision-Date: 2016-11-25 12:19+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1772,55 +1772,55 @@ msgstr "Fjild bewurke: {2} ynsteld op: {0}."
 
 #: src/olympia/amo/log.py
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Fuortsmiten: {1}."
 
 #: src/olympia/amo/log.py
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Brûker {user} bywurke, reden: {1}"
 
 #: src/olympia/amo/log.py
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Brûker {user} anonimisearre."
 
 #: src/olympia/amo/log.py
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Brûker {user} beheint."
 
 #: src/olympia/amo/log.py
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Behearder {0} hat aktiviteitenlochboek foar {user} besjoen."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} foar {addon} bywurke."
 
 #: src/olympia/amo/log.py
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} beoardiele."
 
 #: src/olympia/amo/log.py
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Brûker {0.name} tafoege oan {group}."
 
 #: src/olympia/amo/log.py
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Brûker {0.name} fuortsmiten út {group}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "Minimumeasken {addon} hânmjittich wizige troch beoardieler."
 
 #: src/olympia/amo/log.py
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "Fereasken wizige troch beoardieler"
 
 #: src/olympia/amo/log.py
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "Minimumeasken {addon} hânmjittich wizige."
 
 #: src/olympia/amo/log.py
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Fereasken wizige"
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
