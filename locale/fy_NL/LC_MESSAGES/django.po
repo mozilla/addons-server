@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-25 07:55+0000\n"
+"PO-Revision-Date: 2016-11-25 08:17+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1613,70 +1613,70 @@ msgstr "{review} foar {addon} skreaun."
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} oanrekommandearre yn {0}."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} net mear oanrekommandearre yn {0}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} is no oanrekkommandearre."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} is net mear oanrekkommandearre."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/amo/log.py
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} tafoege."
 
 #. L10n: {0} is a user, {1} is their role
 #: src/olympia/amo/log.py
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "rol fan {0.name} wizige yn {1} foar {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} falt no ûnder de lisinsje {0.name}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "belied fan {addon} wizige."
 
 #: src/olympia/amo/log.py
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon}-piktogram wizige."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{review} foar {addon} goedkard."
 
 #: src/olympia/amo/log.py
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{user} hat {review} foar {addon} goedkard."
 
 #: src/olympia/amo/log.py
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Beoardieling {review} foar {addon} fuortsmiten."
 
 #: src/olympia/amo/log.py
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} hat {review} foar {addon} fuortsmiten."
 
 #: src/olympia/amo/log.py
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Maksimumferzje tapassing foar {version} bywurke."
 
 #: src/olympia/amo/log.py
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "E-mailberjocht oer kompatibiliteit fan {version} nei skriuwers ferstjoerd."
 
 #: src/olympia/amo/log.py
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-mailberjocht oer add-onkompatibiliteit nei skriuwer ferstjoerd."
 
 #: src/olympia/amo/log.py
 msgid "Password changed."
@@ -1684,59 +1684,59 @@ msgstr "Wachtwurd wizige."
 
 #: src/olympia/amo/log.py
 msgid "{addon} failed checks with PayPal."
-msgstr ""
+msgstr "Kontrôle by PayPal foar {addon} mislearre."
 
 #: src/olympia/amo/log.py
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "Manifest {addon} bywurke."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} goedkard mar wachtet op publikaasje."
 
 #: src/olympia/amo/log.py
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Goedkard mar wachtet"
 
 #: src/olympia/amo/log.py
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} kocht."
 
 #: src/olympia/amo/log.py
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} ynstallearre."
 
 #: src/olympia/amo/log.py
 msgid "Account updated."
-msgstr ""
+msgstr "Rekkening bywurke."
 
 #: src/olympia/amo/log.py
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Eskalaasje fuortsmiten foar {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Eskalaasje fuortsmiten"
 
 #: src/olympia/amo/log.py
 msgid "App disabled"
-msgstr ""
+msgstr "App útskeakele"
 
 #: src/olympia/amo/log.py
 msgid "{addon} escalated because of high number of abuse reports."
-msgstr ""
+msgstr "{addon} eskalearre fanwegen grut oantal misbrûkmeldingen."
 
 #: src/olympia/amo/log.py
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "Protte misbrûkmeldingen"
 
 #: src/olympia/amo/log.py
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "{addon} eskalearre troch beoardieler."
 
 #: src/olympia/amo/log.py
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "Eskalaasje troch beoardieler"
 
 #: src/olympia/amo/log.py
 msgid "Video removed from {addon} because of a problem with the video. "
