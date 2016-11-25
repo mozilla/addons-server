@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-24 12:57+0000\n"
+"PO-Revision-Date: 2016-11-25 07:40+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1263,11 +1263,11 @@ msgstr "Let op"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Visit the Support Site"
-msgstr ""
+msgstr "De stipewebsite besykje"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Ask the Author a Question"
-msgstr ""
+msgstr "Stel de skriuwer in fraach"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "License Agreement"
@@ -1276,7 +1276,7 @@ msgstr "Lisinsje-oerienkomst"
 #: src/olympia/addons/templates/addons/mobile/eula.html
 #, python-format
 msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(name)s fereaske dat jo de folgjende brûksrjochtoerienkomst akseptearje eardat de ynstallaasje trochgean kin:"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "Accept"
