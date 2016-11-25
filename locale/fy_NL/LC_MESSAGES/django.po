@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-25 08:17+0000\n"
+"PO-Revision-Date: 2016-11-25 12:02+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1740,27 +1740,27 @@ msgstr "Eskalaasje troch beoardieler"
 
 #: src/olympia/amo/log.py
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "Fideo fan {addon} fuortsmiten fanwegen in probleem mei de fideo. "
 
 #: src/olympia/amo/log.py
 msgid "Video removed"
-msgstr ""
+msgstr "Fideo fuortsmiten"
 
 #: src/olympia/amo/log.py
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "Nije beoardieling {addon} fanwegen tafoeging nij(e) appara(a)t(en)."
 
 #: src/olympia/amo/log.py
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Appara(a)t(en) tafoege"
 
 #: src/olympia/amo/log.py
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "Apparaatstipe foar {addon} hânmjittich wizige troch beoardieler."
 
 #: src/olympia/amo/log.py
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Appara(a)t(en) wizige troch beoardieler"
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
@@ -1768,7 +1768,7 @@ msgstr "Makke: {0}."
 
 #: src/olympia/amo/log.py
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Fjild bewurke: {2} ynsteld op: {0}."
 
 #: src/olympia/amo/log.py
 msgid "Deleted: {1}."
