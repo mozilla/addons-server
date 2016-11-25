@@ -7,7 +7,7 @@
 <form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
     data-addon-is-listed="{% if listed %}true{% else %}false{% endif %}">
   {{ csrf() }}
-  {% if submit_page == 'version' or submit_page == 'file' %}
+  {% if submit_page in ['version', 'file'] and waffle.switch('mixed-listed-unlisted')%}
     {% if submit_page == 'file' %}
         <h3>{{ _('Where to Host File') }}</h3>
     {% else %}
@@ -15,13 +15,17 @@
     {% endif %}
     <p class="addon-submit-distribute">
       {{ channel_choice_text|safe }}
-      {% if submit_page == 'version' and waffle.switch('mixed-listed-unlisted') %}
+      {% if submit_page == 'version' %}
         {% set channel_param = 'listed' if listed else 'unlisted' %}
         <a href="{{ url('devhub.submit.version.distribution', addon.slug) }}?channel={{ channel_param }}">{{ _('Change') }}</a>
       {% endif %}
     </p>
   {% endif %}
-  <h3>{{ _('Upload Version') }}</h3>
+  {% if submit_page == 'file' %}
+    <h3>{{ _('Upload File') }}</h3>
+  {% else %}
+    <h3>{{ _('Upload Version') }}</h3>
+  {% endif %}
   <p>
   {% trans %}
     Use the fields below to upload your add-on package and select any platform
@@ -62,7 +66,7 @@
       </div>
 
     </div>
-    {% if addon %}
+    {% if submit_page == 'version' %}
       <div class="beta-status hide">
         <label>{{ new_addon_form.beta }} {{ _('Only publish this version to my beta channel.') }}</label>
         <span class="tip tooltip" title="{{ new_addon_form.beta.help_text }}">?</span>
@@ -81,8 +85,12 @@
     {% endif %}
     <div class="submission-buttons addon-submission-field">
       <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">
-        {% if listed and submit_page != 'file' %}
+        {% if listed %}
+          {% if submit_page != 'file' %}
             {{ _('Continue') }}
+          {% else %}
+            {{ _('Submit File for Review') }}
+          {% endif %}
         {% else %}
             {{ _('Sign Add-on') }}
         {% endif %}
