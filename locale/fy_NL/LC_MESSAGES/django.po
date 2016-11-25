@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-25 12:22+0000\n"
+"PO-Revision-Date: 2016-11-25 13:01+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3406,47 +3406,47 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Level 1"
-msgstr ""
+msgstr "Nivo 1"
 
 #: src/olympia/constants/base.py
 msgid "Level 2"
-msgstr ""
+msgstr "Nivo 2"
 
 #: src/olympia/constants/base.py
 msgid "Level 3"
-msgstr ""
+msgstr "Nivo 3"
 
 #: src/olympia/constants/base.py
 msgid "Level 4"
-msgstr ""
+msgstr "Nivo 4"
 
 #: src/olympia/constants/base.py
 msgid "Level 5"
-msgstr ""
+msgstr "Nivo 5"
 
 #: src/olympia/constants/base.py
 msgid "Level 6"
-msgstr ""
+msgstr "Nivo 6"
 
 #: src/olympia/constants/base.py
 msgid "Level 7"
-msgstr ""
+msgstr "Nivo 7"
 
 #: src/olympia/constants/base.py
 msgid "Level 8"
-msgstr ""
+msgstr "Nivo 8"
 
 #: src/olympia/constants/base.py
 msgid "Level 9"
-msgstr ""
+msgstr "Nivo 9"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "Kompatibel"
 
 #: src/olympia/constants/base.py
 msgid "Incompatible"
-msgstr ""
+msgstr "Ynkompatibel"
 
 #: src/olympia/constants/categories.py
 msgid "Alerts & Updates"
@@ -3458,124 +3458,124 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Bookmarks"
-msgstr ""
+msgstr "Blêdwizers"
 
 #: src/olympia/constants/categories.py
 msgid "Download Management"
-msgstr ""
+msgstr "Downloadbehear"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Feeds, nijs en blogging"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Spultsjes en amusemint"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support"
-msgstr ""
+msgstr "Taalstipe"
 
 #: src/olympia/constants/categories.py
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Foto’s, muzyk en fideo’s"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy & Security"
-msgstr ""
+msgstr "Privacy en befeiliging"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping"
-msgstr ""
+msgstr "Winkelje"
 
 #: src/olympia/constants/categories.py
 msgid "Social & Communication"
-msgstr ""
+msgstr "Sosjaal en kommunikaasje"
 
 #: src/olympia/constants/categories.py
 msgid "Tabs"
-msgstr ""
+msgstr "Ljepblêden"
 
 #: src/olympia/constants/categories.py
 msgid "Web Development"
-msgstr ""
+msgstr "Webûntwikkeling"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
-msgstr ""
+msgstr "Bisten"
 
 #: src/olympia/constants/categories.py
 msgid "Compact"
-msgstr ""
+msgstr "Kompakt"
 
 #: src/olympia/constants/categories.py
 msgid "Large"
-msgstr ""
+msgstr "Grut"
 
 #: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Diversen"
 
 #: src/olympia/constants/categories.py
 msgid "Modern"
-msgstr ""
+msgstr "Modern"
 
 #: src/olympia/constants/categories.py
 msgid "Nature"
-msgstr ""
+msgstr "Natuer"
 
 #: src/olympia/constants/categories.py
 msgid "OS Integration"
-msgstr ""
+msgstr "OS-yntegraasje"
 
 #: src/olympia/constants/categories.py
 msgid "Retro"
-msgstr ""
+msgstr "Retro"
 
 #: src/olympia/constants/categories.py
 msgid "Sports"
-msgstr ""
+msgstr "Sport"
 
 #: src/olympia/constants/categories.py
 msgid "General"
-msgstr ""
+msgstr "Algemien"
 
 #: src/olympia/constants/categories.py
 msgid "Business"
-msgstr ""
+msgstr "Saaklik"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/constants/categories.py
 msgid "Dictionaries & Encyclopedias"
-msgstr ""
+msgstr "Wurdboeken en ensyklopedyen"
 
 #: src/olympia/constants/categories.py
 msgid "Kids"
-msgstr ""
+msgstr "Bern"
 
 #: src/olympia/constants/categories.py
 msgid "Multiple Search"
-msgstr ""
+msgstr "Mearfâldich sykje"
 
 #: src/olympia/constants/categories.py
 msgid "Music"
-msgstr ""
+msgstr "Muzyk"
 
 #: src/olympia/constants/categories.py
 msgid "News & Blogs"
-msgstr ""
+msgstr "Nijs en blogs"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Images"
-msgstr ""
+msgstr "Foto’s en ôfbyldingen"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "Winkelje en e-kommersje"
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
-msgstr ""
+msgstr "Sosjaal en persoanen"
 
 #: src/olympia/constants/categories.py
 msgid "Travel"
