@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-28 15:41+0000\n"
+"PO-Revision-Date: 2016-11-28 15:51+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -128,15 +128,15 @@ msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Пренаписване на стари добавки за Firefox на MDN"
 
 #: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Включете подробен отчет на промените (може и на следващата стъпка)."
 
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "Ако добавката ви, за да бъде пълнофункционална, изисква сметка в уеб сайт добавете тестово потребителско име и парола в Бележката към рецензента (може и на следващата стъпка)."
 
 #: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
@@ -151,6 +151,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Изходният код на компилираните двоични файлове, минифицираните и замъглени скриптове (с изключение на известните библиотеки) трябва да бъде изпратен за рецензия отделно. Използвайте полето за "
+"изпращане на изходен код, за да избегнете отхвърляне на добавката ви."
 
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
