@@ -58,7 +58,7 @@ GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
                  'users_created', 'my_apps')
 
 
-addon_view_with_unlisted = addon_view_factory(qs=Addon.with_unlisted.all)
+addon_view = addon_view_factory(qs=Addon.objects.valid)
 storage = get_storage_class()()
 
 
@@ -154,7 +154,7 @@ def extract(dicts):
     return extracted
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def overview_series(request, addon, group, start, end, format):
     """Combines downloads_series and updates_series into one payload."""
@@ -200,7 +200,7 @@ def zip_overview(downloads, updates):
                'data': {'downloads': dl_count, 'updates': up_count}}
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
@@ -215,7 +215,7 @@ def downloads_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def sources_series(request, addon, group, start, end, format):
     """Generate download source breakdown."""
@@ -233,7 +233,7 @@ def sources_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def usage_series(request, addon, group, start, end, format):
     """Generate ADU counts grouped by ``group`` in ``format``."""
@@ -250,7 +250,7 @@ def usage_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def usage_breakdown_series(request, addon, group,
                            start, end, format, field):
@@ -349,7 +349,7 @@ def check_stats_permission(request, addon, for_contributions=False):
     raise PermissionDenied
 
 
-@addon_view_factory(qs=Addon.with_unlisted.valid)
+@addon_view
 @non_atomic_requests
 def stats_report(request, addon, report):
     check_stats_permission(request, addon,
@@ -444,7 +444,7 @@ def site_event_format(request, events):
         }
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def contributions_series(request, addon, group, start, end, format):
     """Generate summarized contributions grouped by ``group`` in ``format``."""
@@ -709,7 +709,7 @@ class ArchiveMixin(object):
     """Provides common helper methods for all archive views."""
     def get_addon(self, request, slug):
         """Fetches an addon by `slug`"""
-        qset = Addon.with_unlisted.all()
+        qset = Addon.objects.all()
 
         addon = get_object_or_404(qset, slug=slug)
 

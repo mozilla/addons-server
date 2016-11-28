@@ -571,7 +571,7 @@ def general_search(request, app_id, model_id):
 
 
 @admin_required(reviewers=True)
-@addon_view_factory(qs=Addon.with_unlisted.all)
+@addon_view_factory(qs=Addon.objects.all)
 def addon_manage(request, addon):
     form = AddonStatusForm(request.POST or None, instance=addon)
     pager = amo.utils.paginate(

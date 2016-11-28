@@ -209,12 +209,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.addons.reviewed().filter(
             addonuser__user=self, addonuser__listed=True).count()
 
-    def my_addons(self, n=8, with_unlisted=False):
+    def my_addons(self, n=8):
         """Returns n addons"""
-        addons = self.addons
-        if with_unlisted:
-            addons = self.addons.model.with_unlisted.filter(authors=self)
-        qs = order_by_translation(addons, 'name')
+        qs = order_by_translation(self.addons, 'name')
         return qs[:n]
 
     @property

@@ -642,7 +642,7 @@ def check_xpi_info(xpi_info, addon=None):
             raise forms.ValidationError(msg % (guid, addon.guid))
         if (not addon and
             # Non-deleted add-ons.
-            (Addon.with_unlisted.filter(guid=guid).exists() or
+            (Addon.objects.filter(guid=guid).exists() or
              # DeniedGuid objects for legacy deletions.
              DeniedGuid.objects.filter(guid=guid).exists() or
              # Deleted add-ons that don't belong to the uploader.

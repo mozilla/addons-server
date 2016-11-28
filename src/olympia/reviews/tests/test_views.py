@@ -149,7 +149,7 @@ class TestViews(ReviewTest):
 
     def test_cant_view_unlisted_addon_reviews(self):
         """An unlisted addon doesn't have reviews."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         assert self.client.get(helpers.url('addons.reviews.list',
                                            self.addon.slug)).status_code == 404
 
@@ -432,7 +432,7 @@ class TestCreate(ReviewTest):
 
     def test_cant_review_unlisted_addon(self):
         """Can't review an unlisted addon."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         assert self.client.get(self.add_url).status_code == 404
 
 
@@ -1749,8 +1749,7 @@ class TestReviewViewSetFlag(TestCase):
         assert self.review.reload().editorreview is True
 
     def test_flag_logged_in_addon_denied(self):
-        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self.user = user_factory()
         self.client.login_api(self.user)
         response = self.client.post(

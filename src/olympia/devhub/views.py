@@ -88,7 +88,7 @@ def addon_listing(request, default='name', theme=False):
     if theme:
         qs = request.user.addons.filter(type=amo.ADDON_PERSONA)
     else:
-        qs = Addon.with_unlisted.filter(authors=request.user).exclude(
+        qs = Addon.objects.filter(authors=request.user).exclude(
             type=amo.ADDON_PERSONA)
     filter_cls = ThemeFilter if theme else AddonFilter
     filter_ = filter_cls(request, qs, 'sort', default)
@@ -99,7 +99,7 @@ def index(request):
 
     ctx = {'blog_posts': _get_posts()}
     if request.user.is_authenticated():
-        user_addons = Addon.with_unlisted.filter(authors=request.user)
+        user_addons = Addon.objects.filter(authors=request.user)
         recent_addons = user_addons.order_by('-modified')[:3]
         ctx['recent_addons'] = []
         for addon in recent_addons:
@@ -112,7 +112,7 @@ def index(request):
 @login_required
 def dashboard(request, theme=False):
     addon_items = _get_items(
-        None, Addon.with_unlisted.filter(authors=request.user))[:4]
+        None, Addon.objects.filter(authors=request.user))[:4]
 
     data = dict(rss=_get_rss_feed(request), blog_posts=_get_posts(),
                 timestamp=int(time.time()), addon_tab=not theme,
@@ -258,10 +258,10 @@ def feed(request, addon_id=None):
     if not request.user.is_authenticated():
         return redirect_for_login(request)
     else:
-        addons_all = Addon.with_unlisted.filter(authors=request.user)
+        addons_all = Addon.objects.filter(authors=request.user)
 
         if addon_id:
-            addon = get_object_or_404(Addon.with_unlisted.id_or_slug(addon_id))
+            addon = get_object_or_404(Addon.objects.id_or_slug(addon_id))
             addons = addon  # common query set
             try:
                 key = RssKey.objects.get(addon=addons)
@@ -810,7 +810,7 @@ def json_bulk_compat_result(request, addon_id, addon, result_id):
 def json_upload_detail(request, upload, addon_slug=None):
     addon = None
     if addon_slug:
-        addon = get_object_or_404(Addon.with_unlisted, slug=addon_slug)
+        addon = get_object_or_404(Addon.objects, slug=addon_slug)
     result = upload_validation_context(request, upload, addon=addon)
     plat_exclude = []
     if result['validation']:

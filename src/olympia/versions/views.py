@@ -100,7 +100,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
     if not file_:
         file_ = get_object_or_404(File.objects, pk=file_id)
     if not addon:
-        addon = get_object_or_404(Addon.with_unlisted,
+        addon = get_object_or_404(Addon.objects,
                                   pk=file_.version.addon_id)
     channel = file_.version.channel
 
@@ -140,7 +140,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
 
 
 def guard():
-    return Addon.with_unlisted.filter(_current_version__isnull=False)
+    return Addon.objects.filter(_current_version__isnull=False)
 
 
 @addon_view_factory(guard)

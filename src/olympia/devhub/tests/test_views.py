@@ -871,7 +871,7 @@ class TestHome(TestCase):
                 self.addon.STATUS_CHOICES[self.addon.status])
             assert status_str == addon_item.find('p').eq(1).text()
 
-        Addon.with_unlisted.all().delete()
+        Addon.objects.all().delete()
         assert self.get_pq()('#my-addons').length == 0
 
     @override_switch('step-version-upload', active=False)
@@ -903,7 +903,7 @@ class TestHome(TestCase):
                 self.addon.STATUS_CHOICES[self.addon.status])
             assert status_str == addon_item.find('p').eq(1).text()
 
-        Addon.with_unlisted.all().delete()
+        Addon.objects.all().delete()
         assert self.get_pq()('#my-addons').length == 0
 
     def test_my_unlisted_addons_inline_version_upload(self):
@@ -943,7 +943,7 @@ class TestHome(TestCase):
                 self.addon.STATUS_CHOICES[self.addon.status])
             assert status_str == addon_item.find('p').eq(1).text()
 
-        Addon.with_unlisted.all().delete()
+        Addon.objects.all().delete()
         assert self.get_pq()('#my-addons').length == 0
 
     @override_switch('step-version-upload', active=True)
@@ -967,7 +967,7 @@ class TestHome(TestCase):
             self.addon.STATUS_CHOICES[self.addon.status])
         assert status_str == addon_item.find('p').eq(1).text()
 
-        Addon.with_unlisted.all().delete()
+        Addon.objects.all().delete()
         assert self.get_pq()('#my-addons').length == 0
 
     @override_switch('step-version-upload', active=True)
@@ -993,7 +993,7 @@ class TestHome(TestCase):
             self.addon.STATUS_CHOICES[self.addon.status])
         assert status_str == addon_item.find('p').eq(1).text()
 
-        Addon.with_unlisted.all().delete()
+        Addon.objects.all().delete()
         assert self.get_pq()('#my-addons').length == 0
 
     def test_incomplete_no_new_version(self):

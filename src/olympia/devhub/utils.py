@@ -284,7 +284,7 @@ class ValidationAnnotator(object):
             # object, and a valid former submission to compare against.
             try:
                 self.addon = (self.addon or
-                              Addon.with_unlisted.get(guid=addon_data['guid']))
+                              Addon.objects.get(guid=addon_data['guid']))
             except Addon.DoesNotExist:
                 pass
 

@@ -106,7 +106,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
     def setUp(self):
         super(TestAddonViewWithUnlisted, self).setUp()
         self.view = dec.addon_view_factory(
-            qs=Addon.with_unlisted.all)(self.func)
+            qs=Addon.objects.all)(self.func)
 
     @mock.patch('olympia.access.acl.check_unlisted_addons_reviewer',
                 lambda r: False)

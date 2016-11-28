@@ -40,6 +40,7 @@ class StatsTest(TestCase):
         version_factory(addon=Addon.objects.get(pk=4))
         version_factory(addon=Addon.objects.get(pk=5))
         version_factory(addon=Addon.objects.get(pk=6))
+        Addon.objects.filter(id__in=(4, 5, 6)).update(status=amo.STATUS_PUBLIC)
         # Most tests don't care about permissions.
         self.login_as_admin()
 
@@ -101,13 +102,6 @@ class TestUnlistedAddons(StatsTest):
 
         self._check_it(self.public_views_gen(format='json'), 404)
         self._check_it(self.private_views_gen(format='json'), 404)
-
-    def test_stats_for_unlisted_addon_owner(self):
-        """All the views for the stats return 200 for admins."""
-        self.login_as_admin()
-
-        self._check_it(self.public_views_gen(format='json'), 200)
-        self._check_it(self.private_views_gen(format='json'), 200)
 
 
 class ESStatsTest(StatsTest, amo.tests.ESTestCase):
@@ -360,20 +354,23 @@ class TestCacheControl(StatsTest):
 class TestLayout(StatsTest):
 
     def test_not_public_stats(self):
-        r = self.client.get(reverse('stats.downloads', args=[4]))
-        assert r.status_code == 404
+        self.login_as_visitor()
+        addon = amo.tests.addon_factory(public_stats=False)
+        response = self.client.get(self.get_public_url(addon))
+        assert response.status_code == 403
 
-    def get_public_url(self):
-        addon = amo.tests.addon_factory(public_stats=True)
+    def get_public_url(self, addon):
         return reverse('stats.downloads', args=[addon.slug])
 
     def test_public_stats_page_loads(self):
-        r = self.client.get(self.get_public_url())
-        assert r.status_code == 200
+        addon = amo.tests.addon_factory(public_stats=True)
+        response = self.client.get(self.get_public_url(addon))
+        assert response.status_code == 200
 
     def test_public_stats_stats_notes(self):
-        r = self.client.get(self.get_public_url())
-        assert pq(r.content)('#stats-note h2').length == 1
+        addon = amo.tests.addon_factory(public_stats=True)
+        response = self.client.get(self.get_public_url(addon))
+        assert pq(response.content)('#stats-note h2').length == 1
 
 
 class TestResponses(ESStatsTest):
