@@ -1,8 +1,13 @@
 <div class="binary-source{% if not field.errors %} edit_initially_hidden{% endif %}">
-<label>{{ _('If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review.') }}<br />
-{{ _('Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version.') }}<br />
-<a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews#Source_Code_Submission" target="_blank" rel="noopener noreferrer"
->{{ _('Read more about the source code review policy.') }}</a></label>
-{{ field.errors }}
-<div>{{ field }}</div>
+  <p>
+    {{ _('If your add-on contains binary or obfuscated code other than known '
+         'libraries, upload its sources for review.') }}<br />
+    {{ _('Please include instructions on how to reproduce the final add-on file, '
+         'either in a README file or the Notes to Reviewer for this version.') }}<br />
+    <a href="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews#Source_Code_Submission"
+      target="_blank" rel="noopener noreferrer">{{
+      _('Read more about the source code review policy.') }}</a>
+  </p>
+  {{ field.errors }}
+  <div>{{ field }}</div>
 </div>

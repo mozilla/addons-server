@@ -13,18 +13,19 @@
          "notified when the review has been completed, or if our reviewers have "
          "any questions about your submission.") }}
   </p>
+  {% if submit_page == 'addon' %}
   <p>
     {{ _("Your listing will be more successful by adding a detailed description "
          "and screenshots. Get your listing ready for publication:") }}
   </p>
+  {% endif %}
   <p>
     <a class="button" href="{{ addon.get_dev_url() }}">
       {{ _("Manage Listing") }}</a>
   </p>
   <p>
-    {{ _("You can also edit this version you just submitted by adding version "
-         "notes, or source code if your submission "
-         "includes minified, obfuscated or compiled code.") }}
+    {{ _("You can also edit this version to add version notes, or source code "
+         "if your submission includes minified, obfuscated or compiled code.") }}
   </p>
   <p>
     <a class="button" href="{{ version_edit_url }}">{{
