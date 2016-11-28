@@ -7,12 +7,11 @@ import mock
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.addons.models import Addon
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.stats import cron, tasks
 from olympia.stats.models import (
-    AddonCollectionCount, Contribution, DownloadCount, GlobalStat,
-    ThemeUserCount, UpdateCount)
+    AddonCollectionCount, DownloadCount, GlobalStat, ThemeUserCount,
+    UpdateCount)
 
 
 class TestGlobalStats(TestCase):
@@ -56,30 +55,6 @@ class TestGoogleAnalytics(TestCase):
         cron.update_google_analytics(d)
         assert GlobalStat.objects.get(
             name='webtrends_DailyVisitors', date=d).count == 49
-
-
-class TestTotalContributions(TestCase):
-    fixtures = ['base/appversion', 'base/users', 'base/addon_3615']
-
-    def test_total_contributions(self):
-
-        c = Contribution()
-        c.addon_id = 3615
-        c.amount = '9.99'
-        c.save()
-
-        tasks.addon_total_contributions(3615)
-        a = Addon.objects.no_cache().get(pk=3615)
-        assert float(a.total_contributions) == 9.99
-
-        c = Contribution()
-        c.addon_id = 3615
-        c.amount = '10.00'
-        c.save()
-
-        tasks.addon_total_contributions(3615)
-        a = Addon.objects.no_cache().get(pk=3615)
-        assert float(a.total_contributions) == 19.99
 
 
 @mock.patch('olympia.stats.management.commands.index_stats.create_subtasks')
