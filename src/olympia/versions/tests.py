@@ -664,11 +664,6 @@ class TestViews(TestCase):
         url = reverse('addons.versions', args=[self.addon.slug])
         assert self.client.get(url).status_code == 404
 
-    def test_version_list_does_not_return_unlisted_versions(self):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        doc = self.get_content()
-        assert len(doc('.version')) == 0
-
     def test_version_detail_does_not_return_unlisted_versions(self):
         version_number = self.addon.current_version.version
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)

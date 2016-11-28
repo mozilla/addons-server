@@ -890,7 +890,7 @@ class TestDetailPage(TestCase):
 
     def test_unlisted_addon_returns_404(self):
         """Unlisted addons are not listed and return 404."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 404
 
     def test_fx_ios_addons_message(self):
@@ -2359,7 +2359,7 @@ class TestAddonSearchView(ESTestCase):
         addon_factory(slug='my-disabled-addon', name=u'My disabled Addôn',
                       status=amo.STATUS_DISABLED)
         addon_factory(slug='my-unlisted-addon', name=u'My unlisted Addôn',
-                      is_listed=False)
+                      version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         addon_factory(slug='my-disabled-by-user-addon',
                       name=u'My disabled by user Addôn',
                       disabled_by_user=True)

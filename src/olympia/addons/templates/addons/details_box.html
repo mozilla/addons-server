@@ -54,18 +54,18 @@
                   <td>{{ version.compatible_apps[APP] }}</td>
                 </tr>
               {% endif %}
+              {% if addon.has_listed_versions() %}
               <tr>
                 <th>{{ _('Visibility') }}</th>
                 <td>
-                  {% if not addon.is_disabled and addon.is_listed %}
-                    {{ _('Listed') }}
-                  {% elif addon.is_disabled and addon.is_listed %}
-                    {{ _('Hidden') }}
-                  {% elif not addon.is_listed %}
-                    {{ _('Unlisted') }}
+                  {% if not addon.is_disabled %}
+                    {{ _('Visible') }}
+                  {% elif addon.is_disabled %}
+                    {{ _('Invisible') }}
                   {% endif %}
                 </td>
               </tr>
+              {% endif %}
               {% set deps = addon.all_dependencies %}
               {% if deps %}
                 <tr class="addon-dependencies">
@@ -114,9 +114,10 @@
               <tr class="meta-abuse">
                 <th>{{ _('Abuse Reports') }}</th>
                 <td>
-                  {% if addon.is_listed %}<a href="{{ url('editors.abuse_reports', addon.slug) }}">{% endif %}
+                  {% if addon.has_listed_versions() %}
+                    <a href="{{ url('editors.abuse_reports', addon.slug) }}">{% endif %}
                     <strong>{{ addon.abuse_reports.count()|numberfmt }}</strong>
-                  {% if addon.is_listed %}</a>{% endif %}
+                  {% if addon.has_listed_versions() %}</a>{% endif %}
                 </td>
               </tr>
               {% if not show_actions %}

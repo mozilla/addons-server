@@ -94,8 +94,7 @@ class TestDataValidate(VersionCheckMixin, TestCase):
         """Add-ons with only unlisted versions are valid, they just don't
         receive any updates (See TestLookup.test_no_unlisted below)."""
         addon = Addon.objects.get(pk=3615)
-        addon.update(is_listed=False)
-        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(addon)
 
         up = self.get(self.good_data)
         assert up.is_valid()

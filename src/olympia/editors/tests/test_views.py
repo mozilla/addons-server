@@ -1621,7 +1621,7 @@ class TestReview(ReviewBase):
 
     def test_needs_unlisted_reviewer_for_only_unlisted(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert self.client.head(self.url).status_code == 403
+        assert self.client.head(self.url).status_code == 404
         self.login_as_senior_editor()
         assert self.client.head(self.url).status_code == 200
 
@@ -2101,8 +2101,8 @@ class TestReview(ReviewBase):
                        status_code=302)
 
         self.version.delete()
-        # Regular reviewer has no permission, gets a 403.
-        assert self.client.get(self.url).status_code == 403
+        # Regular reviewer has no permission, gets a 404.
+        assert self.client.get(self.url).status_code == 404
         self.login_as_senior_editor()
         # Reviewer with more powers can look.
         assert self.client.get(self.url).status_code == 200
@@ -2845,4 +2845,4 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
             channel=amo.RELEASE_CHANNEL_LISTED)
         version.delete()
         response = self.client.get(self.url)
-        assert response.status_code == 403
+        assert response.status_code == 404

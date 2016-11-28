@@ -814,7 +814,7 @@ class TestSubmitFile(TestCase):
     def create_upload(self, version='1.0'):
         return FileUpload.objects.create(
             addon=self.addon, version=version, validation='{"errors":0}',
-            automated_signing=self.addon.automated_signing)
+            automated_signing=False)
 
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations', True)
     def test_file_passed_all_validations(self):
@@ -846,7 +846,7 @@ class TestCreateVersionForUpload(TestCase):
     def create_upload(self, version='1.0'):
         return FileUpload.objects.create(
             addon=self.addon, version=version, validation='{"errors":0}',
-            automated_signing=self.addon.automated_signing)
+            automated_signing=False)
 
     def test_file_passed_all_validations_not_most_recent(self):
         upload = self.create_upload()

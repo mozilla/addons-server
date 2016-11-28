@@ -591,6 +591,13 @@ class TestCase(PatchMixin, InitializeSessionMixin, MockEsMixin,
         setattr(request, '_messages', messages)
         return request
 
+    def make_addon_unlisted(self, addon, listed=False):
+        addon.update(is_listed=listed)
+        channel = (amo.RELEASE_CHANNEL_LISTED if listed else
+                   amo.RELEASE_CHANNEL_UNLISTED)
+        for version in addon.versions.all():
+            version.update(channel=channel)
+
 
 class AMOPaths(object):
     """Mixin for getting common AMO Paths."""
@@ -663,6 +670,8 @@ def addon_factory(
         'created': when,
         'last_updated': when,
     }
+    if 'is_listed' not in kw and 'channel' in version_kw:
+        kw['is_listed'] = version_kw['channel'] == amo.RELEASE_CHANNEL_LISTED
     kwargs.update(kw)
 
     # Save 1.

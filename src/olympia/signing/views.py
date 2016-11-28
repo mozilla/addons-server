@@ -156,10 +156,10 @@ class VersionView(APIView):
                 status.HTTP_400_BAD_REQUEST)
 
         if addon is None:
-            addon = Addon.create_addon_from_upload_data(
-                data=pkg, user=request.user, upload=filedata, is_listed=False)
-            created = True
             channel = amo.RELEASE_CHANNEL_UNLISTED
+            addon = Addon.create_addon_from_upload_data(
+                data=pkg, user=request.user, upload=filedata, channel=channel)
+            created = True
         else:
             created = False
             last_version = addon.find_latest_version_including_rejected()
