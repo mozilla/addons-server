@@ -212,12 +212,14 @@
 
     <h3>{{ _('Older versions') }}</h3>
   {% else %}
+    {% if not waffle.switch('mixed-listed-unlisted') %}
     <div class="highlight">
       <h3>{{ _('Why can\'t I switch to <i>Listed</i>?') }}</h3>
       <p>{{ _('Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.
         The process is described in detail in <a href="{link}">this documentation</a>.').format(
             link='https://developer.mozilla.org/en-US/Add-ons/Distribution') }}</p>
     </div>
+    {% endif %}
     <h3>{{ _('All versions') }}</h3>
   {% endif %}
   <div class="item" id="version-list"
