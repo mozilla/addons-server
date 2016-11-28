@@ -8,6 +8,7 @@ from django.core.management.base import BaseCommand, CommandError
 
 import commonware.log
 
+from olympia import amo
 from olympia.addons.models import Addon, Persona
 from olympia.stats.models import ThemeUpdateCount
 
@@ -65,11 +66,16 @@ class Command(BaseCommand):
 
         theme_update_counts = {}
 
-        # Memoize the addon ids.
-        addons = set(Addon.objects.values_list('id', flat=True))
-        # Perf: preload all the Personas once and for all.
-        # This builds a dict where each key (the persona_id we get from the
-        # hive query) has the addon_id as value.
+        # Preload a set containing the ids of all the persona Add-on objects
+        # that we care about. When looping, if we find an id that is not in
+        # that set, we'll reject it.
+        addons = set(Addon.objects.filter(type=amo.ADDON_PERSONA,
+                                          status=amo.STATUS_PUBLIC,
+                                          persona__isnull=False)
+                                  .values_list('id', flat=True))
+        # Preload all the Personas once and for all. This builds a dict where
+        # each key (the persona_id we get from the hive query) has the addon_id
+        # as value.
         persona_to_addon = dict(Persona.objects.values_list('persona_id',
                                                             'addon_id'))
 

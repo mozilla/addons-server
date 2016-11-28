@@ -89,7 +89,7 @@ class Command(BaseCommand):
         # - One where each key (the add-on slug) has the add-on_id as value.
         files_to_addon = dict(File.objects.values_list('id',
                                                        'version__addon_id'))
-        slugs_to_addon = dict(Addon.objects.values_list('slug', 'id'))
+        slugs_to_addon = dict(Addon.objects.public().values_list('slug', 'id'))
 
         # Only accept valid sources, which are listed in the DownloadSource
         # model. The source must either be exactly one of the "full" valid
