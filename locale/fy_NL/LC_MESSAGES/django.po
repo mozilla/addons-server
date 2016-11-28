@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-28 12:37+0000\n"
+"PO-Revision-Date: 2016-11-28 12:53+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1898,6 +1898,12 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>It spyt ús, mar wy kinne net fine wêr't jo nei sykje.</h1> <p>De troch jo oanfrege side of bestân is net op ús website oantroffen. Mooglik hawwe jo op in ferâldere keppeling klikt, of it adres "
+"ferkeard yntypt.</p> <ul> <li>As jo it adres yntypt hawwe, kontrolearje dan de stavering nochris.</li> <li>As jo in keppeling earne fan folge hawwe, <a href=\"https://github.com/mozilla/addons-"
+"server/issues/new/\">meld dan it probleem</a>. Fertel ús wêr't jo fan kamen en wat jo sochten, en wy sille probearje it probleem op te lossen.</li> </ul> <p>Jo kinne ek gewoanwei nei inkelde "
+"populêre siden op ús website springe.</p> <ul> <li>Binne jo ynteressearre yn in <a href=\"%(rec)s\">list mei oanrekommandearre add-ons</a>?</li> <li>Wolle jo nei <a href=\"%(search)s\">add-ons "
+"sykje</a>? Jo kinne nei de <a href=\"%(search)s\">sykside</a> gean of gewoanwei boppesteand sykfjild brûke.</li> <li>As jo leaver opnij begjinne, gean dan nei de <a href=\"%(home)s\">startside foar "
+"add-ons</a>.</li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -1906,15 +1912,15 @@ msgstr "Oeps"
 #: src/olympia/amo/templates/amo/500.html
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Oeps! Der is in flater bard.</h1> <p>Dat sille wy fluch reparearje</p> <p>Jo kinne probearje de side te fernijen, of weromgean nei de <a href=\"%(home)s\">startside fan Add-ons</a>.</p>"
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Guon rjochten foarbehâlden"
 
 #: src/olympia/amo/templates/amo/no_results.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 msgid "No results found"
-msgstr ""
+msgstr "Gjin resultaten fûn"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/mobile/paginator.html src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
@@ -1930,33 +1936,35 @@ msgstr "Folgjende"
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/editors/templates/editors/includes/paginator_history.html
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "Resultaat <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> fan <strong>%(count)s</strong>"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Underhâld yn útfiering"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Dizze funksje is tydlik útskeakele fanwegen ûnderhâld oan de website. Brûk de knop Tebek fan jo browser en probearje it letter nochris."
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Guon funksjes op dizze side binne tydlik útskeakele fanwegen ûnderhâld oan de website. Probearje it letter nochris."
 
 #: src/olympia/amo/templates/amo/recaptcha.html
 msgid "Are you human?"
-msgstr ""
+msgstr "Binne jo in minsk?"
 
 #: src/olympia/amo/templates/amo/recaptcha.html
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Fier <strong>alle ûndersteande wurden yn</strong>, <strong>sa nedich skieden troch in spaasje</strong>. </p> <p> As dit swier lêsber is, kinne jo <a href=\"#\" id=\"recaptcha_different\">oare "
+"wurden probearje</a> of <a href=\"#\" id=\"recaptcha_audio\">in oar soarte fan captcha probearje</a>. </p>"
 
 #: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Top Rated"
-msgstr ""
+msgstr "Bêst beoardiele"
 
 #: src/olympia/amo/templates/amo/side_nav.html
 msgid "Explore"
@@ -1970,7 +1978,7 @@ msgstr "Utwreidingen"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Wolle jo mear oanpassingen? Probearje <b>Folsleine tema’s</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
@@ -1983,12 +1991,12 @@ msgstr "Myn kolleksjes"
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Troch my folge kolleksjes"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/users/models.py
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Myn favorite add-ons"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "More&hellip;"
@@ -2006,11 +2014,11 @@ msgstr "Sykhelpmiddelen"
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Side <a href=\"%(current_pg_url)s\">%(current_pg)s</a> fan <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 msgid "Jump to first page"
-msgstr ""
+msgstr "Nei earste side"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
@@ -2028,7 +2036,7 @@ msgstr "Nei lêste side"
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Resultaten <b>%(begin)s</b>&ndash;<b>%(end)s</b> fan <b>%(count)s</b>"
 
 #: src/olympia/amo/templates/amo/mobile/paginator.html
 msgid "Page {n}"
