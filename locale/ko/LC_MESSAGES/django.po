@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-03-20 23:04+0000\n"
-"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
+"PO-Revision-Date: 2016-11-28 11:21+0000\n"
+"Last-Translator: SeulGi Choi (Chase) <cs09gi@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You are already logged in."
-msgstr ""
+msgstr "이미 로그인 하셨습니다."
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -32,7 +32,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "로그인에 실패하였습니다. 다시 시도 하십시오."
 
 #: src/olympia/accounts/views.py
 msgid "Need help?"
@@ -174,8 +174,8 @@ msgstr ""
 msgid "Listed"
 msgstr "나열됨"
 
-# %1 is an add-on name.
 #. l10n: {0} is the addon name
+# %1 is an add-on name.
 #: src/olympia/addons/views.py
 msgid "Contribution for {0}"
 msgstr "{0}에 기부하기"
@@ -242,9 +242,9 @@ msgstr "부가 기능 개발자가 <a href=\"%(charity_url)s\">%(charity_name)s<
 msgid "Contribute"
 msgstr "기부하기"
 
+#. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#. Click Contribute button OR Install button
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
@@ -287,15 +287,12 @@ msgstr "<a href=\"%(paypal_url)s\">PayPal</a>을 통한 소정의 기부로 <str
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr "<b>%(addon_name)s</b>의 개발 지원을 위해 개발자가 <a href=\"%(paypal_url)s\">PayPal</a>을 통해 <a href=\"%(charity_url)s\">%(charity_name)s</a>로의 기부를 요청하고 있습니다."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
-"a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr "<b>%(addon_name)s</b>의 개발 지원을 위해 개발자가 <a href=\"%(paypal_url)s\">PayPal</a>을 통해 <a href=\"%(charity_url)s\">%(charity_name)s</a>로의 소정의 기부를 요청하고 있습니다."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
@@ -466,9 +463,7 @@ msgstr "개발자 버전 설치"
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>주의:</strong> 이 부가 기능의 개발자 버전은 Mozilla의 심사를 거치지 않은 것입니다. 개발자 버전을 설치하면 해당 개발자를 통해 개발자용 업데이트를 계속 받을 수 있습니다. 개발자용 업데이트를 그"
-"만 받으려면 위의 링크를 통해 기본 버전으로 재설치 하시면 됩니다."
+msgstr "<strong>주의:</strong> 이 부가 기능의 개발자 버전은 Mozilla의 심사를 거치지 않은 것입니다. 개발자 버전을 설치하면 해당 개발자를 통해 개발자용 업데이트를 계속 받을 수 있습니다. 개발자용 업데이트를 그만 받으려면 위의 링크를 통해 기본 버전으로 재설치 하시면 됩니다."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Version {0}:"
@@ -711,15 +706,15 @@ msgstr "Firefox에 대해 자세히 알아보기"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "또는 <b><a class=\"button installer\" href=\"{url}\">일단 다운로드 받기</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Thunderbird에서 설치 방법</strong> <ol> <li>하드 디스크에 파일을 다운받습니다.</li> <li>Mozilla Thunderbird의 도구 메뉴에서 부가 기능을 엽니다.</li> <li>부가 기능 검색창 옆에 옵션 버튼을 눌"
-"러 \"파일에서 부가 기능 설치...\"를 선택한 다음 다운받은 부가 기능을 선택합니다.</li> </ol>"
+"<strong>Thunderbird에서 설치 방법</strong> <ol> <li>하드 디스크에 파일을 다운받습니다.</li> <li>Mozilla Thunderbird의 도구 메뉴에서 부가 기능을 엽니다.</li> <li>부가 기능 검색창 옆에 옵션 버튼을 눌러 \"파일에서 부가 기능 설치...\"를 선택한 다음 다운받은 부가 기능을 "
+"선택합니다.</li> </ol>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -772,8 +767,8 @@ msgstr "이 페르소나는 %(app)s %(new_version)s을(를) 필요로 합니다.
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
+" harm your computer."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -817,9 +812,7 @@ msgstr "정책 위반 신고"
 msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
-msgstr ""
-"이 부가 기능이 <a href=\"%(url)s\">저희의 정책</a>이나 보안 및 개인 정보 정책을 위반하고 있는 것 같으면 아래의 양식을 사용해 우려되는 점을 기입해 주세요. 다른 사유로는 이 기능을 사용하지 말아 주십시"
-"오."
+msgstr "이 부가 기능이 <a href=\"%(url)s\">저희의 정책</a>이나 보안 및 개인 정보 정책을 위반하고 있는 것 같으면 아래의 양식을 사용해 우려되는 점을 기입해 주세요. 다른 사유로는 이 기능을 사용하지 말아 주십시오."
 
 #: src/olympia/addons/templates/addons/report_abuse.html src/olympia/users/templates/users/report_abuse.html
 msgid "Send Report"
@@ -863,9 +856,7 @@ msgstr "평가 작성"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
-msgstr ""
-"평가엔 버그 리포트를 올리지 마세요. 저희는 부가 기능 개발자가 여러분의 이메일 주소를 사용하는 것을 허용하지 않는데, 이메일 주소가 올라와 있으면 개발자가 문제 해결을 돕기위해 직접 연락을 하려 들 수 "
-"있기 때문입니다."
+msgstr "평가엔 버그 리포트를 올리지 마세요. 저희는 부가 기능 개발자가 여러분의 이메일 주소를 사용하는 것을 허용하지 않는데, 이메일 주소가 올라와 있으면 개발자가 문제 해결을 돕기위해 직접 연락을 하려 들 수 있기 때문입니다."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -1068,9 +1059,7 @@ msgstr "전체 버전 기록 보기"
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"개발 채널에선 부가 기능의 최신 시험용 버전을 일반에 공개되기 전에 먼저 테스트해 볼 수 있습니다. 개발 버전을 설치하고 나면 이 채널을 통해 업데이트를 지속적으로 받아보실 수 있습니다. 개발 버전의 업데"
-"이트를 그만 받으시려면 위의 링크를 통해 기본 버전을 재설치 하시면 됩니다."
+msgstr "개발 채널에선 부가 기능의 최신 시험용 버전을 일반에 공개되기 전에 먼저 테스트해 볼 수 있습니다. 개발 버전을 설치하고 나면 이 채널을 통해 업데이트를 지속적으로 받아보실 수 있습니다. 개발 버전의 업데이트를 그만 받으시려면 위의 링크를 통해 기본 버전을 재설치 하시면 됩니다."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
@@ -1090,8 +1079,8 @@ msgstr "닫기"
 msgid "Thank you for installing {0}"
 msgstr "{0}을(를) 설치해 주셔서 대단히 감사합니다"
 
-# %1 is an add-on name.
 #. {0} is an add-on name.
+# %1 is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Meet the {0} Developer"
 msgstr "{0} 개발자 만나기"
@@ -1305,9 +1294,7 @@ msgstr "더 알아보기"
 msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
-msgstr ""
-"부가 기능이란 Firefox에 추가 기능과 스타일을 마음대로 넣을 수 있게 하는 애플리케이션을 말합니다. 웹사이트 주소를 잘못 입력하거나 웹사이트가 과부하라 로딩이 안될때, 부가 기능이 있으면 향상된 웹서핑"
-"을 가능하게 해줍니다."
+msgstr "부가 기능이란 Firefox에 추가 기능과 스타일을 마음대로 넣을 수 있게 하는 애플리케이션을 말합니다. 웹사이트 주소를 잘못 입력하거나 웹사이트가 과부하라 로딩이 안될때, 부가 기능이 있으면 향상된 웹서핑을 가능하게 해줍니다."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1394,7 +1381,7 @@ msgstr "개발자 허브"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/views.py
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API 키 관리"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Editor Tools"
@@ -1890,17 +1877,15 @@ msgstr "찾을 수 없습니다."
 #, fuzzy, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>죄송합니다. 현재 찾으시는 것을 발견하지 못했습니다.</h1> <p> 찾고자 하시는 페이지나 파일은 저희 사이트 내에 없었습니다. 너무 오래된 링크를 클릭했거나 주소를 정확히 입력하지 않았을 수도 있습니"
-"다. </p> <ul> <li>주소를 입력하신 거였다면 주소 철자를 다시 한번 점검해 보시기 바랍니다.</li> <li> 다른 사이트에 올라온 링크를 따라서 오신 거라면 <a href=\"mailto:webmaster@mozilla.com"
-"\">webmaster@mozilla.com 주소를 통해 저희에게 연락해 주십시오</a>. 사이트의 이름과 어떤 것을 찾고 있었는지 말씀해 주시면 저희가 최선을 다해 수정하도록 하겠습니다. </li> </ul> <p>저희 웹사이트의 인"
-"기 페이지로 가보시는 것도 권해드립니다.</p> <ul> <li><a href=\"%(rec)s\">추천 부가 기능 목록</a>에 관심이 있으십니까?</li> <li> <a href=\"%(search)s\">부가 기능을 검색</a>하고 싶으신가요? <a href="
-"\"%(search)s\">검색 페이지</a>로 이동하시거나 윗부분의 검색창을 사용하셔도 됩니다. </li>  <li> 첫 페이지로 가서 다시 시작하고자 하신다면 <a href=\"%(home)s\">부가 기능 첫 페이지</a>로 이동하시기 바"
-"랍니다. </li> </ul>"
+"<h1>죄송합니다. 현재 찾으시는 것을 발견하지 못했습니다.</h1> <p> 찾고자 하시는 페이지나 파일은 저희 사이트 내에 없었습니다. 너무 오래된 링크를 클릭했거나 주소를 정확히 입력하지 않았을 수도 있습니다. </p> <ul> <li>주소를 입력하신 거였다면 주소 철자를 다시 한번 점검해 보시기 바랍니다.</li> <li> 다른 사이트에 올라온 "
+"링크를 따라서 오신 거라면 <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com 주소를 통해 저희에게 연락해 주십시오</a>. 사이트의 이름과 어떤 것을 찾고 있었는지 말씀해 주시면 저희가 최선을 다해 수정하도록 하겠습니다. </li> </ul> <p>저희 웹사이트의 인기 페이지로 가보시는 것도"
+" 권해드립니다.</p> <ul> <li><a href=\"%(rec)s\">추천 부가 기능 목록</a>에 관심이 있으십니까?</li> <li> <a href=\"%(search)s\">부가 기능을 검색</a>하고 싶으신가요? <a href=\"%(search)s\">검색 페이지</a>로 이동하시거나 윗부분의 검색창을 사용하셔도 됩니다. </li>  "
+"<li> 첫 페이지로 가서 다시 시작하고자 하신다면 <a href=\"%(home)s\">부가 기능 첫 페이지</a>로 이동하시기 바랍니다. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -2403,18 +2388,14 @@ msgstr "이 사용자가 제작한 모든 모음집 보기"
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
-msgstr ""
-"아래의 <b>선호 목록에 추가하기</b>를 선택하면 해당 부가 기능은 좋아하는 부가 기능으로 표시가 됩니다. 이 목록은 현재 <b>공개</b> 상태로, 모든 사람들이 목록을 볼 수 있다는 의미입니다. 남에게 보이고 싶"
-"지 않다면 아래의 버튼을 클릭해서 비공개 상태로 전환하시기 바랍니다."
+msgstr "아래의 <b>선호 목록에 추가하기</b>를 선택하면 해당 부가 기능은 좋아하는 부가 기능으로 표시가 됩니다. 이 목록은 현재 <b>공개</b> 상태로, 모든 사람들이 목록을 볼 수 있다는 의미입니다. 남에게 보이고 싶지 않다면 아래의 버튼을 클릭해서 비공개 상태로 전환하시기 바랍니다."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
-msgstr ""
-"아래의 <b>선호 목록에 추가하기</b>를 선택하면 해당 부가 기능은 좋아하는 부가 기능으로 표시가 됩니다. 이 목록은 현재 <b>비공개</b> 상태로, 자기 자신만 볼 수 있다는 의미입니다. 다른 사람들도 내 선호 "
-"목록을 보게 하고 싶다면 아래의 버튼을 클릭해서 공개 상태로 전환하시기 바랍니다."
+msgstr "아래의 <b>선호 목록에 추가하기</b>를 선택하면 해당 부가 기능은 좋아하는 부가 기능으로 표시가 됩니다. 이 목록은 현재 <b>비공개</b> 상태로, 자기 자신만 볼 수 있다는 의미입니다. 다른 사람들도 내 선호 목록을 보게 하고 싶다면 아래의 버튼을 클릭해서 공개 상태로 전환하시기 바랍니다."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2546,9 +2527,7 @@ msgstr "모음집 기여자"
 msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"모음집엔 여러 기여자를 추가할 수 있습니다. 기여자는 부가 기능의 추가 삭제가 가능하지만, 모음집의 이름이나 설명을 바꿀 수는 없습니다. 기여자를 추가하려면 아래 상자에 추가하려는 기여자의 이메일 주소"
-"를 입력해 주세요. 기여자는 Mozilla 부가 기능 계정을 가지고 있어야만 합니다."
+msgstr "모음집엔 여러 기여자를 추가할 수 있습니다. 기여자는 부가 기능의 추가 삭제가 가능하지만, 모음집의 이름이나 설명을 바꿀 수는 없습니다. 기여자를 추가하려면 아래 상자에 추가하려는 기여자의 이메일 주소를 입력해 주세요. 기여자는 Mozilla 부가 기능 계정을 가지고 있어야만 합니다."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2625,8 +2604,7 @@ msgstr "최근 인기 모음집"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
-"모음집은 서로 관련이 있는 부가 기능을 한데 엮어놓은 것으로 누구나 제작과 공유가 가능합니다. 다른 사용자가 제작한 모음집을 살펴보거나 <a href=\"%(url)s\">나만의 모음집을 제작</a>할 수도 있습니다."
+msgstr "모음집은 서로 관련이 있는 부가 기능을 한데 엮어놓은 것으로 누구나 제작과 공유가 가능합니다. 다른 사용자가 제작한 모음집을 살펴보거나 <a href=\"%(url)s\">나만의 모음집을 제작</a>할 수도 있습니다."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
@@ -2741,8 +2719,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Mozilla에선 부가 기능, 플러그인, 기타 서드파티 소프트웨어에서 %(app)s에 심각한 보안, 안정성, 성능 저하 문제를 초래하는 것이 있을 경우 <a href=\"%(criteria)s\">규정</a>에 의거, 해당 소프트웨어를 일반"
-"적인 사용을 할 수 없도록 차단하게 됩니다. 보다 자세한 정보를 보시려면 <a href=\"%(support)s\">다음의 도움말</a>을 읽어보시기 바랍니다."
+"Mozilla에선 부가 기능, 플러그인, 기타 서드파티 소프트웨어에서 %(app)s에 심각한 보안, 안정성, 성능 저하 문제를 초래하는 것이 있을 경우 <a href=\"%(criteria)s\">규정</a>에 의거, 해당 소프트웨어를 일반적인 사용을 할 수 없도록 차단하게 됩니다. 보다 자세한 정보를 보시려면 <a "
+"href=\"%(support)s\">다음의 도움말</a>을 읽어보시기 바랍니다."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3088,11 +3066,9 @@ msgstr "부가 기능 호환성 제보"
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> <a href=\"%(url_)s\">부가 기능 호환성 제보자</a>를 통해 들어온 제보들은 개발자들을 위해 이곳에 정리되어 있습니다. 이러한 제보들은 앞으로 올라올 Firefox 버전과의 호환성 작업 지원이 필요한 부가 기"
-"능을 판별하는데 많은 도움이 되고 있습니다. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
+msgstr "<p> <a href=\"%(url_)s\">부가 기능 호환성 제보자</a>를 통해 들어온 제보들은 개발자들을 위해 이곳에 정리되어 있습니다. 이러한 제보들은 앞으로 올라올 Firefox 버전과의 호환성 작업 지원이 필요한 부가 기능을 판별하는데 많은 도움이 되고 있습니다. </p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
@@ -4073,8 +4049,7 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -4089,15 +4064,15 @@ msgstr "내 제출 내역"
 msgid "Developer Docs"
 msgstr "개발자 문서"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "오류 {0}개"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -4352,9 +4327,9 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
+"great add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
@@ -4541,12 +4516,8 @@ msgstr "이 부가 기능은 %(app_name)s의 최신 버전인 <b>%(app_name)s %(
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">호환성 업데이트</a> <a href=\"%(version_url)s\" class=\"button\">새 버전 업로드</a> or <a href=\"#\" class=\"close\">무"
-"시</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">호환성 업데이트</a> <a href=\"%(version_url)s\" class=\"button\">새 버전 업로드</a> or <a href=\"#\" class=\"close\">무시</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html
 msgid "View and update application compatibility ranges."
@@ -4619,8 +4590,8 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
-"<p>부가 기능 제작자엔 3가지 종류가 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자의 추가와 삭제 및 부가 기능 전시에 사용되는 모든 항목의 관리 권한 보유</li> <li><b>개발자:</b> 다른 제작자의 추가 "
-"기능 및 결제 관련 권한을 제외한 권한 보유</li> <li><b>참관인:</b> 부가 기능의 설정 및 통계를 조회할 수 있지만 변경 불가</li> </ul>"
+"<p>부가 기능 제작자엔 3가지 종류가 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자의 추가와 삭제 및 부가 기능 전시에 사용되는 모든 항목의 관리 권한 보유</li> <li><b>개발자:</b> 다른 제작자의 추가 기능 및 결제 관련 권한을 제외한 권한 보유</li> <li><b>참관인:</b> 부가 기능의 설정 및 통계를 조회할"
+" 수 있지만 변경 불가</li> </ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
@@ -4704,8 +4675,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "이 애플리케이션의 추천 부가 기능이 된 동안은 분류를 변경할 수 없습니다. 굳이 분류를 조정해야 할 이유가 있으시다면 <a href=\"mailto:%(email)s\">%(email)s</a> 주소로 메일을 보내주세요."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -4771,8 +4741,8 @@ msgstr "{0}의 기술 지원 정보"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
@@ -5351,8 +5321,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
@@ -5459,9 +5429,7 @@ msgstr "개발자 프로필 만들기"
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
-msgstr ""
-"개발자 프로필은 사용자에게 당신에 대한 정보, 이 부가 기능을 만든 이유, 부가 기능의 추후 계획 등을 알려주는 곳이 될 것입니다. 이 프로필은 기부 제도를 사용해야만 만들수 있으며 개발자가 사용자와 소통하"
-"며 흥미를 가질 수 있게 해주는 유용한 기능입니다."
+msgstr "개발자 프로필은 사용자에게 당신에 대한 정보, 이 부가 기능을 만든 이유, 부가 기능의 추후 계획 등을 알려주는 곳이 될 것입니다. 이 프로필은 기부 제도를 사용해야만 만들수 있으며 개발자가 사용자와 소통하며 흥미를 가질 수 있게 해주는 유용한 기능입니다."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
@@ -5682,9 +5650,7 @@ msgstr "당신의 부가 기능에 기부한 사용자들에게 자동으로 해
 msgid ""
 "We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
 "them to try."
-msgstr ""
-"사용자들에게 감사를 표하고 지원해준 것에 대해 얼마나 기쁜 마음을 갖고 있는지를 표현해 주시는게 좋습니다. 거기에 다음엔 어떤 기능을 계획하고 있는지 그리고 제작중인 다른 부가 기능은 어떤 것이 있는지 "
-"등도 알려주시면 더 좋겠지요."
+msgstr "사용자들에게 감사를 표하고 지원해준 것에 대해 얼마나 기쁜 마음을 갖고 있는지를 표현해 주시는게 좋습니다. 거기에 다음엔 어떤 기능을 계획하고 있는지 그리고 제작중인 다른 부가 기능은 어떤 것이 있는지 등도 알려주시면 더 좋겠지요."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Activate Contributions"
@@ -5957,8 +5923,8 @@ msgstr "버전 {0} 관리"
 msgid "Status & Versions"
 msgstr "상태 및 버전"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
 msgstr "{0} 관리"
@@ -6804,9 +6770,9 @@ msgstr "새 편집자"
 msgid "You're #{0} with {1} reviews"
 msgstr "당신은 {0}번이며 {1}개의 심사가 있습니다"
 
+#. num = number of reviews in the queue
 # 87%
 # 100%
-#. num = number of reviews in the queue
 #: src/olympia/editors/templates/editors/home.html
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
@@ -7617,9 +7583,7 @@ msgstr "부가 기능이란?"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"부가 기능이란 %(app)s에 추가적인 기능이나 외형을 추가해서 개인화를 도와주는 애플리케이션을 말합니다. 시간을 절약시켜주는 사이드바, 날씨 알리미를 깔아 보시거나 테마를 통해 자신만의 %(app)s 룩을 만들"
-"어 보세요."
+msgstr "부가 기능이란 %(app)s에 추가적인 기능이나 외형을 추가해서 개인화를 도와주는 애플리케이션을 말합니다. 시간을 절약시켜주는 사이드바, 날씨 알리미를 깔아 보시거나 테마를 통해 자신만의 %(app)s 룩을 만들어 보세요."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More About Add-ons"
@@ -8361,8 +8325,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"흔히 \"AMO\"로 통하는 addons.mozilla.org는 Firefox, Thunderbird, SeaMonkey 등과 같은 Mozilla 소프트웨어의 부가 기능을 관리하는 공식 사이트입니다. 부가 기능은 웹 브라우저나 애플리케이션에 새 기능을 "
-"추가하고 구동 방식을 바꿀 수 있습니다. 한번 둘러보시고 온라인을 통한 수천가지 개인화 방법들을 탐구해 보시기 바랍니다."
+"흔히 \"AMO\"로 통하는 addons.mozilla.org는 Firefox, Thunderbird, SeaMonkey 등과 같은 Mozilla 소프트웨어의 부가 기능을 관리하는 공식 사이트입니다. 부가 기능은 웹 브라우저나 애플리케이션에 새 기능을 추가하고 구동 방식을 바꿀 수 있습니다. 한번 둘러보시고 온라인을 통한 수천가지 개인화 방법들을 탐구해"
+" 보시기 바랍니다."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
@@ -8372,9 +8336,7 @@ msgstr "누가 이런 부가 기능들을 만들고 있나요?"
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr ""
-"이곳에 등재된 부가 기능들은 저희 커뮤니티에 있는 수천명의 개발자가 제작한 것들로써, 개인적인 취미 활동부터 거대 기업들까지 그 영역은 광범위합니다. 모든 공개 부가 기능은 출시에 앞서 편집자 팀에 의해 "
-"심사를 받습니다. 시험용으로 표시된 부가 기능은 심사를 받지 않았으므로 설치시 주의해야 합니다."
+msgstr "이곳에 등재된 부가 기능들은 저희 커뮤니티에 있는 수천명의 개발자가 제작한 것들로써, 개인적인 취미 활동부터 거대 기업들까지 그 영역은 광범위합니다. 모든 공개 부가 기능은 출시에 앞서 편집자 팀에 의해 심사를 받습니다. 시험용으로 표시된 부가 기능은 심사를 받지 않았으므로 설치시 주의해야 합니다."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
@@ -8419,8 +8381,7 @@ msgstr "부가 기능 개발 경험이 있다면 <a href=\"%(url)s\">편집자�
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
@@ -8446,9 +8407,7 @@ msgstr "질문이 있어요"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
+msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr "먼저 <a href=\"%(faq_url)s\"><abbr title=\"자주 묻는 질문\">FAQ</abbr></a>에서 시작하는게 좋겠네요. 저기에서 원하는 답을 찾지 못했다면 <a href=\"%(forum_url)s\">포럼에 물어보세요</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
@@ -8463,11 +8422,9 @@ msgstr "누가 이 사이트를 운영하나요?"
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
-msgstr ""
-"커뮤니티에서 오신 자원 봉사자들과 헌신적인 AMO팀을 포함한 많은 사람들이 여러해 동안 이곳 웹사이트에 공헌해 주셨습니다. 전체 공헌자 명단은 <a href=\"%(url)s\">사이트 공헌자</a> 페이지에서 확인하실 "
-"수 있습니다."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
+"href=\"%(url)s\"> Site Credits</a> page."
+msgstr "커뮤니티에서 오신 자원 봉사자들과 헌신적인 AMO팀을 포함한 많은 사람들이 여러해 동안 이곳 웹사이트에 공헌해 주셨습니다. 전체 공헌자 명단은 <a href=\"%(url)s\">사이트 공헌자</a> 페이지에서 확인하실 수 있습니다."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter"
@@ -8489,25 +8446,21 @@ msgstr "부가 기능 호환성을 제보하는 방법:"
 msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
-msgstr ""
-"웹 서핑 및 부가 기능 사용을 시작하게 되면 마지막으로 확장 기능을 사용했을 때와 다른 점이 있는지 주의깊게 살펴보세요. 메뉴 항목 사라짐 같은 표시 관련 결함 내지는 부가 기능이 제대로 작동하지 않거나 오"
-"류 메시지가 출력되는 등의 보다 심각한 결함이 있을 수 있습니다."
+msgstr "웹 서핑 및 부가 기능 사용을 시작하게 되면 마지막으로 확장 기능을 사용했을 때와 다른 점이 있는지 주의깊게 살펴보세요. 메뉴 항목 사라짐 같은 표시 관련 결함 내지는 부가 기능이 제대로 작동하지 않거나 오류 메시지가 출력되는 등의 보다 심각한 결함이 있을 수 있습니다."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
-"어떤 부가 기능이 제대로 작동하고 문제가 있는지를 인지했다면 부가 기능 관리자를 열어서 부가 기능 메뉴 옆에 호환성 메뉴를 클릭한 다음 Mozilla에 테스트 과정에서 발견한 사항을 제보해 주세요. 제출된 보고"
-"서는 부가 기능 개발자에게 전달되어 현재 버전에서 제대로 작동하고 있는지 아니면 수정 작업이 필요한 지 등을 알려주는 역할을 하게 됩니다."
+"어떤 부가 기능이 제대로 작동하고 문제가 있는지를 인지했다면 부가 기능 관리자를 열어서 부가 기능 메뉴 옆에 호환성 메뉴를 클릭한 다음 Mozilla에 테스트 과정에서 발견한 사항을 제보해 주세요. 제출된 보고서는 부가 기능 개발자에게 전달되어 현재 버전에서 제대로 작동하고 있는지 아니면 수정 작업이 필요한 지 등을 알려주는 역할을 하게 됩니다."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 #, python-format
 msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
-msgstr ""
-"Firefox나 부가 기능을 새 버전으로 업그레이드할 경우 구 버전에 대해 보고한 내용은 새 버전 테스트를 위해 숨김 처리될 것입니다. 문의사항이 있다면 <a href=\"%(url)s\">저희 포럼</a>에 문의해 주세요."
+msgstr "Firefox나 부가 기능을 새 버전으로 업그레이드할 경우 구 버전에 대해 보고한 내용은 새 버전 테스트를 위해 숨김 처리될 것입니다. 문의사항이 있다면 <a href=\"%(url)s\">저희 포럼</a>에 문의해 주세요."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
@@ -8561,24 +8514,24 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"일부 아이콘은 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
-"Attribution 2.5 License</a>를 따르고 있습니다."
+"일부 아이콘은 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5 "
+"License</a>를 따르고 있습니다."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
-"일부 아이콘은 <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
-"Attribution 3.0 License</a>를 따르고 있습니다."
+"일부 아이콘은 <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0 "
+"License</a>를 따르고 있습니다."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
-"일부 페이지는 <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (비영리)의 자원을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative Commons "
-"Attribution-NonCommercial 3.0 License</a>를 따르고 있습니다."
+"일부 페이지는 <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (비영리)의 자원을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative Commons Attribution-NonCommercial"
+" 3.0 License</a>를 따르고 있습니다."
 
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
@@ -8681,9 +8634,7 @@ msgstr "XUL이 무엇인가요?"
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr ""
-"XUL (XML User Interface Language)이란 Mozilla의 XML 기반 언어로 풍부한 기능을 가진 크로스 플랫폼 애플리케이션을 개발할 수 있습니다. 버튼, 메뉴, 도구 모음, 트리 등의 사용자 인터페이스 자원을 제공하"
-"며 웹 브라우저 UI의 각 부위를 조정해서 부가 기능을 향상시키는데 쓸 수 있습니다."
+msgstr "XUL (XML User Interface Language)이란 Mozilla의 XML 기반 언어로 풍부한 기능을 가진 크로스 플랫폼 애플리케이션을 개발할 수 있습니다. 버튼, 메뉴, 도구 모음, 트리 등의 사용자 인터페이스 자원을 제공하며 웹 브라우저 UI의 각 부위를 조정해서 부가 기능을 향상시키는데 쓸 수 있습니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
@@ -8693,11 +8644,11 @@ msgstr "\"install.rdf\" 파일은 어떤 용도로 쓰이나요?"
 #, python-format
 msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
-"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should "
-"be updated, and so on. The format of the Install Manifest is RDF/XML."
+"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
+" updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
-"<a href=\"%(url)s\">설치 선언문</a>이라 불리는 이 파일은 부가 기능 관리자가 인식해서 부가 기능이 설치시 관련 정보를 읽어들이는데 쓰입니다. 부가 기능을 인식하는 메타 데이터를 담고 있으며, 제작자는 누"
-"구이며 어디서 추가적인 정보를 찾아볼 수 있는지, 호환되는 애플리케이션 버전은 어떤 것이 있는지, 업데이트는 어떻게 해야 하는지 등에 관한 정보를 제공합니다. 설치 선언문의 형식은 RDF/XML 입니다."
+"<a href=\"%(url)s\">설치 선언문</a>이라 불리는 이 파일은 부가 기능 관리자가 인식해서 부가 기능이 설치시 관련 정보를 읽어들이는데 쓰입니다. 부가 기능을 인식하는 메타 데이터를 담고 있으며, 제작자는 누구이며 어디서 추가적인 정보를 찾아볼 수 있는지, 호환되는 애플리케이션 버전은 어떤 것이 있는지, 업데이트는 어떻게 해야 하는지 등에"
+" 관한 정보를 제공합니다. 설치 선언문의 형식은 RDF/XML 입니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
@@ -8715,9 +8666,7 @@ msgstr "부가 기능에 이진 콤포넌트를 넣을 수도 있나요?"
 #, python-format
 msgid ""
 "Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object model</a> to enhance your add-ons. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
-msgstr ""
-"예. Mozilla의 <a href=\"%(url)s\">XPCOM 콤포넌트 오브젝트 모델</a>을 사용하면 부가 기능의 성능을 향상시킬 수 있습니다. XPCOM 콤포넌트는 C++뿐 아니라 자바스크립트, 자바, 파이썬으로도 구현할 수 있습니"
-"다."
+msgstr "예. Mozilla의 <a href=\"%(url)s\">XPCOM 콤포넌트 오브젝트 모델</a>을 사용하면 부가 기능의 성능을 향상시킬 수 있습니다. XPCOM 콤포넌트는 C++뿐 아니라 자바스크립트, 자바, 파이썬으로도 구현할 수 있습니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
@@ -8745,9 +8694,9 @@ msgstr "최신 버전의 Mozilla 소프트웨어에 대한 호환성 테스트�
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
-"many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
-"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
+" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
+"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8757,8 +8706,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
-"\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
+"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
+"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8829,8 +8778,8 @@ msgstr "부가 기능 제작에 고용할 서드파티 개발자가 있을까요
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
+"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8844,9 +8793,8 @@ msgid ""
 "to the large volume of visitors to the site. <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help manage "
 "source code, version control, bug tracking and documentation."
 msgstr ""
-"예. 많은 개발자들이 호스팅을 선택하고 있습니다. 다만, <a href=\"%(amo_url)s\">Mozilla의 부가 기능 사이트</a>에 호스팅하는 쪽이 많은 방문자에게 부가 기능을 더욱 많이 노출시킬 수 있을겁니다. <a href="
-"\"%(md_url)s\">mozdev.org</a>의 경우 Mozilla 애플리케이션 및 확장기능에 대한 무료 프로젝트 호스팅을 제공합니다. 이곳에선 소스 코드 관리 도구, 버전 콘트롤, 버그 트래킹, 문서자료 등을 지원하고 있습니"
-"다."
+"예. 많은 개발자들이 호스팅을 선택하고 있습니다. 다만, <a href=\"%(amo_url)s\">Mozilla의 부가 기능 사이트</a>에 호스팅하는 쪽이 많은 방문자에게 부가 기능을 더욱 많이 노출시킬 수 있을겁니다. <a href=\"%(md_url)s\">mozdev.org</a>의 경우 Mozilla 애플리케이션 및 확장기능에 대한 무료 "
+"프로젝트 호스팅을 제공합니다. 이곳에선 소스 코드 관리 도구, 버전 콘트롤, 버그 트래킹, 문서자료 등을 지원하고 있습니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can Mozilla host my add-on?"
@@ -8866,8 +8814,8 @@ msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
 "Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
 msgstr ""
-"Mozilla의 AMO(<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>)는 개발자에게 개발, 배포, Mozilla가 제공하는 환상적인 소비자 기술 지원 등의 도움을 주는 인큐베이터라 할 수 있습니"
-"다. 도구 및 관리에 필요한 기반 시설 등을 제공함으로써 부가 기능을 수많은 Mozilla 이용자들에게 노출시키는 역할을 하고 있습니다."
+"Mozilla의 AMO(<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>)는 개발자에게 개발, 배포, Mozilla가 제공하는 환상적인 소비자 기술 지원 등의 도움을 주는 인큐베이터라 할 수 있습니다. 도구 및 관리에 필요한 기반 시설 등을 제공함으로써 부가 기능을 수많은 "
+"Mozilla 이용자들에게 노출시키는 역할을 하고 있습니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla keep my account information private?"
@@ -8886,8 +8834,7 @@ msgstr "AMO에 있는 \"개발자 도구\"란 무엇을 말하는 건가요?"
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
-msgstr ""
-"\"개발자 도구\" 대쉬보드는 부가 기능을 관리하기 위해 제공되는 도구들이 있는 구역을 말합니다. AMO에 부가 기능을 제출하거나, 부가 기능 정보 관리, 통계 조회 등에 필요한 기능들을 제공하고 있습니다."
+msgstr "\"개발자 도구\" 대쉬보드는 부가 기능을 관리하기 위해 제공되는 도구들이 있는 구역을 말합니다. AMO에 부가 기능을 제출하거나, 부가 기능 정보 관리, 통계 조회 등에 필요한 기능들을 제공하고 있습니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
@@ -8898,9 +8845,7 @@ msgstr "Mozilla에선 어떤 부가 기능이 용인되는지에 대한 정책�
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
 "href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr ""
-"예. Mozilla의 <a href=\"%(p_url)s\">부가 기능 정책</a>에 어떤 것이 용인되는지 서술되어 있습니다. 이 정책은 별도의 고지 없이 변경됩니다. 여기에 추가로 AMO 편집자 팀에선 <a href=\"%(g_url)s\">편집자 "
-"심사 지침</a>을 사용해 기능이나 보안 유지가 지침에 부합하는지도 검사합니다."
+msgstr "예. Mozilla의 <a href=\"%(p_url)s\">부가 기능 정책</a>에 어떤 것이 용인되는지 서술되어 있습니다. 이 정책은 별도의 고지 없이 변경됩니다. 여기에 추가로 AMO 편집자 팀에선 <a href=\"%(g_url)s\">편집자 심사 지침</a>을 사용해 기능이나 보안 유지가 지침에 부합하는지도 검사합니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
@@ -8911,9 +8856,7 @@ msgstr "심사를 받기 위해 부가 기능을 제출하려면 어떻게 해�
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
-msgstr ""
-"개발자 도구 대시보드에서 부가 기능을 업로드하면 AMO에 제출됩니다. 부가 기능을 제출하기 전에 AMO에 등록해야 합니다. 부가 기능을 제출하기 전에 AMO <a href=\"%(url)s\">편집자 심사 지침</a>을 읽어보고 "
-"편집자 지침에 부합하는지 여부도 확인해 보시기 바랍니다."
+msgstr "개발자 도구 대시보드에서 부가 기능을 업로드하면 AMO에 제출됩니다. 부가 기능을 제출하기 전에 AMO에 등록해야 합니다. 부가 기능을 제출하기 전에 AMO <a href=\"%(url)s\">편집자 심사 지침</a>을 읽어보고 편집자 지침에 부합하는지 여부도 확인해 보시기 바랍니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -8929,11 +8872,9 @@ msgstr "부가 기능에 어떤 분류를 지정해줘야 하나요?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
-msgstr ""
-"분류 선정은 주 이용층과 기능적 측면에서 검토한 후 선정합니다. 넣을만한 적당한 분류가 없다고 생각되면 \"기타\"를 골라주세요. AMO 팀에서 보다 알맞는 분류가 있다고 판단되면 향후 다른 분류로 재분류할 수"
-"도 있습니다."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
+"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+msgstr "분류 선정은 주 이용층과 기능적 측면에서 검토한 후 선정합니다. 넣을만한 적당한 분류가 없다고 생각되면 \"기타\"를 골라주세요. AMO 팀에서 보다 알맞는 분류가 있다고 판단되면 향후 다른 분류로 재분류할 수도 있습니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
@@ -8960,9 +8901,7 @@ msgstr "부가 기능을 반드시 심사받아야 하는 이유가 뭔가요?"
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Editors Reviewing Guide</a>."
-msgstr ""
-"제출된 모든 부가 기능은 신규든 업데이트든 Mozilla 이용자가 안정적이고 안전한 경험을 제공받도록 심사를 거쳐야 합니다. 모든 부가 기능은 <a href=\"%(url)s\">편집자 심사 가이드</a>에 명시된 가이드라인"
-"을 통해 심사를 받습니다."
+msgstr "제출된 모든 부가 기능은 신규든 업데이트든 Mozilla 이용자가 안정적이고 안전한 경험을 제공받도록 심사를 거쳐야 합니다. 모든 부가 기능은 <a href=\"%(url)s\">편집자 심사 가이드</a>에 명시된 가이드라인을 통해 심사를 받습니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
@@ -8971,13 +8910,12 @@ msgstr "부가 기능은 누가 심사하나요?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
-"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
+"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. When"
+" communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
-"부가 기능은 AMO 편집자에 의해 심사를 받습니다. 편집자들은 Mozilla 사용자들에게 안정성을 확보하고 제대로 된 사용 경험을 유지하기 위한 부가 기능 심사 프로젝트를 돕기 위해 선발된 유능한 개발자로 이루어"
-"진 자원 봉사자 조직입니다. 편집자들과 소통시엔 예의를 지켜서 말씀해 주시기 바랍니다. 이 분들은 당신의 부가 기능이 정확하게 설정되어 있는지, <a href=\"%(url)s\">편집자 심사 지침</a>에서 밑줄 친 사항"
-"을 잘 따르고 있는지를 가려내기 위해 열심히 일하는 중이니까요."
+"부가 기능은 AMO 편집자에 의해 심사를 받습니다. 편집자들은 Mozilla 사용자들에게 안정성을 확보하고 제대로 된 사용 경험을 유지하기 위한 부가 기능 심사 프로젝트를 돕기 위해 선발된 유능한 개발자로 이루어진 자원 봉사자 조직입니다. 편집자들과 소통시엔 예의를 지켜서 말씀해 주시기 바랍니다. 이 분들은 당신의 부가 기능이 정확하게 설정되어 있는지,"
+" <a href=\"%(url)s\">편집자 심사 지침</a>에서 밑줄 친 사항을 잘 따르고 있는지를 가려내기 위해 열심히 일하는 중이니까요."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
@@ -9016,11 +8954,9 @@ msgstr "문제 지역 발견 횟수"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
-"\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
-msgstr ""
-"이러한 이유로 <a href=\"%(g_url)s\">편집자 심사 지침</a>을 읽어보고 부가 기능이 의도한 대로 설정되었는지 확인하는 작업이 매우 중요하다는 것입니다. <a href=\"%(blog_url)s\">성공적인 부가 기능 심사</"
-"a>와 같은 블로그 글을 읽고 원만한 부가 기능 심사 통과에 대한 이해를 높이는 것도 좋은 생각입니다."
+"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+msgstr "이러한 이유로 <a href=\"%(g_url)s\">편집자 심사 지침</a>을 읽어보고 부가 기능이 의도한 대로 설정되었는지 확인하는 작업이 매우 중요하다는 것입니다. <a href=\"%(blog_url)s\">성공적인 부가 기능 심사</a>와 같은 블로그 글을 읽고 원만한 부가 기능 심사 통과에 대한 이해를 높이는 것도 좋은 생각입니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -9055,9 +8991,7 @@ msgstr "업데이트도 편집자의 심사가 필요한가요?"
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an editor."
-msgstr ""
-"그때그때 다릅니다. 단순히 부가 기능 설명이나 Mozilla 소프트웨어 신버전과의 호환성 유지를 목적으로 \"maxVersion\" 정도만 변경한다면 재심사가 필요하지 않습니다. 하지만 새로 업데이트된 파일을 제출했을 "
-"시엔 편집자의 심사를 받게 될 것입니다."
+msgstr "그때그때 다릅니다. 단순히 부가 기능 설명이나 Mozilla 소프트웨어 신버전과의 호환성 유지를 목적으로 \"maxVersion\" 정도만 변경한다면 재심사가 필요하지 않습니다. 하지만 새로 업데이트된 파일을 제출했을 시엔 편집자의 심사를 받게 될 것입니다."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -9109,13 +9043,13 @@ msgstr "작성자가 부정확한 내용이 있는 평가에 대해 저희에게
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
+" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
+"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
+"guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
-"다양한 오픈소스 라이선스에 대한 정보가 필요하십니까? 어떤 라이선스를 선택해야 할지 궁금하신가요? 전체 라이선스 내용을 확인하지 않더라도 아래 사이트에서 각종 라이선스 정보를 비교해 드립니다. 그러나, "
-"이 정보들은 개인적인 용도 및 정보의 역할만 하는 것이고 법적인 정보는 아닙니다. Mozilla는 이들 정보에 대해 책임을 지거나 정보의 신뢰성에 대한 보장을 하지 않습니다. "
+"다양한 오픈소스 라이선스에 대한 정보가 필요하십니까? 어떤 라이선스를 선택해야 할지 궁금하신가요? 전체 라이선스 내용을 확인하지 않더라도 아래 사이트에서 각종 라이선스 정보를 비교해 드립니다. 그러나, 이 정보들은 개인적인 용도 및 정보의 역할만 하는 것이고 법적인 정보는 아닙니다. Mozilla는 이들 정보에 대해 책임을 지거나 정보의 신뢰성에 대한 "
+"보장을 하지 않습니다. "
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9164,8 +9098,8 @@ msgid ""
 "Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
 msgstr ""
-"부가 기능이란 %(app_name)s에 새로운 기능 및 기능성을 향상시키는 간단한 소프트웨어를 말합니다. 부가 기능은 %(app_name)s에 새로운 기능, 외국어 사전, 외형 등을 추가시킬 수 있습니다. 부가 기능을 통해 입"
-"맛대로 %(app_name)s을(를) 개인화 할 수 있는겁니다. <a href=\"%(learnmore_url)s\">개인화에 대해 더 알아보기</a>"
+"부가 기능이란 %(app_name)s에 새로운 기능 및 기능성을 향상시키는 간단한 소프트웨어를 말합니다. 부가 기능은 %(app_name)s에 새로운 기능, 외국어 사전, 외형 등을 추가시킬 수 있습니다. 부가 기능을 통해 입맛대로 %(app_name)s을(를) 개인화 할 수 있는겁니다. <a href=\"%(learnmore_url)s\">개인화에 "
+"대해 더 알아보기</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Will add-ons work with my web browser or application?"
@@ -9174,13 +9108,14 @@ msgstr "부가 기능이 제 웹 브라우저나 애플리케이션에서 작동
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
+"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
+"compatible or not."
 msgstr ""
-"이 갤러리에 등재된 부가 기능들은 <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, <a href="
-"\"%(getthunderbird_url)s\">Thunderbird</a> 등의 Mozilla 기반 애플리케이션에서만 작동합니다. 그러나 모든 부가 기능이 애플리케이션의 종류 및 버전에 관계없이 무조건 작동하는 것은 아닙니다. 각 부가 기능"
-"엔 Firefox 2.0 - 3.6.* 과 같이 작동하는 애플리케이션의 종류와 버전이 정해져 있습니다. Firefox 부가 기능의 경우 부가 기능 호환 여부에 따라 설치 버튼이 표시될 것입니다."
+"이 갤러리에 등재된 부가 기능들은 <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, <a "
+"href=\"%(getthunderbird_url)s\">Thunderbird</a> 등의 Mozilla 기반 애플리케이션에서만 작동합니다. 그러나 모든 부가 기능이 애플리케이션의 종류 및 버전에 관계없이 무조건 작동하는 것은 아닙니다. 각 부가 기능엔 Firefox 2.0 - 3.6.* 과 같이 작동하는 애플리케이션의 종류와 버전이 정해져 있습니다. "
+"Firefox 부가 기능의 경우 부가 기능 호환 여부에 따라 설치 버튼이 표시될 것입니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
@@ -9197,8 +9132,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">확장 기능</a></strong>은 %(app_name)s에 새로운 기능을 추가시키거나 기존 기능의 기능성을 개조하는 역할을 합니다. 광고 차단, 웹 사이트에 있는 동영상 다운로드, 소셜 "
-"웹사이트의 보다 편리한 사용 등을 가능하게 해주는 확장 기능이 있으며 다른 웹 브라우저에서 봤음직한 기능도 추가시켜 줍니다."
+"<strong><a href=\"%(browse_url)s\">확장 기능</a></strong>은 %(app_name)s에 새로운 기능을 추가시키거나 기존 기능의 기능성을 개조하는 역할을 합니다. 광고 차단, 웹 사이트에 있는 동영상 다운로드, 소셜 웹사이트의 보다 편리한 사용 등을 가능하게 해주는 확장 기능이 있으며 다른 웹 브라우저에서 봤음직한 "
+"기능도 추가시켜 줍니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9236,9 +9171,8 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
-"부가 기능은 대부분의 경우 설치 버튼 클릭 한번으로 설치가 가능합니다. 설치된 부가 기능은 %(app_name)s의 부가 기능 관리자에서 관리, 사용 안함, 삭제할 수 있습니다. 자세한 사용법을 알고 싶다면 <a href="
-"\"%(extension_url)s\">확장 기능에 관한 문서</a>나 <a href=\"%(theme_url)s\">테마 및 완전 테마에 관한 문서</a>를 읽어보시기 바랍니다. 부가 기능 설치에 어려움을 겪으신다면 <a href="
-"\"%(troubleshooting_url)s\">확장 기능 및 테마 관련 문제 해결</a> 문서를 참고하십시오."
+"부가 기능은 대부분의 경우 설치 버튼 클릭 한번으로 설치가 가능합니다. 설치된 부가 기능은 %(app_name)s의 부가 기능 관리자에서 관리, 사용 안함, 삭제할 수 있습니다. 자세한 사용법을 알고 싶다면 <a href=\"%(extension_url)s\">확장 기능에 관한 문서</a>나 <a href=\"%(theme_url)s\">테마 및 완전 "
+"테마에 관한 문서</a>를 읽어보시기 바랍니다. 부가 기능 설치에 어려움을 겪으신다면 <a href=\"%(troubleshooting_url)s\">확장 기능 및 테마 관련 문제 해결</a> 문서를 참고하십시오."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
@@ -9247,11 +9181,11 @@ msgstr "Firefox를 재시작하지 않고 부가 기능을 설치하려면 어�
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
-"\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
+"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
+"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
-"Firefox에서 \"재시작 필요 없음\"이라고 표시된 부가 기능은 재시작할 필요 없이 설치가 가능합니다. 이러한 부가 기능들은 <a href=\"%(sdk_url)s\">부가 기능 SDK</a>나 <a href=\"%(bootstrap_url)s\">부트스"
-"트랩 방식</a>을 사용해서 제작됩니다. 이런 방식을 사용하지 않는 경우, 사용하려면 예전처럼 재시작부터 해야 합니다."
+"Firefox에서 \"재시작 필요 없음\"이라고 표시된 부가 기능은 재시작할 필요 없이 설치가 가능합니다. 이러한 부가 기능들은 <a href=\"%(sdk_url)s\">부가 기능 SDK</a>나 <a href=\"%(bootstrap_url)s\">부트스트랩 방식</a>을 사용해서 제작됩니다. 이런 방식을 사용하지 않는 경우, 사용하려면 예전처럼 "
+"재시작부터 해야 합니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I keep add-ons up-to-date?"
@@ -9261,11 +9195,11 @@ msgstr "부가 기능을 어떻게 하면 꾸준히 업데이트를 받을 수 �
 #, python-format
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
-"\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
+"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
-"부가 기능은 플러그인과 달리 Firefox 내에서 하루에 한번씩 업데이트가 있는지 검사를 해서 자동으로 설치합니다. Firefox 4까지의 구버전은 업데이트가 있을 경우 알림 메세지만 표시됩니다. <a href="
-"\"%(plugin_url)s\">플러그인</a>의 경우 현재는 업데이트를 자동으로 검사하지는 않지만 정기적으로 <a href=\"%(plugincheck_url)s\">플러그인 검사</a>페이지 방문해서 업데이트 여부를 확인할 수 있습니다."
+"부가 기능은 플러그인과 달리 Firefox 내에서 하루에 한번씩 업데이트가 있는지 검사를 해서 자동으로 설치합니다. Firefox 4까지의 구버전은 업데이트가 있을 경우 알림 메세지만 표시됩니다. <a href=\"%(plugin_url)s\">플러그인</a>의 경우 현재는 업데이트를 자동으로 검사하지는 않지만 정기적으로 <a "
+"href=\"%(plugincheck_url)s\">플러그인 검사</a>페이지 방문해서 업데이트 여부를 확인할 수 있습니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Are add-ons safe to install?"
@@ -9275,12 +9209,11 @@ msgstr "부가 기능 설치시 보안에 문제는 없을까요?"
 #, python-format
 msgid ""
 "Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
-"\">Learn more about our approval process</a>"
+"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
+"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
-"극히 일부 예외를 제외하고, 이 갤러리에 등재된 부가 기능은 Mozilla 편집자 팀에 의해 검사 및 승인된 것으로 설치하셔도 안전합니다. 승인된 부가 기능만 설치하는 것을 권장합니다. 승인되지 않은 부가 기능이"
-"나 서드파티 웹사이트에 있는 부가 기능을 설치하실 경우엔 해당 부가 기능이 컴퓨터에 문제를 야기할 수 있거나 개인 정보를 침해할 수 있다는 사실에 주의하시기 바랍니다. <a href=\"%(learnmore_url)s\">승인 "
-"절차에 대해 자세히 알아보기</a>"
+"극히 일부 예외를 제외하고, 이 갤러리에 등재된 부가 기능은 Mozilla 편집자 팀에 의해 검사 및 승인된 것으로 설치하셔도 안전합니다. 승인된 부가 기능만 설치하는 것을 권장합니다. 승인되지 않은 부가 기능이나 서드파티 웹사이트에 있는 부가 기능을 설치하실 경우엔 해당 부가 기능이 컴퓨터에 문제를 야기할 수 있거나 개인 정보를 침해할 수 있다는 "
+"사실에 주의하시기 바랍니다. <a href=\"%(learnmore_url)s\">승인 절차에 대해 자세히 알아보기</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9306,9 +9239,8 @@ msgid ""
 "compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
-"부가 기능이 현재 사용중인 %(app_name)s 버전과 호환되지 않는다면, 대개는 현재 사용하고 있는 %(app_name)s 버전이 오래된 것이거나 부가 기능 제작자가 아직 사용중인 신규 버전에 맞게 업데이트를 하지 못했"
-"기 때문입니다. Mozilla에선 호환성 검사를 회피하는 방법을 권장하지 않는데, 브라우저의 안정성에 문제를 야기하거나 어떤 경우엔 데이터 손실도 발생하기 때문입니다. Firefox 알파 또는 베타 버전을 테스트하"
-"고 있는 사용자의 경우, <a href=\"%(acr_url)s\">부가 기능 호환성 보고자</a>를 통해 부가 기능 개발자의 호환성 업데이트를 도와주시면 좋습니다."
+"부가 기능이 현재 사용중인 %(app_name)s 버전과 호환되지 않는다면, 대개는 현재 사용하고 있는 %(app_name)s 버전이 오래된 것이거나 부가 기능 제작자가 아직 사용중인 신규 버전에 맞게 업데이트를 하지 못했기 때문입니다. Mozilla에선 호환성 검사를 회피하는 방법을 권장하지 않는데, 브라우저의 안정성에 문제를 야기하거나 어떤 경우엔 "
+"데이터 손실도 발생하기 때문입니다. Firefox 알파 또는 베타 버전을 테스트하고 있는 사용자의 경우, <a href=\"%(acr_url)s\">부가 기능 호환성 보고자</a>를 통해 부가 기능 개발자의 호환성 업데이트를 도와주시면 좋습니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
@@ -9321,9 +9253,8 @@ msgid ""
 "developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
 "troubleshooting tips."
 msgstr ""
-"부가 기능은 세계 각지의 서드파티 개발자들에 의해 제작되고 있습니다. 그러므로 부가 기능 사용에 대한 도움을 받고자 한다면 해당 부가 기능의 홈페이지에 있는 기술 지원 링크를 들어가 보거나 개발자와 직접 "
-"연락하는 방법이 가장 좋습니다. %(app_name)s에 문제가 발생했을 경우, 일단 설치해놓은 부가 기능을 먼저 의심해 보도록 하십시오. 문제 해결에 관한 팁을 찾아보시려면 <a href=\"%(troubleshooting_url)s\">다"
-"음의 기술 지원 게시물을 읽어보시기 바랍니다</a>."
+"부가 기능은 세계 각지의 서드파티 개발자들에 의해 제작되고 있습니다. 그러므로 부가 기능 사용에 대한 도움을 받고자 한다면 해당 부가 기능의 홈페이지에 있는 기술 지원 링크를 들어가 보거나 개발자와 직접 연락하는 방법이 가장 좋습니다. %(app_name)s에 문제가 발생했을 경우, 일단 설치해놓은 부가 기능을 먼저 의심해 보도록 하십시오. 문제 해결에"
+" 관한 팁을 찾아보시려면 <a href=\"%(troubleshooting_url)s\">다음의 기술 지원 게시물을 읽어보시기 바랍니다</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-on Gallery"
@@ -9338,8 +9269,8 @@ msgid ""
 "There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
-"유사한 기능을 가진 부가 기능들이 여럿 있습니다. 자신에게 맞는 것이 어떤 것인가 알아보려면 부가 기능 설명을 모두 읽어보거나 스크린샷을 살펴보는 것이 좋습니다. 그래도 추려내지 못하겠다면, 부가 기능에 "
-"매겨진 별점, 사용자 평가, 통계 등을 통해 다른 사용자들이 어느것을 가장 좋아하는가를 살펴보도록 하세요. 둘 다 써본 후 어느것이 더 좋은가 보는 방법도 있다는 것을 기억하시구요."
+"유사한 기능을 가진 부가 기능들이 여럿 있습니다. 자신에게 맞는 것이 어떤 것인가 알아보려면 부가 기능 설명을 모두 읽어보거나 스크린샷을 살펴보는 것이 좋습니다. 그래도 추려내지 못하겠다면, 부가 기능에 매겨진 별점, 사용자 평가, 통계 등을 통해 다른 사용자들이 어느것을 가장 좋아하는가를 살펴보도록 하세요. 둘 다 써본 후 어느것이 더 좋은가 보는 "
+"방법도 있다는 것을 기억하시구요."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I can't find an add-on I'm looking for?"
@@ -9363,9 +9294,7 @@ msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
-msgstr ""
-"시험용 부가 기능은 편집자에 의해 보안 문제가 없음을 확인받았지만 버그가 다수 있어 제대로 작동이 되지 않는다는 의미를 가지고 있습니다. 시험용 부가 기능은 주의해서 설치하시고 문제점이 발견되면 바로 삭"
-"제를 해 주세요. <a href=\"%(url)s\">심사 과정에 대해 더 알아보기</a></dd>"
+msgstr "시험용 부가 기능은 편집자에 의해 보안 문제가 없음을 확인받았지만 버그가 다수 있어 제대로 작동이 되지 않는다는 의미를 가지고 있습니다. 시험용 부가 기능은 주의해서 설치하시고 문제점이 발견되면 바로 삭제를 해 주세요. <a href=\"%(url)s\">심사 과정에 대해 더 알아보기</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -9374,11 +9303,11 @@ msgstr "부가 기능이 \"심사되지 않음\"이 뭘 의미하는 건가요?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
-"as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
+" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"갤러리에 등재된 모든 부가 기능은 편집자의 심사를 거친 것으로, 심사를 받지 않은 부가 기능은 다이렉트 링크를 통해서 접근해야 합니다. 이러한 부가 기능은 컴퓨터 내지는 자신의 개인 정보에 해가 될 우려가 "
-"있으므로 설치시 주의가 필요합니다. 저희는 심사를 거친 부가 기능만 설치하는 것을 권장하고 있습니다. <a href=\"%(url)s\">심사 과정에 대해 더 알아보기</a></dd>"
+"갤러리에 등재된 모든 부가 기능은 편집자의 심사를 거친 것으로, 심사를 받지 않은 부가 기능은 다이렉트 링크를 통해서 접근해야 합니다. 이러한 부가 기능은 컴퓨터 내지는 자신의 개인 정보에 해가 될 우려가 있으므로 설치시 주의가 필요합니다. 저희는 심사를 거친 부가 기능만 설치하는 것을 권장하고 있습니다. <a href=\"%(url)s\">심사 과정에"
+" 대해 더 알아보기</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How much do add-ons cost to purchase?"
@@ -9396,9 +9325,7 @@ msgstr "부가 기능이 기부자를 찾는 이유가 뭔가요?"
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
-"부가 기능 제작자들 중 일부는 금전 기부를 통해 개발 지원을 돕는 사용자를 필요로 하고 있습니다. 기부를 원하는 사람은 Mozilla 재단과 같이 비영리 서드파티를 표방하는 개발자가 아닌 이상 어떤 개발자든 즉"
-"시 기부금을 보탤 수 있습니다."
+msgstr "부가 기능 제작자들 중 일부는 금전 기부를 통해 개발 지원을 돕는 사용자를 필요로 하고 있습니다. 기부를 원하는 사람은 Mozilla 재단과 같이 비영리 서드파티를 표방하는 개발자가 아닌 이상 어떤 개발자든 즉시 기부금을 보탤 수 있습니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are beta add-ons?"
@@ -9406,19 +9333,15 @@ msgstr "베타 부가 기능이 뭔가요?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
-msgstr ""
-"베타 버전 부가 기능은 부가 기능 제작자의 최신 작업 버전으로 심사되지 않은 버전을 말합니다. 제작자마다 베타 상태의 코드 품질이 다르므로, 이들 부가 기능은 정식 배포판 부가 기능보다 안정성이 떨어진다"
-"는 점을 양지해 주시기 바랍니다."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
+" are less stable than the general add-on releases."
+msgstr "베타 버전 부가 기능은 부가 기능 제작자의 최신 작업 버전으로 심사되지 않은 버전을 말합니다. 제작자마다 베타 상태의 코드 품질이 다르므로, 이들 부가 기능은 정식 배포판 부가 기능보다 안정성이 떨어진다는 점을 양지해 주시기 바랍니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are unreviewed by Mozilla and may harm your computer."
-msgstr ""
-"부가 기능 일람 페이지의 \"베타 버전\" 항목에서 부가 기능을 설치하시면 지속적으로 해당 부가 기능의 업데이트를 제공받게 된다는 사실도 기억하시기 바랍니다. 처음 설치했던 버전과 마찬가지로 모든 베타 버"
-"전은 Mozilla의 심사를 받지 않았기 때문에 컴퓨터에 해가 될 수도 있습니다."
+msgstr "부가 기능 일람 페이지의 \"베타 버전\" 항목에서 부가 기능을 설치하시면 지속적으로 해당 부가 기능의 업데이트를 제공받게 된다는 사실도 기억하시기 바랍니다. 처음 설치했던 버전과 마찬가지로 모든 베타 버전은 Mozilla의 심사를 받지 않았기 때문에 컴퓨터에 해가 될 수도 있습니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
@@ -9436,9 +9359,7 @@ msgstr "부적절한 평가나 스팸을 신고하려면 어떻게 해야 하나
 msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
-msgstr ""
-"부가 기능의 사용자 평가를 신고하려면, 계정 로그인을 한 후 부가 기능 평가 페이지로 들어가세요. 신고하려는 평가를 찾은 후, \"평가 신고하기\"를 클릭해서 사유를 선택하시면 됩니다. 저희 편집자 팀이 해당 "
-"평가를 조사한 후 적절한 조치를 취하게 될 것입니다."
+msgstr "부가 기능의 사용자 평가를 신고하려면, 계정 로그인을 한 후 부가 기능 평가 페이지로 들어가세요. 신고하려는 평가를 찾은 후, \"평가 신고하기\"를 클릭해서 사유를 선택하시면 됩니다. 저희 편집자 팀이 해당 평가를 조사한 후 적절한 조치를 취하게 될 것입니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -9456,13 +9377,12 @@ msgstr "소스 코드 라이선스가 무엇입니까?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
+"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
+"like the GPL or BSD licenses instead of making up their own."
 msgstr ""
-"부가 기능 제작시 소스 코드는 제작자의 배타적 저작권 내지는 적어도 소스 코드에 라이선스가 있다는 선언 정도는 해야 합니다. 이곳 사이트의 여러 부가 기능이 <a href=\"%(url)s\" lang=\"en\">오픈 소스 라이"
-"선스</a>를 가지고 있으며 이는 소스 코드를 공개해서 복제 및 재사용이 가능하다는 제작자의 의지가 반영된 상태로 제작되었음을 의미합니다. 많은 제작자들이 자체 라이선스를 제작히기 보다는 널리 알려진 GPL"
-"이나 BSD 라이선스를 채용하고 있습니다."
+"부가 기능 제작시 소스 코드는 제작자의 배타적 저작권 내지는 적어도 소스 코드에 라이선스가 있다는 선언 정도는 해야 합니다. 이곳 사이트의 여러 부가 기능이 <a href=\"%(url)s\" lang=\"en\">오픈 소스 라이선스</a>를 가지고 있으며 이는 소스 코드를 공개해서 복제 및 재사용이 가능하다는 제작자의 의지가 반영된 상태로 제작되었음을"
+" 의미합니다. 많은 제작자들이 자체 라이선스를 제작히기 보다는 널리 알려진 GPL이나 BSD 라이선스를 채용하고 있습니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9500,11 +9420,9 @@ msgstr "모바일 부가 기능이 뭔가요?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
-"모바일 부가 기능은 <a href=\"%(mobile_url)s\">Mobile Firefox</a>에서 작동하며 데스크톱 부가 기능과 마찬가지로 기능의 추가와 개조가 가능합니다. 저희 <a href=\"%(gallery_url)s\">갤러리</a>에서 "
-"Firefox 모바일 부가 기능을 만나보실 수 있습니다."
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
+" href=\"%(gallery_url)s\">gallery</a>."
+msgstr "모바일 부가 기능은 <a href=\"%(mobile_url)s\">Mobile Firefox</a>에서 작동하며 데스크톱 부가 기능과 마찬가지로 기능의 추가와 개조가 가능합니다. 저희 <a href=\"%(gallery_url)s\">갤러리</a>에서 Firefox 모바일 부가 기능을 만나보실 수 있습니다."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Developer Topics"
@@ -9522,9 +9440,7 @@ msgstr "궁금한게 더 있으신가요?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
-"Firefox의 일반적인 고객 지원을 받으시려면 <a href=\"%(sumo_url)s\">고객 지원 웹사이트</a>를 방문하시기 바랍니다. 일반적인 부가 기능 및 웹사이트에 관한 문제라면 저희 <a href=\"%(forum_url)s\">포럼</"
-"a>을 방문해 주세요."
+msgstr "Firefox의 일반적인 고객 지원을 받으시려면 <a href=\"%(sumo_url)s\">고객 지원 웹사이트</a>를 방문하시기 바랍니다. 일반적인 부가 기능 및 웹사이트에 관한 문제라면 저희 <a href=\"%(forum_url)s\">포럼</a>을 방문해 주세요."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Some tips for writing a great review"
@@ -9536,8 +9452,8 @@ msgstr "평가 작성에 관한 자주 묻는 질문들"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
@@ -9661,9 +9577,7 @@ msgstr "Sunbird 개발 중단"
 msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
 "disabled our support for the add-ons."
-msgstr ""
-"Sunbird 개발 프로젝트가 중단되었으며 마지막 버전은 2010년 3월 30일에 출시되었습니다. 본 사이트에선 Sunbird 부가 기능을 제공하고 있었으나 프로젝트가 중단되었으므로 관련 부가 기능에 대한 기술 지원을 "
-"중단합니다."
+msgstr "Sunbird 개발 프로젝트가 중단되었으며 마지막 버전은 2010년 3월 30일에 출시되었습니다. 본 사이트에선 Sunbird 부가 기능을 제공하고 있었으나 프로젝트가 중단되었으므로 관련 부가 기능에 대한 기술 지원을 중단합니다."
 
 #: src/olympia/pages/templates/pages/sunbird.html
 #, python-format
@@ -9744,9 +9658,9 @@ msgstr "{0}에 대한 평가 작성"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
-"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
+"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
+"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
@@ -10315,9 +10229,7 @@ msgstr "다운로드 횟수는 어떤 방식으로 집계되나요?"
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
-msgstr ""
-"<h2>다운로드 횟수는 어떤 방식으로 집계되나요?</h2> <p>다운로드 횟수는 매일 저녁에 갱신되며 업데이트를 뺀 순수 다운로드 횟수만 포함됩니다. 다운로드 횟수는 명시된 출처의 다운로드 조회 과정에 따라 제대"
-"로 표시되지 않을 수도 있습니다. </p>"
+msgstr "<h2>다운로드 횟수는 어떤 방식으로 집계되나요?</h2> <p>다운로드 횟수는 매일 저녁에 갱신되며 업데이트를 뺀 순수 다운로드 횟수만 포함됩니다. 다운로드 횟수는 명시된 출처의 다운로드 조회 과정에 따라 제대로 표시되지 않을 수도 있습니다. </p>"
 
 #: src/olympia/stats/templates/stats/reports/locales.html
 msgid "User languages by Date"
@@ -10382,17 +10294,16 @@ msgstr "외부 자원 추적 안내..."
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>외부 자원 추적</h2> <p>부가 기능 상세 정보 페이지나 파일과 직접 연결되어 있는 블로그 내지는 웹 사이트 등과 같은 외부 사이트를 보유하고 있을 경우, 추가 다운로드 출처를 추적할 수 있는 파라미터를 "
-"적용할 수 있습니다. 그 예로, 아래의 링크는 블로그를 출처로 하게 될 것입니다: <dl> <dt>부가 기능 상세 정보 페이지로 링크 예제</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</"
-"b></dd> <dt>파일 직접 연결 예제</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> src 파라미터는 반드시 \"external-\"로 시작"
-"해야 하며 영문 61자를 넘어선 안됩니다. \"external-\" 뒤에는 \"external-blog\", \"external-sidebar\", \"external-campaign225\" 등과 같이 출처를 설명하는 텍스트를 입력해야 합니다. 다음의 URL 입력 가"
-"능 문자만 허용됩니다: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>외부 자원 추적</h2> <p>부가 기능 상세 정보 페이지나 파일과 직접 연결되어 있는 블로그 내지는 웹 사이트 등과 같은 외부 사이트를 보유하고 있을 경우, 추가 다운로드 출처를 추적할 수 있는 파라미터를 적용할 수 있습니다. 그 예로, 아래의 링크는 블로그를 출처로 하게 될 것입니다: <dl> <dt>부가 기능 상세 정보 페이지로 링크 "
+"예제</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>파일 직접 연결 예제</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
+">external-blog</b></dd> </dl> <p> src 파라미터는 반드시 \"external-\"로 시작해야 하며 영문 61자를 넘어선 안됩니다. \"external-\" 뒤에는 \"external-blog\", \"external-sidebar\", \"external-campaign225\" 등과 같이 출처를 설명하는 텍스트를 입력해야 "
+"합니다. 다음의 URL 입력 가능 문자만 허용됩니다: <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
@@ -10414,17 +10325,13 @@ msgstr "일일 사용자 수란?"
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
-msgstr ""
-"<h2>일일 사용자 수란?</h2> <p> 본 사이트를 통해 설치된 테마들은 하루에 한 번 업데이트가 있는지 확인을 하게 됩니다. 이러한 업데이트 확인 핑의 총 숫자를 일일 사용자 수로 집계하게 되며, 하루동안 테마"
-"를 사용하고 있는 사람들의 숫자가 되기도 합니다. </p>"
+msgstr "<h2>일일 사용자 수란?</h2> <p> 본 사이트를 통해 설치된 테마들은 하루에 한 번 업데이트가 있는지 확인을 하게 됩니다. 이러한 업데이트 확인 핑의 총 숫자를 일일 사용자 수로 집계하게 되며, 하루동안 테마를 사용하고 있는 사람들의 숫자가 되기도 합니다. </p>"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>일일 사용자 수란?</h2> <p> 이 사이트를 통해 다운로드 된 부가 기능의 수는 일일 단위로 업데이트 됩니다. 이러한 업데이트 핑의 총합이 일일 사용자 수가 됩니다. 일일 사용자 수는 부가 기능 버전, 운영 "
-"체제, 부가 기능 상태, 애플리케이션 종류, 사용 언어별로 제대로 집계가 되지 않을 수도 있습니다. </p>"
+msgstr "<h2>일일 사용자 수란?</h2> <p> 이 사이트를 통해 다운로드 된 부가 기능의 수는 일일 단위로 업데이트 됩니다. 이러한 업데이트 핑의 총합이 일일 사용자 수가 됩니다. 일일 사용자 수는 부가 기능 버전, 운영 체제, 부가 기능 상태, 애플리케이션 종류, 사용 언어별로 제대로 집계가 되지 않을 수도 있습니다. </p>"
 
 #: src/olympia/stats/templates/stats/reports/users_created.html
 msgid "User Signups by Date"
@@ -10490,8 +10397,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"일부 아이콘은 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
-"Attribution 2.5 License</a>를 따르고 있습니다."
+"일부 아이콘은 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5 "
+"License</a>를 따르고 있습니다."
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
@@ -10870,9 +10777,7 @@ msgstr "사용자 계정 삭제"
 msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"<a href=\"%(link)s\"> 부가 기능 제작자</a> 명단에 등록되어 있을땐 계정을 삭제할 수 없습니다. 계정을 삭제하려면, 당신의 개발 그룹에서 다른 사람을 확보한 후 부가 기능 제작자 명단에서 자신을 삭제해야 "
-"합니다. 그 후에 여기서 계정을 삭제할 수 있습니다."
+msgstr "<a href=\"%(link)s\"> 부가 기능 제작자</a> 명단에 등록되어 있을땐 계정을 삭제할 수 없습니다. 계정을 삭제하려면, 당신의 개발 그룹에서 다른 사람을 확보한 후 부가 기능 제작자 명단에서 자신을 삭제해야 합니다. 그 후에 여기서 계정을 삭제할 수 있습니다."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
@@ -11212,8 +11117,8 @@ msgstr "<a href=\"%(url)s\">%(name)s</a>를 사용해서 소스 코드 공개"
 msgid "View the source"
 msgstr "소스 코드 보기"
 
-# {0} is the add-on name
 #. {0} is an add-on name.
+# {0} is the add-on name
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "{0} Version History"
 msgstr "{0}의 버전 기록"
