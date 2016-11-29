@@ -175,8 +175,8 @@ class AddonQuerySet(caching.CachingQuerySet):
 
     def listed(self, app, *status):
         """
-        Listed add-ons have a version with a file matching ``status`` and are
-        not disabled.  Personas and self-hosted add-ons will be returned too.
+        Return add-ons that support a given ``app``, have a version with a file
+        matching ``status`` and are not disabled.
         """
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
@@ -262,8 +262,8 @@ class AddonManager(ManagerBase):
 
     def listed(self, app, *status):
         """
-        Listed add-ons have a version with a file matching ``status`` and are
-        not disabled.  Personas and self-hosted add-ons will be returned too.
+        Return add-ons that support a given ``app``, have a version with a file
+        matching ``status`` and are not disabled.
         """
         return self.get_queryset().listed(app, *status)
 

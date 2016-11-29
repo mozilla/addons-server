@@ -38,7 +38,6 @@ ERROR = 'error'
 OUT_OF_DATE = ugettext_lazy(
     u"The API version, {0:.1f}, you are using is not valid. "
     u"Please upgrade to the current version {1:.1f} API.")
-SEARCHABLE_STATUSES = (amo.STATUS_PUBLIC, )
 
 xml_env = jingo.get_env().overlay()
 old_finalize = xml_env.finalize
@@ -263,16 +262,15 @@ class AddonDetailView(APIView):
     @allow_cross_site_request
     def process_request(self, addon_id):
         try:
-            addon = Addon.objects.id_or_slug(addon_id).get()
+            # Nominated or public add-ons should be viewable using the legacy
+            # API detail endpoint.
+            addon = Addon.objects.valid().id_or_slug(addon_id).get()
         except Addon.DoesNotExist:
+            # Add-on is either inexistent or not public/nominated.
             return self.render_msg(
                 'Add-on not found!', ERROR, status=404,
                 content_type=self.content_type
             )
-
-        if addon.is_disabled:
-            return self.render_msg('Add-on disabled.', ERROR, status=404,
-                                   content_type=self.content_type)
         return self.render_addon(addon)
 
     def render_addon(self, addon):
@@ -290,18 +288,19 @@ def guid_search(request, api_version, guids):
         key = 'guid_search:%s:%s:%s' % (api_version, lang, guid)
         return hashlib.md5(force_bytes(key)).hexdigest()
 
-    guids = [g.strip() for g in guids.split(',')] if guids else []
+    guids = [guid.strip() for guid in guids.split(',')] if guids else []
 
-    addons_xml = cache.get_many([guid_search_cache_key(g) for g in guids])
+    addons_xml = cache.get_many(
+        [guid_search_cache_key(guid) for guid in guids])
     dirty_keys = set()
 
-    for g in guids:
-        key = guid_search_cache_key(g)
+    for guid in guids:
+        key = guid_search_cache_key(guid)
         if key not in addons_xml:
             dirty_keys.add(key)
             try:
-                addon = Addon.objects.get(guid=g, disabled_by_user=False,
-                                          status__in=SEARCHABLE_STATUSES)
+                # Only search through public (and not disabled) add-ons.
+                addon = Addon.objects.public().get(guid=guid)
 
             except Addon.DoesNotExist:
                 addons_xml[key] = ''
@@ -481,10 +480,10 @@ class ListView(APIView):
 class LanguageView(APIView):
 
     def process_request(self):
-        addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
-                                      type=amo.ADDON_LPAPP,
-                                      appsupport__app=self.request.APP.id,
-                                      disabled_by_user=False).order_by('pk')
+        addons = (Addon.objects.public()
+                               .filter(type=amo.ADDON_LPAPP,
+                                       appsupport__app=self.request.APP.id)
+                               .order_by('pk'))
         return self.render('legacy_api/list.xml', {'addons': addons,
                                                    'show_localepicker': True})
 
