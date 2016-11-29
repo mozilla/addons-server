@@ -9,7 +9,6 @@ import waffle
 from celery.task.sets import TaskSet
 
 from olympia.amo.utils import chunked
-from olympia.addons.models import Addon
 from .models import (
     AddonCollectionCount, CollectionCount, UpdateCount)
 from . import tasks
@@ -76,14 +75,6 @@ def update_google_analytics(date=None):
         # Assume that we want to populate yesterday's stats by default.
         date = datetime.date.today() - datetime.timedelta(days=1)
     tasks.update_google_analytics.delay(date=date)
-
-
-@cronjobs.register
-def addon_total_contributions():
-    addons = Addon.objects.values_list('id', flat=True)
-    ts = [tasks.addon_total_contributions.subtask(args=chunk)
-          for chunk in chunked(addons, 100)]
-    TaskSet(ts).apply_async()
 
 
 @cronjobs.register
