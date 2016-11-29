@@ -74,7 +74,6 @@ from .utils import get_creatured_ids, get_featured_ids
 log = commonware.log.getLogger('z.addons')
 paypal_log = commonware.log.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
-addon_unreviewed_view = addon_view_factory(qs=Addon.objects.unreviewed)
 addon_valid_disabled_pending_view = addon_view_factory(
     qs=Addon.objects.valid_and_disabled_and_pending)
 

@@ -224,17 +224,8 @@ def test_process_addons_update_current_version_for_unlisted():
     assert addon2.reload().current_version
     assert listed_addon.reload().current_version
 
-    # Does nothing because --with-unlisted has not been specified.
     call_command('process_addons', task='update_current_version_for_unlisted')
-    assert addon1.reload().current_version
-    assert addon2.reload().current_version
-    assert listed_addon.reload().current_version
-
-    # Does not touch the listed addon.
-    call_command(
-        'process_addons',
-        task='update_current_version_for_unlisted',
-        with_unlisted=True)
     assert not addon1.reload().current_version
     assert not addon2.reload().current_version
+    # Does not touch the listed addon.
     assert listed_addon.reload().current_version

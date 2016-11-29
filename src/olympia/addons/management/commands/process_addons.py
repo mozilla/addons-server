@@ -1,7 +1,6 @@
 from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
-from django.db.models import Q
 
 from celery import chord, group
 
@@ -19,7 +18,7 @@ tasks = {
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
     'sign_addons': {'method': sign_addons, 'qs': []},
     'update_current_version_for_unlisted': {
-        'method': update_current_version, 'qs': [Q(is_listed=False)]
+        'method': update_current_version, 'qs': []
     },
 }
 
@@ -38,11 +37,6 @@ class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--task', action='store', type='string',
                     dest='task', help='Run task on the addons.'),
-
-        make_option('--with-unlisted', action='store_true',
-                    dest='with_unlisted',
-                    help='Include unlisted add-ons when determining which '
-                         'add-ons to process.'),
     )
 
     def handle(self, *args, **options):
@@ -50,10 +44,7 @@ class Command(BaseCommand):
         if not task:
             raise CommandError('Unknown task provided. Options are: %s'
                                % ', '.join(tasks.keys()))
-        if options.get('with_unlisted'):
-            base_manager = Addon.with_unlisted
-        else:
-            base_manager = Addon.objects
+        base_manager = Addon.with_unlisted
         pks = (base_manager.filter(*task['qs'])
                            .values_list('pk', flat=True)
                            .order_by('-last_updated'))
