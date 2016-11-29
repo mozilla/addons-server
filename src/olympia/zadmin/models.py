@@ -155,8 +155,8 @@ class ValidationResult(ModelBase):
         messages = results['messages']
         message_ids = [(msg, '.'.join(msg['id'])) for msg in messages]
         message_ids = [
-                hashlib.md5(msg['message']).hexdigest() if msg_id == generated
-                else msg_id for msg, msg_id in message_ids]
+            hashlib.md5(msg['message']).hexdigest() if msg_id == generated
+            else msg_id for msg, msg_id in message_ids]
 
         message_summary = {}
 

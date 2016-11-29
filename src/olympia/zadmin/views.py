@@ -303,7 +303,8 @@ def validation_summary_affected_addons(request, job_id, message_id):
         validation_result_message=message_id)
     order_by = request.GET.get('sort', 'addon')
 
-    results = (ValidationResult.objects
+    results = (
+        ValidationResult.objects
         .select_related('file__version')
         .filter(validation_job=job_id,
                 file__version__addon__in=[x.addon_id for x in addons]))
