@@ -97,7 +97,8 @@ class Command(BaseCommand):
         # Perf: preload all the addons once and for all.
         # This builds a dict where each key (the addon guid we get from the
         # hive query) has the addon_id as value.
-        guids_to_addon = (dict(Addon.objects.exclude(guid__isnull=True)
+        guids_to_addon = (dict(Addon.objects.public()
+                                            .exclude(guid__isnull=True)
                                             .exclude(type=amo.ADDON_PERSONA)
                                             .values_list('guid', 'id')))
 
