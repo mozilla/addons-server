@@ -1,5 +1,6 @@
 from decimal import Decimal
 import json
+import hashlib
 
 import caching
 
@@ -149,8 +150,13 @@ class ValidationResult(ModelBase):
         self.notices = results['notices'] + compat['notices']
         self.valid = self.errors == 0
 
+        generated = 'testcases_regex.generic._generated'
+
         messages = results['messages']
-        message_ids = ['.'.join(msg['id']) for msg in messages]
+        message_ids = [(msg, '.'.join(msg['id'])) for msg in messages]
+        message_ids = [
+            hashlib.md5(msg['message']).hexdigest() if msg_id == generated
+            else msg_id for msg, msg_id in message_ids]
 
         message_summary = {}
 

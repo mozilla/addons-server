@@ -42,7 +42,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int as vint
 from olympia.versions.models import Version
 from olympia.zadmin.forms import SiteEventForm
-from olympia.zadmin.models import SiteEvent
+from olympia.zadmin.models import SiteEvent, ValidationResult
 
 from . import tasks
 from .decorators import admin_required
@@ -254,10 +254,30 @@ class BulkValidationResultTable(ItemStateTable, tables.Table):
 
 class BulkValidationAffectedAddonsTable(ItemStateTable, tables.Table):
     addon = tables.Column(verbose_name=_lazy('Addon'))
+    validation_link = tables.Column(
+        verbose_name=_lazy('Validation Result'),
+        empty_values=())
 
-    def render_addon(self, value):
-        detail_url = reverse('addons.detail', args=(value.pk,))
-        return format_html(u'<a href="{0}">{1}</a>', detail_url, value.name)
+    def __init__(self, *args, **kwargs):
+        self.results = kwargs.pop('results')
+        super(BulkValidationAffectedAddonsTable, self).__init__(
+            *args, **kwargs)
+
+    def render_addon(self, record):
+        addon = record.addon
+        detail_url = reverse('addons.detail', args=(addon.pk,))
+        return format_html(u'<a href="{0}">{1}</a>', detail_url, addon.name)
+
+    def render_validation_link(self, record):
+        results = [
+            (result.pk, reverse(
+                'devhub.bulk_compat_result',
+                args=(result.file.version.addon_id, result.pk)))
+            for result in self.results]
+
+        return ', '.join(
+            format_html(u'<a href="{0}">{1}</a>', result[1], result[0])
+            for result in results)
 
 
 @any_permission_required([('Admin', '%'),
@@ -283,7 +303,15 @@ def validation_summary_affected_addons(request, job_id, message_id):
         validation_result_message=message_id)
     order_by = request.GET.get('sort', 'addon')
 
-    table = BulkValidationAffectedAddonsTable(data=addons, order_by=order_by)
+    results = (
+        ValidationResult.objects
+        .select_related('file__version')
+        .filter(validation_job=job_id,
+                file__version__addon__in=[x.addon_id for x in addons]))
+
+    table = BulkValidationAffectedAddonsTable(
+        results=results,
+        data=addons, order_by=order_by)
 
     page = amo.utils.paginate(request, table.rows, per_page=25)
     table.set_page(page)

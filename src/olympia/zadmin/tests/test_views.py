@@ -363,8 +363,15 @@ class TestBulkValidation(BulkValidationTest):
         doc = pq(fromstring(response.content, parser=UTF8_PARSER))
 
         msgid = u'testcases_regex.generic.餐飲'
-        assert doc('table tr td').eq(0).text() == msgid
-        assert doc('table tr td').eq(1).text() == 'compat error'
+        assert doc('table tr').eq(3).find('td').eq(0).text() == msgid
+        assert doc('table tr').eq(3).find('td').eq(1).text() == 'compat error'
+
+        assert (
+            doc('table tr').eq(1).find('td').eq(0).text() ==
+            'ab24f1e609f5c5860e37e32b2359572a')
+        assert (
+            doc('table tr').eq(2).find('td').eq(0).text() ==
+            'ee59c03fd64d266e838b771dc91c62b0')
 
     def test_bulk_validation_summary_detail(self):
         self.addon.name = '美味的食物'
@@ -406,6 +413,7 @@ class TestBulkValidation(BulkValidationTest):
         UTF8_PARSER = HTMLParser(encoding='utf-8')
         doc = pq(fromstring(response.content, parser=UTF8_PARSER))
         assert doc('table tr td').eq(0).text() == u'美味的食物'
+        assert '3615/validation-resul' in doc('table tr td').eq(1).html()
 
 
 class TestBulkUpdate(BulkValidationTest):
