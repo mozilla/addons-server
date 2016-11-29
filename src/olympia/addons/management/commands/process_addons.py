@@ -5,7 +5,6 @@ from django.core.management.base import BaseCommand, CommandError
 from celery import chord, group
 
 from olympia.addons.models import Addon
-from olympia.addons.tasks import update_current_version
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import convert_purified, get_preview_sizes
 from olympia.lib.crypto.tasks import sign_addons
@@ -17,9 +16,6 @@ tasks = {
     'convert_purified': {'method': convert_purified, 'qs': []},
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
     'sign_addons': {'method': sign_addons, 'qs': []},
-    'update_current_version_for_unlisted': {
-        'method': update_current_version, 'qs': []
-    },
 }
 
 
