@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-28 11:21+0000\n"
-"Last-Translator: SeulGi Choi (Chase) <cs09gi@gmail.com>\n"
+"PO-Revision-Date: 2016-11-29 01:19+0000\n"
+"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Firefox Account를 찾을 수 없습니다. 다시 시도해 주세요."
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
@@ -67,15 +67,14 @@ msgid "Featured"
 msgstr "추천"
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "미심사"
+msgstr "심사 안됨"
 
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "실험적"
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
@@ -381,16 +380,16 @@ msgstr "작동 버전"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Visibility"
-msgstr ""
+msgstr "표시"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Hidden"
-msgstr ""
+msgstr "숨김"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Unlisted"
-msgstr ""
+msgstr "목록에서 제거됨"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -769,7 +768,7 @@ msgstr "이 페르소나는 %(app)s %(new_version)s을(를) 필요로 합니다.
 msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
-msgstr ""
+msgstr "<strong>주의:</strong> 이 부가 기능은 Mozilla에 의해 검토 되지 않았으며 Firefox 43과 그 이상의 출시 버전에서 설치되지 않습니다.  제 3자 소프트웨어는 컴퓨터를 손상 시킬 수 있으므로 설치하실 때 주의 하십시오."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -800,7 +799,7 @@ msgstr "부가 기능 QR 코드"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
+msgstr "모바일용 Firefox에 {0}을 설치하고 싶으세요?  이 QR 코드를 스캔하면 바로 폰에 설치하실 수 있습니다.  (QR리더가 필요합니다.  없을 경우 보유하신 폰의 마켓플레이스에서 찾아보세요.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -1063,7 +1062,7 @@ msgstr "개발 채널에선 부가 기능의 최신 시험용 버전을 일반�
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>주의:</strong> 이 부가 기능의 개발 버전들은 Mozilla에 의해 검토되지 않았습니다."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete development channel history"
@@ -1264,7 +1263,7 @@ msgstr "동의"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "부가 기능들은 iOS 용 Firefox에서 현재 사용하실 수 없습니다."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
@@ -1393,11 +1392,11 @@ msgstr "관리자 도구"
 
 #: src/olympia/amo/fields.py
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "정확하지 않습니다. 다시 시도해 주세요."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "입력 검증에 실패하였습니다. 다시 시도해 주세요."
 
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
@@ -1638,11 +1637,11 @@ msgstr "{user}님이 {addon}의 {review}를 승인했습니다."
 
 #: src/olympia/amo/log.py
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "{addon}의 삭제를 위해 {review}를 검토해 주십시오."
 
 #: src/olympia/amo/log.py
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} 님이 {addon}의 {review}를 제거하였습니다."
 
 #: src/olympia/amo/log.py
 msgid "Application max version for {version} updated."
@@ -1821,7 +1820,7 @@ msgstr "{addon} 콘텐츠 등급을 변경하였습니다."
 
 #: src/olympia/amo/log.py
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon}이 목록에서 제거되었습니다."
 
 #: src/olympia/amo/log.py
 msgid "{file} was signed."
@@ -1830,7 +1829,7 @@ msgstr ""
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/amo/log.py
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "부가 기능 id {0}와 GUID {1}이 삭제됨"
 
 #: src/olympia/amo/log.py
 #, fuzzy
@@ -1958,7 +1957,7 @@ msgstr "확장 기능"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "더 많이 바꾸고 싶으세요? <b>완전 테마</b>를 사용해 보세요."
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
@@ -2007,7 +2006,7 @@ msgstr "이전"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to last page"
-msgstr ""
+msgstr "마지막 페이지로 이동"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -2041,31 +2040,31 @@ msgstr "다른 본문"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr ""
+msgstr "서명이 만료 되었습니다."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr ""
+msgstr "서명을 푸는데 오류가 발생하였습니다."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "유효하지 않은 JWT 토큰입니다."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "유효하지 않은 인증 헤더입니다. 인증서가 제공되지 않았습니다."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "유효하지 않은 인증 헤더입니다. 인증 문자열은 공백을 포함하면 안됩니다."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "적어도 {num} 자 이상 되어야 합니다."
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "언어 코드 {lang_code}가 유효하지 않습니다."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/applications/views.py
 msgid "Application Versions"
@@ -3148,13 +3147,8 @@ msgid "No reports found."
 msgstr "제보가 없습니다."
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
-#, fuzzy
 msgid "Firefox"
-msgstr ""
-"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
-"Firefox\n"
-"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
-"파이어폭스"
+msgstr "Firefox"
 
 #: src/olympia/constants/applications.py
 msgid "Thunderbird"
@@ -3424,24 +3418,23 @@ msgstr "6단계"
 
 #: src/olympia/constants/base.py
 msgid "Level 7"
-msgstr ""
+msgstr "7단계"
 
 #: src/olympia/constants/base.py
 msgid "Level 8"
-msgstr ""
+msgstr "8단계"
 
 #: src/olympia/constants/base.py
 msgid "Level 9"
-msgstr ""
+msgstr "9단계"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "호환됨"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "Incompatible"
-msgstr "미완료"
+msgstr "호환되지 않음"
 
 #: src/olympia/constants/categories.py
 msgid "Alerts & Updates"
@@ -3508,13 +3501,8 @@ msgid "Large"
 msgstr "노약자형"
 
 #: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Miscellaneous"
-msgstr ""
-"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
-"기타 정보\n"
-"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
-"기타"
+msgstr "기타"
 
 #: src/olympia/constants/categories.py
 msgid "Modern"
@@ -3638,13 +3626,8 @@ msgid "Feeds, News, & Blogging"
 msgstr "RSS 뉴스 및 블로그"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Performance"
-msgstr ""
-"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
-"성능 향상\n"
-"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
-"성능 개선"
+msgstr "성능"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
@@ -4227,18 +4210,17 @@ msgid "Version %s deleted."
 msgstr "%s 버전이 삭제되었습니다."
 
 #: src/olympia/devhub/views.py
-#, fuzzy, python-format
+#, python-format
 msgid "Version %s re-enabled."
-msgstr "%s 버전이 사용 불가 상태가 되었습니다."
+msgstr "%s 버전이 다시 활성화되었습니다."
 
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "업로드한 파일의 검사 작업에 실패했으므로 완전한 검사 결과가 누락되었을 수 있습니다. 심사시 이점에 유의해 주세요."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "심사 요청됨"
+msgstr "심사가 요청되었습니다."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -4564,9 +4546,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> 테마"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Edit Information"
-msgstr "기본 정보"
+msgstr "정보 수정"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
