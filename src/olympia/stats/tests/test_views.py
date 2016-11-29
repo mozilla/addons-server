@@ -12,7 +12,7 @@ import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
@@ -37,6 +37,9 @@ class StatsTest(TestCase):
         self.url_args = {'start': '20090601', 'end': '20090930', 'addon_id': 4}
         self.url_args_theme = {'start': '20090601', 'end': '20090930',
                                'addon_id': 6}
+        version_factory(addon=Addon.objects.get(pk=4))
+        version_factory(addon=Addon.objects.get(pk=5))
+        version_factory(addon=Addon.objects.get(pk=6))
         # Most tests don't care about permissions.
         self.login_as_admin()
 
@@ -88,7 +91,9 @@ class TestUnlistedAddons(StatsTest):
 
     def setUp(self):
         super(TestUnlistedAddons, self).setUp()
-        Addon.objects.get(pk=4).update(is_listed=False)
+        addon = Addon.objects.get(pk=4)
+        addon.update(is_listed=False)
+        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     def test_no_stats_for_unlisted_addon(self):
         """All the views for the stats return 404 for unlisted addons."""

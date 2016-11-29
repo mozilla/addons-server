@@ -1454,8 +1454,7 @@ class TestAddonModels(TestCase):
 
     def test_unlisted_has_complete_metadata(self):
         addon = Addon.objects.get(id=3615)
-        addon.update(is_listed=False)
-        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(addon)
         assert addon.has_complete_metadata()  # Confirm complete already.
 
         # Clear everything
@@ -1747,16 +1746,17 @@ class TestGetVersion(TestCase):
 class TestAddonGetURLPath(TestCase):
 
     def test_get_url_path(self):
-        addon = Addon(slug='woo')
+        addon = addon_factory(slug='woo')
         assert addon.get_url_path() == '/en-US/firefox/addon/woo/'
 
     def test_get_url_path_more(self):
-        addon = Addon(slug='yeah')
+        addon = addon_factory(slug='yeah')
         assert addon.get_url_path(more=True) == (
             '/en-US/firefox/addon/yeah/more')
 
     def test_unlisted_addon_get_url_path(self):
-        addon = Addon(slug='woo', is_listed=False)
+        addon = addon_factory(
+            slug='woo', version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         assert addon.get_url_path() == ''
 
 
@@ -1804,7 +1804,7 @@ class TestBackupVersion(TestCase):
         self.addon.update(_current_version=None)
         assert self.addon.current_version is None
 
-    def test_current_version_is_listed_only(self):
+    def test_current_version_listed_only(self):
         version = self.addon.current_version
         version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         # The call above should have triggerred update_version().
@@ -2242,7 +2242,8 @@ class TestAddonFromUpload(UploadTest):
     def test_is_not_listed(self):
         # An addon can be explicitly unlisted.
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  [self.platform], is_listed=False)
+                                  [self.platform],
+                                  channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert not addon.is_listed
 
     def test_validation_completes(self):
@@ -2588,14 +2589,12 @@ class TestAddonWatchDeveloperNotes(TestCase):
 class TestTrackAddonStatusChange(TestCase):
 
     def create_addon(self, **kwargs):
-        kwargs.setdefault('type', amo.ADDON_EXTENSION)
-        addon = Addon(**kwargs)
-        addon.save()
-        return addon
+        return addon_factory(kwargs.pop('status', amo.STATUS_NULL), **kwargs)
 
     def test_increment_new_status(self):
         with patch('olympia.addons.models.track_addon_status_change') as mock_:
-            addon = self.create_addon()
+            addon = Addon()
+            addon.save()
         mock_.assert_called_with(addon)
 
     def test_increment_updated_status(self):
@@ -2623,7 +2622,8 @@ class TestTrackAddonStatusChange(TestCase):
         )
 
     def test_increment_listed_addon_statuses(self):
-        addon = self.create_addon(is_listed=True)
+        addon = self.create_addon(
+            version_kw={'channel': amo.RELEASE_CHANNEL_LISTED})
         with patch('olympia.addons.models.statsd.incr') as mock_incr:
             track_addon_status_change(addon)
         mock_incr.assert_any_call(
@@ -2631,7 +2631,8 @@ class TestTrackAddonStatusChange(TestCase):
         )
 
     def test_increment_unlisted_addon_statuses(self):
-        addon = self.create_addon(is_listed=False)
+        addon = self.create_addon(
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         with patch('olympia.addons.models.statsd.incr') as mock_incr:
             track_addon_status_change(addon)
         mock_incr.assert_any_call(

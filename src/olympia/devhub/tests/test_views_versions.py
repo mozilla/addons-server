@@ -968,7 +968,8 @@ class TestVersionEditFiles(TestVersionEditBase):
             u'File delicious_bookmarks-2.1.072-fx.xpi deleted from '
             u'<a href="/en-US/firefox/addon/a3615/versions/2.1.072">'
             u'Version 2.1.072</a> of '
-            u'<a href="/en-US/firefox/addon/a3615/">Delicious Bookmarks</a>.')
+            # no url because no current version becomes none.
+            u'<a href="">Delicious Bookmarks</a>.')
         assert log.to_string() == log_string
         assert r.status_code == 302
         assert self.version.files.count() == 0

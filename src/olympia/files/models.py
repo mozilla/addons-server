@@ -106,7 +106,7 @@ class File(OnChangeMixin, ModelBase):
         """True if this file is eligible for automated signing. This currently
         means that either its add-on is eligible for automated signing, or
         this file is a beta version."""
-        return (self.version.addon.automated_signing or
+        return (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED or
                 self.status == amo.STATUS_BETA)
 
     @property

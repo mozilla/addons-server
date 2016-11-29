@@ -69,7 +69,7 @@ class FormsTest(TestCase):
     def test_update_addon_existing_name_used_by_unlisted(self):
         """An add-on edit can change the name to an existing name used by an
         unlisted add-on."""
-        Addon.objects.get(pk=3615).update(is_listed=False)
+        self.make_addon_unlisted(Addon.objects.get(pk=3615))
         addon = addon_factory(name='some name')
         form = forms.AddonFormBasic(dict(name=self.existing_name),
                                     request=self.request, instance=addon)
@@ -79,7 +79,9 @@ class FormsTest(TestCase):
     def test_update_addon_existing_name_used_by_listed(self):
         """An unlisted add-on edit can change the name to an existing name used
         by an listed add-on."""
-        addon = addon_factory(name='some name', is_listed=False)
+        addon = addon_factory(
+            name='some name',
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         form = forms.AddonFormBasic(dict(name=self.existing_name),
                                     request=self.request, instance=addon)
         form.is_valid()

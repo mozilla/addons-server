@@ -1532,7 +1532,7 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted,
                 upload=data['upload'],
                 platforms=data.get('supported_platforms', []),
                 source=data['source'],
-                is_listed=channel == amo.RELEASE_CHANNEL_LISTED)
+                channel=channel)
             version = addon.find_latest_version(channel=channel)
             AddonUser(addon=addon, user=request.user).save()
             url_args = [addon.slug]

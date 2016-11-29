@@ -207,8 +207,10 @@ def test_process_addons_invalid_task():
 
 @pytest.mark.django_db
 def test_process_addons_update_current_version_for_unlisted():
-    addon1 = addon_factory(is_listed=False)
-    addon2 = addon_factory(is_listed=False)
+    addon1 = addon_factory(
+        version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+    addon2 = addon_factory(
+        version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
     listed_addon = addon_factory()
 
     # Manually set a current version on the unlisted addons to mimic the state

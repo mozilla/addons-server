@@ -485,7 +485,7 @@ class Addon(OnChangeMixin, ModelBase):
         return True
 
     @classmethod
-    def initialize_addon_from_upload(cls, data, upload, is_listed=True):
+    def initialize_addon_from_upload(cls, data, upload, channel):
         fields = cls._meta.get_all_field_names()
         guid = data.get('guid')
         old_guid_addon = None
@@ -510,7 +510,7 @@ class Addon(OnChangeMixin, ModelBase):
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
 
         addon.status = amo.STATUS_NULL
-        addon.is_listed = is_listed
+        addon.is_listed = channel == amo.RELEASE_CHANNEL_LISTED
         locale_is_set = (addon.default_locale and
                          addon.default_locale in (
                              settings.AMO_LANGUAGES +
@@ -527,25 +527,24 @@ class Addon(OnChangeMixin, ModelBase):
         return addon
 
     @classmethod
-    def create_addon_from_upload_data(cls, data, upload, user=None, **kwargs):
-        addon = cls.initialize_addon_from_upload(data, upload=upload, **kwargs)
+    def create_addon_from_upload_data(cls, data, upload, channel, user=None,
+                                      **kwargs):
+        addon = cls.initialize_addon_from_upload(data, upload, channel,
+                                                 **kwargs)
         AddonUser(addon=addon, user=user).save()
         return addon
 
     @classmethod
-    def from_upload(cls, upload, platforms, source=None, is_listed=True,
-                    data=None):
-        # TODO: change is_listed arg to channel
+    def from_upload(cls, upload, platforms, source=None,
+                    channel=amo.RELEASE_CHANNEL_LISTED, data=None):
         if not data:
             data = parse_addon(upload)
 
         addon = cls.initialize_addon_from_upload(
-            is_listed=is_listed, data=data, upload=upload)
+            data=data, upload=upload, channel=channel)
 
         if upload.validation_timeout:
             addon.update(admin_review=True)
-        channel = (amo.RELEASE_CHANNEL_LISTED if is_listed else
-                   amo.RELEASE_CHANNEL_UNLISTED)
         Version.from_upload(upload, addon, platforms, source=source,
                             channel=channel)
 
@@ -583,7 +582,7 @@ class Addon(OnChangeMixin, ModelBase):
         return data
 
     def get_url_path(self, more=False, add_prefix=True):
-        if not self.is_listed:  # Not listed? Doesn't have a public page.
+        if not self.current_version:
             return ''
         # If more=True you get the link to the ajax'd middle chunk of the
         # detail page.
@@ -631,13 +630,6 @@ class Addon(OnChangeMixin, ModelBase):
 
     def share_url(self):
         return reverse('addons.share', args=[self.slug])
-
-    @property
-    def automated_signing(self):
-        # We allow automated signing for add-ons which are not listed.
-        # Beta versions are a special case for listed add-ons, and are dealt
-        # with on a file-by-file basis.
-        return not self.is_listed
 
     @amo.cached_property(writable=True)
     def listed_authors(self):
