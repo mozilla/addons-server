@@ -11,7 +11,6 @@ from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
 from django.utils import translation
 
-import jingo
 from mock import Mock, patch
 
 from olympia import amo
@@ -1759,22 +1758,6 @@ class TestAddonGetURLPath(TestCase):
     def test_unlisted_addon_get_url_path(self):
         addon = Addon(slug='woo', is_listed=False)
         assert addon.get_url_path() == ''
-
-    @patch.object(Addon, 'get_url_path', lambda self: '<script>xss</script>')
-    def test_link_if_listed_else_text_xss(self):
-        """We're playing extra safe here by making sure the data is escaped at
-        the template level.
-
-        We shouldn't have to worry about it though, because the "reverse" will
-        prevent it.
-        """
-        addon = Addon(slug='woo')
-        tpl = jingo.get_env().from_string(
-            '{% from "devhub/includes/macros.html" '
-            'import link_if_listed_else_text %}'
-            '{{ link_if_listed_else_text(addon, "foo") }}')
-        result = tpl.render({'addon': addon}).strip()
-        assert result == '<a href="&lt;script&gt;xss&lt;/script&gt;">foo</a>'
 
 
 class TestAddonModelsFeatured(TestCase):

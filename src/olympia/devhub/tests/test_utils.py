@@ -499,11 +499,11 @@ class TestValidationAnnotatorBase(TestCase):
         self.addCleanup(patcher.stop)
         return patcher.start()
 
-    def check_upload(self, file_, listed=None):
+    def check_upload(self, file_, listed=True):
         """Check that our file upload is matched to the given file."""
 
         # Create an annotator, make sure it matches the expected older file.
-        va = utils.ValidationAnnotator(self.file_upload)
+        va = utils.ValidationAnnotator(self.file_upload, listed=listed)
         assert va.prev_file == file_
 
         # Make sure we run the correct validation task for the matched file,
@@ -523,10 +523,12 @@ class TestValidationAnnotatorBase(TestCase):
 
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
+        channel = (amo.RELEASE_CHANNEL_LISTED if listed
+                   else amo.RELEASE_CHANNEL_UNLISTED)
         self.save_upload.assert_has_calls([
-            mock.call([mock.ANY, self.file_upload.pk], {'annotate': False},
-                      immutable=True),
-            mock.call([self.file_upload.pk], link_error=mock.ANY)])
+            mock.call([mock.ANY, self.file_upload.pk, channel],
+                      {'annotate': False}, immutable=True),
+            mock.call([self.file_upload.pk, channel], link_error=mock.ANY)])
 
     def check_file(self, file_new, file_old):
         """Check that the given new file is matched to the given old file."""
@@ -557,9 +559,10 @@ class TestValidationAnnotatorBase(TestCase):
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
         self.save_file.assert_has_calls([
-            mock.call([mock.ANY, file_new.pk], {'annotate': False},
-                      immutable=True),
-            mock.call([file_new.pk], link_error=mock.ANY)])
+            mock.call([mock.ANY, file_new.pk, file_new.version.channel],
+                      {'annotate': False}, immutable=True),
+            mock.call([file_new.pk, file_new.version.channel],
+                      link_error=mock.ANY)])
 
 
 class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
@@ -568,11 +571,14 @@ class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
         super(TestValidationAnnotatorUnlisted, self).setUp()
 
         self.addon.update(is_listed=False)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.file.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.file_1_1.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     def test_find_fileupload_prev_version(self):
         """Test that the correct previous version is found for a new upload."""
 
-        self.check_upload(self.file)
+        self.check_upload(self.file, listed=False)
 
     def test_find_file_prev_version(self):
         """Test that the correct previous version is found for a File."""
@@ -584,7 +590,7 @@ class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
 
         self.version.update(version='1.2')
 
-        self.check_upload(None)
+        self.check_upload(None, listed=False)
 
     def test_find_future_file(self):
         """Test that a future version will not be matched."""
@@ -712,10 +718,12 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         chain.return_value = task
         task.delay.return_value = mock.Mock(task_id='42')
 
-        assert isinstance(tasks.validate(self.file_upload), mock.Mock)
+        assert isinstance(
+            tasks.validate(self.file_upload, listed=True), mock.Mock)
         assert task.delay.call_count == 1
 
-        assert isinstance(tasks.validate(self.file_upload), AsyncResult)
+        assert isinstance(
+            tasks.validate(self.file_upload, listed=True), AsyncResult)
         assert task.delay.call_count == 1
 
     def test_cache_key(self):

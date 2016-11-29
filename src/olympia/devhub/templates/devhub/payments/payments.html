@@ -41,10 +41,10 @@
         <li>{{ _('Choose when and how users are asked to contribute') }}</li>
         <li>{{ _('Receive contributions in your PayPal account or send them to an organization of your choice') }}</li>
       </ul>
-      {% if not addon.is_listed %}
+      {% if not addon.has_listed_versions() %}
         <p class="error">
         {% trans %}
-          Contributions are only available for listed add-ons.
+          Contributions are only available for add-ons with listed versions.
         {% endtrans %}
         </p>
       {% else %}

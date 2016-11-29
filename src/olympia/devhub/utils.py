@@ -9,7 +9,7 @@ from django.utils.translation import ugettext as _
 
 from celery import chain, group
 from validator.constants import SIGNING_SEVERITIES
-from validator.version import Version
+from validator.version import Version as VersionString
 import commonware.log
 
 from olympia import amo
@@ -184,7 +184,7 @@ def fix_addons_linter_output(validation, listed=True):
     }
 
 
-def find_previous_version(addon, file, version_string):
+def find_previous_version(addon, file, version_string, channel):
     """
     Find the most recent previous version of this add-on, prior to
     `version`, that can be used to compare validation results or
@@ -193,13 +193,14 @@ def find_previous_version(addon, file, version_string):
     if not addon or not version_string:
         return
 
-    version = Version(version_string)
+    version = VersionString(version_string)
 
     # Find any previous version of this add-on with the correct status
     # to match the given file.
-    files = File.objects.filter(version__addon=addon)
+    files = File.objects.filter(version__addon=addon, version__channel=channel)
 
-    if addon.is_listed and (file and file.status != amo.STATUS_BETA):
+    if (channel == amo.RELEASE_CHANNEL_LISTED and
+            (file and file.status != amo.STATUS_BETA)):
         # TODO: We'll also need to implement this for FileUploads
         # when we can accurately determine whether a new upload
         # is a beta version.
@@ -226,7 +227,7 @@ def find_previous_version(addon, file, version_string):
 
     for file_ in files.order_by('-id'):
         # Only accept versions which come before the one we're validating.
-        if Version(file_.version.version) < version:
+        if VersionString(file_.version.version) < version:
             return file_
 
 
@@ -242,6 +243,9 @@ class ValidationAnnotator(object):
         self.prev_file = None
 
         if isinstance(file_, FileUpload):
+            assert listed is not None
+            channel = (amo.RELEASE_CHANNEL_LISTED if listed else
+                       amo.RELEASE_CHANNEL_UNLISTED)
             save = tasks.handle_upload_validation_result
             is_webextension = False
             # We're dealing with a bare file upload. Try to extract the
@@ -257,13 +261,14 @@ class ValidationAnnotator(object):
             else:
                 file_.update(version=addon_data.get('version'))
 
-            validate = self.validate_upload(file_, listed, is_webextension)
+            validate = self.validate_upload(file_, channel, is_webextension)
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
             # the status of its owner Addon. If the caller tries to override
             # this, something is wrong.
             assert listed is None
 
+            channel = file_.version.channel
             save = tasks.handle_file_validation_result
             validate = self.validate_file(file_)
 
@@ -284,7 +289,7 @@ class ValidationAnnotator(object):
                 pass
 
             self.prev_file = find_previous_version(
-                self.addon, self.file, addon_data['version'])
+                self.addon, self.file, addon_data['version'], channel)
 
             if self.prev_file:
                 # Group both tasks so the results can be merged when
@@ -294,12 +299,13 @@ class ValidationAnnotator(object):
 
         # Fallback error handler to save a set of exception results, in case
         # anything unexpected happens during processing.
-        on_error = save.subtask([amo.VALIDATOR_SKELETON_EXCEPTION, file_.pk],
-                                {'annotate': False}, immutable=True)
+        on_error = save.subtask(
+            [amo.VALIDATOR_SKELETON_EXCEPTION, file_.pk, channel],
+            {'annotate': False}, immutable=True)
 
         # When the validation jobs complete, pass the results to the
         # appropriate annotate/save task for the object type.
-        self.task = chain(validate, save.subtask([file_.pk],
+        self.task = chain(validate, save.subtask([file_.pk, channel],
                                                  link_error=on_error))
 
         # Create a cache key for the task, so multiple requests to
@@ -345,13 +351,13 @@ class ValidationAnnotator(object):
         return tasks.validate_file.subtask([file.pk], kwargs)
 
     @staticmethod
-    def validate_upload(upload, is_listed, is_webextension):
+    def validate_upload(upload, channel, is_webextension):
         """Return a subtask to validate a FileUpload instance."""
         assert not upload.validation
 
         kwargs = {
             'hash_': upload.hash,
-            'listed': is_listed,
+            'listed': (channel == amo.RELEASE_CHANNEL_LISTED),
             'is_webextension': is_webextension}
         return tasks.validate_file_path.subtask([upload.path], kwargs)
 

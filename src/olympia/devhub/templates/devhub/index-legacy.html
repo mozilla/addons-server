@@ -1,5 +1,4 @@
 {% extends "devhub/base_impala.html" %}
-{% from "devhub/includes/macros.html" import link_if_listed_else_text %}
 
 {% macro docs_ul(docs) %}
   <ul class="listing-list">
@@ -86,23 +85,16 @@
                       <strong>{{ _('Status:') }}</strong>
                       <span class="{{ status_class(item.addon) }}"><b>{{ item.addon.STATUS_CHOICES[item.addon.status] }}</b></span>
                     </p>
-                    <p>
-                      <strong>{{ _('Visibility:') }}</strong>
-                      {% if not item.addon.is_disabled and item.addon.is_listed %}
-                        {{ _('Listed') }}
-                      {% elif item.addon.is_disabled and item.addon.is_listed %}
-                        {{ _('Hidden') }}
-                      {% elif not item.addon.is_listed %}
-                        {{ _('Unlisted') }}
-                      {% endif %}
-                    </p>
                     {# Find the most appropriate version to show: either the current (listed) version, or the latest unlisted #}
                     {% set version = item.addon.current_version or item.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED) %}
                     {% if version %}
                       <p>
                         <strong>{{ _('Latest Version:') }}</strong>
-                        {{ link_if_listed_else_text(item.addon.current_version,
-                                         item.addon.current_version.version) }}
+                        {% if version.channel == amo.RELEASE_CHANNEL_LISTED %}
+                            <a href="{{ version.get_url_path() }}">{{ version.version }}</a>
+                        {% else %}
+                            {{ version.version }}
+                        {% endif %}
                       </p>
                       {% if version.channel == amo.RELEASE_CHANNEL_LISTED %}
                         {% with position = item.position %}
