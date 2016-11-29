@@ -35,6 +35,34 @@
             "tier": 5,
             "type": "warning",
             "uid": "413d2e888f9a492390d4a3b46317e560"
+        },
+        {
+            "column": null,
+            "compatibility_type": "error",
+            "context": [],
+            "description": "...",
+            "file": "chrome/content/foxclocks.xul",
+            "for_appversions": {},
+            "id": ["testcases_regex", "generic", "_generated"],
+            "line": 214,
+            "message": "regex compat error",
+            "tier": 5,
+            "type": "warning",
+            "uid": "413d2e888f9a492390d4a3b46317e560"
+        },
+        {
+            "column": null,
+            "compatibility_type": "error",
+            "context": [],
+            "description": "...",
+            "file": "chrome/content/foxclocks.xul",
+            "for_appversions": {},
+            "id": ["testcases_regex", "generic", "_generated"],
+            "line": 214,
+            "message": "regex compat error 2",
+            "tier": 5,
+            "type": "warning",
+            "uid": "413d2e888f9a492390d4a3b46317e560"
         }
     ],
     "metadata": {
