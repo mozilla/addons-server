@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-29 09:27+0000\n"
+"PO-Revision-Date: 2016-11-29 12:00+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2178,48 +2178,48 @@ msgstr "Piktogram"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Folje dit fjild net yn, it wurdt brûkt om bots te fangen"
 
 #: src/olympia/bandwagon/forms.py
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Dizze namme kin net brûkt wurde."
 
 #: src/olympia/bandwagon/forms.py src/olympia/users/forms.py
 msgid "No links are allowed."
-msgstr ""
+msgstr "Keppelingen binne net tastien."
 
 #: src/olympia/bandwagon/forms.py
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Dizze URL wurdt al troch in oare kolleksje brûkt"
 
 #: src/olympia/bandwagon/forms.py src/olympia/devhub/views.py
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Piktogrammen moatte yn PNG- of JPG-opmaak wêze."
 
 #: src/olympia/bandwagon/forms.py src/olympia/devhub/views.py src/olympia/users/forms.py
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Brûk ôfbyldingen lytser as %d MB."
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "In positive stim oan dizze kolleksje jaan"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "In negative stim oan dizze kolleksje jaan"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "Myn stim foar dizze kolleksje fuortsmite"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "Meld jo oan om te stimmen foar dizze kolleksje"
 
 #: src/olympia/bandwagon/helpers.py src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Add to favorites"
-msgstr ""
+msgstr "Tafoegje oan favoriten"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Favorite"
@@ -2227,7 +2227,7 @@ msgstr "Favoryt"
 
 #: src/olympia/bandwagon/helpers.py src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Fuortsmite út favoriten"
 
 #: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/views.py
 #: src/olympia/editors/templates/editors/leaderboard.html src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/forms.py src/olympia/users/templates/users/vcard.html
@@ -2236,11 +2236,11 @@ msgstr "Namme"
 
 #: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Recently Updated"
-msgstr ""
+msgstr "Koartlyn bywurke"
 
 #: src/olympia/bandwagon/views.py
 msgid "Recently Popular"
-msgstr ""
+msgstr "Koartlyn populêr"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/bandwagon/views.py
 msgid "Added"
@@ -2252,7 +2252,7 @@ msgstr "Populariteit"
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection created!"
-msgstr ""
+msgstr "Kolleksje oanmakke!"
 
 #: src/olympia/bandwagon/views.py
 #, python-format
