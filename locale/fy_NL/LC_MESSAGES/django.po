@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-29 12:03+0000\n"
+"PO-Revision-Date: 2016-11-29 12:57+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2283,23 +2283,23 @@ msgstr "Oanmeitsje"
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "Lykas fermeld yn ús <a href=\"%(legal)s\">juridyske kennisjouwingen</a> falle yndividuele kolleksjes ûnder de Creative Commons Attribution Share-Alike License"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Create Collection"
-msgstr ""
+msgstr "Kolleksje oanmeitsje"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html
 msgid "View this collection"
-msgstr ""
+msgstr "Dizze kolleksje besjen"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html
 msgid "Start a new collection..."
-msgstr ""
+msgstr "In nije kolleksje starte…"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Start a New Collection"
-msgstr ""
+msgstr "In nije kolleksje starte"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name:"
