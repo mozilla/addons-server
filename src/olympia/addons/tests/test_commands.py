@@ -203,38 +203,3 @@ def test_approve_addons_get_review_type(use_case):
 def test_process_addons_invalid_task():
     with pytest.raises(CommandError):
         call_command('process_addons', task='foo')
-
-
-@pytest.mark.django_db
-def test_process_addons_update_current_version_for_unlisted():
-    addon1 = addon_factory(
-        version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
-    addon2 = addon_factory(
-        version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
-    listed_addon = addon_factory()
-
-    # Manually set a current version on the unlisted addons to mimic the state
-    # we want to fix.
-    addon1.update(_current_version=addon1.find_latest_version(
-        channel=amo.RELEASE_CHANNEL_UNLISTED))
-    addon2.update(_current_version=addon2.find_latest_version(
-        channel=amo.RELEASE_CHANNEL_UNLISTED))
-
-    assert addon1.reload().current_version
-    assert addon2.reload().current_version
-    assert listed_addon.reload().current_version
-
-    # Does nothing because --with-unlisted has not been specified.
-    call_command('process_addons', task='update_current_version_for_unlisted')
-    assert addon1.reload().current_version
-    assert addon2.reload().current_version
-    assert listed_addon.reload().current_version
-
-    # Does not touch the listed addon.
-    call_command(
-        'process_addons',
-        task='update_current_version_for_unlisted',
-        with_unlisted=True)
-    assert not addon1.reload().current_version
-    assert not addon2.reload().current_version
-    assert listed_addon.reload().current_version

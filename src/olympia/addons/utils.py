@@ -60,7 +60,7 @@ def get_featured_ids(app, lang=None, type=None):
     ids = []
     is_featured = (Q(collections__featuredcollection__isnull=False) &
                    Q(collections__featuredcollection__application=app.id))
-    qs = Addon.objects.all()
+    qs = Addon.objects.valid()
 
     if type:
         qs = qs.filter(type=type)
@@ -96,7 +96,7 @@ def get_creatured_ids(category, lang=None):
         category = CATEGORIES_BY_ID[category]
     app_id = category.application
 
-    others = (Addon.objects
+    others = (Addon.objects.public()
               .filter(
                   Q(collections__featuredcollection__locale__isnull=True) |
                   Q(collections__featuredcollection__locale=''),

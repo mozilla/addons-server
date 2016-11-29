@@ -268,16 +268,6 @@ class TestAddonManager(TestCase):
         for a in Addon.objects.reviewed():
             assert a.status in amo.REVIEWED_STATUSES, (a.id, a.status)
 
-    def test_unreviewed(self):
-        """
-        Tests for unreviewed addons.
-        """
-        exp = Addon.objects.unreviewed()
-
-        for addon in exp:
-            assert addon.status in amo.UNREVIEWED_ADDON_STATUSES, (
-                'unreviewed() must return unreviewed addons.')
-
     def test_valid(self):
         addon = Addon.objects.get(pk=5299)
         addon.update(disabled_by_user=True)
