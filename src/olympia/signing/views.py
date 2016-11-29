@@ -5,6 +5,7 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext as _
 
+import waffle
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -155,22 +156,38 @@ class VersionView(APIView):
                 _('Only WebExtensions are allowed to omit the GUID'),
                 status.HTTP_400_BAD_REQUEST)
 
+        # channel will be ignored for new addons and while waffle
+        # 'mixed-listed-unlisted' is disabled.
         if addon is None:
-            channel = amo.RELEASE_CHANNEL_UNLISTED
+            channel = amo.RELEASE_CHANNEL_UNLISTED  # New is always unlisted.
             addon = Addon.create_addon_from_upload_data(
                 data=pkg, user=request.user, upload=filedata, channel=channel)
             created = True
         else:
             created = False
-            last_version = addon.find_latest_version_including_rejected()
-            if last_version:
-                channel = last_version.channel
+            if waffle.switch_is_active('mixed-listed-unlisted'):
+                channel_param = request.POST.get('channel')
+                channel = amo.CHANNEL_CHOICES_LOOKUP.get(channel_param)
+                if not channel:
+                    last_version = (
+                        addon.find_latest_version_including_rejected())
+                    if last_version:
+                        channel = last_version.channel
+                    else:
+                        channel = amo.RELEASE_CHANNEL_UNLISTED  # Treat as new.
             else:
-                # TODO: we need to properly handle channels here and fail if
-                # no previous version to guess with.  Also need to allow the
-                # channel to be selected for versions.
+                # Don't allow channel choice until rest of AMO supports it.
                 channel = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
                            amo.RELEASE_CHANNEL_UNLISTED)
+
+            will_have_listed = channel == amo.RELEASE_CHANNEL_LISTED
+            if not addon.has_complete_metadata(
+                    has_listed_versions=will_have_listed):
+                raise forms.ValidationError(
+                    _('You cannot add a listed version to this addon '
+                      'via the API due to missing metadata. '
+                      'Please submit via the website'),
+                    status.HTTP_400_BAD_REQUEST)
 
         file_upload = handle_upload(
             filedata=filedata, user=request.user, addon=addon, submit=True,

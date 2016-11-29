@@ -11,6 +11,7 @@ from django.utils import translation
 
 import mock
 from rest_framework.response import Response
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -68,7 +69,7 @@ class BaseUploadVersionCase(SigningAPITestCase):
             '{addon}-{version}.xpi'.format(addon=addon, version=version))
 
     def request(self, method='PUT', url=None, version='3.0',
-                addon='@upload-version', filename=None):
+                addon='@upload-version', filename=None, channel=None):
         if filename is None:
             filename = self.xpi_filepath(addon, version)
         if url is None:
@@ -77,6 +78,8 @@ class BaseUploadVersionCase(SigningAPITestCase):
             data = {'upload': upload}
             if method == 'POST' and version:
                 data['version'] = version
+            if channel:
+                data['channel'] = channel
 
             return getattr(self.client, method.lower())(
                 url, data,
@@ -162,6 +165,9 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
         qs = Version.objects.filter(addon__guid=self.guid, version='3.0')
         assert not qs.exists()
+        existing = Version.objects.filter(addon__guid=self.guid)
+        assert existing.count() == 1
+        assert existing[0].channel == amo.RELEASE_CHANNEL_LISTED
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 202
@@ -309,6 +315,82 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 400
         error_msg = 'cannot add versions to an addon that has status: %s.' % (
             amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED])
+        assert error_msg in response.data['error']
+
+    def test_channel_ignored_for_new_addon(self):
+        guid = '@create-version'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request('PUT', addon=guid, version='1.0',
+                                channel='listed')
+        assert response.status_code == 201
+        addon = qs.get()
+        assert not addon.is_listed
+        assert addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+    @override_switch('mixed-listed-unlisted', active=True)
+    def test_no_channel_selects_last_channel(self):
+        addon = Addon.objects.get(guid=self.guid)
+        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.versions.count() == 1
+        assert addon.versions.all()[0].channel == amo.RELEASE_CHANNEL_LISTED
+
+        response = self.request('PUT', self.url(self.guid, '3.0'))
+        assert response.status_code == 202, response.data['error']
+        assert 'processed' in response.data
+        new_version = addon.versions.latest()
+        assert new_version.channel == amo.RELEASE_CHANNEL_LISTED
+
+        new_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        response = self.request(
+            'PUT', self.url(self.guid, '4.0-beta1'), version='4.0-beta1')
+        assert response.status_code == 202, response.data['error']
+        assert 'processed' in response.data
+        third_version = addon.versions.latest()
+        assert third_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+
+    @override_switch('mixed-listed-unlisted', active=True)
+    def test_unlisted_channel_for_listed_addon(self):
+        addon = Addon.objects.get(guid=self.guid)
+        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.versions.count() == 1
+        assert addon.versions.all()[0].channel == amo.RELEASE_CHANNEL_LISTED
+
+        response = self.request('PUT', self.url(self.guid, '3.0'),
+                                channel='unlisted')
+        assert response.status_code == 202, response.data['error']
+        assert 'processed' in response.data
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_UNLISTED
+
+    @override_switch('mixed-listed-unlisted', active=True)
+    def test_listed_channel_for_complete_listed_addon(self):
+        addon = Addon.objects.get(guid=self.guid)
+        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.versions.count() == 1
+        assert addon.has_complete_metadata()
+
+        response = self.request('PUT', self.url(self.guid, '3.0'),
+                                channel='listed')
+        assert response.status_code == 202, response.data['error']
+        assert 'processed' in response.data
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+
+    @override_switch('mixed-listed-unlisted', active=True)
+    def test_listed_channel_fails_for_incomplete_addon(self):
+        addon = Addon.objects.get(guid=self.guid)
+        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.versions.count() == 1
+        addon.current_version.update(license=None)  # Make addon incomplete.
+        addon.versions.latest().update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert not addon.has_complete_metadata(
+            has_listed_versions=True)
+
+        response = self.request('PUT', self.url(self.guid, '3.0'),
+                                channel='listed')
+        assert response.status_code == 400
+        error_msg = (
+            'You cannot add a listed version to this addon via the API')
         assert error_msg in response.data['error']
 
 
