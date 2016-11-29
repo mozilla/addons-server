@@ -168,14 +168,7 @@ class VersionView(APIView):
             if waffle.switch_is_active('mixed-listed-unlisted'):
                 channel_param = request.POST.get('channel')
                 channel = amo.CHANNEL_CHOICES_LOOKUP.get(channel_param)
-                if channel:
-                    if not addon.has_complete_metadata(for_channel=channel):
-                        raise forms.ValidationError(
-                            _('You cannot add a listed version to this addon '
-                              'via the API due to missing metadata. '
-                              'Please submit via the website'),
-                            status.HTTP_400_BAD_REQUEST)
-                else:
+                if not channel:
                     last_version = (
                         addon.find_latest_version_including_rejected())
                     if last_version:
@@ -186,6 +179,15 @@ class VersionView(APIView):
                 # Don't allow channel choice until rest of AMO supports it.
                 channel = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
                            amo.RELEASE_CHANNEL_UNLISTED)
+
+            will_have_listed = channel == amo.RELEASE_CHANNEL_LISTED
+            if not addon.has_complete_metadata(
+                    has_listed_versions=will_have_listed):
+                raise forms.ValidationError(
+                    _('You cannot add a listed version to this addon '
+                      'via the API due to missing metadata. '
+                      'Please submit via the website'),
+                    status.HTTP_400_BAD_REQUEST)
 
         file_upload = handle_upload(
             filedata=filedata, user=request.user, addon=addon, submit=True,

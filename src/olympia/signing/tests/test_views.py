@@ -368,7 +368,6 @@ class TestUploadVersion(BaseUploadVersionCase):
         addon = Addon.objects.get(guid=self.guid)
         assert addon.status == amo.STATUS_PUBLIC
         assert addon.versions.count() == 1
-        addon.versions.latest().update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert addon.has_complete_metadata()
 
         response = self.request('PUT', self.url(self.guid, '3.0'),
@@ -385,7 +384,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         addon.current_version.update(license=None)  # Make addon incomplete.
         addon.versions.latest().update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert not addon.has_complete_metadata(
-            for_channel=amo.RELEASE_CHANNEL_LISTED)
+            has_listed_versions=True)
 
         response = self.request('PUT', self.url(self.guid, '3.0'),
                                 channel='listed')

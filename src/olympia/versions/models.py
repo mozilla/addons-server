@@ -139,14 +139,16 @@ class Version(OnChangeMixin, ModelBase):
                 'Addon is Mozilla Disabled; no new versions are allowed.')
 
         data = utils.parse_addon(upload, addon)
-        try:
-            license = addon.versions.latest().license_id
-        except Version.DoesNotExist:
-            license = None
+        license_id = None
+        if channel == amo.RELEASE_CHANNEL_LISTED:
+            previous_version = addon.find_latest_version_including_rejected(
+                channel=channel)
+            if previous_version and previous_version.license_id:
+                license_id = previous_version.license_id
         version = cls.objects.create(
             addon=addon,
             version=data['version'],
-            license_id=license,
+            license_id=license_id,
             source=source,
             channel=channel,
         )

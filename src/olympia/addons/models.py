@@ -1252,22 +1252,29 @@ class Addon(OnChangeMixin, ModelBase):
     def is_public(self):
         return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
 
-    def has_complete_metadata(self, for_channel=None):
-        return all(self.get_required_metadata(for_channel=for_channel))
+    def has_complete_metadata(self, has_listed_versions=None):
+        """See get_required_metadata for has_listed_versions details."""
+        return all(self.get_required_metadata(
+            has_listed_versions=has_listed_versions))
 
-    def get_required_metadata(self, for_channel=None):
-        if for_channel is None:
-            for_channel = (
-                amo.RELEASE_CHANNEL_LISTED if self.has_listed_versions()
-                else amo.RELEASE_CHANNEL_UNLISTED)
-        if for_channel == amo.RELEASE_CHANNEL_UNLISTED:
+    def get_required_metadata(self, has_listed_versions=None):
+        """If has_listed_versions is not specified this method will return the
+        current (required) metadata (truthy values if present) for this Addon.
+
+        If has_listed_versions is specified then the method will act as if
+        Addon.has_listed_versions() returns that value. Used to predict if the
+        addon will require extra metadata before a version is created."""
+        if has_listed_versions is None:
+            has_listed_versions = self.has_listed_versions()
+        if not has_listed_versions:
             # Add-ons with only unlisted versions have no required metadata.
             return []
-        latest_version = self.versions.latest()  # Version.from_upload does it.
+        latest_version = self.find_latest_version_including_rejected(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         return [
             self.all_categories,
             self.summary,
-            (not latest_version or latest_version.license),
+            (latest_version and latest_version.license),
         ]
 
     def is_pending(self):
