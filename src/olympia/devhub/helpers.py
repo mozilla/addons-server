@@ -8,7 +8,6 @@ from django.utils.translation import ugettext as _, ungettext as ngettext
 from django.utils.encoding import force_bytes
 
 from olympia import amo
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import page_title
 from olympia.access import acl
 from olympia.activity.utils import filter_queryset_to_pending_replies
@@ -48,26 +47,6 @@ def docs_page_title(context, title=None):
     devhub = _('Add-on Documentation :: Developer Hub')
     title = '%s :: %s' % (title, devhub) if title else devhub
     return page_title(context, title)
-
-
-@register.inclusion_tag('devhub/versions/add_file_modal.html')
-@jinja2.contextfunction
-def add_file_modal(context, title, action, action_label, modal_type='file'):
-    addon = context['addon']
-    version = context.get('version',
-                          addon.find_latest_version_including_rejected(None))
-    if version:
-        channel = ('listed' if version.channel == amo.RELEASE_CHANNEL_LISTED
-                   else 'unlisted')
-    else:
-        # short term fix - this function won't be used after new file upload.
-        channel = 'listed' if addon.is_listed else 'unlisted'
-
-    upload_url = reverse('devhub.upload_for_version',
-                         args=[addon.slug, channel])
-    return new_context(modal_type=modal_type, context=context, title=title,
-                       action=action, upload_url=upload_url,
-                       action_label=action_label)
 
 
 @register.inclusion_tag('devhub/includes/source_form_field.html')

@@ -657,7 +657,6 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert links[1].attrib['href'] == reverse('devhub.addons')
 
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
-    @override_switch('step-version-upload', active=True)
     def test_finish_submitting_platform_specific_listed_addon(self):
         latest_version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
@@ -687,7 +686,6 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert links[3].attrib['href'] == reverse('devhub.addons')
 
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
-    @override_switch('step-version-upload', active=True)
     def test_finish_submitting_platform_specific_unlisted_addon(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         latest_version = self.addon.find_latest_version(
@@ -757,7 +755,6 @@ class TestAddonSubmitResume(TestSubmitBase):
         self.assert3xx(r, reverse('devhub.submit.details', args=['a3615']))
 
 
-@override_switch('step-version-upload', active=True)
 @override_switch('mixed-listed-unlisted', active=True)
 class TestVersionSubmitDistribution(TestSubmitBase):
 
@@ -781,7 +778,6 @@ class TestVersionSubmitDistribution(TestSubmitBase):
                 self.addon.slug, 'unlisted']))
 
 
-@override_switch('step-version-upload', active=True)
 @override_switch('mixed-listed-unlisted', active=True)
 class TestVersionSubmitAutoChannel(TestSubmitBase):
     """ Just check we chose the right upload channel.  The upload tests
@@ -820,7 +816,6 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
                     args=[self.addon.slug]))
 
 
-@override_switch('step-version-upload', active=True)
 @override_switch('mixed-listed-unlisted', active=False)
 class TestVersionSubmitAutoChannelNoMixed(TestSubmitBase):
 
@@ -977,7 +972,6 @@ class VersionSubmitUploadMixin(object):
         assert r.status_code == 404
 
 
-@override_switch('step-version-upload', active=True)
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_LISTED
 
@@ -1037,7 +1031,6 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         assert self.addon.status == amo.STATUS_NOMINATED
 
 
-@override_switch('step-version-upload', active=True)
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_UNLISTED
 
@@ -1102,7 +1095,6 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         assert version.all_files[0].status != amo.STATUS_BETA
 
 
-@override_switch('step-version-upload', active=True)
 class TestVersionSubmitDetails(TestSubmitBase):
 
     def setUp(self):
@@ -1158,7 +1150,6 @@ class TestVersionSubmitDetails(TestSubmitBase):
                               args=[self.addon.slug, self.version.pk]))
 
 
-@override_switch('step-version-upload', active=True)
 class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
     """ Testing the case of a listed version being submitted on an add-on that
     previously only had unlisted versions - so is missing metadata."""
@@ -1173,7 +1164,6 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
                                  args=['a3615', self.version.pk])
 
 
-@override_switch('step-version-upload', active=True)
 class TestVersionSubmitFinish(TestAddonSubmitFinish):
 
     def setUp(self):
@@ -1211,7 +1201,6 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
         pass
 
 
-@override_switch('step-version-upload', active=True)
 class TestFileSubmitUpload(UploadTest):
     fixtures = ['base/users', 'base/addon_3615']
 
