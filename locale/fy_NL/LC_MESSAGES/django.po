@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-30 09:00+0000\n"
+"PO-Revision-Date: 2016-11-30 11:57+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2414,30 +2414,34 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
+"Add-ons dy't jo as favoriten markearje fia de funksje <b>Tafoegje oan favoriten</b> ferskine hjirûnder. Dizze kolleksje is op dit stuit <b>publyklik</b>, wat betsjut dat elkenien dit sjen kin. As jo"
+" dit ferstopje wolle, klik dan op ûndersteande knop om dit privee te meitsjen."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Mei de funksje <b>Oan Favoriten tafoegje</b> as favoryt markearre add-ons ferskine hjirûnder. Dizze kolleksje is op dit stuit <b>privee</b>, wat betsjut dat allinnich jo dit sjen kinne. As jo wolle "
+"dat elkenien jo favoriten sjen kin, klik dan op ûndersteande knop om de kolleksje iepenbier te meitsjen."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Myn favorite add-ons"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(addons)s</span> add-on"
+msgstr[1] "<span>%(addons)s</span> add-ons"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(followers)s</span> folger"
+msgstr[1] "<span>%(followers)s</span> folgers"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2447,8 +2451,8 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s wyklikse folger"
+msgstr[1] "%(num)s wyklikse folgers"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2456,8 +2460,8 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s moanlikse folger"
+msgstr[1] "%(num)s moanlikse folgers"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2467,8 +2471,8 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s folger"
+msgstr[1] "%(num)s folgers"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
