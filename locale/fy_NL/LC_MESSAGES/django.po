@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-30 11:57+0000\n"
+"PO-Revision-Date: 2016-11-30 12:19+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2560,6 +2560,8 @@ msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Jo kinne mear meiwurkers oan dizze kolleksje tafoegje. In meiwurker kin add-ons tafoegje en fuortsmite, mar kin de namme of de beskriuwing fan de kolleksje net wizigje. Fier om in meiwurker ta te "
+"foegjen harren e-mailadres yn ûndersteand fjild yn. Meiwurkers moatte in Mozilla Add-ons-account hawwe."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2576,7 +2578,7 @@ msgstr "Rol"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Enter the email address of the contributor to add"
-msgstr ""
+msgstr "Fier it e-mailadres fan de ta te foegjen meiwurker yn"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Add Contributor"
@@ -2592,7 +2594,7 @@ msgstr "Behearynstellingen"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
+msgstr "<b>Warskôging:</b> troch it wizigjen fan de eigener fan dizze kolleksje kinne jo dizze net mear bewurkje. Jo kinne allinnich noch add-ons deroan tafoegje en derút fuortsmite."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
@@ -2602,7 +2604,7 @@ msgstr "Trochgean"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "of <a id=\"change-owner-cancel\" href=\"#\">Annulearje</a>"
 
 #. {0} is a username.
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
@@ -2636,7 +2638,7 @@ msgstr "Koartlyn populêre kolleksjes"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
+msgstr "Kolleksjes binne groepen relatearre add-ons dy't elkenien meitsje en diele kin. Ferken kolleksjes fan oare brûkers of <a href=\"%(url)s\">meitsje jo eigen kolleksje</a>."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
@@ -2652,11 +2654,11 @@ msgstr "In kolleksje meitsje"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "Kolleksjes meitsje it ienfâldich om favorite add-ons te folgjen en jo perfekt oanpaste browser mei oaren te dielen."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Collection Icon"
-msgstr ""
+msgstr "Kolleksjepiktogram"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Reset"
@@ -2664,19 +2666,19 @@ msgstr "Opnij ynstelle"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG en JPG wurde stipe. Ofbyldingsgrutte wurdt oanpast nei 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Der sitte flaters yn dit formulier. Korrizjearje se hjirûnder."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Add-ons yn jo kolleksje"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "Fier om in add-on yn dizze kolleksje op te nimmen de namme yn ûndersteand fjild yn en druk op Enter."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/editors/helpers.py
 msgid "Add-on"
@@ -2684,11 +2686,11 @@ msgstr "Add-on"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Fier de namme fan de op te nimmen add-on yn"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add to Collection"
-msgstr ""
+msgstr "Tafoegje oan kolleksje"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py
 msgid "Pending"
@@ -2700,7 +2702,7 @@ msgstr "Opmerking tafoegje"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Dizze add-on út de kolleksje fuortsmite"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "COLLECTIONS"
@@ -2708,11 +2710,11 @@ msgstr "KOLLEKSJES"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
-msgstr ""
+msgstr "Groepen besibbe add-ons dy't elkenien oanmeitsje kin."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocked Add-ons"
-msgstr ""
+msgstr "Blokkearre add-ons"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocklist"
@@ -2721,27 +2723,27 @@ msgstr "Blokkearlist"
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "<b>{0}</b> has been blocked for your protection."
-msgstr ""
+msgstr "<b>{0}</b> is blokkearre foar jo beskerming."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Why was it blocked?"
-msgstr ""
+msgstr "Wêrom is dizze blokkearre?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Who is affected?"
-msgstr ""
+msgstr "Wa ûnderfynt hjir gefolgen fan?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "What does this mean?"
-msgstr ""
+msgstr "Wat betsjut dit?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr ""
+msgstr "Brûkers wurdt sterk oanret om de problematyske add-on of ynstekker út te skeakeljen, mar se kinne derfoar kieze dizze fierder te brûken as sj de beskreaune risiko’s akseptearje."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr ""
+msgstr "De problematyske add-on of ynstekker wurdt automatysk útskeakele en kin net mear brûkt wurde."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
