@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-30 11:40+0000\n"
+"PO-Revision-Date: 2016-11-30 11:41+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3525,11 +3525,11 @@ msgstr "Aẓawan"
 
 #: src/olympia/constants/categories.py
 msgid "News & Blogs"
-msgstr ""
+msgstr "Isallen & Iblugen"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Images"
-msgstr ""
+msgstr "Tiwlafin & Tugniwin"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
@@ -3545,7 +3545,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Video"
-msgstr ""
+msgstr "Tividyutin"
 
 #: src/olympia/constants/categories.py
 msgid "Abstract"
@@ -3561,7 +3561,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Film and TV"
-msgstr ""
+msgstr "Isura & Tiliẓri"
 
 #: src/olympia/constants/categories.py
 msgid "Foxkeh"
