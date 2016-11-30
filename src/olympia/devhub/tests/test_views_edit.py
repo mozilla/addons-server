@@ -50,13 +50,8 @@ class BaseTestEdit(TestCase):
         assert self.client.login(email='del@icio.us')
 
         addon = self.get_addon()
-        if not self.listed:
-            addon.update(is_listed=False)
-            addon.versions.update(
-                channel=amo.RELEASE_CHANNEL_UNLISTED)
-        else:
-            addon.versions.update(
-                channel=amo.RELEASE_CHANNEL_LISTED)
+        self.make_addon_unlisted(addon, listed=self.listed)
+        if self.listed:
             a = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
             a.feature = False
             a.save()

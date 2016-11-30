@@ -90,8 +90,7 @@ class TestEditLicense(TestOwnership):
         assert license_form.errors == {'builtin': [u'This field is required.']}
 
     def test_no_license_required_for_unlisted(self):
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         data = self.formset(builtin='')
         response = self.client.post(self.url, data)
         assert response.status_code == 302

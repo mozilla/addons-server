@@ -719,9 +719,7 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
 
     def test_webextension_downgrade_only_warning_unlisted(self):
         self.update_files(is_webextension=True)
-        self.addon.is_listed = False
-        self.addon.save(update_fields=('is_listed',))
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
 
         file_ = amo.tests.AMOPaths().file_fixture_path(
             'delicious_bookmarks-2.1.106-fx.xpi')

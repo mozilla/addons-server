@@ -80,8 +80,9 @@ class TestActivityLog(TestCase):
         addon = Addon.objects.get()
         # Get the url before the addon is changed to unlisted.
         url_path = addon.get_url_path()
-        addon.update(is_listed=False)
-        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(addon)
+        # Delete the status change log entry from making versions unlisted.
+        ActivityLog.objects.for_addons(addon).delete()
         amo.log(amo.LOG.CREATE_ADDON, (Addon, addon.id))
         entries = ActivityLog.objects.for_addons(addon)
         assert len(entries) == 1
@@ -152,11 +153,9 @@ class TestActivityLog(TestCase):
 
     def test_version_log_unlisted_addon(self):
         version = Version.objects.all()[0]
-        addon = version.addon
         # Get the url before the addon is changed to unlisted.
         url_path = version.get_url_path()
-        addon.update(is_listed=False)
-        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(version.addon)
         amo.log(amo.LOG.REJECT_VERSION, version.addon, version,
                 user=self.request.user)
         entries = ActivityLog.objects.for_version(version)

@@ -121,9 +121,8 @@ class TestNav(HubTest):
         # Assign this add-on to the current user profile.
         addon = Addon.objects.get(id=57132)
         addon.name = 'Test'
-        addon.is_listed = False
-        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         addon.save()
+        self.make_addon_unlisted(addon)
         addon.addonuser_set.create(user=self.user_profile)
 
         r = self.client.get(self.url)
@@ -635,8 +634,7 @@ class TestEditPayments(TestCase):
         assert doc('.intro.full-intro').length == 0
 
     def test_no_voluntary_contributions_for_unlisted_addons(self):
-        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('.intro').length == 1
@@ -974,9 +972,7 @@ class TestHome(TestCase):
 
     @override_switch('step-version-upload', active=True)
     def test_my_unlisted_addons(self):
-        self.addon.update(is_listed=False)
-        for v in self.addon.versions.all():
-            v.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         assert self.addon.status == amo.STATUS_NULL
 
         doc = self.get_pq()
@@ -1071,8 +1067,7 @@ class TestActivityFeed(TestCase):
 
     def test_unlisted_addons_dashboard(self):
         """Unlisted addons are displayed in the feed on the dashboard page."""
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self.add_log()
         res = self.client.get(reverse('devhub.addons'))
         doc = pq(res.content)
@@ -1080,8 +1075,7 @@ class TestActivityFeed(TestCase):
 
     def test_unlisted_addons_feed_sidebar(self):
         """Unlisted addons are displayed in the left side in the feed page."""
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self.add_log()
         res = self.client.get(reverse('devhub.feed_all'))
         doc = pq(res.content)
@@ -1090,8 +1084,7 @@ class TestActivityFeed(TestCase):
 
     def test_unlisted_addons_feed(self):
         """Unlisted addons are displayed in the feed page."""
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self.add_log()
         res = self.client.get(reverse('devhub.feed_all'))
         doc = pq(res.content)
@@ -1099,8 +1092,7 @@ class TestActivityFeed(TestCase):
 
     def test_unlisted_addons_feed_filter(self):
         """Feed page can be filtered on unlisted addon."""
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self.add_log()
         res = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(res.content)
@@ -1507,8 +1499,8 @@ class TestUploadDetail(BaseUploadTest):
 
     def test_upload_detail_for_version_unlisted(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        addon = addon_factory(is_listed=False)
-        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        addon = addon_factory(
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         addon.addonuser_set.create(user=user)
         self.post()
 
@@ -2130,7 +2122,7 @@ class TestUploadErrors(UploadTest):
 
     def test_dupe_xpi_unlisted_addon(self):
         """Submitting an xpi with the same UUID as an unlisted addon."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self.test_dupe_xpi(channel='unlisted')
 
 
