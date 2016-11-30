@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-26 17:38+0000\n"
+"PO-Revision-Date: 2016-11-30 11:40+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3369,47 +3369,47 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Level 1"
-msgstr ""
+msgstr "Aswir 1"
 
 #: src/olympia/constants/base.py
 msgid "Level 2"
-msgstr ""
+msgstr "Aswir 2"
 
 #: src/olympia/constants/base.py
 msgid "Level 3"
-msgstr ""
+msgstr "Aswir 3"
 
 #: src/olympia/constants/base.py
 msgid "Level 4"
-msgstr ""
+msgstr "Aswir 4"
 
 #: src/olympia/constants/base.py
 msgid "Level 5"
-msgstr ""
+msgstr "Aswir 5"
 
 #: src/olympia/constants/base.py
 msgid "Level 6"
-msgstr ""
+msgstr "Aswir 6"
 
 #: src/olympia/constants/base.py
 msgid "Level 7"
-msgstr ""
+msgstr "Aswir 7"
 
 #: src/olympia/constants/base.py
 msgid "Level 8"
-msgstr ""
+msgstr "Aswir 8"
 
 #: src/olympia/constants/base.py
 msgid "Level 9"
-msgstr ""
+msgstr "Aswir 9"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "Amṣadan"
 
 #: src/olympia/constants/base.py
 msgid "Incompatible"
-msgstr ""
+msgstr "Aramṣadan"
 
 #: src/olympia/constants/categories.py
 msgid "Alerts & Updates"
@@ -3421,11 +3421,11 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Bookmarks"
-msgstr ""
+msgstr "Ticraḍ n isebtar"
 
 #: src/olympia/constants/categories.py
 msgid "Download Management"
-msgstr ""
+msgstr "Asefrek n usider"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
@@ -3433,39 +3433,39 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Uraren & Zhu"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support"
-msgstr ""
+msgstr "Asefrek n tutlayt"
 
 #: src/olympia/constants/categories.py
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Tiwlafin, aẓawan & tvidyutin"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy & Security"
-msgstr ""
+msgstr "Tabaḍnit  & Taɣellist"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping"
-msgstr ""
+msgstr "Tiɣin"
 
 #: src/olympia/constants/categories.py
 msgid "Social & Communication"
-msgstr ""
+msgstr "Timetti & Taɣwalt"
 
 #: src/olympia/constants/categories.py
 msgid "Tabs"
-msgstr ""
+msgstr "Iccaren"
 
 #: src/olympia/constants/categories.py
 msgid "Web Development"
-msgstr ""
+msgstr "Taneflit Web"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
-msgstr ""
+msgstr "I ɣeṛsiwen"
 
 #: src/olympia/constants/categories.py
 msgid "Compact"
@@ -3473,15 +3473,15 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Large"
-msgstr ""
+msgstr "Hraw"
 
 #: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Ayen nniḍen"
 
 #: src/olympia/constants/categories.py
 msgid "Modern"
-msgstr ""
+msgstr "Atrar"
 
 #: src/olympia/constants/categories.py
 msgid "Nature"
@@ -3497,11 +3497,11 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Sports"
-msgstr ""
+msgstr "Addal"
 
 #: src/olympia/constants/categories.py
 msgid "General"
-msgstr ""
+msgstr "Amatu"
 
 #: src/olympia/constants/categories.py
 msgid "Business"
@@ -3513,7 +3513,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Kids"
-msgstr ""
+msgstr "Igwerdan"
 
 #: src/olympia/constants/categories.py
 msgid "Multiple Search"
@@ -3521,7 +3521,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Music"
-msgstr ""
+msgstr "Aẓawan"
 
 #: src/olympia/constants/categories.py
 msgid "News & Blogs"
