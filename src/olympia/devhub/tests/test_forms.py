@@ -233,16 +233,6 @@ class TestThemeForm(TestCase):
         self.form = ThemeForm(self.get_dict(**kw), request=self.request)
         return self.form
 
-    def test_name_unique(self):
-        # A theme cannot share the same name as another theme's.
-        Addon.objects.create(type=amo.ADDON_PERSONA, name='harry-potter')
-        for name in ('Harry-Potter', '  harry-potter  ', 'harry-potter'):
-            self.post(name=name)
-            assert not self.form.is_valid()
-            assert self.form.errors == (
-                {'name': ['This name is already in use. '
-                          'Please choose another.']})
-
     def test_name_required(self):
         self.post(name='')
         assert not self.form.is_valid()
@@ -542,38 +532,6 @@ class TestEditThemeForm(TestCase):
         """Form should be just fine when POSTing twice."""
         self.save_success()
         self.form.save()
-
-    def test_name_unique(self):
-        data = self.get_dict(**{'name_en-us': 'Bands Make You Dance'})
-        Addon.objects.create(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC,
-                             name=data['name_en-us'])
-        self.form = EditThemeForm(data, request=self.request,
-                                  instance=self.instance)
-
-        assert not self.form.is_valid()
-        assert self.form.errors == {
-            'name': [
-                'This name is already in use. Please choose another.'
-            ]
-        }
-
-    def test_name_unique_multiple_locale_conflicts(self):
-        name = {'name_en-us': 'English', 'name_es': u'Español'}
-        data = self.get_dict(**name)
-
-        Addon.objects.create(
-            type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC,
-            name={'en-us': 'English', 'es': u'Español'})
-
-        self.form = EditThemeForm(data, request=self.request,
-                                  instance=self.instance)
-
-        assert not self.form.is_valid()
-        assert self.form.errors == {
-            'name': [
-                'This name is already in use. Please choose another.'
-            ]
-        }
 
     def test_localize_name_description(self):
         data = self.get_dict(name_de='name_de',

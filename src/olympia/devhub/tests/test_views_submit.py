@@ -403,36 +403,12 @@ class TestAddonSubmitDetails(TestSubmitBase):
         assert addon.privacy_policy == 'Ur data belongs to us now.'
         assert addon.current_version.approvalnotes == 'approove plz'
 
-    def test_submit_name_unique(self):
-        # Make sure name is unique.
-        r = self.client.post(self.url, self.get_dict(name='Cooliris'))
-        error = 'This name is already in use. Please choose another.'
-        self.assertFormError(r, 'form', 'name', error)
-
-    def test_submit_name_unique_only_for_listed(self):
-        """A listed add-on can use the same name as unlisted add-ons."""
-        # Change the existing add-on with the 'Cooliris' name to be unlisted.
-        coolris = Addon.objects.get(name__localized_string='Cooliris')
-        coolris.update(is_listed=False)
-        coolris.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-
-        assert get_addon_count('Cooliris') == 1
-        # It's allowed for the '3615' listed add-on to reuse the same name as
-        # the other 'Cooliris' unlisted add-on.
+    def test_submit_name_existing(self):
+        """Test that we can submit two add-ons with the same name."""
+        qs = Addon.objects.filter(name__localized_string='Cooliris')
+        assert qs.count() == 1
         self.is_success(self.get_dict(name='Cooliris'))
-        assert get_addon_count('Cooliris') == 2
-
-    def test_submit_name_unique_strip(self):
-        # Make sure we can't sneak in a name by adding a space or two.
-        r = self.client.post(self.url, self.get_dict(name='  Cooliris  '))
-        error = 'This name is already in use. Please choose another.'
-        self.assertFormError(r, 'form', 'name', error)
-
-    def test_submit_name_unique_case(self):
-        # Make sure unique names aren't case sensitive.
-        r = self.client.post(self.url, self.get_dict(name='cooliris'))
-        error = 'This name is already in use. Please choose another.'
-        self.assertFormError(r, 'form', 'name', error)
+        assert qs.count() == 2
 
     def test_submit_name_length(self):
         # Make sure the name isn't too long.

@@ -16,7 +16,7 @@ from quieter_formset.formset import BaseModelFormSet
 from olympia.access import acl
 from olympia import amo, paypal
 from olympia.amo.helpers import mark_safe_lazy
-from olympia.addons.forms import AddonFormBase, clean_addon_name
+from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
     Addon, AddonDependency, AddonUser, Charity, Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField
@@ -725,9 +725,6 @@ class DescribeForm(AddonFormBase):
         kw['initial'] = {
             'has_priv': self._has_field('privacy_policy', kw['instance'])}
         super(DescribeForm, self).__init__(*args, **kw)
-
-    def clean_name(self):
-        return clean_addon_name(self.cleaned_data['name'], self.instance)
 
     def _has_field(self, name, instance=None):
         # If there's a policy in any language, this addon has a policy.

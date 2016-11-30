@@ -22,7 +22,6 @@ from olympia.amo.utils import (
 from olympia.addons.models import (
     Addon, AddonCategory, DeniedSlug, Category, Persona)
 from olympia.addons.tasks import save_theme, save_theme_reupload
-from olympia.addons.utils import reverse_name_lookup
 from olympia.addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from olympia.devhub import tasks as devhub_tasks
 from olympia.lib import happyforms
@@ -37,30 +36,6 @@ from olympia.versions.models import Version
 
 
 log = commonware.log.getLogger('z.addons')
-
-
-def clean_addon_name(name, instance=None, addon_type=None):
-    if not instance:
-        log.debug('clean_addon_name called without an instance: %s' % name)
-
-    # We don't need to do anything to prevent an unlisted addon name from
-    # clashing with listed addons, because the `reverse_name_lookup` util below
-    # uses the Addon.objects manager, which filters out unlisted addons.
-    if instance and not instance.is_listed:
-        return name
-
-    assert instance or addon_type
-    if not addon_type:
-        addon_type = instance.type
-
-    match = reverse_name_lookup(name, addon_type=addon_type, instance=instance)
-
-    if match:
-        raise forms.ValidationError(_(
-            'This name is already in use. Please choose another.'
-        ))
-
-    return name
 
 
 def clean_addon_slug(slug, instance):
@@ -169,9 +144,6 @@ class AddonFormBasic(AddonFormBase):
         if self.fields.get('tags'):
             self.fields['tags'].initial = ', '.join(
                 self.get_tags(self.instance))
-
-    def clean_name(self):
-        return clean_addon_name(self.cleaned_data['name'], self.instance)
 
     def clean_slug(self):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
@@ -452,14 +424,6 @@ class ThemeFormBase(AddonFormBase):
                 'data-allowed-types': 'image/jpeg|image/png'
             }
 
-    def clean_name(self):
-        """
-        Overwrite `clean_name` to make sure we pass the correct add-on type
-        """
-        return clean_addon_name(
-            self.cleaned_data['name'], instance=self.instance,
-            addon_type=amo.ADDON_PERSONA)
-
 
 class ThemeForm(ThemeFormBase):
     name = forms.CharField(max_length=50)
@@ -616,9 +580,6 @@ class EditThemeForm(AddonFormBase):
                                                  'persona_%s' % field]),
                 'data-allowed-types': 'image/jpeg|image/png'
             }
-
-    def clean_name(self):
-        return clean_addon_name(self.cleaned_data['name'], self.instance)
 
     def clean_slug(self):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
