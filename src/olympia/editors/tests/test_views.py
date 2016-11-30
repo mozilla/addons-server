@@ -212,8 +212,8 @@ class TestReviewLog(EditorTest):
         assert rows.filter(':not(.hide)').length == 2
         assert rows.filter('.hide').eq(0).text() == 'youwin'
         # Should have none showing if the addons are unlisted.
-        Addon.objects.update(is_listed=False)
-        Version.objects.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        for addon in Addon.objects.all():
+            self.make_addon_unlisted(addon)
         r = self.client.get(self.url)
         assert r.status_code == 200
         doc = pq(r.content)
@@ -1150,8 +1150,8 @@ class TestModeratedQueue(QueueTest):
         assert doc('.no-results').length == 1
 
     def test_do_not_show_reviews_for_unlisted_addons(self):
-        Addon.objects.all().update(is_listed=False)
-        Version.objects.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        for addon in Addon.objects.all():
+            self.make_addon_unlisted(addon)
 
         res = self.client.get(self.url)
         assert res.status_code == 200
@@ -1715,11 +1715,8 @@ class TestReview(ReviewBase):
         self._test_breadcrumbs(expected)
 
     def test_breadcrumbs_unlisted_addons(self):
-        self.addon.update(is_listed=False, status=amo.STATUS_NULL)
         self.generate_files()
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.addon.versions.latest().files.update(status=amo.STATUS_PUBLIC)
-        self.addon.save()
+        self.make_addon_unlisted(self.addon)
         self.login_as_admin()
         expected = [
             ('All Unlisted Add-ons',
@@ -1969,8 +1966,7 @@ class TestReview(ReviewBase):
     def test_unlisted_addon_action_links_as_admin(self):
         """No "View Listing" link for unlisted addons, "edit"/"manage" links
         for the admins."""
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self.login_as_admin()
         r = self.client.get(self.url)
         expected = [
@@ -2617,8 +2613,7 @@ class TestWhiteboard(ReviewBase):
     @patch('olympia.addons.decorators.owner_or_unlisted_reviewer',
            lambda r, a: True)
     def test_whiteboard_addition_unlisted_addon(self):
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         whiteboard_info = u'Whiteboard info.'
         url = reverse('editors.whiteboard', args=[
             self.addon.slug if not self.addon.is_deleted else self.addon.pk])
@@ -2655,8 +2650,7 @@ class TestAbuseReports(TestCase):
     def test_no_abuse_reports_link_for_unlisted_addons(self):
         """Unlisted addons aren't public, and thus have no abuse reports."""
         addon = Addon.objects.get(pk=3615)
-        addon.update(is_listed=False)
-        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(addon)
         self.client.login(email='admin@mozilla.com')
         response = reverse('editors.review', args=[addon.slug])
         abuse_report_url = reverse('editors.abuse_reports', args=['a3615'])

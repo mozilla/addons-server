@@ -13,7 +13,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLogToken
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, version_factory
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.devhub.models import ActivityLog
@@ -230,6 +230,9 @@ class TestReviewHelper(TestCase):
         assert helper.handler.review_type == 'pending'
 
     def test_review_files(self):
+        version_factory(addon=self.addon,
+                        created=self.version.created - timedelta(days=1),
+                        file_kw={'status': amo.STATUS_PUBLIC})
         for status in REVIEW_FILES_STATUSES:
             self.setup_data(status=status)
             assert self.helper.handler.__class__ == helpers.ReviewFiles
@@ -361,18 +364,18 @@ class TestReviewHelper(TestCase):
             assert context_data.get(context_key) in mail.outbox[0].body
 
     def setup_data(self, status, delete=None,
+                   file_status=amo.STATUS_AWAITING_REVIEW,
                    channel=amo.RELEASE_CHANNEL_LISTED):
         if delete is None:
             delete = []
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
-        self.addon.update(status=status,
-                          is_listed=channel == amo.RELEASE_CHANNEL_LISTED)
-        self.version.update(channel=channel)
-        file_status = (
-            amo.STATUS_AWAITING_REVIEW if status == amo.STATUS_NOMINATED
-            else status)
+        self.addon.update(status=status)
         self.file.update(status=file_status)
+        if channel == amo.RELEASE_CHANNEL_UNLISTED:
+            self.make_addon_unlisted(self.addon)
+            self.version.reload()
+            self.file.reload()
         self.helper = self.get_helper()
         data = self.get_data().copy()
         for key in delete:
@@ -634,13 +637,13 @@ class TestReviewHelper(TestCase):
             assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
     def test_operating_system_present(self):
-        self.setup_data(amo.STATUS_BETA)
+        self.setup_data(amo.STATUS_PUBLIC)
         self.helper.handler.process_sandbox()
 
         assert 'Tested on osx with Firefox' in mail.outbox[0].body
 
     def test_operating_system_not_present(self):
-        self.setup_data(amo.STATUS_BETA)
+        self.setup_data(amo.STATUS_PUBLIC)
         data = self.get_data().copy()
         data['operating_systems'] = ''
         self.helper.set_data(data)
@@ -649,7 +652,7 @@ class TestReviewHelper(TestCase):
         assert 'Tested with Firefox' in mail.outbox[0].body
 
     def test_application_not_present(self):
-        self.setup_data(amo.STATUS_BETA)
+        self.setup_data(amo.STATUS_PUBLIC)
         data = self.get_data().copy()
         data['applications'] = ''
         self.helper.set_data(data)
@@ -658,7 +661,7 @@ class TestReviewHelper(TestCase):
         assert 'Tested on osx' in mail.outbox[0].body
 
     def test_both_not_present(self):
-        self.setup_data(amo.STATUS_BETA)
+        self.setup_data(amo.STATUS_PUBLIC)
         data = self.get_data().copy()
         data['applications'] = ''
         data['operating_systems'] = ''
