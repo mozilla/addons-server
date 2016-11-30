@@ -469,8 +469,7 @@ class TestFileViewer(FilesBase, TestCase):
 
     def test_files_for_unlisted_addon_returns_404(self):
         """Files browsing isn't allowed for unlisted addons."""
-        self.addon.update(is_listed=False)
-        self.file.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         assert self.client.get(self.file_url()).status_code == 404
 
     def test_content_file_size_uses_binary_prefix(self):

@@ -638,9 +638,8 @@ class TestESSearch(SearchBase):
         response = self.client.get(self.url, {'q': 'Addon'})
         assert addon.pk in self.get_results(response)
 
-        addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(addon)
         addon.reload()
-        addon.update(is_listed=False)
         self.refresh()
         response = self.client.get(self.url, {'q': 'Addon'})
         assert addon.pk not in self.get_results(response)

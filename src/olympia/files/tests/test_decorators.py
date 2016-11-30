@@ -44,8 +44,8 @@ class AllowedTest(TestCase):
         self.assertRaises(http.Http404, allowed, self.request, self.file)
 
     def get_unlisted_addon_file(self):
-        addon = amo.tests.addon_factory(is_listed=False)
-        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        addon = amo.tests.addon_factory(
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         return addon, addon.versions.get().files.get()
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: False)

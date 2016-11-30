@@ -4,6 +4,7 @@ import os
 import json
 from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.forms import ValidationError
 from django.test.utils import override_settings
@@ -15,7 +16,8 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon
+from olympia.amo.tests import addon_factory
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks
@@ -244,9 +246,8 @@ class TestUploadVersion(BaseUploadVersionCase):
 
     def test_version_is_beta_unlisted(self):
         addon = Addon.objects.get(guid=self.guid)
-        addon.update(status=amo.STATUS_NULL, is_listed=False)
-        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        addon.save()
+        self.make_addon_unlisted(addon)
+        assert addon.status == amo.STATUS_NULL
         version_string = '4.0-beta1'
         qs = Version.objects.filter(
             addon__guid=self.guid, version=version_string)
@@ -644,16 +645,16 @@ class TestSignedFile(SigningAPITestCase):
         return reverse('signing.file', args=[self.file_.pk])
 
     def create_file(self):
-        addon = Addon.objects.create(name='thing', is_listed=False)
-        addon.save()
-        AddonUser.objects.create(user=self.user, addon=addon)
-        version = Version.objects.create(addon=addon)
-        return File.objects.create(version=version)
+        addon = addon_factory(
+            name='thing', version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            users=[self.user])
+        return addon.latest_unlisted_version.all_files[0]
 
     def test_can_download_once_authenticated(self):
         response = self.get(self.url())
-        assert response.status_code == 302
-        assert response['X-Target-Digest'] == self.file_.hash
+        assert response.status_code == 200
+        assert response[settings.XSENDFILE_HEADER] == (
+            self.file_.file_path)
 
     def test_cannot_download_without_authentication(self):
         response = self.client.get(self.url())  # no auth
