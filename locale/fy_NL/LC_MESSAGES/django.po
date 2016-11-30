@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-30 08:25+0000\n"
+"PO-Revision-Date: 2016-11-30 09:00+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2407,7 +2407,7 @@ msgstr "Mear fan dizze brûker"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "See all collections by this user"
-msgstr ""
+msgstr "Alle kolleksjes fan dizze brûker besjen"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
