@@ -9,7 +9,7 @@ from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 
 from olympia import amo
-from olympia.amo.tests import TestCase, addon_factory, req_factory_factory
+from olympia.amo.tests import TestCase, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.addons import forms
@@ -49,72 +49,6 @@ class FormsTest(TestCase):
         self.non_existing_name = 'Does Not Exist'
         self.error_msg = 'This name is already in use. Please choose another.'
         self.request = req_factory_factory('/')
-
-    def test_update_addon_non_existing_name(self):
-        """An add-on edit can change the name to any non-existing name."""
-        addon = addon_factory(name='some name')
-        form = forms.AddonFormBasic(dict(name=self.non_existing_name),
-                                    request=self.request, instance=addon)
-        form.is_valid()
-        assert 'name' not in form.errors
-
-    def test_update_addon_existing_name(self):
-        """An add-on edit can't change the name to an existing add-on name."""
-        addon = addon_factory(name='some name')
-        form = forms.AddonFormBasic(dict(name=self.existing_name),
-                                    request=self.request, instance=addon)
-        assert not form.is_valid()
-        assert form.errors['name'][0] == self.error_msg
-
-    def test_update_addon_existing_name_used_by_unlisted(self):
-        """An add-on edit can change the name to an existing name used by an
-        unlisted add-on."""
-        self.make_addon_unlisted(Addon.objects.get(pk=3615))
-        addon = addon_factory(name='some name')
-        form = forms.AddonFormBasic(dict(name=self.existing_name),
-                                    request=self.request, instance=addon)
-        form.is_valid()
-        assert 'name' not in form.errors
-
-    def test_update_addon_existing_name_used_by_listed(self):
-        """An unlisted add-on edit can change the name to an existing name used
-        by an listed add-on."""
-        addon = addon_factory(
-            name='some name',
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
-        form = forms.AddonFormBasic(dict(name=self.existing_name),
-                                    request=self.request, instance=addon)
-        form.is_valid()
-        assert 'name' not in form.errors
-
-    def test_update_addon_existing_name_used_by_other_type(self):
-        """An add-on edit can change the name to an existing name used by
-        another add-on type."""
-        addon = addon_factory(name='some name', type=amo.ADDON_PERSONA)
-        form = forms.AddonFormBasic(dict(name=self.existing_name),
-                                    request=self.request, instance=addon)
-        form.is_valid()
-        assert 'name' not in form.errors
-
-    def test_old(self):
-        """
-        Exiting add-ons shouldn't be able to use someone else's name.
-        """
-        a = Addon.objects.create(type=1)
-        f = forms.AddonFormBasic(dict(name=self.existing_name),
-                                 request=self.request, instance=a)
-        assert not f.is_valid()
-        assert f.errors.get('name')[0] == self.error_msg
-
-    def test_old_same(self):
-        """
-        Exiting add-ons should be able to re-use their name.
-        """
-        delicious = Addon.objects.get()
-        f = forms.AddonFormBasic(dict(name=self.existing_name),
-                                 request=self.request, instance=delicious)
-        f.is_valid()
-        assert f.errors.get('name') is None
 
     def test_locales(self):
         form = forms.AddonFormDetails(request=self.request)
