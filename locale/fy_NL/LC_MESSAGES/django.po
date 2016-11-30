@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-30 12:19+0000\n"
+"PO-Revision-Date: 2016-11-30 12:27+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2751,20 +2751,22 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"As Mozilla wit hat fan add-ons, ynstekkers of oare software fan tredden dy't in serieuze bedriging foarmet foar de feilichheid, stabiliteit of prestaasjes fan %(app)s en oan <a "
+"href=\"%(criteria)s\">bepaalde kritearia</a> foldocht, kin de software foar algemien gebrûk blokkearre wurde. Lês foar mear ynformaasje <a href=\"%(support)s\">dit stipe-artikel</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr ""
+msgstr "Blokkearre op %(date)s. <a href=\"%(link)s\">Lês it blokkearringsfersyk</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
 msgid "Blocked on %(date)s."
-msgstr ""
+msgstr "Blokkearre op %(date)s."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr ""
+msgstr "Fan de folgjende software is bekend dat der earnstige feilichheids-, stabiliteits- of prestaasjeproblemen mei {app} barre kinne."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -2781,27 +2783,27 @@ msgstr "%s-tema’s"
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Oanrekommandearre add-ons :: %s"
 
 #. L10n: %s is an app name.
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "Hjir binne in pear fan ús favorite add-ons om jo by it oanpassen fan %s op wei te helpen."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Sykhelpmiddelen yn relaasje ta %s"
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Sykhelpmiddelen en sykrelatearre útwreidingen"
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools"
-msgstr ""
+msgstr "Sykhelpmiddelen"
 
 #: src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Most Users"
@@ -2822,46 +2824,46 @@ msgstr "Oanmakke"
 #. {0} is the category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: Oanrekommandearre add-ons"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/legacy_discovery/modules.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "Oanrekommandearre add-ons"
 
 #. {0} is a category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "Gjin oanrekommandearre add-ons yn {0}."
 
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "Hjir binne in pear fan ús favorite add-ons om jo mei it oanpassen fan %(app)s op wei te helpen."
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Dictionary"
-msgstr ""
+msgstr "Wurdboek ynstallearje"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Language Pack"
-msgstr ""
+msgstr "Taalpakket ynstallearje"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Dictionary"
-msgstr ""
+msgstr "Wurdboek downloade"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Language Pack"
-msgstr ""
+msgstr "Taalpakket downloade"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Available in your locale"
-msgstr ""
+msgstr "Beskikber yn jo taal"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "List mei taalpakketten en wurdboeken yn jo taal."
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language"
@@ -2886,7 +2888,7 @@ msgstr "List fan taalpakketten en wurdboeken."
 #. {0} is a category name, like "Music".
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Sykhelpmiddelen"
 
 #. {0} is an integer.
 #: src/olympia/browse/templates/browse/search_tools.html src/olympia/devhub/templates/devhub/addons/dashboard.html
