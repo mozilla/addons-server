@@ -11,6 +11,6 @@
     "clean-css": "3.4.20",
     "less": "2.7.1",
     "stylus": "0.54.5",
-    "uglify-js": "2.7.4"
+    "uglify-js": "2.7.5"
   }
 }
