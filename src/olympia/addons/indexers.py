@@ -150,6 +150,7 @@ class AddonIndexer(BaseSearchIndexer):
     def extract_version(cls, obj, version_obj):
         return {
             'id': version_obj.pk,
+            'channel': version_obj.channel,
             'compatible_apps': cls.extract_compatibility_info(version_obj),
             'files': [{
                 'id': file_.id,

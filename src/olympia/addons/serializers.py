@@ -300,7 +300,7 @@ class ESBaseAddonSerializer(BaseESSerializer):
             version = Version(
                 addon=obj, id=data['id'],
                 reviewed=self.handle_date(data['reviewed']),
-                version=data['version'])
+                version=data['version'], channel=data['channel'])
             version.all_files = [
                 File(
                     id=file_['id'], created=self.handle_date(file_['created']),
