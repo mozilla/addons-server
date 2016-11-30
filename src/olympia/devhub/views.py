@@ -1624,8 +1624,8 @@ def submit_version(request, addon_id, addon):
 def submit_file(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_upload(request, addon, version.channel,
-                          'devhub.submit.version.finish',
-                          'devhub.submit.version.finish',
+                          'devhub.submit.file.finish',
+                          'devhub.submit.file.finish',
                           version=version)
 
 
@@ -1694,7 +1694,7 @@ def submit_version_details(request, addon_id, addon, version_id):
     return _submit_details(request, addon, version)
 
 
-def _submit_finish(request, addon, version):
+def _submit_finish(request, addon, version, is_file=False):
     uploaded_version = version or addon.versions.latest()
 
     try:
@@ -1723,10 +1723,11 @@ def _submit_finish(request, addon, version):
         }
         tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
+    submit_page = 'file' if is_file else 'version' if version else 'addon'
     return render(request, 'devhub/addons/submit/done.html',
                   {'addon': addon,
                    'uploaded_version': uploaded_version,
-                   'submit_page': 'version' if version else 'addon'})
+                   'submit_page': submit_page})
 
 
 @dev_required(submitting=True)
@@ -1745,6 +1746,13 @@ def submit_addon_finish(request, addon_id, addon):
 def submit_version_finish(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_finish(request, addon, version)
+
+
+@dev_required
+@waffle_switch('step-version-upload')
+def submit_file_finish(request, addon_id, addon, version_id):
+    version = get_object_or_404(Version, id=version_id)
+    return _submit_finish(request, addon, version, is_file=True)
 
 
 @dev_required(submitting=True)
