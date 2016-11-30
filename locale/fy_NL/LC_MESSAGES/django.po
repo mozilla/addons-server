@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-29 12:57+0000\n"
+"PO-Revision-Date: 2016-11-30 08:21+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2307,25 +2307,25 @@ msgstr "Namme:"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "of <a id=\"collections-new-cancel\" href=\"#\">Annulearje</a>"
 
 #. Link to remove a collection vote
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "Om kolleksjes te wurdearjen moatte jo in add-ons-account hawwe."
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Add-ons-account oanmeitsje"
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "of <a href=\"%(login)s\">meld jo oan by jo account</a>"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: Kolleksjes"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "private"
@@ -2335,8 +2335,8 @@ msgstr "privee"
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(num)s</span> folger"
+msgstr[1] "<span>%(num)s</span> folgers"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "About this Collection"
