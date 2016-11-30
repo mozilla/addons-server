@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-30 13:01+0000\n"
+"PO-Revision-Date: 2016-11-30 13:03+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2986,27 +2986,27 @@ msgstr "Folsleine tema’s op namme"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Folsleine tema’s op wyklikse downloads"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Koartlyn bywurke folsleine tema’s"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Oankommende folsleine tema’s"
 
 #: src/olympia/browse/templates/browse/impala/category_landing.html
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Besjoch %(cnt)s útwreiding yn %(name)s &raquo;"
+msgstr[1] "Besjoch alle %(cnt)s útwreidingen yn %(name)s &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
 #: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
 msgid "No results found."
-msgstr ""
+msgstr "Gjin resultaten fûn."
 
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
 msgid "{0} Themes"
@@ -3023,11 +3023,11 @@ msgstr "Profyl besjen"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Meitsje jo eigen tema"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Jo browser, jo styl! Fersier it mei jo eigen ûntwerp!"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Learn more"
