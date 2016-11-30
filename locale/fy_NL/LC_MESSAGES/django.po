@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-30 08:21+0000\n"
+"PO-Revision-Date: 2016-11-30 08:25+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2340,23 +2340,23 @@ msgstr[1] "<span>%(num)s</span> folgers"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "About this Collection"
-msgstr ""
+msgstr "Oer dizze kolleksje"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Add-ons syngronisearre mei myn mobile Firefox"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Dizze kolleksje privee meitsje"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Dizze kolleksje iepenbier meitsje"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Learn about collections"
-msgstr ""
+msgstr "Mear oer kolleksjes"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More Options:"
@@ -2364,25 +2364,25 @@ msgstr "Mear opsjes:"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Edit Collection"
-msgstr ""
+msgstr "Kolleksje bewurkje"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/includes/delete.html
 msgid "Delete Collection"
-msgstr ""
+msgstr "Kolleksje fuortsmite"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s tema yn dizze kolleksje"
+msgstr[1] "%(num)s tema’s yn dizze kolleksje"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s add-on in dizze kolleksje"
+msgstr[1] "%(num)s add-ons yn dizze kolleksje"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
@@ -2391,19 +2391,19 @@ msgstr "Start"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "What are Collections?"
-msgstr ""
+msgstr "Wat binne kolleksjes?"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Explore Collections"
-msgstr ""
+msgstr "Kolleksjes ferkenne"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Common Tags"
-msgstr ""
+msgstr "Faaksbrûkte labels"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More by this User"
-msgstr ""
+msgstr "Mear fan dizze brûker"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "See all collections by this user"
