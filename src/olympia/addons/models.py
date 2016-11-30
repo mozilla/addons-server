@@ -128,31 +128,15 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
-class AddonManager(ManagerBase):
-
-    def __init__(self, include_deleted=False, include_unlisted=False):
-        # DO NOT change the default value of include_deleted and
-        # include_unlisted unless you've read through the comment just above
-        # the Addon managers declaration/instantiation and understand the
-        # consequences.
-        ManagerBase.__init__(self)
-        self.include_deleted = include_deleted
-        self.include_unlisted = include_unlisted
-
-    def get_queryset(self):
-        qs = super(AddonManager, self).get_queryset()
-        if not self.include_deleted:
-            qs = qs.exclude(status=amo.STATUS_DELETED)
-        if not self.include_unlisted:
-            qs = qs.exclude(is_listed=False)
-        return qs.transform(Addon.transformer)
-
+class AddonQuerySet(caching.CachingQuerySet):
     def id_or_slug(self, val):
+        """Get add-ons by id or slug."""
         if isinstance(val, basestring) and not val.isdigit():
             return self.filter(slug=val)
         return self.filter(id=val)
 
     def enabled(self):
+        """Get add-ons that haven't been disabled by their developer(s)."""
         return self.filter(disabled_by_user=False)
 
     def public(self):
@@ -191,8 +175,8 @@ class AddonManager(ManagerBase):
 
     def listed(self, app, *status):
         """
-        Listed add-ons have a version with a file matching ``status`` and are
-        not disabled.  Personas and self-hosted add-ons will be returned too.
+        Return add-ons that support a given ``app``, have a version with a file
+        matching ``status`` and are not disabled.
         """
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
@@ -217,6 +201,71 @@ class AddonManager(ManagerBase):
 
         return q(q(_current_version__isnull=False),
                  disabled_by_user=False, status__in=status)
+
+
+class AddonManager(ManagerBase):
+
+    def __init__(self, include_deleted=False, include_unlisted=False):
+        # DO NOT change the default value of include_deleted and
+        # include_unlisted unless you've read through the comment just above
+        # the Addon managers declaration/instantiation and understand the
+        # consequences.
+        ManagerBase.__init__(self)
+        self.include_deleted = include_deleted
+        self.include_unlisted = include_unlisted
+
+    def get_queryset(self):
+        qs = super(AddonManager, self).get_queryset()
+        qs = qs._clone(klass=AddonQuerySet)
+        if not self.include_deleted:
+            qs = qs.exclude(status=amo.STATUS_DELETED)
+        if not self.include_unlisted:
+            qs = qs.exclude(is_listed=False)
+        return qs.transform(Addon.transformer)
+
+    def id_or_slug(self, val):
+        """Get add-ons by id or slug."""
+        return self.get_queryset().id_or_slug(val)
+
+    def enabled(self):
+        """Get add-ons that haven't been disabled by their developer(s)."""
+        return self.get_queryset().enabled()
+
+    def public(self):
+        """Get public add-ons only"""
+        return self.get_queryset().public()
+
+    def reviewed(self):
+        """Get add-ons with a reviewed status"""
+        return self.get_queryset().reviewed()
+
+    def unreviewed(self):
+        """Get only unreviewed add-ons"""
+        return self.get_queryset().unreviewed()
+
+    def valid(self):
+        """Get valid, enabled add-ons only"""
+        return self.get_queryset().valid()
+
+    def valid_and_disabled_and_pending(self):
+        """
+        Get valid, pending, enabled and disabled add-ons.
+        Used to allow pending theme pages to still be viewed.
+        """
+        return self.get_queryset().valid_and_disabled_and_pending()
+
+    def featured(self, app, lang=None, type=None):
+        """
+        Filter for all featured add-ons for an application in all locales.
+        """
+        return self.get_queryset().featured(app, lang=lang, type=type)
+
+    def listed(self, app, *status):
+        """
+        Return add-ons that support a given ``app``, have a version with a file
+        matching ``status`` and are not disabled.
+        """
+        return self.get_queryset().listed(app, *status)
 
 
 class Addon(OnChangeMixin, ModelBase):
