@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-30 12:27+0000\n"
+"PO-Revision-Date: 2016-11-30 13:01+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2899,36 +2899,36 @@ msgstr[1] "<b>{0}</b> add-ons"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Extensions"
-msgstr ""
+msgstr "Sykútwreidingen"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Foeget sykrelatearre funksjonaliteit ta oan Firefox"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Providers"
-msgstr ""
+msgstr "Sykproviders"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Fyn nije providers foar jo sykbalke"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Additional Resources"
-msgstr ""
+msgstr "Oanfoljende helpboarnen"
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr ""
+msgstr "Mear oer de <a href=\"http://support.mozilla.com/kb/Search+bar\">sykbalke</a> yn {0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Blêdzje troch noch mear sykproviders op <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Meitsje jo eigen</a> sykhelpmiddel"
 
 #: src/olympia/browse/templates/browse/themes.html src/olympia/constants/base.py
 msgid "Complete Themes"
@@ -2948,41 +2948,41 @@ msgstr "Nije útwredingen"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Utwreidingen op namme"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Utwreidingen op wyklikse downloads"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Koartlyn bywurke útwreidingen"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Oankommende útwreidingen"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Oanrekommandearre folsleine tema’s"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Populêrste folsleine tema’s"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Best wurdearre folsleine tema’s"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Nijste folsleine tema’s"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Folsleine tema’s op namme"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Weekly Downloads"
