@@ -5,7 +5,7 @@ import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import ESTestCase, TestCase
+from olympia.amo.tests import ESTestCase, TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import Addon, AppSupport
 from olympia.addons.utils import generate_addon_guid
@@ -151,14 +151,14 @@ class TestReporter(TestCase):
                 lambda r, a: True)
     def test_unlisted_addon_redirect_for_authorized(self):
         """Can display the reports for an unlisted addon if authorized."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self.test_redirect()
 
     @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
                 lambda r, a: False)
     def test_unlisted_addon_no_redirect_for_unauthorized(self):
         """If the user isn't authorized, don't redirect to unlisted addon."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         CompatReport.objects.create(guid=self.addon.guid,
                                     app_guid=amo.FIREFOX.guid)
 
@@ -171,9 +171,18 @@ class TestReporter(TestCase):
         assert self.client.get(
             self.url.format(self.addon.guid[:5])).status_code == 200
 
+    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
+                lambda r, a: False)
+    def test_mixed_listed_unlisted_redirect_for_unauthorized(self):
+        """If the user isn't authorized, and the add-on has both unlisted and
+        listed versions, redirect to show the listed versions."""
+        self.make_addon_unlisted(self.addon)
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        self.test_redirect()
+
     def test_unlisted_addons_listed_in_left_sidebar(self):
         """Display unlisted addons in the 'reports for your add-ons' list."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self.client.login(email='del@icio.us')
         response = self.client.get(reverse('compat.reporter'))
         assert self.addon in response.context['addons']
@@ -188,7 +197,7 @@ class TestReporterDetail(TestCase):
         self.url = reverse('compat.reporter_detail', args=[self.addon.guid])
         self.reports = []
 
-    def _generate(self):
+    def _generate(self, version=None):
         apps = [
             (amo.FIREFOX.guid, FIREFOX_COMPAT[0]['main'], True, False, False),
             (amo.FIREFOX.guid, FIREFOX_COMPAT[0]['main'], True, False, False),
@@ -196,10 +205,13 @@ class TestReporterDetail(TestCase):
             (amo.FIREFOX.guid, FIREFOX_COMPAT[2]['main'], False, False, False),
             (amo.FIREFOX.guid, FIREFOX_COMPAT[3]['main'], False, False, False),
         ]
+        if version is None:
+            version = self.addon.find_latest_version(channel=None)
         for (app_guid, app_version, works_properly, multiprocess_compatible,
              app_multiprocess_enabled) in apps:
             report = CompatReport.objects.create(
                 guid=self.addon.guid,
+                version=version,
                 app_guid=app_guid,
                 app_version=app_version,
                 works_properly=works_properly,
@@ -283,7 +295,7 @@ class TestReporterDetail(TestCase):
                 lambda r, a: True)
     def test_unlisted_addon_details_for_authorized(self):
         """If the user is authorized, display the reports."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self._generate()
         self.check_table(
             good=3, bad=2, appver='',
@@ -293,11 +305,30 @@ class TestReporterDetail(TestCase):
                 lambda r, a: False)
     def test_unlisted_addon_no_details_for_unauthorized(self):
         """If the user isn't authorized, don't display the reports."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self._generate()
         self.check_table(
-            good=0, bad=0, appver='',
+            good=0, bad=0, appver=None,
             report_pks=[])
+
+    @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
+                lambda r, a: False)
+    def test_mixed_listed_unlisted_details_for_unauthorized(self):
+        """If the user isn't authorized, and the add-on has both unlisted and
+        listed versions, display the listed versions."""
+        self.make_addon_unlisted(self.addon)
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        # Generate compat reports for the listed version.
+        self._generate(version=self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED))
+        reports_listed_only = list(self.reports)
+        # And generate some for the unlisted version we shouldn't see.
+        self._generate(version=self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED))
+
+        self.check_table(
+            good=3, bad=2, appver='',
+            report_pks=[idx for idx, val in enumerate(reports_listed_only)])
 
     def test_e10s_field_appears(self):
         self._generate()

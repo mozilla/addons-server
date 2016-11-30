@@ -62,7 +62,8 @@ def reporter(request):
         if qs:
             guid = qs[0].guid
             addon = Addon.with_unlisted.get(guid=guid)
-            if addon.is_listed or owner_or_unlisted_reviewer(request, addon):
+            if (addon.has_listed_versions() or
+                    owner_or_unlisted_reviewer(request, addon)):
                 return redirect('compat.reporter_detail', guid)
     addons = (Addon.with_unlisted.filter(authors=request.user)
               if request.user.is_authenticated() else [])
@@ -78,12 +79,17 @@ def reporter_detail(request, guid):
         addon = None
     name = addon.name if addon else guid
     qs = CompatReport.objects.filter(guid=guid)
+    show_listed_only = addon and not owner_or_unlisted_reviewer(request, addon)
 
-    if (addon and not addon.is_listed and
-            not owner_or_unlisted_reviewer(request, addon)):
+    if (addon and not addon.has_listed_versions() and show_listed_only):
         # Not authorized? Let's pretend this addon simply doesn't exist.
         name = guid
         qs = CompatReport.objects.none()
+    elif show_listed_only:
+        unlisted_versions = addon.versions.filter(
+            channel=amo.RELEASE_CHANNEL_UNLISTED).values_list(
+            'version', flat=True)
+        qs = qs.exclude(version__in=unlisted_versions)
 
     form = AppVerForm(request.GET)
     if request.GET and form.is_valid() and form.cleaned_data['appver']:
