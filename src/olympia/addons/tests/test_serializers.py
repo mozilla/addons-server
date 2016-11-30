@@ -136,6 +136,10 @@ class AddonSerializerOutputTestMixin(object):
         assert result['current_version']
         self._test_version(
             self.addon.current_version, result['current_version'])
+        assert result['current_version']['url'] == absolutify(
+            reverse('addons.versions',
+                    args=[self.addon.slug, self.addon.current_version.version])
+        )
 
         assert result['authors']
         assert len(result['authors']) == 2
@@ -231,6 +235,7 @@ class AddonSerializerOutputTestMixin(object):
         self._test_version(
             self.addon.latest_unlisted_version,
             result['latest_unlisted_version'])
+        assert result['latest_unlisted_version']['url'] == absolutify('')
 
     def test_current_beta_version(self):
         self.addon = addon_factory()
@@ -242,6 +247,10 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
         assert result['current_beta_version']
         self._test_version(self.beta_version, result['current_beta_version'], )
+        assert result['current_beta_version']['url'] == absolutify(
+            reverse('addons.versions',
+                    args=[self.addon.slug, self.beta_version.version])
+        )
 
         # Just in case, test that current version is still present & different.
         assert result['current_version']
