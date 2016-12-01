@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 09:26+0000\n"
+"PO-Revision-Date: 2016-12-01 09:37+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5548,33 +5548,28 @@ msgstr ""
 "wuznawaće, maće hižo trěbne znajomosće, zo byšće wulkotny přidatk wutworił."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Dalše informacije wo přidatkach"
+msgstr "Dalše informacije wo wuwiwanju přidatka"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Přepruwowanje"
+msgstr "Přepruwowar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Prošu wudospołńće swój přidatk."
+msgstr "Awtomatiske kodowe testy za waš přidatk."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Kontrola kompatibelnosće přidatkow"
+msgstr "Kontrola kompatibelnosće"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "Hladjaće, hač waš přidatk je snano přez změny w Firfox potrjecheny."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Rozprawy kompatibelnosće"
+msgstr "Rozprawjer kompatibelnosće"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5614,9 +5609,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Dóstawajće dary na swojim konće PayPal abo sćelće je na organizaciju po swojej wólbje"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Dary su jenož za nalistowane přidatki k dispoziciji."
+msgstr "Dary su jenož za přidatki z nalistowanymi wersijemi k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -6082,19 +6076,16 @@ msgid "Reply"
 msgstr "Wotmołwić"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Widźomnosć přidatka"
+msgstr "Widźomnosć lisćinoweho přidatka"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Widźomnosć:"
+msgstr "Widźomny:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "Widźomny za wšěch w {0} a w pytanskich wuslědkach a lisćinowych stronach"
+msgstr "Widźomny za wšěch w {0} a w pytanskich wuslědkach a na lisćinowych stronach."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
@@ -6113,9 +6104,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Na {0} njerozdźěleny. Wuwiwarjo nahraja nowe wersije za signowanje a rozdźěleja přidatki sami."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Druhe wersije pokazać"
+msgstr "Nalistowane wersije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6138,12 +6128,10 @@ msgid "Older versions"
 msgstr "Starše wersije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "Čehodla njemóžu na <i>Nalistowany</i> abo <i>Schowany</i> přešaltować?"
+msgstr "Čehodla njemóžu na <i>Nalistowany</i> přešaltować?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
@@ -6152,9 +6140,8 @@ msgstr ""
 "dokumentaciji</a> nadrobnje wopisuje."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Starše wersije"
+msgstr "Wšě wersije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6275,9 +6262,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Dyrbiće stajnje přez zapołožki kuleć? Mějće město toho z jeničkej gestu přistup na swoje lisćiny."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujće wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Polěpšće YouTube {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
@@ -11385,6 +11371,5 @@ msgid "Addon"
 msgstr "Přidatk"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Přepruwowanske wuslědki"
+msgstr "Přepruwowanski wuslědk"
