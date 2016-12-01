@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 08:19+0000\n"
+"PO-Revision-Date: 2016-12-01 09:56+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1755,9 +1755,8 @@ msgid "Reviewer Reply"
 msgstr "Értékelői válasz"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Hozzászólás ehhez: {addon} {version}."
+msgstr "A jóváhagyási megjegyzések megváltoztak ennél: {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
@@ -5029,9 +5028,8 @@ msgstr[0] "<strong>{0}</strong> aktív felhasználó"
 msgstr[1] "<strong>{0}</strong> aktív felhasználó"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Új téma beküldése"
+msgstr "Új fájl beküldése"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5152,9 +5150,8 @@ msgid "Manage Listing"
 msgstr "Listázás kezelése"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "Ezt a verziót is szerkesztheti, amit most beküldött: adhat hozzá verziómegjegyzéseket vagy forráskódot is, ha a beküldése tartalmaz minimalizált, obfuszkált vagy lefordított kódot."
+msgstr "Ezt a verziót is szerkesztheti: adhat hozzá verziómegjegyzéseket vagy forráskódot is, ha a beküldése tartalmaz minimalizált, obfuszkált vagy lefordított kódot."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5175,9 +5172,8 @@ msgid "Download {0}"
 msgstr "Letöltés: {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "A beküldéséhez csak néhány elérhető platformot választott ki. Több fájl is feltölthet, amelyek más platformokat céloznak:"
+msgstr "A beküldéshez csak néhány elérhető platformot választott ki. Több fájl is feltölthet, amelyek más platformokat céloznak:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
@@ -5196,9 +5192,8 @@ msgid "Upload Add-on"
 msgstr "Kiegészítő feltöltése"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Hol terjeszti a verziót"
+msgstr "Hol terjeszti a fájlt"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5225,9 +5220,8 @@ msgid "Administrative overrides"
 msgstr "Adminisztrációs felülbírálások"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Verzió beküldése jóváhagyásra"
+msgstr "Fájl beküldése jóváhagyásra"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5314,18 +5308,16 @@ msgid "%%b %%e, %%Y"
 msgstr "%%Y. %%b. %%e."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Több folyamatos állapot:"
+msgstr "Kiegészítő több folyamatos állapota:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "A kiegészítő kompatibilitás a több folyamatos Firefoxszal (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Legújabb verzió:"
+msgstr "Listázott verzió:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
