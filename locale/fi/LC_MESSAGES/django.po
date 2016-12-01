@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 23:14+0000\n"
+"PO-Revision-Date: 2016-12-01 23:24+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -2714,7 +2714,7 @@ msgstr "%sin lisäosat"
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s teemat"
 
 #: src/olympia/browse/feeds.py
 #, python-format
@@ -3454,7 +3454,7 @@ msgstr "Syötteet, uutiset ja blogit"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Pelit ja viihde"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support"
@@ -3575,7 +3575,7 @@ msgstr "Video"
 
 #: src/olympia/constants/categories.py
 msgid "Abstract"
-msgstr ""
+msgstr "Abstraktit"
 
 #: src/olympia/constants/categories.py
 msgid "Causes"
@@ -3583,7 +3583,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Fashion"
-msgstr ""
+msgstr "Muoti"
 
 #: src/olympia/constants/categories.py
 msgid "Film and TV"
@@ -3599,7 +3599,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Scenery"
-msgstr ""
+msgstr "Maisema"
 
 # 87%
 # 100%
