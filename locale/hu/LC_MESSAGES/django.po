@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 09:56+0000\n"
+"PO-Revision-Date: 2016-12-01 10:55+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5320,14 +5320,12 @@ msgid "Listed Version:"
 msgstr "Listázott verzió:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "A kiegészítő ezen verziója fog telepítésre kerülni, ha valaki rákattint a telepítési gombra az addons.mozilla.org oldalon. Ez csak a listázott kiegészítők esetén lényeges."
+msgstr "A kiegészítő ezen verziója fog telepítésre kerülni, ha valaki rákattint a telepítési gombra az addons.mozilla.org oldalon."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Következő verzió:"
+msgstr "Következő listázott verzió:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5338,14 +5336,12 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "A sorok nem feltétlen szigorú sorrendben értékeltek"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
 msgstr "Legújabb verzió:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr "Ez a legújabb feltöltött változat, azonban még nem él az oldalon."
+msgstr "Ez a legújabb feltöltött, nem listázott változat."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5485,9 +5481,8 @@ msgid "{0} Add-ons"
 msgstr "{0} kiegészítők"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Legújabb verzió:"
+msgstr "Legfrissebb hírek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 #, fuzzy
@@ -5496,9 +5491,8 @@ msgstr "további információ szükséges"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Kiegészítőfejlesztő"
+msgstr "Kiegészítőfejlesztő központ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5510,14 +5504,12 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Kiegészítő aláírása"
+msgstr "Bejelentkezés"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Egyszerűen használható Firefox témák"
+msgstr "A Firefox testreszabása"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy
