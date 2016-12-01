@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-14 07:03+0000\n"
+"POT-Creation-Date: 2016-12-01 06:45+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -79,10 +79,6 @@ msgstr "Eksperimental"
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
 msgstr "Tambahkan ke {0}"
-
-#: src/olympia/addons/forms.py
-msgid "This name is already in use. Please choose another."
-msgstr "Nama ini telah dipakai. Pilihlah yang lain."
 
 #: src/olympia/addons/forms.py
 msgid "This slug is already in use. Please choose another."
@@ -168,8 +164,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr "Pengguna akan selalu ditanya dalam Manajer Pengaya (Firefox 4 dan seterusnya). Hanya berlaku untuk desktop."
 
 # Column name in a table.
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/addons/models.py src/olympia/constants/base.py
 msgid "Listed"
 msgstr "Terdaftar"
 
@@ -386,14 +381,14 @@ msgstr "Bekerja pada"
 msgid "Visibility"
 msgstr "Visibilitas"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Hidden"
-msgstr "Tersembunyi"
+#: src/olympia/addons/templates/addons/details_box.html
+#, fuzzy
+msgid "Visible"
+msgstr "Visibilitas"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Unlisted"
-msgstr "Tidak terdaftar"
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Invisible"
+msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -1177,6 +1172,7 @@ msgid "Add to collection"
 msgstr "Tambahkan ke koleksi"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "My Add-ons"
 msgstr "Pengayaku"
 
@@ -1351,7 +1347,7 @@ msgstr "Cobalah!"
 msgid "Theme Info &raquo;"
 msgstr "Info Tema &raquo;"
 
-#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tools"
 msgstr "Perangkat"
 
@@ -1472,30 +1468,10 @@ msgstr "{addon} dinonaktifkan."
 msgid "{addon} enabled."
 msgstr "{addon} diaktifkan."
 
-#: src/olympia/amo/log.py
-msgid "Stats set public for {addon}."
-msgstr "Hitungan ditetapkan untuk umum {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} stats set to private."
-msgstr "{addon} penghitungan diatur untuk pribadi."
-
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{addon} status changed to {0}."
 msgstr "{addon} status diubah menjadi {0}."
-
-#: src/olympia/amo/log.py
-msgid "Preview added to {addon}."
-msgstr "Pratinjau ditambahkan ke {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Preview edited for {addon}."
-msgstr "Pratinjau diedit untuk {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Preview deleted from {addon}."
-msgstr "Pratinjau dihapus dari {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
@@ -1675,14 +1651,6 @@ msgid "Password changed."
 msgstr "Kata sandi diganti."
 
 #: src/olympia/amo/log.py
-msgid "{addon} failed checks with PayPal."
-msgstr "{addon} gagal memeriksa dengan PayPal."
-
-#: src/olympia/amo/log.py
-msgid "{addon} manifest updated."
-msgstr "{addon} manifesto diperbarui."
-
-#: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} disetuji namun menunggu dipublikasikan."
 
@@ -1691,68 +1659,8 @@ msgid "Approved but waiting"
 msgstr "Disetujui tapi menunggu"
 
 #: src/olympia/amo/log.py
-msgid "{addon} purchased."
-msgstr "{addon} dibeli."
-
-#: src/olympia/amo/log.py
-msgid "{addon} installed."
-msgstr "{addon} dipasang."
-
-#: src/olympia/amo/log.py
 msgid "Account updated."
 msgstr "Akun diperbarui."
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared for {addon}."
-msgstr "Eskalasi dibereskan untuk {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared"
-msgstr "Eskalasi dibereskan"
-
-#: src/olympia/amo/log.py
-msgid "App disabled"
-msgstr "Aplikasi dinonaktifkan"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated because of high number of abuse reports."
-msgstr "{addon} dieskalasi karena tingginya jumlah laporan penyalahgunaan."
-
-#: src/olympia/amo/log.py
-msgid "High Abuse Reports"
-msgstr "Laporan Penyalahgunaan Tinggi"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated by reviewer."
-msgstr "{addon} dieskalasi oleh pengulas."
-
-#: src/olympia/amo/log.py
-msgid "Reviewer escalation"
-msgstr "Eskalasi pengulas"
-
-#: src/olympia/amo/log.py
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr "Video dihilangkan dari {addon} karena ada masalah dengan video. "
-
-#: src/olympia/amo/log.py
-msgid "Video removed"
-msgstr "Video dihapus"
-
-#: src/olympia/amo/log.py
-msgid "{addon} re-review because of new device(s) added."
-msgstr "{addon} diulas ulang karena gawai baru ditambahkan."
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Added"
-msgstr "Gawai Ditambahkan"
-
-#: src/olympia/amo/log.py
-msgid "{addon} device support manually changed by reviewer."
-msgstr "{addon} gawai mendukung perubahan manual oleh pengulas."
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Changed by Reviewer"
-msgstr "Gawai Diubah oleh Pengulas"
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
@@ -1799,40 +1707,6 @@ msgid "User {0.name} removed from {group}."
 msgstr "Pengguna {0.name} dihilangkan dari {group}."
 
 #: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "{addon} persyaratan minimal diubah secara manual oleh pengulas."
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed by Reviewer"
-msgstr "Persyaratan Diubah oleh Pengulas"
-
-#: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed."
-msgstr "{addon} persyaratan minimal diubah secara manual."
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed"
-msgstr "Persyaratan Diubah"
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{version} status changed to {0}."
-msgstr "{version} status diubah menjadi {0}."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr "Pengguna {0.name} {0.id} dihapus lewat perangkat pencari."
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed to Adult."
-msgstr "{addon} peringkat konten diubah menjadi Dewasa."
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed."
-msgstr "{addon} peringkat konten diubah."
-
-#: src/olympia/amo/log.py
 msgid "{addon} unlisted."
 msgstr "{addon} tidak terdaftar."
 
@@ -1868,6 +1742,25 @@ msgstr "Komentar untuk {addon} {version}."
 #, fuzzy
 msgid "Reviewer Reply"
 msgstr "Berita Pengembang"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "Komentar untuk {addon} {version}."
+
+#: src/olympia/amo/log.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "Komentar untuk {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "Kode sumber"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -3224,6 +3117,10 @@ msgstr "Ditandai untuk ulasan lebih lanjut"
 msgid "Beta"
 msgstr "Beta"
 
+#: src/olympia/constants/base.py
+msgid "Unlisted"
+msgstr "Tidak terdaftar"
+
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
 msgstr "Pengembang"
@@ -3233,7 +3130,7 @@ msgstr "Pengembang"
 msgid "Viewer"
 msgstr "Pemirsa"
 
-#: src/olympia/constants/base.py src/olympia/templates/mobile/header.html
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "Dukungan"
 
@@ -3992,6 +3889,14 @@ msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional n
 msgstr "File dengan versi yang diakhiri dengan a|alpha|b|beta|pre|rc dan nomor opsional dideteksi sebagai beta."
 
 #: src/olympia/devhub/forms.py
+msgid "You cannot upload any more files for this version."
+msgstr "Anda tidak bisa mengunggah lebih banyak file untuk versi ini."
+
+#: src/olympia/devhub/forms.py
+msgid "Version doesn't match"
+msgstr "Versi tidak cocok"
+
+#: src/olympia/devhub/forms.py
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
 msgstr "Versi %s sudah ada, atau sudah diunggah sebelumnya."
@@ -4003,14 +3908,6 @@ msgstr "Ambil pilihan yang valid. Pilihan itu bukanlah salah satu dari pilihan y
 #: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "File dengan versi yang diakhiri dengan a|alpha|b|beta|pre|rc dan nomor opsional dideteksi sebagai beta."
-
-#: src/olympia/devhub/forms.py
-msgid "You cannot upload any more files for this version."
-msgstr "Anda tidak bisa mengunggah lebih banyak file untuk versi ini."
-
-#: src/olympia/devhub/forms.py
-msgid "Version doesn't match"
-msgstr "Versi tidak cocok"
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
@@ -4345,10 +4242,6 @@ msgstr "Mulailah Membuat Pengaya"
 msgid "Status:"
 msgstr "Status:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Visibility:"
-msgstr "Visibilitas:"
-
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "Versi Terbaru:"
@@ -4396,7 +4289,7 @@ msgstr "Pusat Pengembang <small>Pengaya</small>"
 msgid "more add-ons..."
 msgstr "більше додатків..."
 
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Documentation"
 msgstr "Документація"
 
@@ -4504,6 +4397,7 @@ msgid "Activity"
 msgstr "Aktivitas"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Subscribe to this feed"
 msgstr "Berlangganan umpan ini"
 
@@ -5032,9 +4926,11 @@ msgstr "Hapus Pengaya"
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "Menghapus tema anda akan menghapusnya sama sekali dari situs."
 
-#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-msgid "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted again by others."
-msgstr "Menghapus pengaya anda akan secara permanen menghapusnya dari situs dan mencegah GUID tersebut diserahkan kembali oleh orang lain."
+#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
+msgid ""
+"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
+"able to submit versions using the same ID."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5147,6 +5043,11 @@ msgstr "<b>Posisi antrean:</b> %(pos)s dari %(total)s"
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> pengguna aktif"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html
+#, fuzzy
+msgid "Submit a New File"
+msgstr "Memasukkan Tema Baru"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 #, fuzzy
@@ -5288,7 +5189,7 @@ msgid "Manage Listing"
 msgstr "Tampilkan pada Daftar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
+msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5311,10 +5212,10 @@ msgid "Download {0}"
 msgstr "Unduh {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
 msgid "Upload File"
 msgstr "Unggah Berkas Lainnya"
@@ -5336,6 +5237,11 @@ msgstr "Unggah pengaya anda"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
+msgid "Where to Host File"
+msgstr "Versi Target"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
 msgid "Where to Host Version"
 msgstr "Versi Target"
 
@@ -5354,8 +5260,17 @@ msgid "Which platforms is this file compatible with?"
 msgstr "Platform manakah yang kompatibel dengan berkas ini?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+msgid "Only publish this version to my beta channel."
+msgstr "Hanya publikasikan versi ini ke saluran beta saya."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
 msgstr "Mengesampingkan secara administratif"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Submit File for Review"
+msgstr "Kirimkan pengaya saya untuk diulas manual."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5413,16 +5328,6 @@ msgid "Generate new credentials"
 msgstr "Menghasilkan keterangan pengenal baru"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You have disabled this add-on"
-msgstr "Anda telah melumpuhkan pengaya ini"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr ""
-"Daftar pengaya anda sedang dimatikan dan tidak bisa dilihat\n"
-"                             di manapun di galeri kami atau layanan pembaruan."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
 msgstr "Silahkan lengkapi pengaya Anda."
 
@@ -5431,22 +5336,10 @@ msgid "You will receive an email when the review is complete. Until then, your a
 msgstr "Anda akan menerima surel saat ulasan telah lengkap. Hingga saat itu, pengaya anda tidak terdaftar dalam galeri kami namun bisa diakses langsung dari laman rinciannya. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-"Anda akan menerima surel saat ulasan telah\n"
-"                             lengkap dan pengaya anda ditandatangani."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr ""
 "Pengaya ditampilkan di galeri kami dan pengguna bisa\n"
 "                             menerima pembaruan otomatis."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed and can be bundled with an application installer."
-msgstr ""
-"Pengaya anda telah ditandatangani dan bisa dibundel dengan sebuah\n"
-"                             instalator aplikasi."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
@@ -5456,24 +5349,8 @@ msgstr ""
 "                             silakan menghubungi amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Current Version:"
-msgstr "Versi Terkini:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
+msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
-"Ini adalah versi pengaya anda yang akan\n"
-"                                           dipasang jika seseorang mengklik tombol\n"
-"                                           Pasang di addons.mozilla.org. Hanya relevan\n"
-"                                           untuk pengaya yang terdaftar."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Multi Process Status:"
-msgstr "Status Multi Proses:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "Kompatibilitas pengaya Anda dengan Multi Proses Firefox (e 10 s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -5486,7 +5363,31 @@ msgid "%%b %%e, %%Y"
 msgstr "%%b %%e, %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Next Version:"
+#, fuzzy
+msgid "Add-on Multi Process Status:"
+msgstr "Status Multi Proses:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgstr "Kompatibilitas pengaya Anda dengan Multi Proses Firefox (e 10 s)."
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Listed Version:"
+msgstr "Versi Terbaru:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgstr ""
+"Ini adalah versi pengaya anda yang akan\n"
+"                                           dipasang jika seseorang mengklik tombol\n"
+"                                           Pasang di addons.mozilla.org. Hanya relevan\n"
+"                                           untuk pengaya yang terdaftar."
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Next Listed Version:"
 msgstr "Versi Berikutnya:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -5495,9 +5396,21 @@ msgstr ""
 "Ini adalah versi terbaru yang sudah diunggah, namun\n"
 "                                          ini belum ditampilkan di situs."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Queues are not reviewed strictly in order"
 msgstr "Antrean tidak ditinjau secara ketat dalam urutan"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Lastest Version:"
+msgstr "Versi Terbaru:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the newest uploaded unlisted version."
+msgstr ""
+"Ini adalah versi terbaru yang sudah diunggah, namun\n"
+"                                          ini belum ditampilkan di situs."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5628,6 +5541,91 @@ msgstr "Berkas ini akan dihapus saat menyimpan."
 msgid "Undo"
 msgstr "Urung"
 
+#. {0} is an application, like Firefox.
+#: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
+#: src/olympia/templates/mobile/base_addons.html
+msgid "{0} Add-ons"
+msgstr "Pengaya {0}"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Latest News"
+msgstr "Versi Terbaru:"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Read more in our Blog"
+msgstr "perlu lebih banyak informasi"
+
+# The title for a user if they are a developer
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Add-on Developer Hub"
+msgstr "Pengembang Pengaya"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+msgid "Docs"
+msgstr ""
+
+# Link text to the AMO blog.
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
+msgid "Blog"
+msgstr "Blog"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Sign In"
+msgstr "Memasukkan Pengaya"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Customize Your Firefox"
+msgstr "Tema yang mudah digunakan untuk Firefox"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid ""
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
+"necessary skills to make a great add-on."
+msgstr ""
+"Pengaya memungkinkan jutaan pengguna Firefox meningkatkan dan menyesuaikan pengalaman penjelajahan mereka. Jika anda seorang pengembang Web dan tahu <a href=\"https://developer.mozilla.org/docs/Web/"
+"HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, dan <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, anda sudah memiliki semua "
+"keterampilan yang diperlukan untuk membuat pengaya yang hebat."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Learn How to make an Add-on"
+msgstr "Pelajari Lebih Lanjut Tentang Pengaya"
+
+# Header for a column in a table
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Validator"
+msgstr "Validasi"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Automated code tests for your add-on."
+msgstr "Silahkan lengkapi pengaya Anda."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Checker"
+msgstr "Pengecek Kompatibilitas Pengaya"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "See if your add-on is likely to be affected by changes in Firefox."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Reporter"
+msgstr "Laporan Kompatibilitas"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "Tell us if an add-on works in a particular version of Firefox."
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
 msgstr "Anda sedang meminta <b>kontribusi</b> dari pengguna"
@@ -5662,7 +5660,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Menerima kontribusi melalui akun PayPal anda atau mengirimkannya ke lembaga pilihan anda"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for listed add-ons."
+#, fuzzy
+msgid "Contributions are only available for add-ons with listed versions."
 msgstr "Kontribusi hanya tersedia bagi pengaya terdaftar."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
@@ -6007,10 +6006,6 @@ msgstr "Berkas ditambahkan untuk versi yang diulas harus diulas sebelum tersedia
 msgid "Select the target platform for this file."
 msgstr "Pilih platform target untuk berkas ini."
 
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Only publish this version to my beta channel."
-msgstr "Hanya publikasikan versi ini ke saluran beta saya."
-
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
 msgstr "Mengelola Versi {0}"
@@ -6092,12 +6087,6 @@ msgstr "Dibuat pada %(created)s dan diubah pada %(status)s"
 msgid "Edit this version"
 msgstr "Edit versi ini"
 
-#. {0} is the number of files
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "{0} file"
-msgid_plural "{0} files"
-msgstr[0] "{0} berkas"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
 msgstr "0 berkas"
@@ -6105,11 +6094,6 @@ msgstr "0 berkas"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
 msgstr "Versi yang dihidupkan kembali"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, python-format
-msgid "Queue position: %(pos)s of %(total)s"
-msgstr "Posisi antrean: %(pos)s dari %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
@@ -6158,36 +6142,27 @@ msgid "Reply"
 msgstr "Balas"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add-on visibility"
+#, fuzzy
+msgid "Listing visibility"
 msgstr "Visibilitas pengaya"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr "Mengapa saya tidak bisa berpindah ke <i>Terdaftar</i> atau <i>Disembunyikan</i>?"
+#, fuzzy
+msgid "Visible:"
+msgstr "Visibilitas:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid ""
-"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
-"            The process is described in detail in <a href=\"{link}\">this documentation</a>."
-msgstr ""
-"Karena pembatasan teknikal, Anda perlu menghapus seluruh pengaya Anda dan mengajukan ulang menggunakan akun AMO untuk mendaftarkan pengaya Anda.\n"
-"            Proses tersebut dijelaskan secara detil pada <a href=\"{link}\">dokumentasi berikut</a>."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Listed:"
-msgstr "Terdaftar:"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Visible to everyone on {0} and included in search results and listing pages"
+#, fuzzy
+msgid "Visible to everyone on {0} and included in search results and listing pages."
 msgstr "Dapat dilihat semua orang di {0} dan dimasukkan ke dalam hasil pencarian dan laman daftar"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hidden:"
-msgstr "Tersembunyi:"
+msgid "Invisible:"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr "Dimuat di {0}, namun disembunyikan untuk siapapun kecuali penulis. Digunakan untuk secara temporer menyembunyikan daftar atau menghentikannya."
+msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6198,8 +6173,9 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Tidak didistribusikan di {0}. Pengembang akan mengunggah versi baru untuk penandatanganan dan distribusi pengaya sendiri."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Current versions"
-msgstr "Versi terkini"
+#, fuzzy
+msgid "Listed versions"
+msgstr "Lihat versi lain"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6220,6 +6196,25 @@ msgstr "Versi selanjutnya dari pengaya ini"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
+msgstr "Versi sebelumnya"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Why can't I switch to <i>Listed</i>?"
+msgstr "Mengapa saya tidak bisa berpindah ke <i>Terdaftar</i> atau <i>Disembunyikan</i>?"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid ""
+"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
+"        The process is described in detail in <a href=\"{link}\">this documentation</a>."
+msgstr ""
+"Karena pembatasan teknikal, Anda perlu menghapus seluruh pengaya Anda dan mengajukan ulang menggunakan akun AMO untuk mendaftarkan pengaya Anda.\n"
+"            Proses tersebut dijelaskan secara detil pada <a href=\"{link}\">dokumentasi berikut</a>."
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "All versions"
 msgstr "Versi sebelumnya"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6341,14 +6336,13 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
+msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
 msgstr ""
-"Ingin cara mudah mengunduh video untuk ditonton luring atau menyimpannya untuk ditonton nanti? Video DownloadHelper bekerja dengan baik dengan semua situs aliran terkemuka seperti YouTube, "
-"Facebook, Vimeo, Twitch, dan lainnya."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10102,11 +10096,6 @@ msgstr "Menampilkan hasil ke {0} - {1} dari {2} untuk <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Menampilkan hasil ke {0} - {1} dari {2}"
 
-#. {0} is an application, like Firefox.
-#: src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
-msgid "{0} Add-ons"
-msgstr "Pengaya {0}"
-
 #: src/olympia/search/views.py src/olympia/zadmin/forms.py
 msgid "All Add-ons"
 msgstr "Semua Pengaya"
@@ -10200,6 +10189,11 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Kehilangan kunci \"unggah\" dalam berkas data yang terdiri dari beberapa bagian."
 
 #: src/olympia/signing/views.py
+#, python-format
+msgid "You cannot add versions to an addon that has status: %s."
+msgstr ""
+
+#: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
 msgstr "Versi ini tidak cocok dengan berkas manifest."
 
@@ -10210,6 +10204,10 @@ msgstr "Versi yang sudah ada."
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Hanya WebExtensions yang diperbolehkan menghilangkan GUID"
+
+#: src/olympia/signing/views.py
+msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
+msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
@@ -10633,11 +10631,6 @@ msgstr "mengenal <b>pengaya</b>"
 #: src/olympia/templates/footer.html
 msgid "About"
 msgstr "Tentang"
-
-# Link text to the AMO blog.
-#: src/olympia/templates/footer.html
-msgid "Blog"
-msgstr "Blog"
 
 # Link text to the Frequently Asked Questions page.
 #: src/olympia/templates/footer.html
@@ -11429,3 +11422,8 @@ msgstr "Pengaya yang Terpengaruh"
 #: src/olympia/zadmin/views.py
 msgid "Addon"
 msgstr "Pengaya"
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Validation Result"
+msgstr "Hasil Validasi"

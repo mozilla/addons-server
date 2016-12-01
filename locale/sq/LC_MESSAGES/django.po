@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-14 07:03+0000\n"
+"POT-Creation-Date: 2016-12-01 06:45+0000\n"
 "PO-Revision-Date: 2016-11-23 08:35+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -78,10 +78,6 @@ msgstr "Eksperimetale"
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
 msgstr "Shtoje te {0}"
-
-#: src/olympia/addons/forms.py
-msgid "This name is already in use. Please choose another."
-msgstr "Ky emër është i përdorur tashmë. Ju lutemi, zgjidhni një tjetër."
 
 #: src/olympia/addons/forms.py
 msgid "This slug is already in use. Please choose another."
@@ -172,8 +168,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr "Përdoruesit do të pyeten përherë te Përgjegjësi i Shtesave (Firefox 4 dhe më tej). Vlen vetëm për versionin desktop."
 
 # Column name in a table.
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/addons/models.py src/olympia/constants/base.py
 msgid "Listed"
 msgstr "E pranishme"
 
@@ -391,14 +386,14 @@ msgstr "Funksionon me"
 msgid "Visibility"
 msgstr "Dukshmëri"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Hidden"
-msgstr "E fshehur"
+#: src/olympia/addons/templates/addons/details_box.html
+#, fuzzy
+msgid "Visible"
+msgstr "Dukshmëri"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Unlisted"
-msgstr "E palistuar"
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Invisible"
+msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -1189,6 +1184,7 @@ msgid "Add to collection"
 msgstr "Shtojeni në koleksion"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "My Add-ons"
 msgstr "Shtesat e Mia"
 
@@ -1364,7 +1360,7 @@ msgstr "Provojeni!"
 msgid "Theme Info &raquo;"
 msgstr "Të dhëna Teme &raquo;"
 
-#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tools"
 msgstr "Mjete"
 
@@ -1486,30 +1482,10 @@ msgstr "{addon} u çaktivizua."
 msgid "{addon} enabled."
 msgstr "{addon} u aktivizua."
 
-#: src/olympia/amo/log.py
-msgid "Stats set public for {addon}."
-msgstr "Statistikat për {addon} u kaluan publike."
-
-#: src/olympia/amo/log.py
-msgid "{addon} stats set to private."
-msgstr "Statistikat për {addon} u kaluan private."
-
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{addon} status changed to {0}."
 msgstr "Gjendja për {addon} ndryshoi në {0}."
-
-#: src/olympia/amo/log.py
-msgid "Preview added to {addon}."
-msgstr "Te {addon} u shtua paraparje."
-
-#: src/olympia/amo/log.py
-msgid "Preview edited for {addon}."
-msgstr "Te {addon} u përpunua paraparja."
-
-#: src/olympia/amo/log.py
-msgid "Preview deleted from {addon}."
-msgstr "Prej {addon} u fshi paraparja."
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
@@ -1691,14 +1667,6 @@ msgid "Password changed."
 msgstr "Fjalëkalimi u ndryshua."
 
 #: src/olympia/amo/log.py
-msgid "{addon} failed checks with PayPal."
-msgstr "Kontrollet me Paypal-in për {addon} dështuan."
-
-#: src/olympia/amo/log.py
-msgid "{addon} manifest updated."
-msgstr "U përditësua manifesti për {addon}."
-
-#: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} i miratuar, por në pritje për t’u bërë publik."
 
@@ -1707,68 +1675,8 @@ msgid "Approved but waiting"
 msgstr "E miratuar por në pritje"
 
 #: src/olympia/amo/log.py
-msgid "{addon} purchased."
-msgstr "{addon} u ble."
-
-#: src/olympia/amo/log.py
-msgid "{addon} installed."
-msgstr "{addon} u instalua."
-
-#: src/olympia/amo/log.py
 msgid "Account updated."
 msgstr "Llogaria u përditësua."
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared for {addon}."
-msgstr "Për {addon} u hoq kërkesa për shqyrtim të mëtejshëm."
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared"
-msgstr "Kërkesa për shqyrtim të mëtejshëm u hoq"
-
-#: src/olympia/amo/log.py
-msgid "App disabled"
-msgstr "Aplikacioni u çaktivizua"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated because of high number of abuse reports."
-msgstr "{addon} e kaluar për shqyrtim të mëtejshëm, për shkak të numrit të madh të njoftimeve për abuzim."
-
-#: src/olympia/amo/log.py
-msgid "High Abuse Reports"
-msgstr "Njoftime të Shumta Shpërdorimi"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated by reviewer."
-msgstr "Nga shqyrtuesi u kërkua shqyrtim i mëtejshëm për {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Reviewer escalation"
-msgstr "Kërkesë nga shqyrtuesi për shqyrtim të mëtejshëm"
-
-#: src/olympia/amo/log.py
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr "Videoja u hoq nga {addon} për shkak të një problemi me videon."
-
-#: src/olympia/amo/log.py
-msgid "Video removed"
-msgstr "Videoja u hoq"
-
-#: src/olympia/amo/log.py
-msgid "{addon} re-review because of new device(s) added."
-msgstr "Rishqyrtim i {addon}, ngaqë u shtuan pajisje të reja."
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Added"
-msgstr "U shtuan Pajisje"
-
-#: src/olympia/amo/log.py
-msgid "{addon} device support manually changed by reviewer."
-msgstr "Mbulimi i pajisjeve nga {addon} u ndryshua dorazi nga shqyrtuesi."
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Changed by Reviewer"
-msgstr "Pajisjet u Ndryshuan nga Shqyrtuesi"
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
@@ -1815,40 +1723,6 @@ msgid "User {0.name} removed from {group}."
 msgstr "Përdoruesi {0.name} u hoq prej {group}."
 
 #: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "Domosdoshmëritë minimum për {addon} u ndryshuan dorazi nga shqyrtuesi."
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed by Reviewer"
-msgstr "Domosdoshmëritë u Ndryshuan nga Shqyrtuesi"
-
-#: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed."
-msgstr "Domosdoshmëritë minimum për {addon} u ndryshuan dorazi."
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed"
-msgstr "Domosdoshmëritë u Ndryshuan"
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{version} status changed to {0}."
-msgstr "Gjendja e {version} ndryshoi në {0}."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr "Përdoruesi {0.name} {0.id} u fshi përmes mjetit për kërkime."
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed to Adult."
-msgstr "Klasifikimi i lëndës për {addon} u ndryshua si Për të Rritur."
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed."
-msgstr "Klasifikimi i lëndës për {addon} u ndryshua."
-
-#: src/olympia/amo/log.py
 msgid "{addon} unlisted."
 msgstr "{addon} u hoq nga lista."
 
@@ -1880,6 +1754,25 @@ msgstr "Përgjigje nga shqyrtuesi për {addon} {version}."
 #: src/olympia/amo/log.py
 msgid "Reviewer Reply"
 msgstr "Përgjigje Shqyrtuesi"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "Koment për {addon} {version}."
+
+#: src/olympia/amo/log.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "Përgjigje nga zhvilluesi për {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "Kodi burim"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -3250,6 +3143,10 @@ msgstr "Iu vu shenjë për shqyrtim të mëtejshëm"
 msgid "Beta"
 msgstr "Beta"
 
+#: src/olympia/constants/base.py
+msgid "Unlisted"
+msgstr "E palistuar"
+
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
 msgstr "Zhvillues"
@@ -3259,7 +3156,7 @@ msgstr "Zhvillues"
 msgid "Viewer"
 msgstr "Parës"
 
-#: src/olympia/constants/base.py src/olympia/templates/mobile/header.html
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "Asistencë"
 
@@ -4013,6 +3910,14 @@ msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional n
 msgstr "Një kartelë me version që përfundon si a|alpha|b|beta|pre|rc dhe një numër opsional merret si beta."
 
 #: src/olympia/devhub/forms.py
+msgid "You cannot upload any more files for this version."
+msgstr "S’mund të ngarkoni më kartela për këtë version."
+
+#: src/olympia/devhub/forms.py
+msgid "Version doesn't match"
+msgstr "Versioni s’përputhet"
+
+#: src/olympia/devhub/forms.py
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
 msgstr "Ka tashmë një version %s, ose qe ngarkuar më herët."
@@ -4024,14 +3929,6 @@ msgstr "Përzgjidhni një zgjedhje të vlefshme. Ajo zgjedhje s’është një n
 #: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Te beta u kap një kartelë me një version që mbaron me a|alpha|b|beta dhe një numër opsional."
-
-#: src/olympia/devhub/forms.py
-msgid "You cannot upload any more files for this version."
-msgstr "S’mund të ngarkoni më kartela për këtë version."
-
-#: src/olympia/devhub/forms.py
-msgid "Version doesn't match"
-msgstr "Versioni s’përputhet"
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
@@ -4375,10 +4272,6 @@ msgstr "Filloni të Krijoni Shtesa"
 msgid "Status:"
 msgstr "Gjendje:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Visibility:"
-msgstr "Dukshmëri:"
-
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "Version Më i Ri:"
@@ -4426,7 +4319,7 @@ msgstr "Qendra e Zhvilluesve të <small>Shtesave</small>"
 msgid "more add-ons..."
 msgstr "më tepër shtesa..."
 
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Documentation"
 msgstr "Dokumentim"
 
@@ -4534,6 +4427,7 @@ msgid "Activity"
 msgstr "Veprimtari"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Subscribe to this feed"
 msgstr "Pajtohuni te kjo prurje"
 
@@ -5027,9 +4921,11 @@ msgstr "Fshije Shtesë"
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "Fshirja e temës suaj do ta heqë përgjithmonë nga sajti."
 
-#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-msgid "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted again by others."
-msgstr "Fshirja e shtesë suaj do ta heqë përgjithmonë prej sajtit dhe do të parandalojë parashtrimin sërish nga të tjerë të GUID-it të saj."
+#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
+msgid ""
+"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
+"able to submit versions using the same ID."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5140,6 +5036,11 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> përdorues aktiv"
 msgstr[1] "<strong>{0}</strong> përdorues aktivë"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html
+#, fuzzy
+msgid "Submit a New File"
+msgstr "Parashtroni Temë të Re"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5260,7 +5161,8 @@ msgid "Manage Listing"
 msgstr "Administroni Listën"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
+#, fuzzy
+msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr "Këtë version që sapo e parashtruat mund ta përpunoni duke shtuar shënime versioni, ose kod burim, nëse parashtrimi juaj përmban kod të minimizuar, të errësuar ose kod përpilimi."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5280,10 +5182,11 @@ msgid "Download {0}"
 msgstr "Shkarko {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+#, fuzzy
+msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Për këtë parashtrim keni përzgjedhur vetëm disa nga platformat e mundshme. Mund të ngarkoni më tepër kartela, që synojnë platforma të tjera:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
 msgstr "Përditësoni Kartelën"
 
@@ -5298,6 +5201,11 @@ msgstr "Marrëveshje Shpërndarjesh Shtesash"
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
 msgstr "Përditësoni Shtesën"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Where to Host File"
+msgstr "Ku të Strehohet Versioni"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5318,8 +5226,17 @@ msgid "Which platforms is this file compatible with?"
 msgstr "Me cilat platforma është e përputhshme kjo kartelë?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+msgid "Only publish this version to my beta channel."
+msgstr "Botoje këtë version vetëm te kanali im beta."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
 msgstr "Anashkalime administrative"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Submit File for Review"
+msgstr "Parashtrojeni Versionin për Shqyrtim"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5376,14 +5293,6 @@ msgid "Generate new credentials"
 msgstr "Prodho kredenciale të reja"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You have disabled this add-on"
-msgstr "E keni çaktivizuar këtë shtesë"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr "Paraqitja e shtesës suaj është çaktivizuar dhe ajo nuk shfaqet ndokund te galeria jonë ose te shërbimi ynë i përditësimeve."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
 msgstr "Ju lutemi, plotësoni shtesën suaj."
 
@@ -5392,36 +5301,16 @@ msgid "You will receive an email when the review is complete. Until then, your a
 msgstr "Kur të jetë plotësuar shqyrtimi, do të merrni një email. Deri atëherë, shtesa juaj nuk paraqitet te galeria jonë, por mund të kihet drejtpërsëdrejti nga faqja e hollësive rreth saj. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr "Do të merrni një email, sapo shqyrtimi të jetë plotësuar dhe shtesa juaj të jetë nënshkruar."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Shtesa juaj tregohet te galeria jonë dhe përdoruesit po marrin përditësime të vetvetishme për të."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed and can be bundled with an application installer."
-msgstr "Shtesa juaj u nënshkrua dhe mund të paketohet tok me një instalues aplikacioni."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr "Shtesa juaj është çaktivizuar nga një administrator dhe nuk shfaqet më te galeria jonë. Nëse keni ndonjë pyetje, dërgoni një email te amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Current Version:"
-msgstr "Versioni i Tanishëm:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
-msgstr "Ky është një version i shtesës suaj që do të jetë e instalueshme nëse dikush klikon butonin e instalimit te addons.mozilla.org. Kjo vlen vetëm për shtesat e paraqitura."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Multi Process Status:"
-msgstr "Gjendje Multiprocesi:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "Përputhshmëria e shtesës tuaj me Multi Process Firefox (e10s)."
+msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -5434,16 +5323,46 @@ msgid "%%b %%e, %%Y"
 msgstr "%%e %%b, %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Next Version:"
+#, fuzzy
+msgid "Add-on Multi Process Status:"
+msgstr "Gjendje Multiprocesi:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgstr "Përputhshmëria e shtesës tuaj me Multi Process Firefox (e10s)."
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Listed Version:"
+msgstr "Version Më i Ri:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgstr "Ky është një version i shtesës suaj që do të jetë e instalueshme nëse dikush klikon butonin e instalimit te addons.mozilla.org. Kjo vlen vetëm për shtesat e paraqitura."
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Next Listed Version:"
 msgstr "Versioni Pasues:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr "Ky është versioni më i ri i ngarkuar, por ende nuk është efektiv te sajti."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Queues are not reviewed strictly in order"
 msgstr "Në shqyrtime radha s’ruhet në mënyrë strikte"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Lastest Version:"
+msgstr "Version Më i Ri:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the newest uploaded unlisted version."
+msgstr "Ky është versioni më i ri i ngarkuar, por ende nuk është efektiv te sajti."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5573,6 +5492,91 @@ msgstr "Kjo kartelë do të fshihet gjatë ruajtjes."
 msgid "Undo"
 msgstr "Zhbëje"
 
+#. {0} is an application, like Firefox.
+#: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
+#: src/olympia/templates/mobile/base_addons.html
+msgid "{0} Add-ons"
+msgstr "Shtesa për {0}"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Latest News"
+msgstr "Version Më i Ri:"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Read more in our Blog"
+msgstr "lyp më tepër të dhëna"
+
+# The title for a user if they are a developer
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Add-on Developer Hub"
+msgstr "Zhvillues Shtesash"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+msgid "Docs"
+msgstr ""
+
+# Link text to the AMO blog.
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
+msgid "Blog"
+msgstr "Blog"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Sign In"
+msgstr "Nënshkruajeni Shtesën"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Customize Your Firefox"
+msgstr "Tema Firefox-i të lehta në përdorim"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid ""
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
+"necessary skills to make a great add-on."
+msgstr ""
+"Shtesa u lejojnë miliona përdoruesve Firefox të zgjerojnë dhe personalizojnë punën e shfletuesit të tyre. Nëse jeni një zhvillues Web dhe keni dije për <a href=\"https://developer.mozilla.org/docs/"
+"Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, dhe <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, keni kështu krejt aftësitë e "
+"nevojshme për të krijuar një shtesë të fuqishme."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Learn How to make an Add-on"
+msgstr "Mësoni Më Tepër Rreth Shtesave"
+
+# Header for a column in a table
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Validator"
+msgstr "Vleftësim"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Automated code tests for your add-on."
+msgstr "Ju lutemi, plotësoni shtesën suaj."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Checker"
+msgstr "Kontrollor Përputhshmërie i Shtesave"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "See if your add-on is likely to be affected by changes in Firefox."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Reporter"
+msgstr "Njoftime Përputhshmërie"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "Tell us if an add-on works in a particular version of Firefox."
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
 msgstr "Po kërkoni tashmë <b>kontribute</b> nga përdoruesit"
@@ -5607,7 +5611,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Merrni kontribute te llogaria juaj PayPal ose dërgojini te një organizëm zgjedhur prej jush"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for listed add-ons."
+#, fuzzy
+msgid "Contributions are only available for add-ons with listed versions."
 msgstr "Kontributet vlejnë vetëm për shtesa të paraqitura"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
@@ -5946,10 +5951,6 @@ msgstr "Kartelat e shtuara te versionet e shqyrtuara duhet të merren në shqyrt
 msgid "Select the target platform for this file."
 msgstr "Përzgjidhni platformën objektiv për këtë kartelë."
 
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Only publish this version to my beta channel."
-msgstr "Botoje këtë version vetëm te kanali im beta."
-
 # %s is the version number.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
@@ -6027,13 +6028,6 @@ msgstr "E krijuar më %(created)s dhe ndryshuar si %(status)s"
 msgid "Edit this version"
 msgstr "Përpunoni këtë version"
 
-#. {0} is the number of files
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "{0} file"
-msgid_plural "{0} files"
-msgstr[0] "{0} kartelë"
-msgstr[1] "{0} kartela"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
 msgstr "0 kartela"
@@ -6041,11 +6035,6 @@ msgstr "0 kartela"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
 msgstr "Riaktivizoje Versionin"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, python-format
-msgid "Queue position: %(pos)s of %(total)s"
-msgstr "Vend në radhë: %(pos)s nga %(total)s gjithsej"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
@@ -6093,36 +6082,27 @@ msgid "Reply"
 msgstr "Përgjigjjuni"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add-on visibility"
+#, fuzzy
+msgid "Listing visibility"
 msgstr "Dukshmëri shtese"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr "Pse nuk kaloj dot te <i>E treguar</i> ose <i>E fshehur</i>?"
+#, fuzzy
+msgid "Visible:"
+msgstr "Dukshmëri:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid ""
-"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
-"            The process is described in detail in <a href=\"{link}\">this documentation</a>."
-msgstr ""
-"Që ta kaloni shtesën tuaj si të treguar, për shkak kufizimesh teknike, lypset ta fshini krejt dhe ta parashtroni sërish duke përdorur këtë llogari AMO.\n"
-"            Procesi përshkruhet hollësisht te <a href=\"{link}\">ky dokumentim</a>."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Listed:"
-msgstr "E paraqitur:"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Visible to everyone on {0} and included in search results and listing pages"
+#, fuzzy
+msgid "Visible to everyone on {0} and included in search results and listing pages."
 msgstr "E dukshme për këdo te {0} dhe e përfshirë në përfundime kërkimesh dhe faqe listë"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hidden:"
-msgstr "E fshehur:"
+msgid "Invisible:"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr "E strehuar te {0}, por e padukshme për këdo tjetër veç autorëve. E përdorur për fshehje të përkohshme në lista ose për heqje prej tyre."
+msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6133,8 +6113,9 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Nuk shpërndahet përmes {0}. Zhvilluesit do të ngarkojnë vetë versione të rinj për nënshkrim dhe shpërndarje të shtesave."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Current versions"
-msgstr "Versione të tanishëm"
+#, fuzzy
+msgid "Listed versions"
+msgstr "Shihni versione të tjerë"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6155,6 +6136,25 @@ msgstr "Versioni pasues i kësaj shtese"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
+msgstr "Versione më të vjetër"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Why can't I switch to <i>Listed</i>?"
+msgstr "Pse nuk kaloj dot te <i>E treguar</i> ose <i>E fshehur</i>?"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid ""
+"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
+"        The process is described in detail in <a href=\"{link}\">this documentation</a>."
+msgstr ""
+"Që ta kaloni shtesën tuaj si të treguar, për shkak kufizimesh teknike, lypset ta fshini krejt dhe ta parashtroni sërish duke përdorur këtë llogari AMO.\n"
+"            Procesi përshkruhet hollësisht te <a href=\"{link}\">ky dokumentim</a>."
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "All versions"
 msgstr "Versione më të vjetër"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6276,14 +6276,13 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "A shkoni lart e poshtë gjithë kohës nëpër faqerojtës? Bjerini listat tuaja para syve me një gjest të vetëm, të thjeshtë."
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
+msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
 msgstr ""
-"Dëshironi një rrugë të lehtë për shkarkim videosh që t’i shihni pa internet apo që t’i ruani për më vonë? Video DownloadHelper funksionon shumë bukur me të gjithë sajtet e njohur për video, të "
-"tillë si YouTube, Facebook, Vimeo, Twitch, etj."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10039,11 +10038,6 @@ msgstr "Po shfaqen përfundimet {0} - {1} nga {2} gjithsej për <strong>{3}</str
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Po shfaqen përfundimet {0} - {1} nga {2} gjithsej"
 
-#. {0} is an application, like Firefox.
-#: src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
-msgid "{0} Add-ons"
-msgstr "Shtesa për {0}"
-
 #: src/olympia/search/views.py src/olympia/zadmin/forms.py
 msgid "All Add-ons"
 msgstr "Krejt Shtesat"
@@ -10138,6 +10132,11 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Mungon kyç \"upload\" te të dhëna kartele multipart."
 
 #: src/olympia/signing/views.py
+#, python-format
+msgid "You cannot add versions to an addon that has status: %s."
+msgstr ""
+
+#: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
 msgstr "Versioni nuk përputhet me kartelën manifest."
 
@@ -10148,6 +10147,10 @@ msgstr "Versioni ekziston."
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Lënia jashtë e GUID-së lejohet vetëm për WebExtensions"
+
+#: src/olympia/signing/views.py
+msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
+msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
@@ -10569,11 +10572,6 @@ msgstr "njihuni me <b>shtesat</b>"
 #: src/olympia/templates/footer.html
 msgid "About"
 msgstr "Rreth"
-
-# Link text to the AMO blog.
-#: src/olympia/templates/footer.html
-msgid "Blog"
-msgstr "Blog"
 
 # Link text to the Frequently Asked Questions page.
 #: src/olympia/templates/footer.html
@@ -11363,3 +11361,8 @@ msgstr "Shtesa të Prekura"
 #: src/olympia/zadmin/views.py
 msgid "Addon"
 msgstr "Shtesë"
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Validation Result"
+msgstr "Përfundime Vleftësimi"
