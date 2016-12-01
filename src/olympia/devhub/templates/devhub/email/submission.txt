@@ -18,11 +18,11 @@ Get Ahead in the Review Queue!
 
 Are you an experienced add-on developer? Become an add-ons reviewer today and get your add-ons reviewed faster. As a key member of the Mozilla community, reviewers also enjoy these privileges and perks:
 
-* Invitations to events (https://wiki.mozilla.org/Marketplace/Reviewers): Top reviewers may be invited to Mozilla events worldwide
-* Contests & prizes (https://wiki.mozilla.org/Marketplace/Reviewers): Win prizes such as tablets and laptops in reviewers-only contests
-* Get gear (https://wiki.mozilla.org/Marketplace/Reviewers/Points_and_Incentives): Collect points as you contribute and get cool gear!
+* Invitations to events (https://wiki.mozilla.org/Add-ons/Reviewers): Top reviewers may be invited to Mozilla events worldwide
+* Contests & prizes (https://wiki.mozilla.org/Add-ons/Reviewers): Win prizes such as tablets and laptops in reviewers-only contests
+* Get gear (https://wiki.mozilla.org/Add-ons/Reviewers/Points_and_Incentives): Collect points as you contribute and get cool gear!
 
-Learn more and apply today! https://wiki.mozilla.org/Marketplace/Reviewers
+Learn more and apply today! https://wiki.mozilla.org/Add-ons/Reviewers
 
 Sincerely,
 The Add-ons Team
