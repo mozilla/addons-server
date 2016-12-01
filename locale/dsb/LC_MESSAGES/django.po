@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 18:00+0000\n"
+"PO-Revision-Date: 2016-12-01 18:21+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -384,9 +384,8 @@ msgid "Visibility"
 msgstr "Widobnosć"
 
 #: src/olympia/addons/templates/addons/details_box.html
-#, fuzzy
 msgid "Visible"
-msgstr "Widobnosć"
+msgstr "Widobny"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Invisible"
@@ -1768,23 +1767,20 @@ msgid "Reviewer Reply"
 msgstr "Wótegrono pśeglědarja"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Komentar wó {addon} {version}."
+msgstr "Pśizwóleńske pokaze za dodank {addon} {version} změnjone."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
 msgstr "Pśizwóleńske pokaze změnjone"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Wótegrono wót wuwijarja wó {addon} {version}."
+msgstr "Žrědłowy kod nagraty za {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Žrědłowy kod"
+msgstr "Žrědłowy kod nagraty"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -5069,9 +5065,8 @@ msgstr[2] "<strong>{0}</strong> aktiwne wužywarje"
 msgstr[3] "<strong>{0}</strong> aktiwnych wužywarjow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Nowu drastwu zapódaś"
+msgstr "Nowu dataju zapódaś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5192,11 +5187,8 @@ msgid "Manage Listing"
 msgstr "Lisćinowy zapisk zastojaś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
-"Móžośo teke toś tu wersiju wobźěłaś, kótaruž sćo rowno zapódał, z tym až pśidawaśo wersijowe informacije abo žrědłowy tekst, jolic wašo zapódaśe wopśimujo pónižony, zamazany abo kompilěrowany "
-"žrědłowy tekst."
+msgstr "Móžośo teke toś tu wersiju wobźěłaś, aby wersijowe informacije abo žrědłowy tekst pśidał, jolic wašo zapódaśe wopśimujo pónižony, zamazany abo kompilěrowany žrědłowy tekst."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5215,7 +5207,6 @@ msgid "Download {0}"
 msgstr "{0} ześěgnuś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Sćo jano někotare z k dispoziciji stojecych platformow za zapódaśe wubrał. Móžośo dalšne dataje nagraś, kótarež su za druge platformy:"
 
@@ -5236,9 +5227,8 @@ msgid "Upload Add-on"
 msgstr "Dodank nagraś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Źož se wersija góspodujo"
+msgstr "Źož se dataja góspodujo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5265,9 +5255,8 @@ msgid "Administrative overrides"
 msgstr "Pśepisanja wót administratorow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Wersiju za pśeglědanje zapódaś"
+msgstr "Dataju za pśeglědanje zapódaś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5341,7 +5330,7 @@ msgstr "Waš dodank jo se wót sedłowego administratora znjemóžnił a njepoka
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Waš dodank njepokažo se w pytańskich wuslědkach, a jogo lisćinowy bok pokažo, až sćo jen znjemóžnił. Zapódaśa nowych wersijow za lisćinu njebudu se w toś tom statusu akceptěrowaś."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -5354,28 +5343,24 @@ msgid "%%b %%e, %%Y"
 msgstr "%%b. %%e %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Multiprocesowy status:"
+msgstr "Multiprocesowy status dodanka:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "Waša dodankowa kompatibelnosć z multiprocesowym Firefox (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Nejnowša wersija:"
+msgstr "Nalicona wersija:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "To jo wersija wašogo dodanka, kótaraž buźo se instalěrowaś, gaž něchten kliknjo na instalěrowański tłocašk na addons.mozilla.org. To jo jano za nalicone dodanki relewantne."
+msgstr "To jo wersija wašogo dodanka, kótaraž buźo se instalěrowaś, gaž něchten kliknjo na instalěrowański tłocašk na addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Pśiduca wersija:"
+msgstr "Pśiduca nalicona wersija:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5386,7 +5371,6 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "Cakańske rědy se striktnje pó pórěźe njepśeglěduju"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
 msgstr "Nejnowša wersija:"
 
@@ -5546,7 +5530,7 @@ msgstr "Dodankowe wuwijarje"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
-msgstr ""
+msgstr "Dokumenty"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
 msgid "Blog"
@@ -5594,7 +5578,7 @@ msgstr "Kontrola kompatibelnosći dodankow"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Glědjaśo, lěc waš dodank jo snaź pśez změny w Firefox pótrjefjony."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 #, fuzzy
@@ -5603,7 +5587,7 @@ msgstr "Rozpšawy kompatibelnosći"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Dajśo nam k wěsći, lěc dodank funkcioněrujo z wěsteju wersiju Firefox."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -6123,11 +6107,11 @@ msgstr "Widobny za wše w {0} a w pytańskich wuslědkach a lisćinowych bokach"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
-msgstr ""
+msgstr "Njewidobny:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Njepokažo w pytańskich wuslědkach, a jogo lisćinowy bok pokažo, až sćo jen znjemóžnił. Zapódaśa nowych wersijow za lisćinu njebudu se w toś tom statusu akceptěrowaś."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6306,7 +6290,7 @@ msgstr "Blokěrujśo wabjenje {start_sub_heading} z {addon_name} {end_sub_headin
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
-msgstr ""
+msgstr "Wideo YouTube awtomatiski w HD wótgraś, pśipiski znjemóžniś, wjelikosć wótgrawaka pśiměriś a wjele drugich móžnosćow za pśiměrjenje wašogo wideodožywjenja."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10179,7 +10163,7 @@ msgstr "Felujucy kluc „upload“ wěcejdźělowych datajowych datach."
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Njamóžośo dodankoju wersije pśidaś, kótary ma status: %s."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
@@ -10195,7 +10179,7 @@ msgstr "Jano WebExtensions směju GUID wuwóstajiś"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Njamóžośo toś tomu dodankoju naliconu wersiju pśez API pśidaś, dokulaž metadaty feluju. Pšosym pósćelśo je pśez websedło"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
