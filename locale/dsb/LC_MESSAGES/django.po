@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 18:21+0000\n"
+"PO-Revision-Date: 2016-12-01 18:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5375,9 +5375,8 @@ msgid "Lastest Version:"
 msgstr "Nejnowša wersija:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr "To jo nejnowša nagrata wersija, ale hyšći njejo widobny na websedle."
+msgstr "To jo nejnowša nagrata njenalicona wersija."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5514,19 +5513,16 @@ msgid "{0} Add-ons"
 msgstr "Dodanki za {0}"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Nejnowša wersija:"
+msgstr "Nejnowše nowosći"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "trjeba dalšne informacije"
+msgstr "Dalšne informacije w našom blogu"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Dodankowe wuwijarje"
+msgstr "Rožk dodankowych wuwijarjow"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5537,53 +5533,44 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Dodank signěrowaś"
+msgstr "Pśizjawiś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Lažko wužywajobne drastwy za Firefox"
+msgstr "Waš Firefox pśiměriś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
-"Dodanki zmóžnjaju milionam wužywarjow Firefox jich pśeglědowańske dožywjenje pólěpšyś. Jolic sćo webwuwijaŕ a se w <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> a <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> wuznawaśo, maśo južo trěbne znajobnosći, aby wjelicny "
-"dodank wuwijał."
+"Dodanki zmóžnjaju milionam wužywarjow Firefox jich pśeglědowańske dožywjenje pólěpšyś. Jolic sćo webwuwijaŕ a se w <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> a <a href=\"#\">CSS</a> "
+"wuznawaśo, maśo južo trěbne znajobnosći, aby wjelicny dodank wuwijał."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Zgóńśo wěcej wó dodankach"
+msgstr "Dalšne informacije wó wuwijanju dodanka"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Pśeglědanje"
+msgstr "Pśeglědowaŕ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Pšosym wudopołniśo swój dodank."
+msgstr "Awtomatiske kodowe testy za waš dodank."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Kontrola kompatibelnosći dodankow"
+msgstr "Kontrola kompatibelnosći"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "Glědjaśo, lěc waš dodank jo snaź pśez změny w Firefox pótrjefjony."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Rozpšawy kompatibelnosći"
+msgstr "Rozpšawjaŕ kompatibelnosći"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5623,9 +5610,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Dostawajśo pósćiwanki na swójom konśe PayPal abo sćelśo je na organizaciju pó swójom žycenju"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Pósćiwanki su jano za nalicone dodanki k dispoziciji."
+msgstr "Pósćiwanki su jano za nalicone dodanki z naliconymi wersijami k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -6091,19 +6077,16 @@ msgid "Reply"
 msgstr "Wótegroniś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Widobnosć dodanka"
+msgstr "Widobnosć lisćinowego zapiska"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Widobnosć:"
+msgstr "Widobny:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "Widobny za wše w {0} a w pytańskich wuslědkach a lisćinowych bokach"
+msgstr "Widobny za wše w {0} a w pytańskich wuslědkach a na lisćinowych bokach."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
@@ -6122,9 +6105,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Na {0} njerozdźělony. Wuwijarje nagraju nowe wersije za signěrowanje a rozdźěluju dodanki same."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Druge wersije pokazaś"
+msgstr "Nalicone wersije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6147,12 +6129,10 @@ msgid "Older versions"
 msgstr "Starše wersije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "Cogodla njamógu na <i>Nalicony</i> abo <i>Schowany</i> pśešaltowaś?"
+msgstr "Cogodla njamógu na <i>Nalicony</i> pśešaltowaś?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
@@ -6161,9 +6141,8 @@ msgstr ""
 "dokumentaciji</a> nadrobnje wopisujo."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Starše wersije"
+msgstr "Wšykne wersije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6284,9 +6263,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Musyśo stawno pśez cytańske znamjenja kulaś? Mějśo město togo z jadnučkeju gestu pśistup na swóje lisćiny."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokěrujśo wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Pólěpšćo YouTube {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
@@ -11396,6 +11374,5 @@ msgid "Addon"
 msgstr "Dodank"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Pśeglědowańske wuslědki"
+msgstr "Pśeglědowański wuslědk"
