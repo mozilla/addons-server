@@ -295,12 +295,12 @@ class ESBaseAddonSerializer(BaseESSerializer):
     translated_fields = ('name', 'description', 'homepage', 'summary',
                          'support_email', 'support_url')
 
-    def fake_version_object(self, obj, data):
+    def fake_version_object(self, obj, data, channel):
         if data:
             version = Version(
                 addon=obj, id=data['id'],
                 reviewed=self.handle_date(data['reviewed']),
-                version=data['version'])
+                version=data['version'], channel=channel)
             version.all_files = [
                 File(
                     id=file_['id'], created=self.handle_date(file_['created']),
@@ -367,11 +367,12 @@ class ESBaseAddonSerializer(BaseESSerializer):
         # `latest_unlisted_version` are writeable cached_property so we can
         # directly write to them.
         obj.current_beta_version = self.fake_version_object(
-            obj, data.get('current_beta_version'))
+            obj, data.get('current_beta_version'), amo.RELEASE_CHANNEL_LISTED)
         obj._current_version = self.fake_version_object(
-            obj, data.get('current_version'))
+            obj, data.get('current_version'), amo.RELEASE_CHANNEL_LISTED)
         obj.latest_unlisted_version = self.fake_version_object(
-            obj, data.get('latest_unlisted_version'))
+            obj, data.get('latest_unlisted_version'),
+            amo.RELEASE_CHANNEL_UNLISTED)
 
         data_authors = data.get('listed_authors', [])
         obj.listed_authors = [

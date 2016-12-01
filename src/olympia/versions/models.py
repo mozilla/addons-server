@@ -253,7 +253,7 @@ class Version(OnChangeMixin, ModelBase):
         return reverse('addons.license', args=[self.addon.slug, self.version])
 
     def get_url_path(self):
-        if not self.addon.is_listed:  # Not listed? Doesn't have a public page.
+        if self.channel == amo.RELEASE_CHANNEL_UNLISTED:
             return ''
         return reverse('addons.versions', args=[self.addon.slug, self.version])
 
@@ -548,10 +548,6 @@ class Version(OnChangeMixin, ModelBase):
             self.update(nomination=nomination, _signal=False)
             # But we need the cache to be flushed.
             Version.objects.invalidate(self)
-
-    @property
-    def is_listed(self):
-        return self.addon.is_listed
 
     @property
     def unreviewed_files(self):
