@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 17:57+0000\n"
+"PO-Revision-Date: 2016-12-01 18:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1769,7 +1769,7 @@ msgstr "Wotmołwa přepruwowarja"
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Schwalenske pokazy za přidatk {addon} {version} njezměnjene."
+msgstr "Schwalenske pokazy za přidatk {addon} {version} změnjene."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
@@ -5189,7 +5189,7 @@ msgstr "Lisćinowy zapisk rjadować"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "Móžeće tež tutu wersiju wobdźěłać, zo b yšće wersijowe informacije abo žórłowy tekst přidał, jeli waše zapodaće zniženy, zamazany abo kompilowany žórłowy kod wobsahuje."
+msgstr "Móžeće tež tutu wersiju wobdźěłać, zo byšće wersijowe informacije abo žórłowy tekst přidał, jeli waše zapodaće zniženy, zamazany abo kompilowany žórłowy kod wobsahuje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5331,7 +5331,7 @@ msgstr "Waš přidatk je so wot sydłoweho administratora znjemóžnił a so hi�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "Waš přidatk so w pytanskich wuslědkach njezjewi, a jeho lisćinowa strona pokaza, zo sće jón znjemóžnił. Zapodaća nowych wersijow za lisćinu njebudźe so w tutym statusu akceptować."
+msgstr "Waš přidatk so w pytanskich wuslědkach njezjewi, a jeho lisćinowa strona pokaza, zo sće jón znjemóžnił. Zapodaća nowych wersijow za lisćinu njebudu so w tutym statusu akceptować."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -6095,7 +6095,7 @@ msgstr "Njewidźomny:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "Njezjewi w pytanskich wuslědkach, a jeho lisćinowa strona pokaza, zo sće jón znjemóžnił. Zapodaća nowych wersijow za lisćinu njebudu so w tutym statusu akceptować."
+msgstr "Njezjewi so w pytanskich wuslědkach, a jeho lisćinowa strona pokaza, zo sće jón znjemóžnił. Zapodaća nowych wersijow za lisćinu njebudu so w tutym statusu akceptować."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
