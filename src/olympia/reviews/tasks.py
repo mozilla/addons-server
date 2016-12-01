@@ -66,8 +66,8 @@ def addon_review_aggregates(addons, **kw):
 @write
 def addon_bayesian_rating(*addons, **kw):
     def addon_aggregates():
-        return Addon.objects.aggregate(rating=Avg('average_rating'),
-                                       reviews=Avg('total_reviews'))
+        return Addon.objects.valid().aggregate(rating=Avg('average_rating'),
+                                               reviews=Avg('total_reviews'))
 
     log.info('[%s@%s] Updating bayesian ratings.' %
              (len(addons), addon_bayesian_rating.rate_limit))
@@ -81,13 +81,15 @@ def addon_bayesian_rating(*addons, **kw):
             # Ignoring addons with no average rating.
             continue
 
-        q = Addon.objects.filter(id=addon.id)
+        # Update the addon bayesian_rating atomically using F objects (unless
+        # it has no reviews, in which case directly set it to 0).
+        qs = Addon.objects.filter(id=addon.id)
         if addon.total_reviews:
             num = mc + F('total_reviews') * F('average_rating')
             denom = avg['reviews'] + F('total_reviews')
-            q.update(bayesian_rating=num / denom)
+            qs.update(bayesian_rating=num / denom)
         else:
-            q.update(bayesian_rating=0)
+            qs.update(bayesian_rating=0)
 
 
 @task

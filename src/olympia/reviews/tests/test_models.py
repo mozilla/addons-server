@@ -349,7 +349,7 @@ class TestRefreshTest(ESTestCase):
 
     def setUp(self):
         super(TestRefreshTest, self).setUp()
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        self.addon = addon_factory()
         self.user = UserProfile.objects.all()[0]
         self.refresh()
 

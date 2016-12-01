@@ -664,7 +664,6 @@ def addon_factory(
         'status': amo.STATUS_PUBLIC,
         'name': name,
         'slug': name.replace(' ', '-').lower()[:30],
-        'bayesian_rating': random.uniform(1, 5),
         'average_daily_users': popularity or random.randint(200, 2000),
         'weekly_downloads': popularity or random.randint(200, 2000),
         'created': when,
