@@ -12,8 +12,8 @@ class DiscoItem(object):
 # At the moment the disco pane items are hardcoded in this file in the repos,
 # which allows us to integrate in our translation workflow easily.
 discopane_items = [
-    # Theme: Aurora Australis
-    DiscoItem(addon_id=49331),
+    # Theme: Ice Flower
+    DiscoItem(addon_id=265447),
 
     # uBlock Origin
     DiscoItem(
@@ -38,8 +38,8 @@ discopane_items = [
               u'lets you edit, annotate, and share images.'),
             '</blockquote>')),
 
-    # Theme: Snow Style
-    DiscoItem(addon_id=68349, addon_name=u'Snow Style'),
+    # Theme: Les Eléphants
+    DiscoItem(addon_id=754566, addon_name=u'Les Éléphants'),
 
     # OmniSidebar
     DiscoItem(
@@ -52,19 +52,18 @@ discopane_items = [
               u'Bring your lists into view with a single, simple gesture.'),
             '</blockquote>')),
 
-    # Video DownloadHelper
+    # YouTube High Definition
     DiscoItem(
-        addon_id=3006,
-        heading=_(u'Download videos {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
+        addon_id=328839,
+        heading=_(u'Enhance YouTube {start_sub_heading}with '
+                  u'{addon_name}{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Want an easy way to download videos to watch offline or save '
-              u'for later? Video DownloadHelper works beautifully with all '
-              u'major streaming sites like YouTube, Facebook, Vimeo, Twitch, '
-              u'and others.'),
+            _(u'Automatically play YouTube videos in high-def, turn off '
+              u'annotations, adjust player size, and many other ways to '
+              u'personalize your video-watching experience.'),
             '</blockquote>')),
 
     # Theme: My Vinyl
-    DiscoItem(addon_id=125478),
+    DiscoItem(addon_id=676070, addon_name=u'Owl First Snow'),
 ]
