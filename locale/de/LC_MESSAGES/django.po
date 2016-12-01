@@ -6238,9 +6238,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Müssen Sie ständig durch Ihre Lesezeichen scrollen? Greifen Sie stattdessen mit einer einzelnen, einfachen Geste auf Ihre Listen zu."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Verbessern Sie YouTube {start_sub_heading} mit {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
@@ -11327,6 +11326,5 @@ msgid "Addon"
 msgstr "Add-on"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Überprüfungsergebnisse"
+msgstr "Überprüfungsergebnis"
