@@ -1,0 +1,53 @@
+.DevHub-Navigation {
+  > div {
+    padding-top: 5px;
+  }
+
+  ul {
+    align-items: center;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    li {
+      margin: 10px 20px;
+
+      &:first-child {
+        margin: 0 auto 0 0;
+      }
+
+      &.avatar {
+        display: none;
+
+        @media @large {
+          display: inline;
+        }
+
+        img {
+          width: 40px;
+          border-radius: 50%;
+        }
+      }
+
+      a {
+        color: @color-text;
+        text-decoration: none;
+      }
+    }
+  }
+
+  // Schemas:
+  &.scheme-light {
+    ul li a {
+      color: @color-scheme-light-text;
+    }
+  }
+
+  &.scheme-medium {
+    ul li a {
+      color: @color-scheme-medium-text;
+    }
+  }
+}

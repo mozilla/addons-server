@@ -1,0 +1,65 @@
+@import '../common/normalize.css';
+@import '../../impala/fonts/fira/fira.less';
+
+// Grid
+@grid-max: 940px;
+@small: ~"only screen and (max-width: 768px)";
+@medium: ~"only screen and (min-width: 768px)";
+@large: ~"only screen and (min-width: 1024px)";
+
+// Fonts
+@font-primary: 'Fira Sans', sans-serif;
+
+// Colors
+@color-text: #333;
+@color-items: #fff;
+
+// Color Schemes
+// Light
+@color-scheme-light-text: #333;
+@color-scheme-light-background: #f1f3f6;
+
+// Medium
+@color-scheme-medium-text: #fff;
+@color-scheme-medium-background: #0568ba;
+@color-scheme-medium-items: #29c978;
+
+// Dark
+@color-scheme-dark-text: #fff;
+@color-scheme-dark-background: #1d3770;
+@color-scheme-dark-items: #40d38d;
+
+// Common styles
+* {
+  font-family: @font-primary;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 1.2;
+  margin-bottom: 0;
+  margin-top: 20px;
+  margin-top: 0;
+}
+
+// Mixins / Utilities
+@import 'utils';
+
+// Common component utilities
+@import 'common';
+
+// Generic Components
+@import 'button';
+@import 'logo';
+@import 'navigation';
+
+// Content sections
+@import 'sections/overview';
+@import 'sections/more-information';

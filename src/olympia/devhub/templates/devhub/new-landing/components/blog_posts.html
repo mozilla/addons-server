@@ -1,22 +1,24 @@
-<section class="DevHub-BlogPosts">
+<section class="DevHub-BlogPosts content scheme-dark">
   <h2>
     <a title="{{ _('Subscribe to this feed') }}" href="https://blog.mozilla.com/addons/feed/">
       {{ _('Latest News') }}
     </a>
   </h2>
-  <ul>
-    {% for post in blog_posts %}
-      <li>
-        <a class="DevHub-BlogPosts-postTitle" href="{{ post.permalink }}">{{ post.title }}</a>
+  {% if blog_posts.exists() %}
+    <ul>
+      {% for post in blog_posts %}
+        <li>
+          <a class="DevHub-BlogPosts-postTitle" href="{{ post.permalink }}">{{ post.title }}</a>
 
-        <p class="meta">
-          <time datetime="{{ post.date_posted }}">
-            {{ post.date_posted|timesince }}
-          </time>
-        </p>
-      </li>
-    {% endfor %}
-  </ul>
+          <p class="meta">
+            <time datetime="{{ post.date_posted }}">
+              {{ post.date_posted|timesince }}
+            </time>
+          </p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 
   <a class="read-more" href="https://blog.mozilla.com/addons/">
     {{ _('Read more in our Blog') }}
