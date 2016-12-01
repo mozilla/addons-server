@@ -13,18 +13,18 @@ class TestDiscoveryViewList(TestCase):
 
         # Represents a dummy version of `olympia.discovery.data`
         self.addons = {
-            49331: addon_factory(
-                id=49331, type=amo.ADDON_PERSONA,
+            265447: addon_factory(
+                id=265447, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
             607454: addon_factory(id=607454, type=amo.ADDON_EXTENSION),
             287841: addon_factory(id=287841, type=amo.ADDON_EXTENSION),
-            68349: addon_factory(
-                id=68349, type=amo.ADDON_PERSONA,
+            754566: addon_factory(
+                id=754566, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
             296534: addon_factory(id=296534, type=amo.ADDON_EXTENSION),
-            3006: addon_factory(id=3006, type=amo.ADDON_EXTENSION),
-            125478: addon_factory(
-                id=125478, type=amo.ADDON_PERSONA,
+            328839: addon_factory(id=328839, type=amo.ADDON_EXTENSION),
+            676070: addon_factory(
+                id=676070, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
         }
 
@@ -94,7 +94,7 @@ class TestDiscoveryViewList(TestCase):
         addon_deleted = self.addons[287841]
         addon_deleted.delete()
 
-        theme_disabled_by_user = self.addons[68349]
+        theme_disabled_by_user = self.addons[754566]
         theme_disabled_by_user.update(disabled_by_user=True)
 
         self.addons[296534].update(status=amo.STATUS_NOMINATED)
