@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 10:55+0000\n"
+"PO-Revision-Date: 2016-12-01 12:01+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5485,9 +5485,8 @@ msgid "Latest News"
 msgstr "Legfrissebb hírek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "további információ szükséges"
+msgstr "Olvasson tovább a blogunkon"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
@@ -5512,44 +5511,37 @@ msgid "Customize Your Firefox"
 msgstr "A Firefox testreszabása"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
-"A kiegészítők Firefox felhasználók millióinak teszik jobbá és személyessé a böngészési élményt. Ha Ön webfejlesztő, és ismeri a <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>-t, <a"
-" href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>et, é s<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>-t, máris minden szükséges képessége megvan egy "
-"nagyszerű kiegészítő elkészítéséhez."
+"A kiegészítők Firefox felhasználók millióinak javítja a böngészési élményét. Ha Ön webfejlesztő, és ismeri a <a href=\"#\">HTML</a>-t, <a href=\"#\">JavaScript</a>et, és <a href=\"#\">CSS</a>-t, "
+"máris minden szükséges képessége megvan egy nagyszerű kiegészítő elkészítéséhez."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Tudjon meg többet a kiegészítőkről"
+msgstr "Tudja meg hogy készítsen el egy kiegészítőt"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Ellenőrzés"
+msgstr "Érvényesség-ellenőrző"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Egészítse ki a kiegészítőjét."
+msgstr "Automatizált kódtesztek a kiegészítőjéhez."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Kiegészítő kompatibilitásvizsgálata"
+msgstr "Kompatibilitás-ellenőrző"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Lássa, hogy a kiegészítőjét várhatóan érintik-e a Firefox változásai."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Kompatibilitási jelentések"
+msgstr "Kompatibilitás-jelentő"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5589,9 +5581,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Adományokat kaphat a PayPal számlájára, vagy elküldheti egy kiválasztott szervezetnek."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Az adományozás csak a listázott kiegészítőknél elérhető."
+msgstr "Az adományozás csak a listázott verziókkal rendelkező kiegészítőknél elérhető."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -6058,19 +6049,16 @@ msgid "Reply"
 msgstr "Válasz"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Kiegészítő láthatósága"
+msgstr "Listázás láthatósága"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Láthatóság:"
+msgstr "Látható:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "Mindenki számára látható itt: {0}, valamint szerepel a találatok között és a listázási oldalakon"
+msgstr "Mindenki számára látható itt: {0}, valamint szerepel a találatok között és a listázási oldalakon."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
@@ -6089,9 +6077,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Nincs itt terjesztve: {0}. A fejlesztők feltöltik az új verziókat aláírásra, majd saját maguk terjesztik a kiegészítőket."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Egyéb verziók megtekintése"
+msgstr "Listázott verziók"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6115,23 +6102,20 @@ msgid "Older versions"
 msgstr "Korábbi verziók"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "Miért nem válthatok át <i>Listázott</i> vagy <i>Rejtett</i> állapotba?"
+msgstr "Miért nem válthat át <i>Listázott</i> állapotba?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
-"Technikai megszorítások miatt törölnie kell a teljes kiegészítőjét, és újra benyújtania az AMO fiókja használatával, ahhoz hogy listázottá tegye a kiegészítőjét.\n"
-"            A folyamat részletesen le van írva <a href=\"{link}\">ebben a dokumentációban</a>."
+"Technikai megszorítások miatt törölnie kell a teljes kiegészítőjét, és újra benyújtania ezt AMO fiókot használva, ahhoz hogy listázottá tegye a kiegészítőjét.\n"
+"        A folyamat részletesen le van írva <a href=\"{link}\">ebben a dokumentációban</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Korábbi verziók"
+msgstr "Minden verzió"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6251,9 +6235,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Folyamatosan átgörget a könyvjelzőin? Hozza a listáit a szeme elé egyetlen egyszerű mozdulattal."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Javítsa a YouTube-ot {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
@@ -11335,6 +11318,5 @@ msgid "Addon"
 msgstr "Kiegészítő"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Ellenőrzés eredményei"
+msgstr "Ellenőrzés eredménye"
