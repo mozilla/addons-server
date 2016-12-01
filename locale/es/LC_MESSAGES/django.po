@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 18:02+0000\n"
+"PO-Revision-Date: 2016-12-01 18:18+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -5231,9 +5231,8 @@ msgid "Upload Add-on"
 msgstr "Subir complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Dónde alojar la versión"
+msgstr "Dónde alojar el archivo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5261,9 +5260,8 @@ msgid "Administrative overrides"
 msgstr "Anulaciones administrativas"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Enviar versión para revisión"
+msgstr "Enviar archivo para revisión"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5342,7 +5340,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Tu complemento no aparecerá en los resultados de búsqueda y en la página aparecerá que lo deshabilitaste. Tampoco se aceptarán nuevos envíos de versión para poder listarlo."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -5355,32 +5353,24 @@ msgid "%%b %%e, %%Y"
 msgstr "%%b %%e, %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Estado del multiproceso:"
+msgstr "Estado del multiproceso del complemento:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "La compatibilidad de tu complemento con Multiproceso de Firefox (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Última versión:"
+msgstr "Versión listada:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
-"Esta es la versión de tu complemento que\n"
-"                                           se instalará si alguien hace clic en el botón\n"
-"                                           Instalar en addons.mozilla.org. Solo es útil\n"
-"                                           para complementos listados."
+msgstr "Esta es la versión de tu complemento que se instalará si alguien hace clic en el botón Instalar en addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Próxima versión:"
+msgstr "Próxima versión listada:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5393,16 +5383,12 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "Las colas no son revisadas en orden estricto"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
 msgstr "Última versión:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
-"Esta es la última versión, pero\n"
-"                                           aún no está disponible en la página."
+msgstr "Esta es la última versión disponible no listada."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5541,24 +5527,21 @@ msgid "{0} Add-ons"
 msgstr "{0} complementos"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Última versión:"
+msgstr "Últimas noticias"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "necesita más información"
+msgstr "Leer más en nuestro Blog"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Desarrollador de complementos"
+msgstr "Centro de desarrolladores de complementos"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
-msgstr ""
+msgstr "Documentos"
 
 # Link text to the AMO blog.
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
@@ -5566,58 +5549,49 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Firmar complemento"
+msgstr "Iniciar sesión"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Temas fáciles de usar para Firefox"
+msgstr "Personalizar Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
-"Los complementos le permiten a millones de usuarios de Firefox mejorar y personalizar su experiencia de navegación. Si eres un desarrollador Web y sabes <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>HTML</a> y <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">CSS</a>, ya tienes todas las habilidades necesarias para crear "
-"un gran complemento."
+"Los complementos le permiten a millones de usuarios de Firefox mejorar su experiencia de navegación. Si sabes <a href=\"#\">HTML</a><a href=\"#\">JavaScript</a> y <a href=\"#\">CSS</a>, ya tienes "
+"todas las habilidades necesarias para crear un gran complemento."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Más información sobre complementos"
+msgstr "Aprende cómo crear un complemento"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
 msgstr "Validación"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Por favor, completa tu complemento."
+msgstr "Pruebas de código automáticas para tu complemento."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Verificador de compatibilidad de complementos"
+msgstr "Verificador de compatibilidad"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Descubre si a tu complemento le afectarían los cambios en Firefox."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
 msgstr "Informes de compatibilidad"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Cuéntanos si un complemento funciona en una versión específica de Firefox."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -5653,9 +5627,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Recibe colaboraciones en tu cuenta de PayPal o envíalas a una organización que decidas"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Las colaboraciones sólo están disponibles para los complementos listados."
+msgstr "Las colaboraciones sólo están disponibles para los complementos con versiones listadas."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -6147,27 +6120,24 @@ msgid "Reply"
 msgstr "Responder"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Visibilidad del complemento"
+msgstr "Visibilidad de las listas"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Visibilidad:"
+msgstr "Visible:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "Visible para todos en {0} e incluido en resultados de búsquedas y en páginas de listados"
+msgstr "Visible para todos en {0} e incluido en resultados de búsquedas y en páginas de listados."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
-msgstr ""
+msgstr "Invisible:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "No se incluirá en los resultados de búsqueda y en la página aparecerá que lo deshabilitaste. Tampoco se aceptarán los nuevos envíos de versiones para que se listen."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6178,9 +6148,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "No distribuido en {0}. Los desarrolladores subirán nuevas versiones para firmarlas y distribuirán los complementos ellos mismos."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Ver otras versiones"
+msgstr "Versiones listadas"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6204,23 +6173,20 @@ msgid "Older versions"
 msgstr "Versiones antiguas"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "¿Por qué no puedo cambiar a <i>Listado</i> u <i>Oculto</i>?"
+msgstr "¿Por qué no puedo cambiar a <i>Listado</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
-"Por razones de limitaciones, tienes que eliminar el complemento y volver a enviarlo utilizando esta cuenta de AMO para poder cambiarlo a listado.  En <a href=\"{link}\">esta documentación</a> "
-"encontrarás una descripción detallada del proceso."
+"Por razones de limitaciones, tienes que eliminar el complemento y volver a enviarlo utilizando esta cuenta de AMO para poder cambiarlo a listado.\n"
+"        En <a href=\"{link}\">esta documentación</a> encontrarás una descripción detallada del proceso."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Versiones antiguas"
+msgstr "Todas las versiones"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6339,13 +6305,13 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "¿Constantemente tienes que desplazarte por tus listados de favoritos? Ponlos todos a la vista por medio de una única, sencilla operación."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquea la publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Mejora YouTube {start_sub_heading} con {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
 msgstr ""
+"Reproduce vídeos de YouTube automáticamente en alta definición, desactiva los comentarios, ajusta el tamaño y te ofrece muchas otras opciones para personalizar la forma en la que ves los vídeos."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10230,7 +10196,7 @@ msgstr "Falta la clave \"upload\" en los datos del fichero multipart."
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "No puedes agregar versiones a un complemento con estado %s."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
@@ -10246,7 +10212,7 @@ msgstr "Solo WebExtensions puede omitir el GUID"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "No puedes agregar una versión listada a este complemento a través de la API por falta de metadatos. Inténtalo a través de la página web"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
@@ -11462,6 +11428,5 @@ msgid "Addon"
 msgstr "Complemento"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Resultados de la validación"
+msgstr "Resultado de la validación"
