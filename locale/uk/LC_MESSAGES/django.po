@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-14 07:03+0000\n"
+"POT-Creation-Date: 2016-12-01 06:45+0000\n"
 "PO-Revision-Date: 2016-11-24 18:29+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -82,10 +82,6 @@ msgstr "Експериментальний"
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
 msgstr "Додати до {0}"
-
-#: src/olympia/addons/forms.py
-msgid "This name is already in use. Please choose another."
-msgstr "Це ім'я вже використовується. Виберіть будь ласка інше."
 
 #: src/olympia/addons/forms.py
 msgid "This slug is already in use. Please choose another."
@@ -180,8 +176,7 @@ msgstr "Користувачі можуть зробити внесок, біл�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
 msgstr "Користувачів завжди будуть питати у менеджері додатків (Firefox 4 та вище). Стосується тільки ПК."
 
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/addons/models.py src/olympia/constants/base.py
 msgid "Listed"
 msgstr "У списку"
 
@@ -394,14 +389,14 @@ msgstr "Працює з"
 msgid "Visibility"
 msgstr "Видимість"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Hidden"
-msgstr "Приховано"
+#: src/olympia/addons/templates/addons/details_box.html
+#, fuzzy
+msgid "Visible"
+msgstr "Видимість"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Unlisted"
-msgstr "Не в списку"
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Invisible"
+msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -1198,6 +1193,7 @@ msgid "Add to collection"
 msgstr "Додати в збірку"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "My Add-ons"
 msgstr "Мої додатки"
 
@@ -1373,7 +1369,7 @@ msgstr "Спробуйте їх!"
 msgid "Theme Info &raquo;"
 msgstr "Інформація про тему &raquo;"
 
-#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tools"
 msgstr "Інструменти"
 
@@ -1494,30 +1490,10 @@ msgstr "{addon} відключено."
 msgid "{addon} enabled."
 msgstr "{addon} включено."
 
-#: src/olympia/amo/log.py
-msgid "Stats set public for {addon}."
-msgstr "Статистику для {addon} встановлено загальнодоступною."
-
-#: src/olympia/amo/log.py
-msgid "{addon} stats set to private."
-msgstr "Статистику {addon} встановлено приватною."
-
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{addon} status changed to {0}."
 msgstr "Статус {addon} змінено на {0}."
-
-#: src/olympia/amo/log.py
-msgid "Preview added to {addon}."
-msgstr "До {addon} додано зображення для перегляду."
-
-#: src/olympia/amo/log.py
-msgid "Preview edited for {addon}."
-msgstr "Зображення для перегляду {addon} змінено."
-
-#: src/olympia/amo/log.py
-msgid "Preview deleted from {addon}."
-msgstr "Зображення для перегляду видалені з {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
@@ -1699,14 +1675,6 @@ msgid "Password changed."
 msgstr "Пароль змінено."
 
 #: src/olympia/amo/log.py
-msgid "{addon} failed checks with PayPal."
-msgstr "{addon} не пройшов перевірку в PayPal."
-
-#: src/olympia/amo/log.py
-msgid "{addon} manifest updated."
-msgstr "Маніфест {addon} оновлено."
-
-#: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} схвалено, але чекає надання загального доступу."
 
@@ -1715,68 +1683,8 @@ msgid "Approved but waiting"
 msgstr "Схвалено, але очікує"
 
 #: src/olympia/amo/log.py
-msgid "{addon} purchased."
-msgstr "{addon} куплено."
-
-#: src/olympia/amo/log.py
-msgid "{addon} installed."
-msgstr "{addon} встановлено."
-
-#: src/olympia/amo/log.py
 msgid "Account updated."
 msgstr "Обліковий запис оновлений."
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared for {addon}."
-msgstr "Ескалація для {addon} очищена."
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared"
-msgstr "Ескалація очищена"
-
-#: src/olympia/amo/log.py
-msgid "App disabled"
-msgstr "Застосунок вимкнено"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated because of high number of abuse reports."
-msgstr "{addon} передано вище через велику кількість повідомлень про зловживання."
-
-#: src/olympia/amo/log.py
-msgid "High Abuse Reports"
-msgstr "Багато скарг"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated by reviewer."
-msgstr "Перевіряючий зробив ескалацію {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Reviewer escalation"
-msgstr "Ескалація перевірки"
-
-#: src/olympia/amo/log.py
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr "Відео вилучено з {addon} через проблеми з відтворенням. "
-
-#: src/olympia/amo/log.py
-msgid "Video removed"
-msgstr "Відео вилучено"
-
-#: src/olympia/amo/log.py
-msgid "{addon} re-review because of new device(s) added."
-msgstr "Повторний розгляд {addon} через додавання нових пристроїв."
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Added"
-msgstr "Пристрій(-ої) додано"
-
-#: src/olympia/amo/log.py
-msgid "{addon} device support manually changed by reviewer."
-msgstr "Підтримку пристроїв {addon} вручну змінено рецензентом."
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Changed by Reviewer"
-msgstr "Пристрої змінено рецензентом"
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
@@ -1823,40 +1731,6 @@ msgid "User {0.name} removed from {group}."
 msgstr "Користувач {0.name} вилучений з {group}."
 
 #: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "Мінімальні вимоги {addon} змінено вручну рецензентом."
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed by Reviewer"
-msgstr "Вимоги змінено рецензентом"
-
-#: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed."
-msgstr "Мінімальні вимоги {addon} змінено вручну."
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed"
-msgstr "Вимоги змінено"
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{version} status changed to {0}."
-msgstr "Статус {version} змінено на {0}."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr "Користувача {0.name} {0.id} видалено через інструмент пошуку."
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed to Adult."
-msgstr "Рейтинг вмісту {addon} змінено на Дорослий."
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed."
-msgstr "Рейтинг вмісту {addon} змінено."
-
-#: src/olympia/amo/log.py
 msgid "{addon} unlisted."
 msgstr "{addon} прибрано зі списку."
 
@@ -1888,6 +1762,25 @@ msgstr "Відповісти редактору щодо {addon} {version}."
 #: src/olympia/amo/log.py
 msgid "Reviewer Reply"
 msgstr "Відповідь редактора"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "Коментар про {addon} {version}."
+
+#: src/olympia/amo/log.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "Відповісти розробнику щодо {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "Програмний код"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -3265,6 +3158,10 @@ msgstr "Відмічено для додаткової перевірки"
 msgid "Beta"
 msgstr "Бета"
 
+#: src/olympia/constants/base.py
+msgid "Unlisted"
+msgstr "Не в списку"
+
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
 msgstr "Розробник"
@@ -3273,7 +3170,7 @@ msgstr "Розробник"
 msgid "Viewer"
 msgstr "Оглядач"
 
-#: src/olympia/constants/base.py src/olympia/templates/mobile/header.html
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "Підтримка"
 
@@ -4025,6 +3922,14 @@ msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional n
 msgstr "Файл з версією, що закінчується на a|alpha|b|beta|pre|rc і необов'язковим числом, визначається як бета."
 
 #: src/olympia/devhub/forms.py
+msgid "You cannot upload any more files for this version."
+msgstr "Ви більше не можете вивантажувати файли для цієї версії."
+
+#: src/olympia/devhub/forms.py
+msgid "Version doesn't match"
+msgstr "Версія не підходить"
+
+#: src/olympia/devhub/forms.py
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
 msgstr "Версія %s вже існує або була завантажена раніше."
@@ -4036,14 +3941,6 @@ msgstr "Зробіть правильний вибір. Цей вибір не �
 #: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Файл з версією, що закінчується на a|alpha|b|beta і необов'язкове число, визначається як бета."
-
-#: src/olympia/devhub/forms.py
-msgid "You cannot upload any more files for this version."
-msgstr "Ви більше не можете вивантажувати файли для цієї версії."
-
-#: src/olympia/devhub/forms.py
-msgid "Version doesn't match"
-msgstr "Версія не підходить"
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
@@ -4383,10 +4280,6 @@ msgstr "Почати створювати додатки"
 msgid "Status:"
 msgstr "Статус:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Visibility:"
-msgstr "Видимість:"
-
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "Остання версія:"
@@ -4434,7 +4327,7 @@ msgstr "Центр розробників <small>Додатків</small>"
 msgid "more add-ons..."
 msgstr "більше додатків..."
 
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Documentation"
 msgstr "Документація"
 
@@ -4542,6 +4435,7 @@ msgid "Activity"
 msgstr "Активність"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Subscribe to this feed"
 msgstr "Підписатись на цю стрічку"
 
@@ -5052,9 +4946,11 @@ msgstr "Вилучити додаток"
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "Вилучення вашої теми повністю прибере її з сайту."
 
-#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-msgid "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted again by others."
-msgstr "Видалення вашого додатку повністю вилучить його з сайту і заблокує повторне подання його GUID іншими."
+#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
+msgid ""
+"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
+"able to submit versions using the same ID."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5168,6 +5064,11 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> активний користувач"
 msgstr[1] "<strong>{0}</strong> активних користувача"
 msgstr[2] "<strong>{0}</strong> активних користувачів"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html
+#, fuzzy
+msgid "Submit a New File"
+msgstr "Відправити нову тему"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5288,7 +5189,8 @@ msgid "Manage Listing"
 msgstr "Керування опублікованими"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
+#, fuzzy
+msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr "Ви також можете змінювати цю щойно подану версію з додаванням приміток чи програмного коду, якщо вона включає стиснутий, заплутаний чи скомпільований код."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5308,10 +5210,11 @@ msgid "Download {0}"
 msgstr "Завантажити {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+#, fuzzy
+msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Ви обрали лише деякі з доступних платформ для цього подання. Ви можете вивантажити більше файлів, призначених для інших платформ:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
 msgstr "Вивантажити файл"
 
@@ -5326,6 +5229,11 @@ msgstr "Угода про розповсюдження додатків"
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
 msgstr "Вивантажити додаток"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Where to Host File"
+msgstr "Де розмістити версію"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5345,8 +5253,17 @@ msgid "Which platforms is this file compatible with?"
 msgstr "З якими платформами сумісний цей файл?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+msgid "Only publish this version to my beta channel."
+msgstr "Опублікувати цю версію тільки на моєму бета-каналі."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
 msgstr "Адміністративні дії"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Submit File for Review"
+msgstr "Подати версію на перевірку"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5403,16 +5320,6 @@ msgid "Generate new credentials"
 msgstr "Генерувати нові облікові дані"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You have disabled this add-on"
-msgstr "Ви вимкнули цей додаток"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr ""
-"Сторінка вашого додатку відключена і не відображається\n"
-"                             ні в нашій галереї, ні в службі оновлення."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
 msgstr "Будь ласка, доробіть ваш додаток."
 
@@ -5421,42 +5328,18 @@ msgid "You will receive an email when the review is complete. Until then, your a
 msgstr "По завершенні процесу перевірки ви отримаєте лист. Поки що ваш додаток не буде відображений в галереї, але буде доступний зі своєї сторінки. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-"По завершенні процесу перевірки та після\n"
-"                             підпису додатку ви отримаєте лист."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr ""
 "Ваш додаток відображається в нашій галереї та користувачі\n"
 "                             отримують автоматичні оновлення."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed and can be bundled with an application installer."
-msgstr ""
-"Ваш додаток був підписаний і може бути об'єднаний з\n"
-"                             інсталятором програми."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr "Ваш додаток був виключений адміністратором сайту і більше не показується в нашій галереї. Якщо у вас є запитання, будь ласка, напишіть на amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Current Version:"
-msgstr "Поточна версія:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
-msgstr "Це версія вашого додатку, яка буде встановлена, якщо хтось натисне на кнопку Встановити на addons.mozilla.org. Це відноситься тільки до наведених додатків."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Multi Process Status:"
-msgstr "Багатопроцесовість:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "Сумісність вашого додатку з багатопроцесовим Firefox (e10s)."
+msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -5469,16 +5352,46 @@ msgid "%%b %%e, %%Y"
 msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Next Version:"
+#, fuzzy
+msgid "Add-on Multi Process Status:"
+msgstr "Багатопроцесовість:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgstr "Сумісність вашого додатку з багатопроцесовим Firefox (e10s)."
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Listed Version:"
+msgstr "Остання версія:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgstr "Це версія вашого додатку, яка буде встановлена, якщо хтось натисне на кнопку Встановити на addons.mozilla.org. Це відноситься тільки до наведених додатків."
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Next Listed Version:"
 msgstr "Наступна версія:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr "Це найновіша завантажена версія, проте її ще немає на сайті."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Queues are not reviewed strictly in order"
 msgstr "Черги не перевіряються чітко за порядком"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Lastest Version:"
+msgstr "Остання версія:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the newest uploaded unlisted version."
+msgstr "Це найновіша завантажена версія, проте її ще немає на сайті."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5611,6 +5524,88 @@ msgstr "Цей файл буде видалений при збереженні.
 msgid "Undo"
 msgstr "Скасувати"
 
+#. {0} is an application, like Firefox.
+#: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
+#: src/olympia/templates/mobile/base_addons.html
+msgid "{0} Add-ons"
+msgstr "Додатки {0}"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Latest News"
+msgstr "Остання версія:"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Read more in our Blog"
+msgstr "потребує додаткову інформацію"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Add-on Developer Hub"
+msgstr "Розробник додатка"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+msgid "Docs"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
+msgid "Blog"
+msgstr "Блог"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Sign In"
+msgstr "Підписати додаток"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Customize Your Firefox"
+msgstr "Легкі в користуванні теми для Firefox"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid ""
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
+"necessary skills to make a great add-on."
+msgstr ""
+"Додатки дозволяють мільйонам користувачів Firefox розширювати та налаштовувати своє середовище для роботи в мережі Інтернет. Якщо Ви веб-розробник і знаєте <a href=\"https://developer.mozilla.org/"
+"docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> і <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, у Вас вже є всі необхідні "
+"навички, щоб створити чудовий додаток."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Learn How to make an Add-on"
+msgstr "Докладніше про додатки"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Validator"
+msgstr "Перевірка"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Automated code tests for your add-on."
+msgstr "Будь ласка, доробіть ваш додаток."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Checker"
+msgstr "Центр сумісності додатків"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "See if your add-on is likely to be affected by changes in Firefox."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Reporter"
+msgstr "Звіти сумісності"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "Tell us if an add-on works in a particular version of Firefox."
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
 msgstr "В даний час ви просите користувачів зробити <b>внески</b>"
@@ -5645,7 +5640,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Отримувати внески на ваш рахунок в PayPal або відправляти їх в організацію на свій вибір"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for listed add-ons."
+#, fuzzy
+msgid "Contributions are only available for add-ons with listed versions."
 msgstr "Внески доступні лише для опублікованих додатків."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
@@ -5984,10 +5980,6 @@ msgstr "Файли, додані в перевірені версії, пови�
 msgid "Select the target platform for this file."
 msgstr "Оберіть платформу для цього файлу."
 
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Only publish this version to my beta channel."
-msgstr "Опублікувати цю версію тільки на моєму бета-каналі."
-
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
 msgstr "Керування версією {0}"
@@ -6062,14 +6054,6 @@ msgstr "Створений %(created)s і його статус змінено �
 msgid "Edit this version"
 msgstr "Змінити цю версію"
 
-#. {0} is the number of files
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "{0} file"
-msgid_plural "{0} files"
-msgstr[0] "{0} файл"
-msgstr[1] "{0} файли"
-msgstr[2] "{0} файлів"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
 msgstr "0 файлів"
@@ -6077,11 +6061,6 @@ msgstr "0 файлів"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
 msgstr "Активувати версію знову"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, python-format
-msgid "Queue position: %(pos)s of %(total)s"
-msgstr "Позиція в черзі: %(pos)s із %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
@@ -6128,36 +6107,27 @@ msgid "Reply"
 msgstr "Відповісти"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add-on visibility"
+#, fuzzy
+msgid "Listing visibility"
 msgstr "Видимість додатку"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr "Чому я не можу перемкнути на <i>Опубліковані</i> чи <i>Приховані</i>?"
+#, fuzzy
+msgid "Visible:"
+msgstr "Видимість:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid ""
-"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
-"            The process is described in detail in <a href=\"{link}\">this documentation</a>."
-msgstr ""
-"У зв'язку з технічними обмеженнями, для публікації додатку вам потрібно повністю видалити свій додаток і представити його повторно з використанням цього самого облікового запису AMO.\n"
-"            Цей процес детально описано в <a href=\"{link}\">цій документації</a>."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Listed:"
-msgstr "У списку:"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Visible to everyone on {0} and included in search results and listing pages"
+#, fuzzy
+msgid "Visible to everyone on {0} and included in search results and listing pages."
 msgstr "Видимий всім на {0} і включений в результати пошуку та інформаційні сторінки."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hidden:"
-msgstr "Приховані:"
+msgid "Invisible:"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr "Розміщені на {0}, але приховані для всіх, орім авторів. Використовується, щоб тимчасово приховати або припинити їх."
+msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6168,8 +6138,9 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Не розповсюджується на {0}. Розробники будуть вивантажувати нові версії для підпису розповсюджувати додаток власними засобами."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Current versions"
-msgstr "Поточні версії"
+#, fuzzy
+msgid "Listed versions"
+msgstr "Переглянути інші версії"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6189,6 +6160,25 @@ msgstr "Наступна версія цього додатку"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
+msgstr "Старіші версії"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Why can't I switch to <i>Listed</i>?"
+msgstr "Чому я не можу перемкнути на <i>Опубліковані</i> чи <i>Приховані</i>?"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid ""
+"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
+"        The process is described in detail in <a href=\"{link}\">this documentation</a>."
+msgstr ""
+"У зв'язку з технічними обмеженнями, для публікації додатку вам потрібно повністю видалити свій додаток і представити його повторно з використанням цього самого облікового запису AMO.\n"
+"            Цей процес детально описано в <a href=\"{link}\">цій документації</a>."
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "All versions"
 msgstr "Старіші версії"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6307,13 +6297,13 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Постійно прокручуєте список закладок? Зробіть ваші списки видимими одним простим рухом."
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Завантажуйте відео {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
+msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
 msgstr ""
-"Хочете мати простий спосіб завантаження відео для перегляду офлайн або для збереження на потім? Video DownloadHelper працює з усіма популярними сайтами, як от YouTube, Facebook, Vimeo, Twitch та ін."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10075,11 +10065,6 @@ msgstr "Показ результатів {0} - {1} з {2} для <strong>{3}</s
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Показ результатів {0} - {1} з {2}"
 
-#. {0} is an application, like Firefox.
-#: src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
-msgid "{0} Add-ons"
-msgstr "Додатки {0}"
-
 #: src/olympia/search/views.py src/olympia/zadmin/forms.py
 msgid "All Add-ons"
 msgstr "Всі додатки"
@@ -10175,6 +10160,11 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Відсутній ключ \"upload\" під час надсилання файлу."
 
 #: src/olympia/signing/views.py
+#, python-format
+msgid "You cannot add versions to an addon that has status: %s."
+msgstr ""
+
+#: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
 msgstr "Версія не відповідає файлу маніфесту."
 
@@ -10185,6 +10175,10 @@ msgstr "Версія вже існує."
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Тільки веб-додатки можуть пройти перевірку"
+
+#: src/olympia/signing/views.py
+msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
+msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
@@ -10607,10 +10601,6 @@ msgstr "дізнайтеся про <b>додатки</b>"
 #: src/olympia/templates/footer.html
 msgid "About"
 msgstr "Про"
-
-#: src/olympia/templates/footer.html
-msgid "Blog"
-msgstr "Блог"
 
 #: src/olympia/templates/footer.html
 msgid "FAQ"
@@ -11398,3 +11388,8 @@ msgstr "Впливає на додатки"
 #: src/olympia/zadmin/views.py
 msgid "Addon"
 msgstr "Додаток"
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Validation Result"
+msgstr "Результати валідації"

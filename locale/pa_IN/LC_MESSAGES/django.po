@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-14 07:03+0000\n"
+"POT-Creation-Date: 2016-12-01 06:45+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,10 +75,6 @@ msgstr ""
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
 msgstr "{0} ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ"
-
-#: src/olympia/addons/forms.py
-msgid "This name is already in use. Please choose another."
-msgstr "ਇਹ ਨਾਂ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਗਿਆ ਹੈ। ਕ੍ਰਿਪਾ ਕਰਕੇ ਹੋਰ ਚੁਣੋ।"
 
 #: src/olympia/addons/forms.py
 msgid "This slug is already in use. Please choose another."
@@ -168,8 +164,7 @@ msgstr "ਉਪਭੋਗੀਆਂ ਕੋਲ ਇਸ ਰਕਮ ਨਾਲੋਂ ਵ�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
 msgstr ""
 
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/addons/models.py src/olympia/constants/base.py
 msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
 
@@ -382,14 +377,14 @@ msgstr "ਨਾਲ ਕੰਮ ਕਰਦਾ"
 msgid "Visibility"
 msgstr "ਪ੍ਰਤੱਖਤਾ"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Hidden"
-msgstr "ਲੁਕਿਆ"
+#: src/olympia/addons/templates/addons/details_box.html
+#, fuzzy
+msgid "Visible"
+msgstr "ਪ੍ਰਤੱਖਤਾ"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Unlisted"
-msgstr "ਅਣਸੂਚੀਬੱਧ"
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Invisible"
+msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -1171,6 +1166,7 @@ msgid "Add to collection"
 msgstr "ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਜੋੜੋ"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
 
@@ -1345,7 +1341,7 @@ msgstr "ਪਰਖ ਕਰੋ!"
 msgid "Theme Info &raquo;"
 msgstr " ਥੀਮ ਇੰਫ਼ੋ &raquo;"
 
-#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tools"
 msgstr "ਟੂਲ"
 
@@ -1466,30 +1462,10 @@ msgstr "{addon} ਆਯੋਗ ਹੋਇਆ।"
 msgid "{addon} enabled."
 msgstr "{addon} ਯੋਗ ਹੋਇਆ।"
 
-#: src/olympia/amo/log.py
-msgid "Stats set public for {addon}."
-msgstr "{addon} ਲਈ ਅੰਕੜੇ ਜਨਤਕ ਸੈੱਟ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} stats set to private."
-msgstr "{addon} ਅੰਕੜੇ ਨਿੱਜੀ ਤੇ ਸੈੱਟ।"
-
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{addon} status changed to {0}."
 msgstr "{addon} ਦਰਜਾ {0} ਵਿੱਚ ਬਦਲਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Preview added to {addon}."
-msgstr "ਝਲਕ {addon} ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Preview edited for {addon}."
-msgstr "{addon}ਲਈ ਝਲਕ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Preview deleted from {addon}."
-msgstr "ਝਲਕ {addon}ਤੋਂ ਹਟਾਇਆ।"
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
@@ -1669,14 +1645,6 @@ msgid "Password changed."
 msgstr "ਪਾਸਵਰਡ ਬਦਲਿਆ।"
 
 #: src/olympia/amo/log.py
-msgid "{addon} failed checks with PayPal."
-msgstr "{addon} ਦੀ PayPal ਨਾਲ ਪੜਤਾਲ ਫ਼ੇਲ੍ਹ ਹੋਈ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} manifest updated."
-msgstr "{addon} ਜ਼ਾਹਰ ਹੋਣਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਜਨਤਕ ਹੋਣ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ।"
 
@@ -1685,68 +1653,8 @@ msgid "Approved but waiting"
 msgstr "ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਉਡੀਕ ਕਰ ਰਿਹਾ"
 
 #: src/olympia/amo/log.py
-msgid "{addon} purchased."
-msgstr "{addon} ਖਰੀਦਿਆ ਗਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} installed."
-msgstr "{addon} ਇੰਸਟਾਲ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
 msgid "Account updated."
 msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared for {addon}."
-msgstr "{addon}ਲਈ ਅੱਗੇ ਵੱਧਣਾ ਸਾਫ਼ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared"
-msgstr "ਅੱਗੇ ਵੱਧਣਾ ਸਾਫ਼ ਹੋਇਆ"
-
-#: src/olympia/amo/log.py
-msgid "App disabled"
-msgstr "ਐਪ ਅਯੋਗ ਹੋਈ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated because of high number of abuse reports."
-msgstr "ਜਿਆਦਾ ਗਿਣਤੀ ਵਿੱਚ ਬਦਸਲੂਕੀ ਸੂਚਨਾਵਾਂ ਕਾਰਨ {addon} ਅੱਗੇ ਵਧਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "High Abuse Reports"
-msgstr "ਜਿਆਦਾ ਬਦਸਲੂਕੀ ਸੂਚਨਾਵਾਂ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated by reviewer."
-msgstr "ਸਮੀਖਿਅਕ ਨੇ {addon} ਅੱਗੇ ਵਧਾਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Reviewer escalation"
-msgstr "ਸਮੀਖਿਅਕ ਅੱਗੇ ਵਧਣਾ"
-
-#: src/olympia/amo/log.py
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
-
-#: src/olympia/amo/log.py
-msgid "Video removed"
-msgstr "ਵੀਡੀਓ ਹਟਾਈ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} re-review because of new device(s) added."
-msgstr "ਨਵੇਂ ਜੰਤਰ(s) ਸ਼ਾਮਲ ਹੋਣ ਕਾਰਨ {addon} ਦੀ ਮੁੜ-ਸਮੀਖਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Added"
-msgstr "ਜੰਤਰ(s) ਸ਼ਾਮਲ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} device support manually changed by reviewer."
-msgstr "{addon} ਜੰਤਰ ਸਹਿਯੋਗ ਸਮੀਖਿਅਕ ਵੱਲੋਂ ਖੁਦ ਬਦਲਿਆ ਗਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Changed by Reviewer"
-msgstr "ਜੰਤਰ(s) ਸਮੀਖਿਅਕ ਵੱਲੋਂ ਬਦਲੇ ਗਏ"
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
@@ -1793,40 +1701,6 @@ msgid "User {0.name} removed from {group}."
 msgstr "{group} ਤੋਂ ਉਪਭੋਗੀ {0.name} ਹਟਾਇਆ।"
 
 #: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "{addon} ਲਈ ਘੱਟੋ ਘੱੱਟ ਜ਼ਰੂਰਤਾਂ ਸਮੀਖਿਅਕ ਵੱਲੋਂ ਹੱਥੀਂ ਬਦਲੀਆਂ ਗਈਆਂ।"
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed by Reviewer"
-msgstr "ਜ਼ਰੂਰਤਾਂ ਸਮੀਖਿਅਕ ਵੱਲੋਂ ਹੱਥੀਂ ਬਦਲੀਆਂ ਗਈਆਂ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed."
-msgstr "{addon} ਲਈ ਘੱਟੋ ਘੱਟ ਜ਼ਰੂਰਤਾਂ ਹੱਥੀਂ ਬਦਲੀਆਂ।"
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed"
-msgstr "ਜ਼ਰੂਰਤਾਂ ਬਦਲੀਆਂ।"
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{version} status changed to {0}."
-msgstr "{version} ਦਰਜਾ {0} ਵਿੱਚ ਬਦਲਿਆ।"
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr "ਉਪਭੋਗੀ {0.name} {0.id} ਲੁੱਕਅੱਪ ਟੂਲ ਦੁਆਰਾ ਹਟਾਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed to Adult."
-msgstr "{addon} ਸਮੱਗਰੀ ਰੇਟਿੰਗ ਬਾਲਗ ਵਿੱਚ ਬਦਲੀ ਗਈ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed."
-msgstr "{addon} ਸਮੱਗਰੀ ਰੇਟਿੰਗ ਬਦਲ ਗਈ।"
-
-#: src/olympia/amo/log.py
 msgid "{addon} unlisted."
 msgstr "{addon} ਅਣਸੂਚੀਬੱਧ।"
 
@@ -1863,6 +1737,25 @@ msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 #, fuzzy
 msgid "Reviewer Reply"
 msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+
+#: src/olympia/amo/log.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "ਸੋਰਸ ਕੋਡ"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -3221,6 +3114,10 @@ msgstr "ਹੋਰ ਸਮੀਖਿਆ ਲਈ ਫ਼ਲੈਗ ਕੀਤਾ"
 msgid "Beta"
 msgstr "ਬੀਟਾ"
 
+#: src/olympia/constants/base.py
+msgid "Unlisted"
+msgstr "ਅਣਸੂਚੀਬੱਧ"
+
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
 msgstr "ਡਿਵੈਲਪਰ"
@@ -3229,7 +3126,7 @@ msgstr "ਡਿਵੈਲਪਰ"
 msgid "Viewer"
 msgstr "ਦਰਸ਼ਕ"
 
-#: src/olympia/constants/base.py src/olympia/templates/mobile/header.html
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "ਸਹਿਯੋਗ"
 
@@ -4011,6 +3908,14 @@ msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional n
 msgstr "a|alpha|b|beta|pre|rc ਅਤੇ ਇੱਕ ਚੋਣਵੇਂ ਨੰਬਰ ਵਾਲੇ ਵਰਜਨ ਵਾਲੀ ਇੱਕ ਫਾਈਲ ਨੂੰ ਬੀਟਾ ਦੇ ਤੌਰ ਤੇ ਪਛਾਣਿਆ ਜਾਂਦਾ।"
 
 #: src/olympia/devhub/forms.py
+msgid "You cannot upload any more files for this version."
+msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
+
+#: src/olympia/devhub/forms.py
+msgid "Version doesn't match"
+msgstr "ਵਰਜਨ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ।"
+
+#: src/olympia/devhub/forms.py
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
 msgstr ""
@@ -4022,14 +3927,6 @@ msgstr "ਇੱਕ ਠੀਕ ਪਸੰਦ ਨੂੰ ਚੁਣੋ। ਇਹ ਪਸ
 #: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "ਇੱਕ ਫ਼ਾਈਲ ਦਾ ਏ|ਐਲਫ਼ਾ|ਬੀ|ਬੀਟਾ ਦੇ ਇੱਕ ਵਰਜਨ ਅਤੇ ਇੱਕ ਚੋਣਵੇਂ ਅੰਕ ਨਾਲ ਅੰਤ ਹੋਵੇ ਬੀਟਾ ਪਛਾਣੀ ਜਾਵੇਗੀ।"
-
-#: src/olympia/devhub/forms.py
-msgid "You cannot upload any more files for this version."
-msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਲਈ ਹੋਰ ਜਿਆਦਾ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਸਕਦੇ।"
-
-#: src/olympia/devhub/forms.py
-msgid "Version doesn't match"
-msgstr "ਵਰਜਨ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ।"
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
@@ -4361,10 +4258,6 @@ msgstr "ਐਡ-ਆਨ ਬਣਾਉਣਾ ਸ਼ੁਰੂ ਕਰੋ"
 msgid "Status:"
 msgstr "ਦਰਜਾ:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Visibility:"
-msgstr "ਪ੍ਰਤੱਖਤਾ:"
-
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
@@ -4412,7 +4305,7 @@ msgstr "<small>ਐਡ-ਆਨ</small> ਡਿਵੈਲਪਰ ਹਬ"
 msgid "more add-ons..."
 msgstr "ਹੋਰ ਐਡ-ਆਨ..."
 
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Documentation"
 msgstr "ਦਸਤਾਵੇਜ਼"
 
@@ -4520,6 +4413,7 @@ msgid "Activity"
 msgstr "ਸਰਗਰਮੀ"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Subscribe to this feed"
 msgstr "ਇਸ ਫ਼ੀਡ ਦੀ ਗਾਹਕੀ ਲਵੋ"
 
@@ -4999,8 +4893,10 @@ msgstr "ਐਡ-ਆਨ ਹਟਾਓ"
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਹਟਾਉਣਾ ਇਸ ਨੂੰ ਸਾਈਟ ਤੋਂ ਪੱਕੇ ਤੌਰ ਤੇ ਹਟਾ ਦੇਵੇਗਾ।"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-msgid "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted again by others."
+#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
+msgid ""
+"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
+"able to submit versions using the same ID."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
@@ -5113,6 +5009,11 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
 msgstr[1] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html
+#, fuzzy
+msgid "Submit a New File"
+msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 #, fuzzy
@@ -5248,7 +5149,7 @@ msgid "Manage Listing"
 msgstr "ਸੂਚੀ ਵੇਖੋ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
+msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5271,10 +5172,10 @@ msgid "Download {0}"
 msgstr "ਡਾਊਨਲੋਡ {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
 msgid "Upload File"
 msgstr "ਹੋਰ ਫ਼ਾਈਲ ਅੱਪਲੋਡ ਕਰੋ"
@@ -5295,6 +5196,11 @@ msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਅੱਪਲੋਡ ਕਰੋ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
+msgid "Where to Host File"
+msgstr "ਟੀਚਾ ਵਰਜਨ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
 msgid "Where to Host Version"
 msgstr "ਟੀਚਾ ਵਰਜਨ"
 
@@ -5312,8 +5218,17 @@ msgid "Which platforms is this file compatible with?"
 msgstr "ਇਹ ਫ਼ਾਈਲ ਕਿਸ ਪਲੇਟਫ਼ਾਰਮ ਦੇ ਨਾਲ ਅਨੁਕੂਲ ਹੈ?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+msgid "Only publish this version to my beta channel."
+msgstr "ਕੇਵਲ ਇਸ ਵਰਜਨ ਨੂੰ ਮੇਰੇ ਬੀਟਾ ਚੈਨਲ ਵਿੱਚ ਜਾਰੀ ਕਰੋ।"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
 msgstr "ਪ੍ਰਬੰਧਕੀ ਓਵਰਰਾਈਡ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Submit File for Review"
+msgstr "ਹੱਥਲਿਖਤ ਸਮੀਖਿਆ ਵਾਸਤੇ ਮੇਰਾ ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ।"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5369,14 +5284,6 @@ msgid "Generate new credentials"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You have disabled this add-on"
-msgstr "ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਨੂੰ ਅਯੋਗ ਕੀਤਾ"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr "ਤੁਹਾਡੀ ਐਡ-ਆਨ ਸੂਚੀ ਅਯੋਗ ਹੈ ਅਤੇ ਸਾਡੀ ਗੈਲਰੀ ਜਾਂ ਅੱਪਡੇਟ ਸੇਵਾ ਵਿੱਚ ਕਿਤੇ ਵੀ ਵਿਖਾਈ ਨਹੀਂ ਦਿੰਦੀ।"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਐਡ-ਆਨ ਮੁਕੰਮਲ ਕਰੋ।"
 
@@ -5385,35 +5292,15 @@ msgid "You will receive an email when the review is complete. Until then, your a
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr "ਤੁਹਾਨੂੰ ਇੱਕ ਈਮੇਲ ਪ੍ਰਾਪਤ ਹੋਵੇਗੀ ਜਦੋਂ ਸਮੀਖਿਆ ਮੁਕੰਮਲ ਹੋਈ ਅਤੇ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹਸਤਾਖਰਿਤ ਹੋਇਆ।"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਸਾਡੀ ਗੈਲਰੀ ਵਿੱਚ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਅਤੇ ਉਪਭੋਗੀ ਆਪਣੇ ਆਪ ਹੀ ਅੱਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰ ਰਹੇ ਹਨ।"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed and can be bundled with an application installer."
-msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Current Version:"
-msgstr "ਮੌਜੂਦਾ ਵਰਜਨ:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਇਹ ਵਰਜਨ ਇੰਸਟਾਲ ਕੀਤਾ ਜਾਵੇਗਾ ਜੇਕਰ ਕੋਈ addons.mozilla.org ਤੇ ਇੰਸਟਾਲ ਬਟਨ ਤੇ ਕਲਿੱਕ ਕਰਦਾ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Multi Process Status:"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -5427,16 +5314,46 @@ msgid "%%b %%e, %%Y"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Next Version:"
+#, fuzzy
+msgid "Add-on Multi Process Status:"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Listed Version:"
+msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਇਹ ਵਰਜਨ ਇੰਸਟਾਲ ਕੀਤਾ ਜਾਵੇਗਾ ਜੇਕਰ ਕੋਈ addons.mozilla.org ਤੇ ਇੰਸਟਾਲ ਬਟਨ ਤੇ ਕਲਿੱਕ ਕਰਦਾ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Next Listed Version:"
 msgstr "ਅਗਲਾ ਵਰਜਨ:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr "ਇਹ ਬਿਲਕੁਲ ਨਵਾਂ ਅੱਪਲੋਡਿਡ ਵਰਜਨ ਹੈ, ਹਾਲਾਂਕਿ ਇਹ ਹਾਲੇ ਤੱਕ ਇਸ ਸਾਈਟ ਤੇ ਠਹਿਰਾਓ ਨਹੀਂ।"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Queues are not reviewed strictly in order"
 msgstr "ਕਤਾਰਾਂ ਦੀ ਕਸਵੇਂ ਤੌਰ ਤੇ ਸਮੀਖਿਆ ਨਹੀਂ ਹੁੰਦੀ"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Lastest Version:"
+msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the newest uploaded unlisted version."
+msgstr "ਇਹ ਬਿਲਕੁਲ ਨਵਾਂ ਅੱਪਲੋਡਿਡ ਵਰਜਨ ਹੈ, ਹਾਲਾਂਕਿ ਇਹ ਹਾਲੇ ਤੱਕ ਇਸ ਸਾਈਟ ਤੇ ਠਹਿਰਾਓ ਨਹੀਂ।"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5561,6 +5478,87 @@ msgstr "ਸੰਭਾਲ੍ਹਣ ਤੇ ਇਹ ਫ਼ਾਈਲ ਹਟਾ ਦਿੱ�
 msgid "Undo"
 msgstr "ਵਾਪਸ"
 
+#. {0} is an application, like Firefox.
+#: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
+#: src/olympia/templates/mobile/base_addons.html
+msgid "{0} Add-ons"
+msgstr "{0} ਐਡ-ਆਨ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Latest News"
+msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Read more in our Blog"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਲੋੜ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Add-on Developer Hub"
+msgstr "ਐਡ-ਆਨ ਡਿਵੈਲਪਰ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+msgid "Docs"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
+msgid "Blog"
+msgstr "ਬਲੌਗ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Sign In"
+msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Customize Your Firefox"
+msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਲਈ ਵਰਤਣ ਵਿੱਚ ਆਸਾਨ ਥੀਮ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid ""
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
+"necessary skills to make a great add-on."
+msgstr ""
+"ਐਡ-ਆਨ ਲੱਖਾਂ ਫ਼ਾਇਰਫ਼ਾਕਸ ਉਪਭੋਗੀਆਂ ਨੂੰ ਆਪਣਾ ਬਰਾਊਜ਼ਿੰਗ ਅਨੁਭਵ ਵਧਾਉਣ ਅਤੇ ਫ਼ੇਰਬਦਲ ਕਰਨ ਵਿੱਚ ਦਿੰਦੇ ਹਨ। ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਵੈੱਬ ਡਿਵੈਲਪਰ ਹੋ ਅਤੇ <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer."
+"mozilla.org/docs/Web/JavaScript\">JavaScript</a>, ਅਤੇ <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>ਬਾਰੇ ਜਾਣਦੇ ਹੋ, ਇੱਕ ਵਧੀਆ ਐਡ-ਆਨ ਬਣਾਉਣ ਲਈ ਜ਼ਰੂਰੀ ਹਨੁਰ ਤੁਹਾਡੇ ਕੋਲ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Learn How to make an Add-on"
+msgstr "ਐਡ-ਆਨਾਂ ਬਾਰੇ ਹੋਰ ਜਾਣੋ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Validator"
+msgstr "ਪ੍ਰਮਾਣਿਕਤਾ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Automated code tests for your add-on."
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਐਡ-ਆਨ ਮੁਕੰਮਲ ਕਰੋ।"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Checker"
+msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਚੈਕਰ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "See if your add-on is likely to be affected by changes in Firefox."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Reporter"
+msgstr "ਅਨੁਕੂਲਤਾ ਰਿਪੋਰਟਾਂ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "Tell us if an add-on works in a particular version of Firefox."
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
 msgstr "ਮੌਜੂਦਾ ਤੌਰ ਤੇ ਤੁਸੀਂ ਉਪਭੋਗੀਆਂ ਤੋਂ <b>ਯੋਗਦਾਨਾਂ</b> ਦੀ ਬੇਨਤੀ ਕਰ ਰਹੇ ਹੋ"
@@ -5595,7 +5593,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "ਆਪਣੇ PayPal ਖਾਤੇ ਵਿੱਚ ਯੋਗਦਾਨ ਪ੍ਰਾਪਤ ਕਰੋ ਜਾਂ ਆਪਣੀ ਪਸੰਦ ਦੇ ਸੰਗਠਨ ਨੂੰ ਭਿਜਵਾਓ।"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for listed add-ons."
+#, fuzzy
+msgid "Contributions are only available for add-ons with listed versions."
 msgstr "ਯੋਗਦਾਨ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਉੱਪਲਬਧ ਹਨ।"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
@@ -5931,10 +5930,6 @@ msgstr "ਸਮੀਖਿਅਕ ਵਰਜਨਾਂ ਵਿੱਚ ਸ਼ਾਮਲ �
 msgid "Select the target platform for this file."
 msgstr "ਇਸ ਸਾਈਟ ਲਈ ਤੈਅ ਪਲੇਟਫ਼ਾਰਮ ਚੁਣੋ।"
 
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Only publish this version to my beta channel."
-msgstr "ਕੇਵਲ ਇਸ ਵਰਜਨ ਨੂੰ ਮੇਰੇ ਬੀਟਾ ਚੈਨਲ ਵਿੱਚ ਜਾਰੀ ਕਰੋ।"
-
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
 msgstr "ਵਰਜਨ {0} ਸੰਭਾਲ੍ਹੋ"
@@ -6008,13 +6003,6 @@ msgstr "%(created)s ਨੂੰ ਰਚਿਆ ਅਤੇ %(status)s ਵਿੱਚ ਬ
 msgid "Edit this version"
 msgstr "ਇਸ ਵਰਜਨ ਵਿੱਚ ਸੋਧ ਕਰੋ"
 
-#. {0} is the number of files
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "{0} file"
-msgid_plural "{0} files"
-msgstr[0] "{0} ਫ਼ਾਈਲ"
-msgstr[1] "{0} ਫ਼ਾਈਲਾਂ"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
 msgstr "0 ਫ਼ਾਈਲਾਂ"
@@ -6022,11 +6010,6 @@ msgstr "0 ਫ਼ਾਈਲਾਂ"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
 msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, python-format
-msgid "Queue position: %(pos)s of %(total)s"
-msgstr "ਕਤਾਰ ਸਥਿਤੀ: %(total)s ਦੀ %(pos)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6080,34 +6063,26 @@ msgstr "ਜਵਾਬ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
-msgid "Add-on visibility"
+msgid "Listing visibility"
 msgstr "ਐਡ-ਆਨ ਪ੍ਰਤੱਖਤਾ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr ""
+#, fuzzy
+msgid "Visible:"
+msgstr "ਪ੍ਰਤੱਖਤਾ:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid ""
-"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
-"            The process is described in detail in <a href=\"{link}\">this documentation</a>."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Listed:"
-msgstr "ਸੂਚੀਬੱਧ:"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Visible to everyone on {0} and included in search results and listing pages"
+#, fuzzy
+msgid "Visible to everyone on {0} and included in search results and listing pages."
 msgstr "ਖੋਜ ਨਤੀਜੇ ਅਤੇ ਸੂਚੀਬੱਧ ਸਫ਼ੇ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ {0} ਤੇ ਹਰੇਕ ਨੂੰ ਵਿਖਾਈ ਦਿੰਦਾ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hidden:"
-msgstr "ਲੁਕਿਆ:"
+msgid "Invisible:"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr "{0} ਤੇ ਮੇਜ਼ਬਾਨ ਹੋਇਆ, ਪਰ ਲੇਖਕਾਂ ਨੂੰ ਛੱਡ ਕੇ ਹਰੇਕ ਲਈ ਲੁਕਿਆ। ਅਸਥਾਈ ਤੌਰ ਤੇ ਸੂਚੀਆਂ ਨੂੰ ਲੁਕਾਉਣ ਜਾਂ ਬੰਦ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ।"
+msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6118,8 +6093,9 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Current versions"
-msgstr "ਮੌਜੂਦਾ ਵਰਜਨ"
+#, fuzzy
+msgid "Listed versions"
+msgstr "ਦੁਜੇ ਵਰਜਨ ਵੇਖੋ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6139,6 +6115,21 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਅਗਲਾ ਵਰਜਨ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
+msgstr "ਪੁਰਾਣੇ ਵਰਜਨ"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Why can't I switch to <i>Listed</i>?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid ""
+"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
+"        The process is described in detail in <a href=\"{link}\">this documentation</a>."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "All versions"
 msgstr "ਪੁਰਾਣੇ ਵਰਜਨ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6254,11 +6245,11 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
+msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
 msgstr ""
 
 #: src/olympia/editors/forms.py
@@ -9946,11 +9937,6 @@ msgstr "<strong>{3}</strong> ਲਈ {2} ਵਿੱਚੋਂ {0} - {1} ਨਤੀ�
 msgid "Showing {0} - {1} of {2} results"
 msgstr "{2} ਨਤੀਜਿਆਂ ਵਿੱਚੋਂ {0} - {1} ਨਤੀਜੇ ਵਿਖਾ ਰਿਹਾ"
 
-#. {0} is an application, like Firefox.
-#: src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
-msgid "{0} Add-ons"
-msgstr "{0} ਐਡ-ਆਨ"
-
 #: src/olympia/search/views.py src/olympia/zadmin/forms.py
 msgid "All Add-ons"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨ"
@@ -10045,6 +10031,11 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
 #: src/olympia/signing/views.py
+#, python-format
+msgid "You cannot add versions to an addon that has status: %s."
+msgstr ""
+
+#: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
 msgstr ""
 
@@ -10054,6 +10045,10 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
+msgstr ""
+
+#: src/olympia/signing/views.py
+msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
 
 #: src/olympia/signing/views.py
@@ -10476,10 +10471,6 @@ msgstr "<b>ਐਡ-ਆਨਾਂ</b>ਬਾਰੇ ਜਾਨਣ ਲਈ"
 #: src/olympia/templates/footer.html
 msgid "About"
 msgstr "ਬਾਰੇ"
-
-#: src/olympia/templates/footer.html
-msgid "Blog"
-msgstr "ਬਲੌਗ"
 
 #: src/olympia/templates/footer.html
 msgid "FAQ"
@@ -11269,3 +11260,8 @@ msgstr "ਬਣਾਏ ਗਏ ਐਡ-ਆਨ"
 #: src/olympia/zadmin/views.py
 msgid "Addon"
 msgstr ""
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Validation Result"
+msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜੇ"

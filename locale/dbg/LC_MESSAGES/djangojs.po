@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-14 07:03+0000\n"
+"POT-Creation-Date: 2016-12-01 06:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,15 +117,15 @@ msgstr "Ẏǿŭř şŭƀḿīşşīǿƞ ẇīŀŀ ƀḗ ȧŭŧǿḿȧŧīƈȧŀ�
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "ẆḗƀḖẋŧḗƞşīǿƞ ŭƥɠřȧḓḗ"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Ẇḗ ȧŀŀǿẇ ȧƞḓ ḗƞƈǿŭřȧɠḗ ȧƞ ŭƥɠřȧḓḗ ƀŭŧ ẏǿŭ ƈȧƞƞǿŧ řḗṽḗřşḗ ŧħīş ƥřǿƈḗşş. Ǿƞƈḗ ẏǿŭř ŭşḗřş ħȧṽḗ ŧħḗ ẆḗƀḖẋŧḗƞşīǿƞ īƞşŧȧŀŀḗḓ, ŧħḗẏ ẇīŀŀ ƞǿŧ ƀḗ ȧƀŀḗ ŧǿ īƞşŧȧŀŀ ȧ ŀḗɠȧƈẏ ȧḓḓ-ǿƞ."
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Ƥǿřŧīƞɠ ȧ ŀḗɠȧƈẏ Ƒīřḗƒǿẋ ȧḓḓ-ǿƞ ǿƞ ḾḒȠ"
 
 #: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -257,9 +257,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Şḗȧřƈħ ȧḓḓ-ǿƞş ƒǿř <b>{0}</b>"
 
 #: static/js/impala/users.js
-#, fuzzy
 msgid "Use original"
-msgstr "ŭşḗ ǿřīɠīƞȧŀ"
+msgstr "Ŭşḗ ǿřīɠīƞȧŀ"
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"
@@ -883,13 +882,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Ǿƞŀẏ ẇīŧħ Ƒīřḗƒǿẋ — Ɠḗŧ Ƒīřḗƒǿẋ Ƞǿẇ!"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
-msgstr "Ḓǿẇƞŀǿȧḓ Ƞǿẇ"
+msgstr "Ḓǿẇƞŀǿȧḓ ƞǿẇ"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Ǿƞŀẏ ȧṽȧīŀȧƀŀḗ ǿƞ Ƒīřḗƒǿẋ Ḓḗşķŧǿƥ"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

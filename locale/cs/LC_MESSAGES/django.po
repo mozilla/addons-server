@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-14 07:03+0000\n"
+"POT-Creation-Date: 2016-12-01 06:45+0000\n"
 "PO-Revision-Date: 2016-11-15 17:00+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -80,10 +80,6 @@ msgstr "Experimentální"
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
 msgstr "Přidat do aplikace {0}"
-
-#: src/olympia/addons/forms.py
-msgid "This name is already in use. Please choose another."
-msgstr "Tento název je již používán. Zvolte prosím jiný."
 
 #: src/olympia/addons/forms.py
 msgid "This slug is already in use. Please choose another."
@@ -179,8 +175,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr "Uživatelé budou vždy žádáni ve Správci doplňků (Firefox 4 a vyšší). Platí pouze pro desktop."
 
 # Column name in a table.
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/addons/models.py src/olympia/constants/base.py
 msgid "Listed"
 msgstr "Zobrazení"
 
@@ -396,14 +391,14 @@ msgstr "Podporuje"
 msgid "Visibility"
 msgstr "Viditelnost"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Hidden"
-msgstr "Skryto"
+#: src/olympia/addons/templates/addons/details_box.html
+#, fuzzy
+msgid "Visible"
+msgstr "Viditelnost"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Unlisted"
-msgstr "Není v seznamu"
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Invisible"
+msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -1204,6 +1199,7 @@ msgid "Add to collection"
 msgstr "Přidat do sbírky"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "My Add-ons"
 msgstr "Mé doplňky"
 
@@ -1380,7 +1376,7 @@ msgstr "Vyzkoušet!"
 msgid "Theme Info &raquo;"
 msgstr "Informace o motivu &raquo;"
 
-#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tools"
 msgstr "Nástroje"
 
@@ -1501,30 +1497,10 @@ msgstr "Doplněk {addon} byl zakázán."
 msgid "{addon} enabled."
 msgstr "Doplněk {addon} byl povolen."
 
-#: src/olympia/amo/log.py
-msgid "Stats set public for {addon}."
-msgstr "Statistiky u doplňku {addon} nastaveny jako veřejné."
-
-#: src/olympia/amo/log.py
-msgid "{addon} stats set to private."
-msgstr "Statistiky u doplňku {addon} nastaveny jako soukromé."
-
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{addon} status changed to {0}."
 msgstr "Stav doplňku {addon} změněn na {0}."
-
-#: src/olympia/amo/log.py
-msgid "Preview added to {addon}."
-msgstr "K doplňku {addon} byl přidán obrázek."
-
-#: src/olympia/amo/log.py
-msgid "Preview edited for {addon}."
-msgstr "U doplňku {addon} byl upraven obrázek."
-
-#: src/olympia/amo/log.py
-msgid "Preview deleted from {addon}."
-msgstr "U doplňku {addon} byl smazán obrázek."
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
@@ -1705,14 +1681,6 @@ msgid "Password changed."
 msgstr "Heslo bylo změněno."
 
 #: src/olympia/amo/log.py
-msgid "{addon} failed checks with PayPal."
-msgstr "Doplněk {addon} selhal při kontrole PayPalu."
-
-#: src/olympia/amo/log.py
-msgid "{addon} manifest updated."
-msgstr "Manifest doplňku {addon} byl aktualizován."
-
-#: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "Doplněk {addon} {version} byl schválen, ale čeká až bude k dispozici pro veřejnost."
 
@@ -1721,68 +1689,8 @@ msgid "Approved but waiting"
 msgstr "Schváleno, ale čeká"
 
 #: src/olympia/amo/log.py
-msgid "{addon} purchased."
-msgstr "Doplněk {addon} byl zakoupen."
-
-#: src/olympia/amo/log.py
-msgid "{addon} installed."
-msgstr "Doplněk {addon} byl nainstalován."
-
-#: src/olympia/amo/log.py
 msgid "Account updated."
 msgstr "Účet byl aktualizován."
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared for {addon}."
-msgstr "U doplňku {addon} byla zrušena kontrola administrátorem."
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared"
-msgstr "Zrušena nutnost kontroly administrátorem"
-
-#: src/olympia/amo/log.py
-msgid "App disabled"
-msgstr "Aplikace zakázána"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated because of high number of abuse reports."
-msgstr "Doplněk {addon} byl předán na kontrolu administrátorem, protože u něj bylo zaregistrováno větší množství hlášení o zneužití."
-
-#: src/olympia/amo/log.py
-msgid "High Abuse Reports"
-msgstr "Frekventovaná hlášení o zneužití"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated by reviewer."
-msgstr "Doplněk {addon} byl redaktorem postoupen na detailní kontrolu."
-
-#: src/olympia/amo/log.py
-msgid "Reviewer escalation"
-msgstr "Postoupení na detailní kontrolu"
-
-#: src/olympia/amo/log.py
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr "Video bylo od doplňku {addon} odebráno, protože se u tohoto videa vyskytl problém. "
-
-#: src/olympia/amo/log.py
-msgid "Video removed"
-msgstr "Video bylo odebráno"
-
-#: src/olympia/amo/log.py
-msgid "{addon} re-review because of new device(s) added."
-msgstr "Doplněk {addon} bude znovu zkontrolován, protože byla přidána nová zařízení."
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Added"
-msgstr "Byla přidána zařízení"
-
-#: src/olympia/amo/log.py
-msgid "{addon} device support manually changed by reviewer."
-msgstr "U doplňku {addon} byla podporovaná zařízení redaktorem ručně změněna."
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Changed by Reviewer"
-msgstr "Zařízení byla redaktorem změněna"
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
@@ -1829,40 +1737,6 @@ msgid "User {0.name} removed from {group}."
 msgstr "Uživatel {0.name} byl odebrán ze skupiny {group}."
 
 #: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "Minimální požadavky byly u doplňku {addon} redaktorem ručně upraveny."
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed by Reviewer"
-msgstr "Požadavky byly ručně změněny redaktorem"
-
-#: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed."
-msgstr "U doplňku {addon} byly ručně změněny minimální požadavky."
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed"
-msgstr "Požadavky změněny"
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{version} status changed to {0}."
-msgstr "Stav verze {version} byl změněn na {0}."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr "Uživatel {0.name} {0.id} byl smazán pomocí vyhledávacího nástroje."
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed to Adult."
-msgstr "Hodnocení doplňku {addon} bylo změněno na Adult."
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed."
-msgstr "Hodnocení doplňku {addon} bylo změněno."
-
-#: src/olympia/amo/log.py
 msgid "{addon} unlisted."
 msgstr "{addon} již není v seznamech."
 
@@ -1894,6 +1768,25 @@ msgstr "Odpověď redaktora k doplňku {addon} {version}."
 #: src/olympia/amo/log.py
 msgid "Reviewer Reply"
 msgstr "Odpověď redaktora"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "Komentář u doplňku {addon} {version}."
+
+#: src/olympia/amo/log.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "Odpověď vývojáře doplňku {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "Zdrojový kód"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -3270,6 +3163,10 @@ msgstr "Označeno pro budoucí kontrolu"
 msgid "Beta"
 msgstr "Beta"
 
+#: src/olympia/constants/base.py
+msgid "Unlisted"
+msgstr "Není v seznamu"
+
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
 msgstr "Vývojář"
@@ -3279,7 +3176,7 @@ msgstr "Vývojář"
 msgid "Viewer"
 msgstr "Pozorovatel"
 
-#: src/olympia/constants/base.py src/olympia/templates/mobile/header.html
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "Podpora"
 
@@ -4033,6 +3930,14 @@ msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional n
 msgstr "Soubory s verzí končící na a|alpha|b|beta|pre|rc a případné číslem jsou detekovány jako betaverze."
 
 #: src/olympia/devhub/forms.py
+msgid "You cannot upload any more files for this version."
+msgstr "K této verzi nemůžete nahrát více souborů."
+
+#: src/olympia/devhub/forms.py
+msgid "Version doesn't match"
+msgstr "Verze neodpovídá"
+
+#: src/olympia/devhub/forms.py
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
 msgstr "Verze %s již existuje nebo byla dříve nahrána."
@@ -4044,14 +3949,6 @@ msgstr "Zvolte platnou hodnotu. Tato volba není jednou z dostupných možností
 #: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "Soubor s verzí, která končí na a|alpha|b|beta a volitelným číslem je detekován jako betaverze."
-
-#: src/olympia/devhub/forms.py
-msgid "You cannot upload any more files for this version."
-msgstr "K této verzi nemůžete nahrát více souborů."
-
-#: src/olympia/devhub/forms.py
-msgid "Version doesn't match"
-msgstr "Verze neodpovídá"
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
@@ -4395,10 +4292,6 @@ msgstr "Začít vytvářet doplňky"
 msgid "Status:"
 msgstr "Stav:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Visibility:"
-msgstr "Viditelnost:"
-
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "Poslední verze:"
@@ -4446,7 +4339,7 @@ msgstr "<small>Centrum pro</small> vývojáře doplňků"
 msgid "more add-ons..."
 msgstr "více doplňků..."
 
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Documentation"
 msgstr "Dokumentace"
 
@@ -4554,6 +4447,7 @@ msgid "Activity"
 msgstr "Aktivita"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Subscribe to this feed"
 msgstr "Odebírat tento zdroj"
 
@@ -5046,9 +4940,11 @@ msgstr "Smazat doplněk"
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "Smazáním svého motivu jej trvale odstraníte z tohoto webu."
 
-#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-msgid "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted again by others."
-msgstr "Smazáním doplňku jej nenávratně odstraníte z této stránky a zabráníte komukoliv v použití jeho GUID."
+#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
+msgid ""
+"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
+"able to submit versions using the same ID."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5160,6 +5056,11 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktivní uživatel"
 msgstr[1] "<strong>{0}</strong> aktivní uživatelé"
 msgstr[2] "<strong>{0}</strong> aktivních uživatelů"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html
+#, fuzzy
+msgid "Submit a New File"
+msgstr "Přidání nového motivu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5279,7 +5180,8 @@ msgid "Manage Listing"
 msgstr "Spravovat záznam"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
+#, fuzzy
+msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 "Můžete také upravit verzi, kterou jste právě odeslali, přidáním poznámek k verzi nebo zdrojového kódu (v případě, že zdrojový kód nahrané verze je zmenšený, zkompilovaný nebo tzv. \"obfuscated\")."
 
@@ -5300,10 +5202,11 @@ msgid "Download {0}"
 msgstr "Stáhnout {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+#, fuzzy
+msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Vybrali jste jen některé z dostupných platforem. Můžete nahrát více souborů, které jsou určeny pro jiné platformy:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
 msgstr "Nahrát soubor"
 
@@ -5318,6 +5221,11 @@ msgstr "Dohoda o distribuci doplňků"
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
 msgstr "Nahrát doplněk"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Where to Host File"
+msgstr "Kde bude verze hostována"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5336,8 +5244,17 @@ msgid "Which platforms is this file compatible with?"
 msgstr "S kterými platformami je tento soubor kompatibilní?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+msgid "Only publish this version to my beta channel."
+msgstr "Tuto verzi publikovat pouze v mém beta kanálu."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
 msgstr "Změny při administraci"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Submit File for Review"
+msgstr "Odeslat verzi ke kontrole"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5394,14 +5311,6 @@ msgid "Generate new credentials"
 msgstr "Generovat nová pověření"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You have disabled this add-on"
-msgstr "Zakázali jste tento doplněk"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr "Stránka vašeho doplňku je zakázána a není tak k dispozici kdekoliv v naší galerii či aktualizační službě."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
 msgstr "Dokončete prosím svůj doplněk."
 
@@ -5410,36 +5319,16 @@ msgid "You will receive an email when the review is complete. Until then, your a
 msgstr "Až bude kontrola dokončena, bude vám zaslán e-mail. Do té doby není váš doplněk umístěn v seznamech doplňků, ale je dostupný přímo na stránce s informacemi o doplňku."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr "Jakmile bude kontrola dokončena a váš doplněk podepsán, budete informováni e-mailem."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Váš doplněk je zobrazen v naší galerii a uživatelé k němu získávají aktualizace."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed and can be bundled with an application installer."
-msgstr "Váš doplněk byl podepsán a může být přibalen k instalátoru aplikace."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr "Váš doplněk byl zakázán správcem stránky a již není na našich stránkách dostupný. Máte-li nějaké dotazy, pošlete e-mail na amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Current Version:"
-msgstr "Aktuální verze:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
-msgstr "Toto je verze doplňku, která bude nainstalována, když někdo klikne na tlačítko Nainstalovat na stránkách addons.mozilla.org. Relevantní pouze pro zveřejněné doplňky."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Multi Process Status:"
-msgstr "Stav kompatibility s multiprocesovou architekturou:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "Kompatibilita vašeho doplňku s multiprocesovým Firefoxem (e10s)."
+msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -5452,16 +5341,46 @@ msgid "%%b %%e, %%Y"
 msgstr "%%b. %%e %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Next Version:"
+#, fuzzy
+msgid "Add-on Multi Process Status:"
+msgstr "Stav kompatibility s multiprocesovou architekturou:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgstr "Kompatibilita vašeho doplňku s multiprocesovým Firefoxem (e10s)."
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Listed Version:"
+msgstr "Poslední verze:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgstr "Toto je verze doplňku, která bude nainstalována, když někdo klikne na tlačítko Nainstalovat na stránkách addons.mozilla.org. Relevantní pouze pro zveřejněné doplňky."
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Next Listed Version:"
 msgstr "Příští verze:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr "Toto je nejnovější nahraná veze, nicméně zatím nebyla na stránkách uveřejněna."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Queues are not reviewed strictly in order"
 msgstr "Fronty nejsou striktně procházeny dle pořadí"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Lastest Version:"
+msgstr "Poslední verze:"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the newest uploaded unlisted version."
+msgstr "Toto je nejnovější nahraná veze, nicméně zatím nebyla na stránkách uveřejněna."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5590,6 +5509,91 @@ msgstr "Soubor bude při uložení smazán."
 msgid "Undo"
 msgstr "Zpět"
 
+#. {0} is an application, like Firefox.
+#: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
+#: src/olympia/templates/mobile/base_addons.html
+msgid "{0} Add-ons"
+msgstr "Doplňky pro {0}"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Latest News"
+msgstr "Poslední verze:"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Read more in our Blog"
+msgstr "potřeba více informací"
+
+# The title for a user if they are a developer
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Add-on Developer Hub"
+msgstr "Vývojář doplňků"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+msgid "Docs"
+msgstr ""
+
+# Link text to the AMO blog.
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
+msgid "Blog"
+msgstr "Blog"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Sign In"
+msgstr "Podepsat doplněk"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Customize Your Firefox"
+msgstr "Snadno použitelné vzhledy pro Firefox"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid ""
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
+"necessary skills to make a great add-on."
+msgstr ""
+"Doplňky umožňují milionům uživatelů Firefoxu vylepšit a upravit prohlížeč podle svého způsobu prohlížení. Pokud jste webový vývojář, znáte <a href=\"https://developer.mozilla.org/docs/Web/HTML"
+"\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> a <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, máte tedy všechny potřebné schopnosti pro "
+"vytvoření skvělého doplňku."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Learn How to make an Add-on"
+msgstr "Dozvědět se více o doplňcích"
+
+# Header for a column in a table
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Validator"
+msgstr "Kontrola"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Automated code tests for your add-on."
+msgstr "Dokončete prosím svůj doplněk."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Checker"
+msgstr "Kontrola kompatibility doplňku"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "See if your add-on is likely to be affected by changes in Firefox."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Reporter"
+msgstr "Hlášení o kompatibilitě"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "Tell us if an add-on works in a particular version of Firefox."
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
 msgstr "Aktuálně žádáte o <b>příspěvky</b> od uživatelů"
@@ -5624,7 +5628,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Dostávat příspěvky na svůj účet na PayPal či je zasílat organizaci dle své volby"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for listed add-ons."
+#, fuzzy
+msgid "Contributions are only available for add-ons with listed versions."
 msgstr "Příspěvky jsou dostupné pouze pro zveřejněné doplňky."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
@@ -5962,10 +5967,6 @@ msgstr "Soubory přidané ke zkontrolovaným verzím musí být zkontrolovány d
 msgid "Select the target platform for this file."
 msgstr "Zvolte cílovou platformu souboru."
 
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Only publish this version to my beta channel."
-msgstr "Tuto verzi publikovat pouze v mém beta kanálu."
-
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
 msgstr "Správa verze {0}"
@@ -6042,14 +6043,6 @@ msgstr "Vytvořeno dne %(created)s a změněno na %(status)s"
 msgid "Edit this version"
 msgstr "Upravit tuto verzi"
 
-#. {0} is the number of files
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "{0} file"
-msgid_plural "{0} files"
-msgstr[0] "{0} soubor"
-msgstr[1] "{0} soubory"
-msgstr[2] "{0} souborů"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
 msgstr "0 souborů"
@@ -6057,11 +6050,6 @@ msgstr "0 souborů"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
 msgstr "Znovu povolit verzi"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, python-format
-msgid "Queue position: %(pos)s of %(total)s"
-msgstr "Pozice ve frontě: %(pos)s z %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
@@ -6108,36 +6096,27 @@ msgid "Reply"
 msgstr "Odpověď"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add-on visibility"
+#, fuzzy
+msgid "Listing visibility"
 msgstr "Viditelnost doplňku"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr "Proč nemůžu přepínat na <i>veřejný</i> nebo <i>skrytý</i> doplněk?"
+#, fuzzy
+msgid "Visible:"
+msgstr "Viditelnost:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid ""
-"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
-"            The process is described in detail in <a href=\"{link}\">this documentation</a>."
-msgstr ""
-"Kvůli technickým omezením je nutné doplněk smazat a znovu jej nahrát pomocí stejného AMO účtu, aby byl veřejný.\n"
-"            Proces je detailně popsán v <a href=\"{link}\">této dokumentaci</a>."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Listed:"
-msgstr "V seznamu:"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Visible to everyone on {0} and included in search results and listing pages"
+#, fuzzy
+msgid "Visible to everyone on {0} and included in search results and listing pages."
 msgstr "Viditelný pro každého na {0} a zobrazovaný ve výsledcích vyhledávání a v seznamech na stránkách"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hidden:"
-msgstr "Skrytý:"
+msgid "Invisible:"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr "Hostovaný na {0}, ale skrytý pro všechny vyjma jeho autorů. Lze použít pro dočasné odebrání ze seznamu nebo jeho úplné skrytí."
+msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6148,8 +6127,9 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Není distribuováno na {0}. Vývojáři budou nahrávat nové verze k podepsání a budou distribuovat doplněk sami."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Current versions"
-msgstr "Současné verze"
+#, fuzzy
+msgid "Listed versions"
+msgstr "Zobrazit ostatní verze"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6170,6 +6150,25 @@ msgstr "Příští verze tohoto doplňku"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
+msgstr "Staré verze"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Why can't I switch to <i>Listed</i>?"
+msgstr "Proč nemůžu přepínat na <i>veřejný</i> nebo <i>skrytý</i> doplněk?"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid ""
+"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
+"        The process is described in detail in <a href=\"{link}\">this documentation</a>."
+msgstr ""
+"Kvůli technickým omezením je nutné doplněk smazat a znovu jej nahrát pomocí stejného AMO účtu, aby byl veřejný.\n"
+"            Proces je detailně popsán v <a href=\"{link}\">této dokumentaci</a>."
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "All versions"
 msgstr "Staré verze"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6288,12 +6287,13 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokujte reklamy {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
-msgstr "Chcete mít možnost jednoduše stahovat online videa? Video DownloadHelperem funguje na všech hlavních streamovacích stránkách, včetně YouTubu, Streamu, Facebooku a mnoha dalších."
+msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
+msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10033,11 +10033,6 @@ msgstr "Zobrazeno {0} - {1} z {2} výsledků obsahujících <strong>{3}</strong>
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Zobrazeno {0} - {1} z {2} výsledků"
 
-#. {0} is an application, like Firefox.
-#: src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
-msgid "{0} Add-ons"
-msgstr "Doplňky pro {0}"
-
 #: src/olympia/search/views.py src/olympia/zadmin/forms.py
 msgid "All Add-ons"
 msgstr "Všechny doplňky"
@@ -10133,6 +10128,11 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Chybí klíč \"upload\" v multipart části dat."
 
 #: src/olympia/signing/views.py
+#, python-format
+msgid "You cannot add versions to an addon that has status: %s."
+msgstr ""
+
+#: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
 msgstr "Verze neodpovídá manifest souboru."
 
@@ -10143,6 +10143,10 @@ msgstr "Tato verze již existuje."
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Pouze WebExtensions doplňky nemusí mít GUID"
+
+#: src/olympia/signing/views.py
+msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
+msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
@@ -10564,11 +10568,6 @@ msgstr "seznamte se s <b>doplňky</b>"
 #: src/olympia/templates/footer.html
 msgid "About"
 msgstr "O nás"
-
-# Link text to the AMO blog.
-#: src/olympia/templates/footer.html
-msgid "Blog"
-msgstr "Blog"
 
 # Link text to the Frequently Asked Questions page.
 #: src/olympia/templates/footer.html
@@ -11362,3 +11361,8 @@ msgstr "Ovlivněné doplňky"
 #: src/olympia/zadmin/views.py
 msgid "Addon"
 msgstr "Doplněk"
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Validation Result"
+msgstr "Výsledky kontroly"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-14 07:03+0000\n"
+"POT-Creation-Date: 2016-12-01 06:45+0000\n"
 "PO-Revision-Date: 2016-11-17 18:37+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -75,10 +75,6 @@ msgstr "实验性"
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
 msgstr "添加到 {0}"
-
-#: src/olympia/addons/forms.py
-msgid "This name is already in use. Please choose another."
-msgstr "这个名字已被使用，请另选一个。"
 
 #: src/olympia/addons/forms.py
 msgid "This slug is already in use. Please choose another."
@@ -164,8 +160,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr "附加组件管理器（Firefox 4 及更高版本）中用户始终会被询问。只适用于桌面。"
 
 # Column name in a table.
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/addons/models.py src/olympia/constants/base.py
 msgid "Listed"
 msgstr "已上架"
 
@@ -379,14 +374,14 @@ msgstr "兼容于"
 msgid "Visibility"
 msgstr "可见性"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Hidden"
-msgstr "隐藏"
+#: src/olympia/addons/templates/addons/details_box.html
+#, fuzzy
+msgid "Visible"
+msgstr "可见性"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Unlisted"
-msgstr "未上架"
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Invisible"
+msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -1155,6 +1150,7 @@ msgid "Add to collection"
 msgstr "添加到收藏集"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "My Add-ons"
 msgstr "我的附加组件"
 
@@ -1327,7 +1323,7 @@ msgstr "尝试一下！"
 msgid "Theme Info &raquo;"
 msgstr "主题信息 &raquo;"
 
-#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tools"
 msgstr "工具"
 
@@ -1448,30 +1444,10 @@ msgstr "{addon} 已停用。"
 msgid "{addon} enabled."
 msgstr "{addon} 已启用。"
 
-#: src/olympia/amo/log.py
-msgid "Stats set public for {addon}."
-msgstr "{addon} 的状态设置为公开。"
-
-#: src/olympia/amo/log.py
-msgid "{addon} stats set to private."
-msgstr "{addon} 的状态设置为私有。"
-
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{addon} status changed to {0}."
 msgstr "{addon} 的状态已更改为 {0}。"
-
-#: src/olympia/amo/log.py
-msgid "Preview added to {addon}."
-msgstr "预览图已添加到 {addon}。"
-
-#: src/olympia/amo/log.py
-msgid "Preview edited for {addon}."
-msgstr "{addon} 的预览图已编辑。"
-
-#: src/olympia/amo/log.py
-msgid "Preview deleted from {addon}."
-msgstr "{addon} 的预览图已删除。"
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
@@ -1651,14 +1627,6 @@ msgid "Password changed."
 msgstr "密码已更改。"
 
 #: src/olympia/amo/log.py
-msgid "{addon} failed checks with PayPal."
-msgstr "{addon} 无法向 PayPal 确认。"
-
-#: src/olympia/amo/log.py
-msgid "{addon} manifest updated."
-msgstr "{addon} 的清单已更新。"
-
-#: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} 已通过审核，正在等待公开发布。"
 
@@ -1667,68 +1635,8 @@ msgid "Approved but waiting"
 msgstr "已通过审核，正在等待公开发布"
 
 #: src/olympia/amo/log.py
-msgid "{addon} purchased."
-msgstr "已购买 {addon}。"
-
-#: src/olympia/amo/log.py
-msgid "{addon} installed."
-msgstr "已安装 {addon}。"
-
-#: src/olympia/amo/log.py
 msgid "Account updated."
 msgstr "账户已更新。"
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared for {addon}."
-msgstr "{addon} 的向上呈报已清除。"
-
-#: src/olympia/amo/log.py
-msgid "Escalation cleared"
-msgstr "向上呈报已清除"
-
-#: src/olympia/amo/log.py
-msgid "App disabled"
-msgstr "应用已停用"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated because of high number of abuse reports."
-msgstr "因为滥用报告量过高，{addon} 已向上呈报。"
-
-#: src/olympia/amo/log.py
-msgid "High Abuse Reports"
-msgstr "高滥用报告量"
-
-#: src/olympia/amo/log.py
-msgid "{addon} escalated by reviewer."
-msgstr "{addon} 已经由审核者向上呈报。"
-
-#: src/olympia/amo/log.py
-msgid "Reviewer escalation"
-msgstr "审核者向上呈报"
-
-#: src/olympia/amo/log.py
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr "视频存在问题，已从 {addon} 中移除。"
-
-#: src/olympia/amo/log.py
-msgid "Video removed"
-msgstr "视频被移除"
-
-#: src/olympia/amo/log.py
-msgid "{addon} re-review because of new device(s) added."
-msgstr "{addon} 因为添加了新设备，需要重新审核。"
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Added"
-msgstr "设备已添加"
-
-#: src/olympia/amo/log.py
-msgid "{addon} device support manually changed by reviewer."
-msgstr "审核者已手动更改 {addon} 支持的设备。"
-
-#: src/olympia/amo/log.py
-msgid "Device(s) Changed by Reviewer"
-msgstr "审核者已更改设备"
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
@@ -1775,40 +1683,6 @@ msgid "User {0.name} removed from {group}."
 msgstr "用户 {0.name} 已从组 {group} 移除。"
 
 #: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "审核者修改了 {addon} 的最低版本需求。"
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed by Reviewer"
-msgstr "请求已被审核者更改"
-
-#: src/olympia/amo/log.py
-msgid "{addon} minimum requirements manually changed."
-msgstr "{addon} 最低版本需求已被手动修改。"
-
-#: src/olympia/amo/log.py
-msgid "Requirements Changed"
-msgstr "需求已变更"
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{version} status changed to {0}."
-msgstr "{version} 状态已更改为 {0}。"
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr "已通过查找工具删除用户 {0.name} {0.id}。"
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed to Adult."
-msgstr "{addon} 内容分级已改为成人。"
-
-#: src/olympia/amo/log.py
-msgid "{addon} content rating changed."
-msgstr "{addon} 内容分级已更改。"
-
-#: src/olympia/amo/log.py
 msgid "{addon} unlisted."
 msgstr "{addon} 已下架。"
 
@@ -1840,6 +1714,25 @@ msgstr "审核者在 {addon} {version} 上回复。"
 #: src/olympia/amo/log.py
 msgid "Reviewer Reply"
 msgstr "审核者回复"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "对 {addon} {version} 的评论。"
+
+#: src/olympia/amo/log.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "开发者在 {addon} {version} 时回复。"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "源代码"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -3182,6 +3075,10 @@ msgstr "标记以做进一步审核"
 msgid "Beta"
 msgstr "公开测试版"
 
+#: src/olympia/constants/base.py
+msgid "Unlisted"
+msgstr "未上架"
+
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
 msgstr "开发者"
@@ -3191,7 +3088,7 @@ msgstr "开发者"
 msgid "Viewer"
 msgstr "查看者"
 
-#: src/olympia/constants/base.py src/olympia/templates/mobile/header.html
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "支持"
 
@@ -3945,6 +3842,14 @@ msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional n
 msgstr "文件中的版本以 a|alpha|b|beta|pre|rc 结尾（及可选的数字）将被检测为测试版（beta）。"
 
 #: src/olympia/devhub/forms.py
+msgid "You cannot upload any more files for this version."
+msgstr "您不能再为此版本上传文件。"
+
+#: src/olympia/devhub/forms.py
+msgid "Version doesn't match"
+msgstr "版本不匹配"
+
+#: src/olympia/devhub/forms.py
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
 msgstr "版本 %s 已经存在，或者此前已经上传。"
@@ -3956,14 +3861,6 @@ msgstr "请选择一个有效的选项。目前的选项不是可用的选项之
 #: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "一个文件具有 a|alpha|b|beta 的版本和一个可选的数字将检测为 beta 版本。"
-
-#: src/olympia/devhub/forms.py
-msgid "You cannot upload any more files for this version."
-msgstr "您不能再为此版本上传文件。"
-
-#: src/olympia/devhub/forms.py
-msgid "Version doesn't match"
-msgstr "版本不匹配"
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
@@ -4296,10 +4193,6 @@ msgstr "开始制作附加组件"
 msgid "Status:"
 msgstr "状态："
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-msgid "Visibility:"
-msgstr "可见性："
-
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "最新版本："
@@ -4347,7 +4240,7 @@ msgstr "<small>附加组件</small>开发者中心"
 msgid "more add-ons..."
 msgstr "更多附加组件..."
 
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Documentation"
 msgstr "文档"
 
@@ -4455,6 +4348,7 @@ msgid "Activity"
 msgstr "动态"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Subscribe to this feed"
 msgstr "订阅此收取点"
 
@@ -4923,9 +4817,11 @@ msgstr "删除附加组件"
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "删除主题将会从网站上永久移除他。"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-msgid "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted again by others."
-msgstr "删除您的附加组件将使其永久从本网站上移除，并且阻止其 GUID 被其他人重新提交。"
+#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
+msgid ""
+"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
+"able to submit versions using the same ID."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5037,6 +4933,11 @@ msgstr "<b>队列位置：</b>%(pos)s / %(total)s"
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> 位活跃用户"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html
+#, fuzzy
+msgid "Submit a New File"
+msgstr "提交一个新主题"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5155,7 +5056,8 @@ msgid "Manage Listing"
 msgstr "管理上架"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
+#, fuzzy
+msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr "您还可以编辑此版本，为您刚刚的提交添加版本说明、或源代码（如果您提交的版本的代码经过压缩、精简或编译）。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5175,10 +5077,11 @@ msgid "Download {0}"
 msgstr "下载 {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+#, fuzzy
+msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "您的此次提交仅选择了部分可用的平台。您可以上传更多适用于其他平台的文件："
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
 msgstr "上传文件"
 
@@ -5193,6 +5096,11 @@ msgstr "附加组件分发协议"
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
 msgstr "上传附加组件"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Where to Host File"
+msgstr "版本托管位置"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5211,8 +5119,17 @@ msgid "Which platforms is this file compatible with?"
 msgstr "此文件与哪个平台兼容？"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+msgid "Only publish this version to my beta channel."
+msgstr "仅发布此版本到我的测试通道。"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
 msgstr "管理覆盖"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Submit File for Review"
+msgstr "提交版本进行审核"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5267,14 +5184,6 @@ msgid "Generate new credentials"
 msgstr "生成新凭据"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You have disabled this add-on"
-msgstr "您禁用了这个附加组件"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr "已停止展示您的附加组件，它将不再出现于网页和更新服务中。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
 msgstr "请完成您的附加组件。"
 
@@ -5283,36 +5192,16 @@ msgid "You will receive an email when the review is complete. Until then, your a
 msgstr "在审核完成后您将收到一封电子邮件。在此之前，您的附加组件将不在我们的库中列出，但可以用它的详细信息页面直接访问。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr "您将会在您的附加组件完成审核并被签名后收到电子邮件通知。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "您的附加组件已经展示在我们的展示库中，并且用户会自动收到更新。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed and can be bundled with an application installer."
-msgstr "您的附加组件已被签名，可以捆绑在应用程序的安装程序中。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr "您的附加组件已被一名网站管理员禁用，并将不再展示。如果您有任何疑问，请发邮件至 amo-admins@mozilla.org。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Current Version:"
-msgstr "当前版本："
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
-msgstr "这是其他人点击网站 (addons.mozilla.org) 上的“安装”按钮时将安装的您的附加组件的版本。它只与已上架的附加组件相关。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Multi Process Status:"
-msgstr "多进程状态："
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "您的附加组件与多进程 Firefox (e10s) 的兼容情况。"
+msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -5325,16 +5214,46 @@ msgid "%%b %%e, %%Y"
 msgstr "%%Y-%%m-%%d"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Next Version:"
+#, fuzzy
+msgid "Add-on Multi Process Status:"
+msgstr "多进程状态："
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgstr "您的附加组件与多进程 Firefox (e10s) 的兼容情况。"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Listed Version:"
+msgstr "最新版本："
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgstr "这是其他人点击网站 (addons.mozilla.org) 上的“安装”按钮时将安装的您的附加组件的版本。它只与已上架的附加组件相关。"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Next Listed Version:"
 msgstr "下一个版本："
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr "这是新上传的版本，但它还没有正式在网站上架。"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Queues are not reviewed strictly in order"
 msgstr "审核时并不会严格按照进入队列的先后顺序进行"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "Lastest Version:"
+msgstr "最新版本："
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#, fuzzy
+msgid "This is the newest uploaded unlisted version."
+msgstr "这是新上传的版本，但它还没有正式在网站上架。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5458,6 +5377,90 @@ msgstr "此文件将在保存时删除。"
 msgid "Undo"
 msgstr "取消"
 
+#. {0} is an application, like Firefox.
+#: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
+#: src/olympia/templates/mobile/base_addons.html
+msgid "{0} Add-ons"
+msgstr "{0} 附加组件"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Latest News"
+msgstr "最新版本："
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
+#, fuzzy
+msgid "Read more in our Blog"
+msgstr "需要更多信息"
+
+# The title for a user if they are a developer
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Add-on Developer Hub"
+msgstr "附加组件开发者"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+msgid "Docs"
+msgstr ""
+
+# Link text to the AMO blog.
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
+msgid "Blog"
+msgstr "博客"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Sign In"
+msgstr "签名附加组件"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Customize Your Firefox"
+msgstr "易用的 Firefox 主题"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid ""
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
+"necessary skills to make a great add-on."
+msgstr ""
+"附加组件让超过数百万的 Firefox 用户能够增强和定制自己的浏览体验。如果您是一名网页开发者并且熟悉 <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a href=\"https://developer.mozilla."
+"org/docs/Web/JavaScript\">JavaScript</a> 和 <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>，您就已经可以有所有必要的技能来制作一个超棒的附加组件了。"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, fuzzy
+msgid "Learn How to make an Add-on"
+msgstr "详细了解附加组件"
+
+# Header for a column in a table
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Validator"
+msgstr "验证"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Automated code tests for your add-on."
+msgstr "请完成您的附加组件。"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Checker"
+msgstr "附加组件兼容性检查器"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "See if your add-on is likely to be affected by changes in Firefox."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Reporter"
+msgstr "兼容性报告"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "Tell us if an add-on works in a particular version of Firefox."
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
 msgstr "您目前正在请求用户<b>捐款</b>"
@@ -5492,7 +5495,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "在 Paypal 账户中接受捐款或者将捐款发到您选择的组织"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for listed add-ons."
+#, fuzzy
+msgid "Contributions are only available for add-ons with listed versions."
 msgstr "仅公开上架的附加组件可使用捐款功能。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
@@ -5827,10 +5831,6 @@ msgstr "将文件添加到已通过审核的版本中后，必须再次通过审
 msgid "Select the target platform for this file."
 msgstr "为此文件选择目标平台。"
 
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Only publish this version to my beta channel."
-msgstr "仅发布此版本到我的测试通道。"
-
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
 msgstr "管理版本 {0}"
@@ -5905,12 +5905,6 @@ msgstr "创建于 %(created)s 并修改为 %(status)s"
 msgid "Edit this version"
 msgstr "编辑此版本"
 
-#. {0} is the number of files
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "{0} file"
-msgid_plural "{0} files"
-msgstr[0] "{0} 个文件"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
 msgstr "0 个文件"
@@ -5918,11 +5912,6 @@ msgstr "0 个文件"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
 msgstr "重新启用版本"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, python-format
-msgid "Queue position: %(pos)s of %(total)s"
-msgstr "队列位置：%(pos)s / %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
@@ -5969,36 +5958,27 @@ msgid "Reply"
 msgstr "回复"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add-on visibility"
+#, fuzzy
+msgid "Listing visibility"
 msgstr "附加组件公开程度"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr "为什么我无法切换<i>上架</i>或<i>隐藏</i>的状态？"
+#, fuzzy
+msgid "Visible:"
+msgstr "可见性："
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid ""
-"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
-"            The process is described in detail in <a href=\"{link}\">this documentation</a>."
-msgstr ""
-"由于技术限制，您必须删除整套附加组件后重新使用此 AMO 账户提交附加组件，才能将您的附加组件公开上架。\n"
-"            详细过程请参见<a href=\"{link}\">此文档</a>。"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Listed:"
-msgstr "上架："
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Visible to everyone on {0} and included in search results and listing pages"
+#, fuzzy
+msgid "Visible to everyone on {0} and included in search results and listing pages."
 msgstr "对所有 {0} 的使用者可见，并包含在搜索结果和列表页面中"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hidden:"
-msgstr "隐藏："
+msgid "Invisible:"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr "在 {0} 上托管，但只对作者可见。可用于暂时在列表中隐藏或暂时下架。"
+msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6009,8 +5989,9 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "未分发在 {0}。开发者将上传新的版本进行签名，以及用自己的渠道分发该附加组件。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Current versions"
-msgstr "当前版本"
+#, fuzzy
+msgid "Listed versions"
+msgstr "查看其他版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6031,6 +6012,25 @@ msgstr "这个附加组件的下一个版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
+msgstr "旧版本"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Why can't I switch to <i>Listed</i>?"
+msgstr "为什么我无法切换<i>上架</i>或<i>隐藏</i>的状态？"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid ""
+"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
+"        The process is described in detail in <a href=\"{link}\">this documentation</a>."
+msgstr ""
+"由于技术限制，您必须删除整套附加组件后重新使用此 AMO 账户提交附加组件，才能将您的附加组件公开上架。\n"
+"            详细过程请参见<a href=\"{link}\">此文档</a>。"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "All versions"
 msgstr "旧版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6148,12 +6148,13 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "经常滚动浏览你的书签吗？使用一个简单的手势，能更加轻松地浏览它们。"
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "广告过滤 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
-msgstr "想轻松下载视频以便离线观看或留作他用？Video DownloadHelper 就能做到这点！兼容 YouTube、Facebook、Vimeo、Twitch 等等许多网站。"
+msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
+msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -9786,11 +9787,6 @@ msgstr "包含 <strong>{3}</strong> 的结果共有 {2} 项，显示第 {0} - {1
 msgid "Showing {0} - {1} of {2} results"
 msgstr "共有 {2} 项结果，显示 {0} - {1} 项"
 
-#. {0} is an application, like Firefox.
-#: src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
-msgid "{0} Add-ons"
-msgstr "{0} 附加组件"
-
 #: src/olympia/search/views.py src/olympia/zadmin/forms.py
 msgid "All Add-ons"
 msgstr "所有附加组件"
@@ -9884,6 +9880,11 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "多部分文件数据中缺少 \"upload\" 键值。"
 
 #: src/olympia/signing/views.py
+#, python-format
+msgid "You cannot add versions to an addon that has status: %s."
+msgstr ""
+
+#: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
 msgstr "版本与清单文件不匹配。"
 
@@ -9894,6 +9895,10 @@ msgstr "版本已经存在。"
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "仅 WebExtensions 允许省略 GUID"
+
+#: src/olympia/signing/views.py
+msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
+msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
@@ -10310,11 +10315,6 @@ msgstr "认识 <b>附加组件</b>"
 #: src/olympia/templates/footer.html
 msgid "About"
 msgstr "关于"
-
-# Link text to the AMO blog.
-#: src/olympia/templates/footer.html
-msgid "Blog"
-msgstr "博客"
 
 # Link text to the Frequently Asked Questions page.
 #: src/olympia/templates/footer.html
@@ -11099,3 +11099,8 @@ msgstr "受影响附加组件"
 #: src/olympia/zadmin/views.py
 msgid "Addon"
 msgstr "附加组件"
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Validation Result"
+msgstr "验证结果"
