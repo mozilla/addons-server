@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 15:21+0000\n"
+"PO-Revision-Date: 2016-12-01 15:34+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5209,14 +5209,12 @@ msgid "Listed Version:"
 msgstr "公開バージョン:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "これは、addons.mozilla.org サイト上でインストールボタンをクリックした時にインストールされるアドオンのバージョンです。これは、掲載中のアドオンにのみ関連付けられます。"
+msgstr "これは、addons.mozilla.org でインストールボタンをクリックした時にインストールされるアドオンのバージョンです。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "次バージョン:"
+msgstr "次の公開バージョン:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5227,14 +5225,12 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "審査は待ち順にレビューされるとは限りません"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
 msgstr "最新版:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr "これはアップロードされた最新バージョンですが、まだサイト上で公開されていません。"
+msgstr "これはアップロードされた最新の未公開バージョンです。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5364,20 +5360,17 @@ msgid "{0} Add-ons"
 msgstr "{0} アドオン"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "最新版:"
+msgstr "最新ニュース"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "は詳しい情報を求められました"
+msgstr "詳しくはブログをご覧ください"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "アドオン開発者"
+msgstr "アドオン開発者センター"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5389,53 +5382,43 @@ msgid "Blog"
 msgstr "ブログ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "アドオンを署名"
+msgstr "ログイン"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Firefox 用簡易テーマ"
+msgstr "Firefox をカスタマイズ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
-msgstr ""
-"アドオンを使用すると、数多くの Firefox ユーザーがブラウザー機能を拡張したりカスタマイズしたりできます。あなたがウェブ開発者で<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a> や <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>、<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> の知識があれば、素晴らしいアドオンを作成するのに必要な技術をすでにお持ちです。"
+msgstr "アドオンを使って数多くの Firefox ユーザーがブラウジング体験を向上させています。あなたがもし <a href=\"#\">HTML</a> や <a href=\"#\">JavaScript</a>、<a href=\"#\">CSS</a> を知っているなら、素晴らしいアドオンを作るのに必要な技術をすでにお持ちです。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "アドオンについて詳しく学ぶ"
+msgstr "アドオンの作り方を学ぶ"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "検証"
+msgstr "バリデーター"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "このアドオンを完成させてください。"
+msgstr "このアドオンの自動コードテストです。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "アドオン互換性チェッカー"
+msgstr "互換性チェッカー"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "互換性レポート"
+msgstr "互換性レポーター"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5475,9 +5458,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "寄付をあなたの PayPal アカウントで受け取るか、選んだ組織に送金できます"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "寄付は、掲載中のアドオンのみが受け付けられます。"
+msgstr "寄付は、公開中のバージョンがあるアドオンのみ受け付けられます。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -5938,19 +5920,16 @@ msgid "Reply"
 msgstr "返信"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "アドオンの公開状態"
+msgstr "公開状態"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "公開状態:"
+msgstr "公開:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "{0} サイト上ですべての人に公開され、検索結果や一覧のページに表示されます。"
+msgstr "{0} 上ですべての人に公開され、検索結果や一覧のページにも表示されます。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
@@ -5969,9 +5948,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "{0} サイトでは配布されません。開発者は、アドオンに署名したり他のサイトで配布するために、新しいバージョンをアップロードできます。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "他のバージョンを表示"
+msgstr "公開バージョン"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6005,9 +5983,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "旧バージョン"
+msgstr "すべてのバージョン"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -11011,6 +10988,5 @@ msgid "Addon"
 msgstr "アドオン"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
 msgstr "検証結果"
