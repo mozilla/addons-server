@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-11-22 12:12+0000\n"
-"Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
+"PO-Revision-Date: 2016-12-01 15:17+0000\n"
+"Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -466,7 +466,7 @@ msgstr "Tigrummiwin"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Taggayt tagejdant n umray ifazen"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
@@ -514,7 +514,7 @@ msgstr "Snirem tabdart n usmizzwer n umaynut d-iteddun"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Amḍan asemday n uttekki"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
@@ -725,12 +725,12 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Tuqqniwin n useqdac , {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Tuqqniwin n useqdac seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
