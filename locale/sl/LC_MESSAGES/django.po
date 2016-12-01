@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 20:39+0000\n"
+"PO-Revision-Date: 2016-12-01 20:47+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -388,11 +388,11 @@ msgstr "Vidnost"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Visible"
-msgstr "Vidno"
+msgstr "Viden"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Invisible"
-msgstr "Nevidno"
+msgstr "Neviden"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -1789,9 +1789,8 @@ msgid "Approval notes changed"
 msgstr ""
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Razvijalčev odgovor o {addon} {version}."
+msgstr "Izvorna koda naložena za {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Source code uploaded"
@@ -5203,7 +5202,6 @@ msgid "Manage Listing"
 msgstr "Upravljanje prikaza na seznamu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr "Različici, ki ste jo poslali, lahko tudi dodate opombe ob izdaji ali izvorno kodo, če vsebuje očiščeno, zamaskirano ali prevedeno kodo."
 
@@ -5385,9 +5383,8 @@ msgid "This is the version of your add-on that will be installed if someone clic
 msgstr "To je različica dodatka, ki se bo namestila, ko uporabnik klikne gumb Namesti na addons.mozilla.org. Velja samo za dodatke na seznamu."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Naslednja različica:"
+msgstr "Naslednja navedena različica:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5398,14 +5395,12 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "Čakalne vrste niso pregledane natanko po vrsti"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
 msgstr "Najnovejša različica:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr "To je najnovejša naložena različica, ki pa še ni na voljo na strani za prenos."
+msgstr "To je najnovejša naložena nenavedena različica."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5557,9 +5552,8 @@ msgstr "Preberite več na našem blogu"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Razvijalec dodatkov"
+msgstr "Središče za razvijalce dodatkov"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5591,7 +5585,6 @@ msgstr "Naučite se ustvariti dodatek"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
 msgstr "Preverjanje veljavnosti"
 
@@ -5609,9 +5602,8 @@ msgstr ""
 
 # 75%
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Poročila o združljivosti"
+msgstr "Poročevalec o združljivosti"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -6137,9 +6129,8 @@ msgid "Listing visibility"
 msgstr "Vidnost dodatka"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Vidnost:"
+msgstr "Viden:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible to everyone on {0} and included in search results and listing pages."
@@ -6147,7 +6138,7 @@ msgstr "Vidno vsem na {0} ter vključeno v iskalne rezultate in sezname dodatkov
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
-msgstr ""
+msgstr "Neviden:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -6162,9 +6153,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Ni razširjen na {0}. Razvijalci bodo poslali nove različice za podpisovanje in dodatke razširjali po svoje."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Prikaži druge različice"
+msgstr "Navedene različice"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6188,9 +6178,8 @@ msgid "Older versions"
 msgstr "Starejše različice"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "Zakaj ne morem preklopiti na <i>Na seznamu</i> ali <i>Skrito</i>?"
+msgstr "Zakaj ne morem preklopiti na <i>Navedeno</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -10204,7 +10193,7 @@ msgstr "Manjkajoč ključ \"pošlji\" v večdelnih podatkih datoteke."
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Ne morete dodajati različic dodatku, katerega stanje je: %s."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
