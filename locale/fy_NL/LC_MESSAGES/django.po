@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 11:58+0000\n"
+"PO-Revision-Date: 2016-12-02 12:21+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1747,23 +1747,20 @@ msgid "Reviewer Reply"
 msgstr "Antwurd fan beoardieler"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Opmerking oer {addon} {version}."
+msgstr "Goedkarringsopmerkingen foar {addon} {version} wizige."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
 msgstr "Goedkarringsopmerkingen wizige"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Antwurd fan ûntwikkeler oer {addon} {version}."
+msgstr "Boarnekoade foar {addon} {version} opladen."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Boarnekoadelisinsje"
+msgstr "Boarnekoade opladen"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -4990,9 +4987,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "In nij tema yntsjinje"
+msgstr "In nij bestân yntsjinje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5151,9 +5147,8 @@ msgid "Upload Add-on"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Wêr't de ferzje host wurdt"
+msgstr "Wêr't it bestân host wurdt"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5180,9 +5175,8 @@ msgid "Administrative overrides"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Ferzje foar beoardieling yntsjinje"
+msgstr "Bestân foar beoardieling yntsjinje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5269,27 +5263,24 @@ msgid "%%b %%e, %%Y"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Add-on-steat"
+msgstr "Multiprocess-steat fan add-on:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Nije ferzje"
+msgstr "Fermelde ferzje:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr "Dit is de ferzje fan jo add-on dy't ynstallearre wurdt as ien op de knop Ynstallearje klikt op addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Nije ferzje"
+msgstr "Folgjende fermelde ferzje:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5300,9 +5291,8 @@ msgid "Queues are not reviewed strictly in order"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
-msgstr "Nije ferzje"
+msgstr "Nijste ferzje:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
@@ -5445,9 +5435,8 @@ msgid "Read more in our Blog"
 msgstr "Lês mear op ús blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Untwikkelershub"
+msgstr "Add-on-ûntwikkelershub"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5459,9 +5448,8 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Add-on ûndertekenje"
+msgstr "Oanmelde"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Customize Your Firefox"
@@ -5484,14 +5472,12 @@ msgid "Validator"
 msgstr "Falidator"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Rapporten foar jo add-ons"
+msgstr "Automatisearre koadetests foar jo add-on."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Add-on-kompatibiliteitssintrum"
+msgstr "Kompatibiliteitskontrôle"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
@@ -6067,6 +6053,8 @@ msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
+"Fanwegen technyske beheiningen moatte jo jo hiele add-on fuortsmite en opnij fia dizze AMO-account yntsjinje om jo add-on nei fermeld om te setten.\n"
+"        It proses wurdt yn detail beskreaun yn <a href=\"{link}\">dizze dokumintaasje</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6192,7 +6180,7 @@ msgstr "Ienfâldich tagong ta blêdwizers {start_sub_heading}mei {addon_name}{en
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
-msgstr ""
+msgstr "YouTube-fideo’s automatysk ôfspylje yn HD, oantekeningen útsette, spilergrutte oanpasse, en in protte oare manieren om jo ûnderfining mei it besjen fan fideo’s te personalisearjen."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -9862,7 +9850,7 @@ msgstr ""
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Jo kinne gjin ferzjes oan in add-on mei de steat %s tafoegje."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
@@ -9878,7 +9866,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Jo kinne gjin fermelde ferzje oan dizze add-on tafoegje fia de API fanwegen ûntbrekkende metagegevens. Tsjinje him yn fia de website"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
