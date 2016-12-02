@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 07:44+0000\n"
+"PO-Revision-Date: 2016-12-02 12:52+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -5368,9 +5368,8 @@ msgid "Lastest Version:"
 msgstr "Poslední verze:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr "Toto je nejnovější nahraná veze, nicméně zatím nebyla na stránkách uveřejněna."
+msgstr "Toto je nejnovější nezveřejněná nahraná veze."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5506,24 +5505,21 @@ msgid "{0} Add-ons"
 msgstr "Doplňky pro {0}"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Poslední verze:"
+msgstr "Nejnovější zprávy"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "potřeba více informací"
+msgstr "Přečtěte si více na našem blogu"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Vývojář doplňků"
+msgstr "Centrum pro vývojáře doplňků"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
-msgstr ""
+msgstr "Dokumenty"
 
 # Link text to the AMO blog.
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
@@ -5531,58 +5527,49 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Podepsat doplněk"
+msgstr "Přihlásit se"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Snadno použitelné vzhledy pro Firefox"
+msgstr "Přizpůsobte si svůj Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
-"Doplňky umožňují milionům uživatelů Firefoxu vylepšit a upravit prohlížeč podle svého způsobu prohlížení. Pokud jste webový vývojář, znáte <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> a <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, máte tedy všechny potřebné schopnosti pro vytvoření skvělého doplňku."
+"Doplňky umožňují milionům uživatelů Firefoxu vylepšit svůj prohlížeč. Pokud znáte <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> a <a href=\"#\">CSS</a>, máte všechny potřebné schopnosti pro "
+"vytvoření skvělého doplňku."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Dozvědět se více o doplňcích"
+msgstr "Naučte se vytvářet doplňky"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Kontrola"
+msgstr "Validátor"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Dokončete prosím svůj doplněk."
+msgstr "Automatické testy kódu vašeho doplňku."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
 msgstr "Kontrola kompatibility doplňku"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Zjistěte, jak pravděpodobné je, že váš doplněk bude ovlivněn změnami ve Firefoxu."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
 msgstr "Hlášení o kompatibilitě"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Sdělte nám, zda doplněk funguje v konkrétní verzi Firefoxu."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -5618,9 +5605,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Dostávat příspěvky na svůj účet na PayPal či je zasílat organizaci dle své volby"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Příspěvky jsou dostupné pouze pro zveřejněné doplňky."
+msgstr "Příspěvky jsou dostupné pouze pro doplňky se zveřejněnými verzemi."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -6086,23 +6072,20 @@ msgid "Reply"
 msgstr "Odpověď"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
 msgstr "Viditelnost doplňku"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Viditelnost:"
+msgstr "Viditelné:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "Viditelný pro každého na {0} a zobrazovaný ve výsledcích vyhledávání a v seznamech na stránkách"
+msgstr "Viditelný pro každého na {0} a zobrazovaný ve výsledcích vyhledávání a v seznamech na stránkách."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
-msgstr ""
+msgstr "Neviditelný:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -6117,9 +6100,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Není distribuováno na {0}. Vývojáři budou nahrávat nové verze k podepsání a budou distribuovat doplněk sami."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Zobrazit ostatní verze"
+msgstr "Zveřejněné verze"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6143,9 +6125,8 @@ msgid "Older versions"
 msgstr "Staré verze"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "Proč nemůžu přepínat na <i>veřejný</i> nebo <i>skrytý</i> doplněk?"
+msgstr "Proč nemůžu přepínat na <i>veřejný</i> doplněk?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6157,9 +6138,8 @@ msgstr ""
 "            Proces je detailně popsán v <a href=\"{link}\">této dokumentaci</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Staré verze"
+msgstr "Všechny verze"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6277,9 +6257,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr ""
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujte reklamy {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vylepšete si YouTube {start_sub_heading}s doplňkem {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
