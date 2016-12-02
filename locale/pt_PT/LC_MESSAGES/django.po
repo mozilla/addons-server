@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 05:44+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-12-02 15:59+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -5526,7 +5526,7 @@ msgstr "Verificador de compatibilidade"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Veja se o seu extra é provável de ser afetado por alterações no Firefox."
 
 # 75%
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -5535,7 +5535,7 @@ msgstr "Relator de compatibilidade"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Diga-nos se um extra funciona numa versão particular do Firefox."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -6063,7 +6063,7 @@ msgstr "Invísivel:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Não será incluído nos resultados de pesquisa, e a sua página de listagem irá indicar que o desative. Novas submissões de versão para listagem não serão aceites neste estado."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6236,7 +6236,7 @@ msgstr "Melhore o YouTube {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
-msgstr ""
+msgstr "Reproduza vídeos do YouTube em alta definição, desligue as anotações, ajuste o tamanho do reprodutor, e muitas outras maneiras de personalizar a sua experiência de visualização de vídeo."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10085,7 +10085,7 @@ msgstr "Chave \"upload\" em falta nos dados multi-parte do ficheiro."
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Não pode adicionar versões a um extra que possui o estado: %s."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
@@ -10101,7 +10101,7 @@ msgstr "Apenas WebExtensions tem permissão para omitir o GUID"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Não pode adicionar uma versão listada a este extra via API devido a metadados em falta. Por favor submeta via website"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
