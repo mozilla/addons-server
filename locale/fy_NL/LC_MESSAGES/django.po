@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 13:01+0000\n"
+"PO-Revision-Date: 2016-12-02 13:10+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2937,11 +2937,11 @@ msgstr "Alle heechst beoardiele besjen"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Mear as 300.000 ûntwerpen om jo browser mei te personalisearjen! Beweech jo mûs oer in eftergrûntema om dit te probearjen. <a href=\"%(url)s\" class=\"more-info\">Begjin mei ferkennen</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Wolle jo mear personalisaasje?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -2949,22 +2949,24 @@ msgstr ""
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
 msgstr ""
+"Folsleine tema’s transformearje de útstrieling fan jo browser mei stilen foar it finsterframe, de adresbalke, knoppen, ljepblêden en menu’s. <a href=\"%(url)s\" class=\"more-info\">Begjin mei "
+"ferkennen</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Oankommende tema’s"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Alle oankommende besjen"
 
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
-msgstr ""
+msgstr "Gjin tema’s fûn"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "Ienfâldich te brûken tema’s foar Firefox"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Popular"
@@ -2992,6 +2994,8 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
 " supporting an upcoming Firefox version. </p>"
 msgstr ""
+"<p> Rapporten dy't by ús fia de <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> yntsjinne wurde, wurde hjir sammele, sadat ûntwikkelers se besjen kinne. Dizze rapporten helpe ús te bepalen "
+"hokker add-ons help nedich hawwe om in takomstige ferzje fan Firefox te stypjen.</p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
@@ -3003,11 +3007,11 @@ msgstr "Add-on-kompatibiliteitssintrum"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "Fier hjirûnder de GUID fan in add-on yn om ûntfongen rapporten te besjen."
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "Kompatibiliteitsrapporten fan {addon}"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} success report"
@@ -3119,7 +3123,7 @@ msgstr "Wacht op goedkarring"
 
 #: src/olympia/constants/base.py
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Markearre foar fierdere beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Beta"
@@ -3195,15 +3199,15 @@ msgstr "Ynstekkers"
 
 #: src/olympia/constants/base.py
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "Allinnich fragen op de side fan dizze add-on en it ûntwikkelersprofyl"
 
 #: src/olympia/constants/base.py
 msgid "Ask after users start downloading this add-on"
-msgstr ""
+msgstr "Fragen eardat brûkers dizze add-on downloade"
 
 #: src/olympia/constants/base.py
 msgid "Ask before users can download this add-on"
-msgstr ""
+msgstr "Fragen eardat brûkers dizze add-on downloade kinne"
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
