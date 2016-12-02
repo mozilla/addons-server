@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 12:21+0000\n"
+"PO-Revision-Date: 2016-12-02 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5484,9 +5484,8 @@ msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "Besjoch oft jo add-on wierskynlik troch wizigingen yn Firefox beynfloede wurdt."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Add-on-kompatibiliteitsrapporten"
+msgstr "Kompatibiliteitsrapportaazje"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5988,14 +5987,12 @@ msgid "Reply"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Sichtberheid"
+msgstr "Sichtberheid fan fermelding"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Sichtberheid"
+msgstr "Sichtber:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible to everyone on {0} and included in search results and listing pages."
@@ -6019,9 +6016,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Oare ferzjes besjen"
+msgstr "Fermelde ferzjes"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6057,9 +6053,8 @@ msgstr ""
 "        It proses wurdt yn detail beskreaun yn <a href=\"{link}\">dizze dokumintaasje</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Alle ferzjes besjen"
+msgstr "Alle ferzjes"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6174,9 +6169,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Skowe jo hieltyd troch jo blêdwizers? Bring jo listen yn byld mei ien inkelde simpele beweging."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ienfâldich tagong ta blêdwizers {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Ferbetterje YouTube {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
@@ -11064,6 +11058,5 @@ msgid "Addon"
 msgstr ""
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Jildige tapassingsferzjes"
+msgstr "Falidaasjeresultaat"
