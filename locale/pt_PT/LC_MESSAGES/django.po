@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 05:38+0000\n"
+"PO-Revision-Date: 2016-12-02 05:44+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4907,6 +4907,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Eliminar o seu extra irá eliminar permanentemente todas as versões e ficheiros que tenha submetido para este extra, listados ou não. O ID do extra irá continuar a estar associado à sua conta, para "
+"que outros não possam submeter versões utilizando o mesmo ID."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5283,7 +5285,7 @@ msgstr "O seu extra foi desativado por um administrador do site e já não é ap
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "O seu extra não será incluído em resultados de pesquisas e a sua página de listagem irá indicar que o desativou. Submissões com novas versões para listagem não serão aceites nesta fase."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -5482,7 +5484,7 @@ msgstr "Central de programador de extras"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
-msgstr ""
+msgstr "Documentação"
 
 # Link text to the AMO blog.
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
@@ -6057,7 +6059,7 @@ msgstr "Visível para todos em {0} e incluído nos resultados de pesquisas e lis
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
-msgstr ""
+msgstr "Invísivel:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
