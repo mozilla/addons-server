@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 16:39+0000\n"
+"PO-Revision-Date: 2016-12-02 16:48+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5202,9 +5202,8 @@ msgid "%%b %%e, %%Y"
 msgstr "%%Y-%%m-%%d"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "多程序狀態:"
+msgstr "附加元件多程序狀態:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
@@ -5382,9 +5381,8 @@ msgstr "需要更多資訊"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "附加元件開發者"
+msgstr "附加元件開發者交流中心"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5396,14 +5394,12 @@ msgid "Blog"
 msgstr "部落格"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "簽署附加元件"
+msgstr "登入"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "易用的 Firefox 佈景主題"
+msgstr "自訂您的 Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy
@@ -5421,28 +5417,24 @@ msgstr "了解更多關於附加元件的資訊"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "驗證"
+msgstr "驗證器"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "請完成您的附加元件。"
+msgstr "自動化測試您附加元件的程式碼。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "附加元件相容性檢查器"
+msgstr "相容性檢查器"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "看看您的附加元件是否有可能受 Firefox 的功能變更影響。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "相容性報告"
+msgstr "相容性回報器"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5983,9 +5975,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "未於 {0} 發行。開發者需自行上傳新版本簽署，並自行發行新版本。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "檢視其他版本"
+msgstr "已上架的版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6009,9 +6000,8 @@ msgid "Older versions"
 msgstr "先前版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "為什麼我不能切換為 <i>上架</i> 或 <i>隱藏</i>？"
+msgstr "為什麼我不能切換為 <i>已上架</i> 狀態？"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6021,9 +6011,8 @@ msgid ""
 msgstr "由於技術限制，您必須刪除整套附加元件後重新使用此 AMO 帳號送交審查，才能將您的附加元件公開上架。詳細過程位於 <a href=\"{link}\">此文件</a>。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "先前版本"
+msgstr "所有版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -11039,6 +11028,5 @@ msgid "Addon"
 msgstr "附加元件"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
 msgstr "驗證結果"
