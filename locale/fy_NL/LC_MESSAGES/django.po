@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 14:21+0000\n"
+"PO-Revision-Date: 2016-12-02 14:40+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3240,84 +3240,84 @@ msgstr "Hânmjittige beoardielerspunten"
 
 #: src/olympia/constants/base.py
 msgid "New Add-on Review"
-msgstr ""
+msgstr "Nije add-on-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Foarriedige add-on-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Bywurke add-on-beoardieling"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/constants/base.py
 msgid "New Dictionary Review"
-msgstr ""
+msgstr "Nije wurdboek-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Foarriedige wurdboek-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Bywurke wurdboek-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "New Language Pack Review"
-msgstr ""
+msgstr "Nije taalpakket-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Foarriedige taalpakket-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Bywurke taalpakket-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Boanus foar ferrûne beoardielingen"
 
 #: src/olympia/constants/base.py
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dagen eardat boanuspunten tapast wurde"
 
 #: src/olympia/constants/base.py
 msgid "Theme Review"
-msgstr ""
+msgstr "Temabeoardieling"
 
 #: src/olympia/constants/base.py
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "Nije sykprovider-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Foarriedige sykprovider-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Bywurke sykprovider-beoardieling"
 
 #: src/olympia/constants/base.py
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "Nije folslein-temabeoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Foarriedige folslein-temabeoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Bywurke folslein-temabeoardieling"
 
 #: src/olympia/constants/base.py
 msgid "Moderated Addon Review"
-msgstr ""
+msgstr "Beoardieling moderearre add-on"
 
 #: src/olympia/constants/base.py
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Beoardielingsevaluaasje add-on ûngedien makke"
 
 #: src/olympia/constants/base.py
 msgid "Level 1"
@@ -3365,11 +3365,11 @@ msgstr "Ynkompatibel"
 
 #: src/olympia/constants/categories.py
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "Warskôgingen en fernijingen"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance"
-msgstr ""
+msgstr "Foarmjouwing"
 
 #: src/olympia/constants/categories.py
 msgid "Bookmarks"
@@ -3666,67 +3666,67 @@ msgstr "Seksuele of pornografyske ynhâld"
 
 #: src/olympia/constants/editors.py
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Unpaslik of oanstjitjaande ynhâld"
 
 #: src/olympia/constants/editors.py
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Ofbyldingen fan geweld, oarloch of wapens"
 
 #: src/olympia/constants/editors.py
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nazystyske of oare haatdragende ynhâld"
 
 #: src/olympia/constants/editors.py
 msgid "Defamatory content"
-msgstr ""
+msgstr "Lasterlike ynhâld"
 
 #: src/olympia/constants/editors.py
 msgid "Online gambling"
-msgstr ""
+msgstr "Online gokke"
 
 #: src/olympia/constants/editors.py
 msgid "Spam content"
-msgstr ""
+msgstr "Spam"
 
 #: src/olympia/constants/editors.py
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Ofbylding fan lege kwaliteit, oprekt of leech"
 
 #: src/olympia/constants/editors.py
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Probleem mei útrjochtsjen headerôfbylding"
 
 #: src/olympia/constants/licenses.py
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Alle rjochten foarbehâlden"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/platforms.py
 msgid "All Platforms"
-msgstr ""
+msgstr "Alle platfoarms"
 
 #: src/olympia/constants/platforms.py
 msgid "Linux"
@@ -3759,35 +3759,35 @@ msgstr "Kearn"
 #: src/olympia/devhub/feeds.py
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Resinte wizigingen foar %s"
 
 #: src/olympia/devhub/feeds.py
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Resinte wizigingen foar myn add-ons"
 
 #: src/olympia/devhub/forms.py
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Der moat op syn minst ien eigener wêze."
 
 #: src/olympia/devhub/forms.py
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Der moat op syn minst ien skriuwer fermeld wurde."
 
 #: src/olympia/devhub/forms.py
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "In skriuwer kin mar ien kear fermeld wurde."
 
 #: src/olympia/devhub/forms.py
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Koade net krekt."
 
 #: src/olympia/devhub/forms.py
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Unjildich JSON-objekt"
 
 #: src/olympia/devhub/forms.py
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Berjocht net geskikt foar annotaasje"
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/users/templates/users/edit.html
 msgid "Details"
@@ -3795,7 +3795,7 @@ msgstr "Details"
 
 #: src/olympia/devhub/forms.py
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Wat is de namme fan jo lisinsje?"
 
 #: src/olympia/devhub/forms.py
 msgid "Provide the text of your license."
