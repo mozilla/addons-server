@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 06:07+0000\n"
+"PO-Revision-Date: 2016-12-02 06:30+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5379,13 +5379,10 @@ msgid "Customize Your Firefox"
 msgstr "定制您的 Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
-msgstr ""
-"附加组件让超过数百万的 Firefox 用户能够增强和定制自己的浏览体验。如果您是一名网页开发者并且熟悉 <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> 和 "
-"<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>，您就已经可以有所有必要的技能来制作一个超棒的附加组件了。"
+msgstr "附加组件让超过数百万的 Firefox 用户能够增强和定制自己的浏览体验。如果您了解 <a href=\"#\">HTML</a>、<a href=\"#\">JavaScript</a> 和 <a href=\"#\">CSS</a>，您就已经有必要的技能来制作一个绝佳的附加组件了。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to make an Add-on"
@@ -5912,19 +5909,16 @@ msgid "Reply"
 msgstr "回复"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "附加组件公开程度"
+msgstr "公开程度"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
 msgstr "可见性："
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "对所有 {0} 的使用者可见，并包含在搜索结果和列表页面中"
+msgstr "对所有 {0} 用户可见，并出现在搜索结果和列表页面中。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
@@ -5943,9 +5937,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "未分发在 {0}。开发者将上传新的版本进行签名，以及用自己的渠道分发该附加组件。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "查看其他版本"
+msgstr "上架版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -5969,12 +5962,10 @@ msgid "Older versions"
 msgstr "旧版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "为什么我无法切换<i>上架</i>或<i>隐藏</i>的状态？"
+msgstr "为什么我无法切换到<i>上架</i>状态？"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
@@ -5983,9 +5974,8 @@ msgstr ""
 "            详细过程请参见<a href=\"{link}\">此文档</a>。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "旧版本"
+msgstr "所有版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6100,9 +6090,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "经常滚动浏览你的书签吗？使用一个简单的手势，能更加轻松地浏览它们。"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "广告过滤 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "增强 YouTube{start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
@@ -10985,6 +10974,5 @@ msgid "Addon"
 msgstr "附加组件"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
 msgstr "验证结果"
