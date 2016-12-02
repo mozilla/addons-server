@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 06:59+0000\n"
+"PO-Revision-Date: 2016-12-02 07:05+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4935,6 +4935,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Smazáním doplňku trvale odstraníte všechny jeho verze a soubory, které jste kdy v souvislosti s tímto doplňkem odeslali, ať už veřejně nebo ne. ID doplňku bude stále spojeno s vaším účtem, takže "
+"nikdo jiný nebude moci odeslat doplněk se stejným ID."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5048,9 +5050,8 @@ msgstr[1] "<strong>{0}</strong> aktivní uživatelé"
 msgstr[2] "<strong>{0}</strong> aktivních uživatelů"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Přidání nového motivu"
+msgstr "Odeslat nový soubor"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
