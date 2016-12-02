@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 10:01+0000\n"
+"PO-Revision-Date: 2016-12-02 11:58+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1753,7 +1753,7 @@ msgstr "Opmerking oer {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Goedkarringsopmerkingen wizige"
 
 #: src/olympia/amo/log.py
 #, fuzzy
@@ -4876,6 +4876,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Troch jo add-on fuort te smiten wurde alle ferzjes en bestannen dy't jo foar dizze add-on yntsjinne hawwe foar altyd fuortsmiten, fermeld of net. De add-on-ID bliuwt noch wol oan jo account keppele,"
+" sadat oaren gjin ferzjes fia deselde ID yntsjinje kinne."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5110,7 +5112,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Jo kinne dizze ferzje ek bewurkje om ferzje-opmerkingen ta te foegjen, of boarnekoade as jo ynstjoering ferlytse, ferwale of kompilearre koade befettet."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5130,7 +5132,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Jo hawwe mar inkelde fan de beskikbere platfoarms foar dizze ynstjoering selektearre. Jo kinne mear bestannen oplade dy't op oare platfoarms rjochte binne:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
@@ -5253,6 +5255,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Jo add-on wurdt net yn sykresultaten opnommen, en de fermeldingsside derfan jout oan dat jo de add-on útskeakele hawwe. Ynstjoeringen fan nije ferzjes foar fermelding wurde yn dizze tastân net "
+"akseptearre."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -5280,7 +5284,7 @@ msgstr "Nije ferzje"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
+msgstr "Dit is de ferzje fan jo add-on dy't ynstallearre wurdt as ien op de knop Ynstallearje klikt op addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
@@ -5302,7 +5306,7 @@ msgstr "Nije ferzje"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
+msgstr "Dit is de nijste opladen net-fermelde ferzje."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5468,6 +5472,8 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
+"Mei add-ons kinne miljoenen Firefox-brûkers harren sneupûnderfining ferbetterje. As jo <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> en <a href=\"#\">CSS</a> kinne, hawwe jo al de nedige "
+"feardichheden om in geweldige add-on te meitsjen."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to make an Add-on"
@@ -5489,7 +5495,7 @@ msgstr "Add-on-kompatibiliteitssintrum"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Besjoch oft jo add-on wierskynlik troch wizigingen yn Firefox beynfloede wurdt."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 #, fuzzy
@@ -5498,7 +5504,7 @@ msgstr "Add-on-kompatibiliteitsrapporten"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Lit ús witte oft in add-on yn in bepaalde ferzje fan Firefox wurket."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -5535,7 +5541,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr ""
+msgstr "Bydragen binne allinnich beskikber foar add-ons mei fermelde ferzjes."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -6007,7 +6013,7 @@ msgstr "Sichtberheid"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr ""
+msgstr "Sichtber foar elkenien op {0} en opnommen yn sykresultaten en fermeldingssiden."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
@@ -6016,6 +6022,7 @@ msgstr "Net sichtber:"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Wurdt net yn sykresultaten opnommen, en de fermeldingsside derfan jout oan dat jo de add-on útskeakele hawwe. Ynstjoeringen fan nije ferzjes foar fermelding wurde yn dizze tastân net akseptearre."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
