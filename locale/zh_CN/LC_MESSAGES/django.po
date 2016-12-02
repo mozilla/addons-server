@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 06:01+0000\n"
+"PO-Revision-Date: 2016-12-02 06:07+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1710,23 +1710,20 @@ msgid "Reviewer Reply"
 msgstr "审核者回复"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "对 {addon} {version} 的评论。"
+msgstr "{addon} {version} 的审核备注已更改。"
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
 msgstr "审批备注已更改"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "开发者在 {addon} {version} 时回复。"
+msgstr "{addon} {version} 的源代码已上传。"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "源代码"
+msgstr "源代码已上传"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -4915,9 +4912,8 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> 位活跃用户"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "提交一个新主题"
+msgstr "提交新文件"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5036,7 +5032,6 @@ msgid "Manage Listing"
 msgstr "管理上架"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr "您还可以编辑此版本，为您刚刚的提交添加版本说明、或源代码（如果您提交的版本的代码经过压缩、精简或编译）。"
 
@@ -5057,7 +5052,6 @@ msgid "Download {0}"
 msgstr "下载 {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "您的此次提交仅选择了部分可用的平台。您可以上传更多适用于其他平台的文件："
 
@@ -5078,9 +5072,8 @@ msgid "Upload Add-on"
 msgstr "上传附加组件"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "版本托管位置"
+msgstr "文件托管位置"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5107,9 +5100,8 @@ msgid "Administrative overrides"
 msgstr "管理覆盖"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "提交版本进行审核"
+msgstr "提交文件进行审核"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5194,28 +5186,24 @@ msgid "%%b %%e, %%Y"
 msgstr "%%Y-%%m-%%d"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "多进程状态："
+msgstr "附加组件多进程状态："
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "您的附加组件与多进程 Firefox (e10s) 的兼容情况。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "最新版本："
+msgstr "上架版本："
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "这是其他人点击网站 (addons.mozilla.org) 上的“安装”按钮时将安装的您的附加组件的版本。它只与已上架的附加组件相关。"
+msgstr "这是其他人点击网站 (addons.mozilla.org) 上的“安装”按钮时将安装的您的附加组件的版本。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "下一个版本："
+msgstr "下一个上架版本："
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5226,14 +5214,12 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "审核时并不会严格按照进入队列的先后顺序进行"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
 msgstr "最新版本："
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr "这是新上传的版本，但它还没有正式在网站上架。"
+msgstr "这是新上传的未上架版本。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5363,20 +5349,17 @@ msgid "{0} Add-ons"
 msgstr "{0} 附加组件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "最新版本："
+msgstr "最新消息"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "需要更多信息"
+msgstr "阅读我们的博客了解更多"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "附加组件开发者"
+msgstr "附加组件开发者中心"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5388,14 +5371,12 @@ msgid "Blog"
 msgstr "博客"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "签名附加组件"
+msgstr "登录"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "易用的 Firefox 主题"
+msgstr "定制您的 Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy
@@ -5407,34 +5388,29 @@ msgstr ""
 "<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>，您就已经可以有所有必要的技能来制作一个超棒的附加组件了。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "详细了解附加组件"
+msgstr "了解如何制作附加组件"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "验证"
+msgstr "验证器"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "请完成您的附加组件。"
+msgstr "自动测试您的附加组件的代码。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "附加组件兼容性检查器"
+msgstr "兼容性检查器"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "了解您的附加组件在新版本 Firefox 中是否受到影响。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "兼容性报告"
+msgstr "兼容性报告器"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5474,7 +5450,6 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "在 Paypal 账户中接受捐款或者将捐款发到您选择的组织"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
 msgstr "仅公开上架的附加组件可使用捐款功能。"
 
