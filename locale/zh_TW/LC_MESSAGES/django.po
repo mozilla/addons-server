@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 15:58+0000\n"
+"PO-Revision-Date: 2016-12-02 16:39+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -372,7 +372,6 @@ msgid "Visibility"
 msgstr "公開情況"
 
 #: src/olympia/addons/templates/addons/details_box.html
-#, fuzzy
 msgid "Visible"
 msgstr "公開情況"
 
@@ -1712,23 +1711,20 @@ msgid "Reviewer Reply"
 msgstr "審核者回覆"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "在 {addon} {version} 上的意見。"
+msgstr "已變更 {addon} {version} 的審核註記。"
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
 msgstr "已變更審核紀錄"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "開發者對 {addon} {version} 的回覆。"
+msgstr "已上傳 {addon} {version} 的原始碼。"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "原始碼"
+msgstr "已上傳原始碼"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -4816,7 +4812,7 @@ msgstr "刪除您的佈景主題會從這個網站永久的移除您的佈景主
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
-msgstr ""
+msgstr "刪除附加元件的話，將會永久刪除所有您曾為此附加元件送出的版本與檔案，不論是否公開上架。附加元件 ID 仍將連結至您的帳號，其他人無法以相同 ID 送出附加元件。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -4928,9 +4924,8 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> 位活躍的使用者"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "提交一個新的佈景主題"
+msgstr "提交新檔案"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5093,9 +5088,8 @@ msgid "Upload Add-on"
 msgstr "上傳附加元件"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "於何處代管此版本"
+msgstr "於何處代管此檔案"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5122,9 +5116,8 @@ msgid "Administrative overrides"
 msgstr "管理員覆寫"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "送出新版本進行審查"
+msgstr "送出檔案進行審查"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5196,7 +5189,7 @@ msgstr "您的附加元件已被網站管理員停用，不在網站上公開上
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "您的附加元件將不會列入於搜尋結果，上架頁面也會提示您已停用。在此狀態下也不會接受任何送出的新版本。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -5241,14 +5234,12 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "我們並不完全按照等待審核區之先後順序來審核"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
 msgstr "最新版本："
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr "這是最新上傳的版本，但還沒有在網站上公開發佈。"
+msgstr "這是最新的未上架版本。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5446,7 +5437,7 @@ msgstr "附加元件相容性檢查器"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "看看您的附加元件是否有可能受 Firefox 的功能變更影響。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 #, fuzzy
@@ -5455,7 +5446,7 @@ msgstr "相容性報告"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "告訴我們您的附加元件是否可在某個版本的 Firefox 正常使用。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -5981,7 +5972,7 @@ msgstr "不可見:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "將不會列入於搜尋結果，上架頁面也會提示您已停用。在此狀態下也不會接受任何送出的新版本。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6153,7 +6144,7 @@ msgstr "使用 {addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
-msgstr ""
+msgstr "自動以高解析度播放 YouTube 影片、關閉註解、調整播放器大小，以及其他能夠客製化您的觀影體驗的功能。"
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -9832,7 +9823,7 @@ msgstr "在 multipart 檔案資料中缺少「upload」鍵值。"
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "您無法新增版本到狀態為 %s 的附加元件。"
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
@@ -9848,7 +9839,7 @@ msgstr "僅 WebExtension 可忽略 GUID"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "由於缺少 metadata，您無法透過 API 為此附加元件新增公開上架的版本。請透過網站送出"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
