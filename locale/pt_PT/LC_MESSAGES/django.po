@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 05:20+0000\n"
+"PO-Revision-Date: 2016-12-02 05:38+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -386,7 +386,7 @@ msgstr "Visível"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Invisible"
-msgstr ""
+msgstr "Invisível"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -1753,7 +1753,7 @@ msgstr "Notas de aprovação alteradas para {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Notas de aprovação alteradas"
 
 #: src/olympia/amo/log.py
 msgid "Source code uploaded for {addon} {version}."
@@ -5477,9 +5477,8 @@ msgstr "Ler mais no nosso blogue"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Programador de extras"
+msgstr "Central de programador de extras"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5491,45 +5490,37 @@ msgid "Blog"
 msgstr "Blogue"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Assinar extra"
+msgstr "Iniciar sessão"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Temas de fácil utilização do Firefox"
+msgstr "Personalize o seu Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
-"Os extras permitem que milhões de utilizadores do Firefox melhorem e personalizem a sua experiência de navegação. Se é um programador web e sabe <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> e <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, então já tem todas as capacidades necessárias para fazer um ótimo extra."
+"Os extras permitem que milhões de utilizadores do Firefox melhorem a sua experiência de navegação. Se sabe <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> e <a href=\"#\">CSS</a>, então já tem "
+"todas as capacidades necessárias para fazer um ótimo extra."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Saiba mais sobre os extras"
+msgstr "Aprenda a fazer um Extra"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Validação"
+msgstr "Validador"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Por favor, complete o seu extra."
+msgstr "Testes de código automáticos para o seu extra."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Verificador de compatibilidade de extra"
+msgstr "Verificador de compatibilidade"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
@@ -5537,9 +5528,8 @@ msgstr ""
 
 # 75%
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Relatórios de compatibilidade"
+msgstr "Relator de compatibilidade"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5579,9 +5569,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Receber contribuições na sua conta PayPal ou enviá-las para uma organização à sua escolha"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "As contribuições apenas estão disponíveis para extras listados."
+msgstr "Donativos apenas estão disponíveis para extras com versões listadas."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -6055,19 +6044,16 @@ msgid "Reply"
 msgstr "Responder"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Visibilidade do extra"
+msgstr "Visibilidade nas listas"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Visibilidade:"
+msgstr "Visível:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "Visível para todos no {0} e incluído nos resultados de pesquisas e listagens em páginas"
+msgstr "Visível para todos em {0} e incluído nos resultados de pesquisas e listagens em páginas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
@@ -6086,9 +6072,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Não distribuído em {0}. Os programadores irão enviar novas versões para serem assinadas e distribuir os extras utilizando meios próprios."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Ver outras versões"
+msgstr "Versões listadas"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6112,23 +6097,20 @@ msgid "Older versions"
 msgstr "Versões mais antigas"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "Porque não posso mudar para <i>listado</i> ou <i>escondido</i>?"
+msgstr "Porque não posso mudar para <i>Listado</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
-"Devido a limitações técnicas, terá de apagar o seu extra inteiro e submetê-lo novamente utilizando esta conta AMO para poder alterar o seu extra para listado.\n"
+"Devido a limitações técnicas, terá de apagar completamente o seu extra e resubmetê-lo utilizando esta conta AMO para poder alterar o seu extra para listado.\n"
 "            O processo está descrito em detalhe <a href=\"{link}\">nesta documentação</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Versões mais antigas"
+msgstr "Todas as versões"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6247,9 +6229,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Está constantemente a percorrer os Favoritos? Coloque as suas listas visíveis com um gesto único e simples."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloqueie publicidade {start_sub_heading}com o {addon_name}{end_sub_heading}"
+msgstr "Melhore o YouTube {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
@@ -11344,6 +11325,5 @@ msgid "Addon"
 msgstr "Extra"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Resultados de validação"
+msgstr "Resultados da validação"
