@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-03 08:46+0000\n"
+"PO-Revision-Date: 2016-12-03 10:14+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -5148,9 +5148,8 @@ msgid "Manage Listing"
 msgstr "Hantera listning"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "Du kan också redigera denna version som du just skickat in genom att lägga till versionsanteckningar eller källkoden om ditt bidrag innehåller komprimerad, förvrängd eller kompilerad kod."
+msgstr "Du kan också redigera den här versionen för att lägga till versionsanteckningar eller källkod om ditt bidrag innehåller minified, obfuscated eller kompilerad kod."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5169,9 +5168,8 @@ msgid "Download {0}"
 msgstr "Hämta {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Du har valt endast vissa av de tillgängliga plattformarna för detta bidrag. Du kan ladda upp fler filer som når andra plattformar:"
+msgstr "Du har valt ut några av de tillgängliga plattformar för detta bidrag. Du kan ladda upp flera filer som riktar sig mot andra plattformar:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
@@ -5190,9 +5188,8 @@ msgid "Upload Add-on"
 msgstr "Ladda upp tillägg"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Var ska versionen hysas"
+msgstr "Var filen ska hysas"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5312,9 +5309,8 @@ msgid "%%b %%e, %%Y"
 msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Status multi-process:"
+msgstr "Multi-processtatus för tillägg:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
@@ -5325,18 +5321,12 @@ msgid "Listed Version:"
 msgstr "Listad version:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
-"Detta är den version av ditt tillägg som kommer\n"
-"                                           att installeras om någon klickar på knappen Installera\n"
-"                                           på addons.mozilla.org. Detta är endast\n"
-"                                           relevant för listade tillägg."
+msgstr "Detta är den version av ditt tillägg som kommer att installeras om någon klickar på knappen Installera på addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Nästa version:"
+msgstr "Nästa listade version:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5353,11 +5343,8 @@ msgid "Lastest Version:"
 msgstr "Senaste version:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
-"Detta är den senaste uppladdade versionen, men\n"
-"                                           den är inte uppladdad på webbplatsen ännu."
+msgstr "Detta är den senaste uppladdade olistade versionen."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5496,9 +5483,8 @@ msgid "{0} Add-ons"
 msgstr "{0} tillägg"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Senaste version:"
+msgstr "Senaste nytt"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Read more in our Blog"
@@ -5525,14 +5511,12 @@ msgid "Customize Your Firefox"
 msgstr "Anpassa Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
-"Tillägg låter miljontals Firefox-användare förbättra och anpassa sin webbupplevelse. Om du är en webbutvecklare och har kunskap inom <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>,"
-" <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> och <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, har du redan alla de kunskaper som behövs för att "
-"skapa ett bra tillägg."
+"Tillägg låter miljontals Firefox-användare förbättra och anpassa sin webbupplevelse. Om du har kunskap inom <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> och <a href=\"#\">CSS</a>, har du "
+"redan alla de kunskaper som behövs för att skapa ett bra tillägg."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to make an Add-on"
@@ -5543,23 +5527,20 @@ msgid "Validator"
 msgstr "Validator"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Vänligen färdigställ ditt tillägg."
+msgstr "Automatiserade kodtester för ditt tillägg."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Kompatibilitetskontroll för tillägg"
+msgstr "Kompatibilitetskontroll"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "Se om ditt tillägg kommer att påverkas av förändringar i Firefox."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Kompatibilitetsrapporter"
+msgstr "Kompatibilitetsrapportör"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5599,9 +5580,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Få bidrag till ditt PayPal-konto eller skicka dem till en organisation som du väljer"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Bidrag är endast tillgängliga för listade tillägg."
+msgstr "Bidrag är endast tillgängliga för tillägg med listade versioner."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -6076,18 +6056,16 @@ msgid "Reply"
 msgstr "Svara"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Synlighet för tillägg"
+msgstr "Tilläggets synlighet"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible:"
 msgstr "Synlig:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "Synlig för alla på {0} och ingår i sökresultaten och listningssidor"
+msgstr "Synlig för alla på {0} och ingår i sökresultat och listningssidor."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
@@ -6130,18 +6108,16 @@ msgid "Older versions"
 msgstr "Äldre versioner"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "Varför kan inte jag byta till <i>Listad</i> eller <i>Dold</i>?"
+msgstr "Varför kan inte jag byta till <i>Listad</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
 "På grund av tekniska begränsningar, måste du ta bort hela ditt tillägg och skicka in den igen genom att använda detta AMO-konto för att byta ditt tillägg till listad.\n"
-"            Processen beskrivs utförligt i <a href=\"{link}\">denna dokumentation</a>."
+"        Processen beskrivs utförligt i <a href=\"{link}\">denna dokumentation</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "All versions"
@@ -6266,9 +6242,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Brukar du ständigt bläddra igenom dina bokmärken? Visa dina listor med en enda, enkel gest."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockera annonser {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Förbättra YouTube {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
