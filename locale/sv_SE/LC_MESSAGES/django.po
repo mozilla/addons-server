@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-03 08:40+0000\n"
+"PO-Revision-Date: 2016-12-03 08:46+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1738,14 +1738,12 @@ msgid "Approval notes changed"
 msgstr "Anteckningar för godkännande ändrade"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Svar från utvecklare på {addon} {version}."
+msgstr "Källkod uppladdad för {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Källkod"
+msgstr "Källkod uppladdad"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -5028,9 +5026,8 @@ msgstr[0] "<strong>{0}</strong> aktiv användare"
 msgstr[1] "<strong>{0}</strong> aktiva användare"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Skicka in ett nytt tema"
+msgstr "Skicka in en ny fil"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5222,9 +5219,8 @@ msgid "Administrative overrides"
 msgstr "Administrativa åsidosättningar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Skicka in version för granskning"
+msgstr "Skicka in fil för granskning"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5325,9 +5321,8 @@ msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "Ditt tillägg kompatibilitet med multi-process Firefox (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Senaste version:"
+msgstr "Listad version:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
@@ -5354,7 +5349,6 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "Köerna granskas inte i strikt ordning"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
 msgstr "Senaste version:"
 
@@ -5507,14 +5501,12 @@ msgid "Latest News"
 msgstr "Senaste version:"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "behöver mer information"
+msgstr "Läs mer i vår blogg"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Tilläggsutvecklare"
+msgstr "Utvecklarcenter för tillägg"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5525,14 +5517,12 @@ msgid "Blog"
 msgstr "Blogg"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Signera tillägg"
+msgstr "Logga in"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Enkla-att-använda teman för Firefox"
+msgstr "Anpassa Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy
@@ -5545,14 +5535,12 @@ msgstr ""
 "skapa ett bra tillägg."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Lär dig mer om tillägg"
+msgstr "Lär dig hur man skapar ett tillägg"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Validering"
+msgstr "Validator"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 #, fuzzy
@@ -11349,6 +11337,5 @@ msgid "Addon"
 msgstr "Tillägg"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
 msgstr "Valideringsresultat"
