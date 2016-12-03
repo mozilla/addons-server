@@ -286,11 +286,12 @@ def performance(request, user_id=False):
 
 def _recent_editors(days=90):
     since_date = datetime.now() - timedelta(days=days)
-    editors = (UserProfile.objects
-                          .filter(activitylog__action__in=amo.LOG_REVIEW_QUEUE,
-                                  activitylog__created__gt=since_date)
-                          .order_by('display_name')
-                          .distinct())
+    editors = (
+        UserProfile.objects.filter(
+            activitylog__action__in=amo.LOG_EDITOR_REVIEW_ACTION,
+            activitylog__created__gt=since_date)
+        .order_by('display_name')
+        .distinct())
     return editors
 
 

@@ -281,7 +281,8 @@ class PerformanceGraph(ViewQueue):
 
     def base_query(self):
         request_ver = amo.LOG.REQUEST_VERSION.id
-        review_ids = [str(r) for r in amo.LOG_REVIEW_QUEUE if r != request_ver]
+        review_ids = [str(r) for r in amo.LOG_EDITOR_REVIEW_ACTION
+                      if r != request_ver]
 
         return {
             'select': SortedDict([
