@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 16:48+0000\n"
+"PO-Revision-Date: 2016-12-03 03:51+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5044,7 +5044,6 @@ msgid "Manage Listing"
 msgstr "管理上架資訊"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr "您也可以編輯剛送出的版本，加入版本註記，或若包含 minified、擾亂過、編譯過的的程式碼的話也可放入原始碼。"
 
@@ -5067,9 +5066,8 @@ msgid "Download {0}"
 msgstr "立刻下載 {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "您選擇此次只要在某些平台上發布，您還可以上傳給其他版本使用的檔案: "
+msgstr "您選擇此次只要在某些平台上發布，您還可以上傳給其他平台使用的檔案: "
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
@@ -5210,19 +5208,16 @@ msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "您的附加元件相容於多程序 (e10s) 的 Firefox。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "最新版本："
+msgstr "上架版本:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "這就是當使用者在 addons.mozilla.org 上點擊安裝您的附加元件後，會下載安裝的版本。此欄位僅與公開上架的附加元件有關。"
+msgstr "這就是當使用者在 addons.mozilla.org 上點擊安裝您的附加元件後，會下載安裝的版本。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "下個版本:"
+msgstr "下個上架版本:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5368,16 +5363,14 @@ msgid "{0} Add-ons"
 msgstr "{0} 附加元件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "最新版本："
+msgstr "最新消息"
 
 # 79%
 # 100%
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "需要更多資訊"
+msgstr "到部落格閱讀更多資訊"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
@@ -5402,18 +5395,14 @@ msgid "Customize Your Firefox"
 msgstr "自訂您的 Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
-msgstr ""
-"附加元件可讓數以百萬的 Firefox 使用者增強並自訂他們的上網體驗。若您是熟悉 <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> 與 <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> 的 Web 開發者，您已經具備了開發附加元件所必需的能力。"
+msgstr "附加元件可讓數以百萬的 Firefox 使用者增強並自訂他們的上網體驗。若您是熟悉 <a href=\"#\">HTML</a>、<a href=\"#\">JavaScript</a> 與 <a href=\"#\">CSS</a> 的 Web 開發者，您已經具備了開發附加元件時必需的能力。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "了解更多關於附加元件的資訊"
+msgstr "了解如何打造附加元件"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -5474,7 +5463,6 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "在您的 Paypal 帳號收到捐款，或是將捐款送到您指定的組織"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
 msgstr "僅有公開上架的附加元件可使用捐款功能。"
 
@@ -5944,19 +5932,16 @@ msgid "Reply"
 msgstr "回覆"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
 msgstr "附加元件公開程度"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "公開情況："
+msgstr "公開上架:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "讓 {0} 的所有使用者都看得到，並包含在搜尋結果與上架清單頁面中"
+msgstr "讓 {0} 的所有使用者都看得到，並包含在搜尋結果與上架清單頁面中。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
@@ -6004,7 +5989,6 @@ msgid "Why can't I switch to <i>Listed</i>?"
 msgstr "為什麼我不能切換為 <i>已上架</i> 狀態？"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
@@ -6127,9 +6111,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "您常常要捲動書籤清單嗎？可以用單一而簡單的滑鼠手勢就將清單轉變為書籤畫面。"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "使用 {addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "使用 {addon_name} {start_sub_heading}加強 YouTube{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
