@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-05 13:03+0000\n"
+"PO-Revision-Date: 2016-12-05 13:39+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3992,25 +3992,27 @@ msgstr "Beoardieling"
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
+"Wy stean in fernijing ta en riede dit ek oan, mar jo kinne dit proses net ûngedien meitsje. As jo brûkers de WebExtension ien kear ynstallearre hawwe, kinne se gjin ferâldere add-on mear "
+"ynstallearje."
 
 #: src/olympia/devhub/tasks.py
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "Jo kinne gjin WebExtensions-add-on bywurkje mei in ferâldere add-on. Jo brûkers soenen jo nije ferzje dan net brûke kinne, omdat Firefox dit type fernijing net stipet."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s hat antwurde mei %s (%s)."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Wachttiid foar ferbining mei ‘%s’ foarby."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Kin gjin ferbining meitsje mei de host op ‘%s’."
 
 #: src/olympia/devhub/utils.py
 #, python-format
