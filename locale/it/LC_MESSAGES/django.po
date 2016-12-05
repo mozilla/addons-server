@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-05 15:39+0000\n"
-"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2016-12-05 11:05+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -5542,48 +5542,41 @@ msgid "Customize Your Firefox"
 msgstr "Personalizza Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
-"I componenti aggiuntivi aiutano milioni di utenti Firefox a migliorare e personalizzare la loro esperienza di navigazione. Se sei uno sviluppatore web e conosci i linguaggi <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> e <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, sei già in possesso di tutti gli strumenti necessari per realizzare un componente aggiuntivo perfettamente funzionante."
+"I componenti aggiuntivi aiutano milioni di utenti Firefox a migliorare e personalizzare la loro esperienza di navigazione. Se sei uno sviluppatore web e conosci i linguaggi <a href=\"#\">HTML</a>, "
+"<a href=\"#\">JavaScript</a>, e <a href=\"#\">CSS</a> sei già in possesso di tutti gli strumenti necessari per realizzare un componente aggiuntivo perfettamente funzionante."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Ulteriori informazioni sui componenti aggiuntivi"
+msgstr "Scopri come realizzare un componente aggiuntivo"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Verifica"
+msgstr "Validatore"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Completa il tuo componente aggiuntivo."
+msgstr "Una serie di test automatici per convalidare il codice di un componente aggiuntivo."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Verifica compatibilità componenti aggiuntivi"
+msgstr "Strumento di verifica compatibilità"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Scopri se il funzionamento del componente aggiuntivo che hai realizzato verrà influenzato dalle modifiche introdotte in Firefox."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Rapporti di compatibilità"
+msgstr "Generatore report di compatibilità"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Facci sapere se il componente aggiuntivo è compatibile con una particolare versione di Firefox."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -5619,9 +5612,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Ricevi donazioni nel tuo account PayPal o inviale ad un’organizzazione di tuo gradimento"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Solo i componenti aggiuntivi visualizzati possono usufruire delle donazioni."
+msgstr "Solo i componenti aggiuntivi pubblicati sul sito possono usufruire dello strumento per ricevere donazioni."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -6090,27 +6082,26 @@ msgid "Reply"
 msgstr "Rispondi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
 msgstr "Visibilità del componente aggiuntivo"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Visibilità:"
+msgstr "Visibile:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
 msgstr "Accessibile a chiunque su {0}, incluso nei risultati di ricerca e nelle pagine di presentazione."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
-msgstr ""
+msgstr "Invisibile:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Il componente aggiuntivo non verrà mostrato tra i risultati delle ricerche e nella sua pagina verrà esplicitamente indicato che è stato disattivato. In questa situazione non sarà possibile caricare "
+"nuove versioni del componente aggiuntivo."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6121,9 +6112,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Non distribuito su {0}. Gli sviluppatori caricheranno le versioni aggiornate per ottenere la firma digitale e distribuiranno in seguito il componente aggiuntivo attraverso canali propri."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Mostra altre versioni"
+msgstr "Versioni visualizzate"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6147,23 +6137,20 @@ msgid "Older versions"
 msgstr "Versioni precedenti"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "Perché non riesco a modificare lo stato di visibilità del componente aggiuntivo?"
+msgstr "Perché non riesco a cambiare lo stato del componente aggiuntivo a <i>visibile</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
-"A causa di limiti tecnici della piattaforma, per rendere un componente aggiuntivo esterno visibile su AMO è necessario rimuoverlo e ripubblicarlo utilizzando il medesimo account.             La "
-"procedura è spiegata dettagliatamente <a href=\"{link}\">in questo documento</a>."
+"A causa di limiti tecnici della piattaforma, per rendere un componente aggiuntivo esterno visibile su AMO è necessario rimuoverlo e ripubblicarlo utilizzando il medesimo account. La procedura è "
+"spiegata dettagliatamente <a href=\"{link}\">in questo documento</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Versioni precedenti"
+msgstr "Tutte le versioni"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6285,13 +6272,12 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Scorri di continuo i segnalibri alla ricerca di ciò che ti serve? Visualizza l’elenco completo con un semplice gesto."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca gli avvisi pubblicitari {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Migliora l’esperienza su YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
-msgstr ""
+msgstr "Personalizza la riproduzione dei video di YouTube impostando il formato ad alta definizione come predefinito, nascondendo le annotazioni , definendo la dimensione del player e molto altro."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10156,7 +10142,7 @@ msgstr "Impossibile trovare la chiave di “upload” tra i dati multipart del f
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Non è possibile aggiungere nuove versioni di un componente aggiuntivo il cui stato è: %s."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
@@ -10172,7 +10158,7 @@ msgstr "Solo ai componenti aggiuntivi che utilizzano WebExtensions è consentito
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Non è possibile utilizzare l’API per caricare una nuova versione del componente aggiuntivo poiché mancano alcuni metadati. Completa l’operazione direttamente dall’interfaccia web."
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
@@ -11389,6 +11375,5 @@ msgid "Addon"
 msgstr "Componente aggiuntivo"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Risultati della validazione"
+msgstr "Risultato della validazione"
