@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 12:52+0000\n"
+"PO-Revision-Date: 2016-12-05 11:56+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1764,23 +1764,20 @@ msgid "Reviewer Reply"
 msgstr "Odpověď redaktora"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Komentář u doplňku {addon} {version}."
+msgstr "Poznámky ke schválení u doplňku {addon} {version} změněny."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Poznámky ke schválení změněny"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Odpověď vývojáře doplňku {addon} {version}."
+msgstr "Zdrojový kód doplňku {addon} {version} nahrán."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Zdrojový kód"
+msgstr "Zdrojový kód nahrán"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -5171,10 +5168,8 @@ msgid "Manage Listing"
 msgstr "Spravovat záznam"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
-"Můžete také upravit verzi, kterou jste právě odeslali, přidáním poznámek k verzi nebo zdrojového kódu (v případě, že zdrojový kód nahrané verze je zmenšený, zkompilovaný nebo tzv. \"obfuscated\")."
+msgstr "Toto verzi můžete také upravit přidáním poznámek nebo zdrojového kódu (v případě, že zdrojový kód nahrané verze je zmenšený, zkompilovaný nebo tzv. \"obfuscated\")."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5193,9 +5188,8 @@ msgid "Download {0}"
 msgstr "Stáhnout {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Vybrali jste jen některé z dostupných platforem. Můžete nahrát více souborů, které jsou určeny pro jiné platformy:"
+msgstr "Vybrali jste jen některé z dostupných platforem pro toto nahrání. Můžete nahrát více souborů, které jsou určeny pro jiné platformy:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
@@ -5214,9 +5208,8 @@ msgid "Upload Add-on"
 msgstr "Nahrát doplněk"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Kde bude verze hostována"
+msgstr "Kde bude soubor hostován"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5243,9 +5236,8 @@ msgid "Administrative overrides"
 msgstr "Změny při administraci"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Odeslat verzi ke kontrole"
+msgstr "Odeslat soubor ke kontrole"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5332,28 +5324,24 @@ msgid "%%b %%e, %%Y"
 msgstr "%%b. %%e %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Stav kompatibility s multiprocesovou architekturou:"
+msgstr "Stav kompatibility doplňku s multiprocesovou architekturou:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "Kompatibilita vašeho doplňku s multiprocesovým Firefoxem (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Poslední verze:"
+msgstr "Veřejná verze:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "Toto je verze doplňku, která bude nainstalována, když někdo klikne na tlačítko Nainstalovat na stránkách addons.mozilla.org. Relevantní pouze pro zveřejněné doplňky."
+msgstr "Toto je verze doplňku, která bude nainstalována, když někdo klikne na tlačítko Nainstalovat na stránkách addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Příští verze:"
+msgstr "Příští veřejná verze:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -6129,7 +6117,6 @@ msgid "Why can't I switch to <i>Listed</i>?"
 msgstr "Proč nemůžu přepínat na <i>veřejný</i> doplněk?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
@@ -6248,13 +6235,12 @@ msgid "So much more than just a screenshot tool, this add-on also lets you edit,
 msgstr "Více než je nástroj pro vytváření snímků obrazovky. S tímto doplňkem můžete upravovat, přidávat poznámky a sdílet své obrázky!"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujte reklamy {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Přistupujte ke svým záložkám {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
-msgstr ""
+msgstr "Hledáte pořád něco ve svých záložkách? Zobrazte si jejich seznam rychlým a jednoduchým gestem."
 
 #: src/olympia/discovery/data.py
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6263,6 +6249,7 @@ msgstr "Vylepšete si YouTube {start_sub_heading}s doplňkem {addon_name}{end_su
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
 msgstr ""
+"Automaticky přehrávejte YouTube videa ve vysokém rozlišení, vypněte poznámky, změňte velikost přehrávače a přizpůsobte si jej v mnoha dalších ohledech pro ten nejlepší zážitek ze sledování videa."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10096,7 +10083,7 @@ msgstr "Chybí klíč \"upload\" v multipart části dat."
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Nemůžete přidávat verze k doplňku, který má stav: %s."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
@@ -10112,7 +10099,7 @@ msgstr "Pouze WebExtensions doplňky nemusí mít GUID"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Kvůli chybějícím metadatům nemůžete k tomuto doplňku přidat veřejnou verzi prostřednictvím API. Nahrejte ji prosím pomocí webového rozhraní"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
@@ -11328,6 +11315,5 @@ msgid "Addon"
 msgstr "Doplněk"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Výsledky kontroly"
+msgstr "Výsledek kontroly"
