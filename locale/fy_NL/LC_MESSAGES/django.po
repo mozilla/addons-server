@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-05 13:39+0000\n"
+"PO-Revision-Date: 2016-12-05 13:44+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4017,7 +4017,7 @@ msgstr "Kin gjin ferbining meitsje mei de host op ‘%s’."
 #: src/olympia/devhub/utils.py
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "De falidaasje levere te folle flaters/warskôgingen op, dus %s berjochten binne ynkoarte. Neidat de sichtbere berjochten adressearre binne kinne jo de oare lêze."
 
 #: src/olympia/devhub/views.py
 msgid "All My Add-ons"
@@ -4037,11 +4037,11 @@ msgstr "Add-on-steat"
 
 #: src/olympia/devhub/views.py
 msgid "User Collections"
-msgstr ""
+msgstr "Brûkerskolleksjes"
 
 #: src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
 msgid "User Reviews"
-msgstr ""
+msgstr "Brûkersbeoardielingen"
 
 #: src/olympia/devhub/views.py
 msgid "Changes successfully saved."
