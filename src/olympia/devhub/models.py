@@ -170,7 +170,7 @@ class ActivityLogManager(ManagerBase):
         qs = self._by_type()
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(action__in=([amo.LOG.THEME_REVIEW.id] if theme
-                                      else amo.LOG_REVIEW_QUEUE))
+                                      else amo.LOG_EDITOR_REVIEW_ACTION))
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
@@ -183,14 +183,15 @@ class ActivityLogManager(ManagerBase):
         return (qs.values('user', 'user__display_name', 'user__username')
                   .filter(created__gte=created_date,
                           action__in=([amo.LOG.THEME_REVIEW.id] if theme
-                                      else amo.LOG_REVIEW_QUEUE))
+                                      else amo.LOG_EDITOR_REVIEW_ACTION))
                   .exclude(user__id=settings.TASK_USER_ID)
                   .annotate(approval_count=models.Count('id'))
                   .order_by('-approval_count'))
 
     def user_approve_reviews(self, user):
         qs = self._by_type()
-        return qs.filter(action__in=amo.LOG_REVIEW_QUEUE, user__id=user.id)
+        return qs.filter(action__in=amo.LOG_EDITOR_REVIEW_ACTION,
+                         user__id=user.id)
 
     def current_month_user_approve_reviews(self, user):
         now = datetime.now()

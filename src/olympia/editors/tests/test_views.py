@@ -1225,7 +1225,7 @@ class TestPerformance(QueueTest):
     def create_logs(self):
         addon = Addon.objects.all()[0]
         version = addon.versions.all()[0]
-        for i in amo.LOG_REVIEW_QUEUE:
+        for i in amo.LOG_EDITOR_REVIEW_ACTION:
             amo.log(amo.LOG_BY_ID[i], addon, version)
 
     def _test_chart(self):
@@ -1233,8 +1233,7 @@ class TestPerformance(QueueTest):
         assert r.status_code == 200
         doc = pq(r.content)
 
-        # The ' - 1' is to account for REQUEST_VERSION not being displayed.
-        num = len(amo.LOG_REVIEW_QUEUE) - 1
+        num = len(amo.LOG_EDITOR_REVIEW_ACTION)
         label = datetime.now().strftime('%Y-%m')
         data = {label: {u'teamcount': num, u'teamavg': u'%s.0' % num,
                         u'usercount': num, u'teamamt': 1,
@@ -1264,7 +1263,7 @@ class TestPerformance(QueueTest):
         doc = pq(r.content)
         data = json.loads(doc('#monthly').attr('data-chart'))
         label = datetime.now().strftime('%Y-%m')
-        assert data[label]['usercount'] == len(amo.LOG_REVIEW_QUEUE) - 1
+        assert data[label]['usercount'] == len(amo.LOG_EDITOR_REVIEW_ACTION)
 
     def _test_performance_other_user_as_admin(self):
         userid = amo.get_user().pk
