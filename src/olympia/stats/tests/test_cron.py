@@ -6,7 +6,7 @@ from django.core.management import call_command
 import mock
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.stats import cron, tasks
 from olympia.stats.models import (
@@ -27,6 +27,32 @@ class TestGlobalStats(TestCase):
         tasks.update_global_totals(job, date)
         assert len(GlobalStat.objects.no_cache().filter(
             date=date, name=job)) == 1
+
+    def test_count_stats_for_date(self):
+        # Add a listed add-on, it should show up in "addon_count_new".
+        listed_addon = addon_factory()
+
+        # Add an unlisted version to that add-on, it should *not* increase the
+        # "version_count_new" count.
+        version_factory(
+            addon=listed_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        # Add an unlisted add-on, it should not show up in either
+        # "addon_count_new" or "version_count_new".
+        addon_factory(version_kw={
+            'channel': amo.RELEASE_CHANNEL_UNLISTED
+        })
+
+        date = datetime.date.today()
+        job = 'addon_count_new'
+        tasks.update_global_totals(job, date)
+        global_stat = GlobalStat.objects.no_cache().get(date=date, name=job)
+        assert global_stat.count == 1
+
+        job = 'version_count_new'
+        tasks.update_global_totals(job, date)
+        global_stat = GlobalStat.objects.no_cache().get(date=date, name=job)
+        assert global_stat.count == 1
 
     def test_input(self):
         for x in ['2009-1-1',
