@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-02 14:40+0000\n"
+"PO-Revision-Date: 2016-12-05 12:40+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3799,79 +3799,79 @@ msgstr "Wat is de namme fan jo lisinsje?"
 
 #: src/olympia/devhub/forms.py
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Jou de tekst fan jo lisinsje."
 
 #: src/olympia/devhub/forms.py
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "As jo Oars kieze, is in lisinsjetekst fereaske."
 
 #: src/olympia/devhub/forms.py
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Dizze add-on hat in brûksrjochtoerienkomst"
 
 #: src/olympia/devhub/forms.py
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Jou de brûksrjochtoerienkomst fan jo add-on op:"
 
 #: src/olympia/devhub/forms.py
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Dizze add-on hat in privacybelied"
 
 #: src/olympia/devhub/forms.py
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Jou it privacybelied fan jo add-on op:"
 
 #: src/olympia/devhub/forms.py
 msgid "Why did you make this add-on?"
-msgstr ""
+msgstr "Wêrom hawwe jo bydroegen?"
 
 #: src/olympia/devhub/forms.py
 msgid "What's next for this add-on?"
-msgstr ""
+msgstr "Wat biedt de takomst foar dizze add-on?"
 
 #: src/olympia/devhub/forms.py
 msgid "The developers of this add-on"
-msgstr ""
+msgstr "De ûntwikkelers fan dizze add-on"
 
 #: src/olympia/devhub/forms.py
 msgid "The Mozilla Foundation"
-msgstr ""
+msgstr "De Mozilla Foundation"
 
 #: src/olympia/devhub/forms.py
 msgid "An organization of my choice"
-msgstr ""
+msgstr "In troch my keazen organisaasje"
 
 #: src/olympia/devhub/forms.py
 msgid "Please enter a suggested amount greater than 0."
-msgstr ""
+msgstr "Fier in foarsteld bedrach yn dat grutter is as 0."
 
 #: src/olympia/devhub/forms.py
 msgid "Please enter a suggested amount less than ${0}."
-msgstr ""
+msgstr "Fier in foarsteld bedrach yn dat leger is as ${0}."
 
 #: src/olympia/devhub/forms.py
 msgid "PayPal ID required to accept contributions."
-msgstr ""
+msgstr "PayPal-ID is fereaske om bydragen akseptearje te kinnen."
 
 #: src/olympia/devhub/forms.py
 msgid "Could not validate PayPal id."
-msgstr ""
+msgstr "Kin PayPal-identiteit net falidearje."
 
 #: src/olympia/devhub/forms.py
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Net-stipe bestânstype, laad in argyfbestân {extensions} op."
 
 #: src/olympia/devhub/forms.py
 msgid "View current"
-msgstr ""
+msgstr "Aktuele werjaan"
 
 #: src/olympia/devhub/forms.py
 msgid "Invalid version range."
-msgstr ""
+msgstr "Unjildich ferzjeberik."
 
 #: src/olympia/devhub/forms.py
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "Der moat op syn minst ien kompatibele tapassing wêze."
 
 #: src/olympia/devhub/forms.py
 msgid "There was an error with your upload. Please try again."
