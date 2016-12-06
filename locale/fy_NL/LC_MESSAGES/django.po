@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-05 13:44+0000\n"
+"PO-Revision-Date: 2016-12-06 12:57+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4045,23 +4045,23 @@ msgstr "Brûkersbeoardielingen"
 
 #: src/olympia/devhub/views.py
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Wizigingen mei sukses bewarre."
 
 #: src/olympia/devhub/views.py
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Kontrolearje it formulier op flaters."
 
 #: src/olympia/devhub/views.py
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Add-on kin net fuortsmiten wurde. Skeakelje dizze add-on út."
 
 #: src/olympia/devhub/views.py
 msgid "Theme deleted."
-msgstr ""
+msgstr "Tema fuortsmiten."
 
 #: src/olympia/devhub/views.py
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Add-on fuortsmiten."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Theme was not deleted."
