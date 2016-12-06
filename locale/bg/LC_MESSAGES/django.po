@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-06 11:38+0000\n"
+"PO-Revision-Date: 2016-12-06 12:01+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -543,7 +543,7 @@ msgstr "Сортиране по:"
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Updated {0}"
-msgstr "Обновен {0}"
+msgstr "Актуализирано на {0}"
 
 #. {0} is a date.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html
@@ -2010,7 +2010,7 @@ msgstr "Колекции :: %s"
 
 #: src/olympia/bandwagon/feeds.py src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Колекциите са групи от сродни добавки, които всеки може да създава и споделя."
+msgstr "Колекцията е група от сродни добавки, която всеки може да създава и споделя."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py
@@ -2229,7 +2229,7 @@ msgstr "Научи за колекциите"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More Options:"
-msgstr "Още опции:"
+msgstr "Още действия:"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Edit Collection"
@@ -2237,7 +2237,7 @@ msgstr "Редактиране на колекцията"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/includes/delete.html
 msgid "Delete Collection"
-msgstr "Изтрий колекцията"
+msgstr "Изтриване на колекцията"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
@@ -2260,7 +2260,7 @@ msgstr "Давай"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "What are Collections?"
-msgstr "Какво са колекции?"
+msgstr "Какво е колекция?"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Explore Collections"
@@ -2348,11 +2348,11 @@ msgstr "от {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Stop Following"
-msgstr "Спри да следваш"
+msgstr "Отказ от следване"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Follow this Collection"
-msgstr "Следвай тази колекция"
+msgstr "Следване на колекцията"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html
 msgid "Edit this Collection"
@@ -2447,7 +2447,7 @@ msgstr "Въведете адрес на ел. поща на сътрудник�
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Add Contributor"
-msgstr "Добави сътрудник"
+msgstr "Добавяне"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Contributor"
@@ -2503,7 +2503,7 @@ msgstr "Наскоро популярни колекции"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Колекциите са групи от сродни добавки, които всеки може да създава и споделя. Разгледайте колекциите, създадени от други потребители или <a href=\"%(url)s\">създайте ваша собствена</a>."
+msgstr "Колекцията е група от сродни добавки, която всеки може да създава и споделя. Разгледайте колекции, създадени от други потребители или <a href=\"%(url)s\">създайте ваша собствена</a>."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
@@ -2555,7 +2555,7 @@ msgstr "Въведете името на добавката, която да в�
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add to Collection"
-msgstr "Добавяне към колекция"
+msgstr "Добавяне"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py
 msgid "Pending"
@@ -4885,7 +4885,7 @@ msgstr "Изтрий тази добавка."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Edit information about this add-on."
-msgstr ""
+msgstr "Редактиране на информацията за добавката."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -4923,7 +4923,7 @@ msgstr "Последни промени"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Редактиране на информацията за темата."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Edit Listing"
@@ -5244,9 +5244,8 @@ msgid "%%b %%e, %%Y"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Състояние на добавката"
+msgstr "Многопроцесност на добавката:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
@@ -5275,7 +5274,6 @@ msgid "Queues are not reviewed strictly in order"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
 msgstr "Последна версия:"
 
@@ -5412,9 +5410,8 @@ msgid "{0} Add-ons"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Последна версия:"
+msgstr "Последни новини"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Read more in our Blog"
