@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-06 12:01+0000\n"
+"PO-Revision-Date: 2016-12-06 12:13+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1235,7 +1235,7 @@ msgstr "{0} (Бележки по версията)"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "View All Versions"
-msgstr "Вижте всички версии"
+msgstr "Списък с всички версии"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "View Development Version"
@@ -2152,7 +2152,7 @@ msgstr "Създаване"
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Както е отбелязано в <a href=\"%(legal)s\">легалните бележки</a>, индивидуалните колекции се управляват от Creative Commons Attribution Share-Alike лиценз"
+msgstr "Както е отбелязано в <a href=\"%(legal)s\">правните бележки</a>, индивидуалните колекции се управляват от Creative Commons Attribution Share-Alike лиценз"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Create Collection"
@@ -4442,7 +4442,7 @@ msgstr[1] "<b>{0}</b> теми"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Edit Information"
-msgstr ""
+msgstr "Редактиране"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -4885,7 +4885,7 @@ msgstr "Изтрий тази добавка."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Edit information about this add-on."
-msgstr "Редактиране на информацията за добавката."
+msgstr "Редактиране на добавката."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -4910,7 +4910,7 @@ msgstr "Управление на плащанията"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Status & Versions"
-msgstr "Управление на състояние и версии"
+msgstr "Състояние и версии"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "View Add-on Listing"
@@ -5267,7 +5267,7 @@ msgstr "Последна версия:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "Това е последната качена версия, която обаче все още не се вижда на сайта."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Queues are not reviewed strictly in order"
@@ -5279,7 +5279,7 @@ msgstr "Последна версия:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
+msgstr "Това е последната непоказана версия."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -6043,9 +6043,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Стари версии"
+msgstr "Всички версии"
 
 # 90%
 # 100%
@@ -9255,7 +9254,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr ""
+msgstr "Как да докладвам дефект или да се свържа с екипа на Добавки?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10254,7 +10253,7 @@ msgstr ""
 
 #: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Legal Notices"
-msgstr ""
+msgstr "Правни бележки"
 
 #: src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
@@ -10262,15 +10261,15 @@ msgstr "Докладване на злоупотреба със запазена
 
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
-msgstr ""
+msgstr "Мобилна версия"
 
 #: src/olympia/templates/copyright.html
 msgid "Site Status"
-msgstr ""
+msgstr "Състояние на сайта"
 
 #: src/olympia/templates/copyright.html
 msgid "Report a bug"
-msgstr ""
+msgstr "Доклад за дефект"
 
 #: src/olympia/templates/copyright.html
 msgid ""
