@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-06 11:01+0000\n"
+"PO-Revision-Date: 2016-12-06 11:20+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -3061,7 +3061,7 @@ msgstr "Sunbird"
 
 #: src/olympia/constants/applications.py
 msgid "Mobile"
-msgstr "Мобилни"
+msgstr "Мобилна версия"
 
 #: src/olympia/constants/applications.py
 msgid "Firefox for Android"
@@ -3990,15 +3990,15 @@ msgstr "Всички мои добавки"
 
 #: src/olympia/devhub/views.py
 msgid "All Activity"
-msgstr "Всичка активност"
+msgstr "Пълен журнал"
 
 #: src/olympia/devhub/views.py
 msgid "Add-on Updates"
-msgstr "Актуализации на добавката"
+msgstr "Актуализация на добавка"
 
 #: src/olympia/devhub/views.py
 msgid "Add-on Status"
-msgstr "Състояние на добавката"
+msgstr "Състояние на добавка"
 
 #: src/olympia/devhub/views.py
 msgid "User Collections"
@@ -4352,7 +4352,7 @@ msgstr "Тествано за съвместимост със:"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for My Add-ons"
-msgstr "Скорошни действия за Моите Добавки"
+msgstr "Последни действия по моите добавки"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Recent Activity"
@@ -4361,7 +4361,7 @@ msgstr "Скорошни действия"
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for {0}"
-msgstr "Скорошни действия за {0}"
+msgstr "Последни действия по {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 #, python-format
@@ -4370,16 +4370,16 @@ msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> от %(us
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Refine Activity"
-msgstr "Пречисти активността"
+msgstr "Преглед на действията"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Activity"
-msgstr "Активност"
+msgstr "Действия"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Subscribe to this feed"
-msgstr "Абонирай се за тази емисия"
+msgstr "Абониране за емисията"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
@@ -10459,11 +10459,11 @@ msgstr ""
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Display Name"
-msgstr "Име за показване"
+msgstr "Име"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Location"
-msgstr ""
+msgstr "Местоположение"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Occupation"
@@ -10471,7 +10471,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Потребителите на Firefox Accounts понастоящем не могат да променят имейл адреса си."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -10487,23 +10487,23 @@ msgstr ""
 
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Потребителското име не може да съдържа само цифри."
 
 #: src/olympia/users/forms.py
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Въведете валидно потребителско име, състоящо се то букви, цифри, долни черти или тирета."
 
 #: src/olympia/users/forms.py
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Това потребителско име не може да бъде използвано."
 
 #: src/olympia/users/forms.py
 msgid "This username is already in use."
-msgstr ""
+msgstr "Това потребителско име вече съществува."
 
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
-msgstr "Това име за показване не може да бъде използвано."
+msgstr "Това име не може да бъде използвано."
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -10610,11 +10610,11 @@ msgstr "Известия до потребителя"
 
 #: src/olympia/users/views.py
 msgid "An email address is required."
-msgstr ""
+msgstr "Нужен е имейл адрес."
 
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Вече съществува потребител с този имейл адрес."
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"
@@ -10626,7 +10626,7 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Profile Updated"
-msgstr ""
+msgstr "Сметката е обновена"
 
 #: src/olympia/users/views.py
 msgid "Errors Found"
@@ -10692,7 +10692,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name"
-msgstr "Моля, изберете име за показване"
+msgstr "Моля, изберете име"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name or username to complete the registration process."
@@ -10700,15 +10700,15 @@ msgstr "Моля, изберете име, което да бъде показв
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Управление на основна информация за сметката като потребителско име и настройки на Firefox Account."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
-msgstr ""
+msgstr "Потребителско име"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
-msgstr ""
+msgstr "Имейл адрес"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
@@ -10720,7 +10720,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Напишете повече за себе си. Всички тези полета са пожелание, но информацията от тях ще помогне на другите потребители да ви опознаят по-добре."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This URL will only be visible if you are a developer."
