@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-06 11:20+0000\n"
+"PO-Revision-Date: 2016-12-06 11:38+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -137,7 +137,7 @@ msgstr "Категорията разни не може да бъде комби
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Преди да промените локала си по подразбиране, трябва да имате име, обобщение и описание в този локал. Липсва ви %s."
+msgstr "Преди да промените стандартния език трябва да имате име, обобщение и описание на този език. Липсва ви %s."
 
 #: src/olympia/addons/forms.py
 msgid "A license must be selected."
@@ -431,7 +431,7 @@ msgstr "ЛСКП"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "More about this add-on"
-msgstr "Повече за тази добавка"
+msgstr "Повече за добавката"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Image Gallery"
@@ -2209,7 +2209,7 @@ msgstr[1] "<span>%(num)s</span> последователи"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "About this Collection"
-msgstr "За тази колекция"
+msgstr "Относно колекцията"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Add-ons synced to my Mobile Firefox"
@@ -4583,7 +4583,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Default Locale"
-msgstr "Локал по подразбиране"
+msgstr "Стандартен език"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
@@ -7411,7 +7411,7 @@ msgstr "Добавки, които ще ви помогнат при пътеш�
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr ""
+msgstr "Показва знаме на държавата, в която се намира сървъра на текущия сайт и още."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "FoxClocks let you keep an eye on the time around the world."
@@ -10475,11 +10475,11 @@ msgstr "Потребителите на Firefox Accounts понастоящем 
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
-msgstr ""
+msgstr "Профилна снимка"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"
-msgstr ""
+msgstr "Стандартен език"
 
 #: src/olympia/users/forms.py
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -10724,11 +10724,11 @@ msgstr "Напишете повече за себе си. Всички тези 
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Адресът ще бъде видим само ако сте разработчик."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Избиране на снимка&hellip;"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete current photo"
@@ -10736,7 +10736,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This is the default locale used to display information about you (like your description)."
-msgstr ""
+msgstr "Това е езикът, на който се показва информацията за вас (като описание)."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
