@@ -713,7 +713,7 @@ class ArchiveMixin(object):
 
         addon = get_object_or_404(qset, slug=slug)
 
-        if not addon.is_listed:
+        if not addon.has_listed_versions():
             raise http.Http404
         return addon
 

@@ -92,8 +92,8 @@ class TestUnlistedAddons(StatsTest):
     def setUp(self):
         super(TestUnlistedAddons, self).setUp()
         addon = Addon.objects.get(pk=4)
-        addon.update(is_listed=False)
-        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        addon.update(public_stats=True)
+        self.make_addon_unlisted(addon)
 
     def test_no_stats_for_unlisted_addon(self):
         """All the views for the stats return 404 for unlisted addons."""
@@ -103,7 +103,7 @@ class TestUnlistedAddons(StatsTest):
         self._check_it(self.private_views_gen(format='json'), 404)
 
     def test_stats_for_unlisted_addon_owner(self):
-        """All the views for the stats return 404 for unlisted addons owner."""
+        """All the views for the stats return 200 for admins."""
         self.login_as_admin()
 
         self._check_it(self.public_views_gen(format='json'), 200)
@@ -986,6 +986,37 @@ class ArchiveTestCase(APIKeyAuthTestCase):
             read_dev_agreement=datetime.datetime.now())
         self.api_key = self.create_api_key(self.user, 'bar')
         AddonUser.objects.create(user=self.user, addon=self.addon)
+
+        response = self.get(
+            reverse('stats.archive', kwargs={
+                'slug': 'a3615', 'year': '2016', 'month': '01',
+                'day': '18', 'model_name': 'themeupdatecount'}))
+        assert response.status_code == 404
+
+    def test_list_unlisted_addon(self):
+        self.user = UserProfile.objects.create(
+            read_dev_agreement=datetime.datetime.now())
+        self.api_key = self.create_api_key(self.user, 'bar')
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+
+        save_stats_to_file(self.theme_update_count)
+        self.make_addon_unlisted(self.addon)
+
+        response = self.get(
+            reverse('stats.archive_list', kwargs={
+                'slug': 'a3615', 'year': '2016', 'month': '01'}))
+        # There are stats for this add-on for the requested timeframe, but it
+        # has no listed versions to it should return a 404.
+        assert response.status_code == 404
+
+    def test_get_unlisted_addon(self):
+        self.user = UserProfile.objects.create(
+            read_dev_agreement=datetime.datetime.now())
+        self.api_key = self.create_api_key(self.user, 'bar')
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+
+        save_stats_to_file(self.theme_update_count)
+        self.make_addon_unlisted(self.addon)
 
         response = self.get(
             reverse('stats.archive', kwargs={
