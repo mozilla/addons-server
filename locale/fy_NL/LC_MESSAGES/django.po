@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-07 08:21+0000\n"
+"PO-Revision-Date: 2016-12-07 08:32+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4174,21 +4174,21 @@ msgstr "Ofdrukbere ferzje"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "Ik akseptearje dizze Oerienkomst"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "of <a href=\"{0}\">Annulearje</a>"
 
 #: src/olympia/devhub/templates/devhub/base.html src/olympia/devhub/templates/devhub/base_impala.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Tebek nei add-ons"
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Sykje"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py src/olympia/editors/templates/editors/queue.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/mobile/results.html
@@ -4203,11 +4203,11 @@ msgstr "Sykresultaten"
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Sykresultaten foar ‘{0}’"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Fier inkelde syktermen yn."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Loading results&hellip;"
@@ -4215,23 +4215,23 @@ msgstr "Resultaten lade…"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
-msgstr ""
+msgstr "In add-on yntsjinje"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "AMO-beoardielers"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "Nim in foarsprong! Wurd hjoed noch AMO-beoardieler en krij jo add-ons flugger beoardiele."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "In AMO-beoardieler wurde"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Alles oer add-ons"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid ""
@@ -4239,14 +4239,17 @@ msgid ""
 "href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
 "great add-on."
 msgstr ""
+"Mei add-ons kinne miljoenen Firefox-brûkers harren sneupûnderfining ferbetterje en oanpasse. As jo in webûntwikkeler binne en ferstân hawwe fan <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> en <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, dan hawwe jo al de nedige feardichheden om in bjusterbaarlike add-on te meitsjen."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
+msgstr "Gean nei it <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> om alles wat jo witte moatte om te begjinnen te learen."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Start Making Add-ons"
-msgstr ""
+msgstr "Start mei it meitsjen fan add-ons"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
@@ -4255,46 +4258,46 @@ msgstr "Steat:"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
-msgstr ""
+msgstr "Nijste ferzje:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Queue Position:"
-msgstr ""
+msgstr "Posysje yn wachtrige:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s fan %(total)s"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Upload New Version"
-msgstr ""
+msgstr "Nije ferzje oplade"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "Alle add-ons besjen ►"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Publisearje jo add-ons!"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
+msgstr "Der is gjin bettere manier om jo add-on te fersprieden dan troch dizze hoste te litten op Mozilla Add-ons."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 #, python-format
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
+msgstr "Laad in <a href=\"%(addon_url)s\">add-on</a> of <a href=\"%(theme_url)s\">tema</a> op om te begjinnen!"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Tebek nei de startside fan de ûntwikkelershub"
 
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "<small>Add-on</small>-ûntwikkelershub"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
@@ -4306,11 +4309,11 @@ msgstr "Dokumintaasje"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Extension Development"
-msgstr ""
+msgstr "Utwreidingsûntwikling"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Ljochtgewicht-tema’s"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Policies"
@@ -4318,19 +4321,19 @@ msgstr "Add-onbelied"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Add-on-falidator"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Add-on Compatibility Checker"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Untwikkelings-add-ons"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Community & Support"
-msgstr ""
+msgstr "Mienskip en stipe"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Blog"
@@ -4342,15 +4345,15 @@ msgstr "Add-onsfoarum"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "More Resources"
-msgstr ""
+msgstr "Mear helpboarnen"
 
 #: src/olympia/devhub/templates/devhub/search.html
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Untwikkelersdokumintaasje trochsykje"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Brûk ûndersteand fjild om jo add-on-pakket op te laden."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
