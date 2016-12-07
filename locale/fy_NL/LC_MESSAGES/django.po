@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-07 08:32+0000\n"
+"PO-Revision-Date: 2016-12-07 10:33+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4357,15 +4357,15 @@ msgstr "Brûk ûndersteand fjild om jo add-on-pakket op te laden."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
+msgstr "Nei de oplaad wurdt in oantal automatisearre falidaasjetests útfierd om te kontrolearjen op kompatibiliteit mei de folgjende tapassingsferzje:"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Nei de oplaad wurdt in oantal automatisearre falidaasjetests op jo bestân útfierd."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Wolle jo jo add-on op dizze website ferspriede litte?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html
