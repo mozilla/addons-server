@@ -71,7 +71,8 @@ def _find_version_page(qs, addon, version_num):
 @non_atomic_requests
 def update_info(request, addon, version_num):
     qs = addon.versions.filter(version=version_num,
-                               files__status__in=amo.VALID_FILE_STATUSES)
+                               files__status__in=amo.VALID_FILE_STATUSES,
+                               channel=amo.RELEASE_CHANNEL_LISTED)
     if not qs:
         raise http.Http404()
     serve_xhtml = ('application/xhtml+xml' in

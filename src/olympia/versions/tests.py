@@ -395,6 +395,13 @@ class TestVersion(TestCase):
             '/en-US/firefox/versions/updateInfo/%s' % self.version.id)
         assert response.status_code == 404
 
+    def test_version_update_info_no_unlisted(self):
+        addon = Addon.objects.get(pk=3615)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        r = self.client.get(reverse('addons.versions.update_info',
+                                    args=(addon.slug, self.version.version)))
+        assert r.status_code == 404
+
     def _reset_version(self, version):
         version.all_files[0].status = amo.STATUS_PUBLIC
         version.deleted = False
