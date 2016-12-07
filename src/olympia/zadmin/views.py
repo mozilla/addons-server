@@ -315,8 +315,14 @@ def validation_summary_affected_addons(request, job_id, message_id):
 
     page = amo.utils.paginate(request, table.rows, per_page=25)
     table.set_page(page)
+
+    message = ValidationResultMessage.objects.filter(
+        validation_job=job_id, id=message_id)[0]
     return render(request, 'zadmin/validation_summary.html',
-                  {'table': table, 'page': page})
+                  {'table': table,
+                   'page': page,
+                   'message_id': message.message_id,
+                   'message': message.message})
 
 
 @admin_required

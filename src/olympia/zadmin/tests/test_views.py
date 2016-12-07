@@ -412,6 +412,8 @@ class TestBulkValidation(BulkValidationTest):
 
         UTF8_PARSER = HTMLParser(encoding='utf-8')
         doc = pq(fromstring(response.content, parser=UTF8_PARSER))
+        assert message.message_id in doc('div#message_details').text()
+        assert message.message in doc('div#message_details').text()
         assert doc('table tr td').eq(0).text() == u'美味的食物'
         assert '3615/validation-resul' in doc('table tr td').eq(1).html()
 
