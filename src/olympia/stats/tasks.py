@@ -193,11 +193,12 @@ def _get_daily_jobs(date=None):
         'addon_downloads_new': lambda: DownloadCount.objects.filter(
             date=date).aggregate(sum=Sum('count'))['sum'],
 
-        # Add-on counts
-        'addon_count_new': Addon.objects.extra(**extra).count,
+        # Listed Add-on counts
+        'addon_count_new': Addon.objects.valid().extra(**extra).count,
 
-        # Version counts
-        'version_count_new': Version.objects.extra(**extra).count,
+        # Listed Version counts
+        'version_count_new': Version.objects.filter(
+            channel=amo.RELEASE_CHANNEL_LISTED).extra(**extra).count,
 
         # User counts
         'user_count_total': UserProfile.objects.filter(
