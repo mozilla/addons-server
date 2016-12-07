@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-05 11:56+0000\n"
-"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2016-12-05 15:52+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -5311,7 +5311,7 @@ msgstr "Váš doplněk byl zakázán správcem stránky a již není na našich 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Váš doplněk nebude zobrazován ve výsledcích vyhledávání a na jeho stránce se zobrazí informace, že jste jej zakázali. V tomto stavu také nebudou přijímány nové verze."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -6077,7 +6077,7 @@ msgstr "Neviditelný:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Nebude zobrazován ve výsledcích vyhledávání a na jeho stránce se zobrazí informace, že jste jej zakázali. V tomto stavu také nebudou přijímány nové verze."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
