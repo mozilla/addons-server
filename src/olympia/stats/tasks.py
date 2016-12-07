@@ -7,7 +7,7 @@ from django.db import connection
 from django.db.models import Sum, Max
 
 from apiclient.discovery import build
-from elasticsearch.helpers import bulk_index
+from elasticsearch.helpers import bulk as bulk_index
 from oauth2client.client import OAuth2Credentials
 
 import olympia.core.logger
