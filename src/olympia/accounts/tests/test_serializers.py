@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from olympia import amo
 from olympia.amo.tests import (
-    addon_factory, BaseTestCase, days_ago, user_factory)
+    addon_factory, TestCase, days_ago, user_factory)
 from olympia.accounts.serializers import (
     PublicUserProfileSerializer, UserNotificationSerializer,
     UserProfileSerializer)
@@ -9,7 +9,7 @@ from olympia.users.models import UserNotification
 from olympia.users.notifications import NOTIFICATIONS_BY_SHORT
 
 
-class TestPublicUserProfileSerializer(BaseTestCase):
+class TestPublicUserProfileSerializer(TestCase):
     serializer = PublicUserProfileSerializer
     user_kwargs = {
         'username': 'amo',
@@ -74,7 +74,7 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer):
         assert data['read_dev_agreement'] == data['last_login']
 
 
-class TestUserNotificationSerializer(BaseTestCase):
+class TestUserNotificationSerializer(TestCase):
 
     def setUp(self):
         self.user = user_factory()

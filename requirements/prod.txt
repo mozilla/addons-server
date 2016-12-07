@@ -248,14 +248,12 @@ easy-thumbnails==2.4.1 \
     --hash=sha256:5cc51c6ec7de110355d0f8cd56c9ede6e2949e87c2fcb34bc864a20ecd424270 \
     --hash=sha256:6e41e70a182a6d00af9f3f3a6d1cc87cb7da060a3d56982da51d266e40fc9b59
 # elasticsearch is required by elasticsearch-dsl
-# we are in the process of upgrading to 5
-elasticsearch==1.1.1 \
-    --hash=sha256:93ab9d59dc38b4c9893aecf23a55ff88b237c3b876bce23b636a8a767f5729be \
-    --hash=sha256:6d86968b22f09a5e4f830ea3f3090c039ff5416146fa98b4a59a6b1dd5388759 # pyup: <1.2
-# we are upgrading to 5 but that takes a bit
-elasticsearch-dsl==0.0.11 \
-    --hash=sha256:663fb62ad39200c7d903e973aa0aa693578613264d83796455cbf4cd172bd878 \
-    --hash=sha256:59a76c4142478a1952bba6f9a9ca4fc7b029afb619e8ffcf0d135ce37ea692da # pyup: <1.0
+elasticsearch==5.3.0 \
+    --hash=sha256:aea16d6d6ad03a509c9f591eee9ce4ce62918d8ba26bf6513097223929be0a09 \
+    --hash=sha256:cb7f1346ebf7fb3fac1efcd8454d2d124d29cc55a009ed5683fe4c6ecad12925
+elasticsearch-dsl==5.2.0 \
+    --hash=sha256:0c4df03eeb2c254d0c2df49df3fcfbfb1f9af18ab22308487b023f9c9adbf87d \
+    --hash=sha256:1a816fed5a0b9cbc862670f3455aa151e75f6042db38a1b008f73cc12173e0d0
 email-reply-parser==0.5.9 \
     --hash=sha256:f92aa6fd7314c2c8833f2928c0fd6d2e26f94c04eb1de409e75c59f1ac42eef8
 # enum34 is required by cryptography, docker-compose, flake8

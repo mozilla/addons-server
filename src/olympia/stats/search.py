@@ -167,7 +167,7 @@ def get_mappings():
                 'dynamic': 'true',
                 'properties': {
                     'v': {'type': 'long'},
-                    'k': {'type': 'string'}
+                    'k': {'type': 'keyword'}
                 }
             },
             'date': {

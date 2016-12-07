@@ -385,6 +385,7 @@ class TestCompatibilityReportCron(
         TestCompatibilityReportCronMixin, ESTestCase):
     def setUp(self):
         self.app_version = FIREFOX_COMPAT[0]['main']
+        super(TestCompatibilityReportCron, self).setUp()
 
     def test_with_bad_support_data(self):
         # Test containing an addon which has an AppSupport data indicating it

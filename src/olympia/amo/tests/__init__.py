@@ -817,6 +817,7 @@ class ESTestCase(TestCase):
 
     def setUp(self):
         stop_es_mocks()
+        super(ESTestCase, self).setUp()
 
     @classmethod
     def setUpClass(cls):
@@ -842,7 +843,8 @@ class ESTestCase(TestCase):
             raise
 
         aliases_and_indexes = set(settings.ES_INDEXES.values() +
-                                  cls.es.indices.get_aliases().keys())
+                                  cls.es.indices.get_alias().keys())
+
         for key in aliases_and_indexes:
             if key.startswith('test_amo'):
                 cls.es.indices.delete(key, ignore=[404])
@@ -868,7 +870,9 @@ class ESTestCase(TestCase):
             {'add': {'index': actual_indices['stats'],
                      'alias': settings.ES_INDEXES['stats']}}
         ]
+
         cls.es.indices.update_aliases({'actions': actions})
+
         super(ESTestCase, cls).setUpTestData()
 
     @classmethod
@@ -890,9 +894,12 @@ class ESTestCase(TestCase):
 
     @classmethod
     def empty_index(cls, index):
+        # Try to make sure that all changes are properly flushed.
+        cls.refresh()
         cls.es.delete_by_query(
             settings.ES_INDEXES[index],
-            body={"query": {"match_all": {}}}
+            body={'query': {'match_all': {}}},
+            conflicts='proceed',
         )
 
 

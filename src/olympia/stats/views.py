@@ -87,8 +87,8 @@ def get_series(model, extra_field=None, source=None, **filters):
         qs = qs.source(source)
     for val in qs[:365]:
         # Convert the datetimes to a date.
-        date_ = parse(val['date'][0]).date()
-        rv = dict(count=val['count'][0], date=date_, end=date_)
+        date_ = parse(val['date']).date()
+        rv = dict(count=val['count'], date=date_, end=date_)
         if source:
             rv['data'] = extract(val[source])
         elif extra_field:
@@ -614,7 +614,7 @@ def _collection_query(request, collection, start=None, end=None):
     qs = (CollectionCount.search().order_by('-date')
                          .filter(id=int(collection.pk),
                                  date__range=(start, end))
-                         .values_dict())[:365]
+                         .values_dict('date', 'count', 'data'))[:365]
     series = []
     for val in qs:
         date_ = parse(val['date']).date()

@@ -1,7 +1,6 @@
 from django.utils import translation
 
-from elasticsearch_dsl import F, query
-from elasticsearch_dsl.filter import Bool
+from elasticsearch_dsl import Q, query
 from rest_framework import serializers
 from rest_framework.filters import BaseFilterBackend
 import waffle
@@ -55,7 +54,7 @@ class AddonFilterParam(object):
         return self.get_object_from_reverse_dict().id
 
     def get_es_filter(self):
-        return [F(self.operator, **{self.es_field: self.get_value()})]
+        return [Q(self.operator, **{self.es_field: self.get_value()})]
 
 
 class AddonAppFilterParam(AddonFilterParam):
@@ -94,9 +93,9 @@ class AddonAppVersionFilterParam(AddonFilterParam):
     def get_es_filter(self):
         app_id, low, high = self.get_values()
         return [
-            F('range', **{'current_version.compatible_apps.%d.min' % app_id:
+            Q('range', **{'current_version.compatible_apps.%d.min' % app_id:
               {'lte': low}}),
-            F('range', **{'current_version.compatible_apps.%d.max' % app_id:
+            Q('range', **{'current_version.compatible_apps.%d.max' % app_id:
               {'gte': high}}),
         ]
 
@@ -174,7 +173,7 @@ class AddonTagFilterParam(AddonFilterParam):
     def get_es_filter(self):
         # Just using 'terms' would not work, as it would return any tag match
         # in the list, but we want to exactly match all of them.
-        return [F('term', tags=tag) for tag in self.get_value()]
+        return [Q('term', tags=tag) for tag in self.get_value()]
 
 
 class SearchQueryFilter(BaseFilterBackend):
@@ -191,12 +190,14 @@ class SearchQueryFilter(BaseFilterBackend):
         """
         should = []
         rules = [
-            (query.Match, {'query': search_query, 'boost': 3,
-                           'analyzer': 'standard'}),
-            (query.Match, {'query': search_query, 'boost': 4,
-                           'type': 'phrase',
-                           'slop': 1}),
-            (query.Prefix, {'value': search_query, 'boost': 1.5}),
+            (query.Match, {
+                'query': search_query, 'boost': 3,
+                'analyzer': 'standard'}),
+            (query.MatchPhrase, {
+                'query': search_query, 'boost': 4,
+                'slop': 1}),
+            (query.Prefix, {
+                'value': search_query, 'boost': 1.5}),
         ]
 
         # Only add fuzzy queries if the search query is a single word.
@@ -229,22 +230,24 @@ class SearchQueryFilter(BaseFilterBackend):
         containing more text like description, summary and tags.
         """
         should = [
-            query.Match(summary={'query': search_query, 'boost': 0.8,
-                                 'type': 'phrase'}),
-            query.Match(description={'query': search_query, 'boost': 0.3,
-                                     'type': 'phrase'}),
-            query.Match(tags={'query': search_query.split(), 'boost': 0.1}),
+            query.MatchPhrase(summary={'query': search_query, 'boost': 0.8}),
+            query.MatchPhrase(description={
+                'query': search_query, 'boost': 0.3}),
         ]
+
+        # Append a separate 'match' query for every word to boost tag matches
+        for tag in search_query.split():
+            should.append(query.Match(tags={'query': tag, 'boost': 0.1}))
 
         # For description and summary, also search in translated field with the
         # right language and analyzer.
         if analyzer:
             should.extend([
-                query.Match(**{'summary_%s' % analyzer: {
-                    'query': search_query, 'boost': 0.6, 'type': 'phrase',
+                query.MatchPhrase(**{'summary_%s' % analyzer: {
+                    'query': search_query, 'boost': 0.6,
                     'analyzer': analyzer}}),
-                query.Match(**{'description_%s' % analyzer: {
-                    'query': search_query, 'boost': 0.6, 'type': 'phrase',
+                query.MatchPhrase(**{'description_%s' % analyzer: {
+                    'query': search_query, 'boost': 0.6,
                     'analyzer': analyzer}})
             ])
 
@@ -281,8 +284,10 @@ class SearchQueryFilter(BaseFilterBackend):
             )
 
         # Assemble everything together and return the search "queryset".
-        return qs.query('function_score', query=query.Bool(
-            should=primary_should + secondary_should), functions=functions)
+        return qs.query(
+            'function_score',
+            query=query.Bool(should=primary_should + secondary_should),
+            functions=functions)
 
 
 class SearchParameterFilter(BaseFilterBackend):
@@ -309,7 +314,7 @@ class SearchParameterFilter(BaseFilterBackend):
             except ValueError as exc:
                 raise serializers.ValidationError(*exc.args)
 
-        return qs.filter(Bool(must=must)) if must else qs
+        return qs.query(query.Bool(must=must)) if must else qs
 
 
 class InternalSearchParameterFilter(SearchParameterFilter):
@@ -330,11 +335,12 @@ class ReviewedContentFilter(BaseFilterBackend):
     disabled.
     """
     def filter_queryset(self, request, qs, view):
-        return qs.filter(
-            Bool(must=[F('terms', status=amo.REVIEWED_STATUSES),
-                       F('exists', field='current_version')],
-                 must_not=[F('term', is_deleted=True),
-                           F('term', is_disabled=True)]))
+        return qs.query(
+            query.Bool(
+                must=[Q('terms', status=amo.REVIEWED_STATUSES),
+                      Q('exists', field='current_version')],
+                must_not=[Q('term', is_deleted=True),
+                          Q('term', is_disabled=True)]))
 
 
 class SortingFilter(BaseFilterBackend):

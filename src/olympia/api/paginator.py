@@ -52,7 +52,9 @@ class ESPaginator(Paginator):
         # avoid an extra useless query even if there are no results, so we
         # directly fetch the count from hits.
         # Overwrite `object_list` with the list of ES results.
+
         result = self.object_list[bottom:top].execute()
+
         page = Page(result.hits, number, self)
         # Update the `_count`.
         self._count = page.object_list.total

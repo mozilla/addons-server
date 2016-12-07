@@ -185,7 +185,7 @@ class Command(BaseCommand):
             old_index = None
 
             try:
-                olds = ES.indices.get_aliases(alias)
+                olds = ES.indices.get_alias(alias)
                 for old_index in olds:
                     # Mark the index to be removed later.
                     to_remove.append(old_index)
@@ -246,7 +246,7 @@ class Command(BaseCommand):
         sys.stdout.write('\n')
 
         # Let's return the /_aliases values.
-        aliases = ES.indices.get_aliases()
+        aliases = ES.indices.get_alias()
         aliases = json.dumps(aliases, sort_keys=True, indent=4)
         summary = _SUMMARY % (len(modules), aliases)
         log(summary, stdout=self.stdout)

@@ -995,12 +995,12 @@ class SearchTest(ESTestCase):
 
     def test_total_results(self):
         """
-        The search for firefox should result in 3 total addons, even though we
+        The search for firefox should result in 2 total addons, even though we
         limit (and therefore show) only 1.
         """
         response = self.client.get(
-            "/en-US/firefox/api/1.2/search/firefox/all/1")
-        self.assertContains(response, """<searchresults total_results="3">""")
+            "/en-US/firefox/api/1.2/search/fox/all/1")
+        self.assertContains(response, """<searchresults total_results="2">""")
         self.assertContains(response, "</addon>", 1)
 
     def test_unlisted_are_ignored(self):

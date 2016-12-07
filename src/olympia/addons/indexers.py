@@ -31,8 +31,8 @@ class AddonIndexer(BaseSearchIndexer):
             'properties': {
                 'max': {'type': 'long'},
                 'min': {'type': 'long'},
-                'max_human': {'type': 'string', 'index': 'no'},
-                'min_human': {'type': 'string', 'index': 'no'},
+                'max_human': {'type': 'keyword', 'index': False},
+                'min_human': {'type': 'keyword', 'index': False},
             }
         }
         version_mapping = {
@@ -43,25 +43,25 @@ class AddonIndexer(BaseSearchIndexer):
                 # Keep '<version>.id' indexed to be able to run exists queries
                 # on it.
                 'id': {'type': 'long'},
-                'reviewed': {'type': 'date', 'index': 'no'},
+                'reviewed': {'type': 'date', 'index': False},
                 'files': {
                     'type': 'object',
                     'properties': {
-                        'id': {'type': 'long', 'index': 'no'},
-                        'created': {'type': 'date', 'index': 'no'},
-                        'hash': {'type': 'string', 'index': 'no'},
+                        'id': {'type': 'long', 'index': False},
+                        'created': {'type': 'date', 'index': False},
+                        'hash': {'type': 'keyword', 'index': False},
                         'filename': {
-                            'type': 'string', 'index': 'no'},
+                            'type': 'keyword', 'index': False},
                         'is_webextension': {'type': 'boolean'},
                         'platform': {
-                            'type': 'byte', 'index': 'no'},
-                        'size': {'type': 'long', 'index': 'no'},
+                            'type': 'byte', 'index': False},
+                        'size': {'type': 'long', 'index': False},
                         'status': {'type': 'byte'},
                         'webext_permissions_list': {
-                            'type': 'string', 'index': 'no'},
+                            'type': 'keyword', 'index': False},
                     }
                 },
-                'version': {'type': 'string', 'index': 'no'},
+                'version': {'type': 'keyword', 'index': False},
             }
         }
         mapping = {
@@ -77,14 +77,14 @@ class AddonIndexer(BaseSearchIndexer):
                     'created': {'type': 'date'},
                     'current_version': version_mapping,
                     'boost': {'type': 'float', 'null_value': 1.0},
-                    'default_locale': {'type': 'string', 'index': 'no'},
-                    'description': {'type': 'string', 'analyzer': 'snowball'},
-                    'guid': {'type': 'string', 'index': 'no'},
-                    'has_eula': {'type': 'boolean', 'index': 'no'},
-                    'has_privacy_policy': {'type': 'boolean', 'index': 'no'},
+                    'default_locale': {'type': 'keyword', 'index': False},
+                    'description': {'type': 'text', 'analyzer': 'snowball'},
+                    'guid': {'type': 'keyword', 'index': False},
+                    'has_eula': {'type': 'boolean', 'index': False},
+                    'has_privacy_policy': {'type': 'boolean', 'index': False},
                     'has_theme_rereview': {'type': 'boolean'},
                     'hotness': {'type': 'double'},
-                    'icon_type': {'type': 'string', 'index': 'no'},
+                    'icon_type': {'type': 'keyword', 'index': False},
                     'is_disabled': {'type': 'boolean'},
                     'is_experimental': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
@@ -92,51 +92,51 @@ class AddonIndexer(BaseSearchIndexer):
                     'listed_authors': {
                         'type': 'object',
                         'properties': {
-                            'id': {'type': 'long', 'index': 'no'},
-                            'name': {'type': 'string'},
-                            'username': {'type': 'string', 'index': 'no'},
+                            'id': {'type': 'long', 'index': False},
+                            'name': {'type': 'text'},
+                            'username': {'type': 'keyword', 'index': False},
                         },
                     },
-                    'modified': {'type': 'date', 'index': 'no'},
+                    'modified': {'type': 'date', 'index': False},
                     # Adding word-delimiter to split on camelcase and
                     # punctuation.
-                    'name': {'type': 'string',
+                    'name': {'type': 'text',
                              'analyzer': 'standardPlusWordDelimiter'},
                     # Turn off analysis on name so we can sort by it.
-                    'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+                    'name_sort': {'type': 'keyword'},
                     'persona': {
                         'type': 'object',
                         'properties': {
-                            'accentcolor': {'type': 'string', 'index': 'no'},
-                            'author': {'type': 'string', 'index': 'no'},
-                            'header': {'type': 'string', 'index': 'no'},
-                            'footer': {'type': 'string', 'index': 'no'},
-                            'is_new': {'type': 'boolean', 'index': 'no'},
-                            'textcolor': {'type': 'string', 'index': 'no'},
+                            'accentcolor': {'type': 'keyword', 'index': False},
+                            'author': {'type': 'keyword', 'index': False},
+                            'header': {'type': 'keyword', 'index': False},
+                            'footer': {'type': 'keyword', 'index': False},
+                            'is_new': {'type': 'boolean', 'index': False},
+                            'textcolor': {'type': 'keyword', 'index': False},
                         }
                     },
                     'platforms': {'type': 'byte'},
                     'previews': {
                         'type': 'object',
                         'properties': {
-                            'id': {'type': 'long', 'index': 'no'},
-                            'modified': {'type': 'date', 'index': 'no'},
+                            'id': {'type': 'long', 'index': False},
+                            'modified': {'type': 'date', 'index': False},
                         },
                     },
-                    'public_stats': {'type': 'boolean', 'index': 'no'},
+                    'public_stats': {'type': 'boolean', 'index': False},
                     'ratings': {
                         'type': 'object',
                         'properties': {
-                            'count': {'type': 'short', 'index': 'no'},
-                            'average': {'type': 'float', 'index': 'no'}
+                            'count': {'type': 'short', 'index': False},
+                            'average': {'type': 'float', 'index': False}
                         }
                     },
-                    'slug': {'type': 'string'},
+                    'slug': {'type': 'text'},
                     'status': {'type': 'byte'},
-                    'summary': {'type': 'string', 'analyzer': 'snowball'},
-                    'tags': {'type': 'string', 'index': 'not_analyzed'},
+                    'summary': {'type': 'text', 'analyzer': 'snowball'},
+                    'tags': {'type': 'keyword'},
                     'type': {'type': 'byte'},
-                    'view_source': {'type': 'boolean', 'index': 'no'},
+                    'view_source': {'type': 'boolean', 'index': False},
                     'weekly_downloads': {'type': 'long'},
                 },
             },

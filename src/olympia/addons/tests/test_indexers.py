@@ -96,15 +96,15 @@ class TestAddonIndexer(TestCase):
         assert set(mapping_properties.keys()) == set(self.expected_fields())
 
         # Make sure default_locale and translated fields are not indexed.
-        assert mapping_properties['default_locale']['index'] == 'no'
+        assert mapping_properties['default_locale']['index'] is False
         name_translations = mapping_properties['name_translations']
-        assert name_translations['properties']['lang']['index'] == 'no'
-        assert name_translations['properties']['string']['index'] == 'no'
+        assert name_translations['properties']['lang']['index'] is False
+        assert name_translations['properties']['string']['index'] is False
 
         # Make sure nothing inside 'persona' is indexed, it's only there to be
         # returned back to the API directly.
         for field in mapping_properties['persona']['properties'].values():
-            assert field['index'] == 'no'
+            assert field['index'] is False
 
         # Make sure current_version mapping is set.
         assert mapping_properties['current_version']['properties']

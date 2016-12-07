@@ -97,7 +97,7 @@ class SearchBase(ESTestCaseWithAddons):
         r = self.client.get(urlparams(self.url, **params), follow=True)
         assert r.status_code == 200
         got = self.get_results(r)
-        assert got == expected
+        assert got == expected, params
 
     def check_appver_platform_ignored(self, expected):
         # Collection results should not filter on `appver` nor `platform`.
@@ -587,6 +587,7 @@ class TestESSearch(SearchBase):
 
         a.save()
         self.refresh()
+
         r = self.client.get(self.url, dict(q=tag_name))
         assert self.get_results(r) == [a.id]
 
@@ -712,7 +713,9 @@ class TestPersonaSearch(SearchBase):
             self.check_name_results({'q': term}, [p1.pk])
 
         # Try to match 'The Life Aquatic with SeaVan'.
-        for term in ('life', 'aquatic', 'seavan', 'sea van'):
+        # We have prefix_length=4 so fuzziness matching starts
+        # at the 4th character for performance reasons.
+        for term in ('life', 'aquatic', 'seavan', 'seav an'):
             self.check_name_results({'q': term}, [p2.pk])
 
     def test_results_popularity(self):
