@@ -273,7 +273,8 @@ class BulkValidationAffectedAddonsTable(ItemStateTable, tables.Table):
             (result.pk, reverse(
                 'devhub.bulk_compat_result',
                 args=(result.file.version.addon_id, result.pk)))
-            for result in self.results]
+            for result in self.results
+            if result.file.version.addon_id == record.addon.id]
 
         return ', '.join(
             format_html(u'<a href="{0}">{1}</a>', result[1], result[0])
@@ -299,19 +300,33 @@ def validation_summary(request, job_id):
                           ('AdminTools', 'View'),
                           ('ReviewerAdminTools', 'View')])
 def validation_summary_affected_addons(request, job_id, message_id):
-    addons = ValidationResultAffectedAddon.objects.filter(
-        validation_result_message=message_id)
+    affected_addons = list(
+        ValidationResultAffectedAddon.objects
+        .filter(
+            validation_result_message=message_id,
+            validation_result_message__validation_job=job_id))
+
+    # Get rid of duplicates
+    addon_ids = set()
+
+    for affected_addon in affected_addons:
+        if affected_addon.addon_id in addon_ids:
+            affected_addons.remove(affected_addon)
+            continue
+
+        addon_ids.add(affected_addon.addon_id)
+
     order_by = request.GET.get('sort', 'addon')
 
     results = (
         ValidationResult.objects
         .select_related('file__version')
         .filter(validation_job=job_id,
-                file__version__addon__in=[x.addon_id for x in addons]))
+                file__version__addon__in=addon_ids))
 
     table = BulkValidationAffectedAddonsTable(
         results=results,
-        data=addons, order_by=order_by)
+        data=affected_addons, order_by=order_by)
 
     page = amo.utils.paginate(request, table.rows, per_page=25)
     table.set_page(page)

@@ -15,9 +15,10 @@ from lxml.html import HTMLParser, fromstring
 
 import olympia
 from olympia import amo
+from olympia.amo.tests import (
+    TestCase, formset, initial, file_factory, version_factory)
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
-from olympia.amo.tests import formset, initial, TestCase, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
@@ -436,6 +437,50 @@ class TestBulkValidation(BulkValidationTest):
         assert message.message in doc('div#message_details').text()
         assert doc('table tr td').eq(0).text() == u'美味的食物'
         assert '3615/validation-resul' in doc('table tr td').eq(1).html()
+
+    def test_bulk_validation_summary_multiple_files(self):
+        version = self.addon.versions.all()[0]
+        version.files.add(file_factory(version=version))
+
+        new_max = self.appversion('3.7a3')
+        response = self.client.post(
+            reverse('zadmin.start_validation'),
+            {
+                'application': amo.FIREFOX.id,
+                'curr_max_version': self.curr_max.id,
+                'target_version': new_max.id,
+                'finish_email': u'fliggy@mozilla.com'
+            },
+            follow=True)
+
+        self.assert3xx(response, reverse('zadmin.validation'))
+
+        job = ValidationJob.objects.get()
+
+        # Apply validation for all result sets (two because we added a
+        # new version). This should not lead to duplicate add-ons
+        # being added to the list
+        for result in job.result_set.all():
+            compat_summary_path = os.path.join(
+                ZADMIN_TEST_FILES, 'compatibility_validation.json')
+
+            with open(compat_summary_path) as fobj:
+                validation = fobj.read()
+
+            result.apply_validation(validation)
+
+        message = ValidationResultMessage.objects.first()
+
+        url = reverse(
+            'zadmin.validation_summary_detail',
+            args=(message.validation_job.pk, message.pk,))
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+
+        UTF8_PARSER = HTMLParser(encoding='utf-8')
+        doc = pq(fromstring(response.content, parser=UTF8_PARSER))
+        assert doc('table').html().count('Delicious Bookmarks') == 1
 
 
 class TestBulkUpdate(BulkValidationTest):
