@@ -433,22 +433,6 @@ class TestDeveloperPages(TestCase):
         r = self.client.get(reverse('addons.meet', args=['a592']))
         assert pq(r.content)('#contribute-button').length == 1
 
-    def test_get_old_version(self):
-        url = reverse('addons.meet', args=['a11730'])
-        r = self.client.get(url)
-        assert r.context['version'].version == '20090521'
-
-        r = self.client.get('%s?version=%s' % (url, '20080521'))
-        assert r.context['version'].version == '20080521'
-
-    def test_duplicate_version_number(self):
-        qs = Version.objects.filter(addon=11730)
-        qs.update(version='1.x')
-        assert qs.count() == 2
-        url = reverse('addons.meet', args=['a11730']) + '?version=1.x'
-        r = self.client.get(url)
-        assert r.context['version'].version == '1.x'
-
     def test_purified(self):
         addon = Addon.objects.get(pk=592)
         addon.the_reason = addon.the_future = '<b>foo</b>'
