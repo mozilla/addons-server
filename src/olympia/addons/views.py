@@ -431,12 +431,6 @@ def privacy(request, addon):
 def developers(request, addon, page):
     if addon.is_persona():
         raise http.Http404()
-    if 'version' in request.GET:
-        qs = addon.versions.filter(files__status__in=amo.VALID_ADDON_STATUSES)
-        version = get_list_or_404(qs, version=request.GET['version'])[0]
-    else:
-        version = addon.current_version
-
     if 'src' in request.GET:
         contribution_src = src = request.GET['src']
     else:
@@ -449,8 +443,7 @@ def developers(request, addon, page):
         src, contribution_src = page_srcs.get(page)
     return render(request, 'addons/impala/developers.html',
                   {'addon': addon, 'page': page, 'src': src,
-                   'contribution_src': contribution_src,
-                   'version': version})
+                   'contribution_src': contribution_src})
 
 
 @addon_view
