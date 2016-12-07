@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-06 12:57+0000\n"
+"PO-Revision-Date: 2016-12-07 08:21+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4065,112 +4065,112 @@ msgstr "Add-on fuortsmiten."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL-namme net krekt. Tema is net fuortsmiten."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL-namme net krekt. Add-on is net fuortsmiten."
 
 #: src/olympia/devhub/views.py
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Der is in skriuwer oan jo add-on tafoege"
 
 #: src/olympia/devhub/views.py
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "In skriuwer hat in wizige rol foar jo add-on"
 
 #: src/olympia/devhub/views.py
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Der is in skriuwer fuortsmiten fan jo add-on"
 
 #: src/olympia/devhub/views.py
 msgid "There were errors in your submission."
-msgstr ""
+msgstr "Der binne flaters bard wylst it yntsjinjen."
 
 #: src/olympia/devhub/views.py
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Add-on falidearje"
 
 #: src/olympia/devhub/views.py
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "Add-on-kompatibiliteit kontrolearje"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Jo kinne dit type add-on net yntsjinje"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Ofbyldingen moatte fan it type PNG of JPG wêze."
 
 #: src/olympia/devhub/views.py
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Piktogrammen meie net bewegend wêze."
 
 #: src/olympia/devhub/views.py
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Ofbyldingen meie net bewegend wêze."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Ofbyldingen meie net grutter wêze as %dKB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: src/olympia/devhub/views.py
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Ofbyldingen moatte eksakt {0} piksels breed en {1} piksels heech wêze."
 
 #: src/olympia/devhub/views.py
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Der is in flater bard by it opladen fan jo foarbyld."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Ferzje %s útskeakele."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Ferzje %s fuortsmiten."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Ferzje %s opnij ynskeakele."
 
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "De falidaasje fan dizze oplaad is mislearre en der ûntbrekke mooglik folsleine falidaasjeresultaten. Let goed op by de beoardieling."
 
 #: src/olympia/devhub/views.py
 msgid "Review Requested."
-msgstr ""
+msgstr "Beoardieling oanfrege."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "Jo âlde referinsjes binne ynlutsen en net mear jildich. Soargje derfoar dat jo alle API-clients bywurkje mei de nije referinsjes."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Jo âlde oanmeldgegevens binne ynlutsen en binne net mear jildich."
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
-msgstr ""
+msgstr "Nije API-kaai makke"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
-msgstr ""
+msgstr "API-kaai ynlutsen"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
+msgstr "Lês en akseptearje eardat jo begjinne ús Firefox-add-on-distribúsje-oerienkomst. Dizze ferwiist ek nei ús Privacyferklearring, dy't útleit hoe't wy mei jo gegevens omgean."
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Printable Version"
-msgstr ""
+msgstr "Ofdrukbere ferzje"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "I Accept this Agreement"
