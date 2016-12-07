@@ -15,12 +15,11 @@ from lxml.html import HTMLParser, fromstring
 
 import olympia
 from olympia import amo
-from olympia.amo.tests import TestCase
-from olympia.amo.tests import formset, initial
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests import formset, initial, TestCase, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import FeaturedCollection, MonthlyPick
@@ -188,6 +187,27 @@ class TestBulkValidation(BulkValidationTest):
 
     @mock.patch('olympia.zadmin.tasks.bulk_validate_file')
     def test_start(self, bulk_validate_file):
+        new_max = self.appversion('3.7a3')
+        r = self.client.post(reverse('zadmin.start_validation'),
+                             {'application': amo.FIREFOX.id,
+                              'curr_max_version': self.curr_max.id,
+                              'target_version': new_max.id,
+                              'finish_email': 'fliggy@mozilla.com'},
+                             follow=True)
+        self.assertNoFormErrors(r)
+        self.assert3xx(r, reverse('zadmin.validation'))
+        job = ValidationJob.objects.get()
+        assert job.application == amo.FIREFOX.id
+        assert job.curr_max_version.version == self.curr_max.version
+        assert job.target_version.version == new_max.version
+        assert job.finish_email == 'fliggy@mozilla.com'
+        assert job.completed is None
+        assert job.result_set.all().count() == len(self.version.all_files)
+        assert bulk_validate_file.delay.called
+
+    @mock.patch('olympia.zadmin.tasks.bulk_validate_file')
+    def test_ignore_unlisted_versions(self, bulk_validate_file):
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         new_max = self.appversion('3.7a3')
         r = self.client.post(reverse('zadmin.start_validation'),
                              {'application': amo.FIREFOX.id,
