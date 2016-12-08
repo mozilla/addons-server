@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-08 12:16+0000\n"
+"PO-Revision-Date: 2016-12-08 14:12+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4569,44 +4569,49 @@ msgstr "Eksperiminteel?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "As jo add-on eksperiminteel of oarswat net ree is foar algemien gebrûk. De add-on sil fermeld wurde, mar fermindere sichtberheid hawwe. "
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Dizze add-on is eksperiminteel."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Dizze add-on is ree foar algemien gebrûk."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
+"Kategoryen binne de ferneamdste manier wêrop brûkers troch add-ons blêdzje. Kies der ien dy't de funksjonaliteit fan jo add-on yn de measte gefallen beskriuwt. Allinnich relevant foar fermelde add-"
+"ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Kategoryen kinne net wizige wurde as jo add-on foar dizze tapassing oanrekommandearre wurdt. Stjoer in e-mailberjocht nei <a href=\"mailto:%(email)s\">%(email)s</a> as jo in reden hawwe om jo "
+"kategoryen te wizigjen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
+"Labels helpe brûkers om jo add-on te finen en moatte koarte beskriuwingen wêze, lykas ljepblêden, arkbalke of twitter. Jo kinne maksimaal {0} labels brûke. Allinnich relevant foar fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kommaskieden, minimaal {0} teken."
+msgstr[1] "Kommaskieden, minimaal {0} tekens."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Foarbyld: donker, sinema, swart. Limyt 20."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Reservearre label:"
+msgstr[1] "Reservearre labels:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
