@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-08 12:15+0000\n"
+"PO-Revision-Date: 2016-12-08 12:16+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4561,7 +4561,7 @@ msgstr "Gearfetting"
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "In koarte útlis oer de basisfunksjes fan jo add-on dy't werjûn wurdt yn syk- en blêderlisten, lykas boppe oan de detailside fan jo add-on. Allinnich relevant foar fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Experimental?"
