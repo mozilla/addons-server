@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-08 09:11+0000\n"
+"PO-Revision-Date: 2016-12-08 12:15+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4421,35 +4421,39 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
+"Dizze add-on is net kompatibel mei <b>%(app_name)s %(app_version)s</b>, de nijste útjefte fan %(app_name)s. Oerwaach de kompatibiliteitsynformaasje fan jo add-on by te wurkjen of in nijere ferzje "
+"fan dizze add-on op te laden."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibiliteit bywurkje</a> <a href=\"%(version_url)s\" class=\"button\">Nije ferzje oplade</a> of <a href=\"#\" "
+"class=\"close\">Negearje</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Tapassingskompatibiliteitsberik besjen en bywurkje."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Compatibility"
-msgstr ""
+msgstr "Kompatibiliteit"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Kompatibiliteit bywurkje"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
+msgstr "Troch hjir tapassingsynformaasje oan te passen kinne brûkers jo add-on ynstallearje, sels as it ynstallaasjemanifest yn it pakket oanjout dat de add-on net kompatibel is."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Supported Versions"
-msgstr ""
+msgstr "Stipe ferzjes"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Noch in tapassing tafoegje…"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/owner.html
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
@@ -4459,22 +4463,22 @@ msgstr "Slute"
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s troch %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Eardere aktiviteit foar myn add-ons"
 
 #. {0} is an integer.
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> tema"
+msgstr[1] "<b>{0}</b> tema’s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Edit Information"
-msgstr ""
+msgstr "Gegevens bewurkje"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -4482,7 +4486,7 @@ msgstr "Gjin"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Skriuwers en lisinsje beheare"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Authors"
@@ -4490,7 +4494,7 @@ msgstr "Skriuwers"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid "About author roles"
-msgstr ""
+msgstr "Oer ûntwikkelersfunksjes"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid ""
@@ -4498,28 +4502,31 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
+"<p>Add-ons kinne mear skriuwers hawwe mei trije mooglike rollen:</p> <ul> <li><b>Eigener:</b> Kin alle aspekten fan de listwerjefte fan de add-on beheare, ynklusyf tafoegjen en fuortsmiten fan oare "
+"skriuwers</li> <li><b>Untwikkeler:</b> Kin alle aspekten fan de listwerjefte fan de add-on beheare, mei útsûndering fan tafoegjen en fuortsmiten fan oare skriuwers en behearen fan betellingen</li> "
+"<li><b>Lêzer:</b> Kin de ynstellingen en statistiken fan de add-on besjen, mar kin gjin wizigingen oanbringe</li> </ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
-msgstr ""
+msgstr "Untwikkelersprofyl beheare"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr ""
+msgstr "Jo <a href=\"%(url)s\">ûntwikkelersprofyl</a> is op dit stuit <strong>iepenbier</strong> en <strong>fereaske</strong> foar bydragen."
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Remove Both"
-msgstr ""
+msgstr "Beide fuortsmite"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr ""
+msgstr "Jo <a href=\"%(url)s\">ûntwikkelersprofyl</a> is op dit stuit <strong>iepenbier</strong>."
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Remove Profile"
-msgstr ""
+msgstr "Profyl fuortsmite"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Create Profile"
@@ -4532,7 +4539,7 @@ msgstr "Basisgegevens"
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Basisgegevens foar {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Add-on URL"
@@ -4540,12 +4547,12 @@ msgstr "Add-on-URL"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Kies in koarte, unike URL-identifikator foar jo add-on."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html
 #: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/single.html
 msgid "View Listing"
-msgstr ""
+msgstr "List besjen"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Summary"
