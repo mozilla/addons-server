@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-07 10:33+0000\n"
+"PO-Revision-Date: 2016-12-08 09:11+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4370,41 +4370,41 @@ msgstr "Wolle jo jo add-on op dizze website ferspriede litte?"
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Falidaasjeresultaten foar {0}"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validation Results"
-msgstr ""
+msgstr "Falidaasjeresultaten"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validated at:"
-msgstr ""
+msgstr "Falidearre op:"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Test op kompatibiliteit mei:"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Resinte aktiviteit foar Myn add-ons"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Recent Activity"
-msgstr ""
+msgstr "Resinte aktiviteit"
 
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Resinte aktiviteit foar {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> troch %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Refine Activity"
-msgstr ""
+msgstr "Aktiviteit ferfynje"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Activity"
@@ -4413,7 +4413,7 @@ msgstr "Aktiviteit"
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Op dizze feed abonnearje"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
