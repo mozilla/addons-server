@@ -486,6 +486,13 @@ class TestLicensePage(TestCase):
         r = self.client.get(url)
         assert r.status_code == 404
 
+    def test_unlisted_version(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert self.version.license
+        url = reverse('addons.license', args=['a3615'])
+        r = self.client.get(url)
+        assert r.status_code == 404
+
     def test_duplicate_version_number(self):
         Version.objects.create(addon=self.addon, version=self.version.version)
         url = reverse('addons.license', args=['a3615', self.version.version])

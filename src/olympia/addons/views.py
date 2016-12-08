@@ -546,7 +546,8 @@ def paypal_result(request, addon, status):
 @non_atomic_requests
 def license(request, addon, version=None):
     if version is not None:
-        qs = addon.versions.filter(files__status__in=amo.VALID_FILE_STATUSES)
+        qs = addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED,
+                                   files__status__in=amo.VALID_FILE_STATUSES)
         version = get_list_or_404(qs, version=version)[0]
     else:
         version = addon.current_version
