@@ -189,7 +189,7 @@ def with_user(format, config=None):
                     format=format)
             elif request.user.is_authenticated():
                 return render_error(
-                    request, ERROR_AUTHENTICATED, next_path=None,
+                    request, ERROR_AUTHENTICATED, next_path=next_path,
                     format=format)
             try:
                 identity = verify.fxa_identify(data['code'], config=fxa_config)
