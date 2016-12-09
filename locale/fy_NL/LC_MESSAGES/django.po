@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 08:21+0000\n"
+"PO-Revision-Date: 2016-12-09 08:34+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4890,15 +4890,15 @@ msgstr "Boppeside"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Delete Theme"
-msgstr ""
+msgstr "Tema fuortsmite"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Add-on fuortsmite"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Troch jo tema fuort te smiten wurdt dizze foargoed fan de website fuortsmiten."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
@@ -4910,15 +4910,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
-msgstr ""
+msgstr "Fier de folgjende tekst yn om jo beslissing te befêstigjen: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Fertel ús wêrom jo jo tema fuortsmite:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Fertel ús wêrom jo jo add-on fuortsmite:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/editors/templates/editors/review.html
 msgid "Actions"
@@ -4926,7 +4926,7 @@ msgstr "Aksjes"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Fierder gean mei it yntsjinningsproses foar dizze add-on."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Resume"
@@ -4934,15 +4934,15 @@ msgstr "Ferfetsje"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Dizze add-on fuortsmite."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Edit information about this add-on."
-msgstr ""
+msgstr "Gegevens oer dizze add-on bewurkje."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "In nije ferzje fan dizze add-on oplade."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "New Version"
@@ -4950,73 +4950,73 @@ msgstr "Nije ferzje"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Deistige statistiken oer downloads en brûkers."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/stats/templates/stats/stats.html
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiken"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/payments/payments.html
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 msgid "Manage Payments"
-msgstr ""
+msgstr "Betellingen beheare"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Steat en ferzjes beheare"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Add-onfermelding besjen"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Resinte wizigingen besjen"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
-msgstr ""
+msgstr "Details fan dit tema bewurkje."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Edit Listing"
-msgstr ""
+msgstr "Listfermelding bewurkje"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "It populariteitsferrin fan dit tema besjen."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "De eigener fan dit tema wizigje."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Eigendom oerdraagje"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete this theme."
-msgstr ""
+msgstr "Dit tema fuortmsite."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
-msgstr ""
+msgstr "As it yntsjinningsproses net foltôge wurdt, wurdt dizze add-on nei in pear dagen automatysk fuortsmiten."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
-msgstr ""
+msgstr "Utskeakele"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Posysje yn wachtrige:</b> %(pos)s fan %(total)s"
 
 #. {0} is the number of active users.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> aktive brûker"
+msgstr[1] "<strong>{0}</strong> aktive brûkers"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New File"
@@ -5028,47 +5028,49 @@ msgstr "In nije ferzje yntsjinje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
-msgstr ""
+msgstr "Add-on yntsjinje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Describe Add-on"
-msgstr ""
+msgstr "Beskriuw jo add-on"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Add-on URL:"
-msgstr ""
+msgstr "Add-on-URL:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Brûk útslutend letters, sifers, lizzende streepkes en streepkes yn jo URL."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Summary:"
-msgstr ""
+msgstr "Gearfetting:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
-msgstr ""
+msgstr "Dizze gearfetting wurdt werjûn yn listen en sykresultaten."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "Dizze add-on is eksperiminteel"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Finkje dizze opsje oan as jo add-on eksperiminteel of oarswat net ree is foar algemien gebrûk. De add-on sil fermeld wurde, mar fermindere sichtberheid hawwe. Jo kinne dizze ynstelling letter "
+"wizigje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Support email:"
-msgstr ""
+msgstr "E-mailadres foar stipe:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Support website:"
-msgstr ""
+msgstr "Stipewebsite:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "License:"
-msgstr ""
+msgstr "Lisinsje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
