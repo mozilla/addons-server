@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 08:34+0000\n"
+"PO-Revision-Date: 2016-12-09 08:57+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5074,23 +5074,23 @@ msgstr "Lisinsje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr ""
+msgstr "Kies in lisinsje dy't tapaslik is foar de rjochten dy't jo op jo boarnekoade jaan wolle."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "As jo add-on gegevens ferstjoert fan de kompjûter fan de brûker ôf is in privacybelied dat útleit hokker gegevens ferstjoerd wurde en hoe't dizze brûkt wurde ferplicht."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "Opmerkingen foar beoardielers:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Is der earne wat ús beoardielers yn tinzen hâlde moatte by de beoardieling fan dizze add-on?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Dizze opmerkingen binne allinnich sichtber foar jo en beoardielers."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5114,31 +5114,31 @@ msgstr "Dizze opmerkingen ferskine op de detailside."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Dizze ferzje distribuearje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "Mear ynformaasje oer add-onfersprieding en ûndertekening"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
-msgstr ""
+msgstr "Yntsjinning foltôge"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Submitted for Review"
-msgstr ""
+msgstr "Ferzje yntsjinne foar beoardieling"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Jo binne klear! Dizze ferzje is yntsjinne foar beoardieling. Jo krije berjocht as de beoardieling foltôge is, of as ús beoardielers fragen hawwe oer jo ynstjoering."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Jo fermelding hat mear sukses as jo in detaillearre beskriuwing en skermôfbyldingen tafoege. Meitsje jo fermelding klear foar publikaasje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Manage Listing"
-msgstr ""
+msgstr "Fermelding beheare"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
@@ -5146,19 +5146,19 @@ msgstr "Jo kinne dizze ferzje ek bewurkje om ferzje-opmerkingen ta te foegjen, o
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
-msgstr ""
+msgstr "Ferzje {0} bewurkje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Signed"
-msgstr ""
+msgstr "Ferzje ûndetekene"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
-msgstr ""
+msgstr "Jo binne klear! Dizze ferzje is ûndertekene en klear foar eigen fersprieding. Jo kinne him downloade troch op ûndersteande knop te klikken."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
-msgstr ""
+msgstr "{0} downloade"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
@@ -5166,19 +5166,19 @@ msgstr "Jo hawwe mar inkelde fan de beskikbere platfoarms foar dizze ynstjoering
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
-msgstr ""
+msgstr "Bestân oplade"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Go to My Submissions"
-msgstr ""
+msgstr "Nei myn bydragen"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Add-on-distribúsjeoerienkomst"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
-msgstr ""
+msgstr "Add-on oplade"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host File"
@@ -5194,15 +5194,15 @@ msgstr "Ferzje oplade"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Brûk ûndersteande fjilden om jo add-onpakket op te laden en selektearje eventuele platfoarmbeheiningen. Nei de oplaad wurdt in oantal automatisearre falidaasjetests op jo bestân útfierd."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Mei hokker platfoarms is dit bestân kompatibel?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Allinnich dizze ferzje op myn bètakanaal publisearje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
