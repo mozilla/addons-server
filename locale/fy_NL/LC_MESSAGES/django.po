@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 09:39+0000\n"
+"PO-Revision-Date: 2016-12-09 09:46+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5272,15 +5272,15 @@ msgstr "Foltôgje jo add-on."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Jo ûntfange in e-mailberjocht as de beoardieling is foltôge. Oant dy tiid wurdt jo add-on net fermeld yn ús galery mar kinne jo him streekrjocht fan de detailside ôf benaderje. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Jo add-on wurdt werjûn yn ús galery en brûkers ûntfange automatyske fernijingen."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "Jo add-on is útskeakele troch in websitebehearder en wurdt net mear werjûn yn ús galery. As jo fragen hawwe, stjoer se dan nei amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -5290,13 +5290,13 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
-msgstr ""
+msgstr "Makke:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%d %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Add-on Multi Process Status:"
@@ -5304,7 +5304,7 @@ msgstr "Multiprocess-steat fan add-on:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "De kompatibiliteit fan jo add-on mei Multiproses-Firefox (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Listed Version:"
@@ -5320,11 +5320,11 @@ msgstr "Folgjende fermelde ferzje:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "Dit is de nijste oplade ferzje, mar dizze is op de website noch net live."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Wachtrigen wurde net op strikte folchoarder beoardiele"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Lastest Version:"
@@ -5336,11 +5336,11 @@ msgstr "Dit is de nijste opladen net-fermelde ferzje."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
-msgstr ""
+msgstr "(fereaske omdat dizze add-on bydragen akseptearret)"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Manage Your Developer Profile"
-msgstr ""
+msgstr "Jo ûntwikkelersprofyl beheare"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Create a Developer Profile"
