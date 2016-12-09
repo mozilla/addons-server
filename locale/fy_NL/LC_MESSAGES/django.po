@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 08:10+0000\n"
+"PO-Revision-Date: 2016-12-09 08:21+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4779,18 +4779,20 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
+"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo ynformaasje oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist"
+" oare behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Dizze ôfhinklike add-on fuortsmite"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Fier de namme fan in add-on yn"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Add-onmedia foar {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on icon"
@@ -4801,10 +4803,12 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Laad in piktogram op foar jo add-on of kies der ien fan ús. It piktogram wurdt alteast oeral by jo add-on werjûn. Oplade ôfbyldingen moatte fan it type .png of .jpg wêze. Allinnich relevant foar "
+"fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Selektearje in piktogram foar jo add-on:"
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
@@ -4813,7 +4817,7 @@ msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "Brûkt yn fermeldingen fan add-ons, lykas sykresultaten en oanrekommandearre add-ons."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
@@ -4822,15 +4826,15 @@ msgstr "64x64px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Brûkt op de add-on-detailsiden."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Oanpaste piktogram oplade…"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG en JPG wurde stipe. Piktogrammen wurde ferlytse oant 64x64 pixels as se grutter binne."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Screenshots"
@@ -4838,15 +4842,15 @@ msgstr "Skermôfbyldingen"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Jou op syn minst ien skermôfbylding fan jo add-on:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Jou in titel foar dizze skermôfbylding:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "In skermôfbylding tafoegje…"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html
 msgid "Tests"
@@ -4858,27 +4862,27 @@ msgstr "Algemiene tests"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Security Tests"
-msgstr ""
+msgstr "Befeiligingstests"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Extension Tests"
-msgstr ""
+msgstr "Utwreidingtests"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Localization Tests"
-msgstr ""
+msgstr "Lokalisaasjetests"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Kompatibiliteitstests"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Berjochten dy't net nedich binne foar automatyske ûndertekening ferstopje"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Berjochten fan eardere ferzje en negearre ferstopje"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Top"
