@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 13:03+0000\n"
+"PO-Revision-Date: 2016-12-09 13:56+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5672,47 +5672,47 @@ msgstr "Jou in moaie URL foar jo detailside."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Selektearje de kategory dy't it bêste by jo tema past."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Foegje inkelde labels ta dy't jo tema beskriuwe."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
+msgstr "In koarte útlis fan de basisfunksjes fan jo tema dy't werjûn wurdt yn syk- en navigaasjelisten, lykas boppe oan de detailside fan jo tema."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme License"
-msgstr ""
+msgstr "Tema-lisinsje"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Meie oaren jo tema diele, salang se jo betankje?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "De lisinsjejouwer stiet oaren ta it wurk te kopiearjen, fersprieden, wer te jaan en út te fieren, ynklusyf kommersjeel gebrûk."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "De lisinsjejouwer stiet oaren allinnich foar net-kommersjele doelen ta it wurk te kopiearjen, fersprieden, wer te jaan en út te fieren."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Meie oaren jo tema kommersjeel brûke?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Meie oaren wurk ôfliede fan jo tema?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
+msgstr "De lisinsjeútjouwer stiet oaren ta it wurk te kopiearjen, fersprieden, wer te jaan en út te fieren, en stiet ek ta wurk derfan ôf te lieden."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Ja, sa lang se dat ek diele"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
