@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 15:21+0000\n"
+"PO-Revision-Date: 2016-12-09 15:39+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5638,17 +5638,19 @@ msgstr "Wannear kinne brûkers om in bydrage frege wurde?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "In tankbriefke stjoere?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr ""
+msgstr "Wy stjoere brûkers dy't in bydrage leverje oan jo add-on automatysk dit e-mailberjocht."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid ""
 "We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
 "them to try."
 msgstr ""
+"Wy riede oan de brûkers te betankjen en te fertellen hoe't jo harren stipe wurdearje. Miskien wolle jo se ek fertellen wat der foar jo add-on op stapel stiet en oer oare add-ons dy't jo foar se "
+"makke hawwe om út te probearjen."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Activate Contributions"
@@ -5716,105 +5718,106 @@ msgstr "Ja, sa lang se dat ek diele"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "De lisinsjejouwer stiet oaren allinnich ta ôflaad wurk te fersprieden ûnder deselde lisinsje of in lisinsje dy't kompatibel is mei de lisinsje wêrûnder it wurk fan de lisinsjejouwer falt."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "De lisinsjejouwer stiet oaren allinnich ta net wizige kopyen fan it wurk te kopiearjen, fersprieden en ferstjoeren &ndash; gjin derfan ôflade wurken."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Jo tema wurdt útjûn ûnder de folgjende lisinsje:"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a different license."
-msgstr ""
+msgstr "In oare lisinsje selektearje."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Selektearje in lisinsje foar jo tema."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Design"
-msgstr ""
+msgstr "Tema-ûntwerp"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upload New Design"
-msgstr ""
+msgstr "Nij ûntwerp oplade"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
+msgstr "By opladen en yntsjinjen fan it formulier beoardielet it AMO-team jo bywurke ûntwerp. Undertusken bliuwt jo aktuele ûntwerp beskikber."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "Jo earder opnij yntsjinne ûntwerp, dat op dit stuit op beoardieling wachtet."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Pending Header"
-msgstr ""
+msgstr "Wachtsjende headerôfbylding"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Pending Footer"
-msgstr ""
+msgstr "Wachtsjende footerôfbylding"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Jo kinne it ûntwerp fan jo tema hjir bywurkje sa gau as dit goedkard is."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Header"
-msgstr ""
+msgstr "Header"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Footer"
-msgstr ""
+msgstr "Footer"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Selektearje kleuren foar jo tema."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Foreground Text"
-msgstr ""
+msgstr "Foargrûntekst"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Dit is de kleur fan de ljepblêdtekst."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Background"
-msgstr ""
+msgstr "Eftergrûn"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Dit is de kleur fan de ljepblêden."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Preview"
-msgstr ""
+msgstr "Foarbyld"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Namme fan jo tema"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "troch <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
-msgstr ""
+msgstr "In nij tema meitsje"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
+"Mei eftergrûntema’s kinne jo ienfâldichwei de útstrieling fan jo Firefox personalisearje. Tsjinje hjirûnder jo eigen ûntwerp yn, of <a href=\"%(submit_url)s\">lês hoe't jo der ien meitsje kinne</a>!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Jou jo tema in namme."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
@@ -5822,22 +5825,24 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Ik akseptearje de <a href=\"%(agreement_url)s\">Firefox-add-on-ferspriedingsoerienkomst</a> en dat myn gegevens ferwurke wurde lykas beskreaun yn de <a "
+"href=\"%(privacy_notice_url)s\">Privacyferklearring foar websites, kommunikaasje en cookies</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
-msgstr ""
+msgstr "Tema yntsjinje"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
-msgstr ""
+msgstr "Jo binne klear!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "Jo tema is yntsjinne en stiet yn de beoardielingswachtrige. Jo ûntfange in e-mailberjocht sa gau as it tema beoardiele is, normaal sprutsen binnen 24 oer."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Next steps:"
-msgstr ""
+msgstr "Folgjende stappen:"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
