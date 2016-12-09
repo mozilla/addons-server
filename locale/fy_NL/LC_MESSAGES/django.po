@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-08 14:12+0000\n"
+"PO-Revision-Date: 2016-12-09 08:10+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4623,15 +4623,15 @@ msgstr "Add-ondetails foar {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "In langere útlis fan funksjes, funksjonaliteit en oare relevante ynformaasje. Dit fjild wurdt allinnich op de detailside fan de add-on werjaan. Allinnich relevant foar fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Default Locale"
-msgstr ""
+msgstr "Standertlocale"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Ynformaasje oer jo add-on wurdt yn dizze taal werjûn, útsein dêr't jo dit bystelle mei in locale-spesifike oersetting. Allinnich relevant foar fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
@@ -4642,6 +4642,7 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"As jo add-on in oare startside hat, fier dan hjir it adres yn. As jo website nei oare talen oerset is kinne mear oersettingen fan dit fjild tafoege wurde. Allinnich relevant foar fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html
 msgid "Images"
@@ -4649,39 +4650,45 @@ msgstr "Ofbyldingen"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information"
-msgstr ""
+msgstr "Stipeynformaasje"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Stipeynformaasje foar {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
+"As jo in e-mailadres foar stipefragen werjaan wolle, fier it hjir dan yn. As jo ferskate adressen foar elke taal hawwe kinne mear oersettingen fan dit fjild tafoege wurde. Allinnich relevant foar "
+"fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"As jo add-on in stipewebsite of -foarum hat, fier dan hjir it adres yn. As jo website yn oare talen oerset is kinne mear oersettingen fan dit fjild tafoege wurde. Allinnich relevant foar fermelde "
+"add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Technical Details"
-msgstr ""
+msgstr "Technyske details"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Technyske details foar {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"Alle ynformaasje dêr't brûkers mooglik yn ynteressearre binne dy't net needsaaklikerwize fan tapassing is op de gearfetting of beskriuwing fan de add-on. Wurdt faaks brûkt foar in list mei bekende "
+"bugs, ynformaasje oer hoe't bugs meld wurde kinne, de ferwachte publikaasjedatum fan in nije ferzje, ensfh. Allinnich relevant foar fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Limit 3"
@@ -4693,67 +4700,67 @@ msgstr "Add-onmarkearingen"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Dizze labels wurde brûkt om add-ons te klassifisearjen. Allinnich relevant foar fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This is a site-specific add-on."
-msgstr ""
+msgstr "Dit is in website-spesifike add-on."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Dizze add-on hat eksterne software nedich."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "View Source?"
-msgstr ""
+msgstr "Boarne besjen?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Of de boarnekoade fan jo add-on yn ús online werjefte werjûn wurde kin. Allinnich relevant foar fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "De boarnekoade fan dizze add-on mei ynsjoen wurde."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Nee, de boarnekoade fan dizze add-on is net beskikber foar it publyk."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Public Stats?"
-msgstr ""
+msgstr "Publike statistiken?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Of de downlaod- en brûksstatistiken fan jo add-on yn ús online werjefte werjûn wurde meie. Allinnich relevant foar fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "De statistiken fan dizze add-on binne iepenbier yn te sjen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Nee, de statistiken fan dizze add-on binne net iepenbier yn te sjen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "SDK fernije?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Wannear selektearre probearje wy jo add-on automatysk te fernijen as in nije ferzje fan de SDK publisearre wurdt. Allinnich relevant foar fermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
+msgstr "Dizze add-on wurdt automatysk fernijd nei nije ferzjes fan de add-on-SDK."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Nee, dizze add-on wurdt hânmjittich bywurke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Universeel unike identifikaasje"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "UUID"
@@ -4761,11 +4768,11 @@ msgstr "UUID"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
+msgstr "De UUID fan jo add-on wurdt opjûn yn it ynstallaasjemanifest en is in unike identifikaasje. Jo kinne de UUID nei yntsjinjen net mear wizigje."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whiteboard"
-msgstr ""
+msgstr "Notysjeboerd"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
