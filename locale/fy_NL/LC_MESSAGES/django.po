@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 08:57+0000\n"
+"PO-Revision-Date: 2016-12-09 09:39+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5206,7 +5206,7 @@ msgstr "Allinnich dizze ferzje op myn bètakanaal publisearje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Negearhannelingen fan behear"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Submit File for Review"
@@ -5218,28 +5218,28 @@ msgstr "Add-on ûndertekenje"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox-add-on-distribúsjeoerienkomst"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "API Credentials"
-msgstr ""
+msgstr "API-referinsjes"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Besjoch de <a href=\"%(docs_url)s\">API-dokumintaasje</a> foar detaillearre ynstruksjes."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Hâld jo API-kaaien geheim en <strong>diel se nea mei oaren</strong>, ek net mei Mozilla-meiwurkers."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT-útjouwer"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT-geheim"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
@@ -5247,26 +5247,28 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Stjoer in <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as de autorisaasjeheader om API-oanfragen te dwaan. Jo  moatte foar elke oanfraach in JWT generearje, lykas útlein yn de <a "
+"href=\"%(docs_url)s\">API-dokumintaasje</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Jo hawwe gjin API-oanmeldgegevens."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
-msgstr ""
+msgstr "Ynlûke"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Referinsjes ynlûke en opnij generearje"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Nije referinsjes generearje"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
-msgstr ""
+msgstr "Foltôgje jo add-on."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
