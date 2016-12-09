@@ -946,9 +946,6 @@ PYLIBMC_MIN_COMPRESS_LEN = 0  # disabled
 # External tools.
 JAVA_BIN = '/usr/bin/java'
 
-# Add-on download settings.
-PRIVATE_MIRROR_URL = '/_privatefiles'
-
 # File paths
 ADDON_ICONS_DEFAULT_PATH = os.path.join(ROOT, 'static', 'img', 'addon-icons')
 CA_CERT_BUNDLE_PATH = os.path.join(

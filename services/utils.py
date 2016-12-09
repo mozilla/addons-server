@@ -85,12 +85,8 @@ version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                           """, re.VERBOSE)
 
 
-def get_mirror(status, id, row):
-    if row['disabled_by_user'] or status == STATUS_DISABLED:
-        host = settings.PRIVATE_MIRROR_URL
-    else:
-        host = user_media_url('addons')
-
+def get_cdn_url(id, row):
+    host = user_media_url('addons')
     url = posixpath.join(host, str(id), row['filename'])
     params = urllib.urlencode({'filehash': row['hash']})
     return '{0}?{1}'.format(url, params)

@@ -25,7 +25,7 @@ except ImportError:
 from olympia.constants import applications, base
 
 from utils import (
-    APP_GUIDS, get_mirror, log_configure, PLATFORMS)
+    APP_GUIDS, get_cdn_url, log_configure, PLATFORMS)
 
 # Go configure the log.
 log_configure()
@@ -270,8 +270,7 @@ class Update(object):
                 'version'],
                 list(result)))
             row['type'] = base.ADDON_SLUGS_UPDATE[row['type']]
-            row['url'] = get_mirror(data['addon_status'],
-                                    data['id'], row)
+            row['url'] = get_cdn_url(data['id'], row)
             row['appguid'] = applications.APPS_ALL[data['app_id']].guid
             data['row'] = row
             return True

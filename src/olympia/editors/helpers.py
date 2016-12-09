@@ -504,15 +504,11 @@ class ReviewBase(object):
         self.addon.update(**kw)
         self.version.update(reviewed=datetime.datetime.now())
 
-    def set_files(self, status, files, copy_to_mirror=False,
-                  hide_disabled_file=False):
-        """Change the files to be the new status
-        and copy, remove from the mirror as appropriate."""
+    def set_files(self, status, files, hide_disabled_file=False):
+        """Change the files to be the new status."""
         for file in files:
             file.datestatuschanged = datetime.datetime.now()
             file.reviewed = datetime.datetime.now()
-            if copy_to_mirror:
-                file.copy_to_mirror()
             if hide_disabled_file:
                 file.hide_disabled_file()
             file.status = status
@@ -641,7 +637,7 @@ class ReviewAddon(ReviewBase):
 
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
-        self.set_files(amo.STATUS_PUBLIC, self.files, copy_to_mirror=True)
+        self.set_files(amo.STATUS_PUBLIC, self.files)
         self.set_addon(status=amo.STATUS_PUBLIC)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
@@ -707,7 +703,7 @@ class ReviewFiles(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        self.set_files(amo.STATUS_PUBLIC, self.files, copy_to_mirror=True)
+        self.set_files(amo.STATUS_PUBLIC, self.files)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
@@ -773,7 +769,7 @@ class ReviewUnlisted(ReviewBase):
         for file_ in self.files:
             sign_file(file_, settings.SIGNING_SERVER)
 
-        self.set_files(amo.STATUS_PUBLIC, self.files, copy_to_mirror=True)
+        self.set_files(amo.STATUS_PUBLIC, self.files)
 
         template = u'unlisted_to_reviewed_auto'
         subject = u'Mozilla Add-ons: %s %s signed and ready to download'
