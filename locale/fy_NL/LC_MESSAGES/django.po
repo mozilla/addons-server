@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 13:01+0000\n"
+"PO-Revision-Date: 2016-12-09 13:03+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5622,19 +5622,19 @@ msgstr "Wat is jo PayPal-ID?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Registrearje by PayPal"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your suggested contribution?"
-msgstr ""
+msgstr "Wat is jo foarstelde bydrage?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "(Example: 3.99)"
-msgstr ""
+msgstr "(Foarbyld: 3.99)"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "Wannear kinne brûkers om in bydrage frege wurde?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Send a thank-you note?"
@@ -5652,23 +5652,23 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Activate Contributions"
-msgstr ""
+msgstr "Bydragen aktivearje"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "of <a id=\"setup-cancel\" href=\"#\">Annulearje</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Eigendom oerdrage"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Details"
-msgstr ""
+msgstr "Tema-details"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Jou in moaie URL foar jo detailside."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select the category that best describes your Theme."
