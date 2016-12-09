@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 09:46+0000\n"
+"PO-Revision-Date: 2016-12-09 11:00+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5344,83 +5344,85 @@ msgstr "Jo ûntwikkelersprofyl beheare"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Create a Developer Profile"
-msgstr ""
+msgstr "Untwikkelersprofyl oanmeitsje"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
 msgstr ""
+"Jo ûntwikkelersprofyl fertelt jo brûkers wat oer jo, wêrom't jo dizze add-on makke hawwe en wat der op stapel stiet foar de add-on. Dit profyl is fereaske foar add-ons dy't om bydragen freegje, mar "
+"kin nuttich wêze foar elke ûntwikkeler dy't yn kontakt komme wol mei brûkers."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
-msgstr ""
+msgstr "Soargje derfoar dat jo brûkersprofyl is bywurke."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 #, python-format
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\"><strong>Wurkje jo brûkersprofyl by.</strong></a>"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr ""
+msgstr "Of it no in idee wie wylst jo yn de rige stiene by de winkelier of de oplossing foar ien fan de grutte libbensfragen: diel jo ferhaal."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr ""
+msgstr "Troch jo brûkers te fertellen wat der oan sit te kommen jouwe jo se wat om nei út te sjen."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
-msgstr ""
+msgstr "Alles besjen"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Statistikendashboerd besjen"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Kompatibiliteitsrapporten"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} flaterrapporten"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} suksesrapporten"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "Developer News"
-msgstr ""
+msgstr "Untwikkelersnijs"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Lês de blog &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Kies in lisinsje dy't tapaslik is foar de rjochten dy't jo op jo boarnekoade jaan wolle. Allinnich relevant foar fermelde add-ons."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Allowed HTML: {0}"
-msgstr ""
+msgstr "Tastiene HTML: {0}"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Some HTML supported."
-msgstr ""
+msgstr "HTML foar in part stipe."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Remove this application"
-msgstr ""
+msgstr "Dizze tapassing fuortsmite"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Selektearje <b>maksimaal {0}</b> {1} kategory foar dizze add-on:"
+msgstr[1] "Selektearje <b>maksimaal {0}</b> {1} kategoryen foar dizze add-on:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid ""
