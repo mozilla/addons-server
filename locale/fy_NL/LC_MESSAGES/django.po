@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 13:56+0000\n"
+"PO-Revision-Date: 2016-12-09 15:21+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5552,19 +5552,19 @@ msgstr "Frijwillige bydragen"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr ""
+msgstr "Add-ons dy't meidogge oan ús programma fan bydragen kinne in frijwillige finansjele bydrage fan brûkers freegje."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr ""
+msgstr "Moedigje brûkers oan om jo add-on te stypjen fia jo Untwikkelersprofyl"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "Kies wannear en hoe't brûkers frege wurdt by te dragen"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr ""
+msgstr "Untfang bydragen op jo PayPal-rekkening of stjoer se nei in troch jo keazen organisaasje"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for add-ons with listed versions."
@@ -5573,11 +5573,11 @@ msgstr "Bydragen binne allinnich beskikber foar add-ons mei fermelde ferzjes."
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr ""
+msgstr "Bydragen binne allinnich beskikber foar add-ons mei in <a href=\"%(url)s\">folslein ûntwikkelersprofyl</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for approved add-ons."
-msgstr ""
+msgstr "Bydragen binne allinnich beskikber foar goedkarre add-ons."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -5598,23 +5598,23 @@ msgstr "Bydragen"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr ""
+msgstr "Folje ûndersteande fjilden yn om te begjinnen mei fragen om frijwillige bydragen fan brûkers."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "Wa ûntfangt bydragen foar dizze add-on?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the name of the organization?"
-msgstr ""
+msgstr "Wat is de namme fan de organisaasje?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "Wat is de URL fan de organisaasje?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "Wat is de PayPal-ID fan de organisaasje?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your PayPal ID?"
