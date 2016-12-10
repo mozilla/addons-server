@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-10 13:01+0000\n"
+"PO-Revision-Date: 2016-12-10 13:11+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5456,11 +5456,8 @@ msgid "Lastest Version:"
 msgstr "Última versão:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr ""
-"Esta é a última versão carregada, entretanto\n"
-"                                           ainda não está disponível no site."
+msgstr "Esta é versão não listada mais recente."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5601,9 +5598,8 @@ msgid "{0} Add-ons"
 msgstr "Complementos para o {0}"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Versão mais recente:"
+msgstr "Últimas noticias"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Read more in our Blog"
@@ -5611,9 +5607,8 @@ msgstr "Leia mais em nosso Blog"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Desenvolvedor de complementos"
+msgstr "Centro de desenvolvedor de extensão"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5625,23 +5620,20 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Assinar complemento"
+msgstr "Iniciar sessão"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Customize Your Firefox"
 msgstr "Personalize o Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
-"Os complementos permitem que milhões de usuários do Firefox melhorem e personalizem a sua experiência de navegação. Se é um desenvolvedor web e sabe <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> e <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, então já tem todas as capacidades necessárias para fazer um ótimo complemento."
+"Extensões permitem que milhões de usuários do Firefox personalizem a sua experiência de navegação. Se sabe <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, e <a href=\"#\">CSS</a>, então já tem"
+" todas as habilidades necessárias para fazer uma extensão."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to make an Add-on"
@@ -5649,28 +5641,24 @@ msgstr "Aprenda a fazer uma extensão"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Validação"
+msgstr "Validador"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Por favor, complete seu complemento."
+msgstr "Testes de código automatizado para sua extensão."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Verificador de compatibilidade de complementos"
+msgstr "Verificador de compatibilidade"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "Veja se sua extensão é afetadas pelas alterações no Firefox."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Relatórios de compat."
+msgstr "Relatório de compatibilidade"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5710,9 +5698,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Receba contribuições na sua conta do PayPal ou mande para uma organização da sua escolha"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "As contribuições só estão disponíveis para complementos listados."
+msgstr "Contribuições estão disponíveis apenas para extensões com versões listadas."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
