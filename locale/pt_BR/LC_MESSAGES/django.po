@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-10 12:22+0000\n"
+"PO-Revision-Date: 2016-12-10 12:37+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1792,9 +1792,8 @@ msgid "Reviewer Reply"
 msgstr "Resposta do revisor"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Comentário sobre {addon} {version}."
+msgstr "Notas de aprovação alteradas para {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
@@ -1805,9 +1804,8 @@ msgid "Source code uploaded for {addon} {version}."
 msgstr "Código fonte enviado para {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Código-fonte"
+msgstr "Código-fonte enviado"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -5139,9 +5137,8 @@ msgstr[0] "<strong>{0}</strong> usuário ativo"
 msgstr[1] "<strong>{0}</strong> usuários ativos"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Submeter um novo tema"
+msgstr "Enviar novo arquivo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5262,9 +5259,8 @@ msgid "Manage Listing"
 msgstr "Gerenciar a lista"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "Você também pode editar esta versão que acabou de submeter, adicionando notas de versão ou o código-fonte se a sua submissão incluir código reduzido, ofuscado ou compilado."
+msgstr "Você pode editar esta versão para editar notas de versão, ou código-fonte se sua extensão contém código reduzido, ofuscado ou compilado."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -10333,7 +10329,7 @@ msgstr "Apenas WebExtensions tem permissão para omitir o GUID"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Você não pode adicionar uma versão listada para esta extensão via API devido à falta de metadados. Por favor envie através do site"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
