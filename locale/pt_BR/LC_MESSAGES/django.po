@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-10 12:37+0000\n"
+"PO-Revision-Date: 2016-12-10 13:01+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5279,7 +5279,6 @@ msgid "Download {0}"
 msgstr "Download {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Você selecionou apenas algumas das plataformas disponíveis para esta submissão. Você pode enviar mais arquivos para as outras plataformas:"
 
@@ -5300,9 +5299,8 @@ msgid "Upload Add-on"
 msgstr "Enviar complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Onde hospedar a versão"
+msgstr "Onde hospedar o arquivo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5331,9 +5329,8 @@ msgid "Administrative overrides"
 msgstr "Substituições administrativas"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Submeter versão para análise"
+msgstr "Enviar arquivo para revisão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5425,32 +5422,24 @@ msgid "%%b %%e, %%Y"
 msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Estado do multi-processo:"
+msgstr "Estado da extensão multi-processo:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "A compatibilidade do seu complemento com o multi-processo do Firefox (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Versão mais recente:"
+msgstr "Versão listada:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ""
-"Esta é a versão do seu add-on que será\n"
-"                                           instalado se alguém clicar no botão\n"
-"                                           Instalar em addons.mozilla.org. Somente é\n"
-"                                           relevante para os add-ons listados."
+msgstr "Esta é a versão da sua extensão que será instalada se alguém clicar no botão Instalar em addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Próxima versão:"
+msgstr "Ver outras versões:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5463,9 +5452,8 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "Filas não são revisadas de forma rigorosa"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
-msgstr "Versão mais recente:"
+msgstr "Última versão:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
@@ -5618,9 +5606,8 @@ msgid "Latest News"
 msgstr "Versão mais recente:"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "precisa de mais informações"
+msgstr "Leia mais em nosso Blog"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
@@ -5643,9 +5630,8 @@ msgid "Sign In"
 msgstr "Assinar complemento"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Temas fáceis de usar para o Firefox"
+msgstr "Personalize o Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy
@@ -5658,9 +5644,8 @@ msgstr ""
 "href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, então já tem todas as capacidades necessárias para fazer um ótimo complemento."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Saiba mais sobre os complementos"
+msgstr "Aprenda a fazer uma extensão"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -6212,19 +6197,16 @@ msgid "Reply"
 msgstr "Responder"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Visibilidade do complemento"
+msgstr "Visibilidade da extensão"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Visibilidade:"
+msgstr "Visível:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
-msgstr "Visível para todos em {0} e incluídos no resultado de pesquisa e listando nas páginas "
+msgstr "Visível para todos em {0} e incluído nos resultados de pesquisa e páginas listadas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
@@ -6243,9 +6225,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Não distribuído em {0}. Os desenvolvedores irão enviar novas versões para serem assinadas e distribuir os complementos usando meios próprios."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Ver outras versões"
+msgstr "Versão listada"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6269,23 +6250,20 @@ msgid "Older versions"
 msgstr "Versões antigas"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "Por que não posso alternar para <i>Listado</i> ou <i>Oculto</i>?"
+msgstr "Por que não posso alternar para <i>Listado</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
-"Devido a limitações técnicas, você precisa excluir seu complemento e resubmetê-lo usando essa conta do AMO para alterá-lo para listado.\n"
-"            Esse processo é descrito em detalhes <a href=\"{link}\">nessa documentação</a>."
+"Devido problemas técnicos, você precisa excluir sua extensão e submetê-lo novamente usando essa conta do AMO para alterá-lo para listado.\n"
+"        Esse processo é descrito em detalhes <a href=\"{link}\">nessa documentação</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Versões antigas"
+msgstr "Todas as versões"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6406,9 +6384,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Você constantemente usa os Favoritos? Acesse as suas listas com um único gesto simples."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Melhore o YouTube {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
@@ -11566,6 +11543,5 @@ msgid "Addon"
 msgstr "Complemento"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Resultados da validação"
+msgstr "Resultado da validação"
