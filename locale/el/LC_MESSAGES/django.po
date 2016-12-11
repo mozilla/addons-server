@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-11 14:23+0000\n"
+"PO-Revision-Date: 2016-12-11 14:33+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -36,9 +36,8 @@ msgid "Need help?"
 msgstr ""
 
 #: src/olympia/activity/serializers.py
-#, fuzzy
 msgid "Review note"
-msgstr "Ημερομηνία Επιθεώρησης"
+msgstr "Σημείωση αξιολόγησης"
 
 #: src/olympia/activity/views.py
 msgid "Only latest versions of addons can have notes added."
@@ -380,11 +379,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Visible"
-msgstr ""
+msgstr "Ορατό"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Invisible"
-msgstr ""
+msgstr "Αόρατο"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -908,9 +907,8 @@ msgid "by %(users)s"
 msgstr "από τον/την %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
-msgstr "Ο δημιουργός αυτού του πρόσθετου το έχει αφαιρέσει."
+msgstr "Αυτό το πρόσθετο έχει επισημανθεί ως πειραματικό από τους προγραμματιστές του"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
@@ -961,11 +959,11 @@ msgid "Part of these Collections"
 msgstr "Τμήμα αυτών των συλλογών"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Άλλα πρόσθετα από τον/την %(author)s"
-msgstr[1] "Άλλα πρόσθετα απ' αυτούς τους δημιουργούς"
+msgstr[0] "Άλλα πρόσθετα από %(author)s"
+msgstr[1] "Άλλα πρόσθετα από αυτούς τους δημιουργούς"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -983,9 +981,8 @@ msgid "Manage"
 msgstr "Διαχείριση"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Editor Review"
-msgstr "Επεξεργασία αξιολόγησης"
+msgstr "Αξιολόγηση συντάκτη"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 #, fuzzy
@@ -9289,14 +9286,15 @@ msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Τι σημαίνει όταν ένα πρόσθετο είναι \"πειραματικό\";"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
-"Τα πειραματικά πρόσθετα έχουν ελεγχθεί από τους συντάκτες μας για προβλήματα ασφαλείας, αλλά μπορεί να περιέχουν άλλα σφάλματα ή να μην είναι πλήρως λειτουργικά. Αν εγκαταστήσετε πειραματικά "
-"πρόσθετα, κάντε το με προσοχή και απεγκαταστήσετε τα άμεσα αν παρατηρήσετε προβλήματα. <a href=\"%(url)s\">Μάθετε περισσότερα για της διαδικασία αξιολόγησης</a></dd>"
+"Τα πειραματικά πρόσθετα έχουν επισημανθεί από τους προγραμματιστές τους ως μη κατάλληλα για ένα ευρύ κοινό. Έχουν ελεγχθεί από τους συντάκτες μας για να εξασφαλιστεί ότι δεν έχουν προβλήματα "
+"ασφαλείας, αλλά ενδέχεται να έχουν ακόμη πολλά ζητήματα ή να μην λειτουργούν σωστά. Θα πρέπει να εγκαθιστάτε με προσοχή τα πειραματικά πρόσθετα και να τα απεγκαθιστάτε αμέσως αν παρατηρείτε "
+"προβλήματα. <a href=\"%(url)s\">Μάθετε περισσότερα σχετικά με τη διαδικασία αξιολόγησής μας</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -11197,9 +11195,8 @@ msgid "Non-binary"
 msgstr "Μη-εκτελέσιμο"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "Μήνυμα της ημέρα"
+msgstr "ID μηνύματος"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
