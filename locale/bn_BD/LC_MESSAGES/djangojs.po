@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-10-30 22:41+0000\n"
-"Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
+"PO-Revision-Date: 2016-12-11 08:12+0000\n"
+"Last-Translator: Nafis Sadik Fahim <md.n.s.f.11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
@@ -587,7 +587,7 @@ msgstr ""
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "দৈনিক ব্যবহারকারী {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
