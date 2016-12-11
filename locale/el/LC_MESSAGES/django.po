@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-11 14:33+0000\n"
+"PO-Revision-Date: 2016-12-11 14:55+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You are already logged in."
-msgstr ""
+msgstr "Έχετε συνδεθεί ήδη."
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -70,7 +70,7 @@ msgstr "Χωρίς αξιολόγηση"
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "Πειραματικά"
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
