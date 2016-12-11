@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-11-15 12:56+0000\n"
+"PO-Revision-Date: 2016-08-12 11:04+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -391,7 +391,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Προτάσεις αναζήτησης"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
@@ -443,15 +443,15 @@ msgstr "Upsell"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Γνωρίστε τον προγραμματιστή"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
-msgstr ""
+msgstr "Προφίλ χρήστη"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Version History"
-msgstr ""
+msgstr "Ιστορικό εκδόσεων"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
@@ -883,7 +883,7 @@ msgstr "Προβολή άλλων εκδόσεων"
 
 #: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Μόνο με το Firefox — Λήψη του Firefox τώρα!"
 
 #: static/js/zamboni/buttons.js
 msgid "Download now"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-03 09:01+0000\n"
+"PO-Revision-Date: 2016-12-11 14:23+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -64,10 +64,9 @@ msgid "Featured"
 msgstr "Προβεβλημένα"
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "Χωρίς Αξιολόγηση"
+msgstr "Χωρίς αξιολόγηση"
 
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
@@ -346,9 +345,8 @@ msgstr "Συνεισφέρατε, σας ευχαριστούμε."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#, fuzzy
 msgid "Requires Restart"
-msgstr "Απαιτούμενα πεδία"
+msgstr "Απαιτεί επανεκκίνηση"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
@@ -696,9 +694,8 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> χρήστες"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
-#, fuzzy
 msgid "{0} Daily Users"
-msgstr "Καθημερινοί χρήστες"
+msgstr "{0} καθημερινοί χρήστες"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -6752,18 +6749,16 @@ msgid "Undelete"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Νέα πρόσθετα (λιγότερες από 5 ημέρες)"
-msgstr[1] "Νέα πρόσθετα (λιγότερες από 5 ημέρες)"
+msgstr[0] "Νέο πρόσθετο ({num})"
+msgstr[1] "Νέα πρόσθετα ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Ενημερώθηκε {0}"
-msgstr[1] "Ενημερώθηκε {0}"
+msgstr[0] "Ενημέρωση ({num})"
+msgstr[1] "Ενημερώσεις ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -7363,7 +7358,6 @@ msgid "Back to review"
 msgstr "Πίσω στην αξιολόγηση"
 
 #: src/olympia/files/views.py
-#, fuzzy
 msgid "Back to add-on"
 msgstr "Πίσω στο πρόσθετο"
 
@@ -7674,9 +7668,8 @@ msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
-msgstr "Ξεκινώντας"
+msgstr "Ξεκινήστε"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -9292,9 +9285,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
-#, fuzzy
 msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "Τι σημαίνει ότι δεν έχει αξιολογηθεί ένα πρόσθετο;"
+msgstr "Τι σημαίνει όταν ένα πρόσθετο είναι \"πειραματικό\";"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, fuzzy, python-format
@@ -10409,9 +10401,8 @@ msgid "Site Status"
 msgstr ""
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid "Report a bug"
-msgstr "Αναφορά κατάχρησης"
+msgstr "Αναφορά σφάλματος"
 
 #: src/olympia/templates/copyright.html
 msgid ""
@@ -11229,6 +11220,5 @@ msgid "Addon"
 msgstr ""
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Αποτελέσματα επικύρωσης"
+msgstr "Αποτέλεσμα επαλήθευσης"
