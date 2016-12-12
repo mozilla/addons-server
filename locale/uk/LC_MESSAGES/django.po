@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-12 18:20+0000\n"
+"PO-Revision-Date: 2016-12-12 18:25+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1768,14 +1768,12 @@ msgid "Approval notes changed"
 msgstr ""
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Відповісти розробнику щодо {addon} {version}."
+msgstr "Завантажено програмний код для {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Програмний код"
+msgstr "Завантажено програмний код"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -5057,9 +5055,8 @@ msgstr[1] "<strong>{0}</strong> активних користувача"
 msgstr[2] "<strong>{0}</strong> активних користувачів"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Відправити нову тему"
+msgstr "Відправити новий файл"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
@@ -5180,9 +5177,8 @@ msgid "Manage Listing"
 msgstr "Керування опублікованими"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "Ви також можете змінювати цю щойно подану версію з додаванням приміток чи програмного коду, якщо вона включає стиснутий, заплутаний чи скомпільований код."
+msgstr "Ви також можете змінювати цю версію з додаванням приміток чи програмного коду, якщо вона включає стиснутий, заплутаний чи скомпільований код."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5201,7 +5197,6 @@ msgid "Download {0}"
 msgstr "Завантажити {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Ви обрали лише деякі з доступних платформ для цього подання. Ви можете вивантажити більше файлів, призначених для інших платформ:"
 
@@ -5222,9 +5217,8 @@ msgid "Upload Add-on"
 msgstr "Вивантажити додаток"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Де розмістити версію"
+msgstr "Де розмістити файл"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
