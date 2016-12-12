@@ -273,7 +273,8 @@ class BulkValidationAffectedAddonsTable(ItemStateTable, tables.Table):
             (result.pk, reverse(
                 'devhub.bulk_compat_result',
                 args=(result.file.version.addon_id, result.pk)))
-            for result in self.results]
+            for result in self.results
+            if result.file.version.addon_id == record.addon.id]
 
         return ', '.join(
             format_html(u'<a href="{0}">{1}</a>', result[1], result[0])
@@ -301,6 +302,8 @@ def validation_summary(request, job_id):
 def validation_summary_affected_addons(request, job_id, message_id):
     addons = ValidationResultAffectedAddon.objects.filter(
         validation_result_message=message_id)
+    # Get rid of duplicates
+    addons = list(set(addons))
     order_by = request.GET.get('sort', 'addon')
 
     results = (
