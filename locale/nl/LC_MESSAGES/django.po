@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-01 13:44+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2016-12-01 11:32+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -864,7 +864,7 @@ msgstr "Beoordeling indienen"
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
 msgstr ""
 "Plaats geen bugrapporten in beoordelingen. We stellen uw e-mailadres niet beschikbaar aan ontwikkelaars van add-ons, waardoor geen contact met u kan worden opgenomen als ze uw probleem willen "
-"verhelpen"
+"verhelpen."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -1554,8 +1554,8 @@ msgstr "Superbeoordeling voor {addon} {version} aangevraagd."
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"De add-on is gelabeld voor beoordeling door een beheerder. Hij staat nog in onze beoordelingswachtrij, maar hij dient te worden gecontroleerd door één van onze beheerders. De beoordeling zou langer "
-"dan gebruikelijk kunnen duren."
+"De add-on is gemarkeerd voor beoordeling door een beheerder. De add-on staat nog in onze beoordelingswachtrij, maar dient door een van onze beheerders te worden gecontroleerd. De beoordeling zou "
+"langer dan gebruikelijk kunnen duren."
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -4904,15 +4904,15 @@ msgstr "Add-on verwijderen"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr "Door uw thema te verwijderen wordt deze voorgoed van de website verwijderd."
+msgstr "Door uw thema te verwijderen, wordt dit voorgoed van de website verwijderd."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
-"Door uw add-on te verwijderen worden alle versies en bestanden die u voor deze add-on hebt ingediend voorgoed verwijderd, vermeld of niet. De add-on-ID blijft nog wel aan uw account gekoppeld, zodat"
-" anderen geen versies via dezelfde ID kunnen indienen."
+"Door uw add-on te verwijderen, worden alle versies en bestanden die u voor deze add-on hebt ingediend voorgoed verwijderd, vermeld of niet. De add-on-ID blijft nog wel aan uw account gekoppeld, "
+"zodat anderen geen versies via dezelfde ID kunnen indienen."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5084,7 +5084,7 @@ msgstr "Kies een licentie die toepasselijk is voor de rechten die u op uw bronco
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Als uw add-on gegevens verzendt vanaf de computer van de gebruiker is een privacybeleid dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt verplicht."
+msgstr "Als uw add-on gegevens verzendt vanaf de computer van de gebruiker, is een privacybeleid verplicht dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Notes to Reviewer:"
@@ -5441,8 +5441,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Als uw add-on gegevens verzendt vanaf de computer van de gebruiker is een privacybeleid dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt verplicht. Alleen relevant voor "
-"vermelde add-ons."
+"Als uw add-on gegevens verzendt vanaf de computer van de gebruiker, is een privacybeleid verplicht dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt. Dit is alleen relevant "
+"voor vermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -10886,7 +10886,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/delete.html
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "Door op ‘verwijderen’ te klikken wordt uw account <strong>permanent verwijderd</strong>. Dat betekent:"
+msgstr "Door op ‘verwijderen’ te klikken, wordt uw account <strong>definitief verwijderd</strong>. Dat betekent:"
 
 #: src/olympia/users/templates/users/delete.html
 #, python-format
