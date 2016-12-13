@@ -1,8 +1,5 @@
 FROM centos:centos7
 
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-
 # need to compile swig
 ENV SWIG_FEATURES="-D__x86_64__"
 
@@ -34,6 +31,11 @@ RUN yum update -y                                           \
         uwsgi-plugin-python                                 \
     && yum clean all                                        \
     && curl -sSL https://bootstrap.pypa.io/get-pip.py | python
+
+# Compile required locale
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 
 COPY . /data/olympia
 WORKDIR /data/olympia
