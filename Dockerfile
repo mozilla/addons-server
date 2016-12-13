@@ -12,8 +12,7 @@ ADD docker/mysql.repo /etc/yum.repos.d/mysql.repo
 # This is temporary until https://bugzilla.mozilla.org/show_bug.cgi?id=1226533
 ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
 
-RUN yum update -y \
-    && yum install -y \
+RUN yum install -y \
         # Supervisor is being used to start and keep our services running
         supervisor \
         # General (dev-) dependencies
