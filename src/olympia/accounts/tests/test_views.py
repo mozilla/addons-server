@@ -475,7 +475,7 @@ class TestWithUser(TestCase):
     def test_logged_in_disallows_login(self):
         self.request.data = {
             'code': 'foo',
-            'state': 'other-blob:{}'.format(base64.urlsafe_b64encode('/next')),
+            'state': 'some-blob:{}'.format(base64.urlsafe_b64encode('/next')),
         }
         self.user = UserProfile()
         self.request.user = self.user
