@@ -473,13 +473,16 @@ class TestWithUser(TestCase):
         assert not self.fxa_identify.called
 
     def test_logged_in_disallows_login(self):
-        self.request.data = {'code': 'woah', 'state': 'some-blob'}
+        self.request.data = {
+            'code': 'foo',
+            'state': 'some-blob:{}'.format(base64.urlsafe_b64encode('/next')),
+        }
         self.user = UserProfile()
         self.request.user = self.user
         assert self.user.is_authenticated()
         self.fn(self.request)
         self.render_error.assert_called_with(
-            self.request, views.ERROR_AUTHENTICATED, next_path=None,
+            self.request, views.ERROR_AUTHENTICATED, next_path='/next',
             format='json')
         assert not self.find_user.called
 
