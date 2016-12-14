@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-11 08:16+0000\n"
-"Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
+"PO-Revision-Date: 2016-12-10 20:04+0000\n"
+"Last-Translator: Md Fahim Faisal <faisal.cse9@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
@@ -1749,7 +1749,7 @@ msgstr "মন্তব্য করুন {addon} {version}।"
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
-msgstr ""
+msgstr "অনুমোদন নোট পরিবর্তিত"
 
 #: src/olympia/amo/log.py
 #, fuzzy
@@ -2397,7 +2397,7 @@ msgstr "বর্ণনা"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
 msgid "Contributors & More"
-msgstr ""
+msgstr "অবদানকারী এবং আরো"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
@@ -3746,7 +3746,7 @@ msgstr "আমার অ্যাড-অন এর জন্য সাম্প�
 
 #: src/olympia/devhub/forms.py
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "অন্তত একজন মালিক থাকতে হবে।"
 
 #: src/olympia/devhub/forms.py
 msgid "At least one author must be listed."
@@ -3850,7 +3850,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "অন্তত একটি উপযুক্ত অ্যাপ্লিকেশন দরকার।"
 
 #: src/olympia/devhub/forms.py
 msgid "There was an error with your upload. Please try again."
