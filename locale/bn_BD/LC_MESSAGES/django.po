@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-10 11:38+0000\n"
-"Last-Translator: Nafis Sadik Fahim <md.n.s.f.11@gmail.com>\n"
+"PO-Revision-Date: 2016-12-11 08:16+0000\n"
+"Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
@@ -36,9 +36,8 @@ msgid "Need help?"
 msgstr "সাহায্য প্রয়োজন?"
 
 #: src/olympia/activity/serializers.py
-#, fuzzy
 msgid "Review note"
-msgstr "রিভিউ"
+msgstr "পর্যালোচনা নোট"
 
 #: src/olympia/activity/views.py
 msgid "Only latest versions of addons can have notes added."
@@ -1946,7 +1945,7 @@ msgstr ""
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr ""
+msgstr "ভুল ডিকোডিং স্বাক্ষর।"
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
