@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-11 08:12+0000\n"
+"PO-Revision-Date: 2016-12-13 17:37+0000\n"
 "Last-Translator: Nafis Sadik Fahim <md.n.s.f.11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -507,7 +507,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Listing Up এবং Coming Sort ব্রাউজ করুন"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
@@ -597,7 +597,7 @@ msgstr ""
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "আবেদন সমুহ {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -652,7 +652,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "শেষ {0} দিনে অবদান"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -787,7 +787,7 @@ msgstr ""
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> হতে {1} থেকে {2}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js
@@ -1222,7 +1222,7 @@ msgstr "পরীক্ষামূলক"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "থিমটির জন্য {0} এর নতুন ভার্সন প্রয়োজন"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require {0}"
