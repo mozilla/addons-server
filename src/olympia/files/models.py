@@ -116,16 +116,9 @@ class File(OnChangeMixin, ModelBase):
         # is exactly the opposite.
         return not self.no_restart
 
-    def is_mirrorable(self):
-        return self.status in amo.MIRROR_STATUSES
-
-    def has_been_copied(self):
-        """Checks if file has been copied to mirror"""
-        if not self.mirror_file_path:
-            return False
-        return storage.exists(self.mirror_file_path)
-
-    def get_mirror(self, attachment=False):
+    def get_file_cdn_url(self, attachment=False):
+        """Return the URL for the file corresponding to this instance
+        on the CDN."""
         if attachment:
             host = posixpath.join(user_media_url('addons'), '_attachments')
         else:
@@ -187,12 +180,9 @@ class File(OnChangeMixin, ModelBase):
 
         log.debug('New file: %r from %r' % (file_, upload))
         # Move the uploaded file from the temp location.
-        destinations = [version.path_prefix]
-        if file_.status in amo.MIRROR_STATUSES:
-            destinations.append(version.mirror_path_prefix)
-        for dest in destinations:
-            copy_stored_file(upload.path,
-                             os.path.join(dest, nfd_str(file_.filename)))
+        copy_stored_file(
+            upload.path,
+            os.path.join(version.path_prefix, nfd_str(file_.filename)))
 
         if upload.validation:
             # Import loop.
@@ -299,11 +289,6 @@ class File(OnChangeMixin, ModelBase):
         return self.version.addon
 
     @property
-    def mirror_file_path(self):
-        return os.path.join(user_media_path('addons'),
-                            str(self.version.addon_id), self.filename)
-
-    @property
     def guarded_file_path(self):
         return os.path.join(user_media_path('guarded_addons'),
                             str(self.version.addon_id), self.filename)
@@ -337,44 +322,12 @@ class File(OnChangeMixin, ModelBase):
             return
         src, dst = self.file_path, self.guarded_file_path
         self.mv(src, dst, 'Moving disabled file: %s => %s')
-        # Remove the file from the mirrors if necessary.
-        if (self.mirror_file_path and
-                storage.exists(force_bytes(self.mirror_file_path))):
-            log.info('Unmirroring disabled file: %s'
-                     % self.mirror_file_path)
-            storage.delete(force_bytes(self.mirror_file_path))
 
     def unhide_disabled_file(self):
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.file_path
         self.mv(src, dst, 'Moving undisabled file: %s => %s')
-        # Put files back on the mirrors if necessary.
-        if storage.exists(self.file_path):
-            destinations = [self.version.path_prefix]
-            if self.status in amo.MIRROR_STATUSES:
-                destinations.append(self.version.mirror_path_prefix)
-            for dest in destinations:
-                dest = os.path.join(dest, nfd_str(self.filename))
-                log.info('Re-mirroring disabled/enabled file to %s' % dest)
-                copy_stored_file(self.file_path, dest)
-
-    def copy_to_mirror(self):
-        if not self.filename:
-            return
-        try:
-            if storage.exists(self.file_path):
-                dst = self.mirror_file_path
-                if not dst:
-                    return
-
-                log.info('Moving file to mirror: %s => %s'
-                         % (self.file_path, dst))
-                copy_stored_file(self.file_path, dst)
-        except UnicodeEncodeError:
-            log.info('Copy Failure: %s %s %s' %
-                     (self.id, force_bytes(self.filename),
-                      force_bytes(self.file_path)))
 
     _get_localepicker = re.compile('^locale browser ([\w\-_]+) (.*)$', re.M)
 
@@ -469,7 +422,7 @@ def cleanup_file(sender, instance, **kw):
     if kw.get('raw') or not instance.filename:
         return
     # Use getattr so the paths are accessed inside the try block.
-    for path in ('file_path', 'mirror_file_path', 'guarded_file_path'):
+    for path in ('file_path', 'guarded_file_path'):
         try:
             filename = getattr(instance, path)
         except models.ObjectDoesNotExist:
@@ -496,8 +449,6 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
         instance.hide_disabled_file()
     elif old == amo.STATUS_DISABLED and new != amo.STATUS_DISABLED:
         instance.unhide_disabled_file()
-    elif (new in amo.MIRROR_STATUSES and old not in amo.MIRROR_STATUSES):
-        instance.copy_to_mirror()
 
     # Log that the hash has changed.
     old, new = old_attr.get('hash'), instance.hash

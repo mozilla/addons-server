@@ -817,7 +817,7 @@ class TestDownloadsBase(TestCase):
             host += '_attachments/'
         self.assert_served_by_host(response, host, file_)
 
-    def assert_served_by_mirror(self, response, file_=None):
+    def assert_served_by_cdn(self, response, file_=None):
         url = settings.SITE_URL + user_media_url('addons')
         self.assert_served_by_host(response, url, file_)
 
@@ -876,7 +876,7 @@ class TestDownloads(TestDownloadsBase):
     def test_public(self):
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.file.status == amo.STATUS_PUBLIC
-        self.assert_served_by_mirror(self.client.get(self.file_url))
+        self.assert_served_by_cdn(self.client.get(self.file_url))
 
     def test_public_addon_unreviewed_file(self):
         self.file.status = amo.STATUS_AWAITING_REVIEW
@@ -889,7 +889,7 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_locally(self.client.get(self.file_url))
 
     def test_type_attachment(self):
-        self.assert_served_by_mirror(self.client.get(self.file_url))
+        self.assert_served_by_cdn(self.client.get(self.file_url))
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
         self.assert_served_locally(self.client.get(url), attachment=True)
 
@@ -899,12 +899,12 @@ class TestDownloads(TestDownloadsBase):
 
     def test_trailing_filename(self):
         url = self.file_url + self.file.filename
-        self.assert_served_by_mirror(self.client.get(url))
+        self.assert_served_by_cdn(self.client.get(url))
 
     def test_beta_file(self):
         url = reverse('downloads.file', args=[self.beta_file.id])
-        self.assert_served_by_mirror(self.client.get(url),
-                                     file_=self.beta_file)
+        self.assert_served_by_cdn(self.client.get(url),
+                                  file_=self.beta_file)
 
     def test_null_datestatuschanged(self):
         self.file.update(datestatuschanged=None)
@@ -913,7 +913,7 @@ class TestDownloads(TestDownloadsBase):
     def test_public_addon_beta_file(self):
         self.file.update(status=amo.STATUS_BETA)
         self.addon.update(status=amo.STATUS_PUBLIC)
-        self.assert_served_by_mirror(self.client.get(self.file_url))
+        self.assert_served_by_cdn(self.client.get(self.file_url))
 
     def test_beta_addon_beta_file(self):
         self.addon.update(status=amo.STATUS_BETA)
@@ -1005,11 +1005,11 @@ class TestDownloadsLatest(TestDownloadsBase):
 
     def test_success(self):
         assert self.addon.current_version
-        self.assert_served_by_mirror(self.client.get(self.latest_url))
+        self.assert_served_by_cdn(self.client.get(self.latest_url))
 
     def test_beta(self):
-        self.assert_served_by_mirror(self.client.get(self.latest_beta_url),
-                                     file_=self.beta_file)
+        self.assert_served_by_cdn(self.client.get(self.latest_beta_url),
+                                  file_=self.beta_file)
 
     def test_beta_unreviewed_addon(self):
         self.addon.status = amo.STATUS_PENDING
@@ -1024,12 +1024,12 @@ class TestDownloadsLatest(TestDownloadsBase):
         # We still match PLATFORM_ALL.
         url = reverse('downloads.latest',
                       kwargs={'addon_id': self.addon.slug, 'platform': 5})
-        self.assert_served_by_mirror(self.client.get(url))
+        self.assert_served_by_cdn(self.client.get(url))
 
         # And now we match the platform in the url.
         self.file.platform = self.platform
         self.file.save()
-        self.assert_served_by_mirror(self.client.get(url))
+        self.assert_served_by_cdn(self.client.get(url))
 
         # But we can't match platform=3.
         url = reverse('downloads.latest',

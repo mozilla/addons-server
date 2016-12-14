@@ -133,7 +133,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
 
     attachment = (type == 'attachment' or not request.APP.browser)
 
-    loc = urlparams(file_.get_mirror(attachment=attachment),
+    loc = urlparams(file_.get_file_cdn_url(attachment=attachment),
                     filehash=file_.hash)
     response = http.HttpResponseRedirect(loc)
     response['X-Target-Digest'] = file_.hash

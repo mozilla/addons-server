@@ -235,9 +235,6 @@ def unhide_disabled_files():
                 file_ = (File.objects.select_related('version__addon')
                          .get(version__addon=addon, filename=filename))
                 file_.unhide_disabled_file()
-                if (file_.version.addon.status in amo.MIRROR_STATUSES and
-                        file_.status in amo.MIRROR_STATUSES):
-                    file_.copy_to_mirror()
             except File.DoesNotExist:
                 log.warning(u'File object does not exist for: %s.' % filepath)
             except Exception:

@@ -305,24 +305,6 @@ class TestReviewHelper(TestCase):
         assert self.file.status == amo.STATUS_PUBLIC
         assert self.file.datestatuschanged.date() > yesterday.date()
 
-    def test_set_files_copy(self):
-        self.helper.set_data({'addon_files': self.version.files.all()})
-        self.helper.handler.set_files(amo.STATUS_PUBLIC,
-                                      self.helper.handler.data['addon_files'],
-                                      copy_to_mirror=True)
-
-        assert storage.exists(self.file.mirror_file_path)
-
-    def test_set_files_remove(self):
-        with storage.open(self.file.mirror_file_path, 'wb') as f:
-            f.write('test data\n')
-        self.helper.set_data({'addon_files': self.version.files.all()})
-        self.helper.handler.set_files(amo.STATUS_PUBLIC,
-                                      self.helper.handler.data['addon_files'],
-                                      hide_disabled_file=True)
-
-        assert not storage.exists(self.file.mirror_file_path)
-
     def test_logs(self):
         self.helper.set_data({'comments': 'something'})
         self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
@@ -487,7 +469,7 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == '%s Approved' % self.preamble
 
-        assert storage.exists(self.file.mirror_file_path)
+        assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
@@ -510,7 +492,7 @@ class TestReviewHelper(TestCase):
         assert 'has been approved' in mail.outbox[0].body
 
         sign_mock.assert_called_with(self.file, 'full')
-        assert storage.exists(self.file.mirror_file_path)
+        assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
@@ -534,7 +516,7 @@ class TestReviewHelper(TestCase):
         assert 'our automatic tests and is now signed' in mail.outbox[0].body
 
         sign_mock.assert_called_with(self.file, 'full')
-        assert storage.exists(self.file.mirror_file_path)
+        assert storage.exists(self.file.file_path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
@@ -570,7 +552,8 @@ class TestReviewHelper(TestCase):
         assert 'did not meet the criteria' in mail.outbox[0].body
 
         assert not sign_mock.called
-        assert not storage.exists(self.file.mirror_file_path)
+        assert storage.exists(self.file.guarded_file_path)
+        assert not storage.exists(self.file.file_path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
     def test_email_unicode_monster(self):
@@ -631,7 +614,7 @@ class TestReviewHelper(TestCase):
         assert 'has been approved' in mail.outbox[0].body
 
         assert sign_mock.called
-        assert storage.exists(self.file.mirror_file_path)
+        assert storage.exists(self.file.file_path)
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
     @patch('olympia.editors.helpers.sign_file')
@@ -649,7 +632,8 @@ class TestReviewHelper(TestCase):
             assert 'did not meet the criteria' in mail.outbox[0].body
 
             assert not sign_mock.called
-            assert not storage.exists(self.file.mirror_file_path)
+            assert storage.exists(self.file.guarded_file_path)
+            assert not storage.exists(self.file.file_path)
             assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
     def test_operating_system_present(self):

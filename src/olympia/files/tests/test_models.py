@@ -2,7 +2,6 @@
 import hashlib
 import json
 import os
-import shutil
 import tempfile
 import zipfile
 from datetime import datetime
@@ -108,10 +107,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f = File.objects.get(pk=67442)
         self.check_delete(f, f.file_path)
 
-    def test_delete_mirror_file_path(self):
-        f = File.objects.get(pk=67442)
-        self.check_delete(f, f.mirror_file_path)
-
     def test_delete_no_file(self):
         # test that the file object can be deleted without the file
         # being present
@@ -162,47 +157,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f.unhide_disabled_file()
         assert storage.exists(f.file_path)
         assert storage.open(f.file_path).size
-
-    def test_unhide_disabled_file_mirroring(self):
-        tmp = tempfile.mkdtemp()
-        self.addCleanup(lambda: shutil.rmtree(tmp))
-        fo = File.objects.get(pk=67442)
-        with storage.open(fo.file_path, 'wb') as fp:
-            fp.write('<pretend this is an xpi>')
-        with storage.open(fo.mirror_file_path, 'wb') as fp:
-            fp.write('<pretend this is an xpi>')
-        fo.status = amo.STATUS_DISABLED
-        fo.save()
-        assert not storage.exists(fo.file_path), 'file not hidden'
-        assert not storage.exists(fo.mirror_file_path), (
-            'file not removed from mirror')
-
-        fo = File.objects.get(pk=67442)
-        fo.status = amo.STATUS_PUBLIC
-        fo.save()
-        assert storage.exists(fo.file_path), 'file not un-hidden'
-        assert storage.exists(fo.mirror_file_path), (
-            'file not copied back to mirror')
-
-    @mock.patch('olympia.files.models.File.copy_to_mirror')
-    def test_copy_to_mirror_on_status_change(self, copy_mock):
-
-        assert amo.STATUS_AWAITING_REVIEW not in amo.MIRROR_STATUSES
-
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_AWAITING_REVIEW
-        f.save()
-        assert not copy_mock.called
-        copy_mock.reset_mock()
-
-        for status in amo.MIRROR_STATUSES:
-            f = File.objects.get(pk=67442)
-            f.status = status
-            f.save()
-            assert copy_mock.called, "Copy not called"
-            f.status = amo.STATUS_AWAITING_REVIEW
-            f.save()
-            copy_mock.reset_mock()
 
     def test_latest_url(self):
         # With platform.
@@ -272,30 +226,15 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert f.generate_filename() == 'addon-0.1.7-fx.xpi'
 
     def clean_files(self, f):
-        if f.mirror_file_path and storage.exists(f.mirror_file_path):
-            storage.delete(f.mirror_file_path)
         if not storage.exists(f.file_path):
             with storage.open(f.file_path, 'w') as fp:
                 fp.write('sample data\n')
-
-    def test_copy_to_mirror(self):
-        f = File.objects.get(id=67442)
-        self.clean_files(f)
-        f.copy_to_mirror()
-        assert storage.exists(f.mirror_file_path)
 
     def test_generate_hash(self):
         f = File()
         f.version = Version.objects.get(pk=81551)
         fn = self.xpi_path('delicious_bookmarks-2.1.106-fx')
         assert f.generate_hash(fn).startswith('sha256:fd277d45ab44f6240e')
-
-    def test_file_is_mirrorable(self):
-        f = File.objects.get(pk=67442)
-        assert f.is_mirrorable()
-
-        f.update(status=amo.STATUS_DISABLED)
-        assert not f.is_mirrorable()
 
     def test_addon(self):
         f = File.objects.get(pk=67442)
