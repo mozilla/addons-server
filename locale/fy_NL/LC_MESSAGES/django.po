@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-15 19:10+0000\n"
+"PO-Revision-Date: 2016-12-15 19:11+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5861,19 +5861,19 @@ msgstr "Diskusjearje mei op ús <a href=\"%(forum_url)s\">foarums</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Selektearje in headerôfbylding foar jo tema."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 pixels"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "300 KB max"
-msgstr ""
+msgstr "Maksimaal 300 KB"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG of JPG"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to top-right"
