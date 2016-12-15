@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-12-09 15:39+0000\n"
+"PO-Revision-Date: 2016-12-15 19:10+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5847,17 +5847,17 @@ msgstr "Folgjende stappen:"
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "Jou mear details oer jo tema troch <a href=\"%(edit_url)s\">de listopname te bewurkjen</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Besjoch en abonnearje jo op de <a href=\"%(feed_url)s\">aktiviteitenfeed</a> fan jo tema om op de hichte te bliuwen fan beoardielingen, kolleksjes en mear."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Diskusjearje mei op ús <a href=\"%(forum_url)s\">foarums</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a header image for your Theme."
