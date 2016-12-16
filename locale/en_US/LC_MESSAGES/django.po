@@ -5225,7 +5225,7 @@ msgstr "Version Notes"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
+msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr "Your add-on has been signed and it's ready to use. You can download it here:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
