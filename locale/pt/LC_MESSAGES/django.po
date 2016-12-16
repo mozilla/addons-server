@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-01 06:45+0000\n"
+"POT-Creation-Date: 2016-12-16 15:16+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5210,7 +5210,7 @@ msgstr "Notas da versão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
+msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr "O seu extra foi assinado e está pronto a ser utilizado. Pode descarregá-lo aqui:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
