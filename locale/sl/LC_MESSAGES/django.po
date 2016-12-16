@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-16 21:48+0000\n"
+"PO-Revision-Date: 2016-12-16 22:11+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5245,9 +5245,8 @@ msgid "Upload Add-on"
 msgstr "Naloži dodatek"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Kje bo različica objavljena"
+msgstr "Kje gostiti datoteko"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5275,9 +5274,8 @@ msgid "Administrative overrides"
 msgstr "Razveljavitve administratorja"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Pošlji različico za pregled"
+msgstr "Pošlji datoteko za pregled"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5378,9 +5376,8 @@ msgid "Listed Version:"
 msgstr "Navedena različica:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "To je različica dodatka, ki se bo namestila, ko uporabnik klikne gumb Namesti na addons.mozilla.org. Velja samo za dodatke na seznamu."
+msgstr "To je različica dodatka, ki se bo namestila, ko uporabnik klikne gumb Namesti na addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Next Listed Version:"
@@ -6310,9 +6307,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Stalno brskate po zaznamkih? Z eno samo potezo svoje sezname enostavno prikažite na zaslonu."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Obogatite YouTube {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
