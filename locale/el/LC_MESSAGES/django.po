@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-01 06:45+0000\n"
-"PO-Revision-Date: 2016-08-28 09:00+0000\n"
+"PO-Revision-Date: 2016-12-16 19:06+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2077,7 +2077,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py src/olympia/users/forms.py
 msgid "No links are allowed."
-msgstr ""
+msgstr "Δεν επιτρέπονται σύνδεσμοι."
 
 #: src/olympia/bandwagon/forms.py
 msgid "This url is already in use by another collection"
@@ -2395,11 +2395,11 @@ msgstr "Είστε σίγουροι;"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes"
-msgstr ""
+msgstr "Ναι"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "No"
-msgstr ""
+msgstr "Όχι"
 
 #. {0} is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
@@ -5512,9 +5512,8 @@ msgid "Blog"
 msgstr "Ιστολόγιο"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Υποβολή πρόσθετου"
+msgstr "Είσοδος"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy
@@ -5543,18 +5542,16 @@ msgid "Automated code tests for your add-on."
 msgstr "Παρακαλούμε ολοκληρώστε το πρόσθετο σας."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Έλεγχος συμβατότητας προσθέτου"
+msgstr "Έλεγχος συμβατότητας"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Αναφορές συμβατότητας πρόσθετων"
+msgstr "Αναφορά συμβατότητας"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -6018,9 +6015,8 @@ msgid "Re-enable Version"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Close Review History"
-msgstr "Επιθεώρηση Ιστορικού"
+msgstr "Κλείσιμο ιστορικού αξιολόγησης"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
@@ -6031,18 +6027,16 @@ msgid "Validate now."
 msgstr "Επικύρωση τώρα."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Αίτηση πλήρους αξιολόγησης"
+msgstr "Απαίτηση αξιολόγησης"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr "Ακύρωση αιτήματος αξιολόγησης"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Loading Review History..."
-msgstr "Ιστορικό Επιθεωρήσεων σας"
+msgstr "Φόρτωση ιστορικού αξιολόγησης..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
@@ -6058,9 +6052,8 @@ msgid "on"
 msgstr "Εικονίδιο"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Leave a reply"
-msgstr "Γράψτε απάντηση"
+msgstr "Υποβάλετε μια απάντηση"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
@@ -6096,9 +6089,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Προβολή άλλων εκδόσεων"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6132,9 +6124,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Δείτε όλες τις εκδόσεις"
+msgstr "Όλες οι εκδόσεις"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6376,18 +6367,17 @@ msgstr "Κάποιος άλλος αξιολογεί αυτό το θέμα"
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
-#, fuzzy
 msgid "theme, reviewer, or comment"
-msgstr "εφαρμογές, κριτικοί, ή σχόλια"
+msgstr "θέμα, κριτής ή σχόλιο"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
 msgstr ""
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Κατάσταση:"
+msgstr "[κατάσταση:%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
@@ -6398,9 +6388,8 @@ msgid "Updates"
 msgstr "Ενημερώσεις"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Περισσότερα πρόσθετα"
+msgstr "Νέα πρόσθετα"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6426,18 +6415,16 @@ msgstr ""
 # Firefox,
 # Sunbird
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Πρόσθετα {0}"
-msgstr[1] "Πρόσθετα {0}"
+msgstr[0] "Νέο πρόσθετο ({0})"
+msgstr[1] "Νέα πρόσθετα ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Ενημερώθηκε {0}"
-msgstr[1] "Ενημερώθηκε {0}"
+msgstr[0] "Ενημέρωση ({0})"
+msgstr[1] "Ενημερώσεις ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
