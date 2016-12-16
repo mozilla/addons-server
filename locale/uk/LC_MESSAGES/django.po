@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-12 18:25+0000\n"
+"PO-Revision-Date: 2016-12-16 15:41+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5547,9 +5547,8 @@ msgid "Blog"
 msgstr "Блог"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Підписати додаток"
+msgstr "Увійти"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy
@@ -11383,6 +11382,5 @@ msgid "Addon"
 msgstr "Додаток"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Результати валідації"
+msgstr "Результат валідації"
