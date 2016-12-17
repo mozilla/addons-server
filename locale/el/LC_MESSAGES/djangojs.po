@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-16 19:00+0000\n"
+"PO-Revision-Date: 2016-12-17 08:40+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -115,7 +115,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Η υποβολή σας θα υπογραφεί αυτόματα."
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
@@ -379,15 +379,15 @@ msgstr "Διαχειριστής προσθέτων"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Προωθητική ενέργεια διαχείρισης προσθέτων"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Προτεινόμενα διαχείρισης προσθέτων"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Διαχείριση προσθέτων - Μάθετε περισσότερα"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
@@ -1039,19 +1039,19 @@ msgstr "Δεν βρέθηκαν σημειώσεις έκδοσης"
 
 #: static/js/zamboni/editors.js
 msgid "Review Text"
-msgstr ""
+msgstr "Κείμενο αξιολόγησης"
 
 #: static/js/zamboni/editors.js
 msgid "Review notes found"
-msgstr ""
+msgstr "Βρέθηκαν σημειώσεις αξιολόγησης"
 
 #: static/js/zamboni/editors.js
 msgid "Average Reviews"
-msgstr ""
+msgstr "Μέσες αξιολογήσεις"
 
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Αριθμός αξιολογήσεων"
 
 #: static/js/zamboni/editors.js
 msgid "Error loading translation"
@@ -1059,11 +1059,11 @@ msgstr "Σφάλμα στο φόρτωμα της μετάφρασης"
 
 #: static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "Παράβλεψη μηνύματος σε μελλοντικές ενημερώσεις"
 
 #: static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Σοβαρότητα για αυτοματοποιημένη υπογραφή:"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."
@@ -1124,7 +1124,7 @@ msgstr "Θέμα"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
-msgstr ""
+msgstr "Κριτικής"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Status"
@@ -1152,11 +1152,11 @@ msgstr "Προειδοποίηση"
 
 #: static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Προτάσεις για να περάσετε την αυτοματοποιημένη υπογραφή:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} γραμμή {1} στήλη {2}"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1}"
