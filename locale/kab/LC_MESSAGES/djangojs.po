@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-17 22:05+0000\n"
+"PO-Revision-Date: 2016-12-17 22:21+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1077,7 +1077,7 @@ msgstr[1] "<b>{0}</b> n isekkilen ttwattun."
 
 #: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Tamahilt-agi tensa akka tura makken nettseggim asmel web. Uɣal-d ticki. Tanemmirt-ik."
 
 #: static/js/zamboni/l10n.js
 msgid "Remove this localization"
@@ -1085,7 +1085,7 @@ msgstr "Kkes asideg agi"
 
 #: static/js/zamboni/password-strength.js
 msgid "Password strength:"
-msgstr ""
+msgstr "Tazmert n wawal uffir:"
 
 #: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
@@ -1099,7 +1099,7 @@ msgstr "Talɣut n usuter"
 
 #: static/js/zamboni/themes_review.js
 msgid "Flagged"
-msgstr ""
+msgstr "Yettwacreḍ"
 
 #: static/js/zamboni/themes_review.js
 msgid "Duplicate"
@@ -1123,7 +1123,7 @@ msgstr "Asentel"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
-msgstr ""
+msgstr "Amcegger"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Status"
@@ -1171,7 +1171,7 @@ msgstr "Asentem n uzegrir ur yeddi ara."
 
 #: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Asentem n uzegrir yedda."
 
 #: static/js/zamboni/validator.js
 msgid "{0} error"
@@ -1182,18 +1182,18 @@ msgstr[1] "{0} tuccḍiwin"
 #: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} alɣu"
+msgstr[1] "{0} ilɣa"
 
 #: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} tamawt"
+msgstr[1] "{0} timawin"
 
 #: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Asentem ur yezmir ara ad yemmed neɣ yemmed s tuccḍiwin"
 
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
@@ -1209,7 +1209,7 @@ msgstr "Yesra lqem amaynut n {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Unreviewed"
-msgstr ""
+msgstr "Ur yettwacegger ara"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Experimental <span>(Learn More)</span>"
@@ -1237,7 +1237,7 @@ msgstr "Asebeded..."
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Azegrir-agi yettwacegger di tazwara sɣuṛ Mozilla."
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Keep it"
