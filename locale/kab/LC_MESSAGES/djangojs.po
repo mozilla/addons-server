@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-01 15:17+0000\n"
+"PO-Revision-Date: 2016-12-17 20:00+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -470,19 +470,19 @@ msgstr "Taggayt tagejdant n umray ifazen"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Taggayt tagejdant yettaszemlen seg imezwura"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Taggayt tagekdant yettwasnen aṭas"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Taggayt tagejdant yettwarnan melmi kan"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Snirem tabdart n usmizzwer n yetran"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
