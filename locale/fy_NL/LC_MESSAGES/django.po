@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-18 12:12+0000\n"
+"PO-Revision-Date: 2016-12-16 21:28+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5153,7 +5153,6 @@ msgid "Version Signed"
 msgstr "Ferzje ûndetekene"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr "Jo binne klear! Dizze ferzje is ûndertekene en klear foar eigen fersprieding. Jo kinne him downloade troch op ûndersteande knop te klikken."
 
