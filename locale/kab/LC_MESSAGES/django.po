@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-17 22:24+0000\n"
+"PO-Revision-Date: 2016-12-18 09:40+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1723,14 +1723,12 @@ msgid "Approval notes changed"
 msgstr ""
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Turagt n tengalt aɣbalu i {addon}"
+msgstr "Tangalt aɣbalu tuli i {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Turagt n tengalt aɣbalu"
+msgstr "Tangalt aɣbalu tuli"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -4401,9 +4399,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Edit Information"
-msgstr "Talɣut ɣef lqem"
+msgstr "Ẓreg talɣut"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -4841,9 +4838,8 @@ msgid "Delete this add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "Ugar ɣef uzegrir agi"
+msgstr "Ẓreg talɣut ɣef uzegrir-agi."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -4924,23 +4920,20 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Azen asentel amaynut"
+msgstr "Azen afaylu amaynut"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Azen azegrir amaynut"
+msgstr "Azen lqem amaynut"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Ugar n izegrar"
+msgstr "Seglem azegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Add-on URL:"
@@ -4967,19 +4960,16 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "Imayl n tallalt"
+msgstr "Imayl n tallalt:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Asmel n tallalt"
+msgstr "Asmel n tallalt:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Turagt"
+msgstr "Turagt:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
@@ -4990,9 +4980,8 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Ur tɛawed ara degs tmuɣli"
+msgstr "Iwenitten i umcegger:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
@@ -5003,14 +4992,12 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Submit Version for Review"
-msgstr "Aɛiwed n tɣuṛi amaynut n uzegrir"
+msgstr "Azen lqem i ucegger"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Describe Version"
-msgstr "Ugar n izegrar"
+msgstr "Seglem lqem"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Release Notes:"
@@ -5049,23 +5036,20 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Sefrek"
+msgstr "Sefrek asebter n usnas"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Lqem {0}"
+msgstr "Ẓreg lqem {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "Tizmilin n lqem"
+msgstr "Lqem yettwazmel"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
@@ -5092,9 +5076,8 @@ msgid "Add-on Distribution Agreement"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Izegrar yettusweḥlen"
+msgstr "Sali azegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host File"
@@ -5105,9 +5088,8 @@ msgid "Where to Host Version"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Version"
-msgstr "Lqem n usnas"
+msgstr "Sali lqem"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5126,14 +5108,12 @@ msgid "Administrative overrides"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Aɛiwed n tɣuṛi amaynut n uzegrir"
+msgstr "Azen afaylu i ucegger"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "Azegrir"
+msgstr "Zmel azegrir"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
@@ -5222,18 +5202,16 @@ msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Ugar n izegrar"
+msgstr "Lqem yettwabedren:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Ugar n izegrar"
+msgstr "Lqem yettwabedren d-iteddun:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5244,9 +5222,8 @@ msgid "Queues are not reviewed strictly in order"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
-msgstr "Ugar n izegrar"
+msgstr "Lqem aneggaru:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
@@ -5390,7 +5367,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "Alemmas n uneflay n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5401,9 +5378,8 @@ msgid "Blog"
 msgstr "Ablug"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Azegrir"
+msgstr "Kcem"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Customize Your Firefox"
@@ -5428,18 +5404,16 @@ msgid "Automated code tests for your add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Amṣadan"
+msgstr "Asenqad n umṣada"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Amṣadan"
+msgstr "Amazan n umṣada"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5968,9 +5942,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Wali ileqman nniḍen"
+msgstr "Ileqman yettwabedren"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
