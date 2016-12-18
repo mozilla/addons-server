@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-18 10:01+0000\n"
+"PO-Revision-Date: 2016-12-18 10:21+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -265,7 +265,7 @@ msgstr "Aneflay n uzegrir-agi isutur-ak-d ad tmuddeḍ  cwiṭ n tewsa i <a href
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr ""
+msgstr "Mozilla tesseḥbibir ɣef unagraw n tasenwennaḍt n uneflay uzmir, iteggen lḥir. Attekki yinek afrayan ad imudd tallalt i tneflit d-iteddun ɣef uzegrir-agi."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Make a Contribution"
@@ -274,17 +274,17 @@ msgstr "Ttekki"
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "Ttekki di tneflit iteddun n <strong>%(addon_name)s</strong> s umuddu n cwiṭ n tewsa s <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "Akke  ad d-beggneḍ afus d-ttmuddud i <b>%(addon_name)s</b>, aneflay  yessutur cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a> s <a href=\"%(paypal_url)s\">Paypal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "Akke  ad d-beggneḍ afus d-ttmuddud i <b>%(addon_name)s</b>, aneflay  yessutur cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a> s <a href=\"%(paypal_url)s\">Paypal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
@@ -375,11 +375,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Visible"
-msgstr ""
+msgstr "Uman"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Invisible"
-msgstr ""
+msgstr "Aruman"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -389,7 +389,7 @@ msgstr "Izegrar ilaqen"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Rating"
-msgstr ""
+msgstr "Asezmel"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/stats/templates/stats/addon_report_menu.html
 #: src/olympia/stats/templates/stats/collection_report_menu.html
@@ -629,7 +629,7 @@ msgstr "Turagt"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/base.py
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Acegger yettṛaǧun"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
@@ -675,7 +675,7 @@ msgstr "sɣuṛ {0} di {1}"
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/helpers.py src/olympia/reviews/templates/reviews/impala/reviews_link.html
 #: src/olympia/reviews/templates/reviews/review_list.html src/olympia/reviews/templates/reviews/reviews_link.html
 msgid "Not yet rated"
-msgstr ""
+msgstr "Ur yettwasezmel ara"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "<b>{0}</b> users"
@@ -839,7 +839,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Submit review"
-msgstr ""
+msgstr "Azen acegger"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
@@ -852,12 +852,12 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Amnir n ucegger"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Reviews"
-msgstr ""
+msgstr "Iceggiren"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 #, python-format
@@ -872,8 +872,8 @@ msgstr ""
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Wali akk iceggiren n uzegrir-agi"
+msgstr[1] "Wali akk %(cnt)s n iceggiren n uzegrir-agi"
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
@@ -1507,7 +1507,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Review requested"
-msgstr ""
+msgstr "Aceggir yettwasuter"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} more information requested."
@@ -1603,11 +1603,11 @@ msgstr "{user} yeqbel {review} i {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Aceggir {review} n {addon} yettwakkes."
 
 #: src/olympia/amo/log.py
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} yekkes {review} n {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Application max version for {version} updated."
@@ -1671,7 +1671,7 @@ msgstr "{review} i {addon} yettusnifel."
 
 #: src/olympia/amo/log.py
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} yettacegger."
 
 #: src/olympia/amo/log.py
 msgid "User {0.name} added to {group}."
@@ -1712,7 +1712,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Tiririt n umcegger"
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed for {addon} {version}."
@@ -3918,7 +3918,7 @@ msgstr[1] ""
 
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
-msgstr ""
+msgstr "Acegger"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -3970,7 +3970,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
 msgid "User Reviews"
-msgstr ""
+msgstr "Iceggiren n useqdac"
 
 #: src/olympia/devhub/views.py
 msgid "Changes successfully saved."
@@ -4148,7 +4148,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Imceggiren AMO"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
@@ -9501,15 +9501,15 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Flagged for review"
-msgstr ""
+msgstr "Yettwacreḍ i ucegger"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Report this review"
-msgstr ""
+msgstr "Mmel acegger-agi"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Reply to review"
-msgstr ""
+msgstr "Err i ucegger-agi"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit reply"
@@ -9517,7 +9517,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit review"
-msgstr ""
+msgstr "Ẓreg acegger"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Delete reply"
@@ -9526,19 +9526,19 @@ msgstr ""
 #. {0} is an add-on name.
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: Iceggiren"
 
 #. {0} is an addon name.
 #: src/olympia/reviews/templates/reviews/mobile/add.html src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Iceggiren n {0}"
 
 #. {0} is a number.
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> acegger n uzegrir-agi"
+msgstr[1] "<b>{0}</b> iceggiren n uzegrir-agi"
 
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html
@@ -9549,7 +9549,7 @@ msgstr ""
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
+msgstr[0] "Acegger n %(addon)s sɣuṛ %(user)s"
 msgstr[1] ""
 
 #: src/olympia/reviews/templates/reviews/review_list.html
