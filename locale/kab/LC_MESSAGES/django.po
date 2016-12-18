@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-18 09:40+0000\n"
+"PO-Revision-Date: 2016-12-18 10:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -219,17 +219,17 @@ msgstr "Azegrir agi yettwacreḍ d armitan sɣur ineflayen ines."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "Aneflay n uzegrir-agi isutur-ak-d tallalt akken ad iseddu taneflit ines ticki tmuddeḍ-as cwiṭ n tewsa."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "Aneflay n uzegrir-agi isutur-ak-d ad tmuddeḍ  cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "Aneflay n uzegrir-agi isutur-ak-d tallalt s umuddu n cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
@@ -256,12 +256,12 @@ msgstr "D acu-t wa?"
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
+msgstr "Aneflay n uzegrir-agi isutur-ak-d ad tmuddeḍ  cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a> ma tḥemled aseqdec n uzegrir-agi."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
+msgstr "Aneflay n uzegrir-agi isutur-ak-d ad tmuddeḍ  cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a> ma tḥemled aseqdec n uzegrir-agi."
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
