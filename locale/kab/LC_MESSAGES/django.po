@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-18 10:21+0000\n"
+"PO-Revision-Date: 2016-12-18 10:25+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9457,7 +9457,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Tiririt i ucegger sɣuṛ {0}"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
@@ -9491,13 +9491,13 @@ msgstr ""
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Aseqdac-agi ɣur-s <a href=\"%(user_review_url)s\">acegger yezrin</a> n uzegrir-agi."
+msgstr[1] "Aseqdac-agi ɣur-s <a href=\"%(user_review_url)s\"> %(cnt)s iceggiren yezrin</a> n uzegriz-agi."
 
 #: src/olympia/reviews/templates/reviews/review.html
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "Aseqdac-agi ɣur-s <a href=\"%(user_review_url)s\">iceggiren nniḍen</a> n uzegriz-agi."
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Flagged for review"
@@ -9550,7 +9550,7 @@ msgstr ""
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
 msgstr[0] "Acegger n %(addon)s sɣuṛ %(user)s"
-msgstr[1] ""
+msgstr[1] "Iceggiren n %(addon)s sɣuṛ %(user)s"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "No reviews found."
