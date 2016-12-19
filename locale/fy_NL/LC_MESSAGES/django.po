@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-16 21:28+0000\n"
+"PO-Revision-Date: 2016-12-19 13:41+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5889,7 +5889,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &times; 100 pixels"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to bottom-left"
@@ -5923,11 +5923,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Files"
-msgstr ""
+msgstr "Bestannen"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload Another File"
-msgstr ""
+msgstr "Noch in bestân oplade"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid ""
@@ -5949,7 +5949,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
-msgstr ""
+msgstr "Boarnekoade"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
@@ -5961,11 +5961,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add File"
-msgstr ""
+msgstr "Bestân tafoegje"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Bestân {file_id} ({platform})"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
@@ -5983,7 +5983,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
-msgstr ""
+msgstr "0 bestannen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
@@ -5995,15 +5995,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
-msgstr ""
+msgstr "Net falidearre."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Validate now."
-msgstr ""
+msgstr "No falidearje."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Review"
-msgstr ""
+msgstr "Beoardieling oanfreegje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
