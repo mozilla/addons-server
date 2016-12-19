@@ -73,7 +73,7 @@ class BaseTestEdit(TestCase):
         self.addon = self.get_addon()
 
     def get_addon(self):
-        return Addon.with_unlisted.no_cache().get(id=3615)
+        return Addon.objects.no_cache().get(id=3615)
 
     def get_url(self, section, edit=False):
         return get_section_url(self.addon, section, edit)

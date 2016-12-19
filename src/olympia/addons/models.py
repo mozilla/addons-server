@@ -205,22 +205,18 @@ class AddonQuerySet(caching.CachingQuerySet):
 
 class AddonManager(ManagerBase):
 
-    def __init__(self, include_deleted=False, include_unlisted=False):
-        # DO NOT change the default value of include_deleted and
-        # include_unlisted unless you've read through the comment just above
-        # the Addon managers declaration/instantiation and understand the
-        # consequences.
+    def __init__(self, include_deleted=False):
+        # DO NOT change the default value of include_deleted unless you've read
+        # through the comment just above the Addon managers
+        # declaration/instantiation and understand the consequences.
         ManagerBase.__init__(self)
         self.include_deleted = include_deleted
-        self.include_unlisted = include_unlisted
 
     def get_queryset(self):
         qs = super(AddonManager, self).get_queryset()
         qs = qs._clone(klass=AddonQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
-        if not self.include_unlisted:
-            qs = qs.exclude(is_listed=False)
         return qs.transform(Addon.transformer)
 
     def id_or_slug(self, val):
@@ -391,10 +387,9 @@ class Addon(OnChangeMixin, ModelBase):
     # mistake. You thus want the CLASS of the first one to be filtered by
     # default.
     # We don't control the instantiation, but AddonManager sets include_deleted
-    # and include_unlisted to False by default, so filtering is enabled by
-    # default. This is also why it's not repeated for 'objects' below.
-    unfiltered = AddonManager(include_deleted=True, include_unlisted=True)
-    with_unlisted = AddonManager(include_unlisted=True)
+    # to False by default, so filtering is enabled by default. This is also why
+    # it's not repeated for 'objects' below.
+    unfiltered = AddonManager(include_deleted=True)
     objects = AddonManager()
 
     class Meta:

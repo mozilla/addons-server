@@ -272,7 +272,7 @@ class TestVersion(TestCase):
                           is_listed=True)
         res = self.client.post(self.unlist_url)
         assert res.status_code == 302
-        addon = Addon.with_unlisted.get(id=3615)
+        addon = Addon.objects.get(id=3615)
         assert addon.status == amo.STATUS_NULL
         assert not addon.is_listed
         latest_version = addon.find_latest_version(
@@ -291,7 +291,7 @@ class TestVersion(TestCase):
                           is_listed=True)
         res = self.client.post(self.unlist_url)
         assert res.status_code == 404
-        addon = Addon.with_unlisted.get(id=3615)
+        addon = Addon.objects.get(id=3615)
         assert addon.is_listed
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -307,7 +307,7 @@ class TestVersion(TestCase):
 
         res = self.client.post(self.unlist_url)
         assert res.status_code == 302
-        addon = Addon.with_unlisted.get(id=3615)
+        addon = Addon.objects.get(id=3615)
         assert addon.status == amo.STATUS_NULL
         assert not addon.is_listed
 
@@ -325,7 +325,7 @@ class TestVersion(TestCase):
                           is_listed=True)
         res = self.client.post(self.unlist_url)
         assert res.status_code == 302
-        addon = Addon.with_unlisted.get(id=3615)
+        addon = Addon.objects.get(id=3615)
         assert addon.status == amo.STATUS_NULL
         assert not addon.is_listed
         assert not addon.disabled_by_user

@@ -616,9 +616,9 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         r'^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
         r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
     # Permission classes disallow access to non-public/unlisted add-ons unless
-    # logged in as a reviewer/addon owner/admin, so the with_unlisted queryset
-    # is fine here.
-    queryset = Addon.with_unlisted.all()
+    # logged in as a reviewer/addon owner/admin, so we don't have to filter the
+    # base queryset here.
+    queryset = Addon.objects.all()
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
 
     def get_queryset(self):

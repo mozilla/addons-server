@@ -1444,7 +1444,7 @@ class BaseTestQueueSearch(SearchTest):
         name = 'Not Admin Reviewed'
         d = self.generate_file(name)
         uni = 'フォクすけといっしょ'.decode('utf8')
-        a = Addon.with_unlisted.get(pk=d['addon'].id)
+        a = Addon.objects.get(pk=d['addon'].id)
         a.name = {'ja': uni}
         a.save()
         r = self.client.get('/ja/' + self.url, {'text_query': uni},
@@ -1472,7 +1472,7 @@ class BaseTestQueueSearch(SearchTest):
         name = 'Not Admin Reviewed'
         d = self.generate_file(name)
         uni = 'フォクすけといっしょ@site.co.jp'.decode('utf8')
-        a = Addon.with_unlisted.get(pk=d['addon'].id)
+        a = Addon.objects.get(pk=d['addon'].id)
         a.support_email = {'ja': uni}
         a.save()
         r = self.client.get('/ja/' + self.url, {'text_query': uni},

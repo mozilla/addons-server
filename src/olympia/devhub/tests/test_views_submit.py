@@ -77,7 +77,7 @@ class TestSubmitBase(TestCase):
         self.addon = self.get_addon()
 
     def get_addon(self):
-        return Addon.with_unlisted.no_cache().get(pk=3615)
+        return Addon.objects.no_cache().get(pk=3615)
 
     def get_version(self):
         return self.get_addon().versions.latest()
@@ -221,7 +221,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
     @mock.patch('olympia.editors.helpers.sign_file')
     def test_success_unlisted(self, mock_sign_file):
         """Sign automatically."""
-        assert Addon.with_unlisted.count() == 0
+        assert Addon.objects.count() == 0
         # No validation errors or warning.
         self.upload = self.get_upload(
             'extension.xpi',
@@ -233,7 +233,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
                                        passed_auto_validation=True
                                        )))
         self.post(listed=False)
-        addon = Addon.with_unlisted.get()
+        addon = Addon.objects.get()
         assert not addon.is_listed
         version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -244,7 +244,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
 
     @mock.patch('olympia.editors.helpers.sign_file')
     def test_success_unlisted_fail_validation(self, mock_sign_file):
-        assert Addon.with_unlisted.count() == 0
+        assert Addon.objects.count() == 0
         self.upload = self.get_upload(
             'extension.xpi',
             validation=json.dumps(dict(errors=0, warnings=0, notices=2,
@@ -255,7 +255,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
                                        passed_auto_validation=False
                                        )))
         self.post(listed=False)
-        addon = Addon.with_unlisted.get()
+        addon = Addon.objects.get()
         assert not addon.is_listed
         version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)

@@ -18,7 +18,7 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False,
     When allow_editors is True, an editor can view the page.
     """
     def decorator(f):
-        @addon_view_factory(qs=Addon.with_unlisted.all)
+        @addon_view_factory(qs=Addon.objects.all)
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):

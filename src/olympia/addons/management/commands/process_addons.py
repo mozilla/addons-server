@@ -40,10 +40,9 @@ class Command(BaseCommand):
         if not task:
             raise CommandError('Unknown task provided. Options are: %s'
                                % ', '.join(tasks.keys()))
-        base_manager = Addon.with_unlisted
-        pks = (base_manager.filter(*task['qs'])
-                           .values_list('pk', flat=True)
-                           .order_by('-last_updated'))
+        pks = (Addon.objects.filter(*task['qs'])
+                            .values_list('pk', flat=True)
+                            .order_by('-last_updated'))
         if 'pre' in task:
             # This is run in process to ensure its run before the tasks.
             pks = task['pre'](pks)

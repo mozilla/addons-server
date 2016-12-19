@@ -43,7 +43,7 @@ def get_files(addon_guids):
     """
     # Get all the add-ons that have a GUID from the list, and which are either
     # reviewed or awaiting a review.
-    addons = Addon.with_unlisted.filter(
+    addons = Addon.objects.filter(
         guid__in=addon_guids,
         status__in=amo.VALID_ADDON_STATUSES)
     # Of all those add-ons, we return the list of latest version files that are

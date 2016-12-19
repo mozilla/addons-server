@@ -204,25 +204,21 @@ class TestAddonManager(TestCase):
 
     def test_managers_public(self):
         assert self.addon in Addon.objects.all()
-        assert self.addon in Addon.with_unlisted.all()
         assert self.addon in Addon.unfiltered.all()
 
     def test_managers_unlisted(self):
         self.change_addon_visibility(listed=False)
-        assert self.addon not in Addon.objects.all()
-        assert self.addon in Addon.with_unlisted.all()
+        assert self.addon in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
 
     def test_managers_unlisted_deleted(self):
         self.change_addon_visibility(deleted=True, listed=False)
         assert self.addon not in Addon.objects.all()
-        assert self.addon not in Addon.with_unlisted.all()
         assert self.addon in Addon.unfiltered.all()
 
     def test_managers_deleted(self):
         self.change_addon_visibility(deleted=True, listed=True)
         assert self.addon not in Addon.objects.all()
-        assert self.addon not in Addon.with_unlisted.all()
         assert self.addon in Addon.unfiltered.all()
 
     def test_featured(self):
@@ -329,13 +325,12 @@ class TestAddonManager(TestCase):
         collection = self.addon.collections.first()
         assert collection.addons.get() == self.addon
 
-        # Addon shouldn't be listed in collection.addons if it's deleted or
-        # unlisted.
+        # Addon shouldn't be listed in collection.addons if it's deleted.
 
         # Unlisted.
         self.addon.update(is_listed=False)
         collection = Collection.objects.get(pk=collection.pk)
-        assert collection.addons.count() == 0
+        assert collection.addons.get() == self.addon
 
         # Deleted and unlisted.
         self.addon.update(status=amo.STATUS_DELETED)
@@ -1456,7 +1451,7 @@ class TestAddonModels(TestCase):
         addon.versions.update(license=None)
         addon.categories.all().delete()
         delete_translation(addon, 'summary')
-        addon = Addon.with_unlisted.get(id=3615)
+        addon = Addon.objects.get(id=3615)
         assert addon.has_complete_metadata()  # Still complete
         assert not addon.has_complete_metadata(has_listed_versions=True)
 

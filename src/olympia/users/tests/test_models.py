@@ -194,16 +194,6 @@ class TestUserProfile(TestCase):
         addons = UserProfile.objects.get(id=2519).my_addons()
         assert sorted(a.name for a in addons) == [addon1.name, addon2.name]
 
-    def test_my_addons_with_unlisted_addons(self):
-        """Test helper method can return unlisted addons."""
-        addon1 = Addon.objects.create(name='test-1', type=amo.ADDON_EXTENSION)
-        AddonUser.objects.create(addon_id=addon1.id, user_id=2519, listed=True)
-        addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION,
-                                      is_listed=False)
-        AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
-        addons = UserProfile.objects.get(id=2519).my_addons(with_unlisted=True)
-        assert sorted(a.name for a in addons) == [addon1.name, addon2.name]
-
     def test_mobile_collection(self):
         u = UserProfile.objects.get(id='4043307')
         assert not Collection.objects.filter(author=u)

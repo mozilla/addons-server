@@ -52,20 +52,20 @@ def reporter(request):
     if query:
         qs = None
         if query.isdigit():
-            qs = Addon.with_unlisted.filter(id=query)
+            qs = Addon.objects.filter(id=query)
         if not qs:
-            qs = Addon.with_unlisted.filter(slug=query)
+            qs = Addon.objects.filter(slug=query)
         if not qs:
-            qs = Addon.with_unlisted.filter(guid=query)
+            qs = Addon.objects.filter(guid=query)
         if not qs and len(query) > 4:
             qs = CompatReport.objects.filter(guid__startswith=query)
         if qs:
             guid = qs[0].guid
-            addon = Addon.with_unlisted.get(guid=guid)
+            addon = Addon.objects.get(guid=guid)
             if (addon.has_listed_versions() or
                     owner_or_unlisted_reviewer(request, addon)):
                 return redirect('compat.reporter_detail', guid)
-    addons = (Addon.with_unlisted.filter(authors=request.user)
+    addons = (Addon.objects.filter(authors=request.user)
               if request.user.is_authenticated() else [])
     return render(request, 'compat/reporter.html',
                   dict(query=query, addons=addons))
@@ -74,7 +74,7 @@ def reporter(request):
 @non_atomic_requests
 def reporter_detail(request, guid):
     try:
-        addon = Addon.with_unlisted.get(guid=guid)
+        addon = Addon.objects.get(guid=guid)
     except Addon.DoesNotExist:
         addon = None
     name = addon.name if addon else guid

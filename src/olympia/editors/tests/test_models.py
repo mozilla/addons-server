@@ -39,7 +39,7 @@ def create_addon_file(name, version_str, addon_status, file_status,
         version_kw['channel'] = channel
     app_vr, created_ = AppVersion.objects.get_or_create(
         application=application.id, version='1.0')
-    addon, created_ = Addon.with_unlisted.get_or_create(
+    addon, created_ = Addon.objects.get_or_create(
         name__localized_string=name,
         defaults={'type': addon_type, 'name': name, 'is_listed': listed})
     if admin_review:
@@ -70,7 +70,7 @@ def create_addon_file(name, version_str, addon_status, file_status,
     # to make sure files as in a consistent state:
     version.disable_old_files()
     # Update status *after* we are done creating/modifying version and files:
-    addon = Addon.with_unlisted.get(pk=addon.id)
+    addon = Addon.objects.get(pk=addon.id)
     addon.update(status=addon_status)
     return {'addon': addon, 'version': version, 'file': file_}
 
@@ -81,7 +81,7 @@ def create_search_ext(name, version_str, addon_status, file_status,
         channel = amo.RELEASE_CHANNEL_LISTED
     else:
         channel = amo.RELEASE_CHANNEL_UNLISTED
-    addon, created_ = Addon.with_unlisted.get_or_create(
+    addon, created_ = Addon.objects.get_or_create(
         name__localized_string=name,
         defaults={'type': amo.ADDON_SEARCH, 'name': name, 'is_listed': listed})
     version, created_ = Version.objects.get_or_create(
@@ -89,7 +89,7 @@ def create_search_ext(name, version_str, addon_status, file_status,
     File.objects.create(version=version, filename=u"%s.xpi" % name,
                         platform=amo.PLATFORM_ALL.id, status=file_status)
     # Update status *after* there are files:
-    addon = Addon.with_unlisted.get(pk=addon.id)
+    addon = Addon.objects.get(pk=addon.id)
     addon.update(status=addon_status)
     return addon
 
