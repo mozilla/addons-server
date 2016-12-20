@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-20 11:21+0000\n"
+"PO-Revision-Date: 2016-12-20 11:23+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4753,31 +4753,31 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Rnu tuṭṭfa n ugdil"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html
 msgid "Tests"
-msgstr ""
+msgstr "Ikayaden"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "General Tests"
-msgstr ""
+msgstr "Ikayaden imuta"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Security Tests"
-msgstr ""
+msgstr "Ikayaden n tɣellist"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Extension Tests"
-msgstr ""
+msgstr "Ikayaden n usiɣzef"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Localization Tests"
-msgstr ""
+msgstr "Ikayaden n usideg"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Ikayaden n umṣada"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
 msgid "Hide messages not required for automated signing"
