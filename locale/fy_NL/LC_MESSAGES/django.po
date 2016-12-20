@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-20 11:49+0000\n"
+"PO-Revision-Date: 2016-12-20 12:27+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5955,11 +5955,11 @@ msgstr "Boarnekoade"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "As jo add-on binêre of ferburgen koade befettet, stel dan de boarne hjir beskikber oan beoardielers."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload a new file"
-msgstr ""
+msgstr "In nij bestân oplade"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add File"
@@ -5972,16 +5972,16 @@ msgstr "Bestân {file_id} ({platform})"
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Makke op %(created)s en wizige nei %(status)s op %(status_date)s"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Makke op %(created)s en wizige nei %(status)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
-msgstr ""
+msgstr "Dizze ferzje bewurkje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
@@ -5989,11 +5989,11 @@ msgstr "0 bestannen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Ferzje opnij ynskeakelje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
-msgstr ""
+msgstr "Beoardielingsskiednis slute"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
@@ -6009,31 +6009,31 @@ msgstr "Beoardieling oanfreegje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Beoardielingsfersyk annulearje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Beoardielingssiednis lade…"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Wy hiene in probleem by it opheljen fan beoardielingsopmerkingen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
-msgstr ""
+msgstr "Aldere lade…"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "on"
-msgstr ""
+msgstr "op"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Leave a reply"
-msgstr ""
+msgstr "Beantwurdzje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
-msgstr ""
+msgstr "Antwurdzje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listing visibility"
@@ -6058,11 +6058,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
-msgstr ""
+msgstr "Net fermeld:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr ""
+msgstr "Net ferspried op {0}. Untwikkelers lade nije ferzjes op foar ûndertekening en ferspriede de add-ons sels."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -6070,24 +6070,24 @@ msgstr "Fermelde ferzjes"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Op dit stuit op AMO"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Validation"
-msgstr ""
+msgstr "Falidaasje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Fuortsmite/Utskeakelje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Folgjende ferzje fan dizze add-on"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
-msgstr ""
+msgstr "Aldere ferzjes"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i>?"
@@ -6107,11 +6107,11 @@ msgstr "Alle ferzjes"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Nije ferzje oplade"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Ferzje {version} fuortsmite"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
