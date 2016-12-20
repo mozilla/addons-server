@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-20 11:03+0000\n"
+"PO-Revision-Date: 2016-12-20 11:21+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2643,15 +2643,15 @@ msgstr "Ifecka n unadi"
 
 #: src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Most Users"
-msgstr "Yettwaseqdac aṭaw"
+msgstr "Yettwaseqdac aṭas"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
 msgid "Up & Coming"
-msgstr ""
+msgstr "I teddu-d"
 
 #: src/olympia/browse/views.py
 msgid "Recently Added"
-msgstr ""
+msgstr "Yettwarna melmi kan"
 
 #: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Created"
@@ -2756,7 +2756,7 @@ msgstr "Tiɣbula nniḍen"
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr ""
+msgstr "Issin ugar ɣef <a href=\"http://support.mozilla.com/kb/Search+bar\">ufeggag n unadi</a> di {0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -2970,11 +2970,11 @@ msgstr[1] ""
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/users/templates/users/profile.html
 msgid "View all"
-msgstr ""
+msgstr "Wali akk"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Filter by Application"
-msgstr ""
+msgstr "Imzizdig n usnas"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Report Type"
@@ -3046,11 +3046,11 @@ msgstr "Mozilla"
 
 #: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
-msgstr ""
+msgstr "Arussin"
 
 #: src/olympia/constants/base.py
 msgid "Incomplete"
-msgstr ""
+msgstr "Arummid"
 
 #: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
@@ -3058,7 +3058,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
-msgstr ""
+msgstr "Yettwakkes"
 
 #: src/olympia/constants/base.py
 msgid "Pending approval"
@@ -3078,7 +3078,7 @@ msgstr "Ur d-yettwabder ara"
 
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
-msgstr ""
+msgstr "Aneflay"
 
 #: src/olympia/constants/base.py
 msgid "Viewer"
@@ -3094,7 +3094,7 @@ msgstr "Win illan"
 
 #: src/olympia/constants/base.py
 msgid "Extension"
-msgstr ""
+msgstr "Asiɣzef"
 
 #: src/olympia/constants/base.py
 msgid "Complete Theme"
@@ -3102,40 +3102,40 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Search Engine"
-msgstr ""
+msgstr "Amsedday n unadi"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "Akemmus utlayan (Asnas)"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Akemmus utlayan (azegrir)"
 
 #: src/olympia/constants/base.py
 msgid "Plugin"
-msgstr ""
+msgstr "Azegrir"
 
 #: src/olympia/constants/base.py src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/themes/deleted.html
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Theme"
-msgstr ""
+msgstr "Asentel"
 
 #: src/olympia/constants/base.py
 msgid "Dictionaries"
-msgstr ""
+msgstr "Imawalen"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Ikemmusen utlayanen (Asnas)"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Ikemmusen utlayanen (azegrir)"
 
 #: src/olympia/constants/base.py
 msgid "Plugins"
-msgstr ""
+msgstr "Izegrar"
 
 #: src/olympia/constants/base.py
 msgid "Only ask on this add-on's page and developer profile"
@@ -3152,11 +3152,11 @@ msgstr ""
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
-msgstr ""
+msgstr "Wiyaḍ"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
-msgstr ""
+msgstr "Tasureft"
 
 #: src/olympia/constants/base.py
 msgid "Release"
@@ -3164,7 +3164,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Change"
-msgstr ""
+msgstr "Snifel"
 
 #: src/olympia/constants/base.py
 msgid "App"
@@ -3172,7 +3172,7 @@ msgstr "Asnas"
 
 #: src/olympia/constants/base.py
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 #: src/olympia/constants/base.py
 msgid "Manual Reviewer Points"
@@ -4651,7 +4651,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "Sali aswir n SDK?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
@@ -4671,7 +4671,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
@@ -4701,7 +4701,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on icon"
-msgstr ""
+msgstr "Tignit n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid ""
@@ -4711,7 +4711,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Fren tignit i uzegrir inek:"
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
@@ -4741,7 +4741,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Screenshots"
-msgstr ""
+msgstr "Tuṭṭfiwin n wegdil"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Please provide at least one screen shot of your add-on:"
