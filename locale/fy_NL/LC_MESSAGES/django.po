@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-19 13:41+0000\n"
+"PO-Revision-Date: 2016-12-20 11:49+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5881,11 +5881,11 @@ msgstr "Rjochtsboppe útline"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a different header image"
-msgstr ""
+msgstr "Oare headerôfbylding selektearje"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Selektearje in footerôfbylding foar jo tema."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 100 pixels"
@@ -5893,33 +5893,33 @@ msgstr "3000 &times; 100 pixels"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Linksûnder utline"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a different footer image"
-msgstr ""
+msgstr "Oare footerôfbylding selektearje"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
-msgstr ""
+msgstr "Bestannen dy't tafoege wurde oan beoardiele ferzjes moatte beoardiele wurde eardat se download wurde kinne."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Select the target platform for this file."
-msgstr ""
+msgstr "Selektearje it doelplatfoarm foar dit bestân."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Ferzje {0} beheare"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Status & Versions"
-msgstr ""
+msgstr "Steat en ferzjes"
 
 #. {0} is an add-on name.
 # {0} is the name of the collection
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
-msgstr ""
+msgstr "{0} beheare"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Files"
@@ -5934,18 +5934,20 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Ynformaasje oer wizigingen yn dizze ferzje, nije funksjes, bekende bugs en oare nuttige ynformaasje dy't spesifyk is foar dizze útjefte/ferzje. Dizze ynformaasje wurdt ek werjûn yn de add-"
+"onbehearder by bywurkje."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Approval Status"
-msgstr ""
+msgstr "Goedkarsteat"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Opmerkingen foar beoardielers"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
-msgstr ""
+msgstr "Fier opsjoneel ynformaasje yn dy't nuttich wêze kin foar de editor dy't dizze add-on beoardielet, lykas ynformaasje oer in testaccount."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
