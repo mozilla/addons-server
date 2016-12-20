@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-18 10:25+0000\n"
+"PO-Revision-Date: 2016-12-20 11:03+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2112,15 +2112,15 @@ msgstr ""
 #: src/olympia/bandwagon/views.py
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Wzli tagrumma yinek</a> akken ad twaliḍ isnifal."
 
 #: src/olympia/bandwagon/views.py
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Tignit tettwakkes"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Rnu tagrumma tamaynut"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create"
@@ -2175,14 +2175,14 @@ msgstr "{0} :: Tigrummiwin"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "private"
-msgstr ""
+msgstr "uslig"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/mobile/listing_items.html
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(num)s</span> aneḍfaṛ"
+msgstr[1] "<span>%(num)s</span> ineḍfaṛen"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "About this Collection"
@@ -2190,19 +2190,19 @@ msgstr "Ɣef tagrumma-agi"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Izegrar mtawin ar Firefox aziraz"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Err tagrumma-agi d tusligt"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Err tagrumma-agi d tazayezt"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Learn about collections"
-msgstr ""
+msgstr "Issin ɣef tegrummiwin"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More Options:"
@@ -2220,15 +2220,15 @@ msgstr "Kkes tagrumma"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s asentel di tagrumma-agi"
+msgstr[1] "%(num)s n isental di tagrumma-agi"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s azegrir di tagrumma-agi"
+msgstr[1] "%(num)s izegrar di tagrumma-agi"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
@@ -2241,7 +2241,7 @@ msgstr "D acu-tent tigrummiwin?"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Explore Collections"
-msgstr ""
+msgstr "Snirem tigrummiwin"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Common Tags"
@@ -2269,7 +2269,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Izegrar-inu inuraf"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html
 #, python-format
@@ -2282,8 +2282,8 @@ msgstr[1] "<span>%(addons)s</span> izegrar"
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(followers)s</span> aneḍfaṛ"
+msgstr[1] "<span>%(followers)s</span> ineḍfaṛen"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2385,7 +2385,7 @@ msgstr "Err d bab"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Kkes aseqdac-agi seg imttekkiyen"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
@@ -2394,7 +2394,7 @@ msgstr "Kkes"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Collection Contributors"
-msgstr ""
+msgstr "Imttekkiyen n tagrumma"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid ""
@@ -2412,11 +2412,11 @@ msgstr "Imayl"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Role"
-msgstr ""
+msgstr "Tamlilt"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Enter the email address of the contributor to add"
-msgstr ""
+msgstr "Sekcem tansa imayl n imttekki ara ternuḍ"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Add Contributor"
@@ -2438,7 +2438,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Continue"
-msgstr ""
+msgstr "Kemmel"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
@@ -2447,19 +2447,19 @@ msgstr "neɣ <a id=\"change-owner-cancel\" href=\"#\">Sefsex</a>"
 #. {0} is a username.
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "Collections by {0}"
-msgstr ""
+msgstr "Tigrummiwin sɣuṛ {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "No collections found."
-msgstr ""
+msgstr "Ulac tigrummiwin yettwafen."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "Tigrummiwin yettwaḍfaṛen s waṭas"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Newest Collections"
-msgstr ""
+msgstr "Tigrummiwin tineggura"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Collections by Name"
@@ -2643,7 +2643,7 @@ msgstr "Ifecka n unadi"
 
 #: src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Most Users"
-msgstr ""
+msgstr "Yettwaseqdac aṭaw"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
 msgid "Up & Coming"
