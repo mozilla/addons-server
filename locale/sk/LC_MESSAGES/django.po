@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-21 16:59+0000\n"
+"PO-Revision-Date: 2016-12-21 17:15+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -5059,14 +5059,12 @@ msgid "Submit Add-on"
 msgstr "Odoslať doplnky"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Popíšte svoj doplnok"
+msgstr "Popíšte doplnok"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "URL adresa doplnku"
+msgstr "URL adresa doplnku:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
@@ -5133,9 +5131,8 @@ msgid "Describe Version"
 msgstr "Zakázať verziu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Vydanie"
+msgstr "Poznámky k vydaniu:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Let your users know what's new and what's changed in this version."
@@ -5181,9 +5178,8 @@ msgid "You can also edit this version to add version notes, or source code if yo
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Verzia beta {0}"
+msgstr "Upraviť verziu {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5516,20 +5512,17 @@ msgid "{0} Add-ons"
 msgstr "Doplnky pre {0}"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Posledná verzia:"
+msgstr "Najnovšie správy"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "potrebuje dodatočné informácie"
+msgstr "Ďalšie informácie nájdete na našom blogu"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Vývojár doplnkov"
+msgstr "Centrum pre vývojárov doplnkov"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5541,14 +5534,12 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Odoslať doplnky"
+msgstr "Prihlásiť sa"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Jednoducho použiteľné témy vzhľadu pre Firefox"
+msgstr "Prispôsobte si svoj Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid ""
@@ -5785,9 +5776,8 @@ msgid "The licensor permits others to copy, distribute and transmit only unalter
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
-#, fuzzy
 msgid "Your Theme will be released under the following license:"
-msgstr "Váš motiv bude k dispozici pod následující licencí:"
+msgstr "Vaša téma vzhľadu bude k dispozícii pod nasledujúcou licenciou:"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a different license."
@@ -6166,9 +6156,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Staršie verzie"
+msgstr "Všetky verzie"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
