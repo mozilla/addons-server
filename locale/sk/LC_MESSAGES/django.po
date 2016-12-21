@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-21 16:03+0000\n"
+"PO-Revision-Date: 2016-12-21 16:11+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -393,7 +393,7 @@ msgstr "Viditeľný"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Invisible"
-msgstr ""
+msgstr "Neviditeľný"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -412,7 +412,7 @@ msgstr "Prevzatí"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "View Statistics"
-msgstr "Zobraziť štatistiku"
+msgstr "Zobraziť štatistiky"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Average Daily Users"
@@ -434,7 +434,7 @@ msgstr "Zobraziť zásady ochrany súkromia"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "EULA"
-msgstr "Licenčná zmluva"
+msgstr "EULA"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "More about this add-on"
@@ -1787,9 +1787,8 @@ msgid "Source code uploaded for {addon} {version}."
 msgstr "Doplnok {addon} {version} bol okomentovaný."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Zdrojový kód"
+msgstr "Zdrojový kód bol nahratý"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -2482,13 +2481,12 @@ msgid "Collection Contributors"
 msgstr "Prispievatelia kolekcie"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"K tejto kolekcii môžete pridať viacerých prispievateľov. Prispievateľ môžete pridávať alebo odstraňovať doplnky z tejto kolekcie, ale nemôže meniť jej názov alebo popis. Ak chcete pridať "
-"prispievateľa, zadajte jeho e-mailovú adresu. Prispievatelia musia mať účet Mozilla Add-ons."
+"K tejto kolekcii môžete pridať viacerých prispievateľov.  Prispievateľ môžete z tejto kolekcie pridávať alebo odstraňovať doplnky, nemôže však meniť jej názov alebo popis.  Ak chcete pridať "
+"prispievateľa, zadajte jeho e-mailovú adresu do poľa nižšie. Prispievatelia musia mať účet na stránke Doplnky Mozilly."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2592,14 +2590,12 @@ msgid "Reset"
 msgstr "Vynulovať"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
-#, fuzzy
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "Podporované formáty: PNG a JPG. Obrázok bude upravený na veľkosť 32x32."
+msgstr "Podporované formáty: PNG a JPG.  Obrázky budú upravené na veľkosť 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
-#, fuzzy
 msgid "There are errors in this form.  Please correct them below."
-msgstr "Vo formulári sa vyskytujú chyby. Prosím, opravte ich."
+msgstr "Vo formulári sa vyskytujú chyby.  Prosím, opravte ich."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
@@ -2675,13 +2671,13 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Problematický doplnok alebo zásuvný modul bude automaticky zakázaný a nebude už dostupný."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Ak Mozilla zistí, že doplnok, zásuvný modul či softvér tretej strany spôsobuje vážne problémy v otázkach bezpečnosti, stability a výkonu aplikácie %(app)s a zároveň spĺňa <a "
-"href=\"%(criteria)s\">dané kritériá</a>, môže byť takýto softvér zablokovaný. Ďalšie informácie nájdete v <a href=\"%(support)s\">tomto článku podpory</a>."
+"Ak Mozilla zistí že doplnok, zásuvný modul či softvér tretej strany spôsobuje vážne problémy v otázkach bezpečnosti, stability a výkonu aplikácie %(app)s a zároveň spĺňa <a "
+"href=\"%(criteria)s\">dané kritériá</a>, môže byť takýto softvér zablokovaný.  Ďalšie informácie nájdete v <a href=\"%(support)s\">tomto článku podpory</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
