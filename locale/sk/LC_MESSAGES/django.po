@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-21 16:11+0000\n"
+"PO-Revision-Date: 2016-12-21 16:41+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -3095,9 +3095,8 @@ msgid "e10s Enabled"
 msgstr "Zakázaný"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "Nekompletný"
+msgstr "Kompatibilita s e10s"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -6563,9 +6562,8 @@ msgstr ""
 "správcom, nie autorovi."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Pridajte komentár k tejto verzii. Autor ho nebude vidieť."
+msgstr "Pridajte komentár k tejto verzii. Vývojár ho neuvidí."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -8421,7 +8419,7 @@ msgstr "Ako môžem sledovať, čo sa okolo AMO deje?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "Existuje niekoľko možností, ako sledovať najnovšie správy zo sveta doplnkov:"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
