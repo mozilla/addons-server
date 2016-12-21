@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-21 16:41+0000\n"
+"PO-Revision-Date: 2016-12-21 16:59+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -5533,7 +5533,7 @@ msgstr "Vývojár doplnkov"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
-msgstr ""
+msgstr "Dokumenty"
 
 # Link text to the AMO blog.
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
@@ -8424,12 +8424,12 @@ msgstr "Existuje niekoľko možností, ako sledovať najnovšie správy zo sveta
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "Na náš <a href=\"%(url)s\">blog</a> pravidelne pridávame informácie určené pre používateľov doplnkov a ich vývojárov."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "Často publikujeme novinky, tipy a triky na náš účet <a href=\"%(url)s\">mozamo</a> na Twitteri."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -8661,9 +8661,8 @@ msgid "Managing Your Add-on"
 msgstr "Správa svého doplňku"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "References for Open Source Licenses"
-msgstr "Odkazy na open source licence"
+msgstr "Odkazy na open source licencie"
 
 # The title for a user if they are a developer
 # 75%
@@ -8728,7 +8727,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is XUL?"
-msgstr "Co je XUL?"
+msgstr "Čo je XUL?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
