@@ -1,16 +1,19 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2011-12-24 11:49+0200\n"
-"Last-Translator: amire80 <amir.aharoni@mail.huji.ac.il>\n"
+"PO-Revision-Date: 2016-12-22 20:47+0000\n"
+"Last-Translator: Tomer Cohen <tomer.mozilla@tomercohen.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 #: static/js/common/ratingwidget.js
 msgid "{0} star"
@@ -521,7 +524,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
-msgstr "פיירפוקס"
+msgstr "Firefox"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
@@ -892,7 +895,7 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "סליחה, אבל זה צריך להיות דפדפן ממשפחת מוזילה (כגון פיירפוקס) כדי להתקין תוספת חיפוש."
+msgstr "סליחה, אבל נדרש דפדפן ממשפחת Mozilla (כגון Firefox) כדי להתקין תוספת חיפוש."
 
 #: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
@@ -1248,4 +1251,4 @@ msgstr "אתה מנסה את זה!"
 
 #: static/js/zamboni/mobile/general.js
 msgid "Added to Firefox"
-msgstr "הוסף לפיירפוקס"
+msgstr "התווספה ל־Firefox"
