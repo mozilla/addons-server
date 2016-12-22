@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-22 20:47+0000\n"
+"PO-Revision-Date: 2016-12-22 21:38+0000\n"
 "Last-Translator: Tomer Cohen <tomer.mozilla@tomercohen.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -18,16 +18,16 @@ msgstr ""
 #: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "כוכב אחד"
+msgstr[0] ""
 msgstr[1] "{0} כוכבים"
 
 #: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
-msgstr "הייתה בעיה ביצירת קשר עם השרת."
+msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Select a file..."
-msgstr "בחירת קובץ..."
+msgstr ""
 
 #: static/js/common/upload-addon.js
 #, fuzzy
@@ -36,9 +36,9 @@ msgstr "התוספת שלך צריכה להסתיים ב־‎.xpi‏, ‎.jar א
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
-msgstr "אחוזי השלמה: {0}%"
+msgstr "{0}% הושלמו"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: static/js/common/upload-addon.js
@@ -47,15 +47,15 @@ msgstr "{0} מתוך {1}"
 
 #: static/js/common/upload-addon.js
 msgid "Cancel"
-msgstr "ביטול"
+msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Uploading {0}"
-msgstr "העלאת {0}"
+msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Error with {0}"
-msgstr "שגיאה עם {0}"
+msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
@@ -64,27 +64,27 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "בדיקת התוספת שלך נכשלה עם שגיאה אחת."
+msgstr[0] ""
 msgstr[1] "בדיקת התוספת שלך נכשלה עם {0} שגיאות."
 
 #: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;ועוד אחד"
+msgstr[0] ""
 msgstr[1] "&hellip;ועוד {0}"
 
 #: static/js/common/upload-addon.js
 msgid "See full validation report"
-msgstr "ר׳ דו״ח בדיקה"
+msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Validating {0}"
-msgstr "בדיקת {0}"
+msgstr ""
 
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
-msgstr "התקבלה תשובה ריקה מהשרת; מצב: {0}"
+msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
@@ -166,7 +166,7 @@ msgstr "סוג הקובץ שהעלית אינו מזוהה."
 
 #: static/js/common/upload-base.js
 msgid "You cancelled the upload."
-msgstr "ביטלת את ההעלאה."
+msgstr "העלאה בוטלה."
 
 #: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
@@ -231,7 +231,7 @@ msgstr "מסומן לסקירה"
 
 #: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
-msgstr "דרוש מידע מכם"
+msgstr "דרוש משוב"
 
 #: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
@@ -267,43 +267,43 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js
 msgid " downloads"
-msgstr ""
+msgstr " הורדות"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} users"
-msgstr ""
+msgstr "{0} משתמשים"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} תוספות"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} אוספים"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} סקירות"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} מכירות"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} החזרים כספיים"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} התקנות"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
-msgstr ""
+msgstr "הורדות"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
-msgstr ""
+msgstr "משתמשים יומיים"
 
 #: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
@@ -315,7 +315,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js
 msgid "More Info..."
-msgstr ""
+msgstr "מידע נוסף..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/impala/stats/chart.js
@@ -356,23 +356,23 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
-msgstr ""
+msgstr "דירוגים"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Sales"
-msgstr ""
+msgstr "מכירות"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs"
-msgstr ""
+msgstr "התקנות"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
-msgstr ""
+msgstr "לא ידוע"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "מנהל התוספות"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
@@ -528,23 +528,23 @@ msgstr "Firefox"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
-msgstr "מוזילה"
+msgstr "Mozilla"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
-msgstr "ת׳נדרבירד"
+msgstr "Thunderbird"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
-msgstr "סנבירד"
+msgstr "Sunbird"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
-msgstr "סימנקי"
+msgstr "SeaMonkey"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
-msgstr "פֿנק"
+msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Android"
@@ -885,9 +885,8 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
-msgstr "להוריד עכשיו"
+msgstr "הורדה כעת"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
@@ -1159,7 +1158,6 @@ msgid "{0} line {1} column {2}"
 msgstr ""
 
 #: static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
 msgstr "{0} מתוך {1}"
 

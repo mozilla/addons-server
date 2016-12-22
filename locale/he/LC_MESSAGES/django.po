@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-22 20:48+0000\n"
+"PO-Revision-Date: 2016-12-22 21:26+0000\n"
 "Last-Translator: Tomer Cohen <tomer.mozilla@tomercohen.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -29,7 +29,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "לא ניתן למצוא את חשבון ה־Firefox שלך. נא לנסות שנית."
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
@@ -40,7 +40,6 @@ msgid "Need help?"
 msgstr ""
 
 #: src/olympia/activity/serializers.py
-#, fuzzy
 msgid "Review note"
 msgstr "סקירה"
 
@@ -70,10 +69,9 @@ msgid "Featured"
 msgstr ""
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "סקירה"
+msgstr "לא נסקר"
 
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
