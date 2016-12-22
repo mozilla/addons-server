@@ -36,6 +36,14 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
+# The pipeline v2 standard requires the existence of /app/version.json
+# inside the docker image, although the content of the file comes from
+# circle.yml.
+# We realize that the content of version.json is written twice (once in
+# circle.yml, and the other in the end of this file), we should remove
+# the bits at the end of this file after we fully migrate to use pipeline
+# v2.
+COPY version.json /app/version.json
 COPY . /data/olympia
 WORKDIR /data/olympia
 
