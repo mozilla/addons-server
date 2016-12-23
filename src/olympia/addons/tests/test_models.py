@@ -1456,6 +1456,57 @@ class TestAddonModels(TestCase):
         assert not addon.has_complete_metadata(has_listed_versions=True)
 
 
+class TestShouldRedirectToSubmitFlow(TestCase):
+    fixtures = ['base/addon_3615']
+
+    def test_no_versions_doesnt_redirect(self):
+        addon = Addon.objects.get(id=3615)
+        assert not addon.should_redirect_to_submit_flow()
+
+        # Now break addon.
+        delete_translation(addon, 'summary')
+        addon = Addon.objects.get(id=3615)
+        assert not addon.has_complete_metadata()
+        addon.update(status=amo.STATUS_NULL)
+        assert addon.should_redirect_to_submit_flow()
+
+        for ver in addon.versions.all():
+            ver.delete()
+        assert not addon.should_redirect_to_submit_flow()
+
+    def test_disabled_versions_doesnt_redirect(self):
+        addon = Addon.objects.get(id=3615)
+        assert not addon.should_redirect_to_submit_flow()
+
+        # Now break addon.
+        delete_translation(addon, 'summary')
+        addon = Addon.objects.get(id=3615)
+        assert not addon.has_complete_metadata()
+        addon.update(status=amo.STATUS_NULL)
+        assert addon.should_redirect_to_submit_flow()
+
+        for ver in addon.versions.all():
+            for file_ in ver.all_files:
+                file_.update(status=amo.STATUS_DISABLED)
+        assert not addon.should_redirect_to_submit_flow()
+
+    def test_only_null_redirects(self):
+        addon = Addon.objects.get(id=3615)
+        assert not addon.should_redirect_to_submit_flow()
+
+        # Now break addon.
+        delete_translation(addon, 'summary')
+        addon = Addon.objects.get(id=3615)
+        assert not addon.has_complete_metadata()
+
+        for status in amo.STATUS_CHOICES_ADDON:
+            addon.update(status=status)
+            if status == amo.STATUS_NULL:
+                assert addon.should_redirect_to_submit_flow()
+            else:
+                assert not addon.should_redirect_to_submit_flow()
+
+
 class TestHasListedAndUnlistedVersions(TestCase):
     def setUp(self):
         self.addon = addon_factory()

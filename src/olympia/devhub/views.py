@@ -1732,11 +1732,15 @@ def _submit_finish(request, addon, version):
 @dev_required(submitting=True)
 def submit_addon_finish(request, addon_id, addon):
     # Bounce to the details step if incomplete
-    if not addon.has_complete_metadata():
+    if (not addon.has_complete_metadata() and
+            addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)):
         return redirect('devhub.submit.details', addon.slug)
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():
-        return redirect(addon.get_dev_url('versions'))
+        if waffle.switch_is_active('step-version-upload'):
+            return redirect('devhub.submit.version', addon.slug)
+        else:
+            return redirect(addon.get_dev_url('versions'))
     return _submit_finish(request, addon, None)
 
 
