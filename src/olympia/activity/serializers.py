@@ -24,7 +24,8 @@ class ActivityLogSerializer(serializers.ModelSerializer):
         self.to_highlight = kwargs.get('context', []).get('to_highlight', [])
 
     def get_comments(self, obj):
-        return getattr(obj.log(), 'sanitize', obj.details['comments'])
+        comments = obj.details['comments'] if obj.details else obj.to_string()
+        return getattr(obj.log(), 'sanitize', comments)
 
     def get_action_label(self, obj):
         log = obj.log()

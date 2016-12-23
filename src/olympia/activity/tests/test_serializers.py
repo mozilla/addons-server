@@ -71,3 +71,13 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['comments'] == amo.LOG.REQUEST_SUPER_REVIEW.sanitize
         assert result['comments'].startswith(
             'The addon has been flagged for Admin Review.')
+
+    def test_log_entry_without_details(self):
+        # Create a log but without a details property.
+        self.entry = amo.log(
+            amo.LOG.APPROVAL_NOTES_CHANGED, self.addon,
+            self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED),
+            user=self.user)
+        result = self.serialize()
+        # Should default to the string representation of the log event.
+        assert result['comments'] == self.entry.to_string()
