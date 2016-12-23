@@ -3,8 +3,8 @@ GitHub Webhooks
 ===============
 
 .. note::
-    
-    This is an Experimental API. We aren't sure of the value of this API yet, so we'd like to see how widely it's used before committing to long term support.
+
+    This is an Experimental API and can change at any time.
 
 This API provides an endpoint that works with GitHub to provide add-on validation as a GitHub webhook. This end point is designed to be called specifically from GitHub and will only send API responses back to `api.github.com`.
 

@@ -55,10 +55,10 @@ class TestGithub(TestCase):
 
 
 @override_settings(GITHUB_API_USER='key', GITHUB_API_TOKEN='token')
-class GithubBase(TestCase):
+class GithubBaseTestCase(TestCase):
 
     def setUp(self):
-        super(GithubBase, self).setUp()
+        super(GithubBaseTestCase, self).setUp()
         patch = mock.patch('olympia.github.utils.requests', autospec=True)
         self.addCleanup(patch.stop)
         self.requests = patch.start()
@@ -72,7 +72,7 @@ class GithubBase(TestCase):
 
     def check_status(self, status, call=None, url=None, **kw):
         url = url or self.data['status_url']
-        body = {'context': 'addons/linter'}
+        body = {'context': 'mozilla/addons-linter'}
         if status != 'comment':
             body['state'] = status
 
@@ -88,7 +88,7 @@ class GithubBase(TestCase):
         assert call == mock.call(url, json=body, auth=('key', 'token'))
 
 
-class TestCallback(GithubBase):
+class TestCallback(GithubBaseTestCase):
 
     def test_create_not_github(self):
         with self.assertRaises(ValueError):

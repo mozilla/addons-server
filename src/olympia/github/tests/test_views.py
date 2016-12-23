@@ -5,10 +5,11 @@ from olympia.amo.tests import AMOPaths, TestCase
 from olympia.files.models import FileUpload
 from olympia.amo.urlresolvers import reverse
 
-from olympia.github.tests.test_github import example_pull_request, GithubBase
+from olympia.github.tests.test_github import (
+    example_pull_request, GithubBaseTestCase)
 
 
-class TestGithubView(AMOPaths, GithubBase, TestCase):
+class TestGithubView(AMOPaths, GithubBaseTestCase, TestCase):
 
     def setUp(self):
         super(TestGithubView, self).setUp()

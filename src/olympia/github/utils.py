@@ -33,7 +33,7 @@ class GithubCallback(object):
         msg = data.get('state', 'comment')
         log.info('Setting github to: {} at: {}'.format(msg, url))
         with statsd.timer('github.{}'.format(msg)):
-            data['context'] = 'addons/linter'
+            data['context'] = 'mozilla/addons-linter'
             log.info('Body: {}'.format(data))
             res = requests.post(
                 url,

@@ -68,10 +68,17 @@ class TestUploadValidation(BaseUploadTest):
         upload.user_id = 999
         upload.save()
         url = reverse('devhub.upload_detail', args=[upload.uuid.hex])
-        assert self.client.head(url, follow=True).status_code == 200
+        assert self.client.head(url).status_code == 200
 
         self.client.logout()
         assert self.client.head(url).status_code == 302
+
+    def test_no_login_required(self):
+        upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
+        self.client.logout()
+
+        url = reverse('devhub.upload_detail', args=[upload.uuid.hex])
+        assert self.client.head(url).status_code == 200
 
 
 class TestUploadErrors(BaseUploadTest):
