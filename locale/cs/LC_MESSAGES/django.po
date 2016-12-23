@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-16 21:26+0000\n"
+"PO-Revision-Date: 2016-12-23 22:48+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1887,7 +1887,7 @@ msgstr "Chcete větší přizpůsobení? Vyzkoušejte <b>plné motivy</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
-msgstr "Nejvíce odebírané"
+msgstr "Nejsledovanější"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections I've Made"
@@ -2529,7 +2529,7 @@ msgstr "Nebyla nalezena žádná sbírka."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Most-Followed Collections"
-msgstr "Nejvíce odebírané sbírky"
+msgstr "Nejsledovanější sbírky"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Newest Collections"
@@ -9340,9 +9340,9 @@ msgid ""
 "There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
-"Obvykle existuje více doplňků, které nabízí obdobnou funkcionalitu. Pro volbu toho nejlepšího si přečtěte jeho popis a prohlídněte si přiložené snímky obrazovek. Pokud stále volíte mezi více "
-"doplňky, podívejte se na hodnocení doplňků, recenze uživatelů a statistiky. Díky tomu zjistíte, který doplněk je mezi uživateli nejvíce populární. Můžete též vyzkoušet všechny doplňky, čímž "
-"zjistíte, který vám více vyhovuje."
+"Obvykle existuje více doplňků, které nabízí obdobné funkce. Abyste si zvolili ten nejlepší, přečtěte si jeho popis a prohlédněte si přiložené snímky obrazovky. Pokud si stále ještě nemůžete vybrat, "
+"zkuste se podívat na jejich hodnocení, recenze uživatelů a statistiky. Díky tomu zjistíte, který doplněk je mezi uživateli nejpopulárnější. Můžete je také vyzkoušet všechny, čímž zjistíte, který vám"
+" nejlépe vyhovuje."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I can't find an add-on I'm looking for?"
@@ -11077,7 +11077,7 @@ msgstr "Doplňky, které jsem vytvořil"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "My Most Popular Themes"
-msgstr "Mé nejvíce populární motivy"
+msgstr "Mé nejpopulárnější motivy"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes I've created"
