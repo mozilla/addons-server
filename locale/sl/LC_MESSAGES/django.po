@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-16 22:11+0000\n"
+"PO-Revision-Date: 2016-12-23 09:59+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1786,7 +1786,7 @@ msgstr "Komentar o {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Opombe ob odobritvi spremenjene"
 
 #: src/olympia/amo/log.py
 msgid "Source code uploaded for {addon} {version}."
@@ -5224,7 +5224,6 @@ msgid "Download {0}"
 msgstr "Prenesi {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
 msgstr "Za ta prispevek ste izbrali samo nekatere od možnih platform. Naložite lahko več datotek za različne platforme:"
 
