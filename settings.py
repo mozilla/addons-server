@@ -132,6 +132,10 @@ INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
 # Validation key we need to send in POST response.
 INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 
+# For the Github webhook API.
+GITHUB_API_USER = ''
+GITHUB_API_TOKEN = ''
+
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
     from local_settings import *  # noqa

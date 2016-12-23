@@ -63,6 +63,16 @@ class TestUploadValidation(BaseUploadTest):
         upload = FileUpload.objects.get(uuid=uuid)
         assert upload.processed_validation['errors'] == 1
 
+    def test_login_required(self):
+        upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
+        upload.user_id = 999
+        upload.save()
+        url = reverse('devhub.upload_detail', args=[upload.uuid.hex])
+        assert self.client.head(url, follow=True).status_code == 200
+
+        self.client.logout()
+        assert self.client.head(url).status_code == 302
+
 
 class TestUploadErrors(BaseUploadTest):
     fixtures = ('base/addon_3615', 'base/users')

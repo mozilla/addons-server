@@ -430,6 +430,7 @@ INSTALLED_APPS = (
     'olympia.discovery',
     'olympia.editors',
     'olympia.files',
+    'olympia.github',
     'olympia.internal_tools',
     'olympia.legacy_api',
     'olympia.legacy_discovery',
@@ -1194,6 +1195,10 @@ CELERY_ROUTES = {
     'olympia.zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
+
+    # Github API
+    'olympia.github.tasks.process_results': {'queue': 'devhub'},
+    'olympia.github.tasks.process_webhook': {'queue': 'devhub'},
 }
 
 
