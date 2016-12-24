@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-24 21:26+0000\n"
+"PO-Revision-Date: 2016-12-24 21:40+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1412,15 +1412,15 @@ msgstr "{addon} yettwarna."
 
 #: src/olympia/amo/log.py
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Timzliyin n {addon} ttwasniflent."
 
 #: src/olympia/amo/log.py
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Aglam n {addon} ittusnifel."
 
 #: src/olympia/amo/log.py
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Taggayin ttwasniflent i {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) added to {addon}."
@@ -1433,7 +1433,7 @@ msgstr "{0.name} ({1}) yettwakkes si {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Ittekkiyen di {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} disabled."
@@ -1446,7 +1446,7 @@ msgstr "{addon} yettwarmed."
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "Addad n {addon} yettusnifel ar {0}."
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
@@ -1565,11 +1565,11 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} yuɣal tura d itri."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} ur yezgi d itri."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/amo/log.py
@@ -1635,7 +1635,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Account updated."
-msgstr ""
+msgstr "Amiḍa yettusnifel."
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
@@ -1683,7 +1683,7 @@ msgstr "Aseqdac {0.name} yettwakkes si {group}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} ur yettwabder ara."
 
 #: src/olympia/amo/log.py
 msgid "{file} was signed."
@@ -1767,7 +1767,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Kra n izerfan ttwaḥerzen"
 
 #: src/olympia/amo/templates/amo/no_results.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 msgid "No results found"
@@ -3224,7 +3224,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Theme Review"
-msgstr ""
+msgstr "Acegger n usentel"
 
 #: src/olympia/constants/base.py
 msgid "New Search Provider Review"
@@ -3540,7 +3540,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Import/Export"
-msgstr ""
+msgstr "Kter /Export"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
