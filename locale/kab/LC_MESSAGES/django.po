@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-24 19:19+0000\n"
+"PO-Revision-Date: 2016-12-24 21:26+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1813,7 +1813,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Top Rated"
-msgstr ""
+msgstr "Yettwaszmel aṭas"
 
 #: src/olympia/amo/templates/amo/side_nav.html
 msgid "Explore"
@@ -1834,12 +1834,12 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Tigrimmiwin i xedmeɣ"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Tigrummiwin i ṭafareɣ"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/users/models.py
@@ -1910,15 +1910,15 @@ msgstr "Tafekka nniḍen"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr ""
+msgstr "Azmul yemmut."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Tuccḍa deg uzmek n uzmul."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Ajiṭun JWT mačči d ameɣtu."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
@@ -2631,11 +2631,11 @@ msgstr ""
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Nadi ifecka icudden ar %s"
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Ifecka n unadi akked isiɣzaf icudden ar unadi"
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools"
@@ -2660,17 +2660,17 @@ msgstr "Yettwarna"
 #. {0} is the category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: Izegrar yettwasnen"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/legacy_discovery/modules.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "Izegrar yettwasnen"
 
 #. {0} is a category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "Ulac izegrar yettwasnen di {0}."
 
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
@@ -2683,7 +2683,7 @@ msgstr "Sebded amawal"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Language Pack"
-msgstr ""
+msgstr "Sebded akemmus n tutlayt"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Dictionary"
@@ -2691,7 +2691,7 @@ msgstr "Sider amawal"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Language Pack"
-msgstr ""
+msgstr "Sider akemmus n tutlayt"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Available in your locale"
@@ -2699,7 +2699,7 @@ msgstr "Yella di tutlayt inek"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Tabdart n ikemmusen n tutlayt akked imawalen yellan di tutlayt inek."
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language"
@@ -2711,7 +2711,7 @@ msgstr "Amawal"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language Pack"
-msgstr ""
+msgstr "Akemmus utlayan"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "All locales"
@@ -2719,7 +2719,7 @@ msgstr "Akk tutlayin"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "Tabdart n ikemmusen n tutlayin akked imawalen."
 
 #. {0} is a category name, like "Music".
 #: src/olympia/browse/templates/browse/search_tools.html
@@ -2739,15 +2739,15 @@ msgstr "Nadi isiɣzaf"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Rnu ar Firefox timahilin icudden ar unadi"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Providers"
-msgstr ""
+msgstr "Imseddayen n unadi"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Af-d imseddayen n unadi i ufeggag inek n unadi"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Additional Resources"
@@ -2772,11 +2772,11 @@ msgstr "Isental yemden"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Isiɣzaf yettwasnen aṭas"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Isiɣzaf yettwaszemlen aṭas"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Extensions"
@@ -2802,15 +2802,15 @@ msgstr "Isiɣzaf yettnernin"
 #. theme.
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Isental itran yemden"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Isental yemden yettwasnen"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Isental yemden yettwaszemlen atas"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Complete Themes"
@@ -2826,18 +2826,18 @@ msgstr "Isental yemden s usider n yal dduṛt"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "ISental yemden yettusniflen melmi kan"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Isental imden iteddun yakan"
 
 #: src/olympia/browse/templates/browse/impala/category_landing.html
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Wali asiɣzef %(cnt)s di %(name)s &raquo;"
+msgstr[1] "Wal akk isiɣzaf %(cnt)s di %(name)s &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
 #: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
