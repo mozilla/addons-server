@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-20 11:23+0000\n"
+"PO-Revision-Date: 2016-12-24 19:19+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1183,11 +1183,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/listing/items.html
 msgid "Collector's Note"
-msgstr ""
+msgstr "Tazmilt n uleqqad"
 
 #: src/olympia/addons/templates/addons/listing/items_mobile.html
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "Ur yettwasezmel ara"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
@@ -1239,7 +1239,7 @@ msgstr "Steqsi amesker"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "License Agreement"
-msgstr ""
+msgstr "Amtawa n uselkin"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 #, python-format
@@ -1260,7 +1260,7 @@ msgstr "Tesrid Firefox akken ad bedden izegrar. <a href=\"http://mozilla.com/mob
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/header_title.html src/olympia/templates/impala/header_title.html
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "Uɣal ar usebter n uzegrir n {0}"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
@@ -1295,11 +1295,11 @@ msgstr "Isental"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "Sken akk izegrar itran"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Popular add-ons"
-msgstr ""
+msgstr "Sken akk izegrar yettwasnen"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "More Add-ons"
@@ -1307,7 +1307,7 @@ msgstr "Ugar n izegrar"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/search/forms.py
 msgid "Highest Rated"
-msgstr ""
+msgstr "Tazmilt tameqqrant"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/search/forms.py
@@ -1350,7 +1350,7 @@ msgstr "Ffeɣ"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Sefrek ayen d-uzneɣ"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/addons/submit/base.html
 #: src/olympia/devhub/templates/devhub/nav.html
@@ -1364,7 +1364,7 @@ msgstr "Azen asentel amaynut"
 
 #: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
-msgstr ""
+msgstr "Tarbaɛt n ineflayen"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/views.py
 msgid "Manage API Keys"
@@ -1384,7 +1384,7 @@ msgstr "Mačči d ameɣtu, ma ulac aɣilif ɛreḍ tikelt nniḍen."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Tuccḍa deg usenqed n unekcum. ma ulac aɣilif ɛreḍ tikelt nniḍen."
 
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
@@ -1399,7 +1399,7 @@ msgstr "Tigrummiwin"
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/templates/browse/language_tools.html
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Imawalen & ikemmusen n tutlayin"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/helpers.py
@@ -2463,7 +2463,7 @@ msgstr "Tigrummiwin tineggura"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Collections by Name"
-msgstr ""
+msgstr "Tigrummiwin s yisem"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Updated Collections"
@@ -2484,7 +2484,7 @@ msgstr "Jerred"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Following"
-msgstr ""
+msgstr "Aḍfaṛ"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a Collection"
@@ -2496,15 +2496,15 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Collection Icon"
-msgstr ""
+msgstr "Tignit n tagrumma"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Reset"
-msgstr ""
+msgstr "Wennez"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG akked JPG ttusefraken.  Tugna ad tuɣal ar 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
@@ -2532,7 +2532,7 @@ msgstr "Rnu ɣer tagrumma"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py
 msgid "Pending"
-msgstr ""
+msgstr "Yettraǧu"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add a comment"
@@ -2540,7 +2540,7 @@ msgstr "Rnu awennit"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Kkes azegrir-agi si tagrumma"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "COLLECTIONS"
@@ -2556,12 +2556,12 @@ msgstr "Izegrar yettusweḥlen"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocklist"
-msgstr ""
+msgstr "Tabdart n usewḥel"
 
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "<b>{0}</b> has been blocked for your protection."
-msgstr ""
+msgstr "<b>{0}</b> yettusewḥel ɣef ummesten inek."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Why was it blocked?"
@@ -2593,12 +2593,12 @@ msgstr ""
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr ""
+msgstr "Yettusewḥel di %(date)s. <a href=\"%(link)s\">Sken tuttra iweḥlen</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
 msgid "Blocked on %(date)s."
-msgstr ""
+msgstr "Y§ettusewḥel di %(date)s."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
@@ -2619,7 +2619,7 @@ msgstr "%s Isental"
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Izegrar yettwasnen:: %s"
 
 #. L10n: %s is an app name.
 #: src/olympia/browse/feeds.py
