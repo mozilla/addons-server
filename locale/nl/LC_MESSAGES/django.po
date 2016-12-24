@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-17 11:03+0000\n"
+"PO-Revision-Date: 2016-12-22 12:18+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -5156,7 +5156,7 @@ msgstr "Versie {0} bewerken"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Signed"
-msgstr "Versie ondetekend"
+msgstr "Versie ondertekend"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
@@ -6162,7 +6162,7 @@ msgstr "Add-on verbergen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr "Door uw add-on te verbergen wordt deze nergens in onze galerij weergegeven en ontvangen gebruikers geen automatische updates meer."
+msgstr "Door uw add-on te verbergen, wordt deze nergens in onze galerij weergegeven en ontvangen gebruikers geen automatische updates meer."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
@@ -8763,7 +8763,7 @@ msgstr "#jetpack (voor discussies over de Add-ons SDK en cfx/jpm - voorheen Jetp
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mailing List"
-msgstr "Maillijst"
+msgstr "Mailinglijst"
 
 #. Label for a link to the extension developers newsgroup
 #: src/olympia/pages/templates/pages/dev_faq.html
