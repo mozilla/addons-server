@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-24 21:40+0000\n"
+"PO-Revision-Date: 2016-12-24 21:57+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1687,12 +1687,12 @@ msgstr "{addon} ur yettwabder ara."
 
 #: src/olympia/amo/log.py
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} yettwazmel."
 
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/amo/log.py
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Asulay n usegziz {0} s GUID {1} yettwakkes"
 
 #: src/olympia/amo/log.py
 msgid "{addon} migrated from preliminary."
@@ -3544,7 +3544,7 @@ msgstr "Kter /Export"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
-msgstr ""
+msgstr "Taɣuṛi n yeznan akked isallen"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
@@ -3552,7 +3552,7 @@ msgstr "Tabaḍnit  & Taɣellist"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "Asefrek n usider d ifuyla"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
@@ -3560,7 +3560,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "Asefrek n tutlyain akked tsuqilt"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
@@ -3576,27 +3576,27 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Web and Developer Tools"
-msgstr ""
+msgstr "Ifecka n uneflay Web"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
-msgstr ""
+msgstr "Suter ugar n telɣut"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flag"
-msgstr ""
+msgstr "Creḍ"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Duplicate"
-msgstr ""
+msgstr "Sleg"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Reject"
-msgstr ""
+msgstr "Aggi"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
-msgstr ""
+msgstr "Qbel"
 
 #: src/olympia/constants/editors.py
 msgid "Sexual or pornographic content"
@@ -3624,7 +3624,7 @@ msgstr ""
 
 #: src/olympia/constants/editors.py
 msgid "Spam content"
-msgstr ""
+msgstr "Agbur aspam"
 
 #: src/olympia/constants/editors.py
 msgid "Low-quality, stretched, or blank image"
@@ -3668,15 +3668,15 @@ msgstr "Akk tilɣubliḍin"
 
 #: src/olympia/constants/platforms.py
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #: src/olympia/constants/platforms.py
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 #: src/olympia/constants/platforms.py
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 #: src/olympia/constants/platforms.py
 msgid "Windows"
@@ -3684,7 +3684,7 @@ msgstr "Isfuyla"
 
 #: src/olympia/constants/platforms.py
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 #: src/olympia/constants/platforms.py
 msgid "Android"
