@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-25 18:02+0000\n"
+"PO-Revision-Date: 2016-12-25 18:12+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4529,11 +4529,11 @@ msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
-msgstr ""
+msgstr "Talqayt ɣef uzegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Talqayt n uzigrir i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
@@ -4541,7 +4541,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Default Locale"
-msgstr ""
+msgstr "Tutlayt tamezwert"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
@@ -4549,7 +4549,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
-msgstr ""
+msgstr "Asebter agejdan"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid ""
@@ -4559,7 +4559,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html
 msgid "Images"
-msgstr ""
+msgstr "Tugniwin"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information"
@@ -4584,12 +4584,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Technical Details"
-msgstr ""
+msgstr "Talqayt tatiknikant"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Talqayt tatiknikant i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
@@ -4599,7 +4599,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Limit 3"
-msgstr ""
+msgstr "Talast 3"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Add-on Flags"
@@ -4619,7 +4619,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "View Source?"
-msgstr ""
+msgstr "Sken aɣbalu?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
@@ -5682,16 +5682,16 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Isem n usentel inek"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "sɣuṛ <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Rnu asentel amaynut"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
@@ -5700,7 +5700,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Mudd isem i usentel inek."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
@@ -5711,7 +5711,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
-msgstr ""
+msgstr "Azen asentel"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
@@ -5754,7 +5754,7 @@ msgstr "300 KAṬ adday"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG neɣ JPG"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to top-right"
@@ -5790,24 +5790,24 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Sefrek lqem {0}"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Status & Versions"
-msgstr ""
+msgstr "Addaden & Ileqman"
 
 #. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
-msgstr ""
+msgstr "Sefrek {0}"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Files"
-msgstr ""
+msgstr "Ifuyla"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload Another File"
-msgstr ""
+msgstr "Sali afaylu nniḍen"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid ""
@@ -5829,7 +5829,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
-msgstr ""
+msgstr "Tangalt aɣbalu"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
@@ -5837,7 +5837,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload a new file"
-msgstr ""
+msgstr "Sali afaylu amaynut"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add File"
@@ -5845,7 +5845,7 @@ msgstr "Rnu afaylu"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Afaylu {file_id} ({platform})"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
