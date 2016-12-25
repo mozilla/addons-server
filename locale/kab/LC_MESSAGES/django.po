@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-25 17:37+0000\n"
+"PO-Revision-Date: 2016-12-25 18:02+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3360,7 +3360,7 @@ msgstr "I ɣeṛsiwen"
 
 #: src/olympia/constants/categories.py
 msgid "Compact"
-msgstr ""
+msgstr "Ussid"
 
 #: src/olympia/constants/categories.py
 msgid "Large"
@@ -3376,11 +3376,11 @@ msgstr "Atrar"
 
 #: src/olympia/constants/categories.py
 msgid "Nature"
-msgstr ""
+msgstr "Agama"
 
 #: src/olympia/constants/categories.py
 msgid "OS Integration"
-msgstr ""
+msgstr "Asleɣ n unagraw"
 
 #: src/olympia/constants/categories.py
 msgid "Retro"
@@ -3400,7 +3400,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Dictionaries & Encyclopedias"
-msgstr ""
+msgstr "Imawalen & tisanayin"
 
 #: src/olympia/constants/categories.py
 msgid "Kids"
@@ -3408,7 +3408,7 @@ msgstr "Igwerdan"
 
 #: src/olympia/constants/categories.py
 msgid "Multiple Search"
-msgstr ""
+msgstr "Deqs n inadiyen"
 
 #: src/olympia/constants/categories.py
 msgid "Music"
@@ -4227,19 +4227,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
-msgstr ""
+msgstr "ugar n izegrar..."
 
 #: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Documentation"
-msgstr ""
+msgstr "Tasemlit"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Extension Development"
-msgstr ""
+msgstr "Taneflit n isiɣzaf"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Isental fessusen"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Policies"
@@ -4247,19 +4247,19 @@ msgstr "Tisertiyin n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Asentam n izegrar"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Asenqad n umṣada n izegrar"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Taneflit n izegrar"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Community & Support"
-msgstr ""
+msgstr "Tamezdagnut & Tallalt"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Blog"
@@ -4271,11 +4271,11 @@ msgstr "Anmager n izegrar"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "More Resources"
-msgstr ""
+msgstr "Ugar n teɣbula"
 
 #: src/olympia/devhub/templates/devhub/search.html
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Nadi tasemlit n tneflit"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Use the field below to upload your add-on package."
@@ -4300,11 +4300,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validation Results"
-msgstr ""
+msgstr "Igmaḍ n usentem"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validated at:"
-msgstr ""
+msgstr "Yettwasentem di:"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Tested for compatibility against:"
@@ -4326,7 +4326,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> sɣuṛ %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Refine Activity"
@@ -4359,11 +4359,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Compatibility"
-msgstr ""
+msgstr "Amṣada"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Aleqqem n umṣada"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
@@ -4371,21 +4371,21 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Supported Versions"
-msgstr ""
+msgstr "Ileqman yettwasefraken"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Rnu asnas nniḍen&hellip;"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/owner.html
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
 msgid "Close"
-msgstr ""
+msgstr "Mdel"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s sɣuṛ %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Older activity for My Add-ons"
@@ -4395,8 +4395,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> asentel"
+msgstr[1] "<b>{0}</b> isental"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Edit Information"
@@ -4404,19 +4404,19 @@ msgstr "Ẓreg talɣut"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
-msgstr ""
+msgstr "Ulac"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Sefrek imeskaren & iselkinen"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Authors"
-msgstr ""
+msgstr "Imeskaren"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid "About author roles"
-msgstr ""
+msgstr "Ɣef temlilin"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid ""
@@ -4427,12 +4427,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
-msgstr ""
+msgstr "Sefrek amaɣnu n uneflay"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Amaɣnu inek</a> n uneflay d <strong>azayez</strong>  akka tura udiɣ <strong>yettwasra</strong> deg uttekki."
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Remove Both"
