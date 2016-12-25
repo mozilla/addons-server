@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-25 18:12+0000\n"
+"PO-Revision-Date: 2016-12-25 19:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5821,7 +5821,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Tizmilin i yimceggiren"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
@@ -5859,7 +5859,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
-msgstr ""
+msgstr "Ẓreg lqem-agi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
@@ -5867,19 +5867,19 @@ msgstr "0 ifuyla"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Rmed tikelt nniḍen lqem-agi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
-msgstr ""
+msgstr "Mdel amazray n ucegger"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
-msgstr ""
+msgstr "Ur yettwasentem ara."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Validate now."
-msgstr ""
+msgstr "Se,tem tura."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Review"
@@ -5887,7 +5887,7 @@ msgstr "Suter aɛiwed n tɣuri"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Sefsex tuttra n ucegger"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Loading Review History..."
@@ -5899,19 +5899,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
-msgstr ""
+msgstr "Sali-d akaram..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "on"
-msgstr ""
+msgstr "ɣef"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Leave a reply"
-msgstr ""
+msgstr "Eǧǧ tiririt"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
-msgstr ""
+msgstr "Err"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listing visibility"
@@ -5919,7 +5919,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible:"
-msgstr ""
+msgstr "Uman:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible to everyone on {0} and included in search results and listing pages."
@@ -5927,7 +5927,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
-msgstr ""
+msgstr "Aruman:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -5935,7 +5935,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
-msgstr ""
+msgstr "Ur d-yettwabder ara:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
@@ -5947,23 +5947,23 @@ msgstr "Ileqman yettwabedren"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Akka tura di AMO"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Validation"
-msgstr ""
+msgstr "Asentem"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Kkes /Disable"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Lqem d-iteddun n uzegrir-agi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
-msgstr ""
+msgstr "Ileqman iqbuṛen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i>?"
@@ -5981,11 +5981,11 @@ msgstr "Akk ileqman"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Sali lqem amaynut"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Kkes lqem-agi {version}"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
@@ -6006,11 +6006,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version"
-msgstr ""
+msgstr "Kkes lqem"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Disable Version"
-msgstr ""
+msgstr "Sens lqem"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Add a new Version"
@@ -6022,7 +6022,7 @@ msgstr "Rnu lqem"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Ffer lqem"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
@@ -6038,7 +6038,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Kkes abder n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, python-format
@@ -6101,11 +6101,11 @@ msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
-msgstr ""
+msgstr "Iceggiren yettwasnetmen"
 
 #: src/olympia/editors/forms.py
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Iceggiren yettwaksen"
 
 #: src/olympia/editors/forms.py
 msgid "View entries between"
@@ -6235,11 +6235,11 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Updates"
-msgstr ""
+msgstr "Ileqman"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "New Add-ons"
-msgstr ""
+msgstr "Izegrar imaynuten"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6247,7 +6247,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Pending Themes"
-msgstr ""
+msgstr "Isental yettṛaǧun"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Flagged Themes"
@@ -6255,7 +6255,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Update Themes"
-msgstr ""
+msgstr "Leqqem isental"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
@@ -6264,8 +6264,8 @@ msgstr ""
 #: src/olympia/editors/helpers.py
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Azegrir amaynut ({0})"
+msgstr[1] "Izegrar imaynuten ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Update ({0})"
