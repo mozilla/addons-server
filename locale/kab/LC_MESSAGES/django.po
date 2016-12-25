@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-25 20:41+0000\n"
+"PO-Revision-Date: 2016-12-25 20:53+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2524,7 +2524,7 @@ msgstr "Azegrir"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Sekcem isem n uzegrir ara tsedduḍ"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add to Collection"
@@ -2919,11 +2919,11 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
-msgstr ""
+msgstr "Ugar n isental"
 
 #: src/olympia/browse/templates/browse/personas/mobile/macros.html
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Akk isental"
 
 #: src/olympia/compat/forms.py
 msgid "All"
@@ -3644,23 +3644,23 @@ msgstr "Creative Commons Attribution 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/platforms.py
 msgid "All Platforms"
@@ -4144,7 +4144,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
-msgstr ""
+msgstr "Azen azegrir"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
@@ -4156,11 +4156,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Uɣal d amcegger n AMO"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Issin yal taɣawsa ɣef izegrar"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid ""
@@ -4175,16 +4175,16 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Start Making Add-ons"
-msgstr ""
+msgstr "Bdu taneflit n izegrar"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Status:"
-msgstr ""
+msgstr "Addad:"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
-msgstr ""
+msgstr "Lqem aneggaru:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Queue Position:"
@@ -4197,15 +4197,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Upload New Version"
-msgstr ""
+msgstr "Sali lqem amaynut"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "Sken all izegrar ►"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Suffeɣ-d izegrar inek!"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
@@ -5065,7 +5065,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
-msgstr ""
+msgstr "Sali afaylu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Go to My Submissions"
@@ -5185,13 +5185,13 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
-msgstr ""
+msgstr "Yettwarna:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%b %%e, %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Add-on Multi Process Status:"
@@ -6648,7 +6648,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/motd.html src/olympia/editors/templates/editors/review.html
 msgid "Save"
-msgstr ""
+msgstr "Sekles"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Add-on Editor Performance"
@@ -6664,7 +6664,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Your Reviews"
-msgstr ""
+msgstr "Iceggiren inek"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "By {user_name}"
@@ -6672,15 +6672,15 @@ msgstr "Sɣur {user_name}"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Active Contributors"
-msgstr ""
+msgstr "Iceggiren inek"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Month"
-msgstr ""
+msgstr "Aggur-agi"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Year"
-msgstr ""
+msgstr "Aseggass-agi"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Monthly Performance"
