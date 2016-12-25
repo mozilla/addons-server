@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-24 21:57+0000\n"
+"PO-Revision-Date: 2016-12-25 17:37+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1487,11 +1487,11 @@ msgstr "{addon} {version} yettwagi."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} yettwaqbel."
 
 #: src/olympia/amo/log.py
 msgid "Retained"
-msgstr ""
+msgstr "Yettwaqbel"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} escalated."
@@ -1503,7 +1503,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "{addon} {version} acegger yettusuter."
 
 #: src/olympia/amo/log.py
 msgid "Review requested"
@@ -1511,7 +1511,7 @@ msgstr "Aceggir yettwasuter"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version} ugar n telɣut tettusuter."
 
 #: src/olympia/amo/log.py
 msgid "More information requested"
@@ -1556,12 +1556,12 @@ msgstr "{review} i {addon} yura."
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} d itri di {0}."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} ur yezgi d itri di {0}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is now featured."
@@ -1623,7 +1623,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Password changed."
-msgstr ""
+msgstr "Awal uffir yettusnifel."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
@@ -1631,7 +1631,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Yettwaqbel acukan yettṛagu"
 
 #: src/olympia/amo/log.py
 msgid "Account updated."
@@ -1996,15 +1996,15 @@ msgstr "{0} :: Tigrummiwin:: {1}"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Ala nek i yezmren ad iwali tagrumma-agi."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Yal yiwen yezmer ad iwali tagrumma-agi."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Mudd isem i tegrumma inek."
 
 #: src/olympia/bandwagon/forms.py
 msgid "URL:"
@@ -2012,7 +2012,7 @@ msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Seglem tamrumma inek (ulac iseɣwan)."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Privacy:"
@@ -2032,20 +2032,20 @@ msgstr "Isem agi ur yettwaseqdac ara."
 
 #: src/olympia/bandwagon/forms.py src/olympia/users/forms.py
 msgid "No links are allowed."
-msgstr ""
+msgstr "Iseɣwan gelden."
 
 #: src/olympia/bandwagon/forms.py
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Tansa-agi tseqdac-itt yakan tagrumma nniḍen"
 
 #: src/olympia/bandwagon/forms.py src/olympia/devhub/views.py
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Tiginitin zemrent kan ad ilint PNG neɣ JPG."
 
 #: src/olympia/bandwagon/forms.py src/olympia/devhub/views.py src/olympia/users/forms.py
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Ma ulac aɣilif, seqdec tugniwin meẓẓiyen ɣef %d MAṬ."
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a positive vote for this collection"
