@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-25 19:20+0000\n"
+"PO-Revision-Date: 2016-12-25 20:41+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -470,12 +470,12 @@ msgstr "Tizmilin n lqem"
 #. {0} is the name of the add-on
 #: src/olympia/addons/templates/addons/eula.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "Amtawa n uselkin n useqdac aneggaru i {0}"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "Amtawa n uselkin n useqdac aneggaru"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 #, python-format
@@ -492,15 +492,15 @@ msgstr "Izegrar i {0}"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Iziɣraf itran"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Isiɣzaf yettwasnen"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py
 msgid "Most Popular"
-msgstr ""
+msgstr "Ttwasnen aṭas"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "All »"
@@ -512,15 +512,15 @@ msgstr "Wali akk »"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Isiɣzaf yettnernin"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Featured Themes"
-msgstr ""
+msgstr "Isental itran"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Featured Collections"
-msgstr ""
+msgstr "Tigrummiwin itran"
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/addons/templates/addons/listing_header.html src/olympia/amo/templates/amo/mobile/sort_by.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
@@ -576,7 +576,7 @@ msgstr "Asellek yettwasefsex"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Payment completed"
-msgstr ""
+msgstr "Afru yemmed"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Return to the addon."
@@ -834,7 +834,7 @@ msgstr "Ɛiwed tamuɣli:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Rating:"
-msgstr ""
+msgstr "Asezmel:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/reviews/templates/reviews/mobile/add_form.html
@@ -1125,8 +1125,8 @@ msgstr "suqel"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Wali akk iceggiren n useqdac"
+msgstr[1] "Wali akk %(cnt)s n iceggiren n useqdac"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
@@ -1171,7 +1171,7 @@ msgstr "Qbel / Agwi"
 
 #: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
-msgstr ""
+msgstr "Cegger amazray"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "Sorry, this theme is pending. Please come back later."
@@ -3504,7 +3504,7 @@ msgstr "Taɣellist & Tabaḍnit"
 
 #: src/olympia/constants/categories.py
 msgid "Social Networking"
-msgstr ""
+msgstr "Aẓeṭṭa n tmetti"
 
 #: src/olympia/constants/categories.py
 msgid "Sports & Games"
@@ -3536,7 +3536,7 @@ msgstr "Inermisen"
 
 #: src/olympia/constants/categories.py
 msgid "Folders and Filters"
-msgstr ""
+msgstr "Ikaramen akked imzizdigen"
 
 #: src/olympia/constants/categories.py
 msgid "Import/Export"
@@ -3612,15 +3612,15 @@ msgstr ""
 
 #: src/olympia/constants/editors.py
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Agbur anaẓi neɣ maḥyaf"
 
 #: src/olympia/constants/editors.py
 msgid "Defamatory content"
-msgstr ""
+msgstr "Agbur n ucemmet"
 
 #: src/olympia/constants/editors.py
 msgid "Online gambling"
-msgstr ""
+msgstr "Aqemmeṛ srid"
 
 #: src/olympia/constants/editors.py
 msgid "Spam content"
@@ -3640,7 +3640,7 @@ msgstr "Akk izerfan ttwaḥerzen"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial 3.0"
