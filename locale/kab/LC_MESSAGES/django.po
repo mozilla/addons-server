@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-26 13:03+0000\n"
+"PO-Revision-Date: 2016-12-26 18:21+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1583,7 +1583,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} hatan tura daw n turagt {0.name}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} policy changed."
@@ -1611,7 +1611,7 @@ msgstr "{user} yekkes {review} n {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Lqem afellay n usnas i {version} yettusnifel."
 
 #: src/olympia/amo/log.py
 msgid "Authors emailed about compatibility of {version}."
@@ -4475,7 +4475,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Summary"
-msgstr ""
+msgstr "Agzul"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid ""
@@ -4484,7 +4484,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Experimental?"
-msgstr ""
+msgstr "Armitan?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
@@ -6318,15 +6318,15 @@ msgstr[1] "{0} ussan"
 
 #: src/olympia/editors/helpers.py
 msgid "Last Review"
-msgstr ""
+msgstr "Acegger aneggaru"
 
 #: src/olympia/editors/helpers.py
 msgid "Last Update"
-msgstr ""
+msgstr "Aleqqem aneggaru"
 
 #: src/olympia/editors/helpers.py
 msgid "No Reviews"
-msgstr ""
+msgstr "Ulac iceggiren"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
@@ -6362,7 +6362,7 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
-msgstr ""
+msgstr "Acegger n unedbal"
 
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
@@ -6370,7 +6370,7 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "More Information Requested"
-msgstr ""
+msgstr "Ugar n telɣut tettusuter"
 
 #: src/olympia/editors/models.py
 msgid "Contains Editor Comment"
@@ -6382,7 +6382,7 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -7292,7 +7292,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "Tikelt tamezwarut akked izegrar?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Not to worry, here are three to get started."
@@ -7425,27 +7425,27 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Issin ugar ɣef izegrar"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "See all"
-msgstr ""
+msgstr "Wali akk"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "More ways to customize"
-msgstr ""
+msgstr "Rnu ugar u waggan"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "Snirem akk izegrar"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "See all complete themes"
-msgstr ""
+msgstr "Wali akk isental yemden"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Close Video"
-msgstr ""
+msgstr "Mdel tavidyut"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "While the video plays, the add-ons being mentioned will appear here."
@@ -7454,7 +7454,7 @@ msgstr ""
 #. {0} is the user's login name.
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Hi, {0}"
-msgstr ""
+msgstr "Azul, {0}"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #, python-format
@@ -7483,7 +7483,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Ual d Test Pilot"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
@@ -7491,15 +7491,15 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Get Started"
-msgstr ""
+msgstr "Bdu"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "Adirḥam n Imaṛat taɛṛabin yedduklen"
 
 #: src/olympia/lib/constants.py
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "Afgani n afganistan"
 
 #: src/olympia/lib/constants.py
 msgid "Albania Lek"
@@ -7507,11 +7507,11 @@ msgstr "Albanya Lek"
 
 #: src/olympia/lib/constants.py
 msgid "Armenia Dram"
-msgstr ""
+msgstr "Dṛam n arminya"
 
 #: src/olympia/lib/constants.py
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "Aflorin n Antiy Tahulandit"
 
 #: src/olympia/lib/constants.py
 msgid "Angola Kwanza"
@@ -7519,11 +7519,11 @@ msgstr "Angola Kwanza"
 
 #: src/olympia/lib/constants.py
 msgid "Argentina Peso"
-msgstr ""
+msgstr "Peso n Aṛjuntin"
 
 #: src/olympia/lib/constants.py
 msgid "Australia Dollar"
-msgstr ""
+msgstr "Adollaṛ n Ustralya"
 
 #: src/olympia/lib/constants.py
 msgid "Aruba Guilder"
@@ -8165,7 +8165,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Anwa i d-yesnulfan izegrar-agi?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
@@ -8238,7 +8238,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "I have a question"
-msgstr ""
+msgstr "Ɣur-i asteqsi"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -8252,7 +8252,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Anwa i yexedmen deg usmel-agi?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -8304,7 +8304,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Thank you!"
-msgstr ""
+msgstr "Tanemmirt!"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Site Credits"
@@ -8320,11 +8320,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Localizers"
-msgstr ""
+msgstr "Imsidag"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Reviewers"
-msgstr ""
+msgstr "Imceggiren"
 
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html
