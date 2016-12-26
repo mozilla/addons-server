@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-26 18:33+0000\n"
+"PO-Revision-Date: 2016-12-26 18:56+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -176,7 +176,7 @@ msgstr "Attekki i {0}"
 
 #: src/olympia/addons/views.py
 msgid "Abuse reported."
-msgstr ""
+msgstr "Yir aseqdec yettwammel."
 
 #: src/olympia/addons/widgets.py
 msgid "My add-on doesn't fit into any of the categories"
@@ -305,13 +305,13 @@ msgstr "Yessef azal n uttekki ad yili d amḍan."
 #. {0} is a currency amount (e.g., $5.00)
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "A one-time suggested contribution of {0}"
-msgstr ""
+msgstr "Asumer n uttekki afus s lqed n {0}"
 
 #. {0} is a currency symbol (e.g., $),                    {1} is an amount input
 #. field
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "A one-time contribution of {0} {1}"
-msgstr ""
+msgstr "Attekki asuf n {0} {1}"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Leave a comment or request with your contribution."
@@ -792,7 +792,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
 msgid "Report Abuse"
-msgstr ""
+msgstr "Azen yir aseqdec"
 
 #: src/olympia/addons/templates/addons/report_abuse.html
 #, python-format
@@ -866,7 +866,7 @@ msgstr "sɛur %(user)s di %(date)s"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/addons/templates/addons/review_list_box.html
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "Sken tiririt n uneflay i ucegger-agi"
 
 #: src/olympia/addons/templates/addons/review_list_box.html
 #, python-format
@@ -9924,7 +9924,7 @@ msgstr "dduṛt"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "month"
-msgstr ""
+msgstr "aggur"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "For last:"
@@ -10579,7 +10579,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Kkes tawlaft n useqdac"
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete my user picture now"
@@ -10599,19 +10599,19 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
-msgstr ""
+msgstr "Isem n useqdac"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
-msgstr ""
+msgstr "Tansa imayl"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Seqdec amiḍan Firefox..."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
-msgstr ""
+msgstr "Amaɣnu"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
@@ -10920,7 +10920,7 @@ msgstr ""
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html
 msgid "Version History"
-msgstr ""
+msgstr "Amazray n lqem"
 
 #: src/olympia/zadmin/forms.py
 msgid "Current Max. Version"
