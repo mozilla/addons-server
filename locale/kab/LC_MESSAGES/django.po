@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-26 12:29+0000\n"
+"PO-Revision-Date: 2016-12-26 13:03+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4793,11 +4793,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Delete Theme"
-msgstr ""
+msgstr "Kkes asentel"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Kkes azegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Deleting your theme will permanently remove it from the site."
@@ -4831,11 +4831,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Resume"
-msgstr ""
+msgstr "Kemmel"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Kkes azegrir-agi."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Edit information about this add-on."
@@ -4843,11 +4843,11 @@ msgstr "Ẓreg talɣut ɣef uzegrir-agi."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
-msgstr ""
+msgstr "Sali lqem amaynut n uzegrir-agi."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "New Version"
-msgstr ""
+msgstr "Lqem amaynut"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Daily statistics on downloads and users."
@@ -4855,25 +4855,25 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/stats/templates/stats/stats.html
 msgid "Statistics"
-msgstr ""
+msgstr "Tidaddanin"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/payments/payments.html
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 msgid "Manage Payments"
-msgstr ""
+msgstr "Sefrek asellek"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Sefrek addad & ileqman"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "View Add-on Listing"
-msgstr ""
+msgstr "Sken tabdart n izegrar"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Sken asnifel n melmi kan"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
@@ -4881,7 +4881,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Edit Listing"
-msgstr ""
+msgstr "Ẓreg tabdart"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
@@ -4916,8 +4916,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> aseqdac urmid"
+msgstr[1] "<strong>{0}</strong> iseqdacen urmiden"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New File"
@@ -4929,7 +4929,7 @@ msgstr "Azen lqem amaynut"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
-msgstr ""
+msgstr "Azen azegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Describe Add-on"
@@ -4945,7 +4945,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Summary:"
-msgstr ""
+msgstr "Agzul:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
