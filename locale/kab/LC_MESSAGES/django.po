@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-25 20:53+0000\n"
+"PO-Revision-Date: 2016-12-26 12:21+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3038,7 +3038,7 @@ msgstr "Aziraz"
 
 #: src/olympia/constants/applications.py
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox i Android"
 
 #: src/olympia/constants/applications.py
 msgid "Mozilla"
@@ -3054,7 +3054,7 @@ msgstr "Arummid"
 
 #: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Isens-it Mozilla"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
@@ -3062,7 +3062,7 @@ msgstr "Yettwakkes"
 
 #: src/olympia/constants/base.py
 msgid "Pending approval"
-msgstr ""
+msgstr "Yettṛaǧu asentem"
 
 #: src/olympia/constants/base.py
 msgid "Flagged for further review"
@@ -3082,11 +3082,11 @@ msgstr "Aneflay"
 
 #: src/olympia/constants/base.py
 msgid "Viewer"
-msgstr ""
+msgstr "Ameskan"
 
 #: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/mobile/header.html
 msgid "Support"
-msgstr ""
+msgstr "Tallalt"
 
 #: src/olympia/constants/base.py src/olympia/constants/platforms.py
 msgid "Any"
@@ -3098,7 +3098,7 @@ msgstr "Asiɣzef"
 
 #: src/olympia/constants/base.py
 msgid "Complete Theme"
-msgstr ""
+msgstr "Asentel ummid"
 
 #: src/olympia/constants/base.py
 msgid "Search Engine"
@@ -3160,7 +3160,7 @@ msgstr "Tasureft"
 
 #: src/olympia/constants/base.py
 msgid "Release"
-msgstr ""
+msgstr "Tuffɣa"
 
 #: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Change"
