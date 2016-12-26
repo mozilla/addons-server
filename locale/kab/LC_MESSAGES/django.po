@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-26 19:20+0000\n"
+"PO-Revision-Date: 2016-12-26 19:27+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3444,7 +3444,7 @@ msgstr "Agzul"
 
 #: src/olympia/constants/categories.py
 msgid "Causes"
-msgstr ""
+msgstr "Tignatin"
 
 #: src/olympia/constants/categories.py
 msgid "Fashion"
@@ -3456,7 +3456,7 @@ msgstr "Isura & Tiliẓri"
 
 #: src/olympia/constants/categories.py
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py
 msgid "Holiday"
@@ -3496,7 +3496,7 @@ msgstr "Tamellit"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
-msgstr ""
+msgstr "Tiwlafin & Allalen n teɣwalt"
 
 #: src/olympia/constants/categories.py
 msgid "Security & Privacy"
@@ -3520,7 +3520,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "Awitay akked wazemz /Time"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
@@ -3528,7 +3528,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Message Composition"
-msgstr ""
+msgstr "Tira n yizen"
 
 #: src/olympia/constants/categories.py
 msgid "Contacts"
@@ -3564,7 +3564,7 @@ msgstr "Asefrek n tutlyain akked tsuqilt"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
-msgstr ""
+msgstr "Tiwlafin & Allalen n teɣwalt"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
