@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-23 22:48+0000\n"
+"PO-Revision-Date: 2016-12-26 00:55+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -6232,7 +6232,7 @@ msgstr "Vytvářejte snímky obrazovky {start_sub_heading}s {addon_name}{end_sub
 
 #: src/olympia/discovery/data.py
 msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
-msgstr "Více než je nástroj pro vytváření snímků obrazovky. S tímto doplňkem můžete upravovat, přidávat poznámky a sdílet své obrázky!"
+msgstr "Více než jen nástroj pro vytváření snímků obrazovky. S tímto doplňkem můžete upravovat, přidávat poznámky a sdílet své obrázky!"
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
