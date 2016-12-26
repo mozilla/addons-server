@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-26 18:56+0000\n"
+"PO-Revision-Date: 2016-12-26 19:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1115,7 +1115,7 @@ msgstr "Turagt n tengalt aɣbalu"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
-msgstr ""
+msgstr "aseɣwen yezgan"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
 msgid "translate"
@@ -1130,7 +1130,7 @@ msgstr[1] "Wali akk %(cnt)s n iceggiren n useqdac"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Azegrir-agi ur yettwacegger ara yakan."
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 msgid "Be the first!"
@@ -2871,15 +2871,15 @@ msgstr "Issin ugar"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Wali akk wid yettwarnan melmi kan"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Wali akk wid yettwasnen"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Top Rated"
-msgstr ""
+msgstr "Wali akk wid yettwaszemlen aṭas"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
@@ -2907,7 +2907,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
-msgstr ""
+msgstr "Ulac isental yettwafen"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
@@ -2915,7 +2915,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Popular"
-msgstr ""
+msgstr "Ttwasnen aṭas"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
