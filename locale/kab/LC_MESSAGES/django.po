@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-26 18:21+0000\n"
+"PO-Revision-Date: 2016-12-26 18:33+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8329,11 +8329,11 @@ msgstr "Imceggiren"
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "Ugar n {0} n iceggiren n uzegrir"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Other Contributors"
-msgstr ""
+msgstr "Imttekkiyen nniḍen"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Past Developers &amp; Administrators"
@@ -8341,19 +8341,23 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Software and Images"
-msgstr ""
+msgstr "Aseɣẓan akked tugniwin"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
+"Kra n tignitin yettwasqedcen kkant-d si <a href=\"http://www.famfamfam.com/lab/icons/silk/\"> tagrumma n tignitin famfamfam Silk</a>, daw n turagt <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
+"Kra n tignitin yettwasqedcen kkant-d si <a href=\"http://www.fatcow.com/free-icons/\">Tagrumma n tignitin Web FatCow Farm-Fresh</a>, Daw turagt n <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
@@ -8368,15 +8372,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developer FAQ"
-msgstr ""
+msgstr "Isteqsiyen FAQ n uneflay"
 
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Sections"
-msgstr ""
+msgstr "Tigezmiyin"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Taneflit n uzegrir"
 
 #. Heading for a list of resources for developers
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9912,11 +9916,11 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "day"
-msgstr ""
+msgstr "ass"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "week"
-msgstr ""
+msgstr "dduṛt"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "month"
