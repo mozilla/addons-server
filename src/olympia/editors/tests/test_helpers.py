@@ -313,8 +313,7 @@ class TestReviewHelper(TestCase):
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
         base_fragment = 'reply to this email or join #amo-editors'
-        for template in ('nominated_to_nominated',
-                         'nominated_to_public', 'nominated_to_sandbox',
+        for template in ('nominated_to_public', 'nominated_to_sandbox',
                          'pending_to_public', 'pending_to_sandbox',
                          'author_super_review', 'unlisted_to_reviewed_auto'):
             mail.outbox = []
@@ -332,8 +331,7 @@ class TestReviewHelper(TestCase):
         reply_email = (
             'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN))
 
-        for template in ('nominated_to_nominated', 'nominated_to_public',
-                         'nominated_to_sandbox', 'pending_to_public',
+        for template in ('nominated_to_sandbox', 'pending_to_public',
                          'pending_to_sandbox', 'author_super_review',
                          'unlisted_to_reviewed_auto'):
             mail.outbox = []
@@ -344,7 +342,6 @@ class TestReviewHelper(TestCase):
 
     def test_email_links(self):
         expected = {
-            'nominated_to_nominated': 'addon_url',
             'nominated_to_public': 'addon_url',
             'nominated_to_sandbox': 'dev_versions_url',
 
