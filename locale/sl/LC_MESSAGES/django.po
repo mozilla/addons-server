@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-24 21:54+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2016-12-24 17:10+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1780,9 +1780,8 @@ msgid "Reviewer Reply"
 msgstr "Odgovor pregledovalca"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Komentar o {addon} {version}."
+msgstr "Za {addon} {version} so bile spremenjene opombe ob odobritvi."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
@@ -10205,7 +10204,7 @@ msgstr "GUID-ju se lahko izognejo samo WebExtensions"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Različice za seznam ne morete dodati k temu dodatku preko API-ja zaradi manjkajočih metapodatkov. Oddajte preko spletne strani."
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
