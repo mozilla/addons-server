@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-28 18:40+0000\n"
+"PO-Revision-Date: 2016-12-28 18:59+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3184,19 +3184,19 @@ msgstr "Aɛiwed n tɣuṛi amaynut n uzegrir"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Asenqed amezwaru n uzegrir"
 
 #: src/olympia/constants/base.py
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Asenqed n uzegrir yettwaleqmen"
 
 #: src/olympia/constants/base.py
 msgid "New Dictionary Review"
-msgstr ""
+msgstr "Acegger amaynut n umawal"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Asenqed amezwaru n umawal"
 
 #: src/olympia/constants/base.py
 msgid "Updated Dictionary Review"
@@ -3244,11 +3244,11 @@ msgstr "Acegger n usentel yemden amaynut"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Acegger amezwaru n usentel yemden"
 
 #: src/olympia/constants/base.py
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Acegger n usentel yemden yettwaleqmen"
 
 #: src/olympia/constants/base.py
 msgid "Moderated Addon Review"
@@ -3320,7 +3320,7 @@ msgstr "Asefrek n usider"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Isuddam, isallen & ublugi"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
@@ -3488,7 +3488,7 @@ msgstr "Armitan"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "Isuddam, isallen & ublugi"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 msgid "Performance"
@@ -3524,7 +3524,7 @@ msgstr "Awitay akked wazemz /Time"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
-msgstr ""
+msgstr "Adiwennid srid"
 
 #: src/olympia/constants/categories.py
 msgid "Message Composition"
@@ -3568,7 +3568,7 @@ msgstr "Tiwlafin & Allalen n teɣwalt"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, Isallen akked ublugi"
 
 #: src/olympia/constants/categories.py
 msgid "Site-specific"
@@ -3632,7 +3632,7 @@ msgstr ""
 
 #: src/olympia/constants/editors.py
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Ugur deg ureyyec n tugna n uqeṛṛu"
 
 #: src/olympia/constants/licenses.py
 msgid "All Rights Reserved"
@@ -3692,20 +3692,20 @@ msgstr "Android"
 
 #: src/olympia/core/apps.py
 msgid "Core"
-msgstr ""
+msgstr "Iɣes"
 
 #: src/olympia/devhub/feeds.py
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Isnifal n melmi kan i %s"
 
 #: src/olympia/devhub/feeds.py
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Isnifal n melmi kan i yizegrar-iw"
 
 #: src/olympia/devhub/forms.py
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Yessefk ad yegber xaṛsum yiwen n bab."
 
 #: src/olympia/devhub/forms.py
 msgid "At least one author must be listed."
@@ -3713,15 +3713,15 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Ameskar ad d-yeswasken kan yiwet n tikelt."
 
 #: src/olympia/devhub/forms.py
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Tinzimin mačči d timeɣta."
 
 #: src/olympia/devhub/forms.py
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "Taɣawasa JSON mačči d tameɣtut"
 
 #: src/olympia/devhub/forms.py
 msgid "Message not eligible for annotation"
@@ -3733,31 +3733,31 @@ msgstr "Talqayt"
 
 #: src/olympia/devhub/forms.py
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Dacu-t yisem n turagt inek?"
 
 #: src/olympia/devhub/forms.py
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Mudd aḍis i turagt inek."
 
 #: src/olympia/devhub/forms.py
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Aḍris n uselkin yettwasra ticki tferneḍ wayed."
 
 #: src/olympia/devhub/forms.py
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Azegrir-agi ɣur-s tiwtilin timatutin n useqdec"
 
 #: src/olympia/devhub/forms.py
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "MA ulac aɣilif, sbadu tiwtilin timatutin n useqdec n uzgrir inek:"
 
 #: src/olympia/devhub/forms.py
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Azegrir-agi ɣur-s tasertit tabaḍnit"
 
 #: src/olympia/devhub/forms.py
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Ma ulac aɣilif, mudd-d tasertit n tbadnit n uzegrir inek:"
 
 #: src/olympia/devhub/forms.py
 msgid "Why did you make this add-on?"
@@ -3781,19 +3781,19 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Please enter a suggested amount greater than 0."
-msgstr ""
+msgstr "Ma ulac aɣilif mudd-d tallayt yugaren 0."
 
 #: src/olympia/devhub/forms.py
 msgid "Please enter a suggested amount less than ${0}."
-msgstr ""
+msgstr "Ma ulac aɣilif mudd-d tallayt daw n {0} $."
 
 #: src/olympia/devhub/forms.py
 msgid "PayPal ID required to accept contributions."
-msgstr ""
+msgstr "Asulay ID n PayPal yettwasra akken ad yettwaqbel uttekki."
 
 #: src/olympia/devhub/forms.py
 msgid "Could not validate PayPal id."
-msgstr ""
+msgstr "Ur izmir ara ad isentem asulay id n PayPal."
 
 #: src/olympia/devhub/forms.py
 msgid "Unsupported file type, please upload an archive file {extensions}."
@@ -3801,7 +3801,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "View current"
-msgstr ""
+msgstr "Wal lqem amiran"
 
 #: src/olympia/devhub/forms.py
 msgid "Invalid version range."
