@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-28 19:18+0000\n"
+"PO-Revision-Date: 2016-12-28 20:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -939,7 +939,7 @@ msgstr "Taggayin i ilan assaɣ"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Iḥricen si tegrummiwin-agi"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 #, python-format
@@ -2467,11 +2467,11 @@ msgstr "Tigrummiwin s yisem"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Tigrummiwin yettusniflen melmi kan"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Tigrummiwin yettwasnen aṭas"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
@@ -2911,7 +2911,7 @@ msgstr "Ulac isental yettwafen"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "Isental Firefox fessusen i useqdec"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Popular"
@@ -2931,7 +2931,7 @@ msgstr "Akk"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Ineqqisen umṣada n izegrar"
 
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
@@ -2942,11 +2942,11 @@ msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Ineqqiṣen ɣef uzegrir inek"
 
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Add-on Compatibility Center"
-msgstr ""
+msgstr "Ammas n umṣada n izegrar"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Enter the GUID of an add-on below to view any reports we've received."
@@ -2954,7 +2954,7 @@ msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "Ineqqisen umṣada n {addon}"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} success report"
@@ -2978,7 +2978,7 @@ msgstr "Imzizdig n usnas"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Report Type"
-msgstr ""
+msgstr "Anaw n uneqqis"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Version"
