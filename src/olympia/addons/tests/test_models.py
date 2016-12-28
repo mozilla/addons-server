@@ -1499,12 +1499,12 @@ class TestShouldRedirectToSubmitFlow(TestCase):
         addon = Addon.objects.get(id=3615)
         assert not addon.has_complete_metadata()
 
-        for status in amo.STATUS_CHOICES_ADDON:
-            addon.update(status=status)
-            if status == amo.STATUS_NULL:
-                assert addon.should_redirect_to_submit_flow()
-            else:
-                assert not addon.should_redirect_to_submit_flow()
+        status_exc_null = dict(amo.STATUS_CHOICES_ADDON)
+        status_exc_null.pop(amo.STATUS_NULL)
+        for status in status_exc_null:
+            assert not addon.should_redirect_to_submit_flow()
+        addon.update(status=amo.STATUS_NULL)
+        assert addon.should_redirect_to_submit_flow()
 
 
 class TestHasListedAndUnlistedVersions(TestCase):
