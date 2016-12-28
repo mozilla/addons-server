@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-28 15:40+0000\n"
+"PO-Revision-Date: 2016-12-28 15:43+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -6227,35 +6227,35 @@ msgstr "YouTube-fideo’s automatysk ôfspylje yn HD, oantekeningen útsette, sp
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
-msgstr ""
+msgstr "Goedkarre beoardielingen"
 
 #: src/olympia/editors/forms.py
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Fuortsmiten beoardielingen"
 
 #: src/olympia/editors/forms.py
 msgid "View entries between"
-msgstr ""
+msgstr "Ynjeftes besjen tusken"
 
 #: src/olympia/editors/forms.py
 msgid "and"
-msgstr ""
+msgstr "en"
 
 #: src/olympia/editors/forms.py
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filterje op type/aksje"
 
 #: src/olympia/editors/forms.py
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Automatyske falidaasje trochstien"
 
 #: src/olympia/editors/forms.py
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Automatyske falidaasje net trochstien"
 
 #: src/olympia/editors/forms.py
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filterje op automatyske falidaasje"
 
 #: src/olympia/editors/forms.py
 msgid "containing"
