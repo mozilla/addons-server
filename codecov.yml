@@ -1,8 +1,0 @@
-# Disable pull request comments, they're just
-# spammy and inacurate 99% of the time
-comment: false
-
-coverage:
-    precision: 2
-    round: nearest
-    range: 90...100
