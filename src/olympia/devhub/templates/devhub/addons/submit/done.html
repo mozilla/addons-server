@@ -38,12 +38,19 @@
         _("Edit version {0}")|fe(uploaded_version.version) }}</a>
   </p>
 {% else %}
-
-  <h3>{{ _("%s Signed"|format(submit_page)|title) }}</h3>
-  <p>
-    {{ _("You’re done! This %s is signed and ready to for self-distribution. "
-         "You can download it by clicking the button below."|format(submit_page)) }}
-  </p>
+  {% if submit_page == 'file' %}
+    <h3>{{ _("File Signed") }}</h3>
+    <p>
+      {{ _("You’re done! This file is signed and ready to for self-distribution. "
+           "You can download it by clicking the button below.") }}
+    </p>
+  {% else %}
+    <h3>{{ _("Version Signed") }}</h3>
+    <p>
+      {{ _("You’re done! This version is signed and ready to for self-distribution. "
+           "You can download it by clicking the button below.") }}
+    </p>
+  {% endif %}
   <p>
     {% set file = uploaded_version.all_files[-1] %}
     <a class="button" id="download-addon-url" download href="{{ file.get_url_path('devhub') }}">{{
