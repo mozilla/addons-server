@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-28 18:59+0000\n"
+"PO-Revision-Date: 2016-12-28 19:18+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1799,7 +1799,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Kra n tmahilin deg usebter-agi ttwasensent akka tura makken nettseggim asmel web. Ma ulac aɣlif,uɣal-d ticki."
 
 #: src/olympia/amo/templates/amo/recaptcha.html
 msgid "Are you human?"
@@ -1934,7 +1934,7 @@ msgstr ""
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Tangalt n tutlayt {lang_code} mačči d tameɣtut."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/applications/views.py
 msgid "Application Versions"
@@ -2888,7 +2888,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Tebɣiḍ ugar n waggan?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -3204,15 +3204,15 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "New Language Pack Review"
-msgstr ""
+msgstr "Acegger n ukemmus utlayan amaynut"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Asenqed amezwaru n ukemmus utlayan"
 
 #: src/olympia/constants/base.py
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Acegger n ukemmus utlayan yettwaleqmen"
 
 #: src/olympia/constants/base.py
 msgid "Bonus for overdue reviews"
@@ -3841,7 +3841,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Version doesn't match"
-msgstr ""
+msgstr "Lqem ur imṣada ara"
 
 #: src/olympia/devhub/forms.py
 #, python-format
@@ -3896,7 +3896,7 @@ msgstr ""
 
 #: src/olympia/devhub/helpers.py
 msgid "My Submissions"
-msgstr ""
+msgstr "Isumar inu"
 
 #: src/olympia/devhub/helpers.py
 msgid "Developer Docs"
@@ -4087,7 +4087,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
-msgstr ""
+msgstr "Tasarutt API tamaynut tettwarna"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
@@ -4193,7 +4193,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s si %(total)s"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Upload New Version"
@@ -4218,12 +4218,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Uɣal ar usebter agejdan DevHub"
 
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Ammas n ineflayen <small>izegrar</small>"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
