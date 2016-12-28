@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-28 20:20+0000\n"
+"PO-Revision-Date: 2016-12-28 20:29+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4389,7 +4389,7 @@ msgstr "%(ago)s sɣuṛ %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Armud aqbuṛ n izegrar inu"
 
 #. {0} is an integer.
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
@@ -4436,20 +4436,20 @@ msgstr "<a href=\"%(url)s\">Amaɣnu inek</a> n uneflay d <strong>azayez</strong>
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Remove Both"
-msgstr ""
+msgstr "Kkes-iten i sin"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Amaɣnu-ik n uneflay</a> d <strong>azayez </strong> akka tura."
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Remove Profile"
-msgstr ""
+msgstr "Kkes amaɣnu"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Create Profile"
-msgstr ""
+msgstr "Rnu amaɣnu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information"
@@ -5057,7 +5057,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
-msgstr ""
+msgstr "Sider {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
@@ -5069,7 +5069,7 @@ msgstr "Sali afaylu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Go to My Submissions"
-msgstr ""
+msgstr "Ddu ar isumar inu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Add-on Distribution Agreement"
@@ -5266,7 +5266,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
-msgstr ""
+msgstr "Sken akk"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -5359,7 +5359,7 @@ msgstr "{0} izegrar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Latest News"
-msgstr ""
+msgstr "Isallen ineggura"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Read more in our Blog"
@@ -5550,7 +5550,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Details"
-msgstr ""
+msgstr "Talqayt n usentel"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Supply a pretty URL for your detail page."
@@ -5570,7 +5570,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme License"
-msgstr ""
+msgstr "Turagt n usentel"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others share your Theme, as long as you're given credit?"
@@ -5614,7 +5614,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a different license."
-msgstr ""
+msgstr "Fren turagt nniḍen."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a license for your Theme."
@@ -5622,11 +5622,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Design"
-msgstr ""
+msgstr "Afeṣṣel n usentel"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upload New Design"
-msgstr ""
+msgstr "Sali afeṣṣel nniḍen"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
@@ -5650,15 +5650,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Header"
-msgstr ""
+msgstr "Aqeṛṛu"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Footer"
-msgstr ""
+msgstr "Aḍaṛ"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Fren initeni usentel inek."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Foreground Text"
@@ -5666,19 +5666,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Wagi d ini n uḍris n yiccer."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Background"
-msgstr ""
+msgstr "Agilal"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Wagi d ini i yiccaren."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Preview"
-msgstr ""
+msgstr "Taskant"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme's Name"
@@ -5723,7 +5723,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Next steps:"
-msgstr ""
+msgstr "Imecwaṛen d-iteddun:"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -5742,7 +5742,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Fren tugna n uqeṛṛu i usentel inek."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 200 pixels"
@@ -5766,7 +5766,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Fren tugna n uḍaṛ i usentel inek."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 100 pixels"
