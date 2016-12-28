@@ -11,6 +11,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.core.files import temp
+from django.test import RequestFactory
 from django.utils.translation import trim_whitespace
 
 import mock
@@ -29,13 +30,14 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
 from olympia.applications.models import AppVersion
+from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import ContribForm
 from olympia.devhub.models import ActivityLog, BlogPost
 from olympia.devhub.tasks import validate
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.reviews.models import Review
-from olympia.translations.models import Translation
+from olympia.translations.models import delete_translation, Translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -2602,6 +2604,58 @@ class TestRedirects(TestCase):
         r = self.client.get(url, follow=True)
         self.assert3xx(r, reverse('devhub.addons.versions',
                                   args=['a3615']), 301)
+
+
+class TestHasCompleteMetadataRedirects(TestCase):
+    """Make sure Addons that are not complete in some way are correctly
+    redirected to the right view (and don't end up in a redirect loop)."""
+
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def setUp(self):
+        super(TestHasCompleteMetadataRedirects, self).setUp()
+        self.f = mock.Mock()
+        self.f.__name__ = 'function'
+        self.request = RequestFactory().get('developers/addon/a3615/edit')
+        self.request.user = UserProfile.objects.get(email='admin@mozilla.com')
+        self.addon = Addon.objects.get(id=3615)
+        self.addon.update(status=amo.STATUS_NULL)
+        self.addon = Addon.objects.get(id=3615)
+        assert self.addon.has_complete_metadata(), (
+            self.addon.get_required_metadata())
+        assert not self.addon.should_redirect_to_submit_flow()
+        # We need to be logged in for any redirection into real views.
+        assert self.client.login(email='admin@mozilla.com')
+
+    def _test_redirect(self):
+        func = dev_required(self.f)
+        response = func(self.request, addon_id='a3615')
+        assert not self.f.called
+        assert response.status_code == 302
+        assert response['Location'] == (
+            '/en-US/developers/addon/a3615/submit/details')
+        # Check the redirection doesn't redirect also.
+        redirection = self.client.get(response['Location'])
+        assert redirection.status_code == 200
+
+    def test_default(self):
+        func = dev_required(self.f)
+        func(self.request, addon_id='a3615')
+        # Don't redirect if there is no metadata to collect.
+        assert self.f.called
+
+    def test_no_summary(self):
+        delete_translation(self.addon, 'summary')
+        self._test_redirect()
+
+    def test_no_license(self):
+        self.addon.current_version.update(license=None)
+        self._test_redirect()
+
+    def test_no_license_no_summary(self):
+        self.addon.current_version.update(license=None)
+        delete_translation(self.addon, 'summary')
+        self._test_redirect()
 
 
 class TestDocs(TestCase):

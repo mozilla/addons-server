@@ -1321,6 +1321,12 @@ class Addon(OnChangeMixin, ModelBase):
             (latest_version and latest_version.license),
         ]
 
+    def should_redirect_to_submit_flow(self):
+        return (
+            self.status == amo.STATUS_NULL and
+            not self.has_complete_metadata() and
+            self.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED))
+
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
 
