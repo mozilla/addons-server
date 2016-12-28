@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-26 19:27+0000\n"
+"PO-Revision-Date: 2016-12-28 12:31+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1700,15 +1700,15 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Tiririt n uneflay  ɣef {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Developer Reply"
-msgstr ""
+msgstr "Tiririt n uneflay"
 
 #: src/olympia/amo/log.py
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Tiririt n umeɣri nniḍen i {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Reviewer Reply"
