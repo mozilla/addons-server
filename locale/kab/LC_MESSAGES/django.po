@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-29 12:02+0000\n"
+"PO-Revision-Date: 2016-12-29 12:15+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6530,19 +6530,19 @@ msgstr "Imzizdig"
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/logs.html
 msgid "Date"
-msgstr ""
+msgstr "Azemz"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 msgid "Event"
-msgstr ""
+msgstr "Tadyant"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/home.html
 msgid "More details."
-msgstr ""
+msgstr "Ugar n telqayt"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html
 msgid "No events found for this period."
-msgstr ""
+msgstr "Ulac tidyanin yettwafen di twala-agi."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log Details"
@@ -6550,7 +6550,7 @@ msgstr "Talqayt n uɣmis"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
-msgstr ""
+msgstr "Talqayt n uɣmis"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Add-on Title"
@@ -6558,11 +6558,11 @@ msgstr "Azwel n uzegrir"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review Title"
-msgstr ""
+msgstr "Azwel n ucegger"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review Text"
-msgstr ""
+msgstr "Aḍris n ucegger"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review was flagged prior to deletion."
@@ -6575,8 +6575,8 @@ msgstr "Sefsex tukksa"
 #: src/olympia/editors/templates/editors/home.html
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Azegrir amaynut ({num})"
+msgstr[1] "Izegrar imaynuten ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Update ({num})"
@@ -6597,7 +6597,7 @@ msgstr[1] "{0} izegrar"
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -6609,11 +6609,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "New Editors"
-msgstr ""
+msgstr "Imaẓragen imaynuten"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "aqlak d  #{0} akked {1} n iceggiren"
 
 #. num = number of reviews in the queue
 #: src/olympia/editors/templates/editors/home.html
@@ -6636,15 +6636,15 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
-msgstr ""
+msgstr "Agmuḍ"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Message of the Day"
-msgstr ""
+msgstr "Izen n wass"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Update message of the day"
-msgstr ""
+msgstr "Snifel izen n wass"
 
 #: src/olympia/editors/templates/editors/motd.html src/olympia/editors/templates/editors/review.html
 msgid "Save"
@@ -6652,15 +6652,15 @@ msgstr "Sekles"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Timellit n umazrag n uzegrir"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
-msgstr ""
+msgstr "Sken tidaddanin i useqdac"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Range"
-msgstr ""
+msgstr "Azilal"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Your Reviews"
@@ -6684,7 +6684,7 @@ msgstr "Aseggass-agi"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Timellit n waggur"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-time Point Breakdown by Type"
@@ -6696,7 +6696,7 @@ msgstr "Asemday"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Month"
-msgstr ""
+msgstr "Aggur"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Year"
@@ -6708,15 +6708,15 @@ msgstr "Yal tikelt"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Advanced Search"
-msgstr ""
+msgstr "Anadi leqqayen"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "clear search"
-msgstr ""
+msgstr "sfeḍ anadi"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Process Reviews"
-msgstr ""
+msgstr "Ddu ar ucegger"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Moderation actions:"
@@ -6742,20 +6742,20 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Iseɣwan iwulmen:"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Add-on Policy"
-msgstr ""
+msgstr "Tasertit n uzegrir"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Editors' Guide"
-msgstr ""
+msgstr "Amnir n umaẓrag"
 
 #. "Review [add-on name]"
 #: src/olympia/editors/templates/editors/review.html
 msgid "Review {0}"
-msgstr ""
+msgstr "Acegger {0}"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Add-on user change history"
@@ -6763,24 +6763,24 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Add-on History"
-msgstr ""
+msgstr "Amazray n uzegrir"
 
 #: src/olympia/editors/templates/editors/review.html
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Lqem %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Compatibility:"
-msgstr ""
+msgstr "Amṣada:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Additional sources:"
-msgstr ""
+msgstr "Tiɣbula nniḍen:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Download files"
-msgstr ""
+msgstr "Sider ifuyla"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "The developer has provided source code."
@@ -6800,7 +6800,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html src/olympia/files/templates/files/viewer.html
 msgid "Files:"
-msgstr ""
+msgstr "Ifuyla:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Tested on:"
@@ -6824,15 +6824,15 @@ msgstr "(anedbal)"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Admin Page"
-msgstr ""
+msgstr "Asebter n unedbal"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Cegger azegrir-agi"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "More Information"
-msgstr ""
+msgstr "Ugar n telɣut"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Resolution"
@@ -6840,19 +6840,19 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Editor"
-msgstr ""
+msgstr "Amaẓrag"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Azegrir yettwakkes."
 
 #: src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Show Comments"
-msgstr ""
+msgstr "Sken iwenniten"
 
 #: src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Hide Comments"
-msgstr ""
+msgstr "Ffer iwenniten"
 
 #: src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "No reviews found for this period."
@@ -6868,7 +6868,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Contents"
-msgstr ""
+msgstr "Igburen"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Compare"
@@ -6877,15 +6877,15 @@ msgstr ""
 #: src/olympia/editors/templates/editors/includes/history.html
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Sɛuṛ %(user)s di %(date)s</div>"
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html
 msgid "Older"
-msgstr ""
+msgstr "Aqbuṛ"
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html
 msgid "Newer"
-msgstr ""
+msgstr "Amaynut"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "Recent Points"
@@ -7107,7 +7107,7 @@ msgstr ""
 
 #: src/olympia/files/helpers.py
 msgid "This file is a directory."
-msgstr ""
+msgstr "Afaylu-agi d akaram."
 
 #: src/olympia/files/tasks.py
 #, python-format
@@ -7183,7 +7183,7 @@ msgstr ""
 
 #: src/olympia/files/views.py
 msgid "Back to add-on"
-msgstr ""
+msgstr "Uɣal ar uzegrir"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
@@ -7228,11 +7228,11 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Up file"
-msgstr ""
+msgstr "Sali afaylu"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Down file"
-msgstr ""
+msgstr "Sider afaylu"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Previous diff"
@@ -7527,19 +7527,19 @@ msgstr "Adollaṛ n Ustralya"
 
 #: src/olympia/lib/constants.py
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "Florin n Aruba"
 
 #: src/olympia/lib/constants.py
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "Manat n Azeṛbiǧan"
 
 #: src/olympia/lib/constants.py
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "Mark n Bosnie-Herzégovine"
 
 #: src/olympia/lib/constants.py
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "Dollar n Baṛbados"
 
 #: src/olympia/lib/constants.py
 msgid "Bangladesh Taka"
