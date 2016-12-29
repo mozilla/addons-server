@@ -1245,7 +1245,7 @@ class TestFileSubmitUpload(UploadTest):
         new_file = self.version.all_files[-1]
         assert new_file.status == amo.STATUS_AWAITING_REVIEW
         assert new_file.platform == amo.PLATFORM_MAC.id
-        next_url = reverse('devhub.submit.version.finish',
+        next_url = reverse('devhub.submit.file.finish',
                            args=[self.addon.slug, self.version.pk])
         self.assert3xx(response, next_url)
         log_items = ActivityLog.objects.for_addons(self.addon)
@@ -1271,7 +1271,7 @@ class TestFileSubmitUpload(UploadTest):
         new_file = self.version.all_files[-1]
         assert new_file.status == amo.STATUS_PUBLIC
         assert new_file.platform == amo.PLATFORM_MAC.id
-        next_url = reverse('devhub.submit.version.finish',
+        next_url = reverse('devhub.submit.file.finish',
                            args=[self.addon.slug, self.version.pk])
         self.assert3xx(response, next_url)
         log_items = ActivityLog.objects.for_addons(self.addon)
