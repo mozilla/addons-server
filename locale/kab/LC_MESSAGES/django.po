@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-28 20:29+0000\n"
+"PO-Revision-Date: 2016-12-29 12:02+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3006,7 +3006,7 @@ msgstr "Yettwazen"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Success"
-msgstr ""
+msgstr "Yedda"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Problem"
@@ -4693,7 +4693,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Sekcem isem n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on Media for {0}"
@@ -4729,15 +4729,15 @@ msgstr "64x64px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Yettwaseqdec deg isebtar n telqayt n uzegrir."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Sali tignit tudmawant..."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG akked  JPG ttusefraken. Ignitin ad uɣalent ar 64x64 ipiksilen ticki kkant-d nig waya."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Screenshots"
@@ -4897,7 +4897,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete this theme."
-msgstr ""
+msgstr "Kkes asentel-agi"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
@@ -5013,7 +5013,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Amek ara zuzreq lqem-agi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -6482,12 +6482,12 @@ msgstr ""
 #: src/olympia/editors/templates/editors/abuse_reports.html
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s di %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html
 #, python-format
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "<i>udrig</i> di %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Return to the Editor Tools homepage"
@@ -6525,7 +6525,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/includes/logs_filter_deleted.html src/olympia/editors/templates/editors/themes/macros.html
 msgid "Filter"
-msgstr ""
+msgstr "Imzizdig"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/logs.html
@@ -6546,7 +6546,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log Details"
-msgstr ""
+msgstr "Talqayt n uɣmis"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
