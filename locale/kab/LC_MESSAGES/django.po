@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-29 12:15+0000\n"
+"PO-Revision-Date: 2016-12-29 22:23+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2764,7 +2764,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Snulfu-d afecku inek n unadi</a>"
 
 #: src/olympia/browse/templates/browse/themes.html src/olympia/constants/base.py
 msgid "Complete Themes"
@@ -2863,7 +2863,7 @@ msgstr "Rnu asentel inek"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Iminig inek, d aɣanib inek! Sels-as afeṣṣel udmawan!"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Learn more"
@@ -2903,7 +2903,7 @@ msgstr "Isental yettnernin"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Wali akk asfari aneggaru"
 
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
@@ -5235,11 +5235,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Manage Your Developer Profile"
-msgstr ""
+msgstr "Sefrek amaɣnu yinek n uneflay"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Create a Developer Profile"
-msgstr ""
+msgstr "Rnu amaɣnu n uneflay"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid ""
@@ -5249,12 +5249,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
-msgstr ""
+msgstr "Wali ma yella amaɣnu yinek n useqdac yettusmiren."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 #, python-format
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\"><strong>Smiren amaɣnu yinek n useqdac.</strong></a>"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
@@ -5270,11 +5270,11 @@ msgstr "Sken akk"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Wali tafelwit n usenqed n tidaddanin"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Ineqqisen n umṣada"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "{0} failure reports"
