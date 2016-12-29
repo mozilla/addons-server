@@ -9,5 +9,4 @@ Comments:
 
 {{ tested }}
 
-Your add-on will no longer display warnings and can make full use of features such as contributions and beta channels.
 {% endblock %}
