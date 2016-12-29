@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-29 22:23+0000\n"
+"PO-Revision-Date: 2016-12-29 22:37+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5286,11 +5286,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "Developer News"
-msgstr ""
+msgstr "Isallen n uneflay"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Wali ablug &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
@@ -5299,23 +5299,23 @@ msgstr ""
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Allowed HTML: {0}"
-msgstr ""
+msgstr "HTML yettusirgen: {0}"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Kra n HTML yettusefraken."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Remove this application"
-msgstr ""
+msgstr "Kkes asnas-agi"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kren <b>arma d {0}</b> {1} n taggayt i uzegrir-agi:"
+msgstr[1] "Kren <b>arma d {0}</b> {1} n taggayin i uzegrir-agi:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid ""
@@ -5337,7 +5337,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Ɣeṛ ugar ɣef tsertit n ucegger n tengalt aɣbalu."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
@@ -5345,7 +5345,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "This file will be deleted on save."
-msgstr ""
+msgstr "Afaylu-agi ad yettwakkes deg usekles."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "Undo"
@@ -5363,7 +5363,7 @@ msgstr "Isallen ineggura"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Read more in our Blog"
-msgstr ""
+msgstr "Ɣeṛ ugar deg ublug nneɣ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Add-on Developer Hub"
@@ -5371,7 +5371,7 @@ msgstr "Alemmas n uneflay n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
-msgstr ""
+msgstr "Isemliyen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
 msgid "Blog"
@@ -5383,7 +5383,7 @@ msgstr "Kcem"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Customize Your Firefox"
-msgstr ""
+msgstr "Sagen Firefox inek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid ""
@@ -5393,7 +5393,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to make an Add-on"
-msgstr ""
+msgstr "Issin ugar amek ara teggeḍ azegrir"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Validator"
@@ -5476,11 +5476,11 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 #, python-format
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr ""
+msgstr "neɣ <a href=\"%(cancel)s\">Sefsex</a>"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Contributions"
-msgstr ""
+msgstr "Ittekkiyen"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
@@ -5488,27 +5488,27 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "Anwa ara yeremsen ittekkiyen n uzegrir-agi?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the name of the organization?"
-msgstr ""
+msgstr "Isem-is tkebbanit-agi?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "D acu-tt tensa URL n tkebbanit?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "D acu-t usulay ID PayPal n tkebbanit?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your PayPal ID?"
-msgstr ""
+msgstr "D acu-t usulay-ik ID PayPal?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Jerred di Paypal"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your suggested contribution?"
@@ -5542,7 +5542,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "neɣ <a id=\"setup-cancel\" href=\"#\">Sefsex</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Transfer ownership"
@@ -6503,11 +6503,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
-msgstr ""
+msgstr "Iɣmisen"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/reviewlog.html
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Aɣmis n ucegger n uzegrir"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Moderated Review Log"
@@ -6725,12 +6725,12 @@ msgstr ""
 #: src/olympia/editors/templates/editors/queue.html
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "sɣuṛ %(user)s di %(date)s %(stars)s (%(locale)s)"
 
 #: src/olympia/editors/templates/editors/queue.html
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Yettwasezmel sɣuṛ %(user)s di %(date)s</span>"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "All reviews have been moderated. Good work!"
@@ -7396,7 +7396,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
-msgstr ""
+msgstr "Uraren!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
@@ -7416,7 +7416,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "What are Add-ons?"
-msgstr ""
+msgstr "D acu-ten izegrar?"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 #, python-format
@@ -7475,7 +7475,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "Cancel Installation"
-msgstr ""
+msgstr "Sefsex asebded"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
