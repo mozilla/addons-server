@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-30 09:16+0000\n"
+"PO-Revision-Date: 2016-12-30 18:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1763,7 +1763,7 @@ msgstr "Ay ay ay"
 #: src/olympia/amo/templates/amo/500.html
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Ihuh! Teḍra-d tuccḍa.</h1> <p>Ad tt-neseɣti s zreb.</p> <p> Tzemreḍ ad ɛerḍeḍ asali n usebter neɣ uɣal ar <a href=\"%(home)s\">usebter agejdan n izegrar</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
@@ -1791,7 +1791,7 @@ msgstr "Igmaḍ <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> si <st
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Aseggem iteddu"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
@@ -6138,21 +6138,21 @@ msgstr ""
 #. L10n: start, as in "start date"
 #: src/olympia/editors/forms.py
 msgid "start"
-msgstr ""
+msgstr "tazwara"
 
 #. L10n: end, as in "end date"
 #: src/olympia/editors/forms.py
 msgid "end"
-msgstr ""
+msgstr "tagara"
 
 #. L10n: Description of what can be searched for
 #: src/olympia/editors/forms.py
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "azegrir, amaẓrag neɣ awennit"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Nadi s yisem n uzegrir / imayl n umeskar"
 
 #: src/olympia/editors/forms.py
 msgid "yes"
@@ -6172,11 +6172,11 @@ msgstr "anawen n uzegrir"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Nadi s yisem n uzegrir / imayl n umeskar / guid"
 
 #: src/olympia/editors/forms.py
 msgid "Max. Version"
-msgstr ""
+msgstr "Lqem afellay"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
@@ -6227,7 +6227,7 @@ msgstr ""
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[addad:%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
@@ -6285,7 +6285,7 @@ msgstr "Anaw"
 
 #: src/olympia/editors/helpers.py
 msgid "Waiting Time"
-msgstr ""
+msgstr "Akud n uṛaǧu"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Flags"
@@ -6293,7 +6293,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
-msgstr ""
+msgstr "kra n wakud aya"
 
 #. L10n: first argument is number of minutes
 #: src/olympia/editors/helpers.py
@@ -6394,7 +6394,7 @@ msgstr ""
 
 #: src/olympia/editors/tasks.py
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Ugur di tuzna n usentel inek"
 
 #: src/olympia/editors/tasks.py
 msgid "Theme submission flagged for review"
@@ -8763,7 +8763,7 @@ msgstr ""
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "amḍan n tuzniwin n izigrar"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9170,7 +9170,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is a Source Code License?"
-msgstr ""
+msgstr "D acu-tt turagt n tengalt aɣbalu?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9191,7 +9191,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is a collection?"
-msgstr ""
+msgstr "D acu-tt tagrumma?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections are groups of related add-ons created by users to share."
@@ -9211,7 +9211,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are mobile add-ons?"
-msgstr ""
+msgstr "D acu-ten izegrar izirazen?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9222,7 +9222,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Developer Topics"
-msgstr ""
+msgstr "Isental n uneflay"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9254,7 +9254,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Do:"
-msgstr ""
+msgstr "Eg:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Write like you are telling a friend about your experience with the add-on."
@@ -9294,7 +9294,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Don’t:"
-msgstr ""
+msgstr "Ur teg ara:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
@@ -9465,26 +9465,26 @@ msgstr "Tiririt i ucegger sɣuṛ {0}"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
-msgstr ""
+msgstr "Aru tiririt"
 
 #: src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/report_review.html
 msgid "Submit"
-msgstr ""
+msgstr "Azen"
 
 #. this string is following a <button>.
 #: src/olympia/reviews/templates/reviews/reply.html
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "neɣ <a href=\"%(url)s\">Sefsex</a>"
 
 #: src/olympia/reviews/templates/reviews/report_review.html
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Ma ulac aɣilif ini-d acuɣeṛ:"
 
 #: src/olympia/reviews/templates/reviews/review.html
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "sɣuṛ %(user)s <b>(Aneflay)</b> di %(date)s"
 
 #. {0} is a version number (like 1.01)
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review.html
