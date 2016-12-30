@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-30 16:21+0000\n"
+"PO-Revision-Date: 2016-12-30 16:27+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5608,7 +5608,6 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Отримувати внески на ваш рахунок в PayPal або відправляти їх в організацію на свій вибір"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
 msgstr "Внески доступні лише для опублікованих додатків."
 
@@ -6075,17 +6074,14 @@ msgid "Reply"
 msgstr "Відповісти"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
 msgstr "Видимість додатку"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Видимість:"
+msgstr "Видимий:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible to everyone on {0} and included in search results and listing pages."
 msgstr "Видимий всім на {0} і включений в результати пошуку та інформаційні сторінки."
 
@@ -6106,9 +6102,8 @@ msgid "Not distributed on {0}. Developers will upload new versions for signing a
 msgstr "Не розповсюджується на {0}. Розробники будуть вивантажувати нові версії для підпису розповсюджувати додаток власними засобами."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Переглянути інші версії"
+msgstr "Опубліковані версії"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6131,23 +6126,20 @@ msgid "Older versions"
 msgstr "Старіші версії"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Why can't I switch to <i>Listed</i>?"
-msgstr "Чому я не можу перемкнути на <i>Опубліковані</i> чи <i>Приховані</i>?"
+msgstr "Чому я не можу перемкнути на <i>Опубліковані</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "        The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
-"У зв'язку з технічними обмеженнями, для публікації додатку вам потрібно повністю видалити свій додаток і представити його повторно з використанням цього самого облікового запису AMO.\n"
-"            Цей процес детально описано в <a href=\"{link}\">цій документації</a>."
+"У зв'язку з технічними обмеженнями, для публікації додатку вам потрібно повністю видалити свій додаток і подати його повторно з використанням цього самого облікового запису AMO.\n"
+"            Цей процес детально описаний в <a href=\"{link}\">цій документації</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Старіші версії"
+msgstr "Усі версії"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
@@ -6265,9 +6257,8 @@ msgid "Are you constantly scrolling through your bookmarks? Bring your lists int
 msgstr "Постійно прокручуєте список закладок? Зробіть ваші списки видимими одним простим рухом."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Вдоскональте YouTube {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
