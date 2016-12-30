@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-30 18:01+0000\n"
+"PO-Revision-Date: 2016-12-30 18:07+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9517,7 +9517,7 @@ msgstr "Err i ucegger-agi"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit reply"
-msgstr ""
+msgstr "Ẓreg tiririt"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit review"
@@ -9525,7 +9525,7 @@ msgstr "Ẓreg acegger"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Delete reply"
-msgstr ""
+msgstr "Kkes tiririt"
 
 #. {0} is an add-on name.
 #: src/olympia/reviews/templates/reviews/review_list.html
