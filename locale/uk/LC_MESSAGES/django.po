@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-30 11:01+0000\n"
+"PO-Revision-Date: 2016-12-30 11:05+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6290,7 +6290,7 @@ msgstr "Блокуйте рекламу {start_sub_heading}за допомого
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
-msgstr ""
+msgstr "Автоматично відтворює відео з YouTube у високій якості, вимикає анотації, регулює розмір плеєра, а також багато інших способів персоналізувати перегляд відео."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10147,7 +10147,7 @@ msgstr "Відсутній ключ \"upload\" під час надсиланн�
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Ви не можете додавати версії для додатку зі статусом: %s."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
@@ -10163,7 +10163,7 @@ msgstr "Тільки веб-додатки можуть пройти перев�
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Ви не можете додавати опубліковану версію для цього додатку через API, у зв'язку з відсутніми метаданими. Будь ласка, відправте через веб-сайт"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
