@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-30 09:02+0000\n"
+"PO-Revision-Date: 2016-12-30 09:16+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8460,7 +8460,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is XUL?"
-msgstr ""
+msgstr "D acu-t XUL ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -8470,7 +8470,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
-msgstr ""
+msgstr "Imumi yettuseqdac ufaylu \"install.rdf\" ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8482,7 +8482,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
-msgstr ""
+msgstr "D acu-t unamek n  \"maxVersion\" ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "This determines the maximum version of Firefox you're saying this extension will work with. Set this to be no newer than the newest currently available version!"
@@ -8490,7 +8490,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on contain binary components?"
-msgstr ""
+msgstr "Yezmer uzegrir inu ad yegber isuddas imsinen?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8511,7 +8511,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "Amek ara seɣtiɣ azegrir inu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8520,7 +8520,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr ""
+msgstr "Ames ara skeydeɣ azegrir inu ma yemṣada akked lqem aneggaru n useɣẓan n Mozilla?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -8531,7 +8531,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Amek ara snerniq timellit n uzegrir inu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8542,7 +8542,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on support multiple locales?"
-msgstr ""
+msgstr "Yezmer azegrir inu ad isefrek deqs n tutlayin?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8553,7 +8553,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
+msgstr "Sriɣ kra n uweṣṣi ɣef tneflit n uzegrir-inu. Anda ara yefeɣ afus?"
 
 #. #extdev is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8578,12 +8578,12 @@ msgstr ""
 #. Label for a link to the extension developers newsgroup
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Newsgroup"
-msgstr ""
+msgstr "Agraw n isallen"
 
 #. Label for a link to the extension developers Google Group
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Google Group"
-msgstr ""
+msgstr "Agraw Google"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-ons forum"
@@ -8591,15 +8591,15 @@ msgstr "Anmager n izegrar"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Mozilla ɣurr-s imeẓla n tneflit?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No."
-msgstr ""
+msgstr "Ala."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
@@ -8635,7 +8635,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is AMO?"
-msgstr ""
+msgstr "D acu-t AMO?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9822,7 +9822,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Ratings"
-msgstr ""
+msgstr "Tizmilin"
 
 #: src/olympia/stats/templates/stats/dashboard.html
 msgid "Add-on Statistics"
@@ -9846,27 +9846,27 @@ msgstr "Izegrar yettwaleqmen"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Collections Created"
-msgstr ""
+msgstr "Tagrumma tettwarna"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Reviews Written"
-msgstr ""
+msgstr "Tizmilin ttunefkent"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "User Signups"
-msgstr ""
+msgstr "Tuqqniwin n useqdac"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Archived Data"
-msgstr ""
+msgstr "Isefka ttwaḥerzen"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Azilal n isefka udmawan"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "From"
-msgstr ""
+msgstr "Si"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "To"
@@ -9874,11 +9874,11 @@ msgstr "Ar"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "Update"
-msgstr ""
+msgstr "Leqqem"
 
 #: src/olympia/stats/templates/stats/report.html
 msgid "Export"
-msgstr ""
+msgstr "Sifed"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html
@@ -9948,7 +9948,7 @@ msgstr "365 ussan"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Custom..."
-msgstr ""
+msgstr "Udmawan..."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
@@ -9960,7 +9960,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/overview.html src/olympia/stats/templates/stats/stats.html
 msgid "No data available."
-msgstr ""
+msgstr "Ulac isefka."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "This dashboard is currently <b>public</b>."
@@ -9976,11 +9976,11 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Change settings."
-msgstr ""
+msgstr "Iɣewwaṛen n usnifel."
 
 #: src/olympia/stats/templates/stats/reports/addons_created.html
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Izegrar yettwarnan s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/addons_downloaded.html
 msgid "Add-ons Downloaded by Date"
@@ -9992,27 +9992,27 @@ msgstr "Izegrar ittuseqdacen s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/addons_updated.html
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Izegrar yettusniflen s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/apps.html
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Aseqdec n usnas s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/collections_created.html
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Tigrummiwin yettwarnan s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/contributions.html
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Attekki s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Isidar s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Amek ttwasiḍnen isidar?"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html
 msgid ""
@@ -10022,19 +10022,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/locales.html
 msgid "User languages by Date"
-msgstr ""
+msgstr "Tutlayin n useqdac s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/os.html
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Aseqdec n twennadin s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> Isidar"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Loading..."
-msgstr ""
+msgstr "Asali..."
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Average Daily Users"
@@ -10046,7 +10046,7 @@ msgstr "Isnasen ifazen"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Wali ugar n yesnasen &hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Languages"
@@ -10054,19 +10054,19 @@ msgstr "Tutlayin ifazen"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Wali ugar n tutlayin &hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Platforms"
-msgstr ""
+msgstr "Tiwennadin timezwura"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Wali ugar n twannadin&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/ratings.html
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Tizmilin s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/reviews_created.html
 msgid "Reviews Created by Date"
