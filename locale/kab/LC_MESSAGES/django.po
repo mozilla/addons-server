@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-30 18:07+0000\n"
+"PO-Revision-Date: 2016-12-30 19:49+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9547,7 +9547,7 @@ msgstr[1] "<b>{0}</b> iceggiren n uzegrir-agi"
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Tririt n uneflay s par {0}"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 #, python-format
@@ -9558,16 +9558,16 @@ msgstr[1] "Iceggiren n %(addon)s sɣuṛ %(user)s"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "No reviews found."
-msgstr ""
+msgstr "Ulac iceggiren."
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Talemmast</strong> (%(total)s)"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "Write a New Review"
-msgstr ""
+msgstr "Aru acegger amaynut"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Be the first to write a review."
