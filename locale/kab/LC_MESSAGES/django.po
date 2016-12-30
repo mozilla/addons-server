@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-30 20:20+0000\n"
+"PO-Revision-Date: 2016-12-30 20:29+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9594,33 +9594,33 @@ msgstr "Rnu acegger"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Log in to add a review"
-msgstr ""
+msgstr "Kcem akken ad ternuḍ acegger"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "No ratings yet."
-msgstr ""
+msgstr "Ulac iceggiren yakan."
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Talemmast si {0} ucegger"
+msgstr[1] "Talemmast si {0} iceggiren"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 #, python-format
 msgid "by %(user)s"
-msgstr ""
+msgstr "sɣur %(user)s"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Read More&nbsp;&raquo;"
-msgstr ""
+msgstr "Ɣeṛ ugar&nbsp;&raquo;"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html
 #, python-format
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Wali akk iceggiren"
+msgstr[1] "Wali akk %(cnt)s iceggiren"
 
 #: src/olympia/search/forms.py
 msgid "Most popular this week"
