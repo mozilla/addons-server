@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-29 22:37+0000\n"
+"PO-Revision-Date: 2016-12-30 09:02+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3014,7 +3014,7 @@ msgstr "Ugur"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
-msgstr ""
+msgstr "Ulac ineqqisen."
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -8147,15 +8147,15 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Dolla n Zimbabwi"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Ɣef izegrar n Mozilla"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "What is this website?"
-msgstr ""
+msgstr "D acu-t usmel-agi Web?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
@@ -8308,7 +8308,7 @@ msgstr "Tanemmirt!"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Site Credits"
-msgstr ""
+msgstr "Ismaden n usmel"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
@@ -8316,7 +8316,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Ineflayen &amp; inedbalen"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Localizers"
@@ -8337,7 +8337,7 @@ msgstr "Imttekkiyen nniḍen"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Ineflayen &amp; inedbalen iqbuṛen"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Software and Images"
@@ -8393,19 +8393,19 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "Akala n ucegger n izegrar"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "Sefrek azegrir inek"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Timsiɣal ɣef turagin n uɣbalu yeldin"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "Iseteqsiyen FAQ n uneflay n izegrar"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8414,7 +8414,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Other resources include:"
-msgstr ""
+msgstr "Tiɣbula nniḍen gebrent:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
@@ -8422,11 +8422,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Ablug n izegrar n Mozilla"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What tools do I need to be able to build an Add-on?"
-msgstr ""
+msgstr "Anwa ifecka i sriɣ akken ad izmireq ad snefliɣ azegrir?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -8452,7 +8452,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "D acu-t ufaylu \".xpi\"?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
