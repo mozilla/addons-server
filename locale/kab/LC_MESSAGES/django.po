@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-30 19:49+0000\n"
+"PO-Revision-Date: 2016-12-30 20:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9571,26 +9571,26 @@ msgstr "Aru acegger amaynut"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Ili-k d amezwaru ara yarun acegger."
 
 #: src/olympia/reviews/templates/reviews/reviews_link.html
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} acegger"
+msgstr[1] "{num} iceggiren"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Yettwasezmel {0} ɣef 5 n yetran"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Yettwasezmel %(rating)s ɣef 5 n yetran"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Add a Review"
-msgstr ""
+msgstr "Rnu acegger"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Log in to add a review"
