@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-30 11:05+0000\n"
+"PO-Revision-Date: 2016-12-30 16:21+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5191,7 +5191,6 @@ msgid "Version Signed"
 msgstr "Версія підписана"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr "Готово! Цю версію підписано і вона готова до розповсюдження. Ви можете завантажити її, натиснувши кнопку внизу."
 
@@ -5249,9 +5248,8 @@ msgid "Administrative overrides"
 msgstr "Адміністративні дії"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Подати версію на перевірку"
+msgstr "Подати файл на розгляд"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5340,28 +5338,24 @@ msgid "%%b %%e, %%Y"
 msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Багатопроцесовість:"
+msgstr "Багатопроцесовість додатку:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr "Сумісність вашого додатку з багатопроцесовим Firefox (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Остання версія:"
+msgstr "Опублікована версія:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "Це версія вашого додатку, яка буде встановлена, якщо хтось натисне на кнопку Встановити на addons.mozilla.org. Це відноситься тільки до наведених додатків."
+msgstr "Це версія вашого додатку, яка буде встановлена, якщо хтось натисне на кнопку Встановити на addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Наступна версія:"
+msgstr "Наступна опублікована версія:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5372,14 +5366,12 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "Черги не перевіряються чітко за порядком"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Lastest Version:"
 msgstr "Остання версія:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
-msgstr "Це найновіша завантажена версія, проте її ще немає на сайті."
+msgstr "Це найновіша завантажена неопублікована версія."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
@@ -5519,19 +5511,16 @@ msgid "{0} Add-ons"
 msgstr "Додатки {0}"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Остання версія:"
+msgstr "Останні новини"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "потребує додаткову інформацію"
+msgstr "Дізнатися більше в нашому блозі"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Розробник додатка"
+msgstr "Центр розробників"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5546,48 +5535,40 @@ msgid "Sign In"
 msgstr "Увійти"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Легкі в користуванні теми для Firefox"
+msgstr "Пристосуйте ваш Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
-"Додатки дозволяють мільйонам користувачів Firefox розширювати та налаштовувати своє середовище для роботи в мережі Інтернет. Якщо Ви веб-розробник і знаєте <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> і <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, у Вас вже є всі необхідні навички, щоб створити чудовий додаток."
+"Додатки дозволяють мільйонам користувачів Firefox розширювати їхні можливості в мережі Інтернет. Якщо ви знайомі з <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> та <a href=\"#\">CSS</a>, у "
+"вас вже є всі необхідні навички для створення чудового додатку."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Докладніше про додатки"
+msgstr "Дізнайтеся, як створити додаток"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Перевірка"
+msgstr "Валідатор"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Будь ласка, доробіть ваш додаток."
+msgstr "Автоматизовані тести коду вашого додатку."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Центр сумісності додатків"
+msgstr "Перевірка сумісності"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "Дізнавайтесь чи можуть вплинути на ваш додаток зміни в Firefox."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Звіти сумісності"
+msgstr "Звіт про сумісність"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
