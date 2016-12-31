@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-31 12:29+0000\n"
+"PO-Revision-Date: 2016-12-31 12:59+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -7090,7 +7090,7 @@ msgstr ""
 
 #: src/olympia/files/helpers.py
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Afayli nni ur yezgi yella."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: src/olympia/files/helpers.py
