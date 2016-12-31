@@ -1030,7 +1030,6 @@ class TestActivityFeed(TestCase):
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('header h2').text() == 'Recent Activity for My Add-ons'
-        assert doc('#breadcrumbs li:eq(2)').text() == 'Recent Activity'
 
     def test_feed_for_addon(self):
         r = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
@@ -1038,7 +1037,6 @@ class TestActivityFeed(TestCase):
         doc = pq(r.content)
         assert doc('header h2').text() == (
             'Recent Activity for %s' % self.addon.name)
-        assert doc('#breadcrumbs li:eq(3)').text() == self.addon.slug
 
     def test_feed_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)

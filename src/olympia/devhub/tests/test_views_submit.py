@@ -89,8 +89,6 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         response = self.client.get(reverse('devhub.submit.agreement'))
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#breadcrumbs a').eq(1).attr('href') == (
-            reverse('devhub.addons'))
         links = doc('#agreement-container a')
         assert links
         for ln in links:
