@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-31 15:16+0000\n"
+"PO-Revision-Date: 2016-12-31 15:41+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8904,15 +8904,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Isteqsiyen itezzin aṭas"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Using Add-ons"
-msgstr ""
+msgstr "Aseqdec n izegrar"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is an add-on?"
-msgstr ""
+msgstr "D acu-t uzegrir?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -8936,7 +8936,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
-msgstr ""
+msgstr "Acu-ten wanawen izergrar?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -8977,7 +8977,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "Amek ara sbeddeɣ, ad sferkeɣ, neɣ ad kkseɣ azegrir?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -8989,7 +8989,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
-msgstr ""
+msgstr "Amek ara kkseq azegrir war ma snekreɣ Firefox tikelt-nniḍen?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9061,7 +9061,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-on Gallery"
-msgstr ""
+msgstr "Timidelt n izegrar"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I choose between add-ons that seem to do the same thing?"
@@ -9127,7 +9127,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are beta add-ons?"
-msgstr ""
+msgstr "D acuten izegrar beta?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -9187,7 +9187,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "Tigrummiwin akked inuraf"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is a collection?"
@@ -9207,7 +9207,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
-msgstr ""
+msgstr "Izegrar izirazen"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are mobile add-ons?"
@@ -9231,7 +9231,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Still have questions?"
-msgstr ""
+msgstr "Ɣur-k yakan isteqsiyen?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9278,15 +9278,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it useful?"
-msgstr ""
+msgstr "D acu iwulmen?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Fessus i useqdac?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Ad tettekkiḍ deg useqdec n uzegrir-agi?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Take a moment to read your review before submitting it to minimize typos."
@@ -9382,7 +9382,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "Ɣeṛ ugar ɣef Sunbird"
 
 #: src/olympia/paypal/__init__.py
 msgid "There was an error communicating with PayPal. Please try again later."
@@ -9435,11 +9435,11 @@ msgstr ""
 
 #: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
 msgid "Delete review"
-msgstr ""
+msgstr "Kkes acegger"
 
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Ayen nniḍen (ini-d)"
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
@@ -9447,7 +9447,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/add.html
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "Rnu acegger i {0}"
 
 #: src/olympia/reviews/templates/reviews/add.html
 #, python-format
@@ -9636,23 +9636,23 @@ msgstr ""
 
 #: src/olympia/search/forms.py
 msgid "search for add-ons"
-msgstr ""
+msgstr "nadi izegrar"
 
 #: src/olympia/search/forms.py
 msgid "search for collections"
-msgstr ""
+msgstr "nadi tigrummiwin"
 
 #: src/olympia/search/forms.py
 msgid "search for themes"
-msgstr ""
+msgstr "nadi isental"
 
 #: src/olympia/search/forms.py
 msgid "search for apps"
-msgstr ""
+msgstr "nadi isnasen"
 
 #: src/olympia/search/forms.py
 msgid "Sort By"
-msgstr ""
+msgstr "Asmizzwer s"
 
 #: src/olympia/search/forms.py
 msgid "Relevance"
@@ -9660,11 +9660,11 @@ msgstr ""
 
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
+msgstr "Askan {0} - {1} si {2} igmaḍ i <strong>{3}</strong>"
 
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results"
-msgstr ""
+msgstr "Askan {0} - {1} n {2} n igmaḍ"
 
 #: src/olympia/search/views.py src/olympia/zadmin/forms.py
 msgid "All Add-ons"
@@ -9679,24 +9679,24 @@ msgstr "Yiwen si {0}"
 #. L10n: "All Systems" means show everything regardless of platform.
 #: src/olympia/search/views.py
 msgid "All Systems"
-msgstr ""
+msgstr "Akk inagrawen"
 
 #: src/olympia/search/views.py
 msgid "All Tags"
-msgstr ""
+msgstr "Akk tibzimin"
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/collections.html
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Igmaḍ n unadi n tegrummiwin i {0}"
 
 #: src/olympia/search/templates/search/collections.html
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Igmaḍ n unadi n tegrummiwin"
 
 #: src/olympia/search/templates/search/down.html
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Ulac anadi"
 
 #: src/olympia/search/templates/search/down.html
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
@@ -9705,11 +9705,11 @@ msgstr ""
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/personas.html
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Igmaḍ n unadi n isental i {0}"
 
 #: src/olympia/search/templates/search/personas.html
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Igmaḍ n unadi n isental"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
@@ -9719,7 +9719,7 @@ msgstr "{0} :: Tabzimt"
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Igmaḍ n unadi ,n tebzimin i \"{0}\""
 
 #: src/olympia/search/templates/search/results.html
 msgid "<b>{0}</b> matching result"
@@ -9729,19 +9729,19 @@ msgstr[1] ""
 
 #: src/olympia/search/templates/search/results.html
 msgid "Filter Results"
-msgstr ""
+msgstr "Igmaḍ n imzizdig"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Category"
-msgstr ""
+msgstr "Taggayt"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Tag"
-msgstr ""
+msgstr "Tabzimt"
 
 #: src/olympia/search/templates/search/mobile/results.html
 msgid "Search Results <i>({num})</i>"
-msgstr ""
+msgstr "Igmaḍ n unadi <i>({num})</i>"
 
 #: src/olympia/signing/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
@@ -9753,7 +9753,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Azegrir-agi mačči yinek."
 
 #: src/olympia/signing/views.py
 msgid "Missing \"upload\" key in multipart file data."
@@ -9770,7 +9770,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "Version already exists."
-msgstr ""
+msgstr "Lqem yella yakan."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
@@ -9790,7 +9790,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Overview"
-msgstr ""
+msgstr "Tazwart"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Source"
@@ -9818,7 +9818,7 @@ msgstr "s waddad n uzegrir"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Subscribers"
-msgstr ""
+msgstr "Imeltaɣen"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Ratings"
@@ -9883,24 +9883,24 @@ msgstr "Sifed"
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Tafelwit n usenqed n tdaddanin:: Izegrar i {1}"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Tafelwit n usenqed n tdaddanin"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Tafelwit n usenqed n tdaddanin:: Izegrar i {0}"
 
 #. {0} is an add-on name
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Tidaddanin i {0}"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Wali tafelwit n usenqed n tidaddanin"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Controls:"
@@ -9912,7 +9912,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Group by:"
-msgstr ""
+msgstr "Sdukel s:"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "day"
@@ -10144,19 +10144,19 @@ msgstr ""
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Footer logo"
-msgstr ""
+msgstr "Alugu n uḍaṛ"
 
 #: src/olympia/templates/categories.html
 msgid "Choose a category"
-msgstr ""
+msgstr "Fren taggayt"
 
 #: src/olympia/templates/categories.html
 msgid "Mobile Categories"
-msgstr ""
+msgstr "Taggayin tizirazin"
 
 #: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Legal Notices"
-msgstr ""
+msgstr "Alɣu usḍif"
 
 #: src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
@@ -10164,15 +10164,15 @@ msgstr ""
 
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
-msgstr ""
+msgstr "Sken asmel aziraz"
 
 #: src/olympia/templates/copyright.html
 msgid "Site Status"
-msgstr ""
+msgstr "Addad n usmel"
 
 #: src/olympia/templates/copyright.html
 msgid "Report a bug"
-msgstr ""
+msgstr "Azen-d abug"
 
 #: src/olympia/templates/copyright.html
 msgid ""
@@ -10190,11 +10190,11 @@ msgstr "Ɣef"
 
 #: src/olympia/templates/footer.html
 msgid "FAQ"
-msgstr ""
+msgstr "Isteqsiyen FAQ"
 
 #: src/olympia/templates/footer.html
 msgid "Forum"
-msgstr ""
+msgstr "Anmager"
 
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Other languages"
