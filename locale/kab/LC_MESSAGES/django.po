@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-30 20:29+0000\n"
+"PO-Revision-Date: 2016-12-31 12:29+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3200,7 +3200,7 @@ msgstr "Asenqed amezwaru n umawal"
 
 #: src/olympia/constants/base.py
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Aleqqem n ucegger n umawal"
 
 #: src/olympia/constants/base.py
 msgid "New Language Pack Review"
@@ -6418,7 +6418,7 @@ msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Taḍra-d tuccda tarussint"
 
 #: src/olympia/editors/views.py
 msgid "Self-reviews are not allowed."
@@ -6434,7 +6434,7 @@ msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
-msgstr ""
+msgstr "yettwaqbel"
 
 #: src/olympia/editors/views.py
 msgid "given preliminary review"
@@ -6442,7 +6442,7 @@ msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "rejected"
-msgstr ""
+msgstr "yettwagi"
 
 #: src/olympia/editors/views.py
 msgctxt "editors_review_history_nominated_adminreview"
@@ -6459,7 +6459,7 @@ msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "commented"
-msgstr ""
+msgstr "yettuwennet"
 
 #: src/olympia/editors/views_themes.py
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
@@ -6804,7 +6804,7 @@ msgstr "Ifuyla:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Tested on:"
-msgstr ""
+msgstr "Yettwasekyed di:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
@@ -6864,7 +6864,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Files in this version:"
-msgstr ""
+msgstr "Ifuyla di lqem-agi:"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Contents"
@@ -6923,7 +6923,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
-msgstr ""
+msgstr "Azemz yettwakkes"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "No deleted themes found for this period."
@@ -6964,12 +6964,12 @@ msgstr[1] ""
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Lqem"
+msgstr[1] "{num} Ileqman"
 
 #: src/olympia/editors/templates/editors/themes/logs.html
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Aɣmis n ucegger n usentel"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Theme Review Queue"
@@ -6985,23 +6985,23 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Rmed inegzumen n unasiw"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Inegzumen n unasiw"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Next Theme"
-msgstr ""
+msgstr "Asentel d-iteddun"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Previous Theme"
-msgstr ""
+msgstr "Asentel yezrin"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Your Review History"
-msgstr ""
+msgstr "Amazray-inek n ucegger"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Commit Review"
@@ -7021,7 +7021,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Clear Search"
-msgstr ""
+msgstr "Sfeḍ Anadi"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Release My Theme Locks"
@@ -7058,7 +7058,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Approve Theme"
-msgstr ""
+msgstr "Qbel asentel"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Field required"
@@ -7066,19 +7066,19 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "Sekcem asumlay ID neɣ tansa URL n usilgen"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Fren acuɣer tugin"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Mudd aglam n wacuqer tugin"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Steqsi anaẓuṛ"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Describe your reason for flagging"
