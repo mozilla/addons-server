@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-31 14:59+0000\n"
+"PO-Revision-Date: 2016-12-31 15:16+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4492,11 +4492,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Azegrir-agi d armitan."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Azegrir-agi ihegga i useqdec amatu."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -4635,7 +4635,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Public Stats?"
-msgstr ""
+msgstr "Tidaddanin tizayazin?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
@@ -4667,7 +4667,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Asulay asuf amaḍlan"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "UUID"
@@ -4905,7 +4905,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
-msgstr ""
+msgstr "Arurmid"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 #, python-format
@@ -7360,15 +7360,15 @@ msgstr "Amsuqel n isebtar akked uḍris, amawal d wayen nniḍen!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Tayri deg igenni"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Rnu kra n tayri i Firefox inek."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get up and move!"
-msgstr ""
+msgstr "Kker, sellek iman-ik!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Install these fitness add-ons to keep you active and healthy."
@@ -7376,7 +7376,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Amaynut &amp; Tura"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get the latest, must-have add-ons of the moment."
@@ -7739,11 +7739,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Israel Shekel"
-msgstr ""
+msgstr "Shekel n Israel "
 
 #: src/olympia/lib/constants.py
 msgid "Isle of Man Pound"
-msgstr ""
+msgstr "Adiṛham n Meṛṛuk"
 
 #: src/olympia/lib/constants.py
 msgid "India Rupee"
