@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2017-01-01 16:16+0000\n"
+"PO-Revision-Date: 2017-01-01 17:59+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5850,12 +5850,12 @@ msgstr "Afaylu {file_id} ({platform})"
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Yettwarna di %(created)s yettusnifel ar %(status)s di %(status_date)s"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Yettwarna %(created)s yettusnifel di %(status)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
@@ -5891,11 +5891,11 @@ msgstr "Sefsex tuttra n ucegger"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Asali n umazray n ucegger..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Teḍra-d tuccḍa deg awway n tezmilin n iceggiren"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
@@ -5994,7 +5994,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Tukksa n lqem-agi ad yekkes ilebda:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
@@ -6002,7 +6002,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Tebɣiḍ ad tekkseḍ lqem-agi?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version"
@@ -6034,7 +6034,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Tebɣiḍ ad teffreḍ azegrir-agi?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlist Add-on"
@@ -6057,7 +6057,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "Tebɣiḍ ad tekkseḍ azegrir-agi si tebdart?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
@@ -6065,11 +6065,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Tebɣiḍ ad tesfesxeḍ tuttra n ucegger?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
@@ -6117,7 +6117,7 @@ msgstr "akked"
 
 #: src/olympia/editors/forms.py
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Imzizdig s wanaw /action"
 
 #: src/olympia/editors/forms.py
 msgid "Passed automatic validation"
@@ -6129,11 +6129,11 @@ msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Imzizdig s usentem awurman"
 
 #: src/olympia/editors/forms.py
 msgid "containing"
-msgstr ""
+msgstr "agbur"
 
 #. L10n: start, as in "start date"
 #: src/olympia/editors/forms.py
@@ -6213,12 +6213,12 @@ msgstr "isem n usentel"
 
 #: src/olympia/editors/forms.py
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Yella win nniden yettceggiren asentel-agi."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "asentel, imcegger, neɣ awennit"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -6374,7 +6374,7 @@ msgstr "Ugar n telɣut tettusuter"
 
 #: src/olympia/editors/models.py
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Igber awennit n umaẓrag"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
@@ -6406,15 +6406,15 @@ msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "New Add-ons (Under 5 days)"
-msgstr ""
+msgstr "Izegrar imaynuten (Daw n 5 n wussan)"
 
 #: src/olympia/editors/views.py
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "Ilemmasen (5 ar 10 n wussan)"
 
 #: src/olympia/editors/views.py
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "Iqbuṛen (Ugar n 10 n wussan)"
 
 #: src/olympia/editors/views.py
 msgid "An unknown error occurred"
@@ -6451,7 +6451,7 @@ msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "needs more information"
-msgstr ""
+msgstr "yesra ugar n telɣut"
 
 #: src/olympia/editors/views.py
 msgid "needs super review"
@@ -7264,7 +7264,7 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Ulac ifuyla deg ufaylu yulin."
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Fetching file."
@@ -7312,7 +7312,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Isental n St. Patrick"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
@@ -7551,7 +7551,7 @@ msgstr "Bulgarya Lev"
 
 #: src/olympia/lib/constants.py
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "Adinaṛ n Baḥrayn"
 
 #: src/olympia/lib/constants.py
 msgid "Burundi Franc"
