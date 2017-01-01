@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2017-01-01 15:14+0000\n"
+"PO-Revision-Date: 2017-01-01 16:00+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -10623,11 +10623,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Fran tawlaft &hellip;"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete current photo"
-msgstr ""
+msgstr "Kkes tawlaft tamirant"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This is the default locale used to display information about you (like your description)."
@@ -10647,15 +10647,15 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Sken tigrummiwin i rniɣ"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Display collections I'm following"
-msgstr ""
+msgstr "Sken tigrummiwin i ṭafareɣ"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Notifications"
-msgstr ""
+msgstr "Alɣu"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
@@ -10667,19 +10667,19 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Admin"
-msgstr ""
+msgstr "Anebdal"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete Account"
-msgstr ""
+msgstr "Kkes amiḍan"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Update Account"
-msgstr ""
+msgstr "Leqqem amiḍan"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "none"
-msgstr ""
+msgstr "ulac"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "all"
@@ -10691,31 +10691,31 @@ msgstr ""
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "User Login"
-msgstr ""
+msgstr "Tuqqna n useqdac"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Qqen s umiḍan Firefox"
 
 #: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
-msgstr ""
+msgstr "Awal uffir ittuwennez"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "User Info for {0}"
-msgstr ""
+msgstr "Talɣut n useqdac i {0}"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Edit profile"
-msgstr ""
+msgstr "Ẓreg amaɣnu"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Manage user"
-msgstr ""
+msgstr "Sefrerk aseqdac"
 
 #: src/olympia/users/templates/users/profile.html src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user"
-msgstr ""
+msgstr "Sefrek aseqdac"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Add-ons Developer"
