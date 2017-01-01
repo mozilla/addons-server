@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-31 15:56+0000\n"
+"PO-Revision-Date: 2017-01-01 15:14+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -10567,11 +10567,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Sentem tukksa n umiḍan"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "Gziɣ d akken ulac tuɣalin ar deffir."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Delete my user account now"
@@ -10587,7 +10587,7 @@ msgstr "Kkes tawlaft inu n useqdac tura"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name"
-msgstr ""
+msgstr "Ma ulac aɣilif fren isem ara d-sekneḍ"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name or username to complete the registration process."
