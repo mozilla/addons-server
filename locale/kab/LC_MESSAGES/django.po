@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2017-01-01 16:00+0000\n"
+"PO-Revision-Date: 2017-01-01 16:16+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -442,7 +442,7 @@ msgstr "Abadu n tneflit"
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
-msgstr ""
+msgstr "Abad n tneflit ak-yeǧǧ ad tegeḍ asekyed n lqem armitan n uzegrir-agi send ad yettuzuzer i yak yiwen. Ticki lqem n tneflit yebded, tzemreḍ ad tkemleḍ awway n ileqman n ubadu-agi."
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Install development version"
@@ -3878,7 +3878,7 @@ msgstr "Di tazwara, fren asnas"
 
 #: src/olympia/devhub/forms.py
 msgid "There cannot be more than 3 required add-ons."
-msgstr ""
+msgstr "Ur izmir ara ad ylili ugar n 3 n izegrar ilaqen."
 
 #: src/olympia/devhub/forms.py
 msgid ""
@@ -3892,7 +3892,7 @@ msgstr ""
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Tasemlit n uzegrir :: Ammas n uneflay"
 
 #: src/olympia/devhub/helpers.py
 msgid "My Submissions"
@@ -3936,12 +3936,12 @@ msgstr ""
 #: src/olympia/devhub/tasks.py
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Tuqqna ar \"%s\" tezri."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Ur izmir ara ad nermes asennetfteɣ di \"%s\"."
 
 #: src/olympia/devhub/utils.py
 #, python-format
@@ -4002,7 +4002,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Ameskar yettwarna ad uzegrir inek"
 
 #: src/olympia/devhub/views.py
 msgid "An author has a role changed on your add-on"
@@ -4014,7 +4014,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "There were errors in your submission."
-msgstr ""
+msgstr "Llan tuccḍiwin di tuzna-inek."
 
 #: src/olympia/devhub/views.py
 msgid "Validate Add-on"
@@ -10723,7 +10723,7 @@ msgstr "Aneflay n izegrar"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes Artist"
-msgstr ""
+msgstr "Anaẓuṛ n usentel"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "About me"
@@ -10731,35 +10731,35 @@ msgstr "Fell-i"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "In a little more detail..."
-msgstr ""
+msgstr "S talqayt..."
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "Izegrar i rniɣ"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Isental-iw yettwasnen aṭas"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes I've created"
-msgstr ""
+msgstr "Isental i rniɣ"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Followed by Me"
-msgstr ""
+msgstr "Ṭafareɣ-ten"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Created by Me"
-msgstr ""
+msgstr "Rniɣ-ten"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "My Reviews"
-msgstr ""
+msgstr "Iceggiren-iw"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "No add-on reviews yet."
-msgstr ""
+msgstr "Ulac iceggiren n izegrar akka tura."
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Report User"
