@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2017-01-02 19:40+0000\n"
+"PO-Revision-Date: 2017-01-02 19:57+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -804,6 +804,8 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
+"Ma tɣileḍ d akken azegrir-agi yeṛza <a href=\"%(url)s\">tisertityin nneɣ</a> neɣ yetthaz tudert tabadnit neɣ taɣellist, tanemmirt ma teččureḍ tiferkit-agi daw-a akken aɣ-d-azneḍ ayen i k-iceɣben. Ur"
+" seqdac ara tiferkit-agi i wayen nniḍen."
 
 #: src/olympia/addons/templates/addons/report_abuse.html src/olympia/users/templates/users/report_abuse.html
 msgid "Send Report"
@@ -9968,7 +9970,7 @@ msgstr "Ulac isefka."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Tafelwit-agi n usenqded akka tura d <b>tazayezt</b>."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Contribution stats are currently <b>private</b>."
@@ -10078,7 +10080,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/sources.html
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Iɣbula n usider s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/sources.html
 msgid "About tracking external sources..."
@@ -10096,7 +10098,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Addad n uzegrir s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/subscribers.html
 msgid "Subscribers by Date"
@@ -10104,11 +10106,11 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Iseqdacen n yal ass s wazemz"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid "What are daily users?"
-msgstr ""
+msgstr "D acu d iseqdacen n yal ass?"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid ""
@@ -10128,19 +10130,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/versions.html
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Ileqman n usnas s wazemz"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Izegrar n Mozilla"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "Af-d izegrar i yesnasen nniḍen"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Other Applications"
-msgstr ""
+msgstr "Isnasen nniḍen"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
@@ -10258,11 +10260,11 @@ msgstr ""
 
 #: src/olympia/templates/impala/base.html
 msgid "On the go?"
-msgstr ""
+msgstr "D ayen ara tawiḍ?"
 
 #: src/olympia/templates/impala/base.html
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "Ddu ad twaliḍ <a class=\"mobile-link\" href=\"#\">Asmel-neɣ n izegrar izirazen</a>."
 
 #: src/olympia/templates/impala/header_title.html
 msgid "Android Add-ons"
@@ -10270,19 +10272,19 @@ msgstr "Izegrar Android"
 
 #: src/olympia/templates/includes/forms.html
 msgid "required"
-msgstr ""
+msgstr "yettwasra"
 
 #: src/olympia/templates/includes/forms.html
 msgid "Required fields"
-msgstr ""
+msgstr "Urtan yettwasran"
 
 #: src/olympia/templates/mobile/base_addons.html
 msgid "Mobile Home"
-msgstr ""
+msgstr "Asebtar agejdan aziraz"
 
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
-msgstr ""
+msgstr "Wali akk asmel"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
@@ -10343,7 +10345,7 @@ msgstr ""
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Discard Changes"
-msgstr ""
+msgstr "Sefsex asinifel"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
@@ -10412,7 +10414,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py
 msgid "Please enter at least one name to be denied."
-msgstr ""
+msgstr "Ma ulac aɣilif, sekcem ɣarsum isem imumi ara tgedleḍ anekcum."
 
 #: src/olympia/users/helpers.py
 msgctxt "user_list_others"
@@ -10839,15 +10841,15 @@ msgstr "{0} izegrar"
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s asentel"
+msgstr[1] "%(num)s isental"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s azegrir"
+msgstr[1] "%(num)s izegrar"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
