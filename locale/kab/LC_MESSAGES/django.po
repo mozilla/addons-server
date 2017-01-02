@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2017-01-01 17:59+0000\n"
+"PO-Revision-Date: 2017-01-02 19:40+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -480,7 +480,7 @@ msgstr "Amtawa n uselkin n useqdac aneggaru"
 #: src/olympia/addons/templates/addons/eula.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "Azegrir %(addon_name)s yesra ad tqebleḍ agatu n uselkin i useqdac aneggaru send ad tedduḍ deg usebded:"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/addons/templates/addons/privacy.html
 msgid "Back to {0}…"
@@ -648,7 +648,7 @@ msgstr[1] "<strong>{0}</strong> iseqdacen"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Srifeg s ufella akken ad d-sekneḍ"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/templates/reviews/add.html
 msgid "Add"
@@ -702,6 +702,8 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>Amke ara tesbeddeḍ di Thunderbird</strong> <ol> <li>Sider sakin sekles afaylu ɣef udebṣi yinek.</li> <li>Di Mozilla Thunderbird, kcem ar umuɣ n izegrar seg umuɣ n ifecka.</li> <li>S useqdec "
+"n tqeffalt yellan rrif n wurti n unadin izegrar, fren \"Sebded azegrir seg ufaylu\" sakin fren azegrir i d-sidreḍ</li> </ol>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -713,12 +715,12 @@ msgstr "Issin ugar ɣef Thunderbird"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "Akken ad tesbeddeḍ asentel-agi neq agimen n wiyaḍ, <b>Sebded Firefox</b>,iminig ilelli, baṭel n Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr ""
+msgstr "Azegrir-agi yettwag akken ad yeddu akked lqem inek n %(app)s."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Install Anyway"
@@ -757,15 +759,17 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
+"<strong>Ɣur-k&nbsp;:</strong> Azegrir-agi ur yettwasenqed ara sɣuṛ Mozilla, ihi ur yezmir ara ad yebded ɣef ileqman  Firefox 43 neq ugar.  Ɣur-k ticki tsebdadeḍ iqeɣẓanen wis kraḍ izemren ad rwin "
+"aselkim inek."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr ""
+msgstr "<strong>Ɣur-k:</strong> Azegrir-agi ur imṣada ara akked unagraw-inek n wammud."
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr ""
+msgstr "Azegrir-agi ur imṣada ara akked lqem n %(app)s ɣef sebba n iferdisen-agi:"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "View other versions"
@@ -787,7 +791,7 @@ msgstr "Tangalt QR i uzegrir"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
+msgstr "Tebɣiḍ {0} ɣefFirefox aziraz ? Ṭṭef tangalt QR akken ad yebded srid ɣef tiliɣri yinek (tesriḍ ameɣri n tengalt QR. Nadi di marketplace n yienk inek ma yella ur tufiḍ ara yakan)."
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
