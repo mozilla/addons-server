@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2017-01-02 22:38+0000\n"
+"PO-Revision-Date: 2017-01-02 22:51+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -6239,7 +6239,7 @@ msgstr "Naozaj chcete zrušiť vašu žiadosť o kontrolu?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujte reklamy {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Blokujte reklamy {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
@@ -6247,23 +6247,23 @@ msgstr "Rýchly a efektívny blokovač reklám. uBlock Origin používa tisíce 
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vytvárajte snímky obrazovky {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vytvárajte snímky obrazovky {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
-msgstr ""
+msgstr "Viac než len nástroj na vytváranie snímok obrazovky. S týmto doplnkom môžete svoje obrázky upravovať a aj zdieľať."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Majte jednoduchý prístup ku svojim záložkám {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
-msgstr ""
+msgstr "Hľadáte neustále niečo medzi svojimi záložkami? Zobrazte si ich zoznam rýchlym a jednoduchým gestom."
 
 #: src/olympia/discovery/data.py
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšite si YouTube {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vylepšite si YouTube {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
