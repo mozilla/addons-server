@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2017-01-02 22:51+0000\n"
+"PO-Revision-Date: 2017-01-02 23:18+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -6267,7 +6267,7 @@ msgstr "Vylepšite si YouTube {start_sub_heading}s doplnkom {addon_name}{end_sub
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
-msgstr ""
+msgstr "Automaticky prehrávajte videá na YouTube vo vysokom rozlíšení, bez anotácií, s upravenou veľkosťou prehrávača a mnohými ďalšími úpravami."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
