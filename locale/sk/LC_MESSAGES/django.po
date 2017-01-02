@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2017-01-02 21:58+0000\n"
+"PO-Revision-Date: 2017-01-02 22:20+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -5139,7 +5139,7 @@ msgstr "Povedzte používateľom čo sa v tejto verzii zmenilo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Tieto poznámky sa zobrazia na stránke s podrobnosťami."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
@@ -5547,9 +5547,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Ďalšie informácie o doplnkoch"
+msgstr "Naučte sa vytvárať doplnky"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -5558,9 +5557,8 @@ msgid "Validator"
 msgstr "Overenie"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Skompletizujte svoj doplnok."
+msgstr "Automatické testy kódu vášho doplnku."
 
 # 89%
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -5570,7 +5568,7 @@ msgstr "Kontrola kompatibility doplnku"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Zistite, či je pravdepodobné, že váš doplnok bude ovplyvnený zmenami vo Firefoxe."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 #, fuzzy
@@ -5579,7 +5577,7 @@ msgstr "Hlásenia o kompatibilite"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Povedzte nám, či váš doplnok funguje v určitej verzii Firefoxu."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -5615,9 +5613,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Prijímať príspevky na vašom účte PayPal alebo ich odosielať organizácii podľa vlastného výberu"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Príspevky sú dostupné len pre zverejnené doplnky."
+msgstr "Príspevky sú dostupné len pre doplnky so zverejnenými verziami."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -5853,7 +5850,7 @@ msgstr "Názov vašej témy"
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "od <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6353,7 +6350,7 @@ msgstr "Typy doplnkov"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Hľadať podľa názvu doplnku/e-mailu autora/guid"
 
 #: src/olympia/editors/forms.py
 msgid "Max. Version"
@@ -6398,9 +6395,8 @@ msgstr "Niekto iný aktuálne kontroluje túto tému."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
-#, fuzzy
 msgid "theme, reviewer, or comment"
-msgstr "aplikácia, recenzia alebo komentár"
+msgstr "téma, recenzia alebo komentár"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -6446,12 +6442,11 @@ msgid "All Unlisted Add-ons"
 msgstr "Zrušiť zverejnenie doplnku"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Zrušiť zverejnenie doplnku"
-msgstr[1] "Zrušiť zverejnenie doplnku"
-msgstr[2] "Zrušiť zverejnenie doplnku"
+msgstr[0] "Nový doplnok ({0})"
+msgstr[1] "Nové doplnky ({0})"
+msgstr[2] "Nové doplnky ({0})"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -10546,13 +10541,12 @@ msgid "Report a bug"
 msgstr "Nahlásiť chybu"
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Niektoré použité ikony pochádzajú zo <a href=\"http://www.famfamfam.com/lab/icons/silk/\">sady ikon famfamfam Silk</a>, uvoľnené pod licenciou <a "
-"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5</a>."
+"Ak nie je <a href=\"https://www.mozilla.org/about/legal/\">uvedené</a> inak, je obsah tejto stránky dostupný na základe licencie <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> alebo akejkoľvek novšej verzie."
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
@@ -11331,7 +11325,7 @@ msgstr "Logovať e-mailové správy na miesto ich odoslania"
 
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Odstránené verzie nemožno meniť."
 
 #: src/olympia/zadmin/forms.py
 msgid "Binary"
