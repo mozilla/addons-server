@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2016-12-21 17:15+0000\n"
+"PO-Revision-Date: 2017-01-02 21:58+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1754,9 +1754,8 @@ msgid "{addon} migrated from preliminary."
 msgstr "Doplnok {addon} {version} bol predbežne skontrolovaný."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reply by developer on {addon} {version}."
-msgstr "Doplnok {addon} {version} bol okomentovaný."
+msgstr "Odpoveď od vývojára doplnku {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Developer Reply"
@@ -1985,7 +1984,7 @@ msgstr "Platnosť podpisu vypršala."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Chyba pri čítaní podpisu."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
@@ -2001,7 +2000,7 @@ msgstr ""
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Pole musí obsahovať aspoň {num} znakov."
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
@@ -2030,7 +2029,7 @@ msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applic
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr ""
+msgstr "Upozorňujeme, že WebExtensions neakceptujú hodnotu \"*\" v parametre <a href=\"%(version_url)s\">strict_min_version</a>."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
@@ -2603,7 +2602,7 @@ msgstr "Doplnky vo vašej kolekcii"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "Pre pridanie doplnku do tejto kolekcie zadajte jeho názov do poľa nižšie a stlačte Enter."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/editors/helpers.py
 msgid "Add-on"
@@ -4347,7 +4346,7 @@ msgstr "Vývoj doplnkov"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Ľahké témy vzhľadu"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Policies"
@@ -4400,7 +4399,7 @@ msgstr "Po načítaní bude na vašom súbore spustená sada automatizovaných t
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Chcete distribuovať doplnok prostredníctvom tejto stránky?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html
@@ -4596,7 +4595,7 @@ msgstr "Súhrn"
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Krátky popis základných funkcií doplnku, ktorý je zobrazený v zoznamoch, výsledkoch vyhľadávania a na začiatku stránky s detailami doplnkov. Relevantné len pre zverejnené doplnky."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Experimental?"
@@ -4634,7 +4633,7 @@ msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "Oddelené čiarkou, minimálne {0} znak."
 msgstr[1] "Oddelené čiarkou, minimálne {0} znaky."
-msgstr[2] ""
+msgstr[2] "Oddelené čiarkou, minimálne {0} znakov."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Example: dark, cinema, noir. Limit 20."
@@ -5100,7 +5099,7 @@ msgstr "Licencia:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr ""
+msgstr "Vyberte prosím vhodnú licenciu vzhľadom k právam, ktoré chcete poskytnúť k svojmu zdrojovému kódu."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
