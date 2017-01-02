@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2017-01-02 22:20+0000\n"
+"PO-Revision-Date: 2017-01-02 22:38+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -5044,18 +5044,16 @@ msgstr[1] "<strong>{0}</strong> aktívni používatelia"
 msgstr[2] "<strong>{0}</strong> aktívnych používateľov"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Odoslať novú tému"
+msgstr "Odoslať nový súbor"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Odoslať nový doplnok"
+msgstr "Odoslať novú verziu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
-msgstr "Odoslať doplnky"
+msgstr "Odoslať doplnok"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Describe Add-on"
@@ -5207,14 +5205,12 @@ msgid "Go to My Submissions"
 msgstr "Moje aplikácie"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-#, fuzzy
 msgid "Add-on Distribution Agreement"
-msgstr "Dohoda o distribúcií doplnkov pre Firefox"
+msgstr "Dohoda o distribúcií doplnkov"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Odošlite svoj doplnok"
+msgstr "Nahrať doplnok"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5227,9 +5223,8 @@ msgid "Where to Host Version"
 msgstr "Cieľová verzia"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Version"
-msgstr "Odoslať novú verziu"
+msgstr "Nahrať verziu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5248,14 +5243,12 @@ msgid "Administrative overrides"
 msgstr "Zmeny pri administrácií"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File for Review"
-msgstr "Odoslať doplnok na manuálnu kontrolu."
+msgstr "Odoslať súbor na kontrolu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "Odoslať doplnky"
+msgstr "Podpísať doplnok"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
@@ -5338,13 +5331,12 @@ msgid "%%b %%e, %%Y"
 msgstr "%%b. %%e %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Proces schvalování doplňku"
+msgstr "Stav kompatibility doplnku s multiprocesorovou architektúrou:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Kompatibilita vášho doplnku s multiprocesorovým Firefoxom (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
@@ -6247,15 +6239,15 @@ msgstr "Naozaj chcete zrušiť vašu žiadosť o kontrolu?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Blokujte reklamy {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Rýchly a efektívny blokovač reklám. uBlock Origin používa tisíce filtrov bez toho, aby zhltol veľkú časť vašej pamäte."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vytvárajte snímky obrazovky {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
@@ -6271,7 +6263,7 @@ msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vylepšite si YouTube {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
@@ -8628,20 +8620,17 @@ msgid "Support Resources"
 msgstr "Kde hľadať podporu"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Contributing your Add-on"
-msgstr "Přispívání svým doplňkem"
+msgstr "Prispievanie vašim doplnkom"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Add-on Review Process"
-msgstr "Proces schvalování doplňku"
+msgstr "Proces schvaľovania doplnku"
 
 # 82%
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Managing Your Add-on"
-msgstr "Správa svého doplňku"
+msgstr "Správa vášho doplnku"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "References for Open Source Licenses"
@@ -8850,7 +8839,7 @@ msgstr "Skupiny Google"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Fórum o doplnkoch"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Stack Overflow"
@@ -9735,9 +9724,8 @@ msgid "There was an error with this currency."
 msgstr "V súvislosti s menou nastala chyba."
 
 #: src/olympia/paypal/__init__.py
-#, fuzzy
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr "Množství je příliš malé pro konverzi do cílové měny."
+msgstr "Množstvo je pre konverziu do cieľovej meny príliš malé."
 
 #: src/olympia/paypal/__init__.py
 msgid "The buyer and seller must have different PayPal accounts."
