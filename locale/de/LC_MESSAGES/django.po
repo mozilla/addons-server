@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-03 16:01+0000\n"
+"PO-Revision-Date: 2017-01-03 16:02+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -5163,9 +5163,8 @@ msgid "File Signed"
 msgstr "Datei signiert"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Fertig! Diese Version wurde signiert und kann selbst verteilt werden. Sie können sie per Klick auf die folgende Schaltfläche herunterladen."
+msgstr "Fertig! Diese Datei wurde signiert und kann selbst verteilt werden. Sie können sie per Klick auf die folgende Schaltfläche herunterladen."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Signed"
@@ -5229,9 +5228,8 @@ msgid "Administrative overrides"
 msgstr "Überschreibungen durch Administratoren"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File"
-msgstr "Neue Datei übermitteln"
+msgstr "Datei übermitteln"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
