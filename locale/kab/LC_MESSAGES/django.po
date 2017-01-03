@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-03 18:20+0000\n"
+"PO-Revision-Date: 2017-01-03 18:27+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1492,7 +1492,7 @@ msgstr "{addon} {version} acegger amezwaru yettwag."
 
 #: src/olympia/amo/log.py
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Yettwaqbel di tazwara"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} rejected."
@@ -1508,11 +1508,11 @@ msgstr "Yettwaqbel"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} yuli."
 
 #: src/olympia/amo/log.py
 msgid "Super review requested"
-msgstr ""
+msgstr "Acegger leqqayen yettusuter"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
@@ -1532,7 +1532,7 @@ msgstr "Ugar n telɣut tettusuter"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version} acegger leqqayen yettusuter."
 
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
@@ -4329,12 +4329,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Recent Activity"
-msgstr ""
+msgstr "Armud n melmi kan"
 
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Armud n melmi kan i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 #, python-format
@@ -4352,7 +4352,7 @@ msgstr "Armud"
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Jerred ar usuddem-agi"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
@@ -4466,12 +4466,12 @@ msgstr "Rnu amaɣnu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information"
-msgstr ""
+msgstr "Talɣut tazadurt"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Talɣut tazadurt i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Add-on URL"
@@ -5061,9 +5061,8 @@ msgid "Edit version {0}"
 msgstr "Ẓreg lqem {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "File Signed"
-msgstr "Lqem yettwazmel"
+msgstr "Afaylu yettwazmel"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
@@ -5130,9 +5129,8 @@ msgid "Administrative overrides"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File"
-msgstr "Azen afaylu amaynut"
+msgstr "Azen afaylu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5176,7 +5174,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
-msgstr ""
+msgstr "Ḥwi"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke and regenerate credentials"
@@ -5188,7 +5186,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
-msgstr ""
+msgstr "Ma ulac aɣilif, kemmel azegrir inek."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -7223,7 +7221,7 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
-msgstr ""
+msgstr "Asentem ur yeddi ara:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
@@ -7235,15 +7233,15 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Deleted files:"
-msgstr ""
+msgstr "Kkes ifuyla:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Hide known files"
-msgstr ""
+msgstr "Ffer ifuyla yettwasnen"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Lqem n SDK n uzegrir:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Tab stops:"
