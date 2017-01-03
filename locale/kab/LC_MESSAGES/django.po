@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-03 18:27+0000\n"
+"PO-Revision-Date: 2017-01-03 19:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3722,7 +3722,7 @@ msgstr "Yessefk ad yegber xaṛsum yiwen n bab."
 
 #: src/olympia/devhub/forms.py
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Yessef ad d-bedreḍ xaṛsum yiwen n umeskar."
 
 #: src/olympia/devhub/forms.py
 msgid "An author can only be listed once."
@@ -3790,7 +3790,7 @@ msgstr "Tasbeddit Mozilla"
 
 #: src/olympia/devhub/forms.py
 msgid "An organization of my choice"
-msgstr ""
+msgstr "Tuddsa i bɣiɣ"
 
 #: src/olympia/devhub/forms.py
 msgid "Please enter a suggested amount greater than 0."
@@ -3810,7 +3810,7 @@ msgstr "Ur izmir ara ad isentem asulay id n PayPal."
 
 #: src/olympia/devhub/forms.py
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Anaw n ufaylu ur ittusefrak ara, ma ulac aɣilif sali afaylu n uḥraz {extensions}."
 
 #: src/olympia/devhub/forms.py
 msgid "View current"
@@ -3818,15 +3818,15 @@ msgstr "Wal lqem amiran"
 
 #: src/olympia/devhub/forms.py
 msgid "Invalid version range."
-msgstr ""
+msgstr "Azilal n lqem mačči d ameɣtu."
 
 #: src/olympia/devhub/forms.py
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "Yesra xaṛsum yiwen n usnas amṣadan."
 
 #: src/olympia/devhub/forms.py
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "Teḍra-d tuccḍa akked usali inek. Ma ulac aɣilif ɛreḍ tikelt nniḍen."
 
 #: src/olympia/devhub/forms.py
 msgid "Override failed validation"
@@ -7225,7 +7225,7 @@ msgstr "Asentem ur yeddi ara:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Asesfer n ufaylu n uzegrir iteddu, ma ulac aɣilif, ṛǧu."
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Fetching validation results..."
