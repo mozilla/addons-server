@@ -306,15 +306,15 @@ class SortingFilter(BaseFilterBackend):
     according to the request.
     """
     SORTING_PARAMS = {
-        'users': '-average_daily_users',
-        'rating': '-bayesian_rating',
         'created': '-created',
-        'name': 'name_sort',
         'downloads': '-weekly_downloads',
+        'hotness': '-hotness',
+        'name': 'name_sort',
+        'rating': '-bayesian_rating',
+        'relevance': '-_score',
         'updated': '-last_updated',
-        'hotness': '-hotness'
+        'users': '-average_daily_users',
     }
-    SORTING_DEFAULT = 'downloads'
 
     def filter_queryset(self, request, qs, view):
         search_query_param = request.GET.get('q')
@@ -325,15 +325,10 @@ class SortingFilter(BaseFilterBackend):
             order_by = [self.SORTING_PARAMS[name] for name in
                         sort_param.split(',') if name in self.SORTING_PARAMS]
 
-        # The default sort behaviour depends on the presence of a query: When
-        # querying (with `?q=`) we want to let ES order results by relevance
-        # by default. Therefore, if we don't have a valid order_by at this
-        # point, only add the default one if we did not have a search query
-        # param.
-        if not order_by and not search_query_param:
-            order_by = [self.SORTING_PARAMS[self.SORTING_DEFAULT]]
+        # The default sort depends on the presence of a query: we sort by
+        # relevance if we have a query, otherwise by downloads.
+        if not order_by:
+            sort_param = 'relevance' if search_query_param else 'downloads'
+            order_by = [self.SORTING_PARAMS[sort_param]]
 
-        if order_by:
-            return qs.sort(*order_by)
-
-        return qs
+        return qs.sort(*order_by)
