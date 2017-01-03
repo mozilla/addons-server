@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-16 15:16+0000\n"
+"POT-Creation-Date: 2017-01-03 12:46+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -5065,10 +5065,6 @@ msgstr "Prześlij nowy motyw"
 msgid "Submit a New Version"
 msgstr "Zamieść nowy dodatek"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html
-msgid "Submit Add-on"
-msgstr "Prześlij dodatek"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Describe Add-on"
@@ -5179,6 +5175,11 @@ msgstr "Przesyłanie zakończone"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
+msgid "You’re done!"
+msgstr "Gotowe!"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Informacje o wersji / Informacje dla recenzentów"
 
@@ -5203,6 +5204,16 @@ msgstr ""
 #, fuzzy
 msgid "Edit version {0}"
 msgstr "Wersja beta {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "File Signed"
+msgstr "Informacje o wersji"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
+msgstr "Dodatek został oznaczony i jest gotowy do użycia. Możesz go pobrać tutaj:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5274,8 +5285,8 @@ msgstr "Administracyjne zastąpienia"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
-msgid "Submit File for Review"
-msgstr "Prześlij dodatek do ręcznego sprawdzenia."
+msgid "Submit File"
+msgstr "Prześlij nowy motyw"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy

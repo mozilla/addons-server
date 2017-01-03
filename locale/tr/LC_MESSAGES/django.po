@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-16 15:16+0000\n"
+"POT-Creation-Date: 2017-01-03 12:46+0000\n"
 "PO-Revision-Date: 2016-12-08 12:12+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -5177,11 +5177,6 @@ msgstr "Yeni Tema Gönder"
 msgid "Submit a New Version"
 msgstr "Yeni Eklenti Gönder"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
-msgid "Submit Add-on"
-msgstr "Yeni Eklenti Gönder"
-
 # 75%
 # 100%
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
@@ -5287,6 +5282,10 @@ msgid "Submission Complete"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
 msgid "Version Submitted for Review"
 msgstr "İnceleme gönder"
@@ -5312,6 +5311,15 @@ msgstr ""
 #, fuzzy
 msgid "Edit version {0}"
 msgstr "Sürüm {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "File Signed"
+msgstr "Sürüm Notları"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5382,8 +5390,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
-msgid "Submit File for Review"
-msgstr "İnceleme gönder"
+msgid "Submit File"
+msgstr "Yeni Tema Gönder"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy

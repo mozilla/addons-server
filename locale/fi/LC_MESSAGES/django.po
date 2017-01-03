@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-16 15:16+0000\n"
+"POT-Creation-Date: 2017-01-03 12:46+0000\n"
 "PO-Revision-Date: 2016-12-01 23:24+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -5120,11 +5120,6 @@ msgstr "Lisää uusi lisäosa"
 msgid "Submit a New Version"
 msgstr "Lisää uusi lisäosa"
 
-# 81%
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html
-msgid "Submit Add-on"
-msgstr "Lisää lisäosa"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Describe Add-on"
@@ -5232,6 +5227,10 @@ msgid "Submission Complete"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Submitted for Review"
 msgstr ""
 
@@ -5256,6 +5255,15 @@ msgstr ""
 #, fuzzy
 msgid "Edit version {0}"
 msgstr "Beetaversio {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "File Signed"
+msgstr "Versiokommentit"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5324,11 +5332,10 @@ msgstr ""
 msgid "Administrative overrides"
 msgstr ""
 
-# 81%
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
-msgid "Submit File for Review"
-msgstr "Lisää lisäosa"
+msgid "Submit File"
+msgstr "Lisää uusi lisäosa"
 
 # 81%
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html

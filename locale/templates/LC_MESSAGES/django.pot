@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-16 15:16+0000\n"
+"POT-Creation-Date: 2017-01-03 12:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Need help?"
 msgstr ""
 
-#: src/olympia/activity/serializers.py:31
+#: src/olympia/activity/serializers.py:32
 msgid "Review note"
 msgstr ""
 
@@ -168,17 +168,17 @@ msgstr ""
 msgid "Not Reviewed"
 msgstr ""
 
-#: src/olympia/addons/models.py:347
+#: src/olympia/addons/models.py:343
 msgid "Users have the option of contributing more or less than this amount."
 msgstr ""
 
-#: src/olympia/addons/models.py:355
+#: src/olympia/addons/models.py:351
 msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only"
 " applies to desktop."
 msgstr ""
 
-#: src/olympia/addons/models.py:1844 src/olympia/constants/base.py:86
+#: src/olympia/addons/models.py:1845 src/olympia/constants/base.py:86
 msgid "Listed"
 msgstr ""
 
@@ -1753,7 +1753,7 @@ msgstr ""
 msgid "Developer Hub"
 msgstr ""
 
-#: src/olympia/amo/context_processors.py:82 src/olympia/devhub/views.py:1907
+#: src/olympia/amo/context_processors.py:82 src/olympia/devhub/views.py:1919
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2310,7 +2310,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html:71
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: src/olympia/users/models.py:375
+#: src/olympia/users/models.py:372
 msgid "My Favorite Add-ons"
 msgstr ""
 
@@ -4711,7 +4711,7 @@ msgstr ""
 msgid "Changes successfully saved."
 msgstr ""
 
-#: src/olympia/devhub/views.py:332 src/olympia/devhub/views.py:1776
+#: src/olympia/devhub/views.py:332 src/olympia/devhub/views.py:1788
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4810,25 +4810,25 @@ msgid ""
 "Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1807
+#: src/olympia/devhub/views.py:1819
 msgid "Review Requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1885
+#: src/olympia/devhub/views.py:1897
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update "
 "all API clients with the new credentials."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1902
+#: src/olympia/devhub/views.py:1914
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1915
+#: src/olympia/devhub/views.py:1927
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1926
+#: src/olympia/devhub/views.py:1938
 msgid "API key revoked"
 msgstr ""
 
@@ -5832,10 +5832,6 @@ msgstr ""
 msgid "Submit a New Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html:16
-msgid "Submit Add-on"
-msgstr ""
-
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:4
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:7
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:4
@@ -5947,64 +5943,78 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:10
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:12
+msgid "You’re done!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:15
 msgid "Version Submitted for Review"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:12
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:17
 msgid ""
 "You’re done! This version has been submitted for review. You will be notified"
 " when the review has been completed, or if our reviewers have any questions "
 "about your submission."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:18
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:23
 msgid ""
 "Your listing will be more successful by adding a detailed description and "
 "screenshots. Get your listing ready for publication:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:24
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:30
 msgid "Manage Listing"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:27
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:33
 msgid ""
 "You can also edit this version to add version notes, or source code if your "
 "submission includes minified, obfuscated or compiled code."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:32
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:38
 msgid "Edit version {0}"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:35
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:42
+msgid "File Signed"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:44
+msgid ""
+"You’re done! This file is signed and ready to for self-distribution. You can "
+"download it by clicking the button below."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:48
 msgid "Version Signed"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:37
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:50
 msgid ""
 "You’re done! This version is signed and ready to for self-distribution. You "
 "can download it by clicking the button below."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:43
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:57
 #: src/olympia/files/templates/files/file.html:2
 msgid "Download {0}"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:49
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:63
 msgid ""
 "You selected only some of the available platforms for this submission. You "
 "can upload more files that target other platforms:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:58
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:72
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:25
 msgid "Upload File"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html:63
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html:77
 msgid "Go to My Submissions"
 msgstr ""
 
@@ -6052,7 +6062,7 @@ msgid "Administrative overrides"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:92
-msgid "Submit File for Review"
+msgid "Submit File"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:95
@@ -12013,15 +12023,15 @@ msgstr ""
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#: src/olympia/users/models.py:269
+#: src/olympia/users/models.py:266
 msgid "Anonymous user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:328
+#: src/olympia/users/models.py:325
 msgid "Your account has been restricted"
 msgstr ""
 
-#: src/olympia/users/models.py:369
+#: src/olympia/users/models.py:366
 msgid "My Mobile Add-ons"
 msgstr ""
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-16 15:16+0000\n"
+"POT-Creation-Date: 2017-01-03 12:46+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -6006,10 +6006,6 @@ msgstr "Podnesi novu temu"
 msgid "Submit a New Version"
 msgstr "Podnesi novi dodatak"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html
-msgid "Submit Add-on"
-msgstr "Pošalji dodatak"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
@@ -6134,6 +6130,11 @@ msgstr "Podnošenje završeno"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
+msgid "You’re done!"
+msgstr "Gotovi ste!"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Beleške o verziji / Beleške za recenzenta"
 
@@ -6165,6 +6166,17 @@ msgstr ""
 #, fuzzy
 msgid "Edit version {0}"
 msgstr "Beta verzija {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "File Signed"
+msgstr "Beleške o verziji"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid ""
+"You’re done! This file is signed and ready to for self-distribution. You can "
+"download it by clicking the button below."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -6250,8 +6262,8 @@ msgstr "Administrativna poništavanja"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
-msgid "Submit File for Review"
-msgstr "Pošalji dodatak"
+msgid "Submit File"
+msgstr "Podnesi novu temu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-16 15:16+0000\n"
+"POT-Creation-Date: 2017-01-03 12:46+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -5006,10 +5006,6 @@ msgstr "Bidali gehigarri berria"
 msgid "Submit a New Version"
 msgstr "Bidali gehigarri berria"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html
-msgid "Submit Add-on"
-msgstr "Bidali gehigarria"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Describe Add-on"
@@ -5113,6 +5109,10 @@ msgid "Submission Complete"
 msgstr "Bidalketa burututa"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Bidali berrikuspena"
@@ -5138,6 +5138,15 @@ msgstr ""
 #, fuzzy
 msgid "Edit version {0}"
 msgstr "{0} beta bertsioa"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "File Signed"
+msgstr "Bertsioa"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5210,8 +5219,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
-msgid "Submit File for Review"
-msgstr "Bidali gehigarria"
+msgid "Submit File"
+msgstr "Bidali gehigarri berria"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
