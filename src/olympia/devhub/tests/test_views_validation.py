@@ -405,7 +405,7 @@ class TestUploadURLs(TestCase):
     def upload_addon(self, status=amo.STATUS_PUBLIC, listed=True):
         """Update the test add-on with the given flags and send an upload
         request for it."""
-        self.make_addon_unlisted(self.addon, listed=listed)
+        self.change_channel_for_addon(self.addon, listed=listed)
         self.addon.update(status=status)
         channel_text = 'listed' if listed else 'unlisted'
         return self.upload('devhub.upload_for_version',

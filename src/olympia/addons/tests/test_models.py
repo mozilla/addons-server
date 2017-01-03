@@ -334,7 +334,7 @@ class TestAddonManager(TestCase):
         assert collection.addons.count() == 0
 
         # Only deleted.
-        self.make_addon_unlisted(self.addon, listed=True)
+        self.make_addon_listed(self.addon)
         collection = Collection.objects.get(pk=collection.pk)
         assert collection.addons.count() == 0
 
@@ -356,7 +356,7 @@ class TestAddonManager(TestCase):
         assert version.addon == self.addon
 
         # Only deleted.
-        self.make_addon_unlisted(self.addon, listed=True)
+        self.make_addon_listed(self.addon)
         version = Version.objects.get(pk=version.pk)  # Reload from db.
         assert version.addon == self.addon
 
