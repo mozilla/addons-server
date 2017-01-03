@@ -42,16 +42,14 @@ install:
   - nvm deactivate
   - nvm install 4
   - nvm use 4
-  - pip install --upgrade pip wheel setuptools coverage codecov tox==1.8.1
+  - pip install --upgrade pip wheel setuptools tox==1.8.1
 
 before_script:
   - mysql -e 'create database olympia;'
   - node --version
 
 script:
-  - coverage erase
   - RUNNING_IN_CI=True tox -v
-  - coverage combine
 
 notifications:
   irc:
@@ -62,10 +60,6 @@ notifications:
   webhooks:
     # trigger Buildtime Trend Service to parse Travis CI log
     - https://buildtimetrend.herokuapp.com/travis
-
-after_success:
-  - coverage report
-  - codecov
 
 git:
   depth: 3
