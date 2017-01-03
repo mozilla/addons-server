@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-12-16 15:16+0000\n"
-"PO-Revision-Date: 2017-01-03 13:20+0000\n"
+"PO-Revision-Date: 2017-01-03 13:26+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -6887,12 +6887,12 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Add-on History"
-msgstr ""
+msgstr "Ιστορικό προσθέτου"
 
 #: src/olympia/editors/templates/editors/review.html
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Έκδοση %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Compatibility:"
@@ -6960,7 +6960,7 @@ msgstr "Περισσότερες πληροφορίες"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Resolution"
-msgstr ""
+msgstr "Ανάλυση"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Editor"
@@ -6988,11 +6988,11 @@ msgstr "Απομάκρυνση αυτής της ανακοίνωσης"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Files in this version:"
-msgstr ""
+msgstr "Αρχεία σε αυτή την έκδοση:"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Contents"
-msgstr ""
+msgstr "Περιεχόμενα"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Compare"
@@ -7013,7 +7013,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "Recent Points"
-msgstr ""
+msgstr "Πρόσφατοι πόντοι"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "No points awarded yet."
@@ -7034,7 +7034,7 @@ msgstr ""
 #. {0} is a number, like "480".
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Έχετε <span>{0}</span> πόντους."
 
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/editors/templates/editors/themes/single.html src/olympia/editors/templates/editors/themes/themes.html
@@ -7231,7 +7231,7 @@ msgstr ""
 
 #: src/olympia/files/helpers.py
 msgid "This file is a directory."
-msgstr ""
+msgstr "Αυτό το αρχείο είναι κατάλογος."
 
 #: src/olympia/files/tasks.py
 #, python-format
@@ -7372,7 +7372,7 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Next note"
-msgstr ""
+msgstr "Επόμενη σημείωση"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Expand all"
@@ -7520,7 +7520,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
-msgstr ""
+msgstr "Παιχνίδια!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
@@ -7528,7 +7528,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Απαραίτητα πολυμέσα"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
@@ -7571,7 +7571,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Close Video"
-msgstr ""
+msgstr "Κλείσιμο βίντεο"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "While the video plays, the add-ons being mentioned will appear here."
@@ -9915,7 +9915,7 @@ msgstr "Κατηγορία"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Tag"
-msgstr ""
+msgstr "Ετικέτα"
 
 #: src/olympia/search/templates/search/mobile/results.html
 msgid "Search Results <i>({num})</i>"
