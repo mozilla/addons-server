@@ -883,12 +883,13 @@ def upload_validation_context(request, upload, addon=None, url=None):
             'processed_by_addons_linter': processed_by_linter}
 
 
-@login_required
 def upload_detail(request, uuid, format='html'):
+    upload = get_object_or_404(FileUpload, uuid=uuid)
+    if upload.user_id and not request.user.is_authenticated():
+        return redirect_for_login(request)
+
     if format == 'json' or request.is_ajax():
         try:
-            # This is duplicated in the HTML code path.
-            upload = get_object_or_404(FileUpload, uuid=uuid)
             response = json_upload_detail(request, upload)
             statsd.incr('devhub.upload_detail.success')
             return response
@@ -897,9 +898,6 @@ def upload_detail(request, uuid, format='html'):
             log.error('Error checking upload status: {} {}'.format(
                 type(exc), exc))
             raise
-
-    # This is duplicated in the JSON code path.
-    upload = get_object_or_404(FileUpload, uuid=uuid)
 
     validate_url = reverse('devhub.standalone_upload_detail',
                            args=[upload.uuid.hex])
