@@ -16,7 +16,7 @@ To set this up on a GitHub repository you will need to:
 
 The validator will run when you create or alter a pull request.
 
-.. http:post:: /api/v3/github/
+.. http:post:: /api/v3/github/validate/
 
     **Request:**
 
