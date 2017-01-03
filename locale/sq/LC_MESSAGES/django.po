@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-16 15:16+0000\n"
+"POT-Creation-Date: 2017-01-03 12:46+0000\n"
 "PO-Revision-Date: 2016-12-02 21:33+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -5043,10 +5043,6 @@ msgstr "Parashtroni një Kartelë të Re"
 msgid "Submit a New Version"
 msgstr "Parashtroni një Version të Ri"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html
-msgid "Submit Add-on"
-msgstr "Parashtroni Shtesë"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Describe Add-on"
 msgstr "Përshkruani Shtesën"
@@ -5142,6 +5138,11 @@ msgid "Submission Complete"
 msgstr "Parashtrim i Plotësuar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "You’re done!"
+msgstr "Kaq qe!"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Submitted for Review"
 msgstr "Version i Parashtruar për Shqyrtim"
 
@@ -5164,6 +5165,16 @@ msgstr "Këtë version mund ta përpunoni duke shtuar shënime versioni, ose kod
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
 msgstr "Përpunoni versionin {0}:"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "File Signed"
+msgstr "Version i Nënshkruar"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
+msgstr "Mbaruat! Ky version është nënshkruar dhe është gati për vetë-shpërndarje. Mund ta shkarkoni duke klikuar mbi butonin më poshtë:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Signed"
@@ -5229,8 +5240,9 @@ msgid "Administrative overrides"
 msgstr "Anashkalime administrative"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Submit File for Review"
-msgstr "Parashtrojeni Kartelën për Shqyrtim"
+#, fuzzy
+msgid "Submit File"
+msgstr "Parashtroni një Kartelë të Re"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"

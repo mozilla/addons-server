@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-16 15:16+0000\n"
+"POT-Creation-Date: 2017-01-03 12:46+0000\n"
 "PO-Revision-Date: 2016-11-17 04:08+0000\n"
 "Last-Translator: kimdludvigsen <kimdludvigsen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -5007,10 +5007,6 @@ msgstr "Indsend et nyt tema"
 msgid "Submit a New Version"
 msgstr "Indsend en ny tilføjelse"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html
-msgid "Submit Add-on"
-msgstr "Indsend tilføjelse"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Describe Add-on"
 msgstr "Beskriv tilføjelse"
@@ -5110,6 +5106,10 @@ msgid "Submission Complete"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
 msgid "Version Submitted for Review"
 msgstr "Indsend anmeldelse"
@@ -5135,6 +5135,15 @@ msgstr ""
 #, fuzzy
 msgid "Edit version {0}"
 msgstr "Beta-version {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "File Signed"
+msgstr "Versionsbemærkninger"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5204,8 +5213,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
-msgid "Submit File for Review"
-msgstr "Indsend tilføjelse"
+msgid "Submit File"
+msgstr "Indsend et nyt tema"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy

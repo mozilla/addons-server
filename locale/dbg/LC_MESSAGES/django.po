@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-12-16 15:16+0000\n"
+"POT-Creation-Date: 2017-01-03 12:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4994,10 +4994,6 @@ msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ƒīŀḗ"
 msgid "Submit a New Version"
 msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ṽḗřşīǿƞ"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html
-msgid "Submit Add-on"
-msgstr "Şŭƀḿīŧ Ȧḓḓ-ǿƞ"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Describe Add-on"
 msgstr "Ḓḗşƈřīƀḗ Ȧḓḓ-ǿƞ"
@@ -5091,6 +5087,10 @@ msgid "Submission Complete"
 msgstr "Şŭƀḿīşşīǿƞ Ƈǿḿƥŀḗŧḗ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done!"
+msgstr "Ẏǿŭ’řḗ ḓǿƞḗ!"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Submitted for Review"
 msgstr "Ṽḗřşīǿƞ Şŭƀḿīŧŧḗḓ ƒǿř Řḗṽīḗẇ"
 
@@ -5113,6 +5113,14 @@ msgstr "Ẏǿŭ ƈȧƞ ȧŀşǿ ḗḓīŧ ŧħīş ṽḗřşīǿƞ ŧǿ ȧḓ�
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
 msgstr "Ḗḓīŧ ṽḗřşīǿƞ {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "File Signed"
+msgstr "Ƒīŀḗ Şīɠƞḗḓ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
+msgstr "Ẏǿŭ’řḗ ḓǿƞḗ! Ŧħīş ƒīŀḗ īş şīɠƞḗḓ ȧƞḓ řḗȧḓẏ ŧǿ ƒǿř şḗŀƒ-ḓīşŧřīƀŭŧīǿƞ. Ẏǿŭ ƈȧƞ ḓǿẇƞŀǿȧḓ īŧ ƀẏ ƈŀīƈķīƞɠ ŧħḗ ƀŭŧŧǿƞ ƀḗŀǿẇ."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Signed"
@@ -5175,8 +5183,8 @@ msgid "Administrative overrides"
 msgstr "Ȧḓḿīƞīşŧřȧŧīṽḗ ǿṽḗřřīḓḗş"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Submit File for Review"
-msgstr "Şŭƀḿīŧ Ƒīŀḗ ƒǿř Řḗṽīḗẇ"
+msgid "Submit File"
+msgstr "Şŭƀḿīŧ Ƒīŀḗ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
