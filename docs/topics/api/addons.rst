@@ -60,15 +60,17 @@ This endpoint allows you to search through public add-ons.
     ==============  ==========================================================
          Parameter  Description
     ==============  ==========================================================
-           created  Creation date, descending
-         downloads  Number of weekly downloads, descending
+           created  Creation date, descending.
+         downloads  Number of weekly downloads, descending.
            hotness  Hotness (average number of users progression), descending.
             rating  Bayesian rating, descending.
-           updated  Last updated date, descending
+         relevance  Search query relevance, descending.
+           updated  Last updated date, descending.
              users  Average number of daily users, descending.
     ==============  ==========================================================
 
-    The default is to sort by number of weekly downloads, descending.
+    The default is to sort by relevance if a search query (``q``) is present,
+    otherwise sort by number of weekly downloads, descending.
 
     You can combine multiple parameters by separating them with a comma.
     For instance, to sort search results by downloads and then by creation

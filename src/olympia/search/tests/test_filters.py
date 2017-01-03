@@ -120,7 +120,7 @@ class TestSortingFilter(FilterTestsBase):
 
     def test_sort_default(self):
         qs = self._filter(data={'q': 'something'})
-        assert 'sort' not in qs
+        assert qs['sort'] == [self._reformat_order('-_score')]
 
         qs = self._filter()
         assert qs['sort'] == [self._reformat_order('-weekly_downloads')]
@@ -144,7 +144,7 @@ class TestSortingFilter(FilterTestsBase):
 
         # Same as above but with a search query.
         qs = self._filter(data={'q': 'something', 'sort': 'WRONGLOL'})
-        assert 'sort' not in qs
+        assert qs['sort'] == [self._reformat_order('-_score')]
 
     def test_sort_query_multiple(self):
         qs = self._filter(data={'sort': ['rating,created']})
@@ -372,7 +372,7 @@ class TestCombinedFilter(FilterTestsBase):
         must_not = filtered['filter']['bool']['must_not']
         assert {'term': {'is_disabled': True}} in must_not
 
-        assert 'sort' not in qs
+        assert qs['sort'] == [{'_score': {'order': 'desc'}}]
 
         should = filtered['query']['function_score']['query']['bool']['should']
         expected = {
