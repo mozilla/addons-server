@@ -11,12 +11,9 @@
 {% block content %}
 <header>
   {% if addon %}
-    {{ dev_breadcrumbs(items=[(url('devhub.feed_all'), _('Recent Activity')),
-                              (None, addon.slug)]) }}
     {# L10n: first parameter is the name of an Addon #}
     <h2>{{ _('Recent Activity for {0}')|fe(addon.name) }}</h2>
   {% else %}
-    {{ dev_breadcrumbs(items=[(None, _('Recent Activity'))]) }}
     <h2>{{ _('Recent Activity for My Add-ons') }}</h2>
   {% endif %}
 </header>

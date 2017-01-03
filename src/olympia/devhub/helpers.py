@@ -9,7 +9,7 @@ from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.helpers import breadcrumbs, impala_breadcrumbs, page_title
+from olympia.amo.helpers import page_title
 from olympia.access import acl
 from olympia.activity.utils import filter_queryset_to_pending_replies
 from olympia.addons.helpers import new_context
@@ -48,67 +48,6 @@ def docs_page_title(context, title=None):
     devhub = _('Add-on Documentation :: Developer Hub')
     title = '%s :: %s' % (title, devhub) if title else devhub
     return page_title(context, title)
-
-
-@register.function
-@jinja2.contextfunction
-def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
-                    impala=False):
-    """
-    Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub'
-    breadcrumbs.
-
-    **items**
-        list of [(url, label)] to be inserted after Add-on.
-    **addon**
-        Adds the Add-on name to the end of the trail.  If items are
-        specified then the Add-on will be linked.
-    **add_default**
-        Prepends trail back to home when True.  Default is False.
-    **impala**
-        Whether to use the impala_breadcrumbs helper. Default is False.
-    """
-    crumbs = [(reverse('devhub.index'), _('Developer Hub'))]
-    title = _('My Submissions')
-    link = reverse('devhub.addons')
-
-    if not addon and not items:
-        # We are at the end of the crumb trail.
-        crumbs.append((None, title))
-    else:
-        crumbs.append((link, title))
-    if addon:
-        if items:
-            url = addon.get_dev_url()
-        else:
-            # The Addon is the end of the trail.
-            url = None
-        crumbs.append((url, addon.name))
-    if items:
-        crumbs.extend(items)
-
-    if len(crumbs) == 1:
-        crumbs = []
-
-    if impala:
-        return impala_breadcrumbs(context, crumbs, add_default)
-    else:
-        return breadcrumbs(context, crumbs, add_default)
-
-
-@register.function
-@jinja2.contextfunction
-def docs_breadcrumbs(context, items=None):
-    """
-    Wrapper function for `breadcrumbs` for devhub docs.
-    """
-    crumbs = [(reverse('devhub.index'), _('Developer Hub')),
-              (None, _('Developer Docs'))]
-
-    if items:
-        crumbs.extend(items)
-
-    return breadcrumbs(context, crumbs, True)
 
 
 @register.inclusion_tag('devhub/versions/add_file_modal.html')
