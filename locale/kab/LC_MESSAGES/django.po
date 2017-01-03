@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-03 17:49+0000\n"
+"PO-Revision-Date: 2017-01-03 18:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -852,11 +852,12 @@ msgstr "Azen acegger"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
 msgstr ""
+"Ma ulac aɣilif, ur ttazen ara ineqqisen n ibugen deg iceggiren inek. Ur nettmuddu ara anekcum ar tensa yinek imayl i yineflayen n izegrar neɣ wid izemren ak-id-nermsen akken ad frun ugur inek."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
-msgstr ""
+msgstr "Wali <a href=\"%(support)s\">tigezmi n tallat </a> ɣef yal asteqsi icudden ar uzegrir-agi."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -931,7 +932,7 @@ msgstr "<a href=\"%(meet_url)s\">Aneflay n uzegrir agi</a> yessutur afus s umudd
 
 #: src/olympia/addons/templates/addons/impala/dependencies_note.html
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "Azegrir-agi yesra izegrar-agi akken ad yeddu akken iwata:"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Average"
@@ -1055,14 +1056,16 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"Abadu n tneflit ak-yeǧǧ ad teskeydeḍ lqem armitan n uzegrir-agi send ad yeffeɣ s wudem azayez. Ticki lqem n tneflit yebded, ad tkemleḍ armas n ileqman seg ubadu-agi. Akken ad tesḥebseḍ armas n "
+"ileqman, sebded lqem amezwer seg useɣwen daw-a."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>Ɣur-k;:</strong> ileqman n tneflit n uzegrir-agi ur ttwaceggern ara sɣur Mozilla."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Wali akk amazray n tneflit"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/stats/templates/stats/popup.html
 #: src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
@@ -1081,7 +1084,7 @@ msgstr "Mlal akked uneflay {0}"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr ""
+msgstr "Send ad tesidreḍ azegrir-agi, tanemmirt ma txemmed ad tmuddeḍ afus i tneflit ines s umuddu n cwiṭ n tewsa."
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Why was {0} created?"
@@ -1183,11 +1186,11 @@ msgstr "Cegger amazray"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Suref-aɣ, asentel-agi yettṛagu. Ma ulac aɣilif uɣal-d ticki."
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Asentel-agi yettṛaǧu. Ur d-yettban ara i yemdanen. Ala kečč ara t-iwalin."
 
 #: src/olympia/addons/templates/addons/listing/items.html
 msgid "Collector's Note"
@@ -1252,7 +1255,7 @@ msgstr "Amtawa n uselkin"
 #: src/olympia/addons/templates/addons/mobile/eula.html
 #, python-format
 msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(name)s yesra ad tqebleḍ agatu n uselkin i useqdac aneggaru send ad tedduḍ deg usebded:"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "Accept"
@@ -1485,7 +1488,7 @@ msgstr "{addon} {version} yettwaqbel."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} acegger amezwaru yettwag."
 
 #: src/olympia/amo/log.py
 msgid "Preliminarily approved"
