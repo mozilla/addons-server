@@ -569,11 +569,9 @@ class TestValidationAnnotatorUnlisted(TestValidationAnnotatorBase):
 
     def setUp(self):
         super(TestValidationAnnotatorUnlisted, self).setUp()
-
-        self.addon.update(is_listed=False)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.file.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.file_1_1.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
+        self.file_1_1.reload()
+        self.file.reload()
 
     def test_find_fileupload_prev_version(self):
         """Test that the correct previous version is found for a new upload."""

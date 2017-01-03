@@ -1491,7 +1491,7 @@ class TestAddonManagement(TestCase):
 
     def test_can_manage_unlisted_addons(self):
         """Unlisted addons can be managed too."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 200
 
     def _form_data(self, data=None):

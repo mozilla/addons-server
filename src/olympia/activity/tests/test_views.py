@@ -76,22 +76,19 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         assert response.status_code == 200
 
     def test_get_not_listed_simple_reviewer(self):
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self._login_reviewer()
         response = self.client.get(self.url)
         assert response.status_code == 403
 
     def test_get_not_listed_specific_reviewer(self):
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self._login_reviewer(permission='Addons:ReviewUnlisted')
         response = self.client.get(self.url)
         assert response.status_code == 200
 
     def test_get_not_listed_author(self):
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self._login_developer()
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -290,8 +287,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert not rdata['highlight']  # developer replies aren't highlighted.
 
     def test_developer_reply_unlisted(self):
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self.test_developer_reply()
 
     def _test_reviewer_reply(self, perm):
@@ -319,8 +315,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         self._test_reviewer_reply('Addons:Review')
 
     def test_reviewer_reply_unlisted(self):
-        self.addon.update(is_listed=False)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self._test_reviewer_reply('Addons:ReviewUnlisted')
 
     def test_reply_to_deleted_addon_is_404(self):
@@ -384,8 +379,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         self._test_reviewer_reply('Addons:Review')
 
     def test_reviewer_can_reply_to_disabled_version_unlisted(self):
-        self.addon.update(is_listed=False)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_reviewer_reply('Addons:ReviewUnlisted')
 

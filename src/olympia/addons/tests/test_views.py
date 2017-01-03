@@ -1581,11 +1581,6 @@ class AddonAndVersionViewSetDetailMixin(object):
     def _set_tested_url(self, param):
         raise NotImplementedError
 
-    def _make_unlisted(self):
-        self.addon.update(is_listed=False)
-        for version in self.addon.versions.all():
-            version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-
     def test_get_by_id(self):
         self._test_url()
 
@@ -1650,13 +1645,13 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 401
 
     def test_get_not_listed(self):
-        self._make_unlisted()
+        self.make_addon_unlisted(self.addon)
         response = self.client.get(self.url)
         assert response.status_code == 401
 
     def test_get_not_listed_no_rights(self):
         user = UserProfile.objects.create(username='simpleuser')
-        self._make_unlisted()
+        self.make_addon_unlisted(self.addon)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
@@ -1664,7 +1659,7 @@ class AddonAndVersionViewSetDetailMixin(object):
     def test_get_not_listed_simple_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
-        self._make_unlisted()
+        self.make_addon_unlisted(self.addon)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
@@ -1672,7 +1667,7 @@ class AddonAndVersionViewSetDetailMixin(object):
     def test_get_not_listed_specific_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self._make_unlisted()
+        self.make_addon_unlisted(self.addon)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1680,7 +1675,7 @@ class AddonAndVersionViewSetDetailMixin(object):
     def test_get_not_listed_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
-        self._make_unlisted()
+        self.make_addon_unlisted(self.addon)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 200

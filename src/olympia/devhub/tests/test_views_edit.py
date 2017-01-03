@@ -50,13 +50,8 @@ class BaseTestEdit(TestCase):
         assert self.client.login(email='del@icio.us')
 
         addon = self.get_addon()
-        if not self.listed:
-            addon.update(is_listed=False)
-            addon.versions.update(
-                channel=amo.RELEASE_CHANNEL_UNLISTED)
-        else:
-            addon.versions.update(
-                channel=amo.RELEASE_CHANNEL_LISTED)
+        if self.listed:
+            self.make_addon_listed(addon)
             a = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
             a.feature = False
             a.save()
@@ -67,6 +62,8 @@ class BaseTestEdit(TestCase):
             self.tags = ['tag3', 'tag2', 'tag1']
             for t in self.tags:
                 Tag(tag_text=t).save_tag(addon)
+        else:
+            self.make_addon_unlisted(addon)
 
         self.url = addon.get_dev_url()
         self.user = UserProfile.objects.get(pk=55021)

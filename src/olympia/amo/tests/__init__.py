@@ -591,7 +591,13 @@ class TestCase(PatchMixin, InitializeSessionMixin, MockEsMixin,
         setattr(request, '_messages', messages)
         return request
 
-    def make_addon_unlisted(self, addon, listed=False):
+    def make_addon_unlisted(self, addon):
+        self.change_channel_for_addon(addon, False)
+
+    def make_addon_listed(self, addon):
+        self.change_channel_for_addon(addon, True)
+
+    def change_channel_for_addon(self, addon, listed):
         addon.update(is_listed=listed)
         channel = (amo.RELEASE_CHANNEL_LISTED if listed else
                    amo.RELEASE_CHANNEL_UNLISTED)

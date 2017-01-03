@@ -197,27 +197,23 @@ class TestAddonManager(TestCase):
         set_user(None)
         self.addon = Addon.objects.get(pk=3615)
 
-    def change_addon_visibility(self, deleted=False, listed=True):
-        self.addon.update(
-            status=amo.STATUS_DELETED if deleted else amo.STATUS_PUBLIC,
-            is_listed=listed)
-
     def test_managers_public(self):
         assert self.addon in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
 
     def test_managers_unlisted(self):
-        self.change_addon_visibility(listed=False)
+        self.make_addon_unlisted(self.addon)
         assert self.addon in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
 
     def test_managers_unlisted_deleted(self):
-        self.change_addon_visibility(deleted=True, listed=False)
+        self.make_addon_unlisted(self.addon)
+        self.addon.update(status=amo.STATUS_DELETED)
         assert self.addon not in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
 
     def test_managers_deleted(self):
-        self.change_addon_visibility(deleted=True, listed=True)
+        self.addon.update(status=amo.STATUS_DELETED)
         assert self.addon not in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
 
@@ -328,7 +324,7 @@ class TestAddonManager(TestCase):
         # Addon shouldn't be listed in collection.addons if it's deleted.
 
         # Unlisted.
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         collection = Collection.objects.get(pk=collection.pk)
         assert collection.addons.get() == self.addon
 
@@ -338,7 +334,7 @@ class TestAddonManager(TestCase):
         assert collection.addons.count() == 0
 
         # Only deleted.
-        self.addon.update(is_listed=True)
+        self.make_addon_listed(self.addon)
         collection = Collection.objects.get(pk=collection.pk)
         assert collection.addons.count() == 0
 
@@ -350,7 +346,7 @@ class TestAddonManager(TestCase):
         # Deleted or unlisted, version.addon should still work.
 
         # Unlisted.
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         version = Version.objects.get(pk=version.pk)  # Reload from db.
         assert version.addon == self.addon
 
@@ -360,7 +356,7 @@ class TestAddonManager(TestCase):
         assert version.addon == self.addon
 
         # Only deleted.
-        self.addon.update(is_listed=True)
+        self.make_addon_listed(self.addon)
         version = Version.objects.get(pk=version.pk)  # Reload from db.
         assert version.addon == self.addon
 

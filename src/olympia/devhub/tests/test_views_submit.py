@@ -177,7 +177,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
 
     def test_unlisted_name_not_unique(self):
         """We don't enforce name uniqueness for unlisted add-ons."""
-        addon_factory(name='xpi name', is_listed=False)
+        addon_factory(name='xpi name',
+                      version_kw={'channel': amo.RELEASE_CHANNEL_LISTED})
         assert get_addon_count('xpi name') == 1
         # We're not passing `expected_errors=True`, so if there was any errors
         # like "This name is already in use. Please choose another one", the
@@ -556,8 +557,8 @@ class TestAddonSubmitFinish(TestSubmitBase):
     @mock.patch.object(settings, 'SITE_URL', 'http://b.ro')
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
     def test_welcome_email_first_listed_addon(self, send_welcome_email_mock):
-        new_addon = addon_factory(is_listed=False)
-        new_addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        new_addon = addon_factory(
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
         self.client.get(self.url)
         context = {
@@ -598,8 +599,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
 
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
     def test_no_welcome_email_if_unlisted(self, send_welcome_email_mock):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
+        self.make_addon_unlisted(self.addon)
         self.client.get(self.url)
         assert not send_welcome_email_mock.called
 
@@ -627,8 +627,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert links[2].attrib['href'] == reverse('devhub.addons')
 
     def test_finish_submitting_unlisted_addon(self):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
+        self.make_addon_unlisted(self.addon)
 
         latest_version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -992,8 +991,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
                 "signing_summary": {"trivial": 1, "low": 0,
                                     "medium": 0, "high": 1},
                 "passed_auto_validation": 0}))
-        self.addon.update(guid='experiment@xpi', is_listed=True,
-                          status=amo.STATUS_PUBLIC)
+        self.addon.update(guid='experiment@xpi', status=amo.STATUS_PUBLIC)
         self.post()
         # Make sure the file created and signed is for this addon.
         assert mock_sign_file.call_count == 1
