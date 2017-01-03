@@ -1069,29 +1069,24 @@ class Addon(OnChangeMixin, ModelBase):
             self.update_version(ignore=ignore_version)
             return
 
-        def logit(reason, old=self.status):
-            log.info('Changing add-on status [%s]: %s => %s (%s).'
-                     % (self.id, old, self.status, reason))
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
-
         versions = self.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
         status = None
         if not versions.exists():
             status = amo.STATUS_NULL
-            logit('no listed versions')
+            reason = 'no listed versions'
         elif not versions.filter(
                 files__status__in=amo.VALID_FILE_STATUSES).exists():
             status = amo.STATUS_NULL
-            logit('no listed version with valid file')
+            reason = 'no listed version with valid file'
         elif (self.status == amo.STATUS_PUBLIC and
               not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
             if versions.filter(
                     files__status=amo.STATUS_AWAITING_REVIEW).exists():
                 status = amo.STATUS_NOMINATED
-                logit('only an unreviewed file')
+                reason = 'only an unreviewed file'
             else:
                 status = amo.STATUS_NULL
-                logit('no reviewed files')
+                reason = 'no reviewed files'
         elif self.status == amo.STATUS_PUBLIC:
             latest_version = self.find_latest_version(
                 channel=amo.RELEASE_CHANNEL_LISTED)
@@ -1102,9 +1097,13 @@ class Addon(OnChangeMixin, ModelBase):
                 # a new file upload). So, call update, to trigger watch_status,
                 # which takes care of setting nomination time when needed.
                 status = self.status
+                reason = 'triggering watch_status'
 
         if status is not None:
+            log.info('Changing add-on status [%s]: %s => %s (%s).'
+                     % (self.id, self.status, status, reason))
             self.update(status=status)
+            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
         self.update_version(ignore=ignore_version)
 

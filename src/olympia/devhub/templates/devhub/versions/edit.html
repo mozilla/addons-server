@@ -8,9 +8,6 @@
 
 {% block content %}
 <header>
-  {{ dev_breadcrumbs(addon, items=[(addon.get_dev_url('versions'),
-                                    _('Status & Versions')),
-                                   (None, title)]) }}
   {# L10n: {0} is an add-on name. #}
   {{ l10n_menu(addon.default_locale) }}
   <h2>{{ _('Manage {0}')|fe(addon.name) }}</h2>

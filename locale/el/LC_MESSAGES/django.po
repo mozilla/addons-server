@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2016-12-29 17:16+0000\n"
+"PO-Revision-Date: 2017-01-03 13:20+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1040,7 +1040,7 @@ msgstr "Πληροφορίες"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Last Updated:"
-msgstr ""
+msgstr "Τελευταία ενημέρωση:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -1149,7 +1149,7 @@ msgstr "μόνιμος σύνδεσμος"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
 msgid "translate"
-msgstr ""
+msgstr "μετάφραση"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1402,7 +1402,7 @@ msgstr "Γωνιά προγραμματιστών"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/views.py
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Διαχείριση κλειδιών API"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Editor Tools"
@@ -1414,7 +1414,7 @@ msgstr "Εργαλεία διαχειριστών"
 
 #: src/olympia/amo/fields.py
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Εσφαλμένο, παρακαλώ δοκιμάστε ξανά."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
@@ -1721,7 +1721,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{file} was signed."
-msgstr ""
+msgstr "Το {file} έχει υπογραφεί."
 
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/amo/log.py
@@ -1739,9 +1739,8 @@ msgid "Reply by developer on {addon} {version}."
 msgstr "Σχόλιο για το πρόσθετο {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Developer Reply"
-msgstr "Απάντηση δημιουργού από {0}"
+msgstr "Απάντηση δημιουργού"
 
 #: src/olympia/amo/log.py
 #, fuzzy
@@ -1925,7 +1924,7 @@ msgstr "Προηγούμενο"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to last page"
-msgstr ""
+msgstr "Μετάβαση στην τελευταία σελίδα"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -1960,7 +1959,7 @@ msgstr "Άλλο σώμα"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr ""
+msgstr "Η υπογραφή έχει λήξει."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
@@ -3047,9 +3046,8 @@ msgid "Report Type"
 msgstr "Τύπος αναφοράς"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "Application Version"
-msgstr "Εκδόσεις εφαρμογών"
+msgstr "Έκδοση εφαρμογής"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -3060,14 +3058,12 @@ msgid "Platform"
 msgstr "Πλατφόρμα"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "Απενεργοποιημένο"
+msgstr "Me e10s"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "Ημιτελές"
+msgstr "Συμβατό με e10s"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -3180,7 +3176,7 @@ msgstr "Πακέτο γλώσσας (εφαρμογής)"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Πακέτο γλώσσας (Πρόσθετο)"
 
 #: src/olympia/constants/base.py
 msgid "Plugin"
@@ -3203,7 +3199,7 @@ msgstr "Πακέτα γλώσσας (εφαρμογής)"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Πακέτα γλώσσας (Πρόσθετο)"
 
 #: src/olympia/constants/base.py
 msgid "Plugins"
@@ -3356,19 +3352,19 @@ msgstr "Επίπεδο 6"
 
 #: src/olympia/constants/base.py
 msgid "Level 7"
-msgstr ""
+msgstr "Επίπεδο 7"
 
 #: src/olympia/constants/base.py
 msgid "Level 8"
-msgstr ""
+msgstr "Επίπεδο 8"
 
 #: src/olympia/constants/base.py
 msgid "Level 9"
-msgstr ""
+msgstr "Επίπεδο 9"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "Συμβατό"
 
 #: src/olympia/constants/base.py
 msgid "Incompatible"
@@ -3789,7 +3785,7 @@ msgstr "Οι προγραμματιστές μπορούν να εμφανίζο
 
 #: src/olympia/devhub/forms.py
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Εσφαλμένο slug."
 
 #: src/olympia/devhub/forms.py
 msgid "Invalid JSON object"
@@ -5046,14 +5042,12 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "Ε-mail υποστήριξης"
+msgstr "Email υποστήριξης:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Ιστοσελίδα υποστήριξης"
+msgstr "Ιστοσελίδα υποστήριξης:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "License:"
@@ -5091,9 +5085,8 @@ msgid "Describe Version"
 msgstr "Διαγραφή έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Έκδοση"
+msgstr "Σημειώσεις έκδοσης:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Let your users know what's new and what's changed in this version."
@@ -5269,7 +5262,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
-msgstr ""
+msgstr "Ανάκληση"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke and regenerate credentials"
@@ -5846,7 +5839,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
-msgstr ""
+msgstr "Υποβολή θέματος"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
@@ -5881,11 +5874,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 εικονοστοιχεία"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "300 KB max"
-msgstr ""
+msgstr "Μεγ. 300 KB"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "PNG or JPG"
@@ -5967,7 +5960,7 @@ msgstr "Προαιρετικά, μπορείτε να δώσετε οποιαδ�
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
-msgstr ""
+msgstr "Πηγαίος κώδικας"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
@@ -6059,7 +6052,7 @@ msgstr "Πολιτική πρόσθετου"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible:"
-msgstr ""
+msgstr "Ορατό:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible to everyone on {0} and included in search results and listing pages."
@@ -6067,7 +6060,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
-msgstr ""
+msgstr "Αόρατο:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -6151,7 +6144,7 @@ msgstr "Διαγραφή έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Disable Version"
-msgstr ""
+msgstr "Απενεργοποίηση έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Add a new Version"
@@ -6163,7 +6156,7 @@ msgstr "Προσθήκη έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Απόκρυψη προσθέτου"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
@@ -6789,7 +6782,7 @@ msgstr "Βαθμολογία"
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
-msgstr ""
+msgstr "Βαθμολογία"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Message of the Day"
@@ -6813,11 +6806,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Range"
-msgstr ""
+msgstr "Εύρος"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Your Reviews"
-msgstr ""
+msgstr "Οι αξιολογήσεις σας"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "By {user_name}"
@@ -6833,7 +6826,7 @@ msgstr "Αυτό το μήνα"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Year"
-msgstr ""
+msgstr "Αυτό το έτος"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Monthly Performance"
@@ -6845,15 +6838,15 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Total"
-msgstr ""
+msgstr "Σύνολο"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Month"
-msgstr ""
+msgstr "Μήνας"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Year"
-msgstr ""
+msgstr "Έτος"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-Time"
@@ -6925,7 +6918,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Compatibility:"
-msgstr ""
+msgstr "Συμβατότητα:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Additional sources:"
@@ -6933,7 +6926,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Download files"
-msgstr ""
+msgstr "Λήψη αρχείων"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "The developer has provided source code."
@@ -11191,9 +11184,8 @@ msgid "Compat Type"
 msgstr "Συμπαγή"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Addons Affected"
-msgstr "Πρόσθετα που έχω δημιουργήσει"
+msgstr "Επηρεασμένα πρόσθετα"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
