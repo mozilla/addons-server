@@ -6,17 +6,21 @@
     padding: 20px 20px;
 
     @media @medium {
-      padding: 20px 60px;
-      max-width: @grid-max;
       margin: 0 auto;
+      max-width: @grid-max;
+      padding: 20px 60px;
     }
   }
 
   p,
   li {
-    font-weight: 300;
     color: @color-text;
+    font-weight: 300;
   }
+}
+
+.scheme-default {
+  background-color: @color-scheme-default-background;
 }
 
 .scheme-light {
@@ -58,5 +62,92 @@
   &:before,
   &:after {
     background-color: @color-scheme-dark-background;
+  }
+}
+
+.DevHub-content-container {
+  display: flex;
+  position: relative;
+}
+
+.DevHub-content-header {
+  font-size: 40px;
+  max-width: 66%;
+}
+
+.DevHub-content-image-wrapper {
+  max-width: 33%;
+  padding: 30px 0 30px 30px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: 2;
+}
+
+
+.DevHub-content-copy {
+  position: relative;
+  z-index: 4;
+}
+
+@media @small {
+  .DevHub-content-copy {
+    max-width: 66%;
+  }
+
+  .DevHub-content-image-wrapper {
+    max-width: 33%;
+  }
+}
+
+
+@media @medium {
+  .DevHub-content-copy,
+  .DevHub-content-image-wrapper {
+    max-width: 50%;
+  }
+
+  .DevHub-content-copy {
+    margin: 0 auto 40px auto;
+  }
+
+  .DevHub-content-container {
+    overflow: visible;
+  }
+
+  .DevHub-content-header {
+    max-width: 100%;
+    margin: 60px 0 20px;
+  }
+
+  .DevHub-content-image-wrapper {
+    position: relative;
+    top: 10px;
+    width: 100%;
+
+    &::before {
+      content: '';
+      display: block;
+      // Pad out the wrapper to a percentage
+      // based on the wrapper's width.
+      padding-bottom: 65%;
+
+      .DevHub-publish-addon & {
+        padding-bottom: 50%;
+      }
+    }
+  }
+
+  .DevHub-content-image {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    left: 20px;
+    bottom: 0;
+  }
+
+  .DevHub-content-image--alt {
+    top: -70px;
+    min-width: 350px;
   }
 }
