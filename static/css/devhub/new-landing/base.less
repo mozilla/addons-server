@@ -1,11 +1,12 @@
-@import '../common/normalize.css';
+@import (less) '../../common/normalize.css';
 @import '../../impala/fonts/fira/fira.less';
 
 // Grid
 @grid-max: 940px;
-@small: ~"only screen and (max-width: 768px)";
-@medium: ~"only screen and (min-width: 768px)";
+@small: ~"only screen and (max-width: 599px)";
+@medium: ~"only screen and (min-width: 600px)";
 @large: ~"only screen and (min-width: 1024px)";
+@retina: ~"only screen and (min-device-pixel-ratio: 2)";
 
 // Fonts
 @font-primary: 'Fira Sans', sans-serif;
@@ -29,9 +30,18 @@
 @color-scheme-dark-background: #1d3770;
 @color-scheme-dark-items: #40d38d;
 
+// Buttons
+@color-button-default: #0568ba;
+@color-button-primary: #29c978;
+
 // Common styles
 * {
   font-family: @font-primary;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
 }
 
 body {
@@ -49,6 +59,18 @@ h1 {
   margin-top: 0;
 }
 
+h1,
+h2,
+h3 {
+  font-weight: 500;
+}
+
+@media @medium {
+  h1, h2, h3 {
+    font-weight: 300;
+  }
+}
+
 // Mixins / Utilities
 @import 'utils';
 
@@ -63,3 +85,4 @@ h1 {
 // Content sections
 @import 'sections/overview';
 @import 'sections/more-information';
+@import 'sections/port-chrome-ext';
