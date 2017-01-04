@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-03 19:20+0000\n"
+"PO-Revision-Date: 2017-01-04 14:28+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1401,7 +1401,7 @@ msgstr "Tuccḍa deg usenqed n unekcum. ma ulac aɣilif ɛreḍ tikelt nniḍen.
 
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Yessef k ad yili n tangalt n yini asedamrawan, am #000000."
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
@@ -1592,7 +1592,7 @@ msgstr "{0} {1} yettwarna."
 #. L10n: {0} is a user, {1} is their role
 #: src/olympia/amo/log.py
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{0.name} yuɣal tura {1} i uzegrir {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is now licensed under {0.name}."
@@ -1628,7 +1628,7 @@ msgstr "Lqem afellay n usnas i {version} yettusnifel."
 
 #: src/olympia/amo/log.py
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Imeskaren ttwalɣan s yimayl ɣef umṣada n {version}."
 
 #: src/olympia/amo/log.py
 msgid "Email sent to Author about add-on compatibility."
