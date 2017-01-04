@@ -61,6 +61,8 @@
           {% include 'devhub/new-landing/components/tools.html' %}
         </div>
       </div>
+    {% else %}
+      {% include 'devhub/new-landing/components/my-addons.html' %}
     {% endif %}
 
     {% block site_js %}
