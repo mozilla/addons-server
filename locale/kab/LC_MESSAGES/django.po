@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-04 14:28+0000\n"
+"PO-Revision-Date: 2017-01-04 18:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1536,7 +1536,7 @@ msgstr "{addon} {version} acegger leqqayen yettusuter."
 
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "Azegrir-agi yettwammel am akken yessefk ad ittucegger sɣur anedbal. Hatan yezga deg udras, acukan yessefk ad ittwasenqed sɣuṛ imsekyaden inedbalen. Acegger-agi yezmer ad isuter ugar n wakud."
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -1632,7 +1632,7 @@ msgstr "Imeskaren ttwalɣan s yimayl ɣef umṣada n {version}."
 
 #: src/olympia/amo/log.py
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Imayl yettwazen i umeskar n umṣada n izegrar."
 
 #: src/olympia/amo/log.py
 msgid "Password changed."
@@ -1640,7 +1640,7 @@ msgstr "Awal uffir yettusnifel."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} yettwasentem acukan yettṛaǧu ad d-yeffeɣ s wudem azayez."
 
 #: src/olympia/amo/log.py
 msgid "Approved but waiting"
@@ -1672,11 +1672,11 @@ msgstr "Aseqdac {user} yettwasedreg."
 
 #: src/olympia/amo/log.py
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Aseqdac {user} yettuẓẓeyeṛ."
 
 #: src/olympia/amo/log.py
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Anebdal {0} yeɣra aɣmis n urmud n {user}."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} updated."
