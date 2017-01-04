@@ -31,9 +31,15 @@ log = commonware.log.getLogger('z.versions')
 @mobile_template('versions/{mobile/}version_list.html')
 @non_atomic_requests
 def version_list(request, addon, template, beta=False):
-    status_list = (amo.STATUS_BETA,) if beta else amo.VALID_FILE_STATUSES
+    # We only show versions that have files with the right status.
+    if beta:
+        status = amo.STATUS_BETA
+    elif addon.is_unreviewed():
+        status = amo.STATUS_AWAITING_REVIEW
+    else:
+        status = amo.STATUS_PUBLIC
     qs = (addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-          .filter(files__status__in=status_list)
+          .filter(files__status=status)
           .distinct().order_by('-created'))
     versions = amo.utils.paginate(request, qs, PER_PAGE)
     versions.object_list = list(versions.object_list)
