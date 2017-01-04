@@ -1,0 +1,19 @@
+<div class="DevHub-MyAddons content">
+  <div>
+    <h2>{{ ('My Add-ons') }}</h2>
+
+    {% if recent_addons %}
+      Addons list...
+    {% else %}
+      <p class="DevHub-MyAddons-copy">
+        {% trans %}
+        This is where you view and manage your add-ons and themes.
+        To publish your first add-on, click "Submit Your First Add-on"
+        or "Submit Your First Theme".
+        {% endtrans %}
+      </p>
+      <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit Your First Add-on') }}</a>
+      <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit Your First Theme') }}</a>
+    {% endif %}
+  </div>
+</div>
