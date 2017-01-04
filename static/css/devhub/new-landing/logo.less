@@ -1,0 +1,29 @@
+.Logo {
+  display: flex;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    background: url('../../../img/developers/addons-logo.svg') no-repeat left center;
+    background-size: contain;
+  }
+
+  span {
+    display: none;
+    align-self: center;
+
+    @media @large {
+      display: inline;
+      margin-left: 10px;
+    }
+  }
+}
+
+.Logo--loggedin {
+  &::before {
+    background: url('../../../img/developers/addons-logo-black.svg') no-repeat left center;
+    background-size: contain;
+  }
+}

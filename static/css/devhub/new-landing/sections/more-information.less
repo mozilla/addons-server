@@ -1,0 +1,60 @@
+.DevHub-MoreInformation {
+  > div {
+    display: flex;
+    flex-flow: column;
+
+    @media @medium {
+      flex-flow: row nowrap;
+    }
+  }
+}
+
+.DevHub-BlogPosts,
+.DevHub-Tools {
+  line-height: 1.5;
+  margin: 20px 0 auto;
+
+  h2,
+  h2 a {
+    color: @color-scheme-dark-text;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 32px;
+    margin: 0;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      a {
+        color: @color-scheme-dark-items;
+        text-decoration: none;
+      }
+
+      p {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.DevHub-BlogPosts {
+  .read-more {
+    text-decoration: none;
+    color: @color-scheme-dark-items;
+    font-weight: 600;
+  }
+}
+
+.DevHub-Tools {
+  ul {
+    li {
+      a {
+        font-size: 24px;
+        font-weight: 600;
+      }
+    }
+  }
+}
