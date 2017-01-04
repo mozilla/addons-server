@@ -12,8 +12,8 @@ class DiscoItem(object):
 # At the moment the disco pane items are hardcoded in this file in the repos,
 # which allows us to integrate in our translation workflow easily.
 discopane_items = [
-    # Theme: Ice Flower
-    DiscoItem(addon_id=265447),
+    # Theme: Symphony of colors
+    DiscoItem(addon_id=628864, addon_name=u'Symphony of Colors'),
 
     # uBlock Origin
     DiscoItem(
@@ -27,19 +27,19 @@ discopane_items = [
               u'bunch of memory.'),
             '</blockquote>')),
 
-    # Awesome Screenshot Plus - Capture, Annotate & More
+    # Emoji Keyboard
     DiscoItem(
-        addon_id=287841,
-        heading=_(u'Take screenshots {start_sub_heading}with {addon_name}'
+        addon_id=674732,
+        heading=_(u'Emoji expression {start_sub_heading}with {addon_name}'
                   u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'So much more than just a screenshot tool, this add-on also '
-              u'lets you edit, annotate, and share images.'),
+            _(u'Dozens of amazing emojis for every occasion—always just one '
+              u'click away.'),
             '</blockquote>')),
 
-    # Theme: Les Eléphants
-    DiscoItem(addon_id=754566, addon_name=u'Les Éléphants'),
+    # Theme: Stained Glass Fractal
+    DiscoItem(addon_id=465609),
 
     # OmniSidebar
     DiscoItem(
@@ -64,6 +64,6 @@ discopane_items = [
               u'personalize your video-watching experience.'),
             '</blockquote>')),
 
-    # Theme: My Vinyl
-    DiscoItem(addon_id=676070, addon_name=u'Owl First Snow'),
+    # Theme: Blue Twirl
+    DiscoItem(addon_id=615472),
 ]
