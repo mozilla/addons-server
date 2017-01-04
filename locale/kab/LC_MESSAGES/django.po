@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-04 18:36+0000\n"
+"PO-Revision-Date: 2017-01-04 18:51+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1828,6 +1828,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Ma ulac aɣilif sekcem<strong>akk awalen</strong> dagi, <strong>yettwabrez s isekkilen ilmawen</strong>. </p> <p> Ma yewɛeṛ i tɣuṛi, tzemreḍ <a href=\"#\" id=\"recaptcha_different\">ɛreḍ awalen "
+"nniḍen</a> ou <a href=\"#\" id=\"recaptcha_audio\">ɛreḍ anaw nniḍen</a> àdeg umdiq-is.</p>"
 
 #: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Top Rated"
@@ -1844,7 +1846,7 @@ msgstr "Isiɣzaf"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Tebɣiḍ ad terreḍ iminig inek d udmawan ugar? Ɛreḍ <b>isental ummiden</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
