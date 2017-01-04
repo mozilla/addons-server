@@ -13,7 +13,7 @@ class DiscoItem(object):
 # which allows us to integrate in our translation workflow easily.
 discopane_items = [
     # Theme: Symphony of colors
-    DiscoItem(addon_id=628864),
+    DiscoItem(addon_id=628864, addon_name=u'Symphony of Colors'),
 
     # uBlock Origin
     DiscoItem(
