@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-04 18:20+0000\n"
+"PO-Revision-Date: 2017-01-04 18:36+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1709,7 +1709,7 @@ msgstr "Asulay n usegziz {0} s GUID {1} yettwakkes"
 
 #: src/olympia/amo/log.py
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "{addon} yussa-d si lqem amezwaru."
 
 #: src/olympia/amo/log.py
 msgid "Reply by developer on {addon} {version}."
@@ -1733,7 +1733,7 @@ msgstr "Awennit ɣef {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Tizmilin n usentem ttusniflent"
 
 #: src/olympia/amo/log.py
 msgid "Source code uploaded for {addon} {version}."
@@ -1749,11 +1749,11 @@ msgstr "Ur yettusireg ara"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr ""
+msgstr "<h1>Suref-aɣ! Ayagi yegdel.</h1> <p>Tɣeṛḍeḍ ad tkecmeḍ ar teɣbalut anida ur ɣur-k ara izerfan.</p>"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr ""
+msgstr "<p>Ɛreḍ ad tuɣaleḍ ar usebter yezrin, sali-d sakin ɛreḍ tikelt nniḍen.</p>"
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -1768,6 +1768,11 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Suref-aɣ, ur nezmir ara ad d-naf ayen tettnadiḍ.</h1> <p> Asebter neɣ afaylu i tebɣiḍ ulac-it deg usmel nneɣ. Ahat tsiteḍ ɣef useɣwen yemmmuten neɣ yegber tuccḍa. </p> <ul> <li>Ma yella turiḍ "
+"tansa, senqed-itt.</li> <li> La yella tḍefred aseɣwen, ma ulac aɣilif <a href=\"https://github.com/mozilla/addons-server/issues/new/\">azen-d abug</a>. Ini-yaɣ-d ansa d-ekkiḍ udiɣ ayen tettnadiḍ, ad"
+" neg ayen nezmer  akken ad nefru ugur. </li> </ul> <p>Tzemreḍ daɣen ad tedduḍ ar isebtar nneɣ izayazen.</p> <ul> <li>Ahat tebɣiḍ <a href=\"%(rec)s\">tabdart n izegrar s yetran</a> ?</li> <li> Tebɣiḍ"
+" <a href=\"%(search)s\">ad tnadiḍ izegrar</a>&nbsp;? Tzemreḍ ad tedduḍ ar <a href=\"%(search)s\">usebter n unadi</a> neɣ ad tesqedceḍ urti n unadi daw-a. </li> <li> Ma tebɣiḍ ad talseḍ, ddu ar <a "
+"href=\"%(home)s\">usebter agejdan n izegrar</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -1808,7 +1813,7 @@ msgstr "Aseggem iteddu"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Tamahilt-agi taskudant ur termid ara di lawan anida nteddu deg useggem n usmel web. Tanemmirt ma tesqedceḍ taqeffalt Ar Deffir n iminig inek sakin ɛreḍ ticki."
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
