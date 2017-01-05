@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 18:13+0000\n"
+"PO-Revision-Date: 2017-01-05 18:51+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -7861,11 +7861,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Liberia Dollar"
-msgstr ""
+msgstr "Adulaṛ n Libirya"
 
 #: src/olympia/lib/constants.py
 msgid "Lesotho Loti"
-msgstr ""
+msgstr "Aluṭi n Lesotho"
 
 #: src/olympia/lib/constants.py
 msgid "Lithuania Litas"
@@ -7877,11 +7877,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Libya Dinar"
-msgstr ""
+msgstr "Adinaṛ n Libya"
 
 #: src/olympia/lib/constants.py
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "Adiṛham n Meṛṛuk"
 
 #: src/olympia/lib/constants.py
 msgid "Moldova Leu"
