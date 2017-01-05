@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 19:20+0000\n"
+"PO-Revision-Date: 2017-01-05 19:38+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2542,7 +2542,7 @@ msgstr "Izegrar di tagrumma yinek"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "Akken ad ternuḍ azgrir di tagrumma-agi, sekcem isem deg urti-agi sakin senned ɣef Kcem."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/editors/helpers.py
 msgid "Add-on"
@@ -3851,7 +3851,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "Ur d-skan ara izegrar inu ɣef usmel"
 
 #: src/olympia/devhub/forms.py
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
@@ -3872,7 +3872,7 @@ msgstr "Lqem ur imṣada ara"
 #: src/olympia/devhub/forms.py
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
-msgstr ""
+msgstr "Lqem %s yella yakan, neɣ yuli-d yakan."
 
 #: src/olympia/devhub/forms.py
 msgid "Select a valid choice. That choice is not one of the available choices."
@@ -4020,11 +4020,11 @@ msgstr "Azegrir yettwakkes."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Tansa URL mačči d tameɣtut. Asentel ur yettwakkes ara."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Tansa URL mačči d tameɣtut. Azegrir ur yettwakkes ara."
 
 #: src/olympia/devhub/views.py
 msgid "An author has been added to your add-on"
@@ -4317,12 +4317,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Tebɣiḍ azegrir inek ad ittuzuzer ɣef usmel-agi?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Igmaḍ n usentem i {0}"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validation Results"
@@ -4545,7 +4545,7 @@ msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Amedya: aberkan, sinima, amellal. Talast20."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Reserved tag:"
@@ -4705,7 +4705,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whiteboard"
-msgstr ""
+msgstr "Tafelwit tamellalt"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
@@ -5047,11 +5047,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done!"
-msgstr ""
+msgstr "D ayen ifuk!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Submitted for Review"
-msgstr ""
+msgstr "Lqem yettwazen akken ad ittucegger"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
@@ -5464,11 +5464,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Disable Contributions"
-msgstr ""
+msgstr "Sens attekki"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Voluntary Contributions"
-msgstr ""
+msgstr "Ittekkiyen n twizi"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
@@ -5488,7 +5488,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr ""
+msgstr "Attekki ad yili kan i yezegrar s ileqman id-yettwaseknen."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -5501,7 +5501,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
-msgstr ""
+msgstr "Sbadu ittekkiyen"
 
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 msgid "Step 2. Pricing and Availability"
@@ -5558,7 +5558,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "Azen tazmilt n tanemmirt?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "We'll automatically email users who contribute to your add-on with this message."
@@ -5572,7 +5572,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Activate Contributions"
-msgstr ""
+msgstr "Rmed attekki"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
@@ -5592,11 +5592,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Fren taggayt iwulmen i usentel inek."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Rnu kra n tebzimin i usentel inek."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
@@ -5620,7 +5620,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Zemren wiyaḍ ad zenzen asentel inek?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others create derivative works from your Theme?"
@@ -5652,7 +5652,7 @@ msgstr "Fren turagt nniḍen."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Fren turagt i usentel inek."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Design"
@@ -5820,7 +5820,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Select the target platform for this file."
-msgstr ""
+msgstr "Fren anagraw i ufaylu-agi."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
@@ -6850,7 +6850,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Snifel tafelwit tamellalt"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7274,7 +7274,7 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Previous note"
-msgstr ""
+msgstr "Tazmilt n deffir"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Next diff"
@@ -7282,7 +7282,7 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Next note"
-msgstr ""
+msgstr "Tazmilt n zdat"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Expand all"
@@ -7290,7 +7290,7 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Ffer neq sken aseklu"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Wrap or unwrap text"
@@ -7302,7 +7302,7 @@ msgstr "Ulac ifuyla deg ufaylu yulin."
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Fetching file."
-msgstr ""
+msgstr "Awway n ufaylu."
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
