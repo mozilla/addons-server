@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 18:01+0000\n"
+"PO-Revision-Date: 2017-01-05 18:13+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5772,7 +5772,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Ddu ɣer usqerdec deg  <a href=\"%(forum_url)s\">inmagaren</a>-nneɣ."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a header image for your Theme."
@@ -5796,7 +5796,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a different header image"
-msgstr ""
+msgstr "Fren tugna nniḍen n uqeṛṛu"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a footer image for your Theme."
@@ -5812,7 +5812,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a different footer image"
-msgstr ""
+msgstr "Fren tugna nniḍen n uḍaṛ"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
@@ -5851,7 +5851,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Approval Status"
-msgstr ""
+msgstr "Addad n usentem"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Notes for Reviewers"
@@ -6400,7 +6400,7 @@ msgstr "Acegger n unedbal"
 
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Azegrir Jetpack"
 
 #: src/olympia/editors/models.py
 msgid "More Information Requested"
@@ -6412,7 +6412,7 @@ msgstr "Igber awennit n umaẓrag"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
-msgstr ""
+msgstr "Iɣbula d-ittunefken"
 
 #: src/olympia/editors/models.py
 msgid "WebExtension"
@@ -6944,7 +6944,7 @@ msgstr "Yal tikelt"
 #. {0} is a number, like "480".
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Ɣur-k <span> {0} </span> n tneqqiḍin."
 
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/editors/templates/editors/themes/single.html src/olympia/editors/templates/editors/themes/themes.html
@@ -6953,7 +6953,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Kkes isental"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
@@ -6961,15 +6961,15 @@ msgstr "Azemz yettwakkes"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Ulac isentall yettwakksen i yettwafen deg akud-agi."
 
 #: src/olympia/editors/templates/editors/themes/history.html
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Amazray n ucegger n uselten i {0}"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Review Date"
-msgstr ""
+msgstr "Azemz n ucegger"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Action"
@@ -6981,13 +6981,13 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Ulac akka tura iceggiren."
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} Asentel yettṛaǧun asentem"
+msgstr[1] "{num} Isental yettṛaǧun asentem"
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Flagged Review"
@@ -7011,7 +7011,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Review Options"
-msgstr ""
+msgstr "Iɣewwaṛen n ucegger"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Auto-advance after review"
@@ -7071,7 +7071,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/single.html
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Acegger n usentel i {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "(Probable Duplicate Submission)"
@@ -7129,11 +7129,11 @@ msgstr "Afayli nni ur yezgi yella."
 #. L10n: {0} is the file size limit of the file viewer.
 #: src/olympia/files/helpers.py
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Teɣzi n ufaylu tɛedda talast n {0}."
 
 #: src/olympia/files/helpers.py
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Ugur deg ukestengel n {0}."
 
 #: src/olympia/files/helpers.py
 msgid "This file is not viewable online. Please download the file to view the contents."
@@ -7146,16 +7146,16 @@ msgstr "Afaylu-agi d akaram."
 #: src/olympia/files/tasks.py
 #, python-format
 msgid "There was an error accessing file %s. %s."
-msgstr ""
+msgstr "Teḍra-d tuccḍa deg unekcum ar ufaylu %s. %s."
 
 #: src/olympia/files/tasks.py
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Teḍra-d tuccḍa deg unekcum ar ufaylu %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID yettwasra i Firefox 47 neɣ daw."
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
@@ -7163,11 +7163,11 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Ur izmir ara ad isleḍ afaylu yulin."
 
 #: src/olympia/files/utils.py
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Isem n ufaylu mačči d ameɣtu deg uḥraz: {0}"
 
 #: src/olympia/files/utils.py
 msgid "File exceeding size limit in archive: {0}"
@@ -7179,15 +7179,15 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
 
 #: src/olympia/files/utils.py
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Ur izmir ara ad d-yaf asulay ID n uzegrir."
 
 #: src/olympia/files/utils.py
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "Asulay ID n uzegrir yessfk ad yili 64 n isekkilen neɣ daw."
 
 #: src/olympia/files/utils.py
 #, python-format
