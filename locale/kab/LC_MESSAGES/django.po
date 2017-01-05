@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 17:21+0000\n"
+"PO-Revision-Date: 2017-01-05 17:40+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2044,7 +2044,7 @@ msgstr "Tignit"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Ma ulac aɣilif ččaṛ urti-agi, wagi ad yettwaseqdec akken ad yendi i yiṛubuten"
 
 #: src/olympia/bandwagon/forms.py
 msgid "This name cannot be used."
@@ -2069,19 +2069,19 @@ msgstr "Ma ulac aɣilif, seqdec tugniwin meẓẓiyen ɣef %d MAṬ."
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "Rnu tafrant yufraren i tegrumma-agi"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "Rnu tafrant tibawt i tegrumma-agi"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "Kkes tafrant-inu si tegrumma-agi"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "Qqen akken ad ternud tafrant i tegrumma-agi"
 
 #: src/olympia/bandwagon/helpers.py src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Add to favorites"
@@ -2123,7 +2123,7 @@ msgstr "Tagrumma tettwarna!"
 #: src/olympia/bandwagon/views.py
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "Tagrumma yinek tamaynut tettwasken-d daw-a. Tzemreḍ ad <a href=\"%(url)s\">tesnifleḍ iɣewwaṛen nniḍen </a> ma tebɣiḍ."
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection updated!"
@@ -2149,7 +2149,7 @@ msgstr "Rnu"
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "Akken twalaḍ deg <a href=\"%(legal)s\">tezmilin tusḍifin</a>, tigrummiwin tisufin llant daw n turagt Creative Commons Attribution Share-Alike License"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Create Collection"
