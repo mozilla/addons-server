@@ -1,5 +1,5 @@
 @import (less) '../../common/normalize.css';
-@import '../../impala/fonts/fira/fira.less';
+@import 'fonts';
 
 // Grid
 @grid-max: 940px;
@@ -70,6 +70,11 @@ h1 {
   margin-top: 0;
 }
 
+h2,
+h3 {
+  font-size: 32px;
+}
+
 h1,
 h2,
 h3 {
@@ -78,7 +83,7 @@ h3 {
 
 @media @medium {
   h1, h2, h3 {
-    font-weight: 300;
+    font-weight: 400;
   }
 }
 
