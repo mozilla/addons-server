@@ -1604,7 +1604,7 @@ def submit_version_upload(request, addon_id, addon, channel):
 def submit_version(request, addon_id, addon):
     if waffle.switch_is_active('mixed-listed-unlisted'):
         # choose the channel we need from the last upload
-        last_version = addon.find_latest_version_including_rejected()
+        last_version = addon.find_latest_version_including_rejected(None)
         if not last_version:
             return redirect('devhub.submit.version.distribution', addon.slug)
         channel = last_version.channel

@@ -728,12 +728,11 @@ class Addon(OnChangeMixin, ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
-    def find_latest_version(self, ignore=None, channel=None):
-        """Retrieve the latest non-disabled version of an add-on.
+    def find_latest_version(self, channel, ignore=None):
+        """Retrieve the latest non-disabled version of an add-on for the
+        specified channel.  If channel is None either channel is returned.
 
-        Accepts an optional ignore argument to ignore a specific version, and
-        an optional channel argument to restrict to versions released in that
-        channel."""
+        Accepts an optional ignore argument to ignore a specific version."""
         # If the add-on is deleted or hasn't been saved yet, it should not
         # have a latest version.
         if not self.id or self.status == amo.STATUS_DELETED:
@@ -760,9 +759,10 @@ class Addon(OnChangeMixin, ModelBase):
             latest = None
         return latest
 
-    def find_latest_version_including_rejected(self, channel=None):
+    def find_latest_version_including_rejected(self, channel):
         """Similar to latest_version but includes rejected versions.  Used so
-        we correctly attach review content to the last version reviewed."""
+        we correctly attach review content to the last version reviewed. If
+        channel is None either channel is returned."""
         try:
             latest_qs = self.versions.exclude(files__status=amo.STATUS_BETA)
             if channel is not None:
@@ -791,7 +791,7 @@ class Addon(OnChangeMixin, ModelBase):
             # current version set, we just need to copy over the latest version
             # to current_version and we should never have to set it again.
             if not self._current_version:
-                latest_version = self.find_latest_version()
+                latest_version = self.find_latest_version(None)
                 if latest_version:
                     self.update(_current_version=latest_version, _signal=False)
                 return True
@@ -945,7 +945,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def increment_theme_version_number(self):
         """Increment theme version number by 1."""
-        latest_version = self.find_latest_version()
+        latest_version = self.find_latest_version(None)
         version = latest_version or self.current_version
         version.version = str(float(version.version) + 1)
         # Set the current version.
