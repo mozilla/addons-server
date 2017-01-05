@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 12:09+0000\n"
+"PO-Revision-Date: 2017-01-05 17:08+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1850,7 +1850,7 @@ msgstr "Tebɣiḍ ad terreḍ iminig inek d udmawan ugar? Ɛreḍ <b>isental umm
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
-msgstr ""
+msgstr "Ttwaḍfaṛen aṭas"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections I've Made"
@@ -1942,7 +1942,7 @@ msgstr "Ajiṭun JWT mačči d ameɣtu."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Aqerru n tsiregt mačči d ameɣtu. Ulac talɣut n usulu yettwafen."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
