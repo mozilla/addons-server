@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 17:40+0000\n"
+"PO-Revision-Date: 2017-01-05 18:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2178,7 +2178,7 @@ msgstr "neɣ <a id=\"collections-new-cancel\" href=\"#\">Sefsex</a>"
 #. Link to remove a collection vote
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "Akken ad ternud tazmilt i tegrummiwin, yessefk ad yili ɣur-k umiḍan."
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Create an Add-ons Account"
@@ -2280,12 +2280,16 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
+"Izegrar i tceṛḍeḍ d inuraf s tmahilt <b>Rnu ar inuraf</b> ad d-banen daw-a. Tagrumma-agi tura yakan d <b>tazayezt</b>. Ihi yal yiwen yezmer ad ten-iwali. Ma yella tebɣiḍ ad ten-tefreḍ ur ten-ttwalin"
+" ara yemdanen, sit ɣef tqeffalt daw-a akken ad ten-terreḍ d usligen."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Izegrar i tceṛḍeḍ d inuraf s tmahilt <b>Rnu ar inuraf</b> ad d-banen daw-a. Tagrumma-agi tura yakan d <b>tusligt</b>. Ihi ala kečč i yezemren ad ten-iwali. Ma yella tebɣiḍ ad ten-walin akk yemdanen,"
+" sit ɣef tqeffalt daw-a akken ad ten-terreḍ d izuyaz."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2421,6 +2425,8 @@ msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Tzemreḍ ad ternuḍ deqs n imttekkiyen ar tagrumma-agi. Imttekki yezmer ad yernu neɣ ad yekkes izegrar si tagrumma-agi, acu kan ur yezmir ara ad isnifel isem neɣ aglam. Akken ad ternuḍ imttekki, "
+"sekcem imayl ines deg usfaylu daw-a. Yessefk imttekkiyen ad yili ɣur-sen amiḍan n Mozilla Add-ons."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2452,7 +2458,7 @@ msgstr "Iɣewwaṛen n unedbal"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
+msgstr "<b>Ɣur-k:</b> Ma tbedleḍ bab n tagrumma-agi, ur tettizmired ara ad tt-tesnifleḍ. Tzemreḍ kan ad ternuḍ neq ad tekkseḍ izegrar."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
@@ -2496,7 +2502,7 @@ msgstr "Tigrummiwin yettwasnen aṭas"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
+msgstr "Tigrummiwin d igrawen n izegrar yemcudden gar-asen i yezmer yal yiwen ad yernu neɣ ad yebḍu. Snirem tigrummiwin i rnan iseqdacen nniḍen neɣ <a href=\"%(url)s\">rnu ayala-k</a>."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
@@ -5666,11 +5672,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Pending Header"
-msgstr ""
+msgstr "Aqeṛṛu yettṛagun"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Pending Footer"
-msgstr ""
+msgstr "Aḍaṛ yettṛaǧun"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "You may update your theme design here once it has been approved."
@@ -5690,7 +5696,7 @@ msgstr "Fren initeni usentel inek."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Foreground Text"
-msgstr ""
+msgstr "Aḍris n zdat"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tab text."
@@ -5743,7 +5749,7 @@ msgstr "Azen asentel"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
-msgstr ""
+msgstr "D ayen ifuk!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
