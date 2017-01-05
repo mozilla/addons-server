@@ -6,7 +6,6 @@ from django.views.decorators.http import condition
 from django.utils.translation import ugettext as _
 
 import commonware.log
-import waffle
 from cache_nuggets.lib import Message, Token
 
 from olympia.access import acl

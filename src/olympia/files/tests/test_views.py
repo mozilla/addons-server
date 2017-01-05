@@ -13,7 +13,6 @@ import pytest
 from cache_nuggets.lib import Message
 from mock import patch
 from pyquery import PyQuery as pq
-from waffle.models import Switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase

@@ -2,7 +2,6 @@ import codecs
 import mimetypes
 import os
 import stat
-import logging
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
