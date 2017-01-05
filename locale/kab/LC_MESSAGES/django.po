@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-04 18:51+0000\n"
+"PO-Revision-Date: 2017-01-05 12:09+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2102,11 +2102,11 @@ msgstr "Isem"
 
 #: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Recently Updated"
-msgstr ""
+msgstr "Ttwaleqmen melmi kan"
 
 #: src/olympia/bandwagon/views.py
 msgid "Recently Popular"
-msgstr ""
+msgstr "Ttwasnen aṭas melmi kan"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/bandwagon/views.py
 msgid "Added"
@@ -2114,11 +2114,11 @@ msgstr "Yettwarna"
 
 #: src/olympia/bandwagon/views.py
 msgid "Popularity"
-msgstr ""
+msgstr "Ttwasnen aṭas"
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection created!"
-msgstr ""
+msgstr "Tagrumma tettwarna!"
 
 #: src/olympia/bandwagon/views.py
 #, python-format
@@ -2127,7 +2127,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection updated!"
-msgstr ""
+msgstr "Tagrumma tettwaleqqem!"
 
 #: src/olympia/bandwagon/views.py
 #, python-format
@@ -2528,7 +2528,7 @@ msgstr "PNG akked JPG ttusefraken.  Tugna ad tuɣal ar 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Llan tuccḍiwin di tfelwit-agi.  Ma ulac aqlif̣ seɣti-tent daw-a."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
@@ -5025,7 +5025,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Tizmilin-agi ad d-banent deg usebter n telqayt."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
@@ -5033,7 +5033,7 @@ msgstr "Amek ara zuzreq lqem-agi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "Ugar n telɣut ɣef uzuzer akked uzmul n izegrar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
@@ -6228,11 +6228,11 @@ msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Kkes anamal n usuter n telɣut"
 
 #: src/olympia/editors/forms.py
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Fren tiririt yettwakelsen..."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
@@ -6250,7 +6250,7 @@ msgstr "asentel, imcegger, neɣ awennit"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Yettwagi neɣ ur ittucegger ara"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
 #, python-format
@@ -6259,7 +6259,7 @@ msgstr "[addad:%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
-msgstr ""
+msgstr "Yettwarna ar udras"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Updates"
@@ -6279,7 +6279,7 @@ msgstr "Isental yettṛaǧun"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Isental yettwacegren"
 
 #: src/olympia/editors/helpers.py
 msgid "Update Themes"
@@ -6287,7 +6287,7 @@ msgstr "Leqqem isental"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Akk izegrar ur yettwabdren ara"
 
 #: src/olympia/editors/helpers.py
 msgid "New Add-on ({0})"
@@ -6317,7 +6317,7 @@ msgstr "Akud n uṛaǧu"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Flags"
-msgstr ""
+msgstr "Anayen"
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
@@ -6366,7 +6366,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
-msgstr ""
+msgstr "Suter ugar n telɣut"
 
 #: src/olympia/editors/helpers.py
 msgid "This will request more information from the developer. You will be notified when they reply."
