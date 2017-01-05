@@ -15,7 +15,7 @@ from cache_nuggets.lib import Message
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.files.helpers import FileViewer, DiffHelper, LOCKED
+from olympia.files.helpers import FileViewer, DiffHelper, LOCKED, extract_file
 from olympia.files.models import File
 from olympia.files.utils import SafeUnzip
 
@@ -94,6 +94,17 @@ class TestFileViewer(TestCase):
 
         # Not extracting, the viewer is locked.
         assert self.viewer.extract()
+
+    def test_extract_file_locked_message(self):
+        self.viewer.src = get_file('dictionary-test.xpi')
+        assert not self.viewer.is_extracted()
+
+        msg = Message(self.viewer._cache_key(LOCKED))
+        msg.save(True)
+
+        msg = extract_file(self.viewer)
+        assert str(msg.get()).startswith(u'File viewer is locked')
+        msg.delete()
 
     def test_cleanup(self):
         self.viewer.extract()

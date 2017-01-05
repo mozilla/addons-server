@@ -30,8 +30,8 @@ denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
 denied_extensions = [b for b in list(blacklisted_extensions) if b != 'sh']
 task_log = commonware.log.getLogger('z.task')
 
-IN_PROGRESS = 'extraction-in-progress'
 LOCKED = 'locked'
+LOCKED_TIMEOUT = 60 * 5
 
 
 @register.function
@@ -74,8 +74,11 @@ def extract_file(viewer, **kw):
         locked = viewer.extract()
 
         if locked:
-            msg.save(
-                _('Extraction for file %s already in progress.') % viewer)
+            info_msg = _(
+                'File viewer is locked, extraction for %s could be '
+                'in progress. Please try again in approximately 5 minutes.'
+                % viewer)
+            msg.save(info_msg)
     except Exception, err:
         if settings.DEBUG:
             msg.save(_('There was an error accessing file %s. %s.') %
@@ -126,13 +129,13 @@ class FileViewer(object):
             yield True
         else:
             # Not yet locked, save flag and delete on exit.
-            msg.save(True)
+            msg.save(True, time=LOCKED_TIMEOUT)
             try:
                 yield False
             finally:
                 msg.delete()
 
-    def extract(self, force_extraction=True):
+    def extract(self):
         """
         Will make all the directories and expand the files.
         Raises error on nasty files.
@@ -140,32 +143,37 @@ class FileViewer(object):
         :returns: `True` if successfully extracted,
                   `False` in case of an existing lock.
         """
-        if self.is_extracted() and force_extraction:
-            # Be vigilent with existing files. It's better to delete and
-            # re-extract than to trust whatever we have lying around.
-            task_log.warning(
-                'cleaning up %s as there were files lying around' % self.dest)
-            self.cleanup()
-
         with self.lock() as locked:
-            try:
-                os.makedirs(self.dest)
-            except OSError, err:
-                task_log.error(
-                    'Error (%s) creating directories %s' % (err, self.dest))
-                raise
+            if not locked:
+                if self.is_extracted():
+                    # Be vigilent with existing files. It's better to delete
+                    # and re-extract than to trust whatever we have
+                    # lying around.
+                    task_log.warning(
+                        'cleaning up %s as there were files lying around'
+                        % self.dest)
+                    self.cleanup()
 
-            if self.is_search_engine() and self.src.endswith('.xml'):
-                copyfileobj(storage.open(self.src),
-                            open(os.path.join(self.dest,
-                                              self.file.filename), 'w'))
-            else:
                 try:
-                    extract_xpi(self.src, self.dest, expand=True)
-                except Exception, err:
+                    os.makedirs(self.dest)
+                except OSError, err:
                     task_log.error(
-                        'Error (%s) extracting %s' % (err, self.src))
+                        'Error (%s) creating directories %s'
+                        % (err, self.dest))
                     raise
+
+                if self.is_search_engine() and self.src.endswith('.xml'):
+                    copyfileobj(storage.open(self.src),
+                                open(os.path.join(self.dest,
+                                                  self.file.filename), 'w'))
+                else:
+                    try:
+                        extract_xpi(self.src, self.dest, expand=True)
+                    except Exception, err:
+                        task_log.error(
+                            'Error (%s) extracting %s' % (err, self.src))
+                        raise
+
         return locked
 
     def cleanup(self):
@@ -178,8 +186,12 @@ class FileViewer(object):
 
     def is_extracted(self):
         """If the file has been extracted or not."""
-        return (os.path.exists(self.dest) and not
-                Message(self._cache_key(IN_PROGRESS)).get())
+        return os.path.exists(self.dest)
+
+    def is_locked(self):
+        cache_key = self._cache_key(LOCKED)
+        msg = Message(cache_key)
+        return msg.get()
 
     def _is_binary(self, mimetype, path):
         """Uses the filename to see if the file can be shown in HTML or not."""
