@@ -71,20 +71,21 @@ def extract_file(viewer, **kw):
     task_log.debug('Unzipping %s for file viewer.' % viewer)
 
     try:
-        locked = viewer.extract()
+        lock_attained = viewer.extract()
 
-        if locked:
+        if not lock_attained:
             info_msg = _(
                 'File viewer is locked, extraction for %s could be '
                 'in progress. Please try again in approximately 5 minutes.'
                 % viewer)
             msg.save(info_msg)
     except Exception, err:
+        error_message = _('There was an error accessing file %s.') % viewer
+
         if settings.DEBUG:
-            msg.save(_('There was an error accessing file %s. %s.') %
-                     (viewer, err))
+            msg.save(error_message + ' ' + err)
         else:
-            msg.save(_('There was an error accessing file %s.') % viewer)
+            msg.save(error_message)
         task_log.error('Error unzipping: %s' % err)
 
     return msg
@@ -120,18 +121,21 @@ class FileViewer(object):
 
         If locked, no one is allowed to run any extraction in `self.src` to
         avoid files / directories get messed up.
+
+        :return: `True` if the lock was attained,
+                 `False` if there is an already existing lock.
         """
         cache_key = self._cache_key(LOCKED)
         msg = Message(cache_key)
 
         if msg.get():
             # Already locked
-            yield True
+            yield False
         else:
             # Not yet locked, save flag and delete on exit.
             msg.save(True, time=LOCKED_TIMEOUT)
             try:
-                yield False
+                yield True
             finally:
                 msg.delete()
 
@@ -144,7 +148,7 @@ class FileViewer(object):
                   `False` in case of an existing lock.
         """
         with self.lock() as locked:
-            if not locked:
+            if locked:
                 if self.is_extracted():
                     # Be vigilent with existing files. It's better to delete
                     # and re-extract than to trust whatever we have
@@ -187,11 +191,6 @@ class FileViewer(object):
     def is_extracted(self):
         """If the file has been extracted or not."""
         return os.path.exists(self.dest)
-
-    def is_locked(self):
-        cache_key = self._cache_key(LOCKED)
-        msg = Message(cache_key)
-        return msg.get()
 
     def _is_binary(self, mimetype, path):
         """Uses the filename to see if the file can be shown in HTML or not."""

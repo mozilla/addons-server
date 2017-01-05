@@ -195,16 +195,6 @@ class FilesBase(object):
         doc = pq(res.content)
         assert len(doc('#content')) == 0
 
-    @patch('waffle.switch_is_active')
-    def test_no_files_switch(self, switch_is_active):
-        switch_is_active.return_value = False
-        # By setting the switch to False, we are not delaying the file
-        # extraction. The files will be extracted and there will be
-        # files in context.
-        res = self.client.get(self.file_url())
-        assert res.status_code == 200
-        assert 'files' in res.context
-
     def test_files(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url())

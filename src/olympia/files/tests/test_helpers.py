@@ -87,13 +87,15 @@ class TestFileViewer(TestCase):
 
     def test_locked(self):
         self.viewer.src = get_file('dictionary-test.xpi')
-        assert not self.viewer.extract()
+
+        # Lock was successfully attained
+        assert self.viewer.extract()
 
         msg = Message(self.viewer._cache_key(LOCKED))
         msg.save(True)
 
-        # Not extracting, the viewer is locked.
-        assert self.viewer.extract()
+        # Not extracting, the viewer is locked, lock could not be attained
+        assert not self.viewer.extract()
 
     def test_extract_file_locked_message(self):
         self.viewer.src = get_file('dictionary-test.xpi')
