@@ -75,8 +75,7 @@ def extract_file(viewer, **kw):
 
         if locked:
             msg.save(
-                _('Extraction for file %s already in progress.') %
-                (viewer, err))
+                _('Extraction for file %s already in progress.') % viewer)
     except Exception, err:
         if settings.DEBUG:
             msg.save(_('There was an error accessing file %s. %s.') %
@@ -84,9 +83,6 @@ def extract_file(viewer, **kw):
         else:
             msg.save(_('There was an error accessing file %s.') % viewer)
         task_log.error('Error unzipping: %s' % err)
-    finally:
-        # Always delete the flag so the file never gets into a bad state.
-        flag.delete()
 
     return msg
 
@@ -167,7 +163,8 @@ class FileViewer(object):
                 try:
                     extract_xpi(self.src, self.dest, expand=True)
                 except Exception, err:
-                    task_log.error('Error (%s) extracting %s' % (err, self.src))
+                    task_log.error(
+                        'Error (%s) extracting %s' % (err, self.src))
                     raise
         return locked
 
