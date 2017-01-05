@@ -67,10 +67,6 @@ class FilesBase(object):
             shutil.copyfile(src, file_obj.file_path)
 
         self.file_viewer = FileViewer(self.file)
-        # Setting this to True, so we are delaying the extraction of files,
-        # in the tests, the files won't be extracted.
-        # Most of these tests extract as needed to.
-        Switch.objects.get_or_create(name='delay-file-viewer', active=True)
 
     def tearDown(self):
         self.file_viewer.cleanup()
@@ -199,11 +195,6 @@ class FilesBase(object):
         res = self.client.get(self.file_url())
         doc = pq(res.content)
         assert len(doc('#content')) == 0
-
-    def test_no_files(self):
-        res = self.client.get(self.file_url())
-        assert res.status_code == 200
-        assert 'files' not in res.context
 
     @patch('waffle.switch_is_active')
     def test_no_files_switch(self, switch_is_active):

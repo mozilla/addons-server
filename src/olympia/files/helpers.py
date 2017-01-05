@@ -2,6 +2,7 @@ import codecs
 import mimetypes
 import os
 import stat
+import logging
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -58,6 +59,29 @@ def file_tree(files, selected):
         depth = v['depth']
     output.extend(['</ul>' for x in range(depth, -1, -1)])
     return jinja2.Markup('\n'.join(output))
+
+
+def extract_file(viewer, **kw):
+    # This message is for end users so they'll see a nice error.
+    msg = Message('file-viewer:%s' % viewer)
+    msg.delete()
+    # This flag is so that we can signal when the extraction is completed.
+    flag = Message(viewer._extraction_cache_key())
+    task_log.debug('Unzipping %s for file viewer.' % viewer)
+
+    try:
+        flag.save('extracting')  # Set the flag to a truthy value.
+        viewer.extract()
+    except Exception, err:
+        if settings.DEBUG:
+            msg.save(_('There was an error accessing file %s. %s.') %
+                     (viewer, err))
+        else:
+            msg.save(_('There was an error accessing file %s.') % viewer)
+        task_log.error('Error unzipping: %s' % err)
+    finally:
+        # Always delete the flag so the file never gets into a bad state.
+        flag.delete()
 
 
 class FileViewer(object):

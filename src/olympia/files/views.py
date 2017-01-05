@@ -15,7 +15,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, urlparams, render
 from olympia.files.decorators import (
     etag, file_view, compare_file_view, file_view_token, last_modified)
-from olympia.files.tasks import extract_file
+from olympia.files.helpers import extract_file
 
 from . import forms
 
@@ -98,8 +98,7 @@ def browse(request, viewer, key=None, type='file'):
     data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
     data['form'] = form
 
-    if (not waffle.switch_is_active('delay-file-viewer') and
-            not viewer.is_extracted()):
+    if not viewer.is_extracted():
         extract_file(viewer)
 
     if viewer.is_extracted():
@@ -112,9 +111,6 @@ def browse(request, viewer, key=None, type='file'):
         data['key'] = key
         if (not viewer.is_directory() and not viewer.is_binary()):
             data['content'] = viewer.read_file()
-
-    else:
-        extract_file.delay(viewer)
 
     tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)
@@ -152,8 +148,7 @@ def compare(request, diff, key=None, type='file'):
                                      diff.right.file.id])
     data['form'] = form
 
-    if (not waffle.switch_is_active('delay-file-viewer') and
-            not diff.is_extracted()):
+    if not diff.is_extracted():
         extract_file(diff.left)
         extract_file(diff.right)
 
@@ -169,10 +164,6 @@ def compare(request, diff, key=None, type='file'):
         data['key'] = key
         if diff.is_diffable():
             data['left'], data['right'] = diff.read_file()
-
-    else:
-        extract_file.delay(diff.left)
-        extract_file.delay(diff.right)
 
     tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)
