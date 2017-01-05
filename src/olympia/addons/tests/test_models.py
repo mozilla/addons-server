@@ -437,77 +437,88 @@ class TestAddonModels(TestCase):
         """
         addon = Addon.objects.get(pk=3615)
         addon.current_version.update(created=self.days_ago(2))
-        new_version = version_factory(addon=addon, version='2.0')
-        assert addon.find_latest_version() == new_version
+        new_version = version_factory(addon=addon, version='2.0',
+                                      created=self.days_ago(1))
+        assert addon.find_latest_version(None) == new_version
+        another_new_version = version_factory(
+            addon=addon, version='3.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert addon.find_latest_version(None) == another_new_version
 
     def test_find_latest_version_different_channel(self):
         addon = Addon.objects.get(pk=3615)
         addon.current_version.update(created=self.days_ago(2))
-        new_version = version_factory(addon=addon, version='2.0')
-        new_version.update(created=self.days_ago(1))
-        version_factory(
+        new_version = version_factory(addon=addon, version='2.0',
+                                      created=self.days_ago(1))
+        unlisted_version = version_factory(
             addon=addon, version='3.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         assert (
             addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) ==
             new_version)
+        assert (
+            addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED) ==
+            unlisted_version)
 
     def test_find_latest_version_no_version(self):
         Addon.objects.filter(pk=3723).update(_current_version=None)
         Version.objects.filter(addon=3723).delete()
         addon = Addon.objects.get(pk=3723)
-        assert addon.find_latest_version() is None
+        assert addon.find_latest_version(None) is None
 
     def test_find_latest_version_ignore_beta(self):
         addon = Addon.objects.get(pk=3615)
 
         v1 = Version.objects.create(addon=addon, version='1.0')
         File.objects.create(version=v1)
-        assert addon.find_latest_version().id == v1.id
+        assert addon.find_latest_version(None).id == v1.id
 
         v2 = Version.objects.create(addon=addon, version='2.0beta')
         File.objects.create(version=v2, status=amo.STATUS_BETA)
         v2.save()
-        assert addon.find_latest_version().id == v1.id  # Still should be v1
+        # Still should be v1
+        assert addon.find_latest_version(None).id == v1.id
 
     def test_find_latest_version_ignore_disabled(self):
         addon = Addon.objects.get(pk=3615)
 
         v1 = Version.objects.create(addon=addon, version='1.0')
         File.objects.create(version=v1)
-        assert addon.find_latest_version().id == v1.id
+        assert addon.find_latest_version(None).id == v1.id
 
         v2 = Version.objects.create(addon=addon, version='2.0')
         File.objects.create(version=v2, status=amo.STATUS_DISABLED)
         v2.save()
-        assert addon.find_latest_version().id == v1.id  # Still should be v1
+        # Still should be v1
+        assert addon.find_latest_version(None).id == v1.id
 
     def test_find_latest_or_rejected_version(self):
         addon = Addon.objects.get(pk=3615)
 
-        v1 = Version.objects.create(addon=addon, version='1.0')
-        v1.update(created=self.days_ago(1))
-        File.objects.create(version=v1)
-        assert addon.find_latest_version_including_rejected().id == v1.id
-        v2 = Version.objects.create(addon=addon, version='2.0')
-        f2 = File.objects.create(version=v2)
-        v2.save()
-        assert addon.find_latest_version_including_rejected().id == v2.id
+        v1 = version_factory(addon=addon, version='1.0',
+                             created=self.days_ago(2))
+        assert addon.find_latest_version_including_rejected(None).id == v1.id
+        v2 = version_factory(addon=addon, version='2.0',
+                             created=self.days_ago(1))
+        assert addon.find_latest_version_including_rejected(None).id == v2.id
 
-        f2.update(status=amo.STATUS_DISABLED)
+        v2.files.update(status=amo.STATUS_DISABLED)
         # Should still be 2.0.
-        assert addon.find_latest_version_including_rejected().id == v2.id
+        assert addon.find_latest_version_including_rejected(None).id == v2.id
+
+        v3 = version_factory(addon=addon, version='3.0',
+                             channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert addon.find_latest_version_including_rejected(None).id == v3.id
 
     def test_find_latest_or_rejected_version_channel(self):
         addon = Addon.objects.get(pk=3615)
 
-        v1 = version_factory(addon=addon, version='1.0')
-        v1.update(created=self.days_ago(2))
+        v1 = version_factory(addon=addon, version='1.0',
+                             created=self.days_ago(2))
         assert addon.find_latest_version_including_rejected(
             channel=amo.RELEASE_CHANNEL_LISTED) == v1
 
-        v2 = version_factory(addon=addon, version='2.0')
-        v2.update(created=self.days_ago(1))
+        v2 = version_factory(addon=addon, version='2.0',
+                             created=self.days_ago(1))
         assert addon.find_latest_version_including_rejected(
             channel=amo.RELEASE_CHANNEL_LISTED) == v2
 
@@ -529,7 +540,7 @@ class TestAddonModels(TestCase):
 
     def test_find_latest_version_unsaved(self):
         addon = Addon()
-        assert addon.find_latest_version() is None
+        assert addon.find_latest_version(None) is None
 
     def test_current_beta_version(self):
         addon = Addon.objects.get(pk=5299)
@@ -1277,7 +1288,7 @@ class TestAddonModels(TestCase):
 
     def test_can_request_review_rejected(self):
         addon = Addon.objects.get(pk=3615)
-        latest_version = addon.find_latest_version()
+        latest_version = addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
         latest_version.files.update(status=amo.STATUS_DISABLED)
         assert addon.can_request_review() is False
 
@@ -1874,7 +1885,8 @@ class TestBackupVersion(TestCase):
         # Test latest version copied to current version if no current version.
         self.addon.update(_current_version=None, _signal=False)
         assert self.addon.update_version()
-        assert self.addon._current_version == self.addon.find_latest_version()
+        assert self.addon._current_version == (
+            self.addon.find_latest_version(None))
 
 
 class TestCategoryModel(TestCase):

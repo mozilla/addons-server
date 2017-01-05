@@ -55,7 +55,7 @@ def docs_page_title(context, title=None):
 def add_file_modal(context, title, action, action_label, modal_type='file'):
     addon = context['addon']
     version = context.get('version',
-                          addon.find_latest_version_including_rejected())
+                          addon.find_latest_version_including_rejected(None))
     if version:
         channel = ('listed' if version.channel == amo.RELEASE_CHANNEL_LISTED
                    else 'unlisted')

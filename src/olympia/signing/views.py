@@ -170,7 +170,7 @@ class VersionView(APIView):
                 channel = amo.CHANNEL_CHOICES_LOOKUP.get(channel_param)
                 if not channel:
                     last_version = (
-                        addon.find_latest_version_including_rejected())
+                        addon.find_latest_version_including_rejected(None))
                     if last_version:
                         channel = last_version.channel
                     else:

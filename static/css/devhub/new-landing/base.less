@@ -1,11 +1,13 @@
-@import '../common/normalize.css';
+@import (less) '../../common/normalize.css';
 @import '../../impala/fonts/fira/fira.less';
 
 // Grid
 @grid-max: 940px;
-@small: ~"only screen and (max-width: 768px)";
-@medium: ~"only screen and (min-width: 768px)";
+@extra-small: ~"only screen and (max-width: 599px)";
+@small: ~"only screen and (min-width: 599px)";
+@medium: ~"only screen and (min-width: 700px)";
 @large: ~"only screen and (min-width: 1024px)";
+@retina: ~"only screen and (min-device-pixel-ratio: 2)";
 
 // Fonts
 @font-primary: 'Fira Sans', sans-serif;
@@ -15,6 +17,9 @@
 @color-items: #fff;
 
 // Color Schemes
+// Default
+@color-scheme-default-background: #ffffff;
+
 // Light
 @color-scheme-light-text: #333;
 @color-scheme-light-background: #f1f3f6;
@@ -29,9 +34,25 @@
 @color-scheme-dark-background: #1d3770;
 @color-scheme-dark-items: #40d38d;
 
+// Buttons
+@color-button-default: #0996F8;
+@color-button-primary: #29c978;
+
 // Common styles
 * {
   font-family: @font-primary;
+  // widths take into account padding + borders.
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: content-box;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
 }
 
 body {
@@ -49,6 +70,18 @@ h1 {
   margin-top: 0;
 }
 
+h1,
+h2,
+h3 {
+  font-weight: 500;
+}
+
+@media @medium {
+  h1, h2, h3 {
+    font-weight: 300;
+  }
+}
+
 // Mixins / Utilities
 @import 'utils';
 
@@ -63,3 +96,4 @@ h1 {
 // Content sections
 @import 'sections/overview';
 @import 'sections/more-information';
+@import 'sections/my-addons';

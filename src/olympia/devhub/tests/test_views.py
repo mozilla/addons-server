@@ -841,7 +841,7 @@ class TestHome(TestCase):
                     (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
 
         for addon_status, file_status in statuses:
-            latest_version = self.addon.find_latest_version()
+            latest_version = self.addon.find_latest_version(None)
             file = latest_version.files.all()[0]
             file.update(status=file_status)
 
@@ -878,7 +878,7 @@ class TestHome(TestCase):
         statuses = [(amo.STATUS_DISABLED, amo.STATUS_DISABLED)]
 
         for addon_status, file_status in statuses:
-            latest_version = self.addon.find_latest_version()
+            latest_version = self.addon.find_latest_version(None)
             file = latest_version.files.all()[0]
             file.update(status=file_status)
 
@@ -916,7 +916,8 @@ class TestHome(TestCase):
                     (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
 
         for addon_status, file_status in statuses:
-            latest_version = self.addon.find_latest_version()
+            latest_version = self.addon.find_latest_version(
+                amo.RELEASE_CHANNEL_LISTED)
             file = latest_version.files.all()[0]
             file.update(status=file_status)
 
@@ -947,7 +948,8 @@ class TestHome(TestCase):
 
     @override_switch('step-version-upload', active=True)
     def test_my_addons_disabled(self):
-        latest_version = self.addon.find_latest_version()
+        latest_version = self.addon.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED)
         file = latest_version.files.all()[0]
         file.update(status=amo.STATUS_DISABLED)
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -1716,7 +1718,8 @@ class TestQueuePosition(UploadTest):
             self.addon.status = addon_status[0]
             self.addon.save()
 
-            latest_version = self.addon.find_latest_version()
+            latest_version = self.addon.find_latest_version(
+                amo.RELEASE_CHANNEL_LISTED)
             file = latest_version.files.all()[0]
             file.status = addon_status[1]
             file.save()
@@ -1781,7 +1784,7 @@ class TestVersionAddFile(UploadTest):
         assert doc.find('span.remove.tooltip').length == 0
 
     def test_delete_button_disabled(self):
-        version = self.addon.find_latest_version()
+        version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
         version.files.all()[0].update(status=amo.STATUS_PUBLIC)
 
         r = self.client.get(self.edit_url)

@@ -1,13 +1,24 @@
 .Button {
+  background-color: @color-button-default;
   border-radius: 2px;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.3);
   color: @color-items;
   display: inline-block;
   padding: 10px 30px;
+  margin: 10px 0;
   text-align: center;
   text-decoration: none;
+  width: 100%;
 
-  .scheme-medium & {
-    background-color: @color-scheme-medium-items;
+  @media @small {
+    width: auto;
   }
+
+  @media @medium {
+    margin: 0 10px 0 0;
+  }
+}
+
+.Button--primary {
+  background-color: @color-button-primary;
 }

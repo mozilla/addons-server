@@ -15,7 +15,7 @@ import pytest
 from pyquery import PyQuery
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, version_factory
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.amo.helpers import user_media_url
@@ -408,7 +408,7 @@ class TestVersion(TestCase):
 
     def test_version_is_public(self):
         addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
+        version = version_factory(addon=addon)
 
         # Base test. Everything is in order, the version should be public.
         assert version.is_public()
@@ -434,14 +434,14 @@ class TestVersion(TestCase):
     def test_is_compatible(self):
         # Base test for fixture before the rest.
         addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
+        version = version_factory(addon=addon)
         assert version.is_compatible[0]
         assert version.is_compatible_app(amo.FIREFOX)
 
     def test_is_compatible_type(self):
         # Only ADDON_EXTENSIONs should be compatible.
         addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
+        version = version_factory(addon=addon)
         addon.update(type=amo.ADDON_PERSONA)
         assert not version.is_compatible[0]
         assert version.is_compatible_app(amo.FIREFOX)
@@ -449,7 +449,7 @@ class TestVersion(TestCase):
     def test_is_compatible_strict_opt_in(self):
         # Add-ons opting into strict compatibility should not be compatible.
         addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
+        version = version_factory(addon=addon)
         file = version.all_files[0]
         file.update(strict_compatibility=True)
         assert not version.is_compatible[0]
@@ -459,7 +459,7 @@ class TestVersion(TestCase):
     def test_is_compatible_binary_components(self):
         # Add-ons using binary components should not be compatible.
         addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
+        version = version_factory(addon=addon)
         file = version.all_files[0]
         file.update(binary_components=True)
         assert not version.is_compatible[0]
@@ -469,7 +469,7 @@ class TestVersion(TestCase):
     def test_is_compatible_app_max_version(self):
         # Add-ons with max app version < 4.0 should not be compatible.
         addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon, max_app_version='3.5')
+        version = version_factory(addon=addon, max_app_version='3.5')
         assert not version.is_compatible_app(amo.FIREFOX)
         # An app that isn't supported should also be False.
         assert not version.is_compatible_app(amo.THUNDERBIRD)
@@ -478,7 +478,7 @@ class TestVersion(TestCase):
 
     def test_compat_override_app_versions(self):
         addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
+        version = version_factory(addon=addon)
         co = CompatOverride.objects.create(addon=addon)
         CompatOverrideRange.objects.create(compat=co, app=1, min_version='0',
                                            max_version=version.version,
@@ -488,7 +488,7 @@ class TestVersion(TestCase):
 
     def test_compat_override_app_versions_wildcard(self):
         addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon)
+        version = version_factory(addon=addon)
         co = CompatOverride.objects.create(addon=addon)
         CompatOverrideRange.objects.create(compat=co, app=1, min_version='0',
                                            max_version='*',
@@ -505,7 +505,7 @@ class TestVersion(TestCase):
     @mock.patch('olympia.addons.models.Addon.invalidate_d2c_versions')
     def test_invalidate_d2c_version_signals_on_save(self, inv_mock):
         addon = Addon.objects.get(pk=3615)
-        amo.tests.version_factory(addon=addon)
+        version_factory(addon=addon)
         assert inv_mock.called
 
     def test_current_queue(self):
@@ -528,10 +528,10 @@ class TestVersion(TestCase):
 
     def test_valid_versions(self):
         addon = Addon.objects.get(id=3615)
-        additional_version = amo.tests.version_factory(
+        additional_version = version_factory(
             addon=addon, version='0.1')
         amo.tests.file_factory(version=additional_version)
-        amo.tests.version_factory(
+        version_factory(
             addon=addon, version='0.2',
             file_kw={'status': amo.STATUS_DISABLED})
         assert list(
@@ -544,14 +544,14 @@ class TestVersion(TestCase):
 
     def test_source_upload_path(self):
         addon = Addon.objects.get(id=3615)
-        version = amo.tests.version_factory(addon=addon, version='0.1')
+        version = version_factory(addon=addon, version='0.1')
         uploaded_name = source_upload_path(version, 'foo.tar.gz')
         assert uploaded_name.endswith(u'a3615-0.1-src.tar.gz')
 
     def test_source_upload_path_utf8_chars(self):
         addon = Addon.objects.get(id=3615)
         addon.update(slug=u'crosswarpex-확장')
-        version = amo.tests.version_factory(addon=addon, version='0.1')
+        version = version_factory(addon=addon, version='0.1')
         uploaded_name = source_upload_path(version, 'crosswarpex-확장.tar.gz')
         assert uploaded_name.endswith(u'crosswarpex-확장-0.1-src.tar.gz')
 
@@ -594,40 +594,42 @@ def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
 
 
 class TestViews(TestCase):
-    fixtures = ['addons/eula+contrib-addon']
-
     def setUp(self):
         super(TestViews, self).setUp()
-        self.old_perpage = views.PER_PAGE
-        views.PER_PAGE = 1
-        self.addon = Addon.objects.get(id=11730)
+        self.addon = addon_factory(
+            slug=u'my-addôn', file_kw={'size': 1024},
+            version_kw={'version': '1.0'})
+        self.addon.current_version.update(created=self.days_ago(1))
+        self.url_list = reverse('addons.versions', args=[self.addon.slug])
+        self.url_list_betas = reverse(
+            'addons.beta-versions', args=[self.addon.slug])
+        self.url_detail = reverse(
+            'addons.versions',
+            args=[self.addon.slug, self.addon.current_version.version])
 
-    def tearDown(self):
-        views.PER_PAGE = self.old_perpage
-        super(TestViews, self).tearDown()
-
+    @mock.patch.object(views, 'PER_PAGE', 1)
     def test_version_detail(self):
-        base = '/en-US/firefox/addon/%s/versions/' % self.addon.slug
+        version_factory(addon=self.addon, version='2.0')
         urls = [(v.version, reverse('addons.versions',
                                     args=[self.addon.slug, v.version]))
                 for v in self.addon.versions.all()]
 
         version, url = urls[0]
         r = self.client.get(url, follow=True)
-        self.assert3xx(r, base + '?page=1#version-%s' % version)
+        self.assert3xx(r, self.url_list + '?page=1#version-%s' % version)
 
         version, url = urls[1]
         r = self.client.get(url, follow=True)
-        self.assert3xx(r, base + '?page=2#version-%s' % version)
+        self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
 
     def test_version_detail_404(self):
+        bad_pk = self.addon.current_version.pk + 42
         response = self.client.get(reverse('addons.versions',
-                                           args=[self.addon.slug, 2]))
+                                           args=[self.addon.slug, bad_pk]))
         assert response.status_code == 404
 
     def get_content(self, beta=False):
-        url = reverse('addons.beta-versions' if beta else 'addons.versions',
-                      args=[self.addon.slug])
+        url = self.url_list_betas if beta else self.url_list
         response = self.client.get(url)
         assert response.status_code == 200
         return PyQuery(response.content)
@@ -637,49 +639,70 @@ class TestViews(TestCase):
         assert len(self.get_content()('a.source-code')) == 1
 
     def test_version_no_source_one(self):
+        self.addon.update(view_source=False)
         assert len(self.get_content()('a.source-code')) == 0
 
     def test_version_addon_not_public(self):
         self.addon.update(view_source=True, status=amo.STATUS_NULL)
-        url = reverse('addons.versions', args=[self.addon.slug])
-        response = self.client.get(url)
+        response = self.client.get(self.url_list)
         assert response.status_code == 404
 
     def test_version_link(self):
-        addon = Addon.objects.get(id=11730)
-        version = addon.current_version.version
+        version = self.addon.current_version.version
         doc = self.get_content()
         link = doc('.version h3 > a').attr('href')
-        assert link == reverse('addons.versions', args=[addon.slug, version])
+        assert link == self.url_detail
         assert doc('.version').attr('id') == 'version-%s' % version
 
-    def test_beta_without_beta_builds(self):
+    def test_version_list_doesnt_show_unreviewed_versions_public_addon(self):
+        version = self.addon.current_version.version
+        version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            version='2.1')
+        doc = self.get_content()
+        assert len(doc('.version')) == 1
+        assert doc('.version').attr('id') == 'version-%s' % version
+
+    def test_version_list_does_show_unreviewed_versions_unreviewed_addon(self):
+        version = self.addon.current_version.version
+        file_ = self.addon.current_version.files.all()[0]
+        file_.update(status=amo.STATUS_AWAITING_REVIEW)
+        doc = self.get_content()
+        assert len(doc('.version')) == 1
+        assert doc('.version').attr('id') == 'version-%s' % version
+
+    def test_version_list_does_not_show_betas_by_default(self):
+        version = self.addon.current_version.version
+        version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_BETA},
+            version='2.1b')
+        doc = self.get_content()
+        assert len(doc('.version')) == 1
+        assert doc('.version').attr('id') == 'version-%s' % version
+
+    def test_version_list_beta_without_any_beta_version(self):
         doc = self.get_content(beta=True)
         assert len(doc('.version')) == 0
 
-    def test_beta_with_beta_builds(self):
-        qs = File.objects.filter(version=self.addon.current_version)
-        qs.update(status=amo.STATUS_BETA)
+    def test_version_list_beta_shows_beta_version(self):
+        version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_BETA},
+            version='2.1b')
         doc = self.get_content(beta=True)
-        version = self.addon.current_version.version
         assert doc('.version').attr('id') == 'version-%s' % version
 
     def test_version_list_for_unlisted_addon_returns_404(self):
         """Unlisted addons are not listed and have no version list."""
         self.make_addon_unlisted(self.addon)
-        url = reverse('addons.versions', args=[self.addon.slug])
-        assert self.client.get(url).status_code == 404
+        assert self.client.get(self.url_list).status_code == 404
 
     def test_version_detail_does_not_return_unlisted_versions(self):
-        version_number = self.addon.current_version.version
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        response = self.client.get(
-            reverse('addons.versions', args=[self.addon.slug, version_number]))
+        response = self.client.get(self.url_detail)
         assert response.status_code == 404
 
     def test_version_list_file_size_uses_binary_prefix(self):
-        url = reverse('addons.versions', args=[self.addon.slug])
-        response = self.client.get(url)
+        response = self.client.get(self.url_list)
         assert '1.0 KiB' in response.content
 
 
