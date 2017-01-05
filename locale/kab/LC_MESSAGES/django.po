@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 19:38+0000\n"
+"PO-Revision-Date: 2017-01-05 20:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2518,7 +2518,7 @@ msgstr "Rnu tagrumma"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "Tigrummiwin ttaǧant lǧeṛṛat s wudem fessusen n izegrar inek inuraf udi q ad bḍun aggan inek n iminig akked yemdanen nniḍen."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Collection Icon"
@@ -2574,7 +2574,7 @@ msgstr "COLLECTIONS"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
-msgstr ""
+msgstr "Igrawen n izegrar am wagi, i yezmer yal yiwen ad yernu."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocked Add-ons"
@@ -2603,11 +2603,11 @@ msgstr "D acu yebɣa ad d-yini?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr ""
+msgstr "Iseqdacen ttuweṣan akken ad sensen izegrar neɣ isiɣzaf i -d-igellun s wuguren, acu kan zemren ad fernen akemmel deg useqdec ma qeblen ayen yezmer ad-yeglu useqdec-nsen."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr ""
+msgstr "Izegrar neɣ isiɣzaf i d-igellun s wuguren ad ttwasensen s wudem awurman udiɣ ur tezzin ad ttwasqedcen."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -2651,7 +2651,7 @@ msgstr "Izegrar yettwasnen:: %s"
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "Haten-aya kra n izegrar-nneɣ inuraf ak-dimudden tazwart deg aggan n %s."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -2701,7 +2701,7 @@ msgstr "Ulac izegrar yettwasnen di {0}."
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "Haten-aya kra n izegrar-nneɣ inuraf ak-dimudden tazwart deg aggan n %(app)s."
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Dictionary"
@@ -2786,7 +2786,7 @@ msgstr "Issin ugar ɣef <a href=\"http://support.mozilla.com/kb/Search+bar\">ufe
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Tzemred ad twaliḍ amseddayen nniḍen n undai di <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
@@ -2910,7 +2910,7 @@ msgstr "Wali akk wid yettwaszemlen aṭas"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Ugar n 300 000 n isental i waggan n iminig inek! Awi taḥnaccaṭ inek ɣef yiwen seg isental akken ad tt-ɛerḍeṭ. <a href=\"%(url)s\" class=\"more-info\">Bdu asnirem</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Want more personalization?"
@@ -3165,15 +3165,15 @@ msgstr "Izegrar"
 
 #: src/olympia/constants/base.py
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "Suter kan ɣef usebter-agi n uzegrir akked umaɣnu n uneflay"
 
 #: src/olympia/constants/base.py
 msgid "Ask after users start downloading this add-on"
-msgstr ""
+msgstr "Suter iseqdacen ticki bdan asider n uzegri-agi"
 
 #: src/olympia/constants/base.py
 msgid "Ask before users can download this add-on"
-msgstr ""
+msgstr "Suter iseqdacen ticki bdan asider n uzegri-agi"
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
@@ -3330,7 +3330,7 @@ msgstr "Aramṣadan"
 
 #: src/olympia/constants/categories.py
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "Alɣu & Ileqman"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance"
@@ -3422,7 +3422,7 @@ msgstr "Amatu"
 
 #: src/olympia/constants/categories.py
 msgid "Business"
-msgstr ""
+msgstr "Amahil"
 
 #: src/olympia/constants/categories.py
 msgid "Dictionaries & Encyclopedias"
@@ -3454,7 +3454,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
-msgstr ""
+msgstr "Timetti & Imdanen"
 
 #: src/olympia/constants/categories.py
 msgid "Travel"
@@ -3855,11 +3855,11 @@ msgstr "Ur d-skan ara izegrar inu ɣef usmel"
 
 #: src/olympia/devhub/forms.py
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
-msgstr ""
+msgstr "Ṛcem aɣewwaṛ-agi ma tebɣiḍ azuzer n uzegrir inek s yiman-ik udiɣ ad yettwazmel kan sɣur Mozilla."
 
 #: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
-msgstr ""
+msgstr "Afaylu anida lqem yettfak s a|alpha|b|beta|pre|rc, yettwaḍfaṛen ahat s umḍan,  yettwammel d lqem beta."
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot upload any more files for this version."
