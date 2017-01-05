@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 11:32+0000\n"
-"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
+"PO-Revision-Date: 2017-01-03 14:12+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -5183,7 +5183,6 @@ msgid "Submission Complete"
 msgstr "Predložitev je končana"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done!"
 msgstr "Končali ste!"
 
