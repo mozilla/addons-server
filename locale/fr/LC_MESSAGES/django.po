@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 03:04+0000\n"
+"PO-Revision-Date: 2017-01-05 05:19+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6285,7 +6285,7 @@ msgstr "Bien plus qu’un outil de capture d’écran, ce module vous permet d�
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Accédez facilement à vos favoris {start_sub_heading} avec {addon_name}{end_sub_heading}"
+msgstr "Accédez facilement à vos marque-pages {start_sub_heading} avec {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
