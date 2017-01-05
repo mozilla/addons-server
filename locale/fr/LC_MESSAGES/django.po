@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 03:00+0000\n"
+"PO-Revision-Date: 2017-01-05 03:04+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1762,7 +1762,7 @@ msgstr "Commentaire sur {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
-msgstr "Les évaluations d'approbation ont changé"
+msgstr "Les évaluations d’approbation ont changé"
 
 #: src/olympia/amo/log.py
 #, fuzzy
@@ -5203,9 +5203,8 @@ msgid "Download {0}"
 msgstr "Télécharger {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr "Vous n'avez sélectionné que certaines des plateformes disponibles pour cet envoi. Vous pouvez soumettre d'autres fichiers ciblant les autres plateformes&nbsp;:"
+msgstr "Vous n’avez sélectionné que certaines des plateformes disponibles pour cet envoi. Vous pouvez soumettre d’autres fichiers ciblant les autres plateformes&nbsp;:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
@@ -5333,7 +5332,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
-"Votre module ne sera pas inclus dans les résultats de la recherche et sa page de détails indiquera que vous l'avez désactivé. Les soumissions de nouvelles versions ne seront pas acceptées dans cet "
+"Votre module ne sera pas inclus dans les résultats de la recherche et sa page de détails indiquera que vous l’avez désactivé. Les soumissions de nouvelles versions ne seront pas acceptées dans cet "
 "état."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -6290,12 +6289,11 @@ msgstr "Accédez facilement à vos favoris {start_sub_heading} avec {addon_name}
 
 #: src/olympia/discovery/data.py
 msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
-msgstr "Faites-vous constamment défiler vos favoris? Affichez vos listes d’un geste simple et unique."
+msgstr "Faites-vous constamment défiler vos marque-pages ? Affichez vos listes d’un geste simple et unique."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquez les publicités {start_sub_heading} avec {addon_name}{end_sub_heading}"
+msgstr "Améliorez YouTube {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
