@@ -829,7 +829,7 @@ def DependencyFormSet(*args, **kw):
 
     # Add-ons: Required add-ons cannot include apps nor personas.
     # Apps:    Required apps cannot include any add-ons.
-    qs = (Addon.objects.reviewed().exclude(id=addon_parent.id).
+    qs = (Addon.objects.public().exclude(id=addon_parent.id).
           exclude(type__in=[amo.ADDON_PERSONA]))
 
     class _Form(happyforms.ModelForm):

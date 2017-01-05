@@ -9,8 +9,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowIfReviewed, AllowNone, AllowOwner,
-    AllowReadOnlyIfReviewed, AllowRelatedObjectPermissions, AllowReviewer,
+    AllowAddonAuthor, AllowIfPublic, AllowNone, AllowOwner,
+    AllowReadOnlyIfPublic, AllowRelatedObjectPermissions, AllowReviewer,
     AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission)
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, WithDynamicEndpoints)
@@ -372,9 +372,9 @@ class TestAllowUnlistedReviewer(TestCase):
             self.request, myview, obj)
 
 
-class TestAllowIfReviewed(TestCase):
+class TestAllowIfPublic(TestCase):
     def setUp(self):
-        self.permission = AllowIfReviewed()
+        self.permission = AllowIfPublic()
         self.request_factory = RequestFactory()
         self.unsafe_methods = ('patch', 'post', 'put', 'delete')
         self.safe_methods = ('get', 'options', 'head')
@@ -391,10 +391,9 @@ class TestAllowIfReviewed(TestCase):
             assert self.permission.has_permission(
                 self.request(verb), myview)
 
-    def test_has_object_permission_reviewed(self):
-        obj = Mock(spec=['is_reviewed', 'disabled_by_user'])
-        obj.is_reviewed.return_value = True
-        obj.disabled_by_user = False
+    def test_has_object_permission_public(self):
+        obj = Mock(spec=['is_public'])
+        obj.is_public.return_value = True
 
         for verb in self.safe_methods:
             assert self.permission.has_object_permission(
@@ -404,28 +403,18 @@ class TestAllowIfReviewed(TestCase):
             assert self.permission.has_object_permission(
                 self.request(verb), myview, obj)
 
-    def test_has_object_permission_reviewed_but_disabled_by_user(self):
-        obj = Mock(spec=['is_reviewed', 'disabled_by_user'])
-        obj.is_reviewed.return_value = True
-        obj.disabled_by_user = True
-
-        for verb in self.unsafe_methods + self.safe_methods:
-            assert not self.permission.has_object_permission(
-                self.request(verb), myview, obj)
-
-    def test_has_object_permission_not_reviewed(self):
-        obj = Mock(spec=['is_reviewed', 'disabled_by_user'])
-        obj.is_reviewed.return_value = False
-        obj.disabled_by_user = False
+    def test_has_object_permission_not_public(self):
+        obj = Mock(spec=['is_public'])
+        obj.is_public.return_value = False
 
         for verb in self.unsafe_methods + self.safe_methods:
             assert not self.permission.has_object_permission(
                 self.request(verb), myview, obj)
 
 
-class TestAllowReadOnlyIfReviewed(TestCase):
+class TestAllowReadOnlyIfPublic(TestCase):
     def setUp(self):
-        self.permission = AllowReadOnlyIfReviewed()
+        self.permission = AllowReadOnlyIfPublic()
         self.request_factory = RequestFactory()
         self.unsafe_methods = ('patch', 'post', 'put', 'delete')
         self.safe_methods = ('get', 'options', 'head')
@@ -442,10 +431,9 @@ class TestAllowReadOnlyIfReviewed(TestCase):
             assert not self.permission.has_permission(
                 self.request(verb), myview)
 
-    def test_has_object_permission_reviewed(self):
-        obj = Mock(spec=['is_reviewed', 'disabled_by_user'])
-        obj.is_reviewed.return_value = True
-        obj.disabled_by_user = False
+    def test_has_object_permission_public(self):
+        obj = Mock(spec=['is_public'])
+        obj.is_public.return_value = True
 
         for verb in self.safe_methods:
             assert self.permission.has_object_permission(
@@ -455,19 +443,9 @@ class TestAllowReadOnlyIfReviewed(TestCase):
             assert not self.permission.has_object_permission(
                 self.request(verb), myview, obj)
 
-    def test_has_object_permission_reviewed_but_disabled_by_user(self):
-        obj = Mock(spec=['is_reviewed', 'disabled_by_user'])
-        obj.is_reviewed.return_value = True
-        obj.disabled_by_user = True
-
-        for verb in self.unsafe_methods + self.safe_methods:
-            assert not self.permission.has_object_permission(
-                self.request(verb), myview, obj)
-
-    def test_has_object_permission_not_reviewed(self):
-        obj = Mock(spec=['is_reviewed', 'disabled_by_user'])
-        obj.is_reviewed.return_value = False
-        obj.disabled_by_user = False
+    def test_has_object_permission_not_public(self):
+        obj = Mock(spec=['is_public'])
+        obj.is_public.return_value = False
 
         for verb in self.unsafe_methods + self.safe_methods:
             assert not self.permission.has_object_permission(

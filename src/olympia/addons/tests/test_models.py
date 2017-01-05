@@ -252,13 +252,8 @@ class TestAddonManager(TestCase):
         assert q.count() == 3
 
     def test_public(self):
-        public = Addon.objects.public()
-        for a in public:
-            assert a.id != 3  # 'public() must not return unreviewed add-ons'
-
-    def test_reviewed(self):
-        for a in Addon.objects.reviewed():
-            assert a.status in amo.REVIEWED_STATUSES, (a.id, a.status)
+        for a in Addon.objects.public():
+            assert a.status == amo.STATUS_PUBLIC
 
     def test_valid(self):
         addon = Addon.objects.get(pk=5299)
@@ -722,23 +717,13 @@ class TestAddonModels(TestCase):
 
     def test_is_public(self):
         # Public add-on.
-        a = Addon.objects.get(pk=3615)
-        assert a.is_public(), 'public add-on should not be is_pulic()'
-
-        # Public, disabled add-on.
-        a.disabled_by_user = True
-        assert not a.is_public(), (
-            'public, disabled add-on should not be is_public()')
-
-    def test_is_reviewed(self):
-        # Public add-on.
         addon = Addon.objects.get(pk=3615)
         assert addon.status == amo.STATUS_PUBLIC
-        assert addon.is_reviewed()
+        assert addon.is_public()
 
-        # Public, disabled add-on.
+        # Should be public by status, but since it's disabled add-on it's not.
         addon.disabled_by_user = True
-        assert addon.is_reviewed()  # It's still considered "reviewed".
+        assert not addon.is_public()
 
     def test_requires_restart(self):
         addon = Addon.objects.get(pk=3615)

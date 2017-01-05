@@ -143,14 +143,6 @@ class AddonQuerySet(caching.CachingQuerySet):
         """Get public add-ons only"""
         return self.filter(self.valid_q([amo.STATUS_PUBLIC]))
 
-    def reviewed(self):
-        """Get add-ons with a reviewed status"""
-        return self.filter(self.valid_q(amo.REVIEWED_STATUSES))
-
-    def unreviewed(self):
-        """Get only unreviewed add-ons"""
-        return self.filter(self.valid_q(amo.UNREVIEWED_ADDON_STATUSES))
-
     def valid(self):
         """Get valid, enabled add-ons only"""
         return self.filter(self.valid_q(amo.VALID_ADDON_STATUSES))
@@ -230,14 +222,6 @@ class AddonManager(ManagerBase):
     def public(self):
         """Get public add-ons only"""
         return self.get_queryset().public()
-
-    def reviewed(self):
-        """Get add-ons with a reviewed status"""
-        return self.get_queryset().reviewed()
-
-    def unreviewed(self):
-        """Get only unreviewed add-ons"""
-        return self.get_queryset().unreviewed()
 
     def valid(self):
         """Get valid, enabled add-ons only"""
@@ -1331,9 +1315,6 @@ class Addon(OnChangeMixin, ModelBase):
 
     def is_rejected(self):
         return self.status == amo.STATUS_REJECTED
-
-    def is_reviewed(self):
-        return self.status in amo.REVIEWED_STATUSES
 
     def can_be_deleted(self):
         return not self.is_deleted

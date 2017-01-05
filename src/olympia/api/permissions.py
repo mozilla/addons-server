@@ -131,22 +131,20 @@ class AllowReviewerUnlisted(AllowReviewer):
             self.has_permission(request, view))
 
 
-class AllowIfReviewed(BasePermission):
+class AllowIfPublic(BasePermission):
     """
-    Allow access when the object's is_reviewed() method returns True, and the
-    disabled_by_user property is False.
+    Allow access when the object's is_public() method returns True.
     """
     def has_permission(self, request, view):
         return True
 
     def has_object_permission(self, request, view, obj):
-        return (obj.is_reviewed() and not obj.disabled_by_user and
-                self.has_permission(request, view))
+        return (obj.is_public() and self.has_permission(request, view))
 
 
-class AllowReadOnlyIfReviewed(AllowIfReviewed):
+class AllowReadOnlyIfPublic(AllowIfPublic):
     """
-    Allow access when the object's is_reviewed() method returns True and the
+    Allow access when the object's is_public() method returns True and the
     request HTTP method is GET/OPTIONS/HEAD.
     """
     def has_permission(self, request, view):
