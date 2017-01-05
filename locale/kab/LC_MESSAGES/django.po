@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 18:51+0000\n"
+"PO-Revision-Date: 2017-01-05 19:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8470,7 +8470,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Popular code editors include:"
-msgstr ""
+msgstr "Imaẓragen n tengalt yettwasnen yegber:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8478,6 +8478,8 @@ msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
 "<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
+"<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8550,7 +8552,7 @@ msgstr "Amek ara seɣtiɣ azegrir inu?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "Tzemred ad tesqedceḍ <a href=\"%(url)s\"> Tamseɣtayt n izegrar</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
@@ -8688,7 +8690,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
+msgstr "Anda d-ttwabedren \"ifecka n tneflit\" di AMO?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -8720,7 +8722,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "Anwa anagraw n wammud ara ferneɣ i uzegrir-inu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You must choose the operating systems on which your add-on will successfully function."
@@ -8728,7 +8730,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Anta taggayt ara ferneɣ i uzegrir-inu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -8746,7 +8748,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Zemreɣ ad sedduɣ tasertit tabadnit i uzegrir inu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
@@ -8765,7 +8767,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "Anwa ara cegren azegrir-inu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8835,7 +8837,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Amek ara yazneɣ lqem i uzegrir inu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
@@ -8867,7 +8869,7 @@ msgstr ""
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Yir tutlayt /dialog"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
@@ -9424,7 +9426,7 @@ msgstr ""
 
 #: src/olympia/paypal/__init__.py
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "Tella tuccḍa kked tedrimt-agi."
 
 #: src/olympia/paypal/__init__.py
 msgid "The amount is too small for conversion into the receiver's currency."
@@ -9990,7 +9992,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Asali n isefka ineggura &hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html src/olympia/stats/templates/stats/stats.html
 msgid "No data available."
@@ -10461,7 +10463,7 @@ msgstr "Aseqdac udrig {id}"
 
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
-msgstr ""
+msgstr "Amiḍan inek yettuẓeyyeṛ"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"
@@ -10851,15 +10853,15 @@ msgstr ""
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Time of last login"
-msgstr ""
+msgstr "Akud n tuqqna taneggarut"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "IP address of last login"
-msgstr ""
+msgstr "Tansa IP n tuqqna taneggarut"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Amḍan n izegrar yuttusneflin"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "{0} add-ons"
@@ -10902,7 +10904,7 @@ msgstr ""
 
 #: src/olympia/versions/models.py
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} neɣ ugar"
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "Permanent link to this version"
@@ -10920,19 +10922,19 @@ msgstr ""
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "View the source"
-msgstr ""
+msgstr "Sken aɣbalu"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "{0} Version History"
-msgstr ""
+msgstr "{0} Amazray n lqem"
 
 #. {0} is a number.
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> lqem"
+msgstr[1] "<b>{0}</b> ileqman"
 
 #: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
 msgid "Be careful with old versions!"
@@ -10986,7 +10988,7 @@ msgstr ""
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"
-msgstr ""
+msgstr "Asulay ID n yizen"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
