@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 20:01+0000\n"
+"PO-Revision-Date: 2017-01-05 20:09+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3863,7 +3863,7 @@ msgstr "Afaylu anida lqem yettfak s a|alpha|b|beta|pre|rc, yettwaḍfaṛen ahat
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot upload any more files for this version."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad tesaliḍ afaylu i lqem-agi."
 
 #: src/olympia/devhub/forms.py
 msgid "Version doesn't match"
@@ -3876,15 +3876,15 @@ msgstr "Lqem %s yella yakan, neɣ yuli-d yakan."
 
 #: src/olympia/devhub/forms.py
 msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
+msgstr "Fren ayen iwulmen. Afran-agi yella deg ifranen yellan."
 
 #: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
-msgstr ""
+msgstr "Afaylu anida lqem yettfak s a|alpha|b|beta, yettwaḍfaṛen ahat s umḍan,  yettwammel d lqem beta."
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad tekkseḍ afaylu arama akala n ucegger yekker. Yessefk ad tekkseḍ lqem i meṛṛa."
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -3939,8 +3939,8 @@ msgstr[1] "{0} tuccḍiwin"
 #: src/olympia/devhub/helpers.py
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} alɣu"
+msgstr[1] "{0} ilɣa"
 
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
@@ -3957,7 +3957,7 @@ msgstr ""
 #: src/olympia/devhub/tasks.py
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s yerra-d awal s %s (%s)."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4008,7 +4008,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Azegrir ur yezmir ara ad yettwakkes. Sens-it deg umḍiq n tukksa."
 
 #: src/olympia/devhub/views.py
 msgid "Theme deleted."
@@ -4036,7 +4036,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Ameskar yettwakkes seg uzegrir inek"
 
 #: src/olympia/devhub/views.py
 msgid "There were errors in your submission."
@@ -4641,7 +4641,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Azegrir-agi yesra aseɣẓan azɣaray."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "View Source?"
