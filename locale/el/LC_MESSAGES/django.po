@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 11:40+0000\n"
+"PO-Revision-Date: 2017-01-05 11:49+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3648,7 +3648,7 @@ msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Duplicate"
-msgstr ""
+msgstr "Αντιγραφή"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Reject"
@@ -3656,7 +3656,7 @@ msgstr "Απόρριψη "
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
-msgstr ""
+msgstr "Έγκριση"
 
 #: src/olympia/constants/editors.py
 msgid "Sexual or pornographic content"
@@ -4322,7 +4322,7 @@ msgstr "Δημιουργικά πρόσθετα"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Community & Support"
-msgstr ""
+msgstr "Κοινότητα & Υποστήριξη"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Blog"
@@ -5068,9 +5068,8 @@ msgid "Submit Version for Review"
 msgstr "Υποβολή πρόσθετου"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Describe Version"
-msgstr "Διαγραφή έκδοσης"
+msgstr "Περίγραφή έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Release Notes:"
@@ -5097,7 +5096,6 @@ msgid "Submission Complete"
 msgstr "Ολοκληρώθηκε η υποβολή"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done!"
 msgstr "Τελειώσατε!"
 
@@ -5128,9 +5126,8 @@ msgid "Edit version {0}"
 msgstr "Επεξεργασία έκδοσης {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "File Signed"
-msgstr "Σημειώσεις έκδοσης"
+msgstr "Το αρχείο υπογράφηκε"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
@@ -5180,9 +5177,8 @@ msgid "Where to Host Version"
 msgstr "Διαγραφή έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Version"
-msgstr "Μεταφόρτωση νέας έκδοσης"
+msgstr "Μεταφόρτωση έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5298,18 +5294,16 @@ msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Τελευταία έκδοση"
+msgstr "Εγγεγραμμένη έκδοση:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Τελευταία έκδοση"
+msgstr "Επόμενη εγγεγραμμένη έκδοση:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
