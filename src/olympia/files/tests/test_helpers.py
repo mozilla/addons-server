@@ -10,11 +10,12 @@ from django.core.files.storage import default_storage as storage
 from django import forms
 
 from mock import Mock, patch
+from cache_nuggets.lib import Message
 
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.files.helpers import FileViewer, DiffHelper
+from olympia.files.helpers import FileViewer, DiffHelper, LOCKED, extract_file
 from olympia.files.models import File
 from olympia.files.utils import SafeUnzip
 
@@ -38,15 +39,15 @@ def make_file(pk, file_path, **kwargs):
     return obj
 
 
-class TestFileHelper(TestCase):
+class TestFileViewer(TestCase):
 
     def setUp(self):
-        super(TestFileHelper, self).setUp()
+        super(TestFileViewer, self).setUp()
         self.viewer = FileViewer(make_file(1, get_file('dictionary-test.xpi')))
 
     def tearDown(self):
         self.viewer.cleanup()
-        super(TestFileHelper, self).tearDown()
+        super(TestFileViewer, self).tearDown()
 
     def test_files_not_extracted(self):
         assert not self.viewer.is_extracted()
@@ -83,6 +84,29 @@ class TestFileHelper(TestCase):
         ]
         for name in file_list:
             assert name in files
+
+    def test_locked(self):
+        self.viewer.src = get_file('dictionary-test.xpi')
+
+        # Lock was successfully attained
+        assert self.viewer.extract()
+
+        msg = Message(self.viewer._cache_key(LOCKED))
+        msg.save(True)
+
+        # Not extracting, the viewer is locked, lock could not be attained
+        assert not self.viewer.extract()
+
+    def test_extract_file_locked_message(self):
+        self.viewer.src = get_file('dictionary-test.xpi')
+        assert not self.viewer.is_extracted()
+
+        msg = Message(self.viewer._cache_key(LOCKED))
+        msg.save(True)
+
+        msg = extract_file(self.viewer)
+        assert str(msg.get()).startswith(u'File viewer is locked')
+        msg.delete()
 
     def test_cleanup(self):
         self.viewer.extract()

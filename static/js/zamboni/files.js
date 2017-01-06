@@ -1032,14 +1032,21 @@ $(document).ready(function() {
                 });
             } else if (json) {
                 var errors = false;
+
                 $.each(json.msg, function(k) {
                     if (json.msg[k] !== null) {
                         errors = true;
-                        $('<p>').text(json.msg[k]).appendTo($('#file-viewer div.error'));
+
+                        // The box isn't visible / created if there are errors
+                        // so we have to create the notification-box ourselves.
+                        $('#validating').after($('<div>', {
+                            'class': 'notification-box error',
+                            'text': json.msg[k]
+                        }));
                     }
                 });
                 if (errors) {
-                    $('#file-viewer div.error').show();
+                    $('.notification-box .error').show();
                     $('#extracting').hide();
                 } else {
                     setTimeout(poll_file_extraction, 2000);

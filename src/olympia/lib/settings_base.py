@@ -1137,9 +1137,6 @@ CELERY_ROUTES = {
     'olympia.editors.tasks.reject_rereview': {'queue': 'editors'},
     'olympia.editors.tasks.send_mail': {'queue': 'editors'},
 
-    # Files
-    'olympia.files.tasks.extract_file': {'queue': 'files'},
-
     # Crypto
     'olympia.lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
 
