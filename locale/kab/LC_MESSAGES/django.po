@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-06 07:01+0000\n"
+"PO-Revision-Date: 2017-01-06 07:03+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3206,7 +3206,7 @@ msgstr "Persona"
 
 #: src/olympia/constants/base.py
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Tineqqiḍin n usenqed s ufus"
 
 #: src/olympia/constants/base.py
 msgid "New Add-on Review"
@@ -3454,7 +3454,7 @@ msgstr "Tiwlafin & Tugniwin"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "Tiɣin & Tanezzut taliktṛunant"
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
