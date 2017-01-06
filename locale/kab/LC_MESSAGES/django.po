@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-06 07:03+0000\n"
+"PO-Revision-Date: 2017-01-06 16:00+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -7521,11 +7521,11 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
-msgstr "Ual d Test Pilot"
+msgstr "Uɣal d Test Pilot"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Rnu anekcum uzwir ar tmahilin tirmitantin n iminig."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Get Started"
@@ -10219,6 +10219,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Aram kan ur yeddi ara akked <a href=\"https://www.mozilla.org/about/legal/\">tizmilin tusdifin</a>, agbur n usmel-agi yella daw n turagt<br /> <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\">Creative Commons Attribution Share-Alike v3.0</a> neɣ ileqman imaynuten."
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
@@ -10281,7 +10283,7 @@ msgstr ""
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
-msgstr "Anɣuf ar {0} n izegrar."
+msgstr "Anṣuf ar {0} n izegrar."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
