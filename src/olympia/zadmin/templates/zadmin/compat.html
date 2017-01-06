@@ -26,7 +26,7 @@ button { margin: 4px; padding: 0 2px }
 
 {% block content %}
 <h2>{{ title }}</h2>
-<form class="go" id="compat-form">
+<form class="go" id="compat-form" data-no-csrf>
   <label>App: {{ form.appver }}</label>
   {{ form.type }}
   <br>

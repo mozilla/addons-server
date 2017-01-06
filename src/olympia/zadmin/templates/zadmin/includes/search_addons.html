@@ -1,4 +1,4 @@
-<form action="{{ url('zadmin.addon-search') }}" method="get">
+<form action="{{ url('zadmin.addon-search') }}" method="get" data-no-csrf>
   <input type="search" name="q" value="{{ q }}" placeholder="name or id">
     <p class="help">Type in names or ids to find an add-on. No auto-complete yet. Don't wrap numbers in braces.</p>
 </form>

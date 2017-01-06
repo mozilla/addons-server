@@ -1,4 +1,4 @@
-<form class="languages go" id="lang_form" method="get" action="">
+<form class="languages go" id="lang_form" method="get" action="" data-no-csrf>
   <label for="language">{{ _('Other languages') }}</label>
   <select id="language" name="lang" dir="ltr">
     {% for code, name in LANGUAGES|dictsort -%}

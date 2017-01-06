@@ -20,7 +20,7 @@
   <div class="queue-inner">
     {% if search_form %}
     <div class="queue-search">
-      <form method="get">
+      <form method="get" data-no-csrf>
         {{ search_form['searching'] }}
         <label for="id_text_query">{{ search_form['text_query'].label }}</label>
         {{ search_form['text_query'] }}

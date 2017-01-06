@@ -1,5 +1,5 @@
 {% set search_form = SimpleSearchForm(request, search_cat) %}
-<form id="search" action="{{ url('search.search') }}">
+<form id="search" action="{{ url('search.search') }}" data-no-csrf>
   <span class="wrap">
     <input id="search-q" type="text" name="q" autocomplete="off" title=""
            class="text {% if not search_form.q.data %}placeholder{% endif %}"

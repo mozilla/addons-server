@@ -124,7 +124,7 @@
             {% if waffle.switch('activity-email') and is_latest_version_in_channel %}
             <div class="dev-review-reply">
                 <form id="dev-review-reply-form" action="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
-                      data-token="{{ token }}" data-history="#{{ version.id }}-review-history">
+                      data-token="{{ token }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
                     <textarea id="dev-review-reply-comments" name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
                     <button id="dev-review-reply-submit" type="submit" class="submit" >{{ _('Reply') }}</button ty>
                 </form>

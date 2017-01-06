@@ -8,7 +8,7 @@
   <div class="queue-search theme-search island c"
        data-api-url="{{ url('editors.themes.search') }}"
        data-review-url="{{ url('editors.themes.single', '__slug__') }}">
-    <form class="c">
+    <form class="c" data-no-csrf>
       {{ theme_search_form.q }}
       <input type="hidden" name="queue_type" value="{{ 'rereview' if rereview else 'flagged' if flagged else '' }}">
       <button class="search button" type="submit"><span>{{ _('Search') }}</span></button>

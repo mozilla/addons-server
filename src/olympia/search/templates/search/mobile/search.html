@@ -3,7 +3,7 @@
   {% set search_placeholder = 'all' %}
 {% endif %}
 {% set search_form = SimpleSearchForm(request, search_cat) %}
-<form id="search" action="{{ search_url }}">
+<form id="search" action="{{ search_url }}" data-no-csrf>
   <input name="q" type="search" value="{{ query.q if query else '' }}"
          placeholder="{{ search_form.placeholder(search_placeholder) }}">
   {% if search_form.cat.value() %}

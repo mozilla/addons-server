@@ -9,7 +9,7 @@
 
 <div class="listing results">
   <div class="results-inner controls">
-    <form action="{{ url('editors.eventlog') }}">
+    <form action="{{ url('editors.eventlog') }}" data-no-csrf>
       <p class="date_range">
         {{ form.start.label_tag() }}
         {{ form.start }}
