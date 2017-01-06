@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-06 20:38+0000\n"
+"PO-Revision-Date: 2017-01-06 20:58+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4125,7 +4125,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
+msgstr "Send ad tebduḍ, ɣeṛ udiɣ qbel ma ulac aɣilif amtawa n uzuzer n izegrar n Firefox. Ayagi yegber aseqwen ar tsertit n tbaḍnit id-yemmalen amek ad nsefrek taɣut icudden ɣur-k."
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Printable Version"
@@ -4544,8 +4544,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Anbraz s tuccaṛ, adday n {0} n usekkil."
+msgstr[1] "Anbraz s tuccaṛ, adday n {0} n isekkilen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Example: dark, cinema, noir. Limit 20."
@@ -4967,7 +4967,7 @@ msgstr "Tansa URL n uzegrir:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Ma ulac aɣilif sekcem kan isekkilen, izwilen, tizdit n uderrer, tizdit di tensa inek URL."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Summary:"
@@ -5111,7 +5111,7 @@ msgstr "Ddu ar isumar inu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Amtawa n uzuzer n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
@@ -5155,7 +5155,7 @@ msgstr "Zmel azegrir"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Amtawa n uzuzer n uzegrir n Firefox"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "API Credentials"
@@ -5592,7 +5592,7 @@ msgstr "Talqayt n usentel"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Mudd-ad talnsa URL icebḥen i usebter inek n telqayt."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select the category that best describes your Theme."
@@ -5612,7 +5612,7 @@ msgstr "Turagt n usentel"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Wiyaḍ zemren ad bḍun asentel inek ma yella nan-d d kečč i d ameskar?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
@@ -5628,7 +5628,7 @@ msgstr "Zemren wiyaḍ ad zenzen asentel inek?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Zemren wiyaḍ ad sqedcen asentel inek akken ad d-snufun wiyaḍ?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
@@ -5636,7 +5636,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Ih, ma yella bḍant am akken tebḍiɣ"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
@@ -5648,7 +5648,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Asentel inek ad d-yeffeɣ daw n turagt-agi:"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a different license."
@@ -5746,6 +5746,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Qebleɣ  <a href=\"%(agreement_url)s\">Amtawat n uzuzer n izegrar Firefox </a> udiq qeble d akken talɣut icudden ɣur-s ad tettwasesfer am akken d-ittummel di <a href=\"%(privacy_notice_url)s\"> "
+"tserstit n tbadnit icudden ar ismal web, ar teɣwalt akked inagan n tuqqna</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
