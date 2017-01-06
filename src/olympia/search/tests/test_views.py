@@ -1131,7 +1131,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
             reverse('search.ajax'), params, addons)
 
     def test_ajax_search_by_id(self):
-        addon = Addon.objects.reviewed().all()[0]
+        addon = Addon.objects.public().all()[0]
         self.search_addons('q=%s' % addon.id, [addon])
 
     def test_ajax_search_by_bad_id(self):
@@ -1219,7 +1219,7 @@ class TestSearchSuggestions(TestAjaxSearch):
         assert r.status_code == 200
 
     def test_addons(self):
-        addons = (Addon.objects.reviewed()
+        addons = (Addon.objects.public()
                   .filter(disabled_by_user=False,
                           type__in=views.AddonSuggestionsAjax.types))
         self.search_addons('q=add', list(addons))
@@ -1229,7 +1229,7 @@ class TestSearchSuggestions(TestAjaxSearch):
         self.search_addons('q=%C2%B2%C2%B2', [])
 
     def test_personas(self):
-        personas = (Addon.objects.reviewed()
+        personas = (Addon.objects.public()
                     .filter(type=amo.ADDON_PERSONA, disabled_by_user=False))
         personas, types = list(personas), [amo.ADDON_PERSONA]
         self.search_addons('q=add&cat=themes', personas, types)

@@ -163,7 +163,7 @@ class BaseAjaxSearch(object):
                 pk = None
             qs = None
             if pk:
-                qs = Addon.objects.reviewed().filter(id=int(q))
+                qs = Addon.objects.public().filter(id=int(q))
             elif len(q) > 2:
                 qs = (Addon.search_public()
                       .query(or_=name_only_query(q.lower())))

@@ -48,7 +48,7 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia import paypal
 from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReadOnlyIfReviewed, AllowRelatedObjectPermissions,
+    AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
@@ -605,7 +605,7 @@ def icloud_bookmarks_redirect(request):
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [
-        AnyOf(AllowReadOnlyIfReviewed, AllowAddonAuthor,
+        AnyOf(AllowReadOnlyIfPublic, AllowAddonAuthor,
               AllowReviewer, AllowReviewerUnlisted),
     ]
     serializer_class = AddonSerializer

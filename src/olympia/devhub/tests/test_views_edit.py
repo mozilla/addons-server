@@ -1188,7 +1188,7 @@ class TestEditTechnical(BaseTestEdit):
     def test_dependencies_add(self):
         addon = Addon.objects.get(id=5299)
         assert addon.type == amo.ADDON_EXTENSION
-        assert addon in list(Addon.objects.reviewed())
+        assert addon in list(Addon.objects.public())
 
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
@@ -1205,7 +1205,7 @@ class TestEditTechnical(BaseTestEdit):
         assert a.text() == unicode(addon.name)
 
     def test_dependencies_limit(self):
-        deps = Addon.objects.reviewed().exclude(
+        deps = Addon.objects.public().exclude(
             Q(id__in=[self.addon.id, self.dependent_addon.id]) |
             Q(type=amo.ADDON_PERSONA))
         args = []
@@ -1218,7 +1218,7 @@ class TestEditTechnical(BaseTestEdit):
             ['There cannot be more than 3 required add-ons.'])
 
     def test_dependencies_limit_with_deleted_form(self):
-        deps = Addon.objects.reviewed().exclude(
+        deps = Addon.objects.public().exclude(
             Q(id__in=[self.addon.id, self.dependent_addon.id]) |
             Q(type=amo.ADDON_PERSONA))[:3]
         args = []
@@ -1252,7 +1252,7 @@ class TestEditTechnical(BaseTestEdit):
         for status in amo.REVIEWED_STATUSES:
             addon.update(status=status)
 
-            assert addon in list(Addon.objects.reviewed())
+            assert addon in list(Addon.objects.public())
             d = self.dep_formset({'dependent_addon': addon.id})
             r = self.client.post(self.technical_edit_url, d)
             assert not any(r.context['dependency_form'].errors)
@@ -1266,7 +1266,7 @@ class TestEditTechnical(BaseTestEdit):
         for status in amo.UNREVIEWED_ADDON_STATUSES:
             addon.update(status=status)
 
-            assert addon not in list(Addon.objects.reviewed())
+            assert addon not in list(Addon.objects.public())
             d = self.dep_formset({'dependent_addon': addon.id})
             r = self.client.post(self.technical_edit_url, d)
             self.check_bad_dep(r)
@@ -1275,7 +1275,7 @@ class TestEditTechnical(BaseTestEdit):
         """Ensure that reviewed Personas cannot be made as dependencies."""
         addon = Addon.objects.get(id=15663)
         assert addon.type == amo.ADDON_PERSONA
-        assert addon in list(Addon.objects.reviewed())
+        assert addon in list(Addon.objects.public())
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)
@@ -1285,7 +1285,7 @@ class TestEditTechnical(BaseTestEdit):
         addon = Addon.objects.get(id=15663)
         addon.update(status=amo.STATUS_PENDING)
         assert addon.status == amo.STATUS_PENDING
-        assert addon not in list(Addon.objects.reviewed())
+        assert addon not in list(Addon.objects.public())
         d = self.dep_formset({'dependent_addon': addon.id})
         r = self.client.post(self.technical_edit_url, d)
         self.check_bad_dep(r)

@@ -240,7 +240,7 @@ def profile(request, user):
     personas = []
     limited_personas = False
     if user.is_developer:
-        addons = user.addons.reviewed().filter(
+        addons = user.addons.public().filter(
             addonuser__user=user, addonuser__listed=True)
 
         personas = addons.filter(type=amo.ADDON_PERSONA).order_by(
@@ -278,7 +278,7 @@ def themes(request, user, category=None):
     }
 
     if user.is_artist:
-        base = user.addons.reviewed().filter(
+        base = user.addons.public().filter(
             type=amo.ADDON_PERSONA,
             addonuser__user=user, addonuser__listed=True)
 
