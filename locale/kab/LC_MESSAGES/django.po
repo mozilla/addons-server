@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-06 16:00+0000\n"
+"PO-Revision-Date: 2017-01-06 16:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8993,7 +8993,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Isental ummiden</a></strong> akken ad tesnifleḍ akk udem n  %(app_name)s, ama d tignitin, initen neɣ iferdisen nniḍen."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10410,7 +10410,7 @@ msgstr "Axeddim"
 
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Firefox account ur izmir ara akka tura ad isnifel tansa ines imayl."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -10637,7 +10637,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Sefrek talɣut tatzadurt n umiḍan, am yisem inek n useqdac akked iɣewwaṛen n imiḍanen Firefox."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -10729,7 +10729,7 @@ msgstr "akk"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Asmel n izegrar n Mozilla iseqdac akka tura imiḍanen Firefox di tuqqna. Kemmel akken ad fakeḍ akala n uleqqem."
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "User Login"
