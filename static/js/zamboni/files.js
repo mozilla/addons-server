@@ -1037,6 +1037,8 @@ $(document).ready(function() {
                     if (json.msg[k] !== null) {
                         errors = true;
 
+                        // The box isn't visible / created if there are errors
+                        // so we have to create the notification-box ourselves.
                         $('#validating').after($('<div>', {
                             'class': 'notification-box error',
                             'text': json.msg[k]
