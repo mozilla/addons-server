@@ -120,6 +120,12 @@ class FileViewer(object):
 
         If locked, no one is allowed to run any extraction in `self.src` to
         avoid files / directories get messed up.
+
+        There is a potential race-condition between getting and setting the
+        lock.
+
+        TODO: This should be re-implemented once we're on Django 1.9+ which
+        has support for get_or_set.
         """
         cache_key = self._cache_key(LOCKED)
         msg = Message(cache_key)
