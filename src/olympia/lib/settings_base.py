@@ -156,8 +156,8 @@ LANGUAGE_CODE = 'en-US'
 AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'dsb',
     'el', 'en-GB', 'en-US', 'es', 'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu',
-    'hsb', 'id', 'it', 'ja', 'ka', 'ko', 'nn-NO', 'mk', 'mn', 'nl', 'pl',
-    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
+    'hsb', 'id', 'it', 'ja', 'ka', 'kab', 'ko', 'nn-NO', 'mk', 'mn', 'nl',
+    'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
     'zh-CN', 'zh-TW',
 )
 
