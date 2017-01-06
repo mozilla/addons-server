@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-04 19:04+0000\n"
-"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2017-01-03 20:37+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -5148,9 +5148,8 @@ msgid "Submission Complete"
 msgstr "Odeslání dokončeno"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done!"
-msgstr "Jste hotovi!"
+msgstr "A je to hotovo!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Submitted for Review"
@@ -5177,14 +5176,12 @@ msgid "Edit version {0}"
 msgstr "Upravit verzi {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "File Signed"
-msgstr "Verze podepsána"
+msgstr "Soubor podepsán"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "A je to! Verze byla podepsána, a můžete ji tak začít distribuovat. Můžete si ji stáhnout klepnutím na tlačítko níže."
+msgstr "A je to! Soubor je podepsaný, a můžete jej začít distribuovat. Stáhněte si ho klepnutím na tlačítko níže."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Signed"
@@ -5247,9 +5244,8 @@ msgid "Administrative overrides"
 msgstr "Změny při administraci"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File"
-msgstr "Odeslat nový soubor"
+msgstr "Odeslat soubor"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
