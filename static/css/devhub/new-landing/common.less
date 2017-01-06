@@ -71,23 +71,83 @@
 }
 
 .DevHub-content-header {
-  font-size: 40px;
   max-width: 66%;
 }
 
 .DevHub-content-image-wrapper {
   max-width: 33%;
-  padding: 30px 0 30px 30px;
+  padding: 30px 0;
   position: absolute;
-  right: 20px;
   top: 20px;
+  right: 20px;
   z-index: 2;
 }
 
+.DevHub-content-image-wrapper--publish-addon {
+  right: 0;
+}
 
 .DevHub-content-copy {
   position: relative;
   z-index: 4;
+}
+
+.DevHub-callout-box {
+  border: 8px solid @color-callout-border;
+  background: #fff;
+  padding: 0 20px 20px;
+  // Override default padding on container
+  // with negative margin.
+  margin: 0 -20px -20px;
+
+  @media @medium {
+    box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 0.15);
+    margin: -50px auto 0 auto;
+    max-width: 75%;
+  }
+}
+
+.DevHub-callout-header {
+  font-size: 22px;
+  background: url(../../../img/developers/new-landing/callout-header-fox.svg) no-repeat 100% 50%;
+  padding-right: 35px;
+  min-height: 50px;
+}
+
+.DevHub-content-header--manage {
+  max-width: 100%;
+  text-align: center;
+}
+
+.DevHub-content-container--manage {
+  flex-direction: column;
+  background-image: url(../../../img/developers/new-landing/manage-addon.png);
+  background-size: auto 50%;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  @media @medium {
+    background-size: 100%;
+    background-position: 100% 100%;
+  }
+
+  @media @retina {
+    background-image: url(../../../img/developers/new-landing/manage-addon-2x.png);
+  }
+}
+
+.DevHub-content-copy--manage,
+.DevHub-content-copy--evolution {
+  margin-bottom: 30px;
+  max-width: 100%;
+}
+
+.DevHub-content-copy--manage .Button {
+  display: block;
+}
+
+.DevHub-content-copy--evolution {
+  margin-bottom: 0;
 }
 
 @media @small {
@@ -98,13 +158,36 @@
   .DevHub-content-image-wrapper {
     max-width: 33%;
   }
-}
 
+  .DevHub-content-copy--manage,
+  .DevHub-content-copy--evolution {
+    max-width: 100%;
+  }
+}
 
 @media @medium {
   .DevHub-content-copy,
   .DevHub-content-image-wrapper {
     max-width: 50%;
+  }
+
+  .DevHub-content-container--manage {
+    flex-direction: row;
+  }
+
+  .DevHub-content-header--manage {
+    text-align: left;
+    max-width: 66%;
+  }
+
+  .DevHub-content-copy--manage .Button {
+    display: inline-block;
+  }
+
+  .DevHub-content-copy--manage,
+  .DevHub-content-copy--evolution {
+      margin-bottom: 0;
+      width: 50%;
   }
 
   .DevHub-content-copy {
@@ -130,12 +213,20 @@
       display: block;
       // Pad out the wrapper to a percentage
       // based on the wrapper's width.
-      padding-bottom: 65%;
+      padding-bottom: 67%;
 
       .DevHub-publish-addon & {
-        padding-bottom: 50%;
+        padding-bottom: 60%;
       }
     }
+  }
+
+  .DevHub-content-image-wrapper--port-chrome {
+    right: 0;
+  }
+
+  .DevHub-content-image-wrapper--publish-addon {
+    right: 20px;
   }
 
   .DevHub-content-image {
@@ -146,8 +237,9 @@
     bottom: 0;
   }
 
-  .DevHub-content-image--alt {
+  .DevHub-content-image--publish-addon {
     top: -70px;
     min-width: 350px;
+    max-width: 115%;
   }
 }
