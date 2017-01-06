@@ -447,6 +447,7 @@ class Addon(OnChangeMixin, ModelBase):
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
         from . import tasks
+        from datetime import datetime as date
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE) with no versions.
         soft_deletion = self.is_soft_deleteable()
@@ -515,7 +516,7 @@ class Addon(OnChangeMixin, ModelBase):
             # The last parameter is needed to automagically create an AddonLog.
             amo.log(amo.LOG.DELETE_ADDON, self.pk, unicode(self.guid), self)
             self.update(status=amo.STATUS_DELETED, slug=None,
-                        _current_version=None)
+                        _current_version=None, modified=date.now())
             models.signals.post_delete.send(sender=Addon, instance=self)
 
             send_mail(subject, email_msg, recipient_list=to)

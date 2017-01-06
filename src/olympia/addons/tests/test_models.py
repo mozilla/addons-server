@@ -1648,6 +1648,23 @@ class TestAddonNomination(TestCase):
         self.check_nomination_reset_with_new_version(addon, nomination)
 
 
+class TestThemeDelete(TestCase):
+
+    def setUp(self):
+        super(TestThemeDelete, self).setUp()
+        self.addon = addon_factory(type=amo.ADDON_THEME)
+
+        # Taking the creation and modified time back 1 day
+        self.addon.update(created=self.days_ago(1), modified=self.days_ago(1))
+
+    def test_remove_theme_update_m_time(self):
+        m_time_before = self.addon.modified
+        self.addon.delete('enough', 'no reason at all')
+        m_time_after = self.addon.modified
+
+        assert m_time_before != m_time_after
+
+
 class TestAddonDelete(TestCase):
 
     def test_cascades(self):
