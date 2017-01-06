@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-06 20:58+0000\n"
+"PO-Revision-Date: 2017-01-06 21:11+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3915,10 +3915,13 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
+"Asekrek deg usmel. <span class=\"helptext\">Asumer inek ad yeffeɣ ɣef usmel-agi  akked umsefrak n izegrar n  Firefox  i yefḍan n iseqdacen, ticki yettwag ucegger n tengakt. Ileqman iwurmanen ad "
+"ttwasferken deg usmel-agi. Azegrir-agi ad tt-awi-t Mozillaakken ad tesnerni-t neq ad tger-it deg temzizliyin. Azuzer udmawan n ifuyal yzmer daɣen a yili..</span>"
 
 #: src/olympia/devhub/forms.py
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
+"Asekrek udmawan. <span class=\"helptext\">Tuzna yinek ad tettwazmel imiren kan deg uzuzer udmawan. D kečč ara yesferken ileqman s useqdec n tensa updateURL neɣ ileqman n yesnasen izɣarayen.</span>"
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5131,11 +5134,11 @@ msgstr "Sali lqem"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Seqdec urtan da-a akken ad tazneḍ akemmus n uzegrir inek sakin fren yal azeyyeṛ icudden ar unagraw. Seld tuzna, amazrar n ikayaden iwurmanen ad ttwagen ɣef ufaylu inek."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Anwa anagraw yemṣadan akked uzegrir inek?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
