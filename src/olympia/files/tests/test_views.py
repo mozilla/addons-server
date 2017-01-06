@@ -13,7 +13,6 @@ import pytest
 from cache_nuggets.lib import Message
 from mock import patch
 from pyquery import PyQuery as pq
-from waffle.models import Switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -67,10 +66,6 @@ class FilesBase(object):
             shutil.copyfile(src, file_obj.file_path)
 
         self.file_viewer = FileViewer(self.file)
-        # Setting this to True, so we are delaying the extraction of files,
-        # in the tests, the files won't be extracted.
-        # Most of these tests extract as needed to.
-        Switch.objects.get_or_create(name='delay-file-viewer', active=True)
 
     def tearDown(self):
         self.file_viewer.cleanup()
@@ -199,21 +194,6 @@ class FilesBase(object):
         res = self.client.get(self.file_url())
         doc = pq(res.content)
         assert len(doc('#content')) == 0
-
-    def test_no_files(self):
-        res = self.client.get(self.file_url())
-        assert res.status_code == 200
-        assert 'files' not in res.context
-
-    @patch('waffle.switch_is_active')
-    def test_no_files_switch(self, switch_is_active):
-        switch_is_active.return_value = False
-        # By setting the switch to False, we are not delaying the file
-        # extraction. The files will be extracted and there will be
-        # files in context.
-        res = self.client.get(self.file_url())
-        assert res.status_code == 200
-        assert 'files' in res.context
 
     def test_files(self):
         self.file_viewer.extract()

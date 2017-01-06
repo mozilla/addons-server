@@ -1,4 +1,5 @@
 import codecs
+import contextlib
 import mimetypes
 import os
 import stat
@@ -28,6 +29,9 @@ denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
                         if b != (0x23, 0x21)]
 denied_extensions = [b for b in list(blacklisted_extensions) if b != 'sh']
 task_log = commonware.log.getLogger('z.task')
+
+LOCKED = 'locked'
+LOCKED_TIMEOUT = 60 * 5
 
 
 @register.function
@@ -60,6 +64,33 @@ def file_tree(files, selected):
     return jinja2.Markup('\n'.join(output))
 
 
+def extract_file(viewer, **kw):
+    # This message is for end users so they'll see a nice error.
+    msg = Message('file-viewer:%s' % viewer)
+    msg.delete()
+    task_log.debug('Unzipping %s for file viewer.' % viewer)
+
+    try:
+        lock_attained = viewer.extract()
+
+        if not lock_attained:
+            info_msg = _(
+                'File viewer is locked, extraction for %s could be '
+                'in progress. Please try again in approximately 5 minutes.'
+                % viewer)
+            msg.save(info_msg)
+    except Exception, err:
+        error_message = _('There was an error accessing file %s.') % viewer
+
+        if settings.DEBUG:
+            msg.save(error_message + ' ' + err)
+        else:
+            msg.save(error_message)
+        task_log.error('Error unzipping: %s' % err)
+
+    return msg
+
+
 class FileViewer(object):
     """
     Provide access to a storage-managed file by copying it locally and
@@ -78,34 +109,82 @@ class FileViewer(object):
     def __str__(self):
         return str(self.file.id)
 
-    def _extraction_cache_key(self):
-        return ('%s:file-viewer:extraction-in-progress:%s' %
-                (settings.CACHE_PREFIX, self.file.id))
+    def _cache_key(self, key=None):
+        assert key is not None
+        return '{0}:file-viewer:{1}:{2}'.format(
+            settings.CACHE_PREFIX, key, self.file.id
+        )
+
+    @contextlib.contextmanager
+    def lock(self):
+        """Lock the file-viewer.
+
+        If locked, no one is allowed to run any extraction in `self.src` to
+        avoid files / directories get messed up.
+
+        There is a potential race-condition between getting and setting the
+        lock.
+
+        TODO: This should be re-implemented once we're on Django 1.9+ which
+        has support for get_or_set.
+
+        :return: `True` if the lock was attained,
+                 `False` if there is an already existing lock.
+        """
+        cache_key = self._cache_key(LOCKED)
+        msg = Message(cache_key)
+
+        if msg.get():
+            # Already locked
+            yield False
+        else:
+            # Not yet locked, save flag and delete on exit.
+            msg.save(True, time=LOCKED_TIMEOUT)
+            try:
+                yield True
+            finally:
+                msg.delete()
 
     def extract(self):
         """
         Will make all the directories and expand the files.
         Raises error on nasty files.
-        """
-        try:
-            os.makedirs(os.path.dirname(self.dest))
-        except OSError, err:
-            pass
 
-        if self.is_search_engine() and self.src.endswith('.xml'):
-            try:
-                os.makedirs(self.dest)
-            except OSError, err:
-                pass
-            copyfileobj(storage.open(self.src),
-                        open(os.path.join(self.dest,
-                                          self.file.filename), 'w'))
-        else:
-            try:
-                extract_xpi(self.src, self.dest, expand=True)
-            except Exception, err:
-                task_log.error('Error (%s) extracting %s' % (err, self.src))
-                raise
+        :returns: `True` if successfully extracted,
+                  `False` in case of an existing lock.
+        """
+        with self.lock() as locked:
+            if locked:
+                if self.is_extracted():
+                    # Be vigilent with existing files. It's better to delete
+                    # and re-extract than to trust whatever we have
+                    # lying around.
+                    task_log.warning(
+                        'cleaning up %s as there were files lying around'
+                        % self.dest)
+                    self.cleanup()
+
+                try:
+                    os.makedirs(self.dest)
+                except OSError, err:
+                    task_log.error(
+                        'Error (%s) creating directories %s'
+                        % (err, self.dest))
+                    raise
+
+                if self.is_search_engine() and self.src.endswith('.xml'):
+                    copyfileobj(storage.open(self.src),
+                                open(os.path.join(self.dest,
+                                                  self.file.filename), 'w'))
+                else:
+                    try:
+                        extract_xpi(self.src, self.dest, expand=True)
+                    except Exception, err:
+                        task_log.error(
+                            'Error (%s) extracting %s' % (err, self.src))
+                        raise
+
+        return locked
 
     def cleanup(self):
         if os.path.exists(self.dest):
@@ -117,8 +196,7 @@ class FileViewer(object):
 
     def is_extracted(self):
         """If the file has been extracted or not."""
-        return (os.path.exists(self.dest) and not
-                Message(self._extraction_cache_key()).get())
+        return os.path.exists(self.dest)
 
     def _is_binary(self, mimetype, path):
         """Uses the filename to see if the file can be shown in HTML or not."""
@@ -216,6 +294,7 @@ class FileViewer(object):
 
         if not self.is_extracted():
             return {}
+
         # In case a cron job comes along and deletes the files
         # mid tree building.
         try:

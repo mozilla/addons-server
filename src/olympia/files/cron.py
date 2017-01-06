@@ -26,6 +26,7 @@ def cleanup_extracted_file():
             log.debug('Removing extracted files: %s, %dsecs old.' %
                       (full, age))
             shutil.rmtree(full)
+
             # Nuke out the file and diff caches when the file gets removed.
             id = os.path.basename(path)
             try:
