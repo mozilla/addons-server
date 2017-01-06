@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-05 20:09+0000\n"
+"PO-Revision-Date: 2017-01-06 07:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2615,6 +2615,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Ticki Mozilla tuffa-d azegrir neɣ asiɣzef, neɣ yal aseɣẓan nniḍen wis kraḍ i yezmren ad d-yeglun s usexseṛ n tɣellist, arkad neɣ timellit n  %(app)s udiɣ ahat <a href=\"%(criteria)s\">kra n "
+"isebdaden</a> duklen, aseɣẓan yezmer ad ittusewḥel.  Ugar n telɣut, ɣeṛ ma ulac aɣilif <a href=\"%(support)s\">amagrad n tallalt</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -2628,7 +2630,7 @@ msgstr "Y§ettusewḥel di %(date)s."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr ""
+msgstr "Iseɣẓanen-agi ttwasnen d akken gellun-d s wuguren n tɣellist, arkad, neɣ timmellit akked {app}."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -2921,7 +2923,7 @@ msgstr "Tebɣiḍ ugar n waggan?"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Isental ummiden ttbedilen udem n iminig inek s iɣunab di leryuf n usfaylu, afeggag n tensa, tiqeffalin, iccarenakked wumuɣen. <a href=\"%(url)s\" class=\"more-info\">Senker asnirem</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
@@ -2965,6 +2967,8 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
 " supporting an upcoming Firefox version. </p>"
 msgstr ""
+"<p> Ineqqisen iɣ-d-yewwḍen s <a href=\"%(url_)s\">Amazan n umṣada n uzegrir</a> ttwaleqḍen-d dagi akken ineflayen ad izmiren ad ten-walin. Ineqqisen-agi aɣ-d-mudden tallalt akken ad d-naf izegrar "
+"yesran tallalt di lqem d-iteddun n Firefox. </p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
@@ -2976,7 +2980,7 @@ msgstr "Ammas n umṣada n izegrar"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "Sekcem daw-a asulay GUID n uzegrir akken ad twaliḍ ineqqisen i d-nermes."
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{addon} Compatibility Reports"
@@ -2985,14 +2989,14 @@ msgstr "Ineqqisen umṣada n {addon}"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} aneqqis n wayen yeddan akken iwata"
+msgstr[1] "{0} ineqqisen n wayen yeddan akken iwata"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} aneqqis n wugur"
+msgstr[1] "{0} ineqqisen n wugur"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/users/templates/users/profile.html
 msgid "View all"
@@ -3012,7 +3016,7 @@ msgstr "Lqem n usnas"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
-msgstr ""
+msgstr "Akaras n usnas"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Platform"
@@ -3092,7 +3096,7 @@ msgstr "Yettṛaǧu asentem"
 
 #: src/olympia/constants/base.py
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Yettwasezmel i usenqed d-iteddun"
 
 #: src/olympia/constants/base.py
 msgid "Beta"
