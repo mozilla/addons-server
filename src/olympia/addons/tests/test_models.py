@@ -1652,7 +1652,7 @@ class TestThemeDelete(TestCase):
 
     def setUp(self):
         super(TestThemeDelete, self).setUp()
-        self.addon = addon_factory(type=amo.ADDON_THEME)
+        self.addon = addon_factory(type=amo.ADDON_PERSONA)
 
         # Taking the creation and modified time back 1 day
         self.addon.update(created=self.days_ago(1), modified=self.days_ago(1))
