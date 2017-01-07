@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-07 12:01+0000\n"
+"PO-Revision-Date: 2017-01-07 12:20+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -5272,7 +5272,7 @@ msgstr "Eklenti Dağıtımı ve İmzalama hakkında daha fazla bilgi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
-msgstr ""
+msgstr "Gönderim tamamlandı"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done!"
@@ -5336,7 +5336,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
-msgstr ""
+msgstr "Dosya yükle"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5345,7 +5345,7 @@ msgstr "Başvurularımı Yönet"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Eklenti Dağıtım Sözleşmesi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5367,19 +5367,19 @@ msgstr "Uygulama sürümü"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Eklenti paketinizi göndermek için aşağıdaki alanları kullanın ve varsa platform kısıtlamalarını seçin. Karşıya yüklemeden sonra dosya üzerinde bir dizi doğrulama testi uygulanacak."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Bu dosya hangi platformlarla uyumlu?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Bu sürüm sadece beta kanalımda yayımlansın."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Yönetsel kural istisnaları"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5393,11 +5393,11 @@ msgstr "Eklenti"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefox Eklenti Dağıtım Sözleşmesi"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "API Credentials"
-msgstr ""
+msgstr "API Kimlik Bilgileri"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
@@ -5410,11 +5410,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT düzenleyen"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT sırrı"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
@@ -5515,11 +5515,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Manage Your Developer Profile"
-msgstr ""
+msgstr "Geliştirici profilinizi yönetin"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Create a Developer Profile"
-msgstr ""
+msgstr "Geliştirici profili oluştur"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid ""
@@ -5529,7 +5529,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
-msgstr ""
+msgstr "Profilinizin güncel olduğundan emin olun."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 #, python-format
@@ -5667,7 +5667,7 @@ msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Sign In"
-msgstr ""
+msgstr "Giriş yap"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy
@@ -5859,11 +5859,11 @@ msgstr "Tema İnceleme"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Açıklama sayfanız için okunaklı bir URL ekleyin."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Temanızı en iyi şekilde tanımlayan kategoriyi seçin."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, fuzzy
@@ -5881,47 +5881,49 @@ msgstr "Lisans"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Kaynak gösterildiği sürece başkaları temanızı paylaşabilir mi?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "Lisans sahibi; bu çalışmanın ticari amaçlar için de dahil olmak üzere başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "Lisans sahibi; bu çalışmanın yalnızca ticari olmayan amaçlar için başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Başkaları temanızı ticari amaçla kullanabilir mi?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Başkaları temanızı temel alan farklı çalışmalar yapabilir mi?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
+msgstr "Lisans sahibi; bu çalışmanın başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine, uygulanmasına ve bu çalışmayı temel alan çalışmalar oluşturulmasına izin veriyor."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Aynı lisansla paylaştıkları sürece evet"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Lisans sahibi; bu çalışmayı temel alacak çalışmaların yalnızca aynı lisans veya diğer uyumlu lisanslardan biriyle dağıtılmasına izin veriyor."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
 msgstr ""
+"Lisans sahibi; bu çalışmanın yalnızca değiştirilmemiş halinin başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor; çalışmayı temel alan başka çalışmalara"
+" izin vermiyor."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Temanız şu lisansla yayımlanacaktır:"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a different license."
-msgstr ""
+msgstr "Farklı bir lisans seçin."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, fuzzy
@@ -5961,11 +5963,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Header"
-msgstr ""
+msgstr "Üstbilgi"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Footer"
-msgstr ""
+msgstr "Altbilgi"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, fuzzy
@@ -5974,19 +5976,19 @@ msgstr "Temanızı Tanımlayın."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Foreground Text"
-msgstr ""
+msgstr "Ön plan metni"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "Bu renk, sekme metninin rengidir."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Background"
-msgstr ""
+msgstr "Arka plan"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "Bu renk, sekmelerin rengidir."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, fuzzy
@@ -6032,7 +6034,7 @@ msgstr "Yeni Tema Gönder"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
-msgstr ""
+msgstr "İşlem tamamlandı!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
@@ -6079,7 +6081,7 @@ msgstr "Sağ üste hizalı"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a different header image"
-msgstr ""
+msgstr "Farklı bir üst kısım resmi seçin"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a footer image for your Theme."
@@ -6087,15 +6089,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &times; 100 piksel"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Alt sağa hizalı"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a different footer image"
-msgstr ""
+msgstr "Farklı bir alt kısım resmi seçin"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
@@ -6103,7 +6105,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Select the target platform for this file."
-msgstr ""
+msgstr "Bu dosya için hedef platformu seçin."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 #, fuzzy
@@ -6138,7 +6140,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Approval Status"
-msgstr ""
+msgstr "Onay durumu"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 #, fuzzy
@@ -6160,7 +6162,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload a new file"
-msgstr ""
+msgstr "Yeni bir dosya yükle"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 #, fuzzy
@@ -6208,7 +6210,7 @@ msgstr "İzin verilmiyor"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Validate now."
-msgstr ""
+msgstr "Şimdi doğrulayın."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6244,7 +6246,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
-msgstr ""
+msgstr "Yanıtla"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6285,7 +6287,7 @@ msgstr "Diğer sürümleri görün"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Şu anda AMO'da"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Validation"
@@ -6323,11 +6325,11 @@ msgstr "Tüm sürümleri göster"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Yeni bir sürüm yükleyin"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "{version} sürümünü sil"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
@@ -6469,7 +6471,7 @@ msgstr "Bu koleksiyonu gör"
 
 #: src/olympia/editors/forms.py
 msgid "and"
-msgstr ""
+msgstr "ve"
 
 #: src/olympia/editors/forms.py
 #, fuzzy
@@ -6478,11 +6480,11 @@ msgstr "Uygulamaya göre süz"
 
 #: src/olympia/editors/forms.py
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Otomatik doğrulamayı geçti"
 
 #: src/olympia/editors/forms.py
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Otomatik doğrulama başarısız oldu"
 
 #: src/olympia/editors/forms.py
 #, fuzzy
@@ -6507,11 +6509,11 @@ msgstr "Beklemede"
 #. L10n: Description of what can be searched for
 #: src/olympia/editors/forms.py
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "eklenti, editör veya yorum"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Eklenti adıyla veya yazar e-postasıyla ara"
 
 #: src/olympia/editors/forms.py
 #, fuzzy
@@ -6551,7 +6553,7 @@ msgstr "Yorum"
 
 #: src/olympia/editors/forms.py
 msgid "Operating systems:"
-msgstr ""
+msgstr "İşletim sistemleri:"
 
 #: src/olympia/editors/forms.py
 #, fuzzy
@@ -6579,29 +6581,29 @@ msgstr ""
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
 msgid "theme name"
-msgstr ""
+msgstr "tema adı"
 
 #: src/olympia/editors/forms.py
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Bu temayı başka biri inceliyor."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "tema, inceleyen veya yorum"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Reddedildi veya incelenmedi"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[durum:%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
-msgstr ""
+msgstr "Kuyruk"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 #, fuzzy
@@ -6659,7 +6661,7 @@ msgstr[0] ""
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
-msgstr ""
+msgstr "Türü"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -6876,7 +6878,7 @@ msgstr "Suistimal Raporları"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html
 msgid "Abuse Reports for {addon} ({num})"
-msgstr ""
+msgstr " {addon} suistimal raporları ({num})"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html
 #, fuzzy, python-format
@@ -6922,22 +6924,22 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/includes/daily-message.html
 msgid "Announcement"
-msgstr ""
+msgstr "Duyuru"
 
 #. "Filter" is a button label (verb)
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/includes/logs_filter_deleted.html src/olympia/editors/templates/editors/themes/macros.html
 msgid "Filter"
-msgstr ""
+msgstr "Filtre"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/logs.html
 msgid "Date"
-msgstr ""
+msgstr "Tarih"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 msgid "Event"
-msgstr ""
+msgstr "Etkinlik"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/home.html
 #, fuzzy
@@ -7046,19 +7048,19 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
-msgstr ""
+msgstr "Puan"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Message of the Day"
-msgstr ""
+msgstr "Günün İletisi"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Update message of the day"
-msgstr ""
+msgstr "Günün iletisini güncelle"
 
 #: src/olympia/editors/templates/editors/motd.html src/olympia/editors/templates/editors/review.html
 msgid "Save"
-msgstr ""
+msgstr "Kaydet"
 
 #: src/olympia/editors/templates/editors/performance.html
 #, fuzzy
@@ -7091,11 +7093,11 @@ msgstr "Katkıda Bulunan Ekle"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Month"
-msgstr ""
+msgstr "Bu ay"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Year"
-msgstr ""
+msgstr "Bu yıl"
 
 #: src/olympia/editors/templates/editors/performance.html
 #, fuzzy
@@ -7108,27 +7110,27 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Total"
-msgstr ""
+msgstr "Toplam"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Month"
-msgstr ""
+msgstr "Ay"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Year"
-msgstr ""
+msgstr "Yıl"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-Time"
-msgstr ""
+msgstr "Tüm zamanlar"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Advanced Search"
-msgstr ""
+msgstr "Gelişmiş arama"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "clear search"
-msgstr ""
+msgstr "aramayı temizle"
 
 #: src/olympia/editors/templates/editors/queue.html
 #, fuzzy
@@ -7160,7 +7162,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Helpful Links:"
-msgstr ""
+msgstr "İşe Yarar Bağlantılar:"
 
 #: src/olympia/editors/templates/editors/queue.html
 #, fuzzy
@@ -7191,7 +7193,7 @@ msgstr "Eklentiler"
 #: src/olympia/editors/templates/editors/review.html
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Sürüm %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #: src/olympia/editors/templates/editors/review.html
 #, fuzzy
@@ -7228,7 +7230,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html src/olympia/files/templates/files/viewer.html
 msgid "Files:"
-msgstr ""
+msgstr "Dosyalar:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Tested on:"
@@ -7267,7 +7269,7 @@ msgstr "Sürüm Bilgisi"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Resolution"
-msgstr ""
+msgstr "Çözünürlük"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 #, fuzzy
@@ -7323,7 +7325,7 @@ msgstr "yazan: %(user)s tarih: %(date)s"
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html
 msgid "Older"
-msgstr ""
+msgstr "Daha Eski"
 
 # 100%
 #: src/olympia/editors/templates/editors/includes/paginator_history.html
@@ -7338,7 +7340,7 @@ msgstr "Yeni Popüler Olan"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Henüz hiç puan alınmadı."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "Top Reviewers (past 7 days)"
@@ -7351,7 +7353,7 @@ msgstr "İncelenmemiş"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "All Time"
-msgstr ""
+msgstr "Tüm zamanlar"
 
 #. {0} is a number, like "480".
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
@@ -7401,7 +7403,7 @@ msgstr "Dönemsel"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Şu an için hiçbir inceleme yok."
 
 #: src/olympia/editors/templates/editors/themes/home.html
 #, fuzzy
@@ -7412,7 +7414,7 @@ msgstr[0] "Tema İnceleme"
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
+msgstr[0] "İşaretlenmiş {num} İnceleme"
 
 #: src/olympia/editors/templates/editors/themes/home.html
 #, fuzzy
@@ -7441,11 +7443,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Klavye kısayollarını devreye sok"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Klavye Kısayolları"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 #, fuzzy
@@ -7479,7 +7481,7 @@ msgstr "{addon} incelendi."
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Şu an için incelenecek bir Tema yok."
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 #, fuzzy
@@ -7492,7 +7494,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Etkinleşimli Tema Sırası"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 #, fuzzy
@@ -7506,7 +7508,7 @@ msgstr "Tema İnceleme"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Olası Mükerrer Gönderim)"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 #, fuzzy
@@ -7619,11 +7621,11 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Eklenti kimliği bulunamadı."
 
 #: src/olympia/files/utils.py
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "Eklenti kimliği 64 veya daha az karakterli olmalı."
 
 #: src/olympia/files/utils.py
 #, python-format
@@ -7632,15 +7634,15 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Mükerrer eklenti kimliği tespit edildi."
 
 #: src/olympia/files/utils.py
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Sürüm numaraları 32'den az karakterli olmalı."
 
 #: src/olympia/files/utils.py
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Sürüm numaralarında sadece harfler, numaralar ve bu noktalama işaretleri olmalı: +*.-_."
 
 #: src/olympia/files/utils.py
 #, python-format
@@ -7660,15 +7662,15 @@ msgstr "Eklentinin QR kodu"
 #: src/olympia/files/templates/files/file.html
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Sürüm: %(version)s &bull; Boyut: %(size)s &bull; MD5 özeti: %(md5)s &bull; MIME türü: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Compare :: Editor tools"
-msgstr ""
+msgstr "Dosya Karşılaştırma :: Editör araçları"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Viewer :: Editor tools"
-msgstr ""
+msgstr "Dosya Görüntüleyici :: Editör araçları"
 
 #: src/olympia/files/templates/files/viewer.html
 #, fuzzy
@@ -7690,11 +7692,11 @@ msgstr "Silindi"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Hide known files"
-msgstr ""
+msgstr "Bilindik dosyaları gizle"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Eklenti SDK Sürümü:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Tab stops:"
@@ -7730,11 +7732,11 @@ msgstr "Sonraki"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Expand all"
-msgstr ""
+msgstr "Tümünü genişlet"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Ağacı gizle veya göster"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Wrap or unwrap text"
@@ -7754,7 +7756,7 @@ msgstr ""
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Henüz hazır değil."
 
 #: src/olympia/legacy_discovery/modules.py
 #, fuzzy
@@ -7767,19 +7769,19 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Mükemmel bir site tasarlayın"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "Eklentilerle ilk tanışmanız mı?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "Endişeye gerek yok. İşte başlangıç için üç güzel eklenti."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Web üzerindeki içeriği 40 dile çevirin."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
@@ -7795,15 +7797,15 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Tarayıcınızı dekore ederek Saint Patrick Günü'nü kutlayın."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Arkanıza yaslanıp rahatlayın"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Seyahatlerinizde size yardımcı olacak eklentiler!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Displays a country flag depicting the location of the current website's server and more."
@@ -7840,7 +7842,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Havada aşk kokusu var"
 
 #: src/olympia/legacy_discovery/modules.py
 #, fuzzy
@@ -7857,7 +7859,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Yeni Çıkanlar"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get the latest, must-have add-ons of the moment."
@@ -7924,7 +7926,7 @@ msgstr "Tümünü gör »"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "More ways to customize"
-msgstr ""
+msgstr "Kişiselleştirmenin diğer yolları"
 
 # 95%
 # 100%
@@ -7960,7 +7962,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "İndirilen toplam eklenti:"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #, fuzzy
@@ -7974,11 +7976,11 @@ msgstr "Son Güncellenme:"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "Cancel Installation"
-msgstr ""
+msgstr "Kurulumdan vazgeç"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Mozilla&rsquo;dan Ayın Seçimi!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
@@ -7990,7 +7992,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Get Started"
-msgstr ""
+msgstr "Başlarken"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -8559,7 +8561,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Türk Lirası"
 
 #: src/olympia/lib/constants.py
 msgid "Trinidad and Tobago Dollar"
@@ -8756,7 +8758,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Bu sitede kim çalışıyor?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -8810,11 +8812,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Thank you!"
-msgstr ""
+msgstr "Teşekkür ederiz!"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Site Credits"
-msgstr ""
+msgstr "Sitede Emeği Geçenler"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
@@ -8828,7 +8830,7 @@ msgstr "Geliştirici yorumları"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Localizers"
-msgstr ""
+msgstr "Yerelleştiriciler"
 
 #: src/olympia/pages/templates/pages/credits.html
 #, fuzzy
@@ -8838,7 +8840,7 @@ msgstr "İncelemeler"
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "{0} üzerinde eklenti incelemesi"
 
 # 81%
 # 100%
@@ -8849,11 +8851,11 @@ msgstr "Katkıda Bulunan"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Eski Geliştiriciler &amp; Yöneticiler"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Software and Images"
-msgstr ""
+msgstr "Yazılım ve Resimler"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
@@ -8918,7 +8920,7 @@ msgstr "Daha Fazla Eklenti"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Açık Kaynak İzin Kaynakları"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, fuzzy
@@ -8932,11 +8934,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Other resources include:"
-msgstr ""
+msgstr "Diğer kaynaklar:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "Eklenti günlüğündeki \"Firefox eklentisi geliştirme\" yazısı"
 
 # 75%
 # 100%
@@ -8947,7 +8949,7 @@ msgstr "Daha Fazla Eklenti"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What tools do I need to be able to build an Add-on?"
-msgstr ""
+msgstr "Bir eklenti geliştirebilmek için hangi araçlara ihtiyacım var?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -8957,7 +8959,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Popular code editors include:"
-msgstr ""
+msgstr "Gözde kod düzenleyiciler:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8973,7 +8975,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "\".xpi\" dosyası nedir?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
@@ -8993,7 +8995,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
-msgstr ""
+msgstr "\"install.rdf\" dosyası ne için kullanılır?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9097,17 +9099,17 @@ msgstr ""
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mailing List"
-msgstr ""
+msgstr "E-Posta Listesi"
 
 #. Label for a link to the extension developers newsgroup
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Newsgroup"
-msgstr ""
+msgstr "Haber Grubu"
 
 #. Label for a link to the extension developers Google Group
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Google Group"
-msgstr ""
+msgstr "Google Grubu"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -9123,7 +9125,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Mozilla geliştrime hizmetleri sunuyor mu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, fuzzy
@@ -9132,7 +9134,7 @@ msgstr "Hayır"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr ""
+msgstr "Eklentimi geliştirmek için tutabileceğim 3. şahıs geliştiriciler var mı?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9143,7 +9145,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Kendi eklentimi barındırabilir miyim?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9155,7 +9157,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Moziilla eklentimi barındırabilir mi?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9176,7 +9178,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Mozilla hesap bilgilerimi gizli tutar mı?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9206,7 +9208,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
-msgstr ""
+msgstr "Eklentimi incelenmek üzere nasıl gönderirim?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9217,7 +9219,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "Eklentim için hangi işletim sistemini seçmeliyim?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You must choose the operating systems on which your add-on will successfully function."
@@ -9225,7 +9227,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Eklentim için hangi kategoriyi seçmeliyim?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9437,7 +9439,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Sıkça Sorulan Sorular"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, fuzzy
@@ -9572,7 +9574,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr ""
+msgstr "%(app_name)s bana bir eklentinin uyumlu olmadığını söylüyor. Yine de kullanabilir miyim?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9825,15 +9827,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it useful?"
-msgstr ""
+msgstr "Kullanışlı mıydı?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Kullanımı kolay mıydı?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Bu eklentiyi kullanmaya devam edecek misiniz?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Take a moment to read your review before submitting it to minimize typos."
@@ -9935,7 +9937,7 @@ msgstr "Thunderbird hakkında daha fazla bilgi alın"
 
 #: src/olympia/paypal/__init__.py
 msgid "There was an error communicating with PayPal. Please try again later."
-msgstr ""
+msgstr "PayPal ile iletişim kurulurken hata oluştu. Lütfen daha sonra tekrar deneyin."
 
 #: src/olympia/paypal/__init__.py
 msgid "There was an error with this currency."
@@ -10356,7 +10358,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "Version already exists."
-msgstr ""
+msgstr "Sürüm hâlihazırda mevcut."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
@@ -10525,7 +10527,7 @@ msgstr "Katkıda Bulunan"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "reset zoom"
-msgstr ""
+msgstr "yakınlaşmayı sıfırla"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Group by:"
@@ -10538,11 +10540,11 @@ msgstr "Tatil"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "week"
-msgstr ""
+msgstr "hafta"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "month"
-msgstr ""
+msgstr "ay"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "For last:"
@@ -10550,19 +10552,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "7 days"
-msgstr ""
+msgstr "7 gün"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "30 days"
-msgstr ""
+msgstr "30 gün"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "90 days"
-msgstr ""
+msgstr "90 gün"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "365 days"
-msgstr ""
+msgstr "365 gün"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Custom..."
@@ -10637,7 +10639,7 @@ msgstr "Yine De İndir"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "İndirmeler nasıl hesaplanır?"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html
 msgid ""
@@ -10647,7 +10649,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/locales.html
 msgid "User languages by Date"
-msgstr ""
+msgstr "Tarihe göre kullanıcı dilleri"
 
 #: src/olympia/stats/templates/stats/reports/os.html
 msgid "Platform usage by Date"
@@ -10660,7 +10662,7 @@ msgstr "<b>{0}</b> eklenti"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Loading..."
-msgstr ""
+msgstr "Yükleniyor..."
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 #, fuzzy
@@ -10793,7 +10795,7 @@ msgstr ""
 
 #: src/olympia/templates/categories.html
 msgid "Choose a category"
-msgstr ""
+msgstr "Bir kategori seçin"
 
 #: src/olympia/templates/categories.html
 #, fuzzy
@@ -10802,7 +10804,7 @@ msgstr "İlgili Kategoriler"
 
 #: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Legal Notices"
-msgstr ""
+msgstr "Yasal uyarılar"
 
 #: src/olympia/templates/copyright.html
 #, fuzzy
@@ -10832,19 +10834,19 @@ msgstr ""
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "<b>eklentileri</b> tanıyın"
 
 #: src/olympia/templates/footer.html
 msgid "About"
-msgstr ""
+msgstr "Hakkında"
 
 #: src/olympia/templates/footer.html
 msgid "FAQ"
-msgstr ""
+msgstr "S.S.S."
 
 #: src/olympia/templates/footer.html
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 #, fuzzy
@@ -10853,23 +10855,23 @@ msgstr "Dil"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Eklentiler"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Eklentiler"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Mobile Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Mobil Eklentiler"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Eklentiler"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> Eklentiler"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 #, fuzzy
