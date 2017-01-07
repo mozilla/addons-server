@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-06 21:11+0000\n"
+"PO-Revision-Date: 2017-01-07 05:06+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -494,7 +494,7 @@ msgstr "Izegrar i {0}"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Extensions"
-msgstr "Iziɣraf itran"
+msgstr "Isiɣzaf s itran"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Popular Extensions"
@@ -7339,7 +7339,7 @@ msgstr "Tikelt tamezwarut akked izegrar?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "Ur ttkikru ara, hata wamek."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Translate content on the web from and into over 40 languages."
@@ -7443,7 +7443,7 @@ msgstr "Uraren!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Zhu cwiṭ akked Firefox. Urar s deqs n wuraren srid deg iminig inek — Timsaɛrad, uraren n tɣuṛi, n tigawt d wayen nniḍen!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Must-Have Media"
