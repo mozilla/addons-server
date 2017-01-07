@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-07 12:20+0000\n"
+"PO-Revision-Date: 2017-01-07 12:25+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3470,9 +3470,8 @@ msgid "Modern"
 msgstr "Çağdaş"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Nature"
-msgstr "Öne Çıkanlarda"
+msgstr "Doğa"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3698,14 +3697,12 @@ msgid "Duplicate"
 msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
-#, fuzzy
 msgid "Reject"
-msgstr "Reddedildi."
+msgstr "Reddet"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
-#, fuzzy
 msgid "Approve"
-msgstr "Onaylandı"
+msgstr "Onayla"
 
 #: src/olympia/constants/editors.py
 msgid "Sexual or pornographic content"
@@ -3744,9 +3741,8 @@ msgid "Header image alignment problem"
 msgstr "Tepe resmi hizalama sorunu"
 
 #: src/olympia/constants/licenses.py
-#, fuzzy
 msgid "All Rights Reserved"
-msgstr "Bazı hakları saklıdır"
+msgstr "Tüm hakları saklıdır"
 
 #: src/olympia/constants/licenses.py
 #, fuzzy
@@ -10891,29 +10887,29 @@ msgstr "Sayfa <a href=\"%(current_pg_url)s\">%(current_pg)s</a> / <a href=\"%(la
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Burada gördüğünüz binlerce eklentiyi denemek için, hızlı ve ücretsiz web tarayıcısı <a href=\"%(url)s\">Mozilla Firefox</a>'u indirin!"
 
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "{0} Eklentileri'ne hoş geldiniz."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Firefox'unuzu kişiselleştirmek için binlerce ekstra özellik ve stilden istediklerinizi seçin."
 
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "%(app)s uygulamanızı kişiselleştirmek için ekstra özellikler ve stiller ekleyin."
 
 #: src/olympia/templates/impala/base.html
 msgid "On the go?"
-msgstr ""
+msgstr "Yolda mısınız?"
 
 #: src/olympia/templates/impala/base.html
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "<a class=\"mobile-link\" href=\"#\">Mobil Eklentiler sitemize</a> göz atın."
 
 #: src/olympia/templates/impala/header_title.html
 #, fuzzy
@@ -10922,7 +10918,7 @@ msgstr "Engellenen Eklentiler"
 
 #: src/olympia/templates/includes/forms.html
 msgid "required"
-msgstr ""
+msgstr "gerekli"
 
 #: src/olympia/templates/includes/forms.html
 #, fuzzy
@@ -10951,7 +10947,7 @@ msgstr "Öne Çıkanlarda"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Desktop"
-msgstr ""
+msgstr "Masaüstü"
 
 #: src/olympia/templates/mobile/header.html
 #, fuzzy
@@ -10966,11 +10962,11 @@ msgstr "Mozilla"
 #. a link
 #: src/olympia/templates/mobile/header.html
 msgid "menu"
-msgstr ""
+msgstr "menü"
 
 #: src/olympia/templates/mobile/header_auth.html
 msgid "Register"
-msgstr ""
+msgstr "Kaydol"
 
 #: src/olympia/templates/mobile/header_auth.html
 #, fuzzy
@@ -11025,7 +11021,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen isim"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 #, fuzzy
@@ -11227,7 +11223,7 @@ msgstr "İhlal rapor edildi."
 
 #: src/olympia/users/widgets.py
 msgid "new"
-msgstr ""
+msgstr "yeni"
 
 # 78%
 # 100%
@@ -11270,7 +11266,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Kullanıcı fotoğrafını sil"
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete my user picture now"
@@ -11295,7 +11291,7 @@ msgstr "Kullanıcı"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
-msgstr ""
+msgstr "E-posta Adresi"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
@@ -11308,7 +11304,7 @@ msgstr "Profilim"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Bize kendiniz hakkında biraz bilgi verin. Bu alanlar isteğe bağlıdır, fakat diğer kullanıcıların seni daha iyi tanımasına yardım edeceklerdir."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This URL will only be visible if you are a developer."
@@ -11321,7 +11317,7 @@ msgstr "Daha fazlası&hellip;"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete current photo"
-msgstr ""
+msgstr "Mevcut fotoğrafı sil"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This is the default locale used to display information about you (like your description)."
@@ -11329,7 +11325,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "İsterseniz kendinizi topluluğa tanıtın. Bu yazı kullanıcı bilgi sayfanızda herkese görünür olacaktır."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
@@ -11341,7 +11337,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Oluşturduğum koleksiyonları göster"
 
 #: src/olympia/users/templates/users/edit.html
 #, fuzzy
@@ -11350,11 +11346,11 @@ msgstr "İzlediğim Koleksiyonlar"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Notifications"
-msgstr ""
+msgstr "Bildirimler"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "Mozilla zaman zaman gelecek sürümler ve eklenti etkinlikleri hakkında size e-posta gönderebilir. Lütfen ilgilendiğiniz konuları seçin."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
@@ -11374,7 +11370,7 @@ msgstr "Koleksiyonu Sil"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Update Account"
-msgstr ""
+msgstr "Hesabı güncelle"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "none"
@@ -11391,11 +11387,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "User Login"
-msgstr ""
+msgstr "Kullanıcı Girişi"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Firefox Hesabı ile Giriş"
 
 #: src/olympia/users/templates/users/newpw_sent.html
 #, fuzzy
@@ -11434,7 +11430,7 @@ msgstr "Sanatçı"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "About me"
-msgstr ""
+msgstr "Hakkımda"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "In a little more detail..."
@@ -11480,7 +11476,7 @@ msgstr "Suistimal rapor et"
 
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "Bu kullanıcıyı niçin şikayet ettiğinizi açıklayın (örnek: spam veya uygunsuz bir resim)."
 
 #: src/olympia/users/templates/users/report_abuse_full.html
 #, fuzzy
@@ -11495,7 +11491,7 @@ msgstr "Abone ol"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Başarıyla abonelikten ayrıldınız!"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 #, python-format
@@ -11509,11 +11505,11 @@ msgstr "Diğer Seçenekler:"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your notification settings"
-msgstr ""
+msgstr "bildirim ayarlarınızı düzenleyin"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your profile"
-msgstr ""
+msgstr "profilinizi düzenleyin"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "We could not unsubscribe you"
@@ -11536,11 +11532,11 @@ msgstr "Kullanıcı"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Time of last login"
-msgstr ""
+msgstr "Son giriş zamanı"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "IP address of last login"
-msgstr ""
+msgstr "Son girilen IP adresi"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Number of add-ons developed"
@@ -11590,7 +11586,7 @@ msgstr ""
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Bu sürümün kalıcı bağlantısı"
 
 #. {0} is a timestamp, such as September 28, 2011.
 #: src/olympia/versions/templates/versions/version.html
@@ -11623,7 +11619,7 @@ msgstr[0] "<b>{0}</b> kullanıcı"
 
 #: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Eski sürümleri dikkatli kullanın!"
 
 #: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
 #, python-format
@@ -11657,11 +11653,11 @@ msgstr "Sürüm"
 
 #: src/olympia/zadmin/forms.py
 msgid "Email when finished"
-msgstr ""
+msgstr "Bittiğinde e-posta gönder"
 
 #: src/olympia/zadmin/forms.py
 msgid "Log emails instead of sending"
-msgstr ""
+msgstr "E-postaları göndermek yerine kaydet"
 
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
@@ -11677,7 +11673,7 @@ msgstr "Sözlükler"
 
 #: src/olympia/zadmin/forms.py
 msgid "Non-binary"
-msgstr ""
+msgstr "İkili olmayan"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"
@@ -11685,7 +11681,7 @@ msgstr ""
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
-msgstr ""
+msgstr "Mesaj"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy
