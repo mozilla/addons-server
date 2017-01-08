@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-07 05:06+0000\n"
+"PO-Revision-Date: 2017-01-08 19:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4007,11 +4007,11 @@ msgstr "Iceggiren n useqdac"
 
 #: src/olympia/devhub/views.py
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Isnifal ttwakelsen akken iwata."
 
 #: src/olympia/devhub/views.py
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Ma ulac aɣilif senqed tafelwit inek ɣef tuccḍiwin."
 
 #: src/olympia/devhub/views.py
 msgid "Add-on cannot be deleted. Disable this add-on instead."
@@ -4039,7 +4039,7 @@ msgstr "Ameskar yettwarna ad uzegrir inek"
 
 #: src/olympia/devhub/views.py
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Tamlilt n umeskar tettusnifel ɣef uzegri inek"
 
 #: src/olympia/devhub/views.py
 msgid "An author has been removed from your add-on"
@@ -4067,25 +4067,25 @@ msgstr "Tugniwin zemrent ad ilint PNG neɣ JPG."
 
 #: src/olympia/devhub/views.py
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Tignitin ur zmirent ara ad mbiwlent."
 
 #: src/olympia/devhub/views.py
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Tugniwin ur zmirent ara ad mbawlent."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Tugniwin ur zmirent ara ad ilint ugar n %d KAṬ."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: src/olympia/devhub/views.py
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Yessefk tugna ad tili s {0} n ipiksilen di tehri akked {1} n ipiksilen di teɣzi."
 
 #: src/olympia/devhub/views.py
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Taḍra-d tuccḍa di tuzzna n teskant inek."
 
 #: src/olympia/devhub/views.py
 #, python-format
@@ -4104,7 +4104,7 @@ msgstr "Lqem %s yermed tikelt nniḍen."
 
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Tuzna-agi ur teddi ara deg usentem, ihi tezmer akken ur yelli ara ɣur-s ugmuḍ n usentem. Ɣur-k ticki tettawraḍeḍ-tt."
 
 #: src/olympia/devhub/views.py
 msgid "Review Requested."
@@ -4112,11 +4112,11 @@ msgstr "Aɛiwed n tɣuri yettusuter."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "Talɣut inek taqbuṛt n usesteb ttwaḥwin udiɣ zemren ur ttilin ara d imeɣta. Ma ulac aɣilif, leqqem akk imsaɣen inek API s telɣut tamaynut n usesteb."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Talɣut inek n usesteb tettwaḥwi ihi ur tezgi d tameɣtut."
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
@@ -4124,7 +4124,7 @@ msgstr "Tasarutt API tamaynut tettwarna"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
-msgstr ""
+msgstr "Tasarutt API tettwaḥwi"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -4204,7 +4204,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
+msgstr "Ddu ar <a href=\"https://developer.mozilla.org/Add-ons\">Uẓuṭṭa n ineflyane n Mozilla (MDN)</a> akken ad tissineḍ akk ayen ilaqen akken ad tebduḍ."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Start Making Add-ons"
@@ -4242,7 +4242,7 @@ msgstr "Suffeɣ-d izegrar inek!"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
+msgstr "Tarrayt ifazen akken ad tezzuzreḍ azegrir inek d asezdeɣ ines di Mozilla Add-ons."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 #, python-format
