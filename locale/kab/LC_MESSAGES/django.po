@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-03 12:46+0000\n"
-"PO-Revision-Date: 2017-01-08 19:20+0000\n"
+"PO-Revision-Date: 2017-01-08 19:33+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4247,7 +4247,7 @@ msgstr "Tarrayt ifazen akken ad tezzuzreḍ azegrir inek d asezdeɣ ines di Mozi
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 #, python-format
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
+msgstr "Sali  <a href=\"%(addon_url)s\">azegrir</a> neɣ <a href=\"%(theme_url)s\">asentel</a> akken ad tebduḍ!"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Return to the DevHub homepage"
@@ -4312,7 +4312,7 @@ msgstr "Nadi tasemlit n tneflit"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Seqdec urti daw-a akken ad tazned akemmus inek n uzegrir."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
@@ -4341,11 +4341,11 @@ msgstr "Yettwasentem di:"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Yettwasekyed ɣef umṣada mgal:"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Armud aneggaru i yizegrar-inu"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Recent Activity"
@@ -4379,16 +4379,16 @@ msgstr "Jerred ar usuddem-agi"
 msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
-msgstr ""
+msgstr "Azegrir-agi ur imṣada ara akked <b>%(app_name)s%(app_version)s</b>, lqem aneggaru n %(app_name)s. Ma ulac aɣilif, leqqem talɣut n umṣada n uzegrir inek neq azen lqem amaynut."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
+msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Leqqem amṣada</a> <a href=\"%(version_url)s\" class=\"button\">Azen lqem amaynut</a> ou <a href=\"#\" class=\"close\">Anef</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Wali sakin leqqem izilalen n umṣada n yesnasen."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Compatibility"
