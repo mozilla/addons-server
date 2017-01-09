@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 18:11+0000\n"
+"PO-Revision-Date: 2017-01-09 18:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5531,7 +5531,7 @@ msgstr "Ewolucija při wuwiwanju rozšěrjenjow"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr "WebExtensions budu standard za wuwiwanje přidatkow w Fireofx. To a druhe změny w Firefox móža wuwiwarjow staršich přidatkow potrjechić."
+msgstr "WebExtensions budu standard za wuwiwanje přidatkow w Firefox. To a druhe změny w Firefox móža wuwiwarjow staršich přidatkow potrjechić."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Find Out if Your Add-on is Affected"
@@ -6308,7 +6308,7 @@ msgstr "Zwurazńće emodźi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Dwanatki wulkotnych emodźije za kóždu składnosć - přeco jenož jedne kliknjenje zdaleny."
+msgstr "Dwanatki wulkotnych emodźijow za kóždu składnosć - přeco jenož jedne kliknjenje zdaleny."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
