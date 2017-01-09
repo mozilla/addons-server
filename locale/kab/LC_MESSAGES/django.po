@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 20:47+0000\n"
+"PO-Revision-Date: 2017-01-09 21:13+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5395,7 +5395,6 @@ msgid "Read more in our Blog"
 msgstr "Ɣeṛ ugar deg ublug nneɣ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Manage Your Add-on"
 msgstr "Sefrek azegrir inek"
 
@@ -5404,9 +5403,8 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Evolution in Add-on Development"
-msgstr "Taneflit n isiɣzaf"
+msgstr "Asfari di tneflit n izegrar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
@@ -5459,9 +5457,8 @@ msgid "Learn How to make an Add-on"
 msgstr "Issin ugar amek ara teggeḍ azegrir"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "Isiɣzaf yettwasnen"
+msgstr "Ttaɛebga n usiɣzef Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
@@ -6167,9 +6164,8 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Tanfalit Emoji {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
@@ -9372,7 +9368,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Anta timihailin i tḥemled neɣ i tkerheḍ?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it useful?"
