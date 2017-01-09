@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 18:21+0000\n"
+"PO-Revision-Date: 2017-01-09 18:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5517,7 +5517,6 @@ msgid "Read more in our Blog"
 msgstr "Dalšne informacije w našom blogu"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Manage Your Add-on"
 msgstr "Waš dodank zastojaś"
 
@@ -5526,32 +5525,28 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Pśizjawśo se, aby swój dodank wobźěłował a aktualizěrował"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Evolution in Add-on Development"
-msgstr "Wuwijanje rozšyrjenjow"
+msgstr "Ewolucija pśi wuwijanju rozšyrjenjow"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
 msgstr "WebExtensions budu standard za wuwijanje dodankow w Firefox. To a druge změny w Firefox mógu wuwijarjow staršych dodankow pótrjefiś."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Find Out if Your Add-on is Affected"
-msgstr "Pótrjefjone dodanki"
+msgstr "Wuslěźćo, lěc waš dodank jo pótrjefjony"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "How móžośo se swóje dodanki a drastwy woglědaś a je zastojaś. Aby swój prědny dodank wózjawił, klikniśo na „Waš prědny dodank zapódaś“ abo „Wašu prědnu drastwu zapódaś“."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Submit Your First Add-on"
-msgstr "Dodank zapódaś"
+msgstr "Waš prědny dodank zapódaś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Submit Your First Theme"
-msgstr "Drastwu zapódaś"
+msgstr "Wašu prědnu drastwu zapódaś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Add-on Developer Hub"
@@ -5586,9 +5581,8 @@ msgid "Learn How to make an Add-on"
 msgstr "Dalšne informacije wó wuwijanju dodanka"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "Woblubowane rozšyrjenja"
+msgstr "Rozšyrjenje Chrome pśenjasć"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
@@ -5598,23 +5592,20 @@ msgstr ""
 "funkcioněrowaś."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Learn How"
-msgstr "Dalšne informacije"
+msgstr "Zgóńśo, kak to źo"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Publish Your Add-on"
-msgstr "Wózjawśo swóje dodanki!"
+msgstr "Wózjawśo swój dodank"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Maśo gótowy dodank? Zapódajśo swójo rozšyrjenje abo swóju drastwu, aby se na addons.mozilla.org nalicyłej abo signěrujśo a rozdźělśo swójo rozšyrjenje sam."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Sign in"
-msgstr "Pśizjawiś"
+msgstr "Pśizjawśo se"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Validator"
@@ -6311,13 +6302,12 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Lažhki a efektiwny blokěrowak wabjenja. uBlock Origin wunuźijo towzynty wopśimjeśowych filtrow, mimo až by se wjele składa pśetrjebało."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokěrujśo wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Zwurazniśo emoźi {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "Dwanastki wjelicnych emoźijow za kuždu góźbu - pśecej jano jadno kliknjenje zdalony."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7355,7 +7345,7 @@ msgstr "Wersija njedajo se ze sobu pśirownaś"
 #: src/olympia/files/helpers.py
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Datajowy wobglědowak jo zastajony, rozpakowanje %s snaź južo běžy. Pšosym wopytajśo za něźi 5 minutow hysći raz."
 
 #: src/olympia/files/helpers.py
 #, python-format
