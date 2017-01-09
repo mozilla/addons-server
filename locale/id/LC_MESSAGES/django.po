@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-03 12:46+0000\n"
+"POT-Creation-Date: 2017-01-09 09:22+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -3948,14 +3948,6 @@ msgstr ""
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Dokumentasi Pengaya :: Pusat Pengembang"
 
-#: src/olympia/devhub/helpers.py
-msgid "My Submissions"
-msgstr "Pengajuan Saya"
-
-#: src/olympia/devhub/helpers.py
-msgid "Developer Docs"
-msgstr "Dokumen Pengembang"
-
 # {0} is a number
 #. L10n: first parameter is the number of errors
 #: src/olympia/devhub/helpers.py
@@ -4182,14 +4174,14 @@ msgstr "{0} :: Pencarian"
 msgid "Search"
 msgstr "Cari"
 
-#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
-msgid "Search Results"
-msgstr "Hasil Pencarian"
-
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "Search Results for \"{0}\""
 msgstr "Hasil Pencarian untuk \"{0}\""
+
+#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
+msgid "Search Results"
+msgstr "Hasil Pencarian"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Please enter some search terms."
@@ -4242,7 +4234,7 @@ msgstr "Mulailah Membuat Pengaya"
 msgid "Status:"
 msgstr "Status:"
 
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "Versi Terbaru:"
 
@@ -4374,10 +4366,6 @@ msgstr "Diuji kompatibilitasnya terhadap:"
 msgid "Recent Activity for My Add-ons"
 msgstr "Aktivitas Terbaru untuk Pengaya Saya"
 
-#: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-msgid "Recent Activity"
-msgstr "Aktivitas Terkini"
-
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for {0}"
@@ -4447,6 +4435,10 @@ msgstr "Tambahkan Aplikasi Lain &hellip;"
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
 msgid "Close"
 msgstr "Tutup"
+
+#: src/olympia/devhub/templates/devhub/addons/dashboard.html
+msgid "Recent Activity"
+msgstr "Aktivitas Terkini"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
@@ -5413,11 +5405,6 @@ msgstr "Antrean tidak ditinjau secara ketat dalam urutan"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
-msgid "Lastest Version:"
-msgstr "Versi Terbaru:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
 msgstr ""
 "Ini adalah versi terbaru yang sudah diunggah, namun\n"
@@ -5568,6 +5555,43 @@ msgstr "Versi Terbaru:"
 msgid "Read more in our Blog"
 msgstr "perlu lebih banyak informasi"
 
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Manage Your Add-on"
+msgstr "Mengelola Pengaya Anda"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "Sign In to Edit and Update Your Add-on"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Evolution in Add-on Development"
+msgstr "Pengembangan Ekstensi"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Find Out if Your Add-on is Affected"
+msgstr "Pengaya yang Terpengaruh"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "Submit Your First Add-on"
+msgstr "Memasukkan Pengaya"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "Submit Your First Theme"
+msgstr "Memasukkan Tema"
+
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, fuzzy
@@ -5607,6 +5631,35 @@ msgstr ""
 #, fuzzy
 msgid "Learn How to make an Add-on"
 msgstr "Pelajari Lebih Lanjut Tentang Pengaya"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+#, fuzzy
+msgid "Port a Chrome Extension"
+msgstr "Ekstensi Populer"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+msgid ""
+"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+#, fuzzy
+msgid "Learn How"
+msgstr "Pelajari lebih Lanjut"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+#, fuzzy
+msgid "Publish Your Add-on"
+msgstr "Terbitkan pengaya anda!"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+#, fuzzy
+msgid "Sign in"
+msgstr "Memasukkan Pengaya"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -6021,10 +6074,6 @@ msgstr "Pilih platform target untuk berkas ini."
 msgid "Manage Version {0}"
 msgstr "Mengelola Versi {0}"
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Status & Versions"
-msgstr "Status & Versi"
-
 # {0} is the name of the collection
 #. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
@@ -6093,6 +6142,10 @@ msgstr "Dibuat di %(created)s dan diubah menjadi %(status)s pada %(status_date)s
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr "Dibuat pada %(created)s dan diubah pada %(status)s"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Status & Versions"
+msgstr "Status & Versi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
@@ -6330,12 +6383,13 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ambil cuplikan layar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
-msgstr "Jauh lebih dari sekadar perangkat penangkap layar, pengaya ini juga membuat Anda dapat mengedit, menambahkan catatan, dan membagikan gambar."
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 #, fuzzy
@@ -7347,6 +7401,16 @@ msgid "Cannot diff a version against itself"
 msgstr "Tidak bisa melakukan diff sebuah versi atas dirinya sendiri"
 
 #: src/olympia/files/helpers.py
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#: src/olympia/files/helpers.py
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Terjadi kesalahan saat mengakses berkas %s."
+
+#: src/olympia/files/helpers.py
 msgid "That file no longer exists."
 msgstr "Berkas itu tidak ada lagi."
 
@@ -7366,16 +7430,6 @@ msgstr "Berkas ini tidak dapat dilihat secara daring. Harap mengunduh berkas unt
 #: src/olympia/files/helpers.py
 msgid "This file is a directory."
 msgstr "Berkas ini adalah direktori."
-
-#: src/olympia/files/tasks.py
-#, python-format
-msgid "There was an error accessing file %s. %s."
-msgstr "Terjadi kesalahan saat mengakses berkas %s. %s."
-
-#: src/olympia/files/tasks.py
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Terjadi kesalahan saat mengakses berkas %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."

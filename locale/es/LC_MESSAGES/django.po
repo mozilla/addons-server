@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-03 12:46+0000\n"
+"POT-Creation-Date: 2017-01-09 09:22+0000\n"
 "PO-Revision-Date: 2016-12-16 22:19+0000\n"
 "Last-Translator: jlgetxo <jlgetxo@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -3978,14 +3978,6 @@ msgstr ""
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Documentación sobre complementos :: Centro de Desarrolladores"
 
-#: src/olympia/devhub/helpers.py
-msgid "My Submissions"
-msgstr "Mis envíos"
-
-#: src/olympia/devhub/helpers.py
-msgid "Developer Docs"
-msgstr "Documentación para desarrolladores"
-
 #. L10n: first parameter is the number of errors
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
@@ -4211,14 +4203,14 @@ msgstr "{0} :: Búsqueda"
 msgid "Search"
 msgstr "Buscar"
 
-#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
-msgid "Search Results"
-msgstr "Resultados de la búsqueda"
-
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "Search Results for \"{0}\""
 msgstr "Resultados de la búsqueda de \"{0}\""
+
+#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
+msgid "Search Results"
+msgstr "Resultados de la búsqueda"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Please enter some search terms."
@@ -4270,7 +4262,7 @@ msgstr "Empieza a crear complementos"
 msgid "Status:"
 msgstr "Estado:"
 
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "Última versión:"
 
@@ -4402,10 +4394,6 @@ msgstr "Comprobada la compatibilidad con:"
 msgid "Recent Activity for My Add-ons"
 msgstr "Actividad reciente de mis complementos"
 
-#: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-msgid "Recent Activity"
-msgstr "Actividad reciente"
-
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for {0}"
@@ -4475,6 +4463,10 @@ msgstr "Agregar otra aplicación&hellip;"
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
 msgid "Close"
 msgstr "Cerrar"
+
+#: src/olympia/devhub/templates/devhub/addons/dashboard.html
+msgid "Recent Activity"
+msgstr "Actividad reciente"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
@@ -5402,10 +5394,6 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "Las colas no son revisadas en orden estricto"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Lastest Version:"
-msgstr "Última versión:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
 msgstr "Esta es la última versión disponible no listada."
 
@@ -5553,6 +5541,46 @@ msgstr "Últimas noticias"
 msgid "Read more in our Blog"
 msgstr "Leer más en nuestro Blog"
 
+# El tratamiento al usuario es de "tú".
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Manage Your Add-on"
+msgstr "Administrar tus complementos"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "Sign In to Edit and Update Your Add-on"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Evolution in Add-on Development"
+msgstr "Desarrollo de extensiones"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Find Out if Your Add-on is Affected"
+msgstr "Complementos afectados"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "Submit Your First Add-on"
+msgstr "Enviar un complemento"
+
+# 77%
+# 85%
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "Submit Your First Theme"
+msgstr "Enviar tema"
+
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Add-on Developer Hub"
@@ -5586,6 +5614,35 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to make an Add-on"
 msgstr "Aprende cómo crear un complemento"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+#, fuzzy
+msgid "Port a Chrome Extension"
+msgstr "Extensiones populares"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+msgid ""
+"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+#, fuzzy
+msgid "Learn How"
+msgstr "Más información"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+#, fuzzy
+msgid "Publish Your Add-on"
+msgstr "¡Publica tus complementos!"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+#, fuzzy
+msgid "Sign in"
+msgstr "Iniciar sesión"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -6009,10 +6066,6 @@ msgstr "Selecciona la plataforma para la cual está dirigida este archivo."
 msgid "Manage Version {0}"
 msgstr "Administrar versión {0}"
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Status & Versions"
-msgstr "Estado y versiones"
-
 # {0} is the name of the collection
 #. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
@@ -6081,6 +6134,10 @@ msgstr "Creado el %(created)s y cambiado a %(status)s el %(status_date)s"
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr "Creado el %(created)s y cambiado a %(status)s"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Status & Versions"
+msgstr "Estado y versiones"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
@@ -6309,12 +6366,13 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Un bloqueador ligero y efectivo. uBlock Origin ejecuta miles de filtros de contenido sin consumir demasiada memoria."
 
 #: src/olympia/discovery/data.py
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Haz capturas {start_sub_heading}con {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloquea la publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
-msgstr "Es mucho más que capturar pantallas: este complemento te permite editar, anotar y guardar imágenes."
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7334,6 +7392,16 @@ msgid "Cannot diff a version against itself"
 msgstr "No se puede comparar una versión consigo misma"
 
 #: src/olympia/files/helpers.py
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#: src/olympia/files/helpers.py
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Hubo un error al acceder al archivo %s."
+
+#: src/olympia/files/helpers.py
 msgid "That file no longer exists."
 msgstr "Este archivo ya no existe."
 
@@ -7353,16 +7421,6 @@ msgstr "No es posible ver este archivo en línea. Por favor, descárgalo para ve
 #: src/olympia/files/helpers.py
 msgid "This file is a directory."
 msgstr "El archivo es un directorio."
-
-#: src/olympia/files/tasks.py
-#, python-format
-msgid "There was an error accessing file %s. %s."
-msgstr "Hubo un error al acceder al archivo %s. %s."
-
-#: src/olympia/files/tasks.py
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Hubo un error al acceder al archivo %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
