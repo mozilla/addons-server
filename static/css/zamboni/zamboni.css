@@ -2020,6 +2020,7 @@ form .error .note.error {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+    width: 95%;
 }
 
 .html-rtl .listing .contribute,
