@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 20:28+0000\n"
+"PO-Revision-Date: 2017-01-09 20:47+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9241,7 +9241,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
-msgstr ""
+msgstr "D acu d anamek ma yella azegrir yettwacraḍ d akken ẓẓay?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown."
@@ -9249,7 +9249,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report an inappropriate or spam user review?"
-msgstr ""
+msgstr "Amek ara ad d-mleɣ d akken awennit ur ilaq ara neɣ d aspam?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -9259,12 +9259,12 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr ""
+msgstr "Amek ara d-azneɣ abug neɣ ad nermseɣ tarbaɛt n Mozilla?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr ""
+msgstr "MA ulac aɣilif, rzu ar <a href=\"%(contact_url)s\">Usebter n unermes</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is a Source Code License?"
@@ -9297,7 +9297,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is the My Favorites collection?"
-msgstr ""
+msgstr "D acu-t Tagrumma-inu tanurift?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
@@ -9342,7 +9342,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Isteqsiyen d-ittuɣalen s waṭas ɣef iceggiren"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
