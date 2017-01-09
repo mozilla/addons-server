@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 18:17+0000\n"
+"PO-Revision-Date: 2017-01-09 19:40+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9098,7 +9098,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "Amek ara eǧǧeɣ izegrar-iw ttwaleqmen?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9110,7 +9110,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "Izegrar d iɣelsanen i usebded?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9123,7 +9123,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "Zemren izegrar-iw ad erren %(app_name)s ẓẓay?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
