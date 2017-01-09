@@ -275,7 +275,14 @@ class TestRenderErrorHTML(TestCase):
         messages = get_messages(request)
         assert len(messages) == 1
         assert 'could not be parsed' in next(iter(messages)).message
-        assert_url_equal(response['location'], self.login_url(to='/over/here'))
+        assert_url_equal(response['location'], absolutify('/over/here'))
+        response = self.render_error(
+            request, views.ERROR_NO_CODE, next_path=None)
+        assert response.status_code == 302
+        messages = get_messages(request)
+        assert len(messages) == 1
+        assert 'could not be parsed' in next(iter(messages)).message
+        assert_url_equal(response['location'], self.login_url())
 
     def test_error_no_profile_with_no_path(self):
         request = self.make_request()
