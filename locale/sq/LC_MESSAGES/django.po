@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-03 12:46+0000\n"
+"POT-Creation-Date: 2017-01-09 09:22+0000\n"
 "PO-Revision-Date: 2016-12-02 21:33+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -3969,14 +3969,6 @@ msgstr ""
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Dokumentim Shtesash :: Qendra e Zhvilluesve"
 
-#: src/olympia/devhub/helpers.py
-msgid "My Submissions"
-msgstr "Parashtrimet e Mia"
-
-#: src/olympia/devhub/helpers.py
-msgid "Developer Docs"
-msgstr "Dokumentim Zhvilluesish"
-
 # %1$s is a number
 #. L10n: first parameter is the number of errors
 #: src/olympia/devhub/helpers.py
@@ -4208,14 +4200,14 @@ msgstr "{0} :: Kërkim"
 msgid "Search"
 msgstr "Kërkoni"
 
-#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
-msgid "Search Results"
-msgstr "Përfundime Kërkimi"
-
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "Search Results for \"{0}\""
 msgstr "Përfundime Kërkimi për \"{0}\""
+
+#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
+msgid "Search Results"
+msgstr "Përfundime Kërkimi"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Please enter some search terms."
@@ -4268,7 +4260,7 @@ msgstr "Filloni të Krijoni Shtesa"
 msgid "Status:"
 msgstr "Gjendje:"
 
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "Version Më i Ri:"
 
@@ -4400,10 +4392,6 @@ msgstr "Provuar për përputhshmëri kundrejt:"
 msgid "Recent Activity for My Add-ons"
 msgstr "Veprimtari Së fundmi për Shtesën Time"
 
-#: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-msgid "Recent Activity"
-msgstr "Veprimtari Së fundi"
-
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for {0}"
@@ -4473,6 +4461,10 @@ msgstr "Shtoni Një Tjetër Aplikacion&hellip;"
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
 msgid "Close"
 msgstr "Mbylle"
+
+#: src/olympia/devhub/templates/devhub/addons/dashboard.html
+msgid "Recent Activity"
+msgstr "Veprimtari Së fundi"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
@@ -5357,10 +5349,6 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "Në shqyrtime radha s’ruhet në mënyrë strikte"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Lastest Version:"
-msgstr "Versioni Më i Ri:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
 msgstr "Ky është versioni më i ri i ngarkuar, i patreguar te sajti."
 
@@ -5506,6 +5494,43 @@ msgstr "Lajmet e Reja"
 msgid "Read more in our Blog"
 msgstr "Lexoni më tepër te Blogu ynë"
 
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Manage Your Add-on"
+msgstr "Administrimi i Shtesës Suaj"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "Sign In to Edit and Update Your Add-on"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Evolution in Add-on Development"
+msgstr "Zhvillim Zgjerimesh"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Find Out if Your Add-on is Affected"
+msgstr "Shtesa të Prekura"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "Submit Your First Add-on"
+msgstr "Parashtroni një Shtesë"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "Submit Your First Theme"
+msgstr "Parashtrojeni Temën"
+
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Add-on Developer Hub"
@@ -5539,6 +5564,35 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to make an Add-on"
 msgstr "Mësoni Si të ndërtoni një Shtesë"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+#, fuzzy
+msgid "Port a Chrome Extension"
+msgstr "Zgjerime Popullore"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+msgid ""
+"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+#, fuzzy
+msgid "Learn How"
+msgstr "Mësoni Më Tepër"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+#, fuzzy
+msgid "Publish Your Add-on"
+msgstr "Botoni shtesat tuaja!"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+#, fuzzy
+msgid "Sign in"
+msgstr "Hyni"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -5943,10 +5997,6 @@ msgstr "Përzgjidhni platformën objektiv për këtë kartelë."
 msgid "Manage Version {0}"
 msgstr "Administroni Versionin {0}"
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Status & Versions"
-msgstr "Gjendje & Versione"
-
 # %1$s is the name of the collection
 #. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
@@ -6010,6 +6060,10 @@ msgstr "E krijuar më %(created)s dhe ndryshuar si %(status)s më %(status_date)
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr "E krijuar më %(created)s dhe ndryshuar si %(status)s"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Status & Versions"
+msgstr "Gjendje & Versione"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
@@ -6240,12 +6294,13 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Një bllokues i lehtë dhe i efektshëm reklamash. uBlock Origin përforcon mijëra filtra lënde pa ngrënë kujtesë kushedi."
 
 #: src/olympia/discovery/data.py
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëni foto ekrani {start_sub_heading}me {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
-msgstr "Shumë më tepër se sa një mjet për foto ekrani, kjo shtesë ju lejon gjithashtu të përpunoni, vini shënime dhe ndani figura me të tjerët."
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7256,6 +7311,16 @@ msgid "Cannot diff a version against itself"
 msgstr "Nuk mund të kryhet diff kundrejt vetvetes"
 
 #: src/olympia/files/helpers.py
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#: src/olympia/files/helpers.py
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Pati një gabim në përdorimin e kartelës %s."
+
+#: src/olympia/files/helpers.py
 msgid "That file no longer exists."
 msgstr "Kjo kartelë s’ekziston më."
 
@@ -7275,16 +7340,6 @@ msgstr "Kjo kartelë s’mund të shihet në linjë. Ju lutemi,shkarkojeni karte
 #: src/olympia/files/helpers.py
 msgid "This file is a directory."
 msgstr "Kjo kartelë është drejtori."
-
-#: src/olympia/files/tasks.py
-#, python-format
-msgid "There was an error accessing file %s. %s."
-msgstr "Pati një gabim në përdorimin e kartelës %s. %s."
-
-#: src/olympia/files/tasks.py
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Pati një gabim në përdorimin e kartelës %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-03 12:46+0000\n"
+"POT-Creation-Date: 2017-01-09 09:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3932,14 +3932,6 @@ msgstr ""
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Ȧḓḓ-ǿƞ Ḓǿƈŭḿḗƞŧȧŧīǿƞ :: Ḓḗṽḗŀǿƥḗř Ħŭƀ"
 
-#: src/olympia/devhub/helpers.py
-msgid "My Submissions"
-msgstr "Ḿẏ Şŭƀḿīşşīǿƞş"
-
-#: src/olympia/devhub/helpers.py
-msgid "Developer Docs"
-msgstr "Ḓḗṽḗŀǿƥḗř Ḓǿƈş"
-
 #. L10n: first parameter is the number of errors
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
@@ -4163,14 +4155,14 @@ msgstr "{0} :: Şḗȧřƈħ"
 msgid "Search"
 msgstr "Şḗȧřƈħ"
 
-#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
-msgid "Search Results"
-msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
-
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "Search Results for \"{0}\""
 msgstr "Şḗȧřƈħ Řḗşŭŀŧş ƒǿř \"{0}\""
+
+#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
+msgid "Search Results"
+msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Please enter some search terms."
@@ -4223,7 +4215,7 @@ msgstr "Şŧȧřŧ Ḿȧķīƞɠ Ȧḓḓ-ǿƞş"
 msgid "Status:"
 msgstr "Şŧȧŧŭş:"
 
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "Ŀȧŧḗşŧ Ṽḗřşīǿƞ:"
 
@@ -4355,10 +4347,6 @@ msgstr "Ŧḗşŧḗḓ ƒǿř ƈǿḿƥȧŧīƀīŀīŧẏ ȧɠȧīƞşŧ:"
 msgid "Recent Activity for My Add-ons"
 msgstr "Řḗƈḗƞŧ Ȧƈŧīṽīŧẏ ƒǿř Ḿẏ Ȧḓḓ-ǿƞş"
 
-#: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-msgid "Recent Activity"
-msgstr "Řḗƈḗƞŧ Ȧƈŧīṽīŧẏ"
-
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for {0}"
@@ -4428,6 +4416,10 @@ msgstr "Ȧḓḓ Ȧƞǿŧħḗř Ȧƥƥŀīƈȧŧīǿƞ&hellip;"
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
 msgid "Close"
 msgstr "Ƈŀǿşḗ"
+
+#: src/olympia/devhub/templates/devhub/addons/dashboard.html
+msgid "Recent Activity"
+msgstr "Řḗƈḗƞŧ Ȧƈŧīṽīŧẏ"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
@@ -5299,10 +5291,6 @@ msgid "Queues are not reviewed strictly in order"
 msgstr "Ɋŭḗŭḗş ȧřḗ ƞǿŧ řḗṽīḗẇḗḓ şŧřīƈŧŀẏ īƞ ǿřḓḗř"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Lastest Version:"
-msgstr "Ŀȧşŧḗşŧ Ṽḗřşīǿƞ:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
 msgstr "Ŧħīş īş ŧħḗ ƞḗẇḗşŧ ŭƥŀǿȧḓḗḓ ŭƞŀīşŧḗḓ ṽḗřşīǿƞ."
 
@@ -5446,6 +5434,38 @@ msgstr "Ŀȧŧḗşŧ Ƞḗẇş"
 msgid "Read more in our Blog"
 msgstr "Řḗȧḓ ḿǿřḗ īƞ ǿŭř Ɓŀǿɠ"
 
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "Manage Your Add-on"
+msgstr "Ḿȧƞȧɠḗ Ẏǿŭř Ȧḓḓ-ǿƞ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "Sign In to Edit and Update Your Add-on"
+msgstr "Şīɠƞ Īƞ ŧǿ Ḗḓīŧ ȧƞḓ Ŭƥḓȧŧḗ Ẏǿŭř Ȧḓḓ-ǿƞ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "Evolution in Add-on Development"
+msgstr "Ḗṽǿŀŭŧīǿƞ īƞ Ȧḓḓ-ǿƞ Ḓḗṽḗŀǿƥḿḗƞŧ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
+msgstr "ẆḗƀḖẋŧḗƞşīǿƞş ȧřḗ ƀḗƈǿḿīƞɠ ŧħḗ şŧȧƞḓȧřḓ ƒǿř ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḿḗƞŧ īƞ Ƒīřḗƒǿẋ. Ŧħīş ȧƞḓ ǿŧħḗř ƈħȧƞɠḗş īƞ Ƒīřḗƒǿẋ ḿȧẏ ȧƒƒḗƈŧ ḓḗṽḗŀǿƥḗřş ǿƒ ŀḗɠȧƈẏ ȧḓḓ-ǿƞş."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "Find Out if Your Add-on is Affected"
+msgstr "Ƒīƞḓ Ǿŭŧ īƒ Ẏǿŭř Ȧḓḓ-ǿƞ īş Ȧƒƒḗƈŧḗḓ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
+msgstr "Ŧħīş īş ẇħḗřḗ ẏǿŭ ṽīḗẇ ȧƞḓ ḿȧƞȧɠḗ ẏǿŭř ȧḓḓ-ǿƞş ȧƞḓ ŧħḗḿḗş. Ŧǿ ƥŭƀŀīşħ ẏǿŭř ƒīřşŧ ȧḓḓ-ǿƞ, ƈŀīƈķ \"Şŭƀḿīŧ Ẏǿŭř Ƒīřşŧ Ȧḓḓ-ǿƞ\" ǿř \"Şŭƀḿīŧ Ẏǿŭř Ƒīřşŧ Ŧħḗḿḗ\"."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "Submit Your First Add-on"
+msgstr "Şŭƀḿīŧ Ẏǿŭř Ƒīřşŧ Ȧḓḓ-ǿƞ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "Submit Your First Theme"
+msgstr "Şŭƀḿīŧ Ẏǿŭř Ƒīřşŧ Ŧħḗḿḗ"
+
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Add-on Developer Hub"
 msgstr "Ȧḓḓ-ǿƞ Ḓḗṽḗŀǿƥḗř Ħŭƀ"
@@ -5477,6 +5497,32 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to make an Add-on"
 msgstr "Ŀḗȧřƞ Ħǿẇ ŧǿ ḿȧķḗ ȧƞ Ȧḓḓ-ǿƞ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+msgid "Port a Chrome Extension"
+msgstr "Ƥǿřŧ ȧ Ƈħřǿḿḗ Ḗẋŧḗƞşīǿƞ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+msgid ""
+"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
+msgstr ""
+"Ƒīřḗƒǿẋ şŭƥƥǿřŧş ẆḗƀḖẋŧḗƞşīǿƞ ȦƤĪş, ẇħīƈħ īƞ ḿǿşŧ ƈȧşḗş ȧřḗ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ŧħḗ ḗẋŧḗƞşīǿƞ ȦƤĪş şŭƥƥǿřŧḗḓ ƀẏ Ɠǿǿɠŀḗ, Ƈħřǿḿḗ ȧƞḓ Ǿƥḗřȧ, şǿ ẏǿŭř ḗẋŧḗƞşīǿƞş ẇīŀŀ řŭƞ īƞ Ƒīřḗƒǿẋ ẇīŧħ ĵŭşŧ ȧ ƒḗẇ ƈħȧƞɠḗş."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+msgid "Learn How"
+msgstr "Ŀḗȧřƞ Ħǿẇ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+msgid "Publish Your Add-on"
+msgstr "Ƥŭƀŀīşħ Ẏǿŭř Ȧḓḓ-ǿƞ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgstr "Ħȧṽḗ ẏǿŭ ȧƞ ȧḓḓ-ǿƞ řḗȧḓẏ? Şŭƀḿīŧ ẏǿŭř ḗẋŧḗƞşīǿƞ ǿř ŧħḗḿḗ ŧǿ ƀḗ ŀīşŧḗḓ ǿƞ ȧḓḓǿƞş.ḿǿzīŀŀȧ.ǿřɠ ǿř şīɠƞ ȧƞḓ ḓīşŧřīƀŭŧḗ ẏǿŭř ḗẋŧḗƞşīǿƞ ǿƞ ẏǿŭř ǿẇƞ."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+msgid "Sign in"
+msgstr "Şīɠƞ īƞ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Validator"
@@ -5879,10 +5925,6 @@ msgstr "Şḗŀḗƈŧ ŧħḗ ŧȧřɠḗŧ ƥŀȧŧƒǿřḿ ƒǿř ŧħīş �
 msgid "Manage Version {0}"
 msgstr "Ḿȧƞȧɠḗ Ṽḗřşīǿƞ {0}"
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Status & Versions"
-msgstr "Şŧȧŧŭş & Ṽḗřşīǿƞş"
-
 #. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
@@ -5945,6 +5987,10 @@ msgstr "Ƈřḗȧŧḗḓ ǿƞ %(created)s ȧƞḓ ƈħȧƞɠḗḓ ŧǿ %(statu
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr "Ƈřḗȧŧḗḓ ǿƞ %(created)s ȧƞḓ ƈħȧƞɠḗḓ ŧǿ %(status)s"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Status & Versions"
+msgstr "Şŧȧŧŭş & Ṽḗřşīǿƞş"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
@@ -6170,12 +6216,12 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Ȧ ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ƀŭƞƈħ ǿƒ ḿḗḿǿřẏ."
 
 #: src/olympia/discovery/data.py
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ŧȧķḗ şƈřḗḗƞşħǿŧş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
+msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḗḿǿĵī ḗẋƥřḗşşīǿƞ {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
-msgstr "Şǿ ḿŭƈħ ḿǿřḗ ŧħȧƞ ĵŭşŧ ȧ şƈřḗḗƞşħǿŧ ŧǿǿŀ, ŧħīş ȧḓḓ-ǿƞ ȧŀşǿ ŀḗŧş ẏǿŭ ḗḓīŧ, ȧƞƞǿŧȧŧḗ, ȧƞḓ şħȧřḗ īḿȧɠḗş."
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr "Ḓǿzḗƞş ǿƒ ȧḿȧzīƞɠ ḗḿǿĵīş ƒǿř ḗṽḗřẏ ǿƈƈȧşīǿƞ—ȧŀẇȧẏş ĵŭşŧ ǿƞḗ ƈŀīƈķ ȧẇȧẏ."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7183,6 +7229,16 @@ msgid "Cannot diff a version against itself"
 msgstr "Ƈȧƞƞǿŧ ḓīƒƒ ȧ ṽḗřşīǿƞ ȧɠȧīƞşŧ īŧşḗŀƒ"
 
 #: src/olympia/files/helpers.py
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr "Ƒīŀḗ ṽīḗẇḗř īş ŀǿƈķḗḓ, ḗẋŧřȧƈŧīǿƞ ƒǿř %s ƈǿŭŀḓ ƀḗ īƞ ƥřǿɠřḗşş. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ īƞ ȧƥƥřǿẋīḿȧŧḗŀẏ 5 ḿīƞŭŧḗş."
+
+#: src/olympia/files/helpers.py
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s."
+
+#: src/olympia/files/helpers.py
 msgid "That file no longer exists."
 msgstr "Ŧħȧŧ ƒīŀḗ ƞǿ ŀǿƞɠḗř ḗẋīşŧş."
 
@@ -7202,16 +7258,6 @@ msgstr "Ŧħīş ƒīŀḗ īş ƞǿŧ ṽīḗẇȧƀŀḗ ǿƞŀīƞḗ. Ƥŀ�
 #: src/olympia/files/helpers.py
 msgid "This file is a directory."
 msgstr "Ŧħīş ƒīŀḗ īş ȧ ḓīřḗƈŧǿřẏ."
-
-#: src/olympia/files/tasks.py
-#, python-format
-msgid "There was an error accessing file %s. %s."
-msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s. %s."
-
-#: src/olympia/files/tasks.py
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."

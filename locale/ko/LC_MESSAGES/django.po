@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-03 12:46+0000\n"
+"POT-Creation-Date: 2017-01-09 09:22+0000\n"
 "PO-Revision-Date: 2016-11-29 01:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -3962,14 +3962,6 @@ msgstr ""
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "부가 기능 문서 자료 :: 개발자 허브"
 
-#: src/olympia/devhub/helpers.py
-msgid "My Submissions"
-msgstr "내 제출 내역"
-
-#: src/olympia/devhub/helpers.py
-msgid "Developer Docs"
-msgstr "개발자 문서"
-
 # {0} is a number
 #. L10n: first parameter is the number of errors
 #: src/olympia/devhub/helpers.py
@@ -4193,14 +4185,14 @@ msgstr "{0} :: 검색"
 msgid "Search"
 msgstr "검색"
 
-#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
-msgid "Search Results"
-msgstr "검색 결과"
-
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "Search Results for \"{0}\""
 msgstr "\"{0}\"에 대한 검색 결과"
+
+#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
+msgid "Search Results"
+msgstr "검색 결과"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Please enter some search terms."
@@ -4250,7 +4242,7 @@ msgstr "부가 기능 제작 시작"
 msgid "Status:"
 msgstr "상태:"
 
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "최신 버전:"
 
@@ -4382,10 +4374,6 @@ msgstr "호환성 검사 완료:"
 msgid "Recent Activity for My Add-ons"
 msgstr "내 부가 기능의 최근 활동 내역"
 
-#: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-msgid "Recent Activity"
-msgstr "최근 활동 내역"
-
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for {0}"
@@ -4453,6 +4441,10 @@ msgstr "다른 애플리케이션 추가&hellip;"
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
 msgid "Close"
 msgstr "닫기"
+
+#: src/olympia/devhub/templates/devhub/addons/dashboard.html
+msgid "Recent Activity"
+msgstr "최근 활동 내역"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
@@ -5343,11 +5335,6 @@ msgstr "대기열 순서를 정확하게 지켜가며 심사되지는 않습니�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
-msgid "Lastest Version:"
-msgstr "최신 버전:"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
 msgstr "이 버전이 최신이지만 아직 사이트 상에 올라가지는 않았습니다."
 
@@ -5492,6 +5479,43 @@ msgstr "최신 버전:"
 msgid "Read more in our Blog"
 msgstr "추가 정보 요구"
 
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Manage Your Add-on"
+msgstr "부가 기능 관리하기"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "Sign In to Edit and Update Your Add-on"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Evolution in Add-on Development"
+msgstr "확장 기능 개발"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#, fuzzy
+msgid "Find Out if Your Add-on is Affected"
+msgstr "제작된 부가 기능"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "Submit Your First Add-on"
+msgstr "부가 기능 등록"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "Submit Your First Theme"
+msgstr "테마 제출"
+
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, fuzzy
@@ -5527,6 +5551,35 @@ msgstr ""
 #, fuzzy
 msgid "Learn How to make an Add-on"
 msgstr "부가 기능에 대해 더 알아보기"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+#, fuzzy
+msgid "Port a Chrome Extension"
+msgstr "인기 확장 기능"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+msgid ""
+"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+#, fuzzy
+msgid "Learn How"
+msgstr "더 알아보기"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+#, fuzzy
+msgid "Publish Your Add-on"
+msgstr "부가 기능 관리하기"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
+#, fuzzy
+msgid "Sign in"
+msgstr "부가 기능 등록"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -5941,10 +5994,6 @@ msgstr "이 파일을 쓸 플랫폼을 선택하세요"
 msgid "Manage Version {0}"
 msgstr "버전 {0} 관리"
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Status & Versions"
-msgstr "상태 및 버전"
-
 # {0} is the name of the collection
 #. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
@@ -6006,6 +6055,10 @@ msgstr "%(created)s에 생성되었으며 %(status_date)s에 %(status)s 상태�
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr "%(created)s에 생성되었으며 %(status)s 상태로 변경됨"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Status & Versions"
+msgstr "상태 및 버전"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
@@ -6239,11 +6292,11 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -7264,6 +7317,16 @@ msgid "Cannot diff a version against itself"
 msgstr "같은 파일끼리 버전 비교는 할 수 없습니다."
 
 #: src/olympia/files/helpers.py
+#, python-format
+msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
+msgstr ""
+
+#: src/olympia/files/helpers.py
+#, python-format
+msgid "There was an error accessing file %s."
+msgstr "%s 파일을 접근하는 과정에서 오류가 발생했습니다."
+
+#: src/olympia/files/helpers.py
 msgid "That file no longer exists."
 msgstr "그 파일은 더이상 존재하지 않습니다."
 
@@ -7283,16 +7346,6 @@ msgstr "이 파일은 온라인상에서 조회가 불가능합니다. 내용을
 #: src/olympia/files/helpers.py
 msgid "This file is a directory."
 msgstr "이 파일은 디렉토리입니다."
-
-#: src/olympia/files/tasks.py
-#, python-format
-msgid "There was an error accessing file %s. %s."
-msgstr "%s 파일을 접근하는 과정에서 오류가 발생했습니다. %s."
-
-#: src/olympia/files/tasks.py
-#, python-format
-msgid "There was an error accessing file %s."
-msgstr "%s 파일을 접근하는 과정에서 오류가 발생했습니다."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
