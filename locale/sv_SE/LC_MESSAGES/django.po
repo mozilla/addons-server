@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 16:20+0000\n"
+"PO-Revision-Date: 2017-01-09 16:22+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -7299,7 +7299,7 @@ msgstr "Kan inte jämföra en version mot sig själv"
 #: src/olympia/files/helpers.py
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Filvisaren är låst, extraktion för %s kan vara på gång. Försök igen om cirka 5 minuter."
 
 #: src/olympia/files/helpers.py
 #, python-format
