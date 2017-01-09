@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 13:13+0000\n"
+"PO-Revision-Date: 2017-01-09 18:17+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6482,7 +6482,7 @@ msgstr ""
 
 #: src/olympia/editors/tasks.py
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Tanemmirt ɣef tuzna n usentel"
 
 #: src/olympia/editors/tasks.py
 msgid "A problem with your Theme submission"
@@ -6494,7 +6494,7 @@ msgstr ""
 
 #: src/olympia/editors/tasks.py
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Asteqsi ɣef tuzna n usentel inek"
 
 #: src/olympia/editors/views.py
 msgid "New Add-ons (Under 5 days)"
@@ -7679,15 +7679,15 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "Arubel n Bilarus"
 
 #: src/olympia/lib/constants.py
 msgid "Belize Dollar"
-msgstr ""
+msgstr "Adulaṛ n Belize"
 
 #: src/olympia/lib/constants.py
 msgid "Canada Dollar"
-msgstr ""
+msgstr "Adulaṛ n Kanada"
 
 #: src/olympia/lib/constants.py
 msgid "Congo/Kinshasa Franc"
@@ -7695,11 +7695,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "Afṛank n Swis"
 
 #: src/olympia/lib/constants.py
 msgid "Chile Peso"
-msgstr ""
+msgstr "Apizu n Cili"
 
 #: src/olympia/lib/constants.py
 msgid "China Yuan Renminbi"
@@ -7707,19 +7707,19 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Colombia Peso"
-msgstr ""
+msgstr "Apisu n Kulumbya"
 
 #: src/olympia/lib/constants.py
 msgid "Costa Rica Colon"
-msgstr ""
+msgstr "Akulun n Kosta Rika"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Convertible Peso"
-msgstr ""
+msgstr "Apizu yettwaselkaten n Kuba"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Peso"
-msgstr ""
+msgstr "Apizu n Kuba"
 
 #: src/olympia/lib/constants.py
 msgid "Cape Verde Escudo"
@@ -8254,6 +8254,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, yettwasnen s yisem n \"AMO\", d asmel unṣib n Mozilla i yizegrar yellan i yiseɣẓanen am Firefox, Thunderbird akked SeaMonkey. Izegrar sirigen timerna n tmahilin timaynutin a "
+"yesniflen tarrayt n tiddin n iminig inek neɣ asnas inek. Ger tiṭ udiɣ snirem akk tazmert d-ittunefken."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
@@ -8264,6 +8266,8 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"Izegrar i d-yettwaseknen dagi rnan-ten ineflayen n tmezdagnut ama d imdanen yeffe q lḥir neɣ tikebbaniyin. Akk izegrar yellan s wudem azayez sneqden-ten trebbaɛ n imaẓragen seld ad d-ffɣen. Izegrar "
+"irmitanen ur ttwasenqden ara ihi ɣur-k ticki ad ten-tesbeddeḍ."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
