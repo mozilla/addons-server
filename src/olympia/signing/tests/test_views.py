@@ -114,6 +114,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 201
         assert qs.exists()
         addon = qs.get()
+        assert addon.guid == guid
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_NULL
@@ -431,6 +432,48 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
             latest_version, is_beta=False)
+
+    def test_addon_does_not_exist_webextension_with_guid_in_url(self):
+        guid = '@custom-guid-provided'
+        # Override the filename self.request() picks, we want that specific
+        # file but with a custom guid.
+        filename = self.xpi_filepath('@create-webextension', '1.0')
+        response = self.request(
+            'PUT',  # PUT, not POST, since we're specifying a guid in the URL.
+            filename=filename,
+            addon=guid,  # Will end up in the url since we're not passing one.
+            version='1.0')
+        assert response.status_code == 201
+
+        assert response.data['guid'] == '@custom-guid-provided'
+        addon = Addon.unfiltered.get(guid=response.data['guid'])
+        assert addon.guid == '@custom-guid-provided'
+
+        version = Version.objects.get(addon__guid=guid, version='1.0')
+        assert version.files.all()[0].is_webextension is True
+        assert addon.has_author(self.user)
+        assert not addon.is_listed
+        assert addon.status == amo.STATUS_NULL
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        self.auto_sign_version.assert_called_with(
+            latest_version, is_beta=False)
+
+    def test_addon_does_not_exist_webextension_with_invalid_guid_in_url(self):
+        guid = 'custom-invalid-guid-provided'
+        # Override the filename self.request() picks, we want that specific
+        # file but with a custom guid.
+        filename = self.xpi_filepath('@create-webextension', '1.0')
+        response = self.request(
+            'PUT',  # PUT, not POST, since we're specifying a guid in the URL.
+            filename=filename,
+            addon=guid,  # Will end up in the url since we're not passing one.
+            version='1.0')
+        assert response.status_code == 400
+        assert response.data['error'] == u'Invalid GUID in URL'
+        assert not Addon.unfiltered.filter(guid=guid).exists()
 
     def test_optional_id_not_allowed_for_regular_addon(self):
         response = self.request(

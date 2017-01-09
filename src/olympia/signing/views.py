@@ -48,8 +48,11 @@ def with_addon(allow_missing=False):
     will call the view with addon set to None."""
     def wrapper(fn):
         @functools.wraps(fn)
-        def inner(view, request, guid=None, **kwargs):
+        def inner(view, request, **kwargs):
+            guid = kwargs.get('guid', None)
             try:
+                if guid is None:
+                    raise Addon.DoesNotExist('No GUID')
                 addon = Addon.unfiltered.get(guid=guid)
             except Addon.DoesNotExist:
                 if allow_missing:
@@ -83,7 +86,7 @@ class VersionView(APIView):
     permission_classes = [IsAuthenticated]
 
     @handle_read_only_mode
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
         version_string = request.data.get('version', None)
 
         try:
@@ -101,7 +104,7 @@ class VersionView(APIView):
     def put(self, request, addon, version_string, guid=None):
         try:
             file_upload, created = self.handle_upload(
-                request, addon, version_string)
+                request, addon, version_string, guid=guid)
         except forms.ValidationError as exc:
             return Response(
                 {'error': exc.message},
@@ -113,7 +116,7 @@ class VersionView(APIView):
         return Response(FileUploadSerializer(file_upload).data,
                         status=status_code)
 
-    def handle_upload(self, request, addon, version_string):
+    def handle_upload(self, request, addon, version_string, guid=None):
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
         else:
@@ -147,14 +150,25 @@ class VersionView(APIView):
                 _('Version already exists.'),
                 status.HTTP_409_CONFLICT)
 
+        package_guid = pkg.get('guid', None)
+
         dont_allow_no_guid = (
-            not addon and not pkg.get('guid', None) and
+            not addon and not package_guid and
             not pkg.get('is_webextension', False))
 
         if dont_allow_no_guid:
             raise forms.ValidationError(
                 _('Only WebExtensions are allowed to omit the GUID'),
                 status.HTTP_400_BAD_REQUEST)
+
+        if guid is not None and not addon and not package_guid:
+            # No guid was present in the package, but one was provided in the
+            # URL, so we take it instead of generating one ourselves. But
+            # first, validate it properly.
+            if not amo.ADDON_GUID_PATTERN.match(guid):
+                raise forms.ValidationError(
+                    _('Invalid GUID in URL'), status.HTTP_400_BAD_REQUEST)
+            pkg['guid'] = guid
 
         # channel will be ignored for new addons and while waffle
         # 'mixed-listed-unlisted' is disabled.

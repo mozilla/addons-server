@@ -545,3 +545,9 @@ E10S_COMPATIBILITY_CHOICES_API = {
     E10S_COMPATIBLE: 'compatible',
     E10S_INCOMPATIBLE: 'incompatible',
 }
+
+ADDON_GUID_PATTERN = re.compile(
+    # Match {uuid} or something@host.tld ("something" being optional)
+    # guids. Copied from mozilla-central XPIProvider.jsm.
+    r'^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
+    r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
