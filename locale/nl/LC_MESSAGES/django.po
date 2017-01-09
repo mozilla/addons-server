@@ -5492,7 +5492,7 @@ msgstr "Evolutie in ontwikkeling van add-ons"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr "WebExtensies worden de standaard voor de ontwikkeling van add-ons in Firefox. Deze en andere wijzigingen kunnen invloed hebben op ontwikkelaars van verouderde add-ons."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Find Out if Your Add-on is Affected"
@@ -10138,7 +10138,7 @@ msgstr "Versie bestaat al."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr "Alleen WebExtensies mogen de GUID weglaten"
+msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
