@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 15:20+0000\n"
+"PO-Revision-Date: 2017-01-09 15:39+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5520,35 +5520,31 @@ msgstr "Керуйте своїм додатком"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Увійдіть, щоб змінювати й оновлювати свій додаток"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Evolution in Add-on Development"
-msgstr "Розробка розширення"
+msgstr "Прогрес розробки додатку"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr ""
+msgstr "WebExtensions стають стандартом в розробці додатків для Firefox. Ці, а також інші зміни в Firefox можуть вплинути на розробників попередніх додатків."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Find Out if Your Add-on is Affected"
-msgstr "Впливає на додатки"
+msgstr "Дізнайтеся чи це впливає на ваш додаток"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Тут ви переглядаєте і керуєте своїми додатками й темами. Для публікації свого першого додатку чи теми, натисніть \"Опублікувати свій перший додаток\" чи \"Опублікувати свою першу тему\"."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Submit Your First Add-on"
-msgstr "Представити додаток"
+msgstr "Опублікувати свій перший додаток"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Submit Your First Theme"
-msgstr "Представити тему"
+msgstr "Опублікувати свою першу тему"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Add-on Developer Hub"
@@ -5583,33 +5579,31 @@ msgid "Learn How to make an Add-on"
 msgstr "Дізнайтеся, як створити додаток"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "Популярні розширення"
+msgstr "Порт розширення Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox підтримує API для WebExtension, що в більшості випадків є сумісним з API звичайних розширень, які підтримуються Google Chrome і Opera, тому ваші розширення будуть працювати в Firefox лише з "
+"деякими змінами."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Learn How"
-msgstr "Дізнатись більше"
+msgstr "Дізнайтеся як"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Publish Your Add-on"
-msgstr "Публікуйте Ваші додатки!"
+msgstr "Опублікуйте свій додаток"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Вже маєте готовий додаток чи тему? Подайте їх для публікації на addons.mozilla.org, або ж підпишіть та поширюйте їх власними засобами."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Sign in"
-msgstr "Увійти"
+msgstr "Вхід"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Validator"
@@ -6302,13 +6296,12 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Легкий та ефективний додаток для блокування реклами. uBlock Origin забезпечує тисячами фільтрів вмісту без впливу на споживання пам'яті."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Виражайте емоції {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "Десятки чудових emoji на будь-який випадок — лише за один клік."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7332,7 +7325,7 @@ msgstr "Різниця версії проти самої себе неможл�
 #: src/olympia/files/helpers.py
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Переглядач файлів заблокований. Видобування для %s може все ще тривати. Спробуйте знову через 5 хвилин."
 
 #: src/olympia/files/helpers.py
 #, python-format
