@@ -5546,14 +5546,12 @@ msgstr "Informatie over het maken van een add-on"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Port a Chrome Extension"
-msgstr "Een Chrome-extensie overzetten"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"Firefox ondersteunt WebExtension-API’s, die in de meeste gevallen compatibel zijn met extensie-API’s die worden ondersteund door Google, Chrome en Opera, dus uw extensies kunnen in Firefox draaien "
-"met slechts een paar aanpassingen."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Learn How"
@@ -5565,7 +5563,7 @@ msgstr "Uw add-on publiceren"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Hebt u een add-on klaar? Dien uw add-on of thema in voor vermelding op addons.mozilla.org of onderteken en verspreid zelf uw extensie."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign in"
@@ -6273,11 +6271,11 @@ msgstr "Een lichtgewicht en effectieve advertentieblokkeerder. uBlock Origin han
 
 #: src/olympia/discovery/data.py
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Emoji-uitdrukkingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Tientallen geweldige emoji’s voor elke gelegenheid — altijd op een muisklik afstand."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
