@@ -2,7 +2,6 @@ import functools
 import hashlib
 import json
 import random
-import re
 import uuid
 from operator import attrgetter
 
@@ -610,11 +609,6 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     ]
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
-    addon_id_pattern = re.compile(
-        # Match {uuid} or something@host.tld ("something" being optional)
-        # guids. Copied from mozilla-central XPIProvider.jsm.
-        r'^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
-        r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
     # Permission classes disallow access to non-public/unlisted add-ons unless
     # logged in as a reviewer/addon owner/admin, so we don't have to filter the
     # base queryset here.
@@ -646,7 +640,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             # If the identifier contains anything other than a digit, it's
             # either a slug or a guid. guids need to contain either {} or @,
             # which are invalid in a slug.
-            if self.addon_id_pattern.match(identifier):
+            if amo.ADDON_GUID_PATTERN.match(identifier):
                 lookup_field = 'guid'
             else:
                 lookup_field = 'slug'
