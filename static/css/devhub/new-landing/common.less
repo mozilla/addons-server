@@ -95,15 +95,33 @@
 .DevHub-callout-box {
   border: 8px solid @color-callout-border;
   background: #fff;
-  padding: 0 20px 20px;
   // Override default padding on container
   // with negative margin.
   margin: 0 -20px -20px;
+  padding: 0 20px 20px;
+  position: relative;
 
   @media @medium {
     box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 0.15);
     margin: -50px auto 0 auto;
-    max-width: 75%;
+    max-width: 80%;
+  }
+
+  &::after {
+    background-image: url(../../../img/developers/new-landing/ladder.png);
+    background-repeat: no-repeat;
+    content: '';
+    display: block;
+    height: 275px;
+    position: absolute;
+    right: -186px;
+    top: 100px;
+    width: 227px;
+
+    @media @retina {
+      background-image: url(../../../img/developers/new-landing/ladder-2x.png);
+      background-size: 100%;
+    }
   }
 }
 
@@ -112,6 +130,10 @@
   background: url(../../../img/developers/new-landing/callout-header-fox.svg) no-repeat 100% 50%;
   padding-right: 35px;
   min-height: 50px;
+}
+
+.DevHub-callout-copy {
+  padding-right: 25px;
 }
 
 .DevHub-content-header--manage {
@@ -124,11 +146,11 @@
   background-image: url(../../../img/developers/new-landing/manage-addon.png);
   background-size: auto 50%;
   background-repeat: no-repeat;
-  background-position: 0 0;
+  background-position: 50% 10px;
 
   @media @medium {
-    background-size: 100%;
-    background-position: 100% 100%;
+    background-position: 30px 100%;
+    background-size: auto 95%;
   }
 
   @media @retina {
@@ -148,6 +170,10 @@
 
 .DevHub-content-copy--evolution {
   margin-bottom: 0;
+
+  .Button--evolution {
+    margin: 20px auto 10px;
+  }
 }
 
 @media @small {
