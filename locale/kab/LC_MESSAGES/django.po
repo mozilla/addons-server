@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 19:43+0000\n"
+"PO-Revision-Date: 2017-01-09 20:28+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9215,7 +9215,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr ""
+msgstr "D acu i d anamek ticki azegri yessutur attekki?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
