@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 19:40+0000\n"
+"PO-Revision-Date: 2017-01-09 19:43+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9147,7 +9147,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "Amek limer ɣur-i uguren akked uzegrir?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9173,7 +9173,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I can't find an add-on I'm looking for?"
-msgstr ""
+msgstr "Ma yella ur uffiɣ ara azegrir i ttnadiɣ?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9184,7 +9184,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr ""
+msgstr "D acu d anamek ma yella azegrir d \"armitan\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9196,7 +9196,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr ""
+msgstr "D acu d anamek ma yella azegrir \"ur ittwacegger ara\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9207,7 +9207,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How much do add-ons cost to purchase?"
-msgstr ""
+msgstr "Acḥal yeswa uzegrir i tiɣin?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
