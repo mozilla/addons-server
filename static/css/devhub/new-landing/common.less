@@ -3,19 +3,23 @@
 
   > div {
     color: @color-text;
-    padding: 20px 20px;
+    padding: 20px;
 
     @media @medium {
       margin: 0 auto;
       max-width: @grid-max;
-      padding: 20px 60px;
+      padding: 0;
     }
   }
 
-  p,
+  p {
+    color: @color-text;
+    font-weith: 300;
+  }
+
   li {
     color: @color-text;
-    font-weight: 300;
+    font-weight: 400;
   }
 }
 
