@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 17:25+0000\n"
+"PO-Revision-Date: 2017-01-09 17:41+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5595,6 +5595,8 @@ msgstr "Woblubowane rozšěrjenja"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox podpěruje API WebExtension, kotrež su zwjetša z API rozšěrjenjow kompatibelne, kotrež so přez Google, Chrome a Opera podpěruja, tak zo budu waše rozšěrjenja z jenož mało změnami w Firefox "
+"fungować."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 #, fuzzy
@@ -5608,7 +5610,7 @@ msgstr "Wozjewće swoje přidatki!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Maće hotowy přidatk? Zapodajće swoje rozšěrjenje abo swoju drastu, zo byštej so na addons.mozilla.org nalistowałoj abo signujće a rozdźělće swoje rozšěrjenje sam."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 #, fuzzy
@@ -6316,7 +6318,7 @@ msgstr "Blokujće wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "Dwanatki wulkotnych emodźije za kóždu składnosć - přeco jenož jedne kliknjenje zdaleny."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7355,7 +7357,7 @@ msgstr "Wersija njeda so ze sobu přirunać"
 #: src/olympia/files/helpers.py
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Datajowy wobhladowak je zawrjeny, wupakowanje %s snano hižo běži. Prošu spytajće za něšto 5 mjeńšin hisće raz."
 
 #: src/olympia/files/helpers.py
 #, python-format
