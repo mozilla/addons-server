@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-10 12:02+0000\n"
+"PO-Revision-Date: 2017-01-10 12:14+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -5478,7 +5478,7 @@ msgstr "Jo add-on beheare"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Meld jo oan om jo add-on te bewurkjen en by te wurkjen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Evolution in Add-on Development"
@@ -5486,15 +5486,15 @@ msgstr "Evolúsje yn ûntwikkeling fan add-ons"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr ""
+msgstr "WebExtensions wurde de standert foar ûntwikkeling fan add-ons yn Firefox. Dizze en oare wizigingen kinne ynfloed hawwe op ûntwikkelers fan ferâldere add-ons."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Find Out if Your Add-on is Affected"
-msgstr ""
+msgstr "Untdek de gefolgen foar jo add-on"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Hjir besjogge en beheare jo jo add-ons en tema’s. Klik op ‘Jo earste add-on yntsjinje’ of ‘Jo earste tema yntsjinje’ om jo earste add-on te publisearjen."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Submit Your First Add-on"
@@ -5545,23 +5545,22 @@ msgstr "In Chrome-útwreiding portearje"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox stipet WebExtension-API’s, dy't yn de measte gefallen kompatibel binne mei de útwreidings-API’s dy't troch Google, Chrome en Opera stipe wurde, dus jo útwreidingen kinne mei mar in pear "
+"oanpassingen yn Firefox wurkje."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Learn How"
 msgstr "Mear ynfo"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Publish Your Add-on"
-msgstr "Publisearje jo add-ons!"
+msgstr "Jo add-on publisearje"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Hawwe jo in add-on klear? Tsjinje jo útwreiding of tema yn foar fermelding op addons.mozilla.org, of ûndertekenje en distribuearje jo útwreiding sels."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Sign in"
 msgstr "Oanmelde"
 
@@ -6258,13 +6257,12 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ienfâldich tagong ta blêdwizers {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgstr "Emoji-útdrukking {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "Tsientallen geweldige emoji’s foar elke gelegenheid – altyd fia ien mûsklik."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6316,62 +6314,62 @@ msgstr "Filterje op automatyske falidaasje"
 
 #: src/olympia/editors/forms.py
 msgid "containing"
-msgstr ""
+msgstr "befettet"
 
 #. L10n: start, as in "start date"
 #: src/olympia/editors/forms.py
 msgid "start"
-msgstr ""
+msgstr "start"
 
 #. L10n: end, as in "end date"
 #: src/olympia/editors/forms.py
 msgid "end"
-msgstr ""
+msgstr "ein"
 
 #. L10n: Description of what can be searched for
 #: src/olympia/editors/forms.py
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "add-on, editor of opmerking"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Sykje op add-onnamme / e-mailadres skriuwer"
 
 #: src/olympia/editors/forms.py
 msgid "yes"
-msgstr ""
+msgstr "ja"
 
 #: src/olympia/editors/forms.py
 msgid "no"
-msgstr ""
+msgstr "nee"
 
 #: src/olympia/editors/forms.py
 msgid "Admin Flag"
-msgstr ""
+msgstr "Behearderslabel"
 
 #: src/olympia/editors/forms.py
 msgid "Add-on Types"
-msgstr ""
+msgstr "Add-ontypen"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Sykje op add-onnamme / e-mailadres skriuwer / guid"
 
 #: src/olympia/editors/forms.py
 msgid "Max. Version"
-msgstr ""
+msgstr "Maks. ferzje"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
-msgstr ""
+msgstr "Opmerkingen:"
 
 #: src/olympia/editors/forms.py
 msgid "Operating systems:"
-msgstr ""
+msgstr "Bestjoeringssysteem:"
 
 #: src/olympia/editors/forms.py
 msgid "Applications:"
-msgstr ""
+msgstr "Tapassingen:"
 
 #: src/olympia/editors/forms.py
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
@@ -7276,7 +7274,7 @@ msgstr ""
 #: src/olympia/files/helpers.py
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Bestânswerjefe is beskoattele, ekstraksje foar %s is mooglik yn behanneling. Probearje it oer 5 minuten nochris."
 
 #: src/olympia/files/helpers.py
 #, python-format
