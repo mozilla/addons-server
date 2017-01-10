@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-10 13:40+0000\n"
+"PO-Revision-Date: 2017-01-10 13:49+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -7834,7 +7834,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Egypt Pound"
-msgstr ""
+msgstr "Λίρα Αιγύπτου"
 
 #: src/olympia/lib/constants.py
 msgid "Eritrea Nakfa"
@@ -7846,11 +7846,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Euro Member Countries"
-msgstr ""
+msgstr "Ευρώ Χωρών-Μελών Ευρωζώνης"
 
 #: src/olympia/lib/constants.py
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "Δολάριο Φίτζι"
 
 #: src/olympia/lib/constants.py
 msgid "Falkland Islands (Malvinas) Pound"
@@ -7858,7 +7858,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "United Kingdom Pound"
-msgstr ""
+msgstr "Λίρα Ηνωμένου Βασιλείου"
 
 #: src/olympia/lib/constants.py
 msgid "Georgia Lari"
@@ -7874,7 +7874,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Gibraltar Pound"
-msgstr ""
+msgstr "Λίρα Γιβραλτάρ"
 
 #: src/olympia/lib/constants.py
 msgid "Gambia Dalasi"
@@ -7882,7 +7882,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Guinea Franc"
-msgstr ""
+msgstr "Φράγκο Γουινέας"
 
 #: src/olympia/lib/constants.py
 msgid "Guatemala Quetzal"
@@ -7930,11 +7930,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "Δηνάριο Ιράκ"
 
 #: src/olympia/lib/constants.py
 msgid "Iran Rial"
-msgstr ""
+msgstr "Ριάλ Ιράν"
 
 #: src/olympia/lib/constants.py
 msgid "Iceland Krona"
@@ -7974,15 +7974,15 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Korea (North) Won"
-msgstr ""
+msgstr "Γουόν (Βόρειας) Κορέας"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (South) Won"
-msgstr ""
+msgstr "Γουόν (Νότιας) Κορέας"
 
 #: src/olympia/lib/constants.py
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "Δηνάριο Κουβέιτ"
 
 #: src/olympia/lib/constants.py
 msgid "Cayman Islands Dollar"
