@@ -108,7 +108,7 @@
   @media @medium {
     box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 0.15);
     margin: -50px auto 0 auto;
-    max-width: 80%;
+    max-width: 70%;
   }
 
   &::after {
@@ -119,7 +119,7 @@
     height: 275px;
     position: absolute;
     right: -186px;
-    top: 100px;
+    top: ~"calc(50% - 57px)"; // Top of the image to the cog.
     width: 227px;
 
     @media @retina {
@@ -137,7 +137,7 @@
 }
 
 .DevHub-callout-copy {
-  padding-right: 25px;
+  padding-right: 30px;
 }
 
 .DevHub-content-header--manage {
@@ -210,6 +210,10 @@
     max-width: 66%;
   }
 
+  .DevHub-content-copy .Button {
+    margin-top: 25px;
+  }
+
   .DevHub-content-copy--manage .Button {
     display: inline-block;
   }
@@ -218,6 +222,10 @@
   .DevHub-content-copy--evolution {
       margin-bottom: 0;
       width: 50%;
+  }
+
+  .DevHub-publish-addon .DevHub-content-container {
+    padding-bottom: 40px;
   }
 
   .DevHub-content-copy {
@@ -243,7 +251,7 @@
       display: block;
       // Pad out the wrapper to a percentage
       // based on the wrapper's width.
-      padding-bottom: 67%;
+      padding-bottom: 70%;
 
       .DevHub-publish-addon & {
         padding-bottom: 60%;
