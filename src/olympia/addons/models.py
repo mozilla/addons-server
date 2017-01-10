@@ -7,6 +7,7 @@ import posixpath
 import re
 import time
 from operator import attrgetter
+from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
@@ -499,7 +500,7 @@ class Addon(OnChangeMixin, ModelBase):
             # The last parameter is needed to automagically create an AddonLog.
             amo.log(amo.LOG.DELETE_ADDON, self.pk, unicode(self.guid), self)
             self.update(status=amo.STATUS_DELETED, slug=None,
-                        _current_version=None)
+                        _current_version=None, modified=datetime.now())
             models.signals.post_delete.send(sender=Addon, instance=self)
 
             send_mail(subject, email_msg, recipient_list=to)
