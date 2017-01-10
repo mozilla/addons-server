@@ -1265,8 +1265,8 @@ body:not(.developer-hub) section.secondary {
   text-decoration: underline;
 }
 
-.notice.c.author a.download { 
-  text-decoration: none; 
+.notice.c.author a.download {
+  text-decoration: none;
 }
 
 .notice.c.author {
@@ -2123,8 +2123,12 @@ h3.author .transfer-ownership {
     width: 74%;
   }
 
-  .stat-criteria .island.criteria {
-    float: left;
+  .stat-criteria {
+    overflow: auto;
+
+    .island.criteria {
+      float: left;
+    }
   }
 
   .notification-box {
