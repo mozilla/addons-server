@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-10 12:39+0000\n"
+"PO-Revision-Date: 2017-01-10 12:47+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5676,6 +5676,7 @@ msgstr "Portar uma Extensão do Chrome"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"O Firefox suporta APIs WebExtension, que na maioria das vezes são compatíveis com APIs suportadas pelo Google, Chrome e Opera, assim sua extensão funcionará no Firefox com pequenas modificações."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Learn How"
@@ -5687,7 +5688,7 @@ msgstr "Publicar sua Extensão"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Você tem uma extensão pronta? Envie sua extensão ou tema para aparecer no addons.mozilla.org ou identifique-se e distribua você mesmo."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign in"
@@ -6414,7 +6415,7 @@ msgstr "Se expressar por emoji {start_sub_heading}com {addon_name}{end_sub_headi
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "Muitos emojis incríveis para todas as ocasiões — a um clique de distância."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7451,7 +7452,7 @@ msgstr "Não é possível comparar a mesma versão"
 #: src/olympia/files/helpers.py
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Visualizador de arquivo está bloqueado, extração para %s pode estar em andamento. Por favor, tente novamente em aproximadamente 5 minutos."
 
 #: src/olympia/files/helpers.py
 #, python-format
