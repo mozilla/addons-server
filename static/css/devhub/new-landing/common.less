@@ -8,13 +8,13 @@
     @media @medium {
       margin: 0 auto;
       max-width: @grid-max;
-      padding: 0;
+      padding: 0 20px;
     }
   }
 
   p {
     color: @color-text;
-    font-weith: 300;
+    font-weight: 300;
   }
 
   li {
@@ -85,10 +85,21 @@
   top: 20px;
   right: 20px;
   z-index: 2;
+
+  html[dir=rtl] & {
+    left: 20px;
+    right: auto;
+  }
 }
 
 .DevHub-content-image-wrapper--publish-addon {
   right: 0;
+
+  html[dir=rtl] & {
+    transform: scaleX(-1);
+    left: 0;
+    right: auto;
+  }
 }
 
 .DevHub-content-copy {
@@ -119,8 +130,14 @@
     height: 275px;
     position: absolute;
     right: -186px;
-    top: ~"calc(50% - 57px)"; // Top of the image to the cog.
+    top: ~"calc(50% - 57px)"; // 57px is from the top of the image to the orange cog.
     width: 227px;
+
+    html[dir=rtl] & {
+      left: -186px;
+      right: auto;
+      transform: scaleX(-1);
+    }
 
     @media @retina {
       background-image: url(../../../img/developers/new-landing/ladder-2x.png);
@@ -131,13 +148,40 @@
 
 .DevHub-callout-header {
   font-size: 22px;
-  background: url(../../../img/developers/new-landing/callout-header-fox.svg) no-repeat 100% 50%;
-  padding-right: 35px;
   min-height: 50px;
+  padding-right: 35px;
+  position: relative;
+
+  &::after {
+    background: url(../../../img/developers/new-landing/callout-header-fox.svg) no-repeat 100% 50%;
+    content: '';
+    display: inline-block;
+    height: 52px;
+    position: absolute;
+    right: 0;
+    top: ~"calc(50% - 26px)";
+    width: 47px
+  }
+
+  html[dir=rtl] & {
+    padding-right: 0;
+    padding-left: 35px;
+
+    &::after {
+      transform: scaleX(-1);
+      left: 0;
+      right: auto;
+    }
+  }
 }
 
 .DevHub-callout-copy {
   padding-right: 30px;
+
+  html[dir=rtl] & {
+    padding-left: 30px;
+    padding-right: 0;
+  }
 }
 
 .DevHub-content-header--manage {
@@ -155,6 +199,10 @@
   @media @medium {
     background-position: 30px 100%;
     background-size: auto 95%;
+
+    html[dir=rtl] & {
+      background-position: 100% 30px;
+    }
   }
 
   @media @retina {
@@ -208,6 +256,10 @@
   .DevHub-content-header--manage {
     text-align: left;
     max-width: 66%;
+
+    html[dir=rtl] & {
+      text-align: right;
+    }
   }
 
   .DevHub-content-copy .Button {
@@ -264,7 +316,12 @@
   }
 
   .DevHub-content-image-wrapper--publish-addon {
-    right: 20px;
+    right: 80px;
+
+    html[dir=rtl] & {
+      left: 80px;
+      right: 0;
+    }
   }
 
   .DevHub-content-image {
@@ -273,6 +330,11 @@
     right: 0;
     left: 20px;
     bottom: 0;
+
+    html[dir=rtl] & {
+      left: 0;
+      right: 20px;
+    }
   }
 
   .DevHub-content-image--publish-addon {

@@ -17,6 +17,11 @@
     @media @large {
       display: inline;
       margin-left: 10px;
+
+      html[dir=rtl] & {
+        margin-left: 0;
+        margin-right: 10px;
+      }
     }
   }
 }
