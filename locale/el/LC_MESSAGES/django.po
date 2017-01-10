@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-10 13:06+0000\n"
+"PO-Revision-Date: 2017-01-10 13:21+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5204,7 +5204,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "API Credentials"
-msgstr ""
+msgstr "Διαπιστευτήρια API"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
@@ -5217,11 +5217,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
-msgstr ""
+msgstr "Εκδότης JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT secret"
-msgstr ""
+msgstr "Μυστικό JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
@@ -5244,7 +5244,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Δημιουργία νέων διαπιστευτηρίων"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
@@ -5777,7 +5777,7 @@ msgstr "Επιλέξτε μια διαφορετική άδεια."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Επιλέξτε μια άδεια για το θέμα σας."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Design"
@@ -5809,15 +5809,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Header"
-msgstr ""
+msgstr "Κεφαλίδα"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Footer"
-msgstr ""
+msgstr "Υποσέλιδο"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Επιλέξτε χρώματα για το θέμα σας."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Foreground Text"
@@ -5841,16 +5841,16 @@ msgstr "Προεπισκόπηση"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Το όνομα του θέματός σας"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "από <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Δημιουργία νέου θέματος"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
@@ -6111,7 +6111,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Αυτή τη στιγμή στο AMO"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/files_view.html
@@ -6120,15 +6120,15 @@ msgstr "Επικύρωση"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Διαγραφή/Απενεργοποίηση"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Επόμενη έκδοση αυτού του προσθέτου"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
-msgstr ""
+msgstr "Παλαιότερες εκδόσεις"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i>?"
@@ -6488,15 +6488,15 @@ msgstr[1] "{0} ημέρες"
 
 #: src/olympia/editors/helpers.py
 msgid "Last Review"
-msgstr ""
+msgstr "Τελευταία αξιολόγηση"
 
 #: src/olympia/editors/helpers.py
 msgid "Last Update"
-msgstr ""
+msgstr "Τελευταία ενημέρωση"
 
 #: src/olympia/editors/helpers.py
 msgid "No Reviews"
-msgstr ""
+msgstr "Καμία κριτική"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
@@ -6731,15 +6731,15 @@ msgstr "Λεπτομέρειες καταγραφής"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Add-on Title"
-msgstr ""
+msgstr "Τίτλος προσθέτου"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review Title"
-msgstr ""
+msgstr "Τίτλος κριτικής"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review Text"
-msgstr ""
+msgstr "Κείμενο κριτικής"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review was flagged prior to deletion."
@@ -6774,7 +6774,7 @@ msgstr[1] "{0} πρόσθετα"
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -6790,7 +6790,7 @@ msgstr "Νέοι συντάκτες"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "Είστε #{0} με {1} κριτικές"
 
 #. num = number of reviews in the queue
 #: src/olympia/editors/templates/editors/home.html
@@ -6997,11 +6997,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
-msgstr ""
+msgstr "(διαχειριστής)"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Admin Page"
-msgstr ""
+msgstr "Σελίδα διαχειριστή"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Review This Add-on"
@@ -7049,7 +7049,7 @@ msgstr "Περιεχόμενα"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Compare"
-msgstr ""
+msgstr "Σύγκριση"
 
 #: src/olympia/editors/templates/editors/includes/history.html
 #, python-format
@@ -7116,7 +7116,7 @@ msgstr "Ημερομηνία Επιθεώρησης"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Action"
-msgstr ""
+msgstr "Ενέργεια"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Reason"
@@ -7389,15 +7389,15 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Deleted files:"
-msgstr ""
+msgstr "Διαγραμμένα αρχεία:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Hide known files"
-msgstr ""
+msgstr "Απόκρυψη γνωστών αρχείων"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Έκδοση SDK προσθέτου:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Tab stops:"
@@ -7489,7 +7489,7 @@ msgstr "Συγκρίνετε τιμές με μια γρήγορη ματιά ό
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Θέματα της Hμέρας του Αγίου Πατρικίου"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
@@ -7517,7 +7517,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "Πρόσθετα A+ για το σχολείο"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add-ons for teachers, parents, and students heading back to school."
@@ -7537,7 +7537,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Η αγάπη είναι στον αέρα"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add some romance to your Firefox."
@@ -7674,19 +7674,19 @@ msgstr "Ξεκινήστε"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "Δράμι Ηνωμένων Αραβικών Εμιράτων"
 
 #: src/olympia/lib/constants.py
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "Αφγάνι Αφγανιστάν"
 
 #: src/olympia/lib/constants.py
 msgid "Albania Lek"
-msgstr ""
+msgstr "Λεκ Αλβανίας"
 
 #: src/olympia/lib/constants.py
 msgid "Armenia Dram"
-msgstr ""
+msgstr "Δράμι Αρμενίας"
 
 #: src/olympia/lib/constants.py
 msgid "Netherlands Antilles Guilder"
@@ -8499,7 +8499,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Localizers"
-msgstr ""
+msgstr "Μεταφραστές"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Reviewers"
@@ -8551,7 +8551,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Sections"
-msgstr ""
+msgstr "Ενότητες"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developing an Add-on"
@@ -8774,7 +8774,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No."
-msgstr ""
+msgstr "Όχι."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
@@ -9741,7 +9741,7 @@ msgstr "Απάντηση στην αξιολόγηση"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit reply"
-msgstr ""
+msgstr "Επεξεργασία απάντησης"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit review"
@@ -9749,7 +9749,7 @@ msgstr "Επεξεργασία αξιολόγησης"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Delete reply"
-msgstr ""
+msgstr "Διαγραφή απάντησης"
 
 #. {0} is an add-on name.
 #: src/olympia/reviews/templates/reviews/review_list.html
@@ -9910,11 +9910,11 @@ msgstr ""
 #. L10n: "All Systems" means show everything regardless of platform.
 #: src/olympia/search/views.py
 msgid "All Systems"
-msgstr ""
+msgstr "Όλα τα συστήματα"
 
 #: src/olympia/search/views.py
 msgid "All Tags"
-msgstr ""
+msgstr "Όλες οι ετικέτες"
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/collections.html
@@ -9927,7 +9927,7 @@ msgstr "Αποτελέσματα αναζήτησης συλλογών"
 
 #: src/olympia/search/templates/search/down.html
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Μη διαθέσιμη αναζήτηση"
 
 #: src/olympia/search/templates/search/down.html
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
@@ -10151,7 +10151,7 @@ msgstr "ημέρα"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "week"
-msgstr ""
+msgstr "εβδομάδα"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "month"
@@ -11204,7 +11204,7 @@ msgstr "ID μηνύματος"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
-msgstr ""
+msgstr "Μήνυμα"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy
@@ -11217,7 +11217,7 @@ msgstr "Επηρεασμένα πρόσθετα"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr ""
+msgstr "Πρόσθετο"
 
 #: src/olympia/zadmin/views.py
 msgid "Validation Result"
