@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 14:53+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2017-01-09 15:53+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -5492,7 +5492,7 @@ msgstr "Evolutie in ontwikkeling van add-ons"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr ""
+msgstr "WebExtensions worden de standaard voor ontwikkeling van add-ons in Firefox. Deze en andere wijzigingen kunnen invloed hebben op ontwikkelaars van verouderde add-ons."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Find Out if Your Add-on is Affected"
@@ -5546,12 +5546,14 @@ msgstr "Informatie over het maken van een add-on"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Port a Chrome Extension"
-msgstr ""
+msgstr "Een Chrome-extensie porteren"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox ondersteunt WebExtension-API’s, die in de meeste gevallen compatibel zijn met de extensie-API’s die door Google, Chrome en Opera worden ondersteund, dus uw extensies kunnen met slechts een "
+"paar aanpassingen in Firefox werken."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Learn How"
@@ -5563,7 +5565,7 @@ msgstr "Uw add-on publiceren"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Hebt u een add-on af? Dien uw extensie of thema in voor vermelding op addons.mozilla.org, of onderteken en distribueer uw extensie zelf."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign in"
@@ -6271,11 +6273,11 @@ msgstr "Een lichtgewicht en effectieve advertentieblokkeerder. uBlock Origin han
 
 #: src/olympia/discovery/data.py
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Emoji-uitdrukking {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "Tientallen geweldige emoji’s voor elke gelegenheid – altijd via één muisklik."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -10136,7 +10138,7 @@ msgstr "Versie bestaat al."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Alleen WebExtensions mogen de GUID weglaten"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
