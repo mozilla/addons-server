@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-10 13:21+0000\n"
+"PO-Revision-Date: 2017-01-10 13:40+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -7690,55 +7690,55 @@ msgstr "Δράμι Αρμενίας"
 
 #: src/olympia/lib/constants.py
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "Φιορίνι Ολλανδικών Αντιλλών"
 
 #: src/olympia/lib/constants.py
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "Κουάνζα Ανγκόλας"
 
 #: src/olympia/lib/constants.py
 msgid "Argentina Peso"
-msgstr ""
+msgstr "Πέσο Αργεντινής"
 
 #: src/olympia/lib/constants.py
 msgid "Australia Dollar"
-msgstr ""
+msgstr "Δολάριο Αυστραλίας"
 
 #: src/olympia/lib/constants.py
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "Φιορίνι Αρούμπα"
 
 #: src/olympia/lib/constants.py
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "Νέο Μανάτ Αζερμπαϊτζάν"
 
 #: src/olympia/lib/constants.py
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "Μετατρέψιμο Μάρκο Βοσνίας και Ερζεγοβίνης"
 
 #: src/olympia/lib/constants.py
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "Δολάριο Μπαρμπάντος"
 
 #: src/olympia/lib/constants.py
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "Τάκα Μπανγκλαντές"
 
 #: src/olympia/lib/constants.py
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "Λεβ Βουλγαρίας"
 
 #: src/olympia/lib/constants.py
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "Δηνάριο Μπαχρέιν"
 
 #: src/olympia/lib/constants.py
 msgid "Burundi Franc"
-msgstr ""
+msgstr "Φράγκο Μπουρουντί"
 
 #: src/olympia/lib/constants.py
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "Δολάριο Βερμούδων"
 
 #: src/olympia/lib/constants.py
 msgid "Brunei Darussalam Dollar"
@@ -7954,7 +7954,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Japan Yen"
-msgstr ""
+msgstr "Γιεν Ιαπωνίας"
 
 #: src/olympia/lib/constants.py
 msgid "Kenya Shilling"
@@ -8230,7 +8230,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Δηνάριο Τυνησίας"
 
 #: src/olympia/lib/constants.py
 msgid "Tonga Pa'anga"
@@ -8238,7 +8238,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Λίρα Τουρκίας"
 
 #: src/olympia/lib/constants.py
 msgid "Trinidad and Tobago Dollar"
@@ -8290,7 +8290,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Τάλα Σαμόα"
 
 #: src/olympia/lib/constants.py
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
@@ -8298,7 +8298,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Δολάριο Ανατολικής Καραϊβικής"
 
 #: src/olympia/lib/constants.py
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
@@ -8310,23 +8310,23 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "Φράγκο Γαλλικών Αποικιών Ειρηνικού (CFP)"
 
 #: src/olympia/lib/constants.py
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Ριάλ Υεμένης"
 
 #: src/olympia/lib/constants.py
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Ραντ Νοτίου Αφρικής"
 
 #: src/olympia/lib/constants.py
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Κουάτσα Ζάμπιας"
 
 #: src/olympia/lib/constants.py
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Δολάριο Ζιμπάμπουε"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
