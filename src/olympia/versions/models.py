@@ -131,14 +131,15 @@ class Version(OnChangeMixin, ModelBase):
 
     @classmethod
     def from_upload(cls, upload, addon, platforms, channel, send_signal=True,
-                    source=None, is_beta=False):
+                    source=None, is_beta=False, parsed_data=None):
         from olympia.addons.models import AddonFeatureCompatibility
 
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(
                 'Addon is Mozilla Disabled; no new versions are allowed.')
 
-        data = utils.parse_addon(upload, addon)
+        if parsed_data is None:
+            parsed_data = utils.parse_addon(upload, addon)
         license_id = None
         if channel == amo.RELEASE_CHANNEL_LISTED:
             previous_version = addon.find_latest_version_including_rejected(
@@ -147,7 +148,7 @@ class Version(OnChangeMixin, ModelBase):
                 license_id = previous_version.license_id
         version = cls.objects.create(
             addon=addon,
-            version=data['version'],
+            version=parsed_data['version'],
             license_id=license_id,
             source=source,
             channel=channel,
@@ -157,7 +158,7 @@ class Version(OnChangeMixin, ModelBase):
         amo.log(amo.LOG.ADD_VERSION, version, addon)
         # Update the add-on e10s compatibility since we're creating a new
         # version that may change that.
-        e10s_compatibility = data.get('e10s_compatibility')
+        e10s_compatibility = parsed_data.get('e10s_compatibility')
         if e10s_compatibility is not None:
             feature_compatibility = (
                 AddonFeatureCompatibility.objects.get_or_create(addon=addon)[0]
@@ -165,7 +166,7 @@ class Version(OnChangeMixin, ModelBase):
             feature_compatibility.update(e10s=e10s_compatibility)
 
         compatible_apps = {}
-        for app in data.get('apps', []):
+        for app in parsed_data.get('apps', []):
             compatible_apps[app.appdata] = ApplicationsVersions(
                 version=version, min=app.min, max=app.max, application=app.id)
             compatible_apps[app.appdata].save()
@@ -184,8 +185,8 @@ class Version(OnChangeMixin, ModelBase):
             platforms = cls._make_safe_platform_files(platforms)
 
         for platform in platforms:
-            File.from_upload(upload, version, platform, parse_data=data,
-                             is_beta=is_beta)
+            File.from_upload(upload, version, platform,
+                             parsed_data=parsed_data, is_beta=is_beta)
 
         version.disable_old_files()
         # After the upload has been copied to all platforms, remove the upload.

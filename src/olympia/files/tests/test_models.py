@@ -919,15 +919,17 @@ class TestFileFromUpload(UploadTest):
 
     def test_no_restart_true(self):
         upload = self.upload('jetpack')
-        d = parse_addon(upload.path)
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.no_restart
+        data = parse_addon(upload.path)
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parsed_data=data)
+        assert file_.no_restart
 
     def test_no_restart_false(self):
         upload = self.upload('extension')
-        d = parse_addon(upload.path)
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert not f.no_restart
+        data = parse_addon(upload.path)
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parsed_data=data)
+        assert not file_.no_restart
 
     def test_utf8(self):
         upload = self.upload(u'jétpack')
@@ -947,20 +949,21 @@ class TestFileFromUpload(UploadTest):
 
     def test_public_to_beta(self):
         upload = self.upload('beta-extension')
-        d = parse_addon(upload.path)
+        data = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert self.addon.status == amo.STATUS_PUBLIC
-        f = File.from_upload(upload, self.version, self.platform, is_beta=True,
-                             parse_data=d)
-        assert f.status == amo.STATUS_BETA
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 is_beta=True, parsed_data=data)
+        assert file_.status == amo.STATUS_BETA
 
     def test_public_to_unreviewed(self):
         upload = self.upload('extension')
-        d = parse_addon(upload.path)
+        data = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert self.addon.status == amo.STATUS_PUBLIC
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_AWAITING_REVIEW
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parsed_data=data)
+        assert file_.status == amo.STATUS_AWAITING_REVIEW
 
     def test_file_hash_paranoia(self):
         upload = self.upload('extension')
@@ -969,9 +972,10 @@ class TestFileFromUpload(UploadTest):
 
     def test_strict_compat(self):
         upload = self.upload('strict-compat')
-        d = parse_addon(upload.path)
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.strict_compatibility
+        data = parse_addon(upload.path)
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parsed_data=data)
+        assert file_.strict_compatibility
 
     def test_theme_extension(self):
         upload = self.upload('theme.jar')
@@ -985,22 +989,24 @@ class TestFileFromUpload(UploadTest):
 
     def test_langpack_extension(self):
         upload = self.upload('langpack.xpi')
-        d = parse_addon(upload.path)
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.filename.endswith('.xpi')
-        assert f.no_restart
+        data = parse_addon(upload.path)
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parsed_data=data)
+        assert file_.filename.endswith('.xpi')
+        assert file_.no_restart
 
     def test_search_extension(self):
         upload = self.upload('search.xml')
-        d = parse_addon(upload.path)
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.filename.endswith('.xml')
-        assert f.no_restart
+        data = parse_addon(upload.path)
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parsed_data=data)
+        assert file_.filename.endswith('.xml')
+        assert file_.no_restart
 
     def test_multi_package(self):
         upload = self.upload('multi-package')
         file_ = File.from_upload(upload, self.version, self.platform,
-                                 parse_data={'is_multi_package': True})
+                                 parsed_data={'is_multi_package': True})
         assert file_.is_multi_package
 
     def test_not_multi_package(self):
@@ -1011,19 +1017,19 @@ class TestFileFromUpload(UploadTest):
     def test_experiment(self):
         upload = self.upload('telemetry_experiment')
         file_ = File.from_upload(upload, self.version, self.platform,
-                                 parse_data={'is_experiment': True})
+                                 parsed_data={'is_experiment': True})
         assert file_.is_experiment
 
     def test_not_experiment(self):
         upload = self.upload('extension')
         file_ = File.from_upload(upload, self.version, self.platform,
-                                 parse_data={'is_experiment': False})
+                                 parsed_data={'is_experiment': False})
         assert not file_.is_experiment
 
     def test_webextension(self):
         upload = self.upload('webextension')
         file_ = File.from_upload(upload, self.version, self.platform,
-                                 parse_data={'is_webextension': True})
+                                 parsed_data={'is_webextension': True})
         assert file_.is_webextension
 
     def test_webextension_zip(self):
@@ -1032,7 +1038,7 @@ class TestFileFromUpload(UploadTest):
         """
         upload = self.upload('webextension.zip')
         file_ = File.from_upload(upload, self.version, self.platform,
-                                 parse_data={'is_webextension': True})
+                                 parsed_data={'is_webextension': True})
         assert file_.filename.endswith('.xpi')
         assert file_.is_webextension
         storage.delete(upload.path)
@@ -1043,7 +1049,7 @@ class TestFileFromUpload(UploadTest):
         """
         upload = self.upload('webextension.crx')
         file_ = File.from_upload(upload, self.version, self.platform,
-                                 parse_data={'is_webextension': True})
+                                 parsed_data={'is_webextension': True})
         assert file_.filename.endswith('.xpi')
         assert file_.is_webextension
         storage.delete(upload.path)
@@ -1054,7 +1060,7 @@ class TestFileFromUpload(UploadTest):
         """
         upload = self.upload('https-everywhere.crx')
         file_ = File.from_upload(upload, self.version, self.platform,
-                                 parse_data={'is_webextension': True})
+                                 parsed_data={'is_webextension': True})
         assert file_.filename.endswith('.xpi')
         assert file_.is_webextension
         storage.delete(upload.path)
@@ -1069,7 +1075,7 @@ class TestFileFromUpload(UploadTest):
     def test_not_webextension(self):
         upload = self.upload('extension')
         file_ = File.from_upload(upload, self.version, self.platform,
-                                 parse_data={})
+                                 parsed_data={})
         assert not file_.is_experiment
 
 
