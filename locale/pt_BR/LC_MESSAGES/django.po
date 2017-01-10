@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-10 00:05+0000\n"
+"PO-Revision-Date: 2017-01-10 12:39+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5607,7 +5607,7 @@ msgstr "Gerenciar sua Extensão"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Identifique-se para editar e atualizar sua extensão"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Evolution in Add-on Development"
@@ -5615,7 +5615,7 @@ msgstr "Evolução no desenvolvimento da extensão"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr ""
+msgstr "WebExtensions está se tornando padrão para desenvolver extensões no Firefox. Essa e outras mudanças podem afetar desenvolvedores de extensões legadas."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Find Out if Your Add-on is Affected"
@@ -5623,7 +5623,7 @@ msgstr "Descubra se sua Extensão é afetada"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Aqui é onde você gerencia suas extensões e temas. Para publicar sua primeira extensão, clique em \"Enviar sua primeira extensão\" ou \"Enviar seu primeiro Tema\"."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Submit Your First Add-on"
@@ -6409,9 +6409,8 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Um bloqueador de anúncios leve e eficiente. O uBlock Origin aplica milhares de filtros de conteúdo sem consumir muita memória."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Se expressar por emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
