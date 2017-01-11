@@ -1505,14 +1505,13 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted,
 
         if version:
             is_beta = version.is_beta
-            parse_data = parse_addon(data['upload'], addon)
             for platform in data.get('supported_platforms', []):
                 File.from_upload(
                     upload=data['upload'],
                     version=version,
                     platform=platform,
                     is_beta=is_beta,
-                    parse_data=parse_data)
+                    parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         elif addon:
             is_beta = data['beta'] and channel == amo.RELEASE_CHANNEL_LISTED
@@ -1522,7 +1521,8 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted,
                 platforms=data.get('supported_platforms', []),
                 channel=channel,
                 source=data['source'],
-                is_beta=is_beta)
+                is_beta=is_beta,
+                parsed_data=data['parsed_data'])
             url_args = [addon.slug, version.id]
         else:
             is_beta = False
@@ -1530,7 +1530,8 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted,
                 upload=data['upload'],
                 platforms=data.get('supported_platforms', []),
                 source=data['source'],
-                channel=channel)
+                channel=channel,
+                parsed_data=data['parsed_data'])
             version = addon.find_latest_version(channel=channel)
             AddonUser(addon=addon, user=request.user).save()
             url_args = [addon.slug]

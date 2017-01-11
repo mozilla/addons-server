@@ -573,7 +573,8 @@ def fetch_langpack(url, xpi, **kw):
                             u'name {old_name!r} already exists, trying '
                             u'{name!r}.'.format(**data))
 
-            addon = Addon.from_upload(upload, [amo.PLATFORM_ALL.id], data=data)
+            addon = Addon.from_upload(
+                upload, [amo.PLATFORM_ALL.id], parsed_data=data)
             AddonUser(addon=addon, user=owner).save()
             version = addon.versions.get()
 

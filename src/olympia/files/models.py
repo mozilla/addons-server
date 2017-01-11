@@ -141,9 +141,9 @@ class File(OnChangeMixin, ModelBase):
 
     @classmethod
     def from_upload(cls, upload, version, platform, is_beta=False,
-                    parse_data=None):
-        if parse_data is None:
-            parse_data = {}
+                    parsed_data=None):
+        if parsed_data is None:
+            parsed_data = {}
         addon = version.addon
 
         file_ = cls(version=version, platform=platform)
@@ -157,12 +157,12 @@ class File(OnChangeMixin, ModelBase):
         data = cls.get_jetpack_metadata(upload.path)
         if 'sdkVersion' in data and data['sdkVersion']:
             file_.jetpack_version = data['sdkVersion'][:10]
-        file_.no_restart = parse_data.get('no_restart', False)
-        file_.strict_compatibility = parse_data.get('strict_compatibility',
-                                                    False)
-        file_.is_multi_package = parse_data.get('is_multi_package', False)
-        file_.is_experiment = parse_data.get('is_experiment', False)
-        file_.is_webextension = parse_data.get('is_webextension', False)
+        file_.no_restart = parsed_data.get('no_restart', False)
+        file_.strict_compatibility = parsed_data.get('strict_compatibility',
+                                                     False)
+        file_.is_multi_package = parsed_data.get('is_multi_package', False)
+        file_.is_experiment = parsed_data.get('is_experiment', False)
+        file_.is_webextension = parsed_data.get('is_webextension', False)
 
         if (is_beta and addon.status == amo.STATUS_PUBLIC and
                 version.channel == amo.RELEASE_CHANNEL_LISTED):

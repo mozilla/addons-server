@@ -581,19 +581,20 @@ class NewUploadForm(AddonUploadForm):
 
         if not self.errors:
             self._clean_upload()
-            xpi = parse_addon(self.cleaned_data['upload'], self.addon)
+            parsed_data = parse_addon(self.cleaned_data['upload'], self.addon)
 
             if self.version:
-                if xpi['version'] != self.version.version:
+                if parsed_data['version'] != self.version.version:
                     raise forms.ValidationError(_("Version doesn't match"))
             elif self.addon:
                 # Make sure we don't already have this version.
                 version_exists = Version.unfiltered.filter(
-                    addon=self.addon, version=xpi['version']).exists()
+                    addon=self.addon, version=parsed_data['version']).exists()
                 if version_exists:
                     msg = _(u'Version %s already exists, or was uploaded '
                             u'before.')
-                    raise forms.ValidationError(msg % xpi['version'])
+                    raise forms.ValidationError(msg % parsed_data['version'])
+            self.cleaned_data['parsed_data'] = parsed_data
         return self.cleaned_data
 
 

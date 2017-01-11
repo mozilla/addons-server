@@ -565,12 +565,11 @@ class Addon(OnChangeMixin, ModelBase):
 
     @classmethod
     def from_upload(cls, upload, platforms, source=None,
-                    channel=amo.RELEASE_CHANNEL_LISTED, data=None):
-        if not data:
-            data = parse_addon(upload)
+                    channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=None):
+        if not parsed_data:
+            parsed_data = parse_addon(upload)
 
-        addon = cls.initialize_addon_from_upload(
-            data=data, upload=upload, channel=channel)
+        addon = cls.initialize_addon_from_upload(parsed_data, upload, channel)
 
         if upload.validation_timeout:
             addon.update(admin_review=True)
