@@ -2,7 +2,7 @@
 @import 'fonts';
 
 // Grid
-@grid-max: 940px;
+@grid-max: 960px;
 @extra-small: ~"only screen and (max-width: 399px)";
 @small: ~"only screen and (min-width: 400px)";
 @medium: ~"only screen and (min-width: 700px)";
@@ -56,11 +56,17 @@ img {
   max-width: 100%;
 }
 
+html {
+  // prevent horizontal scrollbars.
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   padding: 0;
   display: flex;
   flex-flow: column;
+  line-height: 1.35;
 }
 
 h1 {
