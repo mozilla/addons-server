@@ -3,7 +3,36 @@
     <h2>{{ ('My Add-ons') }}</h2>
 
     {% if recent_addons %}
-      Addons list...
+      <div class="DevHub-MyAddons-List">
+        {% for item in recent_addons %}
+          <div class="DevHub-MyAddons-Item">
+            <img class="DevHub-MyAddons-Icon" src="{{ item.addon.get_icon_url(64) }}" alt="">
+            <div class="DevHub-MyAddons-ItemDetails">
+              <span>{{ item.addon.name }}</span>
+              <a href="{{ item.addon.get_dev_url('edit') }}">{{ _('Edit Listing') }}</a>
+            </div>
+
+            <span class="DevHub-MyAddons-LastUpdated">
+              {% if item.addon.last_updated %}
+                {{ _('Last Updated:') }}
+                {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
+                {{ item.addon.last_updated|datetime(_('%%b %%e, %%Y')) }}
+              {% else %}
+                {{ _('Created:') }}
+                {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
+                {{ item.addon.created|datetime(_('%%b %%e, %%Y')) }}
+              {% endif %}
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="DevHub-MyAddons-ActionButtons">
+        <a class="DevHub-MyAddons-AllSubmissions" href="{{ url('devhub.addons') }}">{{ _('View All Submissions') }}</a>
+        <div class="DevHub-MyAddons-Submit">
+          <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit a New Add-on') }}</a>
+          <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit a New Theme') }}</a>
+        </div>
+      </div>
     {% else %}
       <p class="DevHub-MyAddons-copy">
         {% trans %}
