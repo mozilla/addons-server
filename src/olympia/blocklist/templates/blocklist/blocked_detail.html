@@ -5,8 +5,6 @@
 {% set details = item.details %}
 
 {% block content %}
-{{ breadcrumbs([(url('blocked.list'), _('Blocklist')),
-                (None, details.name)]) }}
 
 <section class="blocked">
   {# L10n: {0} is an add-on name. #}

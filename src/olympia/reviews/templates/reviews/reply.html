@@ -9,10 +9,6 @@
 
 {% block content %}
 
-  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                         (addon.get_url_path(), addon.name),
-                         (addon.reviews_url, _('Reviews')),
-                         (None, _('Reply'))]) }}
   <h1>{{ title }}</h1>
 
   <div class="secondary">

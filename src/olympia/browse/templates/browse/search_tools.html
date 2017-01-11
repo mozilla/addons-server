@@ -27,11 +27,9 @@
 <div class="primary" role="main">
   <header>
     {% if category %}
-      {{ breadcrumbs([(url('browse.search-tools'), title), (None, category.name)]) }}
       <hgroup>
         <h2>{{ category.name }}</h2>
     {% else %}
-      {{ breadcrumbs([(None, title)]) }}
       <hgroup>
         <h2>{{ title }}</h2>
     {% endif %}

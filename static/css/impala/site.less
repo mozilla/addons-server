@@ -378,54 +378,6 @@ header + .island {
     }
 }
 
-#breadcrumbs {
-    font-family: @serif-stack;
-    color: #666;
-
-    li {
-        display: inline;
-
-        &:before {
-            content: '\00bb';
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-        a.home {
-            background: url(../../img/impala/breadcrumb-home.png) no-repeat;
-            display: block;
-            float: left;
-            height: 13px;
-            overflow: hidden;
-            text-indent: -9999px;
-            text-decoration: none;
-            width: 15px;
-            margin: 2px 2px 0 0;
-
-            &:hover {
-                opacity: .7;
-            }
-        }
-        &:first-child:before {
-            content: none;
-        }
-    }
-}
-
-// Legacy breadcrumbs for impalacized dev docs.
-ol#breadcrumbs li:before {
-    padding-right: 3px;
-}
-
-#breadcrumbs,
-#breadcrumbs + h1 {
-    margin-bottom: 15px;
-}
-
-.island #breadcrumbs,
-.island #breadcrumbs + h1 {
-    margin-bottom: 5px;
-}
-
 .js-hidden, #popup-staging, .hidden {
     display: none;
 }
@@ -451,10 +403,6 @@ a.more-info {
     }
     a.more-info {
         float: left;
-    }
-    #breadcrumbs a.home {
-        float: right;
-        margin: 2px 0 0 2px;
     }
 }
 

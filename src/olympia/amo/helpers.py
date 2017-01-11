@@ -31,7 +31,6 @@ from jingo_minify.helpers import (
 from olympia import amo
 from olympia.amo import utils, urlresolvers
 from olympia.constants.licenses import PERSONA_LICENSES_IDS
-from olympia.translations.helpers import truncate
 
 # Yanking filters from Django.
 register.filter(defaultfilters.slugify)
@@ -244,58 +243,6 @@ def page_title(context, title):
     # preserve the type of `title` in case it's a jinja2 `Markup` (safe,
     # escaped) object.
     return format_html(u'{} :: {}', title, base_title)
-
-
-@register.function
-@jinja2.contextfunction
-def breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
-    """
-    show a list of breadcrumbs. If url is None, it won't be a link.
-    Accepts: [(url, label)]
-    """
-    if add_default:
-        app = context['request'].APP
-        crumbs = [(urlresolvers.reverse('home'), page_name(app))]
-    else:
-        crumbs = []
-
-    # add user-defined breadcrumbs
-    if items:
-        try:
-            crumbs += items
-        except TypeError:
-            crumbs.append(items)
-
-    crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
-    c = {'breadcrumbs': crumbs}
-    t = get_env().get_template('amo/breadcrumbs.html').render(c)
-    return jinja2.Markup(t)
-
-
-@register.function
-@jinja2.contextfunction
-def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
-    """
-    show a list of breadcrumbs. If url is None, it won't be a link.
-    Accepts: [(url, label)]
-    """
-    if add_default:
-        base_title = page_name(context['request'].APP)
-        crumbs = [(urlresolvers.reverse('home'), base_title)]
-    else:
-        crumbs = []
-
-    # add user-defined breadcrumbs
-    if items:
-        try:
-            crumbs += items
-        except TypeError:
-            crumbs.append(items)
-
-    crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
-    c = {'breadcrumbs': crumbs, 'has_home': add_default}
-    t = get_env().get_template('amo/impala/breadcrumbs.html').render(c)
-    return jinja2.Markup(t)
 
 
 @register.filter

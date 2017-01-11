@@ -470,15 +470,6 @@ class TestCRUD(TestCase):
         r = self.client.get(self.add_url)
         assert r.status_code == 200
 
-    def test_breadcrumbs(self):
-        r = self.client.get(self.add_url)
-        expected = [
-            ('Add-ons for Firefox', reverse('home')),
-            ('Collections', reverse('collections.list')),
-            ('Create', None)
-        ]
-        amo.tests.check_links(expected, pq(r.content)('#breadcrumbs li'))
-
     def test_submit(self):
         """Test submission of addons."""
         # TODO(davedash): Test file uploads, test multiple addons.
@@ -535,22 +526,6 @@ class TestCRUD(TestCase):
         r = self.client.get(url, follow=True)
         assert Collection.objects.get(slug=self.slug).author_id == (
             long(pq(r.content)('#contributor-ac').attr('data-owner')))
-
-    def test_edit_breadcrumbs(self):
-        c = Collection.objects.all()[0]
-        r = self.client.get(reverse('collections.edit',
-                                    args=[c.author.username, c.slug]))
-        links = pq(r.content.decode('utf-8'))('#breadcrumbs li')
-        expected = [
-            ('Add-ons for Firefox', reverse('home')),
-            ('Collections', reverse('collections.list')),
-            (c.author.name, reverse('collections.user',
-                                    args=[c.author.username])),
-            (c.name, reverse('collections.detail',
-                             args=[c.author.username, c.slug])),
-            ('Edit', None),
-        ]
-        amo.tests.check_links(expected, links)
 
     def test_edit_post(self):
         """Test edit of collection."""
@@ -782,22 +757,6 @@ class TestCRUD(TestCase):
             '&#34;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
         )
         assert name not in r.content
-
-    def test_delete_breadcrumbs(self):
-        c = Collection.objects.all()[0]
-        r = self.client.get(reverse('collections.delete',
-                                    args=[c.author.username, c.slug]))
-        links = pq(r.content.decode('utf-8'))('#breadcrumbs li')
-        expected = [
-            ('Add-ons for Firefox', reverse('home')),
-            ('Collections', reverse('collections.list')),
-            (c.author.name, reverse('collections.user',
-                                    args=[c.author.username])),
-            (c.name, reverse('collections.detail',
-                             args=[c.author.username, c.slug])),
-            ('Delete', None),
-        ]
-        amo.tests.check_links(expected, links)
 
     @patch('olympia.access.acl.action_allowed')
     def test_admin(self, f):

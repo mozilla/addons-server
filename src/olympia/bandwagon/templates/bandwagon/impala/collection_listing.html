@@ -16,12 +16,6 @@
 
 {% block primary %}
 <section class="primary">
-  {% if sort %}
-    {{ impala_breadcrumbs([(url('collections.list'), _('Collections')),
-                           (None, title)]) }}
-    <h1>{{ title }}</h1>
-  {% else %}
-    {{ impala_breadcrumbs([(None, _('Collections'))]) }}
     <masthead class="hero" id="collections-landing">
       <h1>{{ title }}</h1>
       <p>
@@ -32,7 +26,6 @@
         {% endtrans %}
       </p>
     </masthead>
-  {% endif %}
   <div class="island hero c listing">
     <a href="{{ feed_url }}" id="subscribe">{{ _('Subscribe') }}</a>
     {{ impala_addon_listing_header(url_base, filter.opts, sorting, filter.extras) }}

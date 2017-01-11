@@ -1974,31 +1974,6 @@ ol.pagination li a:active {
 }
 /* @end */
 
-/* @group Breadcrumbs */
-
-ol.breadcrumbs {
-    font-weight: bold;
-    margin-bottom: 1.3em;
-    font-size: 0.846em;
-    margin-left: 0;
-    clear: both;
-}
-
-ol.breadcrumbs li {
-    display: inline;
-    background-image: url(../../img/icons/buttons/breadcrumb.gif);
-    background-repeat: no-repeat;
-    background-position: top right;
-    padding-right: 1em;
-}
-
-ol.breadcrumbs li:last-child {
-    background-image: none;
-    padding-right: 0;
-}
-
-/* @end */
-
 /* @group Feedback Form */
 
 form.addon-feedback {
@@ -2898,13 +2873,6 @@ background-position:left -303px;
 
 .html-rtl .stats span {
     text-align: right;
-}
-
-.html-rtl ol.breadcrumbs li {
-    unicode-bidi: embed;
-    background-position:left -50px;
-    padding-right:0;
-    padding-left:1em;
 }
 
 /* @end */

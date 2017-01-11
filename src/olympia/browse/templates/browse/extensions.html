@@ -2,11 +2,6 @@
 
 {% block primary %}
 <section class="primary">
-  {% if category %}
-    {{ impala_breadcrumbs([base_crumb, (None, title)]) }}
-  {% else %}
-    {{ impala_breadcrumbs([base_crumb]) }}
-  {% endif %}
   <h1>{{ title }}</h1>
   <div class="island hero c listing">
     {% if feed_url %}

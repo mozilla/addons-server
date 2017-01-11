@@ -14,9 +14,6 @@
 {% endblock %}
 
 {% block content %}
-  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                         (addon.get_url_path(), addon.name),
-                         (None if page == 'list' else addon.reviews_url, _('Reviews'))]) }}
   {% block review_header %}
   <header>
     <hgroup>

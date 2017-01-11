@@ -53,13 +53,6 @@ class EditorTest(TestCase):
         a = Addon.objects.create(name='yermom', type=amo.ADDON_EXTENSION)
         return Review.objects.create(user=u, addon=a)
 
-    def _test_breadcrumbs(self, expected=None):
-        if expected is None:
-            expected = []
-        r = self.client.get(self.url)
-        expected.insert(0, ('Editor Tools', reverse('editors.home')))
-        check_links(expected, pq(r.content)('#breadcrumbs li'), verify=False)
-
 
 class TestEventLog(EditorTest):
 
@@ -106,9 +99,6 @@ class TestEventLog(EditorTest):
     def test_no_results(self):
         r = self.client.get(self.url, dict(end='2004-01-01'))
         assert '"no-results"' in r.content, 'Expected no results to be found.'
-
-    def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Moderated Review Log', None)])
 
 
 class TestEventLogDetail(TestEventLog):
@@ -169,9 +159,6 @@ class TestBetaSignedLog(EditorTest):
         ActivityLog.objects.all().delete()
         response = self.client.get(self.url)
         assert '"no-results"' in response.content
-
-    def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Signed Beta Files Log', None)])
 
 
 class TestReviewLog(EditorTest):
@@ -350,9 +337,6 @@ class TestReviewLog(EditorTest):
         r = self.client.get(self.url, dict(search='xxx'))
         assert r.status_code == 200
         assert pq(r.content)('.no-results').length == 1
-
-    def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Add-on Review Log', None)])
 
     @patch('olympia.devhub.models.ActivityLog.arguments', new=Mock)
     def test_addon_missing(self):
@@ -921,9 +905,6 @@ class TestPendingQueue(QueueTest):
     def test_results(self):
         self._test_results()
 
-    def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Updates', None)])
-
     def test_queue_count(self):
         self._test_queue_count(1, 'Updates', 2)
 
@@ -942,9 +923,6 @@ class TestNominatedQueue(QueueTest):
 
     def test_results(self):
         self._test_results()
-
-    def test_breadcrumbs(self):
-        self._test_breadcrumbs([('New Add-ons', None)])
 
     def test_results_two_versions(self):
         version1 = self.addons['Nominated One'].versions.all()[0]
@@ -1126,9 +1104,6 @@ class TestModeratedQueue(QueueTest):
     def test_queue_count(self):
         self._test_queue_count(2, 'Moderated Review', 1)
 
-    def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Moderated Reviews', None)])
-
     def test_no_reviews(self):
         Review.objects.all().delete()
 
@@ -1177,9 +1152,6 @@ class TestUnlistedAllList(QueueTest):
                 channel=amo.RELEASE_CHANNEL_UNLISTED)
             latest_version.update(
                 nomination=(datetime.now() - timedelta(minutes=idx)))
-
-    def test_breadcrumbs(self):
-        self._test_breadcrumbs([('All Unlisted Add-ons', None)])
 
     def test_results(self):
         self._test_results()
@@ -1706,27 +1678,6 @@ class TestReview(ReviewBase):
         assert doc('title').text() == (
             '%s :: Editor Tools :: Add-ons for Firefox' % self.addon.name)
 
-    def test_breadcrumbs(self):
-        self.generate_files()
-        expected = [
-            ('Updates', reverse('editors.queue_pending')),
-            (unicode(self.addon.name), None),
-        ]
-        self._test_breadcrumbs(expected)
-
-    def test_breadcrumbs_unlisted_addons(self):
-        self.generate_files()
-        self.make_addon_unlisted(self.addon)
-        self.login_as_admin()
-        expected = [
-            ('All Unlisted Add-ons',
-             reverse('editors.unlisted_queue_all')),
-            (unicode(self.addon.name), None),
-        ]
-        self.url = reverse('editors.review',
-                           args=['unlisted', self.addon.slug])
-        self._test_breadcrumbs(expected)
-
     def test_files_shown(self):
         r = self.client.get(self.url)
         assert r.status_code == 200
@@ -2168,14 +2119,6 @@ class TestReview(ReviewBase):
         r = self.client.get(self.url)
         assert r.status_code == 200
         self.assertContains(r, 'View Privacy Policy')
-
-    def test_breadcrumbs_all(self):
-        queues = {'New Add-ons': amo.STATUS_NOMINATED,
-                  'Updates': amo.STATUS_PUBLIC}
-        for text, queue_id in queues.items():
-            self.addon.update(status=queue_id)
-            doc = pq(self.client.get(self.url).content)
-            assert doc('#breadcrumbs li').eq(1).text() == text
 
     def test_viewing(self):
         url = reverse('editors.review_viewing')

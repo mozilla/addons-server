@@ -148,8 +148,6 @@
 {% endblock header_content %}
 
 {% block content %}
-{{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                       (None, addon.name)]) }}
 
 {% if addon.type != amo.ADDON_PERSONA %}
   {% set version = addon.current_version %}

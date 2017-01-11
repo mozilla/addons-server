@@ -1,10 +1,5 @@
 {% extends "editors/base.html" %}
 
-{% block breadcrumbs %}
-{{ editors_breadcrumbs(items=[(url('editors.eventlog'), _('Moderated Review Log')),
-                              (None, _('Log Details'))]) }}
-{% endblock %}
-
 {% block content %}
   <div class="featured">
     <div class="featured-inner featured-inner-padded">

@@ -14,10 +14,6 @@
   {{ css('zamboni/themes_review') }}
 {% endblock %}
 
-{% block breadcrumbs %}
-  {{ editors_breadcrumbs(queue=(tab + '_themes'), themes=True) }}
-{% endblock %}
-
 {% block content %}
 
 <h2 class="theme-queue-header">{% block page_header %}{{ title_text }}{% endblock %}</h2>
