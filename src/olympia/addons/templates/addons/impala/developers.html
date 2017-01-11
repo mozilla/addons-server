@@ -55,9 +55,6 @@
     {% if page == 'installed' %}
       <h1 class="addon"{{ addon.name|locale_html }}>{{ title }}</h1>
     {% else %}
-      {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                             (addon.get_url_path(), addon.name),
-                             (None, title)]) }}
       <h1>{{ title }}</h1>
     {% endif %}
   </header>

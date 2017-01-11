@@ -4,10 +4,6 @@
   {{ editor_page_title(_('{addon} :: Abuse Reports')|f(addon=addon.name)) }}
 {% endblock %}
 
-{% block breadcrumbs %}
-  {{ editors_breadcrumbs() }}
-{% endblock %}
-
 {% block content %}
 <h2>{{_('Abuse Reports for {addon} ({num})')|fe(addon=addon.name, num=total|numberfmt) }}</h2>
 <ul>

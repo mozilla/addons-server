@@ -1,9 +1,5 @@
 {% extends "editors/base.html" %}
 
-{% block breadcrumbs %}
-{{ editors_breadcrumbs(items=[(None, _('Message of the Day'))]) }}
-{% endblock %}
-
 {% block content %}
 <div id="editor-motd">
   {% if form %}

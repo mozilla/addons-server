@@ -694,11 +694,6 @@ function bind_viewer(nodes) {
                         $(this).prev('li').find('a:first')
                                .removeClass('closed').addClass('open');
             });
-            if ($('.breadcrumbs li').length > 2) {
-                $('.breadcrumbs li').eq(2).text($link.attr('data-short'));
-            } else {
-                $('.breadcrumbs').append(format('<li>{0}</li>', $link.attr('data-short')));
-            }
 
             this.show_selected();
         };

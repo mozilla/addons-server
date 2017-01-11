@@ -1,9 +1,5 @@
 {% extends "editors/themes/base.html" %}
 
-{% block breadcrumbs %}
-  {{ editors_breadcrumbs(items=[(None, _('Theme Review Log'))]) }}
-{% endblock %}
-
 {% block content %}
   {{ macros.log_filter('themes', form) }}
   {{ macros.tabnav('logs', tab, logs_tabnav_themes() ) }}

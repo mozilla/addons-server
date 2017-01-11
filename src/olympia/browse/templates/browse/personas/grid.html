@@ -3,14 +3,6 @@
 {% block content %}
 <div class="primary" role="main">
   <header>
-    {% if profile %}
-      {{ breadcrumbs([(url('browse.personas'), _('Themes')),
-                      (profile.get_user_url('themes'), _("{0}'s Themes")|f(profile.name)),
-                      (None, title)]) }}
-    {% else %}
-      {{ breadcrumbs([(url('browse.personas'), _('Themes')),
-                      (None, title)]) }}
-    {% endif %}
     <h2>{{ title }}</h2>
   </header>
   <div class="featured listing">

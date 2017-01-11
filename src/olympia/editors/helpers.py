@@ -20,7 +20,7 @@ from olympia.access.models import GroupUser
 from olympia.activity.utils import send_activity_mail
 from olympia.addons.helpers import new_context
 from olympia.addons.models import Addon
-from olympia.amo.helpers import absolutify, breadcrumbs, page_title
+from olympia.amo.helpers import absolutify, page_title
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail as amo_send_mail, to_language
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
@@ -75,67 +75,6 @@ def editor_page_title(context, title=None, addon=None):
         section = _lazy('Editor Tools')
         title = u'%s :: %s' % (title, section) if title else section
     return page_title(context, title)
-
-
-@register.function
-@jinja2.contextfunction
-def editors_breadcrumbs(context, queue=None, addon=None, items=None,
-                        themes=False):
-    """
-    Wrapper function for ``breadcrumbs``. Prepends 'Editor Tools'
-    breadcrumbs.
-
-    **items**
-        list of [(url, label)] to be inserted after Add-on.
-    **addon_queue**
-        Addon object. This sets the queue by addon type or addon status.
-    **queue**
-        Explicit queue type to set.
-    """
-    crumbs = [(reverse('editors.home'), _('Editor Tools'))]
-    listed = not context.get('unlisted')
-
-    if themes:
-        crumbs.append((reverse('editors.themes.home'), _('Themes')))
-
-    if addon:
-        if listed:
-            queue = {amo.STATUS_NOMINATED: 'nominated',
-                     amo.STATUS_PUBLIC: 'pending'}.get(addon.status, 'queue')
-        else:
-            queue = 'all'
-
-    if queue:
-        if listed:
-            queues = {
-                'queue': _('Queue'),
-                'pending': _('Updates'),
-                'nominated': _('New Add-ons'),
-                'moderated': _('Moderated Reviews'),
-
-                'pending_themes': _('Pending Themes'),
-                'flagged_themes': _('Flagged Themes'),
-                'rereview_themes': _('Update Themes'),
-            }
-        else:
-            queues = {
-                'all': _('All Unlisted Add-ons'),
-            }
-
-        if items and not queue == 'queue':
-            if listed:
-                url = reverse('editors.queue_{0}'.format(queue))
-            else:
-                # Unlisted add-ons only have the 'all' list.
-                url = reverse('editors.unlisted_queue_all')
-        else:
-            # The Addon is the end of the trail.
-            url = None
-        crumbs.append((url, queues[queue]))
-
-    if items:
-        crumbs.extend(items)
-    return breadcrumbs(context, crumbs, add_default=False)
 
 
 @register.function

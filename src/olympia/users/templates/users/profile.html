@@ -5,7 +5,6 @@
 
 {% block content %}
 
-{{ impala_breadcrumbs([(None, profile.name)]) }}
 <div id="profile-actions" class="c">
   {% if own_profile %}
     <a id="edit-profile" class="button" href="{{ url('users.edit') }}">{{ _('Edit profile') }}</a>

@@ -17,11 +17,6 @@
 {% block content %}
 <div class="primary" role="main">
   <header>
-    {% if is_homepage %}
-      {{ breadcrumbs([(None, _('Themes'))]) }}
-    {% else %}
-      {{ breadcrumbs([(url('browse.personas'), _('Themes')), (None, category.name)]) }}
-    {% endif %}
     <h2>{{ category.name }}</h2>
   </header>
   {% if is_homepage %}

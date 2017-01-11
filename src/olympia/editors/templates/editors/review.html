@@ -11,10 +11,6 @@
 
 {% block bodyclass %}{{ super() }} inverse{% endblock %}
 
-{% block breadcrumbs %}
-{{ editors_breadcrumbs(addon=addon, items=[(None, addon.name)]) }}
-{% endblock %}
-
 {% block content %}
 
 <hgroup>

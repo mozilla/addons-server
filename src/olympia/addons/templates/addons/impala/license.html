@@ -12,9 +12,6 @@
 <section class="primary">
   <hgroup class="hero">
     {# L10n: The License for this add-on. #}
-    {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                           (addon.get_url_path(), addon.name),
-                           (None, _('License'))]) }}
     {{ addon_heading(addon, version) }}
   </hgroup>
   <div class="prose">

@@ -12,12 +12,6 @@
 {% endblock %}
 
 {% block content %}
-  {% with crumbs = [(url('collections.list'), _('Collections')), (None, c.name)] %}
-    {% if c.author %}
-      {% do crumbs.insert(1, (url('collections.user', c.author.username), c.author.name)) %}
-    {% endif %}
-    {{ breadcrumbs(crumbs) }}
-  {% endwith %}
   <hgroup>
     <h2 class="collection" data-collectionid="{{ collection.id }}">
       <img src="{{ c.icon_url }}" class="icon" alt="">
