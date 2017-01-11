@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-11 08:57+0000\n"
+"PO-Revision-Date: 2017-01-11 10:59+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -5621,10 +5621,9 @@ msgstr "Publica tu complemento"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "¿Tu complemento ya está listo? Envía tu extensión o tema para que aparezca en addons.mozilla.org o inicia sesión y distribúyela por tu cuenta."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Sign in"
 msgstr "Iniciar sesión"
 
@@ -6349,13 +6348,12 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Un bloqueador ligero y efectivo. uBlock Origin ejecuta miles de filtros de contenido sin consumir demasiada memoria."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquea la publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Exprésate en emojis {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "Decenas de increíbles emojis para cada ocasión—siempre a un solo clic."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7377,7 +7375,7 @@ msgstr "No se puede comparar una versión consigo misma"
 #: src/olympia/files/helpers.py
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "El visor de archivos está bloquedo, puede que haya una extración en proceso de %s. Vuelve a intentarlo en 5 minutos."
 
 #: src/olympia/files/helpers.py
 #, python-format
