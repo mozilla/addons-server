@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-12 20:02+0000\n"
+"PO-Revision-Date: 2017-01-12 20:15+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9453,7 +9453,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "Nek d ameskar n uzegrir, zemreɣ ad kkseɣ iwenniten neɣ tizmilin ur yeddan ara akked uzegrir?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
@@ -9463,7 +9463,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
-msgstr ""
+msgstr "Sunbird yeḥbes"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid ""
@@ -9482,7 +9482,7 @@ msgstr "Ɣeṛ ugar ɣef Sunbird"
 
 #: src/olympia/paypal/__init__.py
 msgid "There was an error communicating with PayPal. Please try again later."
-msgstr ""
+msgstr "Teḍra-d tuccḍa di teɣwalt akked PayPal. Ma ulac aɣilif, ɛreḍ tikelt nniḍen."
 
 #: src/olympia/paypal/__init__.py
 msgid "There was an error with this currency."
@@ -9858,7 +9858,7 @@ msgstr ""
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Ur temirzḍ ar ad ternuḍ ileqman i uzegrir yelllan deg addad: %s."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
