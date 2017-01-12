@@ -2,6 +2,7 @@
 import base64
 import json
 from datetime import datetime
+from pyquery import PyQuery as pq
 from time import sleep
 from xml.dom import minidom
 
@@ -1054,3 +1055,11 @@ class BlocklistIssuerCertTest(BlocklistViewTest):
         assert self.json_url == '/blocked/blocklists.json'
         r = self.client.get(self.json_url, follow=False)
         assert r.status_code == 200
+
+
+class TestBlocklistPage(TestCase):
+
+    def test_blocked_addons_page_loads(self):
+        result = self.client.get(reverse('blocked.list'))
+        title = pq(result.content)('.blocked h1').text()
+        assert title == 'Blocked Add-ons'
