@@ -32,7 +32,7 @@
         {# TODO: Not so sure this should be the logout link but where else to put it?
                  Should probably be user.get_url_path() to point to the user profile #}
         <li class="avatar"><a href="{{ url('users.logout') }}">
-          <img src="{{ request.user.picture_url }}" />
+          <img src="{{ request.user.picture_url }}" alt="{% if not request.user.picture_type %}{{ _('No Photo') }}{% else %}{{ _('User Photo') }}{% endif %}" />
         </a></li>
       {% else %}
         <li class="show-on-desktop"><a href="{{ login_link() }}">{{ _('Sign In') }}</a></li>
