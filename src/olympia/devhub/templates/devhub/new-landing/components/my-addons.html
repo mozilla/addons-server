@@ -1,18 +1,45 @@
 <div class="DevHub-MyAddons content">
   <div>
+    <div class="DevHub-MyAddons-whatsnew-container">
+      <div>
+        <h2>{{ _("What's New") }}</h2>
+      </div>
+      <div>
+        <p>
+          {% trans %}
+            Happy New Year! See what's in store for add-ons in 2017.
+          {% endtrans %}
+        </p>
+        <a href="https://blog.mozilla.org/addons/2016/11/23/add-ons-in-2017/" class="Button">
+          {{ _('Show Me') }}
+        </a>
+      </div>
+      <div>
+        <p>
+          {% trans %}
+            WebExtensions are now the standard for add-on development in Firefox.
+            You'll need to update your legacy add-ons to stay compatible.
+          {% endtrans %}
+        </p>
+        <a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on" class="Button">
+          {{ _('Learn How') }}
+        </a>
+      </div>
+    </div>
+
     <h2>{{ ('My Add-ons') }}</h2>
 
     {% if recent_addons %}
-      <div class="DevHub-MyAddons-List">
+      <div class="DevHub-MyAddons-list">
         {% for item in recent_addons %}
-          <div class="DevHub-MyAddons-Item">
-            <img class="DevHub-MyAddons-Icon" src="{{ item.addon.get_icon_url(64) }}" alt="">
-            <div class="DevHub-MyAddons-ItemDetails">
+          <div class="DevHub-MyAddons-item">
+            <img class="DevHub-MyAddons-item-icon" src="{{ item.addon.get_icon_url(64) }}" alt="">
+            <div class="DevHub-MyAddons-item-details">
               <span>{{ item.addon.name }}</span>
               <a href="{{ item.addon.get_dev_url('edit') }}">{{ _('Edit Listing') }}</a>
             </div>
 
-            <span class="DevHub-MyAddons-LastUpdated">
+            <span class="DevHub-MyAddons-item-modified">
               {% if item.addon.last_updated %}
                 {{ _('Last Updated:') }}
                 {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
@@ -26,9 +53,9 @@
           </div>
         {% endfor %}
       </div>
-      <div class="DevHub-MyAddons-ActionButtons">
-        <a class="DevHub-MyAddons-AllSubmissions" href="{{ url('devhub.addons') }}">{{ _('View All Submissions') }}</a>
-        <div class="DevHub-MyAddons-Submit">
+      <div class="DevHub-MyAddons-item-buttons">
+        <a href="{{ url('devhub.addons') }}">{{ _('View All Submissions') }}</a>
+        <div class="DevHub-MyAddons-item-buttons-submit">
           <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit a New Add-on') }}</a>
           <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit a New Theme') }}</a>
         </div>
@@ -36,9 +63,9 @@
     {% else %}
       <p class="DevHub-MyAddons-copy">
         {% trans %}
-        This is where you view and manage your add-ons and themes.
-        To publish your first add-on, click "Submit Your First Add-on"
-        or "Submit Your First Theme".
+          This is where you view and manage your add-ons and themes.
+          To publish your first add-on, click "Submit Your First Add-on"
+          or "Submit Your First Theme".
         {% endtrans %}
       </p>
       <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit Your First Add-on') }}</a>

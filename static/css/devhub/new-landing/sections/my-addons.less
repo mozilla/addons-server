@@ -2,22 +2,22 @@
   max-width: 32em;
 }
 
-.DevHub-MyAddons-List {
+.DevHub-MyAddons-list {
 }
 
-.DevHub-MyAddons-Item {
+.DevHub-MyAddons-item {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e4e4e4;
   padding-bottom: 25px;
 }
 
-.DevHub-MyAddons-LastUpdated {
+.DevHub-MyAddons-item-modified {
   margin-left: auto;
   align-self: flex-end;
 }
 
-.DevHub-MyAddons-ItemDetails {
+.DevHub-MyAddons-item-details {
   margin-left: 25px;
 
   span {
@@ -33,25 +33,74 @@
   }
 }
 
-.DevHub-MyAddons-Icon {
+.DevHub-MyAddons-item-icon {
   width: 48px;
   height: 48px;
 }
 
-.DevHub-MyAddons-ActionButtons {
+.DevHub-MyAddons-item-buttons {
   margin-top: 20px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+
+  > a:first-child {
+    font-size: 15px;
+    text-decoration: none;
+    color: @color-button-default;
+  }
+
+  .DevHub-MyAddons-item-buttons-submit {
+    margin-left: auto;
+  }
 }
 
-.DevHub-MyAddons-AllSubmissions {
-  font-size: 15px;
-  text-decoration: none;
-  color: @color-button-default;
-}
+.DevHub-MyAddons-whatsnew-container {
+  border: 8px solid @color-callout-border;
+  background: #fff;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  padding: 30px;
+  margin: 30px 0 60px 0;
+  position: relative;
+  background-image: url(../../../img/developers/new-landing/whatsnew-background.png);
+  background-repeat: no-repeat;
+  background-position: right 10px bottom 10px;
 
-.DevHub-MyAddons-Submit {
-  margin-left: auto;
+  &::before {
+    content: '';
+    background-image: url(../../../img/developers/new-landing/whatsnew-rocket.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    width: 100%;
+    height: 170px;
+    left: -8px;
+    top: 28px;
+
+    @media @retina {
+      background-image: url(../../../img/developers/new-landing/whatsnew-rocket-2x.png);
+    }
+  }
+
+  div {
+    flex: 0 0 30%;
+  }
+
+  div:first-child {
+    text-align: right;
+  }
+
+  p, .Button {
+    font-size: 14px;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 0;
+  }
 }
