@@ -31,7 +31,7 @@
   </header>
   <section class="island hero">
     <p class="enter">{{ _("Enter the GUID of an add-on below to view any reports we've received.") }}</p>
-    <form>
+    <form data-no-csrf>
       <input name="guid" value="{{ query }}" id="compat-query">
     </form>
   </section>

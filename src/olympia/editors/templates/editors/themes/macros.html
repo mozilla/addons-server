@@ -32,7 +32,7 @@
 {% macro log_filter(type, form) %}
   {# type -- string (e.g. 'apps', 'themes') #}
   <div id="log-filter" class="log-filter-outside">
-    <form action="{{ url('editors.' + type + '.logs') }}" method="get">
+    <form action="{{ url('editors.' + type + '.logs') }}" method="get" data-no-csrf>
       <div class="date_range">
         {{ form.start.label_tag() }}
         {{ form.start }}

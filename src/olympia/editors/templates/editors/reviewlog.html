@@ -3,7 +3,7 @@
 {% block content %}
 
   <div id="log-filter" class="log-filter-outside">
-    <form action="{{ url('editors.reviewlog') }}" method="get">
+    <form action="{{ url('editors.reviewlog') }}" method="get" data-no-csrf>
       <div class="date_range">
         {{ form.start.label_tag() }}
         {{ form.start }}

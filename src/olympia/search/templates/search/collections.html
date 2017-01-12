@@ -21,7 +21,7 @@
     {% if pager.object_list %}
       <div class="featured-inner">
         <div class="listing-header">
-          <form class="item-sort go">
+          <form class="item-sort go" data-no-csrf>
             <div>
               {{ form.cat }}
               {% if request.GET.get('q') %}
