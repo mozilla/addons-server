@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-12 20:15+0000\n"
+"PO-Revision-Date: 2017-01-12 20:30+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -10236,7 +10236,7 @@ msgstr "Isnasen nniḍen"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "Akken ad ternuḍ tigrummiwin inek, yessefk ad yili ɣur-k umiḍan n izegrar Mozilla."
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Footer logo"
@@ -10343,12 +10343,12 @@ msgstr "Anṣuf ar {0} n izegrar."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Fren seg agimen n tmahilin akked iɣunab nniḍen akken ad terreḍ Firefox d ayla-k."
 
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Rnu timahilin neɣ iɣunab nniḍen akken ad terreḍ %(app)s d ayla-k."
 
 #: src/olympia/templates/impala/base.html
 msgid "On the go?"
@@ -10442,7 +10442,7 @@ msgstr "Sefsex asinifel"
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Tebɣiḍ ad tekkseḍ akk <b>{0}</b> n tsuqilin? Ur tezmireḍ ara ad ten-id-erreḍ."
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Delete Locale"
