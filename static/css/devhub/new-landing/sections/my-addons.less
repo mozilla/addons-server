@@ -1,3 +1,7 @@
+.DevHub-MyAddons {
+  min-width: @grid-max;
+}
+
 .DevHub-MyAddons-copy {
   max-width: 32em;
 }
@@ -17,11 +21,6 @@
 .DevHub-MyAddons-item-details {
   margin-left: 25px;
 
-  .DevHub-MyAddons-item-name {
-    font-size: 24px;
-    font-weight: 400;
-  }
-
   a {
     margin-left: 5px;
     font-size: 15px;
@@ -33,38 +32,43 @@
     &.DevHub-MyAddons-version-status-rejected,
     &.DevHub-MyAddons-version-status-disabled,
     &.DevHub-MyAddons-version-status-none {
-      color: #9b9898;
+      color: @color-version-state-disabled;
     }
 
     &.DevHub-MyAddons-version-status-nominated {
-      color: #ff9216;
+      color: @color-version-state-nominated;
     }
 
     &.DevHub-MyAddons-version-status-approved {
-      color: #329902;
+      color: @color-version-state-approved;
     }
 
     &.DevHub-MyAddons-version-status-admin-disabled {
-      color: #d92215;
+      color: @color-version-state-admin-disabled;
     }
   }
+}
 
-  .DevHub-MyAddons-item-channel-listed,
-  .DevHub-MyAddons-item-channel-unlisted {
-    border-radius: 4px;
-    padding: 2px 5px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #fff;
-  }
+.DevHub-MyAddons-item-name {
+  font-size: 24px;
+  font-weight: 400;
+}
 
-  .DevHub-MyAddons-item-channel-listed {
-    background-color: #01bdad;
-  }
+.DevHub-MyAddons-item-channel-listed,
+.DevHub-MyAddons-item-channel-unlisted {
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+}
 
-  .DevHub-MyAddons-item-channel-unlisted {
-    background-color: #7a2f7a;
-  }
+.DevHub-MyAddons-item-channel-listed {
+  background-color: @color-publish-channel-listed;
+}
+
+.DevHub-MyAddons-item-channel-unlisted {
+  background-color: @color-publish-channel-unlisted;
 }
 
 .DevHub-MyAddons-item-icon {
@@ -87,16 +91,16 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+}
 
-  > a:first-child {
-    font-size: 15px;
-    text-decoration: none;
-    color: @color-button-default;
-  }
+.DevHub-MyAddons-item-buttons-all-submissions {
+  font-size: 15px;
+  text-decoration: none;
+  color: @color-button-default;
+}
 
-  .DevHub-MyAddons-item-buttons-submit {
-    margin-left: auto;
-  }
+.DevHub-MyAddons-item-buttons-submit {
+  margin-left: auto;
 }
 
 .DevHub-MyAddons-whatsnew-container {
@@ -122,6 +126,7 @@
     height: 170px;
     left: -8px;
     top: 28px;
+    pointer-events: none;
 
     @media @retina {
       background-image: url("../../../img/developers/new-landing/whatsnew-rocket-2x.png");
