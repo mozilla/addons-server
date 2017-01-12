@@ -1,4 +1,5 @@
 import commonware
+import requests
 
 from rest_framework import status
 from rest_framework.response import Response
@@ -26,8 +27,21 @@ class GithubView(APIView):
         data = github.cleaned_data
         upload = FileUpload.objects.create()
         log.info('Created FileUpload from github api: {}'.format(upload.pk))
-        github = GithubCallback(data)
-        github.pending()
+
+        try:
+            github = GithubCallback(data)
+            github.pending()
+        except requests.HTTPError as err:
+            # This is a common error, where the user hasn't set up add-ons
+            # robot as a contributor, so we'll get a 404 from GitHub. Let's
+            # try and get a nice error message back into the GitHub UI.
+            if err.response.status_code == status.HTTP_404_NOT_FOUND:
+                return Response({
+                    'details': (
+                        'Writing pending status failed. Please ensure '
+                        'the addons.mozilla.org GitHub account has write '
+                        'access to this repository.')},
+                    status=status.HTTP_404_NOT_FOUND)
 
         process_webhook.delay(upload.pk, data)
         return Response({}, status=status.HTTP_201_CREATED)

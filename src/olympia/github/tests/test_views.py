@@ -1,5 +1,6 @@
 import json
 import mock
+import requests
 
 from olympia.amo.tests import AMOPaths, TestCase
 from olympia.files.models import FileUpload
@@ -28,10 +29,26 @@ class TestGithubView(AMOPaths, GithubBaseTestCase, TestCase):
     def test_bad_pull_request(self):
         assert self.post({'pull_request': {}}).status_code == 422
 
-    def test_good(self):
+    def setup_xpi(self):
         self.response = mock.Mock()
         self.response.content = open(self.xpi_path('github-repo')).read()
         self.requests.get.return_value = self.response
+
+    def test_pending_fails(self):
+        self.setup_xpi()
+
+        post = mock.Mock()
+        # GitHub returns a 404 when the addons-robot account does not
+        # have write access.
+        post.status_code = 404
+        post.raise_for_status.side_effect = requests.HTTPError(response=post)
+        self.requests.post.return_value = post
+
+        res = self.post(example_pull_request)
+        assert 'write access' in json.loads(res.content)['details']
+
+    def test_good(self):
+        self.setup_xpi()
 
         self.post(example_pull_request)
         pending, success = self.requests.post.call_args_list
