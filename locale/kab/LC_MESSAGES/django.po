@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-12 20:30+0000\n"
+"PO-Revision-Date: 2017-01-12 20:58+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -10585,7 +10585,7 @@ msgstr ""
 
 #: src/olympia/users/notifications.py
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "Asnas-agi yettucegger qɣuṛ yiwen n umaẓrag"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual app"
@@ -10605,11 +10605,11 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "An email address is required."
-msgstr ""
+msgstr "Tansa imayl tettwasra."
 
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Aseqdac s yimayl-agi ulac-it."
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"
