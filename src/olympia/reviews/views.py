@@ -127,8 +127,10 @@ def translate(request, addon, review_id, language):
         return http.HttpResponse(json.dumps({'title': title, 'body': body}),
                                  status=r.status_code)
     else:
+        # Override safe='/' to escape slashes too. Otherwise text containing
+        # a slash becomes truncated at that slash.
         return redirect(settings.GOOGLE_TRANSLATE_REDIRECT_URL.format(
-            lang=language, text=urlquote(review.body)))
+            lang=language, text=urlquote(review.body, safe='')))
 
 
 @addon_view

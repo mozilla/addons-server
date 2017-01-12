@@ -575,6 +575,18 @@ class TestTranslate(ReviewTest):
         assert r.get('Location') == (
             'https://translate.google.com/#auto/fr/h%C3%A9h%C3%A9%203%25')
 
+    def test_review_with_url_call(self):
+        review = Review.objects.create(addon=self.addon, user=self.user,
+                                       title='or', body='http://example.com')
+        url = helpers.url('addons.reviews.translate',
+                          review.addon.slug, review.id, 'fr')
+        r = self.client.get(url)
+        assert r.status_code == 302
+        # Slashes must be URL-encoded, because Google Translate truncates the
+        # text at the first unescaped slash.
+        assert r.get('Location') == (
+            'https://translate.google.com/#auto/fr/http%3A%2F%2Fexample.com')
+
     @mock.patch('olympia.reviews.views.requests')
     def test_ajax_call(self, requests):
         # Mock requests.
