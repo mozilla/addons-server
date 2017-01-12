@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 21:13+0000\n"
+"PO-Revision-Date: 2017-01-12 19:38+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4570,7 +4570,7 @@ msgstr "Tutlayt tamezwert"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Talɣut i d-yemmalen i d-yemmalen ma yella azegrir inek yettwasken di tutlayt-agi neɣ mayell atesumred-d tasuqilt di tutlayt-agi. Urti-agi yettwaseqdac kan i yizegrar yettwasnen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
@@ -4581,6 +4581,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"MA yella ɣur-k asebter nniḍen i uzegrir inek, sekcem tansa yines. Ma yella asmel inek yeb yettusuqel ar deqs n tutlayin, tisuqilin yemgaraden n wurti-agi zemrent ad ttwarnunt. Urti-agi yettwaseqdac "
+"kani yizegrar yettwasnen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html
 msgid "Images"
@@ -4588,12 +4590,12 @@ msgstr "Tugniwin"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information"
-msgstr ""
+msgstr "Talɣut n tallalt"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Talɣut n tallalt i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
@@ -5010,7 +5012,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Tizmilin-agi ad d-ttwaseknent kan i kečč akked imceggiren-nneɣ."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5026,7 +5028,7 @@ msgstr "Iwenniten n lqem:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "Mmel-d amaynut akked usnifel i lqem-agi n useqdac."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will appear on the detail page."
@@ -5194,7 +5196,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Sirew talɣut tamaynut n usesteb"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
@@ -5400,7 +5402,7 @@ msgstr "Sefrek azegrir inek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Kcem akken ad tẓergeḍ neɣ ad tleqmeḍ azegrir inek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Evolution in Add-on Development"
@@ -6197,7 +6199,7 @@ msgstr "Iceggiren yettwaksen"
 
 #: src/olympia/editors/forms.py
 msgid "View entries between"
-msgstr ""
+msgstr "Wali inekcumen gar"
 
 #: src/olympia/editors/forms.py
 msgid "and"
@@ -7388,7 +7390,7 @@ msgstr "Ur ttkikru ara, hata wamek."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Suqel agbur ɣef usmel Web seg neɣ ar ugar n 40 n tutlayin."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
@@ -9442,7 +9444,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Nek d ameskar n uzegrir, zemreɣ ad erreɣ i ucegger?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 #, python-format
