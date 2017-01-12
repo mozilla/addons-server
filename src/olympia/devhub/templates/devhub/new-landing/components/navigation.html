@@ -2,23 +2,38 @@
   <div>
     <ul>
       <li>
-        <a href="#" class="Logo {% if user_authenticated %}Logo--loggedin{% endif %}">
+        <a href="{{ url('devhub.index') }}" class="Logo {% if user_authenticated %}Logo--loggedin{% endif %}">
           <span>{{ _('Add-on Developer Hub') }}</span>
         </a>
       </li>
 
       {% if user_authenticated %}
-        <li class="show-on-desktop"><a href="#">{{ _('My Add-ons') }}</a></li>
+        <li class="show-on-desktop"><a href="{{ url('devhub.addons') }}">
+          {{ _('My Add-ons') }}
+        </a></li>
       {% endif %}
 
-      <li class="hide-on-desktop"><a href="#">{{ _('Docs') }}</a></li>
-      <li class="show-on-desktop"><a href="#">{{ _('Documentation') }}</a></li>
+      <li class="hide-on-desktop"><a href="https://developer.mozilla.org/Add-ons">
+        {{ _('Docs') }}
+      </a></li>
+      <li class="show-on-desktop"><a href="https://developer.mozilla.org/Add-ons">
+        {{ _('Documentation') }}
+      </a></li>
 
-      <li class="show-on-desktop"><a href="#">{{ _('Support') }}</a></li>
-      <li><a href="#">{{ _('Support') }}</a></li>
-      <li><a href="#">{{ _('Blog') }}</a></li>
+      <li class="show-on-desktop"><a href="https://developer.mozilla.org/Add-ons#Contact_us">
+        {{ _('Support') }}
+      </a></li>
+
+      <li><a href="https://blog.mozilla.org/addons/">
+        {{ _('Blog') }}
+      </a></li>
+
       {% if user_authenticated %}
-        <li class="avatar"><a href="#"><img src="{{ request.user.picture_url }}" /></a></li>
+        {# TODO: Not so sure this should be the logout link but where else to put it?
+                 Should probably be user.get_url_path() to point to the user profile #}
+        <li class="avatar"><a href="{{ url('users.logout') }}">
+          <img src="{{ request.user.picture_url }}" alt="{% if not request.user.picture_type %}{{ _('No Photo') }}{% else %}{{ _('User Photo') }}{% endif %}" />
+        </a></li>
       {% else %}
         <li class="show-on-desktop"><a href="{{ login_link() }}">{{ _('Sign In') }}</a></li>
       {% endif %}
