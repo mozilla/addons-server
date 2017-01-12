@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-12 20:58+0000\n"
+"PO-Revision-Date: 2017-01-12 21:36+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -10629,7 +10629,7 @@ msgstr "Tattwaf-d tuccḍa"
 
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
+msgstr "Ḍrant-d tuccḍiwin deg usnifel yettwage. Ma ulac aɣlif̣ seɣti-tent daw-a sakin azen-d."
 
 #: src/olympia/users/views.py
 msgid "User reported."
