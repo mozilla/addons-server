@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-13 09:39+0000\n"
+"PO-Revision-Date: 2017-01-13 11:10+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -10717,7 +10717,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Tansa-agi URL ad d-ban kan ma d aneflay i telliḍ."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Choose Photo&hellip;"
@@ -10729,11 +10729,11 @@ msgstr "Kkes tawlaft tamirant"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This is the default locale used to display information about you (like your description)."
-msgstr ""
+msgstr "Tagi d tutlayet tamezwert ara yettwasqedcen akken ad d-ban telɣut fell-ak (am uglam inek)."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "Mmeslay-d ɣef yiman-ik i yemdanen, ma tebɣiḍ! Aḍris-agi ad d-iban s wudem azayez."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
@@ -10911,7 +10911,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "User since"
-msgstr ""
+msgstr "D aseqdac si"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Time of last login"
