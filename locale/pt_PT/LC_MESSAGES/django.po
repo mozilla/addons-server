@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-13 01:40+0000\n"
+"PO-Revision-Date: 2017-01-13 01:48+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5126,7 +5126,7 @@ msgstr "Está concluído! Esta versão foi submetida para revisão. Será notifi
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "A sua listagem será mais bem sucedida adicionando uma descrição detalhada e capturas de ecrã. Tenha a sua listagem pronta para publicação:"
+msgstr "A sua entrada será mais bem sucedida adicionando uma descrição detalhada e capturas de ecrã. Tenha a sua entrada pronta para publicação:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Manage Listing"
@@ -5178,7 +5178,7 @@ msgstr "Acordo de distribuição de extras"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
-msgstr "Atualizar extra"
+msgstr "Carregar extra"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host File"
@@ -5232,7 +5232,7 @@ msgstr "Para instruções detalhadas, consulte a <a href=\"%(docs_url)s\">docume
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Mantenha as suas chaves de API secretas e <strong>nunca as partilhe com alguém</strong>, incluindo contribuidores da Mozilla."
+msgstr "Mantenha as suas chaves de API secretas e <strong>nunca as partilhe com ninguém</strong>, incluindo colaboradores da Mozilla."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -6005,7 +6005,7 @@ msgstr "Estado da aprovação"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Notes for Reviewers"
-msgstr "Nota para revisores"
+msgstr "Notas para revisores"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
