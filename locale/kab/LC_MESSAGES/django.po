@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-13 19:33+0000\n"
+"PO-Revision-Date: 2017-01-13 20:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4975,7 +4975,7 @@ msgstr "Agzul:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
-msgstr ""
+msgstr "Agzul-agi ad d-yettwasken di tebdarin akked inadiyen."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This add-on is experimental"
@@ -5490,11 +5490,11 @@ msgstr "Kcem"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Validator"
-msgstr ""
+msgstr "Amsentem"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Automated code tests for your add-on."
-msgstr ""
+msgstr "Ikayaden n tengalt awurman i uzegrir-inek."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Compatibility Checker"
@@ -5502,7 +5502,7 @@ msgstr "Asenqad n umṣada"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "Wali ma yella azgrir inek yezmer ad ittuḥaz s usnifel n Firefox."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Compatibility Reporter"
@@ -5510,7 +5510,7 @@ msgstr "Amazan n umṣada"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "Ini-yaɣ-d ma yella azegrir iteddu kan akked yiwen n lqem n Firefox."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -8484,7 +8484,7 @@ msgstr "Taneflit n uzegrir"
 #. Heading for a list of resources for developers
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Support Resources"
-msgstr ""
+msgstr "Tiɣbula i tallalt"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Contributing your Add-on"
