@@ -26,7 +26,6 @@ from waffle.decorators import waffle_switch
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
-from olympia.amo.utils import urlparams
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
@@ -130,9 +129,10 @@ def render_error(request, error, next_path=None, format=None):
         messages.error(
             request, fxa_error_message(LOGIN_ERROR_MESSAGES[error]),
             extra_tags='fxa')
-        redirect_view = 'users.login'
-        return HttpResponseRedirect(
-            urlparams(reverse(redirect_view), to=next_path))
+        if next_path is None:
+            return HttpResponseRedirect(reverse('users.login'))
+        else:
+            return HttpResponseRedirect(next_path)
 
 
 def parse_next_path(state_parts):
