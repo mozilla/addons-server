@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-13 11:10+0000\n"
+"PO-Revision-Date: 2017-01-13 19:33+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4193,6 +4193,9 @@ msgid ""
 "href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
 "great add-on."
 msgstr ""
+"Izegrar ttaǧǧan ifḍan n iseqdacen n Firefox ad sneflein neɣ ad sniflen tarrayt nsen n tunigin. Ma d aneflay Web i telliḍ udiq tesneḍ <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>,"
+" <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, akked <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, ɣur-k ihi abrid yeldin akken ad tebnuḍ izegrar "
+"ifazen."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -5453,6 +5456,8 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
+"IZegrar ttaǧǧan ifḍan n iseqdacen ad sneflin tarmit-nsen n tunigin. Ma tesneḍ <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, akked <a href=\"#\">CSS</a>, ɣur-k abrid yeldi akken ad teggeḍ "
+"azegrir meqqṛen."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to make an Add-on"
@@ -9720,7 +9725,7 @@ msgstr[1] "Wali akk %(cnt)s iceggiren"
 
 #: src/olympia/search/forms.py
 msgid "Most popular this week"
-msgstr ""
+msgstr "Ttwasnen aṭas ddurt-agi"
 
 #: src/olympia/search/forms.py
 msgid "Most popular this month"
