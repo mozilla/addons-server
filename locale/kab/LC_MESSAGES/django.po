@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-13 20:01+0000\n"
+"PO-Revision-Date: 2017-01-13 20:06+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4999,11 +4999,11 @@ msgstr "Turagt:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr ""
+msgstr "Ma ulac aɣilif, fren turagt ilaqen i yizerfan i tebɣiḍ ad tsedduḍ i tengalt inek aɣbalu."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Ma yella azegrir inek yettazen isefka seg uselkim n useqdac, tasertit n tbaḍnit tettwasra akken ad tsegzuḍ anwa isefka ara yettwaznen udiɣ amek ara ttwasqedcen."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Notes to Reviewer:"
@@ -5011,7 +5011,7 @@ msgstr "Iwenitten i umcegger:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Yella wayen nniḍen i yessefk ad ẓren imsekyaden i ucegger n uzegrir-agi?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will only be visible to you and our reviewers."
