@@ -12,15 +12,16 @@ from django.test.utils import override_settings
 import mock
 import pytest
 from PIL import Image
+from waffle.models import Switch
 
 from olympia import amo
-from olympia.applications.models import AppVersion
-from olympia.amo.tests import TestCase, version_factory
-from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.addons.models import Addon
+from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.amo.helpers import user_media_path
 from olympia.amo.tests.test_helpers import get_image_path, get_addon_file
 from olympia.amo.utils import utc_millesecs_from_epoch
+from olympia.applications.models import AppVersion
+from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks
 from olympia.files.models import FileUpload
 from olympia.versions.models import Version
@@ -117,6 +118,10 @@ class ValidatorTestCase(TestCase):
         self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '42.0')
         self.create_appversion('firefox', '43.0')
+
+        # Required for Thunderbird tests
+        self.create_appversion('thunderbird', '42.0')
+        self.create_appversion('thunderbird', '45.0')
 
     def create_appversion(self, name, version):
         return AppVersion.objects.create(
@@ -785,6 +790,95 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
 
         assert validation['messages'][0]['id'] == expected
         assert validation['messages'][0]['type'] == 'error'
+
+
+class TestNewLegacyAddonRestrictions(ValidatorTestCase):
+    def setUp(self):
+        super(TestNewLegacyAddonRestrictions, self).setUp()
+        self.create_switch('restrict-new-legacy-submissions')
+
+    def test_submit_legacy_addon_restricted(self):
+        file_ = get_addon_file('valid_firefox_addon.xpi')
+        upload = FileUpload.objects.create(path=file_)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        expected = ['validation', 'messages', 'legacy_extensions_restricted']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+        assert not upload.valid
+
+    def test_submit_legacy_extension_waffle_is_off(self):
+        switch = Switch.objects.get(name='restrict-new-legacy-submissions')
+        switch.active = False
+        switch.save()
+
+        file_ = get_addon_file('valid_firefox_addon.xpi')
+        upload = FileUpload.objects.create(path=file_)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_submit_legacy_extension_not_a_new_addon(self):
+        file_ = get_addon_file('valid_firefox_addon.xpi')
+        addon = addon_factory(version_kw={'version': '0.1'})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_submit_webextension(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = FileUpload.objects.create(path=file_)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_submit_legacy_extension_targets_older_firefox_stricly(self):
+        file_ = get_addon_file('valid_firefox_addon_strict_compatibility.xpi')
+        upload = FileUpload.objects.create(path=file_)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_submit_non_extension(self):
+        file_ = get_addon_file('searchgeek-20090701.xml')
+        upload = FileUpload.objects.create(path=file_)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
+
+    def test_submit_thunderbird_extension(self):
+        file_ = get_addon_file('valid_firefox_and_thunderbird_addon.xpi')
+        upload = FileUpload.objects.create(path=file_)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
