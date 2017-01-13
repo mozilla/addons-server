@@ -522,7 +522,7 @@ MINIFY_BUNDLES = {
 
         # CSS files our DevHub (currently only required for the
         # new landing page)
-        'devhub/css': (
+        'devhub/new-landing/css': (
             'css/devhub/new-landing/base.less',
         ),
 
