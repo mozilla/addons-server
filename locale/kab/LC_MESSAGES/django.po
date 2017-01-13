@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-12 21:36+0000\n"
+"PO-Revision-Date: 2017-01-13 09:39+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3462,7 +3462,7 @@ msgstr "Timetti & Imdanen"
 
 #: src/olympia/constants/categories.py
 msgid "Travel"
-msgstr ""
+msgstr "Tirza"
 
 #: src/olympia/constants/categories.py
 msgid "Video"
@@ -3478,7 +3478,7 @@ msgstr "Tignatin"
 
 #: src/olympia/constants/categories.py
 msgid "Fashion"
-msgstr ""
+msgstr "Amaynut"
 
 #: src/olympia/constants/categories.py
 msgid "Film and TV"
@@ -3490,7 +3490,7 @@ msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py
 msgid "Holiday"
-msgstr ""
+msgstr "Amras"
 
 #: src/olympia/constants/categories.py
 msgid "Scenery"
@@ -3510,7 +3510,7 @@ msgstr "Ismal web"
 
 #: src/olympia/constants/categories.py
 msgid "Device Features & Location"
-msgstr ""
+msgstr "Timahilin akked wadig n ibenkan"
 
 #: src/olympia/constants/categories.py
 msgid "Experimental"
@@ -3546,7 +3546,7 @@ msgstr "Agrudem n useqdac"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "Udem d waggan"
 
 #: src/olympia/constants/categories.py
 msgid "Calendar and Date/Time"
@@ -3586,7 +3586,7 @@ msgstr "Asefrek n usider d ifuyla"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
-msgstr ""
+msgstr "Aggan n ugrudem"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
@@ -3755,7 +3755,7 @@ msgstr "Taɣawasa JSON mačči d tameɣtut"
 
 #: src/olympia/devhub/forms.py
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "Izenr ur yettwaceggar ara"
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/users/templates/users/edit.html
 msgid "Details"
@@ -3851,7 +3851,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Submit my add-on for manual review."
-msgstr ""
+msgstr "Azen azegrir-inu i ucegger s ufus."
 
 #: src/olympia/devhub/forms.py
 msgid "Do not list my add-on on this site"
@@ -10577,11 +10577,11 @@ msgstr ""
 
 #: src/olympia/users/notifications.py
 msgid "my add-on is reviewed by an editor"
-msgstr ""
+msgstr "azegrir-inu yettucegger sɣuṛ yiwen n umaẓrag"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla yesra a yid-inermes ɣef uzegrir inu udmawan"
 
 #: src/olympia/users/notifications.py
 msgid "my app is reviewed by an editor"
@@ -10589,19 +10589,19 @@ msgstr "Asnas-agi yettucegger qɣuṛ yiwen n umaẓrag"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "Mozilla yesra a yid-inermes ɣef usnas inu udmawan"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
-msgstr ""
+msgstr "Mozilla yebɣa a yid-inermes ɣef isallen akked tefrant i yineflayen n yesnasen"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
-msgstr ""
+msgstr "Mozilla yebqa a yid-inermes ɣef temnaḍin timaynutin yettwarnan ar Marketplace"
 
 #: src/olympia/users/notifications.py
 msgid "User Notifications"
-msgstr ""
+msgstr "Alɣu n useqdac"
 
 #: src/olympia/users/views.py
 msgid "An email address is required."
@@ -10633,7 +10633,7 @@ msgstr "Ḍrant-d tuccḍiwin deg usnifel yettwage. Ma ulac aɣlif̣ seɣti-tent
 
 #: src/olympia/users/views.py
 msgid "User reported."
-msgstr ""
+msgstr "Aseqdac yettwammel."
 
 #: src/olympia/users/widgets.py
 msgid "new"
