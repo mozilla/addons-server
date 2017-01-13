@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-13 20:06+0000\n"
+"PO-Revision-Date: 2017-01-13 22:00+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5413,11 +5413,11 @@ msgstr "Asfari di tneflit n izegrar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr ""
+msgstr "WebExtensions uɣalen d tizeɣt i tneflit n izegrar di Firefox. Asnifel-agi akked wiyaḍ di Firefox zemren ad ḥazen ineflayen deg izegrar iqbuṛen."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Find Out if Your Add-on is Affected"
-msgstr ""
+msgstr "Wali ma yella azegrir inek yettuḥaz"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
@@ -5470,7 +5470,7 @@ msgstr "Ttaɛebga n usiɣzef Chrome"
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
-msgstr ""
+msgstr "Firefox isefrak isnasen API WebExtension, tugett deg-sen mṣadan akked usnas API n usiɣzef isefrak Google, Chrome akked Opera, ihi isiɣzaf inek ad ttwaselkmen di Firefox s kra kan n usnifel."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Learn How"
@@ -5482,7 +5482,7 @@ msgstr "Suffeɣ-d azegrir inek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Ɣur-k yakan azegrir iheggan? Azen asiɣzef inek neɣ asentel inek ara d-yettwabedren di addons.mozilla.org neɣ kcem sakin zuzer asiɣzef inek i yiman-ik."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign in"
@@ -8467,7 +8467,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr ""
+msgstr "I telɣut ɣef uttekki, ma ulac aɣilif ddu ar <a href=\"%(url)s\">usebter wiki</a>-nneɣ."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developer FAQ"
@@ -9296,7 +9296,7 @@ msgstr "D acu-tt tagrumma?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr ""
+msgstr "Tigrummiwin d igrawen n izegrar yemcudden gar-asen yettwarnan sɣur iseqdacen akken ad ttwabḍun."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is the My Favorites collection?"
@@ -9328,7 +9328,7 @@ msgstr "Isental n uneflay"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr ""
+msgstr "Ma ulac aɣilif wali <a href=\"%(faq_url)s\">Istenqsiyen FAQ n uneflay</a> akked <a href=\"%(hub_url)s\">Ammas n uneflay</a> i tririt ɣef isteqsiyen icudden ar tneflit n izegrar."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Still have questions?"
@@ -9337,7 +9337,7 @@ msgstr "Ɣur-k yakan isteqsiyen?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
+msgstr "I tallalt tamatut, rzu ar <a href=\"%(sumo_url)s\">usmel-neɣ n tallalt</a>. i yesteqsiyen ɣef izegrar akked usmel web, rzu ar <a href=\"%(forum_url)s\">unmager</a>-nneɣ."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Some tips for writing a great review"
