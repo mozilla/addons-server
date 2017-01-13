@@ -278,9 +278,9 @@ def annotate_new_legacy_addon_restrictions(results):
     """
     metadata = results.get('metadata', {})
     target_apps = metadata.get('applications', {})
-    target_firefox_version = (
-        target_apps.get('firefox', {}).get('max', None) or
-        target_apps.get('android', {}).get('max', None)
+    max_target_firefox_version = max(
+        version_int(target_apps.get('firefox', {}).get('max', '')),
+        version_int(target_apps.get('android', {}).get('max', ''))
     )
 
     is_webextension = metadata.get('is_webextension') is True
@@ -290,9 +290,12 @@ def annotate_new_legacy_addon_restrictions(results):
         set(target_apps.keys())
     )
     is_targeting_firefox_lower_than_53_only = (
-        target_firefox_version and
         metadata.get('strict_compatibility') is True and
-        version_int(target_firefox_version) < 53000000200100
+        # version_int('') is actually 200100. If strict compatibility is true,
+        # the validator should have complained about the non-existant max
+        # version, but it doesn't hurt to check that the value is sane anyway.
+        max_target_firefox_version > 200100 and
+        max_target_firefox_version < 53000000200100
     )
 
     if (is_extension_type and
