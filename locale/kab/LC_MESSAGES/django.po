@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 13:12+0000\n"
+"PO-Revision-Date: 2017-01-14 13:37+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8274,16 +8274,16 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Amek ara qqimeɣ deg umaynut ɣef ayen iḍerrun di AMO ?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "Deqs n iberdan i yellan akken ad teqqqimeḍ deg umaynut n isallen ineggura n umaḍal n izegrar:"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Ablug n izegrar</a>-nneɣ yettwalqam yal tikelt s telɣut i wid iḥemlen tatiknulujit neɣ ineflayen."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
