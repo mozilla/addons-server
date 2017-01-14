@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 10:13+0000\n"
+"PO-Revision-Date: 2017-01-14 10:52+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4641,7 +4641,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This is a site-specific add-on."
-msgstr ""
+msgstr "Azegrir-agi yeɛna kan yiwen n usmel web."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on requires external software."
@@ -4657,11 +4657,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "Tangalt aɣbalu n uzegrir-agi tettwaskan s wudem azayez."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Ala, tangalt aɣbalu n uzegrir-agi ur tettwaskan ara s wudem azayez."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Public Stats?"
@@ -4673,11 +4673,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Tidaddanin n uzegrir-agi ttwaskanent s wudem azayez."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Ala, tiidaddanin n uzegrir-agi ur ttwaskanent ara s wudem azayez."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Upgrade SDK?"
@@ -4689,11 +4689,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
+msgstr "Azegrir-agi ad yettwalqem s wudem awurman s ileqman imaynuten n SDK n uzegrir."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "No, this add-on will be upgraded manually."
-msgstr ""
+msgstr "Ala, azegrir-agi ad yettwalqem s ufus."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Universally unique identifier"
@@ -4831,7 +4831,7 @@ msgstr "Kkes azegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Tukksa n usentel ad yeglu s tukksa yines i lebda seg usmel."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
@@ -4845,11 +4845,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Ma ulac aɣilif, iniya-ɣ-d acuɣeṛ ad tekksed asentel inek:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Ma ulac aɣilif, iniya-ɣ-d acuɣeṛ ad tekksed azegrir inek:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/editors/templates/editors/review.html
 msgid "Actions"
@@ -4919,11 +4919,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Beddel bab n usentel-agi."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Beddel imawlan n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete this theme."
@@ -5172,11 +5172,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
-msgstr ""
+msgstr "Amazan n JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT secret"
-msgstr ""
+msgstr "Sser JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
@@ -5195,7 +5195,7 @@ msgstr "Ḥwi"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Ḥwi sakin sirew talɣut n usesteb"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Generate new credentials"
@@ -5328,7 +5328,7 @@ msgstr "Wali ablug &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "MA ulac aɣilif, fren turgat ilaqen i yizerfan i tebɣiḍ ad tmuddeḍ i tengalt inek aɣbalu. Urti-agi yettwaseqdac kan i yizegrar yettwasnen, yettwakelsen."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
@@ -5605,7 +5605,7 @@ msgstr "Jerred di Paypal"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your suggested contribution?"
-msgstr ""
+msgstr "D acu-t uttekki i d-sumreḍ?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "(Example: 3.99)"
@@ -5613,7 +5613,7 @@ msgstr "(Amedya: 3.99)"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "Melmi ara nesuter attekki n iseqdacen?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Send a thank-you note?"
@@ -5739,7 +5739,7 @@ msgstr "Aḍaṛ yettṛaǧun"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "You may update your theme design here once it has been approved."
-msgstr ""
+msgstr "Yessefk ad leqqmeḍ afeṣṣel n usentel inek dagi ticki yettwaqbel."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Header"
@@ -5853,7 +5853,7 @@ msgstr "PNG neɣ JPG"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Reyyec d asawen ayeffus"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a different header image"
@@ -5869,7 +5869,7 @@ msgstr "3000 &tikalt; 100 ipiksilen"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Reyyec d akesser azelmaḍ"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a different footer image"
