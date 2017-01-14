@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 19:11+0000\n"
+"PO-Revision-Date: 2017-01-14 20:00+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8311,29 +8311,31 @@ msgstr "<a href=\"%(url)s\">Snefli azegrir-inek</a>. Nettmuddu amezlu n tnezduɣ
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
-msgstr ""
+msgstr "Ma ɣur-k tarmit di tneflit n izegrar, <a href=\"%(url)s\">uɣal d amazrag</a> ! Imaẓragen-nneɣ ḥelmen aṭas izegrar s tmsussni tatiknikant leqqayen akken ad sneqden taɣara n tengalt akked urkad."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Tzemreḍ ad tmuddeḍ tallalt i usnerni n usmel-agi. Ayagi d aɣbalu yeldin, tzemreḍ ad tezneḍ ibugen neɣ ad d-sumreḍ aseɣti. <a href=\"%(url)s\">GitHub</a> tabdart n ibugen imiranen, Bugzilla yegber "
+"ibugen imazrayen."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "Ma tḥemled ayagi acu kan ur tessineḍ ara tatiknikt, tzemreḍ aɣ-d-muddeḍ afus:"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Siweḍ awal ! Meslay ɣef izegrar i tesseqdaceḍ."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Ttekki deg <a href=\"%(url)s\">inmagaren</a>-nneɣ."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "Sekyed izegrar ɣef usmel web. Imsekyaden zemren ad snernin azegrir udiɣ ad arun imaynuten ticki ẓran d akken axeddim-nsen yettwasra."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "I have a question"
@@ -8343,11 +8345,13 @@ msgstr "Ɣur-i asteqsi"
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
+"Amḍiq ifazen akken ad tebduḍ d <a href=\"%(faq_url)s\"><abbr title=\"Isteqsiyen yettwasnen aṭas\">FAQ</abbr></a>-nneɣ. Ma yella ur tufiḍ-d ara tiririt din-a, tzemreḍ<a href=\"%(forum_url)s\"> ad "
+"tessiqsiḍ deg unmager-nneɣ</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "Ma tesriḍ ad tnermseḍ yiwen si terbaɛt n Mozilla, tanemmirt ma teddiḍ ar usebter-nneɣ <a href=\"%(url)s\">inermisen</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who works on this website?"
@@ -8359,6 +8363,8 @@ msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
 "href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"Iseggasen yezrin, deqs n yemdanen ttekkan deg usmel-agi, d iwiziwen n tmezdagnut neɣ d tirebbaɛ n Mozilla. AMO Tabdart n imttekkiyen ifazen tella deg usebter-nneɣ web <a "
+"href=\"%(url)s\">ismaden</a>."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter"
