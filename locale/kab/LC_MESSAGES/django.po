@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 20:00+0000\n"
+"PO-Revision-Date: 2017-01-14 20:05+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9281,7 +9281,7 @@ msgstr "D acu d anamek ma yella azegrir yettwacraḍ d akken ẓẓay?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown."
-msgstr ""
+msgstr "Tugett n izegrar salayen-d tangalt akked iɣbula ilaqen di tnekra n Firefox. tugett n wakud, asemdu ɣef usenker drus aṭas acu kan kra n izegrar zemren ad sneɣṣen amecwaṛ-agi s waṭas."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report an inappropriate or spam user review?"
