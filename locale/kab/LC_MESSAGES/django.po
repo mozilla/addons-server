@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 09:45+0000\n"
+"PO-Revision-Date: 2017-01-14 10:13+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8301,12 +8301,12 @@ msgstr "Ayagi yettban igarrez! Amek ara ttekkiɣ?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Deqs n tarrayin n uttekki i yellan. Ma seg idis atiknikan hata wamek:"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Snefli azegrir-inek</a>. Nettmuddu amezlu n tnezduɣt akked uleqqem baṭel udiɣ nezmer ak-d-nefk tallalt akken ad tawḍeḍ deqs n yemdanen."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9079,7 +9079,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">Imawalen & Ikemmusen utlayanen</a></s
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Plugins</a></strong> help %(app_name)s display or understand different types of media, such as Adobe Flash or Apple Quicktime."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Imenṭaḍen</a></strong> ad mudden afus i %(app_name)s ad d-yesken neɣ ad yegzu deqs n wanawen n wallalen n teɣwalt am Adobe Flash neɣ Apple Quicktime."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install, manage, or remove an add-on?"
@@ -9095,7 +9095,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
-msgstr "Amek ara kkseq azegrir war ma snekreɣ Firefox tikelt-nniḍen?"
+msgstr "Amek ara kkseɣ azegrir war ma snekreɣ Firefox tikelt-nniḍen?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
