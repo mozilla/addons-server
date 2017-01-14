@@ -519,6 +519,18 @@ class TestHome(EditorTest):
         anchors = doc('#editors-stats .editor-stats-table').eq(2).find('td a')
         assert anchors.eq(0).text() == self.user.display_name
 
+    def test_new_editors_not_in_group(self):
+        former_reviewer = UserProfile.objects.get(id=20)
+        former_reviewer.display_name = 'Former reviewer'
+        former_reviewer.save()
+        amo.log(amo.LOG.GROUP_USER_ADDED,
+                Group.objects.get(name='Add-on Reviewers'), former_reviewer)
+
+        doc = pq(self.client.get(self.url).content)
+
+        anchors = doc('#editors-stats .editor-stats-table').eq(2).find('td a')
+        assert anchors.eq(0).text() != former_reviewer.display_name
+
     def test_unlisted_queues_only_for_senior_reviewers(self):
         listed_queues_links = [
             reverse('editors.queue_nominated'),

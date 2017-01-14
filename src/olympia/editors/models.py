@@ -78,7 +78,7 @@ class EventLog(models.Model):
 
         return [dict(user=i.arguments[1],
                      created=i.created)
-                for i in items]
+                for i in items if i.arguments[1] in group.users.all()]
 
 
 def get_flags(record):
