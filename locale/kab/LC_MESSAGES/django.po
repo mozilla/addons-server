@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 17:01+0000\n"
+"PO-Revision-Date: 2017-01-14 17:09+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9154,11 +9154,13 @@ msgid ""
 "Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
 "slow, try disabling it."
 msgstr ""
+"Tugett n izegrar ur senɣaṣen ara timellit s waṭas di %(app_name)s. Acu kan, asebded n deqs n izegrar yezmer ad d-yeglu s wayen ur nelhi ara. Ma tɣliḍ d akken azegrir ad yer %(app_name)s, ẓẓay ɛreḍ "
+"ad tesenseḍ."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr ""
+msgstr "%(app_name)s yemmal-d d akken azgrir ur imṣada ara. Tella tifrat akken ad kemleɣ ad tesqedceɣ?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
