@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 17:39+0000\n"
+"PO-Revision-Date: 2017-01-14 17:58+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -10979,7 +10979,7 @@ msgstr[1] "%(num)s izegrar"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Talemmast n tezmilin n izegrar n uneflay"
 
 #: src/olympia/versions/feeds.py
 #, python-format
