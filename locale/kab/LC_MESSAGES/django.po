@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 03:35+0000\n"
+"PO-Revision-Date: 2017-01-14 03:49+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8297,7 +8297,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Ayagi yettban igarrez! Amek ara ttekkiɣ?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
@@ -9021,10 +9021,12 @@ msgid ""
 "Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
 msgstr ""
+"Izegrar d ticeqqufin meẓẓiyen n iseɣzanen irennun timahilin timaynutin deg usebded n %(app_name)s. Izegrar zemren ad snernin %(app_name)s s usumer n tmahilin timaynutin, imawalen n tutlayin "
+"tibeṛṛaniyin neɣ asnifel n wudem. S useqdec n izegrar, tzemreḍ ad tmuddeḍ udem i %(app_name)s akken tebɣiḍ. <a href=\"%(learnmore_url)s\">Issin ugar ɣef waggan</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Will add-ons work with my web browser or application?"
-msgstr ""
+msgstr "Izegrar ad ddun akked iminig inu neɣ asnas inu?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9042,7 +9044,7 @@ msgstr "Acu-ten wanawen izergrar?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr ""
+msgstr "Deqs n wanawen n izegrar i yellal akken ad mudden udem i %(app_name)s s deqs n tarrayin :"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
