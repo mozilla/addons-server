@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 11:08+0000\n"
+"PO-Revision-Date: 2017-01-14 12:36+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4719,7 +4719,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Kkes azegrir-agi ugil"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html
 msgid "Enter the name of an add-on"
@@ -4727,7 +4727,7 @@ msgstr "Sekcem isem n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Allal n teɣwal n uzegrir i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on icon"
@@ -9057,6 +9057,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Isiɣzaf</a></strong> Rennun timahinlin timaynutin i %(app_name)s neɣ snifilen tamahilt yellan yakan. Deqs isiɣzaf sirigen asewḥel n udellel, asider n tvidyutin seg"
+" ismal web, aslaɣ akked yesmal web n tmetti, akked timerna n tmahilin i tettwalid deg isnasen nniḍen."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
