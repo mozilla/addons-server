@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 19:01+0000\n"
+"PO-Revision-Date: 2017-01-14 19:11+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2032,7 +2032,7 @@ msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Describe your collection (no links allowed)."
-msgstr "Seglem tamrumma inek (ulac iseɣwan)."
+msgstr "Seglem tagrumma inek (ulac iseɣwan)."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Privacy:"
@@ -10747,7 +10747,7 @@ msgstr "Amaɣnu"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Meslay-aɣ-d cwiṭ fell-ak. Akk urtan d ifrayanen acu kan ad mlen i yiseqdacen nniḍen ayen tebɣiḍ akken ad k-issinen ugar."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This URL will only be visible if you are a developer."
