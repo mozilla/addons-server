@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 17:09+0000\n"
+"PO-Revision-Date: 2017-01-14 17:39+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9169,6 +9169,9 @@ msgid ""
 "compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
+"Ma yella azegrir ur imṣada ara akked lqem inek n %(app_name)s, di tugett n wakud acku lqem inek n %(app_name)s ur yettwalqem ara neɣ ahat ameskar n uzegrir ur t-ileqqem ara akken ad imṣada akked "
+"lqem inek amaynut. Mozilla ur tettweṣṣi ara akken ad ɛerḍeḍ  asekyed n umṣada, imi ayagi yezmer ad d-yeglu s usexṣer neɣ di kra n tikwal ad ṛuḥen isefka. Iseqdacen isekyaden ileman alpha neɣ bêta n "
+"Firefox, ad sen-nsumer <a href=\"%(acr_url)s\">Amazan n umṣada n uzegrir</a> akken ad d-nmudd afus i yineflayen n uzegrir ad leqmen amṣada-nsen."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
@@ -9181,6 +9184,8 @@ msgid ""
 "developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
 "troubleshooting tips."
 msgstr ""
+"Tugett n izegrar rennun-ten ineflayen wis kraḍ seg umaḍal meṛṛa, tarrayt ifazen akken ad tnadiḍ tallat, wali ar iseɣwan n tallalt ɣef usebter agejdan n uzegrir neɣ nermes aneflay. Ma tɣileḍ yella "
+"wugur akked %(app_name)s i tcukeḍ icudd ar izegrar i tesbeddeḍ, <a href=\"%(troubleshooting_url)s\">Ddu ar umagrad -agi n tallalt</a> i kra n texbula n ferru."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-on Gallery"
@@ -9188,7 +9193,7 @@ msgstr "Timidelt n izegrar"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr ""
+msgstr "Amek ara ferneɣ gar izegrar yettbanen gebren timahilin yiwen-nsent?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -9326,7 +9331,7 @@ msgstr "D acu-t Tagrumma-inu tanurift?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr ""
+msgstr "Izgrar inuraf d izegrar anda d ḥerzet lǧeṛṛa akken ad d-uɣaleḍ ɣur-sen s wudem fessusen. Tzemreḍ ad ternuḍ azegrir ar tagrumma tanirift s usiti ɣef \"Rnu ar inurifen\" deg usebter n telqayt."
 
 #: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
