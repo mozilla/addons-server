@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 03:49+0000\n"
+"PO-Revision-Date: 2017-01-14 08:53+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9036,6 +9036,9 @@ msgid ""
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
+"Izegrar i d-yettwabedren di tmidelt teddun kan akked yesnasen yebnan ɣef  Mozilla, am <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, akked <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Acukan, mačči akk izegrar teddun deg iwet n tikelt fell-asen neɣ yal lqem deg-sen. Yal azegrir "
+"yemmal-d anwa isnasen neq ileqman anida iteddu, am Firefox 2.0 - 3.6.*. deg izegrar n Firefox, tiqeffalin n usebded mmalent-d ma yella azegrir yemṣada neɣ ala."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
@@ -9061,17 +9064,17 @@ msgstr "<strong><a href=\"%(browse_url)s\">Isental ummiden</a></strong> akken ad
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Isental</a></strong> d isental fessusen ittuseqdacen deg tugniwin n ugilal i waggan n ifeggagen ine n ifecka %(app_name)s."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Imseddayen n unadi</a> </strong> akken ad ternuḍ afran amaynut n imseddayen n unadi. Imsedddayen-agi ak-eǧǧen ad tnadiḍ s wudem fessusen yal asmel."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr "<strong><a href=\"%(browse_url)s\">Iùawalen & Ikemmusen utlayanen</a></strong> akken ad ternuḍ tutlayin-nniḍen ar %(app_name)s."
+msgstr "<strong><a href=\"%(browse_url)s\">Imawalen & Ikemmusen utlayanen</a></strong> akken ad ternuḍ tutlayin-nniḍen ar %(app_name)s."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9216,7 +9219,7 @@ msgstr "Acḥal yeswa uzegrir i tiɣin?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr ""
+msgstr "Izegrar izedɣen di tmidelt-nneɣ baṭel, ara kan ttwaceṛḍen akken-nniḍen."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on asks for contributions?"
