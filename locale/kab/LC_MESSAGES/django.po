@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 17:58+0000\n"
+"PO-Revision-Date: 2017-01-14 18:16+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -10500,7 +10500,7 @@ msgstr "Axeddim"
 
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Firefox account ur izmir ara akka tura ad isnifel tansa ines imayl."
+msgstr "Iseqdacen n imiḍanen Firefox ur zmiren ara ad sniflen akka tura tansa-nsen imayl."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -10567,11 +10567,11 @@ msgstr "Izegrarèiw izirazen"
 
 #: src/olympia/users/notifications.py
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "aneflay n uzegrir yesnemmer-iyi ɣef uttekki"
 
 #: src/olympia/users/notifications.py
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "aneflay n uzegrir yerra-d i ucegger inu"
 
 #: src/olympia/users/notifications.py
 msgid "an app developer replies to my review"
