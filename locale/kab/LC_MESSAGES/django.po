@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 18:16+0000\n"
+"PO-Revision-Date: 2017-01-14 19:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -10579,35 +10579,35 @@ msgstr ""
 
 #: src/olympia/users/notifications.py
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "izegrar neɣ timahilin timaynutin n Firefox llant"
 
 #: src/olympia/users/notifications.py
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "amṣda n uzegrir-inu yettwalqem akken iwata"
 
 #: src/olympia/users/notifications.py
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "amṣada n uzegrir inu s useqdec n sdk yettwalqem akken iwata"
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "yella win yuran acegger ɣef uzegrir inu"
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "yella win yuran acegger ɣef usnas inu"
 
 #: src/olympia/users/notifications.py
 msgid "add-on contests or events are announced"
-msgstr ""
+msgstr "amsizzwer neɣ tidyanin n uzegrir ad ttwamlen"
 
 #: src/olympia/users/notifications.py
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "amṣada n uzegrir-inu ur yettwalqem ara"
 
 #: src/olympia/users/notifications.py
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "amṣada n uzegrir inu s useqdec n sdk ur yettwalqem ara"
 
 #: src/olympia/users/notifications.py
 msgid "my add-on is reviewed by an editor"
@@ -10775,7 +10775,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Ini-d anta tigrummiwin i tebɣiḍ ad d-banent deg umaɣnu inek."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Display the collections I have created"
@@ -10791,11 +10791,11 @@ msgstr "Alɣu"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "Si sya ar da, Mozilla tezmer ak-d-azen imayl ɣef tuffɣiwin d-iteddun neɣ tidyanin ɣef izegrar. Tanemmirt ma temlid-d isental i tḥemleḍ."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
+msgstr "Mozilla ad k-id-inermes ɣef uguren icudden ar izegrar inek izedɣen ɣur-s."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Admin"
