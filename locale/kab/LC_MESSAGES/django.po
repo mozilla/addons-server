@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-14 20:05+0000\n"
+"PO-Revision-Date: 2017-01-14 22:56+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4311,11 +4311,11 @@ msgstr "Seqdec urti daw-a akken ad tazned akemmus inek n uzegrir."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
+msgstr "Deffir tuzna, azrir n isekyaden n usentem awurman ad ttwaselkmen akken ad sneqden amṣada n lqem n usnas-agi:"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Deffir tuzna, azrir n isekyaden n usentem awurman ad ttwaselkmen ɣef ufaylu inek."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
@@ -5164,11 +5164,11 @@ msgstr "Talɣut n usesteb i API"
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Ugar n telɣut, ddu ar <a href=\"%(docs_url)s\">tsemlit n API</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Ḥrez tisura inek API d tibaḍniyin udiɣ <strong>ur tent-beṭṭu ara akken wiyaḍ</strong>, ula akked imttekkiyen n Mozilla."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -8417,7 +8417,7 @@ msgstr "Ismaden n usmel"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr ""
+msgstr "Mozilla tebă ad tesnemmer imdanen-agi ɣef uttekki-nsen deg usenfaṛ addons.mozilla.org deg iseggasen-agi:"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Developers &amp; Administrators"
@@ -8469,6 +8469,8 @@ msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"Kra nisebtar seqdacen iferdisen n <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), daw n turagt <a href=\"http://creativecommons.org/licenses/by-"
+"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
@@ -9317,7 +9319,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr ""
+msgstr "Firefox akked iseɣẓanen nniḍen n Mozilla d <a href=\"%(url)s\">iseɣẓanen illeliyen</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections and Favorites"
