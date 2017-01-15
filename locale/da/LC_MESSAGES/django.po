@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-15 16:13+0000\n"
+"PO-Revision-Date: 2017-01-15 16:36+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -4534,7 +4534,7 @@ msgstr "View Listing"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Summary"
-msgstr "Summary"
+msgstr "Sammendrag"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid ""
@@ -5146,7 +5146,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
-msgstr ""
+msgstr "Upload fil"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5158,9 +5158,8 @@ msgid "Add-on Distribution Agreement"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Upload din tilføjelse"
+msgstr "Upload tilføjelse"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5173,9 +5172,8 @@ msgid "Where to Host Version"
 msgstr "Seneste version:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Version"
-msgstr "Upload ny version"
+msgstr "Upload version"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5506,14 +5504,12 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Indsend tilføjelse"
+msgstr "Log ind"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Nemme letvægtstemaer til Firefox"
+msgstr "Tilpas din Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid ""
@@ -5522,9 +5518,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "Læs mere om tilføjelser"
+msgstr "Læs hvordan man laver en tilføjelse"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 #, fuzzy
@@ -5537,9 +5532,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Learn How"
-msgstr "Læs mere"
+msgstr "Lær hvordan"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 #, fuzzy
@@ -5551,9 +5545,8 @@ msgid "Have you an add-on ready? Submit your extension or theme to be listed on 
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Sign in"
-msgstr "Indsend tilføjelse"
+msgstr "Log ind"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 #, fuzzy
@@ -5954,7 +5947,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Administrer version {0}"
 
 #. {0} is an add-on name.
 # {0} is the name of the collection
@@ -6090,9 +6083,8 @@ msgid "Listing visibility"
 msgstr "Tilføjelse kompatibilitetscenter"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Visible:"
-msgstr "Synlighed:"
+msgstr "Synlig:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible to everyone on {0} and included in search results and listing pages."
@@ -6100,7 +6092,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Invisible:"
-msgstr ""
+msgstr "Usynlig:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -6151,9 +6143,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "All versions"
-msgstr "Vis alle versioner"
+msgstr "Alle versioner"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
