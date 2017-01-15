@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-15 18:57+0000\n"
+"PO-Revision-Date: 2017-01-15 19:15+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4637,7 +4637,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Inamalen-agi n taggayin ttwaseqdacen i useggem n izegrar. A yagi yelha kan i yezgrar yettwakelsen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This is a site-specific add-on."
@@ -4811,7 +4811,7 @@ msgstr "Ikayaden n umṣada"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Ffer iznan ur iwulmen ara i uzmul awurman"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
 msgid "Hide messages present in previous version and ignored"
@@ -9310,6 +9310,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
+"Akken ad tazneḍ acegger n useqdac n uzgrir, kcem s imiḍan inek sakin rzu ar usebter n ucegger n uzegrir. Af-d acegger tebɣiḍ ad tazneḍ, Sit ɣer \"Azen acegger-agi\" sakin fren acuɣeṛ. Tarbaɛt-nneɣ n"
+" teẓrigt ad tessenqed acegger sakin ad twali acu ara texdem."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -9331,6 +9333,9 @@ msgid ""
 "lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
 "like the GPL or BSD licenses instead of making up their own."
 msgstr ""
+"Tangalt aɣbalu yettwasqedcen i tmerna n uzegrir yella daw n copyright (izerfan yettwaḥerzen n umeskar), arama kan yettwammel akken nniḍen di turagt n tengalt aɣbalu. Deqs n izegrar ɣef usmel-agi "
+"ɣur-sen  <a href=\"%(url)s\" lang=\"en\"> turagt tilellit</a> yettarran tangalt taqbalut d tazayezt i unɣal akked useqdec s tewtilin i d-imudd umeskar. Tugett n imeskaren seqdacen turagin tilelliyin"
+" yettwasnen am GPL neɣ BSD, deg umḍiq n tmerna n turagt-nsen."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
