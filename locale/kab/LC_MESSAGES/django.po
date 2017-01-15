@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-15 19:15+0000\n"
+"PO-Revision-Date: 2017-01-15 19:26+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -11125,7 +11125,7 @@ msgstr ""
 
 #: src/olympia/zadmin/views.py
 msgid "Addons Affected"
-msgstr ""
+msgstr "Izegrar ittuḥazen"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
