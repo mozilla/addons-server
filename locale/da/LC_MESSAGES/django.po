@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-15 15:42+0000\n"
+"PO-Revision-Date: 2017-01-15 16:13+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1757,14 +1757,12 @@ msgid "Approval notes changed"
 msgstr ""
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Svar af udvikler på {addon} {version}."
+msgstr "Kildekode til {addon} {version} uploaded."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Licens for kildekode"
+msgstr "Kildekode uploaded"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -2557,7 +2555,7 @@ msgstr "Nulstil"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG og JPG understøttes.  Billede vil blive ændret til 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."

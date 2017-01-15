@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2016-09-27 15:01+0000\n"
+"PO-Revision-Date: 2017-01-15 16:08+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -911,7 +911,7 @@ msgstr "Fjern fra favoritter"
 
 #: static/js/zamboni/collections.js
 msgid "Pending"
-msgstr ""
+msgstr "Afventer"
 
 #: static/js/zamboni/collections.js
 msgid "Add a comment"
@@ -939,7 +939,7 @@ msgstr "En mailadresse er påkrævet."
 
 #: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Du kan ikke tilføje dig selv som bidragsyder."
 
 #: static/js/zamboni/collections.js
 msgid "You have already added that user."
