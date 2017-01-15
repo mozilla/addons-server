@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-15 16:36+0000\n"
+"PO-Revision-Date: 2017-01-15 16:48+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -10373,7 +10373,7 @@ msgstr "Status efter dato"
 
 #: src/olympia/stats/templates/stats/reports/subscribers.html
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Abonnenter efter dato"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid "Daily Users by Date"
