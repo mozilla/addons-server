@@ -17,12 +17,13 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.core.management import call_command
 from django.utils.translation import ugettext as _
+
 from celery.exceptions import SoftTimeLimitExceeded
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
 from PIL import Image
-
 import validator
+import waffle
 
 from olympia import amo
 from olympia.amo.celery import task
@@ -35,6 +36,7 @@ from olympia.applications.models import AppVersion
 from olympia.files.helpers import copyfileobj
 from olympia.files.models import FileUpload, File, FileValidation
 from olympia.files.utils import is_beta
+from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
 
@@ -195,7 +197,9 @@ def handle_upload_validation_result(results, upload_pk, channel,
 
     upload = FileUpload.objects.get(pk=upload_pk)
 
-    if upload.addon_id and upload.version:
+    if not upload.addon_id:
+        results = annotate_new_legacy_addon_restrictions(results=results)
+    elif upload.addon_id and upload.version:
         results = annotate_webext_incompatibilities(
             results=results, file_=None, addon=upload.addon,
             version_string=upload.version, channel=channel)
@@ -265,6 +269,55 @@ def handle_file_validation_result(results, file_id, annotate=True):
         version_string=file_.version.version, channel=file_.version.channel)
 
     return FileValidation.from_json(file_, results)
+
+
+def annotate_new_legacy_addon_restrictions(results):
+    """
+    Annotate validation results to restrict uploads of new legacy
+    (non-webextension) add-ons if specific conditions are met.
+    """
+    metadata = results.get('metadata', {})
+    target_apps = metadata.get('applications', {})
+    max_target_firefox_version = max(
+        version_int(target_apps.get('firefox', {}).get('max', '')),
+        version_int(target_apps.get('android', {}).get('max', ''))
+    )
+
+    is_webextension = metadata.get('is_webextension') is True
+    is_extension_type = metadata.get('is_extension') is True
+    is_targeting_firefoxes_only = (
+        set(target_apps.keys()).intersection(('firefox', 'android')) ==
+        set(target_apps.keys())
+    )
+    is_targeting_firefox_lower_than_53_only = (
+        metadata.get('strict_compatibility') is True and
+        # version_int('') is actually 200100. If strict compatibility is true,
+        # the validator should have complained about the non-existant max
+        # version, but it doesn't hurt to check that the value is sane anyway.
+        max_target_firefox_version > 200100 and
+        max_target_firefox_version < 53000000200100
+    )
+
+    if (is_extension_type and
+            not is_webextension and
+            is_targeting_firefoxes_only and
+            not is_targeting_firefox_lower_than_53_only and
+            waffle.switch_is_active('restrict-new-legacy-submissions')):
+
+        msg = _(u'Starting with Firefox 53, new extensions on this site can '
+                u'only be WebExtensions.')
+
+        messages = results['messages']
+        messages.insert(0, {
+            'tier': 1,
+            'type': 'error',
+            'id': ['validation', 'messages', 'legacy_extensions_restricted'],
+            'message': msg,
+            'description': [],
+            'compatibility_type': None
+        })
+        results['errors'] += 1
+    return results
 
 
 def annotate_webext_incompatibilities(results, file_, addon, version_string,
