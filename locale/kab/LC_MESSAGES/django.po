@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-16 19:54+0000\n"
+"PO-Revision-Date: 2017-01-16 20:41+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3951,7 +3951,7 @@ msgstr ""
 
 #: src/olympia/devhub/tasks.py
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "Ur tezmired ara ad tsemselsiḍ azegrir WebExtensions s uzegrir aqbuṛ. Iseqdacen inek ur ttizmiren ara ad sqedcen lqem amaynut acku Firefox ur isefrak ara anaw-agi n uleqqem."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4124,7 +4124,7 @@ msgstr "Send ad tebduḍ, ɣeṛ udiɣ qbel ma ulac aɣilif amtawa n uzuzer n iz
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Printable Version"
-msgstr ""
+msgstr "Lqem yettwasaggazen"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "I Accept this Agreement"
@@ -4177,7 +4177,7 @@ msgstr "Imceggiren AMO"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "Aha tura! Uɣal d ameɣri n AMO seg ass-a udiɣ sɣiwel acegger n izegrar."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Become an AMO Reviewer"
@@ -4494,12 +4494,12 @@ msgstr "Tansa URL n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Fren tansa URL wezzilen s war isekkilen imezliyen i uzegrir inek."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html
 #: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/single.html
 msgid "View Listing"
-msgstr ""
+msgstr "Asebter n usnas"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Summary"
