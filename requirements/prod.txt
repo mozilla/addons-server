@@ -251,8 +251,8 @@ natsort==5.0.1 \
     --hash=sha256:62648ac68cf55193bcb4c1078cf99dfb72bb7ed6c1bacca5fd36b6167952b5c6
 ndg-httpsclient==0.4.2 \
     --hash=sha256:580987ef194334c50389e0d7de885fccf15605c13c6eecaabd8d6c43768eb8ac
-newrelic==2.72.1.53 \
-    --hash=sha256:3f601b32d850d8d56c24756706033ca5e3e3c83520151f5cab37d8a07acaaba2
+newrelic==2.78.0.57 \
+    --hash=sha256:2191b7699e14a07efa5d9221270eb29bdf6cce643aa56cff08546ecb3f729be6
 nobot==0.4.1 \
     --hash=sha256:e835abfe9b813fe5697475e8fc0dfbaf9c7572f4574e3d2d7e5114bc84f4cf0b \
     --hash=sha256:bae7bc785e81d4edcc7e7e66457697995c47475e0a2aba405b3a5cb82697e880
