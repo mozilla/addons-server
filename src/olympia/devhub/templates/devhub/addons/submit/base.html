@@ -13,6 +13,12 @@
 {% endblock %}
 
 {% block content %}
+{% if submit_notification_warning %}
+    <div class="notification-box warning">
+        {# The submit notification warning is controlled by admins, HTML is allowed #}
+        {{ submit_notification_warning|safe }}
+    </div>
+{% endif %}
 <header>
   <h2 class="is_addon">{{ title }}</h2>
 </header>
