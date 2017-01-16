@@ -4,9 +4,9 @@ Babel==2.3.4 \
     --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975 \
     --hash=sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875
 # Django is required by django-aesfield, django-cache-nuggets, django-csp, django-mozilla-product-details, django-tables2, nobot
-Django==1.8.17 \
-    --hash=sha256:87618c1011712faf7400e2a73315f4f4c3a6e68ab6309c3e642d5fef73d66d9e \
-    --hash=sha256:021bd648fcf454027063187e63a1ab4136c6929430ef5dfbe36235f60015eb07
+Django==1.10.5 \
+    --hash=sha256:4541a60834f28f308ee7b6e96400feca905fb0de473eb9dad6847e98a36d86d4 \
+    --hash=sha256:0db89374b691b9c8b057632a6cd64b18d08db2f4d63b4d4af6024267ab965f8b
 GitPython==2.1.1 \
     --hash=sha256:a313754737d9a2600b1267262769dda115566eec7e59b0ac855ff0cc9b1da81d \
     --hash=sha256:e96f8e953cf9fee0a7599fc587667591328760b6341a0081ef311a942fc96204
