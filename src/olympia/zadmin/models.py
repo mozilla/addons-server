@@ -24,6 +24,9 @@ class Config(caching.base.CachingMixin, models.Model):
     class Meta:
         db_table = u'config'
 
+    def __unicode__(self):
+        return self.key
+
     @property
     def json(self):
         try:

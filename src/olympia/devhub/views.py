@@ -54,7 +54,7 @@ from olympia.search.views import BaseAjaxSearch
 from olympia.translations.models import delete_translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
-from olympia.zadmin.models import ValidationResult
+from olympia.zadmin.models import get_config, ValidationResult
 
 from . import forms, tasks, feeds, signals
 
@@ -1472,6 +1472,8 @@ def _submit_distribution(request, addon, next_view):
         return redirect(next_view, *args)
     return render(request, 'devhub/addons/submit/distribute.html',
                   {'distribution_form': form,
+                   'submit_notification_warning':
+                       get_config('submit_notification_warning'),
                    'submit_page': 'version' if addon else 'addon'})
 
 
@@ -1572,6 +1574,8 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted,
                   {'new_addon_form': form,
                    'is_admin': is_admin,
                    'addon': addon,
+                   'submit_notification_warning':
+                       get_config('submit_notification_warning'),
                    'submit_page': submit_page,
                    'listed': channel == amo.RELEASE_CHANNEL_LISTED,
                    'channel_choice_text': channel_choice_text})

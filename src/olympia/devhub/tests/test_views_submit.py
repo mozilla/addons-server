@@ -20,6 +20,7 @@ from olympia.files.models import FileValidation
 from olympia.files.tests.test_models import UploadTest
 from olympia.users.models import UserProfile
 from olympia.versions.models import License
+from olympia.zadmin.models import Config
 
 
 def get_addon_count(name):
@@ -125,6 +126,15 @@ class TestAddonSubmitDistribution(TestCase):
         self.assert3xx(r, reverse('devhub.submit.distribution'))
         r = self.client.get(reverse('devhub.submit.distribution'))
         assert r.status_code == 200
+
+    def test_submit_notification_warning(self):
+        config = Config.objects.create(
+            key='submit_notification_warning',
+            value='Text with <a href="http://example.com">a link</a>.')
+        response = self.client.get(reverse('devhub.submit.distribution'))
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.notification-box.warning').html().strip() == config.value
 
     def test_redirect_back_to_agreement(self):
         # We require a cookie that gets set in step 1.
