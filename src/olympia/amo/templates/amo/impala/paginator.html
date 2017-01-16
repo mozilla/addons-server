@@ -15,20 +15,20 @@
                   if pager.has_previous() else '#' }}"
          title="{{ _('Jump to first page') }}"
          class="jump{{ ' disabled' if not pager.has_previous() }}">
-        &#x25C2;&#x25C2;</a>
+        &laquo;&laquo;</a>
       <a href="{{ pager.url|urlparams(page=pager.previous_page_number())
                   if pager.has_previous() else '#' }}"
          class="button prev{% if not pager.has_previous() %} disabled{% endif %}">
-        &#x25C2; {{ _('Previous') }}</a>
+        &laquo; {{ _('Previous') }}</a>
       <a href="{{ pager.url|urlparams(page=pager.next_page_number())
                   if pager.has_next() else '#' }}"
          class="button next{% if not pager.has_next() %} disabled{% endif %}">
-        {{ _('Next') }} &#x25B8;</a>
+        {{ _('Next') }} &raquo;</a>
       <a href="{{ pager.url|urlparams(page=pager.paginator.num_pages)
                   if pager.has_next() else '#' }}"
          title="{{ _('Jump to last page') }}"
          class="jump{{ ' disabled' if not pager.has_next() }}">
-        &#x25B8;&#x25B8;</a>
+        &raquo;&raquo;</a>
     </p>
     <p class="pos">
       {# L10n: First and second arguments are the result range (e.g., 1-20);
