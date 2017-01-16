@@ -29,13 +29,15 @@
       </a></li>
 
       {% if user_authenticated %}
-        {# TODO: Not so sure this should be the logout link but where else to put it?
-                 Should probably be user.get_url_path() to point to the user profile #}
-        <li class="avatar"><a href="{{ url('users.logout') }}">
+        <li class="DevHub-Navigation-LogOut"><a href="{{ url('users.logout') }}">
+          {{ _('Sign Out') }}
+        </a></li>
+
+        <li class="avatar"><a href="{{ user.get_url_path() }}">
           <img src="{{ request.user.picture_url }}" alt="{% if not request.user.picture_type %}{{ _('No Photo') }}{% else %}{{ _('User Photo') }}{% endif %}" />
         </a></li>
       {% else %}
-        <li class="show-on-desktop"><a href="{{ login_link() }}">{{ _('Sign In') }}</a></li>
+        <li class="show-on-desktop DevHub-Navigation-LogIn"><a href="{{ login_link() }}">{{ _('Sign In') }}</a></li>
       {% endif %}
     </ul>
   </div>
