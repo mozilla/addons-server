@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-16 19:22+0000\n"
+"PO-Revision-Date: 2017-01-16 19:54+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4915,7 +4915,7 @@ msgstr "Ẓreg tabdart"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
-msgstr ""
+msgstr "Wali amek yettwassen usentel-agi deg akud."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Change the owner of this theme."
@@ -4931,7 +4931,7 @@ msgstr "Kkes asentel-agi"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
-msgstr ""
+msgstr "Azegrir-agi yettwakkes s wudem awurman seld kran n wussan ma yella akala n tuzna ur immid ara. si le processus de soumission n’est pas terminé."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
