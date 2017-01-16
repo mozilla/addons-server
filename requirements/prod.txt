@@ -112,9 +112,9 @@ cryptography==1.7.1 \
     --hash=sha256:e616aa7a97f377ec5fa4018ab8be69d05dbf07d7e36be6d8cc88cabdea87907d \
     --hash=sha256:953fef7d40a49a795f4d955c5ce4338abcec5dea822ed0414ed30348303fdb4c
 # cssselect is required by pyquery
-cssselect==1.0.0 \
-    --hash=sha256:0bda987bf8d0cbd9e3a6c1468bdcc7c61e99b508894d65d30734415313d8d59f \
-    --hash=sha256:582a85780249255707872c31d0438fc457aa24cfb43e472ff8f3e7ad6857953f
+cssselect==1.0.1 \
+    --hash=sha256:4f5f799a1d3182b04814007e9e7fc6c362f4489c7420d6b348cc901ece07ced9 \
+    --hash=sha256:73db1c054b9348409e2862fc6c0dde5c4e4fbe4da64c5c5a9e05fbea45744077
 # cssutils is required by amo-validator
 cssutils==1.0.1 \
     --hash=sha256:78ac48006ac2336b9456e88a75ed35f6a31a030c65162503b7af01a60d78db5a \
