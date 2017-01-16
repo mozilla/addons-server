@@ -170,9 +170,9 @@ easy-thumbnails==2.3 \
 elasticsearch==5.1.0 \
     --hash=sha256:ee95918958508fd34e533f78d0790e0e5ee03d0942b8988d34e6b6c4467edf66 \
     --hash=sha256:a0bc4508764aa14c0cd15840a0ab38020b68e17d699274417986e3da0cee82fa
-elasticsearch-dsl==0.0.11 \
-    --hash=sha256:663fb62ad39200c7d903e973aa0aa693578613264d83796455cbf4cd172bd878 \
-    --hash=sha256:59a76c4142478a1952bba6f9a9ca4fc7b029afb619e8ffcf0d135ce37ea692da
+elasticsearch-dsl==5.1.0 \
+    --hash=sha256:5d3800d75240e99bbb0b5b16041e88a65cc8f7ddb34b6041d515a2d76df4352b \
+    --hash=sha256:396393f7102a49605a91261d16218b5dd66b991a4a57cea982649cb52e6f25ac
 email-reply-parser==0.3.0 \
     --hash=sha256:83cd931e40b5dbef0a69462d9392d71610afbae729a135706f09255f78c08043
 # enum34 is required by cryptography, flake8, traitlets
