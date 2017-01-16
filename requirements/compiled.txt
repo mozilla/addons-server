@@ -19,12 +19,8 @@ Pillow==4.0.0 \
     --hash=sha256:1d3629a17d9da641912d1ed47d0850d79412e8d28e2703b2fb0b152073ceab55 \
     --hash=sha256:d33d4ffd465ba041136c6c2c46c2dc2da4b0b6a8806a4c06aebbb1c32a2e6383
 # lxml is required by pyquery
-lxml==3.6.0 \
-    --hash=sha256:8fdfeea3f1854bfd117bf0a1f13e14c3377bf14c1b7191f497f368df08dcbb55 \
-    --hash=sha256:4566e8d80f13ade36e55ac60c9bb9a3540115a6314af5692da09d01a15795728 \
-    --hash=sha256:9c74ca28a7f0c30dca8872281b3c47705e21217c8bc63912d95c9e2a7cac6bdf \
-    --hash=sha256:bea9bcf0467ab8741bfaf31dab1fd114984312f2b11daaf2ff8610fad8869e7b \
-    --hash=sha256:3879d0de2d616041a25a76b0d39898fabbb2ce95d30d3babb8920be378754fea
+lxml==3.7.2 \
+    --hash=sha256:59d9176360dbc3919e9d4bfca85c1ca64ab4f4ee00e6f119d7150ba887e3410a
 m2crypto==0.25.1 \
     --hash=sha256:ac303a1881307a51c85ee8b1d87844d9866ee823b4fdbc52f7e79187c2d9acef
 # simplejson is required by amo-validator
