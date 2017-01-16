@@ -186,8 +186,8 @@ elasticsearch==5.1.0 \
 elasticsearch-dsl==5.1.0 \
     --hash=sha256:5d3800d75240e99bbb0b5b16041e88a65cc8f7ddb34b6041d515a2d76df4352b \
     --hash=sha256:396393f7102a49605a91261d16218b5dd66b991a4a57cea982649cb52e6f25ac
-email-reply-parser==0.3.0 \
-    --hash=sha256:83cd931e40b5dbef0a69462d9392d71610afbae729a135706f09255f78c08043
+email-reply-parser==0.5.9 \
+    --hash=sha256:f92aa6fd7314c2c8833f2928c0fd6d2e26f94c04eb1de409e75c59f1ac42eef8
 # enum34 is required by cryptography, flake8, traitlets
 enum34==1.1.6 \
     --hash=sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79 \
