@@ -167,9 +167,9 @@ easy-thumbnails==2.3 \
     --hash=sha256:5ae57f086026dbfe4aa59e9bc80bcae1ae6daca63dec02a2d510c3ab098f0de2 \
     --hash=sha256:d6113cf1e1ece85216ab8cd62c352da21853c9ef31341161d904801d347d7aee
 # elasticsearch is required by elasticsearch-dsl
-elasticsearch==1.1.1 \
-    --hash=sha256:93ab9d59dc38b4c9893aecf23a55ff88b237c3b876bce23b636a8a767f5729be \
-    --hash=sha256:6d86968b22f09a5e4f830ea3f3090c039ff5416146fa98b4a59a6b1dd5388759
+elasticsearch==5.1.0 \
+    --hash=sha256:ee95918958508fd34e533f78d0790e0e5ee03d0942b8988d34e6b6c4467edf66 \
+    --hash=sha256:a0bc4508764aa14c0cd15840a0ab38020b68e17d699274417986e3da0cee82fa
 elasticsearch-dsl==0.0.11 \
     --hash=sha256:663fb62ad39200c7d903e973aa0aa693578613264d83796455cbf4cd172bd878 \
     --hash=sha256:59a76c4142478a1952bba6f9a9ca4fc7b029afb619e8ffcf0d135ce37ea692da
