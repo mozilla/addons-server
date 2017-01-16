@@ -270,3 +270,6 @@ READ_ONLY = env.bool('READ_ONLY', default=False)
 RAVEN_DSN = (
     'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77')
 RAVEN_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
+
+GITHUB_API_USER = env('GITHUB_API_USER')
+GITHUB_API_TOKEN = env('GITHUB_API_TOKEN')
