@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-15 19:26+0000\n"
+"PO-Revision-Date: 2017-01-16 18:57+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4775,11 +4775,11 @@ msgstr "Tuṭṭfiwin n wegdil"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Ma uulac aɣilif, mudd-d ɣarsum yiwet n tuṭṭfa n ugdil i uzegrir inek:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Ma ulac aɣilif, mudd-d aglam i uzegrir inek:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add a Screenshot..."
@@ -4815,7 +4815,7 @@ msgstr "Ffer iznan ur iwulmen ara i uzmul awurman"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Ffer iznan yellan deg ileman yezrin yettwazeglen"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Top"
@@ -4841,7 +4841,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
-msgstr ""
+msgstr "Sekcem aḍris-agi akken ad tessentmeḍ ayen tebɣiḍ: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
@@ -4857,7 +4857,7 @@ msgstr "Tigawin"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Resume the submission process for this add-on."
-msgstr ""
+msgstr "Kemmel akala n tuzna n uzegrir-agi."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Resume"
