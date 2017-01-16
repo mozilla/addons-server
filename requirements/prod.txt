@@ -140,8 +140,9 @@ django-mozilla-product-details==0.12.1 \
     --hash=sha256:25ac11bd4544fef3236f32439f6b1de3bcf931f8b34c7786ab40f0ec85626eeb
 django-multidb-router==0.5.1 \
     --hash=sha256:00b34b24d4f32077bc53ebb940e9a50edbf086917d4b2eb6a399a05890463650
-django-post-request-task==0.0.3 \
-    --hash=sha256:6e925e40d05ed9c51c59ec7083d4d0277db88670bbd58151c72eebc0f93be3ca
+django-post-request-task==0.1.1 \
+    --hash=sha256:015b407b8bc81f13104a5607c2765cc2cafc628661ffcfa1f4563fdc9eba2ffb \
+    --hash=sha256:f5b0d532a625321d7613bf6c7b6ba7e6c4c5e77e257d780db414799f62786d63
 django-quieter-formset==0.4 \
     --hash=sha256:e498ac6f2b216f191f7dbbfbaa591fa3935313c0c29195d8a4e5b480b62d8248
 django-session-csrf==0.7.1 \
