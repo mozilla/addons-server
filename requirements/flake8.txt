@@ -19,9 +19,9 @@ mccabe==0.5.2 \
     --hash=sha256:91cc38b2c7636aaf1903e06d96ee960fb3dff9ca3afc595627c9a638f8e86d2b \
     --hash=sha256:3473f06c8b757bbb5cdf295099bf64032e5f7d6fe0ec2f97ee9b23cb0a435aff
 # pycodestyle is required by flake8
-pycodestyle==2.0.0 \
-    --hash=sha256:2ce83f2046f5ab85c652ceceddfbde7a64a909900989b4b43e92b10b743d0ce5 \
-    --hash=sha256:37f0420b14630b0eaaf452978f3a6ea4816d787c3e6dcbba6fb255030adae2e7
+pycodestyle==2.2.0 \
+    --hash=sha256:60c4e1c36f301ac539a550a29e9d16862069ec240472d86e5e71c4fc645829cb \
+    --hash=sha256:df81dc3293e0123e2e8d1f2aaf819600e4ae287d8b3af8b72181af50257e5d9a
 # pyflakes is required by flake8
 pyflakes==1.3.0 \
     --hash=sha256:ad89dafee8ca32282116209a0ca4dff050bdc343af958721d5517d242c1215d5 \
