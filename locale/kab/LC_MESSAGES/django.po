@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-16 20:41+0000\n"
+"PO-Revision-Date: 2017-01-16 20:49+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4552,7 +4552,7 @@ msgstr "Amedya: aberkan, sinima, amellal. Talast20."
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
+msgstr[0] "Ticraḍ yettwaḥerren:"
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
@@ -4633,7 +4633,7 @@ msgstr "Talast 3"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Add-on Flags"
-msgstr ""
+msgstr "Anayen n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
@@ -4819,7 +4819,7 @@ msgstr "Ffer iznan yellan deg ileman yezrin yettwazeglen"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Top"
-msgstr ""
+msgstr "Afella n usebter"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Delete Theme"
@@ -6427,7 +6427,7 @@ msgstr "Ulac iceggiren"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Tigawt-agi ad tessentem, ad tezmel, ad tessuffeɣ lqem-agi. Iwenniten ad ttwaznen i uneflay."
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
@@ -6523,7 +6523,7 @@ msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Acegger yemmed akken iwata."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
@@ -7183,7 +7183,7 @@ msgstr ""
 
 #: src/olympia/files/forms.py
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Ur izmir ara ad isiḍen amgired gar sin ileqman yettemcabin"
 
 #: src/olympia/files/helpers.py
 #, python-format
