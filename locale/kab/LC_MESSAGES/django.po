@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-16 20:49+0000\n"
+"PO-Revision-Date: 2017-01-17 05:39+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3892,11 +3892,11 @@ msgstr "Ur tezmireḍ ara ad tekkseḍ afaylu arama akala n ucegger yekker. Yess
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
-msgstr ""
+msgstr "Tawennaṭ Akk ur tezmir ara ad tettwafren akked d tayeḍ."
 
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
-msgstr ""
+msgstr "Tawennaṭ ad tettwafren kan yiwet n tikelt."
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -3947,7 +3947,7 @@ msgstr "Acegger"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Nessirig udiɣ nettmuddu tabɣest n uleqqem-agi, acukan ulac tuɣalin ar deffir. Ticki iseqdacen sbedden WebExtension, ur ttizmiren ara ad sbedden ileman iqburen."
 
 #: src/olympia/devhub/tasks.py
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
@@ -4738,6 +4738,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Sali tignit i uzegrir inek neɣ fren yiwet si tignitin nneɣ. Tignit ad tettwasken di yal amḍiq anida i d-yettban uzegrir inek. Anaw n tugna yettwaselkten yessfk ad yili .png neɣ .jpg. Tuzna n tignit "
+"ur tettwasnas ala ɣef izegrar yettwaḥerzen."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Select an icon for your add-on:"
@@ -4750,7 +4752,7 @@ msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr ""
+msgstr "Yettwaseqdec di tebdarin n izegrar am igmaḍ n unadi akked izegrar itran."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
