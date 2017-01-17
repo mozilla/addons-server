@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-17 03:39+0000\n"
+"PO-Revision-Date: 2017-01-17 04:19+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1756,18 +1756,16 @@ msgid "Reviewer Reply"
 msgstr "Réponse d’un relecteur"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Commentaire sur {addon} {version}."
+msgstr "Notes d’approbation changées pour {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
 msgstr "Les évaluations d’approbation ont changé"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Réponse par un développeur de {addon} {version}."
+msgstr "Code source mis en ligne pour {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Source code uploaded"
@@ -4250,7 +4248,7 @@ msgid ""
 msgstr ""
 "Les modules complémentaires permettent aux millions d’utilisateurs de Firefox d’améliorer et de personnaliser leur façon de naviguer. Si vous êtes un développeur web et que vous connaissez <a "
 "href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> et <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, vous avez toutes les cartes en main pour construire un super module."
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, vous avez toutes les cartes en main pour créer un super module."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -5142,9 +5140,8 @@ msgid "Submission Complete"
 msgstr "Envoi terminé"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done!"
-msgstr "C’est fini !"
+msgstr "C’est fait !"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Submitted for Review"
@@ -5175,18 +5172,16 @@ msgid "File Signed"
 msgstr "Fichier signé"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "C’est fait ! Cette version a été signée et peut maintenant être distribuée. Vous pouvez la télécharger en cliquant sur le bouton ci-dessous."
+msgstr "C’est fait ! Cette version a été signée et peut maintenant être distribuée personnellement. Vous pouvez la télécharger en cliquant sur le bouton ci-dessous."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Signed"
 msgstr "Version signée"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "C’est fait ! Cette version a été signée et peut maintenant être distribuée. Vous pouvez la télécharger en cliquant sur le bouton ci-dessous."
+msgstr "C’est fait ! Cette version a été signée et peut maintenant être distribuée personnellement. Vous pouvez la télécharger en cliquant sur le bouton ci-dessous."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
@@ -5213,9 +5208,8 @@ msgid "Upload Add-on"
 msgstr "Envoyer votre module"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Hébergement de cette version"
+msgstr "Hébergement de ce fichier"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5244,9 +5238,8 @@ msgid "Administrative overrides"
 msgstr "Dérogations administratives"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File"
-msgstr "Envoyer un nouveau thème"
+msgstr "Envoyer un fichier"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -5336,9 +5329,8 @@ msgid "%%b %%e, %%Y"
 msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Add-on Multi Process Status:"
-msgstr "Statut du mode multi-processus&nbsp;:"
+msgstr "État du mode multiprocessus du module&nbsp;:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
@@ -5515,20 +5507,19 @@ msgstr "besoin de plus d’informations"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Manage Your Add-on"
-msgstr "Gérer votre module"
+msgstr "Gérez votre module"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Connectez-vous pour modifier et mettre à jour votre module"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Evolution in Add-on Development"
-msgstr "Développement d’extension"
+msgstr "Changements pour le développement de modules"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr "WebExtensions deviennent le format standard de développement des extensions pour Firefox. Ce qui, entre autres changements, peut impacter les développeurs d’extensions classiques."
+msgstr "Les WebExtensions deviennent le format standard de développement des extensions pour Firefox. Ce qui, entre autres changements, peut impacter les développeurs d’extensions classiques."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Find Out if Your Add-on is Affected"
@@ -5549,9 +5540,8 @@ msgstr "Proposez votre premier thème"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Développeur de modules"
+msgstr "Pôle développeurs de modules"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
@@ -5567,39 +5557,35 @@ msgid "Sign In"
 msgstr "Se connecter"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Your Firefox"
-msgstr "Thèmes Firefox faciles à utiliser"
+msgstr "Personnalisez Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
 "necessary skills to make a great add-on."
 msgstr ""
 "Les modules complémentaires permettent aux millions d’utilisateurs de Firefox d’améliorer et de personnaliser leur façon de naviguer. Si vous êtes un développeur web et que vous connaissez <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> et <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, vous avez toutes les cartes en main pour construire un super module."
+"href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> et <a href=\"#\">CSS</a>, vous avez toutes les cartes en main pour créer un super module."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to make an Add-on"
-msgstr "En apprendre plus à propos des modules"
+msgstr "Apprenez à créer un module"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "Extensions populaires"
+msgstr "Effectuez le portage d’une extension Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox prend en charge les API WebExtension, qui sont la plupart du temps compatibles avec les API d’extensions prises en charge par Google, Chrome et Opera, si bien que vos extensions ne "
+"demanderont que des changements minimes pour fonctionner avec Firefox."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Learn How"
-msgstr "En savoir plus"
+msgstr "Découvrez comment"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
@@ -5607,18 +5593,16 @@ msgstr "Publiez votre module"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Vous avez un module prêt ? Proposez votre module ou votre thème pour qu'il soit répertorié sur addons.mozilla.org ou signez numériquement et distribuez votre module vous-même."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Sign in"
-msgstr "Se connecter"
+msgstr "Connectez-vous"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Validation"
+msgstr "Validateur"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 #, fuzzy
@@ -5626,18 +5610,16 @@ msgid "Automated code tests for your add-on."
 msgstr "Veuillez compléter votre module."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Vérificateur de compatibilité de modules"
+msgstr "Vérificateur de compatibilité"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr "Voir si votre module peut-être impacté par des changements de Firefox."
+msgstr "Découvrez si votre module peut-être impacté par des changements de Firefox."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Rapports de compatibilité"
+msgstr "Générateur de rapports de compatibilité"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -7340,7 +7322,7 @@ msgstr "Impossible de calculer une différence entre deux versions identiques"
 #: src/olympia/files/helpers.py
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "La visionneuse de fichier est verrouillée, l’extraction de %s pourrait être en cours. Veuillez essayer à nouveau dans environ 5 minutes."
 
 #: src/olympia/files/helpers.py
 #, python-format
