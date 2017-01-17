@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-15 03:44+0000\n"
+"PO-Revision-Date: 2017-01-17 03:39+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5163,18 +5163,16 @@ msgid "Manage Listing"
 msgstr "Gérer la page de l’application"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "Vous pouvez également modifier la version que vous venez de proposer en ajoutant des notes de version ou du code source si votre proposition contient du code minifié, obscurci ou compilé."
+msgstr "Vous pouvez également modifier la version que vous venez de proposer en ajoutant des notes de version ou le code source si votre proposition contient du code minifié, compacté ou compilé."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
 msgstr "Modifier la version {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "File Signed"
-msgstr "Version signée"
+msgstr "Fichier signé"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5352,14 +5350,12 @@ msgid "Listed Version:"
 msgstr "Dernière version :"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "C’est la version de votre module qui sera installée lorsque quelqu’un clique sur le bouton Installer sur addons.mozilla.org. Ce champ est uniquement pertinent pour les modules répertoriés."
+msgstr "C’est la version de votre module qui sera installée lorsque quelqu’un clique sur le bouton Installer sur addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Prochaine version&nbsp;:"
+msgstr "Prochaine version répertoriée :"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -5509,9 +5505,8 @@ msgid "{0} Add-ons"
 msgstr "{0} Modules"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Dernière version :"
+msgstr "Dernières nouvelles"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 #, fuzzy
@@ -5519,13 +5514,12 @@ msgid "Read more in our Blog"
 msgstr "besoin de plus d’informations"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Manage Your Add-on"
 msgstr "Gérer votre module"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Connectez-vous pour modifier et mettre à jour votre module"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 #, fuzzy
@@ -5534,26 +5528,24 @@ msgstr "Développement d’extension"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr ""
+msgstr "WebExtensions deviennent le format standard de développement des extensions pour Firefox. Ce qui, entre autres changements, peut impacter les développeurs d’extensions classiques."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Find Out if Your Add-on is Affected"
-msgstr "Modules concernés"
+msgstr "Découvrez si votre module est concerné"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
+"Ici vous allez pouvoir afficher et gérer vos extensions et thèmes. Pour publier votre première extension, cliquez sur « Soumettre votre première extension » ou « Soumettre votre premier thème »."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Submit Your First Add-on"
-msgstr "Envoyer un module"
+msgstr "Proposez votre premier module"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Submit Your First Theme"
-msgstr "Envoyer le thème"
+msgstr "Proposez votre premier thème"
 
 # The title for a user if they are a developer
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
@@ -5610,9 +5602,8 @@ msgid "Learn How"
 msgstr "En savoir plus"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Publish Your Add-on"
-msgstr "Publiez vos modules&nbsp;!"
+msgstr "Publiez votre module"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
