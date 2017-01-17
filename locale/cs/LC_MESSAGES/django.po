@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-11 00:18+0000\n"
+"PO-Revision-Date: 2017-01-17 13:31+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4184,7 +4184,8 @@ msgstr "API klíč byl revokován"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-msgstr "Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, které odkazují na naše poznámky k soukromí, které vysvětlují jak nakládáme s vašimi informacemi."
+msgstr ""
+"Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, které odkazují na naše oznámení o zásadách ochrany osobních údajů, které vysvětluje, jak nakládáme s vašimi informacemi."
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Printable Version"
