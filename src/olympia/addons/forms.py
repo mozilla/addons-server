@@ -383,9 +383,8 @@ class AddonFormTechnical(AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('developer_comments', 'view_source', 'site_specific',
-                  'external_software', 'auto_repackage', 'public_stats',
-                  'whiteboard')
+        fields = ('developer_comments', 'view_source', 'external_software',
+                  'auto_repackage', 'public_stats', 'whiteboard')
 
 
 class AddonFormTechnicalUnlisted(AddonFormBase):

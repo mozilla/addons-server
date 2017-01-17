@@ -73,34 +73,34 @@ class TestModelBase(TestCase):
 
     def test_change_called_on_new_instance_save(self):
         for create_addon in (Addon, Addon.objects.create):
-            addon = create_addon(site_specific=False, type=amo.ADDON_EXTENSION)
-            addon.site_specific = True
+            addon = create_addon(admin_review=False, type=amo.ADDON_EXTENSION)
+            addon.admin_review = True
             addon.save()
             assert self.cb.called
             kw = self.cb.call_args[1]
-            assert not kw['old_attr']['site_specific']
-            assert kw['new_attr']['site_specific']
+            assert not kw['old_attr']['admin_review']
+            assert kw['new_attr']['admin_review']
             assert kw['instance'].id == addon.id
             assert kw['sender'] == Addon
 
     def test_change_called_on_update(self):
         addon = Addon.objects.get(pk=3615)
-        addon.update(site_specific=False)
+        addon.update(external_software=False)
         assert self.cb.called
         kw = self.cb.call_args[1]
-        assert kw['old_attr']['site_specific']
-        assert not kw['new_attr']['site_specific']
+        assert kw['old_attr']['external_software']
+        assert not kw['new_attr']['external_software']
         assert kw['instance'].id == addon.id
         assert kw['sender'] == Addon
 
     def test_change_called_on_save(self):
         addon = Addon.objects.get(pk=3615)
-        addon.site_specific = False
+        addon.external_software = False
         addon.save()
         assert self.cb.called
         kw = self.cb.call_args[1]
-        assert kw['old_attr']['site_specific']
-        assert not kw['new_attr']['site_specific']
+        assert kw['old_attr']['external_software']
+        assert not kw['new_attr']['external_software']
         assert kw['instance'].id == addon.id
         assert kw['sender'] == Addon
 
@@ -113,7 +113,7 @@ class TestModelBase(TestCase):
                      sender=None, **kw):
             fn.called = True
             # Both save and update should be protected:
-            instance.update(site_specific=False)
+            instance.update(admin_review=False)
             instance.save()
 
         Addon.on_change(callback)
