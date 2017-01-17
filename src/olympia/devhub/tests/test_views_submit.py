@@ -965,6 +965,12 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert doc('.beta-status').length
 
+    def test_no_beta_field_when_addon_not_approved(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('.beta-status').length
+
     def test_url_is_404_for_disabled_addons(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         r = self.client.get(self.url)

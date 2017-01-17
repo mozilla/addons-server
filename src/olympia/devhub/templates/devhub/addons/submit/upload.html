@@ -66,7 +66,7 @@
       </div>
 
     </div>
-    {% if submit_page == 'version' %}
+    {% if submit_page == 'version' and addon.status == amo.STATUS_PUBLIC %}
       <div class="beta-status hide">
         <label>{{ new_addon_form.beta }} {{ _('Only publish this version to my beta channel.') }}</label>
         <span class="tip tooltip" title="{{ new_addon_form.beta.help_text }}">?</span>
