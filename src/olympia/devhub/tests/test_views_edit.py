@@ -527,12 +527,11 @@ class TestEditBasicListed(BaseTestEditBasic):
     def test_text_not_none_when_has_flags(self):
         r = self.client.get(self.url)
         doc = pq(r.content)
-        assert doc('#addon-flags').text() == (
-            'This add-on requires external software.')
+        assert doc('#addon-flags').text() == 'This is a site-specific add-on.'
 
     def test_text_none_when_no_flags(self):
         addon = self.get_addon()
-        addon.update(external_software=False)
+        addon.update(external_software=False, site_specific=False)
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('#addon-flags').text() == 'None'
@@ -1101,6 +1100,7 @@ class TestEditTechnical(BaseTestEdit):
         # Turn everything on
         data = dict(developer_comments='Test comment!',
                     external_software='on',
+                    site_specific='on',
                     view_source='on',
                     whiteboard='Whiteboard info.')
 
@@ -1122,11 +1122,13 @@ class TestEditTechnical(BaseTestEdit):
         addon = self.get_addon()
 
         assert not addon.external_software
+        assert not addon.site_specific
         assert not addon.view_source
 
     def test_technical_devcomment_notrequired(self):
         data = dict(developer_comments='',
                     external_software='on',
+                    site_specific='on',
                     view_source='on')
         r = self.client.post(self.technical_edit_url, self.formset(data))
         assert r.context['form'].errors == {}

@@ -66,6 +66,7 @@
             "annoying": 0,
             "modified": "2010-05-24 17:32:41",
             "suggested_amount": null,
+            "site_specific": true,
             "total_reviews": 12,
             "the_reason": null
         }
