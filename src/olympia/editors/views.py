@@ -450,9 +450,7 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
 
     counts = {'pending': construct_query(ViewPendingQueue, **kw),
               'nominated': construct_query(ViewFullReviewQueue, **kw),
-              'moderated': (
-                  Review.objects.filter(reviewflag__isnull=False,
-                                        editorreview=1).count)}
+              'moderated': Review.objects.all().to_moderate().count}
     if unlisted:
         counts = {
             'all': (ViewUnlistedAllList.objects if admin_reviewer
@@ -484,18 +482,8 @@ def queue_pending(request):
 
 @addons_reviewer_required
 def queue_moderated(request):
-    # In addition to other checks, this only show reviews for public and
-    # listed add-ons. Unlisted add-ons typically won't have reviews anyway
-    # but they might if their status ever gets changed.
-    unlisted_channel = amo.RELEASE_CHANNEL_UNLISTED
-    rf = (Review.objects.exclude(Q(addon__isnull=True) |
-                                 Q(version__channel=unlisted_channel) |
-                                 Q(reviewflag__isnull=True))
-                        .filter(editorreview=1,
-                                addon__status__in=amo.VALID_ADDON_STATUSES)
-                        .order_by('reviewflag__created'))
-
-    page = paginate(request, rf, per_page=20)
+    qs = Review.objects.all().to_moderate().order_by('reviewflag__created')
+    page = paginate(request, qs, per_page=20)
     motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
 
     flags = dict(ReviewFlag.FLAGS)
