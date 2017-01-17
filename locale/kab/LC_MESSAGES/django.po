@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-17 05:39+0000\n"
+"PO-Revision-Date: 2017-01-17 05:56+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3020,7 +3020,7 @@ msgstr "Akaras n usnas"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Platform"
-msgstr "Talɣubliṭ"
+msgstr "Anagraw"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "e10s Enabled"
@@ -4840,6 +4840,8 @@ msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 msgstr ""
+"Tukksa n uzegrir inek ad yekkes ilebda akk ileqman akked ifuyla n uzegrir-agi, ama ttwabedren-d neɣ ala. Asulay ID n uzegrir ad yeqqim icudd ar umiḍan inek, ihi wiyaḍ ur ttizmiren ara ad sqedcen "
+"asulay-agisi i yileqman nniḍen."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5061,7 +5063,7 @@ msgstr "Lqem yettwazen akken ad ittucegger"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Ifuk! Acegger yettusuter i lqem-agi. Ak-id-yaweḍ isalli ticki ifuk ucegger, neɣ ticki imsekyaden ɣur-sen isteqsiyen itezzin ɣef usumer inek."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -9789,11 +9791,11 @@ msgstr "Ttwasnen aṭas ddurt-agi"
 
 #: src/olympia/search/forms.py
 msgid "Most popular this month"
-msgstr ""
+msgstr "Ttwasnen aṭas aggur-agi"
 
 #: src/olympia/search/forms.py
 msgid "Most popular all time"
-msgstr ""
+msgstr "Ttwasnen aṭas yal akud"
 
 #: src/olympia/search/forms.py
 msgid "search for add-ons"
@@ -9971,7 +9973,7 @@ msgstr "s tutlayt"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Platform"
-msgstr "s telɣubliṭ"
+msgstr "s Twennaṭ"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Add-on Status"
@@ -10321,7 +10323,7 @@ msgstr "Alɣu usḍif"
 
 #: src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Mmel yir aseqdec n tecreṭ"
 
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
