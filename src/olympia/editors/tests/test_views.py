@@ -18,7 +18,8 @@ from mock import Mock, patch
 from pyquery import PyQuery as pq
 
 from olympia import amo, reviews
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import (
+    addon_factory, TestCase, version_factory, user_factory)
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonDependency, AddonUser
@@ -1114,7 +1115,31 @@ class TestModeratedQueue(QueueTest):
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 1
 
     def test_queue_count(self):
-        self._test_queue_count(2, 'Moderated Review', 1)
+        # From the fixtures we already have 2 reviews, one is flagged. We add
+        # a bunch of reviews from different scenarios and make sure they don't
+        # count towards the total.
+        # Add a review associated with an normal addon
+        review = Review.objects.create(
+            addon=addon_factory(), user=user_factory(),
+            body='show me', editorreview=True)
+        ReviewFlag.objects.create(review=review)
+
+        # Add a review associated with an incomplete addon
+        review = Review.objects.create(
+            addon=addon_factory(status=amo.STATUS_NULL), user=user_factory(),
+            title='please', body='dont show me', editorreview=True)
+        ReviewFlag.objects.create(review=review)
+
+        # Add a review associated to an unlisted version
+        addon = addon_factory()
+        version = version_factory(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        review = Review.objects.create(
+            addon=addon_factory(), version=version, user=user_factory(),
+            title='please', body='dont show me either', editorreview=True)
+        ReviewFlag.objects.create(review=review)
+
+        self._test_queue_count(2, 'Moderated Reviews', 2)
 
     def test_no_reviews(self):
         Review.objects.all().delete()

@@ -3,6 +3,7 @@ import logging
 
 from django.core.cache import cache
 from django.db import models
+from django.db.models import Q
 from django.template import Context
 from django.utils.translation import ugettext_lazy as _
 
@@ -52,6 +53,18 @@ class ReviewQuerySet(caching.CachingQuerySet):
     """
     A queryset modified for soft deletion.
     """
+    def to_moderate(self):
+        """Return reviews to moderate.
+
+        Reviews attached lacking an addon or attached to an addon that is no
+        longer nominated or public are ignored, as well as reviews attached to
+        unlisted versions.
+        """
+        return self.exclude(
+            Q(addon__isnull=True) |
+            Q(version__channel=amo.RELEASE_CHANNEL_UNLISTED) |
+            Q(reviewflag__isnull=True)).filter(
+                editorreview=1, addon__status__in=amo.VALID_ADDON_STATUSES)
 
     def delete(self, user_responsible=None, hard_delete=False):
         if hard_delete:
