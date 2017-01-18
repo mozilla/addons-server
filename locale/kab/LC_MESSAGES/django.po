@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-18 12:54+0000\n"
+"PO-Revision-Date: 2017-01-18 13:18+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -406,7 +406,7 @@ msgstr "Talemmsat n iseqdacen n yal ass"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Assaɣ n uẓekker"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
