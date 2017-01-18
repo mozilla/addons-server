@@ -9,9 +9,9 @@ Django==1.8.17 \
 GitPython==0.1.7 \
     --hash=sha256:03754bc7b256397c1b646e5048e2291590f5080171adb8b00f4e2d7384c76eee # pyup: ==0.1.7, breaks jingo minify and other things
 # Jinja2 is required by Sphinx
-Jinja2==2.8.1 \
-    --hash=sha256:3997cf273f1424207c60d5895264f74483fce72702f15a7cd51a8551d43663ca \
-    --hash=sha256:35341f3a97b46327b3ef1eb624aadea87a535b8f50863036e085e7c426ac5891
+Jinja2==2.9.4 \
+    --hash=sha256:93b97a811b575998899b293fdb2144c536aeb7d6ee13464b0cf8e86ae64eb56b \
+    --hash=sha256:aab8d8ca9f45624f1e77f2844bf3c144d180e97da8824c2a6d7552ad039b5442
 # M2Crypto is required by django-aesfield, m2secret, signing-clients
 M2Crypto==0.24.0 \
     --hash=sha256:80a56441a1d2c0cf27e725be7554c92598b938fc8767ee2c71fdbc2fdc055ee8
