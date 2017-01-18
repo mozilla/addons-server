@@ -248,9 +248,9 @@ jingo==0.9.0 \
     --hash=sha256:12a983286519303c6afd3da6f0a7e1859e69effb5fe46109424cdfca382bea56 \
     --hash=sha256:37de5435622d05763bc55d1a3d0a7edcf998ece9e6048bb470db431d1aa83c3a
 # kombu is required by celery
-kombu==3.0.35 \
-    --hash=sha256:2c59a5e087d5895675cdb4d6a38a0aa147f0411366e68330a76e480ba3b25727 \
-    --hash=sha256:22ab336a17962717a5d9470547e5508d4bcf1b6ec10cd9486868daf4e5edb727
+kombu==4.0.2 \
+    --hash=sha256:385bf38e6de7f3851f674671dbfe24572ce999608d293a85fb8a630654d8bd9c \
+    --hash=sha256:d0fc6f2a36610a308f838db4b832dad79a681b516ac1d1a1f9d42edb58cc11a2
 # lxml is required by pyquery
 lxml==3.6.0 \
     --hash=sha256:8fdfeea3f1854bfd117bf0a1f13e14c3377bf14c1b7191f497f368df08dcbb55 \
