@@ -6,8 +6,9 @@ Babel==2.3.4 \
 Django==1.8.17 \
     --hash=sha256:87618c1011712faf7400e2a73315f4f4c3a6e68ab6309c3e642d5fef73d66d9e \
     --hash=sha256:021bd648fcf454027063187e63a1ab4136c6929430ef5dfbe36235f60015eb07 # pyup: >=1.8,<1.9, we're on Long Term Releases
-GitPython==0.1.7 \
-    --hash=sha256:03754bc7b256397c1b646e5048e2291590f5080171adb8b00f4e2d7384c76eee
+GitPython==2.1.1 \
+    --hash=sha256:a313754737d9a2600b1267262769dda115566eec7e59b0ac855ff0cc9b1da81d \
+    --hash=sha256:e96f8e953cf9fee0a7599fc587667591328760b6341a0081ef311a942fc96204
 # Jinja2 is required by Sphinx
 Jinja2==2.8.1 \
     --hash=sha256:3997cf273f1424207c60d5895264f74483fce72702f15a7cd51a8551d43663ca \
