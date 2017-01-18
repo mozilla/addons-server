@@ -44,9 +44,9 @@ amo-validator==1.10.49 \
     --hash=sha256:9aa099d49703a232e50654b4fe5249fcc1f3be3d9f2184e9d1ea5be7cd62c93f \
     --hash=sha256:09d62cbe046b43fe93f38bea90226ebcab63f4071089bcd469823638584ac283
 # amqp is required by kombu
-amqp==1.4.9 \
-    --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908 \
-    --hash=sha256:2dea4d16d073c902c3b89d9b96620fb6729ac0f7a923bbc777cb4ad827c0c61a
+amqp==2.1.4 \
+    --hash=sha256:5e0871a93433f941e444c2b859da095f05034d2ac1b7c084529cfd0b6f8eef18 \
+    --hash=sha256:1378cc14afeb6c2850404f322d03dec0082d11d04bdcb0360e1b10d4e6e77ef9
 # anyjson is required by kombu
 anyjson==0.3.3 \
     --hash=sha256:37812d863c9ad3e35c0734c42e0bf0320ce8c3bed82cd20ad54cb34d158157ba
