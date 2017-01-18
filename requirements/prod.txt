@@ -174,8 +174,8 @@ elasticsearch==1.1.1 \
 elasticsearch-dsl==0.0.11 \
     --hash=sha256:663fb62ad39200c7d903e973aa0aa693578613264d83796455cbf4cd172bd878 \
     --hash=sha256:59a76c4142478a1952bba6f9a9ca4fc7b029afb619e8ffcf0d135ce37ea692da # pyup: < 1.0, we are upgrading to 5 but that takes a bit
-email-reply-parser==0.3.0 \
-    --hash=sha256:83cd931e40b5dbef0a69462d9392d71610afbae729a135706f09255f78c08043
+email-reply-parser==0.5.9 \
+    --hash=sha256:f92aa6fd7314c2c8833f2928c0fd6d2e26f94c04eb1de409e75c59f1ac42eef8
 # enum34 is required by cryptography, docker-compose, flake8
 enum34==1.1.6 \
     --hash=sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79 \
