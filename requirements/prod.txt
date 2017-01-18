@@ -157,8 +157,8 @@ django-filter==0.7 \
 django-mozilla-product-details==0.12.1 \
     --hash=sha256:a31a51102e8c2f047f8aa62b8bdc552f7a31d9c69f2cb16393225c3ee0db72b5 \
     --hash=sha256:25ac11bd4544fef3236f32439f6b1de3bcf931f8b34c7786ab40f0ec85626eeb
-django-multidb-router==0.5.1 \
-    --hash=sha256:00b34b24d4f32077bc53ebb940e9a50edbf086917d4b2eb6a399a05890463650
+django-multidb-router==0.6 \
+    --hash=sha256:4c488dcb84cffd88bcd2b1651962b767f9bb245206407c8ea678043cd39d3ca8
 django-post-request-task==0.0.3 \
     --hash=sha256:6e925e40d05ed9c51c59ec7083d4d0277db88670bbd58151c72eebc0f93be3ca
 django-quieter-formset==0.4 \
