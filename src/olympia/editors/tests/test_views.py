@@ -1476,6 +1476,8 @@ class BaseTestQueueSearch(SearchTest):
 
 
 class TestQueueSearch(BaseTestQueueSearch):
+    __test__ = True
+
     def setUp(self):
         super(TestQueueSearch, self).setUp()
         self.url = reverse('editors.queue_nominated')
@@ -1512,12 +1514,10 @@ class TestQueueSearch(BaseTestQueueSearch):
                               amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                               application=app, listed=self.listed)
 
-        r = self.search(application_id=[amo.MOBILE.id])
-        doc = pq(r.content)
-        td = doc('#addon-queue tr').eq(2).children('td').eq(5)
-        assert td.children().length == 2
-        assert td.children('.ed-sprite-firefox').length == 1
-        assert td.children('.ed-sprite-mobile').length == 1
+        response = self.search(application_id=[amo.MOBILE.id])
+        assert response.status_code == 200
+        assert self.named_addons(response) == [
+            'Bieber For Mobile', 'Multi Application']
 
     def test_clear_search_uses_correct_queue(self):
         # The "clear search" link points to the right listed or unlisted queue.
