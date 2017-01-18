@@ -1297,10 +1297,10 @@ class SearchTest(EditorTest):
             r.record.addon_name for r in request.context['page'].object_list]
 
     def search(self, *args, **kw):
-        r = self.client.get(self.url, kw)
-        assert r.status_code == 200
-        assert r.context['search_form'].errors.as_text() == ''
-        return r
+        response = self.client.get(self.url, kw)
+        assert response.status_code == 200
+        assert response.context['search_form'].errors.as_text() == ''
+        return response
 
 
 class BaseTestQueueSearch(SearchTest):
@@ -1393,10 +1393,18 @@ class BaseTestQueueSearch(SearchTest):
         assert sorted(self.named_addons(r)) == [
             'Admin Reviewed', 'Not Admin Reviewed']
 
-    def test_not_searching(self):
+    def test_not_searching(self, **kwargs):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search()
-        assert sorted(self.named_addons(r)) == ['Not Admin Reviewed']
+        response = self.search(**kwargs)
+        assert sorted(self.named_addons(response)) == ['Not Admin Reviewed']
+        # We were just displaying the queue, not searching, but the searching
+        # hidden input in the form should always be set to True regardless, it
+        # will be used once the user submits the form.
+        doc = pq(response.content)
+        assert doc('#id_searching').attr('value') == 'True'
+
+    def test_not_searching_with_param(self):
+        self.test_not_searching(some_param=1)
 
     def test_search_by_nothing(self):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
@@ -1535,12 +1543,17 @@ class TestQueueSearchUnlistedAllList(BaseTestQueueSearch):
         super(TestQueueSearchUnlistedAllList, self).setUp()
         self.url = reverse('editors.unlisted_queue_all')
 
-    def test_not_searching(self):
+    def test_not_searching(self, **kwargs):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search()
+        response = self.search(**kwargs)
         # Because we're logged in as senior editor we see admin reviewed too.
-        assert sorted(self.named_addons(r)) == [
+        assert sorted(self.named_addons(response)) == [
             'Admin Reviewed', 'Not Admin Reviewed']
+        # We were just displaying the queue, not searching, but the searching
+        # hidden input in the form should always be set to True regardless, it
+        # will be used once the user submits the form.
+        doc = pq(response.content)
+        assert doc('#id_searching').attr('value') == 'True'
 
     def test_search_deleted(self):
         self.generate_files(['Not Admin Reviewed', 'Deleted'])

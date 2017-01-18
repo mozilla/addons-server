@@ -17,7 +17,7 @@
     {% if search_form %}
     <div class="queue-search">
       <form method="get" data-no-csrf>
-        {{ search_form['searching'] }}
+        <input type="hidden" id="id_searching" name="searching" value="True" />
         <label for="id_text_query">{{ search_form['text_query'].label }}</label>
         {{ search_form['text_query'] }}
         <button type="submit">{{ _('Search') }}</button>
