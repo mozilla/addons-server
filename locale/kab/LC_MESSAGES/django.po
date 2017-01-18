@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-18 13:18+0000\n"
-"Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
+"PO-Revision-Date: 2017-01-18 20:06+0000\n"
+"Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -7263,7 +7263,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Asulay ID uslig n uzegrir yettwaf."
 
 #: src/olympia/files/utils.py
 msgid "Version numbers should have fewer than 32 characters."
