@@ -226,9 +226,9 @@ idna==2.1 \
     --hash=sha256:f28df695e9bede8a19b18a8e4429b4bad4d664e8e98aff27bc39b630f1ae2b42 \
     --hash=sha256:ed36f281aebf3cd0797f163bb165d84c31507cedd15928b095b1675e2d04c676
 # ipaddress is required by cryptography, docker-py
-ipaddress==1.0.17 \
-    --hash=sha256:a42764805223838ec9d04eee7fe699083bf5321001792b6076322784c5b994a5 \
-    --hash=sha256:3a21c5a15f433710aaa26f1ae174b615973a25182006ae7f9c26de151cd51716
+ipaddress==1.0.18 \
+    --hash=sha256:d34cf15d95ce9a734560f7400a8bd2ac2606f378e2a1d0eadbf1c98707e7c74a \
+    --hash=sha256:5d8534c8e185f2d8a1fda1ef73f2c8f4b23264e8e30063feeb9511d492a413e1
 # isodate is required by rdflib
 isodate==0.5.4 \
     --hash=sha256:42105c41d037246dc1987e36d96f3752ffd5c0c24834dd12e4fdbe1e79544e31
