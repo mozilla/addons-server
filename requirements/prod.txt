@@ -345,13 +345,26 @@ setuptools==33.1.1 \
 signing-clients==0.1.14 \
     --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
 # simplejson is required by amo-validator
-simplejson==3.8.2 \
-    --hash=sha256:d34db551b129650c5a048170a57b34e6dd8b53439acee5287e2efa2e53c80d33 \
-    --hash=sha256:057952d5a964737425faca7153e497daee126c88cee424f8331bf8f931430880 \
-    --hash=sha256:cd769310466f36133cd9155b571c768767f29682deb1639520216ac8a8567774 \
-    --hash=sha256:d58439c548433adcda98e695be53e526ba940a4b9c44fb9a05d92cd495cdd47f \
-    --hash=sha256:0e9c19a5cff15dd0f462625bd36008c2cefa989a004f507f49aed7dfa8de709a \
-    --hash=sha256:06af729cd24692f329d7fa329b92f43107812ee29821edb0e7c75354f034cd93
+simplejson==3.10.0 \
+    --hash=sha256:8b478dd885fd7184d38797939ccd508e7feb77875058a94e5f09a4e0c67a53c2 \
+    --hash=sha256:7a8daeaea5d8b846a7cd6d76aa1006cc15c2f51eba3abafd6948824ef166ba60 \
+    --hash=sha256:4485d1e310e9b97b29b21a011e1d929ac3c239966f6b8c504c1db63873a15967 \
+    --hash=sha256:ea38d82c16e998ea9f3aee26d54816d3c560e5e3a075a56c54aef7263412f12e \
+    --hash=sha256:2ed3362bf59563855054551924c1f01d3876f1f4286d3b2bed88be1a9eac40c3 \
+    --hash=sha256:b26455e86d5f7b8e7344c3992a48e32e11b01e26e57cd09c6ce4c94b9b5067f0 \
+    --hash=sha256:3f43000ccde55f0ba8d46dd18a8dd71c72b48c7103d9ec56b077fe8de0ec686d \
+    --hash=sha256:84c4eb240c9697719a22a1b92dbe3b16d8ee484726b89f823bbf831d94a9ec86 \
+    --hash=sha256:3a2a1e74b2b2feae27c8d1ec991544424dad4d0402152359cb79505983fc10f5 \
+    --hash=sha256:d0509648b2074bf5a66c9d6ad3ee6d3711cc035fe38756cd02df93af2187f31b \
+    --hash=sha256:953be622e88323c6f43fad61ffd05bebe73b9fd9863a46d68b052d2aa7d71ce2 \
+    --hash=sha256:b1e260204d712059cb1f60e86f1f28b72570380b74d1cd550aac1903169d9f74 \
+    --hash=sha256:18d2f00229c8aa364a29d112d6fe7d7e988d6c0917578ac2907532698154836a \
+    --hash=sha256:9ed51dc5cffa6366aad2e1e7d7ce65954b32092dc0585a591726da14c418adbd \
+    --hash=sha256:0dc3afa149746b4e7551471ff868135c92d7b68b8ac37225388fac29127d836b \
+    --hash=sha256:ddff7c3745a75cbd98b2d148eebbd739d7d18dfb537a857b02774cc09a333129 \
+    --hash=sha256:e633def17eedd2d202437daeb8fda6f379d51a34de8b809800e2737d3e7363f9 \
+    --hash=sha256:370f2b68a93fb533b537dfacc13300928f794e7dbdf7c72769d80432ea71631a \
+    --hash=sha256:7e6f55c72388afa83c38fda0d5dab710f364476b661d8b5441ab79c1d402e9be
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, websocket-client
 six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
