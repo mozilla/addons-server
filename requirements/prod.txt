@@ -66,8 +66,9 @@ bleach==1.5.0 \
 celery==3.1.23 \
     --hash=sha256:eaf5dee3becbc35c7754a2d4482d53bdf72ea3f85dd258525259983262081474 \
     --hash=sha256:1a359c815837f9dbf193a7dbc6addafa34612c077ff70c66e3b16e14eebd2418
-certifi==0.0.8 \
-    --hash=sha256:46ecf5f7526a08cc1f8bc8232adf0cffce046f46ceff95539daec42ebc4849ef
+certifi==2016.9.26 \
+    --hash=sha256:a60073d7bb5cb01671877efda875e8dab755b98baedfbb9b8b3d9be2d52ad022 \
+    --hash=sha256:8275aef1bbeaf05c53715bfc5d8569bd1e04ca1e8e69608cc52bcaac2604eb19
 # cffi is required by cryptography
 cffi==1.9.1 \
     --hash=sha256:d3e3063af1fa6b59e255da9a812891cdaf24b90fbaf653c02797871069b7c4c9 \
