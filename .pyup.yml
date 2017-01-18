@@ -1,0 +1,7 @@
+requirements:
+  - requirements/dev.txt:
+      updates: all
+  - requirements/prod.txt:
+      updates: security
+  - requirements/docs.txt:
+      updates: all
