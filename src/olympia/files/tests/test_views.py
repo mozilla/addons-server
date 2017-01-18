@@ -15,7 +15,7 @@ from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import Addon
 from olympia.files.helpers import DiffHelper, FileViewer
@@ -29,6 +29,9 @@ binary = 'dictionaries/ar.dic'
 
 
 class FilesBase(object):
+
+    def login_as_admin(self):
+        assert self.client.login(email='admin@mozilla.com')
 
     def login_as_editor(self):
         assert self.client.login(email='editor@mozilla.com')
@@ -286,6 +289,82 @@ class FilesBase(object):
         disabled_file = doc('#id_left > optgroup > option.status-disabled')
         assert disabled_file.attr('value') == str(self.files[2].id)
 
+    def test_files_for_unlisted_addon_returns_404(self):
+        """Files browsing isn't allowed for unlisted addons."""
+        self.make_addon_unlisted(self.addon)
+        assert self.client.get(self.file_url()).status_code == 404
+
+    def test_files_for_unlisted_addon_with_admin(self):
+        """Files browsing is allowed for unlisted addons if you're admin."""
+        self.login_as_admin()
+        self.make_addon_unlisted(self.addon)
+        assert self.client.get(self.file_url()).status_code == 200
+
+    def test_all_versions_shown_for_admin(self):
+        self.login_as_admin()
+        listed_ver = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            version='4.0', created=self.days_ago(1))
+        unlisted_ver = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='5.0')
+        assert self.addon.versions.count() == 3
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        left_select = doc('#id_left')
+        assert left_select('optgroup').attr('label') == self.version.version
+        file_options = left_select('option.status-public')
+        assert len(file_options) == 3, left_select.html()
+        # Check the files in the list are the two we added and the default.
+        assert file_options.eq(0).attr('value') == str(
+            unlisted_ver.all_files[0].pk)
+        assert file_options.eq(1).attr('value') == str(
+            listed_ver.all_files[0].pk)
+        assert file_options.eq(2).attr('value') == str(self.file.pk)
+        # Check there are prefixes on the labels for the channels
+        assert file_options.eq(0).text().endswith('[Self]')
+        assert file_options.eq(1).text().endswith('[AMO]')
+        assert file_options.eq(2).text().endswith('[AMO]')
+
+    def test_channel_prefix_not_shown_when_no_mixed_channels(self):
+        self.login_as_admin()
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        assert self.addon.versions.count() == 2
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        left_select = doc('#id_left')
+        assert left_select('optgroup').attr('label') == self.version.version
+        # Check there are NO prefixes on the labels for the channels
+        file_options = left_select('option.status-public')
+        assert not file_options.eq(0).text().endswith('[Self]')
+        assert not file_options.eq(1).text().endswith('[AMO]')
+        assert not file_options.eq(2).text().endswith('[AMO]')
+
+    def test_only_listed_versions_shown_for_editor(self):
+        listed_ver = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            version='4.0')
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='5.0')
+        assert self.addon.versions.count() == 3
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        left_select = doc('#id_left')
+        assert left_select('optgroup').attr('label') == self.version.version
+        # Check the files in the list are just the listed, and the default.
+        file_options = left_select('option.status-public')
+        assert len(file_options) == 2, left_select.html()
+        assert file_options.eq(0).attr('value') == str(
+            listed_ver.all_files[0].pk)
+        assert file_options.eq(1).attr('value') == str(self.file.pk)
+        # Check there are NO prefixes on the labels for the channels
+        assert not file_options.eq(0).text().endswith('[AMO]')
+        assert not file_options.eq(1).text().endswith('[AMO]')
+
 
 class TestFileViewer(FilesBase, TestCase):
     fixtures = ['base/addon_3615', 'base/users']
@@ -446,11 +525,6 @@ class TestFileViewer(FilesBase, TestCase):
 
             assert doc('#id_left option[value="%d"]' % f.id).text() == (
                 PLATFORM_NAME)
-
-    def test_files_for_unlisted_addon_returns_404(self):
-        """Files browsing isn't allowed for unlisted addons."""
-        self.make_addon_unlisted(self.addon)
-        assert self.client.get(self.file_url()).status_code == 404
 
     def test_content_file_size_uses_binary_prefix(self):
         self.file_viewer.extract()
