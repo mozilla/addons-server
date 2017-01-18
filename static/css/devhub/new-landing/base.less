@@ -65,17 +65,21 @@ img {
   max-width: 100%;
 }
 
-html {
-  // prevent horizontal scrollbars.
-  overflow-x: hidden;
-}
-
 body {
   margin: 0;
   padding: 0;
   display: flex;
   flex-flow: column;
   line-height: 1.35;
+
+  // prevent horizontal scrollbars.
+  overflow-x: hidden;
+
+  &.user-signedin {
+    // But not for our signed-in 'My Addons' section
+    // since this is not supposed to be responsive (yet)
+    overflow-x: auto;
+  }
 }
 
 h1 {
