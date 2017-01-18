@@ -177,9 +177,9 @@ django-post-request-task==0.1.1 \
     --hash=sha256:f5b0d532a625321d7613bf6c7b6ba7e6c4c5e77e257d780db414799f62786d63
 django-quieter-formset==0.4 \
     --hash=sha256:e498ac6f2b216f191f7dbbfbaa591fa3935313c0c29195d8a4e5b480b62d8248
-django-session-csrf==0.6 \
-    --hash=sha256:009d574590aeebff230bda3d8c1cacd9d48b204cc1a784a5d3be3638727f8d16 \
-    --hash=sha256:ccfddfbf947a51c8b095a5e63bed43005a277a5581de92ed373eb06b75ceec77
+django-session-csrf==0.7.1 \
+    --hash=sha256:e17177e6e2e6518ec7ce6693ad10a5c747f8571d09f4cfa9082599334421605d \
+    --hash=sha256:ff8c10e30d312c77fc6a6db7710e22b9383e28c03b7fe958876ca96f39aa6cf2
 django-statsd-mozilla==0.3.16 \
     --hash=sha256:925f0f13e5a1e7863e5ed1179fd0f6f1a519e5a0293714ba76745286aad7ed02
 django-tables2==1.1.2 \
@@ -208,8 +208,8 @@ elasticsearch==1.1.1 \
 elasticsearch-dsl==0.0.11 \
     --hash=sha256:663fb62ad39200c7d903e973aa0aa693578613264d83796455cbf4cd172bd878 \
     --hash=sha256:59a76c4142478a1952bba6f9a9ca4fc7b029afb619e8ffcf0d135ce37ea692da # pyup: <1.0
-email-reply-parser==0.3.0 \
-    --hash=sha256:83cd931e40b5dbef0a69462d9392d71610afbae729a135706f09255f78c08043
+email-reply-parser==0.5.9 \
+    --hash=sha256:f92aa6fd7314c2c8833f2928c0fd6d2e26f94c04eb1de409e75c59f1ac42eef8
 # enum34 is required by cryptography, docker-compose, flake8
 enum34==1.1.6 \
     --hash=sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79 \
@@ -238,10 +238,9 @@ httplib2==0.9.2 \
     --hash=sha256:c3aba1c9539711551f4d83e857b316b5134a1c4ddce98a875b7027be7dd6d988 \
     --hash=sha256:fe187f315336c3daa6616d09f327a6e6560b082fce59723f77336329fdcbfc36
 # idna is required by cryptography
-idna==2.1 \
-    --hash=sha256:4cfe64db2804351249d8d13ec1f3a2b0be9dc84b409b65c2a646c4d673fa55bc \
-    --hash=sha256:f28df695e9bede8a19b18a8e4429b4bad4d664e8e98aff27bc39b630f1ae2b42 \
-    --hash=sha256:ed36f281aebf3cd0797f163bb165d84c31507cedd15928b095b1675e2d04c676
+idna==2.2 \
+    --hash=sha256:16402893379702342a662d3f7fa7e9369e4b4770876b245dbbab1eb12d0a60cf \
+    --hash=sha256:0ac27740937d86850010e035c6a10a564158a5accddf1aa24df89b0309252426
 # ipaddress is required by cryptography, docker-py
 ipaddress==1.0.18 \
     --hash=sha256:d34cf15d95ce9a734560f7400a8bd2ac2606f378e2a1d0eadbf1c98707e7c74a \
