@@ -146,8 +146,9 @@ django-cronjobs==0.2.3 \
 django-csp==3.1 \
     --hash=sha256:9208219c341ddbe371b5fd217ced0c916a5e2f7184bc603415074afcace6b51c \
     --hash=sha256:b3fed21f5cae56763119abc93c0ee43d897e39a597ed99b2ca617ff6e4b595fc
-django-environ==0.4.0 \
-    --hash=sha256:70cf521f87e64f4dd2aeb87ced006dc98f621e2cdb38134fbcbcf6309fde6244
+django-environ==0.4.1 \
+    --hash=sha256:f7bce5af8a4232f93a9d9e68f0afa6e276c57d8144c17bf330ebda8cc57f2cca \
+    --hash=sha256:0e22bd07b632046848c746f6e135cb568b7810201ba692a2edb3d5d6c76de34d
 django-extensions==1.6.7 \
     --hash=sha256:7c33f1be6acf7414539cfdef2967bf6240d3c9317551b5d84622dff7824cd3c6 \
     --hash=sha256:ebdfc329207231f63b5ccb591407aadbc1a524af752e52690f0646eb7ff52943
