@@ -38,8 +38,8 @@ Pillow==4.0.0 \
 PyJWT==1.4.2 \
     --hash=sha256:99fe612dbe5f41e07124d9002c118c14f3ee703574ffa9779fee78135b8b94b6 \
     --hash=sha256:87a831b7a3bfa8351511961469ed0462a769724d4da48a501cb8c96d1e17f570
-SQLAlchemy==0.7.5 \
-    --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5, upgrading this is risky
+SQLAlchemy==1.1.5 # \
+    --hash=sha256:68fb40049690e567ebda7b270176f5abf0d53d9fbd515fec4e43326f601119b6
 amo-validator==1.10.49 \
     --hash=sha256:9aa099d49703a232e50654b4fe5249fcc1f3be3d9f2184e9d1ea5be7cd62c93f \
     --hash=sha256:09d62cbe046b43fe93f38bea90226ebcab63f4071089bcd469823638584ac283
