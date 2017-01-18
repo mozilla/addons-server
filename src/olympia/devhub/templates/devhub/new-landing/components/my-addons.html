@@ -53,8 +53,10 @@
           <div class="DevHub-MyAddons-item">
             <img class="DevHub-MyAddons-item-icon" src="{{ addon.get_icon_url(64) }}" alt="">
             <div class="DevHub-MyAddons-item-details">
-              <span class="DevHub-MyAddons-item-name">{{ addon.name }}</span>
-              <a href="{{ addon.get_dev_url('edit') }}">{{ _('Edit Listing') }}</a>
+              <div class="DevHub-MyAddons-item-name">
+                <span>{{ addon.name }}</span>
+                <a href="{{ addon.get_dev_url('edit') }}">{{ _('Edit Listing') }}</a>
+              </div>
 
               <div class="DevHub-MyAddons-item-versions">
                 {% if addon.has_listed_versions() %}
