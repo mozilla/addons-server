@@ -290,8 +290,8 @@ python-gflags==2.0 \
 # There are known unicode issues with python-memcached beyond 1.53.
 # See https://github.com/mozilla/addons-server/issues/3920 and
 # https://github.com/linsomniac/python-memcached/issues/79
-python-memcached==1.53 \
-    --hash=sha256:bcf71371d997bb46a3168a7b63aae66b56cccacc025af9310db4315681ef8868
+python-memcached==1.58 \
+    --hash=sha256:2775829cb54b9e4c5b3bbd8028680f0c0ab695db154b9c46f0f074ff97540eb6
 # pytz is required by Babel, celery
 pytz==2016.7 \
     --hash=sha256:a7bfa766bc70adb72f32476c7e5d8fd911c569beb75f192271743a166be4a218 \
