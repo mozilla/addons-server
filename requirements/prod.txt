@@ -176,9 +176,9 @@ django-post-request-task==0.1.1 \
     --hash=sha256:f5b0d532a625321d7613bf6c7b6ba7e6c4c5e77e257d780db414799f62786d63
 django-quieter-formset==0.4 \
     --hash=sha256:e498ac6f2b216f191f7dbbfbaa591fa3935313c0c29195d8a4e5b480b62d8248
-django-session-csrf==0.6 \
-    --hash=sha256:009d574590aeebff230bda3d8c1cacd9d48b204cc1a784a5d3be3638727f8d16 \
-    --hash=sha256:ccfddfbf947a51c8b095a5e63bed43005a277a5581de92ed373eb06b75ceec77
+django-session-csrf==0.7.1 \
+    --hash=sha256:e17177e6e2e6518ec7ce6693ad10a5c747f8571d09f4cfa9082599334421605d \
+    --hash=sha256:ff8c10e30d312c77fc6a6db7710e22b9383e28c03b7fe958876ca96f39aa6cf2
 django-statsd-mozilla==0.3.16 \
     --hash=sha256:925f0f13e5a1e7863e5ed1179fd0f6f1a519e5a0293714ba76745286aad7ed02
 django-tables2==1.1.2 \
