@@ -256,12 +256,8 @@ kombu==3.0.35 \
     --hash=sha256:2c59a5e087d5895675cdb4d6a38a0aa147f0411366e68330a76e480ba3b25727 \
     --hash=sha256:22ab336a17962717a5d9470547e5508d4bcf1b6ec10cd9486868daf4e5edb727 # pyup: ==3.0.35
 # lxml is required by pyquery
-lxml==3.6.0 \
-    --hash=sha256:8fdfeea3f1854bfd117bf0a1f13e14c3377bf14c1b7191f497f368df08dcbb55 \
-    --hash=sha256:4566e8d80f13ade36e55ac60c9bb9a3540115a6314af5692da09d01a15795728 \
-    --hash=sha256:9c74ca28a7f0c30dca8872281b3c47705e21217c8bc63912d95c9e2a7cac6bdf \
-    --hash=sha256:bea9bcf0467ab8741bfaf31dab1fd114984312f2b11daaf2ff8610fad8869e7b \
-    --hash=sha256:3879d0de2d616041a25a76b0d39898fabbb2ce95d30d3babb8920be378754fea
+lxml==3.7.2 \
+    --hash=sha256:59d9176360dbc3919e9d4bfca85c1ca64ab4f4ee00e6f119d7150ba887e3410a
 # m2secret is required by django-aesfield
 m2secret==0.1.1 \
     --hash=sha256:4174f4967b378d751e758894d6c394db506c4f8753d1db66494320c31667d8a0
