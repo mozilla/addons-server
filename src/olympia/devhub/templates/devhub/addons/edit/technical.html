@@ -72,15 +72,12 @@
             </th>
             <td>
               <div id="addon-flags">
-              {{ flags(_("This is a site-specific add-on."),
-                       form.site_specific if editable else addon.site_specific, editable) }}
-
               {{ flags(_("This add-on requires external software."),
                        form.external_software if editable else addon.external_software,
                        editable) }}
 
               {% if not editable %}
-                {% call empty_unless(addon.site_specific or addon.external_software) %}{% endcall %}
+                {% call empty_unless(addon.external_software) %}{% endcall %}
               {% endif %}
               </div>
             </td>
