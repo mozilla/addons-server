@@ -599,7 +599,7 @@ class TestViews(TestCase):
         self.addon = addon_factory(
             slug=u'my-addôn', file_kw={'size': 1024},
             version_kw={'version': '1.0'})
-        self.addon.current_version.update(created=self.days_ago(1))
+        self.addon.current_version.update(created=self.days_ago(3))
         self.url_list = reverse('addons.versions', args=[self.addon.slug])
         self.url_list_betas = reverse(
             'addons.beta-versions', args=[self.addon.slug])
@@ -609,16 +609,34 @@ class TestViews(TestCase):
 
     @mock.patch.object(views, 'PER_PAGE', 1)
     def test_version_detail(self):
-        version_factory(addon=self.addon, version='2.0')
+        version = version_factory(addon=self.addon, version='2.0')
+        version.update(created=self.days_ago(2))
+        version = version_factory(addon=self.addon, version='2.1b',
+                                  file_kw={'status': amo.STATUS_BETA})
+        version.update(created=self.days_ago(1))
+        version_factory(addon=self.addon, version='2.2b',
+                        file_kw={'status': amo.STATUS_BETA})
         urls = [(v.version, reverse('addons.versions',
                                     args=[self.addon.slug, v.version]))
                 for v in self.addon.versions.all()]
 
         version, url = urls[0]
+        assert version == '2.2b'
+        r = self.client.get(url, follow=True)
+        self.assert3xx(r, self.url_list_betas + '?page=1#version-%s' % version)
+
+        version, url = urls[1]
+        assert version == '2.1b'
+        r = self.client.get(url, follow=True)
+        self.assert3xx(r, self.url_list_betas + '?page=2#version-%s' % version)
+
+        version, url = urls[2]
+        assert version == '2.0'
         r = self.client.get(url, follow=True)
         self.assert3xx(r, self.url_list + '?page=1#version-%s' % version)
 
-        version, url = urls[1]
+        version, url = urls[3]
+        assert version == '1.0'
         r = self.client.get(url, follow=True)
         self.assert3xx(r, self.url_list + '?page=2#version-%s' % version)
 
