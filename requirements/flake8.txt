@@ -11,8 +11,9 @@ enum34==1.1.6 \
 flake8==3.0.4 \
     --hash=sha256:603a3ae7c8030219fee084728ca02a8bbd3a51829cacf97b445172a46cb04662 \
     --hash=sha256:b4c210c998f07d6ff24325dd91fbc011f2c37bcd6bf576b188de01d8656e970d
-flake8-mutable==1.0.5 \
-    --hash=sha256:b9c4498e86f48c377b6ccf4e8ed112ae3861d7e5a2e496ab4b9ad35ab86b03b0
+flake8-mutable==1.1.0 \
+    --hash=sha256:dc3824c5ef0b9bffdaa18ab64cd08ef8dcae30969033a6d71dfbac878a058c4f \
+    --hash=sha256:efe040cd13fde5b8a940deda4c278cdb183cfe34cd32505a90aa506cd9715eed
 # mccabe is required by flake8
 mccabe==0.5.3 \
     --hash=sha256:f9b58bf366c1506dcd6117b33e5c4874746f0de859c9c7cab8b516cb6be1d22e \
