@@ -18,9 +18,12 @@
   h2,
   h2 a {
     color: @color-scheme-dark-text;
-    text-decoration: none;
     font-size: 32px;
     margin: 0;
+  }
+
+  h2 a {
+    .link(@color-scheme-dark-text);
   }
 
   ul {
@@ -29,8 +32,7 @@
 
     li {
       a {
-        color: @color-scheme-dark-items;
-        text-decoration: none;
+        .link(@color-scheme-dark-items);
       }
 
       p {
@@ -42,9 +44,9 @@
 
 .DevHub-BlogPosts {
   .read-more {
-    color: @color-scheme-dark-items;
+    .link(@color-scheme-dark-items);
+
     font-weight: 600;
-    text-decoration: none;
   }
 }
 

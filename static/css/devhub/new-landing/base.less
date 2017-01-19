@@ -65,6 +65,23 @@ img {
   max-width: 100%;
 }
 
+.link(@color, @decoration: none) {
+  color: @color;
+  text-decoration: @decoration;
+
+  &:visited {
+    color: fadeOut(@color, 10%);
+  }
+
+  &:hover {
+    color: fadeOut(@color, 20%);
+  }
+}
+
+a {
+  .link(@color-text);
+}
+
 body {
   margin: 0;
   padding: 0;
