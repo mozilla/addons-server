@@ -57,8 +57,7 @@
       }
 
       a {
-        color: @color-text;
-        text-decoration: none;
+        .link(@color-text);
       }
     }
   }
@@ -68,13 +67,13 @@
     min-width: @grid-max;
 
     ul li a {
-      color: @color-scheme-light-text;
+      .link(@color-scheme-light-text);
     }
   }
 
   &.scheme-medium {
     ul li a {
-      color: @color-scheme-medium-text;
+      .link(@color-scheme-medium-text);
     }
   }
 }
