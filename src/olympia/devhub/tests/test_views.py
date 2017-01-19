@@ -2753,4 +2753,4 @@ class TestNewDevHubLanding(TestCase):
         assert response.status_code == 200
 
         # This text only exists on the old page.
-        assert 'Customize Your Firefox' in response.content
+        assert 'Customize Firefox' in response.content
