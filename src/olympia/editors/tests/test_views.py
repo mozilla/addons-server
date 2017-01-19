@@ -1322,10 +1322,10 @@ class SearchTest(EditorTest):
             r.record.addon_name for r in request.context['page'].object_list]
 
     def search(self, *args, **kw):
-        r = self.client.get(self.url, kw)
-        assert r.status_code == 200
-        assert r.context['search_form'].errors.as_text() == ''
-        return r
+        response = self.client.get(self.url, kw)
+        assert response.status_code == 200
+        assert response.context['search_form'].errors.as_text() == ''
+        return response
 
 
 class BaseTestQueueSearch(SearchTest):
@@ -1418,10 +1418,18 @@ class BaseTestQueueSearch(SearchTest):
         assert sorted(self.named_addons(r)) == [
             'Admin Reviewed', 'Not Admin Reviewed']
 
-    def test_not_searching(self):
+    def test_not_searching(self, **kwargs):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search()
-        assert sorted(self.named_addons(r)) == ['Not Admin Reviewed']
+        response = self.search(**kwargs)
+        assert sorted(self.named_addons(response)) == ['Not Admin Reviewed']
+        # We were just displaying the queue, not searching, but the searching
+        # hidden input in the form should always be set to True regardless, it
+        # will be used once the user submits the form.
+        doc = pq(response.content)
+        assert doc('#id_searching').attr('value') == 'True'
+
+    def test_not_searching_with_param(self):
+        self.test_not_searching(some_param=1)
 
     def test_search_by_nothing(self):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
@@ -1501,6 +1509,8 @@ class BaseTestQueueSearch(SearchTest):
 
 
 class TestQueueSearch(BaseTestQueueSearch):
+    __test__ = True
+
     def setUp(self):
         super(TestQueueSearch, self).setUp()
         self.url = reverse('editors.queue_nominated')
@@ -1537,12 +1547,10 @@ class TestQueueSearch(BaseTestQueueSearch):
                               amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                               application=app, listed=self.listed)
 
-        r = self.search(application_id=[amo.MOBILE.id])
-        doc = pq(r.content)
-        td = doc('#addon-queue tr').eq(2).children('td').eq(5)
-        assert td.children().length == 2
-        assert td.children('.ed-sprite-firefox').length == 1
-        assert td.children('.ed-sprite-mobile').length == 1
+        response = self.search(application_id=[amo.MOBILE.id])
+        assert response.status_code == 200
+        assert self.named_addons(response) == [
+            'Bieber For Mobile', 'Multi Application']
 
     def test_clear_search_uses_correct_queue(self):
         # The "clear search" link points to the right listed or unlisted queue.
@@ -1560,12 +1568,17 @@ class TestQueueSearchUnlistedAllList(BaseTestQueueSearch):
         super(TestQueueSearchUnlistedAllList, self).setUp()
         self.url = reverse('editors.unlisted_queue_all')
 
-    def test_not_searching(self):
+    def test_not_searching(self, **kwargs):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search()
+        response = self.search(**kwargs)
         # Because we're logged in as senior editor we see admin reviewed too.
-        assert sorted(self.named_addons(r)) == [
+        assert sorted(self.named_addons(response)) == [
             'Admin Reviewed', 'Not Admin Reviewed']
+        # We were just displaying the queue, not searching, but the searching
+        # hidden input in the form should always be set to True regardless, it
+        # will be used once the user submits the form.
+        doc = pq(response.content)
+        assert doc('#id_searching').attr('value') == 'True'
 
     def test_search_deleted(self):
         self.generate_files(['Not Admin Reviewed', 'Deleted'])
@@ -2425,6 +2438,22 @@ class TestReview(ReviewBase):
             reverse('editors.review', args=['listed', self.addon.slug]))
         assert (pq(review_page.content)('#review-files').text() ==
                 pq(listed_review_page.content)('#review-files').text())
+
+    def test_paypal_js_is_present_if_contributions_are_enabled(self):
+        # Note: takes_contributions is used to display the button and include
+        # the js, but it only returns True for public add-ons.
+        self.addon.update(
+            paypal_id='xx', wants_contributions=True, status=amo.STATUS_PUBLIC)
+        assert self.addon.takes_contributions
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
+
+    def test_paypal_js_is_absent_if_contributions_are_disabled(self):
+        assert not self.addon.takes_contributions
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
 
 
 class TestReviewPending(ReviewBase):

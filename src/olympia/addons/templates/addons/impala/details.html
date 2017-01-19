@@ -5,7 +5,9 @@
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block js %}
-  <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+  {% if addon.takes_contributions %}
+    <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+  {% endif %}
 {% endblock %}
 {% block bodyclass %}gutter addon-details {{ super() }}{% endblock %}
 

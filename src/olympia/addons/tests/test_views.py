@@ -1095,6 +1095,16 @@ class TestImpalaDetailPage(TestCase):
                         application=amo.FIREFOX.id)]
         amo.tests.check_links(expected, links)
 
+    def test_paypal_js_is_present_if_contributions_are_enabled(self):
+        self.addon = Addon.objects.get(id=592)
+        assert self.addon.takes_contributions
+        self.url = self.addon.get_url_path()
+        assert self.get_pq()('script[src="%s"]' % settings.PAYPAL_JS_URL)
+
+    def test_paypal_js_is_absent_if_contributions_are_disabled(self):
+        assert not self.addon.takes_contributions
+        assert not self.get_pq()('script[src="%s"]' % settings.PAYPAL_JS_URL)
+
 
 class TestPersonas(object):
     fixtures = ['addons/persona', 'base/users']
