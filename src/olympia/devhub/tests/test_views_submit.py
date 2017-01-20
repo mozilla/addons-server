@@ -731,24 +731,6 @@ class TestAddonSubmitFinish(TestSubmitBase):
 
 class TestAddonSubmitResume(TestSubmitBase):
 
-    def setUp(self):
-        super(TestAddonSubmitResume, self).setUp()
-        self.url = reverse('devhub.submit.resume', args=['a3615'])
-
-    def test_addon_no_versions_redirects_to_versions(self):
-        self.addon.update(status=amo.STATUS_NULL)
-        self.addon.versions.all().delete()
-        r = self.client.get(self.url, follow=True)
-        self.assert3xx(r, self.addon.get_dev_url('versions'), 302)
-
-    def test_incomplete_directs_to_details(self):
-        # We get bounced back to details step.
-        self.addon.update(status=amo.STATUS_NULL)
-        self.addon.categories.all().delete()
-        r = self.client.get(reverse('devhub.submit.finish',
-                                    args=['a3615']), follow=True)
-        self.assert3xx(r, reverse('devhub.submit.details', args=['a3615']))
-
     def test_redirect_from_other_pages(self):
         self.addon.update(status=amo.STATUS_NULL)
         self.addon.categories.all().delete()
