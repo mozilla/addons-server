@@ -22,6 +22,7 @@ import session_csrf
 import waffle
 from elasticsearch_dsl import Search
 from mobility.decorators import mobilized, mobile_template
+from rest_framework import serializers
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import GenericAPIView, ListAPIView
@@ -708,8 +709,8 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
     serializer_class = VersionSerializer
 
     def check_permissions(self, request):
+        requested = self.request.GET.get('filter')
         if self.action == 'list':
-            requested = self.request.GET.get('filter')
             if requested == 'all_with_deleted':
                 # To see deleted versions, you need Admin:%.
                 self.permission_classes = [GroupPermission('Admin', '%')]
@@ -760,6 +761,19 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
     def get_queryset(self):
         """Return the right base queryset depending on the situation."""
         requested = self.request.GET.get('filter')
+        valid_filters = (
+            'all_with_deleted',
+            'all_with_unlisted',
+            'all_without_unlisted',
+            'only_beta'
+        )
+        if requested is not None:
+            if self.action != 'list':
+                raise serializers.ValidationError(
+                    'The "filter" parameter is not valid in this context.')
+            elif requested not in valid_filters:
+                raise serializers.ValidationError(
+                    'Invalid "filter" parameter specified.')
 
         # By default we restrict to valid, listed versions. Some filtering
         # options are available when listing, and in addition, when returning
