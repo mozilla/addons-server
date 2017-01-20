@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-19 12:25+0000\n"
+"PO-Revision-Date: 2017-01-20 14:43+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -9487,7 +9487,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "Mmel-d tansa yin-k imayl neɣ tin n win nniḍen, uṭṭun n tiliɣri neq talɣut nniḍen tudmawant."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Post reviews for an add-on you or your organization wrote or represent."
@@ -9501,7 +9501,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Amek ara d-mleɣ acegger ur nemɛin ara?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
