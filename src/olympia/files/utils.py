@@ -14,7 +14,7 @@ import tempfile
 import zipfile
 
 from cStringIO import StringIO as cStringIO
-from datetime import datetime
+from datetime import datetime, timedelta
 from itertools import groupby
 from xml.dom import minidom
 from zipfile import BadZipfile, ZipFile
@@ -554,7 +554,42 @@ def copy_over(source, dest):
     shutil.rmtree(source)
 
 
-def extract_xpi(xpi, path, expand=False):
+def get_all_files(folder, strip_prefix='', prefix=None):
+    """Return all files in a file/directory tree.
+
+    :param folder: The folder of which to return the file-tree.
+    :param strip_prefix str: A string to strip in case we're adding a custom
+                             `prefix` Doesn't have any implications if
+                             `prefix` isn't given.
+    :param prefix: A custom prefix to add to all files and folders.
+    """
+
+    all_files = []
+
+    # Not using os.path.walk so we get just the right order.
+    def iterate(path):
+        path_dirs, path_files = storage.listdir(path)
+        for dirname in sorted(path_dirs):
+            full = os.path.join(path, dirname)
+            all_files.append(full)
+            iterate(full)
+
+        for filename in sorted(path_files):
+            full = os.path.join(path, filename)
+            all_files.append(full)
+
+    iterate(folder)
+
+    if prefix is not None:
+        # This is magic: strip the prefix, e.g /tmp/ and prepend the prefix
+        all_files = [
+            os.path.join(prefix, fname[len(strip_prefix) + 1:])
+            for fname in all_files]
+
+    return all_files
+
+
+def extract_xpi(xpi, path, expand=False, verify=True):
     """
     If expand is given, will look inside the expanded file
     and find anything in the allow list and try and expand it as well.
@@ -566,6 +601,7 @@ def extract_xpi(xpi, path, expand=False):
     """
     expand_allow_list = ['.crx', '.jar', '.xpi', '.zip']
     tempdir = extract_zip(xpi)
+    all_files = get_all_files(tempdir)
 
     if expand:
         for x in xrange(0, 10):
@@ -576,6 +612,8 @@ def extract_xpi(xpi, path, expand=False):
                         src = os.path.join(root, name)
                         if not os.path.isdir(src):
                             dest = extract_zip(src, remove=True, fatal=False)
+                            all_files.extend(get_all_files(
+                                dest, strip_prefix=tempdir, prefix=src))
                             if dest:
                                 copy_over(dest, src)
                                 flag = True
@@ -583,6 +621,7 @@ def extract_xpi(xpi, path, expand=False):
                 break
 
     copy_over(tempdir, path)
+    return all_files
 
 
 def parse_xpi(xpi, addon=None, check=True):
