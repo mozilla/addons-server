@@ -368,6 +368,22 @@ class TestDeveloperPages(TestCase):
                 'addons/addon_228106_info+dev+bio.json',
                 'addons/addon_228107_multiple-devs.json']
 
+    def test_paypal_js_is_present_if_contributions_are_enabled(self):
+        self.addon = Addon.objects.get(id=592)
+        assert self.addon.takes_contributions
+        response = self.client.get(reverse('addons.meet', args=['a592']))
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
+
+    def test_paypal_js_is_absent_if_contributions_are_disabled(self):
+        self.addon = Addon.objects.get(pk=3615)
+        assert not self.addon.takes_contributions
+        response = self.client.get(reverse('addons.meet', args=['a3615']))
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
+
     def test_meet_the_dev_title(self):
         r = self.client.get(reverse('addons.meet', args=['a592']))
         title = pq(r.content)('title').text()
