@@ -1660,6 +1660,18 @@ class TestUploadDetail(BaseUploadTest):
             {u'tier': 1, u'message': u'You cannot submit this type of add-on',
              u'fatal': True, u'type': u'error'}]
 
+    def test_no_redirect_for_metadata(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        addon = addon_factory(status=amo.STATUS_NULL)
+        addon.categories.all().delete()
+        addon.addonuser_set.create(user=user)
+        self.post()
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail_for_version',
+                                           args=[addon.slug, upload.uuid.hex]))
+        assert response.status_code == 200
+
 
 def assert_json_error(request, field, msg):
     assert request.status_code == 400

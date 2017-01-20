@@ -780,6 +780,12 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             reverse('devhub.submit.version.upload', args=[
                 self.addon.slug, 'unlisted']))
 
+    def test_no_redirect_for_metadata(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        self.addon.categories.all().delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
 
 @override_switch('step-version-upload', active=True)
 @override_switch('mixed-listed-unlisted', active=True)
@@ -975,6 +981,12 @@ class VersionSubmitUploadMixin(object):
         self.addon.update(status=amo.STATUS_DISABLED)
         r = self.client.get(self.url)
         assert r.status_code == 404
+
+    def test_no_redirect_for_metadata(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        self.addon.categories.all().delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
 
 
 @override_switch('step-version-upload', active=True)

@@ -671,7 +671,7 @@ def standalone_upload_detail(request, uuid):
     return upload_validation_context(request, upload, url=url)
 
 
-@dev_required
+@dev_required(submitting=True)
 @json_view
 def upload_detail_for_version(request, addon_id, addon, uuid):
     try:
@@ -1482,7 +1482,7 @@ def submit_addon_distribution(request):
     return _submit_distribution(request, None, 'devhub.submit.upload')
 
 
-@dev_required
+@dev_required(submitting=True)
 @waffle_switch('step-version-upload')
 @waffle_switch('mixed-listed-unlisted')
 def submit_version_distribution(request, addon_id, addon):
@@ -1588,7 +1588,7 @@ def submit_addon_upload(request, channel):
                           'devhub.submit.details', 'devhub.submit.finish')
 
 
-@dev_required
+@dev_required(submitting=True)
 @no_admin_disabled
 @waffle_switch('step-version-upload')
 def submit_version_upload(request, addon_id, addon, channel):
