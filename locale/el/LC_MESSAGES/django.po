@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-10 13:49+0000\n"
+"PO-Revision-Date: 2017-01-20 18:56+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -162,7 +162,7 @@ msgstr "Οι χρήστες μπορούν να επιλέξουν αν θα κ�
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr ""
+msgstr "Οι χρήστες θα ερωτώνται πάντα στη Διαχείριση Προσθέτων (Firefox 4 και νεότερα). Ισχύει μόνο για υπολογιστές."
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/constants/base.py
