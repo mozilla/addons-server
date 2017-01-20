@@ -1,9 +1,5 @@
 {% macro render_status(addon) %}
-  {% if addon.status == amo.STATUS_NULL %}
-    {% set url = url('devhub.submit.resume', addon.slug) %}
-  {% else %}
-    {% set url = addon.get_dev_url('versions') %}
-  {% endif %}
+  {% set url = addon.get_dev_url('versions') %}
   {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
     {% set status_text = _('Invisible') %}
   {% else %}

@@ -120,7 +120,6 @@ detail_patterns = patterns(
         views.submit_addon_details, name='devhub.submit.details'),
     url('^submit/finish$', views.submit_addon_finish,
         name='devhub.submit.finish'),
-    url('^submit/resume$', views.submit_resume, name='devhub.submit.resume'),
 
     url('^request-review$',
         views.request_review, name='devhub.request-review'),

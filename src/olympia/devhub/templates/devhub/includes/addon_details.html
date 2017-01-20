@@ -1,11 +1,7 @@
 {% from "includes/forms.html" import tip %}
 
 {% macro status_and_tip(addon) %}
-  {% if addon.status == amo.STATUS_NULL %}
-      {% set url = url('devhub.submit.resume', addon.slug) %}
-  {% else %}
-    {% set url = addon.get_dev_url('versions') %}
-  {% endif %}
+  {% set url = addon.get_dev_url('versions') %}
   {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
     {% set status_text = _('Invisible') %}
     {% set tooltip_text = status_tips['invisible'] %}
@@ -20,7 +16,7 @@
 {% endmacro %}
 
 {% set status_tips = {
-    amo.STATUS_NULL: _('Please complete your add-on.'),
+    amo.STATUS_NULL: _('Please complete your add-on by adding a version or missing metadata.'),
     amo.STATUS_NOMINATED: _("You will receive an email when the review is complete. Until "
                             "then, your add-on is not listed in our gallery but can be "
                             "accessed directly from its details page. "),

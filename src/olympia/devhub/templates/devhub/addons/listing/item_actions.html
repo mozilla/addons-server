@@ -4,7 +4,7 @@
 {% if not addon.has_complete_metadata() and addon.status == amo.STATUS_NULL %}
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
-      <a href="{{ url('devhub.submit.resume', addon.slug) }}" class="tooltip"
+      <a href="{{ url('devhub.submit.finish', addon.slug) }}" class="tooltip"
          title="{{ _("Resume the submission process for this add-on.")}}">
       {{ _('Resume') }}</a>
     </li>
