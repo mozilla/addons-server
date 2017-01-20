@@ -87,7 +87,8 @@ def check_compare_form(request, form):
 @non_atomic_requests
 def browse(request, viewer, key=None, type='file'):
     form = forms.FileCompareForm(request.POST or None, addon=viewer.addon,
-                                 initial={'left': viewer.file})
+                                 initial={'left': viewer.file},
+                                 request=request)
     response = check_compare_form(request, form)
     if response:
         return response
@@ -135,7 +136,8 @@ def compare_poll(request, diff):
 def compare(request, diff, key=None, type='file'):
     form = forms.FileCompareForm(request.POST or None, addon=diff.addon,
                                  initial={'left': diff.left.file,
-                                          'right': diff.right.file})
+                                          'right': diff.right.file},
+                                 request=request)
     response = check_compare_form(request, form)
     if response:
         return response
