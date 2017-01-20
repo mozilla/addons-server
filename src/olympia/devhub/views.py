@@ -1762,12 +1762,6 @@ def submit_file_finish(request, addon_id, addon, version_id):
     return _submit_finish(request, addon, version, is_file=True)
 
 
-@dev_required(submitting=True)
-def submit_resume(request, addon_id, addon):
-    # Redirect to end and @submit_step will send us back if incomplete.
-    return redirect('devhub.submit.finish', addon.slug)
-
-
 @login_required
 def submit_theme(request):
     data = {}
