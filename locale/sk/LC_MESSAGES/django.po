@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2016-10-11 10:52+0000\n"
+"PO-Revision-Date: 2017-01-20 18:46+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1781,9 +1781,8 @@ msgid "Approval notes changed"
 msgstr ""
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Doplnok {addon} {version} bol okomentovaný."
+msgstr "Zdrojový kód doplnku {addon} {version} bol nahraný."
 
 #: src/olympia/amo/log.py
 msgid "Source code uploaded"
@@ -5111,9 +5110,8 @@ msgid "Submit Version for Review"
 msgstr "Odoslať doplnok na manuálnu kontrolu."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Describe Version"
-msgstr "Zakázať verziu"
+msgstr "Popíšte verziu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Release Notes:"
@@ -5132,9 +5130,8 @@ msgid "How to Distribute this Version"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Dohoda o distribúcií doplnkov pre Firefox"
+msgstr "Ďalšie informácie o distribúcii a podpisovaní doplnkov"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
@@ -5245,9 +5242,8 @@ msgid "Administrative overrides"
 msgstr "Zmeny pri administrácií"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File"
-msgstr "Odoslať nový súbor"
+msgstr "Odoslať súbor"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Sign Add-on"
@@ -9108,9 +9104,8 @@ msgstr "počet doplňků ve frontě na schválení"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "complexity of an add-on’s code"
-msgstr "komplexnost zdrojového kódu doplňku"
+msgstr "zložitosť zdrojového kódu doplnku"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
