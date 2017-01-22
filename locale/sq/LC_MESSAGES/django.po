@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-22 09:02+0000\n"
+"PO-Revision-Date: 2017-01-22 09:06+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -5568,7 +5568,7 @@ msgstr "Botoni Shtesën Tuaj"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Keni gati një shtesë? Parashtrojeni zgjerimin ose temën që të paraqitet te addons.mozilla.org ose nënshkruajeni dhe shpërndajeni vetë zgjerimin tuaj."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign in"
@@ -6279,7 +6279,7 @@ msgstr "Shprehje emoji {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
+msgstr "Dhjetëra emoji mahnitëse, për çdo rast - përherë vetëm një klikim larg."
 
 #: src/olympia/discovery/data.py
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7292,7 +7292,7 @@ msgstr "Nuk mund të kryhet diff kundrejt vetvetes"
 #: src/olympia/files/helpers.py
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Parësi i kartelave është i bllokuar, përftimi i %s mund të jetë në kryerje e sipër. Ju lutemi, riprovoni pas afërsisht 5 minutash."
 
 #: src/olympia/files/helpers.py
 #, python-format
@@ -10144,7 +10144,7 @@ msgstr "Mungon kyç \"upload\" te të dhëna kartele multipart."
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "S’mund të shtoni versione te një shtesë që ka gjendjen: %s."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
