@@ -1,7 +1,8 @@
 import json
 import os
 import zipfile
-from tempfile import NamedTemporaryFile
+import tempfile
+import shutil
 
 import lxml
 import mock
@@ -20,6 +21,11 @@ from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
+
+
+def _touch(fname):
+    open(fname, 'a').close()
+    os.utime(fname, None)
 
 
 def test_is_beta():
@@ -202,7 +208,7 @@ class TestManifestJSONExtractor(TestCase):
     def test_instanciate_without_data(self):
         """Without data, we load the data from the file path."""
         data = {'id': 'some-id'}
-        with NamedTemporaryFile() as file_:
+        with tempfile.NamedTemporaryFile() as file_:
             file_.write(json.dumps(data))
             file_.flush()
             mje = utils.ManifestJSONExtractor(file_.name)
@@ -512,6 +518,74 @@ def test_extract_translations_fail_silent_missing_file(read_mock, file_obj):
 
         with pytest.raises(ValueError):
             utils.extract_translations(file_obj)
+
+
+def test_get_all_files():
+    tempdir = tempfile.mkdtemp()
+
+    os.mkdir(os.path.join(tempdir, 'dir1'))
+
+    _touch(os.path.join(tempdir, 'foo1'))
+    _touch(os.path.join(tempdir, 'dir1', 'foo2'))
+
+    assert utils.get_all_files(tempdir) == [
+        os.path.join(tempdir, 'dir1'),
+        os.path.join(tempdir, 'dir1', 'foo2'),
+        os.path.join(tempdir, 'foo1'),
+    ]
+
+    shutil.rmtree(tempdir)
+    assert not os.path.exists(tempdir)
+
+
+def test_get_all_files_strip_prefix_no_prefix_silent():
+    tempdir = tempfile.mkdtemp()
+
+    os.mkdir(os.path.join(tempdir, 'dir1'))
+
+    _touch(os.path.join(tempdir, 'foo1'))
+    _touch(os.path.join(tempdir, 'dir1', 'foo2'))
+
+    # strip_prefix alone doesn't do anything.
+    assert utils.get_all_files(tempdir, strip_prefix=tempdir) == [
+        os.path.join(tempdir, 'dir1'),
+        os.path.join(tempdir, 'dir1', 'foo2'),
+        os.path.join(tempdir, 'foo1'),
+    ]
+
+
+def test_get_all_files_prefix():
+    tempdir = tempfile.mkdtemp()
+
+    os.mkdir(os.path.join(tempdir, 'dir1'))
+
+    _touch(os.path.join(tempdir, 'foo1'))
+    _touch(os.path.join(tempdir, 'dir1', 'foo2'))
+
+    # strip_prefix alone doesn't do anything.
+    assert utils.get_all_files(tempdir, prefix='/foo/bar') == [
+        '/foo/bar' + os.path.join(tempdir, 'dir1'),
+        '/foo/bar' + os.path.join(tempdir, 'dir1', 'foo2'),
+        '/foo/bar' + os.path.join(tempdir, 'foo1'),
+    ]
+
+
+def test_get_all_files_prefix_with_strip_prefix():
+    tempdir = tempfile.mkdtemp()
+
+    os.mkdir(os.path.join(tempdir, 'dir1'))
+
+    _touch(os.path.join(tempdir, 'foo1'))
+    _touch(os.path.join(tempdir, 'dir1', 'foo2'))
+
+    # strip_prefix alone doesn't do anything.
+    result = utils.get_all_files(
+        tempdir, strip_prefix=tempdir, prefix='/foo/bar')
+    assert result == [
+        os.path.join('/foo', 'bar', 'dir1'),
+        os.path.join('/foo', 'bar', 'dir1', 'foo2'),
+        os.path.join('/foo', 'bar', 'foo1'),
+    ]
 
 
 class TestResolvei18nMessage(object):
