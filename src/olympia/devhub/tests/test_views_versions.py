@@ -250,6 +250,23 @@ class TestVersion(TestCase):
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
 
+    @mock.patch('olympia.files.models.File.hide_disabled_file')
+    def test_disabling_addon_awaiting_review_disables_version(self, hide_mock):
+        self.addon.update(status=amo.STATUS_AWAITING_REVIEW,
+                          disabled_by_user=False)
+        self.version.all_files[0].update(status=amo.STATUS_AWAITING_REVIEW)
+
+        res = self.client.post(self.disable_url)
+        assert res.status_code == 302
+        addon = Addon.objects.get(id=3615)
+        assert addon.disabled_by_user
+        assert addon.status == amo.STATUS_NULL
+        assert hide_mock.called
+
+        # Check we disabled the file pending review.
+        self.version = Version.objects.get(id=self.version.id)
+        assert self.version.all_files[0].status == amo.STATUS_DISABLED
+
     @override_switch('mixed-listed-unlisted', active=False)
     def test_user_can_unlist_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
