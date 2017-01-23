@@ -377,6 +377,7 @@ class HashableJSONDecoder(json.JSONDecoder):
         self.parse_array = JSONTuple
         self.scan_once = json.scanner.py_make_scanner(self)
 
+
 json_decode = HashableJSONDecoder().decode
 
 

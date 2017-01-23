@@ -25,6 +25,7 @@ def es_dict(items):
         items = items.items()
     return [{'k': key, 'v': value} for key, value in items]
 
+
 # We index all the key/value pairs as lists of {'k': key, 'v': value} dicts
 # so that ES doesn't include every single key in the update_counts mapping.
 """

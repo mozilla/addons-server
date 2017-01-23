@@ -107,6 +107,7 @@ def cors_endpoint_overrides(internal, public):
         }),
     ]
 
+
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
     public=['localhost:3000', 'olympia.dev'],
     internal=['localhost:3000'],
@@ -177,6 +178,7 @@ def lazy_langs(languages):
         return {}
     return dict([(i.lower(), product_details.languages[i]['native'])
                  for i in languages])
+
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('src', 'olympia', 'lib', 'product_json')
@@ -362,6 +364,7 @@ def JINJA_CONFIG():
         config['cache_size'] = -1  # Never clear the cache
         config['bytecode_cache'] = bc
     return config
+
 
 X_FRAME_OPTIONS = 'DENY'
 SECURE_BROWSER_XSS_FILTER = True
@@ -1384,6 +1387,7 @@ def get_redis_settings(uri):
         'DB': int((result.path or '0').lstrip('/')),
         'OPTIONS': options
     }
+
 
 # This is used for `django-cache-machine`
 REDIS_BACKEND = REDIS_LOCATION

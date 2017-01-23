@@ -93,6 +93,7 @@ class CachedProperty(object):
             raise TypeError('read only attribute')
         obj.__dict__[self.__name__] = value
 
+
 # For unproven performance gains put firefox and thunderbird parsing
 # here instead of constants
 FIREFOX.latest_version = product_details.firefox_versions[
