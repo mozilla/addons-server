@@ -1,13 +1,20 @@
 {% macro render_status(addon) %}
-  {% set url = addon.get_dev_url('versions') %}
   {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
     {% set status_text = _('Invisible') %}
   {% else %}
     {% set status_text = addon.STATUS_CHOICES[addon.status] %}
   {% endif %}
-  <a class="DevHub-MyAddons-version-{{ status_class(addon) }}" href="{{ url }}">
-    {{ status_text }}
-  </a>
+
+  {% if addon.is_persona() %}
+    <span class="DevHub-MyAddons-version-{{ status_class(addon) }} DevHub-MyAddons-VersionStatus">
+      {{ status_text }}
+    </span>
+  {% else %}
+    {% set url = addon.get_dev_url('versions') %}
+    <a class="DevHub-MyAddons-version-{{ status_class(addon) }} DevHub-MyAddons-VersionStatus" href="{{ url }}">
+      {{ status_text }}
+    </a>
+  {% endif %}
 {% endmacro %}
 
 <div class="DevHub-MyAddons content">
