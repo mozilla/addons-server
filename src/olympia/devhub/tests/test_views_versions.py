@@ -567,12 +567,13 @@ class TestVersion(TestCase):
         self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
+        self._extra_version_and_file(amo.STATUS_BETA)
 
         r = self.client.get(self.url)
         assert r.status_code == 200
         doc = pq(r.content)
         show_links = doc('.review-history-show')
-        assert show_links.length == 2
+        assert show_links.length == 2  # beta version does not have the link.
         assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
         assert show_links[1].attrib['data-div'] == '#%s-review-history' % v2.id
         review_history_td = doc('#%s-review-history' % v1.id)[0]
@@ -597,12 +598,13 @@ class TestVersion(TestCase):
         self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
+        self._extra_version_and_file(amo.STATUS_BETA)
 
         r = self.client.get(self.url)
         assert r.status_code == 200
         doc = pq(r.content)
         show_links = doc('.review-history-show')
-        assert show_links.length == 2
+        assert show_links.length == 2  # beta version does not have the link.
         assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
         assert show_links[1].attrib['data-div'] == '#%s-review-history' % v2.id
         review_history_td = doc('#%s-review-history' % v1.id)[0]
