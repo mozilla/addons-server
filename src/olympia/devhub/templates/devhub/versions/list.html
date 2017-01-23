@@ -165,13 +165,6 @@
             _("Won't be included in search results, and its listing page will "
               "indicate you disabled it. New version submissions for listing "
               "won't be accepted in this state.") }}</label>
-        <br>
-        {% if not waffle.switch('mixed-listed-unlisted') %}
-            <label><input name="addon-state" value="unlisted" type="radio"
-                    {% if not owner or addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
-                    class="unlist-addon">
-            <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own.')|f(settings.SITE_URL) }}</label>
-        {% endif %}
       </div>
     </div>
 
@@ -217,14 +210,6 @@
 
     <h3>{{ _('Older versions') }}</h3>
   {% else %}
-    {% if not waffle.switch('mixed-listed-unlisted') %}
-    <div class="highlight">
-      <h3>{{ _('Why can\'t I switch to <i>Listed</i>?') }}</h3>
-      <p>{{ _('Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.
-        The process is described in detail in <a href="{link}">this documentation</a>.').format(
-            link='https://developer.mozilla.org/en-US/Add-ons/Distribution') }}</p>
-    </div>
-    {% endif %}
     <h3>{{ _('All versions') }}</h3>
   {% endif %}
   <div class="item" id="version-list"
@@ -348,41 +333,6 @@
     </form>
   </div>
   {% endif %}
-
-  {% if not waffle.switch('mixed-listed-unlisted') %}
-  <div id="modal-unlist" class="modal">
-    <form method="post" action="{{ addon.get_dev_url('unlist') }}">
-      <h3>
-        {{ _('Unlist Add-on') }}
-      </h3>
-      <p>
-        {% trans update_url='https://developer.mozilla.org/docs/Mozilla/Add-ons/Install_Manifests#updateURL' %}
-          Unlisting your add-on will make it (and each of its versions/files)
-          invisible on this website. It won't show up in searches, won't have a
-          public facing page, and won't be updated automatically for current
-          users. It is recommended for unlisted add-ons to provide a custom
-          <a href="{{ update_url }}">updateURL</a> in their
-          manifest file for automatic updates.
-        {% endtrans %}
-      </p>
-      <p class="warning"><em>{% trans %}Unlisting an add-on is irreversible!{% endtrans %}</em> {% trans %}An unlisted add-on cannot be switched to be listed.{% endtrans %}</p>
-      <p>
-        {% trans %}
-          Are you sure you wish to unlist your add-on?
-        {% endtrans %}
-      </p>
-      {{ csrf() }}
-      <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-      <p>
-        <button type="submit">
-          {{ _('Unlist Add-on') }}
-        </button>
-        {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
-      </p>
-    </form>
-  </div>
-  {% endif %}
-
 
   {% if not addon.is_disabled and addon.status == amo.STATUS_NOMINATED %}
   <div id="modal-cancel" class="modal">

@@ -400,27 +400,6 @@ def disable(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
-@dev_required
-@post_required
-@waffle_switch('!mixed-listed-unlisted')
-def unlist(request, addon_id, addon):
-    addon.update(is_listed=False, disabled_by_user=False)
-    # In https://github.com/mozilla/addons-server/issues/3471 this view will
-    # no longer be global, but in the meantime we need to set the channel
-    # property on all versions to stay consistent.
-    Version.unfiltered.filter(addon=addon).update(
-        channel=amo.RELEASE_CHANNEL_UNLISTED)
-    amo.log(amo.LOG.ADDON_UNLISTED, addon)
-    addon.update(status=amo.STATUS_NULL)
-
-    latest_version = addon.find_latest_version(
-        channel=amo.RELEASE_CHANNEL_UNLISTED)
-    if latest_version and latest_version.is_unreviewed:
-        auto_sign_version(latest_version)
-
-    return redirect(addon.get_dev_url('versions'))
-
-
 @dev_required(owner_for_post=True)
 def ownership(request, addon_id, addon):
     fs, ctx = [], {}
@@ -1379,7 +1358,6 @@ def submit_addon_distribution(request):
 
 
 @dev_required(submitting=True)
-@waffle_switch('mixed-listed-unlisted')
 def submit_version_distribution(request, addon_id, addon):
     return _submit_distribution(request, addon, 'devhub.submit.version.upload')
 
@@ -1486,12 +1464,7 @@ def submit_addon_upload(request, channel):
 @dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_upload(request, addon_id, addon, channel):
-    if waffle.switch_is_active('mixed-listed-unlisted'):
-        channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
-    else:
-        # Don't allow channel choice until rest of AMO supports it.
-        channel_id = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
-                      amo.RELEASE_CHANNEL_UNLISTED)
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(request, addon, channel_id,
                           'devhub.submit.version.details',
                           'devhub.submit.version.finish')
@@ -1499,17 +1472,12 @@ def submit_version_upload(request, addon_id, addon, channel):
 
 @dev_required
 @no_admin_disabled
-def submit_version(request, addon_id, addon):
-    if waffle.switch_is_active('mixed-listed-unlisted'):
-        # choose the channel we need from the last upload
-        last_version = addon.find_latest_version_including_rejected(None)
-        if not last_version:
-            return redirect('devhub.submit.version.distribution', addon.slug)
-        channel = last_version.channel
-    else:
-        # Don't allow channel choice until rest of AMO supports it.
-        channel = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
-                   amo.RELEASE_CHANNEL_UNLISTED)
+def submit_version_auto(request, addon_id, addon):
+    # choose the channel we need from the last upload
+    last_version = addon.find_latest_version_including_rejected(None)
+    if not last_version:
+        return redirect('devhub.submit.version.distribution', addon.slug)
+    channel = last_version.channel
     return _submit_upload(request, addon, channel,
                           'devhub.submit.version.details',
                           'devhub.submit.version.finish')

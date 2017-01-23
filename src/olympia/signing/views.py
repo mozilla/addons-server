@@ -5,7 +5,6 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext as _
 
-import waffle
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -170,8 +169,7 @@ class VersionView(APIView):
                     _('Invalid GUID in URL'), status.HTTP_400_BAD_REQUEST)
             pkg['guid'] = guid
 
-        # channel will be ignored for new addons and while waffle
-        # 'mixed-listed-unlisted' is disabled.
+        # channel will be ignored for new addons.
         if addon is None:
             channel = amo.RELEASE_CHANNEL_UNLISTED  # New is always unlisted.
             addon = Addon.create_addon_from_upload_data(
@@ -179,20 +177,15 @@ class VersionView(APIView):
             created = True
         else:
             created = False
-            if waffle.switch_is_active('mixed-listed-unlisted'):
-                channel_param = request.POST.get('channel')
-                channel = amo.CHANNEL_CHOICES_LOOKUP.get(channel_param)
-                if not channel:
-                    last_version = (
-                        addon.find_latest_version_including_rejected(None))
-                    if last_version:
-                        channel = last_version.channel
-                    else:
-                        channel = amo.RELEASE_CHANNEL_UNLISTED  # Treat as new.
-            else:
-                # Don't allow channel choice until rest of AMO supports it.
-                channel = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
-                           amo.RELEASE_CHANNEL_UNLISTED)
+            channel_param = request.POST.get('channel')
+            channel = amo.CHANNEL_CHOICES_LOOKUP.get(channel_param)
+            if not channel:
+                last_version = (
+                    addon.find_latest_version_including_rejected(None))
+                if last_version:
+                    channel = last_version.channel
+                else:
+                    channel = amo.RELEASE_CHANNEL_UNLISTED  # Treat as new.
 
             will_have_listed = channel == amo.RELEASE_CHANNEL_LISTED
             if not addon.has_complete_metadata(

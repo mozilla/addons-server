@@ -2269,7 +2269,3 @@ def track_status_change(old_attr=None, new_attr=None, **kw):
 def track_addon_status_change(addon):
     statsd.incr('addon_status_change.all.status_{}'
                 .format(addon.status))
-
-    listed_tag = 'listed' if addon.is_listed else 'unlisted'
-    statsd.incr('addon_status_change.{}.status_{}'
-                .format(listed_tag, addon.status))

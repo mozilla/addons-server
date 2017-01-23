@@ -2673,24 +2673,6 @@ class TestTrackAddonStatusChange(TestCase):
             'addon_status_change.all.status_{}'.format(amo.STATUS_PUBLIC)
         )
 
-    def test_increment_listed_addon_statuses(self):
-        addon = self.create_addon(
-            version_kw={'channel': amo.RELEASE_CHANNEL_LISTED})
-        with patch('olympia.addons.models.statsd.incr') as mock_incr:
-            track_addon_status_change(addon)
-        mock_incr.assert_any_call(
-            'addon_status_change.listed.status_{}'.format(addon.status)
-        )
-
-    def test_increment_unlisted_addon_statuses(self):
-        addon = self.create_addon(
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
-        with patch('olympia.addons.models.statsd.incr') as mock_incr:
-            track_addon_status_change(addon)
-        mock_incr.assert_any_call(
-            'addon_status_change.unlisted.status_{}'.format(addon.status)
-        )
-
 
 class TestSearchSignals(amo.tests.ESTestCase):
 
