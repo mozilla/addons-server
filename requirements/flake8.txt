@@ -15,9 +15,9 @@ flake8-mutable==1.1.0 \
     --hash=sha256:dc3824c5ef0b9bffdaa18ab64cd08ef8dcae30969033a6d71dfbac878a058c4f \
     --hash=sha256:efe040cd13fde5b8a940deda4c278cdb183cfe34cd32505a90aa506cd9715eed
 # mccabe is required by flake8
-mccabe==0.5.3 \
-    --hash=sha256:f9b58bf366c1506dcd6117b33e5c4874746f0de859c9c7cab8b516cb6be1d22e \
-    --hash=sha256:16293af41e7242031afd73896fef6458f4cad38201d21e28f344fff50ae1c25e
+mccabe==0.6.0 \
+    --hash=sha256:c6f88ac33667c89d6588e5189334d051f186f4dd3ae5139586af54677c36b5a8 \
+    --hash=sha256:de9bbfe5b771e4c11b1521f3e338fe265a12296b59302f43a3bbf3e02d4b98b1
 # pycodestyle is required by flake8
 pycodestyle==2.2.0 \
     --hash=sha256:60c4e1c36f301ac539a550a29e9d16862069ec240472d86e5e71c4fc645829cb \
