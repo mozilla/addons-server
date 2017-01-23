@@ -87,6 +87,30 @@
         "pk": 4043307
     },
     {
+        "fields": {
+            "display_collections_fav": 1,
+            "display_collections": 1,
+            "occupation": "",
+            "location": "",
+            "picture_type": "",
+            "averagerating": "",
+            "homepage": "http://mozilla.org",
+            "email": "taskuser@mozilla.com",
+            "notifycompat": 1,
+            "bio": null,
+            "deleted": 0,
+            "username": "mozilla",
+            "display_name": "mozilla taskuser \u0627\u0644\u062a\u0637\u0628",
+            "created": "2009-02-02 11:50:31",
+            "notes": "",
+            "modified": "2010-01-12 17:01:41",
+            "notifyevents": 1,
+            "read_dev_agreement": "2012-08-20 00:00:00",
+            "last_login": "2012-05-22 14:59:28"
+        },
+        "model": "users.userprofile",
+        "pk": 1337
+    },{
         "pk": 5497308,
         "model": "users.userprofile",
         "fields": {
