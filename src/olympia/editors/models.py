@@ -272,7 +272,7 @@ class ViewUnlistedAllList(RawSQLModel):
         return list(set(zip(ids, usernames)))
 
 
-class PerformanceGraph(ViewQueue):
+class PerformanceGraph(RawSQLModel):
     id = models.IntegerField()
     yearmonth = models.CharField(max_length=7)
     approval_created = models.DateTimeField()
@@ -295,7 +295,10 @@ class PerformanceGraph(ViewQueue):
             'from': [
                 'log_activity',
             ],
-            'where': ['log_activity.action in (%s)' % ','.join(review_ids)],
+            'where': [
+                'log_activity.action in (%s)' % ','.join(review_ids),
+                'user_id <> %s' % settings.TASK_USER_ID  # No auto-approvals.
+            ],
             'group_by': 'yearmonth, user_id'
         }
 
