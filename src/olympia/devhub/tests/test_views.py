@@ -1980,7 +1980,7 @@ class TestNewDevHubLanding(TestCase):
         Make sure that a call to a persona doesn't result in a 500."""
         assert self.client.login(email='del@icio.us')
         user_profile = UserProfile.objects.get(email='del@icio.us')
-        theme = addon_factory(type=amo.ADDON_PERSONA, users=[user_profile])
+        addon_factory(type=amo.ADDON_PERSONA, users=[user_profile])
 
         doc = self.get_pq()
         addon_list = doc('.DevHub-MyAddons-list')
