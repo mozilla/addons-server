@@ -46,7 +46,7 @@
       {% endif %}
       {% if action_allowed("Addons", "Edit") %}
         <li><a href="{{ url('editors.review', addon.slug) }}">
-          {{ _('Editor Review') }}</a></li>
+          {{ _('Add-on Review') }}</a></li>
       {% endif %}
       {% if action_allowed("ReviewerAdminTools", "View") %}
         <li><a href="{{ url('zadmin.addon_manage', addon.slug) }}">

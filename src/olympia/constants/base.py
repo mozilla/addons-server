@@ -384,7 +384,7 @@ VERSION_BETA = re.compile(r"""(a|alpha|b|beta|pre|rc) # Either of these
                               """, re.VERBOSE)
 VERSION_SEARCH = re.compile('\.(\d+)$')
 
-# Editor Tools
+# Reviewer Tools
 EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 EDITOR_REVIEW_LOCK_LIMIT = 3  # How many pages can an editor "watch"
 

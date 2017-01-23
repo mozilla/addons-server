@@ -206,7 +206,7 @@ class TestReviewLog(EditorTest):
         assert r.status_code == 200
         doc = pq(r.content)
         assert not doc('tbody tr :not(.hide)')
-        # But they should have 2 showing for a senior editor.
+        # But they should have 2 showing for a senior reviewer.
         self.login_as_senior_editor()
         r = self.client.get(self.url)
         assert r.status_code == 200
@@ -547,7 +547,7 @@ class TestHome(EditorTest):
         assert queues_links == listed_queues_links
         assert not doc('#unlisted-queues')  # Unlisted queues are not visible.
 
-        # Both listed and unlisted queues for senior editors.
+        # Both listed and unlisted queues for senior reviewers.
         self.login_as_senior_editor()
         doc = pq(self.client.get(self.url).content)
         queues = doc('#listed-queues ul li a')  # Listed queues links.
@@ -1045,7 +1045,7 @@ class TestModeratedQueue(QueueTest):
         return ActivityLog.objects.filter(action=action.id)
 
     def test_remove(self):
-        """Make sure the editor tools can delete a review."""
+        """Make sure the reviewer tools can delete a review."""
         self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
         logs = self.get_logs(amo.LOG.DELETE_REVIEW)
         assert logs.count() == 1
@@ -1065,7 +1065,7 @@ class TestModeratedQueue(QueueTest):
 
     def test_remove_fails_for_own_addon(self):
         """
-        Make sure the editor tools can't delete a review for an
+        Make sure the reviewer tools can't delete a review for an
         add-on owned by the user.
         """
         a = Addon.objects.get(pk=1865)
@@ -1092,7 +1092,7 @@ class TestModeratedQueue(QueueTest):
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 1
 
     def test_keep(self):
-        """Make sure the editor tools can remove flags and keep a review."""
+        """Make sure the reviewer tools can remove flags and keep a review."""
         self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
         logs = self.get_logs(amo.LOG.APPROVE_REVIEW)
         assert logs.count() == 1
@@ -1726,7 +1726,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('title').text() == (
-            '%s :: Editor Tools :: Add-ons for Firefox' % self.addon.name)
+            '%s :: Reviewer Tools :: Add-ons for Firefox' % self.addon.name)
 
     def test_files_shown(self):
         r = self.client.get(self.url)

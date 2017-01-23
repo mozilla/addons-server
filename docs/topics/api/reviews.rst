@@ -160,7 +160,7 @@ Flag
 
 .. review-flag:
 
-This endpoint allows you to flag an existing user review, to let an editor know
+This endpoint allows you to flag an existing user review, to let a moderator know
 that something may be wrong with it.
 
 An empty response will be returned on success.

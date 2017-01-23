@@ -119,7 +119,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Editor Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('editors.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
@@ -140,7 +140,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Editor Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('editors.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
@@ -159,7 +159,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Editor Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('editors.home')),
             ('Admin Tools', reverse('zadmin.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
@@ -183,7 +183,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Editor Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('editors.home')),
             ('Admin Tools', reverse('zadmin.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
