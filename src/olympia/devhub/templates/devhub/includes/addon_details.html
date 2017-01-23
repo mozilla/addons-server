@@ -56,7 +56,7 @@
     {% if addon.has_unlisted_versions() %}
       <li class="distribution-tag-listed">
         <span class="distribution-tag-listed tooltip"
-              title="Listed on this site after passing code review. Automatic updates are handled by this site."
+              title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site.') }}"
               >AMO</span>
       </li>
     {% endif %}
@@ -111,7 +111,7 @@
     {% if addon.has_listed_versions() %}
       <li class="distribution-tag-unlisted">
           <span class="distribution-tag-unlisted tooltip"
-                title="Signed for self-distribution. Updates are handled by you."
+                title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
                 >Self</span>
       </li>
     {% endif %}

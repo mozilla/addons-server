@@ -13,12 +13,12 @@
 {% if has_listed_versions and has_unlisted_versions %}
   {% macro distro_tag(channel) %}
     {% if channel == amo.RELEASE_CHANNEL_LISTED %}
-      <span class="distribution-tag-listed"
-            title="Listed on this site after passing code review. Automatic updates are handled by this site."
+      <span class="distribution-tag-listed tooltip"
+            title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site.') }}"
             >AMO</span>
     {% elif channel == amo.RELEASE_CHANNEL_UNLISTED %}
       <span class="distribution-tag-unlisted tooltip"
-            title="Signed for self-distribution. Updates are handled by you."
+            title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
             >Self</span>
     {% endif %}
   {% endmacro %}
