@@ -53,6 +53,7 @@
         </form>
         </div>
       {% endif %}
+      {% if not version.is_beta %}
       <div>
           <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history">{{ _('Review History') }}</a>
           <a href="#" class="review-history-hide hidden">{{ _('Close Review History') }}</a>
@@ -63,6 +64,7 @@
               {% endif %}
           {% endif %}
       </div>
+      {% endif %}
     </td>
     <td class="file-validation">
       <ul>
