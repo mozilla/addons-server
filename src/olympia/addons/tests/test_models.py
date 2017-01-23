@@ -2285,19 +2285,6 @@ class TestAddonFromUpload(UploadTest):
                                   [self.platform])
         assert addon.default_locale == 'es'
 
-    def test_is_listed(self):
-        # By default, the addon is listed.
-        addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  [self.platform])
-        assert addon.is_listed
-
-    def test_is_not_listed(self):
-        # An addon can be explicitly unlisted.
-        addon = Addon.from_upload(self.get_upload('extension.xpi'),
-                                  [self.platform],
-                                  channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert not addon.is_listed
-
     def test_validation_completes(self):
         upload = self.get_upload('extension.xpi')
         assert not upload.validation_timeout

@@ -352,9 +352,6 @@ class Addon(OnChangeMixin, ModelBase):
 
     whiteboard = models.TextField(blank=True)
 
-    # Whether the add-on is listed on AMO or not.
-    is_listed = models.BooleanField(default=True, db_index=True)
-
     is_experimental = models.BooleanField(default=False,
                                           db_column='experimental')
 
@@ -537,7 +534,6 @@ class Addon(OnChangeMixin, ModelBase):
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
 
         addon.status = amo.STATUS_NULL
-        addon.is_listed = channel == amo.RELEASE_CHANNEL_LISTED
         locale_is_set = (addon.default_locale and
                          addon.default_locale in (
                              settings.AMO_LANGUAGES +

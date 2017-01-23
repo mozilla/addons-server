@@ -217,7 +217,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert Addon.objects.count() == 0
         r = self.post()
         addon = Addon.objects.get()
-        assert addon.is_listed
         version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
         assert version
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
@@ -242,7 +241,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
                                        )))
         self.post(listed=False)
         addon = Addon.objects.get()
-        assert not addon.is_listed
         version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version
@@ -264,7 +262,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
                                        )))
         self.post(listed=False)
         addon = Addon.objects.get()
-        assert not addon.is_listed
         version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version
@@ -812,8 +809,6 @@ class VersionSubmitUploadMixin(object):
         self.version = self.addon.current_version
         self.addon.update(guid='guid@xpi')
         assert self.client.login(email='del@icio.us')
-        self.addon.update(
-            is_listed=(self.channel == amo.RELEASE_CHANNEL_LISTED))
         self.addon.versions.update(channel=self.channel)
         channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
                    'unlisted')
