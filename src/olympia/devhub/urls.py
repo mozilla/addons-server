@@ -64,13 +64,10 @@ detail_patterns = patterns(
         name='devhub.versions.delete'),
     url('^versions/reenable$', views.version_reenable,
         name='devhub.versions.reenable'),
-    url('^versions/add$', views.version_add, name='devhub.versions.add'),
     url('^versions/stats$', views.version_stats,
         name='devhub.versions.stats'),
     url('^versions/(?P<version_id>\d+)$', views.version_edit,
         name='devhub.versions.edit'),
-    url('^versions/(?P<version_id>\d+)/add$', views.version_add_file,
-        name='devhub.versions.add_file'),
     url('^versions/(?P<version>[^/]+)$', views.version_bounce),
 
     # New version submission

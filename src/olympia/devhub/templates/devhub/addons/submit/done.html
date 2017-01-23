@@ -64,11 +64,7 @@
          "You can upload more files that target other platforms:") }}
   </p>
   <p>
-    {% if waffle.switch('step-version-upload') %}
-        {% set version_upload_url = url('devhub.submit.file', addon.slug, uploaded_version.id) %}
-    {% else %}
-        {% set version_upload_url = version_edit_url %}
-    {% endif %}
+    {% set version_upload_url = url('devhub.submit.file', addon.slug, uploaded_version.id) %}
     <a class="button" href="{{ version_upload_url }}">{{ _("Upload File") }}</a>
   </p>
 {% endif %}

@@ -13,9 +13,6 @@
 {% set urls = urls + [
   (addon.get_dev_url('versions'), _('Manage Status & Versions')),
   ] %}
-{% if not no_inline_version_upload %}
-    {% set version_upload_class = 'version-upload' %}
-{% endif %}
 
 <section class="secondary" role="complementary">
   <div class="addon-status">
@@ -25,13 +22,9 @@
     <p class="addon-upload">
       {% if (addon.has_complete_metadata() or addon.status != amo.STATUS_NULL) and not addon.is_disabled %}
         <strong>
-          {% if waffle.switch('step-version-upload') %}
-            {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
-          {% else %}
-            {% set version_upload_url = '%s#version-upload' % addon.get_dev_url('versions') %}
-          {% endif %}
+          {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
           <a href="{{ version_upload_url }}"
-             class="{{ version_upload_class }}">
+             class="version-upload">
             {{ _('Upload New Version') }}</a>
         </strong>
         &middot;

@@ -32,11 +32,7 @@
                 </tbody>
               </table>
               {% if version.is_allowed_upload() %}
-                {% if waffle.switch('step-version-upload') %}
-                  {% set version_upload_url = url('devhub.submit.file', addon.slug, version.id) %}
-                {% else %}
-                  {% set version_upload_url = '#' %}
-                {% endif %}
+                {% set version_upload_url = url('devhub.submit.file', addon.slug, version.id) %}
                 <a href="{{ version_upload_url }}" class="add-file button">{{ _('Upload Another File') }}</a>
               {% endif %}
             </td>
@@ -143,13 +139,6 @@
       </div>
     </div>
   </form>
-
-  {% if not waffle.switch('step-version-upload') %}
-  {{ add_file_modal(_("Upload a new file"),
-                    url('devhub.versions.add_file', addon.slug, version.id),
-                    _('Add File') )}}
-  {% endif %}
 </section>
-{% set no_inline_version_upload = True %}
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}

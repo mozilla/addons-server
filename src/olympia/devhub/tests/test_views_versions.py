@@ -74,22 +74,6 @@ class TestVersion(TestCase):
             reverse('devhub.file_validation',
                     args=[self.addon.slug, self.version.all_files[0].id]))
 
-    @override_switch('step-version-upload', active=False)
-    def test_upload_link_label_in_edit_nav_inline_upload(self):
-        url = reverse('devhub.versions.edit',
-                      args=(self.addon.slug, self.version.pk))
-        r = self.client.get(url)
-        link = pq(r.content)('.addon-status>.addon-upload>strong>a')
-        assert link.text() == 'Upload New Version'
-        assert link.attr('href') == '%s#version-upload' % (
-            reverse('devhub.addons.versions', args=[self.addon.slug]))
-
-        # Don't show for STATUS_DISABLED addons.
-        self.addon.update(status=amo.STATUS_DISABLED)
-        r = self.client.get(url)
-        assert not pq(r.content)('.addon-status>.addon-upload>strong>a')
-
-    @override_switch('step-version-upload', active=True)
     def test_upload_link_label_in_edit_nav(self):
         url = reverse('devhub.versions.edit',
                       args=(self.addon.slug, self.version.pk))
@@ -578,15 +562,6 @@ class TestVersion(TestCase):
         buttons = doc('.version-status-actions form button').text()
         assert not buttons
 
-    def test_add_version_modal(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
-        # Make sure checkboxes are visible:
-        assert doc('.supported-platforms input.platform').length == 5
-        assert set([i.attrib['type'] for i in doc('input.platform')]) == (
-            set(['checkbox']))
-
     @override_switch('activity-email', active=True)
     def test_version_history(self):
         self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
@@ -1064,15 +1039,6 @@ class TestVersionEditFiles(TestVersionEditBase):
         assert 'bsd' not in choices, (
             'After changing BSD file to Linux, BSD should no longer be a '
             'platform choice in: %r' % choices)
-
-    def test_add_file_modal(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
-        # Make sure radio buttons are visible:
-        assert doc('.platform ul label').text() == 'Linux Mac OS X Windows'
-        assert set([i.attrib['type'] for i in doc('input.platform')]) == (
-            set(['radio']))
 
     def test_mobile_addon_supports_only_mobile_platforms(self):
         for a in self.version.apps.all():
