@@ -1236,6 +1236,9 @@ class TestPerformance(QueueTest):
         version = addon.versions.all()[0]
         for i in amo.LOG_EDITOR_REVIEW_ACTION:
             amo.log(amo.LOG_BY_ID[i], addon, version)
+        # Throw in an automatic approval - should be ignored.
+        amo.log(amo.LOG.APPROVE_VERSION, addon, version,
+                user=UserProfile.objects.get(id=settings.TASK_USER_ID))
 
     def _test_chart(self):
         r = self.client.get(self.get_url())

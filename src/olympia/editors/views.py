@@ -290,6 +290,7 @@ def _recent_editors(days=90):
         UserProfile.objects.filter(
             activitylog__action__in=amo.LOG_EDITOR_REVIEW_ACTION,
             activitylog__created__gt=since_date)
+        .exclude(id=settings.TASK_USER_ID)
         .order_by('display_name')
         .distinct())
     return editors
