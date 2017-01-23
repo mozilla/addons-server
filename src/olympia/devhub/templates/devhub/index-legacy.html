@@ -112,11 +112,7 @@
                     {% endif %}
                     {% if not item.addon.is_persona() and item.addon.has_complete_metadata() and not item.addon.is_disabled %}
                       <p class="upload-new-version">
-                        {% if waffle.switch('step-version-upload') %}
-                          {% set version_upload_url = url('devhub.submit.version', item.addon.slug) %}
-                        {% else %}
-                          {% set version_upload_url = '%s#version-upload' % item.addon.get_dev_url('versions') %}
-                        {% endif %}
+                        {% set version_upload_url = url('devhub.submit.version', item.addon.slug) %}
                         <a href="{{ version_upload_url }}">
                           {{ _('Upload New Version') }}</a>
                       </p>

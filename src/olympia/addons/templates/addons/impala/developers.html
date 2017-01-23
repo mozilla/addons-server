@@ -1,5 +1,11 @@
 {% extends "impala/base_shared.html" %}
 
+{% block js %}
+  {% if addon.takes_contributions %}
+    <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+  {% endif %}
+{% endblock %}
+
 {% if page == 'installed' %}
   {# L10n: {0} is an add-on name. #}
   {% set title = _('Thank you for installing {0}')|fe(addon.name) %}

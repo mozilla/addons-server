@@ -226,11 +226,7 @@
     <div class="item_wrapper">
       {% if addon.status != amo.STATUS_DISABLED %}{# i.e. Admin disabled #}
       <div>
-        {% if waffle.switch('step-version-upload') %}
-          {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
-        {% else %}
-          {% set version_upload_url = '#' %}
-        {% endif %}
+        {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
         <a href="{{ version_upload_url }}" class="button version-upload">{{ _('Upload a New Version') }}</a>
       </div>
       {% endif %}
@@ -307,13 +303,6 @@
       </div>
     </form>
   </div>
-
-  {% if not waffle.switch('step-version-upload') %}
-  {{ add_file_modal(_("Add a new Version"),
-                       url('devhub.versions.add', addon.slug),
-                       _("Add Version"),
-                       'version')}}
-  {% endif %}
 
   {% if has_listed_versions %}
   {% if not addon.disabled_by_user and not addon.is_disabled %}

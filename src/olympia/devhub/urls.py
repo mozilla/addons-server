@@ -64,13 +64,10 @@ detail_patterns = patterns(
         name='devhub.versions.delete'),
     url('^versions/reenable$', views.version_reenable,
         name='devhub.versions.reenable'),
-    url('^versions/add$', views.version_add, name='devhub.versions.add'),
     url('^versions/stats$', views.version_stats,
         name='devhub.versions.stats'),
     url('^versions/(?P<version_id>\d+)$', views.version_edit,
         name='devhub.versions.edit'),
-    url('^versions/(?P<version_id>\d+)/add$', views.version_add_file,
-        name='devhub.versions.add_file'),
     url('^versions/(?P<version>[^/]+)$', views.version_bounce),
 
     # New version submission
@@ -120,7 +117,6 @@ detail_patterns = patterns(
         views.submit_addon_details, name='devhub.submit.details'),
     url('^submit/finish$', views.submit_addon_finish,
         name='devhub.submit.finish'),
-    url('^submit/resume$', views.submit_resume, name='devhub.submit.resume'),
 
     url('^request-review$',
         views.request_review, name='devhub.request-review'),

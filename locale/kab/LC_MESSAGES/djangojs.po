@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-17 05:56+0000\n"
+"PO-Revision-Date: 2016-09-15 22:42+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -38,7 +38,7 @@ msgstr "Ur issefk ara izegrar inek ad bdun s .zip, .xpi, .crx, .jar neɣ .xml"
 #: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
-msgstr "{0} % ifuk"
+msgstr ""
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: static/js/common/upload-addon.js
@@ -64,13 +64,13 @@ msgstr "Tremdeḍ amaswaḍ amaynut n tengalt i usesfer n uzegrir inek. Tanemmir
 #: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Aseɣbel n uzegrir inek ur yeddi ara s tuccḍa {0}."
+msgstr[0] ""
 msgstr[1] "Aseɣbel n uzegrir inek ur yeddi ara s tuccḍiwin {0}."
 
 #: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip; akked {0} nniḍen"
+msgstr[0] "&hellip; akked {0} ugar"
 msgstr[1] "&hellip; akked {0} nniḍen"
 
 #: static/js/common/upload-addon.js
