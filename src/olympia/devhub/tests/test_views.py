@@ -16,6 +16,7 @@ import mock
 import waffle
 from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
+from waffle.models import Flag
 
 from olympia import amo, paypal
 from olympia.amo.tests import TestCase
@@ -1926,8 +1927,29 @@ class TestXssOnAddonName(amo.tests.TestXss):
 
 
 class TestNewDevHubLanding(TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        super(TestNewDevHubLanding, self).setUp()
+        self.url = reverse('devhub.index')
+        self.addon = Addon.objects.get(pk=3615)
+        self.create_flag('new-devhub-landing')
+
+    def get_pq(self):
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        return pq(r.content)
+
+    def test_basic(self):
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        # The actual switch happens in the template, so we're using the same
+        # template.
+        self.assertTemplateUsed(r, 'devhub/index.html')
 
     def test_waffle_flag_inactive(self):
+        Flag.objects.filter(name='new-devhub-landing').delete()
+
         response = self.client.get(reverse('devhub.index'))
 
         assert response.status_code == 200
@@ -1936,10 +1958,37 @@ class TestNewDevHubLanding(TestCase):
         assert 'Learn All About Add-ons' in response.content
 
     def test_waffle_active(self):
-        self.create_flag('new-devhub-landing')
         response = self.client.get(reverse('devhub.index'))
 
         assert response.status_code == 200
 
         # This text only exists on the old page.
         assert 'Customize Firefox' in response.content
+
+    def test_my_addons_addon_versions_link(self):
+        assert self.client.login(email='del@icio.us')
+
+        doc = self.get_pq()
+        addon_list = doc('.DevHub-MyAddons-list')
+
+        href = addon_list.find('.DevHub-MyAddons-item-versions a').attr('href')
+        assert href == self.addon.get_dev_url('versions')
+
+    def test_my_addons_persona_versions_link(self):
+        """References https://github.com/mozilla/addons-server/issues/4283
+
+        Make sure that a call to a persona doesn't result in a 500."""
+        assert self.client.login(email='del@icio.us')
+        user_profile = UserProfile.objects.get(email='del@icio.us')
+        addon_factory(type=amo.ADDON_PERSONA, users=[user_profile])
+
+        doc = self.get_pq()
+        addon_list = doc('.DevHub-MyAddons-list')
+        assert len(addon_list.find('.DevHub-MyAddons-item')) == 2
+
+        span_text = (
+            addon_list.find('.DevHub-MyAddons-item')
+            .eq(0)
+            .find('span.DevHub-MyAddons-VersionStatus').text())
+
+        assert span_text == 'Approved'
