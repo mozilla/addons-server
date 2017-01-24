@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-24 14:38+0000\n"
+"PO-Revision-Date: 2017-01-24 15:28+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -844,7 +844,7 @@ msgstr "請勿在此回報程式錯誤。因為我們並不會將您的 Email �
 msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
-msgstr ""
+msgstr "請參考此附加元件的 <a href=\"%(support)s\">技術支援</a> 段落，看看是否可提供協助。您也可以到 <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">附加元件討論區</a> 尋求幫助。"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -3902,7 +3902,7 @@ msgstr "意見"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
-msgstr ""
+msgstr "自 Firefox 53 起，新上架至此網站的附加元件僅能為 WebExtension。"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -5161,7 +5161,7 @@ msgstr "產生新金鑰"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "請新增版本或補完缺少的後設資料，來完成您的附加元件資訊填寫。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -5429,7 +5429,7 @@ msgstr "管理您的附加元件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "「取得附加元件」按鈕"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
