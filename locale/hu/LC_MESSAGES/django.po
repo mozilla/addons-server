@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-24 17:31+0000\n"
+"PO-Revision-Date: 2017-01-24 17:49+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -879,6 +879,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"Nézze meg a kiegészítő <a href=\"%(support)s\">támogatás szakaszát</a>, hogy megtudja áll-e rendelkezésre támogatás. Megpróbálhat segítséget kérni a <a href=\"https://discourse.mozilla-"
+"community.org/c/add-ons/add-on-support\">kiegészítők közösségétől</a> is."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -3971,7 +3973,7 @@ msgstr "Értékelés"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
-msgstr ""
+msgstr "A Firefox 53-tól kezdve, az oldalon lévő új kiegészítők csak WebExtensionök lehetnek."
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -5270,7 +5272,7 @@ msgstr "Új hitelesítő adatok létrehozása"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Kérjük fejezze be a kiegészítőjét, hozzáadva a verziót vagy a hiányzó metaadatokat."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -5531,7 +5533,7 @@ msgstr "Kompatibilitás-jelentő"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Promote"
-msgstr ""
+msgstr "Népszerűsítés"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get Your Add-on Featured"
@@ -5539,11 +5541,11 @@ msgstr "Legyen kiemelt a kiegészítője"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "„Kiegészítő beszerzése” gomb"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
-msgstr ""
+msgstr "Jogi információk"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
@@ -5559,19 +5561,19 @@ msgstr "Kiegészítők értékelése"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Önkéntes értékelők segítenek, hogy a kiegészítők biztonságosan és megbízhatóan használhatóak maradjanak. Nagyszerű előnyöket is kapnak!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
-msgstr ""
+msgstr "Csatlakozzon!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
-msgstr ""
+msgstr "Írjon egy kis kódot"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Segítsen jobbá tenni a kiegészítőket a kódolási képességeit használva."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get started"
@@ -5583,11 +5585,11 @@ msgstr "További részvételi lehetőségek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Nincs szüksége programozási ismeretekre, hogy továbbra is a Firefox legyen a legjobban testreszabható böngésző."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "See how"
-msgstr ""
+msgstr "Tudja meg hogyan"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Manage Your Add-on"
@@ -5616,7 +5618,7 @@ msgstr "Újdonságok"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
-msgstr ""
+msgstr "Boldog új évet! Lássa mi vár a kiegészítőkre 2017-ben."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Show Me"
@@ -5624,11 +5626,11 @@ msgstr "Megjelenítés"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "AMO"
-msgstr ""
+msgstr "AMO"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Self-hosted"
-msgstr ""
+msgstr "Saját terjesztésű"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "View All Submissions"
@@ -5682,7 +5684,6 @@ msgstr ""
 "href=\"%(css_link)s\">CSS</a>-t, máris minden szükséges képessége megvan egy nagyszerű kiegészítő elkészítéséhez."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to Make an Add-on"
 msgstr "Tudja meg hogy készítsen el egy kiegészítőt"
 
@@ -5702,7 +5703,6 @@ msgid "Publish Your Add-on"
 msgstr "Tegye közzé kiegészítőjét"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr "Már van egy kész kiegészítője? Küldje be a kiterjesztését vagy témáját, és listázza az addons.mozilla.org oldalon, vagy írja alá, és terjessze saját maga."
 
@@ -9893,7 +9893,7 @@ msgid "Add a review for {0}"
 msgstr "Értékelés hozzáadása a(z) {0} kiegészítőhöz"
 
 #: src/olympia/reviews/templates/reviews/add.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
@@ -9905,8 +9905,9 @@ msgstr ""
 "<h2>Tartsa ezeket észben</h2> <ul> <li> Írjon úgy, mintha egy barátjának mesélné el a tapasztalatát a kiegészítővel. Adjon meg részletes és segítőkész részleteket, mint például hogy mi tetszett/nem "
 "tetszett, milyen könnyű használni, milyen hátrányai vannak. Tartózkodjon a túl általános kifejezésektől, mint a „Nagyszerű” vagy „Rossz”, hacsak nem tud valami okot mondani, amiért ezt gondolja. "
 "</li> <li> Ne írjon hibajelentéseket az értékelésekbe. Nem tesszük elérhetővé az e-mail címét a kiegészítő fejlesztője számára, viszont szükségük lehet kapcsolatba lépniük Önnel a probléma "
-"megoldásához. Lásd a <a href=\"%(support)s\">támogatás szakaszt</a>, hogy megtudja hol kaphat segítséget a kiegészítőhöz. </li> <li>Tartsa tisztán az értékeléseket, kerülje a nem megfelelő "
-"nyelvezetet, és ne írjon le semmi személyes információt. </li> </ul> <p> További részletekért a kiegészítő értékelésről, olvassa el az <a href=\"%(guide)s\">Értékelési irányelveket</a>.</p>"
+"megoldásához. Lásd a <a href=\"%(support)s\">támogatás szakaszt</a>, hogy megtudja hol kaphat segítséget a kiegészítőhöz. Segítségért felkeresheti a <a href=\"https://discourse.mozilla-"
+"community.org/c/add-ons/add-on-support\">kiegészítők közösségét</a> is. </li> <li>Tartsa tisztán az értékeléseket, kerülje a nem megfelelő nyelvezetet, és ne írjon le semmi személyes információt. "
+"</li> </ul> <p> További részletekért a kiegészítő értékelésről, olvassa el az <a href=\"%(guide)s\">Értékelési irányelveket</a>.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -10234,7 +10235,7 @@ msgstr "Csak a WebExtension-ök számára megengedett a GUID kihagyása"
 
 #: src/olympia/signing/views.py
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "Érvénytelen GUID az URL-ben"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
