@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-24 12:32+0000\n"
+"PO-Revision-Date: 2017-01-24 12:39+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -974,8 +974,8 @@ msgstr[1] "Outros extras destes autores"
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> comentário de utilizador"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> comentários de utilizadores"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> análise de utilizador"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> análises de utilizador"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "View statistics"
@@ -1155,8 +1155,8 @@ msgstr "traduzir"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Ver todos os comentários do utilizador"
-msgstr[1] "Ver todos os %(cnt)s comentários de utilizadores"
+msgstr[0] "Ver todas as análises de utilizador"
+msgstr[1] "Ver todas as %(cnt)s análises de utilizador"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
@@ -3959,7 +3959,7 @@ msgstr[1] "{0} avisos"
 
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
-msgstr "Comentário"
+msgstr "Análise"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
@@ -4015,7 +4015,7 @@ msgstr "Coleções do utilizador"
 
 #: src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
 msgid "User Reviews"
-msgstr "Comentários do utilizador"
+msgstr "Análises de utilizador"
 
 #: src/olympia/devhub/views.py
 msgid "Changes successfully saved."
@@ -6619,7 +6619,7 @@ msgstr "Se tiver preocupações acerca deste extra que um revisor administrador 
 
 #: src/olympia/editors/helpers.py
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Faça um comentário a esta versão.  O programador não poderá ver isto."
+msgstr "Faça um comentário a esta versão. O programador não poderá ver isto."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -6708,7 +6708,7 @@ msgstr "foi aprovado"
 
 #: src/olympia/editors/views.py
 msgid "given preliminary review"
-msgstr "dado comentário preliminar"
+msgstr "dada revisão preliminar"
 
 #: src/olympia/editors/views.py
 msgid "rejected"
@@ -9464,8 +9464,8 @@ msgid ""
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
 "Existem frequentemente vários extras que têm funcionalidades similares. Para descobrir qual é o certo para si, leia a descrição na integra do extra e veja as suas capturas de ecrã. Se ainda existem "
-"vários na corrida, leia pelas avaliações do extra, comentários de utilizadores, e estatísticas para ver qual é o mais apreciado por outros utilizadores. Lembre-se que pode simplesmente experimentar "
-"ambos e ver qual é o que gosta mais."
+"vários na corrida, leia pelas avaliações do extra, análises de utilizador, e estatísticas para ver qual é o mais apreciado por outros utilizadores. Lembre-se que pode simplesmente experimentar ambos"
+" e ver qual é o que gosta mais."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I can't find an add-on I'm looking for?"
@@ -9772,8 +9772,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Por favor denuncie ou reporte quaisquer comentários questionáveis clicando em \"Reportar este comentário\" e este será submetido para o site para moderação. A nossa equipa de moderação irá utilizar "
-"as diretrizes de comentários para avaliar se o comentário deve ser eliminado ou reposto de volta no site."
+"Por favor denuncie ou reporte quaisquer análises questionáveis clicando em \"Reportar esta análise\" e esta será submetido para o site para moderação. A nossa equipa de moderação irá utilizar as "
+"diretrizes de análises para avaliar se a análise deve ser eliminada ou reposta de volta no site."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -9793,8 +9793,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"No geral, não. Mas se o comentário não cumprir com as diretrizes de comentários descritas acima, pode clicar em \"Reportar este comentário\" para que o mesma seja moderado. Se um comentário tiver "
-"uma reclamação que já não seja válida devido ao lançamento de uma nova versão do extra, podemos considerar eliminar o comentário. Submeta o seu pedido detalhado para amo-editors@mozilla.org."
+"No geral, não. Mas se a análise não cumprir com as diretrizes de análises descritas acima, pode clicar em \"Reportar esta análise\" para que a mesma seja moderada. Se uma análise tiver uma "
+"reclamação que já não seja válida devido ao lançamento de uma nova versão do extra, podemos considerar eliminar a análise. Submeta o seu pedido detalhado para amo-editors@mozilla.org."
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
@@ -9842,7 +9842,7 @@ msgstr "O vendedor não aceita pagamentos em %s."
 #: src/olympia/reviews/feeds.py
 #, python-format
 msgid "Reviews for %s"
-msgstr "Comentários para %s"
+msgstr "Análises para %s"
 
 #: src/olympia/reviews/feeds.py
 msgid "Review History for this Addon"
@@ -9868,7 +9868,7 @@ msgstr "Saltar por agora"
 
 #: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
 msgid "Delete review"
-msgstr "Eliminar comentário"
+msgstr "Eliminar análise"
 
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
@@ -9880,7 +9880,7 @@ msgstr "Obrigado; esta avaliação foi marcada para aprovação do editor."
 
 #: src/olympia/reviews/templates/reviews/add.html
 msgid "Add a review for {0}"
-msgstr "Adicionar comentário a {0}"
+msgstr "Adicionar análise para {0}"
 
 #: src/olympia/reviews/templates/reviews/add.html
 #, fuzzy, python-format
@@ -9901,7 +9901,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
-msgstr "Responder ao comentário de {0}"
+msgstr "Responder à análise de {0}"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
@@ -9975,7 +9975,7 @@ msgstr "{0} :: Avaliações"
 #. {0} is an addon name.
 #: src/olympia/reviews/templates/reviews/mobile/add.html src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Reviews for {0}"
-msgstr "Comentários para {0}"
+msgstr "Análises para {0}"
 
 #. {0} is a number.
 #: src/olympia/reviews/templates/reviews/review_list.html
@@ -10011,7 +10011,7 @@ msgstr "Escrever uma nova avaliação"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Be the first to write a review."
-msgstr "Seja o primeiro a escrever um comentário"
+msgstr "Seja o primeiro a escrever uma análise."
 
 #: src/olympia/reviews/templates/reviews/reviews_link.html
 msgid "{num} review"
@@ -10036,7 +10036,7 @@ msgstr "Adicionar uma Análise"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Log in to add a review"
-msgstr "Inicie sessão para deixar um comentário"
+msgstr "Inicie sessão para adicionar uma análise"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "No ratings yet."
@@ -10889,7 +10889,7 @@ msgstr "um programador de um extra agradece-me uma contribuição"
 
 #: src/olympia/users/notifications.py
 msgid "an add-on developer replies to my review"
-msgstr "um programador de um extra responde ao meu comentário"
+msgstr "um programador de um extra responde à minha análise"
 
 #: src/olympia/users/notifications.py
 msgid "an app developer replies to my review"
@@ -10909,12 +10909,12 @@ msgstr "o meu extra baseado no sdk foi atualizado com sucesso"
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my add-on"
-msgstr "alguém escreveu um comentário sobre o meu extra"
+msgstr "alguém escreve uma análise sobre o meu extra"
 
 # 86%
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my app"
-msgstr "alguém escreveu um comentário sobre o meu aplicativo"
+msgstr "alguém escreve uma análise sobre a minha aplicação"
 
 #: src/olympia/users/notifications.py
 msgid "add-on contests or events are announced"
@@ -11213,11 +11213,11 @@ msgstr "Criadas por mim"
 # "My" in this context is the logged in user who is reading the page
 #: src/olympia/users/templates/users/profile.html
 msgid "My Reviews"
-msgstr "Meus comentários"
+msgstr "Minhas análises"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "No add-on reviews yet."
-msgstr "Nenhum comentário sobre extras ainda."
+msgstr "Nenhuma análise de extra ainda."
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Report User"
