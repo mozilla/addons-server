@@ -1494,6 +1494,28 @@ class TestAddonManagement(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 200
 
+    def test_addon_mixed_channels(self):
+        first_version = self.addon.current_version
+        second_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        first_expected_review_link = reverse(
+            'editors.review', args=(self.addon.slug,))
+        elms = doc('a[href="%s"]' % first_expected_review_link)
+        assert len(elms) == 1
+        assert elms[0].attrib['title'] == str(first_version.pk)
+        assert elms[0].text == first_version.version
+
+        second_expected_review_link = reverse(
+            'editors.review', args=('unlisted', self.addon.slug,))
+        elms = doc('a[href="%s"]' % second_expected_review_link)
+        assert len(elms) == 1
+        assert elms[0].attrib['title'] == str(second_version.pk)
+        assert elms[0].text == second_version.version
+
     def _form_data(self, data=None):
         initial_data = {
             'status': '4',
