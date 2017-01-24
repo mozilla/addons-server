@@ -100,13 +100,13 @@
 
             <span class="DevHub-MyAddons-item-modified">
               {% if addon.last_updated %}
-                {{ _('Last Updated:') }}
+                <span>{{ _('Last Updated:') }}</span>
                 {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
-                {{ addon.last_updated|datetime(_('%%b %%e, %%Y')) }}
+                <span>{{ addon.last_updated|datetime(_('%%b %%e, %%Y')) }}</span>
               {% else %}
-                {{ _('Created:') }}
+                <span>{{ _('Created:') }}</span>
                 {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
-                {{ addon.created|datetime(_('%%b %%e, %%Y')) }}
+                <span>{{ addon.created|datetime(_('%%b %%e, %%Y')) }}</span>
               {% endif %}
             </span>
           </div>
