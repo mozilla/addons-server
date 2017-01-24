@@ -66,7 +66,9 @@
                   {% if addon.current_version %}
                     <div class="DevHub-MyAddons-item-version-details">
                       {% if addon.has_unlisted_versions() %}
-                        <span class="DevHub-MyAddons-item-channel-listed">{{ _('AMO') }}</span>
+                        <span class="DevHub-MyAddons-item-channel-listed tooltip"
+                              title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site.') }}"
+                        >AMO</span>
                       {% endif %}
 
                       <span class="DevHub-MyAddons-item-version">
@@ -83,7 +85,9 @@
                 {% if latest_unlisted_version %}
                   <div class="DevHub-MyAddons-item-version-details">
                     {% if addon.has_listed_versions() %}
-                      <span class="DevHub-MyAddons-item-channel-unlisted">{{ _('Self-hosted') }}</span>
+                      <span class="DevHub-MyAddons-item-channel-unlisted tooltip"
+                            title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
+                      >Self</span>
                     {% endif %}
 
                     <span class="DevHub-MyAddons-item-version">
