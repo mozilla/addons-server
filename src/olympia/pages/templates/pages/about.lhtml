@@ -42,9 +42,9 @@ should only be installed with caution.{% endtrans %}</p>
   <li>{% trans url='/developers' %}<a href="{{ url }}">Make your own add-on</a>.
   We provide free hosting and update services and can help you reach a large
   audience of users.{% endtrans %}</li>
-  <li>{% trans url='https://wiki.mozilla.org/AMO:Editors/Applying' %}If you have
-  add-on development experience, <a href="{{ url }}"> become an editor</a>! Our
-  editors are add-on fans with a technical background who review add-ons for
+  <li>{% trans url='https://wiki.mozilla.org/Add-ons/Reviewers/Applying' %}If you have
+  add-on development experience, <a href="{{ url }}"> become an Add-on Reviewer</a>! Our
+  reviewers are add-on fans with a technical background who review add-ons for
   code quality and stability.{% endtrans %}</li>
   <li>{% trans url='https://github.com/mozilla/olympia/issues' %}
   Help improve this website. It's open source, and you can file bugs and

@@ -81,7 +81,7 @@ This allows you to generate a new user account and sign in as that user.
     :param group:
         assign the user to a permission group. Valid choices:
 
-        - **reviewer**: can access add-on reviewer pages, AKA Editor Tools
+        - **reviewer**: can access add-on reviewer pages, formerly known as Editor Tools
         - **admin**: can access any protected page
 
 

@@ -84,7 +84,7 @@ def global_settings(request):
 
         tools_links += links
         if is_reviewer:
-            tools_links.append({'text': _('Editor Tools'),
+            tools_links.append({'text': _('Reviewer Tools'),
                                 'href': reverse('editors.home')})
         if (acl.action_allowed(request, 'Admin', '%') or
                 acl.action_allowed(request, 'AdminTools', 'View')):

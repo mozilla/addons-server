@@ -90,7 +90,7 @@ def get_flags(record):
         ('requires_restart', 'requires_restart',
          _lazy('Requires Restart')),
         ('has_info_request', 'info', _lazy('More Information Requested')),
-        ('has_editor_comment', 'editor', _lazy('Contains Editor Comment')),
+        ('has_editor_comment', 'editor', _lazy('Contains Reviewer Comment')),
         ('sources_provided', 'sources-provided',
          _lazy('Sources provided')),
         ('is_webextension', 'webextension', _lazy('WebExtension')),
