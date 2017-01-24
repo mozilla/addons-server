@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-24 20:31+0000\n"
+"PO-Revision-Date: 2017-01-24 20:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5629,9 +5629,8 @@ msgid "Evolution in Add-on Development"
 msgstr "Ewolucija při wuwiwanju rozšěrjenjow"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
-msgstr "WebExtensions budu standard za wuwiwanje přidatkow w Firefox. To a druhe změny w Firefox móža wuwiwarjow staršich přidatkow potrjechić."
+msgstr "WebExtensions su nětko standard za wuwiwanje přidatkow w Firefox. Dyrbiće swoje stare přidatki aktualizować, zo bychu kompatibelne wostali."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
@@ -5639,18 +5638,16 @@ msgid "Learn How"
 msgstr "Zhońće, kak to dźe"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "What's New"
-msgstr "Najnowše nowinki"
+msgstr "Nowosće"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Show Me"
-msgstr "Komentary pokazać"
+msgstr "Pokazać"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "AMO"
@@ -5661,9 +5658,8 @@ msgid "Self-hosted"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Wšě wersije pokazać"
+msgstr "Wšě zapodaća pokazać"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
@@ -5686,38 +5682,34 @@ msgid "Docs"
 msgstr "Dokumenty"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Přizjewić"
+msgstr "Wotzjewić"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Wužiwarske foto zhašeć"
+msgstr "Wužiwarske foto"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Registrować</a> abo <a href=\"%(login)s\">Přizjewić</a>"
+msgstr "<a href=\"%(register)s\">Registrować</a> or <a href=\"%(login)s\">PřizjewićSign In</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Waš Firefox přiměrić"
+msgstr "Firefox přiměrić"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
 " you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Přidatki zmóžnjeja milionam wužiwarjow Firefox jich přehladowanske dožiwjenje polěpšić. Jeli sće webwuwiwar a so w <a href=\"#\">HTML</a>, <a href=\"#\">>JavaScript</a> a <a href=\"#\">CSS</a> "
-"wuznawaće, maće hižo trěbne znajomosće, zo byšće wulkotny přidatk wutworił."
+"Přidatki zmóžnjeja milionam wužiwarjow Firefox jich přehladowanske dožiwjenje polěpšić. Jeli so w <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a> a <a "
+"href=\"%(css_link)s\">CSS</a> wuznawaće, maće hižo trěbne znajomosće, zo byšće wulkotny přidatk wutworił."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to Make an Add-on"
-msgstr "Dalše informacije wo wuwiwanju přidatka"
+msgstr "Zhońće, kak móžeće přidatk wuwiwać"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Port a Chrome Extension"
@@ -5735,9 +5727,8 @@ msgid "Publish Your Add-on"
 msgstr "Wozjewće swój přidatk"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Maće hotowy přidatk? Zapodajće swoje rozšěrjenje abo swoju drastu, zo byštej so na addons.mozilla.org nalistowałoj abo signujće a rozdźělće swoje rozšěrjenje sam."
+msgstr "Maće hotowy přidatk? Zapodajće swoje rozšěrjenje abo swoju drastu, kotrejž matej so na addons.mozilla.org nalistować abo signujće a rozdźělće swoje rozšěrjenje sam."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign In"
@@ -9939,7 +9930,7 @@ msgid "Add a review for {0}"
 msgstr "Pohódnoćenje za {0} přidać"
 
 #: src/olympia/reviews/templates/reviews/add.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
@@ -9950,9 +9941,10 @@ msgid ""
 msgstr ""
 "<h2>Spomjatkujće sej tute pokiwy:</h2> <ul> <li> Pisajće tak, kaž byšće přećelej swoje nazhonjenja z přidatkom powědał. Podajće specifiske a wužitne podrobnosće, kaž na přikład kotre funkcije so wam"
 " spodobaja a/abo njespodobaja, kak lochko da so wužiwać a kotre njelěpšiny ma. Njewužiwajće powšitkownu rěč, kaž na přikład „Wulkotne“ abo „Špatne“, chibazo móžeće přičiny podać, čehoždla tomu tak "
-"je. </li> <li> Prošu njesćelće rozprawy wo programowych zmylkach w pohódnoćenjach. Njestajamy wuwiwarjam přidatkow wašu e-mejlow adresu k dispoziciji, ale dyrbja so snano z wami do zwiska stajić, zo"
-" bychu problem rozrisali. Hlejće <a href=\"%(support)s\">wotrězk pomocy</a>, zo byšće podpěru za tutón přidatk dóstał. </li> <li>Prošu dźeržće pohódnoćenja čiste, njewužiwajće njepřihódnu rěč a "
-"njesćelće wosobinske daty. </li> </ul> <p> Prošu čitajće <a href=\"%(guide)s\">Pohódnoćenske směrnicy</a> za dalše podrobnosće wo wužiwarskich pohódnoćenjach přidatkow.</p>"
+"je. </li> <li> Prošu njesćelće tu rozprawy wo programowych zmylkach. Njestajamy wuwiwarjam přidatkow wašu e-mejlowu adresu k dispoziciji, tohodla njemóža so z wami do zwiska stajić, zo bychu waš "
+"problem rozrisali. Hlejće <a href=\"%(support)s\">wotrězk pomocy</a>, zo byšće hladał, hač podpěra je k dispoziciji. Móžeće tež <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">přidatkowe zhromadźenstwo</a> wo pomoc prosyć. </li> <li>Prošu dźeržće pohódnoćenja čiste, njewužiwajće njepřihódnu rěč a njesćelće wosobinske daty. </li> </ul> <p> Prošu čitajće <a "
+"href=\"%(guide)s\">Pohódnoćenske směrnicy</a> za dalše podrobnosće wo wužiwarskich pohódnoćenjach přidatkow.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
