@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-24 15:28+0000\n"
+"PO-Revision-Date: 2017-01-24 16:23+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -835,9 +835,8 @@ msgid "Submit review"
 msgstr "送出評論"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "請勿在此回報程式錯誤。因為我們並不會將您的 Email 位址傳送給開發者，若開發者想得知進一步的細節以解決問題時就無法與您聯絡了。"
+msgstr "請勿在此回報程式錯誤。因為我們並不會將您的電子郵件信箱傳送給開發者，開發者將無法與您聯絡來解決問題。"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -5359,19 +5358,16 @@ msgid "Read more in our Blog"
 msgstr "到部落格閱讀更多資訊"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Resources"
-msgstr "更多資源"
+msgstr "資源"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "WebExtensions"
 msgstr "WebExtension"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Community"
-msgstr "意見"
+msgstr "社群"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "About"
@@ -5387,14 +5383,12 @@ msgid "Blog"
 msgstr "部落格"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Contact Us"
-msgstr "聯絡人"
+msgstr "聯絡我們"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Policies"
-msgstr "審核註記"
+msgstr "審核標準"
 
 # Link text to the Frequently Asked Questions page.
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
@@ -5402,7 +5396,6 @@ msgid "FAQ"
 msgstr "常見問題集"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Report Bug"
 msgstr "回報 Bug"
 
@@ -5423,9 +5416,8 @@ msgid "Promote"
 msgstr "推廣"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "管理您的附加元件"
+msgstr "讓您的附加元件成為精選"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
@@ -5444,13 +5436,12 @@ msgid "Legal Notices"
 msgstr "法律聲明"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "審核此附加元件"
+msgstr "審核附加元件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "審核志工會幫助讓附加元件安全、可靠。他們也喜歡小禮物！"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
@@ -5462,25 +5453,23 @@ msgstr "寫點程式"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "貢獻您的寫程式能力，幫助讓附加元件變得更好。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get started"
 msgstr "開始使用"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "更多個人化自訂的方法"
+msgstr "更多參與的方式"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "不需要會寫程式也能幫助 Firefox 成為最可自訂的瀏覽器！"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "See how"
-msgstr ""
+msgstr "看看怎麼做"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Manage Your Add-on"
@@ -5495,9 +5484,8 @@ msgid "Evolution in Add-on Development"
 msgstr "附加元件開發進化了"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
-msgstr "WebExtensions 將成為 Firefox 標準的附加元件開發流程。Firefox 的此次與其他相關變更可能會影響傳統附加元件的開發者。"
+msgstr "WebExtension 將成為 Firefox 的標準附加元件。您將需要更新您的傳統附加元件才能保持相容。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
@@ -5505,18 +5493,16 @@ msgid "Learn How"
 msgstr "更多資訊"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "What's New"
-msgstr "最新消息"
+msgstr "有什麼新鮮事"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
-msgstr ""
+msgstr "新年快樂！看看 2017 年有什麼附加元件新鮮事。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Show Me"
-msgstr "顯示意見"
+msgstr "顯示給我看"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "AMO"
@@ -5527,9 +5513,8 @@ msgid "Self-hosted"
 msgstr "自行架設代管"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "View All Submissions"
-msgstr "檢視所有版本"
+msgstr "檢視所有送出的元件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
@@ -5553,34 +5538,30 @@ msgid "Docs"
 msgstr "文件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "登入"
+msgstr "登出"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "刪除使用者相片"
+msgstr "使用者相片"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">註冊</a>或<a href=\"%(login)s\">登入</a>"
+msgstr "<a href=\"%(register)s\">註冊</a>或<a href=\"%(login)s\">登入</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "自訂您的 Firefox"
+msgstr "自訂 Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
 " you already have all the necessary skills to make a great add-on."
-msgstr "附加元件可讓數以百萬的 Firefox 使用者增強並自訂他們的上網體驗。若您是熟悉 <a href=\"#\">HTML</a>、<a href=\"#\">JavaScript</a> 與 <a href=\"#\">CSS</a> 的 Web 開發者，您已經具備了開發附加元件時必需的能力。"
+msgstr "附加元件可讓數以百萬的 Firefox 使用者增強他們的上網體驗。若您是熟悉 <a href=\"%(html_link)s\">HTML</a>、<a href=\"%(js_link)s\">JavaScript</a> 與 <a href=\"%(css_link)s\">CSS</a> 的 Web 開發者，您已經具備了開發附加元件的必需能力。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to Make an Add-on"
 msgstr "了解如何打造附加元件"
 
@@ -5598,9 +5579,8 @@ msgid "Publish Your Add-on"
 msgstr "發布您的附加元件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "寫好您的附加元件了嗎？請送出您的附加元件或佈景主題，上架到 addons.mozilla.org，也可以自行發布。"
+msgstr "寫好附加元件了嗎？請送出您的附加元件或佈景主題，上架到 addons.mozilla.org，也可以經簽署後自行發布。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign In"
@@ -9619,7 +9599,7 @@ msgid "Add a review for {0}"
 msgstr "新增對 {0} 的意見"
 
 #: src/olympia/reviews/templates/reviews/add.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
@@ -9628,8 +9608,8 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>請記得:</h2><ul><li> 以像是您在跟其他朋友解釋您使用此附加元件時的體驗的方式來撰寫。提供明確、有幫助的詳情，像是您喜歡那些功能、不喜歡那些功能、有多簡單就能使用、有那些缺點。除非您能提供明確的原因，請避免使用太廣泛的語言，像是只說「棒」、「爛」。</li><li>請不要在評論中張貼錯誤回報，我們不會將您的電子郵件地址提供給開發者，他們可能需要有 email "
-"才能幫助您解決問題。請參考 <a href=\"%(support)s\">技術支援段落</a>找到您可以在哪裡取得此附加元件的幫助。</li><li>請保持評論簡潔，避免使用不適當的語言，也不要張貼任何個人資訊。</li></ul><p>請閱讀<a href=\"%(guide)s\">評論指南</a>，以了解使用者對附加元件評論的更多資訊。</p>"
+"<h2>請記得:</h2><ul><li> 以像是您在跟其他朋友解釋您使用此附加元件時的體驗的方式來撰寫。提供明確、有用的詳細資訊，像是您喜歡哪些功能、不喜歡哪些功能、有多簡單就能使用、有哪些缺點。除非您能提供明確的原因，不然請避免使用太廣泛的語言，像是只說「棒」、「爛」。</li><li>請不要在評論中張貼錯誤回報，我們不會將您的電子郵件地址提供給開發者，他們無法幫您解決問題。請參考 <a "
+"href=\"%(support)s\">技術支援段落</a>找到您可以在哪裡取得此附加元件的幫助。</li><li>請保持評論簡潔，避免使用不適當的語言，也不要張貼任何個人資訊。</li></ul><p>請閱讀<a href=\"%(guide)s\">評論指南</a>，以了解使用者對附加元件評論的更多資訊。</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
