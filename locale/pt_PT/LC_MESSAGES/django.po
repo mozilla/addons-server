@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-24 14:27+0000\n"
+"PO-Revision-Date: 2017-01-25 10:30+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5085,7 +5085,7 @@ msgstr "Notas de lançamento:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Let your users know what's new and what's changed in this version."
-msgstr "Deixe que os seus utilizadores saibam o que há de novo e o que foi alterado nesta versão."
+msgstr "Deixe que os seus utilizadores saibam as novidades e o que foi alterado nesta versão."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will appear on the detail page."
@@ -5604,7 +5604,7 @@ msgstr "Saber mais"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "What's New"
-msgstr "Últimas notícias"
+msgstr "Novidades"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
