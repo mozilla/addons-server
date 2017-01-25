@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-25 18:28+0000\n"
+"PO-Revision-Date: 2017-01-25 20:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -880,7 +880,7 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"Čitajće <a href=\"%(support)s\">wotězk pomocy</a> tutoho přidatka, zo byšće won namakł, hač podpěra k dispoziciji steji. Móžeće tež <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-"
+"Čitajće <a href=\"%(support)s\">wotrězk pomocy</a> tutoho přidatka, zo byšće won namakał, hač podpěra k dispoziciji steji. Móžeće tež <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-"
 "on-support\">přidatkowe zhromadźenstwo</a> wo pomoc prosyć."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
@@ -5645,7 +5645,7 @@ msgstr "Nowosće"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
-msgstr "Strowe nowe lěto! Hladajće, štož je w lěće 2017 za přidatki předsteji."
+msgstr "Strowe nowe lěto! Hladajće, štož w lěće 2017 přidatkam předsteji."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Show Me"
