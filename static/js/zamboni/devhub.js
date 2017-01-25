@@ -763,10 +763,11 @@ function initVersions() {
     }
     $('.review-history-show').click(function (e) {
         e.preventDefault();
-        var $tgt = $(this);
-        $tgt.addClass("hidden");
-        $tgt.next().removeClass("hidden");
-        loadReviewHistory($($tgt.data('div')));
+        var version = $(this).data('version')
+        var $show_link = $('#review-history-show-' + version);
+        $show_link.addClass("hidden");
+        $show_link.next().removeClass("hidden");
+        loadReviewHistory($($show_link.data('div')));
     });
     $('.review-history-hide').click(function (e) {
         e.preventDefault();
@@ -786,9 +787,9 @@ function initVersions() {
     $('.history-container .hidden').prop("style", "");
     $("time.timeago").timeago();
 
-    var $replyForm = $("#dev-review-reply-form");
-    $replyForm.submit(function (e) {
+    $(".dev-review-reply-form").submit(function (e) {
         e.preventDefault();
+        $replyForm = $(e.target)
         $.ajax({
             type: 'POST',
             url: $replyForm.attr('action'),
