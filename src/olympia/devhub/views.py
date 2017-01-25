@@ -1370,11 +1370,15 @@ def submit_version_distribution(request, addon_id, addon):
 
 
 @transaction.atomic
-def _submit_upload(request, addon, channel, next_listed, next_unlisted,
+def _submit_upload(request, addon, channel, next_details, next_finish,
                    version=None):
     """ If this is a new addon upload `addon` will be None (and `version`);
     if this is a new version upload `version` will be None; a new file for a
-    version will need both an addon and a version supplied."""
+    version will need both an addon and a version supplied.
+    next_details is the view that will be redirected to when details are needed
+    (for listed, non-beta, addons/versions); next_finish is the finishing view
+    when no details step is needed (for unlisted addons/versions and beta).
+    """
     form = forms.NewUploadForm(
         request.POST or None,
         request.FILES or None,
@@ -1439,9 +1443,9 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted,
             addon.update(**addon_update)
         # auto-sign versions (the method checks eligibility)
         auto_sign_version(version, is_beta=is_beta)
-        next_url = (next_listed
+        next_url = (next_details
                     if channel == amo.RELEASE_CHANNEL_LISTED and not is_beta
-                    else next_unlisted)
+                    else next_finish)
         return redirect(next_url, *url_args)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
     if addon:
