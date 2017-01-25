@@ -1039,33 +1039,35 @@ class Addon(OnChangeMixin, ModelBase):
         )
 
     @write
-    def update_status(self, ignore_version=None):
+    def update_status(self, ignore_version=None, force_update=False):
         self.reload()
 
-        if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED] or
-                self.is_disabled or self.is_persona()):
+        if (self.status in [amo.STATUS_DISABLED, amo.STATUS_DELETED] or
+                self.disabled_by_user or self.is_persona()):
             self.update_version(ignore=ignore_version)
             return
 
         versions = self.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-        status = None
+        new_status = self.status
+
         if not versions.exists():
-            status = amo.STATUS_NULL
+            new_status = amo.STATUS_NULL
             reason = 'no listed versions'
-        elif not versions.filter(
-                files__status__in=amo.VALID_FILE_STATUSES).exists():
-            status = amo.STATUS_NULL
+        elif versions.filter(files__status=amo.STATUS_PUBLIC):
+            new_status = amo.STATUS_PUBLIC
+            reason = 'approved listed versions'
+        elif versions.filter(files__status=amo.STATUS_AWAITING_REVIEW):
+            new_status = amo.STATUS_NOMINATED
+            reason = 'versions awaiting review'
+        else:
+            new_status = amo.STATUS_NULL
             reason = 'no listed version with valid file'
-        elif (self.status == amo.STATUS_PUBLIC and
-              not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
-            if versions.filter(
-                    files__status=amo.STATUS_AWAITING_REVIEW).exists():
-                status = amo.STATUS_NOMINATED
-                reason = 'only an unreviewed file'
-            else:
-                status = amo.STATUS_NULL
-                reason = 'no reviewed files'
-        elif self.status == amo.STATUS_PUBLIC:
+        if not self.has_complete_metadata() and new_status > self.status:
+            # If the add-on doesn't have complete_metadata we don't want to
+            # 'upgrade' it's status.
+            new_status = self.status
+
+        if self.status == amo.STATUS_PUBLIC:
             latest_version = self.find_latest_version(
                 channel=amo.RELEASE_CHANNEL_LISTED)
             if (latest_version and latest_version.has_files and
@@ -1074,13 +1076,13 @@ class Addon(OnChangeMixin, ModelBase):
                 # Addon is public, but its latest file is not (it's the case on
                 # a new file upload). So, call update, to trigger watch_status,
                 # which takes care of setting nomination time when needed.
-                status = self.status
+                force_update = True
                 reason = 'triggering watch_status'
 
-        if status is not None:
+        if new_status != self.status or force_update:
             log.info('Changing add-on status [%s]: %s => %s (%s).'
-                     % (self.id, self.status, status, reason))
-            self.update(status=status)
+                     % (self.id, self.status, new_status, reason))
+            self.update(status=new_status)
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
         self.update_version(ignore=ignore_version)

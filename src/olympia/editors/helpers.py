@@ -285,10 +285,6 @@ class ViewFullReviewQueueTable(EditorQueueTable):
 log = commonware.log.getLogger('z.mailer')
 
 
-PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_NULL,
-                    amo.STATUS_PENDING, amo.STATUS_PUBLIC)
-
-
 @register.function
 def get_position(addon):
     if addon.is_persona() and addon.is_pending():

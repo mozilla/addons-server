@@ -55,7 +55,7 @@ def addon_with_files(db):
          helpers.ReviewFiles, 'pending', amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
         # scenario3: should succeed, files rejected.
         ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-         helpers.ReviewFiles, 'pending', amo.STATUS_NOMINATED,
+         helpers.ReviewFiles, 'pending', amo.STATUS_NULL,
          amo.STATUS_DISABLED),
     ])
 def test_review_scenario(mock_request, addon_with_files, review_action,
