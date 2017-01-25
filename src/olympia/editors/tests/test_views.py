@@ -1643,6 +1643,17 @@ class TestReview(ReviewBase):
         AddonUser.objects.create(addon=self.addon, user=self.editor)
         assert self.client.head(self.url).status_code == 302
 
+    def test_review_unlisted_while_a_listed_version_is_awaiting_review(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED, slug='awaiting')
+        self.url = reverse(
+            'editors.review', args=('unlisted', self.addon.slug))
+        self.login_as_senior_editor()
+        assert self.client.get(self.url).status_code == 200
+
     def test_needs_unlisted_reviewer_for_only_unlisted(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.client.head(self.url).status_code == 404
