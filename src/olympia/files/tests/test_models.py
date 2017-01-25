@@ -16,6 +16,7 @@ import pytest
 from mock import patch
 
 from olympia import amo
+from olympia.constants import webext_permissions
 from olympia.amo.tests import TestCase
 from olympia.amo.utils import rm_local_tmp_dir, chunked
 from olympia.addons.models import Addon
@@ -327,6 +328,12 @@ class TestParseXpi(TestCase):
         parsed = self.parse()
         for key, value in exp.items():
             assert parsed[key] == value
+
+    def test_parse_permissions(self):
+        parsed = self.parse(filename='webextension_no_id.xpi')
+        assert len(parsed['permissions'])
+        assert parsed['permissions'] == [
+            u'http://*/*', u'https://*/*', u'alarms']
 
     def test_parse_apps(self):
         exp = (amo.FIREFOX,
@@ -1077,6 +1084,21 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data={})
         assert not file_.is_experiment
+
+    def test_permissions(self):
+        upload = self.upload('webextension_no_id.xpi')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parsed_data=parse_addon(upload))
+        permissions = file_.webext_permissions.all()
+        assert permissions.count() == 3
+        # One permission is known so will have a description, etc.
+        alarm = permissions.filter(name='alarms')[0]
+        assert alarm.pretty_name == u'Alarms'
+        assert alarm.description == (
+            webext_permissions.WEBEXT_ALARMS.description)
+        # The other two permissions stored are just urls.
+        assert permissions.filter(name=u'http://*/*').exists()
+        assert permissions.filter(name=u'https://*/*').exists()
 
 
 class TestZip(TestCase, amo.tests.AMOPaths):
