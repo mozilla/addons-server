@@ -1072,8 +1072,6 @@ CELERY_ROUTES = {
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
         'queue': 'devhub'},
-    'olympia.devhub.tasks.resize_icon': {'queue': 'devhub'},
-    'olympia.devhub.tasks.resize_preview': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
@@ -1089,7 +1087,6 @@ CELERY_ROUTES = {
     # Images.
     'olympia.bandwagon.tasks.resize_icon': {'queue': 'images'},
     'olympia.users.tasks.resize_photo': {'queue': 'images'},
-    'olympia.users.tasks.delete_photo': {'queue': 'images'},
     'olympia.devhub.tasks.resize_icon': {'queue': 'images'},
     'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
 
@@ -1131,7 +1128,6 @@ CELERY_ROUTES = {
     'olympia.bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.resize_icon': {'queue': 'bandwagon'},
 
     # Editors
     'olympia.editors.tasks.add_commentlog': {'queue': 'editors'},
@@ -1183,7 +1179,6 @@ CELERY_ROUTES = {
 
     # Users
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
-    'olympia.users.tasks.resize_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
 
     # Zadmin
