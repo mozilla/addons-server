@@ -180,7 +180,7 @@ class TestPendingQueue(TestQueue):
         self.new_file(version=u'0.1', version_kw={'has_editor_comment': True})
 
         q = self.Queue.objects.get()
-        assert q.flags == [('editor', 'Contains Editor Comment')]
+        assert q.flags == [('editor', 'Contains Reviewer Comment')]
 
     def test_flags_jetpack(self):
         self.new_file(version=u'0.1', file_kw={'jetpack_version': '1.8',

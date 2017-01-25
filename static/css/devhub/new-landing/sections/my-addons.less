@@ -10,12 +10,17 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e4e4e4;
-  padding-bottom: 25px;
+  padding: 10px 0 25px 0;
 }
 
 .DevHub-MyAddons-item-modified {
   margin-left: auto;
   align-self: flex-end;
+  display: flex;
+
+  span {
+    margin: 0 2px;
+  }
 
   html[dir=rtl] & {
     margin-right: auto;
@@ -26,7 +31,8 @@
 .DevHub-MyAddons-item-details {
   margin-left: 25px;
 
-  a {
+  a,
+  .DevHub-MyAddons-VersionStatus {
     font-size: 15px;
     text-decoration: none;
     color: @color-button-default;
@@ -99,6 +105,7 @@
 .DevHub-MyAddons-item-version-details {
   display: flex;
   width: 320px;
+  align-items: baseline;
 }
 
 .DevHub-MyAddons-item-version {

@@ -38,11 +38,11 @@ class TestActivityLog(TestCase):
         super(TestActivityLog, self).tearDown()
 
     def test_basic(self):
-        a = Addon.objects.get()
-        amo.log(amo.LOG['CREATE_ADDON'], a)
-        entries = ActivityLog.objects.for_addons(a)
+        addon = Addon.objects.get()
+        amo.log(amo.LOG['CREATE_ADDON'], addon)
+        entries = ActivityLog.objects.for_addons(addon)
         assert len(entries) == 1
-        assert entries[0].arguments[0] == a
+        assert entries[0].arguments[0] == addon
         for x in ('Delicious Bookmarks', 'was created.'):
             assert x in unicode(entries[0])
 
@@ -57,16 +57,16 @@ class TestActivityLog(TestCase):
         If we give an argument of (Addon, 3615) ensure we get
         Addon.objects.get(pk=3615).
         """
-        a = ActivityLog()
-        a.arguments = [(Addon, 3615)]
-        assert a.arguments[0] == Addon.objects.get(pk=3615)
+        activity_log = ActivityLog()
+        activity_log.arguments = [(Addon, 3615)]
+        assert activity_log.arguments[0] == Addon.objects.get(pk=3615)
 
     def test_addon_logging_pseudo(self):
         """
         If we are given (Addon, 3615) it should log in the AddonLog as well.
         """
-        a = Addon.objects.get()
-        amo.log(amo.LOG.CREATE_ADDON, (Addon, a.id))
+        addon = Addon.objects.get()
+        amo.log(amo.LOG.CREATE_ADDON, (Addon, addon.id))
         assert AddonLog.objects.count() == 1
 
     def test_addon_log(self):
@@ -90,24 +90,24 @@ class TestActivityLog(TestCase):
 
     def test_fancy_rendering(self):
         """HTML for Review, and Collection."""
-        a = ActivityLog.objects.create(action=amo.LOG.ADD_REVIEW.id)
-        u = UserProfile.objects.create()
-        r = Review.objects.create(user=u, addon_id=3615)
-        a.arguments = [a, r]
-        assert '>Review</a> for None written.' in a.to_string()
-        a.action = amo.LOG.ADD_TO_COLLECTION.id
-        a.arguments = [a, Collection.objects.create()]
-        assert 'None added to <a href="/' in a.to_string()
+        activity_log = ActivityLog.objects.create(action=amo.LOG.ADD_REVIEW.id)
+        user = UserProfile.objects.create()
+        review = Review.objects.create(user=user, addon_id=3615)
+        activity_log.arguments = [activity_log, review]
+        assert '>Review</a> for None written.' in activity_log.to_string()
+        activity_log.action = amo.LOG.ADD_TO_COLLECTION.id
+        activity_log.arguments = [activity_log, Collection.objects.create()]
+        assert 'None added to <a href="/' in activity_log.to_string()
 
     def test_bad_arguments(self):
-        a = ActivityLog()
-        a.arguments = []
-        a.action = amo.LOG.ADD_USER_WITH_ROLE.id
-        assert a.to_string() == 'Something magical happened.'
+        activity_log = ActivityLog()
+        activity_log.arguments = []
+        activity_log.action = amo.LOG.ADD_USER_WITH_ROLE.id
+        assert activity_log.to_string() == 'Something magical happened.'
 
     def test_json_failboat(self):
-        a = Addon.objects.get()
-        amo.log(amo.LOG['CREATE_ADDON'], a)
+        addon = Addon.objects.get()
+        amo.log(amo.LOG['CREATE_ADDON'], addon)
         entry = ActivityLog.objects.get()
         entry._arguments = 'failboat?'
         entry.save()
@@ -134,13 +134,13 @@ class TestActivityLog(TestCase):
         Tests that a user that has something done to them gets into the user
         log.
         """
-        u = UserProfile(username='Marlboro Manatee')
-        u.save()
+        user = UserProfile(username='Marlboro Manatee')
+        user.save()
         amo.log(amo.LOG['ADD_USER_WITH_ROLE'],
-                u, 'developer', Addon.objects.get())
+                user, 'developer', Addon.objects.get())
         entries = ActivityLog.objects.for_user(self.request.user)
         assert len(entries) == 1
-        entries = ActivityLog.objects.for_user(u)
+        entries = ActivityLog.objects.for_user(user)
         assert len(entries) == 1
 
     def test_version_log(self):

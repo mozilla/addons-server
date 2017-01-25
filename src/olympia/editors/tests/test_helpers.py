@@ -315,7 +315,7 @@ class TestReviewHelper(TestCase):
 
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
-        base_fragment = 'reply to this email or join #amo-editors'
+        base_fragment = 'reply to this email or join #addon-reviewers'
         for template in ('nominated_to_public', 'nominated_to_sandbox',
                          'pending_to_public', 'pending_to_sandbox',
                          'author_super_review', 'unlisted_to_reviewed_auto'):

@@ -38,7 +38,7 @@ following documents:
 * Documentation page and FAQ: https://wiki.mozilla.org/Addons/Extension_Signing
 
 If you have any questions or comments on this, please reply to this email or
-join #amo-editors on irc.mozilla.org.
+join #addon-reviewers on irc.mozilla.org.
 
 You're receiving this email because you have an add-on hosted on
 https://addons.mozilla.org

@@ -126,7 +126,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         else:
             log.info(
                 u'download file {file_id}: addon/file disabled and '
-                u'user {user_id} is not an owner or editor.'.format(
+                u'user {user_id} is not an owner or reviewer.'.format(
                     file_id=file_id, user_id=request.user.pk))
             raise http.Http404()  # Not owner or admin.
 
@@ -139,7 +139,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         else:
             log.info(
                 u'download file {file_id}: version is unlisted and '
-                u'user {user_id} is not an owner or editor.'.format(
+                u'user {user_id} is not an owner or reviewer.'.format(
                     file_id=file_id, user_id=request.user.pk))
             raise http.Http404()  # Not owner or admin.
 

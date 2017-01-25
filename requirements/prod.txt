@@ -40,9 +40,9 @@ PyJWT==1.4.2 \
     --hash=sha256:87a831b7a3bfa8351511961469ed0462a769724d4da48a501cb8c96d1e17f570
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
-amo-validator==1.10.49 \
-    --hash=sha256:9aa099d49703a232e50654b4fe5249fcc1f3be3d9f2184e9d1ea5be7cd62c93f \
-    --hash=sha256:09d62cbe046b43fe93f38bea90226ebcab63f4071089bcd469823638584ac283
+amo-validator==1.10.50 \
+    --hash=sha256:0095db72338ef08a09f3f83dc518db8d7f244c4a92b32a9e2802037f7176d20a \
+    --hash=sha256:f8baedebd246db2e6eccb32d4973ef92cf7286f469d0355f2b47a810dc08f2e7
 # amqp is required by kombu
 amqp==1.4.9 \
     --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908 \
@@ -347,9 +347,9 @@ redis==2.10.5 \
     --hash=sha256:97156b37d7cda4e7d8658be1148c983984e1a975090ba458cc7e244025191dbd \
     --hash=sha256:5dfbae6acfc54edf0a7a415b99e0b21c0a3c27a7f787b292eea727b1facc5533
 # requests is required by PyBrowserID, amo-validator, django-mozilla-product-details, docker-compose, docker-py, nobot, pytest-base-url, pytest-selenium, pyupio, safety
-requests==2.12.5 \
-    --hash=sha256:d57dae49f4267e8cb378aff9e426c9304a78794d03e945e39bfc607355715658 \
-    --hash=sha256:d902a54f08d086a7cc6e58c20e2bb225b1ae82c19c35e5925269ee94fb9fce00
+requests==2.13.0 \
+    --hash=sha256:1a720e8862a41aa22e339373b526f508ef0c8988baf48b84d3fc891a8e237efb \
+    --hash=sha256:5722cd09762faa01276230270ff16af7acf7c5c45d623868d9ba116f15791ce8
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
