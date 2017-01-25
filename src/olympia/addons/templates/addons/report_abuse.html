@@ -1,4 +1,4 @@
-<form method="post" action="{{ url('addons.abuse', addon.slug) }}">
+<form method="post" action="{{ url('addons.abuse', addon.slug) }}" data-no-csrf="anon-only">
   {{ csrf() }}
   <fieldset class="abuse">
     {% if hide %}
