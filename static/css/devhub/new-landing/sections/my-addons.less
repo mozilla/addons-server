@@ -31,11 +31,13 @@
 .DevHub-MyAddons-item-details {
   margin-left: 25px;
 
+  a {
+    .link(@color-button-default);
+  }
+
   a,
   .DevHub-MyAddons-VersionStatus {
     font-size: 15px;
-    text-decoration: none;
-    color: @color-button-default;
     margin: 0 5px;
 
     &.DevHub-MyAddons-version-status-incomplete,
@@ -121,9 +123,9 @@
 }
 
 .DevHub-MyAddons-item-buttons-all-submissions {
+  .link(@color-button-default);
+
   font-size: 15px;
-  text-decoration: none;
-  color: @color-button-default;
 }
 
 .DevHub-MyAddons-item-buttons-submit {
