@@ -28,6 +28,7 @@ class Client(test.Client):
             kw['content_type'] = URL_ENCODED
         return super(Client, self).post(url, data, **kw)
 
+
 sample_contribution = {
     'action_type': 'PAY',
     'cancel_url': 'http://some.url/cancel',

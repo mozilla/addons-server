@@ -73,5 +73,6 @@ class DeniedNameAdmin(DeniedModelAdmin):
     add_form_field = 'names'
     template_path = 'users/admin/denied_name/add.html'
 
+
 admin.site.register(UserProfile, UserAdmin)
 admin.site.register(DeniedName, DeniedNameAdmin)

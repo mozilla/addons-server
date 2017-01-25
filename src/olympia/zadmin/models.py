@@ -236,7 +236,9 @@ class EmailPreviewTopic(object):
 
     def send_mail(self, subject, body,
                   from_email=settings.DEFAULT_FROM_EMAIL,
-                  recipient_list=tuple([])):
+                  recipient_list=None):
+        if recipient_list is None:
+            recipient_list = tuple([])
         return EmailPreview.objects.create(
             topic=self.topic,
             subject=subject, body=body,

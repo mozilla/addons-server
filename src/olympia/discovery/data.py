@@ -9,6 +9,7 @@ class DiscoItem(object):
         self.heading = kwargs.get('heading')
         self.description = kwargs.get('description')
 
+
 # At the moment the disco pane items are hardcoded in this file in the repos,
 # which allows us to integrate in our translation workflow easily.
 discopane_items = [

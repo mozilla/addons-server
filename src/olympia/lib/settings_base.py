@@ -107,6 +107,7 @@ def cors_endpoint_overrides(internal, public):
         }),
     ]
 
+
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
     public=['localhost:3000', 'olympia.dev'],
     internal=['localhost:3000'],
@@ -177,6 +178,7 @@ def lazy_langs(languages):
         return {}
     return dict([(i.lower(), product_details.languages[i]['native'])
                  for i in languages])
+
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('src', 'olympia', 'lib', 'product_json')
@@ -362,6 +364,7 @@ def JINJA_CONFIG():
         config['cache_size'] = -1  # Never clear the cache
         config['bytecode_cache'] = bc
     return config
+
 
 X_FRAME_OPTIONS = 'DENY'
 SECURE_BROWSER_XSS_FILTER = True
@@ -1069,8 +1072,6 @@ CELERY_ROUTES = {
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
         'queue': 'devhub'},
-    'olympia.devhub.tasks.resize_icon': {'queue': 'devhub'},
-    'olympia.devhub.tasks.resize_preview': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
@@ -1086,7 +1087,6 @@ CELERY_ROUTES = {
     # Images.
     'olympia.bandwagon.tasks.resize_icon': {'queue': 'images'},
     'olympia.users.tasks.resize_photo': {'queue': 'images'},
-    'olympia.users.tasks.delete_photo': {'queue': 'images'},
     'olympia.devhub.tasks.resize_icon': {'queue': 'images'},
     'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
 
@@ -1128,7 +1128,6 @@ CELERY_ROUTES = {
     'olympia.bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.resize_icon': {'queue': 'bandwagon'},
 
     # Editors
     'olympia.editors.tasks.add_commentlog': {'queue': 'editors'},
@@ -1180,7 +1179,6 @@ CELERY_ROUTES = {
 
     # Users
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
-    'olympia.users.tasks.resize_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
 
     # Zadmin
@@ -1384,6 +1382,7 @@ def get_redis_settings(uri):
         'DB': int((result.path or '0').lstrip('/')),
         'OPTIONS': options
     }
+
 
 # This is used for `django-cache-machine`
 REDIS_BACKEND = REDIS_LOCATION

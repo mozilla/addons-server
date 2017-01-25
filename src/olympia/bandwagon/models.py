@@ -432,6 +432,7 @@ class CollectionFeature(ModelBase):
     class Meta(ModelBase.Meta):
         db_table = 'collection_features'
 
+
 models.signals.pre_save.connect(save_signal, sender=CollectionFeature,
                                 dispatch_uid='collectionfeature_translations')
 
