@@ -14,7 +14,7 @@ import tempfile
 import zipfile
 
 from cStringIO import StringIO as cStringIO
-from datetime import datetime, timedelta
+from datetime import datetime
 from itertools import groupby
 from xml.dom import minidom
 from zipfile import BadZipfile, ZipFile
