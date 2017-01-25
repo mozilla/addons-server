@@ -41,7 +41,7 @@
           {% with files = file_map.get(v.id, []) %}
             {% if files %}
               {% for file in files %}
-                {% if not loop.first %}</tr><tr><td colspan="2">{% endif %}
+                {% if not loop.first %}</tr><tr><td colspan="3">{% endif %}
                 <td><a href="{{ url('files.list', file.id) }}" title="{{ file.filename }}">{{ file.id }}</a></td>
                 <td>{{ file.get_platform_display() }}</td>
                 <td>
