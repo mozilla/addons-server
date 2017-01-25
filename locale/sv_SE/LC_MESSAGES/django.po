@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-25 14:06+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2017-01-25 21:12+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -849,9 +849,8 @@ msgid "Submit review"
 msgstr "Skicka in recension"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "Skicka inte felrapporter i recensioner. Vi gör inte din e-postadress tillgänglig för tilläggsutvecklare och de kan behöva kontakta dig för att lösa ditt problem."
+msgstr "Posta inga felrapporter här. Vi gör inte din e-postadress tillgänglig för tilläggsutvecklare, så de kan inte kontakta dig för att lösa problemet."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -5505,9 +5504,8 @@ msgid "Contact Us"
 msgstr "Kontakta oss"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Policies"
-msgstr "Granskningsanteckning"
+msgstr "Granskningspolicies"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "FAQ"
@@ -5534,9 +5532,8 @@ msgid "Promote"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "Hantera ditt tillägg"
+msgstr "Få ditt tillägg utvalt"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
@@ -5579,9 +5576,8 @@ msgid "Get started"
 msgstr "Kom igång"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "Fler sätt att anpassa"
+msgstr "Fler sätt att delta"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
