@@ -1974,7 +1974,7 @@ class TestReview(ReviewBase):
             ('View Listing', self.addon.get_url_path()),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
-             reverse('zadmin.addon_manage', args=[self.addon.id])),
+                reverse('zadmin.addon_manage', args=[self.addon.id])),
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
 
@@ -1987,9 +1987,63 @@ class TestReview(ReviewBase):
         expected = [
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
-             reverse('zadmin.addon_manage', args=[self.addon.id])),
+                reverse('zadmin.addon_manage', args=[self.addon.id])),
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
+
+    def test_mixed_channels_action_links_as_admin(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.login_as_admin()
+        response = self.client.get(self.url)
+        expected = [
+            ('View Listing', self.addon.get_url_path()),
+            ('Unlisted Review Page',
+                reverse('editors.review', args=('unlisted', self.addon.slug))),
+            ('Edit', self.addon.get_dev_url()),
+            ('Admin Page',
+                reverse('zadmin.addon_manage', args=[self.addon.id])),
+        ]
+        check_links(
+            expected, pq(response.content)('#actions-addon a'), verify=False)
+
+    def test_mixed_channels_action_links_as_admin_on_unlisted_review(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.login_as_admin()
+        self.url = reverse(
+            'editors.review', args=('unlisted', self.addon.slug))
+        response = self.client.get(self.url)
+        expected = [
+            ('View Listing', self.addon.get_url_path()),
+            ('Listed Review Page',
+                reverse('editors.review', args=(self.addon.slug,))),
+            ('Edit', self.addon.get_dev_url()),
+            ('Admin Page',
+                reverse('zadmin.addon_manage', args=[self.addon.id])),
+        ]
+        check_links(
+            expected, pq(response.content)('#actions-addon a'), verify=False)
+
+    def test_mixed_channels_action_links_as_regular_reviewer(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.login_as_editor()
+        response = self.client.get(self.url)
+        expected = [
+            ('View Listing', self.addon.get_url_path()),
+        ]
+        check_links(
+            expected, pq(response.content)('#actions-addon a'), verify=False)
 
     def test_admin_links_as_non_admin(self):
         self.login_as_editor()
