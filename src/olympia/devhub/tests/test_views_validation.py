@@ -92,8 +92,8 @@ class TestUploadErrors(BaseUploadTest):
     def test_dupe_uuid(self, flag_is_active):
         flag_is_active.return_value = True
         addon = Addon.objects.get(pk=3615)
-        d = parse_addon(self.get_upload('extension.xpi'))
-        addon.update(guid=d['guid'])
+        data = parse_addon(self.get_upload('extension.xpi'))
+        addon.update(guid=data['guid'])
 
         dupe_xpi = self.get_upload('extension.xpi')
         res = self.client.get(reverse('devhub.upload_detail',
@@ -140,17 +140,17 @@ class TestFileValidation(TestCase):
         self.json_url = reverse('devhub.json_file_validation', args=args)
 
     def test_version_list(self):
-        r = self.client.get(self.addon.get_dev_url('versions'))
-        assert r.status_code == 200
-        a = pq(r.content)('td.file-validation a')
-        assert a.text() == '0 errors, 0 warnings'
-        assert a.attr('href') == self.url
+        response = self.client.get(self.addon.get_dev_url('versions'))
+        assert response.status_code == 200
+        link = pq(response.content)('td.file-validation a')
+        assert link.text() == '0 errors, 0 warnings'
+        assert link.attr('href') == self.url
 
     def test_results_page(self):
-        r = self.client.get(self.url, follow=True)
-        assert r.status_code == 200
-        assert r.context['addon'] == self.addon
-        doc = pq(r.content)
+        response = self.client.get(self.url, follow=True)
+        assert response.status_code == 200
+        assert response.context['addon'] == self.addon
+        doc = pq(response.content)
         assert not doc('#site-nav').hasClass('app-nav'), (
             'Expected add-ons devhub nav')
         assert doc('header h2').text() == (
@@ -179,9 +179,9 @@ class TestFileValidation(TestCase):
         assert self.client.head(self.json_url, follow=True).status_code == 200
 
     def test_no_html_in_messages(self):
-        r = self.client.post(self.json_url, follow=True)
-        assert r.status_code == 200
-        data = json.loads(r.content)
+        response = self.client.post(self.json_url, follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
         msg = data['validation']['messages'][0]
         assert msg['message'] == 'The value of &lt;em:id&gt; is invalid.'
         assert msg['description'][0] == '&lt;iframe&gt;'
@@ -324,13 +324,13 @@ class TestValidateAddon(TestCase):
 
     def test_login_required(self):
         self.client.logout()
-        r = self.client.get(reverse('devhub.validate_addon'))
-        assert r.status_code == 302
+        response = self.client.get(reverse('devhub.validate_addon'))
+        assert response.status_code == 302
 
     def test_context(self):
-        r = self.client.get(reverse('devhub.validate_addon'))
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(reverse('devhub.validate_addon'))
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('#upload-addon').attr('data-upload-url') == (
             reverse('devhub.standalone_upload'))
         assert doc('#upload-addon').attr('data-upload-url-listed') == (
@@ -477,19 +477,19 @@ class TestValidateFile(BaseUploadTest):
         super(TestValidateFile, self).tearDown()
 
     def test_lazy_validate(self):
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        assert r.status_code == 200
-        data = json.loads(r.content)
+        response = self.client.post(
+            reverse('devhub.json_file_validation',
+                    args=[self.addon.slug, self.file.id]), follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
         msg = data['validation']['messages'][0]
         assert 'is invalid' in msg['message']
 
     def test_time(self):
-        r = self.client.post(reverse('devhub.file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        doc = pq(r.content)
+        response = self.client.post(
+            reverse('devhub.file_validation',
+                    args=[self.addon.slug, self.file.id]), follow=True)
+        doc = pq(response.content)
         assert doc('time').text()
 
     @mock.patch('olympia.devhub.tasks.run_validator')
@@ -509,11 +509,11 @@ class TestValidateFile(BaseUploadTest):
             }
         })
         assert not self.addon.binary
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        assert r.status_code == 200
-        data = json.loads(r.content)
+        response = self.client.post(
+            reverse('devhub.json_file_validation',
+                    args=[self.addon.slug, self.file.id]), follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
         assert not data['validation']['errors']
         addon = Addon.objects.get(pk=self.addon.id)
         assert addon.binary
@@ -535,11 +535,11 @@ class TestValidateFile(BaseUploadTest):
                 "id": "gkobes@gkobes"
             }
         })
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        assert r.status_code == 200
-        data = json.loads(r.content)
+        response = self.client.post(
+            reverse('devhub.json_file_validation',
+                    args=[self.addon.slug, self.file.id]), follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
         assert not data['validation']['errors']
         assert data['validation']['ending_tier'] == 5
 
@@ -560,11 +560,11 @@ class TestValidateFile(BaseUploadTest):
             }
         })
         assert not self.addon.binary
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        assert r.status_code == 200
-        data = json.loads(r.content)
+        response = self.client.post(
+            reverse('devhub.json_file_validation',
+                    args=[self.addon.slug, self.file.id]), follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
         assert not data['validation']['errors']
         addon = Addon.objects.get(pk=self.addon.id)
         assert addon.binary
@@ -592,11 +592,11 @@ class TestValidateFile(BaseUploadTest):
             }],
             "metadata": {}
         })
-        r = self.client.post(reverse('devhub.json_file_validation',
-                                     args=[self.addon.slug, self.file.id]),
-                             follow=True)
-        assert r.status_code == 200
-        data = json.loads(r.content)
+        response = self.client.post(
+            reverse('devhub.json_file_validation',
+                    args=[self.addon.slug, self.file.id]), follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
         doc = pq(data['validation']['messages'][0]['description'][0])
         assert doc('a').text() == 'https://bugzilla.mozilla.org/'
 
@@ -616,9 +616,9 @@ class TestValidateFile(BaseUploadTest):
         flag_is_active.return_value = True
         addon = Addon.objects.get(pk=3615)
         xpi = self.get_upload('extension.xpi')
-        d = parse_addon(xpi.path)
+        data = parse_addon(xpi.path)
         # Set up a duplicate upload:
-        addon.update(guid=d['guid'])
+        addon.update(guid=data['guid'])
         res = self.client.get(reverse('devhub.validate_addon'))
         doc = pq(res.content)
         upload_url = doc('#upload-addon').attr('data-upload-url')
@@ -671,44 +671,49 @@ class TestCompatibilityResults(TestCase):
         self.job = self.result.validation_job
 
     def validate(self, expected_status=200):
-        r = self.client.post(reverse('devhub.json_bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]),
-                             follow=True)
-        assert r.status_code == expected_status
-        return json.loads(r.content)
+        response = self.client.post(
+            reverse('devhub.json_bulk_compat_result',
+                    args=[self.addon.slug, self.result.id]), follow=True)
+        assert response.status_code == expected_status
+        return json.loads(response.content)
 
     def test_login_protected(self):
         self.client.logout()
-        r = self.client.get(reverse('devhub.bulk_compat_result',
-                                    args=[self.addon.slug, self.result.id]))
-        assert r.status_code == 302
-        r = self.client.post(reverse('devhub.json_bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]))
-        assert r.status_code == 302
+        response = self.client.get(
+            reverse('devhub.bulk_compat_result',
+                    args=[self.addon.slug, self.result.id]))
+        assert response.status_code == 302
+        response = self.client.post(
+            reverse('devhub.json_bulk_compat_result',
+                    args=[self.addon.slug, self.result.id]))
+        assert response.status_code == 302
 
     def test_target_version(self):
-        r = self.client.get(reverse('devhub.bulk_compat_result',
-                                    args=[self.addon.slug, self.result.id]))
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(
+            reverse('devhub.bulk_compat_result',
+                    args=[self.addon.slug, self.result.id]))
+        assert response.status_code == 200
+        doc = pq(response.content)
         ver = json.loads(doc('.results').attr('data-target-version'))
         assert amo.FIREFOX.guid in ver, ('Unexpected: %s' % ver)
         assert ver[amo.FIREFOX.guid] == self.job.target_version.version
 
     def test_app_trans(self):
-        r = self.client.get(reverse('devhub.bulk_compat_result',
-                                    args=[self.addon.slug, self.result.id]))
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(
+            reverse('devhub.bulk_compat_result',
+                    args=[self.addon.slug, self.result.id]))
+        assert response.status_code == 200
+        doc = pq(response.content)
         trans = json.loads(doc('.results').attr('data-app-trans'))
         for app in amo.APPS.values():
             assert trans[app.guid] == app.pretty
 
     def test_app_version_change_links(self):
-        r = self.client.get(reverse('devhub.bulk_compat_result',
-                                    args=[self.addon.slug, self.result.id]))
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(
+            reverse('devhub.bulk_compat_result',
+                    args=[self.addon.slug, self.result.id]))
+        assert response.status_code == 200
+        doc = pq(response.content)
         trans = json.loads(doc('.results').attr('data-version-change-links'))
         assert trans['%s 4.0.*' % amo.FIREFOX.guid] == (
             'https://developer.mozilla.org/en/Firefox_4_for_developers')
@@ -719,11 +724,11 @@ class TestCompatibilityResults(TestCase):
             {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': ['4.0b3']})
 
     def test_time(self):
-        r = self.client.post(reverse('devhub.bulk_compat_result',
-                                     args=[self.addon.slug, self.result.id]),
-                             follow=True)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.post(
+            reverse('devhub.bulk_compat_result',
+                    args=[self.addon.slug, self.result.id]), follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('time').text()
         assert doc('table tr td').eq(1).text() == 'Firefox 4.0.*'
 
@@ -830,10 +835,10 @@ class TestUploadCompatCheck(BaseUploadTest):
         data = {'application': amo.FIREFOX.id,
                 'csrfmiddlewaretoken':
                     doc('input[name=csrfmiddlewaretoken]').val()}
-        r = self.client.post(doc('#id_application').attr('data-url'),
-                             data)
-        assert r.status_code == 200
-        data = json.loads(r.content)
+        response = self.client.post(
+            doc('#id_application').attr('data-url'), data)
+        assert response.status_code == 200
+        data = json.loads(response.content)
         empty = True
         for id, ver in data['choices']:
             empty = False
@@ -848,9 +853,9 @@ class TestUploadCompatCheck(BaseUploadTest):
         flag_is_active.return_value = True
         addon = Addon.objects.get(pk=3615)
         dupe_xpi = self.get_upload('extension.xpi')
-        d = parse_addon(dupe_xpi)
+        data = parse_addon(dupe_xpi)
         # Set up a duplicate upload:
-        addon.update(guid=d['guid'])
+        addon.update(guid=data['guid'])
         data = self.upload(filename=dupe_xpi.path)
         # Make sure we don't see a dupe UUID error:
         assert data['validation']['messages'] == []

@@ -41,9 +41,9 @@ class TestVersion(TestCase):
         return Addon.objects.get(id=3615)
 
     def get_doc(self):
-        res = self.client.get(self.url)
-        assert res.status_code == 200
-        return pq(res.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        return pq(response.content)
 
     def test_version_status_public(self):
         doc = self.get_doc()
@@ -77,21 +77,21 @@ class TestVersion(TestCase):
     def test_upload_link_label_in_edit_nav(self):
         url = reverse('devhub.versions.edit',
                       args=(self.addon.slug, self.version.pk))
-        r = self.client.get(url)
-        link = pq(r.content)('.addon-status>.addon-upload>strong>a')
+        response = self.client.get(url)
+        link = pq(response.content)('.addon-status>.addon-upload>strong>a')
         assert link.text() == 'Upload New Version'
         assert link.attr('href') == (
             reverse('devhub.submit.version', args=[self.addon.slug]))
 
         # Don't show for STATUS_DISABLED addons.
         self.addon.update(status=amo.STATUS_DISABLED)
-        r = self.client.get(url)
-        assert not pq(r.content)('.addon-status>.addon-upload>strong>a')
+        response = self.client.get(url)
+        assert not pq(response.content)('.addon-status>.addon-upload>strong>a')
 
     def test_delete_message(self):
         """Make sure we warn our users of the pain they will feel."""
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('#modal-delete p').eq(0).text() == (
             'Deleting your add-on will permanently delete all versions and '
             'files you have submitted for this add-on, listed or not. '
@@ -103,8 +103,8 @@ class TestVersion(TestCase):
         self.addon.status = amo.STATUS_NOMINATED
         self.addon.save()
 
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('#modal-delete p').eq(0).text() == (
             'Deleting your add-on will permanently delete all versions and '
             'files you have submitted for this add-on, listed or not. '
@@ -120,8 +120,8 @@ class TestVersion(TestCase):
         self.addon.current_version.delete(hard=True)
         self.addon.reload()
         assert self.addon.status == amo.STATUS_NULL
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         # Normally 2 paragraphs, one is the warning which we should take out.
         assert doc('#modal-delete p.warning').length == 0
 
@@ -134,8 +134,9 @@ class TestVersion(TestCase):
     def test_delete_version_then_detail(self):
         version, file = self._extra_version_and_file(amo.STATUS_PUBLIC)
         self.client.post(self.delete_url, self.delete_data)
-        res = self.client.get(reverse('addons.detail', args=[self.addon.slug]))
-        assert res.status_code == 200
+        response = self.client.get(
+            reverse('addons.detail', args=[self.addon.slug]))
+        assert response.status_code == 200
 
     def test_version_delete_version_deleted(self):
         self.version.delete()
@@ -144,13 +145,13 @@ class TestVersion(TestCase):
 
     def test_cant_delete_version(self):
         self.client.logout()
-        res = self.client.post(self.delete_url, self.delete_data)
-        assert res.status_code == 302
+        response = self.client.post(self.delete_url, self.delete_data)
+        assert response.status_code == 302
         assert Version.objects.filter(pk=81551).exists()
 
     def test_version_delete_status_null(self):
-        res = self.client.post(self.delete_url, self.delete_data)
-        assert res.status_code == 302
+        response = self.client.post(self.delete_url, self.delete_data)
+        assert response.status_code == 302
         assert self.addon.versions.count() == 0
         assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
@@ -189,16 +190,16 @@ class TestVersion(TestCase):
     def test_version_delete_status(self):
         self._extra_version_and_file(amo.STATUS_PUBLIC)
 
-        res = self.client.post(self.delete_url, self.delete_data)
-        assert res.status_code == 302
+        response = self.client.post(self.delete_url, self.delete_data)
+        assert response.status_code == 302
         assert self.addon.versions.count() == 1
         assert Addon.objects.get(id=3615).status == amo.STATUS_PUBLIC
 
     def test_version_delete_status_unreviewd(self):
         self._extra_version_and_file(amo.STATUS_BETA)
 
-        res = self.client.post(self.delete_url, self.delete_data)
-        assert res.status_code == 302
+        response = self.client.post(self.delete_url, self.delete_data)
+        assert response.status_code == 302
         assert self.addon.versions.count() == 1
         assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
@@ -207,8 +208,8 @@ class TestVersion(TestCase):
         version = self.addon.current_version
         self.addon.update(status=amo.STATUS_PUBLIC,
                           disabled_by_user=False)
-        res = self.client.post(self.disable_url)
-        assert res.status_code == 302
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 302
         addon = Addon.objects.get(id=3615)
         version.reload()
         assert addon.disabled_by_user
@@ -232,8 +233,8 @@ class TestVersion(TestCase):
         assert self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED) == new_version
 
-        res = self.client.post(self.disable_url)
-        assert res.status_code == 302
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 302
         addon = Addon.objects.get(id=3615)
         assert addon.disabled_by_user
         assert addon.status == amo.STATUS_PUBLIC
@@ -271,8 +272,8 @@ class TestVersion(TestCase):
     def test_user_can_unlist_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
                           is_listed=True)
-        res = self.client.post(self.unlist_url)
-        assert res.status_code == 302
+        response = self.client.post(self.unlist_url)
+        assert response.status_code == 302
         addon = Addon.objects.get(id=3615)
         assert addon.status == amo.STATUS_NULL
         assert not addon.is_listed
@@ -290,8 +291,8 @@ class TestVersion(TestCase):
     def test_user_cant_unlist_addon_with_mixed_versions(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
                           is_listed=True)
-        res = self.client.post(self.unlist_url)
-        assert res.status_code == 404
+        response = self.client.post(self.unlist_url)
+        assert response.status_code == 404
         addon = Addon.objects.get(id=3615)
         assert addon.is_listed
         latest_version = addon.find_latest_version(
@@ -306,8 +307,8 @@ class TestVersion(TestCase):
         deleted_version = version_factory(addon=self.addon)
         deleted_version.delete()
 
-        res = self.client.post(self.unlist_url)
-        assert res.status_code == 302
+        response = self.client.post(self.unlist_url)
+        assert response.status_code == 302
         addon = Addon.objects.get(id=3615)
         assert addon.status == amo.STATUS_NULL
         assert not addon.is_listed
@@ -324,8 +325,8 @@ class TestVersion(TestCase):
     def test_user_can_unlist_hidden_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True,
                           is_listed=True)
-        res = self.client.post(self.unlist_url)
-        assert res.status_code == 302
+        response = self.client.post(self.unlist_url)
+        assert response.status_code == 302
         addon = Addon.objects.get(id=3615)
         assert addon.status == amo.STATUS_NULL
         assert not addon.is_listed
@@ -346,10 +347,15 @@ class TestVersion(TestCase):
             channel=amo.RELEASE_CHANNEL_LISTED)
 
         file = latest_version.files.all()[0]
-        validation = dict(notices=0, errors=0, messages=[], metadata={},
-                          warnings=1, passed_auto_validation=1,
-                          signing_summary=dict(trivial=0, low=0, medium=0,
-                                               high=0))
+        validation = {
+            'notices': 0,
+            'errors': 0,
+            'messages': [],
+            'metadata': {},
+            'warnings': 1,
+            'passed_auto_validation': 1,
+            'signing_summary': {'trivial': 0, 'low': 0, 'medium': 0, 'high': 0}
+        }
         FileValidation.from_json(file, validation)
         file.update(status=amo.STATUS_AWAITING_REVIEW)
 
@@ -365,8 +371,8 @@ class TestVersion(TestCase):
 
     def test_user_can_enable_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
-        res = self.client.post(self.enable_url)
-        self.assert3xx(res, self.url, 302)
+        response = self.client.post(self.enable_url)
+        self.assert3xx(response, self.url, 302)
         addon = self.get_addon()
         assert not addon.disabled_by_user
         assert addon.status == amo.STATUS_PUBLIC
@@ -379,24 +385,24 @@ class TestVersion(TestCase):
     def test_unprivileged_user_cant_disable_addon(self):
         self.addon.update(disabled_by_user=False)
         self.client.logout()
-        res = self.client.post(self.disable_url)
-        assert res.status_code == 302
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 302
         assert not Addon.objects.get(id=3615).disabled_by_user
 
     def test_non_owner_cant_disable_addon(self):
         self.addon.update(disabled_by_user=False)
         self.client.logout()
         assert self.client.login(email='regular@mozilla.com')
-        res = self.client.post(self.disable_url)
-        assert res.status_code == 403
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 403
         assert not Addon.objects.get(id=3615).disabled_by_user
 
     def test_non_owner_cant_enable_addon(self):
         self.addon.update(disabled_by_user=False)
         self.client.logout()
         assert self.client.login(email='regular@mozilla.com')
-        res = self.client.get(self.enable_url)
-        assert res.status_code == 403
+        response = self.client.get(self.enable_url)
+        assert response.status_code == 403
         assert not Addon.objects.get(id=3615).disabled_by_user
 
     def test_non_owner_cant_change_status(self):
@@ -405,8 +411,8 @@ class TestVersion(TestCase):
         addon_user = AddonUser.objects.get(addon=self.addon)
         addon_user.role = amo.AUTHOR_ROLE_VIEWER
         addon_user.save()
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('.enable-addon').attr('checked') == 'checked'
         assert doc('.enable-addon').attr('disabled') == 'disabled'
         assert not doc('.disable-addon').attr('checked')
@@ -418,8 +424,8 @@ class TestVersion(TestCase):
     def test_published_addon_radio(self):
         """Published (listed) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=False)
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('.enable-addon').attr('checked') == 'checked'
         enable_url = self.addon.get_dev_url('enable')
         assert doc('.enable-addon').attr('data-url') == enable_url
@@ -435,8 +441,8 @@ class TestVersion(TestCase):
     def test_hidden_addon_radio(self):
         """Hidden (disabled) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=True)
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert not doc('.enable-addon').attr('checked')
         assert not doc('.enable-addon').attr('disabled')
         assert doc('.disable-addon').attr('checked') == 'checked'
@@ -450,8 +456,8 @@ class TestVersion(TestCase):
     def test_status_disabled_addon_radio(self):
         """Disabled by Mozilla addon: hidden selected, can't change status."""
         self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert not doc('.enable-addon').attr('checked')
         assert doc('.enable-addon').attr('disabled') == 'disabled'
         assert doc('.disable-addon').attr('checked') == 'checked'
@@ -463,8 +469,8 @@ class TestVersion(TestCase):
         """Unlisted addon: can't change its status so hide choices."""
         self.addon.update(disabled_by_user=False, is_listed=False)
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert not doc('.enable-addon')
         assert not doc('.disable-addon')
         assert not doc('.unlist-addon')
@@ -475,8 +481,8 @@ class TestVersion(TestCase):
     def test_published_addon_radio_mixed_versions(self):
         """Published (listed) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=False)
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('.enable-addon').attr('checked') == 'checked'
         enable_url = self.addon.get_dev_url('enable')
         assert doc('.enable-addon').attr('data-url') == enable_url
@@ -491,8 +497,8 @@ class TestVersion(TestCase):
     def test_hidden_addon_radio_mixed_versions(self):
         """Hidden (disabled) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=True)
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert not doc('.enable-addon').attr('checked')
         assert not doc('.enable-addon').attr('disabled')
         assert doc('.disable-addon').attr('checked') == 'checked'
@@ -505,8 +511,8 @@ class TestVersion(TestCase):
     def test_status_disabled_addon_radio_mixed_versions(self):
         """Disabled by Mozilla addon: hidden selected, can't change status."""
         self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert not doc('.enable-addon').attr('checked')
         assert doc('.enable-addon').attr('disabled') == 'disabled'
         assert doc('.disable-addon').attr('checked') == 'checked'
@@ -538,8 +544,8 @@ class TestVersion(TestCase):
         self.client.logout()
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
         assert self.addon.status == amo.STATUS_PUBLIC
-        res = self.client.post(cancel_url)
-        assert res.status_code == 302
+        response = self.client.post(cancel_url)
+        assert response.status_code == 302
         assert Addon.objects.get(id=3615).status == amo.STATUS_PUBLIC
 
     def test_cancel_button(self):
@@ -548,8 +554,8 @@ class TestVersion(TestCase):
                 continue
 
             self.addon.update(status=status)
-            res = self.client.get(self.url)
-            doc = pq(res.content)
+            response = self.client.get(self.url)
+            doc = pq(response.content)
             assert doc('#cancel-review')
             assert doc('#modal-cancel')
 
@@ -559,8 +565,8 @@ class TestVersion(TestCase):
                 continue
 
             self.addon.update(status=status)
-            res = self.client.get(self.url)
-            doc = pq(res.content)
+            response = self.client.get(self.url)
+            doc = pq(response.content)
             assert not doc('#cancel-review'), status
             assert not doc('#modal-cancel'), status
 
@@ -586,9 +592,9 @@ class TestVersion(TestCase):
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
         self._extra_version_and_file(amo.STATUS_BETA)
 
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
         show_links = doc('.review-history-show')
         assert show_links.length == 2  # beta version does not have the link.
         assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
@@ -617,9 +623,9 @@ class TestVersion(TestCase):
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
         self._extra_version_and_file(amo.STATUS_BETA)
 
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
         show_links = doc('.review-history-show')
         assert show_links.length == 2  # beta version does not have the link.
         assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
@@ -644,9 +650,9 @@ class TestVersion(TestCase):
         amo.log(amo.LOG.REQUEST_INFORMATION, v2.addon, v2, user=self.user)
         amo.log(amo.LOG.REQUEST_INFORMATION, v2.addon, v2, user=self.user)
 
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
 
         # Two versions, but only one counter, for the latest/deleted version
         assert doc('.review-history-show').length == 2
@@ -660,9 +666,9 @@ class TestVersion(TestCase):
         v2, _ = self._extra_version_and_file(amo.STATUS_DISABLED)
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_LISTED)
         self.addon.update_version()
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('td.file-status').length == 2
         # No tag shown because all listed versions
         assert doc('span.distribution-tag-listed').length == 0
@@ -671,9 +677,9 @@ class TestVersion(TestCase):
         # Make all the versions unlisted.
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update_version()
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('td.file-status').length == 2
         # No tag shown because all unlisted versions
         assert doc('span.distribution-tag-listed').length == 0
@@ -682,9 +688,9 @@ class TestVersion(TestCase):
         # Make one of the versions listed.
         v2.update(channel=amo.RELEASE_CHANNEL_LISTED)
         v2.all_files[0].update(status=amo.STATUS_AWAITING_REVIEW)
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
         file_status_tds = doc('td.file-status')
         assert file_status_tds.length == 2
         # Tag for channels are shown because both listed and unlisted versions.
@@ -756,21 +762,21 @@ class TestVersionEditDetails(TestVersionEditBase):
         return super(TestVersionEditDetails, self).formset(*args, **defaults)
 
     def test_edit_notes(self):
-        d = self.formset(releasenotes='xx', approvalnotes='yy')
-        r = self.client.post(self.url, d)
-        assert r.status_code == 302
+        data = self.formset(releasenotes='xx', approvalnotes='yy')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         version = self.get_version()
         assert unicode(version.releasenotes) == 'xx'
         assert unicode(version.approvalnotes) == 'yy'
 
     def test_version_number_redirect(self):
         url = self.url.replace(str(self.version.id), self.version.version)
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, self.url)
+        response = self.client.get(url, follow=True)
+        self.assert3xx(response, self.url)
 
     def test_supported_platforms(self):
-        res = self.client.get(self.url)
-        choices = res.context['new_file_form'].fields['platform'].choices
+        response = self.client.get(self.url)
+        choices = response.context['new_file_form'].fields['platform'].choices
         taken = [f.platform for f in self.version.files.all()]
         platforms = set(self.version.compatible_platforms()) - set(taken)
         assert len(choices) == len(platforms)
@@ -786,19 +792,19 @@ class TestVersionEditDetails(TestVersionEditBase):
 
     def test_can_upload(self):
         self.version.files.all().delete()
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('a.add-file')
 
     def test_not_upload(self):
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert not doc('a.add-file')
 
     def test_add(self):
-        res = self.client.get(self.url)
-        doc = pq(res.content)
-        assert res.context['compat_form'].extra_forms
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert response.context['compat_form'].extra_forms
         assert doc('p.add-app')[0].attrib['class'] == 'add-app'
 
     def test_add_not(self):
@@ -808,9 +814,9 @@ class TestVersionEditDetails(TestVersionEditBase):
             ApplicationsVersions(application=id, min=av, max=av,
                                  version=self.version).save()
 
-        res = self.client.get(self.url)
-        doc = pq(res.content)
-        assert not res.context['compat_form'].extra_forms
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not response.context['compat_form'].extra_forms
         assert doc('p.add-app')[0].attrib['class'] == 'add-app hide'
 
     def test_should_accept_zip_source_file(self):
@@ -909,27 +915,27 @@ class TestVersionEditSearchEngine(TestVersionEditMixin,
         dd = self.formset(prefix="files", releasenotes='xx',
                           approvalnotes='yy')
 
-        r = self.client.post(self.url, dd)
-        assert r.status_code == 302
+        response = self.client.post(self.url, dd)
+        assert response.status_code == 302
         version = Addon.objects.no_cache().get(id=4594).current_version
         assert unicode(version.releasenotes) == 'xx'
         assert unicode(version.approvalnotes) == 'yy'
 
     def test_no_compat(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert not doc("#id_form-TOTAL_FORMS")
 
     def test_no_upload(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert not doc('a.add-file')
 
     @mock.patch('olympia.versions.models.Version.is_allowed_upload')
     def test_can_upload(self, allowed):
         allowed.return_value = True
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('a.add-file')
 
 
@@ -937,8 +943,9 @@ class TestVersionEditFiles(TestVersionEditBase):
 
     def setUp(self):
         super(TestVersionEditFiles, self).setUp()
-        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
-        self.compat = initial(f)
+        form = self.client.get(
+            self.url).context['compat_form'].initial_forms[0]
+        self.compat = initial(form)
 
     def formset(self, *args, **kw):
         compat = formset(self.compat, initial_count=1)
@@ -954,7 +961,8 @@ class TestVersionEditFiles(TestVersionEditBase):
                     self.client.get(self.url).context['file_form'].forms)
         forms[0]['DELETE'] = True
         assert ActivityLog.objects.count() == 0
-        r = self.client.post(self.url, self.formset(*forms, prefix='files'))
+        response = self.client.post(
+            self.url, self.formset(*forms, prefix='files'))
 
         assert ActivityLog.objects.count() == 2
         log = ActivityLog.objects.order_by('created')[1]
@@ -965,15 +973,15 @@ class TestVersionEditFiles(TestVersionEditBase):
             # no url because no current version becomes none.
             u'<a href="">Delicious Bookmarks</a>.')
         assert log.to_string() == log_string
-        assert r.status_code == 302
+        assert response.status_code == 302
         assert self.version.files.count() == 0
-        r = self.client.get(self.url)
-        assert r.status_code == 200
+        response = self.client.get(self.url)
+        assert response.status_code == 200
 
     def test_unique_platforms(self):
         # Move the existing file to Linux.
-        f = self.version.files.get()
-        f.update(platform=amo.PLATFORM_LINUX.id)
+        file_ = self.version.files.get()
+        file_.update(platform=amo.PLATFORM_LINUX.id)
         # And make a new file for Mac.
         File.objects.create(version=self.version,
                             platform=amo.PLATFORM_MAC.id)
@@ -981,11 +989,12 @@ class TestVersionEditFiles(TestVersionEditBase):
         forms = map(initial,
                     self.client.get(self.url).context['file_form'].forms)
         forms[1]['platform'] = forms[0]['platform']
-        r = self.client.post(self.url, self.formset(*forms, prefix='files'))
-        doc = pq(r.content)
+        response = self.client.post(
+            self.url, self.formset(*forms, prefix='files'))
+        doc = pq(response.content)
         assert doc('#id_files-0-platform')
-        assert r.status_code == 200
-        assert r.context['file_form'].non_form_errors() == (
+        assert response.status_code == 200
+        assert response.context['file_form'].non_form_errors() == (
             ['A platform can only be chosen once.'])
 
     def test_all_platforms(self):
@@ -996,8 +1005,9 @@ class TestVersionEditFiles(TestVersionEditBase):
                             platform=amo.PLATFORM_MAC.id)
         forms = self.client.get(self.url).context['file_form'].forms
         forms = map(initial, forms)
-        res = self.client.post(self.url, self.formset(*forms, prefix='files'))
-        assert res.context['file_form'].non_form_errors()[0] == (
+        response = self.client.post(
+            self.url, self.formset(*forms, prefix='files'))
+        assert response.context['file_form'].non_form_errors()[0] == (
             'The platform All cannot be combined with specific platforms.')
 
     def test_all_platforms_and_delete(self):
@@ -1014,9 +1024,9 @@ class TestVersionEditFiles(TestVersionEditBase):
         assert self.version.files.count() == 1
 
     def add_in_bsd(self):
-        f = self.version.files.get()
+        file_ = self.version.files.get()
         # The default file is All, which prevents the addition of more files.
-        f.update(platform=amo.PLATFORM_MAC.id)
+        file_.update(platform=amo.PLATFORM_MAC.id)
         return File.objects.create(version=self.version,
                                    platform=amo.PLATFORM_BSD.id)
 
@@ -1105,8 +1115,8 @@ class TestVersionEditCompat(TestVersionEditBase):
         av = self.version.apps.get()
         assert av.min.version == '2.0'
         assert av.max.version == '4.0'
-        f = self.client.get(url).context['compat_form'].initial_forms[0]
-        return initial(f)
+        form = self.client.get(url).context['compat_form'].initial_forms[0]
+        return initial(form)
 
     def formset(self, *args, **kw):
         defaults = formset(prefix='files')
@@ -1114,22 +1124,24 @@ class TestVersionEditCompat(TestVersionEditBase):
         return super(TestVersionEditCompat, self).formset(*args, **defaults)
 
     def test_add_appversion(self):
-        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
-        d = self.formset(initial(f), dict(application=18, min=288, max=298),
-                         initial_count=1)
-        r = self.client.post(self.url, d)
-        assert r.status_code == 302
+        form = self.client.get(
+            self.url).context['compat_form'].initial_forms[0]
+        data = self.formset(
+            initial(form), {'application': 18, 'min': 288, 'max': 298},
+            initial_count=1)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         apps = self.get_version().compatible_apps.keys()
         assert sorted(apps) == sorted([amo.FIREFOX, amo.THUNDERBIRD])
         assert list(ActivityLog.objects.all().values_list('action')) == (
             [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
     def test_update_appversion(self):
-        d = self.get_form()
-        d.update(min=self.v1.id, max=self.v5.id)
-        r = self.client.post(self.url,
-                             self.formset(d, initial_count=1))
-        assert r.status_code == 302
+        data = self.get_form()
+        data.update(min=self.v1.id, max=self.v5.id)
+        response = self.client.post(
+            self.url, self.formset(data, initial_count=1))
+        assert response.status_code == 302
         av = self.version.apps.get()
         assert av.min.version == '1.0'
         assert av.max.version == '5.0'
@@ -1139,10 +1151,10 @@ class TestVersionEditCompat(TestVersionEditBase):
     def test_ajax_update_appversion(self):
         url = reverse('devhub.ajax.compat.update',
                       args=['a3615', self.version.id])
-        d = self.get_form(url)
-        d.update(min=self.v1.id, max=self.v5.id)
-        r = self.client.post(url, self.formset(d, initial_count=1))
-        assert r.status_code == 200
+        data = self.get_form(url)
+        data.update(min=self.v1.id, max=self.v5.id)
+        response = self.client.post(url, self.formset(data, initial_count=1))
+        assert response.status_code == 200
         av = self.version.apps.get()
         assert av.min.version == '1.0'
         assert av.max.version == '5.0'
@@ -1152,60 +1164,68 @@ class TestVersionEditCompat(TestVersionEditBase):
     def test_ajax_update_on_deleted_version(self):
         url = reverse('devhub.ajax.compat.update',
                       args=['a3615', self.version.id])
-        d = self.get_form(url)
-        d.update(min=self.v1.id, max=self.v5.id)
+        data = self.get_form(url)
+        data.update(min=self.v1.id, max=self.v5.id)
         self.version.delete()
-        r = self.client.post(url, self.formset(d, initial_count=1))
-        assert r.status_code == 404
+        response = self.client.post(url, self.formset(data, initial_count=1))
+        assert response.status_code == 404
 
     def test_delete_appversion(self):
         # Add thunderbird compat so we can delete firefox.
         self.test_add_appversion()
-        f = self.client.get(self.url).context['compat_form']
-        d = map(initial, f.initial_forms)
-        d[0]['DELETE'] = True
-        r = self.client.post(self.url, self.formset(*d, initial_count=2))
-        assert r.status_code == 302
+        form = self.client.get(self.url).context['compat_form']
+        data = map(initial, form.initial_forms)
+        data[0]['DELETE'] = True
+        response = self.client.post(
+            self.url, self.formset(*data, initial_count=2))
+        assert response.status_code == 302
         apps = self.get_version().compatible_apps.keys()
         assert apps == [amo.THUNDERBIRD]
         assert list(ActivityLog.objects.all().values_list('action')) == (
             [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
     def test_unique_apps(self):
-        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
-        dupe = initial(f)
+        form = self.client.get(
+            self.url).context['compat_form'].initial_forms[0]
+        dupe = initial(form)
         del dupe['id']
-        d = self.formset(initial(f), dupe, initial_count=1)
-        r = self.client.post(self.url, d)
-        assert r.status_code == 200
+        data = self.formset(initial(form), dupe, initial_count=1)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
         # Because of how formsets work, the second form is expected to be a
         # tbird version range.  We got an error, so we're good.
 
     def test_require_appversion(self):
         old_av = self.version.apps.get()
-        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
-        d = initial(f)
-        d['DELETE'] = True
-        r = self.client.post(self.url, self.formset(d, initial_count=1))
-        assert r.status_code == 200
-        assert r.context['compat_form'].non_form_errors() == (
+        form = self.client.get(
+            self.url).context['compat_form'].initial_forms[0]
+        data = initial(form)
+        data['DELETE'] = True
+        response = self.client.post(
+            self.url, self.formset(data, initial_count=1))
+        assert response.status_code == 200
+        assert response.context['compat_form'].non_form_errors() == (
             ['Need at least one compatible application.'])
         assert self.version.apps.get() == old_av
 
     def test_proper_min_max(self):
-        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
-        d = initial(f)
-        d['min'], d['max'] = d['max'], d['min']
-        r = self.client.post(self.url, self.formset(d, initial_count=1))
-        assert r.status_code == 200
-        assert r.context['compat_form'].forms[0].non_field_errors() == (
+        form = self.client.get(
+            self.url).context['compat_form'].initial_forms[0]
+        data = initial(form)
+        data['min'], data['max'] = data['max'], data['min']
+        response = self.client.post(
+            self.url, self.formset(data, initial_count=1))
+        assert response.status_code == 200
+        assert response.context['compat_form'].forms[0].non_field_errors() == (
             ['Invalid version range.'])
 
     def test_same_min_max(self):
-        f = self.client.get(self.url).context['compat_form'].initial_forms[0]
-        d = initial(f)
-        d['min'] = d['max']
-        r = self.client.post(self.url, self.formset(d, initial_count=1))
-        assert r.status_code == 302
+        form = self.client.get(
+            self.url).context['compat_form'].initial_forms[0]
+        data = initial(form)
+        data['min'] = data['max']
+        response = self.client.post(
+            self.url, self.formset(data, initial_count=1))
+        assert response.status_code == 302
         av = self.version.apps.all()[0]
         assert av.min == av.max
