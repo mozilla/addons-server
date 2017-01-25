@@ -69,12 +69,21 @@ img {
   color: @color;
   text-decoration: @decoration;
 
+  &:link {
+    color: @color;
+  }
+
   &:visited {
     color: fadeOut(@color, 10%);
   }
 
   &:hover {
     color: fadeOut(@color, 20%);
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: fadeOut(@color, 10%);
   }
 }
 
