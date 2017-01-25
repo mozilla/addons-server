@@ -1439,7 +1439,8 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted,
             addon.update(**addon_update)
         # auto-sign versions (the method checks eligibility)
         auto_sign_version(version, is_beta=is_beta)
-        next_url = (next_listed if channel == amo.RELEASE_CHANNEL_LISTED
+        next_url = (next_listed
+                    if channel == amo.RELEASE_CHANNEL_LISTED and not is_beta
                     else next_unlisted)
         return redirect(next_url, *url_args)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
