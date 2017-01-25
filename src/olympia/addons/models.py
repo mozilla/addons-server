@@ -1244,17 +1244,10 @@ class Addon(OnChangeMixin, ModelBase):
                                 amo.STATUS_DELETED)):
             return False
 
-        if not File.objects.filter(version__addon=self).exists():
-            return False
-
-        latest_version = self.find_latest_version(
+        latest_version = self.find_latest_version_including_rejected(
             channel=amo.RELEASE_CHANNEL_LISTED)
 
-        if not latest_version or not latest_version.files.exclude(
-                status=amo.STATUS_DISABLED).exists():
-            return False
-
-        return True
+        return latest_version is not None and latest_version.files.exists()
 
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA

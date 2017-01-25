@@ -121,6 +121,11 @@
       <p>{{ _('These notes will only be visible to you and our reviewers.') }}</p>
     </div>
     <div class="submission-buttons addon-submission-field">
+      <button class="delete-button" type="sumbit"
+              formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
+          {{ _('Cancel Review and Disable Version') }}
+      </button>
+      &nbsp;
       <button type="submit">
         {{ _('Submit Version for Review') }}
       </button>

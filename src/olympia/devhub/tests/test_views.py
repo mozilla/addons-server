@@ -31,7 +31,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import ContribForm
 from olympia.devhub.models import ActivityLog, BlogPost
-from olympia.files.models import File, FileUpload
+from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.reviews.models import Review
 from olympia.translations.models import delete_translation, Translation
@@ -1795,10 +1795,9 @@ class TestRequestReview(TestCase):
 
     def setUp(self):
         super(TestRequestReview, self).setUp()
-        self.addon = Addon.objects.create(type=1, name='xxx')
-        self.version = Version.objects.create(addon=self.addon)
-        self.file = File.objects.create(version=self.version,
-                                        platform=amo.PLATFORM_ALL.id)
+        self.addon = addon_factory()
+        self.version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.redirect_url = self.addon.get_dev_url('versions')
         self.public_url = reverse('devhub.request-review',
                                   args=[self.addon.slug])
@@ -1810,12 +1809,6 @@ class TestRequestReview(TestCase):
     def get_version(self):
         return Version.objects.get(pk=self.version.id)
 
-    def check(self, old_status, url, new_status):
-        self.addon.update(status=old_status)
-        response = self.client.post(url)
-        self.assert3xx(response, self.redirect_url)
-        assert self.get_addon().status == new_status
-
     def check_400(self, url):
         response = self.client.post(url)
         assert response.status_code == 400
@@ -1824,15 +1817,21 @@ class TestRequestReview(TestCase):
         self.addon.update(status=amo.STATUS_PUBLIC)
         self.check_400(self.public_url)
 
-    def test_renominate_for_full_review(self):
+    @mock.patch('olympia.addons.models.Addon.has_complete_metadata')
+    def test_renominate_for_full_review(self, mock_has_complete_metadata):
         # When a version is rejected, the addon is disabled.
         # The author must upload a new version and re-nominate.
         # However, renominating the *same* version does not adjust the
         # nomination date.
+        mock_has_complete_metadata.return_value = True
+
         orig_date = datetime.now() - timedelta(days=30)
         # Pretend it was nominated in the past:
         self.version.update(nomination=orig_date)
-        self.check(amo.STATUS_NULL, self.public_url, amo.STATUS_NOMINATED)
+        self.addon.update(status=amo.STATUS_NULL)
+        response = self.client.post(self.public_url)
+        self.assert3xx(response, self.redirect_url)
+        assert self.get_addon().status == amo.STATUS_NOMINATED
         assert self.get_version().nomination.timetuple()[0:5] == (
             orig_date.timetuple()[0:5])
 
