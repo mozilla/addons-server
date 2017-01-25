@@ -99,7 +99,8 @@ class BaseTestEditBasic(BaseTestEdit):
 
     def test_redirect(self):
         # /addon/:id => /addon/:id/edit
-        response = self.client.get('/en-US/developers/addon/3615/', follow=True)
+        response = self.client.get(
+            '/en-US/developers/addon/3615/', follow=True)
         self.assert3xx(response, self.url, 301)
 
     def test_edit(self):
