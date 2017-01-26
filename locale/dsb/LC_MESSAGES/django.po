@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-26 19:29+0000\n"
+"PO-Revision-Date: 2017-01-26 19:39+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9934,7 +9934,7 @@ msgid "Add a review for {0}"
 msgstr "Pógódnośenje za {0} pśidaś"
 
 #: src/olympia/reviews/templates/reviews/add.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
@@ -9945,9 +9945,10 @@ msgid ""
 msgstr ""
 "<h2>Spomnjejśo toś te pokaze:</h2> <ul> <li> Pišćo tak, ako by wy pśijaśeloju swóje nazgónjenja z dodankom wulicował. Pódajśo specifiske a wužytne drobnostki, ako na pśikład kótare funkcije se wam "
 "spódobaju a/abo njespódobaju, kak lažko dajo se wužywaś a kótare njelěpšyny ma. Njewužywajśo powšyknu rěc, ako na pśikład „Wjelicne“ abo „Špatne“, snaźkuli móžośo pśicyny pódaś, cogoždla tomu tak "
-"jo. </li> <li> Pšosym njesćelćo rozprawy wó programowych zmólkach w pógódnośenjach. Njestajamy wuwijarjam dodankow wašu e-mailow adresu k dispoziciji, ale muse se snaź z wami do zwiska stajiś, aby "
-"problem rozwězali. Glejśo <a href=\"%(support)s\">wótrězk pomocy</a>, aby pódpěru za toś ten dodank dostał. </li> <li>Pšosym źaržćo pógódnośenja cyste, njewužywajśo njepśigódnu rěc a njesćelśo "
-"wósobinske daty. </li> </ul> <p> Pšosym cytajśo <a href=\"%(guide)s\">Pógódnośeńske směrnice</a> za dalšne drobnostki wó wužywarskich pógódnośenjach dodankow.</p>"
+"jo. </li> <li> Pšosym njesćelćo how rozpšawy wó programowych zmólkach. Njestajamy wuwijarjam dodankow wašu e-mailowy adresu k dispoziciji, tak až njemógu se z wami do zwiska stajiś, aby waš problem "
+"rozwězali. Glejśo <a href=\"%(support)s\">wótrězk pomocy</a>, zoś togo dodanka, aby pódpěru za toś ten dodank dostał. Móžośo teke <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">dodankowe zgromaźeństwo</a> wó pomoc pšosyś. </li> <li>Pšosym źaržćo pógódnośenja cyste, njewužywajśo njepśigódnu rěc a njesćelśo wósobinske daty. </li> </ul> <p> Pšosym cytajśo <a "
+"href=\"%(guide)s\">Pógódnośeńske směrnice</a> za dalšne drobnostki wó wužywarskich pógódnośenjach dodankow.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
