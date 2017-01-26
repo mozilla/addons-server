@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-25 20:30+0000\n"
+"PO-Revision-Date: 2017-01-26 19:29+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -871,10 +871,8 @@ msgid "Submit review"
 msgstr "Pógódnośenje wótpósłaś"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr ""
-"Pšosym njesćelśo rozpšawy wó zmólkach w pógódnośenjach. Njestajamy wuwijarjam dodankow wašu e-mailowu adresu k dispoziciji a njamógu se togodla z wami do zwiska stajiś, aby waš problem rozwězali."
+msgstr "Pšosym njesćelśo how rozpšawy wó zmólkach. Njestajamy wuwijarjam dodankow wašu e-mailowu adresu k dispoziciji a njamógu se togodla z wami do zwiska stajiś, aby waš problem rozwězali."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -5509,19 +5507,16 @@ msgid "Read more in our Blog"
 msgstr "Dalšne informacije w našom blogu"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Resources"
-msgstr "Dalšne resurse"
+msgstr "Resurse"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "WebExtensions"
-msgstr "WebExtension"
+msgstr "WebExtensions"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Community"
-msgstr "Komentar"
+msgstr "Zgromaźeństwo"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "About"
@@ -5536,21 +5531,18 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Contact Us"
-msgstr "Kontakty"
+msgstr "Stajśo se z nami do zwiska"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Policies"
-msgstr "Pśeglědański pśipisk"
+msgstr "Pśeglěpowańske pšawidła"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "FAQ"
 msgstr "Ceste pšašanja"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Report Bug"
 msgstr "Programowu zmólku k wěsći daś"
 
@@ -5571,9 +5563,8 @@ msgid "Promote"
 msgstr "Procowaś se"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "Waš dodank zastojaś"
+msgstr "Dajśo swój dodank pśedstajiś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
@@ -5592,9 +5583,8 @@ msgid "Legal Notices"
 msgstr "Pšawniske informacije"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "Toś ten dodank pśeglědowaś"
+msgstr "Dodanki pśeglědowaś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
@@ -5613,14 +5603,12 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Pomagajśo, dodanki pśez swóje programěrowańske znaśa pólěpšyś."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get started"
 msgstr "Prědne kšace"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "Dalšne móžnosći pśiměrjenja"
+msgstr "Dalšne móžnosći wobźělenja"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
@@ -5643,9 +5631,8 @@ msgid "Evolution in Add-on Development"
 msgstr "Ewolucija pśi wuwijanju rozšyrjenjow"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
-msgstr "WebExtensions budu standard za wuwijanje dodankow w Firefox. To a druge změny w Firefox mógu wuwijarjow staršych dodankow pótrjefiś."
+msgstr "WebExtensions su něnto standard za wuwijanje dodankow w Firefox. Musyśo swóje stare dodanki aktualizěrowaś, aby kompatibelne wóstali."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
@@ -5653,18 +5640,16 @@ msgid "Learn How"
 msgstr "Zgóńśo, kak to źo"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "What's New"
-msgstr "Nejnowše nowosći"
+msgstr "Nowosći"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
 msgstr "Strowe nowe lěto! Glědajśo, což stoj w lěśe 2017 pśed dodankami."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Show Me"
-msgstr "Komentary pokazaś"
+msgstr "Pokazaś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "AMO"
@@ -5675,9 +5660,8 @@ msgid "Self-hosted"
 msgstr "Sam góspodowany"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Wšykne wersije pokazaś"
+msgstr "Wšykne zapódaśa pokazaś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
@@ -5700,38 +5684,34 @@ msgid "Docs"
 msgstr "Dokumenty"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Pśizjawiś"
+msgstr "Wótzjawiś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Wužywarske foto lašowaś"
+msgstr "Wužywarske foto"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Registrěrowaś</a> abo <a href=\"%(login)s\">Pśizjawiś</a>"
+msgstr "<a href=\"%(register)s\">Registrěrowaś</a> abo <a href=\"%(login)s\">Pśizjawiś</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Waš Firefox pśiměriś"
+msgstr "Firefox pśiměriś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
 " you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Dodanki zmóžnjaju milionam wužywarjow Firefox jich pśeglědowańske dožywjenje pólěpšyś. Jolic sćo webwuwijaŕ a se w <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> a <a href=\"#\">CSS</a> "
-"wuznawaśo, maśo južo trěbne znajobnosći, aby wjelicny dodank wuwijał."
+"Dodanki zmóžnjaju milionam wužywarjow Firefox jich pśeglědowańske dožywjenje pólěpšyś. Jolic se w <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a> a <a "
+"href=\"%(css_link)s\">CSS</a> wuznawaśo, maśo južo trěbne znajobnosći, aby wjelicny dodank wuwijał."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to Make an Add-on"
-msgstr "Dalšne informacije wó wuwijanju dodanka"
+msgstr "Zgóńśo, kak móžośo dodank wuwjaś"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Port a Chrome Extension"
@@ -5749,9 +5729,8 @@ msgid "Publish Your Add-on"
 msgstr "Wózjawśo swój dodank"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Maśo gótowy dodank? Zapódajśo swójo rozšyrjenje abo swóju drastwu, aby se na addons.mozilla.org nalicyłej abo signěrujśo a rozdźělśo swójo rozšyrjenje sam."
+msgstr "Maśo gótowy dodank? Zapódajśo swójo rozšyrjenje abo swóju drastwu, kótarejž matej se na addons.mozilla.org nalicyś abo signěrujśo a rozdźělśo swójo rozšyrjenje sam."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign In"
