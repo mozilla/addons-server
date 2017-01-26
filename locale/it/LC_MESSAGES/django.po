@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-25 15:49+0000\n"
-"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2017-01-26 10:11+0000\n"
+"Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -866,9 +866,8 @@ msgid "Submit review"
 msgstr "Invia recensione"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "Non segnalare dei bug attraverso le recensioni. Il tuo indirizzo email non è visibile allo sviluppatore che potrebbe avere bisogno di contattarti per risolvere il problema."
+msgstr "Non utilizzare questa pagina per segnalare dei bug. Gli sviluppatori non possono leggere il tuo indirizzo email e non potranno quindi contattarti per risolvere il problema segnalato."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -876,6 +875,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"Consulta <a href=\"%(support)s\">la sezione dedicata al supporto</a> di questo componente aggiuntivo per sapere se è disponibile un servizio di assistenza. Puoi anche provare chiedendo aiuto alla <a"
+" href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">comunità dedicata al supporto per i componenti aggiuntivi</a>."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -3978,7 +3979,7 @@ msgstr "Recensione"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
-msgstr ""
+msgstr "A partire dalla versione 53 di Firefox, su questo sito verranno accettate solo nuove estensioni realizzate con WebExtensions."
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -5297,7 +5298,7 @@ msgstr "Genera nuove credenziali"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Devi completare questo componente aggiuntivo inserendo un numero di versione o i metadati mancanti."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -5506,19 +5507,16 @@ msgid "Read more in our Blog"
 msgstr "Ulteriori informazioni sul nostro blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Resources"
-msgstr "Ulteriori risorse"
+msgstr "Risorse"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "WebExtensions"
-msgstr "WebExtension"
+msgstr "WebExtensions"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Community"
-msgstr "Commento"
+msgstr "Comunità"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "About"
@@ -5534,14 +5532,12 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Contact Us"
-msgstr "Contatti"
+msgstr "Contattaci"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Policies"
-msgstr "Nota di revisione"
+msgstr "Norme per le revisioni"
 
 # Link text to the Frequently Asked Questions page.
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
@@ -5574,11 +5570,11 @@ msgstr "Mostra il tuo componente aggiuntivo tra quelli consigliati"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Ottieni un pulsante per promuovere il componente aggiuntivo"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
-msgstr ""
+msgstr "Note legali"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
@@ -5589,43 +5585,40 @@ msgid "Legal Notices"
 msgstr "Note legali"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "Revisiona questo componente aggiuntivo"
+msgstr "Revisione componenti aggiuntivi"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "I volontari che si occupano della revisione aiutano a garantire sicurezza e affidabilità dei componenti aggiuntivi. E godono di un sacco di benefit!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
-msgstr ""
+msgstr "Collabora con noi!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
-msgstr ""
+msgstr "Scrivi qualche riga di codice"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Aiuta a migliorare i componenti aggiuntivi mentre affini le tue abilità di programmatore."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get started"
 msgstr "Per iniziare"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "Altri modi per personalizzare"
+msgstr "Altri modi per collaborare"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Non serve saper programmare per fare in modo che Firefox rimanga il browser più personalizzabile in circolazione."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "See how"
-msgstr ""
+msgstr "Scopri come"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Manage Your Add-on"
@@ -5640,11 +5633,10 @@ msgid "Evolution in Add-on Development"
 msgstr "Novità riguardanti lo sviluppo di componenti aggiuntivi"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
 msgstr ""
-"La tecnologia WebExtension è destinata a diventare lo standard per lo sviluppo di componenti aggiuntivi in Firefox e, assieme a altre modifiche nel codice di Firefox stesso, potrebbe influenzare "
-"anche componenti aggiuntivi realizzati utilizzando vecchie tecnologie."
+"D’ora in poi la tecnologia WebExtensions sarà lo standard per lo sviluppo dei componenti aggiuntivi in Firefox. Se hai realizzato dei componenti aggiuntivi utilizzando vecchie tecnologie, dovrai "
+"aggiornarli affinché rimangano compatibili con le nuove versioni di Firefox."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
@@ -5652,31 +5644,28 @@ msgid "Learn How"
 msgstr "Scopri come fare"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "What's New"
-msgstr "Ultime novità"
+msgstr "Ultimissime dal fronte componenti aggiuntivi"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
-msgstr ""
+msgstr "Buon 2017. Scopri che cosa abbiamo in serbo per te su AMO quest’anno."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Show Me"
-msgstr "Visualizza commenti"
+msgstr "Fammi vedere"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "AMO"
-msgstr ""
+msgstr "AMO"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Self-hosted"
-msgstr ""
+msgstr "Sito esterno"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Visualizza tutte le versioni"
+msgstr "Visualizza tutti i file caricati"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
@@ -5702,32 +5691,30 @@ msgid "Docs"
 msgstr "Documentazione"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Accedi"
+msgstr "Disconnetti"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Elimina immagine utente"
+msgstr "Immagine utente"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Registrati</a> o <a href=\"%(login)s\">accedi</a>"
+msgstr "<a href=\"%(login)s\">Accedi</a> o <a href=\"%(register)s\">Registrati</a> "
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Customize Firefox"
 msgstr "Personalizza Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
 " you already have all the necessary skills to make a great add-on."
 msgstr ""
-"I componenti aggiuntivi aiutano milioni di utenti Firefox a migliorare e personalizzare la loro esperienza di navigazione. Se sei uno sviluppatore web e conosci i linguaggi <a href=\"#\">HTML</a>, "
-"<a href=\"#\">JavaScript</a>, e <a href=\"#\">CSS</a> sei già in possesso di tutti gli strumenti necessari per realizzare un componente aggiuntivo perfettamente funzionante."
+"I componenti aggiuntivi aiutano milioni di utenti Firefox a migliorare la loro esperienza di navigazione. Se sei uno sviluppatore web e conosci i linguaggi <a href=\"%(html_link)s\">HTML</a>, <a "
+"href=\"%(js_link)s\">JavaScript</a> e <a href=\"%(css_link)s\">CSS</a>, sei già in possesso di tutti gli strumenti necessari per realizzare uno straordinario componente aggiuntivo."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to Make an Add-on"
@@ -9962,7 +9949,7 @@ msgid "Add a review for {0}"
 msgstr "Aggiungi una recensione per {0}"
 
 #: src/olympia/reviews/templates/reviews/add.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
@@ -9973,10 +9960,11 @@ msgid ""
 msgstr ""
 "<h2>Tieni conto di questi suggerimenti:</h2> <ul> <li>Scrivi come se stessi descrivendo a un amico la tua esperienza con questo componente aggiuntivo. Fornisci dettagli specifici e chiari, ad "
 "esempio spiega le caratteristiche che hai apprezzato e quello che non ti è piaciuto, come valuti la semplicità di utilizzo e quali sono i difetti. Evita espressioni generiche come \"grandioso\" o "
-"\"pessimo\" senza spiegare le ragioni di questo giudizio.</li> <li>Non segnalare problemi o bug nelle recensioni. Il tuo indirizzo email non è visibile agli sviluppatori e potrebbero avere bisogno "
-"di contattarti per aiutarti a risolvere il problema. Consulta la <a href=\"%(support)s\">sezione di supporto</a> per scoprire come ottenere aiuto per questo componente aggiuntivo.</li> <li>Non "
-"utilizzare un linguaggio inappropriato e non inserire informazioni personali.</li> </ul> <p>Leggi le <a href=\"%(guide)s\">Linee guida per le recensioni</a> per ulteriori dettagli sulle recensioni "
-"dei componenti aggiuntivi.</p>"
+"\"pessimo\" senza spiegare le ragioni di questo giudizio.</li> <li>Non utilizzare questa pagina per segnalare dei bug. Gli sviluppatori non possono leggere il tuo indirizzo email e non potranno "
+"quindi contattarti per risolvere il problema segnalato.</li> <li>Consulta <a href=\"%(support)s\">la sezione dedicata al supporto</a> di questo componente aggiuntivo per sapere se è disponibile un "
+"servizio di assistenza. Puoi anche provare chiedendo aiuto alla <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">comunità dedicata al supporto per i componenti "
+"aggiuntivi</a>.</li><li>Non utilizzare un linguaggio inappropriato e non inserire informazioni personali.</li> </ul> <p>Leggi le <a href=\"%(guide)s\">Linee guida per le recensioni</a> per ulteriori"
+" dettagli sulle recensioni dei componenti aggiuntivi.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -10304,7 +10292,7 @@ msgstr "Solo ai componenti aggiuntivi che utilizzano WebExtensions è consentito
 
 #: src/olympia/signing/views.py
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "GUID non valido nell’URL"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
