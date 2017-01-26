@@ -334,6 +334,33 @@ class TestUnlistedAllList(TestCase):
         self.new_file(name='Addon 2', version=u'0.2')
         assert self.Queue.objects.all().count() == 2
 
+    def test_mixed_listed(self):
+        create_addon_file(u'UnlistedListed', u'0.1', amo.STATUS_NULL,
+                          amo.STATUS_PUBLIC, listed=False)
+        create_addon_file(u'UnlistedListed', u'0.2', amo.STATUS_PUBLIC,
+                          amo.STATUS_PUBLIC, listed=True)
+
+        create_addon_file(u'ListedUnlisted', u'0.1', amo.STATUS_NULL,
+                          amo.STATUS_PUBLIC, listed=True)
+        create_addon_file(u'ListedUnlisted', u'0.2', amo.STATUS_PUBLIC,
+                          amo.STATUS_PUBLIC, listed=False)
+
+        create_addon_file(u'JustUnlisted', u'0.1', amo.STATUS_NULL,
+                          amo.STATUS_PUBLIC, listed=False)
+        create_addon_file(u'JustUnlisted', u'0.2', amo.STATUS_PUBLIC,
+                          amo.STATUS_PUBLIC, listed=False)
+
+        create_addon_file(u'JustListed', u'0.1', amo.STATUS_NULL,
+                          amo.STATUS_PUBLIC, listed=True)
+        create_addon_file(u'JustListed', u'0.2', amo.STATUS_PUBLIC,
+                          amo.STATUS_PUBLIC, listed=True)
+
+        assert self.Queue.objects.all().count() == 3
+        assert [addon.addon_name for addon in self.Queue.objects.all()] == [
+            'UnlistedListed', 'ListedUnlisted', 'JustUnlisted']
+        assert ([addon.latest_version for addon in self.Queue.objects.all()] ==
+                ['0.1', '0.2', '0.2'])
+
 
 class TestEditorSubscription(TestCase):
     fixtures = ['base/addon_3615', 'base/users']

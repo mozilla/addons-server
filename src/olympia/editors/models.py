@@ -228,6 +228,7 @@ class ViewUnlistedAllList(RawSQLModel):
                 """
                 JOIN (
                     SELECT MAX(id) AS latest_version, addon_id FROM versions
+                    WHERE channel = {channel}
                     GROUP BY addon_id
                     ) AS latest_version
                     ON latest_version.addon_id = addons.id
@@ -247,12 +248,15 @@ class ViewUnlistedAllList(RawSQLModel):
                         log_v.version_id=versions.id)
                     JOIN log_activity as log ON (
                         log.id=log_v.activity_log_id)
-                    WHERE log.user_id <> {0} AND
-                        log.action in ({1})
+                    WHERE log.user_id <> {task_user} AND
+                        log.action in ({review_actions}) AND
+                        versions.channel = {channel}
                     ORDER BY id desc
                     ) AS reviewed_versions
                     ON reviewed_versions.addon_id = addons.id
-                """.format(settings.TASK_USER_ID, review_ids),
+                """.format(task_user=settings.TASK_USER_ID,
+                           review_actions=review_ids,
+                           channel=amo.RELEASE_CHANNEL_UNLISTED),
             ],
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
