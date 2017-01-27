@@ -72,18 +72,18 @@ class ActivityEmailParser(object):
             return split_email[0]
 
     def get_uuid(self):
-        to_header = self.email.get('To', [])
-        for to in to_header:
-            address = to.get('EmailAddress', '')
+        addresses = [to.get('EmailAddress', '')
+                     for to in self.email.get('To', [])]
+        for address in addresses:
             if address.startswith(self.address_prefix):
                 # Strip everything between "reviewreply+" and the "@" sign.
                 return address[len(self.address_prefix):].split('@')[0]
         log.exception(
             'TO: address missing or not related to activity emails. (%s)'
-            % to_header)
+            % ', '.join(addresses))
         raise ActivityEmailUUIDError(
-            'TO: address doesn\'t contain activity email uuid (%s).'
-            % to_header)
+            'TO: address does not contain activity email uuid (%s).'
+            % ', '.join(addresses))
 
 
 def add_email_to_activity_log_wrapper(message):
