@@ -16,7 +16,6 @@ import pytest
 from mock import patch
 
 from olympia import amo
-from olympia.constants import webext_permissions
 from olympia.amo.tests import TestCase
 from olympia.amo.utils import rm_local_tmp_dir, chunked
 from olympia.addons.models import Addon
@@ -1089,16 +1088,20 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('webextension_no_id.xpi')
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parse_addon(upload))
-        permissions = file_.webext_permissions.all()
-        assert permissions.count() == 3
+        permissions = file_.webext_permissions
+        assert len(permissions) == 3
         # One permission is known so will have a description, etc.
-        alarm = permissions.filter(name='alarms')[0]
-        assert alarm.pretty_name == u'Alarms'
+        alarm = permissions['alarms']
         assert alarm.description == (
-            webext_permissions.WEBEXT_ALARMS.description)
+            u'Gives the extension access to the chrome.alarms API.')
+        assert u'Gives the extension access to the chrome.alarms API.' in (
+            alarm.long_description)
+        known_permissions = file_.webext_permissions_known
+        assert len(known_permissions) == 1
+        known_permissions[0] = alarm
         # The other two permissions stored are just urls.
-        assert permissions.filter(name=u'http://*/*').exists()
-        assert permissions.filter(name=u'https://*/*').exists()
+        assert permissions[u'http://*/*']
+        assert permissions[u'https://*/*']
 
 
 class TestZip(TestCase, amo.tests.AMOPaths):

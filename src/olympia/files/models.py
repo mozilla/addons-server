@@ -25,8 +25,7 @@ from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import user_media_path, user_media_url
 from olympia.applications.models import AppVersion
-from olympia.constants.webext_permissions import (
-    WEBEXT_PERMISSIONS_IDS, WEBEXT_PERMISSIONS_DICT, WEBEXT_UNKNOWN)
+from olympia.constants.webext_permissions import Permission, WEBEXT_PERMISSIONS
 from olympia.files.utils import SafeUnzip, write_crx_as_xpi
 
 log = commonware.log.getLogger('z.files')
@@ -84,6 +83,8 @@ class File(OnChangeMixin, ModelBase):
     # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
     original_status = models.PositiveSmallIntegerField(
         default=amo.STATUS_NULL)
+    webext_permissions_json = models.CharField(
+        max_length=1024, default='')
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
@@ -178,11 +179,11 @@ class File(OnChangeMixin, ModelBase):
             if validation['metadata'].get('requires_chrome'):
                 file_.requires_chrome = True
 
-        file_.save()
+        if file_.is_webextension and parsed_data.get('permissions'):
+            file_.webext_permissions_json = json.dumps(
+                parsed_data.get('permissions'))
 
-        permissions = parsed_data.get('permissions', [])
-        for perm in permissions:
-            WebextPermission.add_permission(file_, perm)
+        file_.save()
 
         log.debug('New file: %r from %r' % (file_, upload))
         # Move the uploaded file from the temp location.
@@ -377,6 +378,17 @@ class File(OnChangeMixin, ModelBase):
                  (self.pk, end))
         statsd.timing('files.extract.localepicker', (end * 1000))
         return res
+
+    @amo.cached_property
+    def webext_permissions(self):
+        return {name: WEBEXT_PERMISSIONS.get(name, Permission(name, '', ''))
+                for name in json.loads(self.webext_permissions_json)}
+
+    @amo.cached_property
+    def webext_permissions_known(self):
+        return {name: perm
+                for name, perm in self.webext_permissions.iteritems()
+                if name in WEBEXT_PERMISSIONS}
 
 
 @receiver(models.signals.post_save, sender=File,
@@ -710,50 +722,6 @@ class ValidationAnnotation(ModelBase):
 
     class Meta:
         db_table = 'validation_annotations'
-
-
-class WebextPermission(ModelBase):
-    KNOWN_PERMISSIONS = WEBEXT_PERMISSIONS_DICT
-    name = models.CharField(max_length=255, unique=True, null=False)
-    _enum = models.IntegerField(default=WEBEXT_UNKNOWN.id, db_column='enum')
-    files = models.ManyToManyField(File, related_name='webext_permissions',
-                                   through='FileWebextPermission')
-
-    class Meta(ModelBase.Meta):
-        db_table = 'webext_permissions'
-
-    def __init__(self, *args, **kw):
-        super(WebextPermission, self).__init__(*args, **kw)
-
-        enum = WEBEXT_PERMISSIONS_DICT.get(self.name, WEBEXT_UNKNOWN).id
-        self.update(_enum=enum)
-
-    @property
-    def _permission_object(self):
-        return WEBEXT_PERMISSIONS_IDS[self._enum]
-
-    @property
-    def pretty_name(self):
-        perm = self._permission_object
-        return perm.pretty_name if perm.pretty_name else self.name
-
-    @property
-    def description(self):
-        return self._permission_object.description
-
-    @classmethod
-    def add_permission(cls, file_, name):
-        permission, created = cls.objects.get_or_create(name=name)
-        FileWebextPermission.objects.create(file=file_, permission=permission)
-        return permission
-
-
-class FileWebextPermission(ModelBase):
-    file = models.ForeignKey(File, on_delete=models.CASCADE)
-    permission = models.ForeignKey(WebextPermission, on_delete=models.CASCADE)
-
-    class Meta(ModelBase.Meta):
-        db_table = 'file_webext_permissions'
 
 
 def nfd_str(u):
