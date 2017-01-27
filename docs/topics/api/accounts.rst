@@ -60,7 +60,8 @@ This allows you to generate a new user account and sign in as that user.
 .. important::
 
     * Your API user must be in the ``Accounts:SuperCreate`` group to access
-      this endpoint.
+      this endpoint. Use ``manage.py createsuperuser --add-to-supercreate-group``
+      to create a superuser with proper access.
     * This endpoint is not available in all
       :ref:`API environments <api-environments>`.
 

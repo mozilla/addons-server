@@ -1,4 +1,8 @@
-from mock import patch
+import json
+from StringIO import StringIO
+
+from mock import patch, ANY
+from django.core.management import call_command
 
 from olympia.amo.tests import TestCase
 from olympia.users.management.commands.createsuperuser import (
@@ -37,3 +41,27 @@ class TestCreateSuperUser(TestCase):
         assert UserProfile.objects.count() == count + 1
         user = UserProfile.objects.get(username='myusername')
         assert user.email == 'me@mozilla.org'
+
+    def test_adds_supergroup(self):
+        out = StringIO()
+        call_command(
+            'createsuperuser',
+            interactive=False,
+            username='myusername',
+            email='me@mozilla.org',
+            add_to_supercreate_group=True,
+            stdout=out)
+
+        user = UserProfile.objects.get(username='myusername')
+        assert user.email == 'me@mozilla.org'
+        assert user.read_dev_agreement
+        assert user.groups.filter(rules='Accounts:SuperCreate').exists()
+
+        response = json.loads(out.getvalue())
+
+        assert response == {
+            'username': 'myusername',
+            'email': 'me@mozilla.org',
+            'api-key': ANY,
+            'api-secret': ANY
+        }
