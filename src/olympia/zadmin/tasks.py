@@ -19,20 +19,21 @@ from django.utils import translation
 import requests
 
 from olympia import amo
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
 from olympia.amo import set_user
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked, send_mail, sorted_groupby
+from olympia.constants.categories import CATEGORIES
 from olympia.devhub.tasks import run_validator
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
-from olympia.versions.models import Version
+from olympia.versions.models import License, Version
 from olympia.zadmin.models import (
     EmailPreviewTopic, ValidationJob, ValidationResult)
 
@@ -581,7 +582,23 @@ def fetch_langpack(url, xpi, **kw):
             if addon.default_locale.lower() == lang.lower():
                 addon.target_locale = addon.default_locale
 
+            if not addon.summary:
+                addon.summary = addon.name
+
             addon.save()
+
+            # Set the category
+            for app in version.compatible_apps:
+                static_cat = (
+                    CATEGORIES[app.id][amo.ADDON_LPAPP]['general'])
+                category = Category.from_static_category(static_cat)
+                category.save()
+                AddonCategory.objects.create(addon=addon, category=category)
+            del addon.all_categories
+
+            # Set a license
+            license = License.objects.builtins()[0]
+            version.update(license=license)
 
             log.info('[@None] Created new "{0}" language pack, version {1}'
                      .format(xpi, data['version']))
@@ -593,7 +610,7 @@ def fetch_langpack(url, xpi, **kw):
             file_.update(status=amo.STATUS_PUBLIC)
         sign_file(file_, settings.SIGNING_SERVER)
 
-        addon.update_version()
+    addon.update_status()
 
 
 @task
