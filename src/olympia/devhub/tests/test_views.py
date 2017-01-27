@@ -23,7 +23,7 @@ from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, Charity)
 from olympia.amo.helpers import url as url_reverse
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
@@ -58,7 +58,7 @@ class HubTest(TestCase):
                 'status': addon.status,
                 'name': 'cloned-addon-%s-%s' % (addon_id, i)
             }
-            new_addon = Addon.objects.create(**data)
+            new_addon = addon_factory(**data)
             new_addon.addonuser_set.create(user=self.user_profile)
             ids.append(new_addon.id)
         return ids
@@ -291,6 +291,40 @@ class TestDashboard(HubTest):
         elm = doc('.item-details .date-created')
         assert elm.remove('strong').text() == (
             trim_whitespace(datetime_filter(addon.created)))
+
+    def test_purely_unlisted_addon_are_not_shown_as_incomplete(self):
+        self.make_addon_unlisted(self.addon)
+        assert self.addon.has_complete_metadata()
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # It should not be considered incomplete despite having STATUS_NULL,
+        # since it's purely unlisted.
+        assert not doc('.incomplete')
+
+        # Rest of the details should be shown, but not the AMO-specific stuff.
+        assert not doc('.item-info')
+        assert doc('.item-details')
+
+    def test_mixed_versions_addon_with_incomplete_metadata(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        self.addon.reload()
+        assert not self.addon.has_complete_metadata()
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.incomplete').text() == (
+            'This add-on is missing some required information before it can be'
+            ' submitted for publication.')
+
+    def test_no_versions_addon(self):
+        self.addon.versions.all().delete()
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.incomplete').text() == (
+            "This add-on doesn't have any versions.")
 
 
 class TestUpdateCompatibility(TestCase):
