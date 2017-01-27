@@ -72,7 +72,7 @@ def editor_page_title(context, title=None, addon=None):
     if addon:
         title = u'%s :: %s' % (title, addon.name)
     else:
-        section = _lazy('Editor Tools')
+        section = _lazy('Reviewer Tools')
         title = u'%s :: %s' % (title, section) if title else section
     return page_title(context, title)
 
@@ -358,8 +358,6 @@ class ReviewHelper(object):
             # ReviewHelper for its `handler` attribute and we don't care about
             # the actions.
             return actions
-        latest_version = addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
         reviewable_because_complete = addon.status not in (
             amo.STATUS_NULL, amo.STATUS_DELETED)
         reviewable_because_admin = (
@@ -367,13 +365,13 @@ class ReviewHelper(object):
             acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
         reviewable_because_submission_time = (
             not is_limited_reviewer(request) or
-            (latest_version is not None and
-                latest_version.nomination is not None and
-                (datetime.datetime.now() - latest_version.nomination >=
+            (self.version is not None and
+                self.version.nomination is not None and
+                (datetime.datetime.now() - self.version.nomination >=
                     datetime.timedelta(hours=REVIEW_LIMITED_DELAY_HOURS))))
         reviewable_because_pending = (
-            latest_version is not None and
-            len(latest_version.is_unreviewed) > 0)
+            self.version is not None and
+            len(self.version.is_unreviewed) > 0)
         if (reviewable_because_complete and
                 reviewable_because_admin and
                 reviewable_because_submission_time and

@@ -127,6 +127,7 @@ def update_domains(overrides):
     overrides['CORS_ORIGIN_WHITELIST'] = ['addons-frontend', 'localhost:3000']
     return overrides
 
+
 endpoint_overrides = [
     (regex, update_domains(overrides))
     for regex, overrides in settings.CORS_ENDPOINT_OVERRIDES]

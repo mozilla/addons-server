@@ -19,6 +19,7 @@
         <tr>
           <th>Date</th>
           <th>Version</th>
+          <th>Channel</th>
           <th>File ID</th>
           <th>Platform</th>
           <th>Status</th>
@@ -29,11 +30,18 @@
       {% for v in versions %}
         <tr>
           <td>{{ v.created|datetime }}</td>
-          <td><a href="{{ url('editors.review', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a></td>
+          <td>
+            {% if v.channel == amo.RELEASE_CHANNEL_LISTED %}
+              <a href="{{ url('editors.review', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a>
+            {% else %}
+              <a href="{{ url('editors.review', 'unlisted', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a>
+            {% endif %}
+          </td>
+          <td>{{ v.get_channel_display() }}</td>
           {% with files = file_map.get(v.id, []) %}
             {% if files %}
               {% for file in files %}
-                {% if not loop.first %}</tr><tr><td colspan="2">{% endif %}
+                {% if not loop.first %}</tr><tr><td colspan="3">{% endif %}
                 <td><a href="{{ url('files.list', file.id) }}" title="{{ file.filename }}">{{ file.id }}</a></td>
                 <td>{{ file.get_platform_display() }}</td>
                 <td>

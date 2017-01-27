@@ -314,7 +314,9 @@ class TestMeasureValidationTime(TestValidator):
         return now - upload_start
 
     def assert_milleseconds_are_close(self, actual_ms, calculated_ms,
-                                      fuzz=Decimal(300)):
+                                      fuzz=None):
+        if fuzz is None:
+            fuzz = Decimal(300)
         assert (actual_ms >= (calculated_ms - fuzz) and
                 actual_ms <= (calculated_ms + fuzz))
 

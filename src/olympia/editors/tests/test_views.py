@@ -206,7 +206,7 @@ class TestReviewLog(EditorTest):
         assert r.status_code == 200
         doc = pq(r.content)
         assert not doc('tbody tr :not(.hide)')
-        # But they should have 2 showing for a senior editor.
+        # But they should have 2 showing for a senior reviewer.
         self.login_as_senior_editor()
         r = self.client.get(self.url)
         assert r.status_code == 200
@@ -547,7 +547,7 @@ class TestHome(EditorTest):
         assert queues_links == listed_queues_links
         assert not doc('#unlisted-queues')  # Unlisted queues are not visible.
 
-        # Both listed and unlisted queues for senior editors.
+        # Both listed and unlisted queues for senior reviewers.
         self.login_as_senior_editor()
         doc = pq(self.client.get(self.url).content)
         queues = doc('#listed-queues ul li a')  # Listed queues links.
@@ -1045,7 +1045,7 @@ class TestModeratedQueue(QueueTest):
         return ActivityLog.objects.filter(action=action.id)
 
     def test_remove(self):
-        """Make sure the editor tools can delete a review."""
+        """Make sure the reviewer tools can delete a review."""
         self.setup_actions(reviews.REVIEW_MODERATE_DELETE)
         logs = self.get_logs(amo.LOG.DELETE_REVIEW)
         assert logs.count() == 1
@@ -1065,7 +1065,7 @@ class TestModeratedQueue(QueueTest):
 
     def test_remove_fails_for_own_addon(self):
         """
-        Make sure the editor tools can't delete a review for an
+        Make sure the reviewer tools can't delete a review for an
         add-on owned by the user.
         """
         a = Addon.objects.get(pk=1865)
@@ -1092,7 +1092,7 @@ class TestModeratedQueue(QueueTest):
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 1
 
     def test_keep(self):
-        """Make sure the editor tools can remove flags and keep a review."""
+        """Make sure the reviewer tools can remove flags and keep a review."""
         self.setup_actions(reviews.REVIEW_MODERATE_KEEP)
         logs = self.get_logs(amo.LOG.APPROVE_REVIEW)
         assert logs.count() == 1
@@ -1236,6 +1236,9 @@ class TestPerformance(QueueTest):
         version = addon.versions.all()[0]
         for i in amo.LOG_EDITOR_REVIEW_ACTION:
             amo.log(amo.LOG_BY_ID[i], addon, version)
+        # Throw in an automatic approval - should be ignored.
+        amo.log(amo.LOG.APPROVE_VERSION, addon, version,
+                user=UserProfile.objects.get(id=settings.TASK_USER_ID))
 
     def _test_chart(self):
         r = self.client.get(self.get_url())
@@ -1322,10 +1325,10 @@ class SearchTest(EditorTest):
             r.record.addon_name for r in request.context['page'].object_list]
 
     def search(self, *args, **kw):
-        r = self.client.get(self.url, kw)
-        assert r.status_code == 200
-        assert r.context['search_form'].errors.as_text() == ''
-        return r
+        response = self.client.get(self.url, kw)
+        assert response.status_code == 200
+        assert response.context['search_form'].errors.as_text() == ''
+        return response
 
 
 class BaseTestQueueSearch(SearchTest):
@@ -1418,10 +1421,18 @@ class BaseTestQueueSearch(SearchTest):
         assert sorted(self.named_addons(r)) == [
             'Admin Reviewed', 'Not Admin Reviewed']
 
-    def test_not_searching(self):
+    def test_not_searching(self, **kwargs):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search()
-        assert sorted(self.named_addons(r)) == ['Not Admin Reviewed']
+        response = self.search(**kwargs)
+        assert sorted(self.named_addons(response)) == ['Not Admin Reviewed']
+        # We were just displaying the queue, not searching, but the searching
+        # hidden input in the form should always be set to True regardless, it
+        # will be used once the user submits the form.
+        doc = pq(response.content)
+        assert doc('#id_searching').attr('value') == 'True'
+
+    def test_not_searching_with_param(self):
+        self.test_not_searching(some_param=1)
 
     def test_search_by_nothing(self):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
@@ -1501,6 +1512,8 @@ class BaseTestQueueSearch(SearchTest):
 
 
 class TestQueueSearch(BaseTestQueueSearch):
+    __test__ = True
+
     def setUp(self):
         super(TestQueueSearch, self).setUp()
         self.url = reverse('editors.queue_nominated')
@@ -1537,12 +1550,10 @@ class TestQueueSearch(BaseTestQueueSearch):
                               amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                               application=app, listed=self.listed)
 
-        r = self.search(application_id=[amo.MOBILE.id])
-        doc = pq(r.content)
-        td = doc('#addon-queue tr').eq(2).children('td').eq(5)
-        assert td.children().length == 2
-        assert td.children('.ed-sprite-firefox').length == 1
-        assert td.children('.ed-sprite-mobile').length == 1
+        response = self.search(application_id=[amo.MOBILE.id])
+        assert response.status_code == 200
+        assert self.named_addons(response) == [
+            'Bieber For Mobile', 'Multi Application']
 
     def test_clear_search_uses_correct_queue(self):
         # The "clear search" link points to the right listed or unlisted queue.
@@ -1560,12 +1571,17 @@ class TestQueueSearchUnlistedAllList(BaseTestQueueSearch):
         super(TestQueueSearchUnlistedAllList, self).setUp()
         self.url = reverse('editors.unlisted_queue_all')
 
-    def test_not_searching(self):
+    def test_not_searching(self, **kwargs):
         self.generate_files(['Not Admin Reviewed', 'Admin Reviewed'])
-        r = self.search()
+        response = self.search(**kwargs)
         # Because we're logged in as senior editor we see admin reviewed too.
-        assert sorted(self.named_addons(r)) == [
+        assert sorted(self.named_addons(response)) == [
             'Admin Reviewed', 'Not Admin Reviewed']
+        # We were just displaying the queue, not searching, but the searching
+        # hidden input in the form should always be set to True regardless, it
+        # will be used once the user submits the form.
+        doc = pq(response.content)
+        assert doc('#id_searching').attr('value') == 'True'
 
     def test_search_deleted(self):
         self.generate_files(['Not Admin Reviewed', 'Deleted'])
@@ -1626,6 +1642,17 @@ class TestReview(ReviewBase):
     def test_not_author(self):
         AddonUser.objects.create(addon=self.addon, user=self.editor)
         assert self.client.head(self.url).status_code == 302
+
+    def test_review_unlisted_while_a_listed_version_is_awaiting_review(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED, slug='awaiting')
+        self.url = reverse(
+            'editors.review', args=('unlisted', self.addon.slug))
+        self.login_as_senior_editor()
+        assert self.client.get(self.url).status_code == 200
 
     def test_needs_unlisted_reviewer_for_only_unlisted(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -1713,7 +1740,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('title').text() == (
-            '%s :: Editor Tools :: Add-ons for Firefox' % self.addon.name)
+            '%s :: Reviewer Tools :: Add-ons for Firefox' % self.addon.name)
 
     def test_files_shown(self):
         r = self.client.get(self.url)
@@ -1947,7 +1974,7 @@ class TestReview(ReviewBase):
             ('View Listing', self.addon.get_url_path()),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
-             reverse('zadmin.addon_manage', args=[self.addon.id])),
+                reverse('zadmin.addon_manage', args=[self.addon.id])),
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
 
@@ -1960,9 +1987,63 @@ class TestReview(ReviewBase):
         expected = [
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
-             reverse('zadmin.addon_manage', args=[self.addon.id])),
+                reverse('zadmin.addon_manage', args=[self.addon.id])),
         ]
         check_links(expected, pq(r.content)('#actions-addon a'), verify=False)
+
+    def test_mixed_channels_action_links_as_admin(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.login_as_admin()
+        response = self.client.get(self.url)
+        expected = [
+            ('View Listing', self.addon.get_url_path()),
+            ('Unlisted Review Page',
+                reverse('editors.review', args=('unlisted', self.addon.slug))),
+            ('Edit', self.addon.get_dev_url()),
+            ('Admin Page',
+                reverse('zadmin.addon_manage', args=[self.addon.id])),
+        ]
+        check_links(
+            expected, pq(response.content)('#actions-addon a'), verify=False)
+
+    def test_mixed_channels_action_links_as_admin_on_unlisted_review(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.login_as_admin()
+        self.url = reverse(
+            'editors.review', args=('unlisted', self.addon.slug))
+        response = self.client.get(self.url)
+        expected = [
+            ('View Listing', self.addon.get_url_path()),
+            ('Listed Review Page',
+                reverse('editors.review', args=(self.addon.slug,))),
+            ('Edit', self.addon.get_dev_url()),
+            ('Admin Page',
+                reverse('zadmin.addon_manage', args=[self.addon.id])),
+        ]
+        check_links(
+            expected, pq(response.content)('#actions-addon a'), verify=False)
+
+    def test_mixed_channels_action_links_as_regular_reviewer(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.login_as_editor()
+        response = self.client.get(self.url)
+        expected = [
+            ('View Listing', self.addon.get_url_path()),
+        ]
+        check_links(
+            expected, pq(response.content)('#actions-addon a'), verify=False)
 
     def test_admin_links_as_non_admin(self):
         self.login_as_editor()
@@ -2425,6 +2506,22 @@ class TestReview(ReviewBase):
             reverse('editors.review', args=['listed', self.addon.slug]))
         assert (pq(review_page.content)('#review-files').text() ==
                 pq(listed_review_page.content)('#review-files').text())
+
+    def test_paypal_js_is_present_if_contributions_are_enabled(self):
+        # Note: takes_contributions is used to display the button and include
+        # the js, but it only returns True for public add-ons.
+        self.addon.update(
+            paypal_id='xx', wants_contributions=True, status=amo.STATUS_PUBLIC)
+        assert self.addon.takes_contributions
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
+
+    def test_paypal_js_is_absent_if_contributions_are_disabled(self):
+        assert not self.addon.takes_contributions
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
 
 
 class TestReviewPending(ReviewBase):

@@ -12,7 +12,12 @@
     width: 100%;
 
     li {
-      margin: 10px;
+      margin: 10px auto;
+
+      @media @large {
+        margin: 10px;
+        width: auto;
+      }
 
       &:first-child {
         margin: 0 auto 0 0;
@@ -35,25 +40,32 @@
         }
       }
 
-      &.DevHub-Navigation-LogIn,
-      &.DevHub-Navigation-LogOut {
-        margin-left: 40px;
+      &.DevHub-Navigation-Register,
+      &.DevHub-Navigation-SignOut {
+        @media @large {
+          margin-left: 40px;
 
-        html[dir=rtl] & {
-          margin-right: 40px;
-          margin-left: 10px;
+          a {
+            margin: 0 2px;
+          }
+
+          html[dir=rtl] & {
+            margin-right: 40px;
+            margin-left: 10px;
+          }
         }
       }
 
       a {
-        color: @color-text;
-        text-decoration: none;
+        .link(@color-text);
       }
     }
   }
 
   // Schemas:
   &.scheme-light {
+    min-width: @grid-max;
+
     ul li a {
       color: @color-scheme-light-text;
     }

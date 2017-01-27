@@ -276,6 +276,8 @@ class TestReviewHelper(TestCase):
     def get_review_actions(self, addon_status, file_status):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
+        # Need to clear self.version.all_files cache since we updated the file.
+        del self.version.all_files
         return self.get_helper().actions
 
     def test_actions_full_nominated(self):
@@ -315,7 +317,7 @@ class TestReviewHelper(TestCase):
 
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
-        base_fragment = 'reply to this email or join #amo-editors'
+        base_fragment = 'reply to this email or join #addon-reviewers'
         for template in ('nominated_to_public', 'nominated_to_sandbox',
                          'pending_to_public', 'pending_to_sandbox',
                          'author_super_review', 'unlisted_to_reviewed_auto'):
@@ -697,6 +699,15 @@ class TestReviewHelper(TestCase):
             self.setup_data(amo.STATUS_NOMINATED)
             getattr(self.helper.handler, process)()
             assert File.objects.get(pk=self.file.pk).reviewed
+
+    def test_review_unlisted_while_a_listed_version_is_awaiting_review(self):
+        self.make_addon_unlisted(self.addon)
+        self.version.reload()
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        assert self.get_helper()
 
 
 def test_page_title_unicode():

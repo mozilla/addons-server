@@ -28,6 +28,8 @@ class TestReviewActions(TestCase):
     def set_statuses(self, addon_status, file_status):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
+        # Need to clear self.version.all_files cache since we updated the file.
+        del self.version.all_files
         form = ReviewForm(
             {'addon_files': [self.file.pk]},
             helper=ReviewHelper(request=self.request, addon=self.addon,

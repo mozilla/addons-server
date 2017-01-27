@@ -386,7 +386,6 @@ def cancel(request, addon_id, addon):
 @dev_required
 @post_required
 def disable(request, addon_id, addon):
-    addon.update(disabled_by_user=True)
     # Also set the latest listed version to STATUS_DISABLED if it was
     # AWAITING_REVIEW, to not waste reviewers time.
     latest_version = addon.find_latest_version(
@@ -396,6 +395,8 @@ def disable(request, addon_id, addon):
             status=amo.STATUS_AWAITING_REVIEW).update(
             status=amo.STATUS_DISABLED)
     addon.update_version()
+    addon.update_status()
+    addon.update(disabled_by_user=True)
     amo.log(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
 
@@ -671,7 +672,7 @@ def standalone_upload_detail(request, uuid):
     return upload_validation_context(request, upload, url=url)
 
 
-@dev_required
+@dev_required(submitting=True)
 @json_view
 def upload_detail_for_version(request, addon_id, addon, uuid):
     try:
@@ -1301,110 +1302,6 @@ def auto_sign_version(version, **kwargs):
         auto_sign_file(file_, **kwargs)
 
 
-@json_view
-@dev_required
-@post_required
-@no_admin_disabled
-@waffle_switch('!step-version-upload')
-def version_add(request, addon_id, addon):
-    form = forms.NewUploadForm(
-        request.POST,
-        request.FILES,
-        addon=addon,
-        request=request
-    )
-    if not form.is_valid():
-        return json_view.error(form.errors)
-
-    is_beta = form.cleaned_data['beta'] and addon.is_listed
-    pl = form.cleaned_data.get('supported_platforms', [])
-    # TODO - when we have genuine per-version unlisted/listed change this.
-    channel = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
-               amo.RELEASE_CHANNEL_UNLISTED)
-    version = Version.from_upload(
-        upload=form.cleaned_data['upload'],
-        addon=addon,
-        platforms=pl,
-        channel=channel,
-        source=form.cleaned_data['source'],
-        is_beta=is_beta
-    )
-    rejected_versions = addon.versions.filter(
-        version=version.version, files__status=amo.STATUS_DISABLED)[:1]
-    if not version.releasenotes and rejected_versions:
-        # Let's reuse the release and approval notes from the previous
-        # rejected version.
-        last_rejected = rejected_versions[0]
-        version.releasenotes = amo_utils.translations_for_field(
-            last_rejected.releasenotes)
-        version.approvalnotes = last_rejected.approvalnotes
-        version.save()
-    log.info('Version created: %s for: %s' %
-             (version.pk, form.cleaned_data['upload']))
-    check_validation_override(request, form, addon, version)
-    if addon.status == amo.STATUS_NULL and addon.is_listed:
-        addon.update(status=amo.STATUS_NOMINATED)
-    if form.cleaned_data['source']:
-        addon.update(admin_review=True)
-        activity_log = ActivityLog.objects.create(
-            action=amo.LOG.SOURCE_CODE_UPLOADED.id,
-            user=request.user,
-            details={
-                'comments': (u'This version has been '
-                             u'automatically flagged for '
-                             u'admin review, as source files '
-                             u'have been uploaded.')})
-        VersionLog.objects.create(version_id=version.id,
-                                  activity_log=activity_log)
-    url = reverse('devhub.versions.edit',
-                  args=[addon.slug, str(version.id)])
-
-    # Sign all the files submitted, one for each platform.
-    auto_sign_version(version, is_beta=is_beta)
-
-    return dict(url=url)
-
-
-@json_view
-@dev_required
-@post_required
-def version_add_file(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
-    new_file_form = forms.NewFileForm(request.POST, request.FILES, addon=addon,
-                                      version=version, request=request)
-    if not new_file_form.is_valid():
-        return json_view.error(new_file_form.errors)
-    upload = new_file_form.cleaned_data['upload']
-    is_beta = (new_file_form.cleaned_data['beta'] and
-               version.channel == amo.RELEASE_CHANNEL_LISTED)
-    new_file = File.from_upload(upload, version,
-                                new_file_form.cleaned_data['platform'],
-                                is_beta, parse_addon(upload, addon))
-    source = new_file_form.cleaned_data['source']
-    if source:
-        version.update(source=source)
-        addon.update(admin_review=True)
-        activity_log = ActivityLog.objects.create(
-            action=amo.LOG.SOURCE_CODE_UPLOADED.id,
-            user=request.user,
-            details={
-                'comments': (u'This version has been automatically flagged '
-                             u'for admin review, as it had source files '
-                             u'attached when submitted.')})
-        VersionLog.objects.create(version_id=version.id,
-                                  activity_log=activity_log)
-    storage.delete(upload.path)
-    check_validation_override(request, new_file_form, addon, new_file.version)
-    file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
-    form = [f for f in file_form.forms if f.instance == new_file]
-
-    auto_sign_file(new_file, is_beta=is_beta)
-
-    return render(request, 'devhub/includes/version_file.html',
-                  {'form': form[0], 'addon': addon,
-                   'choices': File.STATUS_CHOICES})
-
-
 @dev_required
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
@@ -1482,8 +1379,7 @@ def submit_addon_distribution(request):
     return _submit_distribution(request, None, 'devhub.submit.upload')
 
 
-@dev_required
-@waffle_switch('step-version-upload')
+@dev_required(submitting=True)
 @waffle_switch('mixed-listed-unlisted')
 def submit_version_distribution(request, addon_id, addon):
     return _submit_distribution(request, addon, 'devhub.submit.version.upload')
@@ -1588,9 +1484,8 @@ def submit_addon_upload(request, channel):
                           'devhub.submit.details', 'devhub.submit.finish')
 
 
-@dev_required
+@dev_required(submitting=True)
 @no_admin_disabled
-@waffle_switch('step-version-upload')
 def submit_version_upload(request, addon_id, addon, channel):
     if waffle.switch_is_active('mixed-listed-unlisted'):
         channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
@@ -1605,7 +1500,6 @@ def submit_version_upload(request, addon_id, addon, channel):
 
 @dev_required
 @no_admin_disabled
-@waffle_switch('step-version-upload')
 def submit_version(request, addon_id, addon):
     if waffle.switch_is_active('mixed-listed-unlisted'):
         # choose the channel we need from the last upload
@@ -1623,7 +1517,6 @@ def submit_version(request, addon_id, addon):
 
 
 @dev_required
-@waffle_switch('step-version-upload')
 def submit_file(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_upload(request, addon, version.channel,
@@ -1691,7 +1584,6 @@ def submit_addon_details(request, addon_id, addon):
 
 
 @dev_required(submitting=True)
-@waffle_switch('step-version-upload')
 def submit_version_details(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_details(request, addon, version)
@@ -1749,7 +1641,6 @@ def submit_addon_finish(request, addon_id, addon):
 
 
 @dev_required
-@waffle_switch('step-version-upload')
 def submit_version_finish(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_finish(request, addon, version)
@@ -1760,12 +1651,6 @@ def submit_version_finish(request, addon_id, addon, version_id):
 def submit_file_finish(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_finish(request, addon, version, is_file=True)
-
-
-@dev_required(submitting=True)
-def submit_resume(request, addon_id, addon):
-    # Redirect to end and @submit_step will send us back if incomplete.
-    return redirect('devhub.submit.finish', addon.slug)
 
 
 @login_required

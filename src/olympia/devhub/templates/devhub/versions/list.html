@@ -13,9 +13,13 @@
 {% if has_listed_versions and has_unlisted_versions %}
   {% macro distro_tag(channel) %}
     {% if channel == amo.RELEASE_CHANNEL_LISTED %}
-      <span class="distribution-tag-listed">AMO</span>
+      <span class="distribution-tag-listed tooltip"
+            title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site.') }}"
+            >AMO</span>
     {% elif channel == amo.RELEASE_CHANNEL_UNLISTED %}
-      <span class="distribution-tag-unlisted">Self</span>
+      <span class="distribution-tag-unlisted tooltip"
+            title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
+            >Self</span>
     {% endif %}
   {% endmacro %}
 {% else %}
@@ -23,7 +27,7 @@
 {% endif %}
 
 {% macro version_details(version, full_info=False) %}
-  {% set is_latest_version_in_channel = (version == version.addon.find_latest_version_including_rejected(channel=version.channel)) %}
+  {% set latest_version_in_channel = version.addon.find_latest_version_including_rejected(channel=version.channel) %}
   <tr{% if version_disabled(version) %} class="version-disabled"{% endif %}>
     <td>
       <strong>
@@ -53,16 +57,19 @@
         </form>
         </div>
       {% endif %}
+      {% if not version.is_beta %}
       <div>
-          <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history">{{ _('Review History') }}</a>
+          <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history"
+            id="review-history-show-{{ version.id }}" data-version="{{ version.id }}">{{ _('Review History') }}</a>
           <a href="#" class="review-history-hide hidden">{{ _('Close Review History') }}</a>
-          {% if is_latest_version_in_channel %}
+          {% if latest_version_in_channel == version %}
               {% set pending_count = pending_activity_log_count_for_developer(version) %}
               {% if pending_count > 0 %}
                   <b class="review-history-pending-count">{{ pending_count }}</b>
               {% endif %}
           {% endif %}
       </div>
+      {% endif %}
     </td>
     <td class="file-validation">
       <ul>
@@ -105,6 +112,7 @@
       </td>
     </tr>
   {% endif %}
+  {% if not version.is_beta %}
     <tr>
         <td colspan="4" id="{{ version.id }}-review-history" class="review-history hidden"
              data-api-url="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
@@ -121,17 +129,24 @@
                     <pre>$comments</pre>
                 </div>
             </div>
-            {% if waffle.switch('activity-email') and is_latest_version_in_channel %}
-            <div class="dev-review-reply">
-                <form id="dev-review-reply-form" action="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
+            {% if waffle.switch('activity-email') %}
+              {% if latest_version_in_channel == version %}
+              <div class="dev-review-reply">
+                <form class="dev-review-reply-form" action="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
                       data-token="{{ token }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
-                    <textarea id="dev-review-reply-comments" name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
-                    <button id="dev-review-reply-submit" type="submit" class="submit" >{{ _('Reply') }}</button ty>
+                    <textarea name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
+                    <button type="submit" class="submit" >{{ _('Reply') }}</button ty>
                 </form>
-            </div>
+              </div>
+              {% else %}
+              <div>
+                <a href="#" class="review-history-show" data-version="{{ latest_version_in_channel.id }}">{{ _('Leave a reply') }}</a>
+              </div>
+              {% endif %}
             {% endif %}
         </td>
     </tr>
+  {% endif %}
 {% endmacro %}
 
 {% block content %}
@@ -226,11 +241,7 @@
     <div class="item_wrapper">
       {% if addon.status != amo.STATUS_DISABLED %}{# i.e. Admin disabled #}
       <div>
-        {% if waffle.switch('step-version-upload') %}
-          {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
-        {% else %}
-          {% set version_upload_url = '#' %}
-        {% endif %}
+        {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
         <a href="{{ version_upload_url }}" class="button version-upload">{{ _('Upload a New Version') }}</a>
       </div>
       {% endif %}
@@ -307,13 +318,6 @@
       </div>
     </form>
   </div>
-
-  {% if not waffle.switch('step-version-upload') %}
-  {{ add_file_modal(_("Add a new Version"),
-                       url('devhub.versions.add', addon.slug),
-                       _("Add Version"),
-                       'version')}}
-  {% endif %}
 
   {% if has_listed_versions %}
   {% if not addon.disabled_by_user and not addon.is_disabled %}

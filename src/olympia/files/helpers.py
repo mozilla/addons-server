@@ -22,7 +22,7 @@ from jingo import register, get_env
 from olympia import amo
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.amo.urlresolvers import reverse
-from olympia.files.utils import extract_xpi, get_md5
+from olympia.files.utils import extract_xpi, get_md5, get_all_files
 
 # Allow files with a shebang through.
 denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
@@ -178,7 +178,9 @@ class FileViewer(object):
                                                   self.file.filename), 'w'))
                 else:
                     try:
-                        extract_xpi(self.src, self.dest, expand=True)
+                        extracted_files = extract_xpi(
+                            self.src, self.dest, expand=True)
+                        self._verify_files(extracted_files)
                     except Exception, err:
                         task_log.error(
                             'Error (%s) extracting %s' % (err, self.src))
@@ -340,6 +342,31 @@ class FileViewer(object):
                 return short
         return 'plain'
 
+    def _verify_files(self, expected_files, raise_on_verify=False):
+        """Verifies that all files are properly extracted.
+
+        TODO: This should probably be extracted into a separate helper
+        once we can verify that it works as expected.
+        """
+        difference = self._check_dest_for_complete_listing(expected_files)
+
+        if difference:
+            if raise_on_verify:
+                error_msg = (
+                    'Error verifying extraction of %s. Difference: %s' % (
+                        self.src, ', '.join(list(difference))))
+                task_log.error(error_msg)
+                raise ValueError(error_msg)
+            else:
+                task_log.warning(
+                    'Calling fsync, files from %s extraction aren\'t'
+                    ' completely available.' % self.src)
+
+                self._fsync_dest_to_complete_listing(
+                    self._normalize_file_list(expected_files))
+
+                self._verify_files(expected_files, raise_on_verify=True)
+
     @memoize(prefix='file-viewer', time=60 * 60)
     def _get_files(self, locale=None):
         """We need the `locale` parameter for the memoization.
@@ -351,29 +378,15 @@ class FileViewer(object):
         Otherwise, we would just always have the urls for the files with the
         locale from the first person checking them.
         """
-        all_files, res = [], SortedDict()
-        # Not using os.path.walk so we get just the right order.
+        result = SortedDict()
 
-        def iterate(path):
-            path_dirs, path_files = storage.listdir(path)
-            for dirname in sorted(path_dirs):
-                full = os.path.join(path, dirname)
-                all_files.append(full)
-                iterate(full)
-
-            for filename in sorted(path_files):
-                full = os.path.join(path, filename)
-                all_files.append(full)
-
-        iterate(self.dest)
-
-        for path in all_files:
+        for path in get_all_files(self.dest):
             filename = force_text(os.path.basename(path), errors='replace')
             short = force_text(path[len(self.dest) + 1:], errors='replace')
             mime, encoding = mimetypes.guess_type(filename)
             directory = os.path.isdir(path)
 
-            res[short] = {
+            result[short] = {
                 'binary': self._is_binary(mime, path),
                 'depth': short.count(os.sep),
                 'directory': directory,
@@ -393,7 +406,41 @@ class FileViewer(object):
                 'version': self.file.version.version,
             }
 
-        return res
+        return result
+
+    def _check_dest_for_complete_listing(self, expected_files):
+        """Check that all filex we expect are in `self.dest`."""
+        dest_len = len(self.dest)
+
+        files_to_verify = get_all_files(self.dest)
+
+        difference = (
+            set([name[dest_len:].strip('/') for name in files_to_verify]) -
+            set(self._normalize_file_list(expected_files)))
+
+        return difference
+
+    def _normalize_file_list(self, expected_files):
+        """Normalize file names, strip /tmp/xxxx/ prefix."""
+        normalized_files = [fname.strip('/') for fname in expected_files]
+        normalized_files = [
+            os.path.join(*fname.split(os.path.sep)[2:])
+            for fname in normalized_files]
+
+        return normalized_files
+
+    def _fsync_dest_to_complete_listing(self, files):
+        # Now call fsync for every single file. This might block for a
+        # few milliseconds but it's still way faster than doing any
+        # kind of sleeps to wait for writes to happen.
+        for fname in files:
+            fpath = os.path.join(settings.TMP_PATH, fname)
+            descriptor = os.open(fpath, os.O_RDONLY)
+            os.fsync(descriptor)
+
+        # Then make sure to call fsync on the top-level directory
+        top_descriptor = os.open(self.dest, os.O_RDONLY)
+        os.fsync(top_descriptor)
 
 
 class DiffHelper(object):

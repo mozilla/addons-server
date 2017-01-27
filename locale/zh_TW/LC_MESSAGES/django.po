@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-09 14:35+0000\n"
+"POT-Creation-Date: 2017-01-24 08:33+0000\n"
+"PO-Revision-Date: 2017-01-24 16:23+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -227,7 +227,7 @@ msgstr "此附加元件的開發者希望您捐款給 <a href=\"%(charity_url)s\
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "此附加元件的開發者希望您小額捐款給 <a href=\"%(charity_url)s\">%(charity_name)s</a> 來展現您的支持。"
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Contribute"
 msgstr "捐款"
 
@@ -238,8 +238,8 @@ msgstr "捐款"
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/profile.html
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
+#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/edit_review.html
+#: src/olympia/translations/templates/translations/trans-menu.html
 msgid "or"
 msgstr "或"
 
@@ -375,7 +375,7 @@ msgstr "公開情況"
 msgid "Visible"
 msgstr "公開情況"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Invisible"
 msgstr "不可見"
 
@@ -408,7 +408,8 @@ msgstr "濫用回報"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "隱私權保護政策"
 
@@ -617,9 +618,8 @@ msgstr "作者"
 msgid "Daily Users"
 msgstr "每日使用者數"
 
-#. The License for this add-on.
-#: src/olympia/addons/templates/addons/impala/license.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html
-#: src/olympia/devhub/templates/devhub/includes/license_form.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/devhub/templates/devhub/includes/license_form.html
+#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "License"
 msgstr "授權"
 
@@ -645,14 +645,14 @@ msgstr[0] "<strong>{0}</strong> 位使用者"
 msgid "Hover to Preview"
 msgstr "移至上方預覽"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/templates/reviews/add.html
+#: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Add"
 msgstr "新增"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/edit.html
-#: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/media.html src/olympia/devhub/templates/devhub/addons/edit/support.html
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/editors/templates/editors/review.html
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
+#: src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/addons/edit/details.html
+#: src/olympia/devhub/templates/devhub/addons/edit/media.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/editors/templates/editors/review.html
 msgid "Edit"
 msgstr "編輯"
 
@@ -785,7 +785,6 @@ msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly t
 msgstr "想要在您手機上的 Firefox 使用 {0} 嗎？掃描此 QR 碼後即可直接安裝到您的手機。（您需要先到手機的軟體商城下載安裝任一套 QR 碼掃描器。）"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
-#: src/olympia/addons/templates/addons/report_abuse_full.html
 msgid "Report Abuse"
 msgstr "濫用回報"
 
@@ -804,9 +803,8 @@ msgstr "回報"
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/profile.html
-#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html src/olympia/devhub/templates/devhub/versions/edit.html
-#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
-#: src/olympia/zadmin/templates/zadmin/validation.html
+#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html src/olympia/zadmin/templates/zadmin/validation.html
 msgid "Cancel"
 msgstr "取消"
 
@@ -837,20 +835,22 @@ msgid "Submit review"
 msgstr "送出評論"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
-msgstr "請勿在此回報程式錯誤。因為我們並不會將您的 Email 位址傳送給開發者，若開發者想得知進一步的細節以解決問題時就無法與您聯絡了。"
+msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
+msgstr "請勿在此回報程式錯誤。因為我們並不會將您的電子郵件信箱傳送給開發者，開發者將無法與您聯絡來解決問題。"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
-msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
-msgstr "請見 <a href=\"%(support)s\">技術支援</a> 一節了解如何取得此附加元件的協助。"
+msgid ""
+"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">add-on community</a> for help."
+msgstr "請參考此附加元件的 <a href=\"%(support)s\">技術支援</a> 段落，看看是否可提供協助。您也可以到 <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">附加元件討論區</a> 尋求幫助。"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
 msgstr "評論撰寫指南"
 
-#: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py src/olympia/reviews/templates/reviews/add.html
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/review_list.html
+#: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py
+#: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Reviews"
 msgstr "評論"
 
@@ -1005,7 +1005,7 @@ msgstr "版本 {0}"
 msgid "Info"
 msgstr "資訊"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Last Updated:"
 msgstr "最近更新於:"
 
@@ -1083,7 +1083,8 @@ msgid "About the Developer"
 msgid_plural "About the Developers"
 msgstr[0] "關於開發者"
 
-#: src/olympia/addons/templates/addons/impala/developers.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/profile.html
+#: src/olympia/addons/templates/addons/impala/developers.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/users/templates/users/edit.html
+#: src/olympia/users/templates/users/profile.html
 msgid "No Photo"
 msgstr "無照片"
 
@@ -1103,6 +1104,7 @@ msgstr "管理員已經停用此附加元件。"
 msgid "Source Code License for {addon}"
 msgstr "{addon} 的原始碼授權"
 
+#. The License for this add-on.
 #: src/olympia/addons/templates/addons/impala/license.html src/olympia/versions/templates/versions/mobile/version.html
 msgid "Source Code License"
 msgstr "原始碼授權"
@@ -1255,9 +1257,9 @@ msgstr "您需要 Firefox 瀏覽器才能安裝附加元件。<a href=\"http://m
 msgid "Return to the {0} Add-ons homepage"
 msgstr "回到 {0} 附加元件首頁"
 
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
-#: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "附加元件"
 
@@ -1279,10 +1281,9 @@ msgstr "附加元件是可以讓您個人化您 Firefox 的應用程式，並額
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/impala/base_listing.html
-#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
-#: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
-#: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html
+#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/base.html
+#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "佈景主題"
 
@@ -1315,7 +1316,8 @@ msgstr "試穿看看!"
 msgid "Theme Info &raquo;"
 msgstr "佈景主題資訊 &raquo;"
 
-#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tools"
 msgstr "工具"
 
@@ -1346,12 +1348,12 @@ msgid "Manage My Submissions"
 msgstr "管理我的提交"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/addons/submit/base.html
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Submit a New Add-on"
 msgstr "上傳一個新的附加元件"
 
 #: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Submit a New Theme"
 msgstr "提交一個新的佈景主題"
 
@@ -1383,10 +1385,9 @@ msgstr "驗證輸入內容時發生錯誤，請再試一次。"
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "這必須是個正確的十六進位顏色代碼，像是 #000000。"
 
-#: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
+#: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
-#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
+#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Collections"
 msgstr "收藏集"
 
@@ -1819,8 +1820,8 @@ msgid "Explore"
 msgstr "探索"
 
 # Plural in this context means many of the add-on type
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/impala/base_listing.html
+#: src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "擴充套件"
 
@@ -1965,8 +1966,7 @@ msgstr "請注意 WebExtensions 不接受 <a href=\"%(version_url)s\">strict_min
 msgid "GUID"
 msgstr "GUID"
 
-#. {0} is an add-on name.
-#: src/olympia/applications/templates/applications/appversions.html src/olympia/versions/templates/versions/version_list.html
+#: src/olympia/applications/templates/applications/appversions.html
 msgid "Versions"
 msgstr "版本"
 
@@ -2122,10 +2122,6 @@ msgstr "已刪除圖示"
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a New Collection"
 msgstr "建立一個新的收藏集"
-
-#: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/devhub/templates/devhub/personas/submit.html
-msgid "Create"
-msgstr "建立"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #, python-format
@@ -2331,10 +2327,6 @@ msgstr "編輯這個收藏集"
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
 msgid "Delete {0}"
 msgstr "刪除 {0}"
-
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
-msgid "Delete"
-msgstr "刪除"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
 msgid "Are you sure?"
@@ -2552,10 +2544,6 @@ msgstr "任何人都可以建立一組相關的附加元件收集清單。"
 msgid "Blocked Add-ons"
 msgstr "已被封鎖的附加元件"
 
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocklist"
-msgstr "封鎖清單"
-
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "<b>{0}</b> has been blocked for your protection."
@@ -2660,15 +2648,14 @@ msgstr "建立日期"
 msgid "{0}: Featured Add-ons"
 msgstr "{0}: 精選附加元件"
 
-#: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/legacy_discovery/modules.py
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-msgid "Featured Add-ons"
-msgstr "精選附加元件"
-
 #. {0} is a category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "No featured add-ons in {0}."
 msgstr "{0} 中沒有精選附加元件。"
+
+#: src/olympia/browse/templates/browse/featured.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+msgid "Featured Add-ons"
+msgstr "精選附加元件"
 
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
@@ -2763,10 +2750,6 @@ msgstr "到 <a href=\"http://mycroftproject.com/\">mycroftproject.com</a> 尋找
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/zh-TW/docs/%%E8%%A3%%BD%%E4%%BD%%9C_OpenSearch_%%E6%%90%%9C%%E5%%B0%%8B%%E6%%A8%%A1%%E7%%B5%%84\">建立您自己的搜尋工具</a>"
 
-#: src/olympia/browse/templates/browse/themes.html src/olympia/constants/base.py
-msgid "Complete Themes"
-msgstr "完整佈景主題"
-
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
 msgstr "最熱門的擴充套件"
@@ -2845,7 +2828,7 @@ msgid "{0} Themes"
 msgstr "{0} 佈景主題"
 
 #. {0} is a user's name.
-#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/grid.html
+#: src/olympia/browse/templates/browse/personas/base.html
 msgid "{0}'s Themes"
 msgstr "{0} 的佈景主題"
 
@@ -2939,10 +2922,6 @@ msgstr "<p>透過 <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> 傳送�
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
 msgstr "您的附加元件的報告"
-
-#: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
-msgid "Add-on Compatibility Center"
-msgstr "附加元件相容性中心"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Enter the GUID of an add-on below to view any reports we've received."
@@ -3079,7 +3058,8 @@ msgstr "開發者"
 msgid "Viewer"
 msgstr "檢視者"
 
-#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/mobile/header.html
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#: src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "支援"
 
@@ -3115,6 +3095,10 @@ msgstr "外掛程式"
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Theme"
 msgstr "佈景主題"
+
+#: src/olympia/constants/base.py
+msgid "Complete Themes"
+msgstr "完整佈景主題"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/constants/base.py
@@ -3487,7 +3471,7 @@ msgstr "實驗中"
 msgid "Feeds, News, & Blogging"
 msgstr "資訊來源、新聞、部落格"
 
-#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html
 msgid "Performance"
 msgstr "效能"
 
@@ -3916,6 +3900,10 @@ msgid "Review"
 msgstr "意見"
 
 #: src/olympia/devhub/tasks.py
+msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
+msgstr "自 Firefox 53 起，新上架至此網站的附加元件僅能為 WebExtension。"
+
+#: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "我們允許，也鼓勵您升級，但升級後就不能回頭了。當您的使用者安裝 WebExtension 後，就無法再安裝傳統的附加元件。"
 
@@ -4115,8 +4103,8 @@ msgid "{0} :: Search"
 msgstr "{0} :: 搜尋"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py src/olympia/editors/templates/editors/queue.html
-#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/mobile/results.html
-#: src/olympia/search/templates/search/personas.html src/olympia/search/templates/search/results.html src/olympia/templates/impala/search.html src/olympia/templates/search.html
+#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
+#: src/olympia/templates/impala/search.html src/olympia/templates/search.html
 msgid "Search"
 msgstr "搜尋"
 
@@ -4226,7 +4214,7 @@ msgstr "<small>附加套件</small>開發者交流中心"
 msgid "more add-ons..."
 msgstr "更多附加元件…"
 
-#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Documentation"
 msgstr "文件集"
 
@@ -4242,7 +4230,7 @@ msgstr "個性面板"
 msgid "Add-on Policies"
 msgstr "附加元件政策"
 
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Add-on Validator"
 msgstr "附加元件驗證器"
 
@@ -4605,10 +4593,6 @@ msgid "These flags are used to classify add-ons. It is only relevant for listed 
 msgstr "這些旗標用來分類附加元件。此欄位僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
-msgid "This is a site-specific add-on."
-msgstr "這是一個特定網站的附加元件。"
-
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on requires external software."
 msgstr "這個附加元件需要外部軟體。"
 
@@ -4834,6 +4818,10 @@ msgstr "重新開始"
 msgid "Delete this add-on."
 msgstr "刪除這個附加元件。"
 
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
+msgid "Delete"
+msgstr "刪除"
+
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Edit information about this add-on."
 msgstr "編輯此附加元件的資訊。"
@@ -4850,7 +4838,7 @@ msgstr "新版本"
 msgid "Daily statistics on downloads and users."
 msgstr "下載數與使用者的每日統計資訊。"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/stats/templates/stats/stats.html
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Statistics"
 msgstr "統計資訊"
 
@@ -4876,7 +4864,8 @@ msgstr "檢視近期更新"
 msgid "Edit details about this theme's listing."
 msgstr "編輯此佈景主題的詳細資訊。"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Edit Listing"
 msgstr "編輯資訊"
 
@@ -5101,15 +5090,15 @@ msgstr "上傳版本"
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "使用下方欄位上傳您的附加元件並選擇可執行的平台。當上傳完成後，將會對您的檔案進行一系列自動化的驗證測試。"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Which platforms is this file compatible with?"
 msgstr "這個檔案與哪些平台相容？"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Only publish this version to my beta channel."
 msgstr "僅發佈此版本到我的 Beta 頻道。"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Administrative overrides"
 msgstr "管理員覆寫"
 
@@ -5170,8 +5159,8 @@ msgid "Generate new credentials"
 msgstr "產生新金鑰"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Please complete your add-on."
-msgstr "請完成您的附加元件。"
+msgid "Please complete your add-on by adding a version or missing metadata."
+msgstr "請新增版本或補完缺少的後設資料，來完成您的附加元件資訊填寫。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -5189,12 +5178,12 @@ msgstr "您的附加元件已被網站管理員停用，不在網站上公開上
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "您的附加元件將不會列入於搜尋結果，上架頁面也會提示您已停用。在此狀態下也不會接受任何送出的新版本。"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Created:"
 msgstr "建立於:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, python-format
 msgid "%%b %%e, %%Y"
 msgstr "%%Y-%%m-%%d"
@@ -5368,6 +5357,120 @@ msgstr "最新消息"
 msgid "Read more in our Blog"
 msgstr "到部落格閱讀更多資訊"
 
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Resources"
+msgstr "資源"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "WebExtensions"
+msgstr "WebExtension"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Community"
+msgstr "社群"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
+msgid "About"
+msgstr "關於"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
+msgid "Forum"
+msgstr "討論區"
+
+# Link text to the AMO blog.
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
+msgid "Blog"
+msgstr "部落格"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Contact Us"
+msgstr "聯絡我們"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Review Policies"
+msgstr "審核標準"
+
+# Link text to the Frequently Asked Questions page.
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
+msgid "FAQ"
+msgstr "常見問題集"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Report Bug"
+msgstr "回報 Bug"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
+msgid "Site Status"
+msgstr "網站狀態"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "Compatibility Checker"
+msgstr "相容性檢查器"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "Compatibility Reporter"
+msgstr "相容性回報器"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Promote"
+msgstr "推廣"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Get Your Add-on Featured"
+msgstr "讓您的附加元件成為精選"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "\"Get The Add-on\" button"
+msgstr "「取得附加元件」按鈕"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Legal"
+msgstr "法務"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
+msgid "Report Trademark Abuse"
+msgstr "回報商標濫用"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "法律聲明"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Review Add-ons"
+msgstr "審核附加元件"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
+msgstr "審核志工會幫助讓附加元件安全、可靠。他們也喜歡小禮物！"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Join us!"
+msgstr "加入我們！"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Write Some Code"
+msgstr "寫點程式"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Help make add-ons better by contributing your coding skills."
+msgstr "貢獻您的寫程式能力，幫助讓附加元件變得更好。"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Get started"
+msgstr "開始使用"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "More Ways to Participate"
+msgstr "更多參與的方式"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
+msgstr "不需要會寫程式也能幫助 Firefox 成為最可自訂的瀏覽器！"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "See how"
+msgstr "看看怎麼做"
+
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Manage Your Add-on"
 msgstr "管理您的附加元件"
@@ -5380,13 +5483,38 @@ msgstr "登入後即可編輯並更新您的附加元件"
 msgid "Evolution in Add-on Development"
 msgstr "附加元件開發進化了"
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr "WebExtensions 將成為 Firefox 標準的附加元件開發流程。Firefox 的此次與其他相關變更可能會影響傳統附加元件的開發者。"
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
+msgstr "WebExtension 將成為 Firefox 的標準附加元件。您將需要更新您的傳統附加元件才能保持相容。"
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-msgid "Find Out if Your Add-on is Affected"
-msgstr "找出您的附加元件是否受到影響"
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+msgid "Learn How"
+msgstr "更多資訊"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "What's New"
+msgstr "有什麼新鮮事"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgstr "新年快樂！看看 2017 年有什麼附加元件新鮮事。"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "Show Me"
+msgstr "顯示給我看"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "AMO"
+msgstr "AMO"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "Self-hosted"
+msgstr "自行架設代管"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "View All Submissions"
+msgstr "檢視所有送出的元件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
@@ -5409,27 +5537,32 @@ msgstr "附加元件開發者交流中心"
 msgid "Docs"
 msgstr "文件"
 
-# Link text to the AMO blog.
-#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
-msgid "Blog"
-msgstr "部落格"
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+msgid "Sign Out"
+msgstr "登出"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-msgid "Sign In"
-msgstr "登入"
+msgid "User Photo"
+msgstr "使用者相片"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, python-format
+msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
+msgstr "<a href=\"%(register)s\">註冊</a>或<a href=\"%(login)s\">登入</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-msgid "Customize Your Firefox"
-msgstr "自訂您的 Firefox"
+msgid "Customize Firefox"
+msgstr "自訂 Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
-"necessary skills to make a great add-on."
-msgstr "附加元件可讓數以百萬的 Firefox 使用者增強並自訂他們的上網體驗。若您是熟悉 <a href=\"#\">HTML</a>、<a href=\"#\">JavaScript</a> 與 <a href=\"#\">CSS</a> 的 Web 開發者，您已經具備了開發附加元件時必需的能力。"
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
+" you already have all the necessary skills to make a great add-on."
+msgstr "附加元件可讓數以百萬的 Firefox 使用者增強他們的上網體驗。若您是熟悉 <a href=\"%(html_link)s\">HTML</a>、<a href=\"%(js_link)s\">JavaScript</a> 與 <a href=\"%(css_link)s\">CSS</a> 的 Web 開發者，您已經具備了開發附加元件的必需能力。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-msgid "Learn How to make an Add-on"
+msgid "Learn How to Make an Add-on"
 msgstr "了解如何打造附加元件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
@@ -5441,20 +5574,16 @@ msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
 msgstr "Firefox 支援 WebExtension API，大部分情況下都與 Google Chrome、Opera 所支援的附加元件開發流程相容，若您有這些平台的附加元件只要小改一下就可以移植過來。"
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-msgid "Learn How"
-msgstr "更多資訊"
-
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
 msgstr "發布您的附加元件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "寫好您的附加元件了嗎？請送出您的附加元件或佈景主題，上架到 addons.mozilla.org，也可以自行發布。"
+msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgstr "寫好附加元件了嗎？請送出您的附加元件或佈景主題，上架到 addons.mozilla.org，也可以經簽署後自行發布。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-msgid "Sign in"
+msgid "Sign In"
 msgstr "登入"
 
 # Header for a column in a table
@@ -5467,16 +5596,8 @@ msgid "Automated code tests for your add-on."
 msgstr "自動化測試您附加元件的程式碼。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-msgid "Compatibility Checker"
-msgstr "相容性檢查器"
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "看看您的附加元件是否有可能受 Firefox 的功能變更影響。"
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-msgid "Compatibility Reporter"
-msgstr "相容性回報器"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5850,14 +5971,6 @@ msgstr "對齊左下方"
 msgid "Select a different footer image"
 msgstr "選擇一個不同的底部圖案"
 
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Files added to reviewed versions must be reviewed before they will be available for download."
-msgstr "如果您將新檔案加入至已審核通過的版本，新檔案仍需經過審核才能開放公眾下載。"
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Select the target platform for this file."
-msgstr "選擇這個檔案的目標平台。"
-
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
 msgstr "管理版本 {0}"
@@ -5901,14 +6014,6 @@ msgstr "原始碼"
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr "若您的附加元件含有二進位程式或混淆過的程式碼，請在此上傳其原始碼供審查。"
-
-#: src/olympia/devhub/templates/devhub/versions/edit.html
-msgid "Upload a new file"
-msgstr "上傳一個新檔案"
-
-#: src/olympia/devhub/templates/devhub/versions/edit.html
-msgid "Add File"
-msgstr "新增檔案"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "File {file_id} ({platform})"
@@ -6083,14 +6188,6 @@ msgstr "刪除版本"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Disable Version"
 msgstr "停用版本"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add a new Version"
-msgstr "新增一個新版本"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add Version"
-msgstr "新增版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hide Add-on"
@@ -6301,41 +6398,6 @@ msgstr "被退回或未審核"
 msgid "[status:%s]"
 msgstr "[狀態：%s]"
 
-# 83%
-# 100%
-#: src/olympia/editors/helpers.py
-msgid "Queue"
-msgstr "等待審核區"
-
-# 85%
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Updates"
-msgstr "更新"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "New Add-ons"
-msgstr "新進附加元件"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Moderated Reviews"
-msgstr "有問題的評論"
-
-#: src/olympia/editors/helpers.py
-msgid "Pending Themes"
-msgstr "審核中的佈景主題"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
-msgid "Flagged Themes"
-msgstr "已標記的佈景主題"
-
-#: src/olympia/editors/helpers.py
-msgid "Update Themes"
-msgstr "佈景主題更新"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "All Unlisted Add-ons"
-msgstr "所有未上架的附加元件"
-
 #: src/olympia/editors/helpers.py
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
@@ -6350,6 +6412,10 @@ msgstr[0] "更新（{0}）"
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "有問題的評論 ({0})"
+
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
+msgid "All Unlisted Add-ons"
+msgstr "所有未上架的附加元件"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
@@ -6428,6 +6494,11 @@ msgstr "為此版本加上留言，開發者不會看到。"
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
 msgstr "已標記"
+
+# 85%
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
+msgid "Updates"
+msgstr "更新"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -6570,6 +6641,14 @@ msgid "Queues"
 msgstr "審核等待區"
 
 #: src/olympia/editors/templates/editors/base.html
+msgid "New Add-ons"
+msgstr "新進附加元件"
+
+#: src/olympia/editors/templates/editors/base.html
+msgid "Moderated Reviews"
+msgstr "有問題的評論"
+
+#: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "未上架佇列"
 
@@ -6581,7 +6660,7 @@ msgstr "歷史記錄"
 msgid "Add-on Review Log"
 msgstr "附加元件審核紀錄"
 
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/eventlog_detail.html
+#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/eventlog.html
 msgid "Moderated Review Log"
 msgstr "有問題的評論之紀錄"
 
@@ -6615,12 +6694,6 @@ msgstr "更多資訊。"
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html
 msgid "No events found for this period."
 msgstr "在這段時間沒有活動。"
-
-# 90%
-# 100%
-#: src/olympia/editors/templates/editors/eventlog_detail.html
-msgid "Log Details"
-msgstr "紀錄詳情"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
@@ -6708,10 +6781,6 @@ msgstr "評分"
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
 msgstr "積分"
-
-#: src/olympia/editors/templates/editors/motd.html
-msgid "Message of the Day"
-msgstr "每日一訊息"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Update message of the day"
@@ -6992,10 +7061,6 @@ msgid "Reviewer"
 msgstr "評論者"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
-msgid "Deleted Themes"
-msgstr "已刪除的主題"
-
-#: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
 msgstr "日期已刪除"
 
@@ -7038,9 +7103,9 @@ msgid "{num} Update"
 msgid_plural "{num} Updates"
 msgstr[0] "{num} 個更新{num} 個更新"
 
-#: src/olympia/editors/templates/editors/themes/logs.html
-msgid "Theme Review Log"
-msgstr "佈景主題審核紀錄"
+#: src/olympia/editors/templates/editors/themes/queue.html
+msgid "Flagged Themes"
+msgstr "已標記的佈景主題"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Theme Review Queue"
@@ -9538,12 +9603,13 @@ msgstr "新增對 {0} 的意見"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
-"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
-"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>請記得:</h2><ul><li> 以像是您在跟其他朋友解釋您使用此附加元件時的體驗的方式來撰寫。提供明確、有幫助的詳情，像是您喜歡那些功能、不喜歡那些功能、有多簡單就能使用、有那些缺點。除非您能提供明確的原因，請避免使用太廣泛的語言，像是只說「棒」、「爛」。</li><li>請不要在評論中張貼錯誤回報，我們不會將您的電子郵件地址提供給開發者，他們可能需要有 email "
-"才能幫助您解決問題。請參考 <a href=\"%(support)s\">技術支援段落</a>找到您可以在哪裡取得此附加元件的幫助。</li><li>請保持評論簡潔，避免使用不適當的語言，也不要張貼任何個人資訊。</li></ul><p>請閱讀<a href=\"%(guide)s\">評論指南</a>，以了解使用者對附加元件評論的更多資訊。</p>"
+"<h2>請記得:</h2><ul><li> 以像是您在跟其他朋友解釋您使用此附加元件時的體驗的方式來撰寫。提供明確、有用的詳細資訊，像是您喜歡哪些功能、不喜歡哪些功能、有多簡單就能使用、有哪些缺點。除非您能提供明確的原因，不然請避免使用太廣泛的語言，像是只說「棒」、「爛」。</li><li>請不要在評論中張貼錯誤回報，我們不會將您的電子郵件地址提供給開發者，他們無法幫您解決問題。請參考 <a "
+"href=\"%(support)s\">技術支援段落</a>找到您可以在哪裡取得此附加元件的幫助。</li><li>請保持評論簡潔，避免使用不適當的語言，也不要張貼任何個人資訊。</li></ul><p>請閱讀<a href=\"%(guide)s\">評論指南</a>，以了解使用者對附加元件評論的更多資訊。</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -9861,6 +9927,10 @@ msgstr "版本已存在。"
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "僅 WebExtension 可忽略 GUID"
+
+#: src/olympia/signing/views.py
+msgid "Invalid GUID in URL"
+msgstr "網址中有無效的 GUID"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
@@ -10244,21 +10314,9 @@ msgstr "請選擇分類"
 msgid "Mobile Categories"
 msgstr "行動版分類"
 
-#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "法律聲明"
-
-#: src/olympia/templates/copyright.html
-msgid "Report Trademark Abuse"
-msgstr "回報商標濫用"
-
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "瀏覽行動版網站"
-
-#: src/olympia/templates/copyright.html
-msgid "Site Status"
-msgstr "網站狀態"
 
 #: src/olympia/templates/copyright.html
 msgid "Report a bug"
@@ -10273,19 +10331,6 @@ msgstr "除非另有<a href=\"https://www.mozilla.org/about/legal/\">提及</a>�
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "了解<b>附加元件</b>"
-
-#: src/olympia/templates/footer.html
-msgid "About"
-msgstr "關於"
-
-# Link text to the Frequently Asked Questions page.
-#: src/olympia/templates/footer.html
-msgid "FAQ"
-msgstr "常見問題集"
-
-#: src/olympia/templates/footer.html
-msgid "Forum"
-msgstr "討論區"
 
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Other languages"
@@ -10804,7 +10849,7 @@ msgstr "編輯個人檔案"
 msgid "Manage user"
 msgstr "管理使用者"
 
-#: src/olympia/users/templates/users/profile.html src/olympia/users/templates/users/report_abuse_full.html
+#: src/olympia/users/templates/users/profile.html
 msgid "Report user"
 msgstr "回報使用者"
 

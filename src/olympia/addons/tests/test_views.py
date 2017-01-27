@@ -368,6 +368,22 @@ class TestDeveloperPages(TestCase):
                 'addons/addon_228106_info+dev+bio.json',
                 'addons/addon_228107_multiple-devs.json']
 
+    def test_paypal_js_is_present_if_contributions_are_enabled(self):
+        self.addon = Addon.objects.get(id=592)
+        assert self.addon.takes_contributions
+        response = self.client.get(reverse('addons.meet', args=['a592']))
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
+
+    def test_paypal_js_is_absent_if_contributions_are_disabled(self):
+        self.addon = Addon.objects.get(pk=3615)
+        assert not self.addon.takes_contributions
+        response = self.client.get(reverse('addons.meet', args=['a3615']))
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
+
     def test_meet_the_dev_title(self):
         r = self.client.get(reverse('addons.meet', args=['a592']))
         title = pq(r.content)('title').text()
@@ -910,14 +926,14 @@ class TestDetailPage(TestCase):
         assert pq(content)('.manage-button a').eq(0).attr('href') == (
             self.addon.get_dev_url())
 
-        # reviewer gets a 'Editor Review' button
+        # reviewer gets an 'Add-on Review' button
         self.client.login(email='editor@mozilla.com')
         content = get_detail().content
         assert pq(content)('.manage-button').length == 1
         assert pq(content)('.manage-button a').eq(0).attr('href') == (
             reverse('editors.review', args=[self.addon.slug]))
 
-        # admins gets devhub, editor review and 'Admin Manage' button too
+        # admins gets devhub, 'Add-on Review' and 'Admin Manage' button too
         self.client.login(email='admin@mozilla.com')
         content = get_detail().content
         assert pq(content)('.manage-button').length == 3
@@ -1094,6 +1110,16 @@ class TestImpalaDetailPage(TestCase):
                     for c in self.addon.categories.filter(
                         application=amo.FIREFOX.id)]
         amo.tests.check_links(expected, links)
+
+    def test_paypal_js_is_present_if_contributions_are_enabled(self):
+        self.addon = Addon.objects.get(id=592)
+        assert self.addon.takes_contributions
+        self.url = self.addon.get_url_path()
+        assert self.get_pq()('script[src="%s"]' % settings.PAYPAL_JS_URL)
+
+    def test_paypal_js_is_absent_if_contributions_are_disabled(self):
+        assert not self.addon.takes_contributions
+        assert not self.get_pq()('script[src="%s"]' % settings.PAYPAL_JS_URL)
 
 
 class TestPersonas(object):
@@ -1813,6 +1839,14 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse('addon-version-detail', kwargs={
             'addon_pk': param, 'pk': self.version.pk})
 
+    def test_bad_filter(self):
+        self.version.files.update(status=amo.STATUS_BETA)
+        # The filter is valid, but not for the 'list' action.
+        response = self.client.get(self.url, data={'filter': 'only_beta'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == ['The "filter" parameter is not valid in this context.']
+
     def test_version_get_not_found(self):
         self.url = reverse('addon-version-detail', kwargs={
             'addon_pk': self.addon.pk, 'pk': self.version.pk + 42})
@@ -1994,6 +2028,12 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def _set_tested_url(self, param):
         self.url = reverse('addon-version-list', kwargs={'addon_pk': param})
+
+    def test_bad_filter(self):
+        response = self.client.get(self.url, data={'filter': 'ahahaha'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == ['Invalid "filter" parameter specified.']
 
     def test_disabled_version_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -2231,10 +2271,10 @@ class TestAddonSearchView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
-    def perform_search(self, url, data=None, **headers):
+    def perform_search(self, url, data=None, expected_status=200, **headers):
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
-        assert response.status_code == 200
+        assert response.status_code == expected_status
         data = json.loads(response.content)
         return data
 
@@ -2532,6 +2572,11 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
+
+    def test_bad_filter(self):
+        data = self.perform_search(
+            self.url, {'app': 'lol'}, expected_status=400)
+        assert data == ['Invalid "app" parameter.']
 
 
 class TestAddonFeaturedView(TestCase):

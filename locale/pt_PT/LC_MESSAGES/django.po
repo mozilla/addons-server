@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-09 09:22+0000\n"
-"PO-Revision-Date: 2017-01-13 01:48+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"POT-Creation-Date: 2017-01-24 08:33+0000\n"
+"PO-Revision-Date: 2017-01-25 10:30+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -232,7 +232,7 @@ msgstr "O programador deste extra pede que mostre o seu apoio fazendo um donativ
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "O programador deste extra pede que mostre o seu apoio fazendo um pequeno donativo para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Contribute"
 msgstr "Contribuir"
 
@@ -243,8 +243,8 @@ msgstr "Contribuir"
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/profile.html
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
+#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/edit_review.html
+#: src/olympia/translations/templates/translations/trans-menu.html
 msgid "or"
 msgstr "ou"
 
@@ -384,7 +384,7 @@ msgstr "Visibilidade"
 msgid "Visible"
 msgstr "Visível"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Invisible"
 msgstr "Invisível"
 
@@ -417,7 +417,8 @@ msgstr "Relatórios de abuso"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "Política de privacidade"
 
@@ -635,9 +636,8 @@ msgstr "Artista"
 msgid "Daily Users"
 msgstr "Utilizadores diários"
 
-#. The License for this add-on.
-#: src/olympia/addons/templates/addons/impala/license.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html
-#: src/olympia/devhub/templates/devhub/includes/license_form.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/devhub/templates/devhub/includes/license_form.html
+#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "License"
 msgstr "Licença"
 
@@ -664,14 +664,14 @@ msgstr[1] "<strong>{0}</strong> utilizadores"
 msgid "Hover to Preview"
 msgstr "Passe para Visualizar"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/templates/reviews/add.html
+#: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Add"
 msgstr "Adicionar"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/edit.html
-#: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/media.html src/olympia/devhub/templates/devhub/addons/edit/support.html
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/editors/templates/editors/review.html
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
+#: src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/addons/edit/details.html
+#: src/olympia/devhub/templates/devhub/addons/edit/media.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/editors/templates/editors/review.html
 msgid "Edit"
 msgstr "Editar"
 
@@ -810,7 +810,6 @@ msgstr ""
 "telefone.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
-#: src/olympia/addons/templates/addons/report_abuse_full.html
 msgid "Report Abuse"
 msgstr "Reportar abuso"
 
@@ -831,9 +830,8 @@ msgstr "Enviar relatório"
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/profile.html
-#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html src/olympia/devhub/templates/devhub/versions/edit.html
-#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
-#: src/olympia/zadmin/templates/zadmin/validation.html
+#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html src/olympia/zadmin/templates/zadmin/validation.html
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -844,7 +842,7 @@ msgstr "O que acha?"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "Por favor <a href=\"%(login)s\">inicie sessão</a> para submeter um comentário"
+msgstr "Por favor <a href=\"%(login)s\">inicie sessão</a> para submeter uma análise"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Title:"
@@ -852,7 +850,7 @@ msgstr "Título:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Review:"
-msgstr "Comentário:"
+msgstr "Análise:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Rating:"
@@ -861,25 +859,29 @@ msgstr "Avaliação:"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Submit review"
-msgstr "Submeter comentário"
+msgstr "Submeter análise"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
-msgstr "Por favor, não insira relatos de erro nos comentários. Não disponibilizamos o seu endereço de email aos programadores de extras e eles poderão ter que o contactar para resolver o problema."
+msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
+msgstr "Por favor, não insira relatórios de bugs aqui. Não disponibilizamos o seu endereço de email aos programadores de extras, por isso eles não poderão contactá-lo para resolver o seu problema."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
-msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
-msgstr "Veja a <a href=\"%(support)s\">secção de suporte</a> para encontrar assistência para este extra."
+msgid ""
+"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">add-on community</a> for help."
+msgstr ""
+"Consulte a <a href=\"%(support)s\">secção de apoio</a> deste extra para descobrir se a assistência está disponível. Também pode tentar pedir ajuda à <a href=\"https://discourse.mozilla-"
+"community.org/c/add-ons/add-on-support\">comunidade de extras</a>."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
-msgstr "Guia sobre comentários"
+msgstr "Diretrizes de análises"
 
-#: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py src/olympia/reviews/templates/reviews/add.html
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/review_list.html
+#: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py
+#: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Reviews"
-msgstr "Comentários"
+msgstr "Análises"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 #, python-format
@@ -894,8 +896,8 @@ msgstr "Mostrar a resposta do programador a esta revisão"
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Ver todos os comentários para este extra"
-msgstr[1] "Ver todos os %(cnt)s comentários para este extra"
+msgstr[0] "Ver todas as análises para este extra"
+msgstr[1] "Ver todas as %(cnt)s análises para este extra"
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
@@ -953,7 +955,7 @@ msgstr "Média"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Write a review"
-msgstr "Escrever um comentário"
+msgstr "Escrever uma análise"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Related Categories"
@@ -974,8 +976,8 @@ msgstr[1] "Outros extras destes autores"
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> comentário de utilizador"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> comentários de utilizadores"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> análise de utilizador"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> análises de utilizador"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "View statistics"
@@ -1036,7 +1038,7 @@ msgstr "Versão {0}"
 msgid "Info"
 msgstr "Info"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Last Updated:"
 msgstr "Última atualização:"
 
@@ -1117,7 +1119,8 @@ msgid_plural "About the Developers"
 msgstr[0] "Sobre o programador"
 msgstr[1] "Sobre os desenvolvedores"
 
-#: src/olympia/addons/templates/addons/impala/developers.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/profile.html
+#: src/olympia/addons/templates/addons/impala/developers.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/users/templates/users/edit.html
+#: src/olympia/users/templates/users/profile.html
 msgid "No Photo"
 msgstr "Sem fotografia"
 
@@ -1137,6 +1140,7 @@ msgstr "Este extra foi desativado por um administrador."
 msgid "Source Code License for {addon}"
 msgstr "Licença do código fonte para {addon}"
 
+#. The License for this add-on.
 #: src/olympia/addons/templates/addons/impala/license.html src/olympia/versions/templates/versions/mobile/version.html
 msgid "Source Code License"
 msgstr "Licença do código fonte"
@@ -1153,8 +1157,8 @@ msgstr "traduzir"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Ver todos os comentários do utilizador"
-msgstr[1] "Ver todos os %(cnt)s comentários de utilizadores"
+msgstr[0] "Ver todas as análises de utilizador"
+msgstr[1] "Ver todas as %(cnt)s análises de utilizador"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
@@ -1291,9 +1295,9 @@ msgstr "Precisa do Firefox para instalar extras, <a href=\"http://mozilla.com/mo
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Voltar à página inicial dos extras do {0}"
 
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
-#: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "Extras"
 
@@ -1317,10 +1321,9 @@ msgstr ""
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/impala/base_listing.html
-#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
-#: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
-#: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html
+#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/base.html
+#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "Temas"
 
@@ -1353,7 +1356,8 @@ msgstr "Experimentar!"
 msgid "Theme Info &raquo;"
 msgstr "Informações do tema &raquo;"
 
-#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tools"
 msgstr "Ferramentas"
 
@@ -1384,12 +1388,12 @@ msgid "Manage My Submissions"
 msgstr "Gerir as minhas submissões"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/addons/submit/base.html
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Submit a New Add-on"
 msgstr "Submeter um novo extra"
 
 #: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Submit a New Theme"
 msgstr "Submeter um novo tema"
 
@@ -1421,10 +1425,9 @@ msgstr "Erro ao verificar a entrada, por favor, tente novamente."
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "É necessário um código hexadecimal de cor válido, tal como #000000."
 
-#: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
+#: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
-#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
+#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Collections"
 msgstr "Coleções"
 
@@ -1860,8 +1863,8 @@ msgid "Explore"
 msgstr "Explorar"
 
 # Plural in this context means many of the add-on type
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/impala/base_listing.html
+#: src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "Extensões"
 
@@ -2008,8 +2011,7 @@ msgstr "Por favor esteja ciente que WebExtensions não aceita um \"*\" em <a hre
 msgid "GUID"
 msgstr "GUID"
 
-#. {0} is an add-on name.
-#: src/olympia/applications/templates/applications/appversions.html src/olympia/versions/templates/versions/version_list.html
+#: src/olympia/applications/templates/applications/appversions.html
 msgid "Versions"
 msgstr "Versões"
 
@@ -2164,10 +2166,6 @@ msgstr "Ícone eliminado"
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a New Collection"
 msgstr "Criar uma nova coleção"
-
-#: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/devhub/templates/devhub/personas/submit.html
-msgid "Create"
-msgstr "Criar"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #, python-format
@@ -2385,10 +2383,6 @@ msgstr "Editar esta coleção"
 msgid "Delete {0}"
 msgstr "Eliminar {0}"
 
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
-msgid "Delete"
-msgstr "Apagar"
-
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
 msgid "Are you sure?"
 msgstr "Tem a certeza?"
@@ -2605,10 +2599,6 @@ msgstr "Grupos de extras relacionados que qualquer um pode criar."
 msgid "Blocked Add-ons"
 msgstr "Extras bloqueados"
 
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocklist"
-msgstr "Lista de bloqueio"
-
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "<b>{0}</b> has been blocked for your protection."
@@ -2715,15 +2705,14 @@ msgstr "Criado"
 msgid "{0}: Featured Add-ons"
 msgstr "{0}: Extras em destaque"
 
-#: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/legacy_discovery/modules.py
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-msgid "Featured Add-ons"
-msgstr "Extras em destaque"
-
 #. {0} is a category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "No featured add-ons in {0}."
 msgstr "Sem extras em destaque para {0}."
+
+#: src/olympia/browse/templates/browse/featured.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+msgid "Featured Add-ons"
+msgstr "Extras em destaque"
 
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
@@ -2819,10 +2808,6 @@ msgstr "Navegue entre, ainda mais, fornecedores de pesquisa em <a href=\"http://
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Faça a sua própria</a> ferramenta de pesquisa"
 
-#: src/olympia/browse/templates/browse/themes.html src/olympia/constants/base.py
-msgid "Complete Themes"
-msgstr "Temas completos"
-
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
 msgstr "Extensões mais populares"
@@ -2902,7 +2887,7 @@ msgid "{0} Themes"
 msgstr "{0} Temas"
 
 #. {0} is a user's name.
-#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/grid.html
+#: src/olympia/browse/templates/browse/personas/base.html
 msgid "{0}'s Themes"
 msgstr "Temas {0}"
 
@@ -3000,10 +2985,6 @@ msgstr ""
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
 msgstr "Relatórios para os seus extras"
-
-#: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
-msgid "Add-on Compatibility Center"
-msgstr "Centro de compatibilidade dos extras"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Enter the GUID of an add-on below to view any reports we've received."
@@ -3143,7 +3124,8 @@ msgstr "Programador"
 msgid "Viewer"
 msgstr "Visualizador"
 
-#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/mobile/header.html
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#: src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "Suporte"
 
@@ -3179,6 +3161,10 @@ msgstr "Plugin"
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Theme"
 msgstr "Tema"
+
+#: src/olympia/constants/base.py
+msgid "Complete Themes"
+msgstr "Temas completos"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/constants/base.py
@@ -3551,7 +3537,7 @@ msgstr "Experimental"
 msgid "Feeds, News, & Blogging"
 msgstr "Feeds, notícias e blogging"
 
-#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html
 msgid "Performance"
 msgstr "Desempenho"
 
@@ -3975,7 +3961,11 @@ msgstr[1] "{0} avisos"
 
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
-msgstr "Comentário"
+msgstr "Análise"
+
+#: src/olympia/devhub/tasks.py
+msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
+msgstr "Começando com o Firefox 53, novas extensões neste site só podem ser WebExtensions."
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -4027,7 +4017,7 @@ msgstr "Coleções do utilizador"
 
 #: src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
 msgid "User Reviews"
-msgstr "Comentários do utilizador"
+msgstr "Análises de utilizador"
 
 #: src/olympia/devhub/views.py
 msgid "Changes successfully saved."
@@ -4178,8 +4168,8 @@ msgid "{0} :: Search"
 msgstr "{0} :: Pesquisar"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py src/olympia/editors/templates/editors/queue.html
-#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/mobile/results.html
-#: src/olympia/search/templates/search/personas.html src/olympia/search/templates/search/results.html src/olympia/templates/impala/search.html src/olympia/templates/search.html
+#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
+#: src/olympia/templates/impala/search.html src/olympia/templates/search.html
 msgid "Search"
 msgstr "Pesquisar"
 
@@ -4291,7 +4281,7 @@ msgstr "Central do programador <small>de extras</small>"
 msgid "more add-ons..."
 msgstr "mais extras..."
 
-#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Documentation"
 msgstr "Documentação"
 
@@ -4307,7 +4297,7 @@ msgstr "Temas leves"
 msgid "Add-on Policies"
 msgstr "Políticas do extra"
 
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Add-on Validator"
 msgstr "Validar extra"
 
@@ -4695,10 +4685,6 @@ msgid "These flags are used to classify add-ons. It is only relevant for listed 
 msgstr "Estas etiquetas são utilizadas para classificar extras. Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
-msgid "This is a site-specific add-on."
-msgstr "Este é um extra específico de um site."
-
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on requires external software."
 msgstr "Este extra necessita de software externo."
 
@@ -4930,6 +4916,10 @@ msgstr "Resumir"
 msgid "Delete this add-on."
 msgstr "Eliminar este extra."
 
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
+msgid "Delete"
+msgstr "Apagar"
+
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Edit information about this add-on."
 msgstr "Editar informação acerca deste extra."
@@ -4946,7 +4936,7 @@ msgstr "Nova versão"
 msgid "Daily statistics on downloads and users."
 msgstr "Estatísticas diárias sobre descargas e utilizadores."
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/stats/templates/stats/stats.html
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Statistics"
 msgstr "Estatísticas"
 
@@ -4972,7 +4962,8 @@ msgstr "Ver alterados recentemente"
 msgid "Edit details about this theme's listing."
 msgstr "Editar os detalhes da listagem pública deste tema."
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Edit Listing"
 msgstr "Editar listagem"
 
@@ -5094,7 +5085,7 @@ msgstr "Notas de lançamento:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Let your users know what's new and what's changed in this version."
-msgstr "Deixe que os seus utilizadores saibam o que há de novo e o que foi alterado nesta versão."
+msgstr "Deixe que os seus utilizadores saibam as novidades e o que foi alterado nesta versão."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will appear on the detail page."
@@ -5197,15 +5188,15 @@ msgstr "Carregar versão"
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "Use os campos em baixo para carregar o pacote do seu extra e selecionar restrições de plataformas. Após carregar. uma série de testes automatizados irão ser executados no seu ficheiro."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Which platforms is this file compatible with?"
 msgstr "Com que plataformas é este ficheiro compatível?"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Only publish this version to my beta channel."
 msgstr "Publicar esta versão apenas para o meu canal beta."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Administrative overrides"
 msgstr "Sobreposições administrativas"
 
@@ -5268,8 +5259,8 @@ msgid "Generate new credentials"
 msgstr "Gerar novas credenciais"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Please complete your add-on."
-msgstr "Por favor, complete o seu extra."
+msgid "Please complete your add-on by adding a version or missing metadata."
+msgstr "Por favor complete o seu extra, adicionando uma versão ou metadados em falta."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -5287,12 +5278,12 @@ msgstr "O seu extra foi desativado por um administrador do site e já não é ap
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "O seu extra não será incluído em resultados de pesquisas e a sua página de listagem irá indicar que o desativou. Submissões com novas versões para listagem não serão aceites nesta fase."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Created:"
 msgstr "Criado:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, python-format
 msgid "%%b %%e, %%Y"
 msgstr "%%e de %%b, %%Y"
@@ -5473,6 +5464,122 @@ msgstr "Últimas notícias"
 msgid "Read more in our Blog"
 msgstr "Ler mais no nosso blogue"
 
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Resources"
+msgstr "Recursos"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "WebExtensions"
+msgstr "WebExtensions"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Community"
+msgstr "Comunidade"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
+msgid "About"
+msgstr "Acerca"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
+msgid "Forum"
+msgstr "Fórum"
+
+# Link text to the AMO blog.
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
+msgid "Blog"
+msgstr "Blogue"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Contact Us"
+msgstr "Contacte-nos"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Review Policies"
+msgstr "Políticas de revisão"
+
+# Link text to the Frequently Asked Questions page.
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
+msgid "FAQ"
+msgstr "FAQ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Report Bug"
+msgstr "Reportar um bug"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
+msgid "Site Status"
+msgstr "Estado do site"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "Compatibility Checker"
+msgstr "Verificador de compatibilidade"
+
+# 75%
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+msgid "Compatibility Reporter"
+msgstr "Relator de compatibilidade"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Promote"
+msgstr "Promover"
+
+# 82%
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Get Your Add-on Featured"
+msgstr "Tenha o seu extra em destaque"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "\"Get The Add-on\" button"
+msgstr "Botão \"Obter o extra\""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Legal"
+msgstr "Informações legais"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
+msgid "Report Trademark Abuse"
+msgstr "Reportar abuso de marca registada"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "Avisos legais"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Review Add-ons"
+msgstr "Rever extras"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
+msgstr "Os revisores voluntários ajudam a manter os extras seguros e confiáveis para utilização. Eles também aproveitam ótimas vantagens!"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Join us!"
+msgstr "Junte-se a nós!"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Write Some Code"
+msgstr "Escreva algum código"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Help make add-ons better by contributing your coding skills."
+msgstr "Ajude a criar extras melhores ao contribuir com suas capacidades de programação."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Get started"
+msgstr "Começar"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "More Ways to Participate"
+msgstr "Mais maneiras de participar"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
+msgstr "Não precisa de ter capacidades de programação para ajudar a manter o Firefox o navegador mais personalizável disponível!"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "See how"
+msgstr "Veja como"
+
 # 82%
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Manage Your Add-on"
@@ -5486,13 +5593,38 @@ msgstr "Inicie sessão para editar e atualizar o seu extra"
 msgid "Evolution in Add-on Development"
 msgstr "Evolução no desenvolvimento de extras"
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
-msgstr "As WebExtensions estão a começar a ser o padrão para desenvolvimento de extras no Firefox. Esta e outras alterações no Firefox poderão afetar programadores de extras de legado."
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
+msgstr "As WebExtensions são agora o padrão para desenvolvimento de extras no Firefox. Precisará de atualizar os seus extras de legado para permanecer compatível."
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-msgid "Find Out if Your Add-on is Affected"
-msgstr "Descubra se o seu extra está afetado"
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
+msgid "Learn How"
+msgstr "Saber mais"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "What's New"
+msgstr "Novidades"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgstr "Feliz ano novo! Veja o que está na calha para os extras em 2017."
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "Show Me"
+msgstr "Mostrar-me"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "AMO"
+msgstr "AMO"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "Self-hosted"
+msgstr "Auto-hospedado"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "View All Submissions"
+msgstr "Ver todas as submissões"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
@@ -5515,30 +5647,35 @@ msgstr "Central de programador de extras"
 msgid "Docs"
 msgstr "Documentação"
 
-# Link text to the AMO blog.
-#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
-msgid "Blog"
-msgstr "Blogue"
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+msgid "Sign Out"
+msgstr "Terminar sessão"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-msgid "Sign In"
-msgstr "Iniciar sessão"
+msgid "User Photo"
+msgstr "Fotografia do utilizador"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, python-format
+msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
+msgstr "<a href=\"%(register)s\">Registar</a> ou <a href=\"%(login)s\">Iniciar sessão</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-msgid "Customize Your Firefox"
-msgstr "Personalize o seu Firefox"
+msgid "Customize Firefox"
+msgstr "Personalizar o Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
-"necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
+" you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Os extras permitem que milhões de utilizadores do Firefox melhorem a sua experiência de navegação. Se sabe <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> e <a href=\"#\">CSS</a>, então já tem "
-"todas as capacidades necessárias para fazer um ótimo extra."
+"Os extras permitem que milhões de utilizadores do Firefox melhorem a sua experiência de navegação. Se sabe <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, e <a "
+"href=\"%(css_link)s\">CSS</a>, então já tem todas as capacidades necessárias para fazer um ótimo extra."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-msgid "Learn How to make an Add-on"
-msgstr "Aprenda a fazer um Extra"
+msgid "Learn How to Make an Add-on"
+msgstr "Aprenda a fazer um extra"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Port a Chrome Extension"
@@ -5551,20 +5688,16 @@ msgstr ""
 "O Firefox suporta as APIs de WebExtensions, que na maioria dos casos são compatíveis com as APIs de extensões suportadas pela Google, Chrome e Opera, assim as suas extensões irão executar no Firefox"
 " com apenas algumas alterações."
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-msgid "Learn How"
-msgstr "Saber mais"
-
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
 msgstr "Publicar o seu extra"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr "Possui um extra pronto? Submeta a sua extensão ou tema para ser listado em addons.mozilla.org ou assine e distribua a sua extensão por si próprio."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-msgid "Sign in"
+msgid "Sign In"
 msgstr "Iniciar sessão"
 
 # Header for a column in a table
@@ -5577,17 +5710,8 @@ msgid "Automated code tests for your add-on."
 msgstr "Testes de código automáticos para o seu extra."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-msgid "Compatibility Checker"
-msgstr "Verificador de compatibilidade"
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr "Veja se o seu extra é provável de ser afetado por alterações no Firefox."
-
-# 75%
-#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-msgid "Compatibility Reporter"
-msgstr "Relator de compatibilidade"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5965,14 +6089,6 @@ msgstr "Alinhado em baixo à esquerda"
 msgid "Select a different footer image"
 msgstr "Selecione uma imagem de rodapé diferente"
 
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Files added to reviewed versions must be reviewed before they will be available for download."
-msgstr "Ficheiros adicionados a versões já revistas têm de ser novamente revistas antes de ficarem disponíveis para descarregar."
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Select the target platform for this file."
-msgstr "Selecione a plataforma de destino para este ficheiro."
-
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
 msgstr "Gerir versão {0}"
@@ -6018,14 +6134,6 @@ msgstr "Código fonte"
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr "Se o seu extra contem código binário ou código ofuscado, disponibilize o código aqui para os revisores."
-
-#: src/olympia/devhub/templates/devhub/versions/edit.html
-msgid "Upload a new file"
-msgstr "Carregar um novo ficheiro"
-
-#: src/olympia/devhub/templates/devhub/versions/edit.html
-msgid "Add File"
-msgstr "Adicionar ficheiro"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "File {file_id} ({platform})"
@@ -6203,14 +6311,6 @@ msgstr "Eliminar versão"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Disable Version"
 msgstr "Desativar versão"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add a new Version"
-msgstr "Adicionar nova versão"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add Version"
-msgstr "Adicionar versão"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hide Add-on"
@@ -6425,39 +6525,6 @@ msgid "[status:%s]"
 msgstr "[estado:%s]"
 
 #: src/olympia/editors/helpers.py
-msgid "Queue"
-msgstr "Fila"
-
-# 85%
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Updates"
-msgstr "Atualizações"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "New Add-ons"
-msgstr "Novos extras"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Moderated Reviews"
-msgstr "Revisões moderadas"
-
-#: src/olympia/editors/helpers.py
-msgid "Pending Themes"
-msgstr "Temas pendentes"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
-msgid "Flagged Themes"
-msgstr "Temas marcados"
-
-#: src/olympia/editors/helpers.py
-msgid "Update Themes"
-msgstr "Atualizar temas"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "All Unlisted Add-ons"
-msgstr "Todos os extras não-listados"
-
-#: src/olympia/editors/helpers.py
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
 msgstr[0] "Novo extra ({0})"
@@ -6474,6 +6541,10 @@ msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Revisão moderada ({0})"
 msgstr[1] "Revisões moderadas ({0})"
+
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
+msgid "All Unlisted Add-ons"
+msgstr "Todos os extras não-listados"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
@@ -6550,11 +6621,16 @@ msgstr "Se tiver preocupações acerca deste extra que um revisor administrador 
 
 #: src/olympia/editors/helpers.py
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Faça um comentário a esta versão.  O programador não poderá ver isto."
+msgstr "Faça um comentário a esta versão. O programador não poderá ver isto."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
 msgstr "Marcado"
+
+# 85%
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
+msgid "Updates"
+msgstr "Atualizações"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -6634,7 +6710,7 @@ msgstr "foi aprovado"
 
 #: src/olympia/editors/views.py
 msgid "given preliminary review"
-msgstr "dado comentário preliminar"
+msgstr "dada revisão preliminar"
 
 #: src/olympia/editors/views.py
 msgid "rejected"
@@ -6695,6 +6771,14 @@ msgid "Queues"
 msgstr "Esperas"
 
 #: src/olympia/editors/templates/editors/base.html
+msgid "New Add-ons"
+msgstr "Novos extras"
+
+#: src/olympia/editors/templates/editors/base.html
+msgid "Moderated Reviews"
+msgstr "Revisões moderadas"
+
+#: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Filas não-listadas"
 
@@ -6706,7 +6790,7 @@ msgstr "Registos"
 msgid "Add-on Review Log"
 msgstr "Registo da revisão do extra"
 
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/eventlog_detail.html
+#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/eventlog.html
 msgid "Moderated Review Log"
 msgstr "Registo da moderação da revisão "
 
@@ -6740,10 +6824,6 @@ msgstr "Mais detalhes"
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html
 msgid "No events found for this period."
 msgstr "Sem eventos encontrados para este período."
-
-#: src/olympia/editors/templates/editors/eventlog_detail.html
-msgid "Log Details"
-msgstr "Detalhes do registo"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
@@ -6834,10 +6914,6 @@ msgstr "Classificação"
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
 msgstr "Pontuação"
-
-#: src/olympia/editors/templates/editors/motd.html
-msgid "Message of the Day"
-msgstr "Mensagem do dia"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Update message of the day"
@@ -7116,10 +7192,6 @@ msgid "Reviewer"
 msgstr "Revisor"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
-msgid "Deleted Themes"
-msgstr "Temas eliminados"
-
-#: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
 msgstr "Data da eliminação"
 
@@ -7166,9 +7238,9 @@ msgid_plural "{num} Updates"
 msgstr[0] "{num} atualização"
 msgstr[1] "{num} atualizações"
 
-#: src/olympia/editors/templates/editors/themes/logs.html
-msgid "Theme Review Log"
-msgstr "Registro de revisões do tema"
+#: src/olympia/editors/templates/editors/themes/queue.html
+msgid "Flagged Themes"
+msgstr "Temas marcados"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Theme Review Queue"
@@ -9394,8 +9466,8 @@ msgid ""
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
 "Existem frequentemente vários extras que têm funcionalidades similares. Para descobrir qual é o certo para si, leia a descrição na integra do extra e veja as suas capturas de ecrã. Se ainda existem "
-"vários na corrida, leia pelas avaliações do extra, comentários de utilizadores, e estatísticas para ver qual é o mais apreciado por outros utilizadores. Lembre-se que pode simplesmente experimentar "
-"ambos e ver qual é o que gosta mais."
+"vários na corrida, leia pelas avaliações do extra, análises de utilizador, e estatísticas para ver qual é o mais apreciado por outros utilizadores. Lembre-se que pode simplesmente experimentar ambos"
+" e ver qual é o que gosta mais."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I can't find an add-on I'm looking for?"
@@ -9702,8 +9774,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Por favor denuncie ou reporte quaisquer análises questionáveis clicando em \"Reportar esta análise\" e esta será submetida para o site para moderação. A nossa equipa de moderação irá utilizar as "
-"linhas orientadoras de revisão para avaliar se a análise deve ser eliminada ou reposta para o site."
+"Por favor denuncie ou reporte quaisquer análises questionáveis clicando em \"Reportar esta análise\" e esta será submetido para o site para moderação. A nossa equipa de moderação irá utilizar as "
+"diretrizes de análises para avaliar se a análise deve ser eliminada ou reposta de volta no site."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -9723,7 +9795,7 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"No geral, não. Mas se análise não cumprir com as linhas orientadoras de análise descritas acima, pode clicar em \"Reportar esta análise\" para que a mesma seja moderada. Se uma análise tiver uma "
+"No geral, não. Mas se a análise não cumprir com as diretrizes de análises descritas acima, pode clicar em \"Reportar esta análise\" para que a mesma seja moderada. Se uma análise tiver uma "
 "reclamação que já não seja válida devido ao lançamento de uma nova versão do extra, podemos considerar eliminar a análise. Submeta o seu pedido detalhado para amo-editors@mozilla.org."
 
 #: src/olympia/pages/templates/pages/sunbird.html
@@ -9772,7 +9844,7 @@ msgstr "O vendedor não aceita pagamentos em %s."
 #: src/olympia/reviews/feeds.py
 #, python-format
 msgid "Reviews for %s"
-msgstr "Comentários para %s"
+msgstr "Análises para %s"
 
 #: src/olympia/reviews/feeds.py
 msgid "Review History for this Addon"
@@ -9798,7 +9870,7 @@ msgstr "Saltar por agora"
 
 #: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
 msgid "Delete review"
-msgstr "Eliminar comentário"
+msgstr "Eliminar análise"
 
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
@@ -9810,27 +9882,28 @@ msgstr "Obrigado; esta avaliação foi marcada para aprovação do editor."
 
 #: src/olympia/reviews/templates/reviews/add.html
 msgid "Add a review for {0}"
-msgstr "Adicionar comentário a {0}"
+msgstr "Adicionar análise para {0}"
 
 #: src/olympia/reviews/templates/reviews/add.html
 #, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
-"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
-"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Tenha estas dicas em mente:</h2> <ul> <li> Escreva como se estivesse a descrever a um amigo a sua experiência com o extra. Forneça detalhes específicos e úteis, tais como que funcionalidades "
-"gostou e/ou não gostou, quão simples é de utilizar e eventuais desvantagens que tenha. Evite linguagem genérica, por exemplo, dizendo que é \"Fantástico\" ou \"Mau\" a menos que apresente argumentos"
-" para fundamentar a sua escolha. </li> <li> Por favor, não coloque relatos de problemas/falhas nas análises. Não iremos disponibilizar o seu endereço de email para os programadores do extra e estes "
-"poderão ter de o/a contactar para ajudar a resolver o seu problema. Consulte a <a href=\"%(support)s\">secção de apoio</a> para saber onde pode obter apoio para este extra. </li> <li>Mantenha as "
-"análises limpas, evite a utilização de linguagem imprópria e não coloque informações pessoais. </li> </ul> <p>Por favor, leia as <a href=\"%(guide)s\">Diretrizes de revisão</a> para mais detalhes "
-"sobre análises de extras dos utilizadores.</p>"
+"<h2>Mantenha estas dicas em mente:</h2> <ul> <li> Escreva como se estivesse a dizer a um amigo acerca da sua experiência com o extra. Forneça detalhes específicos e úteis, tais como que "
+"funcionalidades que gostou e/ou não gostou, quão simples é de utilizar, e eventuais desvantagens que tenha. Evite linguagem genérica, por exemplo, chamando-lhe \"Ótimo\" ou \"Mau\" a menos que possa"
+" dar razões para fundamentar a sua escolha. </li> <li> Por favor, não coloque relatórios de bugs aqui. Não iremos disponibilizar o seu endereço de email para os programadores do extra e estes "
+"poderão ter de o/a contactar para ajudar a resolver o seu problema. Veja a <a href=\"%(support)s\">secção de apoio</a> deste extra para saber se existe assistência. Também pode tentar pedir à <a "
+"href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">comunidade de extras</a> por ajuda. </li> <li>Mantenha as análises limpas, evite a utilização de linguagem imprópria e não "
+"coloque informações pessoais. </li> </ul> <p>Por favor, leia as <a href=\"%(guide)s\">Diretrizes de análises</a> para mais detalhes sobre análises de extras de utilizador.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
-msgstr "Responder ao comentário de {0}"
+msgstr "Responder à análise de {0}"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
@@ -9904,7 +9977,7 @@ msgstr "{0} :: Avaliações"
 #. {0} is an addon name.
 #: src/olympia/reviews/templates/reviews/mobile/add.html src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Reviews for {0}"
-msgstr "Comentários para {0}"
+msgstr "Análises para {0}"
 
 #. {0} is a number.
 #: src/olympia/reviews/templates/reviews/review_list.html
@@ -9940,7 +10013,7 @@ msgstr "Escrever uma nova avaliação"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Be the first to write a review."
-msgstr "Seja o primeiro a escrever um comentário"
+msgstr "Seja o primeiro a escrever uma análise."
 
 #: src/olympia/reviews/templates/reviews/reviews_link.html
 msgid "{num} review"
@@ -9965,7 +10038,7 @@ msgstr "Adicionar uma Análise"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Log in to add a review"
-msgstr "Inicie sessão para deixar um comentário"
+msgstr "Inicie sessão para adicionar uma análise"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "No ratings yet."
@@ -10154,6 +10227,10 @@ msgstr "A versão já existe."
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Apenas WebExtensions tem permissão para omitir o GUID"
+
+#: src/olympia/signing/views.py
+msgid "Invalid GUID in URL"
+msgstr "GUID inválido no URL"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
@@ -10551,21 +10628,9 @@ msgstr "Escolha uma categoria"
 msgid "Mobile Categories"
 msgstr "Categorias do Mobile"
 
-#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "Avisos legais"
-
-#: src/olympia/templates/copyright.html
-msgid "Report Trademark Abuse"
-msgstr "Reportar abuso de marca registada"
-
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "Ver site móvel"
-
-#: src/olympia/templates/copyright.html
-msgid "Site Status"
-msgstr "Estado do site"
 
 #: src/olympia/templates/copyright.html
 msgid "Report a bug"
@@ -10582,19 +10647,6 @@ msgstr ""
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "conheça os <b>extras</b>"
-
-#: src/olympia/templates/footer.html
-msgid "About"
-msgstr "Acerca"
-
-# Link text to the Frequently Asked Questions page.
-#: src/olympia/templates/footer.html
-msgid "FAQ"
-msgstr "FAQ"
-
-#: src/olympia/templates/footer.html
-msgid "Forum"
-msgstr "Fórum"
 
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Other languages"
@@ -10839,7 +10891,7 @@ msgstr "um programador de um extra agradece-me uma contribuição"
 
 #: src/olympia/users/notifications.py
 msgid "an add-on developer replies to my review"
-msgstr "um programador de um extra responde ao meu comentário"
+msgstr "um programador de um extra responde à minha análise"
 
 #: src/olympia/users/notifications.py
 msgid "an app developer replies to my review"
@@ -10859,12 +10911,12 @@ msgstr "o meu extra baseado no sdk foi atualizado com sucesso"
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my add-on"
-msgstr "alguém escreveu um comentário sobre o meu extra"
+msgstr "alguém escreve uma análise sobre o meu extra"
 
 # 86%
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my app"
-msgstr "alguém escreveu um comentário sobre o meu aplicativo"
+msgstr "alguém escreve uma análise sobre a minha aplicação"
 
 #: src/olympia/users/notifications.py
 msgid "add-on contests or events are announced"
@@ -11118,7 +11170,7 @@ msgstr "Editar perfil"
 msgid "Manage user"
 msgstr "Gerir utilizador"
 
-#: src/olympia/users/templates/users/profile.html src/olympia/users/templates/users/report_abuse_full.html
+#: src/olympia/users/templates/users/profile.html
 msgid "Report user"
 msgstr "Reportar utilizador"
 
@@ -11163,11 +11215,11 @@ msgstr "Criadas por mim"
 # "My" in this context is the logged in user who is reading the page
 #: src/olympia/users/templates/users/profile.html
 msgid "My Reviews"
-msgstr "Meus comentários"
+msgstr "Minhas análises"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "No add-on reviews yet."
-msgstr "Nenhum comentário sobre extras ainda."
+msgstr "Nenhuma análise de extra ainda."
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Report User"

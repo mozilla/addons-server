@@ -27,10 +27,7 @@ addon_view = addon_view_factory(Addon.objects.valid)
 log = commonware.log.getLogger('z.versions')
 
 
-@addon_view
-@mobile_template('versions/{mobile/}version_list.html')
-@non_atomic_requests
-def version_list(request, addon, template, beta=False):
+def _version_list_qs(addon, beta=False):
     # We only show versions that have files with the right status.
     if beta:
         status = amo.STATUS_BETA
@@ -38,9 +35,16 @@ def version_list(request, addon, template, beta=False):
         status = amo.STATUS_AWAITING_REVIEW
     else:
         status = amo.STATUS_PUBLIC
-    qs = (addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-          .filter(files__status=status)
-          .distinct().order_by('-created'))
+    return (addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+                          .filter(files__status=status)
+                          .distinct().order_by('-created'))
+
+
+@addon_view
+@mobile_template('versions/{mobile/}version_list.html')
+@non_atomic_requests
+def version_list(request, addon, template, beta=False):
+    qs = _version_list_qs(addon, beta=beta)
     versions = amo.utils.paginate(request, qs, PER_PAGE)
     versions.object_list = list(versions.object_list)
     Version.transformer(versions.object_list)
@@ -51,20 +55,22 @@ def version_list(request, addon, template, beta=False):
 @addon_view
 @non_atomic_requests
 def version_detail(request, addon, version_num):
-    qs = (addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-          .filter(files__status__in=amo.VALID_FILE_STATUSES)
-          .distinct().order_by('-created'))
+    beta = amo.VERSION_BETA.search(version_num)
+    qs = _version_list_qs(addon, beta=beta)
 
     # Use cached_with since values_list won't be cached.
     def f():
-        return _find_version_page(qs, addon, version_num)
+        return _find_version_page(qs, addon, version_num, beta=beta)
 
     return caching.cached_with(qs, f, 'vd:%s:%s' % (addon.id, version_num))
 
 
-def _find_version_page(qs, addon, version_num):
+def _find_version_page(qs, addon, version_num, beta=False):
+    if beta:
+        url = reverse('addons.beta-versions', args=[addon.slug])
+    else:
+        url = reverse('addons.versions', args=[addon.slug])
     ids = list(qs.values_list('version', flat=True))
-    url = reverse('addons.versions', args=[addon.slug])
     if version_num in ids:
         page = 1 + ids.index(version_num) / PER_PAGE
         to = urlparams(url, 'version-%s' % version_num, page=page)
@@ -120,7 +126,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         else:
             log.info(
                 u'download file {file_id}: addon/file disabled and '
-                u'user {user_id} is not an owner or editor.'.format(
+                u'user {user_id} is not an owner or reviewer.'.format(
                     file_id=file_id, user_id=request.user.pk))
             raise http.Http404()  # Not owner or admin.
 
@@ -133,7 +139,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         else:
             log.info(
                 u'download file {file_id}: version is unlisted and '
-                u'user {user_id} is not an owner or editor.'.format(
+                u'user {user_id} is not an owner or reviewer.'.format(
                     file_id=file_id, user_id=request.user.pk))
             raise http.Http404()  # Not owner or admin.
 

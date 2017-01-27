@@ -302,8 +302,6 @@ class Addon(OnChangeMixin, ModelBase):
     public_stats = models.BooleanField(default=False, db_column='publicstats')
     prerelease = models.BooleanField(default=False)
     admin_review = models.BooleanField(default=False, db_column='adminreview')
-    site_specific = models.BooleanField(default=False,
-                                        db_column='sitespecific')
     external_software = models.BooleanField(default=False,
                                             db_column='externalsoftware')
     dev_agreement = models.BooleanField(
@@ -2009,6 +2007,7 @@ class Preview(ModelBase):
     @property
     def image_size(self):
         return self.sizes.get('image', []) if self.sizes else []
+
 
 dbsignals.pre_save.connect(save_signal, sender=Preview,
                            dispatch_uid='preview_translations')

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-09 09:22+0000\n"
+"POT-Creation-Date: 2017-01-24 08:33+0000\n"
 "PO-Revision-Date: 2016-10-30 22:21+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,7 +232,7 @@ msgstr "অ্যাড-অনটির ডেভেলপার চান আ�
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "এই অ্যাড-অনটির ডেভেলপার চান যে আপনি <a href=\"%(charity_url)s\">%(charity_name)s</a>কে একটি ছোট অনুদান প্রদানের মাধ্যমে আপনার সমর্থন প্রকাশ করুন।"
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Contribute"
 msgstr "অবদান রাখুন"
 
@@ -241,8 +241,8 @@ msgstr "অবদান রাখুন"
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/profile.html
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
+#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/edit_review.html
+#: src/olympia/translations/templates/translations/trans-menu.html
 msgid "or"
 msgstr "অথবা"
 
@@ -384,7 +384,7 @@ msgstr "দৃশ্যমানতা"
 msgid "Visible"
 msgstr "দৃশ্যমানতা"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Invisible"
 msgstr "অদৃশ্য"
 
@@ -417,7 +417,8 @@ msgstr "অপব্যবহারের রিপোর্ট"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "গোপনীয়তার নীতি"
 
@@ -631,9 +632,8 @@ msgstr "শিল্পী"
 msgid "Daily Users"
 msgstr "দৈনিক ব্যবহারকারী"
 
-#. The License for this add-on.
-#: src/olympia/addons/templates/addons/impala/license.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html
-#: src/olympia/devhub/templates/devhub/includes/license_form.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/devhub/templates/devhub/includes/license_form.html
+#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "License"
 msgstr "লাইসেন্স"
 
@@ -660,14 +660,14 @@ msgstr[1] "<strong>{0}</strong> জন ব্যবহারকারী"
 msgid "Hover to Preview"
 msgstr "প্রাকদর্শনের জন্য হোভার করুন"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/templates/reviews/add.html
+#: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Add"
 msgstr "যোগ করুন"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/edit.html
-#: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/media.html src/olympia/devhub/templates/devhub/addons/edit/support.html
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/editors/templates/editors/review.html
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
+#: src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/addons/edit/details.html
+#: src/olympia/devhub/templates/devhub/addons/edit/media.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/editors/templates/editors/review.html
 msgid "Edit"
 msgstr "সম্পাদনা করুন"
 
@@ -802,7 +802,6 @@ msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly t
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
-#: src/olympia/addons/templates/addons/report_abuse_full.html
 msgid "Report Abuse"
 msgstr "অপব্যবহার রিপোর্ট করুন"
 
@@ -823,9 +822,8 @@ msgstr "রিপোর্ট পাঠান"
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/profile.html
-#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html src/olympia/devhub/templates/devhub/versions/edit.html
-#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
-#: src/olympia/zadmin/templates/zadmin/validation.html
+#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html src/olympia/zadmin/templates/zadmin/validation.html
 msgid "Cancel"
 msgstr "বাতিল"
 
@@ -856,21 +854,24 @@ msgid "Submit review"
 msgstr "পর্যালোচনা জমা দিন"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
+#, fuzzy
+msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
 "অনুগ্রহ করে পর্যালোচনায় বাগ রিপোর্ট জমা দেবেন না। আপনার সমস্যাটি সমাধান করার জন্য হয়তো তাদের আপনার সাথে যোগাযোগ করার প্রয়োজন হতে পারে কিন্তু আমরা আপনার ইমেইল অ্যাড্রেস অ্যাড-অন ডেভেলপারদের জন্য উন্মুক্ত করে দেই না।"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
-msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
-msgstr "এই অ্যাড-অনটির জন্য কোথায় সহায়তা পেতে পারেন তা <a href=\"%(support)s\">সহায়তা অংশে</a> দেখুন।"
+msgid ""
+"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">add-on community</a> for help."
+msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
 msgstr "পর্যালোচনা নির্দেশিকা"
 
-#: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py src/olympia/reviews/templates/reviews/add.html
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/review_list.html
+#: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py
+#: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Reviews"
 msgstr "পর্যালোচনাসূমহ"
 
@@ -1030,7 +1031,7 @@ msgstr "সংস্করণ {0}"
 msgid "Info"
 msgstr "তথ্য"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Last Updated:"
 msgstr "সর্বশেষ হালনাগাদ:"
 
@@ -1108,7 +1109,8 @@ msgid_plural "About the Developers"
 msgstr[0] "ডেভেলপার সম্পর্কে"
 msgstr[1] "ডেভেলপারদের সম্পর্কে"
 
-#: src/olympia/addons/templates/addons/impala/developers.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/profile.html
+#: src/olympia/addons/templates/addons/impala/developers.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/users/templates/users/edit.html
+#: src/olympia/users/templates/users/profile.html
 msgid "No Photo"
 msgstr "কোন ছবি নেই"
 
@@ -1128,6 +1130,7 @@ msgstr "এই অ্যাড-অনটি একজন প্রশাসক �
 msgid "Source Code License for {addon}"
 msgstr "{addon} এর সোর্স কোড লাইসেন্স"
 
+#. The License for this add-on.
 #: src/olympia/addons/templates/addons/impala/license.html src/olympia/versions/templates/versions/mobile/version.html
 msgid "Source Code License"
 msgstr "সোর্স কোড লাইসেন্স"
@@ -1281,9 +1284,9 @@ msgstr "আড-অন ইনস্টল করার জন্য আপনা�
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে যান"
 
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
-#: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "অ্যাড-অন"
 
@@ -1306,10 +1309,9 @@ msgstr ""
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/impala/base_listing.html
-#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
-#: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
-#: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html
+#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/base.html
+#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "থিম"
 
@@ -1342,7 +1344,8 @@ msgstr "ব্যবহার করে দেখুন!"
 msgid "Theme Info &raquo;"
 msgstr "থিমের তথ্য &raquo;"
 
-#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tools"
 msgstr "টুলস"
 
@@ -1373,12 +1376,12 @@ msgid "Manage My Submissions"
 msgstr "আমার জমাকৃতগুলো নিয়ন্ত্রন করা"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/addons/submit/base.html
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Submit a New Add-on"
 msgstr "নতুন অ্যাড-অন জমা দিন"
 
 #: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-#: src/olympia/devhub/templates/devhub/index-legacy.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Submit a New Theme"
 msgstr "নতুন থিম জমা দিন"
 
@@ -1410,10 +1413,9 @@ msgstr ""
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "অবশ্যই বৈধ হেক্স কালার কোড হতে হবে, যেমন #000000।"
 
-#: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
+#: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
-#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
+#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Collections"
 msgstr "সংগ্রহ"
 
@@ -1847,8 +1849,8 @@ msgstr "শীর্ষস্থানীয়"
 msgid "Explore"
 msgstr "ঘুরে বেড়ান"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/impala/base_listing.html
+#: src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "এক্সটেনশন"
 
@@ -1994,8 +1996,7 @@ msgstr ""
 msgid "GUID"
 msgstr "GUID"
 
-#. {0} is an add-on name.
-#: src/olympia/applications/templates/applications/appversions.html src/olympia/versions/templates/versions/version_list.html
+#: src/olympia/applications/templates/applications/appversions.html
 msgid "Versions"
 msgstr "সংস্করণ"
 
@@ -2150,10 +2151,6 @@ msgstr "আইকন মুছে ফেলা হয়েছে"
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a New Collection"
 msgstr "নতুন সংগ্রহ তৈরি করুন"
-
-#: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/devhub/templates/devhub/personas/submit.html
-msgid "Create"
-msgstr "তৈরি করুন"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #, python-format
@@ -2367,10 +2364,6 @@ msgstr "সংগ্রহটি সম্পাদনা করুন"
 msgid "Delete {0}"
 msgstr "{0} মুছে ফেলুন"
 
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
-msgid "Delete"
-msgstr "মুছে ফেলুন"
-
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
 msgid "Are you sure?"
 msgstr "আপনি নিশ্চিত?"
@@ -2583,10 +2576,6 @@ msgstr "পরষ্পর সম্পর্কিত অ্যাড-অনে
 msgid "Blocked Add-ons"
 msgstr "ব্লককৃত এড-অনস"
 
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocklist"
-msgstr "ব্লকলিস্ট"
-
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "<b>{0}</b> has been blocked for your protection."
@@ -2691,15 +2680,14 @@ msgstr "তৈরী করা হয়েছে"
 msgid "{0}: Featured Add-ons"
 msgstr "{0}: নির্বাচিত অ্যাড-অন"
 
-#: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/legacy_discovery/modules.py
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-msgid "Featured Add-ons"
-msgstr "নির্বাচিত অ্যাড-অন"
-
 #. {0} is a category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "No featured add-ons in {0}."
 msgstr "{0} এ কোন নির্বাচিত অ্যাড-অন নেই।"
+
+#: src/olympia/browse/templates/browse/featured.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+msgid "Featured Add-ons"
+msgstr "নির্বাচিত অ্যাড-অন"
 
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
@@ -2795,10 +2783,6 @@ msgstr ""
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
 msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">আপনার নিজের</a>খোঁজার টুল"
 
-#: src/olympia/browse/templates/browse/themes.html src/olympia/constants/base.py
-msgid "Complete Themes"
-msgstr "সম্পূর্ণ থিম"
-
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
 msgstr "সবথেকে জনপ্রিয় থিমসমূহ"
@@ -2878,7 +2862,7 @@ msgid "{0} Themes"
 msgstr "{0} গুলো থিম"
 
 #. {0} is a user's name.
-#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/grid.html
+#: src/olympia/browse/templates/browse/personas/base.html
 msgid "{0}'s Themes"
 msgstr "{0} 'র থিমসূমহ"
 
@@ -2971,10 +2955,6 @@ msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
-msgstr ""
-
-#: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
-msgid "Add-on Compatibility Center"
 msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter.html
@@ -3116,7 +3096,8 @@ msgstr "ডেভেলপার"
 msgid "Viewer"
 msgstr "দর্শক"
 
-#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/mobile/header.html
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#: src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "সহায়তা"
 
@@ -3152,6 +3133,10 @@ msgstr "প্লাগইন"
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Theme"
 msgstr "থিম"
+
+#: src/olympia/constants/base.py
+msgid "Complete Themes"
+msgstr "সম্পূর্ণ থিম"
 
 #: src/olympia/constants/base.py
 msgid "Dictionaries"
@@ -3528,7 +3513,7 @@ msgstr "পরীক্ষামূলক"
 msgid "Feeds, News, & Blogging"
 msgstr "ফিড, নিউজ ও ব্লগিং"
 
-#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html
 msgid "Performance"
 msgstr "কর্মক্ষমতা"
 
@@ -3952,6 +3937,10 @@ msgid "Review"
 msgstr "রিভিউ"
 
 #: src/olympia/devhub/tasks.py
+msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
@@ -4152,8 +4141,8 @@ msgid "{0} :: Search"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py src/olympia/editors/templates/editors/queue.html
-#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/mobile/results.html
-#: src/olympia/search/templates/search/personas.html src/olympia/search/templates/search/results.html src/olympia/templates/impala/search.html src/olympia/templates/search.html
+#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
+#: src/olympia/templates/impala/search.html src/olympia/templates/search.html
 msgid "Search"
 msgstr "খোঁজা"
 
@@ -4261,7 +4250,7 @@ msgstr ""
 msgid "more add-ons..."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Documentation"
 msgstr ""
 
@@ -4277,7 +4266,7 @@ msgstr ""
 msgid "Add-on Policies"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Add-on Validator"
 msgstr ""
 
@@ -4648,10 +4637,6 @@ msgid "These flags are used to classify add-ons. It is only relevant for listed 
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
-msgid "This is a site-specific add-on."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on requires external software."
 msgstr ""
 
@@ -4875,6 +4860,10 @@ msgstr "পুনরায় আরম্ভ করুন"
 msgid "Delete this add-on."
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
+msgid "Delete"
+msgstr "মুছে ফেলুন"
+
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Edit information about this add-on."
 msgstr "অ্যাড-অনটি সম্পর্কে তথ্য হালনাগাদ করুন।"
@@ -4891,7 +4880,7 @@ msgstr "নতুন সংস্করণ"
 msgid "Daily statistics on downloads and users."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/stats/templates/stats/stats.html
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Statistics"
 msgstr "পরিসংখ্যান"
 
@@ -4917,7 +4906,8 @@ msgstr ""
 msgid "Edit details about this theme's listing."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Edit Listing"
 msgstr ""
 
@@ -5166,15 +5156,15 @@ msgstr "নতুন সংস্করণ আপলোড করুন"
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Which platforms is this file compatible with?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Administrative overrides"
 msgstr ""
 
@@ -5237,7 +5227,7 @@ msgid "Generate new credentials"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Please complete your add-on."
+msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -5256,12 +5246,12 @@ msgstr ""
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Created:"
 msgstr "তৈরিকৃতঃ"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, python-format
 msgid "%%b %%e, %%Y"
 msgstr ""
@@ -5437,6 +5427,131 @@ msgstr ""
 msgid "Read more in our Blog"
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#, fuzzy
+msgid "Resources"
+msgstr "অতিরিক্ত সামগ্রী"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#, fuzzy
+msgid "WebExtensions"
+msgstr "WebExtension"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#, fuzzy
+msgid "Community"
+msgstr "মন্তব্য করুন"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
+msgid "About"
+msgstr "সম্বন্ধে"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
+msgid "Forum"
+msgstr "ফোরাম"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
+msgid "Blog"
+msgstr "ব্লগ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#, fuzzy
+msgid "Contact Us"
+msgstr "ফোনবুক"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#, fuzzy
+msgid "Review Policies"
+msgstr "পর্যালোচনা নোট"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
+msgid "FAQ"
+msgstr "প্রশ্ন উত্তর"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#, fuzzy
+msgid "Report Bug"
+msgstr "অপব্যবহার রিপোর্ট করুন"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
+msgid "Site Status"
+msgstr "সাইট এর অবস্থা"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Checker"
+msgstr "উপযুক্ত"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
+#, fuzzy
+msgid "Compatibility Reporter"
+msgstr "উপযুক্ত"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Promote"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#, fuzzy
+msgid "Get Your Add-on Featured"
+msgstr "আরও অ্যাড-অন"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "\"Get The Add-on\" button"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Legal"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "অপব্যবহার রিপোর্ট করুন"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "আইনগত বিজ্ঞপ্তি"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#, fuzzy
+msgid "Review Add-ons"
+msgstr "নতুন অ্যাড-অন"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Join us!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Write Some Code"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "Help make add-ons better by contributing your coding skills."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#, fuzzy
+msgid "Get started"
+msgstr "ধাপ 1। শুরু হয়েছে"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#, fuzzy
+msgid "More Ways to Participate"
+msgstr "এই শিল্পীর আরও কাজ"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+msgid "See how"
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 #, fuzzy
 msgid "Manage Your Add-on"
@@ -5450,14 +5565,42 @@ msgstr ""
 msgid "Evolution in Add-on Development"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-msgid "WebExtensions are becoming the standard for add-on development in Firefox. This and other changes in Firefox may affect developers of legacy add-ons."
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 #, fuzzy
-msgid "Find Out if Your Add-on is Affected"
-msgstr "এড-অনস তৈরি করা হয়েছে"
+msgid "Learn How"
+msgstr "আরও জানুন"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "What's New"
+msgstr "এটা কী?"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "Show Me"
+msgstr "মন্তব্যসমূহ দেখান"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "AMO"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+msgid "Self-hosted"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#, fuzzy
+msgid "View All Submissions"
+msgstr "সকল সংস্করণগুলো দেখুন"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
@@ -5482,27 +5625,35 @@ msgstr "ডেভেলপার হাব"
 msgid "Docs"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
-msgid "Blog"
-msgstr "ব্লগ"
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy
+msgid "Sign Out"
+msgstr "এড-অনস এর ব্যবহার"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, fuzzy
-msgid "Sign In"
-msgstr "এড-অনস এর ব্যবহার"
+msgid "User Photo"
+msgstr "কোন ছবি নেই"
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
+#, fuzzy, python-format
+msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
+msgstr "<a href=\"%(reg)s\">রেজিস্টার</a> অথবা <a href=\"%(login)s\">লগ ইন</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-msgid "Customize Your Firefox"
-msgstr ""
+#, fuzzy
+msgid "Customize Firefox"
+msgstr "ফায়ারফক্সে যুক্ত করুন"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
+#, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, and <a href=\"#\">CSS</a>, you already have all the "
-"necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</"
+"a>, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-msgid "Learn How to make an Add-on"
+msgid "Learn How to Make an Add-on"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
@@ -5515,23 +5666,18 @@ msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
-msgid "Learn How"
-msgstr "আরও জানুন"
-
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 #, fuzzy
 msgid "Publish Your Add-on"
 msgstr "এড-অন জমা দিন"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-msgid "Have you an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
+msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 #, fuzzy
-msgid "Sign in"
+msgid "Sign In"
 msgstr "এড-অনস এর ব্যবহার"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -5544,18 +5690,8 @@ msgid "Automated code tests for your add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
-msgid "Compatibility Checker"
-msgstr "উপযুক্ত"
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
-msgid "Compatibility Reporter"
-msgstr "উপযুক্ত"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -5924,14 +6060,6 @@ msgstr ""
 msgid "Select a different footer image"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Files added to reviewed versions must be reviewed before they will be available for download."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Select the target platform for this file."
-msgstr ""
-
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
 msgstr ""
@@ -5974,14 +6102,6 @@ msgstr "সোর্স কোড"
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/edit.html
-msgid "Upload a new file"
-msgstr "নতুন ফাইল আপলোড করুন"
-
-#: src/olympia/devhub/templates/devhub/versions/edit.html
-msgid "Add File"
-msgstr "ফাইল যোগ করুন"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "File {file_id} ({platform})"
@@ -6165,14 +6285,6 @@ msgstr "সংস্করণ মুছে ফেলুন"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Disable Version"
 msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add a new Version"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Add Version"
-msgstr "সংস্করণ যোগ করুন"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hide Add-on"
@@ -6384,38 +6496,6 @@ msgid "[status:%s]"
 msgstr "অবস্থা:"
 
 #: src/olympia/editors/helpers.py
-msgid "Queue"
-msgstr "সারি"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Updates"
-msgstr "হালনাগাদগুলো"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "New Add-ons"
-msgstr "নতুন অ্যাড-অন"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Moderated Reviews"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Pending Themes"
-msgstr ""
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
-msgid "Flagged Themes"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Update Themes"
-msgstr ""
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "All Unlisted Add-ons"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
 #, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
@@ -6434,6 +6514,10 @@ msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] ""
 msgstr[1] ""
+
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
+msgid "All Unlisted Add-ons"
+msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
@@ -6515,6 +6599,10 @@ msgstr ""
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
 msgstr "ফ্ল্যাগকৃত"
+
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
+msgid "Updates"
+msgstr "হালনাগাদগুলো"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -6654,6 +6742,14 @@ msgid "Queues"
 msgstr "সারিগুলো"
 
 #: src/olympia/editors/templates/editors/base.html
+msgid "New Add-ons"
+msgstr "নতুন অ্যাড-অন"
+
+#: src/olympia/editors/templates/editors/base.html
+msgid "Moderated Reviews"
+msgstr ""
+
+#: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
 
@@ -6665,7 +6761,7 @@ msgstr ""
 msgid "Add-on Review Log"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/eventlog_detail.html
+#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/eventlog.html
 msgid "Moderated Review Log"
 msgstr ""
 
@@ -6699,10 +6795,6 @@ msgstr "আরো বিস্তারিত।"
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html
 msgid "No events found for this period."
 msgstr ""
-
-#: src/olympia/editors/templates/editors/eventlog_detail.html
-msgid "Log Details"
-msgstr "লগ বিস্তারিত"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
@@ -6794,10 +6886,6 @@ msgstr "র‌্যাঙ্ক"
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
 msgstr "স্কোর"
-
-#: src/olympia/editors/templates/editors/motd.html
-msgid "Message of the Day"
-msgstr ""
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Update message of the day"
@@ -7075,10 +7163,6 @@ msgid "Reviewer"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
-msgid "Deleted Themes"
-msgstr ""
-
-#: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
 msgstr ""
 
@@ -7124,8 +7208,8 @@ msgid_plural "{num} Updates"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/editors/templates/editors/themes/logs.html
-msgid "Theme Review Log"
+#: src/olympia/editors/templates/editors/themes/queue.html
+msgid "Flagged Themes"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html
@@ -9612,9 +9696,10 @@ msgstr ""
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
-"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
@@ -9932,6 +10017,10 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
+msgstr ""
+
+#: src/olympia/signing/views.py
+msgid "Invalid GUID in URL"
 msgstr ""
 
 #: src/olympia/signing/views.py
@@ -10312,22 +10401,9 @@ msgstr "একটি বিষয়শ্রেণী নির্বাচন ক
 msgid "Mobile Categories"
 msgstr "মোবাইল বিষয়শ্রেণীসমূহ"
 
-#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "আইনগত বিজ্ঞপ্তি"
-
-#: src/olympia/templates/copyright.html
-#, fuzzy
-msgid "Report Trademark Abuse"
-msgstr "অপব্যবহার রিপোর্ট করুন"
-
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "মোবাইল সাইট দেখুন"
-
-#: src/olympia/templates/copyright.html
-msgid "Site Status"
-msgstr "সাইট এর অবস্থা"
 
 #: src/olympia/templates/copyright.html
 #, fuzzy
@@ -10343,18 +10419,6 @@ msgstr ""
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr ""
-
-#: src/olympia/templates/footer.html
-msgid "About"
-msgstr "সম্বন্ধে"
-
-#: src/olympia/templates/footer.html
-msgid "FAQ"
-msgstr "প্রশ্ন উত্তর"
-
-#: src/olympia/templates/footer.html
-msgid "Forum"
-msgstr "ফোরাম"
 
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Other languages"
@@ -10874,7 +10938,7 @@ msgstr "প্রোফাইল সম্পাদনা করুন"
 msgid "Manage user"
 msgstr "ব্যবহারকারীকে নিয়ন্ত্রণ করুন"
 
-#: src/olympia/users/templates/users/profile.html src/olympia/users/templates/users/report_abuse_full.html
+#: src/olympia/users/templates/users/profile.html
 msgid "Report user"
 msgstr "ব্যবহারকারীকে রিপোর্ট করুন"
 

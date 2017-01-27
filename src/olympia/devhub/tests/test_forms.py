@@ -132,7 +132,7 @@ class TestCharityForm(TestCase):
 
     def test_always_new(self):
         # Editing a charity should always produce a new row.
-        params = dict(name='name', url='http://url.com/', paypal='paypal')
+        params = {'name': 'name', 'url': 'http://url.com/', 'paypal': 'paypal'}
         charity = forms.CharityForm(params).save()
         for k, v in params.items():
             assert getattr(charity, k) == v
@@ -154,10 +154,10 @@ class TestCompatForm(TestCase):
     def test_mozilla_app(self):
         moz = amo.MOZILLA
         appver = AppVersion.objects.create(application=moz.id)
-        v = Addon.objects.get(id=3615).current_version
-        ApplicationsVersions(application=moz.id, version=v,
+        version = Addon.objects.get(id=3615).current_version
+        ApplicationsVersions(application=moz.id, version=version,
                              min=appver, max=appver).save()
-        fs = forms.CompatFormSet(None, queryset=v.apps.all())
+        fs = forms.CompatFormSet(None, queryset=version.apps.all())
         apps = [f.app for f in fs.forms]
         assert moz in apps
 

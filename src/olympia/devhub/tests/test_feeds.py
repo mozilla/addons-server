@@ -42,18 +42,18 @@ class TestActivity(HubTest):
 
     def log_collection(self, num, prefix='foo'):
         for i in xrange(num):
-            c = Collection.objects.create(name='%s %d' % (prefix, i))
-            amo.log(amo.LOG.ADD_TO_COLLECTION, self.addon, c)
+            collection = Collection.objects.create(name='%s %d' % (prefix, i))
+            amo.log(amo.LOG.ADD_TO_COLLECTION, self.addon, collection)
 
     def log_tag(self, num, prefix='foo'):
         for i in xrange(num):
-            t = Tag.objects.create(tag_text='%s %d' % (prefix, i))
-            amo.log(amo.LOG.ADD_TAG, self.addon, t)
+            tag = Tag.objects.create(tag_text='%s %d' % (prefix, i))
+            amo.log(amo.LOG.ADD_TAG, self.addon, tag)
 
     def log_review(self, num):
-        r = Review(addon=self.addon)
+        review = Review(addon=self.addon)
         for i in xrange(num):
-            amo.log(amo.LOG.ADD_REVIEW, self.addon, r)
+            amo.log(amo.LOG.ADD_REVIEW, self.addon, review)
 
     def get_response(self, **kwargs):
         url = reverse('devhub.feed_all')
@@ -71,8 +71,8 @@ class TestActivity(HubTest):
     def test_dashboard(self):
         """Make sure the dashboard is getting data."""
         self.log_creates(10)
-        r = self.client.get(reverse('devhub.addons'))
-        doc = pq(r.content)
+        response = self.client.get(reverse('devhub.addons'))
+        doc = pq(response.content)
         assert len(doc('li.item')) == 4
         assert doc('.subscribe-feed').attr('href')[:-32] == (
             reverse('devhub.feed_all') + '?privaterss=')

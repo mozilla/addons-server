@@ -685,6 +685,7 @@ class License(ModelBase):
     def __unicode__(self):
         return unicode(self.name)
 
+
 models.signals.pre_save.connect(
     save_signal, sender=License, dispatch_uid='license_translations')
 

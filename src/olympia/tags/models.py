@@ -79,6 +79,7 @@ def update_tag_stat_signal(sender, instance, **kw):
         except Tag.DoesNotExist:
             pass
 
+
 models.signals.post_save.connect(update_tag_stat_signal, sender=AddonTag,
                                  dispatch_uid='update_tag_stat')
 models.signals.post_delete.connect(update_tag_stat_signal, sender=AddonTag,

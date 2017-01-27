@@ -8,15 +8,16 @@ enum34==1.1.6 \
     --hash=sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1 \
     --hash=sha256:2d81cbbe0e73112bdfe6ef8576f2238f2ba27dd0d55752a776c41d38b7da2850
 # flake8 is required by flake8-mutable
-flake8==3.0.4 \
-    --hash=sha256:603a3ae7c8030219fee084728ca02a8bbd3a51829cacf97b445172a46cb04662 \
-    --hash=sha256:b4c210c998f07d6ff24325dd91fbc011f2c37bcd6bf576b188de01d8656e970d
-flake8-mutable==1.0.5 \
-    --hash=sha256:b9c4498e86f48c377b6ccf4e8ed112ae3861d7e5a2e496ab4b9ad35ab86b03b0
+flake8==3.2.1 \
+    --hash=sha256:dc9eed7667489b73b56b1714aa51f580601db364b61e1833908e931c6de47a65 \
+    --hash=sha256:c7c460b5aff3a2063c798a77af18ec70af3941d35a22e2e76965e3c0e0b36055
+flake8-mutable==1.1.0 \
+    --hash=sha256:dc3824c5ef0b9bffdaa18ab64cd08ef8dcae30969033a6d71dfbac878a058c4f \
+    --hash=sha256:efe040cd13fde5b8a940deda4c278cdb183cfe34cd32505a90aa506cd9715eed
 # mccabe is required by flake8
-mccabe==0.5.3 \
-    --hash=sha256:f9b58bf366c1506dcd6117b33e5c4874746f0de859c9c7cab8b516cb6be1d22e \
-    --hash=sha256:16293af41e7242031afd73896fef6458f4cad38201d21e28f344fff50ae1c25e
+mccabe==0.6.1 \
+    --hash=sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42 \
+    --hash=sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f
 # pycodestyle is required by flake8
 pycodestyle==2.2.0 \
     --hash=sha256:60c4e1c36f301ac539a550a29e9d16862069ec240472d86e5e71c4fc645829cb \

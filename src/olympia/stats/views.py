@@ -475,6 +475,7 @@ def daterange(start_date, end_date):
     for n in range((end_date - start_date).days):
         yield start_date + timedelta(n)
 
+
 # Cached lookup of the keys and the SQL.
 # Taken from remora, a mapping of the old values.
 _KEYS = {

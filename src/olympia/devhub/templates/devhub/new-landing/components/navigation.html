@@ -20,7 +20,7 @@
         {{ _('Documentation') }}
       </a></li>
 
-      <li class="show-on-desktop"><a href="https://developer.mozilla.org/Add-ons#Contact_us">
+      <li><a href="https://developer.mozilla.org/Add-ons#Contact_us">
         {{ _('Support') }}
       </a></li>
 
@@ -29,7 +29,7 @@
       </a></li>
 
       {% if user_authenticated %}
-        <li class="DevHub-Navigation-LogOut"><a href="{{ url('users.logout') }}">
+        <li class="DevHub-Navigation-SignOut"><a href="{{ url('users.logout') }}">
           {{ _('Sign Out') }}
         </a></li>
 
@@ -37,7 +37,11 @@
           <img src="{{ request.user.picture_url }}" alt="{% if not request.user.picture_type %}{{ _('No Photo') }}{% else %}{{ _('User Photo') }}{% endif %}" />
         </a></li>
       {% else %}
-        <li class="show-on-desktop DevHub-Navigation-LogIn"><a href="{{ login_link() }}">{{ _('Sign In') }}</a></li>
+        <li class="show-on-desktop DevHub-Navigation-Register">
+          {% trans register=register_link(), login=login_link() %}
+            <a href="{{ register }}">Register</a> or <a href="{{ login }}">Sign In</a>
+          {% endtrans %}
+        </li>
       {% endif %}
     </ul>
   </div>

@@ -1,7 +1,9 @@
 {% extends "impala/base_shared.html" %}
 
 {% block js %}
+  {% if addon.takes_contributions %}
     <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+  {% endif %}
 {% endblock %}
 
 {% if page == 'installed' %}

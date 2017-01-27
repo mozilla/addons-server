@@ -58,6 +58,7 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
     else:
         return url
 
+
 # Replace Django's reverse with our own.
 urlresolvers.reverse = reverse
 
@@ -69,6 +70,7 @@ def resolve(path, urlconf=None):
         _lang, _platform, path_fragment = prefixer.split_path(path)
         path = '/%s' % path_fragment
     return django_resolve(path, urlconf)
+
 
 # Replace Django's resolve with our own.
 urlresolvers.resolve = resolve

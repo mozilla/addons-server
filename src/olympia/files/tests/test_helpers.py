@@ -9,6 +9,7 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django import forms
 
+import pytest
 from mock import Mock, patch
 from cache_nuggets.lib import Message
 
@@ -17,7 +18,7 @@ from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.files.helpers import FileViewer, DiffHelper, LOCKED, extract_file
 from olympia.files.models import File
-from olympia.files.utils import SafeUnzip
+from olympia.files.utils import SafeUnzip, get_all_files
 
 root = os.path.join(settings.ROOT, 'src/olympia/files/fixtures/files')
 
@@ -276,6 +277,31 @@ class TestFileViewer(TestCase):
         get_md5.side_effect = IOError('ow')
         self.viewer.extract()
         assert {} == self.viewer.get_files()
+
+    @patch('olympia.files.helpers.os.fsync')
+    def test_verify_files_doesnt_call_fsync_regularly(self, fsync):
+        self.viewer.extract()
+
+        assert not fsync.called
+
+    @patch('olympia.files.helpers.os.fsync')
+    def test_verify_files_calls_fsync_on_differences(self, fsync):
+        self.viewer.extract()
+
+        assert not fsync.called
+
+        files_to_verify = get_all_files(self.viewer.dest)
+        files_to_verify.pop()
+
+        with patch('olympia.files.helpers.get_all_files') as get_all_files_mck:
+            get_all_files_mck.return_value = files_to_verify
+
+            with pytest.raises(ValueError):
+                # We don't put things back into place after fsync
+                # so a `ValueError` is raised
+                self.viewer._verify_files(files_to_verify)
+
+        assert len(fsync.call_args_list) == len(files_to_verify) + 1
 
 
 class TestSearchEngineHelper(TestCase):

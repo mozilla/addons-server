@@ -105,7 +105,7 @@ class editor_reviewed(_NOTIFICATION):
     id = 11
     group = 'dev'
     short = 'editor_reviewed'
-    label = _("my add-on is reviewed by an editor")
+    label = _("my add-on is reviewed by a reviewer")
     mandatory = True
     default_checked = True
 
