@@ -56,7 +56,7 @@ RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod.
 RUN echo -e "from olympia.lib.settings_base import *\n\
 STYLUS_BIN = 'node_modules/stylus/bin/stylus'\n\
 LESS_BIN = 'node_modules/less/bin/lessc'\n\
-CLEANCSS_BIN = 'node_modules/clean-css/bin/cleancss'\n\
+CLEANCSS_BIN = 'node_modules/clean-css-cli/bin/cleancss'\n\
 UGLIFY_BIN = 'node_modules/uglify-js/bin/uglifyjs'\n\
 FXA_CONFIG = {'default': {}, 'internal': {}}\n"\
 > settings_local.py

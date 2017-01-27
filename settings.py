@@ -59,7 +59,7 @@ STYLUS_BIN = os.getenv('STYLUS_BIN', path('node_modules/stylus/bin/stylus'))
 LESS_BIN = os.getenv('LESS_BIN', path('node_modules/less/bin/lessc'))
 CLEANCSS_BIN = os.getenv(
     'CLEANCSS_BIN',
-    path('node_modules/clean-css/bin/cleancss'))
+    path('node_modules/clean-css-cli/bin/cleancss'))
 UGLIFY_BIN = os.getenv(
     'UGLIFY_BIN',
     path('node_modules/uglify-js/bin/uglifyjs'))
