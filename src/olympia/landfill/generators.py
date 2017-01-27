@@ -58,7 +58,6 @@ def create_addon(name, icon_type, application, **extra_kwargs):
     addon = Addon.objects.create(type=ADDON_EXTENSION, **kwargs)
     generate_version(addon=addon, app=application)
     addon.update_version()
-    addon.status = STATUS_PUBLIC
     addon.save()
     return addon
 

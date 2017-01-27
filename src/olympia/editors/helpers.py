@@ -568,10 +568,9 @@ class ReviewAddon(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        # Save files first, because set_addon checks to make sure there
-        # is at least one public file or it won't make the addon public.
+        # Only files need to be changed - addon status will be updated
+        # automatically.
         self.set_files(amo.STATUS_PUBLIC, self.files)
-        self.set_addon(status=amo.STATUS_PUBLIC)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
@@ -592,7 +591,6 @@ class ReviewAddon(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        self.set_addon(status=amo.STATUS_NULL)
         self.set_files(amo.STATUS_DISABLED, self.files,
                        hide_disabled_file=True)
 

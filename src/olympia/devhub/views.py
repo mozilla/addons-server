@@ -377,15 +377,12 @@ def enable(request, addon_id, addon):
 @dev_required(owner_for_post=True)
 @post_required
 def cancel(request, addon_id, addon):
-    if addon.status == amo.STATUS_NOMINATED:
-        addon.update(status=amo.STATUS_NULL)
-        amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     latest_version = addon.find_latest_version(
         channel=amo.RELEASE_CHANNEL_LISTED)
     if latest_version:
-        latest_version.files.filter(
-            status=amo.STATUS_AWAITING_REVIEW).update(
-            status=amo.STATUS_DISABLED)
+        for file_ in latest_version.files.filter(
+                status=amo.STATUS_AWAITING_REVIEW):
+            file_.update(status=amo.STATUS_DISABLED)
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -397,9 +394,9 @@ def disable(request, addon_id, addon):
     latest_version = addon.find_latest_version(
         channel=amo.RELEASE_CHANNEL_LISTED)
     if latest_version:
-        latest_version.files.filter(
-            status=amo.STATUS_AWAITING_REVIEW).update(
-            status=amo.STATUS_DISABLED)
+        for file_ in latest_version.files.filter(
+                status=amo.STATUS_AWAITING_REVIEW):
+            file_.update(status=amo.STATUS_DISABLED)
     addon.update_version()
     addon.update_status()
     addon.update(disabled_by_user=True)
@@ -1541,8 +1538,6 @@ def _submit_details(request, addon, version):
             cat_form.save()
             license_form.save(log=False)
             reviewer_form.save()
-            if addon.status == amo.STATUS_NULL:
-                addon.update(status=amo.STATUS_NOMINATED)
             signals.submission_done.send(sender=addon)
         else:
             reviewer_form.save()
@@ -1686,12 +1681,11 @@ def request_review(request, addon_id, addon):
     latest_version = addon.find_latest_version_including_rejected(
         amo.RELEASE_CHANNEL_LISTED)
     if latest_version:
-        for f in latest_version.files.filter(status=amo.STATUS_DISABLED):
-            f.update(status=amo.STATUS_AWAITING_REVIEW)
         # Clear the nomination date so it gets set again in Addon.watch_status.
         latest_version.update(nomination=None)
+        for file_ in latest_version.files.filter(status=amo.STATUS_DISABLED):
+            file_.update(status=amo.STATUS_AWAITING_REVIEW)
     if addon.has_complete_metadata():
-        addon.update(status=amo.STATUS_NOMINATED)
         messages.success(request, _('Review requested.'))
     else:
         messages.success(request, _(

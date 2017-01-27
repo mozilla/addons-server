@@ -578,7 +578,6 @@ def fetch_langpack(url, xpi, **kw):
             AddonUser(addon=addon, user=owner).save()
             version = addon.versions.get()
 
-            addon.status = amo.STATUS_PUBLIC
             if addon.default_locale.lower() == lang.lower():
                 addon.target_locale = addon.default_locale
 
