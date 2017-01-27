@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-27 09:50+0000\n"
+"PO-Revision-Date: 2017-01-27 10:10+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -382,9 +382,8 @@ msgid "Visibility"
 msgstr "Görünürlük"
 
 #: src/olympia/addons/templates/addons/details_box.html
-#, fuzzy
 msgid "Visible"
-msgstr "Görünürlük"
+msgstr "Görünür"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Invisible"
@@ -812,6 +811,8 @@ msgstr "Eklentinin QR kodu"
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
+"{0} telefonunuzdaki Firefox'ta da kullanılabilir. Doğrudan telefonunuza kurmak için bu QR kodunu tarayın. (QR kodu okuyucusuna ihtiyacınız olacak. Okuyunuz yoksa telefonunuzun uygulama mağazasında "
+"arayın.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 msgid "Report Abuse"
@@ -970,10 +971,10 @@ msgid "Part of these Collections"
 msgstr "Bu koleksiyonların bir parçası"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "%(author)s tarafından geliştirilen diğer eklentiler"
+msgstr[0] "Bu yazarların diğer eklentileri"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -990,14 +991,12 @@ msgid "Manage"
 msgstr "Yönet"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Editor Review"
-msgstr "İncelemeyi Tamamla"
+msgstr "Editör İncelemesi"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Yönetici Sayfası"
+msgstr "Yönetici Yönetimi"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1648,7 +1647,7 @@ msgstr "{user}, {addon} için {review} incelemesini onayladı."
 
 #: src/olympia/amo/log.py
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "{addon} için inceleme {review} silindi."
 
 #: src/olympia/amo/log.py
 msgid "{user} deleted {review} for {addon}."
@@ -1704,7 +1703,7 @@ msgstr "{user} adlı kullanıcı anonimleştirildi."
 
 #: src/olympia/amo/log.py
 msgid "User {user} restricted."
-msgstr ""
+msgstr "{user} adlı kullanıcı kısıtlandı."
 
 #: src/olympia/amo/log.py
 msgid "Admin {0} viewed activity log for {user}."
@@ -1759,28 +1758,24 @@ msgid "Reply by reviewer on {addon} {version}."
 msgstr "{addon} {version} için yorum yapın."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Geliştiricinin yanıtı"
+msgstr "İnceleyenin yanıtı"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "{addon} {version} için yorum yapın."
+msgstr "{addon} {version} için onay notları değiştirildi."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
 msgstr ""
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "{addon} {version} için yorum yapın."
+msgstr "{addon} {version} için kaynak kodu yüklendi."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Kaynak kodu"
+msgstr "Kaynak kodu yüklendi"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -1884,7 +1879,7 @@ msgstr "Uzantılar"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Daha çok özelleştirme mi istiyorsunuz? <b>Tam temaları</b> deneyin"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
@@ -2834,7 +2829,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Kendi arama aracınızı</a> yapın"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
@@ -3266,9 +3261,8 @@ msgstr "Güncellenmiş Eklenti İncelemesi"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Sözlükler"
+msgstr "Yeni sözlük incelemesi"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3279,9 +3273,8 @@ msgid "Updated Dictionary Review"
 msgstr "Güncellenmiş Sözlük İncelemesi"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Dil Paketi"
+msgstr "Yeni dil paketi incelemesi"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3304,9 +3297,8 @@ msgid "Theme Review"
 msgstr "Tema İnceleme"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Tam Arama Sağlayıcı İnceleme"
+msgstr "Yeni arama sağlayıcı incelemesi"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3317,9 +3309,8 @@ msgid "Updated Search Provider Review"
 msgstr ""
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Bütün Tema"
+msgstr "Yeni tam tema incelemesi"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -3613,9 +3604,8 @@ msgid "Chat and IM"
 msgstr ""
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Message Composition"
-msgstr "Bağışta bulun"
+msgstr "İleti Yazımı"
 
 #: src/olympia/constants/categories.py
 msgid "Contacts"
@@ -3634,23 +3624,20 @@ msgid "Message and News Reading"
 msgstr ""
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Privacy and Security"
 msgstr "Gizlilik ve Güvenlik"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Downloading and File Management"
-msgstr "İndirme Yönetimi"
+msgstr "İndirme ve Dosya Yönetimi"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
 msgstr "Arayüz Özelleştirmeleri"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Language Support and Translation"
-msgstr "Dil Desteği"
+msgstr "Dil Desteği ve Çeviri"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
@@ -3665,9 +3652,8 @@ msgid "Site-specific"
 msgstr "Siteye Özel"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Web and Developer Tools"
-msgstr "Web Geliştirme"
+msgstr "Web ve Geliştirici Araçları"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -3730,9 +3716,8 @@ msgid "All Rights Reserved"
 msgstr "Tüm hakları saklıdır"
 
 #: src/olympia/constants/licenses.py
-#, fuzzy
 msgid "Creative Commons Attribution 3.0"
-msgstr "Bağışta bulun"
+msgstr "Creative Commons Attribution 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial 3.0"
@@ -3757,9 +3742,8 @@ msgstr ""
 # 88%
 # 100%
 #: src/olympia/constants/platforms.py
-#, fuzzy
 msgid "All Platforms"
-msgstr "Platform"
+msgstr "Tüm platformlar"
 
 #: src/olympia/constants/platforms.py
 msgid "Linux"
@@ -3897,7 +3881,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "PayPal ID required to accept contributions."
-msgstr ""
+msgstr "Bağış kabul etmek için PayPal kimliği gerekiyor."
 
 #: src/olympia/devhub/forms.py
 msgid "Could not validate PayPal id."
@@ -3949,9 +3933,8 @@ msgid "You cannot upload any more files for this version."
 msgstr "Bu sürüm için daha fazla dosya yükleyemezsiniz."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "Version doesn't match"
-msgstr "Sürüm Notları"
+msgstr "Sürüm eşleşmedi"
 
 #: src/olympia/devhub/forms.py
 #, python-format
@@ -3980,9 +3963,8 @@ msgid "A platform can only be chosen once."
 msgstr "Bir platform sadece bir kez seçilebilir."
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
-#, fuzzy
 msgid "Application"
-msgstr "Uygulama Yapısı"
+msgstr "Uygulama"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -4008,22 +3990,19 @@ msgstr ""
 
 #. L10n: first parameter is the number of errors
 #: src/olympia/devhub/helpers.py
-#, fuzzy
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} kullanıcı"
+msgstr[0] "{0} hata"
 
 #. L10n: first parameter is the number of warnings
 #: src/olympia/devhub/helpers.py
-#, fuzzy
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} önce"
+msgstr[0] "{0} uyarı"
 
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
-#, fuzzy
 msgid "Review"
-msgstr "İnceleme:"
+msgstr "İnceleme"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
@@ -4058,33 +4037,28 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr ""
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "All My Add-ons"
-msgstr "Eklentilerim"
+msgstr "Tüm eklentilerim"
 
 #: src/olympia/devhub/views.py
 msgid "All Activity"
 msgstr "Tüm Etkinlikler"
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Add-on Updates"
-msgstr "Eklentinin web sitesi"
+msgstr "Eklenti güncellemeleri"
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Add-on Status"
-msgstr "Eklentiler"
+msgstr "Eklenti durumu"
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "User Collections"
-msgstr "Koleksiyonlar"
+msgstr "Kullanıcı koleksiyonları"
 
 #: src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "User Reviews"
-msgstr "İncelemeler"
+msgstr "Kullanıcı incelemeleri"
 
 #: src/olympia/devhub/views.py
 msgid "Changes successfully saved."
@@ -4099,14 +4073,12 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Theme deleted."
-msgstr "Tema İnceleme"
+msgstr "Tema silindi."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Add-on deleted."
-msgstr "Simge silindi"
+msgstr "Eklenti silindi."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Theme was not deleted."
@@ -4237,16 +4209,14 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "veya <a id=\"change-owner-cancel\" href=\"#\">Vazgeç</a>"
 
 #: src/olympia/devhub/templates/devhub/base.html src/olympia/devhub/templates/devhub/base_impala.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
-#, fuzzy
 msgid "Back to Add-ons"
-msgstr "Engellenen Eklentiler"
+msgstr "Eklentilere dön"
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
-#, fuzzy
 msgid "{0} :: Search"
-msgstr "{0} :: Arama Araçları"
+msgstr "{0} :: Arama"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py src/olympia/editors/templates/editors/queue.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
@@ -4261,21 +4231,18 @@ msgid "Search Results for \"{0}\""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
-#, fuzzy
 msgid "Search Results"
-msgstr "Arama Araçları"
+msgstr "Arama Sonuçları"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Please enter some search terms."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
-#, fuzzy
 msgid "Loading results&hellip;"
-msgstr "Daha fazlası&hellip;"
+msgstr "Sonuçlar yükleniyor&hellip;"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
-#, fuzzy
 msgid "Submit an Add-on"
 msgstr "Yeni Eklenti Gönder"
 
@@ -4315,14 +4282,12 @@ msgstr "Eklentilerim"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
-#, fuzzy
 msgid "Status:"
-msgstr "Durum"
+msgstr "Durum:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
-#, fuzzy
 msgid "Latest Version:"
-msgstr "Sürüm"
+msgstr "Son sürüm:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Queue Position:"
@@ -4529,9 +4494,8 @@ msgid "Adjusting application information here will allow users to install your a
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
-#, fuzzy
 msgid "Supported Versions"
-msgstr "Destek sitesi"
+msgstr "Desteklenen sürümler"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add Another Application&hellip;"
@@ -4539,9 +4503,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/owner.html
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
-#, fuzzy
 msgid "Close"
-msgstr "kapat"
+msgstr "Kapat"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Recent Activity"
@@ -6408,7 +6371,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
-msgstr ""
+msgstr "Daha eskileri yükle..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6521,7 +6484,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Bu sürümü silmek istediğinizden emin misiniz?"
 
 # 78%
 # 100%
@@ -6663,7 +6626,7 @@ msgstr ""
 #. L10n: start, as in "start date"
 #: src/olympia/editors/forms.py
 msgid "start"
-msgstr ""
+msgstr "başlangıç"
 
 #. L10n: end, as in "end date"
 #: src/olympia/editors/forms.py
@@ -11278,7 +11241,7 @@ msgstr "Bu eklenti, bir yönetici tarafından devre dışı bırakılmıştır."
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla'nın eklentim hakkında benle iletişim kurması gerekiyor"
 
 #: src/olympia/users/notifications.py
 msgid "my app is reviewed by an editor"
@@ -11286,7 +11249,7 @@ msgstr ""
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "Mozilla'nın uygulamam hakkında benle iletişim kurması gerekiyor"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
@@ -11306,7 +11269,7 @@ msgstr "Bir e-posta adresi gerekli."
 
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Bu e-posta adresi ile kayıtlı bir kullanıcı mevcut değil."
 
 #: src/olympia/users/views.py
 #, fuzzy
@@ -11330,7 +11293,7 @@ msgstr "Bulunamadı"
 
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
+msgstr "Yaptığınız değişikliklerde hatalar bulunmaktadır. Lütfen düzeltip yeniden gönderin."
 
 #: src/olympia/users/views.py
 #, fuzzy
@@ -11398,7 +11361,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Kullanıcı adı ve Firefox Hesabı ayarları gibi temel hesap bilgilerini yönet."
 
 #: src/olympia/users/templates/users/edit.html
 #, fuzzy
@@ -11490,7 +11453,7 @@ msgstr "Hesabı güncelle"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "none"
-msgstr ""
+msgstr "hiçbiri"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 #, fuzzy
