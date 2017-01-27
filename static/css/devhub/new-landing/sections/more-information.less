@@ -2,6 +2,7 @@
   > div {
     display: flex;
     flex-flow: column;
+    justify-content: space-between;
 
     @media @medium {
       flex-flow: row nowrap;
@@ -14,6 +15,7 @@
 .DevHub-Tools {
   line-height: 1.5;
   margin: 20px 0 auto;
+  max-width: 420px;
 
   h2,
   h2 a {
@@ -48,6 +50,16 @@
 
     font-weight: 600;
   }
+
+  ul {
+    margin-right: 20px;
+
+    html[dir=rtl] & {
+      margin-right: auto;
+      margin-left: 20px;
+    }
+  }
+
 }
 
 .DevHub-Tools {
