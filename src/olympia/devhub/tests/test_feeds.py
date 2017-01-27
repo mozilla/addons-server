@@ -42,18 +42,18 @@ class TestActivity(HubTest):
 
     def log_collection(self, num, prefix='foo'):
         for i in xrange(num):
-            c = Collection.objects.create(name='%s %d' % (prefix, i))
-            amo.log(amo.LOG.ADD_TO_COLLECTION, self.addon, c)
+            collection = Collection.objects.create(name='%s %d' % (prefix, i))
+            amo.log(amo.LOG.ADD_TO_COLLECTION, self.addon, collection)
 
     def log_tag(self, num, prefix='foo'):
         for i in xrange(num):
-            t = Tag.objects.create(tag_text='%s %d' % (prefix, i))
-            amo.log(amo.LOG.ADD_TAG, self.addon, t)
+            tag = Tag.objects.create(tag_text='%s %d' % (prefix, i))
+            amo.log(amo.LOG.ADD_TAG, self.addon, tag)
 
     def log_review(self, num):
-        r = Review(addon=self.addon)
+        review = Review(addon=self.addon)
         for i in xrange(num):
-            amo.log(amo.LOG.ADD_REVIEW, self.addon, r)
+            amo.log(amo.LOG.ADD_REVIEW, self.addon, review)
 
     def get_response(self, **kwargs):
         url = reverse('devhub.feed_all')
@@ -71,8 +71,8 @@ class TestActivity(HubTest):
     def test_dashboard(self):
         """Make sure the dashboard is getting data."""
         self.log_creates(10)
-        r = self.client.get(reverse('devhub.addons'))
-        doc = pq(r.content)
+        response = self.client.get(reverse('devhub.addons'))
+        doc = pq(response.content)
         assert len(doc('li.item')) == 4
         assert doc('.subscribe-feed').attr('href')[:-32] == (
             reverse('devhub.feed_all') + '?privaterss=')
@@ -210,7 +210,7 @@ class TestActivity(HubTest):
         self.get_response(addon=self.addon.id)
         key = RssKey.objects.get()
         response = self.get_response(privaterss=key.key)
-        assert len(pq(response.content)('item')) == 5
+        assert len(pq(response.content)('item')) == 6
 
     def test_logged_out(self):
         self.client.logout()
@@ -234,7 +234,7 @@ class TestActivity(HubTest):
         self.make_addon_unlisted(self.addon)
         self.log_creates(1)
         doc = self.get_pq()
-        assert len(doc('.item')) == 1
+        assert len(doc('.item')) == 2
         assert '<script>' not in unicode(doc), 'XSS FTL'
         assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
 
@@ -249,7 +249,7 @@ class TestActivity(HubTest):
         self.make_addon_unlisted(self.addon)
         self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
-        assert len(doc('.item')) == 1
+        assert len(doc('.item')) == 2
         assert '<script>' not in unicode(doc), 'XSS FTL'
         assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
 
@@ -264,14 +264,14 @@ class TestActivity(HubTest):
         self.make_addon_unlisted(self.addon)
         self.log_tag(1, "<script src='x.js'>")
         doc = self.get_pq()
-        assert len(doc('.item')) == 1
+        assert len(doc('.item')) == 2
         assert '<script' not in unicode(doc('.item')), 'XSS FTL'
         assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
 
     def test_xss_versions(self):
         self.log_updates(1, "<script src='x.js'>")
         doc = self.get_pq()
-        assert len(doc('.item')) == 2
+        assert len(doc('.item')) == 1
         assert '<script' not in unicode(doc('.item')), 'XSS FTL'
         assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
 

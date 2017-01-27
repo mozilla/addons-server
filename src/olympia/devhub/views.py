@@ -386,7 +386,6 @@ def cancel(request, addon_id, addon):
 @dev_required
 @post_required
 def disable(request, addon_id, addon):
-    addon.update(disabled_by_user=True)
     # Also set the latest listed version to STATUS_DISABLED if it was
     # AWAITING_REVIEW, to not waste reviewers time.
     latest_version = addon.find_latest_version(
@@ -396,6 +395,8 @@ def disable(request, addon_id, addon):
             status=amo.STATUS_AWAITING_REVIEW).update(
             status=amo.STATUS_DISABLED)
     addon.update_version()
+    addon.update_status()
+    addon.update(disabled_by_user=True)
     amo.log(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
 

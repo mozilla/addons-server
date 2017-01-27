@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-24 13:22+0000\n"
+"PO-Revision-Date: 2017-01-24 13:32+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -5579,9 +5579,8 @@ msgstr "Apoyar"
 
 # El tratamiento al usuario es de "tú".
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "Administrar tu complemento"
+msgstr "Destacar tu complemento"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
@@ -5605,7 +5604,7 @@ msgstr "Revisar complementos"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Los revisores colaboran para que los complementos sean fiables y seguros de usar. ¡También disfrutan de grandes ventajas!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
@@ -10001,7 +10000,7 @@ msgid "Add a review for {0}"
 msgstr "Agregar una valoración para {0}"
 
 #: src/olympia/reviews/templates/reviews/add.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
@@ -10342,7 +10341,7 @@ msgstr "Solo WebExtensions puede omitir el GUID"
 
 #: src/olympia/signing/views.py
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "GUID inválido en la URL"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"

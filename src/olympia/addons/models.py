@@ -2004,6 +2004,7 @@ class Preview(ModelBase):
     def image_size(self):
         return self.sizes.get('image', []) if self.sizes else []
 
+
 dbsignals.pre_save.connect(save_signal, sender=Preview,
                            dispatch_uid='preview_translations')
 

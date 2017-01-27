@@ -65,6 +65,32 @@ img {
   max-width: 100%;
 }
 
+.link(@color, @decoration: none) {
+  color: @color;
+  text-decoration: @decoration;
+
+  &:link {
+    color: @color;
+  }
+
+  &:visited {
+    color: fadeout(@color, 10%);
+  }
+
+  &:hover {
+    color: fadeout(@color, 20%);
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: fadeout(@color, 10%);
+  }
+}
+
+a {
+  .link(@color-text);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -127,4 +153,4 @@ h3 {
 @import 'footer';
 
 // Tooltip
-@import (less) '../../impala/tooltips.less.css';
+@import '../../impala/tooltips';

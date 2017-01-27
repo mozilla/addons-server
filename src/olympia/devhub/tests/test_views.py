@@ -23,7 +23,7 @@ from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, Charity)
 from olympia.amo.helpers import url as url_reverse
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
@@ -53,9 +53,12 @@ class HubTest(TestCase):
         ids = []
         for i in range(num):
             addon = Addon.objects.get(id=addon_id)
-            data = dict(type=addon.type, status=addon.status,
-                        name='cloned-addon-%s-%s' % (addon_id, i))
-            new_addon = Addon.objects.create(**data)
+            data = {
+                'type': addon.type,
+                'status': addon.status,
+                'name': 'cloned-addon-%s-%s' % (addon_id, i)
+            }
+            new_addon = addon_factory(**data)
             new_addon.addonuser_set.create(user=self.user_profile)
             ids.append(new_addon.id)
         return ids
@@ -64,14 +67,14 @@ class HubTest(TestCase):
 class TestNav(HubTest):
 
     def test_navbar(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('#site-nav').length == 1
 
     def test_no_addons(self):
         """Check that no add-ons are displayed for this user."""
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         # My Add-ons menu should not be visible if user has no add-ons.
         assert doc('#navbar ul li.top a').eq(0).text() != 'My Add-ons'
 
@@ -83,8 +86,8 @@ class TestNav(HubTest):
         addon.save()
         addon.addonuser_set.create(user=self.user_profile)
 
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
 
         # Check the anchor for the 'My Add-ons' menu item.
         assert doc('#site-nav ul li.top a').eq(0).text() == 'My Add-ons'
@@ -96,8 +99,8 @@ class TestNav(HubTest):
         # Create 6 add-ons.
         self.clone_addon(6)
 
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
 
         # There should be 8 items in this menu.
         assert doc('#site-nav ul li.top').eq(0).find('ul li').length == 8
@@ -108,8 +111,8 @@ class TestNav(HubTest):
 
         self.clone_addon(1)
 
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('#site-nav ul li.top').eq(0).find('li a').eq(7).text() == (
             'more add-ons...')
 
@@ -122,8 +125,8 @@ class TestNav(HubTest):
         self.make_addon_unlisted(addon)
         addon.addonuser_set.create(user=self.user_profile)
 
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
 
         # Check the anchor for the unlisted add-on.
         assert doc('#site-nav ul li.top li a').eq(0).attr('href') == (
@@ -151,16 +154,16 @@ class TestDashboard(HubTest):
         assert doc('#footer-links .mobile-link').length == 0
 
     def get_action_links(self, addon_id):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         selector = '.item[data-addonid="%s"] .item-actions li > a' % addon_id
         links = [a.text.strip() for a in doc(selector)]
         return links
 
     def test_no_addons(self):
         """Check that no add-ons are displayed for this user."""
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('.item item').length == 0
 
     def test_addon_pagination(self):
@@ -172,15 +175,15 @@ class TestDashboard(HubTest):
         """
         # Create 9 add-ons, there's already one existing from the setUp.
         self.clone_addon(9)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert len(doc('.item .item-info')) == 10
         assert doc('nav.paginator').length == 0
 
         # Create 5 add-ons.
         self.clone_addon(5)
-        r = self.client.get(self.url, dict(page=2))
-        doc = pq(r.content)
+        response = self.client.get(self.url, {'page': 2})
+        doc = pq(response.content)
         assert len(doc('.item .item-info')) == 5
         assert doc('nav.paginator').length == 1
 
@@ -190,8 +193,8 @@ class TestDashboard(HubTest):
         for x in range(2):
             addon = addon_factory(type=amo.ADDON_PERSONA)
             addon.addonuser_set.create(user=self.user_profile)
-        r = self.client.get(self.themes_url)
-        doc = pq(r.content)
+        response = self.client.get(self.themes_url)
+        doc = pq(response.content)
         assert len(doc('.item .item-info')) == 2
 
     def test_show_hide_statistics(self):
@@ -243,8 +246,8 @@ class TestDashboard(HubTest):
             bp = BlogPost(title='hi %s' % i,
                           date_posted=datetime.now() - timedelta(days=i))
             bp.save()
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
 
         assert doc('.blog-posts').length == 1
         assert doc('.blog-posts li').length == 5
@@ -255,18 +258,18 @@ class TestDashboard(HubTest):
         response = self.client.get(self.url + '?sort=created')
         doc = pq(response.content)
         assert doc('.item-details').length == 1
-        d = doc('.item-details .date-created')
-        assert d.length == 1
-        assert d.remove('strong').text() == (
+        elm = doc('.item-details .date-created')
+        assert elm.length == 1
+        assert elm.remove('strong').text() == (
             datetime_filter(self.addon.created, '%b %e, %Y'))
 
     def test_sort_updated_filter(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('.item-details').length == 1
-        d = doc('.item-details .date-updated')
-        assert d.length == 1
-        assert d.remove('strong').text() == (
+        elm = doc('.item-details .date-updated')
+        assert elm.length == 1
+        assert elm.remove('strong').text() == (
             trim_whitespace(
                 datetime_filter(self.addon.last_updated, '%b %e, %Y')))
 
@@ -285,9 +288,43 @@ class TestDashboard(HubTest):
         # No "updated" in details.
         assert doc('.item-details .date-updated') == []
         # There's no "last updated" for themes, so always display "created".
-        d = doc('.item-details .date-created')
-        assert d.remove('strong').text() == (
+        elm = doc('.item-details .date-created')
+        assert elm.remove('strong').text() == (
             trim_whitespace(datetime_filter(addon.created)))
+
+    def test_purely_unlisted_addon_are_not_shown_as_incomplete(self):
+        self.make_addon_unlisted(self.addon)
+        assert self.addon.has_complete_metadata()
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # It should not be considered incomplete despite having STATUS_NULL,
+        # since it's purely unlisted.
+        assert not doc('.incomplete')
+
+        # Rest of the details should be shown, but not the AMO-specific stuff.
+        assert not doc('.item-info')
+        assert doc('.item-details')
+
+    def test_mixed_versions_addon_with_incomplete_metadata(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        self.addon.reload()
+        assert not self.addon.has_complete_metadata()
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.incomplete').text() == (
+            'This add-on is missing some required information before it can be'
+            ' submitted for publication.')
+
+    def test_no_versions_addon(self):
+        self.addon.versions.all().delete()
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.incomplete').text() == (
+            "This add-on doesn't have any versions.")
 
 
 class TestUpdateCompatibility(TestCase):
@@ -308,30 +345,31 @@ class TestUpdateCompatibility(TestCase):
     def test_no_compat(self):
         self.client.logout()
         assert self.client.login(email='admin@mozilla.com')
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert not doc('.item[data-addonid="4594"] li.compat')
-        a = Addon.objects.get(pk=4594)
-        r = self.client.get(reverse('devhub.ajax.compat.update',
-                                    args=[a.slug, a.current_version.id]))
-        assert r.status_code == 404
-        r = self.client.get(reverse('devhub.ajax.compat.status',
-                                    args=[a.slug]))
-        assert r.status_code == 404
+        addon = Addon.objects.get(pk=4594)
+        response = self.client.get(
+            reverse('devhub.ajax.compat.update',
+                    args=[addon.slug, addon.current_version.id]))
+        assert response.status_code == 404
+        response = self.client.get(
+            reverse('devhub.ajax.compat.status', args=[addon.slug]))
+        assert response.status_code == 404
 
     def test_compat(self):
-        a = Addon.objects.get(pk=3615)
+        addon = Addon.objects.get(pk=3615)
 
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
         assert cu
 
         update_url = reverse('devhub.ajax.compat.update',
-                             args=[a.slug, a.current_version.id])
+                             args=[addon.slug, addon.current_version.id])
         assert cu.attr('data-updateurl') == update_url
 
-        status_url = reverse('devhub.ajax.compat.status', args=[a.slug])
+        status_url = reverse('devhub.ajax.compat.status', args=[addon.slug])
         selector = '.item[data-addonid="3615"] li.compat'
         assert doc(selector).attr('data-src') == status_url
 
@@ -413,11 +451,11 @@ class TestVersionStats(TestCase):
                                   version=addon.current_version)
 
         url = reverse('devhub.versions.stats', args=[addon.slug])
-        r = json.loads(self.client.get(url).content)
+        data = json.loads(self.client.get(url).content)
         exp = {str(version.id):
                {'reviews': 10, 'files': 1, 'version': version.version,
                 'id': version.id}}
-        self.assertDictEqual(r, exp)
+        self.assertDictEqual(data, exp)
 
 
 class TestEditPayments(TestCase):
@@ -440,8 +478,8 @@ class TestEditPayments(TestCase):
         return Addon.objects.no_cache().get(id=3615)
 
     def post(self, *args, **kw):
-        d = dict(*args, **kw)
-        assert self.client.post(self.url, d).status_code == 302
+        data = dict(*args, **kw)
+        assert self.client.post(self.url, data).status_code == 302
 
     def check(self, **kw):
         addon = self.get_addon()
@@ -469,69 +507,89 @@ class TestEditPayments(TestCase):
                    charity=self.foundation, annoying=amo.CONTRIB_ROADBLOCK)
 
     def test_success_charity(self):
-        d = dict(recipient='org', suggested_amount=11.5,
-                 annoying=amo.CONTRIB_PASSIVE)
-        d.update({'charity-name': 'fligtar fund',
-                  'charity-url': 'http://feed.me',
-                  'charity-paypal': 'greed@org'})
-        self.post(d)
+        data = {
+            'recipient': 'org',
+            'suggested_amount': 11.5,
+            'annoying': amo.CONTRIB_PASSIVE,
+            'charity-name': 'fligtar fund',
+            'charity-url': 'http://feed.me',
+            'charity-paypal': 'greed@org'
+        }
+        self.post(data)
         self.check(paypal_id='', suggested_amount=Decimal('11.50'),
                    charity=Charity.objects.get(name='fligtar fund'))
 
     def test_dev_paypal_id_length(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert int(doc('#id_paypal_id').attr('size')) == 50
 
     def test_dev_paypal_reqd(self):
-        d = dict(recipient='dev', suggested_amount=2,
-                 annoying=amo.CONTRIB_PASSIVE)
-        r = self.client.post(self.url, d)
-        self.assertFormError(r, 'contrib_form', 'paypal_id',
+        data = {
+            'recipient': 'dev',
+            'suggested_amount': 2,
+            'annoying': amo.CONTRIB_PASSIVE
+        }
+        response = self.client.post(self.url, data)
+        self.assertFormError(response, 'contrib_form', 'paypal_id',
                              'PayPal ID required to accept contributions.')
 
     def test_bad_paypal_id_dev(self):
         self.paypal_mock.return_value = False, 'error'
-        d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
-                 annoying=amo.CONTRIB_AFTER)
-        r = self.client.post(self.url, d)
-        self.assertFormError(r, 'contrib_form', 'paypal_id', 'error')
+        data = {
+            'recipient': 'dev',
+            'suggested_amount': 2,
+            'annoying': amo.CONTRIB_AFTER,
+            'paypal_id': 'greed@dev',
+        }
+        response = self.client.post(self.url, data)
+        self.assertFormError(response, 'contrib_form', 'paypal_id', 'error')
 
     def test_bad_paypal_id_charity(self):
         self.paypal_mock.return_value = False, 'error'
-        d = dict(recipient='org', suggested_amount=11.5,
-                 annoying=amo.CONTRIB_PASSIVE)
-        d.update({'charity-name': 'fligtar fund',
-                  'charity-url': 'http://feed.me',
-                  'charity-paypal': 'greed@org'})
-        r = self.client.post(self.url, d)
-        self.assertFormError(r, 'charity_form', 'paypal', 'error')
+        data = {
+            'recipient': 'org',
+            'suggested_amount': 11.5,
+            'annoying': amo.CONTRIB_PASSIVE,
+            'charity-name': 'fligtar fund',
+            'charity-url': 'http://feed.me',
+            'charity-paypal': 'greed@org'
+        }
+        response = self.client.post(self.url, data)
+        self.assertFormError(response, 'charity_form', 'paypal', 'error')
 
     def test_paypal_timeout(self):
         self.paypal_mock.side_effect = socket.timeout()
-        d = dict(recipient='dev', suggested_amount=2, paypal_id='greed@dev',
-                 annoying=amo.CONTRIB_AFTER)
-        r = self.client.post(self.url, d)
-        self.assertFormError(r, 'contrib_form', 'paypal_id',
+        data = {
+            'recipient': 'dev',
+            'suggested_amount': 2,
+            'paypal_id': 'greed@dev',
+            'annoying': amo.CONTRIB_AFTER
+        }
+        response = self.client.post(self.url, data)
+        self.assertFormError(response, 'contrib_form', 'paypal_id',
                              'Could not validate PayPal id.')
 
     def test_max_suggested_amount(self):
         too_much = settings.MAX_CONTRIBUTION + 1
         msg = ('Please enter a suggested amount less than $%d.' %
                settings.MAX_CONTRIBUTION)
-        r = self.client.post(self.url, {'suggested_amount': too_much})
-        self.assertFormError(r, 'contrib_form', 'suggested_amount', msg)
+        response = self.client.post(self.url, {'suggested_amount': too_much})
+        self.assertFormError(response, 'contrib_form', 'suggested_amount', msg)
 
     def test_neg_suggested_amount(self):
         msg = 'Please enter a suggested amount greater than 0.'
-        r = self.client.post(self.url, {'suggested_amount': -1})
-        self.assertFormError(r, 'contrib_form', 'suggested_amount', msg)
+        response = self.client.post(self.url, {'suggested_amount': -1})
+        self.assertFormError(response, 'contrib_form', 'suggested_amount', msg)
 
     def test_charity_details_reqd(self):
-        d = dict(recipient='org', suggested_amount=11.5,
-                 annoying=amo.CONTRIB_PASSIVE)
-        r = self.client.post(self.url, d)
-        self.assertFormError(r, 'charity_form', 'name',
+        data = {
+            'recipient': 'org',
+            'suggested_amount': 11.5,
+            'annoying': amo.CONTRIB_PASSIVE
+        }
+        response = self.client.post(self.url, data)
+        self.assertFormError(response, 'charity_form', 'name',
                              'This field is required.')
         assert self.get_addon().suggested_amount is None
 
@@ -570,70 +628,82 @@ class TestEditPayments(TestCase):
             amo.CONTRIB_AFTER)
 
     def test_enable_thankyou(self):
-        d = dict(enable_thankyou='on', thankyou_note='woo',
-                 annoying=1, recipient='moz')
-        r = self.client.post(self.url, d)
-        assert r.status_code == 302
+        data = {
+            'enable_thankyou': 'on',
+            'thankyou_note': 'woo',
+            'annoying': 1,
+            'recipient': 'moz'
+        }
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         addon = self.get_addon()
         assert addon.enable_thankyou
         assert unicode(addon.thankyou_note) == 'woo'
 
     def test_enable_thankyou_unchecked_with_text(self):
-        d = dict(enable_thankyou='', thankyou_note='woo',
-                 annoying=1, recipient='moz')
-        r = self.client.post(self.url, d)
-        assert r.status_code == 302
+        data = {
+            'enable_thankyou': '',
+            'thankyou_note': 'woo',
+            'annoying': 1,
+            'recipient': 'moz'
+        }
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         addon = self.get_addon()
         assert not addon.enable_thankyou
         assert addon.thankyou_note is None
 
     def test_contribution_link(self):
         self.test_success_foundation()
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
 
         span = doc('#status-bar').find('span')
         assert span.length == 1
         assert span.text().startswith('Your contribution page: ')
 
-        a = span.find('a')
-        assert a.length == 1
-        assert a.attr('href') == reverse(
+        link = span.find('a')
+        assert link.length == 1
+        assert link.attr('href') == reverse(
             'addons.about', args=[self.get_addon().slug])
-        assert a.text() == url_reverse(
+        assert link.text() == url_reverse(
             'addons.about', self.get_addon().slug, host=settings.SITE_URL)
 
     def test_enable_thankyou_no_text(self):
-        d = dict(enable_thankyou='on', thankyou_note='',
-                 annoying=1, recipient='moz')
-        r = self.client.post(self.url, d)
-        assert r.status_code == 302
+        data = {
+            'enable_thankyou': 'on',
+            'thankyou_note': '',
+            'annoying': 1,
+            'recipient': 'moz'
+        }
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         addon = self.get_addon()
         assert not addon.enable_thankyou
         assert addon.thankyou_note is None
 
     def test_no_future(self):
         self.get_addon().update(the_future=None)
-        res = self.client.get(self.url)
-        err = pq(res.content)('p.error').text()
-        assert 'completed developer profile' in err
+        response = self.client.get(self.url)
+        error_msg = pq(response.content)('p.error').text()
+        assert 'completed developer profile' in error_msg
 
     def test_addon_public(self):
         self.get_addon().update(status=amo.STATUS_PUBLIC)
-        res = self.client.get(self.url)
-        doc = pq(res.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('#do-setup').text() == 'Set up Contributions'
 
     def test_voluntary_contributions_addons(self):
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('.intro').length == 1
         assert doc('.intro.full-intro').length == 0
 
     def test_no_voluntary_contributions_for_unlisted_addons(self):
         self.make_addon_unlisted(self.addon)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('.intro').length == 1
         assert doc('.intro.full-intro').length == 0
         assert not doc('#do-setup')  # No way to setup the payment.
@@ -655,17 +725,17 @@ class TestDisablePayments(TestCase):
         assert self.client.login(email='del@icio.us')
 
     def test_statusbar_visible(self):
-        r = self.client.get(self.pay_url)
-        self.assertContains(r, '<div id="status-bar">')
+        response = self.client.get(self.pay_url)
+        self.assertContains(response, '<div id="status-bar">')
 
         self.addon.update(wants_contributions=False)
-        r = self.client.get(self.pay_url)
-        self.assertNotContains(r, '<div id="status-bar">')
+        response = self.client.get(self.pay_url)
+        self.assertNotContains(response, '<div id="status-bar">')
 
     def test_disable(self):
-        r = self.client.post(self.disable_url)
-        assert r.status_code == 302
-        assert(r['Location'].endswith(self.pay_url))
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 302
+        assert(response['Location'].endswith(self.pay_url))
         assert not Addon.objects.no_cache().get(id=3615).wants_contributions
 
 
@@ -674,11 +744,15 @@ class TestPaymentsProfile(TestCase):
 
     def setUp(self):
         super(TestPaymentsProfile, self).setUp()
-        self.addon = a = self.get_addon()
+        self.addon = self.get_addon()
         self.url = self.addon.get_dev_url('payments')
         # Make sure all the payment/profile data is clear.
-        assert not (a.wants_contributions or a.paypal_id or a.the_reason or
-                    a.the_future or a.takes_contributions)
+        assert not (
+            self.addon.wants_contributions or
+            self.addon.paypal_id or
+            self.addon.the_reason or
+            self.addon.the_future or
+            self.addon.takes_contributions)
         assert self.client.login(email='del@icio.us')
         self.paypal_mock = mock.Mock()
         self.paypal_mock.return_value = (True, None)
@@ -704,11 +778,16 @@ class TestPaymentsProfile(TestCase):
         assert doc('#trans-the_future')
 
     def test_profile_form_success(self):
-        d = dict(recipient='dev', suggested_amount=2, paypal_id='xx@yy',
-                 annoying=amo.CONTRIB_ROADBLOCK, the_reason='xxx',
-                 the_future='yyy')
-        r = self.client.post(self.url, d)
-        assert r.status_code == 302
+        data = {
+            'recipient': 'dev',
+            'suggested_amount': 2,
+            'paypal_id': 'xx@yy',
+            'annoying': amo.CONTRIB_ROADBLOCK,
+            'the_reason': 'xxx',
+            'the_future': 'yyy'
+        }
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
 
         # The profile form is gone, we're accepting contributions.
         doc = pq(self.client.get(self.url).content)
@@ -732,24 +811,33 @@ class TestPaymentsProfile(TestCase):
             assert doc('#trans-the_reason')
             assert doc('#trans-the_future')
 
-        d = dict(recipient='dev', suggested_amount=2, paypal_id='xx@yy',
-                 annoying=amo.CONTRIB_ROADBLOCK)
-        r = self.client.post(self.url, d)
-        assert r.status_code == 200
-        self.assertFormError(r, 'profile_form', 'the_reason',
+        data = {
+            'recipient': 'dev',
+            'suggested_amount': 2,
+            'paypal_id': 'xx@yy',
+            'annoying': amo.CONTRIB_ROADBLOCK
+        }
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        self.assertFormError(response, 'profile_form', 'the_reason',
                              'This field is required.')
-        self.assertFormError(r, 'profile_form', 'the_future',
+        self.assertFormError(response, 'profile_form', 'the_future',
                              'This field is required.')
-        check_page(r)
+        check_page(response)
         assert not self.get_addon().wants_contributions
 
-        d = dict(recipient='dev', suggested_amount=2, paypal_id='xx@yy',
-                 annoying=amo.CONTRIB_ROADBLOCK, the_reason='xxx')
-        r = self.client.post(self.url, d)
-        assert r.status_code == 200
-        self.assertFormError(r, 'profile_form', 'the_future',
+        data = {
+            'recipient': 'dev',
+            'suggested_amount': 2,
+            'paypal_id': 'xx@yy',
+            'annoying': amo.CONTRIB_ROADBLOCK,
+            'the_reason': 'xxx'
+        }
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        self.assertFormError(response, 'profile_form', 'the_future',
                              'This field is required.')
-        check_page(r)
+        check_page(response)
         assert not self.get_addon().wants_contributions
 
 
@@ -770,38 +858,40 @@ class TestDelete(TestCase):
         return theme
 
     def test_post_not(self):
-        r = self.client.post(self.get_url(), follow=True)
-        assert pq(r.content)('.notification-box').text() == (
+        response = self.client.post(self.get_url(), follow=True)
+        assert pq(response.content)('.notification-box').text() == (
             'URL name was incorrect. Add-on was not deleted.')
         assert self.get_addon().exists()
 
     def test_post(self):
         self.get_addon().get().update(slug='addon-slug')
-        r = self.client.post(self.get_url(), {'slug': 'addon-slug'},
-                             follow=True)
-        assert pq(r.content)('.notification-box').text() == 'Add-on deleted.'
+        response = self.client.post(self.get_url(), {'slug': 'addon-slug'},
+                                    follow=True)
+        assert pq(response.content)('.notification-box').text() == (
+            'Add-on deleted.')
         assert not self.get_addon().exists()
 
     def test_post_wrong_slug(self):
         self.get_addon().get().update(slug='addon-slug')
-        r = self.client.post(self.get_url(), {'slug': 'theme-slug'},
-                             follow=True)
-        assert pq(r.content)('.notification-box').text() == (
+        response = self.client.post(self.get_url(), {'slug': 'theme-slug'},
+                                    follow=True)
+        assert pq(response.content)('.notification-box').text() == (
             'URL name was incorrect. Add-on was not deleted.')
         assert self.get_addon().exists()
 
     def test_post_theme(self):
         theme = self.make_theme()
-        r = self.client.post(
+        response = self.client.post(
             theme.get_dev_url('delete'), {'slug': 'theme-slug'}, follow=True)
-        assert pq(r.content)('.notification-box').text() == 'Theme deleted.'
+        assert pq(response.content)('.notification-box').text() == (
+            'Theme deleted.')
         assert not Addon.objects.filter(id=theme.id).exists()
 
     def test_post_theme_wrong_slug(self):
         theme = self.make_theme()
-        r = self.client.post(
+        response = self.client.post(
             theme.get_dev_url('delete'), {'slug': 'addon-slug'}, follow=True)
-        assert pq(r.content)('.notification-box').text() == (
+        assert pq(response.content)('.notification-box').text() == (
             'URL name was incorrect. Theme was not deleted.')
         assert Addon.objects.filter(id=theme.id).exists()
 
@@ -816,14 +906,14 @@ class TestHome(TestCase):
         self.addon = Addon.objects.get(pk=3615)
 
     def get_pq(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        return pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        return pq(response.content)
 
     def test_addons(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'devhub/index.html')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, 'devhub/index.html')
 
     def test_editor_promo(self):
         assert self.get_pq()('#devhub-sidebar #editor-promo').length == 1
@@ -943,27 +1033,30 @@ class TestActivityFeed(TestCase):
         self.version = self.addon.versions.first()
 
     def test_feed_for_all(self):
-        r = self.client.get(reverse('devhub.feed_all'))
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(reverse('devhub.feed_all'))
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('header h2').text() == 'Recent Activity for My Add-ons'
 
     def test_feed_for_addon(self):
-        r = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(
+            reverse('devhub.feed', args=[self.addon.slug]))
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('header h2').text() == (
             'Recent Activity for %s' % self.addon.name)
 
     def test_feed_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        r = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
-        assert r.status_code == 200
+        response = self.client.get(
+            reverse('devhub.feed', args=[self.addon.slug]))
+        assert response.status_code == 200
 
     def test_feed_disabled_anon(self):
         self.client.logout()
-        r = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
-        assert r.status_code == 302
+        response = self.client.get(
+            reverse('devhub.feed', args=[self.addon.slug]))
+        assert response.status_code == 302
 
     def add_log(self, action=amo.LOG.ADD_REVIEW):
         amo.set_user(UserProfile.objects.get(email='del@icio.us'))
@@ -1039,8 +1132,8 @@ class TestProfileBase(TestCase):
         self.addon.save()
 
     def post(self, *args, **kw):
-        d = dict(*args, **kw)
-        assert self.client.post(self.url, d).status_code == 302
+        data = dict(*args, **kw)
+        assert self.client.post(self.url, data).status_code == 302
 
     def check(self, **kw):
         addon = self.get_addon()
@@ -1115,9 +1208,9 @@ class TestProfileStatusBar(TestProfileBase):
 class TestProfile(TestProfileBase):
 
     def test_without_contributions_labels(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('label[for=the_reason] .optional').length == 1
         assert doc('label[for=the_future] .optional').length == 1
 
@@ -1136,8 +1229,8 @@ class TestProfile(TestProfileBase):
 
     def test_with_contributions_labels(self):
         self.enable_addon_contributions()
-        r = self.client.get(self.url)
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('label[for=the_reason] .req').length, (
             'the_reason field should be required.')
         assert doc('label[for=the_future] .req').length, (
@@ -1145,33 +1238,33 @@ class TestProfile(TestProfileBase):
 
     def test_log(self):
         self.enable_addon_contributions()
-        d = dict(the_reason='because', the_future='i can')
-        o = ActivityLog.objects
-        assert o.count() == 0
-        self.client.post(self.url, d)
-        assert o.filter(action=amo.LOG.EDIT_PROPERTIES.id).count() == 1
+        data = {'the_reason': 'because', 'the_future': 'i can'}
+        assert ActivityLog.objects.count() == 0
+        self.client.post(self.url, data)
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.EDIT_PROPERTIES.id).count() == 1
 
     def test_with_contributions_fields_required(self):
         self.enable_addon_contributions()
 
-        d = dict(the_reason='', the_future='')
-        r = self.client.post(self.url, d)
-        assert r.status_code == 200
-        self.assertFormError(r, 'profile_form', 'the_reason',
+        data = {'the_reason': '', 'the_future': ''}
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        self.assertFormError(response, 'profile_form', 'the_reason',
                              'This field is required.')
-        self.assertFormError(r, 'profile_form', 'the_future',
-                             'This field is required.')
-
-        d = dict(the_reason='to be cool', the_future='')
-        r = self.client.post(self.url, d)
-        assert r.status_code == 200
-        self.assertFormError(r, 'profile_form', 'the_future',
+        self.assertFormError(response, 'profile_form', 'the_future',
                              'This field is required.')
 
-        d = dict(the_reason='', the_future='hot stuff')
-        r = self.client.post(self.url, d)
-        assert r.status_code == 200
-        self.assertFormError(r, 'profile_form', 'the_reason',
+        data = {'the_reason': 'to be cool', 'the_future': ''}
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        self.assertFormError(response, 'profile_form', 'the_future',
+                             'This field is required.')
+
+        data = {'the_reason': '', 'the_future': 'hot stuff'}
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        self.assertFormError(response, 'profile_form', 'the_reason',
                              'This field is required.')
 
         self.post(the_reason='to be hot', the_future='cold stuff')
@@ -1298,8 +1391,8 @@ class TestUpload(BaseUploadTest):
 
     def test_login_required(self):
         self.client.logout()
-        r = self.post()
-        assert r.status_code == 302
+        response = self.post()
+        assert response.status_code == 302
 
     def test_create_fileupload(self):
         self.post()
@@ -1333,12 +1426,10 @@ class TestUpload(BaseUploadTest):
         assert not msg['description'], 'Found unexpected description.'
 
     def test_redirect(self):
-        r = self.post()
+        response = self.post()
         upload = FileUpload.objects.get()
-        url = reverse(
-            'devhub.upload_detail',
-            args=[upload.uuid.hex, 'json'])
-        self.assert3xx(r, url)
+        url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        self.assert3xx(response, url)
 
     @mock.patch('validator.validate.validate')
     def test_upload_unlisted_addon(self, validate_mock):
@@ -1384,18 +1475,18 @@ class TestUploadDetail(BaseUploadTest):
         addon = os.path.join(
             settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons', file)
         with open(addon, 'rb') as f:
-            r = self.client.post(reverse('devhub.upload'),
-                                 {'upload': f})
-        assert r.status_code == 302
+            response = self.client.post(
+                reverse('devhub.upload'), {'upload': f})
+        assert response.status_code == 302
 
     def test_detail_json(self):
         self.post()
 
         upload = FileUpload.objects.get()
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid.hex, 'json']))
-        assert r.status_code == 200
-        data = json.loads(r.content)
+        response = self.client.get(reverse('devhub.upload_detail',
+                                   args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        data = json.loads(response.content)
         assert data['validation']['errors'] == 2
         assert data['url'] == (
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
@@ -1446,19 +1537,19 @@ class TestUploadDetail(BaseUploadTest):
         self.upload_file('valid_webextension.xpi')
 
         upload = FileUpload.objects.get()
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid.hex, 'json']))
-        assert r.status_code == 200
-        data = json.loads(r.content)
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        data = json.loads(response.content)
         assert data['processed_by_addons_linter'] is True
 
     def test_detail_view(self):
         self.post()
         upload = FileUpload.objects.filter().order_by('-created').first()
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid.hex]))
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex]))
+        assert response.status_code == 200
+        doc = pq(response.content)
         expected = 'Validation Results for animated.png'
         assert doc('header h2').text() == expected
 
@@ -1473,10 +1564,10 @@ class TestUploadDetail(BaseUploadTest):
         v.return_value = json.dumps(self.validation_ok())
         self.upload_file(xpi)
         upload = FileUpload.objects.get()
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid.hex, 'json']))
-        assert r.status_code == 200
-        data = json.loads(r.content)
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        data = json.loads(response.content)
         assert sorted(data['platforms_to_exclude']) == sorted(platforms)
 
     def test_multi_app_addon_can_have_all_platforms(self):
@@ -1532,9 +1623,9 @@ class TestUploadDetail(BaseUploadTest):
         """
         self.upload_file('valid_webextension_no_version.xpi')
         upload = FileUpload.objects.get()
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid.hex, 'json']))
-        data = json.loads(r.content)
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
         message = [(m['message'], m.get('type') == 'error')
                    for m in data['validation']['messages']]
         expected = [(u'&#34;/version&#34; is a required property', True)]
@@ -1547,9 +1638,9 @@ class TestUploadDetail(BaseUploadTest):
         v.return_value = json.dumps(self.validation_ok())
         self.upload_file('unopenable.xpi')
         upload = FileUpload.objects.get()
-        r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid.hex, 'json']))
-        data = json.loads(r.content)
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        data = json.loads(response.content)
         message = [(m['message'], m.get('fatal', False))
                    for m in data['validation']['messages']]
         assert message == [(u'Could not parse the manifest file.', True)]
@@ -1627,10 +1718,11 @@ class TestQueuePosition(TestCase):
         version_files.save()
 
     def test_not_in_queue(self):
-        r = self.client.get(self.addon.get_dev_url('versions'))
+        response = self.client.get(self.addon.get_dev_url('versions'))
 
         assert self.addon.status == amo.STATUS_PUBLIC
-        assert pq(r.content)('.version-status-actions .dark').length == 0
+        assert (
+            pq(response.content)('.version-status-actions .dark').length == 0)
 
     def test_in_queue(self):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
@@ -1646,8 +1738,8 @@ class TestQueuePosition(TestCase):
             file.status = addon_status[1]
             file.save()
 
-            r = self.client.get(self.addon.get_dev_url('versions'))
-            doc = pq(r.content)
+            response = self.client.get(self.addon.get_dev_url('versions'))
+            doc = pq(response.content)
 
             span = doc('.queue-position')
 
@@ -1669,10 +1761,10 @@ class TestVersionXSS(TestCase):
         # encountered.
         self.version.update(
             version='<script>alert("Happy XSS-Xmas");<script>')
-        r = self.client.get(reverse('devhub.addons'))
-        assert r.status_code == 200
-        assert '<script>alert' not in r.content
-        assert '&lt;script&gt;alert' in r.content
+        response = self.client.get(reverse('devhub.addons'))
+        assert response.status_code == 200
+        assert '<script>alert' not in response.content
+        assert '&lt;script&gt;alert' in response.content
 
 
 class TestDeleteAddon(TestCase):
@@ -1685,16 +1777,16 @@ class TestDeleteAddon(TestCase):
         self.client.login(email='admin@mozilla.com')
 
     def test_bad_password(self):
-        r = self.client.post(self.url, dict(slug='nope'))
-        self.assert3xx(r, self.addon.get_dev_url('versions'))
-        assert r.context['title'] == (
+        response = self.client.post(self.url, {'slug': 'nope'})
+        self.assert3xx(response, self.addon.get_dev_url('versions'))
+        assert response.context['title'] == (
             'URL name was incorrect. Add-on was not deleted.')
         assert Addon.objects.count() == 1
 
     def test_success(self):
-        r = self.client.post(self.url, dict(slug='a3615'))
-        self.assert3xx(r, reverse('devhub.addons'))
-        assert r.context['title'] == 'Add-on deleted.'
+        response = self.client.post(self.url, {'slug': 'a3615'})
+        self.assert3xx(response, reverse('devhub.addons'))
+        assert response.context['title'] == 'Add-on deleted.'
         assert Addon.objects.count() == 0
 
 
@@ -1720,13 +1812,13 @@ class TestRequestReview(TestCase):
 
     def check(self, old_status, url, new_status):
         self.addon.update(status=old_status)
-        r = self.client.post(url)
-        self.assert3xx(r, self.redirect_url)
+        response = self.client.post(url)
+        self.assert3xx(response, self.redirect_url)
         assert self.get_addon().status == new_status
 
     def check_400(self, url):
-        r = self.client.post(url)
-        assert r.status_code == 400
+        response = self.client.post(url)
+        assert response.status_code == 400
 
     def test_public(self):
         self.addon.update(status=amo.STATUS_PUBLIC)
@@ -1768,24 +1860,26 @@ class TestRedirects(TestCase):
 
     def test_edit(self):
         url = self.base + 'addon/edit/3615'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, reverse('devhub.addons.edit', args=['a3615']), 301)
+        response = self.client.get(url, follow=True)
+        self.assert3xx(
+            response, reverse('devhub.addons.edit', args=['a3615']), 301)
 
         url = self.base + 'addon/edit/3615/'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, reverse('devhub.addons.edit', args=['a3615']), 301)
+        response = self.client.get(url, follow=True)
+        self.assert3xx(
+            response, reverse('devhub.addons.edit', args=['a3615']), 301)
 
     def test_status(self):
         url = self.base + 'addon/status/3615'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, reverse('devhub.addons.versions',
-                                  args=['a3615']), 301)
+        response = self.client.get(url, follow=True)
+        self.assert3xx(
+            response, reverse('devhub.addons.versions', args=['a3615']), 301)
 
     def test_versions(self):
         url = self.base + 'versions/3615'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, reverse('devhub.addons.versions',
-                                  args=['a3615']), 301)
+        response = self.client.get(url, follow=True)
+        self.assert3xx(
+            response, reverse('devhub.addons.versions', args=['a3615']), 301)
 
 
 class TestHasCompleteMetadataRedirects(TestCase):
@@ -1859,11 +1953,11 @@ class TestDocs(TestCase):
         index = reverse('devhub.index')
 
         for url in urls:
-            r = self.client.get(url[0])
-            assert r.status_code == url[1]
+            response = self.client.get(url[0])
+            assert response.status_code == url[1]
 
             if url[1] == 302:  # Redirect to the index page
-                self.assert3xx(r, index)
+                self.assert3xx(response, index)
 
 
 class TestRemoveLocale(TestCase):
@@ -1876,8 +1970,8 @@ class TestRemoveLocale(TestCase):
         assert self.client.login(email='del@icio.us')
 
     def test_bad_request(self):
-        r = self.client.post(self.url)
-        assert r.status_code == 400
+        response = self.client.post(self.url)
+        assert response.status_code == 400
 
     def test_success(self):
         self.addon.name = {'en-US': 'woo', 'el': 'yeah'}
@@ -1885,13 +1979,14 @@ class TestRemoveLocale(TestCase):
         self.addon.remove_locale('el')
         qs = (Translation.objects.filter(localized_string__isnull=False)
               .values_list('locale', flat=True))
-        r = self.client.post(self.url, {'locale': 'el'})
-        assert r.status_code == 200
+        response = self.client.post(self.url, {'locale': 'el'})
+        assert response.status_code == 200
         assert sorted(qs.filter(id=self.addon.name_id)) == ['en-US']
 
     def test_delete_default_locale(self):
-        r = self.client.post(self.url, {'locale': self.addon.default_locale})
-        assert r.status_code == 400
+        response = self.client.post(
+            self.url, {'locale': self.addon.default_locale})
+        assert response.status_code == 400
 
     def test_remove_version_locale(self):
         version = self.addon.versions.all()[0]
@@ -1936,16 +2031,16 @@ class TestNewDevHubLanding(TestCase):
         self.create_flag('new-devhub-landing')
 
     def get_pq(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        return pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        return pq(response.content)
 
     def test_basic(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
+        response = self.client.get(self.url)
+        assert response.status_code == 200
         # The actual switch happens in the template, so we're using the same
         # template.
-        self.assertTemplateUsed(r, 'devhub/index.html')
+        self.assertTemplateUsed(response, 'devhub/index.html')
 
     def test_waffle_flag_inactive(self):
         Flag.objects.filter(name='new-devhub-landing').delete()

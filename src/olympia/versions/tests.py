@@ -672,6 +672,16 @@ class TestViews(TestCase):
         assert link == self.url_detail
         assert doc('.version').attr('id') == 'version-%s' % version
 
+    def test_version_list_button_skips_contribution_roadblock(self):
+        self.addon.update(
+            wants_contributions=True, annoying=amo.CONTRIB_ROADBLOCK,
+            paypal_id='foobar')
+        version = version_factory(addon=self.addon, version='2.0')
+        file_ = version.files.all()[0]
+        doc = self.get_content()
+        assert (doc('.button')[0].attrib['href'] ==
+                file_.get_url_path(src='version-history'))
+
     def test_version_list_doesnt_show_unreviewed_versions_public_addon(self):
         version = self.addon.current_version.version
         version_factory(

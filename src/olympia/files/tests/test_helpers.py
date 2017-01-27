@@ -18,7 +18,7 @@ from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.files.helpers import FileViewer, DiffHelper, LOCKED, extract_file
 from olympia.files.models import File
-from olympia.files.utils import SafeUnzip, extract_xpi, get_all_files
+from olympia.files.utils import SafeUnzip, get_all_files
 
 root = os.path.join(settings.ROOT, 'src/olympia/files/fixtures/files')
 

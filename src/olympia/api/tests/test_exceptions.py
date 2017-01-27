@@ -16,6 +16,7 @@ class DummyViewSet(GenericViewSet):
     def list(self, *args, **kwargs):
         raise Exception('something went wrong')
 
+
 test_exception = SimpleRouter()
 test_exception.register('testexcept', DummyViewSet, base_name='test-exception')
 

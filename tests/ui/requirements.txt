@@ -3,7 +3,7 @@ PyJWT==1.4.2
 PyPOM==1.1.1
 pytest==3.0.6
 pytest-instafail==0.3.0
-pytest-selenium==1.7.0
+pytest-selenium==1.8.0
 pytest-variables==1.4
 pytest-xdist==1.15.0
 selenium==3.0.2
