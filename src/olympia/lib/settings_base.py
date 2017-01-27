@@ -1285,7 +1285,8 @@ CSP_IMG_SRC = (
     "'self'",
     'data:',  # Used in inlined mobile css.
     'blob:',  # Needed for image uploads.
-    'https://www.paypal.com',
+    'https://www.paypal.com/webapps/checkout/',  # Needed for contrib.
+    'https://www.paypal.com/webapps/hermes/api/logger/',  # Needed for contrib.
     ANALYTICS_HOST,
     PROD_CDN_HOST,
     'https://static.addons.mozilla.net',  # CDN origin server.
