@@ -8,7 +8,7 @@ from olympia.constants.applications import APPS
 from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA
 from olympia.constants.categories import CATEGORIES
 from olympia.landfill.generators import (
-    _yield_name_and_cat, create_addon, create_theme)
+    _yield_name_and_cat, create_theme, generate_addons)
 from olympia.versions.models import Version
 
 
@@ -79,8 +79,9 @@ class ThemeGeneratorTests(_BaseAddonGeneratorMixin, TestCase):
 class CreateGeneratorTests(TestCase):
 
     def test_create_addon(self):
-        addon = create_addon('foo', 'icon/default', APPS['android'])
-        assert Addon.objects.last().name == addon.name
+        generate_addons(1, u'foo@baa', 'android')
+        addon = Addon.objects.last()
+        assert addon.has_complete_metadata(), addon.get_required_metadata()
         assert amo.STATUS_PUBLIC == addon.status
         assert Version.objects.last() == addon._current_version
 

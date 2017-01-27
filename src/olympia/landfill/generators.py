@@ -10,7 +10,7 @@ from olympia.addons.forms import icons
 from olympia.addons.models import Addon, Persona, update_search_index
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
-    ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC)
+    ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC, RELEASE_CHANNEL_LISTED)
 
 from .categories import generate_categories
 from .collection import generate_collection
@@ -45,6 +45,7 @@ def create_addon(name, icon_type, application, **extra_kwargs):
     kwargs = {
         'status': STATUS_PUBLIC,
         'name': name,
+        'summary': 'A summary of %s' % name,
         'slug': slugify(name),
         'bayesian_rating': random.uniform(1, 5),
         'average_daily_users': random.randint(200, 2000),
@@ -57,8 +58,8 @@ def create_addon(name, icon_type, application, **extra_kwargs):
 
     addon = Addon.objects.create(type=ADDON_EXTENSION, **kwargs)
     generate_version(addon=addon, app=application)
-    addon.update_version()
     addon.save()
+    addon.update_status()
     return addon
 
 
@@ -86,6 +87,8 @@ def generate_addons(num, owner, app_name):
             generate_collection(addon, app)
             featured_categories[category] += 1
         generate_ratings(addon, 5)
+        addon.save()
+        addon.update_status()
 
 
 def create_theme(name, **extra_kwargs):
