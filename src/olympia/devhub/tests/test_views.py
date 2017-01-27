@@ -1821,8 +1821,7 @@ class TestRequestReview(TestCase):
     def test_renominate_for_full_review(self, mock_has_complete_metadata):
         # When a version is rejected, the addon is disabled.
         # The author must upload a new version and re-nominate.
-        # However, renominating the *same* version does not adjust the
-        # nomination date.
+        # Renominating the same version resets the nomination date.
         mock_has_complete_metadata.return_value = True
 
         orig_date = datetime.now() - timedelta(days=30)
@@ -1832,20 +1831,7 @@ class TestRequestReview(TestCase):
         response = self.client.post(self.public_url)
         self.assert3xx(response, self.redirect_url)
         assert self.get_addon().status == amo.STATUS_NOMINATED
-        assert self.get_version().nomination.timetuple()[0:5] == (
-            orig_date.timetuple()[0:5])
-
-    def test_renomination_doesnt_reset_nomination_date(self):
-        # Nominate:
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        # Pretend it was nominated in the past:
-        orig_date = datetime.now() - timedelta(days=30)
-        self.version.update(nomination=orig_date, _signal=False)
-        # Reject it:
-        self.addon.update(status=amo.STATUS_NULL)
-        # Re-nominate:
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        assert self.get_version().nomination.timetuple()[0:5] == (
+        assert self.get_version().nomination.timetuple()[0:5] != (
             orig_date.timetuple()[0:5])
 
 

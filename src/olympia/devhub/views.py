@@ -1712,15 +1712,16 @@ def request_review(request, addon_id, addon):
     latest_version = addon.find_latest_version_including_rejected(
         amo.RELEASE_CHANNEL_LISTED)
     if latest_version:
-        latest_version.files.filter(
-            status=amo.STATUS_DISABLED).update(
-            status=amo.STATUS_AWAITING_REVIEW)
+        for f in latest_version.files.filter(status=amo.STATUS_DISABLED):
+            f.update(status=amo.STATUS_AWAITING_REVIEW)
+        # Clear the nomination date so it gets set again in Addon.watch_status.
+        latest_version.update(nomination=None)
     if addon.has_complete_metadata():
         addon.update(status=amo.STATUS_NOMINATED)
-        messages.success(request, _('Review Requested.'))
+        messages.success(request, _('Review requested.'))
     else:
         messages.success(request, _(
-            'Review Requested.  You must provide further details to proceed.'))
+            'Review requested.  You must provide further details to proceed.'))
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect(addon.get_dev_url('versions'))
 
