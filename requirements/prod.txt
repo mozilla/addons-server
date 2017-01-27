@@ -271,10 +271,9 @@ moz-addon-packager==1.0.1 \
 mozilla-logger==0.2 \
     --hash=sha256:085db73901ea38728ac5eb14197979ae8b9524511ba7f0d8941d70650b586ef5
 # natsort is required by amo-validator
-natsort==5.0.1 \
-    --hash=sha256:ad35be68ef6db20a9b0ae6c81df8ea1c6166f924e92de967b9adca97912acec6 \
-    --hash=sha256:4ad6b4d1153451e345967989bd3ca30abf33f615b116eeadfcc51a456e6974a9 \
-    --hash=sha256:62648ac68cf55193bcb4c1078cf99dfb72bb7ed6c1bacca5fd36b6167952b5c6
+natsort==5.0.2 \
+    --hash=sha256:b6b018412a7f6ccd80c2d892947c93eae9c1c4c6948382dbcc21a69939c5a408 \
+    --hash=sha256:765edf99a8cf673cb6c78feec0bfa1f25b560ec046aff19eb6f2aa882890062e
 ndg-httpsclient==0.4.2 \
     --hash=sha256:580987ef194334c50389e0d7de885fccf15605c13c6eecaabd8d6c43768eb8ac
 newrelic==2.78.0.57 \
