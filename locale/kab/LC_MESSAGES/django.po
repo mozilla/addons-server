@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-27 12:28+0000\n"
+"PO-Revision-Date: 2017-01-27 13:48+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5203,7 +5203,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Azegrir inek yettwasken di tmidelt-nneɣ udiɣ iseqdacen ad d-remsen ileqman s wudem awurman."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
@@ -5518,9 +5518,8 @@ msgid "Evolution in Add-on Development"
 msgstr "Asfari di tneflit n izegrar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
-msgstr "WebExtensions uɣalen d tizeɣt i tneflit n izegrar di Firefox. Asnifel-agi akked wiyaḍ di Firefox zemren ad ḥazen ineflayen deg izegrar iqbuṛen."
+msgstr "WebExtensions uɣalen d tizeɣt i tneflit n izegrar di Firefox. Tesriḍ asnifel n izegrar iqbuṛen akken ad teqqimeḍ deg umṣada."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
@@ -5528,18 +5527,16 @@ msgid "Learn How"
 msgstr "Issin amek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "What's New"
-msgstr "Isallen ineggura"
+msgstr "D acu yellan d amaynut"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Show Me"
-msgstr "Sken iwenniten"
+msgstr "Sken-iyi-d"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "AMO"
@@ -5550,9 +5547,8 @@ msgid "Self-hosted"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Wali akk ileqman"
+msgstr "Wali akk tuzniwin"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
@@ -5575,14 +5571,12 @@ msgid "Docs"
 msgstr "Isemliyen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Kcem"
+msgstr "Ffeɣ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Kkes tawlaft n useqdac"
+msgstr "Tawlaft n useqdac"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, fuzzy, python-format
@@ -5590,9 +5584,8 @@ msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a
 msgstr "<a href=\"%(reg)s\">Jerred</a> neɣ <a href=\"%(login)s\">Kcem</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Sagen Firefox inek"
+msgstr "Sagen Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy, python-format
@@ -5604,9 +5597,8 @@ msgstr ""
 "azegrir meqqṛen."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to Make an Add-on"
-msgstr "Issin ugar amek ara teggeḍ azegrir"
+msgstr "Issin amek ara tesniflid azegrir"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Port a Chrome Extension"
