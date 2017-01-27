@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-27 13:48+0000\n"
+"PO-Revision-Date: 2017-01-27 14:06+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -8758,7 +8758,7 @@ msgstr ""
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mailing List"
-msgstr ""
+msgstr "Tabdart n tnezwit"
 
 #. Label for a link to the extension developers newsgroup
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8801,7 +8801,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Zemreɣ ad muddeɣ tanezduɣt i uzegrir inu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8813,7 +8813,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Tezmer Mozilla ad tmudd tanezduɣt i uzegrir inu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8832,7 +8832,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Mozilla ad tegber talɣut n umiḍan inu d tusligt?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8862,7 +8862,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
-msgstr ""
+msgstr "Amek ara yazneɣ azegrir inu i ucegger?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
