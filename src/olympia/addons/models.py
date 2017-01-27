@@ -1039,32 +1039,42 @@ class Addon(OnChangeMixin, ModelBase):
         )
 
     @write
-    def update_status(self, ignore_version=None, force_update=False):
+    def update_status(self, ignore_version=None):
         self.reload()
 
         if (self.status in [amo.STATUS_DISABLED, amo.STATUS_DELETED] or
                 self.disabled_by_user or self.is_persona()):
+            # DISABLED and DELETED are explicitly set statuses so we don't
+            # override those, and we don't touch background themes status.
             self.update_version(ignore=ignore_version)
             return
 
+        # Only consider listed versions for status reasons.
         versions = self.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
         new_status = self.status
+        force_update = False
 
         if not versions.exists():
+            # No versions means null.
             new_status = amo.STATUS_NULL
             reason = 'no listed versions'
         elif versions.filter(files__status=amo.STATUS_PUBLIC):
+            # If there's at least one approved version the add-on is approved.
             new_status = amo.STATUS_PUBLIC
             reason = 'approved listed versions'
         elif versions.filter(files__status=amo.STATUS_AWAITING_REVIEW):
+            # Otherwise, if there's a version awaiting review, it's nominated.
             new_status = amo.STATUS_NOMINATED
             reason = 'versions awaiting review'
         else:
+            # No approved, or awaiting review versions mean null again.
             new_status = amo.STATUS_NULL
             reason = 'no listed version with valid file'
+
         if not self.has_complete_metadata() and new_status > self.status:
             # If the add-on doesn't have complete_metadata we don't want to
-            # 'upgrade' it's status.
+            # 'upgrade' it's status to approved or nominated.  (But we
+            # shouldn't block a downgrade either).
             new_status = self.status
 
         if self.status == amo.STATUS_PUBLIC:
