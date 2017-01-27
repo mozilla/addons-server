@@ -58,7 +58,7 @@ class HubTest(TestCase):
                 'status': addon.status,
                 'name': 'cloned-addon-%s-%s' % (addon_id, i)
             }
-            new_addon = Addon.objects.create(**data)
+            new_addon = addon_factory(**data)
             new_addon.addonuser_set.create(user=self.user_profile)
             ids.append(new_addon.id)
         return ids
