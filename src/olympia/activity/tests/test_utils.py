@@ -241,7 +241,7 @@ class TestLogAndNotify(TestCase):
         assert self.developer.email not in recipients
 
         self._check_email(send_mail_mock.call_args_list[0],
-                          self.addon.get_dev_url('versions'))
+                          absolutify(self.addon.get_dev_url('versions')))
         review_url = absolutify(
             reverse('editors.review', args=[self.addon.pk], add_prefix=False))
         self._check_email(send_mail_mock.call_args_list[1],
@@ -270,9 +270,9 @@ class TestLogAndNotify(TestCase):
         assert self.reviewer.email not in recipients
 
         self._check_email(send_mail_mock.call_args_list[0],
-                          self.addon.get_dev_url('versions'))
+                          absolutify(self.addon.get_dev_url('versions')))
         self._check_email(send_mail_mock.call_args_list[1],
-                          self.addon.get_dev_url('versions'))
+                          absolutify(self.addon.get_dev_url('versions')))
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_log_with_no_comment(self, send_mail_mock):

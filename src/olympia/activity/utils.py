@@ -194,7 +194,7 @@ def log_and_notify(action, comments, note_creator, version):
         'number': version.version,
         'author': note_creator.name,
         'comments': comments,
-        'url': version.addon.get_dev_url('versions'),
+        'url': absolutify(version.addon.get_dev_url('versions')),
         'SITE_URL': settings.SITE_URL,
     }
     reviewer_context_dict = author_context_dict.copy()
