@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-28 02:51+0000\n"
+"PO-Revision-Date: 2017-01-28 13:04+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5691,7 +5691,7 @@ msgstr "Escreva algum código"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Ajude a tornar as extensões melhores contribuindo com suas habilidades de programação."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get started"
@@ -5737,7 +5737,7 @@ msgstr "Novidades"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
-msgstr ""
+msgstr "Feliz Ano Novo! Confira as novas extensões para 2017."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Show Me"
