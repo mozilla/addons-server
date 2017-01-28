@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-27 14:06+0000\n"
+"PO-Revision-Date: 2017-01-28 10:37+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -7553,11 +7553,11 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Tunigin s war tugdi"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Mmesten tabaḍnit inek srid s useqdec n izegrar n tagrumma-agi."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
