@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-28 10:37+0000\n"
-"Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
+"PO-Revision-Date: 2017-01-28 14:12+0000\n"
+"Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -4203,7 +4203,7 @@ msgstr "Lqem aneggaru:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Queue Position:"
-msgstr ""
+msgstr "Adig n wedras:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 #, python-format
