@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-28 02:12+0000\n"
+"PO-Revision-Date: 2017-01-28 02:47+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4027,7 +4027,7 @@ msgstr "Análise"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
-msgstr ""
+msgstr "A partir do Firefox 53, as novas extensões neste site só podem ser WebExtensions."
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -5378,7 +5378,7 @@ msgstr "Gerar novas credenciais"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Por favor, complete a sua extensão adicionando uma versão ou os metadados que faltam."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -5658,11 +5658,11 @@ msgstr "Tenha a sua extensão em destaque"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Botão \"Obter Extensão\""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
-msgstr ""
+msgstr "Informações legais"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
