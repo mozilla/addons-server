@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-28 02:47+0000\n"
+"PO-Revision-Date: 2017-01-28 02:51+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5679,7 +5679,7 @@ msgstr "Analisar este complemento"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Avaliações de voluntários ajudam a manter a extensão segura e confiável para uso. Eles também aproveitam as vantagens!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
