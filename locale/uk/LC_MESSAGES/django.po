@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-25 12:36+0000\n"
-"Last-Translator: Denis Sikorsky <sikorskydenisua@protonmail.com>\n"
+"PO-Revision-Date: 2017-01-29 07:41+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -880,6 +880,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"Перегляньте <a href=\"%(support)s\">розділ підтримки</a>, щоб дізнатися чи доступна допомога. Ви також можете задати питання <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">спільноті додатків</a> для отримання допомоги."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -5590,7 +5592,7 @@ msgstr "Перевірити цей додаток"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Волонтери допомагають перевіряти додатки, щоб забезпечити їх захищеність і відповідність використання. Вони також отримують привілеї!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
@@ -5661,7 +5663,7 @@ msgstr "AMO"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Self-hosted"
-msgstr ""
+msgstr "Власне розміщення"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
