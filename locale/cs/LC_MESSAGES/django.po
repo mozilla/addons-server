@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-29 20:50+0000\n"
+"PO-Revision-Date: 2017-01-29 20:55+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -5588,7 +5588,6 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get started"
 msgstr "Začínáme"
 
@@ -5643,7 +5642,7 @@ msgstr "Zobrazit komentáře"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "AMO"
-msgstr ""
+msgstr "AMO"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Self-hosted"
@@ -5676,24 +5675,21 @@ msgid "Docs"
 msgstr "Dokumenty"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Přihlásit se"
+msgstr "Odhlásit se"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Smazat foto uživatele"
+msgstr "Fotografie uživatele"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Registrace</a> nebo <a href=\"%(login)s\">přihlášení</a>"
+msgstr "<a href=\"%(register)s\">Registrace</a> nebo <a href=\"%(login)s\">přihlášení</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Přizpůsobte si svůj Firefox"
+msgstr "Přizpůsobte si Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy, python-format
@@ -10237,7 +10233,7 @@ msgstr "Pouze WebExtensions doplňky nemusí mít GUID"
 
 #: src/olympia/signing/views.py
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "Neplatný identifikátor GUID v adrese URL"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
