@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-29 07:41+0000\n"
+"PO-Revision-Date: 2017-01-29 08:11+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -870,9 +870,8 @@ msgid "Submit review"
 msgstr "Відправити відгук"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "Будь ласка, не надсилайте повідомлення про помилки у відгуках. Ми не розголошуємо вашу електронну адресу, а розробникам може бути потрібно зв’язатись з вами, щоб допомогти."
+msgstr "Будь ласка, не публікуйте повідомлення про помилки тут. Ми не робимо вашу адресу електронної пошти доступною розробникам, отже вони не зможуть зв'язатися з вами для вирішення проблеми."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -5511,9 +5510,8 @@ msgid "Resources"
 msgstr "Ресурси"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "WebExtensions"
-msgstr "WebExtension"
+msgstr "WebExtensions"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Community"
@@ -5536,9 +5534,8 @@ msgid "Contact Us"
 msgstr "Зв'язатися з нами"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Policies"
-msgstr "Нотатка перевірки"
+msgstr "Правила перевірки"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "FAQ"
@@ -5565,9 +5562,8 @@ msgid "Promote"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "Керуйте своїм додатком"
+msgstr "Зробіть свій додаток відібраним"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
@@ -5586,9 +5582,8 @@ msgid "Legal Notices"
 msgstr "Юридичні відомості"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "Перевірити цей додаток"
+msgstr "Перевіряйте додатки"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
@@ -5611,9 +5606,8 @@ msgid "Get started"
 msgstr "Почати"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "Більше можливостей до налаштування"
+msgstr "Більше можливостей для участі"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
@@ -5636,9 +5630,8 @@ msgid "Evolution in Add-on Development"
 msgstr "Прогрес розробки додатку"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
-msgstr "WebExtensions стають стандартом в розробці додатків для Firefox. Ці, а також інші зміни в Firefox можуть вплинути на розробників попередніх додатків."
+msgstr "WebExtensions тепер є стандартом в розробці додатків для Firefox. Для подальшої сумісності вам знадобиться оновити свої попередні додатки."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
@@ -5666,9 +5659,8 @@ msgid "Self-hosted"
 msgstr "Власне розміщення"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Дивитися всі версії"
+msgstr "Переглянути всі подання"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
@@ -5695,28 +5687,26 @@ msgid "Sign Out"
 msgstr "Вийти"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Видалити світлину користувача"
+msgstr "Фото користувача"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Зареєструватися</a> чи <a href=\"%(login)s\">Увійти</a>"
+msgstr "<a href=\"%(register)s\">Зареєструйтеся</a> або <a href=\"%(login)s\">Увійдіть</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Пристосуйте ваш Firefox"
+msgstr "Пристосуйте Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
 " you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Додатки дозволяють мільйонам користувачів Firefox розширювати їхні можливості в мережі Інтернет. Якщо ви знайомі з <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> та <a href=\"#\">CSS</a>, у "
-"вас вже є всі необхідні навички для створення чудового додатку."
+"Додатки дозволяють мільйонам користувачів Firefox розширювати їхні можливості в мережі Інтернет. Якщо ви знаєте <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a> та <a "
+"href=\"%(css_link)s\">CSS</a>, у вас вже є всі необхідні навички для створення чудового додатку."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to Make an Add-on"
@@ -9929,7 +9919,7 @@ msgid "Add a review for {0}"
 msgstr "Додати відгук для {0}"
 
 #: src/olympia/reviews/templates/reviews/add.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
@@ -9940,10 +9930,10 @@ msgid ""
 msgstr ""
 "<h2>Зверніть увагу на ці поради:</h2> <ul> <li> Пишіть так, наче ви розповідаєте друзям про ваші враження при роботі з додатком. Додавайте конкретні та корисні подробиці, наприклад, які функції вам "
 "сподобались чи не сподобались, наскільки він є простим в користуванні, а також будь-які його недоліки. Уникайте загальних виразів, наприклад, \"Чудово\", або \"Погано\", якщо ви не можете вказати "
-"причини того, чому ви так вважаєте. </li> <li> Не публікуйте у відгуках звіти про помилки. Ми не відображаємо вашу адресу електронної пошти розробникам додатків, а їм, можливо, потрібно буде "
-"зв'язатися з вами, щоб допомогти вирішити проблему. Перегляньте <a href=\"%(support)s\">розділ підтримки</a>, щоб знайти де отримати допомогу щодо цього додатку. </li> <li>Будь ласка, пишіть відгуки"
-" чисто, уникайте використання недоречних виразів і не публікуйте ніякої особистої інформації. </li> </ul> <p>Ознайомтеся з <a href=\"%(guide)s\">Настановами про відгуки</a> для отримання докладнішої"
-" інформації про відгуки користувачів про додатки.</p>"
+"причини того, чому ви так вважаєте. </li> <li> Не повідомляйте про помилки тут. Ми не робимо вашу адресу електронної пошти доступною розробникам додатків, отже вони не зможуть зв'язатися з вами для "
+"вирішення проблеми. Перегляньте <a href=\"%(support)s\">розділ підтримки</a>, щоб перевірити наявність допомоги. Ви також можете задати питання <a href=\"https://discourse.mozilla-community.org/c"
+"/add-ons/add-on-support\">спільноті додатків</a> для отримання допомоги. </li> <li>Будь ласка, пишіть відгуки чисто, уникайте використання недоречних виразів і не публікуйте ніякої особистої "
+"інформації. </li> </ul> <p>Ознайомтеся з <a href=\"%(guide)s\">Настановами про відгуки</a> для отримання докладнішої інформації про відгуки користувачів про додатки.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
