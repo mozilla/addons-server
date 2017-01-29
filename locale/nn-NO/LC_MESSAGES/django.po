@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-28 16:54+0000\n"
+"PO-Revision-Date: 2017-01-29 11:39+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4981,9 +4981,8 @@ msgid "Support website:"
 msgstr "Brukarstøttenettstad"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Lisens"
+msgstr "Lisens:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
@@ -5099,9 +5098,8 @@ msgid "You selected only some of the available platforms for this submission. Yo
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload File"
-msgstr "Legg til fil"
+msgstr "Last opp fil"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
