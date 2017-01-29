@@ -23,7 +23,7 @@
   {% endif %}
   <p>
     <label>
-      {{ _('Enter the following text confirm your decision: {slug}')|fe(slug=addon.slug) }}
+      {{ _('Enter the following text to confirm your decision: {slug}')|fe(slug=addon.slug) }}
     </label>
     <input class="full-width" type="text" name="slug" autocomplete="off"
            placeholder="{{ addon.slug }}" pattern="{{ addon.slug }}" required>
