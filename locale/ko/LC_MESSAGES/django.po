@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-30 01:10+0000\n"
+"PO-Revision-Date: 2017-01-30 01:14+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3220,7 +3220,7 @@ msgstr "기간이 지난 심사에 대한 보너스"
 
 #: src/olympia/constants/base.py
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "보너스가 적용되기까지 남은 일"
 
 #: src/olympia/constants/base.py
 msgid "Theme Review"
@@ -4003,11 +4003,11 @@ msgstr "부가 기능이 삭제되었습니다."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL 이름이 부정확합니다. 테마는 삭제되지 않았습니다."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL 이름이 부정확합니다. 부가 기능은 삭제되지 않았습니다."
 
 #: src/olympia/devhub/views.py
 msgid "An author has been added to your add-on"
@@ -5005,7 +5005,7 @@ msgstr "심사원 주의 사항"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "저희 심사원들이 이 add-on을 평가할 때 고려해야 할 점이 있습니까?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
@@ -5059,7 +5059,7 @@ msgstr "버전 기록서 / 심사원에게 남기는 메모"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "다 되었습니다! 이 버전은 심사를 위해 제출되었으며, 심사가 끝난 뒤 혹은 심사원들이 당신의 제출물에 대해 질문이 있을 시 알려드리게 될 것입니다."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -5386,7 +5386,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "README 파일, 혹은 심사원에게 알려줄 주의 사항으로 마지막 add-on파일을 어떻게 복사하는지의 설명을 포함시켜 주십시오."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
@@ -6112,7 +6112,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "만약 애드온에 바이너리나 난독화된 코드가 포함되어 있다면 심사원들이 소스를 확인할 수 있도록 해 주세요."
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "File {file_id} ({platform})"
