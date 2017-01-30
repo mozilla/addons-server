@@ -323,23 +323,40 @@ class TestVersion(TestCase):
         assert not version.is_allowed_upload()
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_new_version_disable_old_unreviewed(self, hide_mock):
+    def test_new_version_disable_old_unreviewed(self, hide_disabled_file_mock):
         addon = Addon.objects.get(id=3615)
         # The status doesn't change for public files.
         qs = File.objects.filter(version=addon.current_version)
         assert qs.all()[0].status == amo.STATUS_PUBLIC
         Version.objects.create(addon=addon)
         assert qs.all()[0].status == amo.STATUS_PUBLIC
-        assert not hide_mock.called
+        assert not hide_disabled_file_mock.called
 
         qs.update(status=amo.STATUS_AWAITING_REVIEW)
         version = Version.objects.create(addon=addon)
         version.disable_old_files()
         assert qs.all()[0].status == amo.STATUS_DISABLED
         addon.current_version.all_files[0]
-        assert hide_mock.called
+        assert hide_disabled_file_mock.called
 
-    def test_new_version_beta(self):
+    @mock.patch('olympia.files.models.File.hide_disabled_file')
+    def test_new_version_unlisted_dont_disable_old_unreviewed(
+            self, hide_disabled_file_mock):
+        addon = Addon.objects.get(id=3615)
+        old_version = addon.current_version
+        old_version.files.all().update(status=amo.STATUS_AWAITING_REVIEW)
+
+        version = version_factory(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version.disable_old_files()
+
+        old_version.reload()
+        assert old_version.files.all()[0].status == amo.STATUS_AWAITING_REVIEW
+        assert not hide_disabled_file_mock.called
+
+    @mock.patch('olympia.files.models.File.hide_disabled_file')
+    def test_new_version_beta_dont_disable_old_unreviewed(
+            self, hide_disabled_file_mock):
         addon = Addon.objects.get(id=3615)
         qs = File.objects.filter(version=addon.current_version)
         qs.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -348,6 +365,7 @@ class TestVersion(TestCase):
         File.objects.create(version=version, status=amo.STATUS_BETA)
         version.disable_old_files()
         assert qs.all()[0].status == amo.STATUS_AWAITING_REVIEW
+        assert not hide_disabled_file_mock.called
 
     def test_version_int(self):
         version = Version.objects.get(pk=81551)

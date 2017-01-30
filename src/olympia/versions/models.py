@@ -528,7 +528,14 @@ class Version(OnChangeMixin, ModelBase):
             version.all_activity = al_dict.get(v_id, [])
 
     def disable_old_files(self):
-        if not self.files.filter(status=amo.STATUS_BETA).exists():
+        """
+        Disable files from versions older than the current one and awaiting
+        review. Used when uploading a new version.
+
+        Does nothing if the current instance is unlisted or has beta files.
+        """
+        if (self.channel == amo.RELEASE_CHANNEL_LISTED and
+                not self.files.filter(status=amo.STATUS_BETA).exists()):
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
                                      version__deleted=False,
