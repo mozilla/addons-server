@@ -1006,10 +1006,16 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
 
     def test_force_beta(self):
-        self.post(beta=True)
+        response = self.post(beta=True)
         # Need latest() rather than find_latest_version as Beta isn't returned.
         version = self.addon.versions.latest()
         assert version.all_files[0].status == amo.STATUS_BETA
+
+        # Beta versions should skip the details step.
+        finish_url = reverse('devhub.submit.version.finish', args=[
+            self.addon.slug, version.pk])
+        assert finish_url != self.get_next_url(version)
+        self.assert3xx(response, finish_url)
 
     def test_incomplete_addon_now_nominated(self):
         """Uploading a new version for an incomplete addon should set it to
