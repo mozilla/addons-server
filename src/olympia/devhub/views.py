@@ -380,6 +380,12 @@ def cancel(request, addon_id, addon):
     if addon.status == amo.STATUS_NOMINATED:
         addon.update(status=amo.STATUS_NULL)
         amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+    latest_version = addon.find_latest_version(
+        channel=amo.RELEASE_CHANNEL_LISTED)
+    if latest_version:
+        latest_version.files.filter(
+            status=amo.STATUS_AWAITING_REVIEW).update(
+            status=amo.STATUS_DISABLED)
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -1703,8 +1709,19 @@ def request_review(request, addon_id, addon):
     if not addon.can_request_review():
         return http.HttpResponseBadRequest()
 
-    addon.update(status=amo.STATUS_NOMINATED)
-    messages.success(request, _('Review Requested.'))
+    latest_version = addon.find_latest_version_including_rejected(
+        amo.RELEASE_CHANNEL_LISTED)
+    if latest_version:
+        for f in latest_version.files.filter(status=amo.STATUS_DISABLED):
+            f.update(status=amo.STATUS_AWAITING_REVIEW)
+        # Clear the nomination date so it gets set again in Addon.watch_status.
+        latest_version.update(nomination=None)
+    if addon.has_complete_metadata():
+        addon.update(status=amo.STATUS_NOMINATED)
+        messages.success(request, _('Review requested.'))
+    else:
+        messages.success(request, _(
+            'Review requested.  You must provide further details to proceed.'))
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect(addon.get_dev_url('versions'))
 

@@ -576,14 +576,14 @@ class TestVersion(TestCase):
         buttons = doc('.version-status-actions form button').text()
         assert buttons == 'Request Review'
 
-    def test_rejected_request_review(self):
+    def test_rejected_can_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
         latest_version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
         latest_version.files.update(status=amo.STATUS_DISABLED)
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
-        assert not buttons
+        assert buttons
 
     @override_switch('activity-email', active=True)
     def test_version_history(self):

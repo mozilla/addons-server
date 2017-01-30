@@ -563,6 +563,22 @@ class TestAddonSubmitDetails(TestSubmitBase):
         response = self.client.get(self.url)
         self.assert3xx(response, self.next_step)
 
+    def test_can_cancel_review(self):
+        addon = self.get_addon()
+        addon.versions.latest().files.update(status=amo.STATUS_AWAITING_REVIEW)
+
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        versions_url = reverse('devhub.addons.versions', args=['a3615'])
+        response = self.client.post(cancel_url)
+        self.assert3xx(response, versions_url)
+
+        addon = self.get_addon()
+        assert addon.status == amo.STATUS_NULL
+        version = addon.versions.latest()
+        del version.all_files
+        assert version.statuses == [
+            (version.all_files[0].id, amo.STATUS_DISABLED)]
+
 
 class TestAddonSubmitFinish(TestSubmitBase):
 
@@ -1175,6 +1191,23 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.assert3xx(
             response, reverse('devhub.submit.version.finish',
                               args=[self.addon.slug, self.version.pk]))
+
+    def test_can_cancel_review(self):
+        addon = self.get_addon()
+        addon_status = addon.status
+        addon.versions.latest().files.update(status=amo.STATUS_AWAITING_REVIEW)
+
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        versions_url = reverse('devhub.addons.versions', args=['a3615'])
+        response = self.client.post(cancel_url)
+        self.assert3xx(response, versions_url)
+
+        addon = self.get_addon()
+        assert addon.status == addon_status  # No change.
+        version = addon.versions.latest()
+        del version.all_files
+        assert version.statuses == [
+            (version.all_files[0].id, amo.STATUS_DISABLED)]
 
 
 class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
