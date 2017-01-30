@@ -8,13 +8,13 @@ from django.core.files import temp
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.amo.tests import TestCase, version_factory
+from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests import formset, initial
 from olympia.addons.models import Addon, AddonUser
 from olympia.applications.models import AppVersion
 from olympia.devhub.models import ActivityLog
-from olympia.files.models import File, FileValidation
+from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -32,7 +32,6 @@ class TestVersion(TestCase):
 
         self.disable_url = self.addon.get_dev_url('disable')
         self.enable_url = self.addon.get_dev_url('enable')
-        self.unlist_url = self.addon.get_dev_url('unlist')
         self.delete_url = reverse('devhub.versions.delete', args=['a3615'])
         self.delete_data = {'addon_id': self.addon.pk,
                             'version_id': self.version.pk}
@@ -268,104 +267,6 @@ class TestVersion(TestCase):
         self.version = Version.objects.get(id=self.version.id)
         assert self.version.all_files[0].status == amo.STATUS_DISABLED
 
-    @override_switch('mixed-listed-unlisted', active=False)
-    def test_user_can_unlist_addon(self):
-        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
-                          is_listed=True)
-        response = self.client.post(self.unlist_url)
-        assert response.status_code == 302
-        addon = Addon.objects.get(id=3615)
-        assert addon.status == amo.STATUS_NULL
-        assert not addon.is_listed
-        latest_version = addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert latest_version
-        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-
-        entry = ActivityLog.objects.get()
-        assert entry.action == amo.LOG.ADDON_UNLISTED.id
-        msg = entry.to_string()
-        assert self.addon.name.__unicode__() in msg
-
-    @override_switch('mixed-listed-unlisted', active=True)
-    def test_user_cant_unlist_addon_with_mixed_versions(self):
-        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
-                          is_listed=True)
-        response = self.client.post(self.unlist_url)
-        assert response.status_code == 404
-        addon = Addon.objects.get(id=3615)
-        assert addon.is_listed
-        latest_version = addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert not latest_version
-
-    def test_unlist_addon_with_multiple_versions(self):
-        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
-                          is_listed=True)
-        first_version = self.addon.current_version
-        new_version = version_factory(addon=self.addon)
-        deleted_version = version_factory(addon=self.addon)
-        deleted_version.delete()
-
-        response = self.client.post(self.unlist_url)
-        assert response.status_code == 302
-        addon = Addon.objects.get(id=3615)
-        assert addon.status == amo.STATUS_NULL
-        assert not addon.is_listed
-
-        assert deleted_version.reload().channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert first_version.reload().channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert new_version.reload().channel == amo.RELEASE_CHANNEL_UNLISTED
-
-        entry = ActivityLog.objects.get()
-        assert entry.action == amo.LOG.ADDON_UNLISTED.id
-        msg = entry.to_string()
-        assert self.addon.name.__unicode__() in msg
-
-    def test_user_can_unlist_hidden_addon(self):
-        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True,
-                          is_listed=True)
-        response = self.client.post(self.unlist_url)
-        assert response.status_code == 302
-        addon = Addon.objects.get(id=3615)
-        assert addon.status == amo.STATUS_NULL
-        assert not addon.is_listed
-        assert not addon.disabled_by_user
-        latest_version = addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert latest_version
-        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-
-        entry = ActivityLog.objects.get()
-        assert entry.action == amo.LOG.ADDON_UNLISTED.id
-        msg = entry.to_string()
-        assert self.addon.name.__unicode__() in msg
-
-    def test_autosign_pending_version(self):
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        latest_version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
-
-        file = latest_version.files.all()[0]
-        validation = {
-            'notices': 0,
-            'errors': 0,
-            'messages': [],
-            'metadata': {},
-            'warnings': 1,
-            'passed_auto_validation': 1,
-            'signing_summary': {'trivial': 0, 'low': 0, 'medium': 0, 'high': 0}
-        }
-        FileValidation.from_json(file, validation)
-        file.update(status=amo.STATUS_AWAITING_REVIEW)
-
-        self.client.post(self.unlist_url)
-
-        self.addon.refresh_from_db()
-        file.refresh_from_db()
-        assert self.addon.status == amo.STATUS_NULL
-        assert file.status == amo.STATUS_PUBLIC
-
     def test_user_get(self):
         assert self.client.get(self.enable_url).status_code == 405
 
@@ -417,10 +318,7 @@ class TestVersion(TestCase):
         assert doc('.enable-addon').attr('disabled') == 'disabled'
         assert not doc('.disable-addon').attr('checked')
         assert doc('.disable-addon').attr('disabled') == 'disabled'
-        assert not doc('.unlist-addon').attr('checked')
-        assert doc('.unlist-addon').attr('disabled') == 'disabled'
 
-    @override_switch('mixed-listed-unlisted', active=False)
     def test_published_addon_radio(self):
         """Published (listed) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=False)
@@ -431,13 +329,9 @@ class TestVersion(TestCase):
         assert doc('.enable-addon').attr('data-url') == enable_url
         assert not doc('.enable-addon').attr('disabled')
         assert doc('#modal-disable')
-        assert doc('#modal-unlist')
         assert not doc('.disable-addon').attr('checked')
         assert not doc('.disable-addon').attr('disabled')
-        assert not doc('.unlist-addon').attr('checked')
-        assert not doc('.unlist-addon').attr('disabled')
 
-    @override_switch('mixed-listed-unlisted', active=False)
     def test_hidden_addon_radio(self):
         """Hidden (disabled) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=True)
@@ -447,12 +341,8 @@ class TestVersion(TestCase):
         assert not doc('.enable-addon').attr('disabled')
         assert doc('.disable-addon').attr('checked') == 'checked'
         assert not doc('.disable-addon').attr('disabled')
-        assert not doc('.unlist-addon').attr('checked')
-        assert not doc('.unlist-addon').attr('disabled')
         assert not doc('#modal-disable')
-        assert doc('#modal-unlist')
 
-    @override_switch('mixed-listed-unlisted', active=False)
     def test_status_disabled_addon_radio(self):
         """Disabled by Mozilla addon: hidden selected, can't change status."""
         self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
@@ -462,63 +352,6 @@ class TestVersion(TestCase):
         assert doc('.enable-addon').attr('disabled') == 'disabled'
         assert doc('.disable-addon').attr('checked') == 'checked'
         assert doc('.disable-addon').attr('disabled') == 'disabled'
-        assert not doc('.unlist-addon').attr('checked')
-        assert doc('.unlist-addon').attr('disabled') == 'disabled'
-
-    def test_unlisted_addon_cant_change_status(self):
-        """Unlisted addon: can't change its status so hide choices."""
-        self.addon.update(disabled_by_user=False, is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('.enable-addon')
-        assert not doc('.disable-addon')
-        assert not doc('.unlist-addon')
-        assert not doc('#modal-disable')
-        assert not doc('#modal-unlist')
-
-    @override_switch('mixed-listed-unlisted', active=True)
-    def test_published_addon_radio_mixed_versions(self):
-        """Published (listed) addon is selected: can hide or publish."""
-        self.addon.update(disabled_by_user=False)
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('.enable-addon').attr('checked') == 'checked'
-        enable_url = self.addon.get_dev_url('enable')
-        assert doc('.enable-addon').attr('data-url') == enable_url
-        assert not doc('.enable-addon').attr('disabled')
-        assert doc('#modal-disable')
-        assert not doc('.disable-addon').attr('checked')
-        assert not doc('.disable-addon').attr('disabled')
-        assert not doc('#modal-unlist')
-        assert not doc('.unlist-addon')
-
-    @override_switch('mixed-listed-unlisted', active=True)
-    def test_hidden_addon_radio_mixed_versions(self):
-        """Hidden (disabled) addon is selected: can hide or publish."""
-        self.addon.update(disabled_by_user=True)
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('.enable-addon').attr('checked')
-        assert not doc('.enable-addon').attr('disabled')
-        assert doc('.disable-addon').attr('checked') == 'checked'
-        assert not doc('.disable-addon').attr('disabled')
-        assert not doc('#modal-disable')
-        assert not doc('.unlist-addon')
-        assert not doc('#modal-unlist')
-
-    @override_switch('mixed-listed-unlisted', active=True)
-    def test_status_disabled_addon_radio_mixed_versions(self):
-        """Disabled by Mozilla addon: hidden selected, can't change status."""
-        self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('.enable-addon').attr('checked')
-        assert doc('.enable-addon').attr('disabled') == 'disabled'
-        assert doc('.disable-addon').attr('checked') == 'checked'
-        assert doc('.disable-addon').attr('disabled') == 'disabled'
-        assert not doc('.unlist-addon')
-        assert not doc('#modal-unlist')
 
     def test_cancel_get(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])

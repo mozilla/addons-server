@@ -12,7 +12,6 @@ from django.utils import translation
 
 import mock
 from rest_framework.response import Response
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -116,7 +115,6 @@ class TestUploadVersion(BaseUploadVersionCase):
         addon = qs.get()
         assert addon.guid == guid
         assert addon.has_author(self.user)
-        assert not addon.is_listed
         assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -223,7 +221,6 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert qs.exists()
         addon = qs.get()
         assert addon.has_author(self.user)
-        assert not addon.is_listed
         assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -327,10 +324,8 @@ class TestUploadVersion(BaseUploadVersionCase):
                                 channel='listed')
         assert response.status_code == 201
         addon = qs.get()
-        assert not addon.is_listed
         assert addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-    @override_switch('mixed-listed-unlisted', active=True)
     def test_no_channel_selects_last_channel(self):
         addon = Addon.objects.get(guid=self.guid)
         assert addon.status == amo.STATUS_PUBLIC
@@ -352,7 +347,6 @@ class TestUploadVersion(BaseUploadVersionCase):
         third_version = addon.versions.latest()
         assert third_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
-    @override_switch('mixed-listed-unlisted', active=True)
     def test_unlisted_channel_for_listed_addon(self):
         addon = Addon.objects.get(guid=self.guid)
         assert addon.status == amo.STATUS_PUBLIC
@@ -365,7 +359,6 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert 'processed' in response.data
         assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_UNLISTED
 
-    @override_switch('mixed-listed-unlisted', active=True)
     def test_listed_channel_for_complete_listed_addon(self):
         addon = Addon.objects.get(guid=self.guid)
         assert addon.status == amo.STATUS_PUBLIC
@@ -378,7 +371,6 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert 'processed' in response.data
         assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
 
-    @override_switch('mixed-listed-unlisted', active=True)
     def test_listed_channel_fails_for_incomplete_addon(self):
         addon = Addon.objects.get(guid=self.guid)
         assert addon.status == amo.STATUS_PUBLIC
@@ -424,7 +416,6 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         version = Version.objects.get(addon__guid=guid, version='1.0')
         assert version.files.all()[0].is_webextension is True
         assert addon.has_author(self.user)
-        assert not addon.is_listed
         assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -452,7 +443,6 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         version = Version.objects.get(addon__guid=guid, version='1.0')
         assert version.files.all()[0].is_webextension is True
         assert addon.has_author(self.user)
-        assert not addon.is_listed
         assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)

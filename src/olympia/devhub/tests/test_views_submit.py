@@ -6,7 +6,6 @@ from django.core.files import temp
 
 import mock
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonCategory, Category
@@ -223,7 +222,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert Addon.objects.count() == 0
         response = self.post()
         addon = Addon.objects.get()
-        assert addon.is_listed
         version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
         assert version
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
@@ -253,7 +251,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             'extension.xpi', validation=json.dumps(result))
         self.post(listed=False)
         addon = Addon.objects.get()
-        assert not addon.is_listed
         version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version
@@ -279,7 +276,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             'extension.xpi', validation=json.dumps(result))
         self.post(listed=False)
         addon = Addon.objects.get()
-        assert not addon.is_listed
         version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version
@@ -774,7 +770,6 @@ class TestAddonSubmitResume(TestSubmitBase):
             response, reverse('devhub.submit.details', args=['a3615']))
 
 
-@override_switch('mixed-listed-unlisted', active=True)
 class TestVersionSubmitDistribution(TestSubmitBase):
 
     def setUp(self):
@@ -803,7 +798,6 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         assert response.status_code == 200
 
 
-@override_switch('mixed-listed-unlisted', active=True)
 class TestVersionSubmitAutoChannel(TestSubmitBase):
     """ Just check we chose the right upload channel.  The upload tests
     themselves are in other tests. """
@@ -841,34 +835,6 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
                     args=[self.addon.slug]))
 
 
-@override_switch('mixed-listed-unlisted', active=False)
-class TestVersionSubmitAutoChannelNoMixed(TestSubmitBase):
-
-    def setUp(self):
-        super(TestVersionSubmitAutoChannelNoMixed, self).setUp()
-        self.url = reverse('devhub.submit.version', args=[self.addon.slug])
-
-    @mock.patch('olympia.devhub.views._submit_upload',
-                side_effect=views._submit_upload)
-    def test_redirect_listed_based_on_is_listed(self, _submit_upload_mock):
-        self.addon.update(is_listed=True)
-        self.client.post(self.url)
-        args, _ = _submit_upload_mock.call_args
-        assert args[1:] == (
-            self.addon, amo.RELEASE_CHANNEL_LISTED,
-            'devhub.submit.version.details', 'devhub.submit.version.finish')
-
-    @mock.patch('olympia.devhub.views._submit_upload',
-                side_effect=views._submit_upload)
-    def test_redirect_unlisted_based_on_is_listed(self, _submit_upload_mock):
-        self.addon.update(is_listed=False)
-        self.client.post(self.url)
-        args, _ = _submit_upload_mock.call_args
-        assert args[1:] == (
-            self.addon, amo.RELEASE_CHANNEL_UNLISTED,
-            'devhub.submit.version.details', 'devhub.submit.version.finish')
-
-
 class VersionSubmitUploadMixin(object):
     channel = None
     fixtures = ['base/users', 'base/addon_3615']
@@ -880,8 +846,6 @@ class VersionSubmitUploadMixin(object):
         self.version = self.addon.current_version
         self.addon.update(guid='guid@xpi')
         assert self.client.login(email='del@icio.us')
-        self.addon.update(
-            is_listed=(self.channel == amo.RELEASE_CHANNEL_LISTED))
         self.addon.versions.update(channel=self.channel)
         channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
                    'unlisted')
@@ -967,7 +931,6 @@ class VersionSubmitUploadMixin(object):
         assert pq(response.content)('ul.errorlist').text() == (
             'Version 0.1 already exists, or was uploaded before.')
 
-    @override_switch('mixed-listed-unlisted', active=True)
     def test_distribution_link(self):
         response = self.client.get(self.url)
         channel_text = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED
@@ -977,12 +940,6 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert doc('.addon-submit-distribute a').attr('href') == (
             distribution_url + '?channel=' + channel_text)
-
-    @override_switch('mixed-listed-unlisted', active=False)
-    def test_distribution_link_hidden(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('.addon-submit-distribute a').length == 0
 
     def test_beta_field(self):
         response = self.client.get(self.url)

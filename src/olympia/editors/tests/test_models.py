@@ -41,7 +41,7 @@ def create_addon_file(name, version_str, addon_status, file_status,
         application=application.id, version='1.0')
     addon, created_ = Addon.objects.get_or_create(
         name__localized_string=name,
-        defaults={'type': addon_type, 'name': name, 'is_listed': listed})
+        defaults={'type': addon_type, 'name': name})
     if admin_review:
         addon.update(admin_review=True)
     version, created_ = Version.objects.get_or_create(
@@ -83,7 +83,7 @@ def create_search_ext(name, version_str, addon_status, file_status,
         channel = amo.RELEASE_CHANNEL_UNLISTED
     addon, created_ = Addon.objects.get_or_create(
         name__localized_string=name,
-        defaults={'type': amo.ADDON_SEARCH, 'name': name, 'is_listed': listed})
+        defaults={'type': amo.ADDON_SEARCH, 'name': name})
     version, created_ = Version.objects.get_or_create(
         addon=addon, version=version_str, defaults={'channel': channel})
     File.objects.create(version=version, filename=u"%s.xpi" % name,

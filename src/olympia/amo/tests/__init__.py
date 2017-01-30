@@ -598,7 +598,6 @@ class TestCase(PatchMixin, InitializeSessionMixin, MockEsMixin,
         self.change_channel_for_addon(addon, True)
 
     def change_channel_for_addon(self, addon, listed):
-        addon.update(is_listed=listed)
         channel = (amo.RELEASE_CHANNEL_LISTED if listed else
                    amo.RELEASE_CHANNEL_UNLISTED)
         for version in addon.versions.all():
@@ -675,8 +674,6 @@ def addon_factory(
         'created': when,
         'last_updated': when,
     }
-    if 'is_listed' not in kw and 'channel' in version_kw:
-        kw['is_listed'] = version_kw['channel'] == amo.RELEASE_CHANNEL_LISTED
     kwargs.update(kw)
 
     # Save 1.
@@ -687,9 +684,6 @@ def addon_factory(
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
-    if 'channel' not in version_kw and 'is_listed' in kw:
-        version_kw['channel'] = (amo.RELEASE_CHANNEL_LISTED if kw['is_listed']
-                                 else amo.RELEASE_CHANNEL_UNLISTED)
     version = version_factory(file_kw, addon=addon, **version_kw)
     addon.update_version()
     addon.status = status

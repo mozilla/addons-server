@@ -35,7 +35,6 @@ detail_patterns = patterns(
     url('^edit$', views.edit, name='devhub.addons.edit'),
     url('^delete$', views.delete, name='devhub.addons.delete'),
     url('^disable$', views.disable, name='devhub.addons.disable'),
-    url('^unlist$', views.unlist, name='devhub.addons.unlist'),
     url('^enable$', views.enable, name='devhub.addons.enable'),
     url('^cancel$', views.cancel, name='devhub.addons.cancel'),
     url('^ownership$', views.ownership, name='devhub.addons.owner'),
@@ -72,7 +71,7 @@ detail_patterns = patterns(
 
     # New version submission
     url('^versions/submit/$',
-        views.submit_version,
+        views.submit_version_auto,
         name='devhub.submit.version'),
     url('^versions/submit/distribution$',
         views.submit_version_distribution,
