@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2016-04-24 11:12+0000\n"
-"Last-Translator: havar <havar@firefox.no>\n"
+"PO-Revision-Date: 2017-01-30 07:03+0000\n"
+"Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
@@ -258,9 +258,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Søk i utvidelser etter <b>{0}</b>"
 
 #: static/js/impala/users.js
-#, fuzzy
 msgid "Use original"
-msgstr "bruk original"
+msgstr "Bruk original"
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"
@@ -268,7 +267,7 @@ msgstr "Uke {0}"
 
 #: static/js/impala/stats/chart.js
 msgid " downloads"
-msgstr ""
+msgstr " nedlastinger"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} users"
