@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-31 16:57+0000\n"
-"Last-Translator: FaresBs <pharess@gmail.com>\n"
+"PO-Revision-Date: 2017-01-31 18:47+0000\n"
+"Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -5579,22 +5579,22 @@ msgid "User Photo"
 msgstr "Tawlaft n useqdac"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Jerred</a> neɣ <a href=\"%(login)s\">Kcem</a>"
+msgstr "<a href=\"%(register)s\">Jerred</a> neɣ <a href=\"%(login)s\">Kcem</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Customize Firefox"
 msgstr "Sagen Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
 " you already have all the necessary skills to make a great add-on."
 msgstr ""
-"IZegrar ttaǧǧan ifḍan n iseqdacen ad sneflin tarmit-nsen n tunigin. Ma tesneḍ <a href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a>, akked <a href=\"#\">CSS</a>, ɣur-k abrid yeldi akken ad teggeḍ "
-"azegrir meqqṛen."
+"Izegrar ttaǧǧan ifḍan n iseqdacen ad sneflin tarmit-nsen n tunigin. Ma tesneḍ <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, akked <a href=\"%(css_link)s\">CSS</a>, "
+"ɣur-k abrid yeldi akken ad teggeḍ azegrir meqqṛen."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to Make an Add-on"
