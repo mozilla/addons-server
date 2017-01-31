@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-31 16:40+0000\n"
+"PO-Revision-Date: 2017-01-31 16:57+0000\n"
 "Last-Translator: FaresBs <pharess@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5614,9 +5614,8 @@ msgid "Publish Your Add-on"
 msgstr "Suffeɣ-d azegrir inek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Ɣur-k yakan azegrir iheggan? Azen asiɣzef inek neɣ asentel inek ara d-yettwabedren di addons.mozilla.org neɣ kcem sakin zuzer asiɣzef inek i yiman-ik."
+msgstr "Ɣur-k yakan azegrir iheggan? Azen asiɣzef-inek neɣ asentel-inek ara d-yettwabedren deg addons.mozilla.org neɣ kcem sakin zuzer asiɣzef-inek iman-ik."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign In"
@@ -9020,7 +9019,7 @@ msgstr ""
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
 msgid "Inappropriate language/dialog"
-msgstr "Yir tutlayt /dialog"
+msgstr "Yir tutlayt /amsawal"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
@@ -10627,7 +10626,7 @@ msgstr "Ma ulac aɣilif, sekcem ɣarsum isem imumi ara tgedleḍ anekcum."
 #: src/olympia/users/helpers.py
 msgctxt "user_list_others"
 msgid "others"
-msgstr "wiyad"
+msgstr "wiyaḍ"
 
 #: src/olympia/users/models.py
 msgid "No user with that email."
