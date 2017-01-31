@@ -904,15 +904,24 @@ pre.email_comment {
     background-repeat: no-repeat;
     padding: 2px 0 2px 24px;
 }
+.html-rtl #upload-status-results strong {
+    padding: 2px 24px 2px 0;
+}
 
 #upload-status-results.status-fail strong {
     color: #D81916;
     background-position: 0 -120px;
 }
+.html-rtl #upload-status-results.status-fail strong {
+    background-position: 100% -120px;
+}
 
 #upload-status-results.status-pass strong {
     color: #325487;
     background-position: 0 -80px;
+}
+.html-rtl #upload-status-results.status-pass strong {
+    background-position: 100% -80px;
 }
 
 #upload-file .upload-status #uploadstatus {
@@ -1146,6 +1155,9 @@ form.select-review .errorlist {
 #upload-file li {
     float: left;
     margin-right: 8px;
+}
+.html-rtl #upload-file li {
+    float: right;
 }
 #upload-file ul {
     overflow: hidden;
