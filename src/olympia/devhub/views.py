@@ -1541,7 +1541,8 @@ def _submit_details(request, addon, version):
             cat_form.save()
             license_form.save(log=False)
             reviewer_form.save()
-            addon.update(status=amo.STATUS_NOMINATED)
+            if addon.status == amo.STATUS_NULL:
+                addon.update(status=amo.STATUS_NOMINATED)
             signals.submission_done.send(sender=addon)
         else:
             reviewer_form.save()

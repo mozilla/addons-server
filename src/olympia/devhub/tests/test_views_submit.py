@@ -1172,6 +1172,43 @@ class TestVersionSubmitDetails(TestSubmitBase):
         assert version.statuses == [
             (version.all_files[0].id, amo.STATUS_DISABLED)]
 
+    def test_public_addon_stays_public_even_if_had_missing_metadata(self):
+        """Posting details for a new version for a public add-on that somehow
+        had missing metadata despite being public shouldn't reset it to
+        nominated."""
+        # Create a built-in License we'll use later when posting.
+        License.objects.create(builtin=3, on_form=True)
+
+        # Remove license from existing versions, but make sure the addon is
+        # still public, just lacking metadata now.
+        self.addon.versions.update(license_id=None)
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert not self.addon.has_complete_metadata()
+
+        # Now, submit details for that new version, adding license. Since
+        # metadata is missing, name, slug, summary and category are required to
+        # be present.
+        data = {
+            'name': unicode(self.addon.name),
+            'slug': self.addon.slug,
+            'summary': unicode(self.addon.summary),
+
+            'form-0-categories': [22, 1],
+            'form-0-application': 1,
+            'form-INITIAL_FORMS': 1,
+            'form-TOTAL_FORMS': 1,
+
+            'license-builtin': 3,
+        }
+        response = self.client.post(self.url, data)
+        self.assert3xx(
+            response, reverse('devhub.submit.version.finish',
+                              args=[self.addon.slug, self.version.pk]))
+        self.addon.reload()
+        assert self.addon.has_complete_metadata()
+        assert self.addon.status == amo.STATUS_PUBLIC
+
 
 class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
     """ Testing the case of a listed version being submitted on an add-on that
