@@ -8,7 +8,7 @@ from django.core.files import temp
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests import formset, initial
 from olympia.addons.models import Addon, AddonUser
@@ -413,10 +413,15 @@ class TestVersion(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         latest_version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
-        latest_version.files.update(status=amo.STATUS_DISABLED)
+        for file_ in latest_version.files.all():
+            file_.update(status=amo.STATUS_DISABLED)
+        version_factory(addon=self.addon,
+                        file_kw={'status': amo.STATUS_DISABLED})
         doc = pq(self.client.get(self.url).content)
-        buttons = doc('.version-status-actions form button').text()
-        assert buttons
+        buttons = doc('.version-status-actions form button')
+        # We should only show the links for one of the disabled versions.
+        assert buttons.length == 1
+        assert buttons.text() == u'Request Review'
 
     @override_switch('activity-email', active=True)
     def test_version_history(self):
