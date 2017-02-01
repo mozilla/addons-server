@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-01 11:48+0000\n"
+"PO-Revision-Date: 2017-02-01 11:53+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6323,7 +6323,7 @@ msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Aseɣbel awurman ur yeddi ara"
 
 #: src/olympia/editors/forms.py
 msgid "Filter by automatic validation"
@@ -6362,7 +6362,7 @@ msgstr "ala"
 
 #: src/olympia/editors/forms.py
 msgid "Admin Flag"
-msgstr ""
+msgstr "Tabzimt n unedbal"
 
 #: src/olympia/editors/forms.py
 msgid "Add-on Types"
@@ -6764,7 +6764,7 @@ msgstr[1] "Ileqman ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
-msgstr ""
+msgstr "Akkud n uraǧu anazzal:"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "{0} add-on"
