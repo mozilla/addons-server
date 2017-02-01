@@ -36,13 +36,9 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
+# version.json is overwritten by CircleCI (see circle.yml).
 # The pipeline v2 standard requires the existence of /app/version.json
-# inside the docker image, although the content of the file comes from
-# circle.yml.
-# We realize that the content of version.json is written twice (once in
-# circle.yml, and the other in the end of this file), we should remove
-# the bits at the end of this file after we fully migrate to use pipeline
-# v2.
+# inside the docker image, thus it's copied there.
 COPY version.json /app/version.json
 COPY . /data/olympia
 WORKDIR /data/olympia
@@ -70,15 +66,3 @@ RUN npm install \
 
 RUN rm -f settings_local.py settings_local.pyc
 
-RUN [[ -z "$CIRCLE_TAG" ]]                                \
-    && {                                                  \
-      GITREF=$(git rev-parse HEAD)                        \
-      GITTAG=$(git name-rev --tags --name-only $GITREF)   \
-      SOURCE='https://github.com/mozilla/addons-server'   \
-      && echo "{\"source\": \"$SOURCE\", \"version\": \"$GITTAG\", \"commit\": \"$GITREF\"}" > version.json ;\
-    } || {                                                \
-      GITREF=$(git rev-parse HEAD)                        \
-      GITTAG=$CIRCLE_TAG                                  \
-      SOURCE='https://github.com/mozilla/addons-server'   \
-      && echo "{\"source\": \"$SOURCE\", \"version\": \"$GITTAG\", \"commit\": \"$GITREF\"}" > version.json ;\
-    }
