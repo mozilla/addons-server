@@ -241,9 +241,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             ])
             return user_media_url('userpics') + path
 
-    @amo.cached_property
+    @amo.cached_property(writable=True)
     def is_developer(self):
-        return self.addonuser_set.exists()
+        return self.addonuser_set.exclude(
+            addon__status=amo.STATUS_DELETED).exists()
 
     @amo.cached_property
     def is_addon_developer(self):

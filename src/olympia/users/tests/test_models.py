@@ -29,6 +29,22 @@ class TestUserProfile(TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
                 'users/test_backends')
 
+    def test_is_developer(self):
+        user = UserProfile.objects.get(id=4043307)
+        assert not user.addonuser_set.exists()
+        assert not user.is_developer
+
+        addon = Addon.objects.get(pk=3615)
+        addon.addonuser_set.create(user=user)
+
+        assert not user.is_developer  # it's a cached property...
+        del user.is_developer  # ... let's reset it and try again.
+        assert user.is_developer
+
+        addon.delete()
+        del user.is_developer
+        assert not user.is_developer
+
     def test_anonymize(self):
         u = UserProfile.objects.get(id='4043307')
         assert u.email == 'jbalogh@mozilla.com'
