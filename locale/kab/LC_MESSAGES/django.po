@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-16 20:41+0000\n"
-"Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
+"PO-Revision-Date: 2017-02-01 11:48+0000\n"
+"Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -4542,7 +4542,7 @@ msgstr "Amedya: aberkan, sinima, amellal. Talast20."
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Ticraḍ yettwaḥerren:"
-msgstr[1] ""
+msgstr[1] "Ticraḍ yettwaḥerren:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
@@ -4934,7 +4934,7 @@ msgstr "Arurmid"
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>adig n wedras :</b> %(pos)s ɣef %(total)s"
 
 #. {0} is the number of active users.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html
@@ -5227,11 +5227,11 @@ msgstr "%%b %%e, %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Add-on Multi Process Status:"
-msgstr ""
+msgstr "Addad n agetsekker n izegrar:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Amṣada-inek n izegrar akked Firefox agetsekkeran (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Listed Version:"
@@ -5457,7 +5457,7 @@ msgstr "Sban-d azegrir inek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Tageffalt \"awi-d azegrir\""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
@@ -5485,7 +5485,7 @@ msgstr "Rnu-d ɣur-neɣ!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
-msgstr ""
+msgstr "Aru kra n tengalt"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
@@ -5542,7 +5542,7 @@ msgstr "Sken-iyi-d"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "AMO"
-msgstr ""
+msgstr "Amo"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Self-hosted"
