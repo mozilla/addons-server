@@ -1,5 +1,5 @@
 <div id="contribute-box" class="jqmWindow modal">
-  <form action="{{ url('addons.contribute', addon.slug) }}" method="post">
+  <form action="{{ url('addons.contribute', addon.slug) }}" method="post" data-no-csrf="anon-only">
     {{ csrf() }}
     <input type="hidden" name="source" value="{{ contribution_src }}"/>
     <h2>{{ _('Make a Contribution') }}</h2>
