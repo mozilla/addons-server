@@ -577,7 +577,8 @@ def review(request, addon, channel=None):
     if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
         raise PermissionDenied
 
-    version = addon.find_latest_version_including_rejected(channel=channel)
+    version = addon.find_latest_version(
+        channel=channel, exclude=(amo.STATUS_BETA,))
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))

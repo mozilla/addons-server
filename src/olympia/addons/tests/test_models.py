@@ -432,8 +432,8 @@ class TestAddonModels(TestCase):
         """
         addon = Addon.objects.get(pk=3615)
         addon.current_version.update(created=self.days_ago(2))
-        new_version = version_factory(addon=addon, version='2.0',
-                                      created=self.days_ago(1))
+        new_version = version_factory(addon=addon, version='2.0')
+        new_version.update(created=self.days_ago(1))
         assert addon.find_latest_version(None) == new_version
         another_new_version = version_factory(
             addon=addon, version='3.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -442,8 +442,8 @@ class TestAddonModels(TestCase):
     def test_find_latest_version_different_channel(self):
         addon = Addon.objects.get(pk=3615)
         addon.current_version.update(created=self.days_ago(2))
-        new_version = version_factory(addon=addon, version='2.0',
-                                      created=self.days_ago(1))
+        new_version = version_factory(addon=addon, version='2.0')
+        new_version.update(created=self.days_ago(1))
         unlisted_version = version_factory(
             addon=addon, version='3.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
 
@@ -463,70 +463,89 @@ class TestAddonModels(TestCase):
     def test_find_latest_version_ignore_beta(self):
         addon = Addon.objects.get(pk=3615)
 
-        v1 = Version.objects.create(addon=addon, version='1.0')
-        File.objects.create(version=v1)
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(1))
         assert addon.find_latest_version(None).id == v1.id
 
-        v2 = Version.objects.create(addon=addon, version='2.0beta')
-        File.objects.create(version=v2, status=amo.STATUS_BETA)
-        v2.save()
+        version_factory(addon=addon, version='2.0beta',
+                        file_kw={'status': amo.STATUS_BETA})
         # Still should be v1
         assert addon.find_latest_version(None).id == v1.id
 
     def test_find_latest_version_ignore_disabled(self):
         addon = Addon.objects.get(pk=3615)
 
-        v1 = Version.objects.create(addon=addon, version='1.0')
-        File.objects.create(version=v1)
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(1))
         assert addon.find_latest_version(None).id == v1.id
 
-        v2 = Version.objects.create(addon=addon, version='2.0')
-        File.objects.create(version=v2, status=amo.STATUS_DISABLED)
-        v2.save()
+        version_factory(addon=addon, version='2.0',
+                        file_kw={'status': amo.STATUS_DISABLED})
         # Still should be v1
         assert addon.find_latest_version(None).id == v1.id
 
-    def test_find_latest_or_rejected_version(self):
+    def test_find_latest_version_only_exclude_beta(self):
         addon = Addon.objects.get(pk=3615)
 
-        v1 = version_factory(addon=addon, version='1.0',
-                             created=self.days_ago(2))
-        assert addon.find_latest_version_including_rejected(None).id == v1.id
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(2))
+
+        assert addon.find_latest_version(
+            None, exclude=(amo.STATUS_BETA,)).id == v1.id
+
         v2 = version_factory(addon=addon, version='2.0',
-                             created=self.days_ago(1))
-        assert addon.find_latest_version_including_rejected(None).id == v2.id
+                             file_kw={'status': amo.STATUS_DISABLED})
+        v2.update(created=self.days_ago(1))
 
-        v2.files.update(status=amo.STATUS_DISABLED)
-        # Should still be 2.0.
-        assert addon.find_latest_version_including_rejected(None).id == v2.id
+        version_factory(addon=addon, version='3.0beta',
+                        file_kw={'status': amo.STATUS_BETA})
 
-        v3 = version_factory(addon=addon, version='3.0',
-                             channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert addon.find_latest_version_including_rejected(None).id == v3.id
+        # Should be v2 since we don't exclude disabled, but do exclude beta.
+        assert addon.find_latest_version(
+            None, exclude=(amo.STATUS_BETA,)).id == v2.id
 
-    def test_find_latest_or_rejected_version_channel(self):
+    def test_find_latest_verison_dont_exclude_anything(self):
         addon = Addon.objects.get(pk=3615)
 
-        v1 = version_factory(addon=addon, version='1.0',
-                             created=self.days_ago(2))
-        assert addon.find_latest_version_including_rejected(
-            channel=amo.RELEASE_CHANNEL_LISTED) == v1
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(2))
+
+        assert addon.find_latest_version(None, exclude=()).id == v1.id
 
         v2 = version_factory(addon=addon, version='2.0',
-                             created=self.days_ago(1))
-        assert addon.find_latest_version_including_rejected(
-            channel=amo.RELEASE_CHANNEL_LISTED) == v2
+                             file_kw={'status': amo.STATUS_DISABLED})
+        v2.update(created=self.days_ago(1))
 
-        v2.files.update(status=amo.STATUS_DISABLED)
-        # Should still be 2.0.
-        assert addon.find_latest_version_including_rejected(
-            channel=amo.RELEASE_CHANNEL_LISTED) == v2
+        v3 = version_factory(addon=addon, version='3.0beta',
+                             file_kw={'status': amo.STATUS_BETA})
+
+        # Should be v3 since we don't exclude anything.
+        assert addon.find_latest_version(None, exclude=()).id == v3.id
+
+    def test_find_latest_verison_dont_exclude_anything_with_channel(self):
+        addon = Addon.objects.get(pk=3615)
+
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(3))
+
+        assert addon.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED, exclude=()).id == v1.id
+
+        v2 = version_factory(addon=addon, version='2.0',
+                             file_kw={'status': amo.STATUS_DISABLED})
+        v2.update(created=self.days_ago(2))
+
+        v3 = version_factory(addon=addon, version='3.0beta',
+                             file_kw={'status': amo.STATUS_BETA})
+        v2.update(created=self.days_ago(1))
 
         version_factory(
-            addon=addon, version='3.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
-        # should still be 2.0 since 3.0 is in a different channel.
-        assert addon.find_latest_version_including_rejected(
-            channel=amo.RELEASE_CHANNEL_LISTED) == v2
+            addon=addon, version='4.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        # Should be v3 since we don't exclude anything, but do have a channel
+        # set to listed, and version 4.0 is unlisted.
+        assert addon.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED, exclude=()).id == v3.id
 
     def test_current_version_unsaved(self):
         addon = Addon()

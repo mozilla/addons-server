@@ -1486,7 +1486,7 @@ def submit_version_upload(request, addon_id, addon, channel):
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
     # choose the channel we need from the last upload
-    last_version = addon.find_latest_version_including_rejected(None)
+    last_version = addon.find_latest_version(None, exclude=())
     if not last_version:
         return redirect('devhub.submit.version.distribution', addon.slug)
     channel = last_version.channel
@@ -1683,8 +1683,8 @@ def request_review(request, addon_id, addon):
     if not addon.can_request_review():
         return http.HttpResponseBadRequest()
 
-    latest_version = addon.find_latest_version_including_rejected(
-        amo.RELEASE_CHANNEL_LISTED)
+    latest_version = addon.find_latest_version(
+        amo.RELEASE_CHANNEL_LISTED, exclude=(amo.STATUS_BETA,))
     if latest_version:
         for f in latest_version.files.filter(status=amo.STATUS_DISABLED):
             f.update(status=amo.STATUS_AWAITING_REVIEW)
