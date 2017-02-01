@@ -16,6 +16,7 @@ def process_email(message, **kwargs):
     msg_id = message.get('MessageId', None)
     if not msg_id:
         log.error('No MessageId in message, aborting.')
+        log.error(message)
         return
     cache_key = 'process_email:%s' % msg_id
     if cache.get(cache_key):
