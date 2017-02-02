@@ -825,8 +825,13 @@ class Addon(OnChangeMixin, ModelBase):
                   u'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
                                        compat_mode))
         valid_file_statuses = ','.join(map(str, self.valid_file_statuses))
-        data = dict(id=self.id, app_id=app_id, platform=platform,
-                    valid_file_statuses=valid_file_statuses)
+        data = {
+            'id': self.id,
+            'app_id': app_id,
+            'platform': platform,
+            'valid_file_statuses': valid_file_statuses,
+            'channel': amo.RELEASE_CHANNEL_LISTED,
+        }
         if app_version:
             data.update(version_int=version_int(app_version))
         else:
@@ -870,6 +875,8 @@ class Addon(OnChangeMixin, ModelBase):
             raw_sql.append(' OR files.platform_id = %(platform)s')
 
         raw_sql.append(') WHERE files.status IN (%(valid_file_statuses)s) ')
+
+        raw_sql.append(' AND versions.channel = %(channel)s ')
 
         if app_version:
             raw_sql.append('AND appmin.version_int <= %(version_int)s ')
