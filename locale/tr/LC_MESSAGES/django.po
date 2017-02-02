@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-28 10:43+0000\n"
-"Last-Translator: Mehmet Ali <tutaste21@gmail.com>\n"
+"PO-Revision-Date: 2017-02-02 13:05+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -3613,11 +3613,11 @@ msgstr "Kişiler"
 
 #: src/olympia/constants/categories.py
 msgid "Folders and Filters"
-msgstr ""
+msgstr "Klasör ve Filtreler"
 
 #: src/olympia/constants/categories.py
 msgid "Import/Export"
-msgstr ""
+msgstr "İçeri/Dışarı Aktar"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
@@ -4385,9 +4385,8 @@ msgstr "Eklentiler"
 # Firefox,
 # Sunbird
 #: src/olympia/devhub/templates/devhub/nav.html
-#, fuzzy
 msgid "Add-ons Forum"
-msgstr "{0} Eklentileri"
+msgstr "Eklentiler Forumu"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 #, fuzzy
@@ -4534,7 +4533,7 @@ msgstr "Sürüm Bilgisi"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
-msgstr ""
+msgstr "Hiçbiri"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Authors & License"
@@ -4578,14 +4577,12 @@ msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>publi
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
-#, fuzzy
 msgid "Remove Profile"
-msgstr "Kullanıcı Kimliğine Bak"
+msgstr "Profili Sil"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
-#, fuzzy
 msgid "Create Profile"
-msgstr "Kullanıcı Kimliğine Bak"
+msgstr "Profil Oluştur"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, fuzzy
@@ -4638,7 +4635,7 @@ msgstr "Bu eklenti, geliştiricisi tarafından kaldırılmıştır."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Eklenti genel kullanım için hazır."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -4660,7 +4657,7 @@ msgstr[0] "Virgülle ayrılmış, en az {0} karakter."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Örnek: karanlık, sinema, siyah. Sınır 20."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Reserved tag:"
@@ -4668,9 +4665,8 @@ msgid_plural "Reserved tags:"
 msgstr[0] "Ayrılmış etiketler:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
-#, fuzzy
 msgid "Add-on Details"
-msgstr "Eklentiler"
+msgstr "Eklenti Ayrıntıları"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -4746,7 +4742,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Limit 3"
-msgstr ""
+msgstr "Sınır 3"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 #, fuzzy
@@ -5015,9 +5011,8 @@ msgid "Upload a new version of this add-on."
 msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#, fuzzy
 msgid "New Version"
-msgstr "Sürüm"
+msgstr "Yeni sürüm"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Daily statistics on downloads and users."
@@ -5153,9 +5148,8 @@ msgid "Support website:"
 msgstr "Destek sitesi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Lisans"
+msgstr "Lisans:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
@@ -5792,7 +5786,7 @@ msgstr "Geliştirici Merkezi"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
-msgstr ""
+msgstr "Belgeler"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, fuzzy
@@ -7351,7 +7345,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
-msgstr ""
+msgstr "(yönetici)"
 
 #: src/olympia/editors/templates/editors/review.html
 #, fuzzy
