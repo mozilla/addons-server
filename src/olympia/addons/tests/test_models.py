@@ -541,18 +541,6 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(pk=5299)
         assert addon.current_beta_version.id == 50000
 
-    def test_compatible_version(self):
-        addon = Addon.objects.get(pk=3615)
-        assert addon.status == amo.STATUS_PUBLIC
-
-        version = version_factory(
-            addon=addon,
-            status=amo.STATUS_PUBLIC, version='99')
-        version_factory(
-            addon=addon, status=amo.STATUS_PUBLIC, version='100',
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert addon.compatible_version(amo.FIREFOX.id) == version
-
     def test_transformer(self):
         addon = Addon.objects.get(pk=3615)
         # If the transformer works then we won't have any more queries.
