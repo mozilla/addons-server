@@ -317,6 +317,9 @@ class TestDashboard(HubTest):
         assert doc('.incomplete').text() == (
             'This add-on is missing some required information before it can be'
             ' submitted for publication.')
+        assert doc('form.resume').attr('action') == (
+            url_reverse('devhub.request-review', self.addon.slug))
+        assert doc('button.link').text() == 'Resume'
 
     def test_no_versions_addon(self):
         self.addon.versions.all().delete()
