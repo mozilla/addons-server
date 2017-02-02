@@ -95,7 +95,7 @@
     line-height: 13px;
     margin: 1.75em 0 0;
 
-    a {
+    a, button.link {
         color: @note-gray;
 
         &.more-actions {
@@ -116,6 +116,17 @@
                 border-top-color: #05e;
             }
         }
+    }
+    button.link {
+        background: transparent none;
+        text-shadow: none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border: 0;
+        font-weight: normal;
+        font-size: 11px;
+        padding: 0;
     }
     h5 {
         font-size: 1em;

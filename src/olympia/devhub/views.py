@@ -383,9 +383,9 @@ def cancel(request, addon_id, addon):
     latest_version = addon.find_latest_version(
         channel=amo.RELEASE_CHANNEL_LISTED)
     if latest_version:
-        latest_version.files.filter(
-            status=amo.STATUS_AWAITING_REVIEW).update(
-            status=amo.STATUS_DISABLED)
+        for file_ in latest_version.files.filter(
+                status=amo.STATUS_AWAITING_REVIEW):
+            file_.update(status=amo.STATUS_DISABLED)
     return redirect(addon.get_dev_url('versions'))
 
 
