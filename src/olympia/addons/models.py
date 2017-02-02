@@ -10,7 +10,6 @@ from operator import attrgetter
 from datetime import datetime
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
@@ -806,120 +805,6 @@ class Addon(OnChangeMixin, ModelBase):
                           tuple(diff + [self, e]))
 
         return bool(updated)
-
-    def compatible_version(self, app_id, app_version=None, platform=None,
-                           compat_mode='strict'):
-        """Returns the newest compatible version given the input."""
-        if not app_id:
-            return None
-
-        if platform:
-            # We include platform_id=1 always in the SQL so we skip it here.
-            platform = platform.lower()
-            if platform != 'all' and platform in amo.PLATFORM_DICT:
-                platform = amo.PLATFORM_DICT[platform].id
-            else:
-                platform = None
-
-        log.debug(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
-                  u'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
-                                       compat_mode))
-        valid_file_statuses = ','.join(map(str, self.valid_file_statuses))
-        data = dict(id=self.id, app_id=app_id, platform=platform,
-                    valid_file_statuses=valid_file_statuses)
-        if app_version:
-            data.update(version_int=version_int(app_version))
-        else:
-            # We can't perform the search queries for strict or normal without
-            # an app version.
-            compat_mode = 'ignore'
-
-        ns_key = cache_ns_key('d2c-versions:%s' % self.id)
-        cache_key = '%s:%s:%s:%s:%s' % (ns_key, app_id, app_version, platform,
-                                        compat_mode)
-        version_id = cache.get(cache_key)
-        if version_id is not None:
-            log.debug(u'Found compatible version in cache: %s => %s' % (
-                      cache_key, version_id))
-            if version_id == 0:
-                return None
-            else:
-                try:
-                    return Version.objects.get(pk=version_id)
-                except Version.DoesNotExist:
-                    pass
-
-        raw_sql = ["""
-            SELECT versions.*
-            FROM versions
-            INNER JOIN addons
-                ON addons.id = versions.addon_id AND addons.id = %(id)s
-            INNER JOIN applications_versions
-                ON applications_versions.version_id = versions.id
-            INNER JOIN appversions appmin
-                ON appmin.id = applications_versions.min
-                AND appmin.application_id = %(app_id)s
-            INNER JOIN appversions appmax
-                ON appmax.id = applications_versions.max
-                AND appmax.application_id = %(app_id)s
-            INNER JOIN files
-                ON files.version_id = versions.id AND
-                   (files.platform_id = 1"""]
-
-        if platform:
-            raw_sql.append(' OR files.platform_id = %(platform)s')
-
-        raw_sql.append(') WHERE files.status IN (%(valid_file_statuses)s) ')
-
-        if app_version:
-            raw_sql.append('AND appmin.version_int <= %(version_int)s ')
-
-        if compat_mode == 'ignore':
-            pass  # No further SQL modification required.
-
-        elif compat_mode == 'normal':
-            raw_sql.append("""AND
-                CASE WHEN files.strict_compatibility = 1 OR
-                          files.binary_components = 1
-                THEN appmax.version_int >= %(version_int)s ELSE 1 END
-            """)
-            # Filter out versions that don't have the minimum maxVersion
-            # requirement to qualify for default-to-compatible.
-            d2c_max = amo.D2C_MAX_VERSIONS.get(app_id)
-            if d2c_max:
-                data['d2c_max_version'] = version_int(d2c_max)
-                raw_sql.append(
-                    "AND appmax.version_int >= %(d2c_max_version)s ")
-
-            # Filter out versions found in compat overrides
-            raw_sql.append("""AND
-                NOT versions.id IN (
-                SELECT version_id FROM incompatible_versions
-                WHERE app_id=%(app_id)s AND
-                  (min_app_version='0' AND
-                       max_app_version_int >= %(version_int)s) OR
-                  (min_app_version_int <= %(version_int)s AND
-                       max_app_version='*') OR
-                  (min_app_version_int <= %(version_int)s AND
-                       max_app_version_int >= %(version_int)s)) """)
-
-        else:  # Not defined or 'strict'.
-            raw_sql.append('AND appmax.version_int >= %(version_int)s ')
-
-        raw_sql.append('ORDER BY versions.id DESC LIMIT 1;')
-
-        version = Version.objects.raw(''.join(raw_sql) % data)
-        if version:
-            version = version[0]
-            version_id = version.id
-        else:
-            version = None
-            version_id = 0
-
-        log.debug(u'Caching compat version %s => %s' % (cache_key, version_id))
-        cache.set(cache_key, version_id, None)
-
-        return version
 
     def increment_theme_version_number(self):
         """Increment theme version number by 1."""

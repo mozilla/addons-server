@@ -541,25 +541,6 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(pk=5299)
         assert addon.current_beta_version.id == 50000
 
-    def _create_new_version(self, addon, status):
-        av = addon.current_version.apps.all()[0]
-
-        version = Version.objects.create(addon=addon, version='99')
-        File.objects.create(status=status, version=version)
-
-        ApplicationsVersions.objects.create(
-            application=amo.FIREFOX.id, version=version,
-            min=av.min, max=av.max)
-        return version
-
-    def test_compatible_version(self):
-        addon = Addon.objects.get(pk=3615)
-        assert addon.status == amo.STATUS_PUBLIC
-
-        version = self._create_new_version(
-            addon=addon, status=amo.STATUS_PUBLIC)
-        assert addon.compatible_version(amo.FIREFOX.id) == version
-
     def test_transformer(self):
         addon = Addon.objects.get(pk=3615)
         # If the transformer works then we won't have any more queries.
