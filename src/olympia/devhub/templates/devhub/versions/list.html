@@ -240,9 +240,11 @@
           <th class="version-delete">{{ _('Delete/Disable') }}</th>
         </tr>
 
+        {% set latest_version_including_disabled = addon.find_latest_version_including_rejected(channel=amo.RELEASE_CHANNEL_LISTED) %}
         {% for version in versions.object_list %}
           {% if version != current_version and version != latest_listed_version %}
-            {{ version_details(version) }}
+            {{ version_details(version,
+                              full_info=version==latest_version_including_disabled) }}
           {% endif %}
         {% endfor %}
       </table>
