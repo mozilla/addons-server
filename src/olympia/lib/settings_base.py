@@ -737,6 +737,7 @@ MINIFY_BUNDLES = {
         ),
         # Impala: Things to be loaded at the bottom
         'impala': (
+            'js/lib/ngettext-overload.js',
             'js/lib/raven.min.js',
             'js/common/raven-config.js',
             'js/lib/underscore.js',
