@@ -4,7 +4,7 @@ import logging
 import os
 
 from django.conf import settings
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -55,6 +55,8 @@ LOGIN_ERROR_MESSAGES = {
         _(u'Your Firefox Account could not be found. Please try again.'),
     ERROR_STATE_MISMATCH: _(u'You could not be logged in. Please try again.'),
 }
+
+JWT_TOKEN_COOKIE = 'jwt_api_auth_token'
 
 
 def safe_redirect(url, action):
@@ -216,13 +218,17 @@ def add_api_token_to_response(response, user, set_cookie=True):
         # Also include the API token in a session cookie, so that it is
         # available for universal frontend apps.
         response.set_cookie(
-            'jwt_api_auth_token',
+            JWT_TOKEN_COOKIE,
             token,
             max_age=settings.SESSION_COOKIE_AGE or None,
             secure=settings.SESSION_COOKIE_SECURE or None,
             httponly=settings.SESSION_COOKIE_HTTPONLY or None)
 
     return response
+
+
+def remove_api_token_cookie(response):
+    response.delete_cookie(JWT_TOKEN_COOKIE)
 
 
 class FxAConfigMixin(object):
@@ -315,6 +321,18 @@ class AuthenticateView(APIView):
         return response
 
 
+def logout_user(request, response):
+    logout(request)
+    remove_api_token_cookie(response)
+
+
+class SessionView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        response = Response({'ok': True})
+        logout_user(request, response)
+        return response
 
 
 class ProfileView(generics.RetrieveAPIView):

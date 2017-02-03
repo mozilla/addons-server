@@ -17,6 +17,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
+from olympia.accounts.views import JWT_TOKEN_COOKIE
 from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo.helpers import urlparams
 from olympia.amo.urlresolvers import reverse
@@ -453,10 +454,14 @@ class TestLogout(UserViewBase):
 
     def test_session_cookie_deleted_on_logout(self):
         self.client.login(email='jbalogh@mozilla.com')
+        self.client.cookies[JWT_TOKEN_COOKIE] = 'a.jwt.value'
         r = self.client.get(reverse('users.logout'))
         cookie = r.cookies[settings.SESSION_COOKIE_NAME]
         assert cookie.value == ''
         assert cookie['expires'] == u'Thu, 01-Jan-1970 00:00:00 GMT'
+        jwt_cookie = r.cookies[JWT_TOKEN_COOKIE]
+        assert jwt_cookie.value == ''
+        assert jwt_cookie['expires'] == u'Thu, 01-Jan-1970 00:00:00 GMT'
 
 
 class TestRegistration(UserViewBase):

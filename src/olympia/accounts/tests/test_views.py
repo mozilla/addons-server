@@ -1003,3 +1003,40 @@ class TestAccountViewSetGet(TestCase):
 
         with self.assertRaises(NotImplementedError):
             self.client.get(self.url)
+
+
+class TestSessionView(TestCase):
+    def login_user(self, user):
+        identity = {
+            'username': user.username,
+            'email': user.email,
+            'uid': user.fxa_id,
+        }
+        self.initialize_session({'fxa_state': 'myfxastate'})
+        with mock.patch(
+                'olympia.accounts.views.verify.fxa_identify',
+                lambda code, config: identity):
+            response = self.client.get(
+                '{url}?code={code}&state={state}'.format(
+                    url=reverse('accounts.authenticate'),
+                    state='myfxastate',
+                    code='thecode'))
+            cookie = response.cookies[views.JWT_TOKEN_COOKIE].value
+            assert cookie
+            verify = VerifyJSONWebTokenSerializer().validate({'token': cookie})
+            assert verify['user'] == user
+            assert self.client.session['_auth_user_id'] == str(user.id)
+            return cookie
+
+    def test_delete_when_authenticated(self):
+        user = user_factory(fxa_id='123123412')
+        token = self.login_user(user)
+        authorization = 'Bearer {token}'.format(token=token)
+        response = self.client.delete(
+            reverse('accounts.session'), HTTP_AUTHORIZATION=authorization)
+        assert not response.cookies[views.JWT_TOKEN_COOKIE].value
+        assert not self.client.session.get('_auth_user_id')
+
+    def test_delete_when_unauthenticated(self):
+        response = self.client.delete(reverse('accounts.session'))
+        assert response.status_code == 401

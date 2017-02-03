@@ -3,7 +3,6 @@ from operator import attrgetter
 
 from django import http
 from django.conf import settings
-from django.contrib import auth
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.http import is_safe_url
@@ -18,6 +17,7 @@ from olympia import amo
 from olympia.users import notifications as notifications
 from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
+from olympia.accounts.views import logout_user
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, Category
 from olympia.amo import messages
@@ -98,9 +98,9 @@ def delete(request):
         if form.is_valid():
             messages.success(request, _('Profile Deleted'))
             amouser.anonymize()
-            logout(request)
-            form = None
-            return http.HttpResponseRedirect(reverse('home'))
+            response = http.HttpResponseRedirect(reverse('home'))
+            logout_user(request, response)
+            return response
     else:
         form = forms.UserDeleteForm(request=request)
 
@@ -202,8 +202,6 @@ def logout(request):
     if not user.is_anonymous():
         log.debug(u"User (%s) logged out" % user)
 
-    auth.logout(request)
-
     if 'to' in request.GET:
         request = _clean_next_url(request)
 
@@ -213,7 +211,11 @@ def logout(request):
         prefixer = get_url_prefix()
         if prefixer:
             next = prefixer.fix(next)
+
     response = http.HttpResponseRedirect(next)
+
+    logout_user(request, response)
+
     # Fire logged out signal.
     logged_out.send(None, request=request, response=response)
     return response

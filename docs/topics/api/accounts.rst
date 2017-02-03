@@ -121,3 +121,31 @@ This allows you to generate a new user account and sign in as that user.
         curl --cookie sessionid=... -s -D - \
             "https://addons.mozilla.org/en-US/developers/addon/submit/1" \
             -o /dev/null
+
+.. _`session`:
+
+-------
+Session
+-------
+
+Log out of the current session.
+
+.. http:delete:: /api/v3/accounts/session/
+
+    **Request:**
+
+    .. sourcecode:: bash
+
+        curl "https://addons.mozilla.org/api/v3/accounts/session/"
+            -H "Authorization: JWT <jwt-token>" -X DELETE
+
+    **Response:**
+
+    .. sourcecode:: json
+
+        {
+            "ok": true
+        }
+
+    :statuscode 200: session logged out.
+    :statuscode 401: authentication failed.
