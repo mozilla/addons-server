@@ -755,6 +755,9 @@ class TestAuthenticateView(BaseAuthenticationView):
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
+        user = UserProfile(
+            username='foo', email='me@yeahoo.com', fxa_id='e0b6f')
+        self.register_user.return_value = user
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state})
         # This 302s because the user isn't logged in due to mocking.
@@ -763,12 +766,18 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
+        user.save()  # Persist the user so it can be verified.
+        data = {'token': response.cookies['jwt_api_auth_token'].value}
+        verify = VerifyJSONWebTokenSerializer().validate(data)
+        assert verify['user'] == user
 
     def test_register_redirects_edit(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
+        user = UserProfile(username='foo', email='me@yeahoo.com')
+        self.register_user.return_value = user
         response = self.client.get(self.url, {
             'code': 'codes!!',
             'state': ':'.join(

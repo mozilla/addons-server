@@ -306,13 +306,15 @@ class AuthenticateView(APIView):
     @with_user(format='html')
     def get(self, request, user, identity, next_path):
         if user is None:
-            register_user(request, identity)
-            return safe_redirect(reverse('users.edit'), 'register')
+            user = register_user(request, identity)
+            response = safe_redirect(reverse('users.edit'), 'register')
         else:
             login_user(request, user, identity)
             response = safe_redirect(next_path, 'login')
-            add_api_token_to_response(response, user)
-            return response
+        add_api_token_to_response(response, user)
+        return response
+
+
 
 
 class ProfileView(generics.RetrieveAPIView):
