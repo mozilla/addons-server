@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-25 10:30+0000\n"
+"PO-Revision-Date: 2017-02-03 16:40+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5587,7 +5587,7 @@ msgstr "Gerir o seu extra"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Inicie sessão para editar e atualizar o seu extra"
+msgstr "Iniciar sessão para editar e atualizar o seu extra"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Evolution in Add-on Development"
@@ -8435,8 +8435,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org, geralmente conhecido como \"AMO\", é o site oficial da Mozilla para extras para o software da Mozilla, tais como o Firefox, Thunderbird e SeaMonkey. Os Extras permitem-lhe "
-"adicionar novas funcionalidades e modificar a forma como o seu navegador e aplicação funcionam. Dê uma vista de olhos e explore as milhares de formas de personalizar a forma como faz coisas online."
+"addons.mozilla.org, geralmente conhecido como \"AMO\", é o site oficial da Mozilla para extras para software da Mozilla, tais como o Firefox, Thunderbird e SeaMonkey. Os Extras permitem-lhe "
+"adicionar novas funcionalidades e modificar a forma como o seu navegador ou aplicação funcionam. Dê uma vista de olhos e explore as milhares de formas de personalizar a forma como faz coisas online."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
