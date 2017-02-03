@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-02 15:03+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2017-02-03 16:29+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -886,6 +886,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"Če želite izvedeti, ali je za ta dodatek na voljo pomoč, si oglejte <a href=\"%(support)s\">odsek za podporo</a>. Za pomoč lahko vprašate tudi <a href=\"https://discourse.mozilla-community.org/c"
+"/add-ons/add-on-support\">skupnost za dodatke</a>."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -5557,14 +5559,12 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Contact Us"
-msgstr "Stiki"
+msgstr "Pišite nam"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Policies"
-msgstr "Opomba pregleda"
+msgstr "Politike pregledov"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "FAQ"
@@ -5597,11 +5597,11 @@ msgstr "Napravite svoj dodatek izbran"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Gumb \"Prenesi dodatek\""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
-msgstr ""
+msgstr "Pravno obvestilo"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
