@@ -1152,21 +1152,23 @@ def version_edit(request, addon_id, addon, version_id):
                     _log_max_version_change(addon, version, form.instance)
 
         if 'approvalnotes' in version_form.changed_data:
+            comment = (u'Approval notes were updated to: %s' %
+                       version_form.cleaned_data['approvalnotes'])
             if version.has_info_request:
                 version.update(has_info_request=False)
                 if waffle.switch_is_active('activity-email'):
                     log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED,
-                                   u'Approval notes were updated.',
+                                   comment,
                                    request.user,
                                    version)
                 else:
                     amo.log(amo.LOG.APPROVAL_NOTES_CHANGED,
-                            version,
-                            request.user)
+                            version, request.user,
+                            details={'comments': comment})
             else:
                 amo.log(amo.LOG.APPROVAL_NOTES_CHANGED,
-                        version,
-                        request.user)
+                        version, request.user,
+                        details={'comments': comment})
 
         if ('source' in version_form.changed_data and
                 version_form.cleaned_data['source']):
