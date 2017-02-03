@@ -16,6 +16,7 @@ from django.utils.encoding import force_bytes, force_text
 
 import commonware
 from cache_nuggets.lib import memoize
+from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 
 from olympia import amo
@@ -83,8 +84,6 @@ class File(OnChangeMixin, ModelBase):
     # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
     original_status = models.PositiveSmallIntegerField(
         default=amo.STATUS_NULL)
-    webext_permissions_json = models.CharField(
-        max_length=1024, default='')
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
@@ -179,11 +178,10 @@ class File(OnChangeMixin, ModelBase):
             if validation['metadata'].get('requires_chrome'):
                 file_.requires_chrome = True
 
-        if file_.is_webextension and parsed_data.get('permissions'):
-            file_.webext_permissions_json = json.dumps(
-                parsed_data.get('permissions'))
-
         file_.save()
+        if file_.is_webextension and parsed_data.get('permissions'):
+            WebextPermission.objects.create(
+                permissions=parsed_data.get('permissions'), file=file_)
 
         log.debug('New file: %r from %r' % (file_, upload))
         # Move the uploaded file from the temp location.
@@ -381,8 +379,10 @@ class File(OnChangeMixin, ModelBase):
 
     @amo.cached_property
     def webext_permissions(self):
+        if not self._webext_permissions.exists():
+            return {}
         return {name: WEBEXT_PERMISSIONS.get(name, Permission(name, '', ''))
-                for name in json.loads(self.webext_permissions_json)}
+                for name in self._webext_permissions.get().permissions}
 
     @amo.cached_property
     def webext_permissions_known(self):
@@ -722,6 +722,12 @@ class ValidationAnnotation(ModelBase):
 
     class Meta:
         db_table = 'validation_annotations'
+
+
+class WebextPermission(ModelBase):
+    permissions = JSONField(default={})
+    file = models.ForeignKey('File', related_name='_webext_permissions',
+                             on_delete=models.CASCADE)
 
 
 def nfd_str(u):

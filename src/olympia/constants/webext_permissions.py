@@ -11,16 +11,13 @@ WEBEXT_PERMISSIONS = {
         _lazy(u'Requests that the extension be granted permissions according '
               u'to the activeTab specification.'),
         _lazy(u'Requests that the extension be granted permissions according '
-              u'to the activeTab specification.')
-        ),
+              u'to the activeTab specification.')),
     u'alarms': Permission(
         u'alarms',
         _lazy(u'Gives the extension access to the chrome.alarms API.'),
-        _lazy(u'Gives the extension access to the chrome.alarms API.')
-        ),
+        _lazy(u'Gives the extension access to the chrome.alarms API.')),
     u'bookmarks': Permission(
         u'bookmarks',
         _lazy(u'Read and modify bookmarks.'),
-        _lazy(u'Read and modify bookmarks.')
-        ),
+        _lazy(u'Read and modify bookmarks.')),
 }
