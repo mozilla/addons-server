@@ -101,11 +101,6 @@ def cors_endpoint_overrides(internal, public):
             'CORS_ORIGIN_WHITELIST': public,
             'CORS_ALLOW_CREDENTIALS': True,
         }),
-        (r'^/api/v3/accounts/session/?$', {
-            'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': internal,
-            'CORS_ALLOW_CREDENTIALS': True,
-        }),
         (r'^/api/v3/internal/.*$', {
             'CORS_ORIGIN_ALLOW_ALL': False,
             'CORS_ORIGIN_WHITELIST': internal,
