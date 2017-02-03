@@ -379,10 +379,12 @@ class File(OnChangeMixin, ModelBase):
 
     @amo.cached_property
     def webext_permissions(self):
-        if not self._webext_permissions.exists():
+        try:
+            return {
+                name: WEBEXT_PERMISSIONS.get(name, Permission(name, '', ''))
+                for name in self._webext_permissions.permissions}
+        except WebextPermission.DoesNotExist:
             return {}
-        return {name: WEBEXT_PERMISSIONS.get(name, Permission(name, '', ''))
-                for name in self._webext_permissions.get().permissions}
 
     @amo.cached_property
     def webext_permissions_known(self):
@@ -726,8 +728,8 @@ class ValidationAnnotation(ModelBase):
 
 class WebextPermission(ModelBase):
     permissions = JSONField(default={})
-    file = models.ForeignKey('File', related_name='_webext_permissions',
-                             on_delete=models.CASCADE)
+    file = models.OneToOneField('File', related_name='_webext_permissions',
+                                on_delete=models.CASCADE)
 
 
 def nfd_str(u):
