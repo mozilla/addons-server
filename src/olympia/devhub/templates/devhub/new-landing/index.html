@@ -38,7 +38,6 @@
     {% endif %}
 
     {{ js('preload') }}
-    {{ js('common') }}
   </head>
   {% set user_authenticated = request.user.is_authenticated() %}
 
@@ -73,6 +72,8 @@
         <span></span>
     </div>
     {% block site_js %}
+      <script src="{{ CDN_HOST }}{{ cache_buster(url('jsi18n')) }}"></script>
+      {{ js('common') }}
     {% endblock %}
   </body>
 </html>
