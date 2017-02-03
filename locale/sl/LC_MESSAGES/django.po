@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-03 16:29+0000\n"
+"PO-Revision-Date: 2017-02-03 18:34+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5641,7 +5641,7 @@ msgstr "Več možnosti sodelovanja"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Ni vam treba biti vešč programiranja, da poskrbite, da Firefox ostane najbolj prilagodljivi brskalnik na svetu!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "See how"
