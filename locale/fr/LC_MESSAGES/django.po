@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-29 23:34+0000\n"
+"PO-Revision-Date: 2017-02-03 00:32+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5496,19 +5496,16 @@ msgid "Read more in our Blog"
 msgstr "besoin de plus d’informations"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Resources"
-msgstr "Plus de ressources"
+msgstr "Ressources"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "WebExtensions"
-msgstr "WebExtension"
+msgstr "WebExtensions"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Community"
-msgstr "Commentaire"
+msgstr "Communauté"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "About"
@@ -5524,14 +5521,12 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Contact Us"
-msgstr "Contacts"
+msgstr "Nous contacter"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Policies"
-msgstr "Note de revue"
+msgstr "Consulter les politiques"
 
 # Link text to the Frequently Asked Questions page.
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
@@ -5539,9 +5534,8 @@ msgid "FAQ"
 msgstr "FAQ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Report Bug"
-msgstr "Signaler un bug"
+msgstr "Signaler un problème"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Site Status"
@@ -5557,7 +5551,7 @@ msgstr "Générateur de rapports de compatibilité"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Promote"
-msgstr ""
+msgstr "Promotion"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #, fuzzy
@@ -5570,7 +5564,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
-msgstr ""
+msgstr "Mentions légales"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
@@ -5581,9 +5575,8 @@ msgid "Legal Notices"
 msgstr "Avertissement légal"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "Vérifier ce module"
+msgstr "Passer des modules en revue"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
@@ -5591,11 +5584,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
-msgstr ""
+msgstr "Rejoignez-nous !"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
-msgstr ""
+msgstr "Écrire du code"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
@@ -5607,17 +5600,16 @@ msgid "Get started"
 msgstr "Lancez-vous"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "Pour personnaliser davantage…"
+msgstr "D’autres façons de participer"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Vous n’avez pas besoin de savoir coder pour aider à ce que Firefox demeure le navigateur le plus personnalisable !"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "See how"
-msgstr ""
+msgstr "Découvrez comment"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Manage Your Add-on"
@@ -5647,7 +5639,7 @@ msgstr "Dernières nouvelles"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
-msgstr ""
+msgstr "Bonne année ! Voyez ce que les modules vous réservent pour 2017."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
@@ -5656,14 +5648,13 @@ msgstr "Voir les commentaires"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "AMO"
-msgstr ""
+msgstr "AMO"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Self-hosted"
-msgstr ""
+msgstr "Auto-hébergé"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "View All Submissions"
 msgstr "Voir toutes les versions"
 
@@ -5690,36 +5681,32 @@ msgid "Docs"
 msgstr "Docs"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Se connecter"
+msgstr "Se déconnecter"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Supprimer la photo de l’utilisateur"
+msgstr "Photo de l’utilisateur"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
 msgstr "<a href=\"%(reg)s\">S’inscrire</a> ou <a href=\"%(login)s\">Se connecter</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Firefox"
 msgstr "Personnalisez Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
 " you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Les modules complémentaires permettent aux millions d’utilisateurs de Firefox d’améliorer et de personnaliser leur façon de naviguer. Si vous êtes un développeur web et que vous connaissez <a "
-"href=\"#\">HTML</a>, <a href=\"#\">JavaScript</a> et <a href=\"#\">CSS</a>, vous avez toutes les cartes en main pour créer un super module."
+"href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a> et <a href=\"%(css_link)s\">CSS</a>, vous avez toutes les cartes en main pour créer un super module."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to Make an Add-on"
 msgstr "Apprenez à créer un module"
 
@@ -5739,9 +5726,8 @@ msgid "Publish Your Add-on"
 msgstr "Publiez votre module"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Vous avez un module prêt ? Proposez votre module ou votre thème pour qu'il soit répertorié sur addons.mozilla.org ou signez numériquement et distribuez votre module vous-même."
+msgstr "Vous avez un module prêt ? Proposez votre module ou votre thème pour qu’il soit répertorié sur addons.mozilla.org ou signez numériquement et distribuez votre module vous-même."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign In"
@@ -5753,9 +5739,8 @@ msgid "Validator"
 msgstr "Validateur"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Veuillez compléter votre module."
+msgstr "Faites passer des tests automatiques au code de votre module."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
@@ -5799,7 +5784,6 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr "Recevoir des contributions dans votre compte PayPal ou bien les envoyer à une organisation de votre choix"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
 msgstr "Les contributions sont uniquement disponibles pour les modules répertoriés."
 
@@ -6252,7 +6236,6 @@ msgid "Reply"
 msgstr "Répondre"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
 msgstr "Visibilité du module"
 
