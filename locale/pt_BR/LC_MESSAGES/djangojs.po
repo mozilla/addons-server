@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2016-11-19 19:13+0000\n"
+"PO-Revision-Date: 2017-02-03 21:48+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1226,7 +1226,7 @@ msgstr "Experimental"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require Newer Version of {0}"
-msgstr "Para usar temas, é preciso estar com a última versão do {0}"
+msgstr "Os temas requerem uma versão mais recente do {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require {0}"
