@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-02 13:05+0000\n"
+"PO-Revision-Date: 2017-02-04 13:45+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1974,11 +1974,11 @@ msgstr "Geçersiz JWT jetonu."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Geçersiz Yetkilendirme başlığı. Kimlik bilgileri sağlanmadı."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Geçersiz Yetkilendirme başlığı. Kimlik bilgileri dizesi boşluk içermemelidir."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
@@ -2875,7 +2875,7 @@ msgstr "En Yüksek Puanlı Tam Temalar"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "En Yeni Tam Temalar"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Name"
@@ -3918,7 +3918,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "Eklentilerimi bu sitede listeleme"
 
 #: src/olympia/devhub/forms.py
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
@@ -4024,7 +4024,7 @@ msgstr ""
 #: src/olympia/devhub/tasks.py
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "\"%s\" bağlantısı zaman aşımına uğradı."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4066,7 +4066,7 @@ msgstr "Değişiklikler başarıyla kaydedildi."
 
 #: src/olympia/devhub/views.py
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Lütfen formdaki hataları kontrol edin."
 
 #: src/olympia/devhub/views.py
 msgid "Add-on cannot be deleted. Disable this add-on instead."
@@ -4184,11 +4184,11 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
-msgstr ""
+msgstr "Yeni API anahtarı oluşturuldu"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
-msgstr ""
+msgstr "API anahtarı iptal edildi"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -4228,7 +4228,7 @@ msgstr "Arama Araçları"
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "\"{0}\" Arama Sonuçları"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
 msgid "Search Results"
@@ -4732,7 +4732,7 @@ msgstr "Teknik Ayrıntılar"
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "{0} Teknik Ayrıntıları"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
@@ -4875,7 +4875,7 @@ msgstr ""
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "64x64px"
-msgstr ""
+msgstr "64x64 piksel"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Used in add-on detail pages."
@@ -4883,7 +4883,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Özel simge yükle..."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
@@ -5659,7 +5659,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
-msgstr ""
+msgstr "Yasal"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 #, fuzzy
@@ -5681,7 +5681,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
-msgstr ""
+msgstr "Bize katılın!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
@@ -7010,7 +7010,7 @@ msgstr "Listelenmemiş"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
-msgstr ""
+msgstr "Günlükler"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/reviewlog.html
 #, fuzzy
@@ -7969,7 +7969,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
-msgstr ""
+msgstr "Oyunlar!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
@@ -8086,7 +8086,7 @@ msgstr "Başlarken"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "Birleşik Arap Emirlikleri Dirhemi"
 
 #: src/olympia/lib/constants.py
 msgid "Afghanistan Afghani"
@@ -8094,11 +8094,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Albania Lek"
-msgstr ""
+msgstr "Arnavutluk Leki"
 
 #: src/olympia/lib/constants.py
 msgid "Armenia Dram"
-msgstr ""
+msgstr "Ermeni Dramı"
 
 #: src/olympia/lib/constants.py
 msgid "Netherlands Antilles Guilder"
@@ -8106,15 +8106,15 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "Angola Kwanzası"
 
 #: src/olympia/lib/constants.py
 msgid "Argentina Peso"
-msgstr ""
+msgstr "Arjantin Pezosu"
 
 #: src/olympia/lib/constants.py
 msgid "Australia Dollar"
-msgstr ""
+msgstr "Avustralya Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Aruba Guilder"
@@ -8130,63 +8130,63 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "Barbados Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "Bangladeş Takası"
 
 #: src/olympia/lib/constants.py
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "Bulgar Levası"
 
 #: src/olympia/lib/constants.py
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "Bahreyn Dinarı"
 
 #: src/olympia/lib/constants.py
 msgid "Burundi Franc"
-msgstr ""
+msgstr "Burundi Frangı"
 
 #: src/olympia/lib/constants.py
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "Bermuda Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "Brunei Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "Bolivya Bolivianosu"
 
 #: src/olympia/lib/constants.py
 msgid "Brazil Real"
-msgstr ""
+msgstr "Brezilya Reali"
 
 #: src/olympia/lib/constants.py
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "Bahama Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "Bhutan Ngultrumu"
 
 #: src/olympia/lib/constants.py
 msgid "Botswana Pula"
-msgstr ""
+msgstr "Botsvana Pulası"
 
 #: src/olympia/lib/constants.py
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "Belarus Rublesi"
 
 #: src/olympia/lib/constants.py
 msgid "Belize Dollar"
-msgstr ""
+msgstr "Belize Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Canada Dollar"
-msgstr ""
+msgstr "Kanada Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Congo/Kinshasa Franc"
@@ -8194,23 +8194,23 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "İsviçre Frangı"
 
 #: src/olympia/lib/constants.py
 msgid "Chile Peso"
-msgstr ""
+msgstr "Şili Pezosu"
 
 #: src/olympia/lib/constants.py
 msgid "China Yuan Renminbi"
-msgstr ""
+msgstr "Çin Yuanı Renminbi"
 
 #: src/olympia/lib/constants.py
 msgid "Colombia Peso"
-msgstr ""
+msgstr "Kolombiya Pezosu"
 
 #: src/olympia/lib/constants.py
 msgid "Costa Rica Colon"
-msgstr ""
+msgstr "Kosta Rika Kolonu"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Convertible Peso"
@@ -8218,7 +8218,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Peso"
-msgstr ""
+msgstr "Küba Pezosu"
 
 #: src/olympia/lib/constants.py
 msgid "Cape Verde Escudo"
@@ -8226,23 +8226,23 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Czech Republic Koruna"
-msgstr ""
+msgstr "Çek Cumhuriyeti Korunası"
 
 #: src/olympia/lib/constants.py
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "Cibuti Frangı"
 
 #: src/olympia/lib/constants.py
 msgid "Denmark Krone"
-msgstr ""
+msgstr "Danimarka Kronu"
 
 #: src/olympia/lib/constants.py
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "Dominik Cumhuriyeti Pezosu"
 
 #: src/olympia/lib/constants.py
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "Cezayir Dinarı"
 
 #: src/olympia/lib/constants.py
 #, fuzzy
@@ -8251,19 +8251,19 @@ msgstr "Bulunamadı"
 
 #: src/olympia/lib/constants.py
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "Eritre Nakfası"
 
 #: src/olympia/lib/constants.py
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "Etiyopya Birri"
 
 #: src/olympia/lib/constants.py
 msgid "Euro Member Countries"
-msgstr ""
+msgstr "Euro Üyesi Ülkeler"
 
 #: src/olympia/lib/constants.py
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "Fiji Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Falkland Islands (Malvinas) Pound"
@@ -8295,39 +8295,39 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Guinea Franc"
-msgstr ""
+msgstr "Gine Frangı"
 
 #: src/olympia/lib/constants.py
 msgid "Guatemala Quetzal"
-msgstr ""
+msgstr "Guatemala Quetzalı"
 
 #: src/olympia/lib/constants.py
 msgid "Guyana Dollar"
-msgstr ""
+msgstr "Guyana Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "Hong Kong Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Honduras Lempira"
-msgstr ""
+msgstr "Honduras Lempirası"
 
 #: src/olympia/lib/constants.py
 msgid "Croatia Kuna"
-msgstr ""
+msgstr "Hırvat Kunası"
 
 #: src/olympia/lib/constants.py
 msgid "Haiti Gourde"
-msgstr ""
+msgstr "Haiti Gourdesi"
 
 #: src/olympia/lib/constants.py
 msgid "Hungary Forint"
-msgstr ""
+msgstr "Macaristan Forinti"
 
 #: src/olympia/lib/constants.py
 msgid "Indonesia Rupiah"
-msgstr ""
+msgstr "Endonezya Rupisi"
 
 #: src/olympia/lib/constants.py
 msgid "Israel Shekel"
@@ -8339,87 +8339,87 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "India Rupee"
-msgstr ""
+msgstr "Hindistan Rupisi"
 
 #: src/olympia/lib/constants.py
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "Irak Dinarı"
 
 #: src/olympia/lib/constants.py
 msgid "Iran Rial"
-msgstr ""
+msgstr "İran Riyali"
 
 #: src/olympia/lib/constants.py
 msgid "Iceland Krona"
-msgstr ""
+msgstr "İzlanda Kronu"
 
 #: src/olympia/lib/constants.py
 msgid "Jersey Pound"
-msgstr ""
+msgstr "Jersey Poundu"
 
 #: src/olympia/lib/constants.py
 msgid "Jamaica Dollar"
-msgstr ""
+msgstr "Jamaika Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Jordan Dinar"
-msgstr ""
+msgstr "Ürdün Dinarı"
 
 #: src/olympia/lib/constants.py
 msgid "Japan Yen"
-msgstr ""
+msgstr "Japon Yeni"
 
 #: src/olympia/lib/constants.py
 msgid "Kenya Shilling"
-msgstr ""
+msgstr "Kenya Şilini"
 
 #: src/olympia/lib/constants.py
 msgid "Kyrgyzstan Som"
-msgstr ""
+msgstr "Kırgızistan Somu"
 
 #: src/olympia/lib/constants.py
 msgid "Cambodia Riel"
-msgstr ""
+msgstr "Kamboçya Rieli"
 
 #: src/olympia/lib/constants.py
 msgid "Comoros Franc"
-msgstr ""
+msgstr "Komor Frangı"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (North) Won"
-msgstr ""
+msgstr "Kore (Kuzey) Wonu"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (South) Won"
-msgstr ""
+msgstr "Kore (Güney) Wonu"
 
 #: src/olympia/lib/constants.py
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "Kuveyt Dinarı"
 
 #: src/olympia/lib/constants.py
 msgid "Cayman Islands Dollar"
-msgstr ""
+msgstr "Cayman Adaları Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Kazakhstan Tenge"
-msgstr ""
+msgstr "Kazakistan Tengesi"
 
 #: src/olympia/lib/constants.py
 msgid "Laos Kip"
-msgstr ""
+msgstr "Laos Kipi"
 
 #: src/olympia/lib/constants.py
 msgid "Lebanon Pound"
-msgstr ""
+msgstr "Lübnan Poundu"
 
 #: src/olympia/lib/constants.py
 msgid "Sri Lanka Rupee"
-msgstr ""
+msgstr "Sri Lanka Rupisi"
 
 #: src/olympia/lib/constants.py
 msgid "Liberia Dollar"
-msgstr ""
+msgstr "Liberya Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Lesotho Loti"
@@ -8427,55 +8427,55 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Lithuania Litas"
-msgstr ""
+msgstr "Litvanya Litası"
 
 #: src/olympia/lib/constants.py
 msgid "Latvia Lat"
-msgstr ""
+msgstr "Letonya Latı"
 
 #: src/olympia/lib/constants.py
 msgid "Libya Dinar"
-msgstr ""
+msgstr "Libya Dinarı"
 
 #: src/olympia/lib/constants.py
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "Fas Dirhemi"
 
 #: src/olympia/lib/constants.py
 msgid "Moldova Leu"
-msgstr ""
+msgstr "Moldova Leyi"
 
 #: src/olympia/lib/constants.py
 msgid "Madagascar Ariary"
-msgstr ""
+msgstr "Madagaskar Ariarysi"
 
 #: src/olympia/lib/constants.py
 msgid "Macedonia Denar"
-msgstr ""
+msgstr "Makedonya Dinarı"
 
 #: src/olympia/lib/constants.py
 msgid "Myanmar (Burma) Kyat"
-msgstr ""
+msgstr "Myanmar (Burma) Kyatı"
 
 #: src/olympia/lib/constants.py
 msgid "Mongolia Tughrik"
-msgstr ""
+msgstr "Moğolistan Tugriki"
 
 #: src/olympia/lib/constants.py
 msgid "Macau Pataca"
-msgstr ""
+msgstr "Makao Patacası"
 
 #: src/olympia/lib/constants.py
 msgid "Mauritania Ouguiya"
-msgstr ""
+msgstr "Moritanya Ouguiya"
 
 #: src/olympia/lib/constants.py
 msgid "Mauritius Rupee"
-msgstr ""
+msgstr "Mauritius Rupisi"
 
 #: src/olympia/lib/constants.py
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
+msgstr "Maldiv (Maldiv Adaları) Rufiyası"
 
 #: src/olympia/lib/constants.py
 msgid "Malawi Kwacha"
@@ -8483,47 +8483,47 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Mexico Peso"
-msgstr ""
+msgstr "Meksika Pesosu"
 
 #: src/olympia/lib/constants.py
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "Malezya Ringgiti"
 
 #: src/olympia/lib/constants.py
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "Mozambik Metikali"
 
 #: src/olympia/lib/constants.py
 msgid "Namibia Dollar"
-msgstr ""
+msgstr "Namibya Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Nigeria Naira"
-msgstr ""
+msgstr "Nijerya Nairası"
 
 #: src/olympia/lib/constants.py
 msgid "Nicaragua Cordoba"
-msgstr ""
+msgstr "Nikaragua Kordobası"
 
 #: src/olympia/lib/constants.py
 msgid "Norway Krone"
-msgstr ""
+msgstr "Norveç Kronu"
 
 #: src/olympia/lib/constants.py
 msgid "Nepal Rupee"
-msgstr ""
+msgstr "Nepal Rupisi"
 
 #: src/olympia/lib/constants.py
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "Yeni Zelanda Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Oman Rial"
-msgstr ""
+msgstr "Umman Riyali"
 
 #: src/olympia/lib/constants.py
 msgid "Panama Balboa"
-msgstr ""
+msgstr "Panama Balboası"
 
 #: src/olympia/lib/constants.py
 msgid "Peru Nuevo Sol"
@@ -8531,55 +8531,55 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "Papua Yeni Gine Kinası"
 
 #: src/olympia/lib/constants.py
 msgid "Philippines Peso"
-msgstr ""
+msgstr "Filipinler Pezosu"
 
 #: src/olympia/lib/constants.py
 msgid "Pakistan Rupee"
-msgstr ""
+msgstr "Pakistan Rupisi"
 
 #: src/olympia/lib/constants.py
 msgid "Poland Zloty"
-msgstr ""
+msgstr "Polonya Zlotisi"
 
 #: src/olympia/lib/constants.py
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "Paraguay Guaranisi"
 
 #: src/olympia/lib/constants.py
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Katar Riyali"
 
 #: src/olympia/lib/constants.py
 msgid "Romania New Leu"
-msgstr ""
+msgstr "Romanya Rumen Leyi"
 
 #: src/olympia/lib/constants.py
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "Sırbistan Dinarı"
 
 #: src/olympia/lib/constants.py
 msgid "Russia Ruble"
-msgstr ""
+msgstr "Rus Rublesi"
 
 #: src/olympia/lib/constants.py
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "Ruanda Frangı"
 
 #: src/olympia/lib/constants.py
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "Suudi Arabistan Riyali"
 
 #: src/olympia/lib/constants.py
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "Solomon Adaları Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "Seyşeller Rupisi"
 
 #: src/olympia/lib/constants.py
 msgid "Sudan Pound"
@@ -8587,23 +8587,23 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Sweden Krona"
-msgstr ""
+msgstr "İsveç Kronu"
 
 #: src/olympia/lib/constants.py
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "Singapur Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "Saint Helena Sterlini"
 
 #: src/olympia/lib/constants.py
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Sierra Leone Leonu"
 
 #: src/olympia/lib/constants.py
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Somali Şilini"
 
 #: src/olympia/lib/constants.py
 msgid "Seborga Luigino"
@@ -8611,7 +8611,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "Surinam Doları"
 
 #: src/olympia/lib/constants.py
 msgid "São Tomé and Príncipe Dobra"
@@ -8619,31 +8619,31 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "El Salvador Kolonu"
 
 #: src/olympia/lib/constants.py
 msgid "Syria Pound"
-msgstr ""
+msgstr "Suriye Poundu"
 
 #: src/olympia/lib/constants.py
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Svaziland Lilangeni"
 
 #: src/olympia/lib/constants.py
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Tayland Bahtı"
 
 #: src/olympia/lib/constants.py
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Tacikistan Somoni"
 
 #: src/olympia/lib/constants.py
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Türkmenistan Manatı"
 
 #: src/olympia/lib/constants.py
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Tunus Dinarı"
 
 #: src/olympia/lib/constants.py
 msgid "Tonga Pa'anga"
@@ -8655,47 +8655,47 @@ msgstr "Türk Lirası"
 
 #: src/olympia/lib/constants.py
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Trinidad ve Tobago Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Tuvalu Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Yeni Tayvan Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Tanzanya Şilini"
 
 #: src/olympia/lib/constants.py
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Ukrayna Grivnası"
 
 #: src/olympia/lib/constants.py
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Uganda Şilini"
 
 #: src/olympia/lib/constants.py
 msgid "United States Dollar"
-msgstr ""
+msgstr "Amerikan Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Uruguay Pezosu"
 
 #: src/olympia/lib/constants.py
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Özbekistan Somu"
 
 #: src/olympia/lib/constants.py
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Venezuela Bolivarı"
 
 #: src/olympia/lib/constants.py
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Vietnam Dongu"
 
 #: src/olympia/lib/constants.py
 msgid "Vanuatu Vatu"
@@ -8703,7 +8703,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Samoa Talası"
 
 #: src/olympia/lib/constants.py
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
@@ -8711,7 +8711,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Doğu Karayip Doları"
 
 #: src/olympia/lib/constants.py
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
@@ -8727,11 +8727,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Yemen Riyali"
 
 #: src/olympia/lib/constants.py
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Güney Afrika Randı"
 
 #: src/olympia/lib/constants.py
 msgid "Zambia Kwacha"
@@ -8739,7 +8739,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Zimbabve Doları"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, fuzzy
@@ -10347,7 +10347,7 @@ msgstr "geliştiren: {0}"
 #. L10n: "All Systems" means show everything regardless of platform.
 #: src/olympia/search/views.py
 msgid "All Systems"
-msgstr ""
+msgstr "Tüm Sistemler"
 
 # 100%
 #: src/olympia/search/views.py
@@ -11327,7 +11327,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Hesabı silmeyi onaylayın"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "I understand this step cannot be undone."
@@ -11335,7 +11335,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Delete my user account now"
-msgstr ""
+msgstr "Kullanıcı hesabımı sil"
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete User Photo"
@@ -11343,7 +11343,7 @@ msgstr "Kullanıcı fotoğrafını sil"
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Kullanıcı resmimi sil"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name"
@@ -11368,7 +11368,7 @@ msgstr "E-posta Adresi"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Firefox Hesabını Yönet..."
 
 #: src/olympia/users/templates/users/edit.html
 #, fuzzy
@@ -11768,7 +11768,7 @@ msgstr "Kimler etkileniyor?"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr ""
+msgstr "Eklenti"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy
