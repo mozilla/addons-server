@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-04 11:11+0000\n"
+"PO-Revision-Date: 2017-02-04 11:12+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1997,9 +1997,8 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html
-#, fuzzy
 msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
@@ -5149,14 +5148,12 @@ msgid "Upload Add-on"
 msgstr "Μεταφόρτωση προσθέτου"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Διαγραφή έκδοσης"
+msgstr "Τοποθεσία φιλοξενίας αρχείου"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host Version"
-msgstr "Διαγραφή έκδοσης"
+msgstr "Τοποθεσία φιλοξενίας έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Version"
@@ -5439,9 +5436,8 @@ msgid "Read more in our Blog"
 msgstr "χρειάζονται περισσότερες πληροφορίες"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Resources"
-msgstr "Περισσότερες πηγές"
+msgstr "Πόροι"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
@@ -5467,14 +5463,12 @@ msgid "Blog"
 msgstr "Ιστολόγιο"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Contact Us"
-msgstr "Επαφές"
+msgstr "Επικοινωνήστε μαζί μας"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Policies"
-msgstr "Σημείωση αξιολόγησης"
+msgstr "Πολιτικές αξιολόγησης"
 
 # Link text to the Frequently Asked Questions page.
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
