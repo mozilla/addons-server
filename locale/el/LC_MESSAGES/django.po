@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-30 09:33+0000\n"
+"PO-Revision-Date: 2017-02-04 11:11+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5450,9 +5450,8 @@ msgid "WebExtensions"
 msgstr "Επεκτάσεις"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Community"
-msgstr "Σχόλιο"
+msgstr "Κοινότητα"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "About"
@@ -5640,9 +5639,8 @@ msgid "Docs"
 msgstr "Έγγραφα"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Είσοδος"
+msgstr "Αποσύνδεση"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "User Photo"
