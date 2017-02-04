@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-04 22:50+0000\n"
+"PO-Revision-Date: 2017-02-04 22:56+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga_IE\n"
@@ -5867,7 +5867,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 #, python-format
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr ""
+msgstr "nó <a href=\"%(cancel)s\">Cealaigh</a>"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Contributions"
@@ -6587,7 +6587,7 @@ msgstr ""
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
 msgid "theme name"
-msgstr ""
+msgstr "ainm an téama"
 
 #: src/olympia/editors/forms.py
 msgid "Someone else is reviewing this theme."
@@ -6665,9 +6665,9 @@ msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} nóiméad"
 msgstr[1] "{0} nóiméad"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "{0} nóiméad"
+msgstr[3] "{0} nóiméad"
+msgstr[4] "{0} nóiméad"
 
 #. L10n: first argument is number of hours
 #: src/olympia/editors/helpers.py
@@ -6675,9 +6675,9 @@ msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} uair"
 msgstr[1] "{0} uair"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "{0} huaire"
+msgstr[3] "{0} n-uaire"
+msgstr[4] "{0} uair"
 
 #. L10n: first argument is number of days
 #: src/olympia/editors/helpers.py
@@ -6685,9 +6685,9 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} lá"
 msgstr[1] "{0} lá"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "{0} lá"
+msgstr[3] "{0} lá"
+msgstr[4] "{0} lá"
 
 #: src/olympia/editors/helpers.py
 msgid "Last Review"
@@ -6881,9 +6881,8 @@ msgid "Queues"
 msgstr "Ciúnna"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Tuilleadh Breiseán"
+msgstr "Breiseáin Nua"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6958,16 +6957,16 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Undelete"
-msgstr ""
+msgstr "Díscrios"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "Breiseán Nua ({num})"
+msgstr[1] "Breiseáin Nua ({num})"
+msgstr[2] "Breiseáin Nua ({num})"
+msgstr[3] "Breiseáin Nua ({num})"
+msgstr[4] "Breiseáin Nua ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 #, fuzzy
@@ -6988,14 +6987,14 @@ msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} bhreiseán"
 msgstr[1] "{0} bhreiseán"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "{0} bhreiseán"
+msgstr[3] "{0} mbreiseán"
+msgstr[4] "{0} breiseán"
 
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7077,7 +7076,7 @@ msgstr "An Mhí Seo"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Year"
-msgstr ""
+msgstr "An Bhliain Seo"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Monthly Performance"
@@ -7585,7 +7584,6 @@ msgid "Back to review"
 msgstr "Fill ar an léirmheas"
 
 #: src/olympia/files/views.py
-#, fuzzy
 msgid "Back to add-on"
 msgstr "Fill ar an mbreiseán"
 
@@ -11376,7 +11374,7 @@ msgstr ""
 
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Ní féidir leaganacha scriosta a athrú."
 
 #: src/olympia/zadmin/forms.py
 msgid "Binary"
@@ -11387,13 +11385,12 @@ msgid "Non-binary"
 msgstr "Neamhdhénártha"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "Teachtaireacht an Lae"
+msgstr "Aitheantas teachtaireachta"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
-msgstr ""
+msgstr "Teachtaireacht"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy
@@ -11407,9 +11404,8 @@ msgstr "Breiseáin cruthaithe"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr ""
+msgstr "Breiseán"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Torthaí an Bhailíochtaithe"
+msgstr "Toradh an Bhailíochtaithe"
