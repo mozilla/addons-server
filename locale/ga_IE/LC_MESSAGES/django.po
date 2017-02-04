@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-04 22:11+0000\n"
+"PO-Revision-Date: 2017-02-04 22:30+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga_IE\n"
@@ -597,9 +597,9 @@ msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} íosluchtú sa tseachtain"
 msgstr[1] "{0} íosluchtú sa tseachtain"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "{0} íosluchtú sa tseachtain"
+msgstr[3] "{0} n-íosluchtú sa tseachtain"
+msgstr[4] "{0} íosluchtú sa tseachtain"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html src/olympia/zadmin/templates/zadmin/compat.html
@@ -607,9 +607,9 @@ msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} úsáideoir"
 msgstr[1] "{0} úsáideoir"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "{0} úsáideoir"
+msgstr[3] "{0} n-úsáideoir"
+msgstr[4] "{0} úsáideoir"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Payment cancelled"
@@ -685,9 +685,9 @@ msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
 msgstr[0] "<strong>{0}</strong> úsáideoir"
 msgstr[1] "<strong>{0}</strong> úsáideoir"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<strong>{0}</strong> n-úsáideoir"
+msgstr[3] "<strong>{0}</strong> úsáideoir"
+msgstr[4] "<strong>{0}</strong> úsáideoir"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Hover to Preview"
@@ -709,7 +709,7 @@ msgstr "Eagar"
 #: src/olympia/addons/templates/addons/persona_preview.html
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%Y-%%m-%%d"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "by {0} on {1}"
@@ -725,9 +725,8 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> úsáideoir"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
-#, fuzzy
 msgid "{0} Daily Users"
-msgstr "Úsáideoirí Laethúla"
+msgstr "{0} Úsáideoir Laethúil"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -739,7 +738,7 @@ msgstr "Tuilleadh eolais faoi Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "nó <b><a class=\"button installer\" href=\"{url}\">íosluchtaigh mar sin féin</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
@@ -888,11 +887,10 @@ msgid "Submit review"
 msgstr "Seol an léirmheas"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
-"Ná cuir tuairiscí faoi fhabhtanna i do léirmheas, le do thoil.  Ní chuirimid do sheoladh ríomhphoist ar fáil d'fhorbróirí an bhreiseáin, agus seans go mbeidh orthu dul i dteagmháil leat chun an "
-"fhadhb a réiteach."
+"Ná cuir tuairiscí faoi fhabhtanna i do léirmheas, le do thoil. Ní chuirimid do sheoladh ríomhphoist ar fáil d'fhorbróirí an bhreiseáin, agus mar sin ní bheidh siad in ann dul i dteagmháil leat chun "
+"an fhadhb a réiteach."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -924,10 +922,10 @@ msgstr "Taispeáin an freagra a thug an forbróir ar an léirmheas seo"
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Taispeáin gach léirmheas ar an mbreiseán seo"
-msgstr[1] "Taispeáin na %(cnt)s léirmheas ar an mbreiseán seo"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[1] "Taispeáin an %(cnt)s léirmheas ar an mbreiseán seo"
+msgstr[2] "Taispeáin na %(cnt)s léirmheas ar an mbreiseán seo"
+msgstr[3] "Taispeáin na %(cnt)s léirmheas ar an mbreiseán seo"
+msgstr[4] "Taispeáin na %(cnt)s léirmheas ar an mbreiseán seo"
 
 # #-#-#-#-#  chromemessengermessenger.properties.po (firefox)  #-#-#-#-#
 # for the Tag picker in search and mail views.
@@ -937,7 +935,7 @@ msgstr "Clibeanna"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Deilbhín {0}"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html src/olympia/addons/templates/addons/impala/featured_grid.html src/olympia/addons/templates/addons/impala/theme_grid.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/users/templates/users/helpers/addon_users_list.html
@@ -946,13 +944,12 @@ msgid "by %(users)s"
 msgstr "le %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
-msgstr "Bhain an t-údar an breiseán seo ón suíomh."
+msgstr "Deir na forbróirí gur breiseán turgnamhach é seo"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
-msgstr ""
+msgstr "Íosluchtaigh mar sin féin"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -1039,17 +1036,17 @@ msgstr "Bratach Riarthóra"
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Deilbhín {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Téigh in aithne ar an bhforbróir: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Téigh in aithne ar na forbróirí</a>"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<a href=\"%(url)s\">Téigh in aithne ar na forbróirí</a>"
+msgstr[3] "<a href=\"%(url)s\">Téigh in aithne ar na forbróirí</a>"
+msgstr[4] "<a href=\"%(url)s\">Téigh in aithne ar na forbróirí</a>"
 
 # {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1084,7 +1081,7 @@ msgstr "Eolas"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Last Updated:"
-msgstr ""
+msgstr "Nuashonrú is déanaí:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -1161,9 +1158,9 @@ msgid "About the Developer"
 msgid_plural "About the Developers"
 msgstr[0] "Maidir leis an bhforbróir"
 msgstr[1] "Maidir leis na forbróirí"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "Maidir leis na forbróirí"
+msgstr[3] "Maidir leis na forbróirí"
+msgstr[4] "Maidir leis na forbróirí"
 
 #: src/olympia/addons/templates/addons/impala/developers.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/users/templates/users/edit.html
 #: src/olympia/users/templates/users/profile.html
@@ -1197,7 +1194,7 @@ msgstr "buan-nasc"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
 msgid "translate"
-msgstr ""
+msgstr "aistrigh"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1205,9 +1202,9 @@ msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Féach ar gach léirmheas"
 msgstr[1] "Féach ar an %(cnt)s léirmheas"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "Féach ar na %(cnt)s léirmheas"
+msgstr[3] "Féach ar na %(cnt)s léirmheas"
+msgstr[4] "Féach ar na %(cnt)s léirmheas"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
@@ -1276,9 +1273,9 @@ msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> íosluchtú sa tseachtain"
 msgstr[1] "<strong>{0}</strong> íosluchtú sa tseachtain"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<strong>{0}</strong> íosluchtú sa tseachtain"
+msgstr[3] "<strong>{0}</strong> n-íosluchtú sa tseachtain"
+msgstr[4] "<strong>{0}</strong> íosluchtú sa tseachtain"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Read More"
@@ -1405,7 +1402,7 @@ msgstr "Bain triail as!"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Eolas faoin téama &raquo;"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -1454,7 +1451,7 @@ msgstr "Lárionad Forbartha"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/views.py
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Bainistigh Eochracha API"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Editor Tools"
@@ -1466,11 +1463,11 @@ msgstr "Uirlisí Riaracháin"
 
 #: src/olympia/amo/fields.py
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Mícheart, bain triail eile as."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Earráid agus an t-ionchur á dheimhniú, bain triail eile as."
 
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
@@ -1984,9 +1981,9 @@ msgid "Page {n}"
 msgid_plural "Page {n}"
 msgstr[0] "Leathanach {n}"
 msgstr[1] "Leathanach {n}"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "Leathanach {n}"
+msgstr[3] "Leathanach {n}"
+msgstr[4] "Leathanach {n}"
 
 #: src/olympia/amo/tests/test_messages.py src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Title"
@@ -2010,11 +2007,11 @@ msgstr ""
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Earráid agus an síniú á dhíchódú."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Ceadchomhartha neamhbhailí JWT."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
@@ -2049,9 +2046,8 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html
-#, fuzzy
 msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
@@ -2108,7 +2104,7 @@ msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Déan cur síos ar do bhailiúchán (ní cheadaítear nascanna)."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Privacy:"
@@ -2120,15 +2116,15 @@ msgstr "Deilbhín"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Ná líon an réimse; úsáidtear é chun bob a bhualadh ar na róbait!"
 
 #: src/olympia/bandwagon/forms.py
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Ní féidir an t-ainm seo a úsáid."
 
 #: src/olympia/bandwagon/forms.py src/olympia/users/forms.py
 msgid "No links are allowed."
-msgstr ""
+msgstr "Ní cheadaítear nascanna."
 
 #: src/olympia/bandwagon/forms.py
 msgid "This url is already in use by another collection"
@@ -2275,9 +2271,9 @@ msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] "<span>%(num)s</span> leantóir"
 msgstr[1] "<span>%(num)s</span> leantóir"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<span>%(num)s</span> leantóir"
+msgstr[3] "<span>%(num)s</span> leantóir"
+msgstr[4] "<span>%(num)s</span> leantóir"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "About this Collection"
@@ -2317,9 +2313,9 @@ msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
 msgstr[0] "%(num)s Téama sa Bhailiúchán seo"
 msgstr[1] "%(num)s Théama sa Bhailiúchán seo"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "%(num)s Théama sa Bhailiúchán seo"
+msgstr[3] "%(num)s dTéama sa Bhailiúchán seo"
+msgstr[4] "%(num)s Téama sa Bhailiúchán seo"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
@@ -2327,9 +2323,9 @@ msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] "%(num)s Bhreiseán sa Bhailiúchán seo"
 msgstr[1] "%(num)s Bhreiseán sa Bhailiúchán seo"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "%(num)s Bhreiseán sa Bhailiúchán seo"
+msgstr[3] "%(num)s mBreiseán sa Bhailiúchán seo"
+msgstr[4] "%(num)s Breiseán sa Bhailiúchán seo"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
@@ -2378,9 +2374,9 @@ msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> bhreiseán"
 msgstr[1] "<span>%(addons)s</span> bhreiseán"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<span>%(addons)s</span> bhreiseán"
+msgstr[3] "<span>%(addons)s</span> mbreiseán"
+msgstr[4] "<span>%(addons)s</span> breiseán"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html
 #, python-format
@@ -2388,9 +2384,9 @@ msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] "<span>%(followers)s</span> leantóir"
 msgstr[1] "<span>%(followers)s</span> leantóir"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<span>%(followers)s</span> leantóir"
+msgstr[3] "<span>%(followers)s</span> leantóir"
+msgstr[4] "<span>%(followers)s</span> leantóir"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2400,11 +2396,11 @@ msgstr[4] ""
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s leantóir seachtainiúil"
+msgstr[0] "%(num)s leantóir seachtainiúla"
 msgstr[1] "%(num)s leantóir seachtainiúil"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "%(num)s leantóir seachtainiúil"
+msgstr[3] "%(num)s leantóir seachtainiúil"
+msgstr[4] "%(num)s leantóir seachtainiúil"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2413,10 +2409,10 @@ msgstr[4] ""
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
 msgstr[0] "%(num)s leantóir míosúil"
-msgstr[1] "%(num)s leantóir míosúil"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[1] "%(num)s leantóir míosúla"
+msgstr[2] "%(num)s leantóir míosúil"
+msgstr[3] "%(num)s leantóir míosúil"
+msgstr[4] "%(num)s leantóir míosúil"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2428,9 +2424,9 @@ msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
 msgstr[0] "%(num)s leantóir"
 msgstr[1] "%(num)s leantóir"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "%(num)s leantóir"
+msgstr[3] "%(num)s leantóir"
+msgstr[4] "%(num)s leantóir"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
@@ -2839,9 +2835,9 @@ msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> bhreiseán"
 msgstr[1] "<b>{0}</b> bhreiseán"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<b>{0}</b> bhreiseán"
+msgstr[3] "<b>{0}</b> mbreiseán"
+msgstr[4] "<b>{0}</b> breiseán"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Extensions"
@@ -3028,11 +3024,11 @@ msgstr "Éileamh Is Mó"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
-msgstr ""
+msgstr "Tuilleadh Téamaí"
 
 #: src/olympia/browse/templates/browse/personas/mobile/macros.html
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Gach Téama"
 
 #: src/olympia/compat/forms.py
 msgid "All"
@@ -3092,9 +3088,8 @@ msgid "Report Type"
 msgstr "Cineál Tuairisce"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "Application Version"
-msgstr "Leaganacha Feidhmchláir"
+msgstr "Leagan an Fheidhmchláir"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -3105,14 +3100,12 @@ msgid "Platform"
 msgstr "Ardán"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "Díchumasaithe"
+msgstr "e10s Cumasaithe"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "Neamhiomlán"
+msgstr "Comhoiriúnach le e10s"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -3159,7 +3152,7 @@ msgstr "Soghluaiste"
 
 #: src/olympia/constants/applications.py
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox ar Android"
 
 #: src/olympia/constants/applications.py
 msgid "Mozilla"
@@ -3195,7 +3188,7 @@ msgstr "Béite"
 
 #: src/olympia/constants/base.py
 msgid "Unlisted"
-msgstr ""
+msgstr "Neamhliostaithe"
 
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
@@ -3232,7 +3225,7 @@ msgstr "Pacáiste Teanga (Feidhmchlár)"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Pacáiste Teanga (Breiseán)"
 
 #: src/olympia/constants/base.py
 msgid "Plugin"
@@ -3245,7 +3238,7 @@ msgstr "Téama"
 
 #: src/olympia/constants/base.py
 msgid "Complete Themes"
-msgstr ""
+msgstr "Téamaí Iomlána"
 
 #: src/olympia/constants/base.py
 msgid "Dictionaries"
@@ -3258,7 +3251,7 @@ msgstr "Pacáistí Teanga (Feidhmchlár)"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Pacáistí Teanga (Breiseán)"
 
 #: src/olympia/constants/base.py
 msgid "Plugins"
@@ -3416,46 +3409,43 @@ msgstr "Leibhéal 6"
 
 #: src/olympia/constants/base.py
 msgid "Level 7"
-msgstr ""
+msgstr "Leibhéal 7"
 
 #: src/olympia/constants/base.py
 msgid "Level 8"
-msgstr ""
+msgstr "Leibhéal 8"
 
 #: src/olympia/constants/base.py
 msgid "Level 9"
-msgstr ""
+msgstr "Leibhéal 9"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "Comhoiriúnach"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "Incompatible"
-msgstr "Neamhiomlán"
+msgstr "Neamh-chomhoiriúnach"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Alerts & Updates"
-msgstr "Nuashonruithe"
+msgstr "Foláirimh agus Nuashonruithe"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance"
-msgstr ""
+msgstr "Cuma"
 
 #: src/olympia/constants/categories.py
 msgid "Bookmarks"
-msgstr ""
+msgstr "Leabharmharcanna"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Download Management"
-msgstr "Íosluchtaigh Pacáiste Teanga"
+msgstr "Bainistiú Íosluchtuithe"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Fothaí, Nuacht, agus Blagadóireacht"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
