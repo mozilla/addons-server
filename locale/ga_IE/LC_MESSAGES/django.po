@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-04 22:30+0000\n"
+"PO-Revision-Date: 2017-02-04 22:50+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga_IE\n"
@@ -3452,48 +3452,44 @@ msgid "Games & Entertainment"
 msgstr ""
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Language Support"
-msgstr "Teanga"
+msgstr "Tacaíocht Teanga"
 
 #: src/olympia/constants/categories.py
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Grianghraif, Ceol, agus Físeáin"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Privacy & Security"
-msgstr "Polasaí Príobháideachta"
+msgstr "Príobháideachas agus Slándáil"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping"
-msgstr ""
+msgstr "Siopadóireacht"
 
 #: src/olympia/constants/categories.py
 msgid "Social & Communication"
-msgstr ""
+msgstr "Sóisialta agus Cumarsáid"
 
 #: src/olympia/constants/categories.py
 msgid "Tabs"
-msgstr ""
+msgstr "Cluaisíní"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Web Development"
-msgstr "Forbairt Eisínteachtaí"
+msgstr "Forbairt Ghréasáin"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
-msgstr ""
+msgstr "Ainmhithe"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Compact"
-msgstr "Cuir i gComparáid"
+msgstr "Dlúth"
 
 #: src/olympia/constants/categories.py
 msgid "Large"
-msgstr ""
+msgstr "Mór"
 
 #: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
 msgid "Miscellaneous"
@@ -3501,120 +3497,111 @@ msgstr "Éagsúil"
 
 #: src/olympia/constants/categories.py
 msgid "Modern"
-msgstr ""
+msgstr "Nua-aimseartha"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Nature"
-msgstr "Mór-Le-Rá"
+msgstr "Nádúr"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "OS Integration"
-msgstr "Eolas Tacaíochta"
+msgstr "Comhtháthú CO"
 
 #: src/olympia/constants/categories.py
 msgid "Retro"
-msgstr ""
+msgstr "Sean-Nós"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Sports"
-msgstr "Tacaíocht"
+msgstr "Spórt"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "General"
-msgstr "Tástáil Ghinearálta"
+msgstr "Ginearálta"
 
 #: src/olympia/constants/categories.py
 msgid "Business"
-msgstr ""
+msgstr "Gnó"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Dictionaries & Encyclopedias"
-msgstr "Foclóirí agus Pacáistí Teanga"
+msgstr "Foclóirí agus Ciclipéidí"
 
 #: src/olympia/constants/categories.py
 msgid "Kids"
-msgstr ""
+msgstr "Páistí"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Multiple Search"
-msgstr "Glan an Cuardach"
+msgstr "Ilchuardach"
 
 #: src/olympia/constants/categories.py
 msgid "Music"
-msgstr ""
+msgstr "Ceol"
 
 #: src/olympia/constants/categories.py
 msgid "News & Blogs"
-msgstr ""
+msgstr "Nuacht agus Blagadóireacht"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Images"
-msgstr ""
+msgstr "Grianghraif agus Pictiúir"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "Siopadóireacht agus R-Thráchtáil"
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
-msgstr ""
+msgstr "Sóisialta agus Daoine"
 
 #: src/olympia/constants/categories.py
 msgid "Travel"
-msgstr ""
+msgstr "Taisteal"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Video"
-msgstr "Dún an Físeán"
+msgstr "Físeáin"
 
 #: src/olympia/constants/categories.py
 msgid "Abstract"
-msgstr ""
+msgstr "Teibí"
 
 #: src/olympia/constants/categories.py
 msgid "Causes"
-msgstr ""
+msgstr "Cúiseanna"
 
 #: src/olympia/constants/categories.py
 msgid "Fashion"
-msgstr ""
+msgstr "Faisean"
 
 #: src/olympia/constants/categories.py
 msgid "Film and TV"
-msgstr ""
+msgstr "Scannáin agus Teilifís"
 
 #: src/olympia/constants/categories.py
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py
 msgid "Holiday"
-msgstr ""
+msgstr "Saoire"
 
 #: src/olympia/constants/categories.py
 msgid "Scenery"
-msgstr ""
+msgstr "Radhairc"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Seasonal"
-msgstr "Fáth"
+msgstr "Séasúrach"
 
 #: src/olympia/constants/categories.py
 msgid "Solid"
-msgstr ""
+msgstr "Soladach"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Websites"
-msgstr "Suíomh Gréasáin"
+msgstr "Suímh Ghréasáin"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3623,11 +3610,11 @@ msgstr "Bailiúcháin Mhór-Le-Rá"
 
 #: src/olympia/constants/categories.py
 msgid "Experimental"
-msgstr ""
+msgstr "Turgnamhach"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "Fothaí, Nuacht, agus Blagadóireacht"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html
 msgid "Performance"
@@ -3635,86 +3622,81 @@ msgstr "Feidhmíocht"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
-msgstr ""
+msgstr "Grianghraif agus Meáin"
 
 #: src/olympia/constants/categories.py
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Slándáil & Príobháideachas"
 
 #: src/olympia/constants/categories.py
 msgid "Social Networking"
-msgstr ""
+msgstr "Líonrú Sóisialta"
 
 #: src/olympia/constants/categories.py
 msgid "Sports & Games"
-msgstr ""
+msgstr "Spórt agus Cluichí"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "User Interface"
-msgstr "Úsáideoir ó"
+msgstr "Comhéadan Úsáideora"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "Cuma agus Saincheapadh"
 
 #: src/olympia/constants/categories.py
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "Féilire agus Dáta/Am"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
-msgstr ""
+msgstr "Comhrá agus IM"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Message Composition"
-msgstr "Tabhair Deontas"
+msgstr "Cumadh Teachtaireachtaí"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Contacts"
-msgstr "Dul i dteagmháil linn"
+msgstr "Teagmhálaithe"
 
 #: src/olympia/constants/categories.py
 msgid "Folders and Filters"
-msgstr ""
+msgstr "Fillteáin agus Scagairí"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Import/Export"
-msgstr "Easpórtáil"
+msgstr "Iompórtáil/Easpórtáil"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
-msgstr ""
+msgstr "Léamh Teachtaireachtaí agus Nuachta"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Príobháideachas agus Slándáil"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "Íosluchtú agus Bainistiú Comhad"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
-msgstr ""
+msgstr "Saincheapadh an Chomhéadain"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "Tacaíocht Teanga agus Aistriúchán"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
-msgstr ""
+msgstr "Grianghraif agus Meáin"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, Nuacht, agus Blagadóireacht"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Site-specific"
 msgstr "Sainiúil do Shuíomh"
 
@@ -3863,7 +3845,7 @@ msgstr "Ní féidir údar a thaispeáint ach uair amháin."
 
 #: src/olympia/devhub/forms.py
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Sluga mícheart."
 
 #: src/olympia/devhub/forms.py
 msgid "Invalid JSON object"
@@ -4047,9 +4029,9 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} earráid"
 msgstr[1] "{0} earráid"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "{0} earráid"
+msgstr[3] "{0} n-earráid"
+msgstr[4] "{0} earráid"
 
 #. L10n: first parameter is the number of warnings
 # {0} is a number
@@ -4058,9 +4040,9 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} rabhadh"
 msgstr[1] "{0} rabhadh"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "{0} rabhadh"
+msgstr[3] "{0} rabhadh"
+msgstr[4] "{0} rabhadh"
 
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
@@ -4391,7 +4373,7 @@ msgstr "Forbairt Eisínteachtaí"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Téamaí Éadroma"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Policies"
@@ -4411,7 +4393,7 @@ msgstr "Breiseáin Fhorbartha"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Community & Support"
-msgstr ""
+msgstr "Pobal agus Tacaíocht"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Blog"
@@ -4551,14 +4533,13 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> téama"
 msgstr[1] "<b>{0}</b> théama"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<b>{0}</b> théama"
+msgstr[3] "<b>{0}</b> dtéama"
+msgstr[4] "<b>{0}</b> téama"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Edit Information"
-msgstr "Buneolas"
+msgstr "Cuir an tEolas in Eagar"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -4642,16 +4623,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Experimental?"
-msgstr ""
+msgstr "Turgnamhach?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "Bhain an t-údar an breiseán seo ón suíomh."
+msgstr "Is breiseán turgnamhach é seo."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, fuzzy
@@ -4689,9 +4669,9 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Clib in áirithe:"
 msgstr[1] "Clibeanna in áirithe:"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "Clibeanna in áirithe:"
+msgstr[3] "Clibeanna in áirithe:"
+msgstr[4] "Clibeanna in áirithe:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
@@ -4841,7 +4821,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whiteboard"
-msgstr ""
+msgstr "Clár Bán"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
@@ -4955,11 +4935,11 @@ msgstr "Barr"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Delete Theme"
-msgstr ""
+msgstr "Scrios an Téama"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Add-on"
-msgstr "Scrios Breiseán"
+msgstr "Scrios an Breiseán"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Deleting your theme will permanently remove it from the site."
@@ -4977,11 +4957,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Inis dúinn cén fáth a bhfuil tú ag scriosadh do théama:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Inis dúinn cén fáth a bhfuil tú ag scriosadh do bhreiseáin:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/editors/templates/editors/review.html
 msgid "Actions"
@@ -5004,9 +4984,8 @@ msgid "Delete"
 msgstr "Scrios"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "Tuilleadh eolais faoin bhreiseán seo"
+msgstr "Cuir an t-eolas faoin bhreiseán seo in eagar."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5086,66 +5065,57 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> úsáideoir gníomhach"
 msgstr[1] "<strong>{0}</strong> úsáideoir gníomhach"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<strong>{0}</strong> úsáideoir gníomhacha"
+msgstr[3] "<strong>{0}</strong> n-úsáideoir gníomhach"
+msgstr[4] "<strong>{0}</strong> úsáideoir gníomhach"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Seol Téama Nua Chugainn"
+msgstr "Seol Comhad Nua Chugainn"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Seol Breiseán Nua"
+msgstr "Seol Leagan Nua"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Déan cur síos ar do bhreiseán"
+msgstr "Déan cur síos ar an mbreiseán"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "URL an Bhreiseáin"
+msgstr "URL an Bhreiseáin:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Achoimre"
+msgstr "Achoimre:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "Tá Polasaí Príobháideachta ag an mbreiseán seo"
+msgstr "Is breiseán turgnamhach é seo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "Ríomhphost tacaíochta"
+msgstr "Ríomhphost tacaíochta:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Suíomh tacaíochta"
+msgstr "Suíomh tacaíochta:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Ceadúnas"
+msgstr "Ceadúnas:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
@@ -5204,7 +5174,6 @@ msgid "Submission Complete"
 msgstr "Seolta"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done!"
 msgstr "Tá tú críochnaithe!"
 
@@ -5231,23 +5200,20 @@ msgid "You can also edit this version to add version notes, or source code if yo
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Leagan Béite {0}"
+msgstr "Cuir leagan {0} in eagar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "File Signed"
-msgstr "Nótaí Eisiúna"
+msgstr "Síníodh an Comhad"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "Nótaí Eisiúna"
+msgstr "Síníodh an Leagan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
@@ -5262,9 +5228,8 @@ msgid "You selected only some of the available platforms for this submission. Yo
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload File"
-msgstr "Uasluchtaigh Comhad Eile"
+msgstr "Uasluchtaigh Comhad"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5276,9 +5241,8 @@ msgid "Add-on Distribution Agreement"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Uasluchtaigh do bhreiseán"
+msgstr "Uasluchtaigh Breiseán"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5575,9 +5539,8 @@ msgid "Read more in our Blog"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Resources"
-msgstr "Tuilleadh Acmhainní"
+msgstr "Acmhainní"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #, fuzzy
@@ -5585,9 +5548,8 @@ msgid "WebExtensions"
 msgstr "Eisínteachtaí"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Community"
-msgstr "Nóta"
+msgstr "An Pobal"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "About"
@@ -5777,19 +5739,17 @@ msgid "Docs"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Seol Breiseán"
+msgstr "Logáil Amach"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Scrios Grianghraf an Úsáideora"
+msgstr "Grianghraf an Úsáideora"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Cláraigh</a> nó <a href=\"%(login)s\">Logáil isteach</a>"
+msgstr "<a href=\"%(register)s\">Cláraigh</a> nó <a href=\"%(login)s\">Logáil isteach</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, fuzzy
@@ -5827,15 +5787,13 @@ msgid "Have an add-on ready? Submit your extension or theme to be listed on addo
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Seol Breiseán"
+msgstr "Logáil Isteach"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Bailíochtú"
+msgstr "Bailíochtóir"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 #, fuzzy
