@@ -16,7 +16,8 @@ class TestPages(TestCase):
                  'pages.sunbird', 'pages.shield_study_2',
                  'pages.shield_study_3', 'pages.shield_study_4',
                  'pages.shield_study_5', 'pages.shield_study_6',
-                 'pages.shield_study_7', 'pages.shield_study_8']
+                 'pages.shield_study_7', 'pages.shield_study_8',
+                 'pages.shield_study_9']
         for page in pages:
             self._check(page, 200)
 
