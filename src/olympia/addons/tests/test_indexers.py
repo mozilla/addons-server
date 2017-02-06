@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
 from itertools import chain
 
 from olympia import amo
@@ -12,6 +11,7 @@ from olympia.addons.indexers import AddonIndexer
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
+from olympia.files.models import WebextPermission
 
 
 class TestAddonIndexer(TestCase):
@@ -178,13 +178,15 @@ class TestAddonIndexer(TestCase):
         version = self.addon.current_version
         file_factory(version=version, platform=PLATFORM_MAC.id)
         current_beta_version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_BETA})
+            addon=self.addon,
+            file_kw={'status': amo.STATUS_BETA, 'is_webextension': True})
+        # Give one of the versions some webext permissions to test that.
+        WebextPermission.objects.create(
+            file=current_beta_version.all_files[0],
+            permissions=['bookmarks', 'random permission']
+        )
         unlisted_version = version_factory(
             addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
-        # FIXME: remove this next line once current_version is modified to only
-        # return listed versions.
-        unlisted_version.update(
-            created=version.created - timedelta(days=42))
         extracted = self._extract()
 
         assert extracted['current_version']
@@ -208,6 +210,7 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
+            assert extracted_file['webext_permissions_list'] == []
 
         assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
                                                    PLATFORM_ALL.id])
@@ -232,6 +235,9 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
+            assert (extracted_file['webext_permissions_list'] ==
+                    file_.webext_permissions_list ==
+                    ['bookmarks', 'random permission'])
 
         version = unlisted_version
         assert extracted['latest_unlisted_version']
@@ -255,6 +261,7 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
+            assert extracted_file['webext_permissions_list'] == []
 
     def test_extract_translations(self):
         translations_name = {

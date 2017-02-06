@@ -391,6 +391,8 @@ class File(OnChangeMixin, ModelBase):
 
     @amo.cached_property(writable=True)
     def webext_permissions_list(self):
+        if not self.is_webextension:
+            return []
         try:
             return list(self._webext_permissions.permissions)
         except WebextPermission.DoesNotExist:

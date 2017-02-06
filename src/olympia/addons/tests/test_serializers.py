@@ -51,6 +51,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['size'] == file_.size
         assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
         assert result_file['url'] == file_.get_url_path(src='')
+        assert result_file['permissions'] == file_.webext_permissions_list
 
         assert data['edit_url'] == absolutify(
             self.addon.get_dev_url(
@@ -387,6 +388,23 @@ class AddonSerializerOutputTestMixin(object):
         assert result['icon_url'] == (
             'http://testserver/static/img/addon-icons/default-64.png')
 
+    def test_webextension(self):
+        self.addon = addon_factory(
+            file_kw={'is_webextension': True})
+        # Give one of the versions some webext permissions to test that.
+        WebextPermission.objects.create(
+            file=self.addon.current_version.all_files[0],
+            permissions=['bookmarks', 'random permission']
+        )
+
+        result = self.serialize()
+
+        self._test_version(
+            self.addon.current_version, result['current_version'])
+        # Double check the permissions got correctly set.
+        assert result['current_version']['files'][0]['permissions'] == ([
+            'bookmarks', 'random permission'])
+
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     serializer_class = AddonSerializer
@@ -543,7 +561,8 @@ class TestVersionSerializerOutput(TestCase):
         # No permissions.
         assert result['files'][0]['permissions'] == []
 
-        self.version = addon_factory().current_version
+        self.version = addon_factory(
+            file_kw={'is_webextension': True}).current_version
         permissions = ['dangerdanger', 'high', 'voltage']
         WebextPermission.objects.create(
             permissions=permissions, file=self.version.all_files[0])

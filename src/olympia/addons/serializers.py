@@ -305,7 +305,7 @@ class ESBaseAddonSerializer(BaseESSerializer):
             hash=data['hash'], filename=data['filename'],
             platform=data['platform'], size=data['size'],
             status=data['status'], version=obj)
-        file_.webext_permissions_list = data['webext_permissions_list']
+        file_.webext_permissions_list = data.get('webext_permissions_list', [])
         return file_
 
     def fake_version_object(self, obj, data, channel):
