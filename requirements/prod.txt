@@ -218,9 +218,8 @@ google-api-python-client==1.2 \
 html5lib==0.9999999 \
     --hash=sha256:2612a191a8d5842bfa057e41ba50bbb9dcb722419d2408c78cff4758d0754868 # pyup: <=0.9999999
 # httplib2 is required by google-api-python-client
-httplib2==0.9.2 \
-    --hash=sha256:c3aba1c9539711551f4d83e857b316b5134a1c4ddce98a875b7027be7dd6d988 \
-    --hash=sha256:fe187f315336c3daa6616d09f327a6e6560b082fce59723f77336329fdcbfc36
+httplib2==0.10.2 \
+    --hash=sha256:ee10fe4505d1bb5b3d519e9b004cab7a12d10ce160aceab626a00cf5937d8927
 # idna is required by cryptography
 idna==2.2 \
     --hash=sha256:16402893379702342a662d3f7fa7e9369e4b4770876b245dbbab1eb12d0a60cf \
