@@ -1,3 +1,4 @@
+
 from django.core import paginator
 
 import mock
@@ -26,7 +27,6 @@ class TestESIndexing(ESTestCaseWithAddons):
 
 
 class TestNoESIndexing(TestCase):
-    mock_es = True
 
     def test_no_es(self):
         assert not getattr(self, 'es', False), (

@@ -133,7 +133,6 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
 
 class TestSeriesSecurity(StatsTest):
     """Tests to make sure all restricted data remains restricted."""
-    mock_es = True  # We're checking only headers, not content.
 
     def test_private_addon_no_groups(self):
         # Logged in but no groups
