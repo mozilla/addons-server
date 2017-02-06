@@ -17,6 +17,7 @@ from olympia.addons.serializers import (
     VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.constants.categories import CATEGORIES
+from olympia.files.models import WebextPermission
 from olympia.versions.models import ApplicationsVersions, AppVersion, License
 
 
@@ -535,6 +536,19 @@ class TestVersionSerializerOutput(TestCase):
         result = self.serialize()
         assert result['id'] == self.version.pk
         assert result['license'] is None
+
+    def test_file_webext_permissions(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        # No permissions.
+        assert result['files'][0]['permissions'] == []
+
+        self.version = addon_factory().current_version
+        permissions = ['dangerdanger', 'high', 'voltage']
+        WebextPermission.objects.create(
+            permissions=permissions, file=self.version.all_files[0])
+        result = self.serialize()
+        assert result['files'][0]['permissions'] == permissions
 
 
 class TestSimpleVersionSerializerOutput(TestCase):

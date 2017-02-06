@@ -30,10 +30,14 @@ class FileSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
     platform = ReverseChoiceField(choices=amo.PLATFORM_CHOICES_API.items())
     status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
+    permissions = serializers.ListField(
+        source='webext_permissions_list',
+        child=serializers.CharField())
 
     class Meta:
         model = File
-        fields = ('id', 'created', 'hash', 'platform', 'size', 'status', 'url')
+        fields = ('id', 'created', 'hash', 'platform', 'size', 'status', 'url',
+                  'permissions')
 
     def get_url(self, obj):
         # File.get_url_path() is a little different, it's already absolute, but
@@ -295,6 +299,15 @@ class ESBaseAddonSerializer(BaseESSerializer):
     translated_fields = ('name', 'description', 'homepage', 'summary',
                          'support_email', 'support_url')
 
+    def fake_file_object(self, obj, data):
+        file_ = File(
+            id=data['id'], created=self.handle_date(data['created']),
+            hash=data['hash'], filename=data['filename'],
+            platform=data['platform'], size=data['size'],
+            status=data['status'], version=obj)
+        file_.webext_permissions_list = data['webext_permissions_list']
+        return file_
+
     def fake_version_object(self, obj, data, channel):
         if data:
             version = Version(
@@ -302,12 +315,8 @@ class ESBaseAddonSerializer(BaseESSerializer):
                 reviewed=self.handle_date(data['reviewed']),
                 version=data['version'], channel=channel)
             version.all_files = [
-                File(
-                    id=file_['id'], created=self.handle_date(file_['created']),
-                    hash=file_['hash'], filename=file_['filename'],
-                    platform=file_['platform'], size=file_['size'],
-                    status=file_['status'], version=version)
-                for file_ in data.get('files', [])
+                self.fake_file_object(version, file_data)
+                for file_data in data.get('files', [])
             ]
 
             # In ES we store integers for the appversion info, we need to

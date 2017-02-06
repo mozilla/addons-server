@@ -116,7 +116,7 @@ class TestAddonIndexer(TestCase):
         # Make sure files mapping is set inside current_version.
         files_mapping = version_mapping['files']['properties']
         expected_file_keys = ('id', 'created', 'filename', 'hash', 'platform',
-                              'size', 'status')
+                              'size', 'status', 'webext_permissions_list')
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
     def _extract(self):
