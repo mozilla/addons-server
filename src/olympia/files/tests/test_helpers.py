@@ -10,13 +10,13 @@ from django.core.files.storage import default_storage as storage
 from django import forms
 
 import pytest
+import flufl.lock
 from mock import Mock, patch
-from cache_nuggets.lib import Message
 
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.files.helpers import FileViewer, DiffHelper, LOCKED, extract_file
+from olympia.files.helpers import FileViewer, DiffHelper, extract_file
 from olympia.files.models import File
 from olympia.files.utils import SafeUnzip, get_all_files
 
@@ -92,8 +92,15 @@ class TestFileViewer(TestCase):
         # Lock was successfully attained
         assert self.viewer.extract()
 
-        msg = Message(self.viewer._cache_key(LOCKED))
-        msg.save(True)
+        lock = flufl.lock.Lock(os.path.join(
+            settings.TMP_PATH, 'file-viewer-%s.lock' % self.viewer.file.pk
+        ))
+
+        assert not lock.is_locked
+
+        lock.lock()
+
+        assert lock.is_locked
 
         # Not extracting, the viewer is locked, lock could not be attained
         assert not self.viewer.extract()
@@ -102,8 +109,15 @@ class TestFileViewer(TestCase):
         self.viewer.src = get_file('dictionary-test.xpi')
         assert not self.viewer.is_extracted()
 
-        msg = Message(self.viewer._cache_key(LOCKED))
-        msg.save(True)
+        lock = flufl.lock.Lock(os.path.join(
+            settings.TMP_PATH, 'file-viewer-%s.lock' % self.viewer.file.pk
+        ))
+
+        assert not lock.is_locked
+
+        lock.lock()
+
+        assert lock.is_locked
 
         msg = extract_file(self.viewer)
         assert str(msg.get()).startswith(u'File viewer is locked')
