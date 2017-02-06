@@ -1356,6 +1356,7 @@ h3.author .transfer-ownership {
   h4.author a,
   a.eula,
   a.privacy-policy,
+  a.webext-permissions,
   .notice h3,
   .notice p,
   .notice p a,
@@ -1370,6 +1371,7 @@ h3.author .transfer-ownership {
 
   h4.author a,
   a.privacy-policy,
+  a.webext-permissions,
   a.eula,
   .vital a,
   .warning a,
@@ -2570,4 +2572,31 @@ body.windows .install-shell .platform.mac {
       visibility: visible;
     }
   }
+}
+
+.webext-permissions.badge {
+  img {
+    height: 1.1em;
+  }
+}
+
+#webext-permissions {
+  li {
+    list-style: circle;
+    list-style-position: inside;
+  }
+  .prose {
+    h3 {
+      font-size: larger
+    }
+    img {
+      float: left;
+      margin: 10px;
+    }
+  }
+}
+
+div.detailed {
+  display: inline-block;
+  vertical-align: bottom;
 }

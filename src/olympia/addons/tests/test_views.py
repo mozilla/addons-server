@@ -26,6 +26,7 @@ from olympia.addons.models import (
     AddonUser, Category, Charity, Persona)
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
+from olympia.files.models import WebextPermission
 from olympia.paypal.tests.test import other_error
 from olympia.stats.models import Contribution
 from olympia.users.helpers import users_list
@@ -732,6 +733,71 @@ class TestDetailPage(TestCase):
         assert doc('.privacy-policy').length == 1
         privacy_url = reverse('addons.privacy', args=[self.addon.slug])
         assert doc('.privacy-policy').attr('href').endswith(privacy_url)
+
+    @override_switch('webext-permissions', active=False)
+    def test_permissions_not_shown_without_waffle(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('a.webext-permissions').length == 0
+        assert doc('#webext-permissions').length == 0
+
+    @override_switch('webext-permissions', active=True)
+    def test_permissions_webext(self):
+        file_ = self.addon.current_version.all_files[0]
+        file_.update(is_webextension=True)
+        WebextPermission.objects.create(file=file_, permissions=[
+            u'http://*/*', u'<all_urls>', u'bookmarks',
+            u'made up permission', u'https://google.com/'])
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # The link next to the button
+        assert doc('a.webext-permissions').length == 1
+        # And the model dialog
+        assert doc('#webext-permissions').length == 1
+        assert u'perform certain functions (example: a tab management' in (
+            doc('#webext-permissions div.prose').text())
+        assert doc('ul.webext-permissions-list').length == 1
+        assert doc('li.webext-permissions-list').length == 4
+        # See File.webext_permissions for the order logic
+        assert doc('li.webext-permissions-list').text() == (
+            u'Access your data for all websites '
+            u'Access bookmarks '
+            u'Access your data for https://google.com/ website '
+            u'made up permission')
+
+    @override_switch('webext-permissions', active=True)
+    def test_permissions_webext_no_permissions(self):
+        file_ = self.addon.current_version.all_files[0]
+        file_.update(is_webextension=True)
+        assert file_.webext_permissions_list == []
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # The link next to the button - still shown even when no permissions.
+        assert doc('a.webext-permissions').length == 1
+        # And the model dialog
+        assert doc('#webext-permissions').length == 1
+        assert u'perform certain functions (example: a tab management' in (
+            doc('#webext-permissions div.prose').text())
+        assert doc('ul.webext-permissions-list').length == 1
+        assert doc('li.webext-permissions-list').length == 0
+        assert u"doesn't have any special" in (
+            doc('ul.webext-permissions-list').text())
+
+    @override_switch('webext-permissions', active=True)
+    def test_permissions_non_webext(self):
+        file_ = self.addon.current_version.all_files[0]
+        file_.update(is_webextension=False)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # The link next to the button
+        assert doc('a.webext-permissions').length == 1
+        # danger danger icon shown for oldie xul addons
+        assert doc('a.webext-permissions img').length == 1
+        # And the model dialog
+        assert doc('#webext-permissions').length == 1
+        assert u'Please note this add-on uses legacy technology' in (
+            doc('#webext-permissions div.prose').text())
+        assert doc('.webext-permissions-list').length == 0
 
     def test_simple_html_is_rendered_in_privacy(self):
         self.addon.privacy_policy = """

@@ -1344,14 +1344,6 @@ class Addon(OnChangeMixin, ModelBase):
 
         return self.installed.filter(user=user).exists()
 
-    def get_latest_file(self):
-        """Get the latest file from the current version."""
-        cur = self.current_version
-        if cur:
-            res = cur.files.order_by('-created')
-            if res:
-                return res[0]
-
     def in_escalation_queue(self):
         return self.escalationqueue_set.exists()
 

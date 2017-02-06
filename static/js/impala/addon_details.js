@@ -159,6 +159,8 @@ $(function () {
 
     if ($('#privacy-policy').exists())
         $('#privacy-policy').modal('.privacy-policy', { width: '500px' });
+    if ($('#webext-permissions').exists())
+        $('#webext-permissions').modal('.webext-permissions', { width: '500px' });
 
     // Show add-on ID when icon is clicked
     if ($("#addon[data-id], #persona[data-id]").exists()) {
