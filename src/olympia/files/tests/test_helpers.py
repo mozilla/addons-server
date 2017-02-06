@@ -216,7 +216,8 @@ class TestFileViewer(TestCase):
                                  ('foo.json', 'js'),
                                  ('foo.jsm', 'js'),
                                  ('foo.htm', 'html'),
-                                 ('foo.bar', 'plain')]:
+                                 ('foo.bar', 'plain'),
+                                 ('foo.diff', 'plain')]:
             assert self.viewer.get_syntax(filename) == syntax
 
     def test_file_order(self):

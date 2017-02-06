@@ -32,6 +32,21 @@ task_log = commonware.log.getLogger('z.task')
 
 LOCKED_LIFETIME = 60 * 5
 
+SYNTAX_HIGHLIGHTER_ALIAS_MAPPING = {
+    'xul': 'xml',
+    'rdf': 'xml',
+    'jsm': 'js',
+    'json': 'js',
+    'htm': 'html'
+}
+
+# See settings.MINIFY_BUNDLES['js']['zamboni/files'] for more details
+# as to which brushes we support.
+SYNTAX_HIGHLIGHTER_SUPPORTED_LANGUAGES = frozenset([
+    'css', 'html', 'java', 'javascript', 'js', 'jscript',
+    'plain', 'text', 'xml', 'xhtml', 'xlst',
+])
+
 
 @register.function
 def file_viewer_class(value, key):
@@ -303,15 +318,9 @@ class FileViewer(object):
         """
         if filename:
             short = os.path.splitext(filename)[1][1:]
-            syntax_map = {'xul': 'xml', 'rdf': 'xml', 'jsm': 'js',
-                          'json': 'js', 'htm': 'html'}
-            short = syntax_map.get(short, short)
-            if short in ['actionscript3', 'as3', 'bash', 'shell', 'cpp', 'c',
-                         'c#', 'c-sharp', 'csharp', 'css', 'diff', 'html',
-                         'java', 'javascript', 'js', 'jscript', 'patch',
-                         'pas', 'php', 'plain', 'py', 'python', 'sass',
-                         'scss', 'text', 'sql', 'vb', 'vbnet', 'xml', 'xhtml',
-                         'xslt']:
+            short = SYNTAX_HIGHLIGHTER_ALIAS_MAPPING.get(short, short)
+
+            if short in SYNTAX_HIGHLIGHTER_SUPPORTED_LANGUAGES:
                 return short
         return 'plain'
 

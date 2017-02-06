@@ -112,6 +112,32 @@ var Highlighter = {
         // highlighter will try to replace the original element in the
         // DOM when it's done.
 
+        // Verify that we actually support the used brush
+        // see https://github.com/mozilla/addons-server/issues/4552 for more
+        // details. This shows an alert if a brush is not supported.
+        var discoveredBrushes = SyntaxHighlighter.brushes;
+
+        if (discoveredBrushes) {
+            var brushes = [];
+
+            for (var discoveredBrush in discoveredBrushes) {
+                var aliases = discoveredBrushes[discoveredBrush].aliases;
+
+                if (aliases == null) {
+                    continue;
+                }
+
+                for (var i = 0, l = aliases.length; i < l; i++) {
+                    brushes.push(aliases[i]);
+                }
+            }
+
+            if (!brushes.includes(brush.toLowerCase())) {
+                $('.highlighter-output-broken').modal('', { width: 960 }).render();
+                $('.highlighter-output-broken').toggleClass('js-hidden');
+            }
+        }
+
         var $node = $('<pre>', {'class': format('brush: {0}; toolbar: false;',
                                                 [brush]),
                                 text: text});
