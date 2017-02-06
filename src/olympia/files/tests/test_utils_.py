@@ -2,8 +2,11 @@ import json
 import os
 import zipfile
 import tempfile
+import time
 import shutil
+from datetime import timedelta
 
+import flufl.lock
 import lxml
 import mock
 import pytest
@@ -586,6 +589,55 @@ def test_get_all_files_prefix_with_strip_prefix():
         os.path.join('/foo', 'bar', 'dir1', 'foo2'),
         os.path.join('/foo', 'bar', 'foo1'),
     ]
+
+
+def test_atomic_lock_with():
+    lock = flufl.lock.Lock('/tmp/test-atomic-lock1.lock')
+
+    assert not lock.is_locked
+
+    lock.lock()
+
+    assert lock.is_locked
+
+    with utils.atomic_lock('/tmp/', 'test-atomic-lock1') as lock_attained:
+        assert not lock_attained
+
+    lock.unlock()
+
+    with utils.atomic_lock('/tmp/', 'test-atomic-lock1') as lock_attained:
+        assert lock_attained
+
+
+def test_atomic_lock_with_lock_attained():
+    with utils.atomic_lock('/tmp/', 'test-atomic-lock2') as lock_attained:
+        assert lock_attained
+
+
+@mock.patch.object(flufl.lock._lockfile, 'CLOCK_SLOP', timedelta(seconds=0))
+def test_atomic_lock_lifetime():
+    def _get_lock():
+        return utils.atomic_lock('/tmp/', 'test-atomic-lock3', lifetime=1)
+
+    with _get_lock() as lock_attained:
+        assert lock_attained
+
+        lock2 = flufl.lock.Lock('/tmp/test-atomic-lock3.lock')
+
+        with pytest.raises(flufl.lock.TimeOutError):
+            # We have to apply `timedelta` to actually raise an exception,
+            # otherwise `.lock()` will wait for 2 seconds and get the lock
+            # for us. We get a `TimeOutError` because we were locking
+            # with a different claim file
+            lock2.lock(timeout=timedelta(seconds=0))
+
+        with _get_lock() as lock_attained2:
+            assert not lock_attained2
+
+        time.sleep(2)
+
+        with _get_lock() as lock_attained2:
+            assert lock_attained2
 
 
 class TestResolvei18nMessage(object):

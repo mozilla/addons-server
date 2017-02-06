@@ -1,5 +1,4 @@
 import codecs
-import contextlib
 import mimetypes
 import os
 import stat
@@ -22,7 +21,8 @@ from jingo import register, get_env
 from olympia import amo
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.amo.urlresolvers import reverse
-from olympia.files.utils import extract_xpi, get_md5, get_all_files
+from olympia.files.utils import (
+    extract_xpi, get_md5, get_all_files, atomic_lock)
 
 # Allow files with a shebang through.
 denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
@@ -30,8 +30,7 @@ denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
 denied_extensions = [b for b in list(blacklisted_extensions) if b != 'sh']
 task_log = commonware.log.getLogger('z.task')
 
-LOCKED = 'locked'
-LOCKED_TIMEOUT = 60 * 5
+LOCKED_LIFETIME = 60 * 5
 
 
 @register.function
@@ -115,36 +114,6 @@ class FileViewer(object):
             settings.CACHE_PREFIX, key, self.file.id
         )
 
-    @contextlib.contextmanager
-    def lock(self):
-        """Lock the file-viewer.
-
-        If locked, no one is allowed to run any extraction in `self.src` to
-        avoid files / directories get messed up.
-
-        There is a potential race-condition between getting and setting the
-        lock.
-
-        TODO: This should be re-implemented once we're on Django 1.9+ which
-        has support for get_or_set.
-
-        :return: `True` if the lock was attained,
-                 `False` if there is an already existing lock.
-        """
-        cache_key = self._cache_key(LOCKED)
-        msg = Message(cache_key)
-
-        if msg.get():
-            # Already locked
-            yield False
-        else:
-            # Not yet locked, save flag and delete on exit.
-            msg.save(True, time=LOCKED_TIMEOUT)
-            try:
-                yield True
-            finally:
-                msg.delete()
-
     def extract(self):
         """
         Will make all the directories and expand the files.
@@ -153,8 +122,12 @@ class FileViewer(object):
         :returns: `True` if successfully extracted,
                   `False` in case of an existing lock.
         """
-        with self.lock() as locked:
-            if locked:
+        lock = atomic_lock(
+            settings.TMP_PATH, 'file-viewer-%s' % self.file.pk,
+            lifetime=LOCKED_LIFETIME)
+
+        with lock as lock_attained:
+            if lock_attained:
                 if self.is_extracted():
                     # Be vigilent with existing files. It's better to delete
                     # and re-extract than to trust whatever we have
@@ -186,7 +159,7 @@ class FileViewer(object):
                             'Error (%s) extracting %s' % (err, self.src))
                         raise
 
-        return locked
+        return lock_attained
 
     def cleanup(self):
         if os.path.exists(self.dest):
