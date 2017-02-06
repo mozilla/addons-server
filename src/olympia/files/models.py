@@ -16,6 +16,7 @@ from django.utils.encoding import force_bytes, force_text
 
 import commonware
 from cache_nuggets.lib import memoize
+from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 
 from olympia import amo
@@ -25,6 +26,7 @@ from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import user_media_path, user_media_url
 from olympia.applications.models import AppVersion
+from olympia.constants.webext_permissions import Permission, WEBEXT_PERMISSIONS
 from olympia.files.utils import SafeUnzip, write_crx_as_xpi
 
 log = commonware.log.getLogger('z.files')
@@ -177,6 +179,9 @@ class File(OnChangeMixin, ModelBase):
                 file_.requires_chrome = True
 
         file_.save()
+        if file_.is_webextension and parsed_data.get('permissions'):
+            WebextPermission.objects.create(
+                permissions=parsed_data.get('permissions'), file=file_)
 
         log.debug('New file: %r from %r' % (file_, upload))
         # Move the uploaded file from the temp location.
@@ -371,6 +376,21 @@ class File(OnChangeMixin, ModelBase):
                  (self.pk, end))
         statsd.timing('files.extract.localepicker', (end * 1000))
         return res
+
+    @amo.cached_property
+    def webext_permissions(self):
+        try:
+            return {
+                name: WEBEXT_PERMISSIONS.get(name, Permission(name, '', ''))
+                for name in self._webext_permissions.permissions}
+        except WebextPermission.DoesNotExist:
+            return {}
+
+    @amo.cached_property
+    def webext_permissions_known(self):
+        return {name: perm
+                for name, perm in self.webext_permissions.iteritems()
+                if name in WEBEXT_PERMISSIONS}
 
 
 @receiver(models.signals.post_save, sender=File,
@@ -704,6 +724,12 @@ class ValidationAnnotation(ModelBase):
 
     class Meta:
         db_table = 'validation_annotations'
+
+
+class WebextPermission(ModelBase):
+    permissions = JSONField(default={})
+    file = models.OneToOneField('File', related_name='_webext_permissions',
+                                on_delete=models.CASCADE)
 
 
 def nfd_str(u):

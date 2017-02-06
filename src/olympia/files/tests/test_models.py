@@ -328,6 +328,12 @@ class TestParseXpi(TestCase):
         for key, value in exp.items():
             assert parsed[key] == value
 
+    def test_parse_permissions(self):
+        parsed = self.parse(filename='webextension_no_id.xpi')
+        assert len(parsed['permissions'])
+        assert parsed['permissions'] == [
+            u'http://*/*', u'https://*/*', u'alarms']
+
     def test_parse_apps(self):
         exp = (amo.FIREFOX,
                amo.FIREFOX.id,
@@ -1077,6 +1083,25 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data={})
         assert not file_.is_experiment
+
+    def test_permissions(self):
+        upload = self.upload('webextension_no_id.xpi')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parsed_data=parse_addon(upload))
+        permissions = file_.webext_permissions
+        assert len(permissions) == 3
+        # One permission is known so will have a description, etc.
+        alarm = permissions['alarms']
+        assert alarm.description == (
+            u'Gives the extension access to the chrome.alarms API.')
+        assert u'Gives the extension access to the chrome.alarms API.' in (
+            alarm.long_description)
+        known_permissions = file_.webext_permissions_known
+        assert len(known_permissions) == 1
+        known_permissions[0] = alarm
+        # The other two permissions stored are just urls.
+        assert permissions[u'http://*/*']
+        assert permissions[u'https://*/*']
 
 
 class TestZip(TestCase, amo.tests.AMOPaths):
