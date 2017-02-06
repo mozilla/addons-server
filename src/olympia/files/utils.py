@@ -27,6 +27,7 @@ from django.core.files.storage import (
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext as _
 
+import flufl.lock
 import rdflib
 import waffle
 
@@ -60,6 +61,11 @@ default = (
     'locale=%APP_LOCALE%&currentAppVersion=%CURRENT_APP_VERSION%&'
     'updateType=%UPDATE_TYPE%'
 )
+
+# number of times this lock has been aquired and not yet released
+# could be helpful to debug potential race-conditions and multiple-locking
+# scenarios.
+_lock_count = {}
 
 
 def get_filepath(fileorpath):
@@ -1047,3 +1053,56 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
         return default['message']
 
     return message['message']
+
+
+@contextlib.contextmanager
+def atomic_lock(lock_dir, lock_name, lifetime=60):
+    """A atomic, NFS safe implementation of a file lock.
+
+    Uses `flufl.lock` under the hood. Can be used as a context manager::
+
+        with atomic_lock(settings.TMP_PATH, 'extraction-1234'):
+            extract_xpi(...)
+
+    :return: `True` if the lock was attained, we are owning the lock,
+             `False` if there is an already existing lock.
+    """
+    lock_name = lock_name + '.lock'
+    count = _lock_count.get(lock_name, 0)
+
+    log.debug('Acquiring lock %s, count is %d.' % (lock_name, count))
+
+    lock_name = os.path.join(lock_dir, lock_name)
+    lock = flufl.lock.Lock(lock_name, lifetime=timedelta(seconds=lifetime))
+
+    try:
+        # set `timeout=0` to avoid any process blocking but catch the
+        # TimeOutError raised instead.
+        lock.lock(timeout=timedelta(seconds=0))
+    except flufl.lock.AlreadyLockedError:
+        # This process already holds the lock
+        yield False
+    except flufl.lock.TimeOutError:
+        # Some other process holds the lock.
+        # Let's break the lock if it has expired. Unfortunately
+        # there's a bug in flufl.lock so let's do this manually.
+        release_time = lock._releasetime
+        max_release_time = release_time + flufl.lock._lockfile.CLOCK_SLOP
+
+        if (release_time != -1 and datetime.now() > max_release_time):
+            # Break the lock and try to aquire again
+            lock._break()
+            lock.lock(timeout=timedelta(seconds=0))
+            yield lock.is_locked
+        else:
+            # Already locked
+            yield False
+    else:
+        # Is usually `True` but just in case there were some weird `lifetime`
+        # values set we return the check if we really attained the lock.
+        yield lock.is_locked
+
+    if lock.is_locked:
+        hostname, pid, lock_name = lock.details
+        log.debug('Releasing lock %s.' % (lock_name))
+        lock.unlock()
