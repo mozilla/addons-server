@@ -28,8 +28,8 @@ matrix:
       env: TOXENV=main
     - python: 2.7
       env: TOXENV=ui-tests
-        addons:
-          firefox: "47.0.2"
+      addons:
+        firefox: "47.0.2"
 
 
 matrix:
