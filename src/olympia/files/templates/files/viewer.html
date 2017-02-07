@@ -18,6 +18,18 @@
      {% if automated_signing %}data-automated-signing="true"{% endif %}
      data-validation-failed="{{ _("Validation failed:") }}"></div>
 
+<div class="modal highlighter-output-broken js-hidden">
+  <h2>{{ _('File content not supported for syntax highlighting') }}</h2>
+  <p>
+   {% trans link_start='<a href="https://github.com/mozilla/addons-server/issues/">'|safe, link_end='</a>'|safe %}
+    The output can be broken, please be careful and {{ link_start }}report an issue{{ link_end }} immediately!
+    {% endtrans %}
+  </p>
+  <p>
+    <a class="close">{{ _('close') }}</a>
+  </p>
+</div>
+
 <h3>
   <a href="{{ file_link['url'] }}">{{ addon.name }} {{ version }}</a>
   {% if file.platform != amo.PLATFORM_ALL.id %}({{ file.get_platform_display() }}){% endif %}
