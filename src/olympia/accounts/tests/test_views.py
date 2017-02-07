@@ -755,6 +755,9 @@ class TestAuthenticateView(BaseAuthenticationView):
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
+        user = UserProfile(
+            username='foo', email='me@yeahoo.com', fxa_id='e0b6f')
+        self.register_user.return_value = user
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state})
         # This 302s because the user isn't logged in due to mocking.
@@ -763,12 +766,18 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
+        user.save()  # Persist the user so it can be verified.
+        data = {'token': response.cookies['jwt_api_auth_token'].value}
+        verify = VerifyJSONWebTokenSerializer().validate(data)
+        assert verify['user'] == user
 
     def test_register_redirects_edit(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
+        user = UserProfile(username='foo', email='me@yeahoo.com')
+        self.register_user.return_value = user
         response = self.client.get(self.url, {
             'code': 'codes!!',
             'state': ':'.join(
@@ -994,3 +1003,40 @@ class TestAccountViewSetGet(TestCase):
 
         with self.assertRaises(NotImplementedError):
             self.client.get(self.url)
+
+
+class TestSessionView(TestCase):
+    def login_user(self, user):
+        identity = {
+            'username': user.username,
+            'email': user.email,
+            'uid': user.fxa_id,
+        }
+        self.initialize_session({'fxa_state': 'myfxastate'})
+        with mock.patch(
+                'olympia.accounts.views.verify.fxa_identify',
+                lambda code, config: identity):
+            response = self.client.get(
+                '{url}?code={code}&state={state}'.format(
+                    url=reverse('accounts.authenticate'),
+                    state='myfxastate',
+                    code='thecode'))
+            cookie = response.cookies[views.JWT_TOKEN_COOKIE].value
+            assert cookie
+            verify = VerifyJSONWebTokenSerializer().validate({'token': cookie})
+            assert verify['user'] == user
+            assert self.client.session['_auth_user_id'] == str(user.id)
+            return cookie
+
+    def test_delete_when_authenticated(self):
+        user = user_factory(fxa_id='123123412')
+        token = self.login_user(user)
+        authorization = 'Bearer {token}'.format(token=token)
+        response = self.client.delete(
+            reverse('accounts.session'), HTTP_AUTHORIZATION=authorization)
+        assert not response.cookies[views.JWT_TOKEN_COOKIE].value
+        assert not self.client.session.get('_auth_user_id')
+
+    def test_delete_when_unauthenticated(self):
+        response = self.client.delete(reverse('accounts.session'))
+        assert response.status_code == 401

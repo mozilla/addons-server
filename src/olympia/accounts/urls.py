@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^login/start/$',
         views.LoginStartView.as_view(),
         name='accounts.login_start'),
+    url(r'^session/$', views.SessionView.as_view(),
+        name='accounts.session'),
     url(r'^profile/$', views.ProfileView.as_view(), name='accounts.profile'),
     url(r'^register/$', views.RegisterView.as_view(),
         name='accounts.register'),
