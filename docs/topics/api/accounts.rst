@@ -128,7 +128,9 @@ This allows you to generate a new user account and sign in as that user.
 Session
 -------
 
-Log out of the current session.
+Log out of the current session. This is for use with the
+:ref:`internal authentication <api-auth-internal>` that authenticates browser
+sessions.
 
 .. http:delete:: /api/v3/accounts/session/
 
@@ -137,7 +139,7 @@ Log out of the current session.
     .. sourcecode:: bash
 
         curl "https://addons.mozilla.org/api/v3/accounts/session/"
-            -H "Authorization: JWT <jwt-token>" -X DELETE
+            -H "Authorization: Bearer <jwt-token>" -X DELETE
 
     **Response:**
 
