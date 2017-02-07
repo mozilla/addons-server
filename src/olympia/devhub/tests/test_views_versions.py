@@ -757,8 +757,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         version.has_info_request = True
         version.save()
-        new_notes = u'Néw nót€s.'
-        data = self.formset(approvalnotes=new_notes)
+        data = self.formset(approvalnotes=u'Néw nót€s.')
         response = self.client.post(self.url, data)
         version = Version.objects.get(pk=self.version.pk)
         assert response.status_code == 302
@@ -767,8 +766,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         # Check that the corresponding automatic activity log has been created.
         log = ActivityLog.objects.get(action=amo.LOG.APPROVAL_NOTES_CHANGED.id)
         assert log
-        assert log.details['comments'] == (
-            u'Approval notes were updated to: %s' % new_notes)
 
 
 class TestVersionEditSearchEngine(TestVersionEditMixin,
