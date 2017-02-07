@@ -4,33 +4,21 @@ sudo: false
 python:
   - "2.7"
 
-matrix:
-  include:
-    - python: 2.7
-      env: TOXENV=flake8
-    - python: 2.7
-      env: TOXENV=docs
-    - python: 2.7
-      env: TOXENV=assets
-    - python: 2.7
-      env: TOXENV=es
-    - python: 2.7
-      env: TOXENV=addons
-    - python: 2.7
-      env: TOXENV=devhub
-    - python: 2.7
-      env: TOXENV=editors
-    - python: 2.7
-      env: TOXENV=amo
-    - python: 2.7
-      env: TOXENV=users
-    - python: 2.7
-      env: TOXENV=main
-    - python: 2.7
-      env: TOXENV=ui-tests
-      addons:
-        firefox: "47.0.2"
+addons:
+  firefox: "47.0.2"
 
+env:
+  - TOXENV=flake8
+  - TOXENV=docs
+  - TOXENV=assets
+  - TOXENV=es
+  - TOXENV=addons
+  - TOXENV=devhub
+  - TOXENV=editors
+  - TOXENV=amo
+  - TOXENV=users
+  - TOXENV=main
+  - TOXENV=ui-tests
 
 matrix:
   fast_finish: true
