@@ -354,7 +354,7 @@ class TestAddonIndexerWithES(ESTestCase):
 
         indexer = AddonIndexer()
         doc_name = indexer.get_doctype_name()
-        real_index_name = self.index_names[SearchMixin.ES_ALIAS_KEY]
+        real_index_name = self.get_index_name(SearchMixin.ES_ALIAS_KEY)
         mappings = self.es.indices.get_mapping(
             indexer.get_index_alias())[real_index_name]['mappings']
 

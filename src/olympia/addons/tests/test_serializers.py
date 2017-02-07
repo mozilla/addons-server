@@ -24,6 +24,7 @@ class AddonSerializerOutputTestMixin(object):
     """Mixin containing tests to execute on both the regular and the ES Addon
     serializer."""
     def setUp(self):
+        super(AddonSerializerOutputTestMixin, self).setUp()
         self.request = APIRequestFactory().get('/')
 
     def _test_version(self, version, data):
@@ -429,6 +430,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
 
 class TestVersionSerializerOutput(TestCase):
     def setUp(self):
+        super(TestVersionSerializerOutput, self).setUp()
         self.request = APIRequestFactory().get('/')
 
     def serialize(self):

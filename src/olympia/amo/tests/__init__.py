@@ -47,7 +47,6 @@ from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
-from olympia.lib.es.signals import process, reset
 from olympia.lib.es.utils import timestamp_index
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
@@ -325,40 +324,18 @@ ES_patchers = [
 ]
 
 
-def start_es_mock():
+def start_es_mocks():
     for patch in ES_patchers:
         patch.start()
 
 
-def stop_es_mock():
+def stop_es_mocks():
     for patch in ES_patchers:
-        patch.stop()
-
-
-class MockEsMixin(object):
-    mock_es = True
-
-    @classmethod
-    def setUpClass(cls):
-        if cls.mock_es:
-            start_es_mock()
         try:
-            reset.send(None)  # Reset all the ES tasks on hold.
-            super(MockEsMixin, cls).setUpClass()
-        except Exception:
-            # We need to unpatch here because tearDownClass will not be
-            # called.
-            if cls.mock_es:
-                stop_es_mock()
-            raise
-
-    @classmethod
-    def tearDownClass(cls):
-        try:
-            super(MockEsMixin, cls).tearDownClass()
-        finally:
-            if cls.mock_es:
-                stop_es_mock()
+            patch.stop()
+        except RuntimeError:
+            # Ignore already stopped patches.
+            pass
 
 
 class BaseTestCase(test.TestCase):
@@ -439,8 +416,7 @@ def assert3xx(response, expected_url, status_code=302, target_status_code=200):
     assert url == expected_url, msg
 
 
-class TestCase(PatchMixin, InitializeSessionMixin, MockEsMixin,
-               BaseTestCase):
+class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
     """Base class for all amo tests."""
     client_class = TestClient
 
@@ -808,21 +784,31 @@ def version_factory(file_kw=None, **kw):
 
 @pytest.mark.es_tests
 class ESTestCase(TestCase):
-    """Base class for tests that require elasticsearch."""
-    # ES is slow to set up so this uses class setup/teardown. That happens
-    # outside Django transactions so be careful to clean up afterwards.
-    mock_es = False
-
     # We need ES indexes aliases to match prod behaviour, but also we need the
     # names need to stay consistent during the whole test run, so we generate
     # them at import time. Note that this works because pytest overrides
     # ES_INDEXES before the test run even begins - if we were using
     # override_settings() on ES_INDEXES we'd be in trouble.
-    index_names = {key: timestamp_index(value)
-                   for key, value in settings.ES_INDEXES.items()}
+    index_suffixes = {key: timestamp_index('')
+                      for key in settings.ES_INDEXES.keys()}
+
+    @classmethod
+    def get_index_name(cls, key):
+        """Return the name of the actual index used in tests for a given key
+        taken from settings.ES_INDEXES.
+
+        Can be used to check whether aliases have been set properly -
+        ES_INDEXES will give the aliases, and this method will give the indices
+        the aliases point to."""
+        value = settings.ES_INDEXES[key]
+        return '%s%s' % (value, cls.index_suffixes[key])
+
+    def setUp(self):
+        stop_es_mocks()
 
     @classmethod
     def setUpClass(cls):
+        stop_es_mocks()
         cls.es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
         cls._SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
         amo.SEARCH_ANALYZER_MAP = {
@@ -833,6 +819,7 @@ class ESTestCase(TestCase):
 
     @classmethod
     def setUpTestData(cls):
+        stop_es_mocks()
         try:
             cls.es.cluster.health()
         except Exception, e:
@@ -848,19 +835,25 @@ class ESTestCase(TestCase):
             if key.startswith('test_amo'):
                 cls.es.indices.delete(key, ignore=[404])
 
+        # Figure out the name of the indices we're going to create from the
+        # suffixes generated at import time. Like the aliases later, the name
+        # has been prefixed by pytest, we need to add a suffix that is unique
+        # to this test run.
+        actual_indices = {key: cls.get_index_name(key)
+                          for key in settings.ES_INDEXES.keys()}
+
         # Create new search and stats indexes with the timestamped name.
         # This is crucial to set up the correct mappings before we start
         # indexing things in tests.
-        search_indexers.create_new_index(
-            index_name=cls.index_names['default'])
-        stats_search.create_new_index(index_name=cls.index_names['stats'])
+        search_indexers.create_new_index(index_name=actual_indices['default'])
+        stats_search.create_new_index(index_name=actual_indices['stats'])
 
         # Alias it to the name the code is going to use (which is suffixed by
         # pytest to avoid clashing with the real thing).
         actions = [
-            {'add': {'index': cls.index_names['default'],
+            {'add': {'index': actual_indices['default'],
                      'alias': settings.ES_INDEXES['default']}},
-            {'add': {'index': cls.index_names['stats'],
+            {'add': {'index': actual_indices['stats'],
                      'alias': settings.ES_INDEXES['stats']}}
         ]
         cls.es.indices.update_aliases({'actions': actions})
@@ -872,13 +865,7 @@ class ESTestCase(TestCase):
         super(ESTestCase, cls).tearDownClass()
 
     @classmethod
-    def send(cls):
-        # Send all the ES tasks on hold.
-        process.send(None)
-
-    @classmethod
     def refresh(cls, index='default'):
-        process.send(None)
         cls.es.indices.refresh(settings.ES_INDEXES[index])
 
     @classmethod
