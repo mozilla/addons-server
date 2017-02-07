@@ -747,7 +747,11 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.addon.update(status=amo.STATUS_NULL)
         self.addon.versions.all().delete()
         response = self.client.get(self.url, follow=True)
-        self.assert3xx(response, self.addon.get_dev_url('versions'), 302)
+        # Would go to 'devhub.submit.version' but no previous version means
+        # channel needs to be selected first.
+        self.assert3xx(
+            response,
+            reverse('devhub.submit.version.distribution', args=['a3615']), 302)
 
     def test_incomplete_directs_to_details(self):
         # We get bounced back to details step.

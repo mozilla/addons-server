@@ -21,7 +21,6 @@ import commonware.log
 import waffle
 from django_statsd.clients import statsd
 from PIL import Image
-from waffle.decorators import waffle_switch
 
 from olympia import amo
 from olympia.amo import utils as amo_utils
@@ -1611,10 +1610,7 @@ def submit_addon_finish(request, addon_id, addon):
         return redirect('devhub.submit.details', addon.slug)
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():
-        if waffle.switch_is_active('step-version-upload'):
-            return redirect('devhub.submit.version', addon.slug)
-        else:
-            return redirect(addon.get_dev_url('versions'))
+        return redirect('devhub.submit.version', addon.slug)
     return _submit_finish(request, addon, None)
 
 
@@ -1625,7 +1621,6 @@ def submit_version_finish(request, addon_id, addon, version_id):
 
 
 @dev_required
-@waffle_switch('step-version-upload')
 def submit_file_finish(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_finish(request, addon, version, is_file=True)
