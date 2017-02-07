@@ -15,6 +15,7 @@ env:
   - TOXENV=amo
   - TOXENV=users
   - TOXENV=main
+  - TOXENV=ui-tests
 
 matrix:
   fast_finish: true
