@@ -731,6 +731,9 @@ class WebextPermission(ModelBase):
     file = models.OneToOneField('File', related_name='_webext_permissions',
                                 on_delete=models.CASCADE)
 
+    class Meta:
+        db_table = 'webext_permissions'
+
 
 def nfd_str(u):
     """Uses NFD to normalize unicode strings."""
