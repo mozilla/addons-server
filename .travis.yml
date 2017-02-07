@@ -33,7 +33,7 @@ addons:
   apt:
     packages:
       - swig
-  firefox: latest-esr
+  firefox: "48"
 
 before_install:
   - scripts/travis_es.sh
