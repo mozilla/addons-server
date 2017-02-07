@@ -701,8 +701,8 @@ def render_json(request, addon, stats):
     response = http.HttpResponse(content_type='text/json')
 
     # Django's encoder supports date and datetime.
-    fudge_headers(response, stats)
     json.dump(stats, response, cls=AMOJSONEncoder)
+    fudge_headers(response, response.content != json.dumps([]))
     return response
 
 
