@@ -1161,12 +1161,10 @@ def version_edit(request, addon_id, addon, version_id):
                                    version)
                 else:
                     amo.log(amo.LOG.APPROVAL_NOTES_CHANGED,
-                            version,
-                            request.user)
+                            addon, version, request.user)
             else:
                 amo.log(amo.LOG.APPROVAL_NOTES_CHANGED,
-                        version,
-                        request.user)
+                        addon, version, request.user)
 
         if ('source' in version_form.changed_data and
                 version_form.cleaned_data['source']):

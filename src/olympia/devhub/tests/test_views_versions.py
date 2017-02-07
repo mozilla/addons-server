@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 
 import mock
@@ -756,7 +757,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         version.has_info_request = True
         version.save()
-        data = self.formset(approvalnotes="New notes.")
+        data = self.formset(approvalnotes=u'Néw nót€s.')
         response = self.client.post(self.url, data)
         version = Version.objects.get(pk=self.version.pk)
         assert response.status_code == 302
