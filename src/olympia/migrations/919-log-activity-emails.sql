@@ -1,5 +1,5 @@
 CREATE TABLE `log_activity_emails` (
-    `id` int(11) unsigned AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `id` int(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
     `messageid` char(255) NOT NULL UNIQUE

@@ -46,7 +46,7 @@ class ActivityLogToken(ModelBase):
 class ActivityLogEmails(ModelBase):
     """A log of message ids of incoming emails so we don't duplicate process
     them."""
-    messageid = models.CharField(max_length=255)
+    messageid = models.CharField(max_length=255, unique=True)
 
     class Meta:
         db_table = 'log_activity_emails'
