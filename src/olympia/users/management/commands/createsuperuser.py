@@ -38,6 +38,16 @@ and email address and that's it.
             help='Assign the user to the Accounts:SuperCreate group',
         )
 
+        parser.add_argument(
+            '--ui-testing',
+            action='store_true',
+            dest='ui_test',
+            default=False,
+            help='Creates variables.json for ui testing on olympia.dev',
+        )
+
+        CreateSuperUserCommand.add_arguments(self, parser)
+
     def handle(self, *args, **options):
         user_data = {}
 
@@ -79,6 +89,23 @@ and email address and that's it.
                 'api-key': apikey.key,
                 'api-secret': apikey.secret
             }))
+
+        if options.get('ui_test', False):
+            # json object for variables file
+            variables = {}
+            variables['api'] = {}
+
+            # export to variables.json object
+            variables['api'].update({
+                'olympia.dev': dict([
+                    ('username', user.username,),
+                    ('jwt_issuer', apikey.key),
+                    ('jwt_secret', apikey.secret)
+                ])
+            })
+
+            with open('tests/ui/variables.json', 'w') as outfile:
+                json.dump(variables, outfile, indent=2)
 
     def get_value(self, field_name):
         field = get_user_model()._meta.get_field(field_name)

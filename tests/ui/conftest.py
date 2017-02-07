@@ -14,6 +14,7 @@ def capabilities(capabilities):
     capabilities['marionette'] = True
     return capabilities
 
+
 @pytest.fixture
 def fxa_account(base_url):
     url = DEV_URL if 'dev' in base_url else PROD_URL
@@ -23,7 +24,7 @@ def fxa_account(base_url):
 @pytest.fixture(scope='session')
 def jwt_issuer(base_url, variables):
     try:
-        hostname = [urlparse.urlsplit(base_url).hostname]
+        hostname = urlparse.urlsplit(base_url).hostname
         return variables['api'][hostname]['jwt_issuer']
     except KeyError:
         return os.getenv('JWT_ISSUER')
@@ -32,7 +33,7 @@ def jwt_issuer(base_url, variables):
 @pytest.fixture(scope='session')
 def jwt_secret(base_url, variables):
     try:
-        hostname = [urlparse.urlsplit(base_url).hostname]
+        hostname = urlparse.urlsplit(base_url).hostname
         return variables['api'][hostname]['jwt_secret']
     except KeyError:
         return os.getenv('JWT_SECRET')
@@ -44,6 +45,7 @@ def jwt_token(base_url, jwt_issuer, jwt_secret):
         'iss': jwt_issuer,
         'iat': datetime.datetime.utcnow(),
         'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=30)}
+    print(jwt_secret)
     return jwt.encode(payload, jwt_secret, algorithm='HS256')
 
 
