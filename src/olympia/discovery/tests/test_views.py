@@ -13,18 +13,18 @@ class TestDiscoveryViewList(TestCase):
 
         # Represents a dummy version of `olympia.discovery.data`
         self.addons = {
-            778525: addon_factory(
-                id=778525, type=amo.ADDON_PERSONA,
+            628864: addon_factory(
+                id=628864, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
-            3006: addon_factory(id=3006, type=amo.ADDON_EXTENSION),
             607454: addon_factory(id=607454, type=amo.ADDON_EXTENSION),
-            599252: addon_factory(
-                id=599252, type=amo.ADDON_PERSONA,
-                users=[user_factory(), user_factory()]),
-            328839: addon_factory(id=328839, type=amo.ADDON_EXTENSION),
             674732: addon_factory(id=674732, type=amo.ADDON_EXTENSION),
-            777344: addon_factory(
-                id=777344, type=amo.ADDON_PERSONA,
+            465609: addon_factory(
+                id=465609, type=amo.ADDON_PERSONA,
+                users=[user_factory(), user_factory()]),
+            296534: addon_factory(id=296534, type=amo.ADDON_EXTENSION),
+            328839: addon_factory(id=328839, type=amo.ADDON_EXTENSION),
+            615472: addon_factory(
+                id=615472, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
         }
 
@@ -91,13 +91,13 @@ class TestDiscoveryViewList(TestCase):
         assert response.data['results']
 
     def test_missing_addon(self):
-        addon_deleted = self.addons[3006]
+        addon_deleted = self.addons[674732]
         addon_deleted.delete()
 
-        theme_disabled_by_user = self.addons[778525]
+        theme_disabled_by_user = self.addons[465609]
         theme_disabled_by_user.update(disabled_by_user=True)
 
-        self.addons[607454].update(status=amo.STATUS_NOMINATED)
+        self.addons[296534].update(status=amo.STATUS_NOMINATED)
 
         response = self.client.get(self.url)
         assert response.data
@@ -109,7 +109,5 @@ class TestDiscoveryViewList(TestCase):
         assert response.data['results']
 
         results = response.data['results']
-        assert results[0]['addon']['id'] == discopane_items[3].addon_id
-        assert results[1]['addon']['id'] == discopane_items[4].addon_id
-        assert results[2]['addon']['id'] == discopane_items[5].addon_id
-        assert results[3]['addon']['id'] == discopane_items[6].addon_id
+        assert results[0]['addon']['id'] == discopane_items[0].addon_id
+        assert results[1]['addon']['id'] == discopane_items[1].addon_id
