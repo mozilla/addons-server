@@ -4,9 +4,6 @@ sudo: false
 python:
   - "2.7"
 
-addons:
-  firefox: "47.0.2"
-
 env:
   - TOXENV=flake8
   - TOXENV=docs
@@ -36,6 +33,7 @@ addons:
   apt:
     packages:
       - swig
+  firefox: latest-esr
 
 before_install:
   - scripts/travis_es.sh
