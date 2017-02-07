@@ -47,7 +47,6 @@ from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File
-from olympia.lib.es.signals import process, reset
 from olympia.lib.es.utils import timestamp_index
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
@@ -326,7 +325,6 @@ ES_patchers = [
 
 
 def start_es_mocks():
-    reset.send(None)
     for patch in ES_patchers:
         patch.start()
 
@@ -859,7 +857,6 @@ class ESTestCase(TestCase):
                      'alias': settings.ES_INDEXES['stats']}}
         ]
         cls.es.indices.update_aliases({'actions': actions})
-        cls.refresh()
         super(ESTestCase, cls).setUpTestData()
 
     @classmethod
@@ -869,7 +866,6 @@ class ESTestCase(TestCase):
 
     @classmethod
     def refresh(cls, index='default'):
-        process.send(None)
         cls.es.indices.refresh(settings.ES_INDEXES[index])
 
     @classmethod
