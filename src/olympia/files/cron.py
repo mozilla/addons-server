@@ -3,6 +3,7 @@ import os
 import shutil
 import stat
 import time
+from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
@@ -19,25 +20,20 @@ log = commonware.log.getLogger('z.cron')
 def cleanup_extracted_file():
     log.info('Removing extracted files for file viewer.')
     root = os.path.join(settings.TMP_PATH, 'file_viewer')
-    for path in os.listdir(root):
-        full = os.path.join(root, path)
-        age = time.time() - os.stat(full)[stat.ST_ATIME]
-        if age > 60 * 60:
-            log.debug('Removing extracted files: %s, %dsecs old.' %
-                      (full, age))
+
+    for day in os.listdir(root):
+        full = os.path.join(root, day)
+
+        today = datetime.now().strftime('%m%d')
+
+        if day != today:
+            log.debug('Removing extracted files: %s, from %sd.' % (full, day))
+
+            # Remove all files.
+            # No need to remove any caches since we are deleting files from
+            # yesterday or before and the cache-keys are only valid for an
+            # hour. There might be a slight edge-case but that's reasonable.
             shutil.rmtree(full)
-
-            # Nuke out the file and diff caches when the file gets removed.
-            id = os.path.basename(path)
-            try:
-                int(id)
-            except ValueError:
-                continue
-
-            key = hashlib.md5()
-            key.update(str(id))
-            cache.delete('%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
-                                               'file-viewer', key.hexdigest()))
 
 
 @cronjobs.register
