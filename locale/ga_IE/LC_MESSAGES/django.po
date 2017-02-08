@@ -1576,7 +1576,7 @@ msgstr "Coimeádta"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} ardaithe."
 
 #: src/olympia/amo/log.py
 msgid "Super review requested"
