@@ -12,10 +12,10 @@ from olympia.files.tests.test_helpers import get_file, make_file
 
 @pytest.mark.django_db
 def test_cleanup_extracted_file():
-    with freeze_time('2017-02-08 10:01:00'):
+    with freeze_time('2017-01-08 10:01:00'):
         viewer = FileViewer(make_file(1, get_file('webextension.xpi')))
 
-        assert '0208' in viewer.dest
+        assert '0108' in viewer.dest
         assert not os.path.exists(viewer.dest)
 
         viewer.extract()
@@ -29,7 +29,7 @@ def test_cleanup_extracted_file():
         assert os.path.exists(viewer.dest)
 
     # Even hours later we don't cleanup yet...
-    with freeze_time('2017-02-08 23:59:00'):
+    with freeze_time('2017-01-08 23:59:00'):
         assert os.path.exists(viewer.dest)
 
         cleanup_extracted_file()
@@ -37,7 +37,7 @@ def test_cleanup_extracted_file():
         assert os.path.exists(viewer.dest)
 
     # But yesterday... we'll cleanup properly
-    with freeze_time('2017-02-07 10:01:00'):
+    with freeze_time('2017-01-07 10:01:00'):
         assert os.path.exists(viewer.dest)
 
         cleanup_extracted_file()
