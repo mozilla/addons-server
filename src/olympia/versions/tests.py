@@ -382,22 +382,30 @@ class TestVersion(TestCase):
 
     def test_version_update_info(self):
         addon = Addon.objects.get(pk=3615)
-        r = self.client.get(reverse('addons.versions.update_info',
-                                    args=(addon.slug, self.version.version)))
-        assert r.status_code == 200
-        assert r['Content-Type'] == 'application/xhtml+xml'
-        assert PyQuery(r.content)('p').html() == 'Fix for an important bug'
+        response = self.client.get(
+            reverse('addons.versions.update_info',
+                    args=(addon.slug, self.version.version)))
+        assert response.status_code == 200
+        assert response['Content-Type'] == 'application/xhtml+xml'
+        # pyquery is annoying to use with XML and namespaces. Use the HTML
+        # parser, but do check that xmlns attribute is present (required by
+        # Firefox for the notes to be shown properly).
+        doc = PyQuery(response.content, parser='html')
+        assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
+        assert doc('p').html() == 'Fix for an important bug'
 
         # Test update info in another language.
         with self.activate(locale='fr'):
-            r = self.client.get(reverse('addons.versions.update_info',
-                                        args=(addon.slug,
-                                              self.version.version)))
-            assert r.status_code == 200
-            assert r['Content-Type'] == 'application/xhtml+xml'
-            assert '<br/>' in r.content, (
+            response = self.client.get(
+                reverse('addons.versions.update_info',
+                        args=(addon.slug, self.version.version)))
+            assert response.status_code == 200
+            assert response['Content-Type'] == 'application/xhtml+xml'
+            assert '<br/>' in response.content, (
                 'Should be using XHTML self-closing tags!')
-            assert PyQuery(r.content)('p').html() == (
+            doc = PyQuery(response.content, parser='html')
+            assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
+            assert doc('p').html() == (
                 u"Quelque chose en français.<br/><br/>Quelque chose d'autre.")
 
     def test_version_update_info_legacy_redirect(self):
