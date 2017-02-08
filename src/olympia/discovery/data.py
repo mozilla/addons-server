@@ -11,10 +11,24 @@ class DiscoItem(object):
 
 
 # At the moment the disco pane items are hardcoded in this file in the repos,
-# which allows us to integrate in our translation workflow easily.
+# which allows us to integrate in our translation workflow easily. Add-on ids
+# are used instead of slugs to prevent any accidental replacement of a deleted
+# add-on by another.
 discopane_items = [
-    # Theme: Symphony of colors
-    DiscoItem(addon_id=628864, addon_name=u'Symphony of Colors'),
+
+    # 'Books' theme.
+    DiscoItem(addon_id=778525),
+
+    # Video DownloadHelper
+    DiscoItem(
+        addon_id=3006,
+        heading=_(u'Download videos {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Easily grab videos from YouTube, Dailymotion, Facebook, and '
+              u'most other video sites with this simple download tool.'),
+            '</blockquote>')),
 
     # uBlock Origin
     DiscoItem(
@@ -28,30 +42,8 @@ discopane_items = [
               u'bunch of memory.'),
             '</blockquote>')),
 
-    # Emoji Keyboard
-    DiscoItem(
-        addon_id=674732,
-        heading=_(u'Emoji expression {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Dozens of amazing emojis for every occasion—always just one '
-              u'click away.'),
-            '</blockquote>')),
-
-    # Theme: Stained Glass Fractal
-    DiscoItem(addon_id=465609),
-
-    # OmniSidebar
-    DiscoItem(
-        addon_id=296534,
-        heading=_(u'Easily access bookmarks {start_sub_heading}with '
-                  u'{addon_name}{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Are you constantly scrolling through your bookmarks? '
-              u'Bring your lists into view with a single, simple gesture.'),
-            '</blockquote>')),
+    # 'yellowfield 1' theme.
+    DiscoItem(addon_id=599252, addon_name='Yellowfield'),
 
     # YouTube High Definition
     DiscoItem(
@@ -65,6 +57,17 @@ discopane_items = [
               u'personalize your video-watching experience.'),
             '</blockquote>')),
 
-    # Theme: Blue Twirl
-    DiscoItem(addon_id=615472),
+    # Emoji Keyboard
+    DiscoItem(
+        addon_id=674732,
+        heading=_(u'Emoji expression {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Dozens of amazing emojis for every occasion—always just one '
+              u'click away.'),
+            '</blockquote>')),
+
+    # 'fon615 by levscaya' theme.
+    DiscoItem(addon_id=777344, addon_name='Fon615'),
 ]
