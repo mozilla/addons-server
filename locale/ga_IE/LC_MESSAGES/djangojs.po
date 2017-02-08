@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-04 17:28+0000\n"
+"PO-Revision-Date: 2017-02-08 01:51+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga_IE\n"
@@ -26,7 +26,7 @@ msgstr[4] "{0} réiltín"
 
 #: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Tharla earráid agus dul i dteagmháil leis an bhfreastalaí."
 
 #: static/js/common/upload-addon.js
 msgid "Select a file..."
@@ -61,25 +61,25 @@ msgstr "Earráid le {0}"
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Táimid ag baint úsáide as glantóir cóid nua chun do Bhreiseán a phróiseáil. Déan tuairisc ar aon fhadhbanna ar Github"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Níor éirigh le bailíochtú do bhreiseáin; bhí {0} earráid ann."
-msgstr[1] "Níor éirigh le bailíochtú do bhreiseáin; bhí {0} earráid ann."
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "Níor éirigh linn do bhreiseán a bhailíochtú; bhí {0} earráid ann."
+msgstr[1] "Níor éirigh linn do bhreiseán a bhailíochtú; bhí {0} earráid ann."
+msgstr[2] "Níor éirigh linn do bhreiseán a bhailíochtú; bhí {0} earráid ann."
+msgstr[3] "Níor éirigh linn do bhreiseán a bhailíochtú; bhí {0} n-earráid ann."
+msgstr[4] "Níor éirigh linn do bhreiseán a bhailíochtú; bhí {0} earráid ann."
 
 #: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;agus ceann amháin eile"
 msgstr[1] "&hellip;agus {0} cheann eile"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "&hellip;agus {0} cinn eile"
+msgstr[3] "&hellip;agus {0} gcinn eile"
+msgstr[4] "&hellip;agus {0} ceann eile"
 
 #: static/js/common/upload-addon.js
 msgid "See full validation report"
@@ -109,32 +109,32 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith ach le {0} rabhadh."
+msgstr[1] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith ach le {0} rabhadh."
+msgstr[2] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith ach le {0} rabhadh."
+msgstr[3] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith ach le {0} rabhadh."
+msgstr[4] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith ach le {0} rabhadh."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith agus le {0} teachtaireacht."
+msgstr[1] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith agus le {0} theachtaireacht."
+msgstr[2] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith agus le {0} theachtaireacht."
+msgstr[3] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith agus le {0} dteachtaireacht."
+msgstr[4] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith agus le {0} teachtaireacht."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí gan rabhaidh."
 
 #: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Síneofar do bhreiseán go huathoibríoch."
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "Uasghrádú WebExtension"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
