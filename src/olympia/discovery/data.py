@@ -43,7 +43,7 @@ discopane_items = [
             '</blockquote>')),
 
     # 'yellowfield 1' theme.
-    DiscoItem(addon_id=599252, addon_name='Yellow Field 1'),
+    DiscoItem(addon_id=599252, addon_name='Yellowfield'),
 
     # YouTube High Definition
     DiscoItem(
