@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-08 01:51+0000\n"
+"PO-Revision-Date: 2017-02-08 02:06+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga_IE\n"
@@ -142,11 +142,11 @@ msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Breiseán sean-nóis a uasghrádú, ar MDN"
 
 #: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Cuir nótaí eisiúna mionsonraithe leis (is féidir é seo a dhéanamh sa chéad chéim eile)."
 
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
@@ -176,7 +176,7 @@ msgstr ""
 
 #: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Ní aithnítear cineál an chomhaid a d'uasluchtaigh tú."
 
 #: static/js/common/upload-base.js
 msgid "You cancelled the upload."
@@ -184,11 +184,11 @@ msgstr "Chealaigh tú an t-uasluchtú."
 
 #: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Ní mór d'íomhánna a bheith PNG nó JPG."
 
 #: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Níl cead agat ach físeán WebM a úsáid."
 
 #: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
@@ -196,11 +196,11 @@ msgstr "Lean an Bailiúchán seo"
 
 #: static/js/impala/collections.js
 msgid "Stop Following"
-msgstr ""
+msgstr "Ná lean a thuilleadh"
 
 #: static/js/impala/collections.js
 msgid "Following"
-msgstr ""
+msgstr "Á Leanúint"
 
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js static/js/zamboni/themes.js
@@ -209,7 +209,7 @@ msgstr "Níl an téama seo comhoiriúnach do do leagan de {0}"
 
 #: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Gach Ceart Ar Cosaint"
 
 #: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
@@ -249,11 +249,11 @@ msgstr ""
 
 #: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Marcáilte le bheith scriosta"
 
 #: static/js/impala/search.js
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Torthaí á nuashonrú&hellip;"
 
 #: static/js/impala/site_suggestions.js
 msgid "Category"
@@ -285,11 +285,11 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js
 msgid "{0} users"
-msgstr ""
+msgstr "{0} úsáideoir"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} breiseán"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} collections"
@@ -313,11 +313,11 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
-msgstr ""
+msgstr "Íosluchtuithe"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
-msgstr ""
+msgstr "Úsáideoirí Laethúla"
 
 #: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
@@ -450,7 +450,7 @@ msgstr "Spleáchóga"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
-msgstr ""
+msgstr "Uasdíol"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
@@ -562,22 +562,22 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Íosluchtuithe agus Úsáideoirí Laethúla, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Íosluchtuithe agus Úsáideoirí Laethúla ó {0} go {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Líon Suiteáilte agus Úsáideoirí Laethúla, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -587,27 +587,27 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Íosluchtuithe, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Íosluchtuithe ó {0} go {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Úsáideoirí Laethúla, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Úsáideoirí Laethúla ó {0} go {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
-msgstr "Feidhmchláir, {0} lá is déanaí"
+msgstr "Feidhmchláir, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -617,7 +617,7 @@ msgstr "Feidhmchláir ó {0} go {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
-msgstr "Ardáin, {0} lá is déanaí"
+msgstr "Ardáin, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -627,7 +627,7 @@ msgstr "Ardáin ó {0} go {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
-msgstr "Teangacha, {0} lá is déanaí"
+msgstr "Teangacha, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -637,7 +637,7 @@ msgstr "Teangacha ó {0} go {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Leaganacha Breiseáin, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -647,7 +647,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Stádas an Bhreiseáin, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -657,7 +657,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Foinsí Íosluchtaithe, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -687,7 +687,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Breiseáin in Úsáid, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -697,7 +697,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Breiseáin Íosluchtaithe, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -707,7 +707,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Breiseáin Cruthaithe, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -717,7 +717,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Breiseáin Nuashonraithe, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -727,7 +727,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Léirmheasanna Scríofa, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -737,7 +737,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Úsáideoirí Cláraithe, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -747,7 +747,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Bailiúcháin Nua, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -757,7 +757,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Síntiúsóirí, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -767,7 +767,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Rátálacha, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -777,7 +777,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Díolacháin, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -787,7 +787,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Líon Suiteáilte, le {0} lá anuas"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -891,9 +891,8 @@ msgid "Works with {app} {min} - {max}"
 msgstr "Feidhmíonn sé le {app} {min} - {max}"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Feidhmíonn sé le {app} {min} - {max}"
+msgstr "Feidhmíonn sé le {app}"
 
 #: static/js/zamboni/buttons.js
 msgid "View other versions"
@@ -904,9 +903,8 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
-msgstr "Íosluchtaigh Anois"
+msgstr "Íosluchtaigh anois"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
@@ -1190,9 +1188,8 @@ msgid "{0} line {1} column {2}"
 msgstr ""
 
 #: static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} as {1}"
+msgstr "{0} líne {1}"
 
 #: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
