@@ -40,7 +40,7 @@ from olympia.versions.models import ApplicationsVersions, Version
 
 
 class HubTest(TestCase):
-    fixtures = ['browse/nameless-addon', 'base/users']
+    fixtures = ['base/addon_3615', 'base/users']
 
     def setUp(self):
         super(HubTest, self).setUp()
@@ -49,7 +49,7 @@ class HubTest(TestCase):
         assert self.client.get(self.url).status_code == 200
         self.user_profile = UserProfile.objects.get(id=999)
 
-    def clone_addon(self, num, addon_id=57132):
+    def clone_addon(self, num, addon_id=3615):
         ids = []
         for i in range(num):
             addon = Addon.objects.get(id=addon_id)
@@ -81,9 +81,7 @@ class TestNav(HubTest):
     def test_my_addons(self):
         """Check that the correct items are listed for the My Add-ons menu."""
         # Assign this add-on to the current user profile.
-        addon = Addon.objects.get(id=57132)
-        addon.name = 'Test'
-        addon.save()
+        addon = Addon.objects.get(id=3615)
         addon.addonuser_set.create(user=self.user_profile)
 
         response = self.client.get(self.url)
@@ -119,9 +117,7 @@ class TestNav(HubTest):
     def test_unlisted_addons_are_displayed(self):
         """Check that unlisted addons are displayed in the nav."""
         # Assign this add-on to the current user profile.
-        addon = Addon.objects.get(id=57132)
-        addon.name = 'Test'
-        addon.save()
+        addon = Addon.objects.get(id=3615)
         self.make_addon_unlisted(addon)
         addon.addonuser_set.create(user=self.user_profile)
 
@@ -140,9 +136,7 @@ class TestDashboard(HubTest):
         self.url = reverse('devhub.addons')
         self.themes_url = reverse('devhub.themes')
         assert self.client.get(self.url).status_code == 200
-        self.addon = Addon.objects.get(pk=57132)
-        self.addon.name = 'some addon'
-        self.addon.save()
+        self.addon = Addon.objects.get(pk=3615)
         self.addon.addonuser_set.create(user=self.user_profile)
 
     def test_addons_layout(self):
@@ -198,13 +192,13 @@ class TestDashboard(HubTest):
         assert len(doc('.item .item-info')) == 2
 
     def test_show_hide_statistics(self):
-        # when Active and Public show statistics
-        self.addon.update(disabled_by_user=False, status=amo.STATUS_PUBLIC)
+        # Not disabled by user: show statistics.
+        self.addon.update(disabled_by_user=False)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' in links, ('Unexpected: %r' % links)
 
-        # when Active and Incomplete hide statistics
-        self.addon.update(disabled_by_user=False, status=amo.STATUS_NULL)
+        # Disabled: hide statistics.
+        self.addon.update(disabled_by_user=True)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
 
@@ -218,8 +212,13 @@ class TestDashboard(HubTest):
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')
+
+        appver = self.addon.current_version.apps.all()[0]
+        appver.delete()
         # Addon is not set to be compatible with Firefox, e10s compatibility is
         # not shown.
+        doc = pq(self.client.get(self.url).content)
+        item = doc('.item[data-addonid="%s"]' % self.addon.id)
         assert not item.find('.e10s-compatibility')
 
     def test_e10s_compatibility(self):
@@ -322,12 +321,26 @@ class TestDashboard(HubTest):
         assert doc('button.link').text() == 'Resume'
 
     def test_no_versions_addon(self):
-        self.addon.versions.all().delete()
+        self.addon.current_version.delete()
 
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('.incomplete').text() == (
             "This add-on doesn't have any versions.")
+
+    def test_only_a_beta_version(self):
+        beta_version = version_factory(
+            addon=self.addon, version='2.0beta',
+            file_kw={'status': amo.STATUS_BETA})
+        beta_version.update(license=self.addon.current_version.license)
+        self.addon.current_version.update(license=None)
+        self.addon.current_version.delete()
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.incomplete').text() == (
+            "This add-on doesn't have any approved versions, so its public "
+            "pages (including beta versions) are hidden.")
 
 
 class TestUpdateCompatibility(TestCase):

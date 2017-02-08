@@ -142,8 +142,8 @@ class Version(OnChangeMixin, ModelBase):
             parsed_data = utils.parse_addon(upload, addon)
         license_id = None
         if channel == amo.RELEASE_CHANNEL_LISTED:
-            previous_version = addon.find_latest_version_including_rejected(
-                channel=channel)
+            previous_version = addon.find_latest_version(
+                channel=channel, exclude=())
             if previous_version and previous_version.license_id:
                 license_id = previous_version.license_id
         version = cls.objects.create(

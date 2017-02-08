@@ -27,7 +27,7 @@
 {% endif %}
 
 {% macro version_details(version, full_info=False) %}
-  {% set latest_version_in_channel = version.addon.find_latest_version_including_rejected(channel=version.channel) %}
+  {% set latest_version_in_channel = version.addon.find_latest_version(channel=version.channel, exclude=(amo.STATUS_BETA,)) %}
   <tr{% if version_disabled(version) %} class="version-disabled"{% endif %}>
     <td>
       <strong>
@@ -240,11 +240,10 @@
           <th class="version-delete">{{ _('Delete/Disable') }}</th>
         </tr>
 
-        {% set latest_version_including_disabled = addon.find_latest_version_including_rejected(channel=amo.RELEASE_CHANNEL_LISTED) %}
+        {% set latest_listed_version_including_disabled = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED, exclude=(amo.STATUS_BETA,)) %}
         {% for version in versions.object_list %}
           {% if version != current_version and version != latest_listed_version %}
-            {{ version_details(version,
-                              full_info=version==latest_version_including_disabled) }}
+            {{ version_details(version, full_info=version==latest_listed_version_including_disabled) }}
           {% endif %}
         {% endfor %}
       </table>

@@ -62,8 +62,8 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
     @waffle_switch('activity-email')
     def create(self, request, *args, **kwargs):
         version = self.get_version_object()
-        latest_version = version.addon.find_latest_version_including_rejected(
-            channel=version.channel)
+        latest_version = version.addon.find_latest_version(
+            channel=version.channel, exclude=(amo.STATUS_BETA,))
         if version != latest_version:
             raise ParseError(
                 _('Only latest versions of addons can have notes added.'))

@@ -705,46 +705,34 @@ class Addon(OnChangeMixin, ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
-    def find_latest_version(self, channel, ignore=None):
-        """Retrieve the latest non-disabled version of an add-on for the
-        specified channel.  If channel is None either channel is returned.
+    def find_latest_version(
+            self, channel, exclude=(amo.STATUS_DISABLED, amo.STATUS_BETA)):
+        """Retrieve the latest version of an add-on for the specified channel.
 
-        Accepts an optional ignore argument to ignore a specific version."""
+        If channel is None either channel is returned.
+
+        Keyword arguments:
+        exclude -- exclude versions for which all files have one
+                   of those statuses (default STATUS_DISABLED, STATUS_BETA)."""
+
         # If the add-on is deleted or hasn't been saved yet, it should not
         # have a latest version.
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
-        # We can't use .exclude(files__status=STATUS_DISABLED) because this
-        # excludes a version if any of the files are the disabled and there may
-        # be files we do want to include.  Having a single beta file /does/
-        # mean we want the whole version disqualified though.
-        statuses_without_disabled = (
-            set(amo.STATUS_CHOICES_FILE.keys()) -
-            {amo.STATUS_DISABLED, amo.STATUS_BETA})
+        # We can't use .exclude(files__status=excluded_statuses) because that
+        # would exclude a version if *any* of its files match but if there is
+        # only one file that doesn't have one of the excluded statuses it
+        # should be enough for that version to be considered.
+        statuses_no_disabled_or_beta = (
+            set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude))
         try:
             latest_qs = (
                 Version.objects.filter(addon=self)
-                       .exclude(files__status=amo.STATUS_BETA)
-                       .filter(files__status__in=statuses_without_disabled))
-            if ignore is not None:
-                latest_qs = latest_qs.exclude(pk=ignore.pk)
+                       .filter(files__status__in=statuses_no_disabled_or_beta))
             if channel is not None:
                 latest_qs = latest_qs.filter(channel=channel)
             latest = latest_qs.latest()
             latest.addon = self
-        except Version.DoesNotExist:
-            latest = None
-        return latest
-
-    def find_latest_version_including_rejected(self, channel):
-        """Similar to latest_version but includes rejected versions.  Used so
-        we correctly attach review content to the last version reviewed. If
-        channel is None either channel is returned."""
-        try:
-            latest_qs = self.versions.exclude(files__status=amo.STATUS_BETA)
-            if channel is not None:
-                latest_qs = latest_qs.filter(channel=channel)
-            latest = latest_qs.latest()
         except Version.DoesNotExist:
             latest = None
         return latest
@@ -1125,8 +1113,8 @@ class Addon(OnChangeMixin, ModelBase):
                                 amo.STATUS_DELETED)):
             return False
 
-        latest_version = self.find_latest_version_including_rejected(
-            channel=amo.RELEASE_CHANNEL_LISTED)
+        latest_version = self.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED, exclude=(amo.STATUS_BETA,))
 
         return latest_version is not None and latest_version.files.exists()
 
@@ -1168,12 +1156,15 @@ class Addon(OnChangeMixin, ModelBase):
         if not has_listed_versions:
             # Add-ons with only unlisted versions have no required metadata.
             return []
-        latest_version = self.find_latest_version_including_rejected(
-            channel=amo.RELEASE_CHANNEL_LISTED)
+        # We need to find out if the add-on has a license set. We prefer to
+        # check the current_version first because that's what would be used for
+        # public pages, but if there isn't any listed version will do.
+        version = self.current_version or self.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED, exclude=())
         return [
             self.all_categories,
             self.summary,
-            (latest_version and latest_version.license),
+            (version and version.license),
         ]
 
     def should_redirect_to_submit_flow(self):
