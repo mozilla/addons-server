@@ -41,3 +41,12 @@ class ActivityLogToken(ModelBase):
         self.__class__.objects.filter(pk=self.pk).update(
             use_count=models.expressions.F('use_count') + 1)
         self.use_count = self.use_count + 1
+
+
+class ActivityLogEmails(ModelBase):
+    """A log of message ids of incoming emails so we don't duplicate process
+    them."""
+    messageid = models.CharField(max_length=255, unique=True)
+
+    class Meta:
+        db_table = 'log_activity_emails'
