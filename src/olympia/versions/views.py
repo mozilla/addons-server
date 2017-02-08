@@ -87,10 +87,8 @@ def update_info(request, addon, version_num):
                                channel=amo.RELEASE_CHANNEL_LISTED)
     if not qs:
         raise http.Http404()
-    serve_xhtml = ('application/xhtml+xml' in
-                   request.META.get('HTTP_ACCEPT', '').lower())
     return render(request, 'versions/update_info.html',
-                  {'version': qs[0], 'serve_xhtml': serve_xhtml},
+                  {'version': qs[0]},
                   content_type='application/xhtml+xml')
 
 
