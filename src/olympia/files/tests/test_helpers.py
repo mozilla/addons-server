@@ -12,6 +12,7 @@ from django import forms
 import pytest
 import flufl.lock
 from mock import Mock, patch
+from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -127,6 +128,12 @@ class TestFileViewer(TestCase):
         self.viewer.extract()
         self.viewer.cleanup()
         assert not self.viewer.is_extracted()
+
+    @freeze_time('2017-02-08 02:01:00')
+    def test_dest(self):
+        assert self.viewer.dest == os.path.join(
+            settings.TMP_PATH, 'file_viewer',
+            '0208', str(self.viewer.file.pk))
 
     def test_isbinary(self):
         binary = self.viewer._is_binary
