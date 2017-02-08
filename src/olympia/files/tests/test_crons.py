@@ -1,12 +1,10 @@
 import os
 
 import pytest
-import mock
 from freezegun import freeze_time
 
 from olympia.files.helpers import FileViewer
 from olympia.files.cron import cleanup_extracted_file
-from olympia.amo.tests import addon_factory
 from olympia.files.tests.test_helpers import get_file, make_file
 
 

@@ -1,12 +1,8 @@
-import hashlib
 import os
 import shutil
-import stat
-import time
 from datetime import datetime
 
 from django.conf import settings
-from django.core.cache import cache
 
 import commonware.log
 import cronjobs
