@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-02-08 02:11+0000\n"
+"PO-Revision-Date: 2017-02-08 02:31+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "Language: ga_IE\n"
@@ -40,13 +40,12 @@ msgid "Need help?"
 msgstr "Cabhair uait?"
 
 #: src/olympia/activity/serializers.py
-#, fuzzy
 msgid "Review note"
-msgstr "Eagarthóir"
+msgstr "Nóta léirmheasa"
 
 #: src/olympia/activity/views.py
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Ní féidir nótaí a chur ach leis an leagan is déanaí de bhreiseán."
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -113,11 +112,11 @@ msgstr[4] "Tá na clibeanna \"{0}\" in áirithe agus níl cead agat iad a úsái
 #: src/olympia/addons/forms.py
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "Tá {0} chlib de bharraíocht agat."
+msgstr[1] "Tá {0} chlib de bharraíocht agat."
+msgstr[2] "Tá {0} chlib de bharraíocht agat."
+msgstr[3] "Tá {0} gclib de bharraíocht agat."
+msgstr[4] "Tá {0} clib de bharraíocht agat."
 
 #: src/olympia/addons/forms.py
 #, python-format
@@ -996,24 +995,24 @@ msgid "Part of these Collections"
 msgstr "Cuid de na Bailiúcháin seo"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Breiseáin eile le %(author)s"
 msgstr[1] "Breiseáin eile leis na húdair seo"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "Breiseáin eile leis na húdair seo"
+msgstr[3] "Breiseáin eile leis na húdair seo"
+msgstr[4] "Breiseáin eile leis na húdair seo"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoirí"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoir"
 msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoirí"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoirí"
+msgstr[3] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoirí"
+msgstr[4] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoirí"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "View statistics"
@@ -1056,7 +1055,7 @@ msgstr "Cén fáth a raibh {0} cruthaithe, agus céard atá i ndán don bhreise�
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Pictiúr #{0} den bhreiseán"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on home page"
@@ -1253,11 +1252,11 @@ msgstr "Stair na Léirmheasanna"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Ár leithscéal, ach tá an téama seo ar feitheamh fós. Bain triail eile as ar ball."
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Tá an téama seo ar feitheamh. Is tusa amháin atá in ann é a fheiceáil."
 
 #: src/olympia/addons/templates/addons/listing/items.html
 msgid "Collector's Note"
@@ -1333,7 +1332,7 @@ msgstr "Glacaim Leis"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "Ní féidir breiseáin a úsáid le Firefox ar iOS faoi láthair."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
@@ -2940,9 +2939,9 @@ msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] "Féach ar an %(cnt)s eisínteacht i %(name)s &raquo;"
 msgstr[1] "Féach ar an %(cnt)s eisínteacht i %(name)s &raquo;"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "Féach ar na %(cnt)s eisínteacht i %(name)s &raquo;"
+msgstr[3] "Féach ar na %(cnt)s n-eisínteacht i %(name)s &raquo;"
+msgstr[4] "Féach ar na %(cnt)s eisínteacht i %(name)s &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
 #: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
@@ -5149,9 +5148,8 @@ msgid "Describe Version"
 msgstr "Scrios Leagan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Leagan"
+msgstr "Nótaí Eisiúna:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Let your users know what's new and what's changed in this version."
@@ -7442,7 +7440,7 @@ msgstr ""
 #. {previous review action taken on theme}: {comment about review action}
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Ag Iarraidh Tuilleadh Eolais: {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flagged: {0}"
@@ -9546,7 +9544,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report an inappropriate or spam user review?"
-msgstr ""
+msgstr "Conas a dhéanfaidh mé tuairisc ar léirmheas mí-oiriúnach nó ar thurscar?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -9893,9 +9891,9 @@ msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of th
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
 msgstr[0] "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">léirmheas</a> ar an mbreiseán seo cheana."
 msgstr[1] "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">%(cnt)s léirmheas</a> ar an mbreiseán seo cheana."
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">%(cnt)s léirmheas</a> ar an mbreiseán seo cheana."
+msgstr[3] "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">%(cnt)s léirmheas</a> ar an mbreiseán seo cheana."
+msgstr[4] "Rinne an t-úsáideoir seo <a href=\"%(user_review_url)s\">%(cnt)s léirmheas</a> ar an mbreiseán seo cheana."
 
 #: src/olympia/reviews/templates/reviews/review.html
 #, python-format
@@ -9942,9 +9940,9 @@ msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
 msgstr[0] "<b>{0}</b> léirmheas ar an mbreiseán seo"
 msgstr[1] "<b>{0}</b> léirmheas ar an mbreiseán seo"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "<b>{0}</b> léirmheas ar an mbreiseán seo"
+msgstr[3] "<b>{0}</b> léirmheas ar an mbreiseán seo"
+msgstr[4] "<b>{0}</b> léirmheas ar an mbreiseán seo"
 
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html
@@ -11248,11 +11246,11 @@ msgstr "{0} breiseán"
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "%(num)s téama"
+msgstr[1] "%(num)s théama"
+msgstr[2] "%(num)s théama"
+msgstr[3] "%(num)s dtéama"
+msgstr[4] "%(num)s téama"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
@@ -11260,9 +11258,9 @@ msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
 msgstr[0] "%(num)s bhreiseán"
 msgstr[1] "%(num)s bhreiseán"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[2] "%(num)s bhreiseán"
+msgstr[3] "%(num)s mbreiseán"
+msgstr[4] "%(num)s breiseán"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
