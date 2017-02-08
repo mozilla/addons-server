@@ -295,8 +295,7 @@ def _build_suggestions(request, cat, suggester):
 def name_only_query(q):
     d = {}
 
-    rules = {'match': {'query': q, 'boost': 3, 'analyzer': 'standard'},
-             'match': {'query': q, 'boost': 4, 'type': 'phrase'},
+    rules = {'match': {'query': q, 'boost': 4, 'type': 'phrase'},
              'fuzzy': {'value': q, 'boost': 2, 'prefix_length': 4},
              'startswith': {'value': q, 'boost': 1.5}}
     for k, v in rules.iteritems():
@@ -311,7 +310,7 @@ def name_only_query(q):
 
 
 def name_query(q):
-    # * Prefer text matches first, using the standard text analyzer (boost=3).
+    # * Prefer text matches first, using the standard text analyzer (boost=4).
     # * Then text matches, using language-specific analyzer (boost=2.5).
     # * Then try fuzzy matches ("fire bug" => firebug) (boost=2).
     # * Then look for the query as a prefix of a name (boost=1.5).
