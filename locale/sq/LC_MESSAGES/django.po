@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 17:54+0000\n"
+"PO-Revision-Date: 2017-02-09 18:52+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -474,7 +474,7 @@ msgstr "Version {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Këtu nuk ka gjë për t’u parë. Programuesi nuk ka dhënë ndonjë hollësi."
+msgstr "Këtu nuk ka gjë për t’u parë.  Programuesi nuk ka dhënë ndonjë hollësi."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Version Notes"
@@ -484,12 +484,12 @@ msgstr "Shënime Versioni"
 #. {0} is the name of the add-on
 #: src/olympia/addons/templates/addons/eula.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "End-User License Agreement for {0}"
-msgstr "Licencë Përdoruesi të Thjeshtë (EULA) për {0}"
+msgstr "EULA për {0}"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "End-User License Agreement"
-msgstr "Marrëveshje Licence Përdoruesi (EULA)"
+msgstr "EULA"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 #, python-format
@@ -775,7 +775,7 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
-"<strong>Kujdes:</strong> Kjo shtesë nuk është shqyrtuar nga Mozilla dhe s’mund të instalohet në versione të Firefox-it nga 43 e sipër. Bëni kujdes kur instaloni software palësh të treta që mund të "
+"<strong>Kujdes:</strong> Kjo shtesë nuk është shqyrtuar nga Mozilla dhe s’mund të instalohet në versione të Firefox-it nga 43 e sipër.  Bëni kujdes kur instaloni software palësh të treta që mund të "
 "dëmtojnë kompjuterin tuaj."
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -1794,11 +1794,11 @@ msgid ""
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Na ndjeni, por s’e gjejmë dot çfarë po kërkonit.</h1> <p> Faqja ose kartela që kërkuat s’u gjet te sajti ynë. Mundet që klikuat në një lidhje të vjetruar, ose e shkruat pasaktësisht. </p> <ul> "
-"<li>Nëse e shkruat ju, ju lutemi, kontrolloni sërish drejtshkrimin.</li> <li> Nëse ndoqët një lidhje nga diku gjetkë, ju lutemi, na e bëni të ditur te <a href=\"https://github.com/mozilla/addons-"
-"server/issues/new/\">. Na tregoni aty se prej nga mbërritët dhe se për çfarë po kërkonit, dhe do të bëjmë ç’është e mundur ta ndreqim.. </li> </ul> <p>Ose mundeni të hidheni te disa faqe popullore "
-"te sajti ynë.</p> <ul> <li>Ju intereson një <a href=\"%(rec)s\">listë shtesash të zgjedhura</a>?</li> <li> Doni të <a href=\"%(search)s\">kërkoni për shtesa</a>? Mund të hidheni te <a "
+"<li>Nëse e shkruat ju, ju lutemi, kontrolloni sërish drejtshkrimin.</li> <li> Nëse ndoqët një lidhje nga diku gjetkë, ju lutemi, <a href=\"https://github.com/mozilla/addons-server/issues/new/\">na e"
+" bëni të ditur</a>. Na tregoni aty se prej nga mbërritët dhe se për çfarë po kërkonit, dhe do të bëjmë ç’është e mundur ta ndreqim. </li> </ul> <p>Ose mundeni të hidheni te disa faqe popullore te "
+"sajti ynë.</p> <ul> <li>Ju intereson një <a href=\"%(rec)s\">listë shtesash të zgjedhura</a>?</li> <li> Doni të <a href=\"%(search)s\">kërkoni për shtesa</a>? Mund të hidheni te <a "
 "href=\"%(search)s\">faqja e kërkimeve</a> ose thjesht përdorni kutinë e kërkimeve më sipër. </li> <li> Nëse parapëlqeni t’ia nisni nga e para, thjesht shkoni te <a href=\"%(home)s\">faqja hyrëse e "
-"shtesave</a>. </li> </ul>"
+"shtesave</a>. </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -2555,11 +2555,11 @@ msgstr "Rimerre"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "Mbulohen PNG-të dhe JPG-të. Figura do të ripërmasohet në 32x32."
+msgstr "Mbulohen PNG-të dhe JPG-të.  Figura do të ripërmasohet në 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
-msgstr "Në këtë formular ka gabime. Ju lutemi, ndreqini në vijim."
+msgstr "Në këtë formular ka gabime.  Ju lutemi, ndreqini në vijim."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
@@ -3270,7 +3270,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Days Before Bonus Points Applied"
-msgstr "alëkalimit."
+msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Theme Review"
@@ -3526,7 +3526,7 @@ msgstr "Solide"
 
 #: src/olympia/constants/categories.py
 msgid "Websites"
-msgstr "Site-e Web"
+msgstr "Sajte"
 
 #: src/olympia/constants/categories.py
 msgid "Device Features & Location"
@@ -3622,7 +3622,7 @@ msgstr "RSS, Lajme dhe Blogim"
 
 #: src/olympia/constants/categories.py
 msgid "Site-specific"
-msgstr "Për Site-e të Caktuar"
+msgstr "Për Sajte Caktuar"
 
 #: src/olympia/constants/categories.py
 msgid "Web and Developer Tools"
@@ -3920,7 +3920,7 @@ msgstr "Te beta u kap një kartelë me një version që mbaron me a|alpha|b|beta
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr "Nuk mund ta fshini një kartelë pasi të ketë nisur procesi i shqyrtimit. Duhet të fshini krejt versionin."
+msgstr "Nuk mund ta fshini një kartelë pasi të ketë nisur procesi i shqyrtimit.  Duhet të fshini krejt versionin."
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -4061,11 +4061,11 @@ msgstr "Shtesa u fshi."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr "Fjalëkalimi qe i pasaktë. Tema s’u fshi."
+msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr "Fjalëkalimi qe i pasaktë. Shtesa s’u fshi."
+msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "An author has been added to your add-on"
@@ -4804,7 +4804,7 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"ngarkoni një ikonë për shtesën tuaj ose zgjidhni një nga tonat. Ikona shfaqet thuajse kudo ku shfaqet shtesa juaj. Figurat e ngarkuara duhet të jenë në një nga llojet vijuese për figura: .png, .jpg."
+"Ngarkoni një ikonë për shtesën tuaj ose zgjidhni një nga tonat. Ikona shfaqet thuajse kudo ku shfaqet shtesa juaj. Figurat e ngarkuara duhet të jenë në një nga llojet vijuese për figura: .png, .jpg."
 " Kjo vlen vetëm për shtesa të shfaqura."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
@@ -5072,7 +5072,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Support email:"
-msgstr "Email aAsistence:"
+msgstr "Email asistence:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Support website:"
@@ -5164,7 +5164,7 @@ msgstr "Këtë version mund ta përpunoni duke shtuar shënime versioni, ose kod
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
-msgstr "Përpunoni versionin {0}:"
+msgstr "Përpunoni versionin {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "File Signed"
@@ -6393,11 +6393,11 @@ msgstr "Filtro sipas llojesh/veprimesh"
 
 #: src/olympia/editors/forms.py
 msgid "Passed automatic validation"
-msgstr "E kaloi vleftësimin automatik."
+msgstr "E kaloi vleftësimin automatik"
 
 #: src/olympia/editors/forms.py
 msgid "Failed automatic validation"
-msgstr "Dështoi në vleftësimin automatik."
+msgstr "Dështoi në vleftësimin automatik"
 
 #: src/olympia/editors/forms.py
 msgid "Filter by automatic validation"
@@ -6626,7 +6626,7 @@ msgstr "Përmban Koment Shqyrtuesi"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
-msgstr "Burimet Janë Dhënë"
+msgstr "Burimet janë dhënë"
 
 #: src/olympia/editors/models.py
 msgid "WebExtension"
@@ -7533,7 +7533,7 @@ msgstr "Po sillet kartelë."
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Versioni API që po përdorni, {0:.1f}, s’është i vlefshëm. Ju lutemi, përmirësojeni me versionin e tanishëm {1:.1f}."
+msgstr "Versioni API që po përdorni, {0:.1f}, s’është i vlefshëm. Ju lutemi, përmirësojeni me versionin e tanishëm API {1:.1f}."
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
@@ -7862,7 +7862,7 @@ msgstr "Dollar Kanadez"
 
 #: src/olympia/lib/constants.py
 msgid "Congo/Kinshasa Franc"
-msgstr "Frang Kongolez (Kinshasa)"
+msgstr "Frang Kongolez/Kinshasa"
 
 #: src/olympia/lib/constants.py
 msgid "Switzerland Franc"
@@ -8126,7 +8126,7 @@ msgstr "Dinar Maqedon"
 
 #: src/olympia/lib/constants.py
 msgid "Myanmar (Burma) Kyat"
-msgstr "Kjat Birman"
+msgstr "Kjat Mianmari (Birmani)"
 
 #: src/olympia/lib/constants.py
 msgid "Mongolia Tughrik"
@@ -8146,7 +8146,7 @@ msgstr "Rupi Mauriciusi"
 
 #: src/olympia/lib/constants.py
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Rufije e Maldiveve"
+msgstr "Rufije e Maldiveve (Ishujt Maldive)"
 
 #: src/olympia/lib/constants.py
 msgid "Malawi Kwacha"
@@ -8524,7 +8524,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "Nëse dëshironi të lidheni me dikë nga ekipi Mozilla, ju lutemi, shihni faqen tonë me <a href=\"%(url)s\">të dhëna kontaktesh<a>."
+msgstr "Nëse dëshironi të lidheni me dikë nga ekipi Mozilla, ju lutemi, shihni faqen tonë me <a href=\"%(url)s\">të dhëna kontaktesh</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who works on this website?"
@@ -9487,9 +9487,9 @@ msgid ""
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
-"Shtesat eksperimentale janë shënuar nga zhvilluesit e tyre si jo të përshtatshme për publikun e gjerë. Ato janë kontrolluar nga redaktorët tanë për t’u siguruar që s’kanë probleme sigurie, por prapë"
-" mund të kenë të meta, ose të mos punojnë si duhet. Bëni kujdes kur instaloni shtesa eksperimentale dhe çinstalojeni menjëherë shtesën nëse vini re probleme. <a href=\"%(url)s\">Mësoni më tepër "
-"rreth procesit tonë të shqyrtimit</a></dd>"
+"Shtesat eksperimentale janë shënuar nga zhvilluesit e tyre si jo të përshtatshme për publikun e gjerë.  Ato janë kontrolluar nga redaktorët tanë për t’u siguruar që s’kanë probleme sigurie, por "
+"prapë mund të kenë të meta, ose të mos punojnë si duhet. Bëni kujdes kur instaloni shtesa eksperimentale dhe çinstalojeni menjëherë shtesën nëse vini re probleme. <a href=\"%(url)s\">Mësoni më tepër"
+" rreth procesit tonë të shqyrtimit</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -10389,7 +10389,7 @@ msgstr "30 ditë"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "90 days"
-msgstr "90 Ditë"
+msgstr "90 ditë"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "365 days"
@@ -10605,7 +10605,7 @@ msgstr "Që të krijoni koleksionet tuaja, duhet të keni një llogari te Shtesa
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Footer logo"
-msgstr "Logo Fundfaqeje"
+msgstr "Logo fundfaqeje"
 
 #: src/olympia/templates/categories.html
 msgid "Choose a category"
@@ -10820,7 +10820,7 @@ msgstr "Vendore parazgjedhje"
 
 #: src/olympia/users/forms.py
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Kjo URL ka format të pavlefshëm. URL-të e vlefshme kanë pamje si kjo http://shembull.com/faqja_ime."
+msgstr "Kjo URL ka format të pavlefshëm. URL-të e vlefshme kanë pamje si kjo http://example.com/my_page."
 
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
@@ -11037,7 +11037,7 @@ msgstr "Ju lutemi, caktoni emrin tuaj në ekran ose atë të përdoruesit që t�
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Administroni të dhëna bazë llogarie, të tilla si emri juaj i  përdoruesit dhe rregullimet për Llogarinë Firefox."
+msgstr "Administroni të dhëna bazë llogarie, të tilla si emri juaj i përdoruesit dhe rregullimet për Llogarinë Firefox."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
