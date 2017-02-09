@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-01-24 08:33+0000\n"
-"PO-Revision-Date: 2017-01-14 12:17+0000\n"
-"Last-Translator: SeulGi Choi (Chase) <cs09gi@gmail.com>\n"
+"PO-Revision-Date: 2017-02-09 01:37+0000\n"
+"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -92,21 +92,21 @@ msgstr "{0} 검사 완료"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "부가 기능의 유효성 검사가 시간 초과되어서 수동으로 재검토될 것입니다."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "부가 기능이 오류 없이 {0}개의 경고로 검증되었습니다."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "부가 기능이 오류 없이 {0}개의 메시지로 검증되었습니다."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "부가 기능이 오류와 경고 없이 검증되었습니다."
 
 #: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
