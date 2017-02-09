@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 16:37+0000\n"
+"PO-Revision-Date: 2017-02-09 16:39+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -1558,7 +1558,7 @@ msgstr "Super-Freigabe von {addon} {version} angefordert."
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"Dieses Add-on wurde zur Admin-Überprüfung markiert.  Es ist noch in der Warteschlange für Überprüfungen, muss aber durch einen unserer Admin-Überprüfer kontrolliert werden. Diese Überprüfung kann "
+"Dieses Add-on wurde zur Admin-Überprüfung markiert.  Es ist noch in der Warteschlange für Überprüfungen, muss aber durch einen unserer Admin-Kontrolleure kontrolliert werden. Diese Überprüfung kann "
 "länger als üblich dauern."
 
 #: src/olympia/amo/log.py
@@ -4230,7 +4230,7 @@ msgstr "Kommen Sie voran! Werden Sie noch heute AMO-Kontrolleur und lassen Sie I
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Become an AMO Reviewer"
-msgstr "Werden Sie AMO-Überprüfer"
+msgstr "Werden Sie AMO-Kontrolleur"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Learn All About Add-ons"
@@ -5102,7 +5102,7 @@ msgstr "Sollten unsere Kontrolleure etwas beachten, wenn sie dieses Add-on über
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Diese Anmerkungen sind nur für Sie und unsere Überprüfer wichtig."
+msgstr "Diese Anmerkungen sind nur für Sie und unsere Kontrolleure sichtbar."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Cancel Review and Disable Version"
@@ -5595,7 +5595,7 @@ msgstr "Add-ons überprüfen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "Freiwillige Überprüfer sorgen dafür, dass Add-ons sicher und zuverlässig funktionieren. Das bringt auch Bekanntheit!"
+msgstr "Freiwillige Kontrolleure sorgen dafür, dass Add-ons sicher und zuverlässig funktionieren. Das bringt auch Bekanntheit!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
@@ -6165,7 +6165,7 @@ msgstr "Quelltext"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr "Wenn Ihr Add-on binären oder verschleierten Quelltext enthält, stellen Sie den Quelltext hier für die Überprüfer zur Verfügung."
+msgstr "Wenn Ihr Add-on binären oder verschleierten Quelltext enthält, stellen Sie den Quelltext hier für die Kontrolleure zur Verfügung."
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "File {file_id} ({platform})"
@@ -6627,7 +6627,7 @@ msgstr "Weitere Informationen benötigt"
 
 #: src/olympia/editors/models.py
 msgid "Contains Reviewer Comment"
-msgstr "Enthält Kommentar vom Überprüfer"
+msgstr "Enthält Kommentar vom Kontrolleur"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
@@ -6746,7 +6746,7 @@ msgstr "<i>Anonym</i> am %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Zurück zur Startseite der Werkzeuge für Überprüfer"
+msgstr "Zurück zur Startseite der Werkzeuge für Kontrolleure"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
@@ -6868,7 +6868,7 @@ msgstr "Überprüfungen in diesem Monat"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "New Reviewers"
-msgstr "Neue Überprüfer"
+msgstr "Neue Kontrolleure"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -6907,7 +6907,7 @@ msgstr "Speichern"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Add-on Reviewer Performance"
-msgstr "Leistung der Add-on-Überprüfer"
+msgstr "Leistung der Add-on-Kontrolleure"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -7166,7 +7166,7 @@ msgstr "Beste Überprüfung (letzte 7 Tage)"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "No top reviewers yet."
-msgstr "Noch keine Überprüfer mit Bestnote"
+msgstr "Noch keine Kontrolleure mit Bestnote."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "All Time"
@@ -7289,7 +7289,7 @@ msgstr "Interaktive Warteschlange für Themes"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Reviewers' Guide"
-msgstr "Leitfaden für Überprüfer"
+msgstr "Leitfaden für Kontrolleure"
 
 #: src/olympia/editors/templates/editors/themes/single.html
 msgid "Theme Review for {0}"
@@ -8487,8 +8487,8 @@ msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Wenn Sie Erfahrung mit Add-on-Entwicklung haben, <a href=\"%(url)s\">werden Sie Add-on-Überprüfer</a>! Unsere Redakteure sind Add-on-Fans mit technischem Hintergrund, die Add-ons auf Qualität des "
-"Quelltexts und Stabilität prüfen."
+"Wenn Sie Erfahrung mit Add-on-Entwicklung haben, <a href=\"%(url)s\">werden Sie Add-on-Kontrolleur</a>! Unsere Kontrolleure sind Add-on-Fans mit technischem Hintergrund, die Add-ons auf Qualität des"
+" Quelltexts und Stabilität prüfen."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
