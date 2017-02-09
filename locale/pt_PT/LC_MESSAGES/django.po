@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 20:10+0000\n"
+"PO-Revision-Date: 2017-02-09 20:20+0000\n"
 "Last-Translator: Alberto Castro <albertdecastro@tutanota.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3740,15 +3740,15 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Requests that the extension be granted permissions according to the activeTab specification."
-msgstr ""
+msgstr "Solicita que sejam fornecidas permissões a extensão , de acordo com a especificação do activeTab."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Gives the extension access to the chrome.alarms API."
-msgstr ""
+msgstr "Garante que seja dado acesso à extensão ao API do chrome.alarms."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks."
-msgstr ""
+msgstr "Ler e modificar marcadores."
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4134,13 +4134,12 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Este envio falhou a validação e pode não ter os resultados completos da validação. Por favor tenha atenção na sua revisão."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "Análise solicitada"
+msgstr "Solicitada revisão."
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
-msgstr ""
+msgstr "Solicitada revisão.  Você deverá fornecer detalhes adicionais para proceder."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -4907,7 +4906,6 @@ msgstr ""
 "que outros não possam submeter versões utilizando o mesmo ID."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Introduza o seguinte texto para confirmar a sua decisão: {slug}"
 
@@ -5004,16 +5002,15 @@ msgstr "Eliminar este tema."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Este extra tem em falta alguma informação solicitada, antes que esta possa ser submetida para publicação."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Este extra não é compatível com a sua versão do %(app)s."
+msgstr "Este extra não tem quaisquer versões."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Este extra não tem quaisquer versões aprovadas, pelo que as respetivas páginas públicas (incluindo versões de teste) estão ocultas."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -5100,9 +5097,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Este endereço só será visível para si e para os nossos revisores."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "Reativar versão"
+msgstr "Cancelar a revisão e desativar a versão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5331,7 +5327,7 @@ msgstr "A compatibilidade do seu extra com o multi-processo do Firefox (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Listado neste site após efetuada a revisão do código. As atualizações automáticas são geridas por este site."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Listed Version:"
@@ -5355,7 +5351,7 @@ msgstr "As filas não são revistas numa ordem rigorosa"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Assinado para distribuição própria. As atualizações são geridas por si."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
@@ -5715,12 +5711,11 @@ msgid "Port a Chrome Extension"
 msgstr "Portar uma extensão Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"O Firefox suporta as APIs de WebExtensions, que na maioria dos casos são compatíveis com as APIs de extensões suportadas pela Google, Chrome e Opera, assim as suas extensões irão executar no Firefox"
-" com apenas algumas alterações."
+"O Firefox suporta as APIs de WebExtensions, que na maioria dos casos são compatíveis com as APIs de extensões suportadas pelo Chrome, pelo Opera, e pelo Edge, sendo que as suas extensões serão "
+"executadas no Firefox com apenas algumas alterações."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
