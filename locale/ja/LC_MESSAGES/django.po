@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 21:31+0000\n"
+"PO-Revision-Date: 2017-02-09 21:45+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1375,7 +1375,7 @@ msgstr "API キーを管理"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Reviewer Tools"
-msgstr "審査担当者ツール"
+msgstr "審査担当者用ツール"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -2262,11 +2262,10 @@ msgid ""
 msgstr "<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>公開</b> で、誰でも見ることができます。コレクションの公開を取りやめたい場合は、下のボタンをクリックして非公開に変更してください。"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
-msgstr "<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>プライベート</b> で、あなただけが見ることができます。 お気に入りを全員に公開したいときは、下のボタンをクリックして公開状態にしてください。"
+msgstr "<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>非公開</b> で、あなただけが見ることができます。お気に入りを全員に公開したいときは、下のボタンをクリックして公開状態にしてください。"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2390,11 +2389,10 @@ msgid "Collection Contributors"
 msgstr "コレクションの協力者"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr "複数の協力者をこのコレクションに追加できます。 協力者は、このコレクションにアドオンを追加したり削除したりできますが、その名前や説明を変更することはできません。 協力者を追加するには、その人のメールアドレスを下のボックスに入力してください。協力者は Mozilla Add-ons サイトのアカウントが必要です。"
+msgstr "複数の協力者をこのコレクションに追加できます。協力者は、このコレクションにアドオンを追加したり削除したりできますが、その名前や説明を変更することはできません。協力者を追加するには、その人のメールアドレスを下のボックスに入力してください。協力者は Mozilla Add-ons サイトのアカウントが必要です。"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2575,12 +2573,12 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "問題のあるアドオンやプラグインは自動的に無効化され、使用できなくなります。"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Mozilla が <a href=\"%(criteria)s\">一定の基準</a> のもとでアドオン、プラグイン、またはその他のサードパーティ製のソフトウェアが %(app)s のセキュリティ、安定性、またはパフォーマンスを損ねていると判断した場合、そのソフトウェアは一般公開からブロックされる可能性があります。詳細については、<a "
+"Mozilla が <a href=\"%(criteria)s\">一定の基準</a> のもとでアドオン、プラグイン、その他のサードパーティ製ソフトウェアが %(app)s のセキュリティ、安定性、あるいはパフォーマンスを深刻に損ねていると判断した場合、そのソフトウェアの一般的な使用がブロックされる可能性があります。詳細は <a "
 "href=\"%(support)s\">こちらのサポート記事</a> を参照してください。"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
@@ -4070,9 +4068,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "今回のアップロードは検証に失敗したため、完全な検証結果を表示できない可能性があります。審査の際はその点に注意してください。"
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "審査が申請されました"
+msgstr "審査が申請されました。"
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
@@ -4809,9 +4806,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr "次のテキストを入力して決定を確認してください: {slug}"
+msgstr "次のテキストを入力してあなたの決定を確認してください: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
@@ -4909,9 +4905,8 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "このアドオンはお使いの %(app)s のバージョンと互換性がありません。"
+msgstr "このアドオンには一切バージョンがありません。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
@@ -5001,9 +4996,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "このメモはあなたと審査担当者のみが参照できます。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "審査申請をキャンセル"
+msgstr "審査をキャンセルしてバージョンを無効化"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -6027,9 +6021,8 @@ msgid "Notes for Reviewers"
 msgstr "審査担当者へのメモ"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "任意ですが、審査担当者がこのアドオンをレビューするのに役立つ情報、例えば、関連サイトにログインするためのテストアカウント情報などを記入してください。"
+msgstr "任意ですが、このアドオンの審査担当者に役立つ情報、例えば、関連サイトにログインするためのテストアカウントなどを記入してください。"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
@@ -6118,9 +6111,8 @@ msgid "Listing visibility"
 msgstr "公開状態"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "{0} 上ですべての人に公開され、検索結果や一覧のページにも表示されます。"
+msgstr "{label_open}公開:{label_close} {site_url} 上ですべての人に公開され、検索結果や一覧ページにも表示されます。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
@@ -6489,9 +6481,8 @@ msgid "More Information Requested"
 msgstr "詳しい情報が求められています"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "エディタのコメントがあります"
+msgstr "審査担当者のコメントがあります"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
@@ -6606,9 +6597,8 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "エディタ用ツールのホームページへ戻る"
+msgstr "審査担当者用ツールのホームページへ戻る"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
@@ -6932,14 +6922,12 @@ msgid "Update the whiteboard"
 msgstr "ホワイトボードを更新"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "非掲載アドオンの審査待ち"
+msgstr "非掲載アドオンの審査ページ"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "管理者審査履歴"
+msgstr "掲載アドオンの審査ページ"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7304,14 +7292,12 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "バージョン: %(version)s &bull; サイズ: %(size)s &bull; MD5 ハッシュ: %(md5)s &bull; MIME タイプ: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "ファイル比較 :: エディタ用ツール"
+msgstr "ファイル比較 :: 審査担当者用ツール"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "ファイルビューア :: エディタ用ツール"
+msgstr "ファイルビューア :: 審査担当者用ツール"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
@@ -10605,9 +10591,8 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "自分の SDK ベースのアドオンが更新できないとき"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "自分のアドオンがエディタによって審査されたとき"
+msgstr "自分のアドオンが審査担当者によって審査されたとき"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
