@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 19:31+0000\n"
+"PO-Revision-Date: 2017-02-09 19:50+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2330,13 +2330,12 @@ msgstr ""
 "zjawna njeje, klikńće na tłóčatko deleka, zo byšće ju priwatnu činił."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Přidatki, kotrež z pomocu funkcije <b>Faworitam přidać</b> jako fawority markěrujeće, so deleka jewja. Tuta zběrka je tuchwilu <b>priwatna</b>, to rěka, jenož wy móžeće ju widźeć. Jeli chceće, zo "
-"kóždy móže zběrku widźeć, klikńće na tłóčatko deleka, zo byšće ju zjawnu činił."
+"kóždy móže waše fawority widźeć, klikńće na tłóčatko deleka, zo byšće ju zjawnu činił."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2474,13 +2473,12 @@ msgid "Collection Contributors"
 msgstr "Sobuskutkowarjo zběrki"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Móžeće tutej zběrce wjacorych sobuskutkowarjow přidać. Sobuskutkowar móže tutej zběrce přidatki přidać a přidatki z tuteje zběrki wotstronić, ale njemóže jeje mjeno abo wopisanje změnić. Zo byšće "
-"sobuskutkowarja přidał, zapodajće jeho e-mejlowu adresu w polu deleka. Sobuskutkowarjo dyrbja konto na AMO měć."
+"Móžeće tutej zběrce wjacorych sobuskutkowarjow přidać. Sobuskutkowar móže tutej zběrce přidatki přidać a z tuteje zběrki wotstronić, ale njemóže jeje mjeno abo wopisanje změnić. Zo byšće "
+"sobuskutkowarja přidał, zapodajće jeho e-mejlowu adresu w polu deleka. Sobuskutkowarjo dyrbja konto na Mozilla Add-ons měć."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2660,13 +2658,13 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Problematiski přidatk abo tykač so awtomatisce znjemóžni a njebudźe hižo wužiwajomny."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Hdyž Mozilla zhoni, zo přidatki, tykače abo druhe programy třećich poskićowarjow strašnje wěstotu, stabilnosć abo wukon přidatka %(app)s wohrožuja a  <a href=\"%(criteria)s\">wěstym kriterijam</a> "
-"wotpowěduja, hodźi so softwara při powšitkownym wužiwanju haćić. Za dalše informacije čitajće prošu <a href=\"%(support)s\">tutón nastawk pomocy</a>."
+"Hdyž Mozilla zhoni, zo přidatki, tykače abo druhe programy třećich poskićowarjow strašnje wěstotu, stabilnosć abo wukon přidatka %(app)s wohrožuja a <a href=\"%(criteria)s\">wěstym kriterijam</a> "
+"wotpowěduja, budźe so softwara při powšitkownym wužiwanju snano blokować. Za dalše informacije čitajće prošu <a href=\"%(support)s\">tutón nastawk pomocy</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -4172,9 +4170,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Tute nahraće njeje přepruwowanje wobstało a nima snano žane dospołne přepruwowanske wuslědki. Prošu dźiwajće na to, hdyž jo přepruwujeće."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "Přepruwowanje je so požadało"
+msgstr "Přepruwowanje je so požadało."
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
@@ -4949,7 +4946,6 @@ msgstr ""
 "druzy wersije zapodać, kotrež samsny ID wužiwaja."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Zapodajće slědowacy tekst, zo byšće swój rozsud wobkrućił: {slug}"
 
@@ -5049,9 +5045,8 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr "Tutón přidatk sej někotre trěbne informacije wužaduje, prjedy hač da so za wozjewjenje wotpósłać."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Tutón přidatk z wašej wersiju %(app)s kompatibelny njeje."
+msgstr "Tutón přidatk wersije nima."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
@@ -5146,9 +5141,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tute přispomnjenki su jenož za was a našich přepruwowarjow widźomne."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "Wersiju zaso zmóžnić"
+msgstr "Přepruwowanje přetorhnyć a wersiju znjemóžnić"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5752,11 +5746,10 @@ msgid "Port a Chrome Extension"
 msgstr "Rozšěrjenje Chrome přenjesć"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"Firefox podpěruje API WebExtension, kotrež su zwjetša z API rozšěrjenjow kompatibelne, kotrež so přez Google, Chrome a Opera podpěruja, tak zo budu waše rozšěrjenja z jenož mało změnami w Firefox "
+"Firefox podpěruje API WebExtension, kotrež su zwjetša z API rozšěrjenjow kompatibelne, kotrež so přez Chrome a Opera s Edge podpěruja, tak zo budu waše rozšěrjenja z jenož mało změnami w Firefox "
 "fungować."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
@@ -6186,9 +6179,8 @@ msgid "Notes for Reviewers"
 msgstr "Přispomnjenki za přepruwowarjow"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "Opcionalnje móžeće informacije zapisować, kotrež su wužitne za redaktora, kotryž tutón přidatk přepruwuje, kaž na přikład informacije wo testowym konće."
+msgstr "Opcionalnje móžeće informacije zapodać, kotrež su wužitne za redaktora, kotryž tutón přidatk přepruwuje, kaž na přikład informacije wo testowym konće."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
@@ -6277,9 +6269,8 @@ msgid "Listing visibility"
 msgstr "Widźomnosć lisćinoweho přidatka"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "Widźomny za wšěch w {0} a w pytanskich wuslědkach a na lisćinowych stronach."
+msgstr "{label_open}Widźomny:{label_close} Widźomny za wšěch na {site_url} a zapřijate w pytanskich wuslědkach a na lisćinowych stronach."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6672,9 +6663,8 @@ msgid "More Information Requested"
 msgstr "Dalše informacije požadane"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "Wobsahuje komentar redaktora"
+msgstr "Wobsahuje komentar přepruwowarja"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
@@ -6922,9 +6912,8 @@ msgid "Reviews This Month"
 msgstr "Přepruwowanja za tutón měsac"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "Přepruwowarjo"
+msgstr "Žani přepruwowarjo"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -7519,9 +7508,8 @@ msgid "File Compare :: Reviewer tools"
 msgstr "Dataju přirunać :: nastroje redaktora"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "Dataju sej wobhladać :: Nastroje za redaktora"
+msgstr "Datajowy wobhladowak :: Nastroje za přepruwowarjow"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
