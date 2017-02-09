@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 17:09+0000\n"
+"PO-Revision-Date: 2017-02-09 17:29+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -6468,7 +6468,7 @@ msgstr "Njoftomë herës tjetër që përditësohet kjo shtesë. (Përditësimet
 
 #: src/olympia/editors/forms.py
 msgid "Clear Admin Review Flag"
-msgstr "Hiqi Shenjën Për Shqyrtim Redaktori"
+msgstr "Hiqi Shenjën Për Shqyrtim Përgjegjësi"
 
 #: src/olympia/editors/forms.py
 msgid "Clear more info requested flag"
@@ -8996,21 +8996,21 @@ msgid ""
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 "Po. <a href=\"%(p_url)s\">Rregullat e Mozilla-s mbi Shtesat</a> përshkruajnë se cili do të ishte një parashtrim i pranueshëm. Këto rregulla janë subjekt ndryshimesh pa paralajmërim. Përveç kësaj, "
-"Ekipi i Shqyrtuesve të Shtesave përdor <a href=\"%(g_url)s\">Udhërrëfyesin për Shqyrtues Shtesash</a> për të kontrolluar që shtesa juaj pajtohet me udhëzimet specifike për funksionimin dhe sigurinë."
+"Ekipi i Shqyrtuesve të Shtesave përdor <a href=\"%(g_url)s\">Udhërrëfyesin për Shqyrtim Shtesash</a> për të kontrolluar që shtesa juaj pajtohet me udhëzimet specifike për funksionimin dhe sigurinë."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
 msgstr "Si ta parashtroj shtesën time për shqyrtim?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
 "Paneli i Mjeteve të Zhvilluesit do t’ju lejojë të ngarkoni dhe parashtroni shtesa te AMO. Lypset të jeni përdorues i regjistruar te AMO, përpara se të mundni të parashtroni një shtesë. Përpara "
-"parashtrimit të shtesës suaj sigurohuni se e keni lexuar <a href=\"%(url)s\">Udhërrëfyesin e Redaktorëve të Shtesave</a> të AMO-s, për t’u siguruar që shtesa juaj është në pajtim me udhëzimet e "
-"përdorura nga redaktorët gjatë shqyrtimit të shtesave."
+"parashtrimit të shtesës suaj, sigurohuni se keni lexuar <a href=\"%(url)s\">Udhërrëfyes për Shqyrtim Shtesash</a>, për të garantuar që shtesa juaj është në pajtim me udhëzimet e përdorura nga "
+"shqyrtuesit."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9057,40 +9057,40 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Pse duhet shqyrtuar shtesa ime?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Krejt shtesat e parashtruara, të reja apo të përditësuara, shqyrtohen, që përdoruesve t’u bëhet e mundur një punim i qëndrueshëm dhe i parrezik. Krejt parashtrimet e shtesave shqyrtohen duke "
-"përdorur udhëzimet e përcaktuara te <a href=\"%(url)s\">Udhërrëfyesi i Redaktorëve të Shqyrtimeve</a>."
+"Krejt shtesat e parashtruara, të reja apo të përditësuara, shqyrtohen për të garantuar që përdoruesit e Mozilla-s ve të kenë punim i qëndrueshëm dhe të parrezik. Krejt parashtrimet e shtesave "
+"shqyrtohen duke përdorur udhëzimet e përcaktuara te <a href=\"%(url)s\">Udhërrëfyes Shqyrtimi Shtesash</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
 msgstr "Kush e shqyrton shtesën time?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Shtesat shqyrtohen nga Redaktorët e AMO-s, një grup programuesish të talentuar, vullnetarë në ndihmë të projektit Mozilla që shqyrtojnë shtesat për t’u siguruar përdoruesve Mozilla një punim të "
-"qëndrueshëm dhe të parrezik. Kur komunikoni me redaktorët, ju lutemi, jini të sjellshëm, të duruar dhe me respekt, pasi ata punojnë fort për të siguruar që shtesa juaj të jetë rregulluar si duhet "
-"dhe se është në pajtim me udhëzimet e përcaktuara në <a href=\"%(url)s\">Udhërrëfyesin e Redaktorëve të Shtesave</a>."
+"Shtesat shqyrtohen nga Shqyrtuesit e Shtesave, një grup programuesish të talentuar, vullnetarë në ndihmë të projektit Mozilla që shqyrtojnë shtesat për t’u siguruar përdoruesve Mozilla një punim të "
+"qëndrueshëm dhe të parrezik. Kur komunikoni me shqyrtuesit, ju lutemi, jini të sjellshëm, të duruar dhe me respekt, pasi ata punojnë fort për të siguruar që shtesa juaj të jetë rregulluar si duhet "
+"dhe se është në pajtim me udhëzimet e përcaktuara në <a href=\"%(url)s\">Udhërrëfyes Shqyrtimi Shtesash</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Cilat janë udhëzimet e përdorura për të shqyrtuar shtesën time?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"Kur vë në provë një shtesë, për pranim te AMO, ekipi i shqyrtuesve të shtesave Mozilla ndjek <a href=\"%(url)s\">Udhërrëfyesin për Shqyrtimet</a>. Është e rëndësishme që zhvilluesit e shtesave ta "
+"Kur vë në provë një shtesë, për pranim te AMO, Ekipi i Shqyrtuesve të Shtesave ndjek <a href=\"%(url)s\">Udhërrëfyesin për Shqyrtim Shtesash</a>. Është e rëndësishme që zhvilluesit e shtesave ta "
 "studiojnë këtë udhërrëfyes, për të bërë të mundur që problemet e rëndomta të jenë trajtuar përpara parashtrimit të shtesës për shqyrtim. Kjo do të ndihmojë fort në përshpejtimin e procesit të "
 "shqyrtimit."
 
@@ -9118,13 +9118,13 @@ msgid "number of problem areas discovered"
 msgstr "numër zonash problematike të zbuluara"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Kjo është arsyeja pse është me shumë rëndësi të lexohet <a href=\"%(g_url)s\">Udhërrëfyesi për Redaktorë Shqyrtimesh</a> për të siguruar që shtesa juaj është rregulluar ashtu siç pritet. Po ashtu, "
-"është ide e mirë të lexohet postimi në blog, <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> që ofron këndvështrim të shkëlqyer lidhur me bërjen të mundur të një shqyrtimi të "
+"Kjo është arsyeja pse është me shumë rëndësi të lexohet <a href=\"%(g_url)s\">Udhërrëfyesi për Shqyrtim Shtesash</a> për të siguruar që shtesa juaj është rregulluar ashtu siç pritet. Po ashtu, është"
+" ide e mirë të lexohet postimi në blog, <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> që ofron këndvështrim të shkëlqyer lidhur me bërjen të mundur të një shqyrtimi të "
 "rrjedhshëm të shtesës suaj."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9157,18 +9157,16 @@ msgstr ""
 "shtesën tuaj."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "A lypset që përditësimi im të shqyrtohet nga redaktorët?"
+msgstr "A lypset që përditësimi im të shqyrtohet nga shqytuesit?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
 "Varet. Nëse thjesht po ndryshoni një përshkrim të shtesës suaj, ose po përditësoni \"maxVersion\" që të siguroni përputhshmërinë me një përditësim të ri të software-it Mozilla, shtesa juaj s’ka "
-"nevojë të merret në shqyrtim sërish. Por, nëse parashtroni një kartelë të re të përditësuar, atëherë sh përditësimi i shtesës suaj do të lypë shqyrtim nga një redaktor."
+"nevojë të merret në shqyrtim sërish. Por, nëse parashtroni një kartelë të re të përditësuar, atëherë përditësimi i shtesës suaj do të lypë shqyrtim nga një Shqyrtues Shtesash."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
