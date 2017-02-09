@@ -175,6 +175,7 @@ header:after,
     float: right;
     width: 22%;
     width: -moz-calc(24% - 22px);
+    width: calc(24% - 22px);
     border-radius: 8px;
 }
 
@@ -187,6 +188,7 @@ header:after,
 .no-recs header.auth {
     background:
         url(../../img/zamboni/discovery_pane/bg-home.png) no-repeat 100% -moz-calc(100% - 3px),
+        url(../../img/zamboni/discovery_pane/bg-home.png) no-repeat 100% calc(100% - 3px),
         linear-gradient(#fff 0, #ecf1f7 100%);
 }
 .no-recs #my-account {
@@ -461,6 +463,7 @@ section#featured-addons {
     line-height: 32px;
     display: inline-block;
     width: -moz-calc(100% - 48px);
+    width: calc(100% - 48px);
 }
 
 .featured .featured-addons a.addon-title,
@@ -564,6 +567,7 @@ section#featured-addons {
     top: 80px;
     margin: 10px;
     width: -moz-calc(100% - 20px);
+    width: calc(100% - 20px);
 }
 
 .pane #main .persona-large .persona-preview [data-browsertheme] {
@@ -690,10 +694,12 @@ section#featured-addons {
         margin-right: 1%;
         width: 30%;
         width: -moz-calc(100% / 3 - 22px - 0.5%);
+        width: calc(100% / 3 - 22px - 0.5%);
     }
     #sub #more-ways {
         margin-right: 0;
         width: -moz-calc(100% / 3 - 22px - 1%);
+        width: calc(100% / 3 - 22px - 1%);
     }
 
     #promo-video-addons {
@@ -1028,9 +1034,11 @@ body.eula header + h3:after {
     bottom: 4px;
     right: 0;
     width: -moz-calc(100% - 70px);
+    width: calc(100% - 70px);
 }
 body.eula header + h3:after {
     width: -moz-calc(100% - 235px);
+    width: calc(100% - 235px);
 }
 
 .html-rtl #addon-reviews h3,
@@ -1295,6 +1303,7 @@ a#lightbox-secNav-btnClose {
 
 #images.js .panel {
     width: -moz-calc(100% / 3);
+    width: calc(100% / 3);
     margin: 0 -3px;
     padding: 15px 0;
     text-align: center;

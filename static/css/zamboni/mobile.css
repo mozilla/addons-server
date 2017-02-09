@@ -623,12 +623,12 @@ ul.license li.copyr { background-position: 0 -260px; }
 
 .persona-previewer .confirm-buttons .add {
     float: left;
-    width: -moz-calc(50% - 63px); /* 63px = 39px + 24px (for plus-sign icon) */
+    width: calc(50% - 63px); /* 63px = 39px + 24px (for plus-sign icon) */
 }
 
 .persona-previewer .confirm-buttons .cancel {
     float: right;
-    width: -moz-calc(50% - 39px); /* 39px = 32px + 14px / 2 (margin) */
+    width: calc(50% - 39px); /* 39px = 32px + 14px / 2 (margin) */
 }
 
 .persona-previewer .persona-installed p:before {
@@ -995,7 +995,7 @@ button:active,
     position: fixed;
     bottom: -1px;
     left: 14px;
-    width: -moz-calc(100% - 28px);
+    width: calc(100% - 28px);
     background: #fff;
 }
 #eula:after {
@@ -1003,7 +1003,7 @@ button:active,
     content: "";
     bottom: 0;
     height: 20px;
-    width: -moz-calc(100% - 28px);
+    width: calc(100% - 28px);
     z-index: 1000;
     border-width: 14px;
     border-style: solid;
@@ -1026,7 +1026,7 @@ button:active,
     margin: 8px;
     display: block;
     float: left;
-    width: -moz-calc(50% - 48px);
+    width: calc(50% - 48px);
 }
 
 
