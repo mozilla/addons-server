@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 19:50+0000\n"
+"PO-Revision-Date: 2017-02-09 20:08+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6273,10 +6273,11 @@ msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and i
 msgstr "{label_open}Widźomny:{label_close} Widźomny za wšěch na {site_url} a zapřijate w pytanskich wuslědkach a na lisćinowych stronach."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "Njezjewi so w pytanskich wuslědkach, a jeho lisćinowa strona pokaza, zo sće jón znjemóžnił. Zapodaća nowych wersijow za lisćinu njebudu so w tutym statusu akceptować."
+msgstr ""
+"{label_open}Njewidźomny:{label_close} Njezjewi so w pytanskich wuslědkach, a jeho lisćinowa strona pokaza, zo sće jón znjemóžnił. Zapodaća nowych wersijow za lisćinu njebudu so w tutym statusu "
+"akceptować."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -6358,20 +6359,16 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Chceće swój přidatk woprawdźe schować?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
-"Hdyž swoje přepruwowanske naprašowanje přetorhnjeće, budźe so waš přidatk jako njedospołny woznamjenjeć. Jeli po někotrych dnjach wo přepruwowanje znowa njeprosyće, zo byšće swój přidatk "
-"wudospołnił, so wón zhaša."
+msgstr "Hdyž swoje přepruwowanske naprašowanje přetorhnjeće, budźe so waš přidatk jako njedospołny woznamjenjeć a wersije, kotrež na přepruwowanje čakaja, so znjemóžnja."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Chceće swoje přepruwowanske naprašowanje woprawdźe anulować?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujće wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Sćehńće wideja {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
@@ -6783,9 +6780,8 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>anonymny</i> dnja %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Wróćo k startowej stronje redaktorskich nastrojow"
+msgstr "Wróćo k startowej stronje nastrojow za přepruwowarjow"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
@@ -6953,9 +6949,8 @@ msgid "Save"
 msgstr "Składować"
 
 #: src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "Wukon přidatkowych redaktorow"
+msgstr "Wukon přidatkowych přepruwowarjow"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -7122,14 +7117,12 @@ msgid "Update the whiteboard"
 msgstr "Pokazki aktualizować"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Čakanske rynki za njepodate přidatki"
+msgstr "Přepruwowanska strona za njenalistowane přidatki"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Poslednje přepruwowanje"
+msgstr "Přepruwowanska strona za nalistowane přidatki"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7503,9 +7496,8 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "Wersija %(version)s &bull; Wulkosć: %(size)s &bull; MD5 pruwowanska cyfra: %(md5)s &bull; Typ MIME: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "Dataju přirunać :: nastroje redaktora"
+msgstr "Dataju přirunać :: nastroje za přepruwowarjow"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Viewer :: Reviewer tools"
@@ -8538,13 +8530,13 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Wutworće swójski přidatk</a>. Skićimy darmotne hospodowanje a aktualizowanske słužby a móžemy wam pomhać, wulki kruh wužiwarjow docpěć."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Jeli maće nazhonjenja we wuwiwanju přidatkow, <a href=\"%(url)s\">stańće so redaktorom</a>! Naši redaktorojo su přiwisnicy přidatkow z techniskim pozadkom, kotřiž přidatki za kodowej kwalitu a "
-"stabilnosću přepruwuja."
+"Jeli maće nazhonjenja we wuwiwanju přidatkow, <a href=\"%(url)s\">stańće so přepruwowar přidatkow</a>! Naši přepruwowarjo su přiwisnicy přidatkow z techniskim pozadkom, kotřiž přidatki za kodowej "
+"kwalitu a stabilnosću přepruwuja."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9045,13 +9037,13 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Ma Mozilla prawidła wo tym, štož je akceptabelne zapodaće?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Haj. <a href=\"%(p_url)s\">Prawidła přidatkow</a> Mozilla wopisuja, štož je akceptabelne zapodaće. Tute prawidła móža so bjez zdźělenja změnić. Nimo toho wužiwa team AMO-redaktorow <a "
-"href=\"%(g_url)s\">přepruwowanski přewodnik za redaktorow</a>, zo by zawěsćił, zo waš přidatk wěstym směrnicam za funkcionalnosć a wěstotu wotpowěduje."
+"Haj. <a href=\"%(p_url)s\">Prawidła přidatkow</a> Mozilla wopisuja, štož je akceptabelne zapodaće. Tute prawidła móža so bjez zdźělenja změnić. Nimo toho wužiwa team přepruwowarjow přidatkow <a "
+"href=\"%(g_url)s\">přepruwowanski přewodnik za přepruwowarjow</a>, zo by zawěsćił, zo waš přidatk wěstym směrnicam za funkcionalnosć a wěstotu wotpowěduje."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
@@ -9208,9 +9200,8 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "Móžeće přez kontrolnu desku wuwiwarskich nastrojow aktualizaciju zapodać: Wubjerće nastajenje „Nowu wersiju nahrać“ a nahrajće nowu .xpi-dataju za swój přidatk."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Dyrbi so moja aktualizacija wot redaktorow přepruwować?"
+msgstr "Dyrbi so moja aktualizacija wot přepruwowarjow přepruwować?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, fuzzy
@@ -10977,9 +10968,8 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "mój přidatk, kotryž na SDK bazuje, njeda so aktualizować"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "mój přidatk je so wot redaktora přepruwował"
+msgstr "mój přidatk je so wot přepruwowarja přepruwował"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
