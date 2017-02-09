@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 16:51+0000\n"
+"PO-Revision-Date: 2017-02-09 17:08+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -6032,9 +6032,8 @@ msgid "Notes for Reviewers"
 msgstr "審核者意見"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "可在此選填任何編輯在審核此附加元件時可用的資訊，例如測試帳號資訊等。"
+msgstr "可在此輸入任何讓審核者在審核此附加元件時有所幫助的資訊，例如測試帳號資訊等。"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
@@ -6123,15 +6122,13 @@ msgid "Listing visibility"
 msgstr "附加元件公開程度"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "讓 {0} 的所有使用者都看得到，並包含在搜尋結果與上架清單頁面中。"
+msgstr "{label_open}可見:{label_close} 讓 {site_url} 的所有使用者都看得到，並包含在搜尋結果與上架清單頁面中。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "將不會列入於搜尋結果，上架頁面也會提示您已停用。在此狀態下也不會接受任何送出的新版本。"
+msgstr "{label_open}隱藏:{label_close} 將不會列入於搜尋結果，上架頁面也會提示您已停用。在此狀態下也不會接受任何送出的新版本。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -6212,18 +6209,16 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "您確定要隱藏附加元件嗎？"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "取消您的附加元件審核要求，元件將會停留在尚未完成狀態。如果您在幾天內沒有再送出審核要求，附加元件將會被刪除。"
+msgstr "若取消附加元件審核要求，元件將會停留在尚未完成狀態，等待審核中的版本將被停用。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "您是否確定要取消審核要求？"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "使用 {addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "使用 {addon_name} {start_sub_heading}下載影片{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
@@ -8346,11 +8341,11 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">製作您自己的附加元件</a>。我們提供免費託管和更新的服務，可以幫助你接觸到大量的使用者。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr "如果您已有附加元件的開發經驗，<a href=\"%(url)s\">快來成為編輯</a>！我們的編輯是具有技術背景的附加元件粉絲，負責審核附加元件原始碼的品質和穩定性。"
+msgstr "如果您已有附加元件的開發經驗，<a href=\"%(url)s\">快來成為附加元件審核者</a>！我們的審核者是具有技術背景的附加元件粉絲，負責審核附加元件原始碼的品質和穩定性。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -8809,22 +8804,22 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Mozilla 有任何關於可接受的提交的標準政策嗎？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr "是的。Mozilla 的 <a href=\"%(p_url)s\">附加元件政策</a> 當中描述了什麼是可接受的提交。此政策可能會隨時修訂，不另行公告。此外，AMO 團隊將使用 <a href=\"%(g_url)s\">編輯審核指南</a> 以確保您附加元件的功能與安全性符合當中的項目。"
+msgstr "是的。Mozilla 的 <a href=\"%(p_url)s\">附加元件政策</a> 當中描述了什麼是可接受的提交。此政策可能會隨時修訂，不另行公告。此外，附加元件審核者團隊將透過 <a href=\"%(g_url)s\">Add-on Review Guide</a> 來確保您附加元件的功能與安全性符合此指南當中的規範。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
 msgstr "我要如何送出附加元件以供審核？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
-msgstr "開發者工具儀表板可讓您上傳並提交附加元件到 AMO。您必須先註冊成為 AMO 使用者才能提交附加元件。提交附加元件前，請先閱讀 AMO 的 <a href=\"%(url)s\">編輯審核導覽</a>，以確保您的附加元件符合審核者的原則。"
+msgstr "開發者工具儀表板可讓您上傳並送出附加元件到 AMO。您必須先註冊成為 AMO 使用者才能提交附加元件。提交附加元件前，請先閱讀 AMO 的 <a href=\"%(url)s\">Add-on Review Guide</a>，以確保您的附加元件符合審核標準。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -8865,34 +8860,34 @@ msgid "Why must my add-on be reviewed?"
 msgstr "為什麼我的附加元件要被審核？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr "所有提交的附加元件，無論是新的或更新過的，必須經過審核以確保 Mozilla 使用者有穩定且安全的使用經驗。所有提交的附加元件將依照<a href=\"%(url)s\">審核者審核指南</a>中所述來審核。"
+msgstr "所有送出的附加元件，無論是新的或更新過的，都必須經過審核以確保 Mozilla 使用者有穩定且安全的使用體驗。所有送出的附加元件將依照 <a href=\"%(url)s\">Add-on Review Guide</a> 中的標準進行審核。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
 msgstr "誰審核我的附加元件?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr "附加元件將經由 AMO 編輯審核，AMO 編輯是一群願意透過審核附加元件來貢獻到 Mozilla 的開發者，確保 Mozilla 使用者能夠有穩定且安全的體驗。當與編輯溝通時，請保持禮貌、耐心，他們正在努力確認您的附加元件功能正常，且依照 <a href=\"%(url)s\">編輯審核指南</a> 當中定義的規範進行審核。"
+msgstr "附加元件將由 AMO 審核者進行審核。AMO 審核者是一群願意透過審核附加元件來貢獻 Mozilla 的開發者，以確保 Mozilla 使用者能夠有穩定且安全的體驗。當與審核者溝通時，請保持禮貌、耐心，他們正在努力確認您的附加元件功能正常，且依照 <a href=\"%(url)s\">Add-on Review Guide</a> 當中的標準進行審核。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "審核附加元件時的標準是什麼？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
-msgstr "Mozilla 編輯團隊在測試附加元件是否可上架到 AMO 時會依照 <a href=\"%(url)s\">Editors Reviewing Guide</a> 當中的規則。附加元件開發者在送交審查前請先閱讀此指南，確保您送出的附加元件並無指南中「常見問題」一節的的問題。如此可幫助編輯加速審查過程。"
+msgstr "附加元件審核團隊會依照 <a href=\"%(url)s\">Add-on Review Guide</a> 當中的規則來測試附加元件是否可上架到 AMO。開發者在送交審查前請先閱讀此指南，確保您送出的附加元件並無指南中「常見問題」一節的的問題。如此可幫助加速審查過程。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -8918,11 +8913,11 @@ msgid "number of problem areas discovered"
 msgstr "找到的問題數量"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
-msgstr "這就是為什麼要先閱讀 <a href=\"%(g_url)s\">編輯審核指南</a> 相當重要，如此才能確保附加元件如預期地設定。閱讀 <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> 這篇部落格文章也是個好點子，當中提供了如何能確保附加元件能夠順暢通過審核的方式。"
+msgstr "這就是為什麼先閱讀 <a href=\"%(g_url)s\">Add-on Review Guide</a> 相當重要，如此才能確保附加元件能如預期地執行。閱讀 <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> 這篇部落格文章也是個好點子，當中提供了如何能確保附加元件能夠順暢通過審核的方式。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -8950,16 +8945,14 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "您可以在開發者工具儀表板當中的「上傳新版本」並選擇您附加元件新的 .xpi 檔案來送出您附加元件的更新版本。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "更新檔也需要經過編輯的審核嗎？"
+msgstr "更新也需要經過審核嗎？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
-msgstr "不一定。若您只是修改附加元件說明，或者更新「maxVersion」因應 Mozilla 軟體更新，則無須重新審核。然何，如果您提交一個修改後的檔案，則該附加元件需要重新審核。"
+msgstr "不一定。若您只是修改附加元件說明，或者更新「maxVersion」以確保相容於新版的 Mozilla 軟體，則無須重新審核。但如果您提交一個更新的檔案，則該附加元件就需要重新審核。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
