@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 13:29+0000\n"
+"PO-Revision-Date: 2017-02-09 20:51+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -957,9 +957,8 @@ msgid "Manage"
 msgstr "管理"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Add-on Review"
-msgstr "新附加组件审核"
+msgstr "附加组件审核"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Admin Manage"
@@ -1369,9 +1368,8 @@ msgid "Manage API Keys"
 msgstr "管理 API 密钥"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "审核员"
+msgstr "审核员工具"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -2255,7 +2253,6 @@ msgid ""
 msgstr "以下附加组件已被您使用<b>添加到我最喜爱</b>功能标记为您的喜爱。目前此收藏集处于<b>公开</b>状态，每个人都能看到它。如果您不想让他人看到您喜爱哪些附加组件，可以点击下面的按钮设置为私密。"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
@@ -2383,11 +2380,10 @@ msgid "Collection Contributors"
 msgstr "收藏集贡献者"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr "您可以添加多个贡献者到此收藏集。贡献者可以添加和移除此收藏集内的附加组件，但不能更改收藏集的名称和描述。要添加一个贡献者，请在下方的框中输入他的电子邮件地址。贡献者必须有 Mozilla 附加组件 的账号。"
+msgstr "您可以添加多个贡献者到此收藏集。贡献者可以对此收藏集添加和移除附加组件，但不能更改收藏集的名称和描述。要添加一个贡献者，请在下方的框中输入他的电子邮件地址。贡献者必须有 Mozilla 附加组件 的账号。"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2568,7 +2564,7 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "有问题的附加组件或插件将自动被禁用且不再可用。"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
@@ -4061,9 +4057,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "本次上传校验失败，可能缺少完整校验结果。请在检查时特别注意这点。"
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "已申请审核"
+msgstr "已请求审核。"
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
@@ -4798,11 +4793,8 @@ msgid ""
 msgstr "删除您的附加组件将永久删除您已提交的该附加组件的所有版本和文件，无论其是否已上架。该附加组件ID将继续链接到您的账号，其他人不能使用同一ID提交版本。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
-"请输入下列文本已确认您的决定：\n"
-"           {slug}"
+msgstr "请输入下列文本以确认您的决定：{slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
@@ -4900,9 +4892,8 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr "此附加组件缺少一些提交发布的必要信息。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "此附加组件与您的 %(app)s 的版本不兼容。"
+msgstr "此附加组件没有任何版本。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
@@ -4992,9 +4983,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "此备注只有您和我们的审核员能看到。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "重新启用版本"
+msgstr "取消审核并禁用版本"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5590,7 +5580,6 @@ msgid "Port a Chrome Extension"
 msgstr "移植一个 Chrome 扩展"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr "Firefox 支持 WebExtension API，它们大多数情况下与 Google Chrome 和 Opera 支持的扩展 API 兼容，因此使您的扩展在 Firefox 中运行只需很少的更改。"
@@ -6018,7 +6007,6 @@ msgid "Notes for Reviewers"
 msgstr "给审核员的备注"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr "选填，请输入任何可能有助于审核员审核此附加组件的信息，例如测试所需的账户信息。"
 
@@ -6109,9 +6097,8 @@ msgid "Listing visibility"
 msgstr "公开程度"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "对所有 {0} 用户可见，并出现在搜索结果和列表页面中。"
+msgstr "{label_open}可见性：{label_close}对所有 {site_url} 访客可见，并出现在搜索结果和列表页面中。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6483,7 +6470,6 @@ msgid "More Information Requested"
 msgstr "要求更多信息"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Contains Reviewer Comment"
 msgstr "包含审核员意见"
 
@@ -6600,7 +6586,6 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>匿名</i> 来自 %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
 msgstr "返回审核员工具首页"
 
@@ -6720,9 +6705,8 @@ msgid "Reviews This Month"
 msgstr "本月审核数"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "审核员"
+msgstr "新审核员"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -6759,9 +6743,8 @@ msgid "Save"
 msgstr "保存"
 
 #: src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "附加组件编辑器性能"
+msgstr "附加组件审核员效绩"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -6928,14 +6911,12 @@ msgid "Update the whiteboard"
 msgstr "更新白板"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "未上架队列"
+msgstr "未上架审核页面"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "上次审核"
+msgstr "上架审核页面"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7300,12 +7281,10 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "版本：%(version)s &bull; 大小：%(size)s &bull; MD5 散列值：%(md5)s &bull; MIME 类型：%(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
 msgstr "文件比较 :: 审核员工具"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
 msgstr "文件查看器 :: 审核员工具"
 
@@ -8330,11 +8309,11 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">制作你自己的附加组件</a>。我们提供免费的托管和更新服务，并能帮助你接触到大量的用户群体。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr "如果你有附加组件的开发经验，<a href=\"%(url)s\">成为一名编辑</a>也不错！我们的编辑是有技术背景的附加组件爱好者，负责审查附加组件源代码的质量和稳定性。"
+msgstr "如果你有附加组件开发经验，<a href=\"%(url)s\">成为一名附加组件审核员</a>吧！我们的审核员是有技术背景的附加组件粉丝，负责审查附加组件源代码的质量和稳定性。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
