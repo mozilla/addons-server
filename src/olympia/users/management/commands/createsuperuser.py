@@ -5,6 +5,7 @@ Inspired by django.contrib.auth.management.commands.createsuperuser.
 (http://bit.ly/2cTgsNV)
 """
 import json
+import os
 from datetime import datetime
 
 from olympia.api.models import APIKey
@@ -39,11 +40,19 @@ and email address and that's it.
         )
 
         parser.add_argument(
-            '--ui-testing',
-            action='store_true',
-            dest='ui_test',
+            '--save-api-credentials',
+            type=str,
+            dest='save_api_credentials',
             default=False,
-            help='Creates variables.json for ui testing on olympia.dev',
+            help='Saves the generated API credentials into a JSON file',
+        )
+
+        parser.add_argument(
+            '--hostname',
+            type=str,
+            dest='hostname',
+            default=False,
+            help='Sets the hostname of the credentials JSON file',
         )
 
         CreateSuperUserCommand.add_arguments(self, parser)
@@ -90,21 +99,27 @@ and email address and that's it.
                 'api-secret': apikey.secret
             }))
 
-        if options.get('ui_test', False):
+        if options.get('save_api_credentials', False):
             # json object for variables file
             variables = {}
             variables['api'] = {}
 
+            # set hostname to stdin or env variable
+            if options.get('hostname', False):
+                hostname = options.get('hostname')
+            else:
+                hostname = os.environ['PYTEST_BASE_URL']
+
             # export to variables.json object
             variables['api'].update({
-                'olympia.dev': dict([
+                hostname: dict([
                     ('username', user.username,),
                     ('jwt_issuer', apikey.key),
                     ('jwt_secret', apikey.secret)
                 ])
             })
-
-            with open('tests/ui/variables.json', 'w') as outfile:
+            options.copy
+            with open(options.get('save_api_credentials'), 'w') as outfile:
                 json.dump(variables, outfile, indent=2)
 
     def get_value(self, field_name):
