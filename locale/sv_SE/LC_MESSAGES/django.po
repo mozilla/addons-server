@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 16:08+0000\n"
+"PO-Revision-Date: 2017-02-09 16:36+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2284,13 +2284,12 @@ msgstr ""
 "dölja den från offentligheten, klicka på knappen nedan för att göra den privat."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Tillägg du markerar som favoriter med hjälp av funktionen <b>Lägg till i favoriter</b> syns nedan. Denna samling är för närvarande <b>privat</b>, vilket innebär att enbart du kan se den.  Om du vill"
-" visa den offentligt, klicka på knappen nedan för att göra den publik."
+"Tillägg du markerar som favoriter med hjälp av funktionen <b>Lägg till i favoriter</b> syns nedan. Denna samling är för närvarande <b>privat</b>, vilket innebär att enbart du kan se den. Om du vill "
+"att alla ska kunna se dina favoriter, klicka på knappen nedan för att göra den publik."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2418,13 +2417,12 @@ msgid "Collection Contributors"
 msgstr "Bidragare till samling"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Du kan lägga till flera bidragsgivare till denna samling.  En bidragsgivare kan lägga till och ta bort tillägg från denna samling, men kan inte ändra dess namn eller beskrivning.  För att lägga till"
-" en bidragsgivare, ange dess e-postadress i rutan nedan. Bidragsgivare måste ha ett Mozilla-konto för tillägg."
+"Du kan lägga till flera bidragsgivare till denna samling. En bidragsgivare kan lägga till och ta bort tillägg från denna samling, men kan inte ändra dess namn eller beskrivning. För att lägga till "
+"en bidragsgivare, ange dess e-postadress i rutan nedan. Bidragsgivare måste ha ett Mozilla tilläggskonto."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2604,13 +2602,13 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Det tillägg eller plugin med problem kommer automatiskt inaktiveras och kan inte längre användas."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
 "När Mozilla får kännedom om tillägg, insticksmoduler eller andra program från tredje part som allvarligt äventyrar %(app)s säkerhet och stabilitet, eller prestanda och som uppfyller <a "
-"href=\"%(criteria)s\">vissa kriterier</a>, kan programvaran blockeras från allmän användning.  För mer information, vänligen läs <a href=\"%(support)s\">den här supportartikeln</a>."
+"href=\"%(criteria)s\">vissa kriterier</a>, kan programvaran blockeras från allmän användning. För mer information, vänligen läs <a href=\"%(support)s\">den här supportartikeln</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3712,11 +3710,11 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Requests that the extension be granted permissions according to the activeTab specification."
-msgstr ""
+msgstr "Begär att tillägget beviljas behörigheter enligt activeTab specifikation."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Gives the extension access to the chrome.alarms API."
-msgstr ""
+msgstr "Ger tillägget åtkomst till chrome.alarms API."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks."
@@ -4106,9 +4104,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Denna uppladdning har misslyckats med validering och kan sakna fullständigt valideringsresultat. Ta hänsyn till detta vid granskning."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "Granskning begärd"
+msgstr "Granskning begärd."
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
@@ -4911,11 +4908,8 @@ msgstr ""
 "ditt konto, så att andra inte kommer att kunna skicka in versioner med samma ID."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
-"Ange följande text för att bekräfta ditt beslut:\n"
-"           {slug}"
+msgstr "Ange följande text för att bekräfta ditt beslut: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
@@ -5013,9 +5007,8 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Detta tillägg är inte kompatibel med din version av %(app)s."
+msgstr "Detta tillägg har inga versioner."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
@@ -5108,9 +5101,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Dessa anteckningar visas endast för dig och våra granskare."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "Återaktiverad version"
+msgstr "Avbryt granskning och inaktivera versionen"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5723,11 +5715,10 @@ msgid "Port a Chrome Extension"
 msgstr "Porta ett Chrome-tillägg"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"Firefox stöder WebExtension API, som i de flesta fall är kompatibla med tilläggs API:er som stöds av Google, Chrome och Opera, så dina tillägg kommer att kunna köras i Firefox utan några större "
+"Firefox stöder WebExtension API, som i de flesta fall är kompatibla med tilläggs API:er som stöds av Chrome, Opera och Edge, så dina tillägg kommer att kunna köras i Firefox utan några större "
 "förändringar."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
@@ -6163,12 +6154,8 @@ msgid "Notes for Reviewers"
 msgstr "Anteckning för granskare"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
-"Du kan även ange all information som kan vara användbar\n"
-"                              till redaktören som ska granska detta tillägg, såsom\n"
-"                              kontoinformation för tester."
+msgstr "Alternativt, ange information som kan vara till nytta för den som granskar detta tillägg, till exempel testkontoinformation."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
@@ -6257,15 +6244,15 @@ msgid "Listing visibility"
 msgstr "Tilläggets synlighet"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "Synlig för alla på {0} och ingår i sökresultat och listningssidor."
+msgstr "{label_open}Synlig:{label_close} Synlig för alla på {site_url} och ingår i sökresultat och listningssidor."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "Kommer inte att inkluderas i sökresultaten och på dess listningssida anges att du har inaktiverat det. Nya bidragsversioner för listning kommer inte att godtas i detta tillstånd."
+msgstr ""
+"{label_open}Osynlig:{label_close} Kommer inte att inkluderas i sökresultaten och på dess listningssida anges att du har inaktiverat det. Nya bidragsversioner för listning kommer inte att godtas i "
+"detta tillstånd."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -6347,19 +6334,16 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Är du säker på att du vill dölja ditt tillägg?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
-"Avbryta din begäran om granskning kommer att markera ditt tillägg som ofullständig. Om du inte slutför ditt tillägg efter flera dagar genom att åter begära granskning, kommer det att tas bort."
+msgstr "Att avbryta din begäran om granskning kommer att markera ditt tillägg som ofullständig och de versioner som väntar på granskning kommer att inaktiveras."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Är du säker på att du vill avbryta din begäran om granskning?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockera annonser {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Ladda ner videor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
@@ -6639,9 +6623,8 @@ msgid "More Information Requested"
 msgstr "Mer information begärd"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "Innehåller redigeringskommentar"
+msgstr "Innehåller granskningskommentar"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
@@ -6757,7 +6740,6 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>anonym</i> den %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
 msgstr "Gå tillbaka till hemsidan för redigeringsverktyg"
 
@@ -6880,9 +6862,8 @@ msgid "Reviews This Month"
 msgstr "Recensioner denna månad"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "Granskare"
+msgstr "Nya granskare"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -6920,9 +6901,8 @@ msgid "Save"
 msgstr "Spara"
 
 #: src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "Prestanda tilläggseditor"
+msgstr "Granskningsprestanda för tillägg"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -7092,14 +7072,12 @@ msgid "Update the whiteboard"
 msgstr "Uppdatera anslagstavla"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Olistade köer"
+msgstr "Granskningssida för olistade"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Senaste granskning"
+msgstr "Granskningssida för listade"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7467,14 +7445,12 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "Version: %(version)s &bull; Storlek: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetyp: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "Filjämförelse :: Redigeringsverktyg"
+msgstr "Filjämförelse :: Granskningsverktyg"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "Filvisare :: Redigeringsverktyg"
+msgstr "Filvisare :: Granskningsverktyg"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
@@ -8503,11 +8479,11 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Göra egna tillägg</a>. Vi tillhandahåller gratis webbhotell och uppdateringstjänster och kan hjälpa dig att nå en stor publik av användare."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr "Om du har erfarenhet av tilläggsutveckling, <a href=\"%(url)s\"> bli en redigerare</a>! Våra redigerare är tilläggsfans med teknisk bakgrund som granskar tillägg för kodkvalitet och stabilitet."
+msgstr "Om du har utvecklingserfarenhet av tillägg, <a href=\"%(url)s\"> bli en granskare av tillägg</a>! Våra granskare är fans med teknisk bakgrund som granskar tillägg för kodkvalitet och stabilitet."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9009,26 +8985,26 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Har Mozilla en policy på plats om vad som är en acceptabel inskickning?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Ja. Mozillas <a href=\"%(p_url)s\">tilläggspolicy</a> beskriver vad som är en acceptabel inskickning. Denna policy kan ändras utan förvarning.  Dessutom använder AMO redaktion <a "
-"href=\"%(g_url)s\">riktlinjer för redigerare</a> för att säkerställa att ditt tillägg uppfyller de särskilda riktlinjer för funktionalitet och säkerhet."
+"Ja. Mozillas <a href=\"%(p_url)s\">tilläggspolicy</a> beskriver vad som är ett acceptabelt bidrag. Denna policy kan ändras utan förvarning. Dessutom använder tilläggsgranskare <a "
+"href=\"%(g_url)s\">riktlinjer för granskare</a> för att säkerställa att ditt tillägg uppfyller de särskilda riktlinjer för funktionalitet och säkerhet."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
 msgstr "Hur skickar jag in mitt tillägg för granskning?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
 "Översikten för utvecklingsverktyg gör att du kan ladda upp och skicka in tillägg till AMO. Du måste vara registrerad AMO-användare innan du kan skicka in ett tillägg. Innan du skickar in ditt "
-"tillägg bör du ha läst AMO:s <a href=\"%(url)s\">riktlinjer för redigerare</a> för att säkerställa att ditt tillägg uppfyller de riktlinjer som används av redigerare för att granska tillägg."
+"tillägg bör du ha läst <a href=\"%(url)s\">riktlinjer för granskare</a> för att säkerställa att ditt tillägg uppfyller de riktlinjer som används av granskare."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9074,41 +9050,41 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Varför måste mitt tillägg bli granskat?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Alla tillägg som skickas in, vare sig nya eller uppdaterade, granskas för att se till att Mozilla-användare har en stabil och säker upplevelse. Alla inskickade tillägg granskas med hjälp av "
-"riktlinjerna i <a href=\"%(url)s\">riktlinjer för redigerare</a>."
+"riktlinjerna i <a href=\"%(url)s\">riktlinjer för granskare</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
 msgstr "Vem granskar mitt tillägg?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Tillägg granskas av AMO:s redigerare, en grupp begåvade utvecklare som frivilligt hjälper Mozilla-projekt genom att granska tillägg för att säkerställa en stabil och säker upplevelse för Mozillas "
-"användare. Vid kommunikation med redigerare, vänligen var artig, tålmodig och respektfull, eftersom de arbetar hårt för att se till att ditt tillägg är korrekt och följer riktlinjerna i <a "
-"href=\"%(url)s\">riktlinjer för redigerare</a>."
+"Tillägg granskas av AMO:s granskare, en grupp begåvade utvecklare som frivilligt hjälper Mozilla-projekt genom att granska tillägg för att säkerställa en stabil och säker upplevelse för Mozillas "
+"användare. Vid kommunikation med granskare, vänligen var artig, tålmodig och respektfull, eftersom de arbetar hårt för att se till att ditt tillägg är korrekt och följer riktlinjerna i <a "
+"href=\"%(url)s\">riktlinjer för granskare</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Vilka riktlinjer används för att granska mitt tillägg?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"Mozilla redaktionen följer <a href=\"%(url)s\">riktlinjer för redigerare</a> när man testar ett tillägg för godkännande på AMO. Det är viktigt att tilläggsutvecklare granskar denna guide för att se "
-"till att gemensamma problemområden behandlas innan de skickar in tillägg för granskning. Detta kommer att kraftigt bidra till att påskynda granskningsprocessen."
+"Mozilla tilläggsgranskare följer <a href=\"%(url)s\">riktlinjer för granskare</a> när man testar ett tillägg för godkännande på AMO. Det är viktigt att tilläggsutvecklare granskar denna guide för "
+"att se till att gemensamma problemområden behandlas innan de skickar in tillägg för granskning. Detta kommer att kraftigt bidra till att påskynda granskningsprocessen."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9134,12 +9110,12 @@ msgid "number of problem areas discovered"
 msgstr "antal upptäckta problemområden"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Det är därför det är mycket viktigt att läsa <a href=\"%(g_url)s\">riktlinjer för granskare</a> för att säkerställa att ditt tillägg installeras som förväntat.  Det är också en bra idé att läsa "
+"Det är därför det är mycket viktigt att läsa <a href=\"%(g_url)s\">riktlinjer för granskare</a> för att säkerställa att ditt tillägg installeras som förväntat. Det är också en bra idé att läsa "
 "blogginlägg, <a href=\"%(blog_url)s\">Lyckas med granskningen av ditt tillägg</a> som ger god inblick i att säkerställa en smidig granskning av ditt tillägg."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9170,18 +9146,16 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "Du kan skicka in en uppdatering för ditt tillägg via översikten för utvecklingsverktyg genom att välja alternativet \"Ladda upp en ny version\" och ladda upp en ny .xpi fil för ditt tillägg."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Behöver min uppdatering granskas av redigerare?"
+msgstr "Behöver min uppdatering granskas av granskare?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
 "Det beror på. Om du bara ändrar en beskrivning för ditt tillägg eller uppdaterar en \"maxVersion\" för att säkerställa kompatibilitet med en ny programuppdatering av Mozilla, då behöver inte ditt "
-"tillägg granskas på nytt. Men om du skickar in en ny uppdaterad fil, då behöver uppdateringen av ditt tillägg granskas av en redigerare."
+"tillägg granskas på nytt. Men om du skickar in en ny uppdaterad fil, då behöver uppdateringen av ditt tillägg granskas av en granskare."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -10935,9 +10909,8 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "mitt sdk-baserade tillägg kan inte uppgraderas"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "mitt tillägg granskas av en redigerare"
+msgstr "mitt tillägg granskas av en granskare"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
