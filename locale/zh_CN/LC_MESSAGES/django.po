@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 20:51+0000\n"
+"PO-Revision-Date: 2017-02-09 21:06+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -6101,10 +6101,9 @@ msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and i
 msgstr "{label_open}可见性：{label_close}对所有 {site_url} 访客可见，并出现在搜索结果和列表页面中。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "不会出现在搜索结果中，其详情页面将显示您已禁用它。此状态下提交的新版本将不会被接受。"
+msgstr "{label_open}可见性：{label_close}不会出现在搜索结果中，其详情页面将显示您已禁用它。此状态下不接受提交新版本。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -6185,7 +6184,6 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "您确定想要隐藏您的附加组件？"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr "撤销您的附加组件审核请求将使其停留在未完成状态。如果您不在几天内重新请求审核，它将被删除。"
 
@@ -6194,9 +6192,8 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "您确定要撤销您的审核请求吗？"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "广告过滤 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
@@ -8772,7 +8769,7 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Mozilla 有任何有关可接受的提交的政策标准吗？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
@@ -8783,7 +8780,7 @@ msgid "How do I submit my add-on for review?"
 msgstr "我该如何提交我的附加组件以供审核？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
@@ -8828,7 +8825,7 @@ msgid "Why must my add-on be reviewed?"
 msgstr "为什么我的附加组件必须经过审核？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
@@ -8839,23 +8836,23 @@ msgid "Who reviews my add-on?"
 msgstr "谁审核我的附加组件？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
-msgstr "附加组件由 AMO 编辑审核，他们是帮助 Mozilla 项目的一群优秀开发者，工作是审核附加组件确保 Mozilla 用户获得稳定和安全的体验。与编辑沟通时，请保持礼貌、耐心和尊重，他们认真工作是为了确保您的附加组件能够正常运行并且遵循了<a href=\"%(url)s\">编辑审核指南</a>中描述的各项要求。"
+msgstr "附加组件由附加组件审核员审核，他们是帮助 Mozilla 项目的一群优秀开发者，工作是审核附加组件确保 Mozilla 用户获得稳定和安全的体验。与审核员沟通时，请保持礼貌、耐心和尊重，他们认真工作是为了确保您的附加组件能够正常运行并且遵循了<a href=\"%(url)s\">附加组件审核指南</a>中描述的各项要求。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "审核我的附加组件采用哪些准则？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
-msgstr "Mozilla 编辑团队在测试一个附加组件是否可上架 AMO 时遵循<a href=\"%(url)s\">编辑审核指南</a>。附加组件开发者在提交附加组件进行审核前，请详细阅读此指南，确保您的附加组件并不涉及“常见问题”一节中所指出的问题。这有助于加快审核流程。"
+msgstr "附加组件审核员团队在测试一个附加组件是否可上架 AMO 时遵循<a href=\"%(url)s\">附加组件审核指南</a>。附加组件开发者在提交附加组件进行审核前，请详细阅读此指南，确保您的附加组件并不涉及“常见问题”一节中所指出的问题。这有助于加快审核流程。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -8881,7 +8878,7 @@ msgid "number of problem areas discovered"
 msgstr "发现问题区域的数量"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
@@ -8913,16 +8910,14 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "您可以在开发者工具面板中选择“上传新版本”，然后上传您的附加组件的 .xpi 文件为您的附加组件提交更新。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
 msgstr "我的更新是否需要被审核员审核？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
-msgstr "这看情况。如果您只是简单的修改了您附加组件的描述或者更新“maxVersion”值以确定兼容一个新的 Mozilla 软件版本，那么您的附加组件并不需要再被审核一次。但如果，您提交了一个新的更新的文件，那么您的附加组件更新仍然需要被审核员审核。"
+msgstr "这看情况。如果您只是简单的修改了您附加组件的描述或者更新“maxVersion”值以确定兼容一个新的 Mozilla 软件版本，那么您的附加组件并不需要再被审核一次。但是，如果您提交了文件的更新，那么您的附加组件更新仍然需要被审核员审核。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -10580,7 +10575,6 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "我的基于SDK的附加组件不能升级"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
 msgstr "我的附加组件已被一名审核员审核"
 
