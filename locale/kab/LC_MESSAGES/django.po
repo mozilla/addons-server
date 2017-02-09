@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 14:10+0000\n"
+"PO-Revision-Date: 2017-02-09 14:23+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2414,13 +2414,12 @@ msgid "Collection Contributors"
 msgstr "Imttekkiyen n tagrumma"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Tzemreḍ ad ternuḍ deqs n imttekkiyen ar tagrumma-agi. Imttekki yezmer ad yernu neɣ ad yekkes izegrar si tagrumma-agi, acu kan ur yezmir ara ad isnifel isem neɣ aglam. Akken ad ternuḍ imttekki, "
-"sekcem imayl ines deg usfaylu daw-a. Yessefk imttekkiyen ad yili ɣur-sen amiḍan n Mozilla Add-ons."
+"Tzermeḍ ad ternuḍ deqs n imttekkiyen ar tagrumma-agi. Amttekki yezmer ad yernu neɣ ad yekkes izegrar si tagrumma-agi, acu kan ur izmir ara ad isnifel isemneɣ aglam. Akken ad ternuḍ amttekki, sekcem "
+"imayl ines deg usfaylu-agi daw-a. Yessefk imttekkiyen ad sɛun amiḍan n izegrar n Mozilla."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -6515,7 +6514,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
-msgstr ""
+msgstr "Yettwasezmel"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Updates"
@@ -6548,7 +6547,7 @@ msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Tuzna snat n tikal"
 
 #: src/olympia/editors/tasks.py
 msgid "Thanks for submitting your Theme"
@@ -6560,7 +6559,7 @@ msgstr "Ugur di tuzna n usentel inek"
 
 #: src/olympia/editors/tasks.py
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Tuzna n usentel tettwacreḍ i usezmel"
 
 #: src/olympia/editors/tasks.py
 msgid "A question about your Theme submission"
@@ -7017,7 +7016,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/logs.html src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/editors/templates/editors/themes/single.html
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Reviewer"
-msgstr ""
+msgstr "Amcegger"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Add-on has been deleted."
@@ -7111,7 +7110,7 @@ msgstr "Tigawt"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Reason"
-msgstr ""
+msgstr "Acuɣer"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "There are currently no reviews."
@@ -7222,7 +7221,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Yettwacreḍ: {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Approve Theme"
@@ -7230,7 +7229,7 @@ msgstr "Qbel asentel"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Field required"
-msgstr ""
+msgstr "Urti yettwasra"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Enter the ID or URL of the duplicate"
@@ -7250,7 +7249,7 @@ msgstr "Steqsi anaẓuṛ"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Ini-d acuɣer acraḍ"
 
 #: src/olympia/files/forms.py
 msgid "Cannot diff a version against itself"
@@ -7364,7 +7363,7 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "Ameskan n ufaylu :: Ifecka n imcegger"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
@@ -7648,7 +7647,7 @@ msgstr "Iseqdacen urmiden"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Last Updated"
-msgstr ""
+msgstr "Asnifel aneggaru"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "Cancel Installation"
@@ -7656,7 +7655,7 @@ msgstr "Sefsex asebded"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Afran n waggur n Mozilla &rsquo;!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
@@ -7720,7 +7719,7 @@ msgstr "Dollar n Baṛbados"
 
 #: src/olympia/lib/constants.py
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "Ataka n Bengladic"
 
 #: src/olympia/lib/constants.py
 msgid "Bulgaria Lev"
@@ -7736,7 +7735,7 @@ msgstr "Burundi Franc"
 
 #: src/olympia/lib/constants.py
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "Adular n Birmud"
 
 #: src/olympia/lib/constants.py
 msgid "Brunei Darussalam Dollar"
@@ -7748,19 +7747,19 @@ msgstr "Bolivya Boliviano"
 
 #: src/olympia/lib/constants.py
 msgid "Brazil Real"
-msgstr ""
+msgstr "Ariyal n Brazil"
 
 #: src/olympia/lib/constants.py
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "Adular n Bahamas"
 
 #: src/olympia/lib/constants.py
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "Angultrum n Butan"
 
 #: src/olympia/lib/constants.py
 msgid "Botswana Pula"
-msgstr ""
+msgstr "Apula n Butswana"
 
 #: src/olympia/lib/constants.py
 msgid "Belarus Ruble"
@@ -7776,7 +7775,7 @@ msgstr "Adulaṛ n Kanada"
 
 #: src/olympia/lib/constants.py
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "Afrank n Kungu /Kinshasa"
 
 #: src/olympia/lib/constants.py
 msgid "Switzerland Franc"
@@ -7848,7 +7847,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "Adular n Fiji"
 
 #: src/olympia/lib/constants.py
 msgid "Falkland Islands (Malvinas) Pound"
@@ -7860,27 +7859,27 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Georgia Lari"
-msgstr ""
+msgstr "Alari n Jyurjya"
 
 #: src/olympia/lib/constants.py
 msgid "Guernsey Pound"
-msgstr ""
+msgstr "Apawnd n Girnizi"
 
 #: src/olympia/lib/constants.py
 msgid "Ghana Cedi"
-msgstr ""
+msgstr "Asidi n Gana"
 
 #: src/olympia/lib/constants.py
 msgid "Gibraltar Pound"
-msgstr ""
+msgstr "Apawnd n Jibraltar"
 
 #: src/olympia/lib/constants.py
 msgid "Gambia Dalasi"
-msgstr ""
+msgstr "Adalsi n Gambya"
 
 #: src/olympia/lib/constants.py
 msgid "Guinea Franc"
-msgstr ""
+msgstr "Afrank n Ɣinya"
 
 #: src/olympia/lib/constants.py
 msgid "Guatemala Quetzal"
