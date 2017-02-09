@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 12:10+0000\n"
+"PO-Revision-Date: 2017-02-09 16:35+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -873,6 +873,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"Shihni <a href=\"%(support)s\">ndarjen te asistenca</a> për këtë shtesë që të shihni nëse ka asistencë. Mund të provoni edhe të pyesni <a href=\"https://discourse.mozilla-community.org/c/add-ons"
+"/add-on-support\">bashkësinë e shtesave</a> për ndihmë."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -3744,15 +3746,15 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Requests that the extension be granted permissions according to the activeTab specification."
-msgstr ""
+msgstr "Kërkesa që zgjerimit t’i akordohen leje sipas përcaktimeve të activeTab."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Gives the extension access to the chrome.alarms API."
-msgstr ""
+msgstr "I jep zgjerimit hyrje te API chrome.alarms."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks."
-msgstr ""
+msgstr "Lexoni dhe ndryshoni faqerojtës."
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -3984,7 +3986,7 @@ msgstr "Shqyrtim"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
-msgstr ""
+msgstr "Duke filluar me Firefox 53-shin, zgjerimet e reja në këtë sajt mund të jenë vetëm të llojit WebExtensions."
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -4150,7 +4152,7 @@ msgstr "Është kërkuar shqyrtim"
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
-msgstr ""
+msgstr "Është kërkuar shqyrtim.  Që të vazhdohet, duhet të jepni hollësi të mëtejshme."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5010,7 +5012,7 @@ msgstr "Fshije këtë temë."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Përpara se të mund të parashtrohet për botim, kësaj shtese i mungojnë disa të dhëna të domosdoshme."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 #, fuzzy
@@ -5019,7 +5021,7 @@ msgstr "Kjo shtesë s’është e përputhshme me versionin tuaj të %(app)s."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Kjo shtesës’ka ndonjë version të miratuar, ndaj faqet publike për të (përfshi versione beta) janë të fshehur."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -5302,7 +5304,7 @@ msgstr "Prodho kredenciale të reja"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Ju lutemi, plotësoni shtesën tuaj duke shtuar një version apo tejtëdhëna që mungojnë."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -5340,7 +5342,7 @@ msgstr "Përputhshmëria e shtesës tuaj me Multi Process Firefox (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Paraqitur në këtë sajt pas kalimit me sukses të shqyrtimit të kodit. Për përditësimet e vetvetishme kujdeset ky sajt."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Listed Version:"
@@ -5364,7 +5366,7 @@ msgstr "Në shqyrtime radha s’ruhet në mënyrë strikte"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Nënshkruar për vetëshpërndarje. Për përditësimet kujdeseni ju."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
@@ -5568,7 +5570,7 @@ msgstr "Njoftues Përputhshmërie"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Promote"
-msgstr ""
+msgstr "Promovoni"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get Your Add-on Featured"
@@ -5576,11 +5578,11 @@ msgstr "Nxirreni Në Pah Shtesën Tuaj"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Buton \"Merreni Shtesën\""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
-msgstr ""
+msgstr "Ligjore"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
@@ -5596,19 +5598,19 @@ msgstr "Shqyrtoni Shtesa"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Shqyrtuesit vullnetarë ndihmojnë të mbahen shtesat të parrezikuara dhe të besueshme për përdorim. Gëzojnë gjithashtu përfitime të mira!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
-msgstr ""
+msgstr "Bëhuni pjesë e jona!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
-msgstr ""
+msgstr "Shkruani Kod"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Ndihmoni të përmirësohen shtesat, duke kontribuar me aftësitë tuaja programuese."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get started"
@@ -5620,11 +5622,11 @@ msgstr "Më Tepër Rrugë Për Pjesëmarrje"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Nuk ju duhen aftësi kodimi për të ndihmuar të mbahet Firefox-i si shfletuesi më i personalizueshëm në qarkullim!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "See how"
-msgstr ""
+msgstr "Shihni se si"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Manage Your Add-on"
@@ -5653,7 +5655,7 @@ msgstr "Ç’ka të Re"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
-msgstr ""
+msgstr "Gëzuar Vitin e Ri! Shihni se ç’sjell 2017-a për shtesat."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Show Me"
@@ -6355,7 +6357,7 @@ msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
-msgstr ""
+msgstr "Merrni lehtë video nga YouTube, Dailymotion, Facebook, dhe shumica e sajteve të tjerë video përmes këtij mjeti të thjeshtë shkarkimesh."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7474,7 +7476,7 @@ msgstr "Vleftësimi dështoi:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Lëndë kartele për të cilën nuk mbulohet theksim sintakse"
 
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
