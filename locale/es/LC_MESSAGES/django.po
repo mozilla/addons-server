@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 12:50+0000\n"
+"PO-Revision-Date: 2017-02-09 12:56+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -7542,7 +7542,7 @@ msgstr "No se admite el contenido del archivo para resaltar sintaxis"
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "Puede que el resultado esté roto: ten cuidado y ¡%(link_start)senvía un informe%(link_end)s inmediatamente!"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
@@ -8558,13 +8558,13 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Crea tu propio complemento</a>. Nosotros brindamos alojamiento gratis y servicios de actualización, y podemos ayudarte a llegar a un gran público de usuarios."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Si tienes experiencia en el desarrollo de complementos, ¡<a href=\"%(url)s\">conviértete en editor</a>! Nuestros editores son fanáticos de los complementos y poseen experiencia técnica que les "
-"permite revisar el código de los complementos y comprobar su calidad y estabilidad."
+"Si tienes experiencia en el desarrollo de complementos, ¡<a href=\"%(url)s\">conviértete en revisor de complementos</a>! Nuestros revisores son fanáticos de los detalles técnicos y revisan los "
+"complementos para comprobar su calidad y estabilidad."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9073,26 +9073,26 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "¿Dispone Mozilla de una política en relación a lo que se considera un envío aceptable?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Sí. La <a href=\"%(p_url)s\">Política de complementos</a> de Mozilla especifíca qué envíos son aceptables. Esta política está sujeta a cambios sin previo aviso. Además, el equipo editorial de AMO "
-"utiliza la <a href=\"%(g_url)s\">Guía de revisión para editores</a> para asegurarse de que tu complemento cumple con requisitos específicos de funcionalidad y seguridad."
+"Sí. La <a href=\"%(p_url)s\">Política de complementos</a> de Mozilla especifíca qué envíos son aceptables. Esta política está sujeta a cambios sin previo aviso. Además, el equipo de revisores de "
+"complementos utiliza la <a href=\"%(g_url)s\">Guía de revisión de complementos</a> para asegurarse de que tu complemento cumple con requisitos específicos de funcionalidad y seguridad."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
 msgstr "¿Cómo envío mi complemento a revisión?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
-"El panel de Herramientas para desarrolladores te permite subir y enviar complementos a AMO. Para poder hacerlo, debes ser un usuario de AMO registrado. Asegúrate de leer primero la <a "
-"href=\"%(url)s\">Guía de revisión para editores</a> antes de enviar tu complemento con el fin de que cumpla con las directrices que los editores aplican en la revisión de complementos."
+"El panel de Herramientas para desarrolladores te permite subir y enviar complementos a AMO. Para poder hacerlo, debes registrarte como usuario de AMO. Antes de enviar tu complemento, asegúrate de "
+"leer la <a href=\"%(url)s\">Guía de revisión de complementos</a> para que cumpla con las directrices que los revisores aplican en la revisión de complementos."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
