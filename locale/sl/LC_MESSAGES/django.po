@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 16:09+0000\n"
+"PO-Revision-Date: 2017-02-09 16:21+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2673,13 +2673,13 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Problematičen dodatek ali vtičnik bo samodejno onemogočen in ne bo več uporaben."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
 "Mozilla lahko onemogoči uporabo dodatkov, vtičnikov ali druge programske opreme tretjih oseb, ki resno ogroža varnost, stabilnost ali zmogljivost %(app)sa in ustreza <a "
-"href=\"%(criteria)s\">določenim merilom</a>.  Za več podatkov preberite <a href=\"%(support)s\">ta članek podpore</a>."
+"href=\"%(criteria)s\">določenim merilom</a>. Za več podatkov preberite <a href=\"%(support)s\">ta članek podpore</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -5777,10 +5777,10 @@ msgid "Port a Chrome Extension"
 msgstr "Izvozite razširitev za Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr "Firefox podpira API-je WebExtension, ki so v večini primerov združljivi z API-ji, ki jih podpira Chrome in Opera, zato bodo vaše razširitve delovale tudi v Firefoxu z le nekaj spremembami."
+msgstr ""
+"Firefox podpira API-je WebExtension, ki so v večini primerov združljivi z API-ji, ki jih podpirajo Chrome, Opera in Edge, zato bodo vaše razširitve delovale tudi v Firefoxu z le nekaj spremembami."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
@@ -6412,9 +6412,8 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Res želite preklicati zahtevo za pregled?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Znebite se oglasov {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Prenašajte videoposnetke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
@@ -9114,13 +9113,13 @@ msgid "How do I submit my add-on for review?"
 msgstr "Kako pošljem svoj dodatek v pregled?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
-"Nadzorna plošča orodij za razvijalce vam bo omogočala naložiti in poslatii dodatke na AMO. Na AMO morate biti registriran uporabnik, preden lahko pošljete svoj dodatek. Preden pošljete dodatek, "
-"preberite <a href=\"%(url)s\">Vodnik za preglede za urednike</a>, da se prepričate, da vaš dodatek upošteva smernice, po katerih recenzenti pregledujejo dodatke."
+"Nadzorna plošča orodij za razvijalce vam bo omogočala naložiti in poslati dodatke na AMO. Preden lahko pošljete svoj dodatek, morate biti na AMO registriran uporabnik. Preden pošljete dodatek, "
+"preberite <a href=\"%(url)s\">Vodnik za pregled dodatkov</a> in se prepričate, da vaš dodatek ustreza smernicam, po katerih pregledovalci pregledujejo dodatke."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
