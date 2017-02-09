@@ -132,7 +132,6 @@ class TestFileViewer(TestCase):
     @freeze_time('2017-01-08 02:01:00')
     def test_dest(self):
         viewer = FileViewer(make_file(1, get_file('webextension.xpi')))
-        
         assert viewer.dest == os.path.join(
             settings.TMP_PATH, 'file_viewer',
             '0108', str(self.viewer.file.pk))
