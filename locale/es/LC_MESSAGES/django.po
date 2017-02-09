@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 12:56+0000\n"
+"PO-Revision-Date: 2017-02-09 14:01+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -9139,41 +9139,42 @@ msgid "Why must my add-on be reviewed?"
 msgstr "¿Por qué se tiene que revisar mi complemento?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Todos los complementos enviados, tanto si son nuevos como actualizados, son revisados para garantizar que los usuarios de Mozilla tengan una experiencia estable y segura. Todos los envíos de "
-"complementos son revisados de acuerdo a las directrices definidas en la <a href=\"%(url)s\">Guía de revisión para editores</a>."
+"complementos se revisan según las directrices definidas en la <a href=\"%(url)s\">Guía de revisión de complementos</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
 msgstr "¿Quién revisa mi complemento?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Los complementos los revisan los editores AMO, un grupo de desarrolladores con talento que voluntariamente ayudan al proyecto Mozilla revisando complementos y garantizando que los usuarios de "
-"Mozilla disfruten de una experiencia estable y segura. Al comunicarte con los editores, intenta ser educado, paciente y respetuoso mientras dedican sus esfuerzos a revisar que tu complemento está "
-"configurado correctamente y cumple las directrices detalladas en la <a href=\"%(url)s\">Guía de revisión para editores</a>."
+"Los complementos los revisan los editores de complementos, un grupo de desarrolladores con talento que colaboraon con el proyecto Mozilla revisando complementos y garantizando que los usuarios de "
+"Mozilla disfruten de una experiencia estable y segura. Al comunicarte con los editores, intenta ser educado, paciente y respetuoso mientras dedican sus esfuerzos a asegurar que tu complemento está "
+"configurado correctamente y cumple las directrices detalladas en la <a href=\"%(url)s\">Guía de revisión de complementos</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "¿Cuáles son las directrices que se aplican para revisar mi complemento?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"El grupo editorial de Mozilla sigue la <a href=\"%(url)s\">Guía de revisión para editores</a> cuando se prueba un complemento para aceptarlo en AMO. Es importante que el desarrollador del "
-"complemento revise la guía para asegurarse que los problemas comunes sean resueltos antes de enviar un complemento para revisión. Esto será de gran ayuda a agilizar el proceso de revisión."
+"Cuando se prueba un complemento para aceptarlo en AMO, el equipo de revisores de complementos sigue la <a href=\"%(url)s\">Guía de revisión de complementos</a>. Es importante que el desarrollador "
+"del complemento revise la guía para asegurarse de que los problemas comunes están resueltos antes de enviar el complemento para su revisión. Esto será de gran ayuda para agilizar el proceso de "
+"revisión."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9199,13 +9200,13 @@ msgid "number of problem areas discovered"
 msgstr "número de aspectos problemáticos descubiertos"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Por eso es muy importante leer la <a href=\"%(g_url)s\">Guía de revisión para editores</a>, para confirmar que tu complemento es lo que esperabas. También recomendamos leer el post <a "
-"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a>, que da una visión interna sobre cómo se asegura la buena revisión de tu complemento."
+"Por eso es muy importante leer la <a href=\"%(g_url)s\">Guía de revisión de complementos</a>, para asegurarte de que tu complemento está configurado adecuadamente. También recomendamos leer el post "
+"<a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a>, que da una visión interna de cómo se garantiza una buena revisión del complemento."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -9239,18 +9240,16 @@ msgstr ""
 "complemento."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
 msgstr "¿Es necesario que los editores revisen mi actualización?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
-"Depende. Si solo estás modificando la descripción del complemento o actualizando una «maxVersion» para asegurar la compatibilidad con una nueva actualización del software de Mozilla, tu complemento "
-"no será revisado. Sin embargo, si envías un archivo nuevo y actualizado, la actualización de tu complemento deberá ser revisada por un editor."
+"Depende. Si solo estás modificando la descripción del complemento o actualizando una «maxVersion» para asegurar su compatibilidad con una nueva actualización de software de Mozilla, no se revisará. "
+"Sin embargo, si envías un archivo nuevo y actualizado, un editor tendrá que revisar la actualización de tu complemento."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -11028,7 +11027,6 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "mi complemento basado en el SDK no puede ser actualizado"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
 msgstr "mi compelemento es revisado por un editor"
 
