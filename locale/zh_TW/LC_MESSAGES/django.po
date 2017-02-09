@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 16:36+0000\n"
+"PO-Revision-Date: 2017-02-09 16:51+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -956,9 +956,8 @@ msgid "Manage"
 msgstr "管理"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Add-on Review"
-msgstr "新附加元件審核"
+msgstr "附加元件審核"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Admin Manage"
@@ -1367,9 +1366,8 @@ msgid "Manage API Keys"
 msgstr "管理 API 金鑰"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "審核者"
+msgstr "審核者工具"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -2259,7 +2257,6 @@ msgid ""
 msgstr "以下這些附加元件已被您使用 <b>加入至我的最愛</b> 功能標示為您的最愛。目前此收藏集為 <b>公開的</b>，每個人都可以看到它。如果您不想讓別人看到這些收藏，請按下底下的按鈕隱藏您的收藏集。"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
@@ -2387,7 +2384,6 @@ msgid "Collection Contributors"
 msgstr "收藏集貢獻者"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
@@ -2574,11 +2570,11 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "有問題的附加元件或外掛程式將會被自動停用且不再可用。"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
-msgstr "當 Mozilla 注意到某套附加元件、外掛程式或其他第三方軟體會對 %(app)s 的安全性、穩定性、效能造成影響，並符合 <a href=\"%(criteria)s\">某些條件</a>，該軟體就將被封鎖。若需更多資訊，請參考 <a href=\"%(support)s\">這篇技術支援文件</a>。"
+msgstr "當 Mozilla 注意到某套附加元件、外掛程式或其他第三方軟體會對 %(app)s 的安全性、穩定性、效能造成影響，並符合 <a href=\"%(criteria)s\">某些條件</a>，該軟體可能就會被封鎖。若需更多資訊，請參考 <a href=\"%(support)s\">這篇技術支援文件</a>。"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -4073,9 +4069,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "本上傳驗證失敗，因此驗證結果可能不完整，請在審核時格加注意。"
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "已要求審核"
+msgstr "已要求審核。"
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
@@ -4812,7 +4807,6 @@ msgid ""
 msgstr "刪除附加元件的話，將會永久刪除所有您曾為此附加元件送出的版本與檔案，不論是否公開上架。附加元件 ID 仍將連結至您的帳號，其他人無法以相同 ID 送出附加元件。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "請輸入下列文字作為確認: {slug}"
 
@@ -4912,9 +4906,8 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr "此附加元件缺少某些必要的資訊，尚無法送交上架。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "此附加元件與您的 %(app)s 版本不相容。"
+msgstr "此附加元件沒有任何版本。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
@@ -5004,9 +4997,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "這些註記只有您與審核者看得到。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "重新啟用版本"
+msgstr "取消審查，停用此版本"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5258,7 +5250,7 @@ msgstr "我們並不完全按照等待審核區之先後順序來審核"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "簽署後讓您自行發布，您需自行處理自動更新事宜。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
@@ -5606,10 +5598,9 @@ msgid "Port a Chrome Extension"
 msgstr "移植 Chrome 擴充套件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr "Firefox 支援 WebExtension API，大部分情況下都與 Google Chrome、Opera 所支援的附加元件開發流程相容，若您有這些平台的附加元件只要小改一下就可以移植過來。"
+msgstr "Firefox 支援 WebExtension API，大部分情況下都與 Chrome、Opera、Edge 所支援的擴充套件 API 相容。若您有這些平台的附加元件只要小改一下就可以移植過來。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
@@ -6236,7 +6227,7 @@ msgstr "使用 {addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
-msgstr ""
+msgstr "透過這套下載工具，很簡單就能下載 YouTube、Dailymotion、Facebook 及其他影片網站當中的影片。"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6507,7 +6498,6 @@ msgid "More Information Requested"
 msgstr "被要求提供更多資訊"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Contains Reviewer Comment"
 msgstr "含有審核者的意見"
 
@@ -6628,7 +6618,6 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>匿名使用者</i>在 %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
 msgstr "回到審核者工具首頁"
 
@@ -6749,9 +6738,8 @@ msgid "Reviews This Month"
 msgstr "本月審核數量"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "審核者"
+msgstr "新審核者"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -6788,9 +6776,8 @@ msgid "Save"
 msgstr "儲存"
 
 #: src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "附加元件編輯效率"
+msgstr "附加元件審核者效率"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -6959,14 +6946,12 @@ msgid "Update the whiteboard"
 msgstr "更新白板"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "未上架佇列"
+msgstr "未上架元件審核頁面"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "最後評論"
+msgstr "公開上架元件審核頁面"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7333,14 +7318,12 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "版本: %(version)s &bull; 大小: %(size)s &bull; MD5 雜湊值: %(md5)s &bull; MIME 類型: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "檔案比對 :: 編輯工具"
+msgstr "檔案比對 :: 審核者工具"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "檔案檢視器 :: 編輯工具"
+msgstr "檔案檢視器 :: 審核者工具"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
@@ -7348,12 +7331,12 @@ msgstr "驗證失敗:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "檔案內容不支援程式碼強調"
 
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "輸出內容可能是壞掉的，請小心。若有問題請 %(link_start)s記得回報%(link_end)s！"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
@@ -10634,7 +10617,6 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "我使用 SDK 開發的附加元件升級失敗"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
 msgstr "審核者已經審核我的附加元件"
 
