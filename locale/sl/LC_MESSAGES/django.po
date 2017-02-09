@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 20:12+0000\n"
+"PO-Revision-Date: 2017-02-09 20:39+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5393,7 +5393,7 @@ msgstr "Združljivost vašega dodatka s Firefoxom Multi Process (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Po opravljenem pregledu kode gostovan na tej strani. Za samodejne posodobitve skrbi ta stran."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Listed Version:"
@@ -6314,15 +6314,13 @@ msgid "Listing visibility"
 msgstr "Vidnost dodatka"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "Vidno vsem na {0} ter vključeno v iskalne rezultate in sezname dodatkov."
+msgstr "{label_open}Vidno:{label_close} Vidno vsem na {site_url} ter vključeno v iskalne rezultate in sezname dodatkov."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "Ne bo vključen v rezultate iskanja in na njegovi strani bo pisalo, da ste ga onemogočili. V tem stanju oddaje novih različic ne bodo sprejete."
+msgstr "{label_open}Nevidno:{label_close} Ne bo vključen v rezultate iskanja in na njegovi strani bo pisalo, da ste ga onemogočili. V tem stanju oddaje novih različic ne bodo sprejete."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
