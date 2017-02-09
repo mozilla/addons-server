@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-24 08:33+0000\n"
+"POT-Creation-Date: 2017-02-09 11:33+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -979,8 +979,8 @@ msgstr "ਪ੍ਰਬੰਧ"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 #, fuzzy
-msgid "Editor Review"
-msgstr "ਸਮੀਖਿਆ ਸੋਧ"
+msgid "Add-on Review"
+msgstr "ਪੂਰੀ ਐਡ-ਆਨ ਸਮੀਖਿਆ"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 #, fuzzy
@@ -1074,8 +1074,8 @@ msgstr ""
 msgid "See complete development channel history"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/stats/templates/stats/popup.html
-#: src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/files/templates/files/viewer.html
+#: src/olympia/stats/templates/stats/popup.html src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
 msgid "close"
 msgstr "ਬੰਦ"
 
@@ -1393,8 +1393,9 @@ msgid "Manage API Keys"
 msgstr ""
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Editor Tools"
-msgstr "ਸੰਪਾਦਕ ਟੂਲ"
+#, fuzzy
+msgid "Reviewer Tools"
+msgstr "ਸਮੀਖਿਅਕ"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -2298,7 +2299,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, fuzzy
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "ਐਡ-ਆਨ ਜਿਹਨਾਂ ਤੇ ਤੁਸੀਂ ਪਸੰਦ ਦੇ ਨਿਸ਼ਾਨ ਲਗਾਏ ਹੇਠ ਵਿਖਾਈ <b>ਪਸੰਦੀਦਾ ਵਿੱਚ ਜੋੜੋ</b> ਵਿਸ਼ੇਸਤਾ ਦੀ ਵਰਤੋਂ ਕਰਦੇ ਹੋਏ। ਇਹ ਸੰਗ੍ਰਹਿ ਮੌਜੂਦਾ ਤੌਰ ਤੇ<b>ਨਿੱਜੀ</b>ਹੈ, ਜਿਸਦਾ ਮਤਲਬ ਇਸ ਨੂੰ ਸਿਰਫ਼ ਤੁਸੀਂ ਹੀ ਵੇਖ ਸਕਦੇ ਹੋ। ਜੇਕਰ ਤੁਹਾਨੂੰ ਪਸੰਦ ਹੋਵੇ ਕਿ ਹਰ ਕੋਈ ਤੁਹਾਡੇ ਪਸੰਦੀਦਾ ਨੂੰ "
@@ -2432,7 +2433,7 @@ msgstr "ਸੰਗ੍ਰਹਿ ਹਿੱਸੇਦਾਰ"
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 #, fuzzy
 msgid ""
-"You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
+"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
 "ਤੁਸੀਂ ਇਸ ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਬਹੁਤ ਸਾਰੇ ਹਿੱਸੇਦਾਰ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ। ਇੱਕ ਹਿੱਸੇਦਾਰ ਇਸ ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ ਜਾਂ ਹਟਾਇਆ ਜਾ ਸਕਦਾ, ਪਰ ਉਸਦਾ ਨਾਂ ਜਾਂ ਵੇਰਵਾ ਬਦਲਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ। ਇੱਕ ਹਿੱਸੇਦਾਰ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਉਸਦੀ ਈਮੇਲ ਨੂੰ ਹੇਠ ਦਿੱਤੇ ਬਾਕਸ ਵਿੱਚ ਐਂਟਰ ਕਰੋ। "
@@ -2621,7 +2622,7 @@ msgstr "ਸਮੱਸਿਆ ਵਾਲੇ ਐਡ-ਆਨ ਜਾਂ ਪਲੱਗਇ�
 #, fuzzy, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
+"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
 "ਜਦੋਂ ਮੌਜੀਲਾ ਐਡ-ਆਨ, ਪਲੱਗਇਨ, ਜਾਂ ਤੀਜੀ-ਧਿਰ ਦੇ ਸਾਫ਼ਟਵੇਅਰ ਤੋਂ ਜਾਣੂ ਹੋ ਜਾਂਦਾ ਜੋ ਗੰਭੀਰਤਾ ਨਾਲ %(app)s ਸੁਰੱਖਿਆ, ਸਥਿਰਤਾ, ਜਾਂ ਕਾਰਗੁਜ਼ਾਰੀ ਨਾਲ ਸਮਝੌਤਾ ਕਰਦਾ ਅਤੇ <a href=\"%(criteria)s\">ਯਕੀਨੀ ਮਾਪਦੰਡ</a> ਪੂਰੇ ਕਰਦਾ, ਸਾਫ਼ਟਵੇਅਰ ਆਮ ਵਰਤੋਂ ਤੋਂ ਬਲਾਕ ਹੋ "
 "ਕੀਤਾ ਜਾ ਸਕਦਾ। ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ. ਕਿਰਪਾ ਕਰਕੇ ਪੜ੍ਹੋ <a href=\"%(support)s\">ਇਹ ਸਹਾਇਤਾ ਲੇਖ</a>।"
@@ -3757,6 +3758,18 @@ msgstr "ਸੋਲਰਿਸ"
 msgid "Android"
 msgstr "ਐਨਡਰੋਇਡ"
 
+#: src/olympia/constants/webext_permissions.py
+msgid "Requests that the extension be granted permissions according to the activeTab specification."
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Gives the extension access to the chrome.alarms API."
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Read and modify bookmarks."
+msgstr ""
+
 #: src/olympia/core/apps.py
 msgid "Core"
 msgstr ""
@@ -4140,8 +4153,12 @@ msgstr "ਇਸ ਅੱਪਲੋਡ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇ�
 
 #: src/olympia/devhub/views.py
 #, fuzzy
-msgid "Review Requested."
+msgid "Review requested."
 msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
+
+#: src/olympia/devhub/views.py
+msgid "Review requested.  You must provide further details to proceed."
+msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -4888,7 +4905,7 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-msgid "Enter the following text confirm your decision: {slug}"
+msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
@@ -4984,8 +5001,17 @@ msgid "Delete this theme."
 msgstr "ਇਸ ਥੀਮ ਨੂੰ ਹਟਾਓ।"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
-msgstr "ਜੇਕਰ ਦਾਖਲ ਕਰਨ ਦਾ ਕਾਰਜ ਪੂਰਾ ਨਹੀਂ ਹੋਇਆ ਤਾਂ ਕੁੱਝ ਦਿਨਾਂ ਬਾਅਦ ਇਹ ਐਡ-ਆਨ ਆਪਣੇ ਆਪ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
+msgid "This add-on is missing some required information before it can be submitted for publication."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html
+#, fuzzy
+msgid "This add-on doesn't have any versions."
+msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੇ %(app)s ਦੇ ਵਰਜਨ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ।"
+
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html
+msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -5083,6 +5109,11 @@ msgstr ""
 #, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "ਇਹ URL ਕੇਵਲ ਤਾਂ ਹੀ ਦਿੱਸੇਗੀ ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਡਿਵੈਲਪਰ ਹੋ।"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+#, fuzzy
+msgid "Cancel Review and Disable Version"
+msgstr "ਛਪਣਯੋਗ ਵਰਜਨ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
@@ -5328,6 +5359,10 @@ msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ"
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
 msgid "Listed Version:"
@@ -5350,6 +5385,10 @@ msgstr "ਇਹ ਬਿਲਕੁਲ ਨਵਾਂ ਅੱਪਲੋਡਿਡ ਵਰ�
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Queues are not reviewed strictly in order"
 msgstr "ਕਤਾਰਾਂ ਦੀ ਕਸਵੇਂ ਤੌਰ ਤੇ ਸਮੀਖਿਆ ਨਹੀਂ ਹੁੰਦੀ"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Signed for self-distribution. Updates are handled by you."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
@@ -5659,14 +5698,6 @@ msgid "Show Me"
 msgstr "ਟਿੱਪਣੀਆਂ ਵਿਖਾਓ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "AMO"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Self-hosted"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
 msgid "View All Submissions"
 msgstr "ਸਾਰੇ ਵਰਜਨ ਵੇਖੋ"
@@ -5735,7 +5766,7 @@ msgstr "ਪ੍ਰਸਿੱਧ ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
+"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
@@ -6165,7 +6196,8 @@ msgid "Notes for Reviewers"
 msgstr "ਸਮੀਖਿਅਕਾਂ ਲਈ ਨੋਟ"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
+#, fuzzy
+msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr "ਵਿਕਲਪਕ ਤੌਰ ਤੇ, ਕੋਈ ਵੀ ਜਾਣਕਾਰੀ ਦਾਖਲ ਕਰੋ ਜੋ ਇਸ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਕਰਦੇ ਸਮੇਂ ਸੰਪਾਦਕ ਲਈ ਲਾਭਕਾਰੀ ਹੋ ਸਕਦੀ ਹੈ, ਜਿਵੇਂ ਕਿ ਜਾਂਚ ਖਾਤਾ ਜਾਣਕਾਰੀ।"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
@@ -6264,28 +6296,12 @@ msgstr "ਐਡ-ਆਨ ਪ੍ਰਤੱਖਤਾ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
-msgid "Visible:"
-msgstr "ਪ੍ਰਤੱਖਤਾ:"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
-msgid "Visible to everyone on {0} and included in search results and listing pages."
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
 msgstr "ਖੋਜ ਨਤੀਜੇ ਅਤੇ ਸੂਚੀਬੱਧ ਸਫ਼ੇ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ {0} ਤੇ ਹਰੇਕ ਨੂੰ ਵਿਖਾਈ ਦਿੰਦਾ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Invisible:"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted:"
-msgstr "ਗੈਰ-ਸੂਚੀਬੱਧ:"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
+msgid ""
+"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6313,16 +6329,6 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਅਗਲਾ ਵਰਜਨ"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
 msgstr "ਪੁਰਾਣੇ ਵਰਜਨ"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Why can't I switch to <i>Listed</i>?"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid ""
-"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
-"        The process is described in detail in <a href=\"{link}\">this documentation</a>."
-msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6379,35 +6385,21 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "ਪੁਸ਼ਟੀ ਕਰੋ ਕੀ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਲੁਕਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlist Add-on"
-msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, python-format
-msgid ""
-"Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisting an add-on is irreversible!"
-msgstr "ਐਡ-ਆਨ ਨੂੰ ਗੈਰ-ਸੂਚੀਬੱਧ ਕਰਨਾ ਅਟੱਲ ਹੈ!"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "An unlisted add-on cannot be switched to be listed."
-msgstr "ਗੈਰ-ਸੂਚੀਬੱਧ ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀਬੱਧ ਕਰਨ ਲਈ ਸਵਿੱਚ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਦਾ।"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Are you sure you wish to unlist your add-on?"
-msgstr "ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀ ਤੋਂ ਹਟਾਉਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
+#, fuzzy
+msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr "ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰਨਾ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੇ ਅਧੂਰੇ ਦਾ ਨਿਸ਼ਾਨ ਲਗਾ ਦੇਵੇਗਾ। ਜੇਕਰ ਤੁਸੀਂ ਮੁੜ-ਬੇਨਤੀ ਸਮੀਖਿਆ ਦੁਆਰਾ ਕੁੱਝ ਦਿਨਾਂ ਬਾਅਦ ਵੀ ਆਪਣਾ ਐਡ-ਆਨ ਮੁਕੰਮਲ ਨਹੀਂ ਕੀਤਾ, ਇਹ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "ਕੀ ਤੁਸੀਂ ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
+
+#: src/olympia/discovery/data.py
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py
+msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6418,27 +6410,19 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#: src/olympia/discovery/data.py
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
-
-#: src/olympia/discovery/data.py
-msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#: src/olympia/discovery/data.py
-msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
-msgstr ""
-
-#: src/olympia/discovery/data.py
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
+msgstr ""
+
+#: src/olympia/discovery/data.py
+msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ""
 
 #: src/olympia/editors/forms.py
@@ -6699,7 +6683,8 @@ msgid "More Information Requested"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਹੋਈ"
 
 #: src/olympia/editors/models.py
-msgid "Contains Editor Comment"
+#, fuzzy
+msgid "Contains Reviewer Comment"
 msgstr "ਸੰਪਾਦਕ ਟਿੱਪਣੀ ਸ਼ਾਮਲ"
 
 #: src/olympia/editors/models.py
@@ -6816,7 +6801,8 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "%(date)s [%(ip_address)s] ਤੇ <i>ਅਗਿਆਤ</i>"
 
 #: src/olympia/editors/templates/editors/base.html
-msgid "Return to the Editor Tools homepage"
+#, fuzzy
+msgid "Return to the Reviewer Tools homepage"
 msgstr "ਸੰਪਾਦਕ ਟੂਲ ਮੁੱਖਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
@@ -6941,8 +6927,9 @@ msgid "Reviews This Month"
 msgstr "ਇਸ ਮਹੀਨੇ ਦੀਆਂ ਸਮੀਖਿਆਵਾਂ"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "New Editors"
-msgstr "ਨਵੇਂ ਸੰਪਾਦਕ"
+#, fuzzy
+msgid "New Reviewers"
+msgstr "ਸਮੀਖਿਅਕ"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -6980,8 +6967,9 @@ msgid "Save"
 msgstr "ਸੰਭਾਲ੍ਹੋ"
 
 #: src/olympia/editors/templates/editors/performance.html
-msgid "Add-on Editor Performance"
-msgstr ""
+#, fuzzy
+msgid "Add-on Reviewer Performance"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -7148,6 +7136,16 @@ msgid "Update the whiteboard"
 msgstr "ਵਾਇਟਬੋਰਡ ਅੱਪਡੇਟ ਕਰੋ"
 
 #: src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Unlisted Review Page"
+msgstr "ਗੈਰਸੂਚੀਬੱਧ ਕਤਾਰਾਂ"
+
+#: src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Listed Review Page"
+msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ਚਿੱਠਾ"
+
+#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr "(ਪ੍ਰਬੰਧਕ)"
 
@@ -7167,9 +7165,11 @@ msgstr "ਹੋਰ ਜਾਣਕਾਰੀ"
 msgid "Resolution"
 msgstr "ਮਤਾ"
 
-#: src/olympia/editors/templates/editors/reviewlog.html
-msgid "Editor"
-msgstr "ਸੰਪਾਦਕ"
+#: src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/history_table.html
+#: src/olympia/editors/templates/editors/themes/logs.html src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/editors/templates/editors/themes/themes.html
+msgid "Reviewer"
+msgstr "ਸਮੀਖਿਅਕ"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Add-on has been deleted."
@@ -7240,11 +7240,6 @@ msgstr "ਹਰ ਵੇਲੇ"
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "You have <span>{0}</span> points."
 msgstr "ਤੁਹਾਡੇ <span>{0}</span> ਅੰਕ ਹਨ।"
-
-#: src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
-#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/editors/templates/editors/themes/single.html src/olympia/editors/templates/editors/themes/themes.html
-msgid "Reviewer"
-msgstr "ਸਮੀਖਿਅਕ"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
@@ -7517,16 +7512,27 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "ਵਰਜਨ: %(version)s &bull; ਅਕਾਰ: %(size)s &bull; MD5 ਹੈਸ਼: %(md5)s &bull; ਮਾਈਮ ਕਿਸਮ: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-msgid "File Compare :: Editor tools"
+#, fuzzy
+msgid "File Compare :: Reviewer tools"
 msgstr "ਫ਼ਾਈਲ ਤੁਲਨਾ :: ਸੰਪਾਦਕ ਟੂਲ"
 
 #: src/olympia/files/templates/files/viewer.html
-msgid "File Viewer :: Editor tools"
+#, fuzzy
+msgid "File Viewer :: Reviewer tools"
 msgstr "ਫ਼ਾਈਲ ਦਰਸ਼ਕ :: ਸੰਪਾਦਕ ਟੂਲ"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ:"
+
+#: src/olympia/files/templates/files/viewer.html
+msgid "File content not supported for syntax highlighting"
+msgstr ""
+
+#: src/olympia/files/templates/files/viewer.html
+#, python-format
+msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
+msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
@@ -8541,8 +8547,10 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">ਆਪਣੇ ਐਡ-ਆਨ ਦੀ ਰਚਨਾ ਕਰੋ</a>। ਅਸੀਂ ਮੁਫ਼ਤ ਹੋਸਟਿੰਗ ਅਤੇ ਅੱਪਡੇਟ ਸੇਵਾਵਾਂ ਮੁਹੱਇਆ ਕਰਵਾਉਂਦੇ ਅਤੇ ਉਪਭੋਗੀ ਦੀ ਇੱਕ ਵੱਡੀ ਹਾਜ਼ਰੀਨ ਤੱਕ ਪਹੁੰਚਣ ਵਿੱਚ ਤੁਹਾਡੀ ਮਦਦ ਕਰਦੇ ਹਾਂ।"
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, python-format
-msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
+#, fuzzy, python-format
+msgid ""
+"If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
+"stability."
 msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਐਡ-ਆਨ ਬਣਾਉਣ ਦੀ ਮਹਾਰਤ ਹੈ, <a href=\"%(url)s\"> ਸੰਪਾਦਕ ਬਣੋ</a>! ਸਾਡੇ ਸੰਪਾਦਕ ਤਕਨੀਕੀ ਪਿਛੋਕੜ ਵਾਲੇ ਐਡ-ਆਨ ਪ੍ਰਸ਼ੰਸਕ ਹਨ ਜੋ ਕੋਡ ਗੁਣਵੱਤਾ ਅਤੇ ਸਥਿਰਤਾ ਲਈ ਐਡ-ਆਨਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰਦੇ ਹਨ।"
 
 #: src/olympia/pages/templates/pages/about.lhtml
@@ -9032,10 +9040,10 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "ਪ੍ਰਵਾਨਿਤ ਦਾਖਲ ਕਾਰਜ ਕੀ ਹੈ ਕੀ ਇਸ ਦੇ ਲਈ ਮੌਜੀਲਾ ਕੋਲ ਕੋਈ ਨੀਤੀ ਹੈ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
-"href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
+"href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 "ਹਾਂ, ਮੌਜੀਲਾ ਦੀ <a href=\"%(p_url)s\">ਐਡ-ਆਨ ਨੀਤੀ</a> ਦੱਸਦੀ ਹੈ ਕੀ ਇੱਕ ਪ੍ਰਵਾਨਿਤ ਦਾਖਲ ਕਾਰਜ ਕੀ ਹੈ। ਇਸ ਨੀਤੀ ਬਿਨਾਂ ਸੂਚਨਾ ਦੇ ਬਦਲਾਅ ਦੇ ਅਧੀਨ ਹੈ, ਇਸ ਦੇ ਨਾਲ ਹੀ, AMO ਸੰਪਾਦਕੀ ਟੀਮ ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਕੀ ਤੁਹਾਡਾ ਐਡ-ਆਣ  ਕਾਰਜਕਸ਼ਲਤਾ ਅਤੇ "
 "ਸੁਰੱਖਿਆ ਦੇ ਖਾਸ਼ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਪੂਰੇ ਕਰਦਾ ਲਈ <a href=\"%(g_url)s\">ਸੰਪਾਦਕ ਸਮੀਖਿਆ ਗਾਈਡ</a> ਦੀ ਵਰਤੋਂ ਕਰਦੀ ਹੈ।"
@@ -9045,10 +9053,10 @@ msgid "How do I submit my add-on for review?"
 msgstr "ਮੈਂ ਮੇਰਾ ਐਡ-ਆਨ ਸਮੀਖਿਆ ਲਈ ਕਿਵੇਂ ਦਾਖਲ ਕਰ ਸਕਦਾ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
+"have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
 "ਡਿਵੈਲਪਰ ਟੂਲ ਡੈਸਬੋਰਡ ਤੁਹਾਨੂੰ AMO ਲਈ ਐਡ-ਆਨ ਅੱਪਲੋਡ ਅਤੇ ਦਾਖਲ ਕਰਨ ਦੀ ਪ੍ਰਵਾਨਗੀ ਦੇਵੇਗਾ। ਐਡ-ਆਨ ਦਾਖਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤੁਸੀਂ ਇੱਕ ਰਜਿਸਟਰ AMO ਉਪਭੋਗੀ ਹੋਣੇ ਚਾਹੀਦੇ ਹੋ। ਆਪਣਾ ਐਡ-ਆਨ ਦਾਖਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਤੁਸੀਂ AMO <a href=\"%(url)s\">ਸੰਪਾਦਕ ਸਮੀਖਿਆ "
 "ਗਾਈਡ</a> ਪੜ੍ਹੋ ਇਹ ਯਕੀਨੀ ਕਰਨ ਲਈ ਕੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਸੰਪਾਦਕਾਂ ਵੱਲੋਂ ਐਡ-ਆਨਾਂ ਦੀ ਸਮੀਖਿਆ ਲਈ ਤੈਅ ਕੀਤੇ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਪੂਰੇ ਕਰਦਾ ਹੈ।"
@@ -9094,10 +9102,10 @@ msgid "Why must my add-on be reviewed?"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਹੋਣਾ ਕਿਉਂ ਲਾਜ਼ਮੀ ਹੈ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
-"<a href=\"%(url)s\">Editors Reviewing Guide</a>."
+"<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "ਸਾਰੇ ਦਾਖਲ ਕੀਤੇ ਐਡ-ਆਨਾਂ, ਭਾਵੇ ਨਵੇਂ ਜਾਂ ਅੱਪਡੇਟ ਹੋਏ, ਦੀ ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਸਮੀਖਿਆ ਹੁੰਦੀ ਹੈ ਕੀ ਮੌਜੀਲਾ ਉਪਭੋਗੀ ਇੱਕ ਥਿਰ ਅਤੇ ਸੁਰੱਖਿਅਤ ਅਨੁਭਵ ਲੈਣ। ਸਾਰੇ ਦਾਖਲ ਹੋਏ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ <a href=\"%(url)s\">ਸੰਪਾਦਕੀ ਸਮੀਖਿਆ ਗਾਈਡ</a>ਵਿੱਚ ਦਰਸਾਏ "
 "ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਅਨੁਸਾਰ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।"
@@ -9107,11 +9115,11 @@ msgid "Who reviews my add-on?"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਕੌਣ ਕਰੇਗਾ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
-"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
-"href=\"%(url)s\">Editors Reviewing Guide</a>."
+"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
+"users. When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
+"the <a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "ਐਡ-ਆਨਾਂ ਦੀ ਸਮੀਖਿਆ AMO ਸੰਪਾਦਕਾਂ, ਇੱਕ ਪ੍ਰਤੀਭਾਵਾਨ ਡਿਵੈਲਪਰਾਂ ਵੱਲੋਂ ਕੀਤੀ ਜਾਂਦੀ ਹੈ ਜੋ ਐਡ-ਆਨਾਂ ਦੀ ਸਮੀਖਿਆ ਦੁਆਰਾ ਮੌਜੀਲਾ ਪ੍ਰੋਜੈਕਟ ਵਿੱਚ ਸਵੈ-ਇੱਛੁਕ ਯੋਗਦਾਨ ਪਾ ਕੇ ਮੌਜੀਲਾ ਉਪਭੋਗੀ ਲਈ ਥਿਰ ਅਤੇ ਸੁਰੱਖਿਅਤ ਅਨੁਭਵ ਯਕੀਨੀ ਬਣਾਉਂਦੇ ਹਨ। ਸੰਪਾਦਕਾਂ ਨਾਲ ਸੰਚਾਰ ਸਮੇਂ, "
 "ਕਿਰਪਾ ਕਰਕੇ ਮਿਲਣਸਾਰ, ਸਬਰ ਅਤੇ ਆਦਰ ਬਣਾਈ ਰੱਖੋ ਕਿਉਂਕਿ ਉਹ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਸਹੀ ਸੈੱਟ ਹੋਣਾ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਸਖਤ ਮਿਹਨਤ ਕਰ ਰਹੇ ਹਨ ਅਤੇ <a href=\"%(url)s\">ਸੰਪਾਦਕ ਸਮੀਖਿਆ ਗਾਈਡ</a>ਵਿੱਚ ਦੱਸੇ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਦਾ ਪਾਲਣ ਕਰੋ।"
@@ -9121,10 +9129,10 @@ msgid "What are the guidelines used to review my add-on?"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਲਈ ਕਿਹੜੇ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ ਵਰਤੇ ਗਏ ਹਨ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
-"ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
+"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
+"that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
 "ਮੌਜੀਲਾ ਸੰਪਾਦਕੀ ਟੀਮ <a href=\"%(url)s\">ਸੰਪਾਦਕ ਸਮੀਖਿਆ ਗਾਈਡ</a> ਅਨੁਸਾਰ ਚੱਲਦੀ ਹੈ ਜਦੋਂ AMO ਤੇ ਪ੍ਰਵਾਨਗੀ ਲਈ ਐਡ-ਆਨ ਟੈਸਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੋਵੇ। ਇਹ ਲਾਜ਼ਮੀ ਹੈ ਕੀ ਐਡ-ਆਨ ਡਿਵੈਲਪਰ ਇਸ ਗਾਈਡ ਦੀ ਸਮੀਖਿਆ ਕਰੇ ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਕੀ ਐਡ-ਆਨ ਨੂੰ "
 "ਸਮੀਖਿਆ ਲਈ ਦਾਖਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਆਮ ਪਰੇਸ਼ਾਨੀ ਵਾਲੇ ਖੇਤਰ ਨੂੰ ਹੱਲ ਕਰ ਲਿਆ ਗਿਆ ਹੈ। ਇਹ ਸਮੀਖਿਆ ਕਾਰਜ ਮੁਹਿੰਮ ਵਿੱਚ ਬਹੁਤ ਸਹਾਇਤਾ ਕਰੇਗਾ।"
@@ -9153,9 +9161,9 @@ msgid "number of problem areas discovered"
 msgstr "ਖੋਜੇ ਗਏ ਖਾਮੀ ਖੇਤਰਾਂ ਦੀ ਗਿਣਤੀ"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
+"This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
 "\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
 "ਇਹੀ ਕਾਰਨ ਹੈ ਕੀ <a href=\"%(g_url)s\">ਸੰਪਾਦਕੀ ਸਮੀਖਿਆ ਗਾਈਡ</a> ਨੂੰ ਪੜ੍ਹਨਾ ਲਾਜ਼ਮੀ ਹੈ ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਕੀ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਉਮੀਦ ਅਨੁਸਾਰ ਸੈੱਟ ਹੋਇਆ। <a href=\"%(blog_url)s\">ਆਪਣੇ ਐਡ-ਆਨ ਦੀ ਸਫ਼ਲਤਾਪੂਰਵਕ ਸਮੀਖਿਆ ਕਰਵਾਓ</a> ਬਲਾਗ "
@@ -9187,13 +9195,15 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "ਤੁਸੀਂ ਡਿਵੈਲਪਰ ਟੂਲ ਡੈਸਬੋਰਡ ਵਿੱਚੋਂ \"ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ\" ਦੀ ਚੋਣ ਅਤੇ ਆਪਣੇ ਐਡ-ਆਨ ਲਈ ਨਵੀਂ .xpi ਫ਼ਾਈਲ ਅੱਪਲੋਡ ਕਰਨ ਦੁਆਰਾ ਆਪਣੇ ਐਡ-ਆਨ ਲਈ ਨਵੀਂ ਅੱਪਡੇਟ ਦਾਖਲ ਕਰ ਸਕਦੇ ਹੋ।"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-msgid "Does my update need to be reviewed by editors?"
+#, fuzzy
+msgid "Does my update need to be reviewed by reviewers?"
 msgstr "ਕੀ ਮੇਰੀ ਅੱਪਡੇਟ ਨੂੰ ਸੰਪਾਦਕਾਂ ਤੋਂ ਸਮੀਖਿਆ ਕਰਵਾਉਣ ਦੀ ਲੋੜ ਹੈ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
+#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
-"reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an editor."
+"reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
 "ਇਹ ਨਿਰਭਰ ਕਰਦਾ। ਕੀ ਤੁਸੀਂ ਆਮ ਤੌਰ ਤੇ ਆਪਣੇ ਐਡ-ਆਨ ਦੇ ਵੇਰਵੇ ਵਿੱਚ ਬਦਲਾਅ ਜਾਂ ਨਵੀਂ ਮੌਜੀਲਾ ਸਾਫ਼ਟਵੇਅਰ ਅੱਪਡੇਟ ਨਾਲ ਅਨੁਕੂਲਤਾ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ \"ਮੈਕਸ ਵਰਜਨ\" ਅੱਪਡੇਟ ਕਰ ਰਹੇ ਹੋ, ਤਾਂ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੂੰ ਮੁੜ ਸਮੀਖਿਆ ਦੀ ਜ਼ਰੂਰਤ ਨਹੀਂ। ਜੇਕਰ, ਤੁਸੀਂ ਨਵੀਂ ਅੱਪਡੇਟ ਕੀਤੀ "
 "ਫ਼ਾਈਲ ਦਾਖਲ ਕੀਤੀ, ਤਾਂ ਤੁਹਾਡੀ ਐਡ-ਆਨ ਅੱਪਡੇਟ ਨੂੰ ਸੰਪਾਦਕਾਂ ਕੋਲੋਂ ਸਮੀਖਿਆ ਕਰਵਾਉਣ ਦੀ ਲੋੜ ਪਵੇਗੀ।"
@@ -10905,7 +10915,8 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "ਮੇਰਾ sdk-ਅਧਾਰਿਤ ਐਡ-ਆਨ ਅੱਪਗਰੇਡ ਨਹੀਂ ਹੋ ਸਕਦਾ"
 
 #: src/olympia/users/notifications.py
-msgid "my add-on is reviewed by an editor"
+#, fuzzy
+msgid "my add-on is reviewed by a reviewer"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਸੰਪਾਦਕ ਵੱਲੋਂ ਸਮੀਖਿਆ ਹੋਈ"
 
 #: src/olympia/users/notifications.py

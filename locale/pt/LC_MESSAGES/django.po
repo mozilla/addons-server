@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-24 08:33+0000\n"
+"POT-Creation-Date: 2017-02-09 11:33+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -989,8 +989,8 @@ msgstr "Gerir"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 #, fuzzy
-msgid "Editor Review"
-msgstr "Editar comentário"
+msgid "Add-on Review"
+msgstr "Análise completa do extra"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 #, fuzzy
@@ -1084,8 +1084,8 @@ msgstr "<strong>Atenção:</strong> As versões de desenvolvimento deste extra n
 msgid "See complete development channel history"
 msgstr "Consulte o histórico completo do canal de desenvolvimento"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/stats/templates/stats/popup.html
-#: src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/files/templates/files/viewer.html
+#: src/olympia/stats/templates/stats/popup.html src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
 msgid "close"
 msgstr "fechar"
 
@@ -1403,8 +1403,9 @@ msgid "Manage API Keys"
 msgstr "Gerir chaves da API"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Editor Tools"
-msgstr "Ferramentas do editor"
+#, fuzzy
+msgid "Reviewer Tools"
+msgstr "Revisores"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -2308,7 +2309,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, fuzzy
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Os extras que marcar como favoritos com recurso à funcionalidade <b>Adicionar aos favoritos</b> aparecem abaixo. Esta coleção é atualmente <b>privada</b>, o que significa que apenas você a pode "
@@ -2442,7 +2443,7 @@ msgstr "Colaboradores da coleção"
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 #, fuzzy
 msgid ""
-"You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
+"You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
 "Pode adicionar múltiplos colaboradores a esta coleção. Um colaborador pode adicionar ou remover extras desta coleção, mas não pode alterar o nome ou a descrição. Para adicionar um colaborador, "
@@ -2631,7 +2632,7 @@ msgstr "O extra ou plugin problemático será automaticamente desativado e não 
 #, fuzzy, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
+"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
 "Quando a Mozilla toma conhecimento de extras, plugins, ou software de terceiros, que comprometam seriamente a segurança, estabilidade ou desempenho do %(app)s em conjunto com <a href=\"%(criteria)s"
 "\">determinados critérios </a >, o software pode ser impedido de ser utilizado. Para mais informações, por favor leia <a href=\"%(support)s\">este artigo de ajuda</a>."
@@ -3769,6 +3770,18 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+#: src/olympia/constants/webext_permissions.py
+msgid "Requests that the extension be granted permissions according to the activeTab specification."
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Gives the extension access to the chrome.alarms API."
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Read and modify bookmarks."
+msgstr ""
+
 #: src/olympia/core/apps.py
 msgid "Core"
 msgstr ""
@@ -4152,8 +4165,12 @@ msgstr "Este envio falhou a validação e pode não ter os resultados completos 
 
 #: src/olympia/devhub/views.py
 #, fuzzy
-msgid "Review Requested."
+msgid "Review requested."
 msgstr "Solicitada análise"
+
+#: src/olympia/devhub/views.py
+msgid "Review requested.  You must provide further details to proceed."
+msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -4920,7 +4937,7 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-msgid "Enter the following text confirm your decision: {slug}"
+msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
@@ -5016,8 +5033,17 @@ msgid "Delete this theme."
 msgstr "Eliminar este tema."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
-msgstr "Este extra será excluído automaticamente após alguns dias caso o processo de submissão não seja concluído."
+msgid "This add-on is missing some required information before it can be submitted for publication."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html
+#, fuzzy
+msgid "This add-on doesn't have any versions."
+msgstr "Este extra não é compatível com a sua versão do %(app)s."
+
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html
+msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -5117,6 +5143,11 @@ msgstr ""
 #, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Este endereço só será visível se for um programador."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+#, fuzzy
+msgid "Cancel Review and Disable Version"
+msgstr "Versão para impressão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
@@ -5366,6 +5397,10 @@ msgstr "Processo de revisão de extras"
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
 msgid "Listed Version:"
@@ -5388,6 +5423,10 @@ msgstr "Esta é a versão mas recente que foi enviada, mas que ainda não foi di
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Queues are not reviewed strictly in order"
 msgstr "As filas não são revistas numa ordem rigorosa"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Signed for self-distribution. Updates are handled by you."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
@@ -5700,14 +5739,6 @@ msgid "Show Me"
 msgstr "Mostrar comentários"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "AMO"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Self-hosted"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
 msgid "View All Submissions"
 msgstr "Ver todas as versões"
@@ -5777,7 +5808,7 @@ msgstr "Extensões populares"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
-"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Google, Chrome and Opera, so your extensions will run in Firefox with just a few changes."
+"Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
@@ -6211,7 +6242,8 @@ msgid "Notes for Reviewers"
 msgstr "Nota para revisores"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
+#, fuzzy
+msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr "Opcionalmente, escreva qualquer informação que possa ser útil para o editor ao rever este extra, tais como informações da conta de teste."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
@@ -6310,28 +6342,12 @@ msgstr "Visibilidade do extra"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
-msgid "Visible:"
-msgstr "Visibilidade:"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
-msgid "Visible to everyone on {0} and included in search results and listing pages."
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
 msgstr "Visível para todos no {0} e incluído nos resultados de pesquisas e listagens em páginas"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Invisible:"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted:"
-msgstr "Não-listado:"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
+msgid ""
+"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6359,16 +6375,6 @@ msgstr "Próxima versão deste extra"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
 msgstr "Versões mais antigas"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Why can't I switch to <i>Listed</i>?"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid ""
-"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
-"        The process is described in detail in <a href=\"{link}\">this documentation</a>."
-msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6426,35 +6432,21 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Tem a certeza que pretende ocultar o seu extra?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlist Add-on"
-msgstr "Não listar extra"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, python-format
-msgid ""
-"Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisting an add-on is irreversible!"
-msgstr "A não-listagem de um extra é irreversível!"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "An unlisted add-on cannot be switched to be listed."
-msgstr "Um extra não-listado não pode ser modificado para ser listado."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Are you sure you wish to unlist your add-on?"
-msgstr "Tem a certeza que pretende não listar o seu extra?"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
+#, fuzzy
+msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr "Cancelar o seu pedido de revisão vai marcar o seu extra como incompleto. Se não completar o seu extra passados alguns dias solicitando uma revisão, ele será eliminado."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Tem a certeza que deseja cancelar o seu pedido de revisão?"
+
+#: src/olympia/discovery/data.py
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py
+msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6465,27 +6457,19 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#: src/olympia/discovery/data.py
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr ""
-
-#: src/olympia/discovery/data.py
-msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#: src/olympia/discovery/data.py
-msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
-msgstr ""
-
-#: src/olympia/discovery/data.py
 msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
+msgstr ""
+
+#: src/olympia/discovery/data.py
+msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#: src/olympia/discovery/data.py
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ""
 
 #: src/olympia/editors/forms.py
@@ -6750,7 +6734,8 @@ msgid "More Information Requested"
 msgstr "Solicitada mais informação"
 
 #: src/olympia/editors/models.py
-msgid "Contains Editor Comment"
+#, fuzzy
+msgid "Contains Reviewer Comment"
 msgstr "Contém comentários do editor"
 
 #: src/olympia/editors/models.py
@@ -6868,7 +6853,8 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>anónimo</i> em %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
-msgid "Return to the Editor Tools homepage"
+#, fuzzy
+msgid "Return to the Reviewer Tools homepage"
 msgstr "Voltar à página inicial das ferramentas do editor"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
@@ -6993,8 +6979,9 @@ msgid "Reviews This Month"
 msgstr "Revisões deste mês"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "New Editors"
-msgstr "Novos editores"
+#, fuzzy
+msgid "New Reviewers"
+msgstr "Revisores"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -7032,8 +7019,9 @@ msgid "Save"
 msgstr "Guardar"
 
 #: src/olympia/editors/templates/editors/performance.html
-msgid "Add-on Editor Performance"
-msgstr ""
+#, fuzzy
+msgid "Add-on Reviewer Performance"
+msgstr "Processo de revisão de extras"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -7200,6 +7188,16 @@ msgid "Update the whiteboard"
 msgstr "Atualizar o quadro branco"
 
 #: src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Unlisted Review Page"
+msgstr "Filas não listadas"
+
+#: src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Listed Review Page"
+msgstr "Registo da moderação da revisão "
+
+#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr "(admin)"
 
@@ -7219,9 +7217,11 @@ msgstr "Mais informação"
 msgid "Resolution"
 msgstr "Resolução"
 
-#: src/olympia/editors/templates/editors/reviewlog.html
-msgid "Editor"
-msgstr "Editor"
+#: src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/history_table.html
+#: src/olympia/editors/templates/editors/themes/logs.html src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/editors/templates/editors/themes/themes.html
+msgid "Reviewer"
+msgstr "Revisor"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Add-on has been deleted."
@@ -7292,11 +7292,6 @@ msgstr "Desde sempre"
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "You have <span>{0}</span> points."
 msgstr "Tem <span>{0}</span> pontos."
-
-#: src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
-#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/editors/templates/editors/themes/single.html src/olympia/editors/templates/editors/themes/themes.html
-msgid "Reviewer"
-msgstr "Revisor"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
@@ -7569,16 +7564,27 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "Versão: %(version)s &bull; Tamanho: %(size)s &bull; hash MD5: %(md5)s &bull; Tipo de mime: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-msgid "File Compare :: Editor tools"
+#, fuzzy
+msgid "File Compare :: Reviewer tools"
 msgstr "Comparar ficheiro :: Ferramentas do editor"
 
 #: src/olympia/files/templates/files/viewer.html
-msgid "File Viewer :: Editor tools"
+#, fuzzy
+msgid "File Viewer :: Reviewer tools"
 msgstr "Visualizador de ficheiro :: Ferramentas do editor"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
 msgstr "A validação falhou:"
+
+#: src/olympia/files/templates/files/viewer.html
+msgid "File content not supported for syntax highlighting"
+msgstr ""
+
+#: src/olympia/files/templates/files/viewer.html
+#, python-format
+msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
+msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
@@ -8595,8 +8601,10 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Faça o seu próprio extra</a>. Nós fornecemos gratuitamente os serviços de alojamento e atualização, e podemos ajudá-lo a atingir uma audiência mais ampla de utilizadores."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, python-format
-msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
+#, fuzzy, python-format
+msgid ""
+"If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
+"stability."
 msgstr ""
 "Se tiver experiência no desenvolvimento de extras, <a href=\"%(url)s\">torne-se num editor</a>! Os nossos editores são fãs de extras com experiência técnica que revêm a qualidade e estabilidade de "
 "extras."
@@ -9103,10 +9111,10 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "A Mozilla possui uma política que descreva os critérios de submissão de extras?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
-"href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
+"href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 "Sim. As <a href=\"%(p_url)s\">políticas de extras</a> da Mozilla descrevem que tipos de envios são aceites. Estas políticas estão sujeitas a alterações sem aviso prévio. Além disso, a equipa de "
 "editores do AMO utiliza o <a href=\"%(g_url)s\">guia de revisão para editores</a> para garantir que o seu extra atende aos critérios específicos de funcionalidades e de segurança."
@@ -9116,10 +9124,10 @@ msgid "How do I submit my add-on for review?"
 msgstr "Como submeto o meu extra para revisão?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
+"have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
 "O painel de ferramentas do programador permite que envie e submeta os seus extras para o AMO. Deve ser um utilizador registado no AMO antes de poder submeter um extra. Antes de enviar o seu extra, "
 "tenha certeza que leu o <a href=\"%(url)s\">guia de revisão para editores</a> da Mozilla para garantir que o seu extra atende aos critérios utilizados pelos editores para rever os extras."
@@ -9169,10 +9177,10 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Porque é que o meu extra tem de ser revisto?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
-"<a href=\"%(url)s\">Editors Reviewing Guide</a>."
+"<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Todos os extras submetidos, sejam novos ou atualizações, são revistos para assegurar que os utilizadores da Mozilla têm uma experiência estável e segura. Todas as submissões de extras são revistas "
 "de acordo com as diretrizes descritas no <a href=\"%(url)s\">guia de revisão para editores</a>."
@@ -9182,11 +9190,11 @@ msgid "Who reviews my add-on?"
 msgstr "Quem revê o meu extra?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
-"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
-"href=\"%(url)s\">Editors Reviewing Guide</a>."
+"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
+"users. When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
+"the <a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Os extras são revistos pelos editores do AMO, um grupo de talentosos programadores que se voluntariam para ajudar no projeto Mozilla revendo extras para garantir uma experiência estável e segura "
 "para os utilizadores da Mozilla. Quando comunicar com os editores, por favor seja cordial, paciente e respeitador pois eles estão a trabalhar arduamente para garantir que o seu extra está "
@@ -9197,10 +9205,10 @@ msgid "What are the guidelines used to review my add-on?"
 msgstr "Quais são os critérios utilizados para rever o meu extra?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
-"ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
+"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
+"that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
 "A equipa editorial da Mozilla segue o <a href=\"%(url)s\">guia de revisão para editores</a> ao testar um extra para ser aceite no AMO. É importante que os programadores de extras analisem este guia "
 "para garantir que áreas problemáticas comuns são trabalhadas antes de submeter os seus extras para revisão. Isto irá tornar o processo de revisão mais expedito."
@@ -9229,9 +9237,9 @@ msgid "number of problem areas discovered"
 msgstr "o número de áreas problemáticas encontradas"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
+"This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
 "\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
 "É por isto que é muito importante ler o <a href=\"%(g_url)s\">Guia de revisões para editores</a> para garantir que o seu extra esteja conforme. Também é uma ótima ideia ler o artigo <a href="
@@ -9267,13 +9275,15 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "Pode enviar uma atualização para o seu extra através do painel de Ferramentas do programador escolhendo a opção \"Enviar uma nova versão\" e enviando um novo ficheiro .xpi para o seu extra."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-msgid "Does my update need to be reviewed by editors?"
+#, fuzzy
+msgid "Does my update need to be reviewed by reviewers?"
 msgstr "A minha atualização precisa ser revista pelos editores?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
+#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
-"reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an editor."
+"reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
 "Depende. Se tiver simplesmente alterado a descrição do seu extra ou atualizando a propriedade \"maxVersion\" para assegurar a compatibilidade com novas versões das aplicações Mozilla, então o seu "
 "extra não precisa ser novamente revisto. No entanto, se submeter um novo ficheiro atualizado, então a atualização do seu extra terá de ser revista por um editor."
@@ -11016,7 +11026,8 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "o meu extra baseado no sdk não pode ser atualizado"
 
 #: src/olympia/users/notifications.py
-msgid "my add-on is reviewed by an editor"
+#, fuzzy
+msgid "my add-on is reviewed by a reviewer"
 msgstr "o meu extra é revisto por um editor"
 
 #: src/olympia/users/notifications.py

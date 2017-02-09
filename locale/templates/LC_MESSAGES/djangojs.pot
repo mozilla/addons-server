@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-01-24 08:33+0000\n"
+"POT-Creation-Date: 2017-02-09 11:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -820,7 +820,7 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1340
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1341
 #: static/js/zamboni/editors.js:321
 msgid "Select an application first"
 msgstr ""
@@ -1002,15 +1002,15 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:912
+#: static/js/zamboni/devhub.js:913
 msgid "Learn more"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:1241
+#: static/js/zamboni/devhub.js:1242
 msgid "Image changes being processed"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:1391
+#: static/js/zamboni/devhub.js:1392
 msgid "Must be a valid e-mail address."
 msgstr ""
 
@@ -1070,11 +1070,11 @@ msgstr ""
 msgid "Error loading translation"
 msgstr ""
 
-#: static/js/zamboni/files.js:414 static/js/zamboni/validator.js:261
+#: static/js/zamboni/files.js:440 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr ""
 
-#: static/js/zamboni/files.js:420 static/js/zamboni/validator.js:284
+#: static/js/zamboni/files.js:446 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr ""
 
