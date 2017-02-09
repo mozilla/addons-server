@@ -16,11 +16,26 @@ dependencies:
         "$CIRCLE_BUILD_URL"
         > version.json
     - docker build -t app:build -f Dockerfile.deploy .
+    - pip install tox mozdownload mozinstall
 
 test:
+  pre:
+    - mozdownload --version latest --destination firefox.tar.bz2
+    - mozinstall firefox.tar.bz2
+    - wget -O geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.14.0/geckodriver-v0.14.0-linux64.tar.gz
+    - gunzip -c geckodriver.tar.gz | tar xopf -
+    - chmod +x geckodriver
+    - sudo mv geckodriver /home/ubuntu/bin
+    - docker-compose pull
+    - docker-compose up -d
+    - sleep 60
+    - docker-compose run web ./scripts/setup-docker.sh
   override:
-    - echo "Skipped...Running our uitests on every pull request breaks"
-    - echo "them irregularly and they're badly maintained at the moment."
+    - tox -e ui-tests --
+      --base-url=http://127.0.0.1
+      --firefox-path=firefox/firefox
+      --junit-xml=$CIRCLE_TEST_REPORTS/junit.xml
+      --html=$CIRCLE_ARTIFACTS/results.html
 
 deployment:
   latest:

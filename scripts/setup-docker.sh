@@ -13,7 +13,8 @@ python manage.py createsuperuser \
   --username ${RANDOM} \
   --email ${RANDOM}@restmail.net \
   --add-to-supercreate-group \
-  --ui-testing \
+  --save-api-credentials=tests/ui/variables.json \
+  --hostname=http://olympia.dev \
   --noinput
 python manage.py waffle_switch --create super-create-accounts on
 #python manage.py loaddata zadmin/users
