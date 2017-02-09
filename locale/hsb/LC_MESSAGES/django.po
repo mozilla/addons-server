@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 20:08+0000\n"
+"PO-Revision-Date: 2017-02-09 20:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9050,13 +9050,13 @@ msgid "How do I submit my add-on for review?"
 msgstr "Kak móžu swój přidatk za přepruwowanje zapodać?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
-"Kontrolna deska wuwiwarskich nastrojow wam zmóžnja, přidatki do AMO nahrać a tam zapodać. Dyrbiće zregistrowany AMO-wužiwar być, prjedy hač móžeće přidatk zapodać. Čitajće prošu <a "
-"href=\"%(url)s\">přepruwowanski přewodnik AMO za redaktorow </a>, prjedy hač swój přidatk zapodawaće, zo byšće zawěsćił, zo waš přidatk směrnicam wotpowěduje, kotrež so wot redaktorow za "
+"Přehlad wuwiwarskich nastrojow wam zmóžnja, přidatki na AMO nahrać a tam zapodać. Dyrbiće zregistrowany AMO-wužiwar być, prjedy hač móžeće přidatk zapodać. Čitajće prošu <a "
+"href=\"%(url)s\">přepruwowanski přewodnik AMO za přepruwowarjow</a>, prjedy hač swój přidatk zapodaće, zo byšće zawěsćił, zo waš přidatk směrnicam wotpowěduje, kotrež so wot přepruwowarjow za "
 "přepruwowanje přidatkow wužiwaja."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9104,13 +9104,13 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Čehodla dyrbi so mój přidatk přepruwować?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Wšě zapodate přidatki, nowe abo zaktualizowane, so přepruwuja, zo by so zawěsćiło, zo wužiwarjo Mozilla maja stabilne a wěste dožiwjenje. Wšě zapodaća přidatkow so po směrnicach přepruwuja, kotrež "
-"su w <a href=\"%(url)s\">přepruwowanskej přiručce za redaktorow</a> wobrysowane."
+"su w <a href=\"%(url)s\">přepruwowanskej přiručce za přepruwowarjow</a> wobrysowane."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
