@@ -129,11 +129,12 @@ class TestFileViewer(TestCase):
         self.viewer.cleanup()
         assert not self.viewer.is_extracted()
 
-    @freeze_time('2017-02-08 02:01:00')
+    @freeze_time('2017-01-08 02:01:00')
     def test_dest(self):
-        assert self.viewer.dest == os.path.join(
+        viewer = FileViewer(make_file(1, get_file('webextension.xpi')))
+        assert viewer.dest == os.path.join(
             settings.TMP_PATH, 'file_viewer',
-            '0208', str(self.viewer.file.pk))
+            '0108', str(self.viewer.file.pk))
 
     def test_isbinary(self):
         binary = self.viewer._is_binary
