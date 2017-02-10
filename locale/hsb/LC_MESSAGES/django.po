@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 20:16+0000\n"
+"PO-Revision-Date: 2017-02-10 15:49+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9117,27 +9117,27 @@ msgid "Who reviews my add-on?"
 msgstr "Štó přepruwuje mój přidatk?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Přidatki so wot AMO-redaktorow přepruwuja, skupiny talentowanych wuwiwarjow, kotřiž dobrowólnje projektej Mozilla pomhaja, přepruwujo přidatki, zo bychu stabilne a wěste dožiwjenje za wužiwarjow "
-"Mozilla zawěsćili. Jeli z redaktorami komunikujeće, budźće zdwórliwy, sćerpliwy a respektny, dźěłaja ćežko, zo bychu zawěsćili, zo waš přidatk so korektnje zarjaduje a směrnicam w <a "
-"href=\"%(url)s\">přepruwowanskim přewodniku za redaktorow</a> wotpowěduje."
+"Přidatki so wot AMO-přepruwowarjow přepruwuja, skupiny talentowanych wuwiwarjow, kotřiž dobrowólnje projektej Mozilla pomhaja, přepruwujo přidatki, zo bychu stabilne a wěste dožiwjenje za wužiwarjow"
+" Mozilla zawěsćili. Jeli z přepruwowarjemi komunikujeće, budźće zdwórliwy, sćerpliwy a respektny, dźěłaja ćežko, zo bychu zawěsćili, zo waš přidatk so korektnje zarjaduje a směrnicam w <a "
+"href=\"%(url)s\">přepruwowanskim přewodniku za přepruwowarjow</a> wotpowěduje."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Kotre směrnicy so za přepruwowanje mojeho přidatka wužiwaja?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"Team redaktorow Mozilla slěduje <a href=\"%(url)s\">přepruwowanskemu přewodnikej za redaktorow</a>, hdyž přidatk za přewzaće do AMO testuje. Je wažnje, zo wuwiwarjo přidatkow tutón přewodnik "
+"Team přepruwowarjow Mozilla slěduje <a href=\"%(url)s\">přepruwowanskemu přewodnikej za přidatki</a>, hdyž přidatk za přewzaće do AMO testuje. Je wažnje, zo wuwiwarjo přidatkow tutón přewodnik "
 "přehladuja, zo bychu zawěsćili, zo huste problemowe pola so před zapodawanjom jich přidatkow za přepruwowanje wobjednawaja. To jara pomha, přepruwowanski proces pospěšić."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9164,13 +9164,13 @@ msgid "number of problem areas discovered"
 msgstr "ličba namakanych problemowych polow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Tohodla je jara wažnje, <a href=\"%(g_url)s\">přepruwowanski přewodnik za redaktorow</a> čitać, zo by so zawěsćiło, zo waš přidatk so kaž wočakowany zarjaduje. Je tež dobra ideja, blogowy přinošk <a"
-" href=\"%(blog_url)s\">Successfully Getting Your Add-on Reviewed</a> (jendźelsce) čitać, kotryž wuběrny dohlad do přepruwowanje wašeho přidatka bjez problemow skići."
+"Tohodla je jara wažnje, <a href=\"%(g_url)s\">přepruwowanski přewodnik za přidatki</a> čitać, zo by so zawěsćiło, zo waš přidatk so kaž wočakowany zarjaduje. Je tež dobra ideja, blogowy přinošk <a "
+"href=\"%(blog_url)s\">Successfully Getting Your Add-on Reviewed</a> (jendźelsce) čitać, kotryž wuběrny dohlad do přepruwowanja wašeho přidatka bjez problemow skići."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -9204,13 +9204,12 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr "Dyrbi so moja aktualizacija wot přepruwowarjow přepruwować?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
 "Za tym hač. Jeli prosće wopisanje swojeho přidatka měnjeće abo „maxVersion“ aktualizujeće, zo byšće kompatibelnosć z nowej aktualizaciju softwary Mozilla zawěsćił, njetrjeba so waš přidatk znowa "
-"přepruwować. Jeli wšak nowu zaktualizowanu dataju zapodawaće, dyrbi so waša přidatkowa aktualizacija wot redaktora přepruwować."
+"přepruwować. Jeli wšak nowu zaktualizowanu dataju zapodawaće, dyrbi so waša přidatkowa aktualizacija wot přepruwowarja přepruwować."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
