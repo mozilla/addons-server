@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 11:31+0000\n"
+"PO-Revision-Date: 2017-02-10 11:50+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1438,9 +1438,8 @@ msgid "Manage API Keys"
 msgstr "Gerenciar chaves API"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Revisores"
+msgstr "Ferramentas de revisão"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -2354,12 +2353,11 @@ msgstr ""
 " escondê-la do público, clique no botão abaixo para torná-la privada."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Complementos que você marcar como favoritos usando a funcionalidade <b>Adicionar aos Favoritos</b> são exibidos abaixo. Esta coleção é <b>privada</b>, apenas você pode vê-la. Se você quiser que "
+"Extensões que você marcar como favoritos usando a funcionalidade <b>Adicionar aos Favoritos</b> são exibidos abaixo. Esta coleção é <b>privada</b>, apenas você pode vê-la. Se você quiser que "
 "qualquer pessoa possa vê-la, clique no botão abaixo para torná-la pública."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
@@ -2491,13 +2489,12 @@ msgid "Collection Contributors"
 msgstr "Colaboradores da coleção"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Você pode adicionar vários contribuidores a esta coleção. Um contribuidor pode adicionar ou remover complementos desta coleção, mas não pode mudar o nome ou descrição. Para adicionar um "
-"contribuidor, digite o endereço de email dele abaixo. Contribuidores precisam ter uma conta da Mozilla Add-ons."
+"Você pode adicionar vários contribuidores a esta coleção. Um contribuidor pode adicionar ou remover extensões desta coleção, mas não pode mudar o nome ou descrição. Para adicionar um contribuidor, "
+"digite o endereço de e-mail do contribuidor abaixo. Contribuidores precisam ter uma conta da Mozilla Add-ons."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2681,13 +2678,13 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "O complemento ou plugin problemático será automaticamente desabilitado e não será mais usado."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Quando a Mozilla identifica que um complemento, plugin ou outro software de terceiros compromete seriamente a %(app)s segurança, estabilidade ou performance e se encaixa em <a "
-"href=\"%(criteria)s\">certos critérios</a>, o software pode ser bloqueado.  Para mais informações, por favor leia <a href=\"%(support)s\"> este artigo de suporte</a>."
+"Quando a Mozilla identifica que uma extensão, plugin ou outro software de terceiros compromete seriamente a %(app)s segurança, estabilidade ou desempenho e se encaixa em <a "
+"href=\"%(criteria)s\">certos critérios</a>, o software pode ser bloqueado.  Para mais informações, por favor leia <a href=\"%(support)s\">este artigo de suporte</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3801,7 +3798,7 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Requests that the extension be granted permissions according to the activeTab specification."
-msgstr ""
+msgstr "Solicitado que a extensão tenha permissões de acordo com a especificação do activeTab."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Gives the extension access to the chrome.alarms API."
@@ -4201,9 +4198,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Esse arquivo falhou em algum dos testes de validação e pode não apresentar resultados completos de validação. Por favor, tome o devido cuidado ao analisá-lo."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "Análise solicitada"
+msgstr "Revisão solicitada."
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
@@ -5019,11 +5015,8 @@ msgstr ""
 "poderão apresentar versões usando o mesmo ID."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
-"Digite o seguinte texto para confirmar sua decisão:\n"
-"           {slug}"
+msgstr "Digite o seguinte texto para confirmar sua decisão: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
@@ -5120,16 +5113,15 @@ msgstr "Excluir este tema."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Antes que esta extensão possa ser enviada para publicação, estão faltando algumas informações necessárias."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Esse complemento não é compatível com a sua versão do %(app)s."
+msgstr "Essa extensão não tem nenhuma versão."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Esta extensão não tem nenhuma versão aprovada, assim sua página pública (incluindo versões beta) estão escondidas."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -5219,9 +5211,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Estas notas só serão visíveis por você e nossos revisores."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "Reativar versão"
+msgstr "Cancelar revisão e desabilitar versão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5456,7 +5447,7 @@ msgstr "A compatibilidade do seu complemento com o multi-processo do Firefox (e1
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Listado neste site após revisão de código. Atualizações serão gerenciadas automaticamente por este site."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Listed Version:"
@@ -5845,11 +5836,10 @@ msgid "Port a Chrome Extension"
 msgstr "Portar uma Extensão do Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"O Firefox suporta APIs WebExtension, que na maioria das vezes são compatíveis com APIs suportadas pelo Google, Chrome e Opera, assim sua extensão funcionará no Firefox com pequenas modificações."
+"O Firefox suporta APIs WebExtension, que na maioria das vezes são compatíveis com APIs suportadas pelo Chrome, Opera e Edge, assim sua extensão funcionará no Firefox com pequenas modificações."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
@@ -6292,12 +6282,8 @@ msgid "Notes for Reviewers"
 msgstr "Notas aos revisores"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr ""
-"Opcionalmente, digite qualquer informação que possa ser útil\n"
-"                              para o Editor revisor deste complemento, como informações\n"
-"                              da conta de teste."
+msgstr "Opcionalmente, insira qualquer informação que possa ser útil para o revisor desta extensão, como informações da conta de teste."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
@@ -6389,15 +6375,14 @@ msgid "Listing visibility"
 msgstr "Visibilidade da extensão"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "Visível para todos em {0} e incluído nos resultados de pesquisa e páginas listadas."
+msgstr "{label_open}Visível:{label_close} Visível para todos em {site_url} e incluído nos resultados de pesquisa e páginas listadas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "Não será incluída nos resultados de pesquisas, e a página de listagem indicará que você desativou a extensão. Novas versões não serão aceitas neste estado."
+msgstr ""
+"{label_open}Invisível:{label_close} Não será incluída nos resultados de pesquisas, e suas página de listagem indicará que você desativou a extensão. Novas versões não serão aceitas neste estado."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -6489,9 +6474,8 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Você tem certeza de que deseja cancelar sua solicitação de análise?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
@@ -6774,9 +6758,8 @@ msgid "More Information Requested"
 msgstr "Mais informações solicitadas"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "Contém comentários do editor"
+msgstr "Contém o comentário do revisor"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
@@ -6895,9 +6878,8 @@ msgstr "<i>anônimo</i> em %(date)s [%(ip_address)s]"
 
 # %1$s is the application name.  Example:  Firefox
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Voltar para a página de Ferramentas do Editor"
+msgstr "Voltar para a página de Ferramentas de revisão"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
