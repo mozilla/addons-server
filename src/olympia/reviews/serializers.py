@@ -1,6 +1,8 @@
 import re
 from urllib2 import unquote
 
+from django.utils.translation import ugettext as _
+
 from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 
@@ -96,7 +98,7 @@ class ReviewSerializerReply(BaseReviewSerializer):
             # Only one level of replying is allowed, so if it's already a
             # reply, we shouldn't allow that.
             raise serializers.ValidationError(
-                'Can not reply to a review that is already a reply.')
+                _(u"You can't reply to a review that is already a reply."))
 
         data = super(ReviewSerializerReply, self).validate(data)
         return data
@@ -130,12 +132,14 @@ class ReviewSerializer(BaseReviewSerializer):
     def validate_version(self, version):
         if self.partial:
             raise serializers.ValidationError(
-                'Can not change version once the review has been created.')
+                _(u"You can't change the version of the add-on reviewed once "
+                  u"the review has been created."))
 
         addon = self.context['view'].get_addon_object()
         if version.addon_id != addon.pk or not version.is_public():
             raise serializers.ValidationError(
-                'Version does not exist on this add-on or is not public.')
+                _(u"This version of the add-on doesn't exist or isn't "
+                  u"public."))
         return version
 
     def validate(self, data):
@@ -143,14 +147,13 @@ class ReviewSerializer(BaseReviewSerializer):
         if not self.partial:
             if data['addon'].authors.filter(pk=data['user'].pk).exists():
                 raise serializers.ValidationError(
-                    'An add-on author can not leave a review on its own '
-                    'add-on.')
+                    _(u"You can't leave a review on your own add-on."))
 
             review_exists_on_this_version = Review.objects.filter(
                 addon=data['addon'], user=data['user'],
                 version=data['version']).exists()
             if review_exists_on_this_version:
                 raise serializers.ValidationError(
-                    'The same user can not leave a review on the same version'
-                    ' more than once.')
+                    _(u"You can't leave more than one review for the same "
+                      u"version of an add-on."))
         return data

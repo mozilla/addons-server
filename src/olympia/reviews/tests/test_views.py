@@ -1265,7 +1265,8 @@ class TestReviewViewSetEdit(TestCase):
         response = self.client.patch(self.url, {'version': new_version.pk})
         assert response.status_code == 400
         assert response.data['version'] == [
-            'Can not change version once the review has been created.']
+            u"You can't change the version of the add-on reviewed once "
+            u"the review has been created."]
 
     def test_edit_admin(self):
         original_review_user = self.review.user
@@ -1549,7 +1550,7 @@ class TestReviewViewSetPost(TestCase):
             'version': addon2.current_version.pk})
         assert response.status_code == 400
         assert response.data['version'] == [
-            'Version does not exist on this add-on or is not public.']
+            u"This version of the add-on doesn't exist or isn't public."]
 
     def test_post_deleted_addon(self):
         version_pk = self.addon.current_version.pk
@@ -1580,7 +1581,7 @@ class TestReviewViewSetPost(TestCase):
             'version': old_version_pk})
         assert response.status_code == 400
         assert response.data['version'] == [
-            'Version does not exist on this add-on or is not public.']
+            u"This version of the add-on doesn't exist or isn't public."]
 
     def test_post_disabled_version(self):
         self.addon.current_version.update(created=self.days_ago(1))
@@ -1598,7 +1599,7 @@ class TestReviewViewSetPost(TestCase):
             'version': old_version.pk})
         assert response.status_code == 400
         assert response.data['version'] == [
-            'Version does not exist on this add-on or is not public.']
+            u"This version of the add-on doesn't exist or isn't public."]
 
     def test_post_not_public_addon(self):
         version_pk = self.addon.current_version.pk
@@ -1621,7 +1622,7 @@ class TestReviewViewSetPost(TestCase):
             'version': self.addon.current_version.pk})
         assert response.status_code == 400
         assert response.data['non_field_errors'] == [
-            'An add-on author can not leave a review on its own add-on.']
+            "You can't leave a review on your own add-on."]
 
     def test_post_twice_different_version(self):
         self.user = user_factory()
@@ -1648,8 +1649,8 @@ class TestReviewViewSetPost(TestCase):
             'version': self.addon.current_version.pk})
         assert response.status_code == 400
         assert response.data['non_field_errors'] == [
-            'The same user can not leave a review on the same version more'
-            ' than once.']
+            u"You can't leave more than one review for the same version of "
+            u"an add-on."]
 
 
 class TestReviewViewSetFlag(TestCase):
@@ -1942,4 +1943,4 @@ class TestReviewViewSetReply(TestCase):
         })
         assert response.status_code == 400
         assert response.data['non_field_errors'] == [
-            'Can not reply to a review that is already a reply.']
+            u"You can't reply to a review that is already a reply."]
