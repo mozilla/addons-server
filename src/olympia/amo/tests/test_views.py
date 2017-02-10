@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
+import json
 import random
 
 from django import test
@@ -56,6 +57,12 @@ class Test404(TestCase):
         self.assertTemplateUsed(res, 'amo/404.html')
         links = pq(res.content)('[role=main] ul a[href^="/en-US/thunderbird"]')
         assert links.length == 4
+
+    def test_404_api(self):
+        response = self.client.get('/api/v3/lol')
+        assert response.status_code == 404
+        data = json.loads(response.content)
+        assert data['detail'] == u'Not found.'
 
 
 class TestCommon(TestCase):
