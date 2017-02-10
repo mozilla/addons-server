@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 08:59+0000\n"
+"PO-Revision-Date: 2017-02-10 12:03+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -7080,14 +7080,12 @@ msgid "Update the whiteboard"
 msgstr "A tábla frissítése"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Titkos sorok"
+msgstr "Nem listázott értékelés oldal"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Legutóbbi értékelés"
+msgstr "Listázott értékelés oldal"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7457,14 +7455,12 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "Verzió: %(version)s &bull; Méret: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "Fájl összehasonlítása :: Szerkesztőeszközök"
+msgstr "Fájl összehasonlítása :: Értékelőeszközök"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "Fájlnézegető :: Szerkesztői eszközök"
+msgstr "Fájlnézegető :: Értékelőeszközök"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
@@ -8493,12 +8489,12 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Készítse el saját kiegészítőjét</a>. Ingyenes tárhely és frissítési szolgáltatásokat biztosítunk, és segíthetünk felhasználók széles közönségét elérni."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Ha van kiegészítő-fejlesztési tapasztalata, <a href=\"%(url)s\">legyen szerkesztő</a>! A szerkesztőink kiegészítő-rajongók, műszaki háttérrel, akik értékelik a kiegészítők kódminőségét és "
+"Ha van kiegészítő-fejlesztési tapasztalata, <a href=\"%(url)s\">legyen kiegészítőértékelő</a>! Az értékelőink kiegészítő-rajongók, műszaki háttérrel, akik értékelik a kiegészítők kódminőségét és a "
 "stabilitásukat."
 
 #: src/olympia/pages/templates/pages/about.lhtml
@@ -8999,26 +8995,26 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Van-e a Mozillának érvényben lévő szabályzata arról, hogy mik az elfogadható benyújtott kiegészítők?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Igen. A Mozilla <a href=\"%(p_url)s\">kiegészők szabályzata</a> leírja milyen egy elfogadható benyújtott kiegészítő. A szabályzat figyelmeztetés nélkül módosulhat. Továbbá, az AMO szerkesztői "
-"csapata használja a <a href=\"%(g_url)s\">Szerkesztői értékelési útmutatót</a>, hogy biztosítsák, hogy a kiegészítője megfelel bizonyos funkcionális és biztonsági irányelveknek."
+"Igen. A Mozilla <a href=\"%(p_url)s\">kiegészítők szabályzata</a> leírja milyen egy elfogadható benyújtott kiegészítő. A szabályzat figyelmeztetés nélkül módosulhat. Továbbá, a kiegészítőértékelő "
+"csapat a <a href=\"%(g_url)s\">Kiegészítőértékelési útmutatót</a> használja, hogy biztosítsa, hogy a kiegészítője megfelel bizonyos funkcionális és biztonsági irányelveknek."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
 msgstr "Hogyan kell benyújtani a kiegészítőjét értékelésre?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
 "A Fejlesztői eszközök irányítópult lehetővé teszi a kiegészítők feltöltését és benyújtását az AMO-ba. Regisztrált AMO felhasználónak kell lennie mielőtt benyújthat kiegészítőket. Mielőtt beküldi a "
-"kiegészítőjét, olvassa el az AMO <a href=\"%(url)s\">Szerkesztői értékelői útmutatót</a>, hogy meggyőződjön arról, hogy az betartja a szerkesztők által, az értékelésnél használt irányelveket."
+"kiegészítőjét, olvassa el a <a href=\"%(url)s\">Kiegészítőértékelői útmutatót</a>, hogy meggyőződjön arról, hogy az betartja a szerkesztők által, az értékelésnél használt irányelveket."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
