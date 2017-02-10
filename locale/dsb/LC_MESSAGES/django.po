@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 16:10+0000\n"
+"PO-Revision-Date: 2017-02-10 16:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6269,15 +6269,15 @@ msgid "Listing visibility"
 msgstr "Widobnosć lisćinowego zapiska"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "Widobny za wše w {0} a w pytańskich wuslědkach a na lisćinowych bokach."
+msgstr "{label_open}Widobny:{label_close} Widobny za wše na {site_url} a wopśimowany w pytańskich wuslědkach a na lisćinowych bokach."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "Njepokažo w pytańskich wuslědkach, a jogo lisćinowy bok pokažo, až sćo jen znjemóžnił. Zapódaśa nowych wersijow za lisćinu njebudu se w toś tom statusu akceptěrowaś."
+msgstr ""
+"{label_open}Njewidobny:{label_close} Njezjawijo se w pytańskich wuslědkach, a jogo lisćinowy bok pokažo, až sćo jen znjemóžnił. Zapodaśa nowych wersijow za lisćinu njebudu se w toś tom statusu "
+"akceptěrowaś."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -6359,20 +6359,16 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Cośo swój dodank napšawdu schowaś?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
-"Gaž pśetergnjośo swójo pśeglědowańske napšašowanje, buźo se waš dodank ako njedopołny wóznamjeniś. Jolic njepšosyśo znowego pó někotarych dnjach wó pśeglědanje, aby swój dodank wudopołnił, wón se "
-"wulašujo."
+msgstr "Gaž pśetergnjośo swójo pśeglědowańske napšašowanje, buźo se waš dodank ako njedopołny wóznamjeniś a wersije, kótarež cakaju na pśeglědanje, se znjemóžniju."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Cośo swójo pśeglědowańske napšašowanje napšawdu anulěrowaś?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokěrujśo wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
+msgstr "Ześěgniśo wideo {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
@@ -6664,9 +6660,8 @@ msgid "More Information Requested"
 msgstr "Dalšne informacije pominane"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "Wopśimujo komentar redaktora"
+msgstr "Wopśimujo komentar pśeglědowarja"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
@@ -6784,9 +6779,8 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>anonymny</i> dnja %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Slědk k startowemu bokoju redaktorskich rědow"
+msgstr "Slědk k startowemu bokoju pśeglědowarskich rědow"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
@@ -6913,9 +6907,8 @@ msgid "Reviews This Month"
 msgstr "Pśeglědanja w toś tom mjasecu"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "Pśepytowarje"
+msgstr "Nowe pśeglědowarje"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -6955,9 +6948,8 @@ msgid "Save"
 msgstr "Składowaś"
 
 #: src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "Wugbaśe dodankowych redaktorow"
+msgstr "Wugbaśe dodankowych pśeglědowarjow"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -7124,14 +7116,12 @@ msgid "Update the whiteboard"
 msgstr "Pokaze aktualizěrowaś"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Čakańske rědy za njenalicone dodanki"
+msgstr "Pśeglědowański bok za njenalicone dodanki"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Slědne pśeglědanje"
+msgstr "Pśeglědowański bok za nalicone dodanki"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7505,14 +7495,12 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "Wersija %(version)s &bull; Wjelikosć: %(size)s &bull; MD5 pśeglědowańska cyfra: %(md5)s &bull; Typ MIME: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "Dataju pśirownaś :: rědy redaktora"
+msgstr "Dataju pśirownaś :: rědy za pśeglědowarje"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "Datajowy wobglědowak :: Rědy za redaktory"
+msgstr "Datajowy wobglědowak :: Rědy za pśeglědowarje"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
@@ -8541,13 +8529,13 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Napórajśo swójski dodank</a>. Bitujomy dermotne góspodowanje a aktualizěrowańske słužby a móžomy wam pomagaś, wjeliki krejz wužywarjow dostaś."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Jolic maśo nazgónjenja we wuwijanju dodankow, <a href=\"%(url)s\">buźćo redaktor</a>! Naše redaktory su pśiwisniki dodankow z techniskeju slězynu, kótarež pśeglěduju dodanki za kodoweju kwalitu a "
-"stabilnosću."
+"Jolic maśo nazgónjenja we wuwijanju dodankow, <a href=\"%(url)s\">buźćo pśeglědowaŕ dodankow</a>! Naše pśeglědowarje su pśiwisniki dodankow z techniskeju slězynu, kótarež pśeglěduju dodanki za "
+"kodoweju kwalitu a stabilnosću."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9048,27 +9036,26 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Ma Mozilla pšawidła wó tom, což jo akceptabelne zapódaśe?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Jo. <a href=\"%(p_url)s\">Pšawidła dodankow</a> Mozilla wopisuju, což jo akceptabelne zapódaśe. Toś te pšawidła mógu se bźez zdźělenja změniś. Mimo togo wužywa team AMO-redaktorow <a "
-"href=\"%(g_url)s\">pśeglědowański pśewódnik za redaktory</a>, aby zawěsćił, až waš dodank wótpowědujo wěstym směrnicam za funkcionalnosć a wěstotu."
+"Jo. <a href=\"%(p_url)s\">Pšawidła dodankow</a> Mozilla wopisuju, což jo akceptabelne zapódaśe. Toś te pšawidła mógu se bźez zdźělenja změniś. Mimo togo wužywa team AMO-pśeglědowarjow <a "
+"href=\"%(g_url)s\">pśeglědowański pśewódnik za dodanki</a>, aby zawěsćił, až waš dodank wótpowědujo wěstym směrnicam za funkcionalnosć a wěstotu."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
 msgstr "Kak mógu swój dodank za pśeglědowanje zapódaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
-"Kontrolna deska wuwijarskich rědow wam zmóžnja, dodanki do AMO nagraś a tam zapódaś. Musyśo zregistrěrowany AMO-wužywaŕ byś, nježli až móžośo dodank zapódaś. Cytajśo pšosym <a "
-"href=\"%(url)s\">pśeglědowański pśewódnik AMO za redaktory</a>, nježli až zapódawaśo swój dodank, aby zawěsćił, až waš dodank wótpowědujo směrnicam, kótarež wužywaju se wót redaktorow za "
-"pśeglědowanje dodankow."
+"Pśeglěd wuwijarskich rědow wam zmóžnja, dodanki do AMO nagraś a tam zapódaś. Musyśo zregistrěrowany AMO-wužywaŕ byś, nježli až móžośo dodank zapódaś. Cytajśo pšosym <a "
+"href=\"%(url)s\">pśeglědowański pśewódnik za dodanki</a>, nježli až zapódawaśo swój dodank, aby zawěsćił, až waš dodank wótpowědujo směrnicam, kótarež wužywaju se wót pśeglědowarjow."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9114,40 +9101,40 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Cogodla musy se mój dodank pśeglědowaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Wšykne zapódane dodanki, nowe abo aktualizěrowane, se pśeglěduju, aby se zawěsćiło, až wužywarje Mozilla maju stabilne a wěste dožywjenje. Wšykne zapódaśa dodankow pśeglěduju se pó směrnicach, "
-"kótarež su w <a href=\"%(url)s\">pśeglědowańskej pśirucce za redaktory</a> wobcerjone."
+"kótarež su w <a href=\"%(url)s\">pśeglědowańskej pśirucce za dodanki</a> wobcerjone."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
 msgstr "Chto pśeglědujo mój dodank?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Dodanki pśeglěduju se wót AMO-redaktorow, kupki talentěrowanych wuwijarjow, kótarež pomagaju dobrowólnje projektoju Mozilla, z tym až pśeglěduju dodanki, aby stabilne a wěste dožywjenje za wužywarje"
-" Mozilla zawěsćili. Jolic komunicěrujośo z redaktorami, buźćo zdwórliwy, sćerpliwy a respektny, źěłaju žurnje, aby zawěsćili, až waš dodank se korektnje zarědujo a wótpowědujo směrnicam w <a "
-"href=\"%(url)s\">pśeglědowańskem pśewódniku za redaktory</a>."
+"Dodanki pśeglěduju se wót AMO-pśeglědowarjow, kupka talentěrowanych wuwijarjow, kótarež pomagaju dobrowólnje projektoju Mozilla, z tym až pśeglěduju dodanki, aby stabilne a wěste dožywjenje za "
+"wužywarje Mozilla zawěsćili. Jolic komunicěrujośo z pśeglědowarjami, buźćo zdwórliwy, sćerpliwy a respektny, źěłaju žurnje, aby zawěsćili, až waš dodank se korektnje zarědujo a wótpowědujo směrnicam"
+" w <a href=\"%(url)s\">pśeglědowańskem pśewódniku za dodanki</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Kótare směrnice wužywaju se za pśeglědowanje mójogo dodanka?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"Team redaktorow Mozilla slědujo <a href=\"%(url)s\">pśeglědowańskemu pśewódnikoku za redaktory</a>, gaž testujo dodank za pśewześe do AMO. Jo wažnje, až wuwijarje dodankow pśecytaju toś ten "
+"Team pśeglědowarjow Mozilla slědujo <a href=\"%(url)s\">pśeglědowańskemu pśewódnikoju za dodanki</a>, gaž testujo dodank za pśewześe do AMO. Jo wažnje, až wuwijarje dodankow pśecytaju toś ten "
 "pśewódnik, aby zawěsćili, až ceste problemowe póla wobjadnaju se pśed zapódawanim jich dodankow za pśeglědanje. To buźo wjelgin pomagaś, pśeglědowański proces póspěšyś."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9174,12 +9161,12 @@ msgid "number of problem areas discovered"
 msgstr "licba namakanych problemowych pólow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Togodla jo wjelgin wažnje, <a href=\"%(g_url)s\">pśeglědowański pśewódnik za redaktory</a> cytaś, aby se zawěsćiło, až waš dodank zarědujo se ako wócakane. Jo teke dobra ideja, blogowy pśinosk <a "
+"Togodla jo wjelgin wažnje, <a href=\"%(g_url)s\">pśeglědowański pśewódnik za dodanki</a> cytaś, aby se zawěsćiło, až waš dodank zarědujo se ako wócakane. Jo teke dobra ideja, blogowy pśinosk <a "
 "href=\"%(blog_url)s\">Successfully Getting Your Add-on Reviewed</a> (engelski) cytaś, kótaryž bitujo wuběrny doglěd do pśeglědowanja wašogo dodanka bźez problemow."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9210,18 +9197,16 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "Móžośo pśez kontrolnu desku wuwijarskich rědow aktualizaciju zapódaś: Wubjeŕśo nastajenje „Nowu wersiju nagraś“ a nagrajśo nowu .xpi-dataju za swój dodank."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Musy se mója aktualizacija wót redaktorow pśeglědowaś?"
+msgstr "Musy se mója aktualizacija wót pśeglědowarjow pśeglědowaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
 "Za tym ako. Jolic změnjaśo jadnorje wopisanje swójogo dodanka abo aktualizěrujośo „maxVersion“, aby wy kompatibelnosć z noweju aktualizaciju softwary Mozilla zawěsćił, njetrjeba se waš dodank "
-"znowego pśeglědowaś. Jolic pak zapódawaśo nowu aktualizěrowanu dataju, musy se waša dodankowa aktualizacija wót redaktora pśeglědowaś."
+"znowego pśeglědowaś. Jolic pak zapódawaśo nowu aktualizěrowanu dataju, musy se waša dodankowa aktualizacija wót pśeglědowarja dodankow pśeglědowaś."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -10983,9 +10968,8 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "mój dodank, kótaryž bazěrujo na SDK, njedajo se aktualizěrowaś"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "mój dodank jo se wót redaktora pśeglědał"
+msgstr "mój dodank jo se wót pśeglědowarja pśeglědał"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
