@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 00:23+0000\n"
+"PO-Revision-Date: 2017-02-10 00:45+0000\n"
 "Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1317,18 +1317,18 @@ msgstr "Atualmente as extensões não estão disponíveis no Firefox para iOS."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr "Você precisa do Firefox para instalar complementos. <a href=\"http://mozilla.com/mobile\">Saiba mais&nbsp;&raquo;</a>"
+msgstr "Você precisa do Firefox para instalar extensões. <a href=\"http://mozilla.com/mobile\">Saiba mais&nbsp;&raquo;</a>"
 
 # {0} is the application name.  Example:  Firefox
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/header_title.html src/olympia/templates/impala/header_title.html
 msgid "Return to the {0} Add-ons homepage"
-msgstr "Voltar para a página inicial de complementos para o {0}"
+msgstr "Voltar para a página inicial de extensões para o {0}"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
-msgstr "Complementos"
+msgstr "Extensões"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "Easy ways to personalize."
@@ -6481,9 +6481,8 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Tem certeza de que deseja ocultar o seu complemento?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "Cancelar sua solicitação de análise marcará seu complemento como incompleto. Se não completar seu complemento solicitando uma nova análise após vários dias, ele será excluído."
+msgstr "Cancelar o seu pedido de análise marcará sua extensão como incompleta e quaisquer versões aguardando análise serão desativadas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
@@ -11146,9 +11145,8 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "meu complemento baseado no SDK não pôde ser atualizado"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "meu complemento foi analisado por um editor"
+msgstr "minha extensão foi analisada por um revisor"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
