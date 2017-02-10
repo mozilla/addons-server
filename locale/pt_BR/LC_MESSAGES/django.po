@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 12:02+0000\n"
+"PO-Revision-Date: 2017-02-10 14:19+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -9281,13 +9281,13 @@ msgid "number of problem areas discovered"
 msgstr "número de problemas descobertos"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Este é o motivo pelo qual é muito importante ler o <a href=\"%(g_url)s\">Guia de Revisão do Editor</a> para garantir que o seu complemento funciona como o esperado. Também é uma boa ideia ler a "
-"postagem <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> no blog que provê uma excelente visão sobre como garantir uma análise tranquila do seu complemento."
+"Este é o motivo pelo qual é muito importante ler o <a href=\"%(g_url)s\">Guia de Revisão</a> para garantir que a sua extensão funcione como o esperado. Também é uma boa ideia ler a postagem <a "
+"href=\"%(blog_url)s\">Como ter sua Extensão revisada com sucesso</a> que apresenta uma excelente visão sobre como garantir uma análise tranquila da sua extensão."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
