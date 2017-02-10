@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 14:19+0000\n"
+"PO-Revision-Date: 2017-02-10 14:47+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -9167,14 +9167,13 @@ msgid "How do I submit my add-on for review?"
 msgstr "Como eu submeto meu complemento para análise?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
-"O painel de ferramentas do desenvolvedor permite que envie e submeta complementos para o AMO. Você deve ser um usuário registrado na AMO antes de poder submeter um complemento. Antes de submeter seu"
-" complemento, certifique-se de ler o <a href=\"%(url)s\">Guia de análise para editores</a> da Mozilla para garantir que seu complemento atende aos critérios usados pelos editores para analisar "
-"complementos."
+"O painel de Ferramentas do Desenvolvedor permite que envie e submeta extensões para o AMO. Você deve ser um usuário registrado na AMO antes de poder submeter uma extensão. Antes de submeter sua "
+"extensão, certifique-se de ler o <a href=\"%(url)s\">Guia de revisores</a> da Mozilla para garantir que sua extensão atende aos critérios usados pelos revisores."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9221,41 +9220,41 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Por que meu complemento deve ser analisado?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Todos os complementos submetidos, sejam novos ou atualizações, são analisados para garantir que os usuários da Mozilla tenham uma experiência estável e segura. Todos os complementos são analisados "
-"seguindo os critérios do <a href=\"%(url)s\">Guia de análise para editores</a>."
+"Todas as extensões submetidos, sejam novas ou atualizações, são analisadas para garantir que os usuários da Mozilla tenham uma experiência estável e segura. Todas as extensões são analisadas "
+"seguindo os critérios do <a href=\"%(url)s\">Guia de Revisores</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
 msgstr "Quem analisa meu complemento?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Complementos são analisados pelos editores AMO, um grupo de desenvolvedores talentosos que trabalham como voluntários para ajudar o projeto Mozilla, analisando os complementos para garantir uma "
-"experiência estável e segura para os usuários da Mozilla. Ao se comunicar com os editores, por favor, seja cortês, paciente e respeitoso, eles estão trabalhando duro para garantir que o seu "
-"complemento esteja configurado corretamente e segue as diretrizes definidas no <a href=\"%(url)s\">Guia de Revisão para Editores</a>."
+"Extensões são analisadas pelos revisores AMO, um grupo de desenvolvedores talentosos que trabalham como voluntários para ajudar o projeto Mozilla, analisando os complementos para garantir uma "
+"experiência estável e segura para os usuários da Mozilla. Ao se comunicar com os revisores, por favor, seja cortês, paciente e respeitoso, eles estão trabalhando duro para garantir que a sua "
+"extensão esteja configurada corretamente e segue as diretrizes definidas no <a href=\"%(url)s\">Guia de Revisão</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Quais são os critérios usados para analisar o meu complemento?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"A equipe editorial da Mozilla segue o <a href=\"%(url)s\">guia de revisão para editores</a> ao testar um complemento para ser aceito no AMO. É importante que os desenvolvedores de complementos "
-"analisem esse guia para garantir que áreas problemáticas comuns são trabalhadas antes de submeter os seus complementos para análise. Isto irá tornar o processo de análise mais rápido."
+"A equipe de revisores da Mozilla segue o <a href=\"%(url)s\">Guia de Revisão</a> ao testar uma extensão para ser aceita no AMO. É importante que os desenvolvedores de extensões analisem esse guia "
+"para garantir que problemas sejam resolvidos antes de submeter sua extensão para revisão. Isto irá tornar o processo de revisão mais rápido."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
