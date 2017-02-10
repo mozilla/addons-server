@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 23:50+0000\n"
+"PO-Revision-Date: 2017-02-10 00:09+0000\n"
 "Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -216,25 +216,25 @@ msgstr "Ver contrato de licença de usuário final"
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Esse complemento não foi analisado pela Mozilla. <a href=\"%(url)s\">Saiba mais</a>"
+msgstr "Esta extensão não foi analisada pela Mozilla. <a href=\"%(url)s\">Saiba mais</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
-msgstr "Este complemento foi marcado como experimental por seus desenvolvedores."
+msgstr "Esta extensão foi marcada como experimental por seus desenvolvedores."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "O desenvolvedor deste complemento pede que o ajude na continuação do desenvolvimento, fazendo uma pequena contribuição."
+msgstr "O desenvolvedor desta extensão pede que o ajude na continuação do desenvolvimento fazendo uma pequena contribuição."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "O desenvolvedor deste complemento pede que mostre o seu apoio fazendo uma doação para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+msgstr "O desenvolvedor desta extensão pede que você mostre o seu apoio fazendo uma doação para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "O desenvolvedor desse complemento pede que mostre o seu apoio, fazendo uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
+msgstr "O desenvolvedor desta extensão pede que você mostre o seu apoio fazendo uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Contribute"
@@ -266,16 +266,16 @@ msgstr "O que é isso?"
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "O desenvolvedor desse complemento gostaria que considerasse fazer uma doação para <a href=\"%(charity_url)s\">%(charity_name)s</a> caso goste de usá-lo."
+msgstr "O desenvolvedor desta extensão gostaria que você considerasse fazer uma doação para <a href=\"%(charity_url)s\">%(charity_name)s</a> caso goste de usá-la."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "O desenvolvedor desse complemento gostaria que considerasse fazer uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a> caso goste de usá-lo."
+msgstr "O desenvolvedor desta extensão gostaria que você considerasse fazer uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a> caso goste de usá-la."
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "A Mozilla está comprometida com o desenvolvimento de um ecossistema de desenvolvedores saudável e vibrante. Sua doação pode contribuir para o desenvolvimento deste complemento."
+msgstr "A Mozilla está comprometida com o desenvolvimento de um ecossistema de desenvolvedores saudável e vibrante. Sua doação pode contribuir para o desenvolvimento desta extensão."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Make a Contribution"
@@ -358,7 +358,7 @@ msgstr "Requer reinicialização"
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
 msgid "Add-on Information for {0}"
-msgstr "Informações do complemento {0}"
+msgstr "Informações da extensão {0}"
 
 # 85%
 # 100%
@@ -397,7 +397,7 @@ msgstr "Oculto"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
-msgstr "Complementos requeridos"
+msgstr "Extensões requeridas"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html
@@ -439,7 +439,7 @@ msgstr "Licença"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "More about this add-on"
-msgstr "Mais sobre esse complemento"
+msgstr "Mais sobre esta extensão"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Image Gallery"
@@ -458,8 +458,8 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
-"O canal de desenvolvimento permite que teste um nova versão experimental deste complemento antes dele ser lançado ao público em geral. Uma vez instalada a versão em desenvolvimento, você continuará "
-"a receber atualizações desse canal."
+"O canal de desenvolvimento permite que teste um nova versão experimental desta extensão antes dela ser lançado ao público em geral. Uma vez instalada a versão em desenvolvimento, você continuará a "
+"receber atualizações deste canal."
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Install development version"
@@ -470,8 +470,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>Cuidado:</strong> versões em desenvolvimento desse complemento não foram analisadas pela Mozilla. Ao instalar uma versão em desenvolvimento, você continuará a receber atualizações em "
-"desenvolvimento desse desenvolvedor. Para parar de recebê-las, reinstale a versão padrão no link acima."
+"<strong>Cuidado:</strong> versões em desenvolvimento desta extensão não foram analisadas pela Mozilla. Ao instalar uma versão em desenvolvimento, você continuará a receber atualizações de "
+"desenvolvimento deste desenvolvedor. Para parar de recebê-las, reinstale a versão padrão no link acima."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Version {0}:"
@@ -511,7 +511,7 @@ msgstr "Voltar para {0}…"
 # Sunbird
 #: src/olympia/addons/templates/addons/home.html src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py
 msgid "Add-ons for {0}"
-msgstr "Complementos para o {0}"
+msgstr "Extensões para o {0}"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/impala/base_listing.html
@@ -606,7 +606,7 @@ msgstr "Pagamento concluído"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Return to the addon."
-msgstr "Voltar para o complemento."
+msgstr "Voltar para a extensão."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
 #: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
@@ -716,7 +716,7 @@ msgstr "{0} Usuários Diários"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Para instalar esse complemento e milhares de outros, <b>baixe o Firefox</b>, um navegador aberto e gratuito da Mozilla."
+msgstr "Para instalar esta extensão e milhares de outras, <b>baixe o Firefox</b>, um navegador aberto e gratuito da Mozilla."
 
 # %1 is the add-on name
 #: src/olympia/addons/templates/addons/popups.html
@@ -751,7 +751,7 @@ msgstr "Para instalar esse ou centenas de outros temas, <b>baixe o Firefox</b>, 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Esse complemento não é compatível com a sua versão do %(app)s."
+msgstr "Esta extensão não é compatível com a sua versão do %(app)s."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Install Anyway"
@@ -759,7 +759,7 @@ msgstr "Instalar mesmo assim"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Esse complemento requer uma versão do Firefox que ainda não foi lançada."
+msgstr "Esta extensão requer uma versão do Firefox que ainda não foi lançada."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Help test new Firefox Versions"
@@ -768,7 +768,7 @@ msgstr "Ajude a testar novas versões do Firefox"
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr "Esse complemento requer o %(app)s {new_version}. Você está usando atualmente o %(app)s {old_version}."
+msgstr "Esta extensão requer o %(app)s {new_version}. Você está usando atualmente o %(app)s {old_version}."
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/addons/templates/addons/popups.html
@@ -778,7 +778,7 @@ msgstr "Atualizar {0}"
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr "ou veja as <a href=\"%(href)s\">versões anteriores desse complemento</a>."
+msgstr "ou veja as <a href=\"%(href)s\">versões anteriores desta extensão</a>."
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -790,18 +790,18 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
-"<strong>Cuidado:</strong> Este complemento não foi revisado pela Mozilla e não pode ser instalado em versões finais do FIrefox 43 e superiores.  Seja cuidadoso ao instalar programas de terceiros que"
-" podem prejudicar o seu computador."
+"<strong>Cuidado:</strong> Esta extensão não foi analisada pela Mozilla e não pode ser instalada em versões finais do Firefox 43 e superiores.  Seja cuidadoso ao instalar programas de terceiros que "
+"podem prejudicar o seu computador."
 
 # %1$s is an application name and version.  Example: Firefox 3.1
 #: src/olympia/addons/templates/addons/popups.html
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Atenção:</strong> este complemento não é compatível com o seu sistema operacional."
+msgstr "<strong>Atenção:</strong> esta extensão não é compatível com o seu sistema operacional."
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Esse complemento não é compatível com a sua versão do %(app)s pelos seguintes motivos:"
+msgstr "Esta extensão não é compatível com a sua versão do %(app)s pelos seguintes motivos:"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "View other versions"
@@ -810,7 +810,7 @@ msgstr "Ver outras versões"
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr "Esse complemento não é compatível com a sua versão do %(app)s."
+msgstr "Esta extensão não é compatível com a sua versão do %(app)s."
 
 #. {0} is the name of the add-on.
 #: src/olympia/addons/templates/addons/privacy.html
@@ -819,7 +819,7 @@ msgstr "Política de privacidade de {0}"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "QR code for add-on"
-msgstr "Código QR do complemento"
+msgstr "Código QR da extensão"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
@@ -837,7 +837,7 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
-"Se você suspeita que esse complemento viola as <a href=\"%(url)s\">nossas políticas</a> ou tem problemas de segurança ou privacidade, por favor, use o formulário abaixo para descrever suas "
+"Se você suspeita que esta extensão viola as <a href=\"%(url)s\">nossas políticas</a> ou tem problemas de segurança ou privacidade, por favor, use o formulário abaixo para descrever suas "
 "preocupações. Por favor, não utilize esse formulário por nenhuma outra razão."
 
 #: src/olympia/addons/templates/addons/report_abuse.html src/olympia/users/templates/users/report_abuse.html
@@ -883,8 +883,8 @@ msgstr "Submeter análise"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
-"Por favor, não insira relatórios de bugs aqui. Não disponibilizamos o seu endereço de e-mail para os desenvolvedores de extensões, por isso eles não poderão entrar em contato com você para resolver "
-"o seu problema."
+"Por favor, não envie relatos de bugs nas análises. Nós não informamos seu endereço de e-mail para os desenvolvedores de extensões e eles podem precisar entrar em contato com você para ajudar a "
+"resolver o seu problema."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -919,7 +919,7 @@ msgstr "Exibir a resposta do desenvolvedor para essa análise"
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Ver todas as análises desse complemento"
-msgstr[1] "Ver todas as %(cnt)s análises desse complemento"
+msgstr[1] "Ver todas as %(cnt)s análises desta extensão"
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
