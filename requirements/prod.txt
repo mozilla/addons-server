@@ -124,9 +124,9 @@ cssutils==1.0.1 \
     --hash=sha256:78ac48006ac2336b9456e88a75ed35f6a31a030c65162503b7af01a60d78db5a \
     --hash=sha256:d8a18b2848ea1011750231f1dd64fe9053dbec1be0b37563c582561e7a529063
 # defusedxml is required by amo-validator
-defusedxml==0.4.1 \
-    --hash=sha256:cd551d5a518b745407635bb85116eb813818ecaf182e773c35b36239fc3f2478 \
-    --hash=sha256:1f7e2f6546caba6a52bcd6a6087df60c1cc63cdbc0d9ca3e5d517adcb5823d0c
+defusedxml==0.5.0 \
+    --hash=sha256:702a91ade2968a82beb0db1e0766a6a273f33d4616a6ce8cde475d8e09853b20 \
+    --hash=sha256:24d7f2f94f7f3cb6061acb215685e5125fbcdc40a857eff9de22518820b0a4f4
 dennis==0.8 \
     --hash=sha256:1c27b472f01e08dc912fc3c42f6d9267e2b484be40b0828a857b7a3280dbf461 \
     --hash=sha256:83f393fd922b196e5882cf555cf2cfc47fb5bbcb8ba11c0868d304b49291c9ef
