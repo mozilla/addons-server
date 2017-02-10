@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 11:50+0000\n"
+"PO-Revision-Date: 2017-02-10 12:02+0000\n"
 "Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -7011,9 +7011,8 @@ msgid "Reviews This Month"
 msgstr "Análises deste mês"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "Revisores"
+msgstr "Novas revisões"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -7054,9 +7053,8 @@ msgid "Save"
 msgstr "Salvar"
 
 #: src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "Desempenho do editor de complementos"
+msgstr "Extensão de revisão do desempenho"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -7229,14 +7227,12 @@ msgid "Update the whiteboard"
 msgstr "Atualizar o quadro branco"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Filas não listadas"
+msgstr "Página de revisão não listadas"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Última avaliação"
+msgstr "Página de revisões listadas"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7608,14 +7604,12 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "Versão: %(version)s &bull; Tamanho: %(size)s &bull; MD5 hash: %(md5)s &bull; Tipo MIME: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "Comparador de arquivos :: Ferramentas do editor"
+msgstr "Comparador de arquivos :: Ferramentas de revisão"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "Visualizador de arquivos :: Ferramentas do editor"
+msgstr "Visualizador de arquivos :: Ferramentas de revisão"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
@@ -8650,13 +8644,13 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Faça o seu próprio complemento</a>. Nós fornecemos os serviços de hospedagem e atualização gratuita e podemos te ajudar a atingir uma grande audiência de usuários."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Se você tem experiência de desenvolvimento de complementos, <a href=\"%(url)s\">tornar-se um editor</a>! Nossos editores são fãs de complementos com uma formação técnica que permite revisar "
-"complementos e comprovar a qualidade do código e estabilidade."
+"Se você tem experiência com desenvolvimento, <a href=\"%(url)s\">torne-se um revisor</a>! Nossos revisores são fãs de extensões com uma formação técnica que permitem revisar extensões e comprovar a "
+"qualidade e estabilidade do código."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9160,13 +9154,13 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "A Mozilla possui uma política que descreva os critérios de submissão de complementos?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Sim, a <a href=\"%(p_url)s\">Política de Complementos</a> da Mozilla descreve o que é uma submissão aceitável. Esta política pode ser alterada sem aviso prévio.  Adicionalmente, o time editorial do "
-"AMO usa o <a href=\"%(g_url)s\">Guia de Avaliação do Editor</a> para garantir que seus complementos cumprem certos requisitos de funcionalidade e segurança."
+"Sim. A <a href=\"%(p_url)s\">Política de Extensões</a> da Mozilla descreve o que é uma submissão aceitável. Esta política pode ser alterada sem aviso prévio. Além disso, a equipe de revisores do AMO"
+" usa o <a href=\"%(g_url)s\">Guia do Revisor</a> para garantir que seus complementos cumpram certos requisitos de funcionalidade e segurança."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
@@ -9326,18 +9320,16 @@ msgstr ""
 "Você pode submeter uma atualização do seu complemento pelo painel de ferramentas do desenvolvedor ao escolher opção \"Enviar uma nova versão\" e enviando um novo arquivo .xpi para o seu complemento."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "A minha atualização precisa ser analisada pelos editores?"
+msgstr "A minha atualização precisa ser analisada pelos revisores?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
-"Depende. Se você estiver simplesmente alterando a descrição do seu complemento ou atualizando a propriedade \"maxVersion\" para assegurar compatibilidade com novas versões das aplicações Mozilla, "
-"então seu complemento não precisa ser analisado novamente. Entretanto, se você submeter um novo arquivo de atualização, então a atualização do seu complemento deverá ser analisada por um editor."
+"Depende. Se você estiver simplesmente alterando a descrição da sua extensão ou atualizando a \"maxVersion\" para garantir compatibilidade com novas versões das aplicações Mozilla, então sua extensão"
+" não precisará ser analisada novamente. Entretanto, se você submeter um novo arquivo de atualização, sua extensão deverá ser analisada por um revisor."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
