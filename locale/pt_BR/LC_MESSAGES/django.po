@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 00:45+0000\n"
-"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
+"PO-Revision-Date: 2017-02-10 11:31+0000\n"
+"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -5482,7 +5482,7 @@ msgstr "Filas não são revisadas de forma rigorosa"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Marcado para distribuição. Atualizações serão gerenciadas por você."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
@@ -6495,7 +6495,7 @@ msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
-msgstr ""
+msgstr "Agregue vídeos do YouTube, Dailymotion, Facebook e outros sites de vídeos com esta ferramenta de download."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7641,12 +7641,12 @@ msgstr "A validação falhou:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Conteúdo do arquivo não suporta destaque de sintaxe"
 
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "A saída pode estar corrompida, por favor, fique atento e %(link_start)s informe um problema %(link_end)s imediatamente!"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
