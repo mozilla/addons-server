@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 00:10+0000\n"
+"PO-Revision-Date: 2017-02-10 00:30+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -868,11 +868,10 @@ msgid "Submit review"
 msgstr "Envoyer une critique"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
-"Veuillez ne pas poster de rapports de bugs dans vos critiques. Nous ne donnons pas accès à votre adresse électronique aux développeurs de modules or ceux-ci pourraient avoir besoin de vous contacter"
-" pour résoudre votre problème."
+"Veuillez ne pas poster de rapports de bugs dans vos critiques. Nous ne donnons pas accès à votre adresse électronique aux développeurs de modules, or ceux-ci pourraient avoir besoin de vous "
+"contacter pour résoudre votre problème."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -880,6 +879,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"Consultez la <a href=\"%(support)s\">section d’assistance</a> du module pour trouver si de l’aide est disponible. Vous pouvez également essayer de demander de l’aide à la <a href=\"https://discourse"
+".mozilla-community.org/c/add-ons/add-on-support\">communauté des modules</a>."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -995,9 +996,8 @@ msgid "Manage"
 msgstr "Gérer"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Add-on Review"
-msgstr "Nouvelle revue du module"
+msgstr "Revue du module"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Admin Manage"
@@ -1414,9 +1414,8 @@ msgid "Manage API Keys"
 msgstr "Gérer les clés d’API"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Testeurs"
+msgstr "Outils des testeurs"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -2317,7 +2316,6 @@ msgid ""
 msgstr "Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est pour le moment <b>publique</b>."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
@@ -2452,7 +2450,6 @@ msgid "Collection Contributors"
 msgstr "Contributeurs de la collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
@@ -2641,12 +2638,12 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Les modules ou greffons qui posent problème seront automatiquement désactivés et plus utilisables."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Lorsque Mozilla découvre qu’un module, greffon ou tout autre logiciel tiers peut remettre en cause la sécurité, stabilité ou les performances de %(app)s et que <a href=\"%(criteria)s\">certains "
+"Lorsque Mozilla découvre qu’un module, plugin ou tout autre logiciel tiers peut remettre en cause la sécurité, la stabilité ou les performances de %(app)s et que <a href=\"%(criteria)s\">certains "
 "critères</a> sont réunis, le logiciel peut être bloqué.  Pour plus d’informations, veuillez lire <a href=\"%(support)s\">cet article d’assistance</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
@@ -4155,9 +4152,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Cet envoi a échoué à la validation, et pourrait n’avoir aucun résultat de validation. Merci de faire très attention pendant son test."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "Revue demandée"
+msgstr "Revue demandée."
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
@@ -4932,9 +4928,8 @@ msgstr ""
 " d’être lié à votre compte, si bien que d’autres ne seront pas en mesure de présenter des versions utilisant le même ID."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr "Veuillez saisir le texte suivant pour confirmer votre décision&nbsp;: {slug}"
+msgstr "Veuillez saisir le texte suivant pour confirmer votre décision : {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
@@ -5598,13 +5593,12 @@ msgid "Promote"
 msgstr "Promotion"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "Gérez votre module"
+msgstr "Affichez votre module en vedette"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Badge « Get The Add-on »"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
@@ -5639,7 +5633,6 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get started"
 msgstr "Lancez-vous"
 
@@ -5677,7 +5670,6 @@ msgid "Learn How"
 msgstr "Découvrez comment"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "What's New"
 msgstr "Dernières nouvelles"
 
@@ -9034,13 +9026,13 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Est-ce que Mozilla a une politique en place sur ce qu’est une proposition acceptable ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 "Oui. La <a href=\"%(p_url)s\">politique de module</a> de Mozilla décrit ce qu’est une proposition acceptable. Cette politique est sujette à changement sans avertissement préalable. De plus, l’équipe"
-" éditoriale d’AMO utilise le <a href=\"%(g_url)s\">guide de revue des éditeurs</a> pour s’assurer que votre module correspond à une certaine ligne de conduite quant aux fonctionnalités et à la "
+" des testeurs d’AMO utilise le <a href=\"%(g_url)s\">guide de revue des testeurs</a> pour s’assurer que votre module correspond à une certaine ligne de conduite quant aux fonctionnalités et à la "
 "sécurité."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9048,13 +9040,13 @@ msgid "How do I submit my add-on for review?"
 msgstr "Comment puis-je envoyer mon module pour une revue ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
 "Le tableau de bord des outils du développeur vous permet de charger et envoyer vos modules sur AMO. Vous devez être un utilisateur inscrit sur AMO avant de proposer un module. Avant l’envoi de votre"
-" module, assuez-vous d’avoir lu le <a href=\"%(url)s\">guide de revue des éditeurs</a> pour être sûr que votre module correspond à la ligne de conduite utilisée par les éditeurs pour évaluer les "
+" module, assuez-vous d’avoir lu le <a href=\"%(url)s\">guide de revue des testeurs</a> pour être sûr que votre module correspond à la ligne de conduite utilisée par les testeurs pour évaluer les "
 "modules."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9102,41 +9094,41 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Pourquoi mon module doit-il être revu ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Tous les modules envoyés, qu’ils soient nouveaux ou mis à jours, sont vérifiés pour s’assurer que les utilisateurs de Mozilla n’auront pas de surprise. Tous les envois de module sont vérifiés "
-"suivant les directives édictées dans le <a href=\"%(url)s\">guide de revue des éditeurs</a>."
+"suivant les directives édictées dans le <a href=\"%(url)s\">guide de revue des testeurs</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
 msgstr "Qui fait la revue de mon module ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Les modules sont revus par les éditeurs AMO, un groupe de talentueux développeurs volontaires qui aident le projet Mozilla en vérifiant les modules complémentaires afin que les utilisateurs "
-"bénéficient de logiciels stables et sécurisés. Lorsque vous discutez avec les éditeurs, veillez à être poli, patient et respectueux. Les éditeurs travaillent dur pour s’assurer que votre module "
-"puisse être installé correctement et respecte les règles indiquées dans le <a href=\"%(url)s\">guide de revue</a>."
+"Les modules sont revus par les testeurs AMO, un groupe de talentueux développeurs volontaires qui aident le projet Mozilla en vérifiant les modules complémentaires afin que les utilisateurs "
+"bénéficient de logiciels stables et sécurisés. Lorsque vous discutez avec les testeurs, veillez à être poli, patient et respectueux. Les testeurs travaillent dur pour s’assurer que votre module "
+"puisse être installé correctement et respecte les règles indiquées dans le <a href=\"%(url)s\">guide de revue des testeurs</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Quelles sont les lignes directrices utilisées pour vérifier mon module ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"Lorsqu’elle vérifie la conformité d’un module pour AMO, l’équipe éditoriale Mozilla suit le <a href=\"%(url)s\">guide de revue</a>. Il est important que les développeurs de modules lisent ce guide "
-"avant d’envoyer un module pour mieux résoudre les éventuels problèmes. Cela aidera à accélérer le processus de revue."
+"Lorsqu’elle vérifie la conformité d’un module pour AMO, l’équipe des testeurs de modules suit le <a href=\"%(url)s\">guide de revue des testeurs</a>. Il est important que les développeurs de modules"
+" lisent ce guide avant d’envoyer un module pour mieux résoudre les éventuels problèmes. Cela aidera à accélérer le processus de revue."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9162,12 +9154,12 @@ msgid "number of problem areas discovered"
 msgstr "nombre de problèmes découverts"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"C’est pour cela qu’il est très important de lire le <a href=\"%(g_url)s\">guide de revue des éditeurs</a> pour s’assurer que votre module est configuré comme attendu. C’est également une bonne idée "
+"C’est pour cela qu’il est très important de lire le <a href=\"%(g_url)s\">guide de revue des testeurs</a> pour s’assurer que votre module est configuré comme attendu. C’est également une bonne idée "
 "de lire le billet, <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> qui fournit d’excellentes pistes pour assurer une revue aussi douce que possible de votre module."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9202,18 +9194,16 @@ msgstr ""
 "pour votre module."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Ma mise à jour a-t-elle besoin d’être vérifiée par les éditeurs."
+msgstr "Ma mise à jour a-t-elle besoin d’être vérifiée par les testeurs ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
-"Cela dépend. Si vous faites seulement un changement de description ou que vous mettez à jour la valeur « maxVersion » pour assurer la compatibilité avec une nouvelle version, alors votre module n’a "
-"pas besoin d’être revérifié. Par contre, si vous envoyez un nouveau fichier, alors votre mise à jour sera vérifiée par un éditeur."
+"Cela dépend. Si vous faites seulement un changement de description ou que vous mettez à jour la valeur « maxVersion » pour assurer la compatibilité avec une nouvelle version, alors votre module n’a "
+"pas besoin d’être revérifié. Par contre, si vous envoyez un nouveau fichier, alors votre mise à jour sera vérifiée par un testeur."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -9938,7 +9928,7 @@ msgid "Add a review for {0}"
 msgstr "Ajouter une critique sur {0}"
 
 #: src/olympia/reviews/templates/reviews/add.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
@@ -9952,7 +9942,7 @@ msgstr ""
 "Nul » à moins d’indiquer les raisons de votre ressenti. </li> <li> Merci de ne pas utiliser les commentaires pour rapporter des bogues. Nous ne récupérons pas votre adresse électronique et celle-ci "
 "ne sera donc pas disponible pour les développeurs qui pourraient avoir besoin de vous contacter pour résoudre votre problème. Veuillez consulter la <a href=\"%(support)s\">section relative à "
 "l’assistance </a> afin de connaître les modalités d’assistance pour ce module. </li> <li>Merci de ne pas utiliser de langage injurieux et de ne pas diffuser d’informations personnelles. </li> </ul> "
-"<p>Pour plus d’informations sur les retours utilisateur à propos des modules, veuillez lire <a href=\"%(guide)s\">les recommandations pour les revues des utilisateurs</a>.</p>"
+"<p>Pour plus d’informations sur les retours utilisateur à propos des modules, veuillez lire <a href=\"%(guide)s\">les recommandations pour les revues des commentaires des utilisateurs</a>.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -10976,9 +10966,8 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "la compatibilité de mon module utilisant le sdk n’a pas pu être mise à jour"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "mon module est en cours de vérification par un éditeur"
+msgstr "mon module est en cours de vérification par un testeur"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
@@ -11478,6 +11467,5 @@ msgid "Addon"
 msgstr "Module"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
 msgstr "Résultats de la validation"
