@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 00:30+0000\n"
+"PO-Revision-Date: 2017-02-10 22:47+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4157,7 +4157,7 @@ msgstr "Revue demandée."
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
-msgstr ""
+msgstr "Revue demandée. Vous devez fournir plus de détails pour continuer."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5530,9 +5530,8 @@ msgid "Latest News"
 msgstr "Dernières nouvelles"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Read more in our Blog"
-msgstr "besoin de plus d’informations"
+msgstr "Apprenez-en davantage sur notre blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Resources"
