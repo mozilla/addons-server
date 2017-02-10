@@ -7,6 +7,10 @@ import jwt
 import pytest
 import requests
 
+import django
+from django.test import LiveServerTestCase
+from django.core.management import call_command
+
 
 @pytest.fixture
 def capabilities(capabilities):
@@ -66,3 +70,22 @@ def user(base_url, fxa_account, jwt_token):
     assert requests.codes.created == r.status_code
     user.update(r.json())
     return user
+
+
+@pytest.fixture
+def django_setup():
+    # os.environ['DJANGO_LIVE_TEST_SERVER_ADDRESS'] = os.environ[
+                                                                # 'PYTEST_BASE_URL']
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings_test')
+    django.setup()
+    server = LiveServerTestCase.setUpClass()
+    call_command(
+        'createsuperuser',
+        interactive=False,
+        username='uitest',
+        email='uitest@mozilla.org',
+        add_to_supercreate_group=True,
+        save_api_credentials='tests/ui/variables.json',
+        hostname=os.environ['PYTEST_BASE_URL']
+    )
+    return server
