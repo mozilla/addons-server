@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 12:50+0000\n"
+"PO-Revision-Date: 2017-02-10 18:26+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3747,15 +3747,15 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Requests that the extension be granted permissions according to the activeTab specification."
-msgstr ""
+msgstr "Azt kéri, hogy a kiegészítő kapjon engedélyt, az activeTab specifikációnak megfelelően."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Gives the extension access to the chrome.alarms API."
-msgstr ""
+msgstr "Hozzáférést ad a kiegészítőnek a chrome.alarms API-hoz."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks."
-msgstr ""
+msgstr "Könyvjelzők olvasása és módosítása."
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4146,7 +4146,7 @@ msgstr "Értékelés kérve."
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
-msgstr ""
+msgstr "Értékelés kérve. További részleteket kell megadni a továbblépéshez."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5008,7 +5008,7 @@ msgstr "Téma törlése."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Ehhez a kiegészítőhöz további információk szükségesek, mielőtt benyújtható lesz közzétételre. "
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any versions."
@@ -5016,7 +5016,7 @@ msgstr "Ennek a kiegészítőnek nincs egyetlen verziója sem."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Ennek a kiegészítőnek nincs egyetlen elfogadott verziója sem, így a nyilvános oldalai (beleértve a béta verziókat is) rejtettek."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -5336,7 +5336,7 @@ msgstr "A kiegészítő kompatibilitás a több folyamatos Firefoxszal (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Ezen az oldalon kerül listázásra, a kódértékelésen átjutás után. Az automatikus frissítést ez az oldal kezeli."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Listed Version:"
@@ -5360,7 +5360,7 @@ msgstr "A sorok nem feltétlen szigorú sorrendben értékeltek"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Saját terjesztésre aláírva. A frissítéseket Ön kezeli."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
@@ -6347,7 +6347,7 @@ msgstr "Töltsön le videókat {start_sub_heading}a(z) {addon_name} kiegészít�
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
-msgstr ""
+msgstr "Videók könnyű rögzítése a YouTube-ról, Dailymotionről, Facebookról, és a legtöbb más videómegosztó oldalról, ezzel az egyszerű letöltő eszközzel. "
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7467,12 +7467,12 @@ msgstr "Ellenőrzés sikertelen:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "A fájltartalomhoz nem támogatott a szintaktikai kiemelés"
 
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "A kimenet hibás lehet, legyen óvatos és azonnal %(link_start)sjelentse a problémát%(link_end)s!"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
