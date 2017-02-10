@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 12:03+0000\n"
+"PO-Revision-Date: 2017-02-10 12:50+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1414,7 +1414,7 @@ msgstr "API kulcsok kezelése"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Reviewer Tools"
-msgstr "Értékelői eszközök"
+msgstr "Szerkesztői eszközök"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -2447,13 +2447,12 @@ msgid "Collection Contributors"
 msgstr "Gyűjtemény közreműködői"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Lehetőség van egy gyűjteményhez több közreműködőt is hozzáadni. A közreműködő kiegészítőket adhat hozzá, és távolíthat el a gyűjteményből. A közreműködő hozzáadásához adja meg az e-mail címét. A "
-"közreműködőnek rendelkeznie kell Mozilla kiegészítők felhasználói fiókkal."
+"Lehetőség van egy gyűjteményhez több közreműködőt is hozzáadni. A közreműködő kiegészítőket adhat hozzá, és távolíthat el a gyűjteményből, de nem változtathatja meg a nevét vagy leírását. A "
+"közreműködő hozzáadásához adja meg az e-mail címét. A közreműködőnek rendelkeznie kell Mozilla kiegészítők felhasználói fiókkal."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2636,7 +2635,7 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "A problémás kiegészítő vagy bővítmény automatikusan letiltásra kerül és nem lesz használható."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
@@ -6742,7 +6741,7 @@ msgstr "<i>ismeretlen</i> ekkor: %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Visszatérés az Értékelői eszközök oldalra"
+msgstr "Visszatérés a Szerkesztői eszközök oldalra"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
@@ -6870,7 +6869,7 @@ msgstr "A hónap értékelései"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "New Reviewers"
-msgstr "Új értékelők"
+msgstr "Új szerkesztők"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -6911,7 +6910,7 @@ msgstr "Mentés"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Add-on Reviewer Performance"
-msgstr "Kiegészítő értékelő teljesítménye"
+msgstr "Kiegészítő szerkesztő teljesítménye"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -7456,11 +7455,11 @@ msgstr "Verzió: %(version)s &bull; Méret: %(size)s &bull; MD5 hash: %(md5)s &b
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Compare :: Reviewer tools"
-msgstr "Fájl összehasonlítása :: Értékelőeszközök"
+msgstr "Fájl összehasonlítása :: Szerkesztői eszközök"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Viewer :: Reviewer tools"
-msgstr "Fájlnézegető :: Értékelőeszközök"
+msgstr "Fájlnézegető :: Szerkesztői eszközök"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
@@ -8494,7 +8493,7 @@ msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Ha van kiegészítő-fejlesztési tapasztalata, <a href=\"%(url)s\">legyen kiegészítőértékelő</a>! Az értékelőink kiegészítő-rajongók, műszaki háttérrel, akik értékelik a kiegészítők kódminőségét és a "
+"Ha van kiegészítő-fejlesztési tapasztalata, <a href=\"%(url)s\">legyen kiegészítőértékelő</a>! A szerkesztők kiegészítő-rajongók, műszaki háttérrel, akik értékelik a kiegészítők kódminőségét és a "
 "stabilitásukat."
 
 #: src/olympia/pages/templates/pages/about.lhtml
@@ -9000,8 +8999,8 @@ msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Igen. A Mozilla <a href=\"%(p_url)s\">kiegészítők szabályzata</a> leírja milyen egy elfogadható benyújtott kiegészítő. A szabályzat figyelmeztetés nélkül módosulhat. Továbbá, a kiegészítőértékelő "
-"csapat a <a href=\"%(g_url)s\">Kiegészítőértékelési útmutatót</a> használja, hogy biztosítsa, hogy a kiegészítője megfelel bizonyos funkcionális és biztonsági irányelveknek."
+"Igen. A Mozilla <a href=\"%(p_url)s\">kiegészítők szabályzata</a> leírja milyen egy elfogadható benyújtott kiegészítő. A szabályzat figyelmeztetés nélkül módosulhat. Továbbá, a szerkesztői csapat a "
+"<a href=\"%(g_url)s\">Kiegészítőértékelési útmutatót</a> használja, hogy biztosítsa, hogy a kiegészítője megfelel bizonyos funkcionális és biztonsági irányelveknek."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
@@ -9014,7 +9013,7 @@ msgid ""
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
 "A Fejlesztői eszközök irányítópult lehetővé teszi a kiegészítők feltöltését és benyújtását az AMO-ba. Regisztrált AMO felhasználónak kell lennie mielőtt benyújthat kiegészítőket. Mielőtt beküldi a "
-"kiegészítőjét, olvassa el a <a href=\"%(url)s\">Kiegészítőértékelői útmutatót</a>, hogy meggyőződjön arról, hogy az betartja a szerkesztők által, az értékelésnél használt irányelveket."
+"kiegészítőjét, olvassa el a <a href=\"%(url)s\">Szerkesztői értékelési útmutatót</a>, hogy meggyőződjön arról, hogy az betartja a szerkesztők által, az értékelésnél használt irányelveket."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9058,7 +9057,7 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Miért kell a kiegészítőjét értékelni?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
@@ -9071,7 +9070,7 @@ msgid "Who reviews my add-on?"
 msgstr "Ki értékeli a kiegészítőjét?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
@@ -9086,13 +9085,13 @@ msgid "What are the guidelines used to review my add-on?"
 msgstr "Mik a kiegészítőm értékelésekor használt irányelvek?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"A Mozilla szerkesztői csapat a <a href=\"%(url)s\">Szerkesztői értékelési útmutatót</a> használja, amikor azt vizsgálja, hogy egy kiegészítő elfogadható-e az AMO számára. Fontos hogy a kiegészítő "
-"fejlesztők átnézzék ezt az útmutatót, hogy megoldják a gyakori problémás területeket, még az előtt, hogy beküldenék a kiegészítőjüket. Ez nagyban gyorsítja az értékelési folyamatot."
+"A kiegészítők szerkesztői csapata a <a href=\"%(url)s\">Szerkesztői értékelési útmutatót</a> használja, amikor azt vizsgálja, hogy egy kiegészítő elfogadható-e az AMO számára. Fontos hogy a "
+"kiegészítő fejlesztők átnézzék ezt az útmutatót, hogy megoldják a gyakori problémás területeket, még az előtt, hogy beküldenék a kiegészítőjüket. Ez nagyban gyorsítja az értékelési folyamatot."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9118,12 +9117,12 @@ msgid "number of problem areas discovered"
 msgstr "a felfedezett problémás területek számától"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Ezért nagyon fontos elolvasni a <a href=\"%(g_url)s\">Szerkesztői értékelési útmutatót</a>, hogy olyan legyen a kiegészítő beállítva, ahogy az elvárt. Szintén jó ötlet elolvasni a <a "
+"Ezért nagyon fontos elolvasni a <a href=\"%(g_url)s\">Szerkesztői értékelési útmutatót</a>, hogy úgy legyen a kiegészítő beállítva, ahogy az elvárt. Szintén jó ötlet elolvasni a <a "
 "href=\"%(blog_url)s\">A kiegészítője sikeres értékelése</a> blogbejegyzést, amely kitűnő bepillantást nyújt ahhoz, hogy simán zajlódjon a kiegészítője értékelése."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9154,12 +9153,10 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "A Fejlesztői eszközök irányítópulton beküldheti a frissítést, az „Új verzió feltöltése” lehetőséget választva, és egy új .xpi fájlt feltöltve a kiegészítőjéhez."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "A kiegészítőmet át kell nézniük a szerkesztőknek?"
+msgstr "A frissítésemet át kell nézniük a szerkesztőknek?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
@@ -10922,7 +10919,6 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "az sdk-alapú kiegészítő nem frissíthető"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
 msgstr "a kiegészítőmet egy szerkesztő értékeli"
 
