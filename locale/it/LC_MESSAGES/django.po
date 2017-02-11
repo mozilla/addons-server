@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-11 10:49+0000\n"
+"PO-Revision-Date: 2017-02-11 11:04+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4153,9 +4153,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "La validazione del file caricato è fallita, pertanto potrebbero mancare i risultati completi della validazione. Tienilo a mente durante il processo di revisione."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "Richiesta revisione"
+msgstr "Richiesta di revisione inoltrata."
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
@@ -5031,7 +5030,7 @@ msgstr "Elimina questo tema."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Per completare la pubblicazione del componente aggiuntivo sul sito aggiungi le informazioni richieste."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any versions."
@@ -5039,7 +5038,7 @@ msgstr "Non sono disponibili versioni per questo componente aggiuntivo."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Non ci sono versioni pubbliche approvate per questo componente aggiuntivo. Ciò comporta che le pagine di presentazione delle versioni (comprese quelle beta) non siano mostrate ai visitatori."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -5369,7 +5368,7 @@ msgstr "La compatibilità del componente aggiuntivo con la modalità multiproces
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Visibile sul sito dopo il superamento della revisione. Gli aggiornamenti verranno gestiti automaticamente dal sito."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Listed Version:"
@@ -5393,7 +5392,7 @@ msgstr "L’ordine delle code di revisione non è seguito rigidamente"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Firmato digitalmente per la distribuzione su un sito esterno. Gli aggiornamenti dovranno essere gestiti manualmente."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
@@ -6287,12 +6286,11 @@ msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and i
 msgstr "{label_open}Visibile{label_close}: accessibile a chiunque su {site_url}, incluso nei risultati di ricerca e nelle pagine di presentazione."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
-"Il componente aggiuntivo non verrà mostrato tra i risultati delle ricerche e nella sua pagina verrà esplicitamente indicato che è stato disattivato. In questa situazione non sarà possibile caricare "
-"nuove versioni del componente aggiuntivo."
+"{label_open}Invisibile{label_close}: il componente aggiuntivo non verrà mostrato tra i risultati delle ricerche e nella sua pagina verrà esplicitamente indicato che è stato disattivato. In questa "
+"situazione non sarà possibile caricare nuove versioni del componente aggiuntivo."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -6375,24 +6373,20 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Nascondere il componente aggiuntivo?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
-"Eliminando la richiesta di revisione il tuo componente aggiuntivo risulterà incompleto. Se non completi il processo chiedendo una nuova revisione dopo alcuni giorni il componente aggiuntivo verrà "
-"eliminato."
+msgstr "Annullando la richiesta di revisione il componente aggiuntivo verrà contrassegnato come “incompleto”, inoltre le sue eventuali versioni in attesa di revisione verranno eliminate dalla coda."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Cancellare questa richiesta di revisione?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blocca gli avvisi pubblicitari {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Scarica video {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
-msgstr ""
+msgstr "Con questo intuitivo strumento per il download scarica in modo semplice video da YouTube, Dailymotion, Facebook, e molti altri siti."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -9045,14 +9039,14 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Mozilla ha una politica definita riguardo ai requisiti che un componente aggiuntivo deve possedere per essere accettabile?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Sì. La <a href=\"%(p_url)s\">politica sui componenti aggiuntivi</a> Mozilla descrive quali caratteristiche deve possedere un componente aggiuntivo per essere considerato accettabile. Questa politica"
-" può essere soggetta a cambiamenti senza alcun preavviso. Inoltre il team di revisori AMO utilizza la <a href=\"%(g_url)s\">Guida per revisori</a> per accertarsi che il componente aggiuntivo "
-"rispetti le linee guida in materia di funzionalità e sicurezza."
+"Sì, i <a href=\"%(p_url)s\">criteri per i componenti aggiuntivi</a> Mozilla descrivono le caratteristiche che un componente aggiuntivo deve possedere per essere considerato accettabile. Questi "
+"criteri possono essere soggetti a cambiamenti senza alcun preavviso. Il team di revisori AMO fa inoltre riferimento alla <a href=\"%(g_url)s\">Guida per revisori</a> per determinare se un componente"
+" aggiuntivo rispetta le linee guida in materia di funzionalità e sicurezza."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
