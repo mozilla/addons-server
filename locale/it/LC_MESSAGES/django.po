@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-11 10:21+0000\n"
-"Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
+"PO-Revision-Date: 2017-02-11 10:49+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -2636,14 +2636,14 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Il componente aggiuntivo o il plugin con problemi verrà automaticamente disattivato e non sarà più utilizzabile."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Qualora Mozilla riconoscesse che un componente aggiuntivo, un plugin o un altro software di terze parti possa compromettere seriamente la sicurezza, la stabilità o le prestazioni di %(app)s e "
-"risponda a <a href=\"%(criteria)s\">specifici criteri</a>, il software in questione può essere ritirato dall’utilizzo generale. Per ulteriori informazioni fare riferimento al relativo <a "
-"href=\"%(support)s\">articolo di supporto</a>."
+"Qualora Mozilla rilevasse che l’utilizzo di un componente aggiuntivo, di un plugin o di un altro software di terze parti metta a rischio seriamente la sicurezza, la stabilità o le prestazioni di "
+"%(app)s e soddisfi a <a href=\"%(criteria)s\">specifiche condizioni</a>, il software in questione può essere bloccato impedendone l’utilizzo. Per ulteriori informazioni fare riferimento al relativo "
+"<a href=\"%(support)s\">articolo di supporto</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -5034,9 +5034,8 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Questo componente aggiuntivo non è compatibile con la tua versione di %(app)s."
+msgstr "Non sono disponibili versioni per questo componente aggiuntivo."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
@@ -5755,12 +5754,11 @@ msgid "Port a Chrome Extension"
 msgstr "Converti un’estensione per Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"Firefox supporta le API WebExtension, nella maggior parte dei casi compatibili con le API per le estensioni di Google, Chrome e Opera. Questo significa che potrai utilizzare le estensioni realizzate"
-" per questi browser con modifiche minime al codice."
+"Firefox supporta le API WebExtension, nella maggior parte dei casi compatibili con le API utilizzate per le estensioni di Chrome, Opera e Edge. Questo significa che potrai utilizzare le estensioni "
+"realizzate per questi browser con modifiche minime al codice."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
@@ -6195,9 +6193,8 @@ msgid "Notes for Reviewers"
 msgstr "Note per i revisori"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "(facoltativo) Inserisci informazioni utili per i revisori che dovranno verificare questa estensione, ad esempio i dati di un account per eseguire test."
+msgstr "(facoltativo) Inserisci informazioni utili per i revisori che dovranno verificare questa estensione, ad esempio i dati di un account per eseguire i test."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
@@ -6286,9 +6283,8 @@ msgid "Listing visibility"
 msgstr "Visibilità del componente aggiuntivo"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "Accessibile a chiunque su {0}, incluso nei risultati di ricerca e nelle pagine di presentazione."
+msgstr "{label_open}Visibile{label_close}: accessibile a chiunque su {site_url}, incluso nei risultati di ricerca e nelle pagine di presentazione."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
