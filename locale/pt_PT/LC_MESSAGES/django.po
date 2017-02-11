@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-11 18:13+0000\n"
+"PO-Revision-Date: 2017-02-11 18:18+0000\n"
 "Last-Translator: Alberto Castro <albertdecastro@tutanota.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -7446,14 +7446,12 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "Versão: %(version)s &bull; Tamanho: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
-msgstr "Comparar ficheiro :: Ferramentas do editor"
+msgstr "Comparar ficheiro :: Ferramentas do revisor"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
-msgstr "Visualizador de ficheiro :: Ferramentas do editor"
+msgstr "Leitor de ficheiro :: Ferramentas do revisor"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
@@ -7461,12 +7459,12 @@ msgstr "A validação falhou:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "O conteúdo do ficheiro não é suportado para destaque de sintaxe"
 
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "O resultado poderá ser quebrado. Por favor, tenha cuidado e %(link_start)s comunique um problema %(link_end)s imediatamente!"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
@@ -8482,13 +8480,13 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Faça o seu próprio extra</a>. Nós fornecemos serviços de alojamento e atualização gratuitos e podemos ajudá-lo a atingir uma maior audiência de utilizadores."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Se tiver experiência no desenvolvimento de extras, <a href=\"%(url)s\">torne-se num editor</a>! Os nossos editores são fãs de extras com experiência técnica que revêm a qualidade e estabilidade de "
-"extras."
+"Se tiver experiência na programação de extras, <a href=\"%(url)s\">torne-se num revisor</a>! Os nossos revisores são fãs de extras com uma experiência técnica que revêm a qualidade e estabilidade "
+"dos extras."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
