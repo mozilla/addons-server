@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-11 18:18+0000\n"
-"Last-Translator: Alberto Castro <albertdecastro@tutanota.com>\n"
+"PO-Revision-Date: 2017-02-11 21:20+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -9156,18 +9156,16 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "Você pode enviar uma atualização do seu extra pela página \"Meus extras\" escolhendo a opção \"Enviar uma nova versão\" e enviando um novo arquivo .xpi para o seu extra."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "A minha atualização precisa ser analisada pelos editores?"
+msgstr "A minha atualização precisa de ser revista por editores?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
-"Depende. Se você estiver simplesmente alterando a descrição do seu extra ou atualizando a propriedade \"maxVersion\" para assegurar compatibilidade com novas versões das aplicações Mozilla, então "
-"seu extra não precisa ser analisado novamente. Entretanto, se você enviar um novo arquivo de atualização, então a atualização do seu extra deverá ser analisada por um editor."
+"Depende. Se estiver simplesmente a alterar a descrição do seu extra ou a atualizar a propriedade \"maxVersion\" para assegurar compatibilidade com uma nova atualização de software da Mozilla, então "
+"o seu extra não precisa de ser revisto novamente. Se, entretanto, submeter um ficheiro atualizado, então a atualização do seu extra terá de ser revista por um editor de extras."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -10928,7 +10926,6 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "o meu extra baseado no sdk não pode ser atualizado"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
 msgstr "o meu extra é revisto por um editor"
 
