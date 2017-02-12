@@ -7520,11 +7520,11 @@ msgstr "Версия: %(version)s &bull; Размер: %(size)s &bull; Хэш MD
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Compare :: Reviewer tools"
-msgstr "Сравнение файлов :: Инструменты проверяющего"
+msgstr "Сравнение файлов :: Инструменты редактора"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Viewer :: Reviewer tools"
-msgstr "Просмотр файлов :: Инструменты проверяющего"
+msgstr "Просмотр файлов :: Инструменты редактора"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
@@ -9132,7 +9132,7 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Почему моё дополнение должно быть проверено?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
@@ -9145,14 +9145,14 @@ msgid "Who reviews my add-on?"
 msgstr "Кто проверяет моё дополнение?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Дополнения проверяются редакторами АМО - группой талантливых разработчиков, которые добровольно помогают проекту Mozilla в проверке дополнений, чтобы обеспечить стабильную и безопасную работу "
-"пользователей Mozilla. При общении с редакторами, пожалуйста, будьте вежливы, терпеливы и уважительны, так как они упорно работают над тем, чтобы удостовериться, что ваше дополнение работает "
+"Дополнения проверяются редакторами дополнений - группой талантливых разработчиков, которые добровольно помогают проекту Mozilla в проверке дополнений, чтобы обеспечить стабильную и безопасную работу"
+" пользователей Mozilla. При общении с редакторами, пожалуйста, будьте вежливы, терпеливы и уважительны, так как они упорно работают над тем, чтобы удостовериться, что ваше дополнение работает "
 "правильно и следует принципам изложенным в <a href=\"%(url)s\">Руководстве редакторов по проверке</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9160,7 +9160,7 @@ msgid "What are the guidelines used to review my add-on?"
 msgstr "Какие принципы используются при проверке моего дополнения?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
@@ -9193,7 +9193,7 @@ msgid "number of problem areas discovered"
 msgstr "число обнаруженных проблемных областей"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
@@ -9232,12 +9232,10 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "Вы можете представить обновление для вашего дополнения через панель Инструменты разработчика, выбрав опцию «Загрузить новую версию» и загрузив новый файл вашего дополнения с расширением .xpi."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Мое обновление должно быть проверено редакторами?"
+msgstr "Моё обновление должно быть проверено редакторами?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
@@ -11010,7 +11008,6 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "моё основанное на SDK дополнение не может быть обновлено"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
 msgstr "моё дополнение проверено редактором"
 
