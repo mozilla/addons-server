@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-11 10:55+0000\n"
+"PO-Revision-Date: 2017-02-12 07:50+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -999,9 +999,8 @@ msgid "Manage"
 msgstr "Керувати"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Add-on Review"
-msgstr "Нова перевірка додатка"
+msgstr "Перевірка додатку"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Admin Manage"
@@ -1419,9 +1418,8 @@ msgid "Manage API Keys"
 msgstr "Керувати API Ключами"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Рецензенти"
+msgstr "Інструменти рецензента"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -2323,13 +2321,12 @@ msgstr ""
 "побачити. Якщо Ви хочете приховати її від публічного перегляду, натисніть розташовану нижче кнопку, щоб зробити її приватною."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Додатки, які ви позначите як улюблені, використовуючи <b>Додати до вподобань</b>, з'являться нижче. Ця збірка наразі є <b>приватною</b>, що означає, що лише ви можете її бачити.  Якщо ви хочете, щоб"
-" всі мали змогу бачити ваші вподобання, натисніть на кнопку нижче."
+"Додатки, які ви позначаєте як улюблені, використовуючи <b>Додати до вподобань</b>, з'являться нижче. Ця збірка наразі є <b>приватною</b>, що означає, що лише ви можете її бачити.  Якщо ви хочете, "
+"щоб всі мали змогу бачити ваші вподобання, натисніть на кнопку нижче."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2462,13 +2459,12 @@ msgid "Collection Contributors"
 msgstr "Помічники збірки"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Ви можете додати декілька помічників у цю збірку.  Помічник може додавати та видаляти додатки зі збірки, але не може змінювати їхні назви та описи.  Щоб додати помічника, введіть його адресу "
-"електронної пошти у поле нижче. Помічники повинні мати обліковий запис на сайті додатків Mozilla."
+"Ви можете додати декілька помічників до цієї збірки.  Помічник може додавати та видаляти додатки в цій збірці, але не може змінювати її назву чи опис.  Щоб додати помічника, введіть його адресу "
+"електронної пошти у поле внизу. Помічники повинні мати обліковий запис на сайті додатків Mozilla."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
