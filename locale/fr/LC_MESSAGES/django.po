@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-12 07:38+0000\n"
+"PO-Revision-Date: 2017-02-12 22:15+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3755,7 +3755,7 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Gives the extension access to the chrome.alarms API."
-msgstr ""
+msgstr "Autorise l’extension à utiliser l’API chrome.alarms."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks."
