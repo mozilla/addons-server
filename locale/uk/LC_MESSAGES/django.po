@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-12 07:50+0000\n"
+"PO-Revision-Date: 2017-02-12 08:04+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2644,14 +2644,14 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Проблемний додаток чи плагін буде автоматично відключено і надалі не зможе використовуватись."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Коли Mozilla стає відомо про додатки, плагіни або інше програмне забезпечення сторонніх виробників, що серйозно компрометує безпеку, стабільність або продуктивність %(app)s і відповідає <a "
-"href=\"%(criteria)s\">певним критеріям</a>, то таке програмне забезпечення може бути заблоковано для загального користування.  Прочитайте <a href=\"%(support)s\"> статтю підтримки</a>, щоб дізнатися"
-" більше."
+"Коли Mozilla стає відомо про додатки, плагіни або інше стороннє програмне забезпечення, які ставлять під загрозу безпеку, стабільність або продуктивність і відповідають <a "
+"href=\"%(criteria)s\">певним критеріям</a>, то таке програмне забезпечення може бути не допущене для загального користування.  Для отримання додаткової інформації, ознайомтеся з <a "
+"href=\"%(support)s\">цією статтею підтримки</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -4153,9 +4153,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Це завантаження не пройшло валідацію і у ньому можуть бути відсутніми деякі результати повної валідації. Будь ласка, будьте уважні при його перевірці."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "Запитаний розгляд"
+msgstr "Запитано перевірку."
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
@@ -4939,11 +4938,8 @@ msgstr ""
 "записом, отже інші не зможуть відправляти версії з використанням цього ID."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
-"Введіть наступний текст, щоб підтвердити Ваше рішення: \n"
-" {slug}"
+msgstr "Введіть наступний текст, щоб підтвердити ваше рішення: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
@@ -5041,9 +5037,8 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr "Для цього додатку відсутня деяка обов'язкова інформація, необхідна для подання на публікацію."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Цей додаток несумісний з вашою версією %(app)s."
+msgstr "Цей додаток не має жодних версій."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
@@ -5137,9 +5132,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ці примітки зможуть бачити лише ви і наші рецензенти."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "Активувати версію знову"
+msgstr "Скасувати перевірку і вимкнути версію"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5749,12 +5743,11 @@ msgid "Port a Chrome Extension"
 msgstr "Порт розширення Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"Firefox підтримує API для WebExtension, що в більшості випадків є сумісним з API звичайних розширень, які підтримуються Google Chrome і Opera, тому ваші розширення будуть працювати в Firefox лише з "
-"деякими змінами."
+"Firefox підтримує API для WebExtension, які в більшості випадків є сумісними з API розширень, що підтримуються в Chrome, Opera та Edge. Отже ваші розширення будуть працювати в Firefox лише після "
+"незначних змін."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
@@ -6182,9 +6175,8 @@ msgid "Notes for Reviewers"
 msgstr "Примітки для рецензентів"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "За бажанням, введіть будь-яку інформацію, яка може бути корисна для редактора, який перевіряє цей додаток, наприклад, обліковий запис для тестування."
+msgstr "За бажанням, введіть будь-яку інформацію, яка може бути корисна для редактора цього додатку, наприклад, інформацію про тестовий обліковий запис."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
@@ -6273,9 +6265,8 @@ msgid "Listing visibility"
 msgstr "Видимість додатку"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "Видимий всім на {0} і включений в результати пошуку та інформаційні сторінки."
+msgstr "{label_open}Видимий:{label_close} Видимий для всіх на {site_url}, а також включений в результати пошуку та опубліковані сторінки."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
