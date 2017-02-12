@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-12 08:04+0000\n"
+"PO-Revision-Date: 2017-02-12 08:28+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6269,10 +6269,9 @@ msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and i
 msgstr "{label_open}Видимий:{label_close} Видимий для всіх на {site_url}, а також включений в результати пошуку та опубліковані сторінки."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "Не буде включено в результати пошуку, а його сторінка буде вказувати, що ви його деактивували. В такому стані відправлення нових версій не буде схвалюватись."
+msgstr "{label_open}Невидимий:{label_close} Не буде включено в результати пошуку, а його сторінка буде вказувати, що ви його вимкнули. В такому стані відправлення нових версій не буде схвалюватись."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -6352,18 +6351,16 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Ви впевнені, що хочете приховати свій додаток?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "Скасування вашого запиту на розгляд відмітить ваш додаток, як незавершений. Якщо ви протягом кількох днів не відправите повторний запит для розгляду, додаток буде видалений."
+msgstr "Скасування вашого запиту перевірки позначить ваш додаток, як незавершений, а будь-які версії, що очікують на перевірку, будуть вимкнені."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Ви впевнені, що хочете скасувати свій запит на відгук?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Блокуйте рекламу {start_sub_heading}за допомогою {addon_name}{end_sub_heading}"
+msgstr "Завантажуйте відео {start_sub_heading}з {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
@@ -6649,7 +6646,6 @@ msgid "More Information Requested"
 msgstr "Запитано додаткову інформацію"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Contains Reviewer Comment"
 msgstr "Містить коментар рецензента"
 
@@ -6768,9 +6764,8 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>anonymous</i> в %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Повернутися до домівки інструментів редактора"
+msgstr "Повернутися до початкової сторінки інструментів редактора"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
@@ -6894,9 +6889,8 @@ msgid "Reviews This Month"
 msgstr "Розгляди цього місяця"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "Рецензенти"
+msgstr "Нові рецензенти"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -6935,9 +6929,8 @@ msgid "Save"
 msgstr "Зберегти"
 
 #: src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "Продуктивність редактора додатків"
+msgstr "Продуктивність рецензента додатків"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -7104,14 +7097,12 @@ msgid "Update the whiteboard"
 msgstr "Оновити дошку"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Черги неопублікованих"
+msgstr "Сторінка перевірки неопублікованих"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Остання перевірка"
+msgstr "Сторінка перевірки опублікованих"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7482,12 +7473,10 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "Версія: %(version)s &bull; Розмір: %(size)s &bull; MD5 хеш: %(md5)s &bull; Тип MIME: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
 msgstr "Порівняння файлів :: Інструменти рецензента"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
 msgstr "Переглядач файлів :: Інструменти рецензента"
 
@@ -8518,13 +8507,13 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Створіть свій власний додаток</a>. Ми забезпечуємо безкоштовний хостинг та службу оновлень, а також можемо допомогти вам охопити широку аудиторію користувачів."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Якщо ви маєте досвід розробки додатків, <a href=\"%(url)s\"> станьте редактором</a>! Наші редактори є фанатами додатків з технічною підготовкою, які переглядають додатки на якість та стабільність "
-"коду."
+"Якщо ви маєте досвід розробки додатків, <a href=\"%(url)s\"> станьте рецензентом додатків</a>! Наші рецензенти є технічно досвідченими фанатами додатків, які перевіряють якість і стабільність коду "
+"додатків."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
