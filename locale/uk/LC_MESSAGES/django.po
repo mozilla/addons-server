@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-12 08:28+0000\n"
+"PO-Revision-Date: 2017-02-12 08:50+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -9016,27 +9016,26 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Чи має Mozilla політику, яка визначає, що є прийнятним поданням?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Так. <a href=\"%(p_url)s\">Політика додатків Mozilla</a> описує, що є прийнятним поданням. Ця політика може бути змінена без попереднього повідомлення. Крім того, група редакторів АМО використовує "
-"<a href=\"%(g_url)s\">Інстрікцію редакторів з перевірки</a>, щоб переконатися, що ваш додаток відповідає специфічним вимогам з функціональності й безпеки."
+"Так. <a href=\"%(p_url)s\">Правила додатків</a> Mozilla описують, які подання є прийнятними. Ці правила є приводом для змін без попередження. Крім того, команда рецензентів користується <a "
+"href=\"%(g_url)s\">Настановами з перевірки додатків</a>, щоб переконатися, що ваш додаток відповідає вимогам щодо функціональності й безпеки."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
 msgstr "Як мені подати мій додаток на перевірку?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
-"Панель Інструментів розробника дозволяє вам завантажувати і представляти додатки на АМО. Перед тим, як ви зможете подати додаток на АМО, ви повинні на ньому зареєструватися. Перед поданням вашого "
-"додатка обов'язково прочитайте <a href=\"%(url)s\">Інструкцію редакторів АМО з перевірки</a>, щоб переконатися, що ваш додаток відповідає вимогам, які використовують редактори під час перевірки "
-"додатків."
+"Панель Інструментів розробника дозволяє вам завантажувати і подавати додатки на АМО. Перед тим, як ви зможете подати додаток на АМО, ви повинні на ньому зареєструватися. Перед поданням вашого "
+"додатку обов'язково прочитайте <a href=\"%(url)s\">Настанови з перевірки додатків</a>, щоб переконатися, що ваш додаток відповідає вимогам, які використовують рецензенти."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9082,41 +9081,41 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Чому мій додаток повинен бути перевірений?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Всі подані нові та оновлені додатки перевіряються на стабільну та безпечну роботу для користувачів Mozilla. Всі подання додатків проходять перевірку відповідно до принципів, викладених в <a "
-"href=\"%(url)s\">настановах для редакторів</a>."
+"Всі подані нові та оновлені додатки перевіряються на стабільність та безпеку під час роботи. Всі подання додатків проходять перевірку у відповідності з <a href=\"%(url)s\">Настановами з перевірки "
+"додатків</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
 msgstr "Хто перевіряє мій додаток?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Додатки перевіряються редакторами АМО - групою талановитих розробників, які добровільно допомагають проекту Mozilla у перевірці додатків, щоб забезпечити стабільну і безпечну роботу користувачів "
-"Mozilla. Під час спілкування з редакторами, будьте ввічливі, терплячі і поважні, тому що вони наполегливо працюють над тим, щоб упевнитися, що ваш додаток працює правильно і відповідає принципам, "
-"викладеним в <a href=\"%(url)s\">Інструкції редакторів з перевірки</a>."
+"Додатки перевіряються рецензентами - групою талановитих розробників, які добровільно допомагають проекту Mozilla перевіряти додатки на стабільність і безпеку їх роботи. Під час спілкування з "
+"рецензентом, будьте ввічливі, терплячі й поважні, тому що вони наполегливо працюють, щоб упевнитися, що ваш додаток працює правильно й відповідає принципам, викладеним в <a "
+"href=\"%(url)s\">Настановах з перевірки додатків</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Які критерії використовуються для перевірки мого додатку?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"Команда редакторів Mozilla керується <a href=\"%(url)s\">Інструкцією редакторів з перевірки</a> під час тестування додатка для розміщення на АМО. Важливо, щоб розробники додатка переглянули цей "
-"посібник, щоб переконатися у відсутності у додатку типових проблем перед тим, як подавати його на перевірку. Це значно посприяє прискоренню процесу перевірки."
+"Команда рецензентів додатків керується <a href=\"%(url)s\">Настановами з перевірки додатків</a> під час тестування додатка для розміщення на АМО. Важливо, щоб розробники додатка ознайомилися з цими "
+"настановами, щоб переконатися у відсутності в додатку типових проблем перед його подачею на перевірку. Це посприяє прискоренню процесу перевірки."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9142,13 +9141,13 @@ msgid "number of problem areas discovered"
 msgstr "кількість виявлених проблемних зон"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Саме тому дуже важливо прочитати <a href=\"%(g_url)s\">Інструкцію редакторів з перевірки</a>, щоб переконатися, що ваш додаток налаштований належним чином. Також не зайвим буде прочитання допису в "
-"блозі, <a href=\"%(blog_url)s\">Як успішно пройти перевірку для вашого додатка</a>, в якому відмінно описано те, що потрібно зробити, щоб забезпечити безпроблемну перевірку для вашого додатка."
+"Саме тому дуже важливо ознайомитися з <a href=\"%(g_url)s\">Настановами з перевірки додатків</a>, щоб переконатися, що ваш додаток налаштований належним чином. Також не зайвим буде прочитання допису"
+" в блозі, <a href=\"%(blog_url)s\">Успішне проходження перевірки вашого додатку</a>, в якому відмінно описано, як забезпечити безпроблемну перевірку вашого додатку."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -9178,9 +9177,8 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "Ви можете подати оновлення для вашого додатка через панель Інструментів розробника, вибравши опцію \"Завантажити нову версію\" і завантаживши новий файл вашого додатка з розширенням .xpi."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Чи моє оновлення повинно бути перевірено редакторами?"
+msgstr "Чи потребує моє оновлення перевірки?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, fuzzy
