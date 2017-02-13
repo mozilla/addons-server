@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 14:23+0000\n"
-"Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
+"PO-Revision-Date: 2017-02-13 07:10+0000\n"
+"Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -3711,11 +3711,11 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Gives the extension access to the chrome.alarms API."
-msgstr ""
+msgstr "Efk anekcum asiɣzef i tingedwiyin chromz API."
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks."
-msgstr ""
+msgstr "Ɣer u snifel ticraḍ n usebter."
 
 #: src/olympia/core/apps.py
 msgid "Core"
