@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-11 21:20+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"PO-Revision-Date: 2017-02-13 15:30+0000\n"
+"Last-Translator: Alberto Castro <albertdecastro@tutanota.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -8997,26 +8997,26 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "A Mozilla possui uma política em vigor que descreva os critérios de envio de extras?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Sim. A <a href=\"%(p_url)s\">política de extras</a> da Mozilla descreve o que é uma submissão aceitável. Esta política pode ser alterada sem aviso prévio. Para além disto, a equipa editorial do AMO "
-"utiliza o <a href=\"%(g_url)s\">guia de revisão para editores</a> para garantir que o seu extra cumpre as linhas orientadoras específicas para funcionalidade e segurança."
+"Sim. A <a href=\"%(p_url)s\">Política de extras</a> da Mozilla descreve o que é uma submissão aceitável. Esta política pode ser alterada sem aviso prévio. Para além disto, a Equipa de revisões e "
+"extras utiliza o <a href=\"%(g_url)s\">Guia de revisão de extras</a> para garantir que o seu extra cumpra as linhas orientadoras específicas para funcionalidade e segurança."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
 msgstr "Como eu envio meu extra para análise?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
-"O painel de Ferramentas do programador permite que envie e submeta extras para o AMO. Deve ser um utilizador registado no AMO antes de poder enviar um extra. Antes de enviar o seu extra, tenha "
-"certeza de que leu o <a href=\"%(url)s\">Guia de revisão para editores</a> da Mozilla para garantir que seu extra atende aos critérios usados pelos editores para rever extras."
+"O painel Ferramentas do programador permite-lhe enviar e submeter extras para o AMO. Você deverá ser um utilizador registado no AMO antes de poder submeter um extra. Antes de submeter o seu extra, "
+"certifique-se de que leu o <a href=\"%(url)s\">Guia de revisão de extras</a> da Mozilla para garantir que o seu extra atende aos critérios utilizados pelos revisores."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9060,41 +9060,41 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Porque é que o meu extra tem de ser revisto?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Todos os extras submetidos, sejam novos ou atualizações, são revistos para assegurar que os utilizadores da Mozilla têm uma experiência estável e segura. Todas as submissões de extras são revistas "
-"de acordo com as diretrizes descritas no <a href=\"%(url)s\">guia de revisão para editores</a>."
+"Todos os extras submetidos, sejam estes novos ou atualizações, são revistos para assegurar que os utilizadores da Mozilla têm uma experiência estável e segura. Todas as submissões de extras são "
+"revistas de acordo com as diretrizes descritas no <a href=\"%(url)s\">Guia de revisão de extras</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
 msgstr "Quem analisa meu extra?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Os extras são revistos pelos editores AMO, um grupo de talentosos programadores que se voluntariam para ajudar no projeto Mozilla revendo extras para garantir uma experiência estável e segura para "
-"os utilizadores da Mozilla. Quando comunicar com os editores, por favor seja cordial, paciente e respeitador pois eles estão a trabalhar arduamente para garantir que o seu extra está corretamente "
-"construído e segue as diretrizes descritas no <a href=\"%(url)s\">guia de revisão para editores</a>."
+"Os extras são revistos pelos revisores de extras, um grupo de programadores talentosos que voluntariam-se para ajudar no projeto Mozilla, revendo extras para garantir uma experiência estável e "
+"segura para os utilizadores da Mozilla. Quando comunicar com os revisores, por favor seja cordial, paciente e respeitador, pois eles estão a trabalhar arduamente para garantir que o seu extra seja "
+"configurado corretamente e siga as diretrizes descritas no <a href=\"%(url)s\">Guia de revisão de extras</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Quais são os critérios usados para analisar o meu extra?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"A equipa editorial da Mozilla segue o <a href=\"%(url)s\">guia de revisão para editores</a> ao testar um extra para aceitação no AMO. É importante que os programadores de extras analisem este guia "
-"para garantir que áreas problemáticas frequentes são trabalhadas antes de submeter os seus extras para revisão. Isto irá tornar o processo de revisão mais expedito."
+"A Equipa de revisões de extras segue o <a href=\"%(url)s\">Guia de revisão de extras</a> ao testar um extra para aceitação no AMO. É importante que os programadores de extras analisem este guia para"
+" garantir que áreas problemáticas frequentes sejam trabalhadas antes de submeter os extras para revisão. Isto irá tornar o processo de revisão mais expedito."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9120,13 +9120,13 @@ msgid "number of problem areas discovered"
 msgstr "número de problemas descobertos"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"É por isto que é muito importante ler o <a href=\"%(g_url)s\">guia de revisão para editores</a> para garantir que o seu extra está de acordo com o que é esperado. Também é uma boa ideia ler o artigo"
-" do blogue, <a href=\"%(blog_url)s\">ter sucesso na revisão do seu extra</a> que dá uma ideia sobre uma revisão do seu extra sem sobressaltos."
+"É por isto que é muito importante ler o <a href=\"%(g_url)s\">Guia de revisão de extras</a>, para garantir que o seu extra esteja de acordo com o que é esperado. Também é uma boa ideia ler o artigo "
+"do blogue <a href=\"%(blog_url)s\">Ter sucesso na revisão do seu extra</a>, que dá uma ideia sobre uma revisão do seu extra sem sobressaltos."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
