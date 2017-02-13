@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-10 10:18+0000\n"
+"PO-Revision-Date: 2017-02-13 01:27+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2322,13 +2322,12 @@ msgstr ""
 "rádi skryli, klepněte na tlačítko níže a učiňte ji soukromou."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Doplňky označené jako oblíbené pomocí funkce <b>Přidat k oblíbeným</b> se zobrazí níže. Tato sbírka je nyní <b>soukromá</b> a můžete ji vidět jenom vy. Pokud byste ji chtěli zveřejnit, klepněte na "
-"tlačítko níže."
+"Doplňky označené jako oblíbené pomocí funkce <b>Přidat k oblíbeným</b> se zobrazí níže. Tato sbírka je nyní <b>soukromá</b>, což znamená, že ji můžete vidět jenom vy. Pokud byste ji chtěli "
+"zveřejnit, klepněte na tlačítko níže."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2462,13 +2461,12 @@ msgid "Collection Contributors"
 msgstr "Přispěvatelé sbírky"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Do tohoto seznamu můžete přidat více přispěvatelů.  Ti pak budou moci do sbírky doplňky přidávat nebo je z ní odebírat, ale nebudou moci změnit její název ani popis.  Pro přidání přispěvatele "
-"zadejte jeho e-mail do pole níže. Přispěvatelé musí mít účet na serveru Doplňků Mozilly."
+"Do tohoto seznamu můžete přidat více přispěvatelů. Ti pak budou moci do sbírky doplňky přidávat nebo je z ní odebírat, ale nebudou moci změnit její název ani popis. Pro přidání přispěvatelů zadejte "
+"jejich e-mail do políčka níže. Přispěvatelé musí mít účet na serveru Doplňků Mozilly."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -6647,7 +6645,6 @@ msgid "More Information Requested"
 msgstr "Vyžadováno více informací"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Contains Reviewer Comment"
 msgstr "Obsahuje komentář redaktora"
 
@@ -6766,9 +6763,8 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>anonymní</i> dne %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Zpět na domovskou stránků Nástroje redaktora"
+msgstr "Zpět na domovskou stránku Nástrojů redaktora"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
@@ -6892,9 +6888,8 @@ msgid "Reviews This Month"
 msgstr "Kontrol tento měsíc"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "Redaktoři"
+msgstr "Noví redaktoři"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -7104,14 +7099,12 @@ msgid "Update the whiteboard"
 msgstr "Aktualizovat poznámku pro redaktora"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Nezařazené fronty"
+msgstr "Stránka kontroly neveřejných doplňků"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Poslední kontrola"
+msgstr "Stránka kontroly veřejných doplňků"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7482,12 +7475,10 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull
 msgstr "Verze: %(version)s &bull; Velikost: %(size)s &bull; MD5 hash: %(md5)s &bull; MIME typ: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Compare :: Reviewer tools"
 msgstr "Porovnání souborů :: Nástroje redaktora"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "File Viewer :: Reviewer tools"
 msgstr "Prohlížeč souborů :: Nástroje redaktora"
 
@@ -7497,7 +7488,7 @@ msgstr "Kontrola selhala:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Obsah souboru není zvýrazňovačem syntaxe podporován"
 
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
@@ -8518,7 +8509,7 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Vytvořit vlastní doplněk</a>. Poskytujeme pro ně hosting a aktualizační služby zdarma. Můžete díky tomu získat velké množství uživatelů."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
@@ -9021,26 +9012,26 @@ msgid "Does Mozilla have a policy in place as to what is an acceptable submissio
 msgstr "Má Mozilla někde uvedeny zásady, které musí splňovat doplněk, aby mohl být schválen?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 "Ano. Popis, jaký doplněk je akceptovatelný pro hostování, naleznete v <a href=\"%(p_url)s\">zásadách pro doplňky</a> Mozilly. Uvedené zásady se mohou kdykoliv změnit bez předchozího upozornění. Tým "
-"redaktorů AMO navíc používá <a href=\"%(g_url)s\">Editors Reviewing Guide</a>, aby se ujistil, že váš doplněk splňuje standardy pro funkcionalitu a bezpečnost."
+"redaktorů AMO navíc používá <a href=\"%(g_url)s\">Příručku pro kontrolu doplňků</a>, aby se ujistil, že váš doplněk splňuje standardy pro funkcionalitu a bezpečnost."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
 msgstr "Jak odešlu můj doplněk na kontrolu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
 "Nástroje pro vývojáře vám umožní nahrát a přidat doplňky na AMO. Před nahráním musíte být na AMO zaregistrováni. Před odesláním svého doplňku se ujistěte, že jste si přečetli <a "
-"href=\"%(url)s\">Editors Reviewing Guide</a> serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk splňovat, aby byl redaktory schválen."
+"href=\"%(url)s\">příručku pro kontrolu doplňků</a> serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk splňovat, aby byl redaktory schválen."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9083,13 +9074,13 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Proč musí být můj doplněk zkontrolován?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Všechny přidané doplňky, jedno zda nové či jen aktualizované, musí být zkontrolovány, aby se Mozilla ujistila, že jsou pro uživatele stabilní a bezpečné. Všechny přidané doplňky jsou zkontrolované "
-"proti dokumentu <a href=\"%(url)s\">Editors Reviewing Guide</a>."
+"Všechny nahrané doplňky, ať už nové, či jen aktualizace, musí být zkontrolovány, aby se Mozilla ujistila, že jsou pro uživatele stabilní a bezpečné. Při kontrole se redaktoři řídí pokyny z <a "
+"href=\"%(url)s\">příručky pro kontrolu doplňků</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
