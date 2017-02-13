@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-13 07:48+0000\n"
+"PO-Revision-Date: 2017-02-13 08:04+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -985,9 +985,8 @@ msgid "Manage"
 msgstr "Beheren"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Add-on Review"
-msgstr "Nieuwe add-on-beoordeling"
+msgstr "Add-on-beoordeling"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Admin Manage"
@@ -1404,9 +1403,8 @@ msgid "Manage API Keys"
 msgstr "API-sleutels beheren"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Beoordelaars"
+msgstr "Hulpmiddelen voor beoordelaars"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -2308,7 +2306,6 @@ msgstr ""
 "hem wilt verbergen, klik dan op onderstaande knop om hem privé te maken."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
@@ -6355,7 +6352,7 @@ msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_headin
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
-msgstr ""
+msgstr "Download eenvoudig video’s van YouTube, Dailymotion, Facebook en de meeste overige videowebsites met dit eenvoudige downloadhulpmiddel."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7474,12 +7471,12 @@ msgstr "Validatie mislukt:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Bestandsinhoud wordt niet ondersteund voor syntaxaccentuering"
 
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "De uitvoer kan beschadigd zijn, wees voorzichtig en %(link_start)smeld een probleem%(link_end)s direct!"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
