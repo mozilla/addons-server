@@ -18,6 +18,7 @@ ALLOWED_HOSTS = [
     '.mozilla.org',
     '.mozilla.com',
     '.mozilla.net',
+    '.mozaws.net',
 ]
 
 # jingo-minify settings
