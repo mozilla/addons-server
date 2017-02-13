@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-13 01:27+0000\n"
+"PO-Revision-Date: 2017-02-13 01:51+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2647,13 +2647,13 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Problematický doplněk nebo zásuvný modul bude automaticky zakázán a nebude již dostupný."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Pokud se Mozilla dozví o doplňcích, modulech nebo softwaru třetích stran, které vážně narušuje bezpečnost aplikace %(app)s, její stabilitu nebo výkon a odpovídá <a href=\"%(criteria)s\">daným "
-"podmínkám</a>, může jej zablokovat. Pro více informací si prosím přečtěte <a href=\"%(support)s\">tento článek</a>."
+"Pokud se Mozilla dozví o doplňcích, modulech nebo softwaru třetích stran, které vážně narušuje bezpečnost, stabilitu nebo výkon aplikace %(app)s a odpovídá <a href=\"%(criteria)s\">daným "
+"podmínkám</a>, můžeme jej zablokovat. Pro více informací si prosím přečtěte <a href=\"%(support)s\">tento článek</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3770,7 +3770,7 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks."
-msgstr ""
+msgstr "Čtení a úprava záložek."
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4164,13 +4164,12 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Při nahrávání selhala kontrola a výsledky kontroly tak mohou být nekompletní. Věnujte tomu při kontrole zvláštní péči."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "Vyžádána kontrola"
+msgstr "Vyžádána kontrola."
 
 #: src/olympia/devhub/views.py
 msgid "Review requested.  You must provide further details to proceed."
-msgstr ""
+msgstr "Vyžádána kontrola. Pro pokračování musíte poskytnout bližší informace."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -4931,9 +4930,8 @@ msgstr ""
 "nikdo jiný nebude moci odeslat doplněk se stejným ID."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr "Zadejte následující text pro potvrzení vašeho rozhodnutí: {slug}"
+msgstr "Pro potvrzení svého rozhodnutí zadejte následující text: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
@@ -5031,13 +5029,12 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Tento doplněk není kompatibilní s vaší verzí aplikace %(app)s."
+msgstr "Tento doplněk nemá žádné verze."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Tento doplněk nemá žádné schválené verze, takže jeho veřejné stránky (včetně beta verzí) jsou skryté."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -5126,9 +5123,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tyto poznámky budou viditelné pouze vám a našim redaktorům."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "Znovu povolit verzi"
+msgstr "Zrušit kontrolu a zakázat verzi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5734,10 +5730,9 @@ msgid "Port a Chrome Extension"
 msgstr "Převod rozšíření pro Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr "Firefox podporuje sadu API WebExtension, která je ve většině případů kompatibilní s API podporovanými Chromem a Operou, takže stačí pár změn, a vaše rozšíření poběží i ve Firefoxu."
+msgstr "Firefox podporuje sadu API WebExtension, která je ve většině případů kompatibilní s API podporovanými Chromem, Operou a Edgem, takže stačí pár změn, a vaše rozšíření poběží i ve Firefoxu."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
@@ -6167,9 +6162,8 @@ msgid "Notes for Reviewers"
 msgstr "Poznámky pro redaktora"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-#, fuzzy
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "Volitelně zadejte jakékoliv informace, které se mohou hodit redaktorovi, když bude kontrolovat váš doplněk. Například testovací účet, pokud jej doplněk vyžaduje."
+msgstr "Volitelně zadejte jakékoliv informace, které se mohou hodit redaktorovi při kontrole vašeho doplňku, jako například přihlašovací údaje testovacího účtu, pokud jej doplněk vyžaduje."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
@@ -9087,28 +9081,28 @@ msgid "Who reviews my add-on?"
 msgstr "Kdo kontroluje můj doplněk?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Doplňky jsou kontrolovány týmem redaktorů AMO. Jedná se o skupinu talentovaných vývojářů, kteří dobrovolně pomáhají projektu Mozilla s kontrolou doplňků. Kontrolují, že jsou stabilní a bezpečné, aby"
-" je uživatelé mohli bez problémů používat. Když komunikujete s redaktory, buďte slušní, trpěliví a respektujte prosím, že pracují ve svém volném čase na tom, aby zkontrolovali, že váš doplněk "
-"odpovídá pravidlům uvedených v <a href=\"%(url)s\">Editors Reviewing Guide</a>."
+"Doplňky jsou kontrolovány týmem redaktorů AMO. Jedná se o skupinu talentovaných vývojářů, kteří dobrovolně pomáhají projektu Mozilla s kontrolou doplňků. Kontrolují, zda jsou všechny nahrané doplňky"
+" stabilní a bezpečné, aby je uživatelé mohli bez problémů používat. Když komunikujete s redaktory, buďte prosím slušní, trpěliví a berte ohled na to, že na kontrole doplňků (podle <a "
+"href=\"%(url)s\">příručky pro kontrolu doplňků</a>) pracují ve svém volném čase."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Jaké body jsou kontrolovány u doplňku?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"Redakční tým Mozilla se při testování a schvalování doplňků na AMO řídí <a href=\"%(url)s\">Editors Reviewing Guide</a>. Je důležité, aby si vývojáři doplňků pročetli tohoto průvodce, aby znali "
-"oblasti běžných problémů a ty byly vyřešeny před odesláním doplňku ke kontrole. To nám velmi pomůže se zrychlením procesu schvalování."
+"Redakční tým Mozilla se při testování a schvalování doplňků na AMO řídí <a href=\"%(url)s\">příručkou pro kontrolu doplňků</a>. Je důležité, aby si vývojáři doplňků tohoto průvodce přečetli, díky "
+"čemuž budou moci běžné problémy vyřešit ještě před odesláním doplňku ke kontrole. To nám velmi pomůže se zrychlením procesu schvalování."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9134,13 +9128,14 @@ msgid "number of problem areas discovered"
 msgstr "počet problémů, které se objeví"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"To je důvod, proč je důležité číst <a href=\"%(g_url)s\">Editors Reviewing Guide</a> a ujistit se, že vás doplněk splňuje všechna pravidla. Je také dobré si přečíst příspěvek <a "
-"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a>, který poskytuje excelentní pohled na kontrolu doplňků."
+"To je důvod, proč je důležité číst <a href=\"%(g_url)s\">příručku pro kontrolu doplňků</a> a ujistit se, že vás doplněk splňuje všechna pravidla. Je také dobré si přečíst příspěvek <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> z bloku serveru Doplňků Mozilly (v angličtině), který vám poskytne náhled na to, jak zajistit hladký průběh kontroly vašeho "
+"doplňku."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -9168,18 +9163,16 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "Aktualizaci svého doplňku můžete přidat na nástěnce nástrojů pro vývojáře, kde zvolíte volbu \"Nahrát novou verzi\" a nahrajete nový .xpi soubor s vaším doplňkem."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Musí být aktualizace mého doplňku schválena redaktorem?"
+msgstr "Musí být aktualizace mého doplňku schválena redaktory?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
-"To záleží na situaci. Pokud pouze změníte popis svého doplňku či aktualizujete \"maxVersion\", aby byl váš doplněk aktuální pro aktualizace, pak váš doplněk nemusí být znovu zkontrolován. Pokud však"
-" nahrajete jeho novou aktualizaci, pak bude potřeba, aby ji redaktor zkontroloval."
+"To záleží na situaci. Pokud pouze změníte popis svého doplňku či aktualizujete \"maxVersion\", aby byl váš doplněk kompatibilní s nejnovějšími verzemi softwaru od Mozilly, pak váš doplněk nemusí být"
+" znovu zkontrolován. Pokud však nahrajete jeho novou verzi, pak bude potřeba, aby ji redaktor zkontroloval."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -10923,7 +10916,6 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "můj doplněk postavený na SDK nemůže být aktualizován"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
 msgstr "můj doplněk je zkontrolován redaktorem"
 
