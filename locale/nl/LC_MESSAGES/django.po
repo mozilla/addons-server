@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-13 08:30+0000\n"
+"PO-Revision-Date: 2017-02-13 09:45+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -8992,13 +8992,13 @@ msgid "How do I submit my add-on for review?"
 msgstr "Hoe dien ik mijn add-on in voor beoordeling?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
 "Via het dashboard Ontwikkelaarshulpmiddelen kunt uw add-ons bij AMO uploaden en indienen. U dient een geregistreerde gebruiker te zijn voordat u een add-on kunt indienen. Lees voordat u uw add-on "
-"indient de <a href=\"%(url)s\">Beoordelingsrichtlijnen voor editors</a> van AMO zodat uw add-on aan de richtlijnen die editors gebruiken om add-ons te beoordelen voldoet."
+"indient de <a href=\"%(url)s\">Add-on-beoordelingsrichtlijnen</a> van AMO zodat uw add-on aan de richtlijnen die beoordelaars gebruiken om add-ons te beoordelen voldoet."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9043,40 +9043,40 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Waarom moet mijn add-on worden beoordeeld?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Alle ingediende add-ons, of het nu nieuwe of bijgewerkte zijn, worden beoordeeld om zeker te stellen dat Mozilla-gebruikers een stabiele en veilige ervaring hebben. Alle ingediende add-ons worden "
-"beoordeeld volgens de regels in de <a href=\"%(url)s\">Beoordelingsrichtlijnen voor editors</a>."
+"beoordeeld volgens de regels in de <a href=\"%(url)s\">Add-on-beoordelingsrichtlijnen</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
 msgstr "Wie beoordeelt mijn add-on?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Add-ons worden beoordeeld door de AMO-editors, een groep getalenteerde ontwikkelaars die vrijwillig het Mozilla-project helpen door add-ons te beoordelen en zo te zorgen voor een stabiele en veilige"
-" ervaring voor Mozilla-gebruikers. Wees in de communicatie met editors vriendelijk, geduldig en respectvol, aangezien ze hard werken om ervoor te zorgen dat uw add-on juist is opgezet en de "
-"richtlijnen in de <a href=\"%(url)s\">Beoordelingsgids voor editors</a> volgt."
+"Add-ons worden beoordeeld door de Add-on-beoordelaars, een groep getalenteerde ontwikkelaars die vrijwillig het Mozilla-project helpen door add-ons te beoordelen en zo te zorgen voor een stabiele en"
+" veilige ervaring voor Mozilla-gebruikers. Wees in de communicatie met een beoordelaar vriendelijk, geduldig en respectvol, aangezien ze hard werken om ervoor te zorgen dat uw add-on juist is "
+"opgezet en de richtlijnen in de <a href=\"%(url)s\">Add-on-beoordelingsgids</a> volgt."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Welke richtlijnen worden gebruikt bij het beoordelen van mijn add-on?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"Het Mozilla-editorteam volgt de <a href=\"%(url)s\">Beoordelingsgids voor editors</a> bij het testen van een add-on voor acceptatie op AMO. Het is belangrijk dat add-onontwikkelaars deze gids "
+"Het Add-on-beoordelaarsteam volgt de <a href=\"%(url)s\">Add-on-beoordelingsgids</a> bij het testen van een add-on voor acceptatie op AMO. Het is belangrijk dat add-onontwikkelaars deze gids "
 "doornemen om ervoor te zorgen dat veelvoorkomende probleemgebieden zijn geadresseerd voordat hun add-on voor beoordeling wordt ingediend. Hierdoor wordt het beoordelingsproces aanzienlijk versneld."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9103,13 +9103,13 @@ msgid "number of problem areas discovered"
 msgstr "het aantal ontdekte probleemgebieden"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Daarom is het zeer belangrijk om de <a href=\"%(g_url)s\">Beoordelingsgids voor editors</a> te lezen om ervoor te zorgen dat uw add-on is opgezet volgens de verwachtingen. Het is ook een goed idee "
-"om de blogpost <a href=\"%(blog_url)s\">Uw add-on met succes beoordeeld krijgen</a> te lezen, die een uitstekende inzicht in een soepel beoordelingsproces van uw add-on biedt."
+"Daarom is het zeer belangrijk om de <a href=\"%(g_url)s\">Add-on-beoordelingsgids</a> te lezen om ervoor te zorgen dat uw add-on is opgezet volgens de verwachtingen. Het is ook een goed idee om de "
+"blogpost <a href=\"%(blog_url)s\">Uw add-on met succes beoordeeld krijgen</a> te lezen, die een uitstekend inzicht in een soepel beoordelingsproces van uw add-on biedt."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -9138,18 +9138,16 @@ msgstr ""
 "U kunt een update voor uw add-on indienen via het dashboard Ontwikkelaarshulpmiddelen door de optie ‘Een nieuwe versie uploaden’ te kiezen en een nieuw .xpi-bestand voor uw add-on te uploaden."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "Moet mijn update door editors worden beoordeeld?"
+msgstr "Moet mijn update door beoordelaars worden beoordeeld?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
 "Dat hangt ervan af. Als u alleen maar een beschrijving van uw add-on wijzigt of de ‘maxVersion’ bijwerkt om compatibiliteit met een nieuwe versie van Mozilla-software aan te geven, hoeft uw add-on "
-"niet opnieuw te worden beoordeeld. Als u echter een nieuw bijgewerkt bestand uploadt, moet uw add-on door een editor worden beoordeeld."
+"niet opnieuw te worden beoordeeld. Als u echter een nieuw bijgewerkt bestand uploadt, moet uw add-on door een Add-on-beoordelaar worden beoordeeld."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -10904,9 +10902,8 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "mijn sdk-gebaseerde add-on kan niet worden bijgewerkt"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "mijn add-on wordt door een editor beoordeeld"
+msgstr "mijn add-on wordt door een beoordelaar beoordeeld"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
