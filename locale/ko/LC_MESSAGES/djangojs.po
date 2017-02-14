@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-09 01:37+0000\n"
-"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
+"PO-Revision-Date: 2017-02-10 12:51+0000\n"
+"Last-Translator: SeulGi Choi (Chase) <cs09gi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "WebExtension 업그레이드"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
