@@ -1,16 +1,18 @@
 import datetime
 import os
-from subprocess import call
 import urlparse
 
+from waffle.testutils import override_switch
 from fxapom.fxapom import DEV_URL, PROD_URL, FxATestAccount
 import jwt
 import pytest
 import requests
+import json
 
 import django
 from django.core.management import call_command
 from olympia.access.models import Group
+
 
 @pytest.fixture
 def capabilities(capabilities):
@@ -20,25 +22,50 @@ def capabilities(capabilities):
 
 
 @pytest.fixture
+def admin_group(db):
+    """Create the Admins group."""
+    return Group.objects.create(name='Admins', rules='*:*')
+
+
+@pytest.fixture
+def django_setup(base_url, live_server, admin_group):
+    django.setup()
+    hostname = urlparse.urlsplit(base_url).hostname
+    with override_switch('super-create-accounts', active=True):
+        print('waffle active')
+        call_command(
+            'createsuperuser',
+            interactive=False,
+            username='uitest',
+            email='uitester@mozilla.org',
+            add_to_supercreate_group=True,
+            save_api_credentials='tests/ui/variables.json',
+            hostname=hostname
+        )
+    # call('./manage waffle_switch super-create-accounts on --create')
+    return live_server
+
+
+@pytest.fixture
 def fxa_account(base_url):
     url = DEV_URL if 'dev' in base_url else PROD_URL
     return FxATestAccount(url)
 
 
 @pytest.fixture
-def jwt_issuer(base_url, variables):
+def jwt_issuer(base_url, json_file):
     try:
         hostname = urlparse.urlsplit(base_url).hostname
-        return variables['api'][hostname]['jwt_issuer']
+        return json_file['api'][hostname]['jwt_issuer']
     except KeyError:
         return os.getenv('JWT_ISSUER')
 
 
 @pytest.fixture
-def jwt_secret(base_url, variables):
+def jwt_secret(base_url, json_file):
     try:
         hostname = urlparse.urlsplit(base_url).hostname
-        return variables['api'][hostname]['jwt_secret']
+        return json_file['api'][hostname]['jwt_secret']
     except KeyError:
         return os.getenv('JWT_SECRET')
 
@@ -54,7 +81,7 @@ def jwt_token(base_url, jwt_issuer, jwt_secret):
 
 
 @pytest.fixture
-def user(base_url, fxa_account, jwt_token):
+def user(base_url, django_setup, fxa_account, jwt_token):
     user = {
         'email': fxa_account.email,
         'password': fxa_account.password,
@@ -73,22 +100,6 @@ def user(base_url, fxa_account, jwt_token):
 
 
 @pytest.fixture
-def admin_group(db):
-    """Create the Admins group."""
-    return Group.objects.create(name='Admins', rules='*:*')
-
-
-@pytest.fixture
-def django_setup(live_server, admin_group):
-    django.setup()
-    hostname = os.environ.get('PYTEST_BASE_URL')
-    call_command(
-        'createsuperuser',
-        interactive=False,
-        username='uitest',
-        email='uitest@mozilla.org',
-        add_to_supercreate_group=True,
-        save_api_credentials='tests/ui/variables.json',
-        hostname=hostname
-    )
-    return live_server
+def json_file():
+    with open('tests/ui/variables.json') as f:
+        return json.load(f)

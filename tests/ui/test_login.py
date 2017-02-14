@@ -3,7 +3,7 @@ import pytest
 from pages.desktop.home import Home
 
 
-def test_login(django_setup, base_url, selenium, user):
+def test_login(base_url, selenium, user):
     """User can login"""
     page = Home(selenium, base_url).open()
     assert not page.logged_in
