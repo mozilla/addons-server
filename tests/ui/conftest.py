@@ -1,5 +1,6 @@
 import datetime
 import os
+from subprocess import call
 import urlparse
 
 from fxapom.fxapom import DEV_URL, PROD_URL, FxATestAccount
@@ -8,9 +9,8 @@ import pytest
 import requests
 
 import django
-from django.test import LiveServerTestCase
 from django.core.management import call_command
-
+from olympia.access.models import Group
 
 @pytest.fixture
 def capabilities(capabilities):
@@ -25,7 +25,7 @@ def fxa_account(base_url):
     return FxATestAccount(url)
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture
 def jwt_issuer(base_url, variables):
     try:
         hostname = urlparse.urlsplit(base_url).hostname
@@ -34,7 +34,7 @@ def jwt_issuer(base_url, variables):
         return os.getenv('JWT_ISSUER')
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture
 def jwt_secret(base_url, variables):
     try:
         hostname = urlparse.urlsplit(base_url).hostname
@@ -73,12 +73,15 @@ def user(base_url, fxa_account, jwt_token):
 
 
 @pytest.fixture
-def django_setup():
-    # os.environ['DJANGO_LIVE_TEST_SERVER_ADDRESS'] = os.environ[
-                                                                # 'PYTEST_BASE_URL']
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings_test')
+def admin_group(db):
+    """Create the Admins group."""
+    return Group.objects.create(name='Admins', rules='*:*')
+
+
+@pytest.fixture
+def django_setup(live_server, admin_group):
     django.setup()
-    server = LiveServerTestCase.setUpClass()
+    hostname = os.environ.get('PYTEST_BASE_URL')
     call_command(
         'createsuperuser',
         interactive=False,
@@ -86,6 +89,6 @@ def django_setup():
         email='uitest@mozilla.org',
         add_to_supercreate_group=True,
         save_api_credentials='tests/ui/variables.json',
-        hostname=os.environ['PYTEST_BASE_URL']
+        hostname=hostname
     )
-    return server
+    return live_server
