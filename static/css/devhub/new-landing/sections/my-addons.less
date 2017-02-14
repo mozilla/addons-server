@@ -30,6 +30,8 @@
 
 .DevHub-MyAddons-item-details {
   margin-left: 25px;
+  display: flex;
+  flex-flow: column;
 
   a {
     .link(@color-button-default);
@@ -38,7 +40,6 @@
   a,
   .DevHub-MyAddons-VersionStatus {
     font-size: 15px;
-    margin: 0 5px;
 
     &.DevHub-MyAddons-version-status-incomplete,
     &.DevHub-MyAddons-version-status-deleted,
@@ -60,16 +61,15 @@
       color: @color-version-state-admin-disabled;
     }
   }
+
+  .DevHub-MyAddons-VersionStatus {
+    margin: 0 5px;
+  }
 }
 
 .DevHub-MyAddons-item-name {
-  display: flex;
-  align-items: baseline;
-
-  span {
-    font-size: 24px;
-    font-weight: 400;
-  }
+  font-size: 24px;
+  font-weight: 400;
 }
 
 .DevHub-MyAddons-item-channel-listed,
@@ -111,7 +111,7 @@
 }
 
 .DevHub-MyAddons-item-version {
-  margin: 0 5px;
+  margin: 0 0 5px;
 }
 
 .DevHub-MyAddons-item-buttons {
