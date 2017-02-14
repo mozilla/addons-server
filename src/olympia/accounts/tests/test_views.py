@@ -508,7 +508,7 @@ class TestWithUser(TestCase):
             format='json')
 
     def test_dynamic_configuration(self):
-        fxa_config = { 'some': 'config' }
+        fxa_config = {'some': 'config'}
 
         class LoginView(object):
             def get_fxa_config(self, request):
