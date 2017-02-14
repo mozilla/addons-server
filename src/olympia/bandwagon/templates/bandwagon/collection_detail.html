@@ -108,7 +108,7 @@
           {{ num }} Add-ons in this Collection
         {% endtrans %}
       </h3>
-      <form class="item-sort go">
+      <form class="item-sort go" data-no-csrf>
         <label for="sortby">{{ _('Sort by:') }}</label>
         <select id="sortby" name="{{ filter.key }}">
           {% for value, title in filter.opts %}
