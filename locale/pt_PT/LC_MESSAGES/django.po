@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-14 13:12+0000\n"
+"PO-Revision-Date: 2017-02-14 18:28+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5400,7 +5400,7 @@ msgstr "Ver todas"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
-msgstr "Ver o quadro de estatísticas"
+msgstr "Ver o painel de estatísticas"
 
 # 75%
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
@@ -10337,7 +10337,7 @@ msgstr "Exportar"
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} ::Quadro de estatísticas :: Extras para o {1}"
+msgstr "{0} :: Painel de estatísticas :: Extras para {1}"
 
 # 77%
 #: src/olympia/stats/templates/stats/stats.html
@@ -10421,7 +10421,7 @@ msgstr "Sem dados disponíveis."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "This dashboard is currently <b>public</b>."
-msgstr "Este quadro de momento é <b>público</b>."
+msgstr "Este painel é atualmente <b>público</b>."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Contribution stats are currently <b>private</b>."
