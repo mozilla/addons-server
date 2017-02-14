@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-13 15:30+0000\n"
-"Last-Translator: Alberto Castro <albertdecastro@tutanota.com>\n"
+"PO-Revision-Date: 2017-02-14 13:12+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -10927,7 +10927,7 @@ msgstr "o meu extra baseado no sdk não pode ser atualizado"
 
 #: src/olympia/users/notifications.py
 msgid "my add-on is reviewed by a reviewer"
-msgstr "o meu extra é revisto por um editor"
+msgstr "o meu extra é revisto por um revisor"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
