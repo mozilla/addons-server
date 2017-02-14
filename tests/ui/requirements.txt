@@ -1,3 +1,4 @@
+django_waffle==0.11.1
 fxapom==1.9.1
 PyJWT==1.4.2
 PyPOM==1.1.1
