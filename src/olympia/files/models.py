@@ -377,20 +377,26 @@ class File(OnChangeMixin, ModelBase):
         statsd.timing('files.extract.localepicker', (end * 1000))
         return res
 
-    @amo.cached_property
+    @property
     def webext_permissions(self):
-        try:
-            return {
-                name: WEBEXT_PERMISSIONS.get(name, Permission(name, '', ''))
-                for name in self._webext_permissions.permissions}
-        except WebextPermission.DoesNotExist:
-            return {}
+        return {
+            name: WEBEXT_PERMISSIONS.get(name, Permission(name, '', ''))
+            for name in self.webext_permissions_list}
 
-    @amo.cached_property
+    @property
     def webext_permissions_known(self):
         return {name: perm
                 for name, perm in self.webext_permissions.iteritems()
                 if name in WEBEXT_PERMISSIONS}
+
+    @amo.cached_property(writable=True)
+    def webext_permissions_list(self):
+        if not self.is_webextension:
+            return []
+        try:
+            return list(self._webext_permissions.permissions)
+        except WebextPermission.DoesNotExist:
+            return []
 
 
 @receiver(models.signals.post_save, sender=File,
