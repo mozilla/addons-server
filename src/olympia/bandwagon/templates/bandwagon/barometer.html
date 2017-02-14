@@ -1,9 +1,9 @@
 <div class="barometer">
-  <form method="post" class="upvote" action="{{ up_action }}">
+  <form method="post" class="upvote" action="{{ up_action }}" data-no-csrf>
     <input class="{{ up_class }}" value="{{ c.upvotes }}" type="submit"
            title="{{ up_title }}">
   </form>
-  <form method="post" class="downvote" action="{{ down_action }}">
+  <form method="post" class="downvote" action="{{ down_action }}" data-no-csrf>
     <input class="{{ down_class }}" value="{{ c.downvotes }}" type="submit"
            title="{{ down_title }}">
   </form>
