@@ -13,7 +13,7 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLogToken
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import send_mail
+from olympia.amo.utils import no_translation, send_mail
 from olympia.devhub.models import ActivityLog
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
@@ -156,9 +156,17 @@ def log_and_notify(action, comments, note_creator, version):
     log_kwargs = {
         'user': note_creator,
         'created': datetime.datetime.now(),
-        'details': {
+    }
+    if comments:
+        log_kwargs['details'] = {
             'comments': comments,
-            'version': version.version}}
+            'version': version.version}
+    else:
+        # Just use the name of the action if no comments provided.  Alas we
+        # can't know the locale of recipient, and our templates are English
+        # only so prevent language jumble by forcing into en-US.
+        with no_translation():
+            comments = '%s' % action.short
     note = amo.log(action, version.addon, version, **log_kwargs)
 
     # Collect reviewers involved with this version.

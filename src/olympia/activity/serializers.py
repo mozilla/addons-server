@@ -24,11 +24,7 @@ class ActivityLogSerializer(serializers.ModelSerializer):
         self.to_highlight = kwargs.get('context', []).get('to_highlight', [])
 
     def get_comments(self, obj):
-        # We have to do .unescape on the output of obj.to_string because the
-        # 'string' it returns is supposed to be used in markup and doesn't get
-        # serialized correctly unless we unescape it.
-        comments = (obj.details['comments'] if obj.details
-                    else obj.to_string().unescape())
+        comments = obj.details['comments'] if obj.details else ''
         return getattr(obj.log(), 'sanitize', comments)
 
     def get_action_label(self, obj):

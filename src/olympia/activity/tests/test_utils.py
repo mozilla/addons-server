@@ -274,6 +274,29 @@ class TestLogAndNotify(TestCase):
         self._check_email(send_mail_mock.call_args_list[1],
                           self.addon.get_dev_url('versions'))
 
+    @mock.patch('olympia.activity.utils.send_mail')
+    def test_log_with_no_comment(self, send_mail_mock):
+        # One from the reviewer.
+        self._create(amo.LOG.REJECT_VERSION, self.reviewer)
+        action = amo.LOG.APPROVAL_NOTES_CHANGED
+        comments = None
+        log_and_notify(action, comments, self.developer, self.version)
+
+        logs = ActivityLog.objects.filter(action=action.id)
+        assert len(logs) == 1
+        assert not logs[0].details  # No details json because no comment.
+
+        assert send_mail_mock.call_count == 2  # One author, one reviewer.
+        recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 2
+        assert self.reviewer.email in recipients
+        assert self.developer2.email in recipients
+
+        assert u'Approval notes changed' in (
+            send_mail_mock.call_args_list[0][0][1])
+        assert u'Approval notes changed' in (
+            send_mail_mock.call_args_list[1][0][1])
+
     def test_staff_cc_group_is_empty_no_failure(self):
         Group.objects.create(name=ACTIVITY_MAIL_GROUP, rules='None:None')
         log_and_notify(amo.LOG.REJECT_VERSION, u'á', self.reviewer,
