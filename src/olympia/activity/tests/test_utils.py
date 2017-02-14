@@ -279,8 +279,9 @@ class TestLogAndNotify(TestCase):
         # One from the reviewer.
         self._create(amo.LOG.REJECT_VERSION, self.reviewer)
         action = amo.LOG.APPROVAL_NOTES_CHANGED
-        comments = None
-        log_and_notify(action, comments, self.developer, self.version)
+        log_and_notify(
+            action=action, comments=None, note_creator=self.developer,
+            version=self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
         assert len(logs) == 1
