@@ -52,7 +52,7 @@
   {% endif %}
   {% if waffle.switch('webext-permissions') %}
     <br>
-    <a class="webext-permissions badge" href="{{ url('addons.privacy', addon.slug) }}">
+    <a class="webext-permissions badge" href="#">
       {% if version and not version.all_files[0].is_webextension %}
         <img src="{{ static('img/developers/test-warning.png') }}" alt="{{ _('[Warning]') }}">
       {% endif %}
