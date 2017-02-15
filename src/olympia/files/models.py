@@ -13,7 +13,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_bytes, force_text
-
+from django.utils.translation import ugettext as _
 import commonware
 from cache_nuggets.lib import memoize
 from django_extensions.db.fields.json import JSONField
@@ -402,7 +402,7 @@ class File(OnChangeMixin, ModelBase):
         out.sort()
         # TODO: group match urls.
         out += [
-            Permission(name, u'Access your data for {name} website'.format(
+            Permission(name, _(u'Access your data for {name} website').format(
                 name=name), '')
             for name in urls]
         # return + other (unknown) permissions at the end.
