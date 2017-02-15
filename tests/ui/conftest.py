@@ -3,6 +3,7 @@ import os
 import urlparse
 
 from waffle.testutils import override_switch
+from waffle.models import Flag
 from fxapom.fxapom import DEV_URL, PROD_URL, FxATestAccount
 import jwt
 import pytest
@@ -12,6 +13,12 @@ import json
 import django
 from django.core.management import call_command
 from olympia.access.models import Group
+
+
+@pytest.fixture(scope='session')
+def base_url(live_server):
+    print(live_server.url)
+    return live_server.url
 
 
 @pytest.fixture
@@ -28,9 +35,17 @@ def admin_group(db):
 
 
 @pytest.fixture
-def django_setup(base_url, live_server, admin_group):
+def django_setup(base_url, live_server, admin_group, settings):
+    settings.DEBUG = True
+
     django.setup()
     hostname = urlparse.urlsplit(base_url).hostname
+    call_command('reset_db', interactive=False)
+    call_command('syncdb', interactive=False)
+    call_command('loaddata', 'initial.json')
+    call_command('import_prod_versions')
+    call_command('generate_addons', 10, app='firefox')
+    Flag.objects.get_or_create(name='super-create-accounts')
     with override_switch('super-create-accounts', active=True):
         print('waffle active')
         call_command(
@@ -42,7 +57,7 @@ def django_setup(base_url, live_server, admin_group):
             save_api_credentials='tests/ui/variables.json',
             hostname=hostname
         )
-    # call('./manage waffle_switch super-create-accounts on --create')
+    #call('./manage.py waffle_switch super-create-accounts on --create')
     return live_server
 
 

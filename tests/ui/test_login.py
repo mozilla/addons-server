@@ -1,10 +1,13 @@
 import pytest
 
 from pages.desktop.home import Home
+from waffle.models import Flag
 
 
+@pytest.mark.django_db
 def test_login(base_url, selenium, user):
     """User can login"""
+    Flag.objects.get_or_create(name='super-create-accounts')
     page = Home(selenium, base_url).open()
     assert not page.logged_in
     page.login(user['email'], user['password'])
