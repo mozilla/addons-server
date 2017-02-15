@@ -12,6 +12,11 @@
         // Update the 'Search add-ons for <b>"{addon}"</b>' text.
         settings['$results'].find('p b').html(format('"{0}"',
                                                      settings.searchTerm));
+        
+        // Update the .sel link.
+        var searchUrl = settings['$form'].attr('action') + '?q={0}';
+        settings['$results'].find('.sel').attr('href', format(searchUrl,
+                                                     settings.searchTerm));
 
         var li_item = template(
             '<li><a href="{url}"><span {cls} {icon}>{name}</span>{subtitle}</a></li>'
