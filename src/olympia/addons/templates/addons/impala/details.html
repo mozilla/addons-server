@@ -322,6 +322,44 @@
       </div>
     </div>
   {% endif %}
+  {% if waffle.switch('webext-permissions') and addon.current_version and addon.current_version.all_files[0] %}
+    <div class="modal" id="webext-permissions">
+      <a href="#" class="close">{{ _('close') }}</a>
+      <h2>{{ _('Permissions') }}</h2>
+      {% if addon.current_version.all_files[0].is_webextension %}
+        {% set permissions = addon.current_version.all_files[0].webext_permissions %}
+        <div class="prose">
+          <p>
+          {{ _('Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system).') }}
+          </p><p>
+          {{ _('Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some rare cases risk may be involved.') }}
+          </p>
+        </div>
+        <div>
+          <p>
+            {# l10n: This is a header of a list of things the add-on can do. #}
+            <h3>{{ _('It can:') }}</h3>
+            <ul class="webext-permissions-list">
+              {% for perm in permissions %}
+                <li class="webext-permissions-list">{{ perm.description|e }}</li>
+              {% else %}
+                {{ ("The add-on doesn't have any special permissions.") }}
+              {% endfor %}
+            </ul>
+          </p>
+        </div>
+      {% else %}
+        <div class="prose">
+          <img src="{{ static('img/developers/test-warning.png') }}" alt="{{ _('[Warning]') }}">
+          <p>
+          {{ ('Some add-ons ask for permissions to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours.') }}
+          </p><p>
+          {{ ('Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission.') }}
+          </p>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
   {% if addon.eula %}
     <div class="modal" id="eula">
       <a href="#" class="close">{{ _('close') }}</a>
