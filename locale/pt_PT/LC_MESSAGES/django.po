@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-14 18:28+0000\n"
+"PO-Revision-Date: 2017-02-15 15:03+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -10497,7 +10497,7 @@ msgstr "A carregar..."
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Average Daily Users"
-msgstr "<b>{0}</b> Utilizadores médios diários"
+msgstr "<b>{0}</b> utilizadores médios diários"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Applications"
