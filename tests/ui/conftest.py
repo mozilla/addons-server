@@ -35,7 +35,7 @@ def admin_group(db):
 
 
 @pytest.fixture
-def django_setup(base_url, live_server, admin_group, settings):
+def django_setup(base_url, live_server, settings):
     settings.DEBUG = True
 
     django.setup()
@@ -43,19 +43,17 @@ def django_setup(base_url, live_server, admin_group, settings):
     call_command('reset_db', interactive=False)
     call_command('syncdb', interactive=False)
     call_command('loaddata', 'initial.json')
-    call_command('import_prod_versions')
-    call_command('generate_addons', 10, app='firefox')
-    Flag.objects.get_or_create(name='super-create-accounts')
-    with override_switch('super-create-accounts', active=True):
-        print('waffle active')
-        call_command(
-            'createsuperuser',
-            interactive=False,
-            username='uitest',
-            email='uitester@mozilla.org',
-            add_to_supercreate_group=True,
-            save_api_credentials='tests/ui/variables.json',
-            hostname=hostname
+    #Group.objects.get_or_create(name='Admins', rules='*:*')
+    # call_command('import_prod_versions')
+    call_command('generate_addons', 1, app='firefox')
+    call_command(
+        'createsuperuser',
+        interactive=False,
+        username='uitest',
+        email='uitester@mozilla.org',
+        add_to_supercreate_group=True,
+        save_api_credentials='tests/ui/variables.json',
+        hostname=hostname
         )
     #call('./manage.py waffle_switch super-create-accounts on --create')
     return live_server
@@ -109,6 +107,18 @@ def user(base_url, django_setup, fxa_account, jwt_token):
         'fxa_id': fxa_account.session.uid}
     headers = {'Authorization': 'JWT {token}'.format(token=jwt_token)}
     r = requests.post(url, data=params, headers=headers)
+
+    from olympia.users.models import UserProfile
+    user = UserProfile.objects.get(username='uitest')
+
+    print('DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG')
+    print(user)
+    print(user.api_keys.all().count())
+
+    if user.api_keys.all().count() > 0:
+        print(user.api_keys.all().first().key)
+
+    print(r.content)
     assert requests.codes.created == r.status_code
     user.update(r.json())
     return user
