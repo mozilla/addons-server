@@ -3,6 +3,7 @@ import pytest
 from pages.desktop.home import Home
 
 
+@pytest.mark.django_db
 @pytest.mark.nondestructive
 def test_there_are_ten_most_popular_extensions(base_url, selenium):
     """Ten most popular add-ons are listed"""
@@ -10,6 +11,7 @@ def test_there_are_ten_most_popular_extensions(base_url, selenium):
     assert len(page.most_popular.extensions) == 10
 
 
+@pytest.mark.django_db
 @pytest.mark.nondestructive
 def test_most_popular_extensions_are_sorted_by_users(base_url, selenium):
     """Most popular add-ons are sorted by popularity"""
