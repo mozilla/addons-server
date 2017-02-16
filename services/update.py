@@ -109,10 +109,13 @@ class Update(object):
         sql = """SELECT id, status, addontype_id, guid FROM addons
                  WHERE guid = %(guid)s AND
                        inactive = 0 AND
-                       status != %(STATUS_DELETED)s
+                       status NOT IN (%(STATUS_DELETED)s, %(STATUS_DISABLED)s)
                  LIMIT 1;"""
-        self.cursor.execute(sql, {'guid': self.data['id'],
-                                  'STATUS_DELETED': base.STATUS_DELETED})
+        self.cursor.execute(sql, {
+            'guid': self.data['id'],
+            'STATUS_DELETED': base.STATUS_DELETED,
+            'STATUS_DISABLED': base.STATUS_DISABLED,
+        })
         result = self.cursor.fetchone()
         if result is None:
             return False
@@ -135,7 +138,6 @@ class Update(object):
 
         data['STATUS_PUBLIC'] = base.STATUS_PUBLIC
         data['STATUS_BETA'] = base.STATUS_BETA
-        data['STATUS_DISABLED'] = base.STATUS_DISABLED
         data['RELEASE_CHANNEL_LISTED'] = base.RELEASE_CHANNEL_LISTED
 
         sql = ["""
@@ -355,7 +357,6 @@ def application(environ, start_response):
             output = force_bytes(update.get_rdf())
             start_response(status, update.get_headers(len(output)))
         except:
-            #mail_exception(data)
             log_exception(data)
             raise
     return [output]
