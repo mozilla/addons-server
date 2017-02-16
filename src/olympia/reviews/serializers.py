@@ -52,7 +52,7 @@ class BaseReviewSerializer(serializers.ModelSerializer):
         # modified afterwards:
         if not self.partial:
             # Because we want to avoid extra queries, addon is a
-            # serializerMethodField, which means it needs to be validated
+            # SerializerMethodField, which means it needs to be validated
             # manually. Fortunately the view does most of the work for us.
             data['addon'] = self.context['view'].get_addon_object()
             if data['addon'] is None:
