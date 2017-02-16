@@ -7,12 +7,11 @@ from django.core import mail
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.amo.tests import addon_factory, user_factory
+from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.addons.models import Addon, AddonUser
 from olympia.versions.models import (
-    Version, version_uploaded, ApplicationsVersions)
+    Version, version_uploaded)
 from olympia.files.models import File
-from olympia.applications.models import AppVersion
 from olympia.editors.models import (
     EditorSubscription, RereviewQueueTheme, ReviewerScore, send_notifications,
     ViewFullReviewQueue, ViewPendingQueue,
@@ -20,67 +19,8 @@ from olympia.editors.models import (
 from olympia.users.models import UserProfile
 
 
-def create_addon_file(name, version_str, addon_status, file_status,
-                      platform=amo.PLATFORM_ALL, application=amo.FIREFOX,
-                      admin_review=False, addon_type=amo.ADDON_EXTENSION,
-                      created=None, file_kw=None, version_kw=None,
-                      listed=True, nomination=None):
-    if file_kw is None:
-        file_kw = {}
-    if version_kw is None:
-        version_kw = {}
-    if 'channel' not in version_kw:
-        # Version channel should always be specified, if it's not here use the
-        # listed boolean to determine what it should be.
-        if listed:
-            channel = amo.RELEASE_CHANNEL_LISTED
-        else:
-            channel = amo.RELEASE_CHANNEL_UNLISTED
-        version_kw['channel'] = channel
-    app_vr, created_ = AppVersion.objects.get_or_create(
-        application=application.id, version='1.0')
-    addon, created_ = Addon.objects.get_or_create(
-        name__localized_string=name,
-        defaults={'type': addon_type, 'name': name})
-    if admin_review:
-        addon.update(admin_review=True)
-    version, created_ = Version.objects.get_or_create(
-        addon=addon, version=version_str, defaults=version_kw)
-    if nomination is not None:
-        version.nomination = nomination
-        version.save()
-
-    if not created_:
-        version.update(**version_kw)
-    va, created_ = ApplicationsVersions.objects.get_or_create(
-        version=version, application=application.id, min=app_vr, max=app_vr)
-    file_defaults = {
-        'version': version,
-        'filename': u"%s.xpi" % name,
-        'platform': platform.id,
-        'status': file_status,
-        'no_restart': True
-    }
-    file_defaults.update(file_kw)
-    file_ = File.objects.create(**file_defaults)
-    if created:
-        version.update(created=created)
-        file_.update(created=created)
-    # Regular Version creation (via from_upload()) does this, it's necessary
-    # to make sure files as in a consistent state:
-    version.disable_old_files()
-    # Update status *after* we are done creating/modifying version and files:
-    addon = Addon.objects.get(pk=addon.id)
-    addon.update(status=addon_status)
-    return {'addon': addon, 'version': version, 'file': file_}
-
-
 def create_search_ext(name, version_str, addon_status, file_status,
-                      listed=True):
-    if listed:
-        channel = amo.RELEASE_CHANNEL_LISTED
-    else:
-        channel = amo.RELEASE_CHANNEL_UNLISTED
+                      channel):
     addon, created_ = Addon.objects.get_or_create(
         name__localized_string=name,
         defaults={'type': amo.ADDON_SEARCH, 'name': name})
@@ -97,29 +37,32 @@ def create_search_ext(name, version_str, addon_status, file_status,
 class TestQueue(TestCase):
     """Tests common attributes and coercions that each view must support."""
     __test__ = False  # this is an abstract test case
-    listed = True  # Are we testing listed or unlisted queues?
 
     def test_latest_version(self):
-        self.new_file(version=u'0.1', created=self.days_ago(2))
-        self.new_file(version=u'0.2', created=self.days_ago(1))
-        self.new_file(version=u'0.3')
+        addon = self.new_addon()
+        v1 = addon.find_latest_version(self.channel)
+        v1.update(created=self.days_ago(2))
+        v1.all_files[0].update(status=amo.STATUS_PUBLIC)
+        version_factory(addon=addon, version='2.0', created=self.days_ago(1),
+                        channel=self.channel,
+                        file_kw={'status': amo.STATUS_PUBLIC})
+        version_factory(addon=addon, version='3.0', created=self.days_ago(0),
+                        channel=self.channel,
+                        file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         row = self.Queue.objects.get()
-        assert row.latest_version == '0.3'
+        assert row.latest_version == '3.0'
 
     def test_addons_disabled_by_user_are_hidden(self):
-        f = self.new_file(version=u'0.1')
-        f['addon'].update(disabled_by_user=True)
+        self.new_addon(version=u'0.1').update(disabled_by_user=True)
         assert list(self.Queue.objects.all()) == []
 
     def test_addons_disabled_by_admin_are_hidden(self):
-        f = self.new_file(version=u'0.1')
-        f['addon'].update(status=amo.STATUS_DISABLED)
+        self.new_addon(version=u'0.1').update(status=amo.STATUS_DISABLED)
         assert list(self.Queue.objects.all()) == []
 
     def test_reviewed_files_are_hidden(self):
-        self.new_file(name='Unreviewed', version=u'0.1')
-        self.new_file('Already Reviewed', '0.1',
-                      amo.STATUS_PUBLIC, amo.STATUS_NULL)
+        self.new_addon(name='Unreviewed')
+        addon_factory(name='Already Reviewed')
         assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
             ['Unreviewed'])
 
@@ -130,34 +73,35 @@ class TestQueue(TestCase):
         assert row.addon_type_id == amo.ADDON_SEARCH
 
     def test_count_all(self):
-        self.new_file(name='Addon 1', version=u'0.1')
-        self.new_file(name='Addon 1', version=u'0.2')
-        self.new_file(name='Addon 2', version=u'0.1')
-        self.new_file(name='Addon 2', version=u'0.2')
+        # Create two new addons and give each another version.
+        version_factory(addon=self.new_addon(), version=u'2.0',
+                        channel=self.channel)
+        version_factory(addon=self.new_addon(), version=u'2.0',
+                        channel=self.channel)
         assert self.Queue.objects.all().count() == 2
 
 
 class TestPendingQueue(TestQueue):
     __test__ = True
     Queue = ViewPendingQueue
+    channel = amo.RELEASE_CHANNEL_LISTED
 
-    def new_file(self, name=u'Pending', version=u'1.0',
-                 addon_status=amo.STATUS_PUBLIC,
-                 file_status=amo.STATUS_AWAITING_REVIEW, **kw):
-        # Create the addon and everything related. Note that we are cheating,
-        # the addon status might not correspond to the files attached. This is
-        # important not to re-save() attached versions and files afterwards,
-        # because that might alter the addon status.
-        return create_addon_file(name, version, addon_status, file_status,
-                                 listed=self.listed, **kw)
+    def new_addon(self, name=u'Pending', version=u'1.0'):
+        addon = addon_factory(
+            name=name,
+            version_kw={'version': u'0.0.1', 'channel': self.channel})
+        version_factory(
+            addon=addon, version=version, channel=self.channel,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'no_restart': True})
+        return addon
 
     def new_search_ext(self, name, version, **kw):
         return create_search_ext(name, version,
                                  amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-                                 listed=self.listed, **kw)
+                                 channel=self.channel, **kw)
 
     def test_waiting_time(self):
-        self.new_file(name='Addon 1', version=u'0.1')
+        self.new_addon()
         Version.objects.update(created=datetime.utcnow())
         row = self.Queue.objects.all()[0]
         assert row.waiting_time_days == 0
@@ -165,51 +109,54 @@ class TestPendingQueue(TestQueue):
         assert row.waiting_time_hours is not None
 
     def test_flags_admin_review(self):
-        f = self.new_file(version=u'0.1')
-        f['addon'].update(admin_review=True)
+        self.new_addon().update(admin_review=True)
 
         q = self.Queue.objects.get()
         assert q.flags == [('admin-review', 'Admin Review')]
 
     def test_flags_info_request(self):
-        self.new_file(version=u'0.1', version_kw={'has_info_request': True})
+        self.new_addon().find_latest_version(self.channel).update(
+            has_info_request=True)
         q = self.Queue.objects.get()
         assert q.flags == [('info', 'More Information Requested')]
 
     def test_flags_editor_comment(self):
-        self.new_file(version=u'0.1', version_kw={'has_editor_comment': True})
+        self.new_addon().find_latest_version(self.channel).update(
+            has_editor_comment=True)
 
         q = self.Queue.objects.get()
         assert q.flags == [('editor', 'Contains Reviewer Comment')]
 
     def test_flags_jetpack(self):
-        self.new_file(version=u'0.1', file_kw={'jetpack_version': '1.8',
-                                               'no_restart': True})
+        self.new_addon().find_latest_version(self.channel).all_files[0].update(
+            jetpack_version='1.8')
 
         q = self.Queue.objects.get()
         assert q.flags == [('jetpack', 'Jetpack Add-on')]
 
     def test_flags_requires_restart(self):
-        self.new_file(version=u'0.1', file_kw={'no_restart': False})
+        self.new_addon().find_latest_version(self.channel).all_files[0].update(
+            no_restart=False)
 
         q = self.Queue.objects.get()
         assert q.flags == [('requires_restart', 'Requires Restart')]
 
     def test_flags_sources_provided(self):
-        f = self.new_file(version=u'0.1')
-        f['addon'].versions.update(source='/some/source/file')
+        self.new_addon().find_latest_version(self.channel).update(
+            source='/some/source/file')
 
         q = self.Queue.objects.get()
         assert q.flags == [('sources-provided', 'Sources provided')]
 
     def test_flags_webextension(self):
-        self.new_file(version=u'0.1', file_kw={'is_webextension': True})
+        self.new_addon().find_latest_version(self.channel).all_files[0].update(
+            is_webextension=True)
 
         queue = self.Queue.objects.get()
         assert queue.flags == [('webextension', 'WebExtension')]
 
     def test_no_flags(self):
-        self.new_file(version=u'0.1')
+        self.new_addon()
 
         q = self.Queue.objects.get()
         assert q.flags == []
@@ -218,21 +165,25 @@ class TestPendingQueue(TestQueue):
 class TestFullReviewQueue(TestQueue):
     __test__ = True
     Queue = ViewFullReviewQueue
+    channel = amo.RELEASE_CHANNEL_LISTED
 
-    def new_file(self, name=u'Nominated', version=u'1.0',
-                 addon_status=amo.STATUS_NOMINATED,
-                 file_status=amo.STATUS_AWAITING_REVIEW, **kw):
-        return create_addon_file(name, version, addon_status, file_status,
-                                 listed=self.listed, **kw)
+    def new_addon(self, name=u'Nominated', version=u'1.0',
+                  addon_status=amo.STATUS_NOMINATED,
+                  file_status=amo.STATUS_AWAITING_REVIEW):
+        addon = addon_factory(
+            name=name, status=addon_status,
+            version_kw={'version': version, 'channel': self.channel},
+            file_kw={'status': file_status})
+        return addon
 
     def new_search_ext(self, name, version, **kw):
         return create_search_ext(name, version,
                                  amo.STATUS_NOMINATED,
                                  amo.STATUS_AWAITING_REVIEW,
-                                 listed=self.listed, **kw)
+                                 channel=self.channel, **kw)
 
     def test_waiting_time(self):
-        self.new_file(name='Addon 1', version=u'0.1')
+        self.new_addon()
         Version.objects.update(nomination=datetime.utcnow())
         row = self.Queue.objects.all()[0]
         assert row.waiting_time_days == 0
@@ -242,27 +193,30 @@ class TestFullReviewQueue(TestQueue):
 
 class TestUnlistedAllList(TestCase):
     Queue = ViewUnlistedAllList
-    listed = False
+    channel = amo.RELEASE_CHANNEL_UNLISTED
     fixtures = ['base/users']
 
-    def new_file(self, name=u'Nominated', version=u'1.0',
-                 addon_status=amo.STATUS_NOMINATED,
-                 file_status=amo.STATUS_AWAITING_REVIEW, **kw):
-        return create_addon_file(name, version, addon_status, file_status,
-                                 listed=self.listed, **kw)
+    def new_addon(self, name=u'Unlisted', version=u'1.0',
+                  addon_status=amo.STATUS_NULL,
+                  file_status=amo.STATUS_PUBLIC):
+        addon = addon_factory(
+            name=name, status=addon_status,
+            version_kw={'version': version, 'channel': self.channel},
+            file_kw={'status': file_status})
+        return addon
 
     def test_all_addons_are_in_q(self):
-        self.new_file('Public', addon_status=amo.STATUS_PUBLIC,
-                      file_status=amo.STATUS_PUBLIC)
-        self.new_file('Nominated', addon_status=amo.STATUS_NOMINATED,
-                      file_status=amo.STATUS_AWAITING_REVIEW)
-        self.new_file('Deleted', addon_status=amo.STATUS_PUBLIC,
-                      file_status=amo.STATUS_PUBLIC)['addon'].delete()
+        self.new_addon('Public', addon_status=amo.STATUS_PUBLIC,
+                       file_status=amo.STATUS_PUBLIC)
+        self.new_addon('Nominated', addon_status=amo.STATUS_NOMINATED,
+                       file_status=amo.STATUS_AWAITING_REVIEW)
+        self.new_addon('Deleted', addon_status=amo.STATUS_PUBLIC,
+                       file_status=amo.STATUS_PUBLIC).delete()
         assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
             ['Deleted', 'Nominated', 'Public'])
 
     def test_authors(self):
-        addon = self.new_file()['addon']
+        addon = self.new_addon()
         bert = user_factory(username='bert')
         ernie = user_factory(username='ernie')
         AddonUser.objects.create(addon=addon, user=bert)
@@ -273,87 +227,110 @@ class TestUnlistedAllList(TestCase):
 
     def test_last_reviewed_version(self):
         today = datetime.today().date()
-        self.new_file(name='addon123', version='1.0')
-        v2 = self.new_file(name='addon123', version='2.0')['version']
+        addon = self.new_addon(version='1.0')
+        v2 = version_factory(addon=addon, version='2.0', channel=self.channel)
         log = amo.log(amo.LOG.APPROVE_VERSION, v2, v2.addon,
                       user=UserProfile.objects.get(pk=999))
-        self.new_file(name='addon123', version='3.0')
+        version_factory(addon=addon, version='3.0', channel=self.channel)
         row = self.Queue.objects.all()[0]
         assert row.review_date == today
         assert row.review_version_num == '2.0'
         assert row.review_log_id == log.id
 
     def test_no_developer_actions(self):
-        ver = self.new_file(name='addon456', version='1.0')['version']
-        amo.log(amo.LOG.ADD_VERSION, ver, ver.addon,
+        addon = self.new_addon(version='1.0')
+        amo.log(amo.LOG.ADD_VERSION, addon.latest_unlisted_version, addon,
                 user=UserProfile.objects.get(pk=999))
         row = self.Queue.objects.all()[0]
         assert row.review_version_num is None
 
-        ver = self.new_file(name='addon456', version='2.0')['version']
-        amo.log(amo.LOG.APPROVE_VERSION, ver, ver.addon,
+        ver2 = version_factory(version='2.0', addon=addon,
+                               channel=self.channel)
+        amo.log(amo.LOG.APPROVE_VERSION, ver2, addon,
                 user=UserProfile.objects.get(pk=999))
         row = self.Queue.objects.all()[0]
         assert row.review_version_num == '2.0'
 
-        ver = self.new_file(name='addon456', version='3.0')['version']
-        amo.log(amo.LOG.EDIT_VERSION, ver, ver.addon,
+        ver3 = version_factory(version='3.0', addon=addon,
+                               channel=self.channel)
+        amo.log(amo.LOG.EDIT_VERSION, ver3, addon,
                 user=UserProfile.objects.get(pk=999))
         row = self.Queue.objects.all()[0]
         # v2.0 is still the last reviewed version.
         assert row.review_version_num == '2.0'
 
     def test_no_automatic_reviews(self):
-        ver = self.new_file(name='addon789', version='1.0')['version']
+        ver = self.new_addon(
+            name='addon789', version='1.0').latest_unlisted_version
         amo.log(amo.LOG.APPROVE_VERSION, ver, ver.addon,
                 user=UserProfile.objects.get(pk=settings.TASK_USER_ID))
         row = self.Queue.objects.all()[0]
         assert row.review_version_num is None
 
     def test_latest_version(self):
-        self.new_file(version=u'0.1', created=self.days_ago(2))
-        self.new_file(version=u'0.2', created=self.days_ago(1))
-        self.new_file(version=u'0.3')
+        addon = addon_factory(
+            version_kw={'version': u'0.1', 'channel': self.channel,
+                        'created': self.days_ago(2)},
+            file_kw={'created': self.days_ago(2)})
+        version_factory(
+            addon=addon, version=u'0.2', channel=self.channel,
+            created=self.days_ago(1), file_kw={'created': self.days_ago(1)})
+        version_factory(
+            addon=addon, version=u'0.3', channel=self.channel)
         row = self.Queue.objects.get()
         assert row.latest_version == '0.3'
 
     def test_addons_disabled_by_user_are_hidden(self):
-        f = self.new_file(version=u'0.1')
-        f['addon'].update(disabled_by_user=True)
+        self.new_addon().update(disabled_by_user=True)
         assert list(self.Queue.objects.all()) == []
 
     def test_addons_disabled_by_admin_are_hidden(self):
-        f = self.new_file(version=u'0.1')
-        f['addon'].update(status=amo.STATUS_DISABLED)
+        self.new_addon(version=u'0.1').update(status=amo.STATUS_DISABLED)
         assert list(self.Queue.objects.all()) == []
 
     def test_count_all(self):
-        self.new_file(name='Addon 1', version=u'0.1')
-        self.new_file(name='Addon 1', version=u'0.2')
-        self.new_file(name='Addon 2', version=u'0.1')
-        self.new_file(name='Addon 2', version=u'0.2')
+        addon1 = self.new_addon()
+        version_factory(addon=addon1, version=u'0.2')
+        addon2 = self.new_addon()
+        version_factory(addon=addon2, version=u'0.2')
         assert self.Queue.objects.all().count() == 2
 
     def test_mixed_listed(self):
-        create_addon_file(u'UnlistedListed', u'0.1', amo.STATUS_NULL,
-                          amo.STATUS_PUBLIC, listed=False)
-        create_addon_file(u'UnlistedListed', u'0.2', amo.STATUS_PUBLIC,
-                          amo.STATUS_PUBLIC, listed=True)
+        unlisted_listed = addon_factory(
+            status=amo.STATUS_NULL, name=u'UnlistedListed',
+            version_kw={'version': u'0.1',
+                        'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            file_kw={'status': amo.STATUS_PUBLIC})
+        version_factory(addon=unlisted_listed, version=u'0.2',
+                        channel=amo.RELEASE_CHANNEL_LISTED,
+                        file_kw={'status': amo.STATUS_PUBLIC})
 
-        create_addon_file(u'ListedUnlisted', u'0.1', amo.STATUS_NULL,
-                          amo.STATUS_PUBLIC, listed=True)
-        create_addon_file(u'ListedUnlisted', u'0.2', amo.STATUS_PUBLIC,
-                          amo.STATUS_PUBLIC, listed=False)
+        listed_unlisted = addon_factory(
+            status=amo.STATUS_NULL, name=u'ListedUnlisted',
+            version_kw={'version': u'0.1',
+                        'channel': amo.RELEASE_CHANNEL_LISTED},
+            file_kw={'status': amo.STATUS_PUBLIC})
+        version_factory(addon=listed_unlisted, version=u'0.2',
+                        channel=amo.RELEASE_CHANNEL_UNLISTED,
+                        file_kw={'status': amo.STATUS_PUBLIC})
 
-        create_addon_file(u'JustUnlisted', u'0.1', amo.STATUS_NULL,
-                          amo.STATUS_PUBLIC, listed=False)
-        create_addon_file(u'JustUnlisted', u'0.2', amo.STATUS_PUBLIC,
-                          amo.STATUS_PUBLIC, listed=False)
+        just_unlisted = addon_factory(
+            status=amo.STATUS_NULL, name=u'JustUnlisted',
+            version_kw={'version': u'0.1',
+                        'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            file_kw={'status': amo.STATUS_PUBLIC})
+        version_factory(addon=just_unlisted, version=u'0.2',
+                        channel=amo.RELEASE_CHANNEL_UNLISTED,
+                        file_kw={'status': amo.STATUS_PUBLIC})
 
-        create_addon_file(u'JustListed', u'0.1', amo.STATUS_NULL,
-                          amo.STATUS_PUBLIC, listed=True)
-        create_addon_file(u'JustListed', u'0.2', amo.STATUS_PUBLIC,
-                          amo.STATUS_PUBLIC, listed=True)
+        just_listed = addon_factory(
+            status=amo.STATUS_NULL, name=u'JustListed',
+            version_kw={'version': u'0.1',
+                        'channel': amo.RELEASE_CHANNEL_LISTED},
+            file_kw={'status': amo.STATUS_PUBLIC})
+        version_factory(addon=just_listed, version=u'0.2',
+                        channel=amo.RELEASE_CHANNEL_LISTED,
+                        file_kw={'status': amo.STATUS_PUBLIC})
 
         assert self.Queue.objects.all().count() == 3
         assert [addon.addon_name for addon in self.Queue.objects.all()] == [
@@ -481,13 +458,13 @@ class TestReviewerScore(TestCase):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         bonus_days = 2
         days = amo.REVIEWED_OVERDUE_LIMIT + bonus_days
-        bonus_addon = create_addon_file(
-            u'AwardBonus',
-            u'1.0',
-            amo.STATUS_NOMINATED,
-            amo.STATUS_AWAITING_REVIEW,
+
+        bonus_addon = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        bonus_addon.current_version.update(
             nomination=(datetime.now() - timedelta(days=days, minutes=5))
-        )['addon']
+        )
         self._give_points(user2, bonus_addon, amo.STATUS_NOMINATED)
         score = ReviewerScore.objects.get(user=user2)
         expected = (amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
