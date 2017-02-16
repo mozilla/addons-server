@@ -329,8 +329,13 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
 
     def set_addon_object_from_review(self, review):
         """Set addon object on the instance from a review object."""
+        # At this point it's likely we didn't have an addon in the request, so
+        # if we went through get_addon_object() before it's going to be set
+        # to None already. We delete the addon_object property cache and set
+        # addon_pk in kwargs to force get_addon_object() to reset
+        # self.addon_object.
+        del self.addon_object
         self.kwargs['addon_pk'] = str(review.addon.pk)
-        del self.addon_object  # Force get_addon_object() to try again.
         return self.get_addon_object()
 
     def get_addon_object(self):
