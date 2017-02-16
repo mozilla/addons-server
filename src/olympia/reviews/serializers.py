@@ -48,10 +48,16 @@ class BaseReviewSerializer(serializers.ModelSerializer):
 
         data['user_responsible'] = request.user
 
+        # There are a few fields that need to be set at creation time and never
+        # modified afterwards:
         if not self.partial:
-            # Get the add-on pk from the URL, no need to pass it as POST data
-            # since the URL is always going to have it.
+            # Because we want to avoid extra queries, addon is a
+            # SerializerMethodField, which means it needs to be validated
+            # manually. Fortunately the view does most of the work for us.
             data['addon'] = self.context['view'].get_addon_object()
+            if data['addon'] is None:
+                raise serializers.ValidationError(
+                    {'addon': _('This field is required.')})
 
             # Get the user from the request, don't allow clients to pick one
             # themselves.
@@ -59,6 +65,12 @@ class BaseReviewSerializer(serializers.ModelSerializer):
 
             # Also include the user ip adress.
             data['ip_address'] = request.META.get('REMOTE_ADDR', '')
+        else:
+            # When editing, you can't change the add-on.
+            if self.context['request'].data.get('addon'):
+                raise serializers.ValidationError(
+                    {'addon': _(u"You can't change the add-on of a review once"
+                                u" it has been created.")})
 
         # Clean up body and automatically flag the review if an URL was in it.
         body = data.get('body', '')
@@ -121,7 +133,6 @@ class ReviewVersionSerializer(SimpleVersionSerializer):
 class ReviewSerializer(BaseReviewSerializer):
     reply = ReviewSerializerReply(read_only=True)
     rating = serializers.IntegerField(min_value=1, max_value=5)
-
     version = ReviewVersionSerializer()
 
     class Meta:
@@ -136,6 +147,10 @@ class ReviewSerializer(BaseReviewSerializer):
                   u"the review has been created."))
 
         addon = self.context['view'].get_addon_object()
+        if not addon:
+            # BaseReviewSerializer.validate() should complain about that, not
+            # this method.
+            return None
         if version.addon_id != addon.pk or not version.is_public():
             raise serializers.ValidationError(
                 _(u"This version of the add-on doesn't exist or isn't "

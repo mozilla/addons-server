@@ -995,16 +995,6 @@ class TestParseNextPath(TestCase):
             u'/en-US/firefox/addon/dęlîcíøùs-päñčåkę/?src=hp-dl-featured')
 
 
-class TestAccountViewSetGet(TestCase):
-    def test_basic(self):
-        self.user = user_factory()
-        self.url = reverse(
-            'account-detail', kwargs={'pk': self.user.pk})
-
-        with self.assertRaises(NotImplementedError):
-            self.client.get(self.url)
-
-
 class TestSessionView(TestCase):
     def login_user(self, user):
         identity = {

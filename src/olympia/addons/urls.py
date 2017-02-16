@@ -3,7 +3,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
 
-from olympia.reviews.urls import review_patterns
 from olympia.stats.urls import stats_patterns
 from . import buttons
 from . import views
@@ -12,8 +11,7 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 
 
 # These will all start with /addon/<addon_id>/
-detail_patterns = patterns(
-    '',
+detail_patterns = [
     url('^$', views.addon_detail, name='addons.detail'),
     url('^more$', views.addon_detail, name='addons.detail_more'),
     url('^eula/(?P<file_id>\d+)?$', views.eula, name='addons.eula'),
@@ -39,10 +37,10 @@ detail_patterns = patterns(
                                      addon_id, permanent=True),
         name='addons.about'),
 
-    ('^reviews/', include(review_patterns('addons'))),
-    ('^statistics/', include(stats_patterns)),
-    ('^versions/', include('olympia.versions.urls')),
-)
+    url('^reviews/', include('olympia.reviews.urls')),
+    url('^statistics/', include(stats_patterns)),
+    url('^versions/', include('olympia.versions.urls')),
+]
 
 
 urlpatterns = patterns(
