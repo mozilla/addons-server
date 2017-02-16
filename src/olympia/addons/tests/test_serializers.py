@@ -62,9 +62,13 @@ class AddonSerializerOutputTestMixin(object):
         assert data['url'] == absolutify(version.get_url_path())
 
     def test_basic(self):
+        cat1 = Category.from_static_category(
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
+        cat1.save()
         self.addon = addon_factory(
             average_daily_users=4242,
             average_rating=4.21,
+            category=cat1,
             description=u'My Addôn description',
             file_kw={
                 'hash': 'fakehash',
@@ -109,10 +113,6 @@ class AddonSerializerOutputTestMixin(object):
         # Reset current_version.compatible_apps now that we've added an app.
         del self.addon.current_version.compatible_apps
 
-        cat1 = Category.from_static_category(
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
-        cat1.save()
-        AddonCategory.objects.create(addon=self.addon, category=cat1)
         cat2 = Category.from_static_category(
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates'])
         cat2.save()
@@ -553,6 +553,7 @@ class TestVersionSerializerOutput(TestCase):
     def test_no_license(self):
         addon = addon_factory()
         self.version = addon.current_version
+        self.version.update(license=None)
         result = self.serialize()
         assert result['id'] == self.version.pk
         assert result['license'] is None
