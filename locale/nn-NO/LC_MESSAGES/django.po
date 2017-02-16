@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-16 06:31+0000\n"
+"PO-Revision-Date: 2017-02-16 06:40+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1705,9 +1705,8 @@ msgid "Reply by developer on {addon} {version}."
 msgstr "Kommentar på {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Developer Reply"
-msgstr "Utviklar"
+msgstr "Utviklarsvar"
 
 #: src/olympia/amo/log.py
 #, fuzzy
@@ -2985,9 +2984,8 @@ msgid "e10s Enabled"
 msgstr "e10s slått på"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "Kompatibel"
+msgstr "e10s kompatibel"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -3199,9 +3197,8 @@ msgid "Updated Dictionary Review"
 msgstr ""
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Språkpakke"
+msgstr "Ny språkpakke-vurdering"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3326,9 +3323,8 @@ msgid "Games & Entertainment"
 msgstr "Spel og underhaldning"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Language Support"
-msgstr "Språk"
+msgstr "Språkstøtte"
 
 #: src/olympia/constants/categories.py
 msgid "Photos, Music & Videos"
@@ -3351,9 +3347,8 @@ msgid "Tabs"
 msgstr "Faner"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Web Development"
-msgstr "Vis utviklingsversjon"
+msgstr "Nettutvikling"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
@@ -3376,9 +3371,8 @@ msgid "Modern"
 msgstr "Moderne"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Nature"
-msgstr "Framheva"
+msgstr "Natur"
 
 #: src/olympia/constants/categories.py
 msgid "OS Integration"
@@ -4961,9 +4955,8 @@ msgid "Describe Add-on"
 msgstr "Beskriv utvidinga"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "Utviding"
+msgstr "URL for utviding:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
@@ -5166,9 +5159,8 @@ msgid "Administrative overrides"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Submit File"
-msgstr "Send inn eit nytt tema"
+msgstr "Send inn fil"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5424,28 +5416,24 @@ msgid "{0} Add-ons"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
-#, fuzzy
 msgid "Latest News"
-msgstr "Siste versjon:"
+msgstr "Siste nytt"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Read more in our Blog"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Resources"
-msgstr "Fleire resursar"
+msgstr "Resursar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "WebExtensions"
-msgstr "Utvidingar"
+msgstr "WebUtvidingar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Community"
-msgstr "Kommentar"
+msgstr "Fellesskap"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "About"
@@ -5460,9 +5448,8 @@ msgid "Blog"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Contact Us"
-msgstr "Innhald"
+msgstr "Kontakt oss"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #, fuzzy
@@ -5474,9 +5461,8 @@ msgid "FAQ"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Report Bug"
-msgstr "Rapporter misbruk"
+msgstr "Rapporter feil"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Site Status"
@@ -5518,9 +5504,8 @@ msgid "Legal Notices"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "Fleire utvidingar"
+msgstr "Vurder utvidingar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
@@ -5574,14 +5559,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Learn How"
-msgstr "Les meir"
+msgstr "Lær deg korleis"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "What's New"
-msgstr "Siste versjon:"
+msgstr "Kva er nytt"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
@@ -5675,9 +5658,8 @@ msgid "Sign In"
 msgstr "Utviding"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Validator"
-msgstr "Valider no."
+msgstr "Validator"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Automated code tests for your add-on."
@@ -6445,11 +6427,10 @@ msgstr[0] "Utvidingar for {0}"
 msgstr[1] "Utvidingar for {0}"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Oppdatert {0}"
-msgstr[1] "Oppdatert {0}"
+msgstr[0] "Oppdatering ({0})"
+msgstr[1] "Oppdateringar ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6686,9 +6667,8 @@ msgid "Queues"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Fleire utvidingar"
+msgstr "Nye utvidingar"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6801,9 +6781,8 @@ msgid "Reviews This Month"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "AMO-vurderarar"
+msgstr "Nye vurderarar"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
