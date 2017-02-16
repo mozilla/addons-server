@@ -2401,7 +2401,7 @@ class TestAddonFromUpload(UploadTest):
         parse_addon.return_value = {
             'default_locale': u'en',
             'e10s_compatibility': 2,
-            'guid': u'notify-link-clicks-i18n@mozilla.org',
+            'guid': u'notify-link-clicks-i18n@notzilla.org',
             'name': u'__MSG_extensionName__',
             'is_webextension': True,
             'type': 1,
@@ -2426,7 +2426,7 @@ class TestAddonFromUpload(UploadTest):
         parse_addon.return_value = {
             'default_locale': u'xxx',
             'e10s_compatibility': 2,
-            'guid': u'notify-link-clicks-i18n@mozilla.org',
+            'guid': u'notify-link-clicks-i18n@notzilla.org',
             'name': u'__MSG_extensionName__',
             'is_webextension': True,
             'type': 1,

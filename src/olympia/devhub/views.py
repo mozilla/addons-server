@@ -52,6 +52,7 @@ from olympia.lib.crypto.packaged import sign_file
 from olympia.search.views import BaseAjaxSearch
 from olympia.translations.models import delete_translation
 from olympia.users.models import UserProfile
+from olympia.users.utils import system_addon_submission_allowed
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, ValidationResult
 
@@ -804,6 +805,10 @@ def json_upload_detail(request, upload, addon_slug=None):
             if not acl.submission_allowed(request.user, pkg):
                 raise django_forms.ValidationError(
                     _(u'You cannot submit this type of add-on'))
+            if not system_addon_submission_allowed(request.user, pkg):
+                raise django_forms.ValidationError(
+                    _(u'You cannot submit an add-on with a guid ending '
+                      u'"@mozilla.org"'))
         except django_forms.ValidationError, exc:
             errors_before = result['validation'].get('errors', 0)
             # FIXME: This doesn't guard against client-side
