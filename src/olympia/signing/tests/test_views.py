@@ -242,6 +242,42 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.data['error'] == (
             'You cannot submit this type of add-on')
 
+    def test_system_addon_allowed(self):
+        guid = 'systemaddon@mozilla.org'
+        self.user.update(email='redpanda@mozilla.com')
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request(
+            'PUT',
+            addon=guid, version='0.0.1',
+            filename='src/olympia/files/fixtures/files/'
+                     'mozilla_guid.xpi')
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+        assert addon.has_author(self.user)
+        assert addon.status == amo.STATUS_NULL
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        self.auto_sign_version.assert_called_with(
+            latest_version, is_beta=False)
+
+    def test_system_addon_not_allowed_not_mozilla(self):
+        guid = 'systemaddon@mozilla.org'
+        self.user.update(email='yellowpanda@notzilla.com')
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request(
+            'PUT',
+            addon=guid, version='0.1',
+            filename='src/olympia/files/fixtures/files/'
+                     'telemetry_experiment.xpi')
+        assert response.status_code == 400
+        assert response.data['error'] == (
+            'You cannot submit this type of add-on')
+
     def test_version_is_beta_unlisted(self):
         addon = Addon.objects.get(guid=self.guid)
         self.make_addon_unlisted(addon)

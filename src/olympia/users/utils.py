@@ -81,3 +81,10 @@ def autocreate_username(candidate, tries=1):
     if UserProfile.objects.filter(username=adjusted_u).count():
         return autocreate_username(candidate, tries=tries + 1)
     return adjusted_u
+
+
+def system_addon_submission_allowed(user, parsed_addon_data):
+    guid = parsed_addon_data.get('guid') or ''
+    return (
+        not guid.endswith(u'@mozilla.org') or
+        user.email.endswith(u'@mozilla.com'))
