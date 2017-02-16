@@ -18,7 +18,7 @@ This endpoint allows you to fetch reviews for a given add-on or user. Either
 ``addon`` or ``user`` query parameters are required, and they can be
 combined together.
 
-.. http:get:: /api/v3/reviews/review/(int:id|string:slug|string:guid)/reviews/
+.. http:get:: /api/v3/reviews/review/
 
     :query string addon: The add-on id to fetch reviews from. When passed, the reviews shown will always be the latest posted by each user on this particular add-on (which means there should only be one review per user in the results).
     :query string filter: The :ref:`filter <review-filtering-param>` to apply.
