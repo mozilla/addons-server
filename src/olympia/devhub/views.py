@@ -1155,7 +1155,7 @@ def version_edit(request, addon_id, addon, version_id):
                 version.update(has_info_request=False)
                 if waffle.switch_is_active('activity-email'):
                     log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED,
-                                   u'Approval notes were updated.',
+                                   None,
                                    request.user,
                                    version)
                 else:
@@ -1172,27 +1172,15 @@ def version_edit(request, addon_id, addon, version_id):
                 version.update(has_info_request=False)
                 if waffle.switch_is_active('activity-email'):
                     log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED,
-                                   u'Source code was uploaded.',
+                                   None,
                                    request.user,
                                    version)
                 else:
                     amo.log(amo.LOG.SOURCE_CODE_UPLOADED,
-                            version,
-                            request.user,
-                            details={
-                                'comments': (u'This version has been '
-                                             u'automatically flagged for '
-                                             u'admin review, as source files '
-                                             u'have been uploaded.')})
+                            addon, version, request.user)
             else:
                 amo.log(amo.LOG.SOURCE_CODE_UPLOADED,
-                        version,
-                        request.user,
-                        details={
-                            'comments': (u'This version has been '
-                                         u'automatically flagged for '
-                                         u'admin review, as source files '
-                                         u'have been uploaded.')})
+                        addon, version, request.user)
 
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
