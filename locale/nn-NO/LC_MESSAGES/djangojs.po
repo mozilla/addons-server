@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2016-11-07 14:54+0000\n"
+"PO-Revision-Date: 2017-02-16 01:41+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -144,7 +144,7 @@ msgstr "Sjekkliste for å senda inn utvidingar"
 
 #: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Gjer vel og kontroller følgjande punkt før du fullfører bidraget ditt. Dette vil minimera forseinkingar eller misforståingar under vurderingsprosessen:"
 
 #: static/js/common/upload-addon.js
 msgid ""
