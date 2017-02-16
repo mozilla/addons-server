@@ -246,18 +246,15 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def _check_permissions_order(self, permissions):
         # We have two match-all urls - no dupes!
-        assert len(permissions) == 4
+        assert len(permissions) == 3
         # First should be catch-all match urls, if present.
         assert permissions[0] == ALL_URLS_PERMISSION
         # Second should be known permission(s).
         assert permissions[1] == (u'bookmarks', 'Access bookmarks', '')
         # Third is match urls for specified site(s).
-        assert permissions[2] == (u'https://google.com/',
-                                  u'Access your data for https://google.com/ '
-                                  u'website', '')
-        # Lastly any unknown permission strings.
-        assert permissions[3] == (u'made up permission', u'made up permission',
-                                  '')
+        assert permissions[2] == (
+            u'single-match',
+            u'Read and change your data for https://google.com/ website', '')
 
     def test_webext_permissions(self):
         perm_list = [u'http://*/*', u'<all_urls>', u'bookmarks',
@@ -269,6 +266,21 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         # Check the order isn't dependent on the order in the manifest
         file_.webext_permissions_list.reverse()
         self._check_permissions_order(file_.webext_permissions)
+
+        # Unknown permission strings aren't included.
+        assert ((u'made up permission', u'made up permission', '')
+                not in file_.webext_permissions)
+
+        # Multiple urls for specified sites should be grouped together
+        file_.webext_permissions_list = [
+            u'https://mozilla.org/', u'https://mozillians.org/']
+        assert len(file_.webext_permissions) == 1
+        perm_name, perm_desc, _ = file_.webext_permissions[0]
+        assert perm_name == u'multiple-match'
+        assert perm_desc == (
+            u'<details><summary>Read and change your data on various websites'
+            u'</summary><ul><li>https://mozilla.org/</li>'
+            u'<li>https://mozillians.org/</li></ul></details>')
 
 
 class TestTrackFileStatusChange(TestCase):

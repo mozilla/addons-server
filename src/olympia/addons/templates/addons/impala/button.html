@@ -50,13 +50,12 @@
       {{ _('End-User License Agreement') }}
     </a>
   {% endif %}
-  {% if waffle.switch('webext-permissions') and version and version.all_files[0] %}
-    <br>
+  {% if waffle.switch('webext-permissions') and version and version.all_files[0] and
+        (not version.all_files[0].is_webextension or version.all_files[0].webext_permissions) %}
     <a class="webext-permissions badge" href="#">
       {% if not version.all_files[0].is_webextension %}
-        <img src="{{ static('img/developers/test-warning.png') }}" alt="{{ _('[Warning]') }}">
-      {% endif %}
-      {{ _('Permissions') }}
+        <img src="{{ static('img/developers/test-warning.png') }}" alt="{{ _('[Warning]') }}"
+		>{% endif %}{{ _('Permissions') }}
     </a>
   {% endif %}
   </div>

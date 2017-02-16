@@ -757,13 +757,12 @@ class TestDetailPage(TestCase):
         assert u'perform certain functions (example: a tab management' in (
             doc('#webext-permissions div.prose').text())
         assert doc('ul.webext-permissions-list').length == 1
-        assert doc('li.webext-permissions-list').length == 4
+        assert doc('li.webext-permissions-list').length == 3
         # See File.webext_permissions for the order logic
         assert doc('li.webext-permissions-list').text() == (
             u'Access your data for all websites '
             u'Access bookmarks '
-            u'Access your data for https://google.com/ website '
-            u'made up permission')
+            u'Read and change your data for https://google.com/ website')
 
     @override_switch('webext-permissions', active=True)
     def test_permissions_webext_no_permissions(self):
@@ -772,16 +771,10 @@ class TestDetailPage(TestCase):
         assert file_.webext_permissions_list == []
         response = self.client.get(self.url)
         doc = pq(response.content)
-        # The link next to the button - still shown even when no permissions.
-        assert doc('a.webext-permissions').length == 1
-        # And the model dialog
-        assert doc('#webext-permissions').length == 1
-        assert u'perform certain functions (example: a tab management' in (
-            doc('#webext-permissions div.prose').text())
-        assert doc('ul.webext-permissions-list').length == 1
-        assert doc('li.webext-permissions-list').length == 0
-        assert u"doesn't have any special" in (
-            doc('ul.webext-permissions-list').text())
+        # Don't show the link when no permissions.
+        assert doc('a.webext-permissions').length == 0
+        # And no model dialog
+        assert doc('#webext-permissions').length == 0
 
     @override_switch('webext-permissions', active=True)
     def test_permissions_non_webext(self):
