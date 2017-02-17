@@ -130,12 +130,14 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
             $results.filter('.visible').removeClass('visible');
             return;
         }
+        var urlVal = encodeURIComponent($self.val());
 
         // Required data to send to the callback.
         var settings = {
             '$results': $results,
             '$form': $form,
-            'searchTerm': val
+            'searchTerm': val,
+            'urlSearchTerm': urlVal
         };
 
         // Optional data for callback.
