@@ -16,7 +16,7 @@
         // Update the .sel link.
         var searchUrl = settings['$form'].attr('action') + '?q={0}';
         settings['$results'].find('.sel').attr('href', format(searchUrl,
-                                 encodeURIComponent(settings.searchTerm)));
+                                                              settings.urlSearchTerm));
 
         var li_item = template(
             '<li><a href="{url}"><span {cls} {icon}>{name}</span>{subtitle}</a></li>'
