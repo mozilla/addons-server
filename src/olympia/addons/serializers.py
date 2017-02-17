@@ -210,11 +210,11 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def to_representation(self, obj):
         data = super(AddonSerializer, self).to_representation(obj)
-        if 'theme_data' in self.fields and data['theme_data'] is None:
+        if 'theme_data' in data and data['theme_data'] is None:
             data.pop('theme_data')
-        if 'homepage' in self.fields:
+        if 'homepage' in data:
             data['homepage'] = self.outgoingify(data['homepage'])
-        if 'support_url' in self.fields:
+        if 'support_url' in data:
             data['support_url'] = self.outgoingify(data['support_url'])
         return data
 
