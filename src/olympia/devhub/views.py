@@ -1681,7 +1681,7 @@ def request_review(request, addon_id, addon):
         messages.success(request, _('Review requested.'))
     else:
         messages.success(request, _(
-            'Review requested.  You must provide further details to proceed.'))
+            'You must provide further details to proceed.'))
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect(addon.get_dev_url('versions'))
 
