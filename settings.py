@@ -113,9 +113,18 @@ FXA_CONFIG = {
         'redirect_url': 'http://localhost:3000/fxa-authenticate',
         'scope': 'profile',
     },
+    'local': {
+        'client_id': '1778aef72d1adfb3',
+        'client_secret':
+            '3feebe3c009c1a0acdedd009f3530eae2b88859f430fa8bb951ea41f2f859b18',
+        'content_host': 'https://stable.dev.lcip.org',
+        'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
+        'profile_host': 'https://stable.dev.lcip.org/profile/v1',
+        'redirect_url': 'http://localhost:3000/api/v3/accounts/authenticate/',
+        'scope': 'profile',
+    },
 }
 FXA_CONFIG['amo'] = FXA_CONFIG['internal']
-FXA_CONFIG['local'] = FXA_CONFIG['internal']
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.

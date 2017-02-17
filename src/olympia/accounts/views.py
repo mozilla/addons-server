@@ -160,8 +160,11 @@ def with_user(format, config=None):
         @write
         def inner(self, request):
             if config is None:
-                fxa_config = (
-                    settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME])
+                if hasattr(self, 'get_fxa_config'):
+                    fxa_config = self.get_fxa_config(request)
+                else:
+                    fxa_config = (
+                        settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME])
             else:
                 fxa_config = config
 
@@ -265,20 +268,16 @@ class LoginStartView(LoginStartBaseView):
 
 class LoginBaseView(FxAConfigMixin, APIView):
 
-    def post(self, request):
-        config = self.get_fxa_config(request)
-
-        @with_user(format='json', config=config)
-        def _post(self, request, user, identity, next_path):
-            if user is None:
-                return Response({'error': ERROR_NO_USER}, status=422)
-            else:
-                update_user(user, identity)
-                response = Response({'email': identity['email']})
-                add_api_token_to_response(response, user, set_cookie=False)
-                log.info('Logging in user {} from FxA'.format(user))
-                return response
-        return _post(self, request)
+    @with_user(format='json')
+    def post(self, request, user, identity, next_path):
+        if user is None:
+            return Response({'error': ERROR_NO_USER}, status=422)
+        else:
+            update_user(user, identity)
+            response = Response({'email': identity['email']})
+            add_api_token_to_response(response, user, set_cookie=False)
+            log.info('Logging in user {} from FxA'.format(user))
+            return response
 
     def options(self, request):
         return Response()
@@ -304,7 +303,10 @@ class RegisterView(APIView):
             return response
 
 
-class AuthenticateView(APIView):
+class AuthenticateView(FxAConfigMixin, APIView):
+    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
+    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
+
     authentication_classes = (SessionAuthentication,)
 
     @with_user(format='html')

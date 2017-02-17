@@ -507,6 +507,24 @@ class TestWithUser(TestCase):
             self.request, views.ERROR_STATE_MISMATCH, next_path='/next',
             format='json')
 
+    def test_dynamic_configuration(self):
+        fxa_config = {'some': 'config'}
+
+        class LoginView(object):
+            def get_fxa_config(self, request):
+                return fxa_config
+
+            @views.with_user(format='json')
+            def post(*args, **kwargs):
+                return args, kwargs
+
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.request.data = {'code': 'foo', 'state': 'some-blob'}
+        LoginView().post(self.request)
+        self.fxa_identify.assert_called_with('foo', config=fxa_config)
+
 
 class TestRegisterUser(TestCase):
 
