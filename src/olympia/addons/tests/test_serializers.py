@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from django.utils.translation import override
+
 from elasticsearch_dsl import Search
 from rest_framework.test import APIRequestFactory
 
@@ -7,7 +9,7 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.tests import (
     addon_factory, ESTestCase, file_factory, TestCase, version_factory,
     user_factory)
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona, Preview)
@@ -161,7 +163,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result['guid'] == self.addon.guid
         assert result['has_eula'] is False
         assert result['has_privacy_policy'] is False
-        assert result['homepage'] == {'en-US': self.addon.homepage}
+        assert result['homepage'] == {
+            'en-US': get_outgoing_url(unicode(self.addon.homepage))
+        }
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_experimental'] == self.addon.is_experimental is False
@@ -202,7 +206,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result['status'] == 'public'
         assert result['summary'] == {'en-US': self.addon.summary}
         assert result['support_email'] == {'en-US': self.addon.support_email}
-        assert result['support_url'] == {'en-US': self.addon.support_url}
+        assert result['support_url'] == {
+            'en-US': get_outgoing_url(unicode(self.addon.support_url))
+        }
         assert 'theme_data' not in result
         assert set(result['tags']) == set(['some_tag', 'some_other_tag'])
         assert result['type'] == 'extension'
@@ -336,12 +342,32 @@ class AddonSerializerOutputTestMixin(object):
             'en-US': u'My Addôn description in english',
             'fr': u'Description de mon Addôn',
         }
+        translated_homepages = {
+            'en-US': u'http://www.google.com/',
+            'fr': u'http://www.googlé.fr/',
+        }
         self.addon = addon_factory()
         self.addon.description = translated_descriptions
+        self.addon.homepage = translated_homepages
         self.addon.save()
 
         result = self.serialize()
         assert result['description'] == translated_descriptions
+        assert result['homepage'] != translated_homepages
+        assert result['homepage'] == {
+            'en-US': get_outgoing_url(translated_homepages['en-US']),
+            'fr': get_outgoing_url(translated_homepages['fr'])
+        }
+
+        # Try a single translation. The locale activation is normally done by
+        # LocaleAndAppURLMiddleware, but since we're directly calling the
+        # serializer we need to do it ourselves.
+        self.request = APIRequestFactory().get('/', {'lang': 'fr'})
+        with override('fr'):
+            result = self.serialize()
+        assert result['description'] == translated_descriptions['fr']
+        assert result['homepage'] == get_outgoing_url(
+            translated_homepages['fr'])
 
     def test_persona_with_persona_id(self):
         self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
