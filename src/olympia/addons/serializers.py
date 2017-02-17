@@ -4,7 +4,7 @@ from olympia import amo
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview)
 from olympia.amo.helpers import absolutify
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
 from olympia.applications.models import AppVersion
@@ -210,8 +210,21 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def to_representation(self, obj):
         data = super(AddonSerializer, self).to_representation(obj)
-        if data['theme_data'] is None:
+        if 'theme_data' in data and data['theme_data'] is None:
             data.pop('theme_data')
+        if 'homepage' in data:
+            data['homepage'] = self.outgoingify(data['homepage'])
+        if 'support_url' in data:
+            data['support_url'] = self.outgoingify(data['support_url'])
+        return data
+
+    def outgoingify(self, data):
+        if isinstance(data, basestring):
+            return get_outgoing_url(data)
+        elif isinstance(data, dict):
+            return {key: get_outgoing_url(value) if value else None
+                    for key, value in data.items()}
+        # Probably None... don't bother.
         return data
 
     def get_categories(self, obj):
