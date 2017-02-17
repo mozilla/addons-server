@@ -530,6 +530,11 @@ MINIFY_BUNDLES = {
             'css/devhub/new-landing/base.less',
         ),
 
+        # Responsive error page styling.
+        'errors/css': (
+            'css/errors/base.less',
+        ),
+
         # CSS files common to the entire site.
         'zamboni/css': (
             'css/legacy/main.css',
