@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-15 17:00+0000\n"
+"PO-Revision-Date: 2017-02-17 18:28+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -2562,7 +2562,7 @@ msgstr "Koleksiyon Oluştur"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "Koleksiyonlar, sevilen eklentileri takip etmenizi ve kusursuzca özelleştirdiğiniz tarayıcınızı diğer kişiler ile paylaşmanızı kolaylaştırır."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Collection Icon"
@@ -3815,9 +3815,8 @@ msgid "Slug incorrect."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "Invalid JSON object"
-msgstr "Geçersiz JWT jetonu."
+msgstr "Geçersiz JSON nesnesi"
 
 #: src/olympia/devhub/forms.py
 msgid "Message not eligible for annotation"
@@ -3840,21 +3839,18 @@ msgid "License text is required when choosing Other."
 msgstr "Diğer seçeneği seçildiğinde sözleşme metni girilmesi gerekir."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "This add-on has an End-User License Agreement"
-msgstr "Son Kullanıcı İzin Anlaşmasına Bak"
+msgstr "Bu sözleşmenin bir Son Kullanıcı İzin Sözleşmesi var"
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "Son Kullanıcı İzin Anlaşmasına Bak"
+msgstr "Eklentinizin Son Kullanıcı İzin Sözleşmesi'ni belirtin:"
 
 # 89%
 # 100%
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "This add-on has a Privacy Policy"
-msgstr "Gizlilik Politikasını İncele"
+msgstr "Bu eklentinin Gizlilik Kuralları var"
 
 #: src/olympia/devhub/forms.py
 msgid "Please specify your add-on's Privacy Policy:"
@@ -4096,11 +4092,11 @@ msgstr "Eklenti silindi."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "URL adı yanlış. Tema silinmedi."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "URL adı yanlış. Eklenti silinmedi."
 
 #: src/olympia/devhub/views.py
 msgid "An author has been added to your add-on"
@@ -4153,7 +4149,7 @@ msgstr "Bu isim kullanılamaz."
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Resimler %d KB'den büyük olamaz."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: src/olympia/devhub/views.py
@@ -4254,7 +4250,7 @@ msgstr "Arama Sonuçları"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Lütfen bazı arama terimleri girin."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Loading results&hellip;"
@@ -5116,10 +5112,9 @@ msgstr "<b>Sıra:</b> %(pos)s / %(total)s"
 
 #. {0} is the number of active users.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html
-#, fuzzy
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] "<strong>{0}</strong> kullanıcı"
+msgstr[0] "<strong>{0}</strong> etkin kullanıcı"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 #, fuzzy
@@ -5165,9 +5160,8 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "E-posta desteği"
+msgstr "Destek e-postası:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #, fuzzy
@@ -5537,9 +5531,8 @@ msgid "{0} success reports"
 msgstr "{0} başarı raporu"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
-#, fuzzy
 msgid "Developer News"
-msgstr "Geliştirici"
+msgstr "Geliştirici Haberleri"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "View the blog &#9658;"
@@ -5649,9 +5642,8 @@ msgid "Blog"
 msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Contact Us"
-msgstr "Kişiler"
+msgstr "Bize Ulaşın"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #, fuzzy
@@ -5821,14 +5813,12 @@ msgid "Docs"
 msgstr "Belgeler"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Giriş yap"
+msgstr "Çıkış yap"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Kullanıcı fotoğrafını sil"
+msgstr "Kullanıcı Fotoğrafı"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, fuzzy, python-format
@@ -5990,7 +5980,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "PayPal'a kaydolun"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 #, fuzzy
@@ -6406,7 +6396,7 @@ msgstr "Simge"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Leave a reply"
-msgstr ""
+msgstr "Yanıt yaz"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
@@ -6511,7 +6501,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Eklentinizi gizlemek istediğinizden emin misiniz?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
@@ -6704,10 +6694,9 @@ msgid "[status:%s]"
 msgstr "[durum:%s]"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Eklenti İnceleme Süreci"
+msgstr[0] "Yeni Eklentiler ({0})"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -8035,7 +8024,7 @@ msgstr "Video"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Video oynarken ilgili eklentiler burada görünecektir."
 
 #. {0} is the user's login name.
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
@@ -8046,7 +8035,7 @@ msgstr "{0} koleksiyonunu düzenle"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "%(app)s kullanarak <a href=\"%(url)s\">Mozilla'nın misyonunu</a> desteklediğiniz için teşekkürler!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Add-ons downloaded:"
@@ -8088,7 +8077,7 @@ msgstr "Birleşik Arap Emirlikleri Dirhemi"
 
 #: src/olympia/lib/constants.py
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "Afganistan Afganisi"
 
 #: src/olympia/lib/constants.py
 msgid "Albania Lek"
@@ -8188,7 +8177,7 @@ msgstr "Kanada Doları"
 
 #: src/olympia/lib/constants.py
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "Kongo/Kinşasa Frangı"
 
 #: src/olympia/lib/constants.py
 msgid "Switzerland Franc"
@@ -8329,7 +8318,7 @@ msgstr "Endonezya Rupisi"
 
 #: src/olympia/lib/constants.py
 msgid "Israel Shekel"
-msgstr ""
+msgstr "İsrail Şekeli"
 
 #: src/olympia/lib/constants.py
 msgid "Isle of Man Pound"
@@ -10403,7 +10392,7 @@ msgstr[0] "<b>{0}</b> kullanıcı"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Filter Results"
-msgstr ""
+msgstr "Sonuçları filtrele"
 
 #: src/olympia/search/templates/search/results.html
 #, fuzzy
