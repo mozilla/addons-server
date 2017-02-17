@@ -1,3 +1,5 @@
+from django.core.paginator import EmptyPage, InvalidPage, PageNotAnInteger
+
 from mock import MagicMock
 
 from olympia.amo.tests import TestCase
@@ -24,3 +26,15 @@ class TestSearchPaginator(TestCase):
         paginator.page(1)
         assert paginator.count == 666
         assert mocked_qs.count.call_count == 0
+
+    def test_invalid_page(self):
+        mocked_qs = MagicMock()
+        paginator = ESPaginator(mocked_qs, 5)
+        with self.assertRaises(InvalidPage):
+            paginator.page(100000 + 1)
+
+        with self.assertRaises(EmptyPage):
+            paginator.page(0)
+
+        with self.assertRaises(PageNotAnInteger):
+            paginator.page('lol')

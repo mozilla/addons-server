@@ -1,6 +1,6 @@
 from rest_framework.pagination import PageNumberPagination
 from django.core.paginator import (
-    EmptyPage, Page, PageNotAnInteger, Paginator)
+    EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator)
 
 
 class ESPaginator(Paginator):
@@ -21,6 +21,8 @@ class ESPaginator(Paginator):
             raise PageNotAnInteger('That page number is not an integer')
         if number < 1:
             raise EmptyPage('That page number is less than 1')
+        elif number > 100000:
+            raise InvalidPage('That page number is too high')
         return number
 
     def page(self, number):
