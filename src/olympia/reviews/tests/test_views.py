@@ -1120,6 +1120,13 @@ class TestReviewViewSetGet(TestCase):
         assert data['results'][1]['reply']['id'] == deleted_reply.pk
         assert data['results'][2]['id'] == review_deleted.pk
 
+    def test_list_weird_parameters(self):
+        response = self.client.get(self.url, {'addon': u'éøà', 'user': u''})
+        assert response.status_code == 404
+
+        response = self.client.get(self.url, {'addon': u'', 'user': u'çæ→'})
+        assert response.status_code == 404
+
 
 class TestReviewViewSetDelete(TestCase):
     client_class = APITestClient

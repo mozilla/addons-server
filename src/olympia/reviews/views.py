@@ -358,7 +358,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             return
         else:
             # AddonViewSet.get_lookup_field() expects a string.
-            self.kwargs['addon_pk'] = str(self.kwargs['addon_pk'])
+            self.kwargs['addon_pk'] = unicode(self.kwargs['addon_pk'])
         # When loading the add-on, pass a specific permission class - the
         # default from AddonViewSet is too restrictive, we are not modifying
         # the add-on itself so we don't need all the permission checks it does.
@@ -389,7 +389,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             if 'addon' in self.request.GET:
                 qs = qs.filter(is_latest=True, addon=self.get_addon_object())
             if 'user' in self.request.GET:
-                qs = qs.filter(user=self.request.GET.get('user'))
+                qs = qs.filter(user=unicode(self.request.GET.get('user')))
             if ('addon' not in self.request.GET and
                     'user' not in self.request.GET):
                 # Don't allow listing reviews without filtering by add-on or
