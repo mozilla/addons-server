@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-20 19:52+0000\n"
+"PO-Revision-Date: 2017-02-20 20:29+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1853,6 +1853,8 @@ msgstr "Startowa strona přidatkow"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Jeli sće něhdźe wotkazej slědował, %(open_bug_link)szałožće prošu zmylkowu rozprawu%(close_bug_link)s. Zdźělće nam, zwotkelž sće přišoł a za čimž sće pytał, a my budźemy naše najlěpše, zo bychmy "
+"problem rozrisali."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3832,7 +3834,7 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Mějće přistup na swoje daty za wšě websydła"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access bookmarks"
@@ -3840,19 +3842,19 @@ msgstr "Přistup na zapołožki"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
-msgstr ""
+msgstr "Mějće přistup na tekstowy mjezyskład"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
-msgstr ""
+msgstr "Sćehńće dataje a čitajće a změńće sćehnjensku hiostoriju wobhladowaka"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
-msgstr ""
+msgstr "Mějće přistup na historiju wobhladowaka"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Wuměńće powěsće z druhimi programami hač Firefox"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Display notifications to you"
@@ -3860,11 +3862,11 @@ msgstr "Dóstane zdźělenja pokazać"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr ""
+msgstr "Mějće přistup na historiju wobhladowaka, zo byšće rajtarki wobnowił"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Mějće přistup na rajtarki wobhladowaka"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browsing history"
@@ -3872,15 +3874,15 @@ msgstr "Přistup na přehladowansku historiju"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "Mějće přistup na aktiwitu wobhladowaka při nawigaciji"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
-msgstr ""
+msgstr "Njewobmjezowany skład za daty na boku klienta púoskićić"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
-msgstr ""
+msgstr "Mějće přistup na wobhladowak za webaktiwitu"
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4224,7 +4226,7 @@ msgstr "Njemóžeće tutón přidatkowy typ zapodać"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Njemóžeće žadyn přidatk z GUID zapodać, kotryž so na \"@mozilla.org\" kónči"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -7528,7 +7530,7 @@ msgstr "Tuta dataja je rjadowak."
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name} website"
-msgstr ""
+msgstr "Mějće přistup na swoje daty za websydło {name}"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -10031,15 +10033,15 @@ msgstr "Njemóžeće přidatk přepruwowanja změnić, hdyž je wutworjeny."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Njemóžeće na pohódnoćenje wotmołwić, kotrež je hižo wotmołwa."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Njemóžeće wersiju pohódnoćeneho přidatka změnić, hdyž pohódnoćenje je so wutworiło."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Tuta wersija přidatka njeeksistuje abo zjawna njeje."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't leave a review on your own add-on."
