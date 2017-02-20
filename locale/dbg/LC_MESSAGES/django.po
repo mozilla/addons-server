@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-09 11:33+0000\n"
+"POT-Creation-Date: 2017-02-20 16:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -904,6 +904,16 @@ msgstr "Īƈǿƞ ƒǿř {0}"
 msgid "by %(users)s"
 msgstr "ƀẏ %(users)s"
 
+#: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
+#, fuzzy
+msgid "[Warning]"
+msgstr "{0} ẇȧřƞīƞɠ"
+
+#: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
+#, fuzzy
+msgid "Permissions"
+msgstr "Ṽḗřşīǿƞş"
+
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ ḿȧřķḗḓ ȧş ḗẋƥḗřīḿḗƞŧȧŀ ƀẏ īŧş ḓḗṽḗŀǿƥḗřş"
@@ -1077,6 +1087,21 @@ msgstr "Şḗḗ ƈǿḿƥŀḗŧḗ ḓḗṽḗŀǿƥḿḗƞŧ ƈħȧƞƞḗ�
 #: src/olympia/stats/templates/stats/popup.html src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
 msgid "close"
 msgstr "ƈŀǿşḗ"
+
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid ""
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
+msgstr ""
+
+#. This is a header of a list of things the add-on can do.
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid "It can:"
+msgstr ""
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1761,6 +1786,44 @@ msgstr "<h1>Ǿǿƥş! Ƞǿŧ ȧŀŀǿẇḗḓ.</h1> <p>Ẏǿŭ ŧřīḗḓ ŧ�
 #: src/olympia/amo/templates/amo/403.html
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr "<p>Ŧřẏ ɠǿīƞɠ ƀȧƈķ ŧǿ ŧħḗ ƥřḗṽīǿŭş ƥȧɠḗ, řḗƒřḗşħīƞɠ ȧƞḓ ŧħḗƞ ŧřẏīƞɠ ȧɠȧīƞ.</p>"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, fuzzy
+msgid "Page Not Found"
+msgstr "Ƞǿŧ Ƒǿŭƞḓ"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, fuzzy
+msgid "Firefox Add-ons"
+msgstr "Ḿǿřḗ Ȧḓḓ-ǿƞş"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
+msgstr ""
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+msgid "Suggested Pages"
+msgstr ""
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, fuzzy
+msgid "Browse all extensions"
+msgstr "Ɓřǿẇşḗ ȧŀŀ ȧḓḓ-ǿƞş"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, fuzzy
+msgid "Browse all themes"
+msgstr "Ɓřǿẇşḗ ȧŀŀ ȧḓḓ-ǿƞş"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, fuzzy
+msgid "Add-ons Home Page"
+msgstr "Ȧḓḓ-ǿƞ ħǿḿḗ ƥȧɠḗ"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, python-format
+msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
+msgstr ""
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3711,16 +3774,59 @@ msgid "Android"
 msgstr "Ȧƞḓřǿīḓ"
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Requests that the extension be granted permissions according to the activeTab specification."
-msgstr "Řḗɋŭḗşŧş ŧħȧŧ ŧħḗ ḗẋŧḗƞşīǿƞ ƀḗ ɠřȧƞŧḗḓ ƥḗřḿīşşīǿƞş ȧƈƈǿřḓīƞɠ ŧǿ ŧħḗ ȧƈŧīṽḗŦȧƀ şƥḗƈīƒīƈȧŧīǿƞ."
+msgid "Access your data for all websites"
+msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Gives the extension access to the chrome.alarms API."
-msgstr "Ɠīṽḗş ŧħḗ ḗẋŧḗƞşīǿƞ ȧƈƈḗşş ŧǿ ŧħḗ ƈħřǿḿḗ.ȧŀȧřḿş ȦƤĪ."
+#, fuzzy
+msgid "Access bookmarks"
+msgstr "Ɓǿǿķḿȧřķş"
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Read and modify bookmarks."
-msgstr "Řḗȧḓ ȧƞḓ ḿǿḓīƒẏ ƀǿǿķḿȧřķş."
+msgid "Access text clipboard"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Download files and read and modify the browser's downloadhistory"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access browser history"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Exchange messages with programs other than Firefox"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+#, fuzzy
+msgid "Display notifications to you"
+msgstr "Ŭşḗř Ƞǿŧīƒīƈȧŧīǿƞş"
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access browser history to restore tabs"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access browser tabs"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+#, fuzzy
+msgid "Access browsing history"
+msgstr "%s Ṽḗřşīǿƞ Ħīşŧǿřẏ"
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access browser activity during navigation"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Provide unlimited storage of client-side data"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access browser during Web activity"
+msgstr ""
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4060,6 +4166,10 @@ msgstr "Ƈħḗƈķ Ȧḓḓ-ǿƞ Ƈǿḿƥȧŧīƀīŀīŧẏ"
 msgid "You cannot submit this type of add-on"
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ŧħīş ŧẏƥḗ ǿƒ ȧḓḓ-ǿƞ"
 
+#: src/olympia/devhub/views.py src/olympia/signing/views.py
+msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
+msgstr ""
+
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
@@ -4110,7 +4220,8 @@ msgid "Review requested."
 msgstr "Řḗṽīḗẇ řḗɋŭḗşŧḗḓ."
 
 #: src/olympia/devhub/views.py
-msgid "Review requested.  You must provide further details to proceed."
+#, fuzzy
+msgid "You must provide further details to proceed."
 msgstr "Řḗṽīḗẇ řḗɋŭḗşŧḗḓ.  Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ƒŭřŧħḗř ḓḗŧȧīŀş ŧǿ ƥřǿƈḗḗḓ."
 
 #: src/olympia/devhub/views.py
@@ -7311,6 +7422,10 @@ msgstr "Ŧħīş ƒīŀḗ īş ƞǿŧ ṽīḗẇȧƀŀḗ ǿƞŀīƞḗ. Ƥŀ�
 msgid "This file is a directory."
 msgstr "Ŧħīş ƒīŀḗ īş ȧ ḓīřḗƈŧǿřẏ."
 
+#: src/olympia/files/models.py
+msgid "Access your data for {name} website"
+msgstr ""
+
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
 msgstr "ƓŬĪḒ īş řḗɋŭīřḗḓ ƒǿř Ƒīřḗƒǿẋ 47 ȧƞḓ ƀḗŀǿẇ."
@@ -9782,6 +9897,38 @@ msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
+
+#: src/olympia/reviews/serializers.py
+#, fuzzy
+msgid "This field is required."
+msgstr "Ƒīḗŀḓ řḗɋŭīřḗḓ"
+
+#: src/olympia/reviews/serializers.py
+#, fuzzy
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Ẏǿŭ ḿȧẏ ŭƥḓȧŧḗ ẏǿŭř ŧħḗḿḗ ḓḗşīɠƞ ħḗřḗ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ ȧƥƥřǿṽḗḓ."
+
+#: src/olympia/reviews/serializers.py
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+#: src/olympia/reviews/serializers.py
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+#: src/olympia/reviews/serializers.py
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr ""
+
+#: src/olympia/reviews/serializers.py
+#, fuzzy
+msgid "You can't leave a review on your own add-on."
+msgstr "şǿḿḗǿƞḗ ẇřīŧḗş ȧ řḗṽīḗẇ ǿƒ ḿẏ ȧḓḓ-ǿƞ"
+
+#: src/olympia/reviews/serializers.py
+#, fuzzy
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Ẏǿŭ ƈȧƞƞǿŧ ŭƥŀǿȧḓ ȧƞẏ ḿǿřḗ ƒīŀḗş ƒǿř ŧħīş ṽḗřşīǿƞ."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
