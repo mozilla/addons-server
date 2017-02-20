@@ -15,11 +15,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.mixins import RetrieveModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.viewsets import GenericViewSet
 from rest_framework_jwt.settings import api_settings as jwt_api_settings
 from waffle.decorators import waffle_switch
 
@@ -162,8 +160,11 @@ def with_user(format, config=None):
         @write
         def inner(self, request):
             if config is None:
-                fxa_config = (
-                    settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME])
+                if hasattr(self, 'get_fxa_config'):
+                    fxa_config = self.get_fxa_config(request)
+                else:
+                    fxa_config = (
+                        settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME])
             else:
                 fxa_config = config
 
@@ -267,20 +268,16 @@ class LoginStartView(LoginStartBaseView):
 
 class LoginBaseView(FxAConfigMixin, APIView):
 
-    def post(self, request):
-        config = self.get_fxa_config(request)
-
-        @with_user(format='json', config=config)
-        def _post(self, request, user, identity, next_path):
-            if user is None:
-                return Response({'error': ERROR_NO_USER}, status=422)
-            else:
-                update_user(user, identity)
-                response = Response({'email': identity['email']})
-                add_api_token_to_response(response, user, set_cookie=False)
-                log.info('Logging in user {} from FxA'.format(user))
-                return response
-        return _post(self, request)
+    @with_user(format='json')
+    def post(self, request, user, identity, next_path):
+        if user is None:
+            return Response({'error': ERROR_NO_USER}, status=422)
+        else:
+            update_user(user, identity)
+            response = Response({'email': identity['email']})
+            add_api_token_to_response(response, user, set_cookie=False)
+            log.info('Logging in user {} from FxA'.format(user))
+            return response
 
     def options(self, request):
         return Response()
@@ -306,7 +303,10 @@ class RegisterView(APIView):
             return response
 
 
-class AuthenticateView(APIView):
+class AuthenticateView(FxAConfigMixin, APIView):
+    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
+    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
+
     authentication_classes = (SessionAuthentication,)
 
     @with_user(format='html')
@@ -342,16 +342,6 @@ class ProfileView(generics.RetrieveAPIView):
 
     def retrieve(self, request, *args, **kw):
         return Response(self.get_serializer(request.user).data)
-
-
-class AccountViewSet(RetrieveModelMixin, GenericViewSet):
-    queryset = UserProfile.objects.all()
-
-    def retrieve(self, request, *args, **kwargs):
-        # See https://github.com/mozilla/addons-server/issues/3138 ; be careful
-        # when implementing it, we don't want to list users, only retrieve them
-        # and eventually modify them through this ViewSet.
-        raise NotImplementedError
 
 
 class AccountSuperCreate(APIView):

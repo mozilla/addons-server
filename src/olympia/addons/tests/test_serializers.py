@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from django.utils.translation import override
+
 from elasticsearch_dsl import Search
 from rest_framework.test import APIRequestFactory
 
@@ -7,7 +9,7 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.tests import (
     addon_factory, ESTestCase, file_factory, TestCase, version_factory,
     user_factory)
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona, Preview)
@@ -17,6 +19,7 @@ from olympia.addons.serializers import (
     VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.constants.categories import CATEGORIES
+from olympia.files.models import WebextPermission
 from olympia.versions.models import ApplicationsVersions, AppVersion, License
 
 
@@ -51,6 +54,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['size'] == file_.size
         assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
         assert result_file['url'] == file_.get_url_path(src='')
+        assert result_file['permissions'] == file_.webext_permissions_list
 
         assert data['edit_url'] == absolutify(
             self.addon.get_dev_url(
@@ -159,7 +163,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result['guid'] == self.addon.guid
         assert result['has_eula'] is False
         assert result['has_privacy_policy'] is False
-        assert result['homepage'] == {'en-US': self.addon.homepage}
+        assert result['homepage'] == {
+            'en-US': get_outgoing_url(unicode(self.addon.homepage))
+        }
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_experimental'] == self.addon.is_experimental is False
@@ -200,7 +206,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result['status'] == 'public'
         assert result['summary'] == {'en-US': self.addon.summary}
         assert result['support_email'] == {'en-US': self.addon.support_email}
-        assert result['support_url'] == {'en-US': self.addon.support_url}
+        assert result['support_url'] == {
+            'en-US': get_outgoing_url(unicode(self.addon.support_url))
+        }
         assert 'theme_data' not in result
         assert set(result['tags']) == set(['some_tag', 'some_other_tag'])
         assert result['type'] == 'extension'
@@ -334,12 +342,32 @@ class AddonSerializerOutputTestMixin(object):
             'en-US': u'My Addôn description in english',
             'fr': u'Description de mon Addôn',
         }
+        translated_homepages = {
+            'en-US': u'http://www.google.com/',
+            'fr': u'http://www.googlé.fr/',
+        }
         self.addon = addon_factory()
         self.addon.description = translated_descriptions
+        self.addon.homepage = translated_homepages
         self.addon.save()
 
         result = self.serialize()
         assert result['description'] == translated_descriptions
+        assert result['homepage'] != translated_homepages
+        assert result['homepage'] == {
+            'en-US': get_outgoing_url(translated_homepages['en-US']),
+            'fr': get_outgoing_url(translated_homepages['fr'])
+        }
+
+        # Try a single translation. The locale activation is normally done by
+        # LocaleAndAppURLMiddleware, but since we're directly calling the
+        # serializer we need to do it ourselves.
+        self.request = APIRequestFactory().get('/', {'lang': 'fr'})
+        with override('fr'):
+            result = self.serialize()
+        assert result['description'] == translated_descriptions['fr']
+        assert result['homepage'] == get_outgoing_url(
+            translated_homepages['fr'])
 
     def test_persona_with_persona_id(self):
         self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
@@ -386,6 +414,23 @@ class AddonSerializerOutputTestMixin(object):
         # icon url should just be a default icon instead of the Persona icon.
         assert result['icon_url'] == (
             'http://testserver/static/img/addon-icons/default-64.png')
+
+    def test_webextension(self):
+        self.addon = addon_factory(
+            file_kw={'is_webextension': True})
+        # Give one of the versions some webext permissions to test that.
+        WebextPermission.objects.create(
+            file=self.addon.current_version.all_files[0],
+            permissions=['bookmarks', 'random permission']
+        )
+
+        result = self.serialize()
+
+        self._test_version(
+            self.addon.current_version, result['current_version'])
+        # Double check the permissions got correctly set.
+        assert result['current_version']['files'][0]['permissions'] == ([
+            'bookmarks', 'random permission'])
 
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
@@ -537,6 +582,20 @@ class TestVersionSerializerOutput(TestCase):
         result = self.serialize()
         assert result['id'] == self.version.pk
         assert result['license'] is None
+
+    def test_file_webext_permissions(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        # No permissions.
+        assert result['files'][0]['permissions'] == []
+
+        self.version = addon_factory(
+            file_kw={'is_webextension': True}).current_version
+        permissions = ['dangerdanger', 'high', 'voltage']
+        WebextPermission.objects.create(
+            permissions=permissions, file=self.version.all_files[0])
+        result = self.serialize()
+        assert result['files'][0]['permissions'] == permissions
 
 
 class TestSimpleVersionSerializerOutput(TestCase):

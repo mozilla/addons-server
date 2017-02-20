@@ -79,5 +79,5 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
             self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED),
             user=self.user)
         result = self.serialize()
-        # Should default to the string representation of the log event.
-        assert result['comments'] == self.entry.to_string()
+        # Should output an empty string.
+        assert result['comments'] == ''

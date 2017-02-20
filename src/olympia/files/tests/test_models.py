@@ -20,6 +20,7 @@ from olympia.amo.tests import TestCase
 from olympia.amo.utils import rm_local_tmp_dir, chunked
 from olympia.addons.models import Addon
 from olympia.applications.models import AppVersion
+from olympia.constants.webext_permissions import ALL_URLS_PERMISSION
 from olympia.files.models import (
     EXTENSIONS, File, FileUpload, FileValidation, nfd_str,
     track_file_status_change,
@@ -243,6 +244,32 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         addon.update(status=amo.STATUS_DELETED)
         assert f.addon.id == addon_id
 
+    def _check_permissions_order(self, permissions):
+        # We have two match-all urls - no dupes!
+        assert len(permissions) == 4
+        # First should be catch-all match urls, if present.
+        assert permissions[0] == ALL_URLS_PERMISSION
+        # Second should be known permission(s).
+        assert permissions[1] == (u'bookmarks', 'Access bookmarks', '')
+        # Third is match urls for specified site(s).
+        assert permissions[2] == (u'https://google.com/',
+                                  u'Access your data for https://google.com/ '
+                                  u'website', '')
+        # Lastly any unknown permission strings.
+        assert permissions[3] == (u'made up permission', u'made up permission',
+                                  '')
+
+    def test_webext_permissions(self):
+        perm_list = [u'http://*/*', u'<all_urls>', u'bookmarks',
+                     u'made up permission', u'https://google.com/']
+        file_ = File.objects.get(pk=67442)
+        file_.webext_permissions_list = perm_list
+        self._check_permissions_order(file_.webext_permissions)
+
+        # Check the order isn't dependent on the order in the manifest
+        file_.webext_permissions_list.reverse()
+        self._check_permissions_order(file_.webext_permissions)
+
 
 class TestTrackFileStatusChange(TestCase):
 
@@ -332,7 +359,8 @@ class TestParseXpi(TestCase):
         parsed = self.parse(filename='webextension_no_id.xpi')
         assert len(parsed['permissions'])
         assert parsed['permissions'] == [
-            u'http://*/*', u'https://*/*', u'alarms']
+            u'http://*/*', u'https://*/*', u'bookmarks', u'made up permission',
+            u'https://google.com/']
 
     def test_parse_apps(self):
         exp = (amo.FIREFOX,
@@ -1086,22 +1114,16 @@ class TestFileFromUpload(UploadTest):
 
     def test_permissions(self):
         upload = self.upload('webextension_no_id.xpi')
+        parsed_data = parse_addon(upload)
+        # 5 total permissions.
+        assert len(parsed_data['permissions']) == 5
         file_ = File.from_upload(upload, self.version, self.platform,
-                                 parsed_data=parse_addon(upload))
-        permissions = file_.webext_permissions
-        assert len(permissions) == 3
-        # One permission is known so will have a description, etc.
-        alarm = permissions['alarms']
-        assert alarm.description == (
-            u'Gives the extension access to the chrome.alarms API.')
-        assert u'Gives the extension access to the chrome.alarms API.' in (
-            alarm.long_description)
-        known_permissions = file_.webext_permissions_known
-        assert len(known_permissions) == 1
-        known_permissions[0] = alarm
-        # The other two permissions stored are just urls.
-        assert permissions[u'http://*/*']
-        assert permissions[u'https://*/*']
+                                 parsed_data=parsed_data)
+        permissions_list = file_.webext_permissions_list
+        assert len(permissions_list) == 5
+        assert permissions_list == [u'http://*/*', u'https://*/*', 'bookmarks',
+                                    'made up permission', 'https://google.com/'
+                                    ]
 
 
 class TestZip(TestCase, amo.tests.AMOPaths):

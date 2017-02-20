@@ -13,7 +13,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_bytes, force_text
-
+from django.utils.translation import ugettext as _
 import commonware
 from cache_nuggets.lib import memoize
 from django_extensions.db.fields.json import JSONField
@@ -377,20 +377,45 @@ class File(OnChangeMixin, ModelBase):
         statsd.timing('files.extract.localepicker', (end * 1000))
         return res
 
-    @amo.cached_property
+    @property
     def webext_permissions(self):
-        try:
-            return {
-                name: WEBEXT_PERMISSIONS.get(name, Permission(name, '', ''))
-                for name in self._webext_permissions.permissions}
-        except WebextPermission.DoesNotExist:
-            return {}
+        """Return permissions with descriptions in defined order:
+        1) match all urls (e.g. <all-urls>)
+        2) known permissions, in constants order (alphabetically),
+        3) match urls for sites
+        4) unknown permissions
+        """
+        out, urls, unknowns = [], [], []
+        for name in self.webext_permissions_list:
+            perm = WEBEXT_PERMISSIONS.get(name, None)
+            if perm:
+                # Add known permissions, including match-alls.
+                if perm not in out:
+                    # We don't want duplicates.
+                    out.append(perm)
+            elif '//' in name:
+                # Filter out match urls so we can group them.
+                urls.append(name)
+            else:
+                # Other strings are unknown permissions.
+                unknowns.append(name)
+        out.sort()
+        # TODO: group match urls.
+        out += [
+            Permission(name, _(u'Access your data for {name} website').format(
+                name=name), '')
+            for name in urls]
+        # return + other (unknown) permissions at the end.
+        return out + [Permission(name, name, '') for name in unknowns]
 
-    @amo.cached_property
-    def webext_permissions_known(self):
-        return {name: perm
-                for name, perm in self.webext_permissions.iteritems()
-                if name in WEBEXT_PERMISSIONS}
+    @amo.cached_property(writable=True)
+    def webext_permissions_list(self):
+        if not self.is_webextension:
+            return []
+        try:
+            return list(self._webext_permissions.permissions)
+        except WebextPermission.DoesNotExist:
+            return []
 
 
 @receiver(models.signals.post_save, sender=File,

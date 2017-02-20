@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-09 11:33+0000\n"
-"PO-Revision-Date: 2017-02-11 18:39+0000\n"
+"PO-Revision-Date: 2017-02-14 19:24+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1891,7 +1891,7 @@ msgstr "ก่อนหน้า"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to last page"
-msgstr ""
+msgstr "กระโดดไปยังหน้าสุดท้าย"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -2294,7 +2294,7 @@ msgstr[0] "<span>%(addons)s</span> ส่วนเสริม"
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(followers)s</span> ผู้ติดตาม"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2352,11 +2352,11 @@ msgstr "คุณแน่ใจหรือไม่?"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes"
-msgstr ""
+msgstr "ใช่"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "No"
-msgstr ""
+msgstr "ไม่"
 
 #. {0} is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
@@ -2749,7 +2749,7 @@ msgstr "ค้นหาผู้ให้บริการใหม่สำห
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Additional Resources"
-msgstr ""
+msgstr "ทรัพยากรเพิ่มเติม"
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
@@ -3023,7 +3023,7 @@ msgstr "Sunbird"
 
 #: src/olympia/constants/applications.py
 msgid "Mobile"
-msgstr ""
+msgstr "มือถือ"
 
 #: src/olympia/constants/applications.py
 msgid "Firefox for Android"
@@ -3092,7 +3092,7 @@ msgstr "ชุดตกแต่งแบบสมบูรณ์"
 
 #: src/olympia/constants/base.py
 msgid "Search Engine"
-msgstr ""
+msgstr "เครื่องมือค้นหา"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Application)"
@@ -3100,7 +3100,7 @@ msgstr "ชุดภาษา (แอพพลิเคชัน)"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "ชุดภาษา (ส่วนเสริม)"
 
 #: src/olympia/constants/base.py
 msgid "Plugin"
@@ -3125,7 +3125,7 @@ msgstr "ชุดภาษา (แอพพลิเคชัน)"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "ชุดภาษา (ส่วนเสริม)"
 
 #: src/olympia/constants/base.py
 msgid "Plugins"
@@ -3685,7 +3685,7 @@ msgstr "ทุกแพลตฟอร์ม"
 
 #: src/olympia/constants/platforms.py
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #: src/olympia/constants/platforms.py
 msgid "Mac OS X"
@@ -3697,15 +3697,15 @@ msgstr "BSD"
 
 #: src/olympia/constants/platforms.py
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: src/olympia/constants/platforms.py
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 #: src/olympia/constants/platforms.py
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Requests that the extension be granted permissions according to the activeTab specification."
@@ -4576,7 +4576,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
-msgstr ""
+msgstr "หน้าแรก"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid ""
@@ -4642,7 +4642,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "View Source?"
-msgstr ""
+msgstr "ดูต้นฉบับ?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
@@ -4674,7 +4674,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Upgrade SDK?"
-msgstr ""
+msgstr "อัปเกรด SDK?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
@@ -5348,7 +5348,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
-msgstr ""
+msgstr "ดูทั้งหมด"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -5430,7 +5430,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "Undo"
-msgstr ""
+msgstr "เลิกทำ"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
@@ -5445,11 +5445,11 @@ msgstr "รุ่นล่าสุด:"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Read more in our Blog"
-msgstr ""
+msgstr "อ่านเพิ่มเติมในบล็อกของเรา"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Resources"
-msgstr ""
+msgstr "ทรัพยากร"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #, fuzzy
@@ -5463,15 +5463,15 @@ msgstr "ความคิดเห็น"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "About"
-msgstr ""
+msgstr "เกี่ยวกับ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "Forum"
-msgstr ""
+msgstr "กระดานสนทนา"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
 msgid "Blog"
-msgstr ""
+msgstr "บล็อก"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #, fuzzy
@@ -5485,7 +5485,7 @@ msgstr "บทวิจารณ์:"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "FAQ"
-msgstr ""
+msgstr "คำถามที่พบบ่อย"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #, fuzzy
@@ -5939,11 +5939,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Header"
-msgstr ""
+msgstr "ส่วนหัว"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Footer"
-msgstr ""
+msgstr "ส่วนท้าย"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select colors for your Theme."
@@ -5959,7 +5959,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Background"
-msgstr ""
+msgstr "พื้นหลัง"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tabs."
@@ -6106,7 +6106,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
-msgstr ""
+msgstr "โค้ดต้นฉบับ"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."

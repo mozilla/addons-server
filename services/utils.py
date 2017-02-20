@@ -28,7 +28,6 @@ from olympia.lib.log_settings_base import formatters, handlers
 # remove all this.
 from olympia.constants.applications import APPS_ALL
 from olympia.constants.platforms import PLATFORMS
-from olympia.constants.base import STATUS_DISABLED
 
 
 # This is not DRY: it's a copy of amo.helpers.user_media_path, to avoid an

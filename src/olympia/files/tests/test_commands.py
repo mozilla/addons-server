@@ -31,17 +31,17 @@ class TestWebextExtractPermissions(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parsed_data)
         assert WebextPermission.objects.count() == 0
-        assert file_.webext_permissions == {}
+        assert file_.webext_permissions_list == []
 
         call_command('extract_permissions')
 
         file_ = File.objects.no_cache().get(id=file_.id)
         assert WebextPermission.objects.get(file=file_)
-        permissions = file_.webext_permissions
-        assert len(permissions) == 3
-        assert permissions['alarms']
-        assert permissions[u'http://*/*']
-        assert permissions[u'https://*/*']
+        permissions_list = file_.webext_permissions_list
+        assert len(permissions_list) == 5
+        assert permissions_list == [u'http://*/*', u'https://*/*', 'bookmarks',
+                                    'made up permission', 'https://google.com/'
+                                    ]
 
     def test_force_extract(self):
         upload = self.get_upload('webextension_no_id.xpi')
@@ -51,11 +51,10 @@ class TestWebextExtractPermissions(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parsed_data)
         assert WebextPermission.objects.count() == 1
-        assert len(file_.webext_permissions) == 2
+        assert len(file_.webext_permissions_list) == 4
 
         call_command('extract_permissions', force=True)
 
         file_ = File.objects.no_cache().get(id=file_.id)
         assert WebextPermission.objects.get(file=file_)
-        permissions = file_.webext_permissions
-        assert len(permissions) == 3
+        assert len(file_.webext_permissions_list) == 5

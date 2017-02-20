@@ -52,6 +52,7 @@ from olympia.lib.crypto.packaged import sign_file
 from olympia.search.views import BaseAjaxSearch
 from olympia.translations.models import delete_translation
 from olympia.users.models import UserProfile
+from olympia.users.utils import system_addon_submission_allowed
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, ValidationResult
 
@@ -804,6 +805,10 @@ def json_upload_detail(request, upload, addon_slug=None):
             if not acl.submission_allowed(request.user, pkg):
                 raise django_forms.ValidationError(
                     _(u'You cannot submit this type of add-on'))
+            if not system_addon_submission_allowed(request.user, pkg):
+                raise django_forms.ValidationError(
+                    _(u'You cannot submit an add-on with a guid ending '
+                      u'"@mozilla.org"'))
         except django_forms.ValidationError, exc:
             errors_before = result['validation'].get('errors', 0)
             # FIXME: This doesn't guard against client-side
@@ -1155,7 +1160,7 @@ def version_edit(request, addon_id, addon, version_id):
                 version.update(has_info_request=False)
                 if waffle.switch_is_active('activity-email'):
                     log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED,
-                                   u'Approval notes were updated.',
+                                   None,
                                    request.user,
                                    version)
                 else:
@@ -1172,27 +1177,15 @@ def version_edit(request, addon_id, addon, version_id):
                 version.update(has_info_request=False)
                 if waffle.switch_is_active('activity-email'):
                     log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED,
-                                   u'Source code was uploaded.',
+                                   None,
                                    request.user,
                                    version)
                 else:
                     amo.log(amo.LOG.SOURCE_CODE_UPLOADED,
-                            version,
-                            request.user,
-                            details={
-                                'comments': (u'This version has been '
-                                             u'automatically flagged for '
-                                             u'admin review, as source files '
-                                             u'have been uploaded.')})
+                            addon, version, request.user)
             else:
                 amo.log(amo.LOG.SOURCE_CODE_UPLOADED,
-                        version,
-                        request.user,
-                        details={
-                            'comments': (u'This version has been '
-                                         u'automatically flagged for '
-                                         u'admin review, as source files '
-                                         u'have been uploaded.')})
+                        addon, version, request.user)
 
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
@@ -1688,7 +1681,7 @@ def request_review(request, addon_id, addon):
         messages.success(request, _('Review requested.'))
     else:
         messages.success(request, _(
-            'Review requested.  You must provide further details to proceed.'))
+            'You must provide further details to proceed.'))
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect(addon.get_dev_url('versions'))
 

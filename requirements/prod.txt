@@ -172,9 +172,9 @@ django-waffle==0.11.1 \
     --hash=sha256:d135816e416c5846aff1928634513f89cc83af4e939e2007e4a9707ef20d7c02 \
     --hash=sha256:68d246e6f5562309f05c2743ae536b2569933e7d8ed65ecf3606e7a780968b68
 # djangorestframework is required by drf-nested-routers
-djangorestframework==3.5.3 \
-    --hash=sha256:f446041a944723e14502a0a5880d0bc74a499ac1075781177f2fa6d7fe7b415d \
-    --hash=sha256:7c04e2a45e6d30df7042749b9a029882c449eb2fee038f3cc14dfbc93581bfbf
+djangorestframework==3.5.4 \
+    --hash=sha256:110afa12784ceadfb50808882689302d266785b51e3d13286744333ff6d78e60 \
+    --hash=sha256:f995a35ae22f354d2a9a42ee6d2c059c101f826b1485ed46781677895ad25ee5
 djangorestframework-jwt==1.9.0 \
     --hash=sha256:c9fa3c1847569ac1c96d04c7fa38f8dacf894ab405d9e772f0776c4d57fa35ad \
     --hash=sha256:319fd2de82a798f46c03c0289e790f2ddbe65dbf7196ed46815225497606abb1
@@ -339,9 +339,9 @@ pytz==2016.10 \
     --hash=sha256:7016b2c4fa075c564b81c37a252a5fccf60d8964aa31b7f5eae59aeb594ae02b \
     --hash=sha256:9a43e20aa537cfad8fe7a1715165c91cb4a6935d40947f2d070e4c80f2dcd22b \
     --hash=sha256:aafbf066975fe217ed49d7d197b26903d3b43e9ca2aa6ba0a211081f13c41917
-raven==5.32.0 \
-    --hash=sha256:a06517e9b7858ac41963f9741cc8358005d37511475aaa4c8b692d29ae0a7d94 \
-    --hash=sha256:13e68bbf21d4d6f0cae4458da5be2d0d538733beabc5f93cb185048b28a77457
+raven==6.0.0 \
+    --hash=sha256:c9b521eaa4f253b5ed96051ab8f7c8e61fe901f9fc18ee6d9ac99726fbcb14fe \
+    --hash=sha256:cee2d745c762230383fc89365770552c93c71205ee92c6e6bbbd85fe4dbb2803
 # rdflib is required by amo-validator
 rdflib==3.4.0 \
     --hash=sha256:78d5f11a7001661d7637f9e61554a5f8971e197f3f6d17ba5e4039b0668116cf # pyup: ==3.4.0

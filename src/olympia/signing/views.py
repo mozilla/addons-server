@@ -18,6 +18,7 @@ from olympia.api.authentication import JWTKeyAuthentication
 from olympia.devhub.views import handle_upload
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
+from olympia.users.utils import system_addon_submission_allowed
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
 from olympia.signing.serializers import FileUploadSerializer
@@ -128,6 +129,12 @@ class VersionView(APIView):
         if not acl.submission_allowed(request.user, pkg):
             raise forms.ValidationError(
                 _(u'You cannot submit this type of add-on'),
+                status.HTTP_400_BAD_REQUEST)
+
+        if not system_addon_submission_allowed(request.user, pkg):
+            raise forms.ValidationError(
+                _(u'You cannot submit an add-on with a guid ending '
+                  u'"@mozilla.org"'),
                 status.HTTP_400_BAD_REQUEST)
 
         if addon is not None and addon.status == amo.STATUS_DISABLED:

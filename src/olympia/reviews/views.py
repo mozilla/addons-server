@@ -327,9 +327,38 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
 
     queryset = Review.objects.all()
 
+    def set_addon_object_from_review(self, review):
+        """Set addon object on the instance from a review object."""
+        # At this point it's likely we didn't have an addon in the request, so
+        # if we went through get_addon_object() before it's going to be set
+        # to None already. We delete the addon_object property cache and set
+        # addon_pk in kwargs to force get_addon_object() to reset
+        # self.addon_object.
+        del self.addon_object
+        self.kwargs['addon_pk'] = str(review.addon.pk)
+        return self.get_addon_object()
+
     def get_addon_object(self):
+        """Return addon object associated with the request, or None if not
+        relevant.
+
+        Will also fire permission checks on the addon object when it's loaded.
+        """
+        if hasattr(self, 'addon_object'):
+            return self.addon_object
+
         if 'addon_pk' not in self.kwargs:
-            return None
+            self.kwargs['addon_pk'] = (
+                self.request.data.get('addon') or
+                self.request.GET.get('addon'))
+        if self.kwargs['addon_pk'] is None:
+            # If we don't have an addon object, set it as None on the instance
+            # and return immediately, that's fine.
+            self.addon_object = None
+            return
+        else:
+            # AddonViewSet.get_lookup_field() expects a string.
+            self.kwargs['addon_pk'] = str(self.kwargs['addon_pk'])
         # When loading the add-on, pass a specific permission class - the
         # default from AddonViewSet is too restrictive, we are not modifying
         # the add-on itself so we don't need all the permission checks it does.
@@ -337,12 +366,12 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             permission_classes=[AllowIfPublic])
 
     def check_permissions(self, request):
-        if 'addon_pk' in self.kwargs:
-            # In addition to the regular permission checks that are made, we
-            # need to verify that the add-on exists, is public and listed. Just
-            # loading the addon should be enough to do that, since
-            # AddonChildMixin implementation calls AddonViewSet.get_object().
-            self.get_addon_object()
+        """Perform permission checks.
+
+        The regular DRF permissions checks are made, but also, before that, if
+        an addon was requested, verify that it exists, is public and listed,
+        through AllowIfPublic permission, that get_addon_object() uses."""
+        self.get_addon_object()
 
         # Proceed with the regular permission checks.
         return super(ReviewViewSet, self).check_permissions(request)
@@ -357,20 +386,21 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
 
     def filter_queryset(self, qs):
         if self.action == 'list':
-            if 'addon_pk' in self.kwargs:
+            if 'addon' in self.request.GET:
                 qs = qs.filter(is_latest=True, addon=self.get_addon_object())
-            elif 'account_pk' in self.kwargs:
-                qs = qs.filter(user=self.kwargs.get('account_pk'))
-            else:
+            if 'user' in self.request.GET:
+                qs = qs.filter(user=self.request.GET.get('user'))
+            if ('addon' not in self.request.GET and
+                    'user' not in self.request.GET):
                 # Don't allow listing reviews without filtering by add-on or
                 # user.
-                raise ParseError('Need an addon or user identifier')
+                raise ParseError('Need an addon or user parameter')
         return qs
 
     def get_paginated_response(self, data):
         response = super(ReviewViewSet, self).get_paginated_response(data)
         show_grouped_ratings = self.request.GET.get('show_grouped_ratings')
-        if 'addon_pk' in self.kwargs and show_grouped_ratings:
+        if show_grouped_ratings and self.get_addon_object():
             response.data['grouped_ratings'] = dict(GroupedRating.get(
                 self.addon_object.id))
         return response
@@ -387,7 +417,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
                 acl.action_allowed(self.request, 'Addons', 'Edit'))
 
         should_access_only_top_level_reviews = (
-            self.action == 'list' and self.kwargs.get('addon_pk'))
+            self.action == 'list' and self.get_addon_object())
 
         if self.should_access_deleted_reviews:
             # For admins or add-on authors replying. When listing, we include
@@ -423,6 +453,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         # FK to the current review object and only allow add-on authors/admins.
         # Call get_object() to trigger 404 if it does not exist.
         self.review_object = self.get_object()
+        self.set_addon_object_from_review(self.review_object)
         if Review.unfiltered.filter(reply_to=self.review_object).exists():
             # A reply already exists, just edit it.
             # We set should_access_deleted_reviews so that it works even if
@@ -434,14 +465,18 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
 
     @detail_route(methods=['post'])
     def flag(self, request, *args, **kwargs):
+        # We load the add-on object from the review to trigger permission
+        # checks.
+        self.review_object = self.get_object()
+        self.set_addon_object_from_review(self.review_object)
+
         # Re-use flag view since it's already returning json. We just need to
         # pass it the addon slug (passing it the PK would result in a redirect)
         # and make sure request.POST is set with whatever data was sent to the
         # DRF view.
-        addon = self.get_addon_object()
         request._request.POST = request.data
         request = request._request
-        response = flag(request, addon.slug, kwargs.get('pk'))
+        response = flag(request, self.addon_object.slug, kwargs.get('pk'))
         if response.status_code == 200:
             response.content = ''
             response.status_code = 202
