@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-09 11:33+0000\n"
+"POT-Creation-Date: 2017-02-20 16:16+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -915,6 +915,17 @@ msgstr ""
 msgid "by %(users)s"
 msgstr "од %(users)s"
 
+# {0} is a number
+#: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
+#, fuzzy
+msgid "[Warning]"
+msgstr "{0} упозорење"
+
+#: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
+#, fuzzy
+msgid "Permissions"
+msgstr "Верзије"
+
 #: src/olympia/addons/templates/addons/impala/button.html
 #, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
@@ -1092,6 +1103,21 @@ msgstr ""
 #: src/olympia/stats/templates/stats/popup.html src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
 msgid "close"
 msgstr "затвори"
+
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid ""
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
+msgstr ""
+
+#. This is a header of a list of things the add-on can do.
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid "It can:"
+msgstr ""
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1789,6 +1815,44 @@ msgstr "<h1>Упс! Није допуштено.</h1> <p>Покушали сте
 #: src/olympia/amo/templates/amo/403.html
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr "<p>Покушајте се вратити на претходну страницу, освежите је и покушајте поново.</p>"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, fuzzy
+msgid "Page Not Found"
+msgstr "Није пронађено"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, fuzzy
+msgid "Firefox Add-ons"
+msgstr "Још додатака"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
+msgstr ""
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+msgid "Suggested Pages"
+msgstr ""
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, fuzzy
+msgid "Browse all extensions"
+msgstr "Погледајте све додатке"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, fuzzy
+msgid "Browse all themes"
+msgstr "Погледајте све додатке"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, fuzzy
+msgid "Add-ons Home Page"
+msgstr "Почетна страница додатка"
+
+#: src/olympia/amo/templates/amo/404-responsive.html
+#, python-format
+msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
+msgstr ""
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3790,15 +3854,59 @@ msgid "Android"
 msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Requests that the extension be granted permissions according to the activeTab specification."
+msgid "Access your data for all websites"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Gives the extension access to the chrome.alarms API."
+#, fuzzy
+msgid "Access bookmarks"
+msgstr "Књиге"
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access text clipboard"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Read and modify bookmarks."
+msgid "Download files and read and modify the browser's downloadhistory"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access browser history"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Exchange messages with programs other than Firefox"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+#, fuzzy
+msgid "Display notifications to you"
+msgstr "Обавештења корисника"
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access browser history to restore tabs"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access browser tabs"
+msgstr ""
+
+# {0} is the add-on name
+#: src/olympia/constants/webext_permissions.py
+#, fuzzy
+msgid "Access browsing history"
+msgstr "%s историјат верзије"
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access browser activity during navigation"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Provide unlimited storage of client-side data"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Access browser during Web activity"
 msgstr ""
 
 #: src/olympia/core/apps.py
@@ -4139,6 +4247,10 @@ msgstr "Проверите компатибилност додатка"
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
+#: src/olympia/devhub/views.py src/olympia/signing/views.py
+msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
+msgstr ""
+
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
 msgstr "Слике морају бити или PNG или JPG формата."
@@ -4190,7 +4302,7 @@ msgid "Review requested."
 msgstr "Захтевана рецензија"
 
 #: src/olympia/devhub/views.py
-msgid "Review requested.  You must provide further details to proceed."
+msgid "You must provide further details to proceed."
 msgstr ""
 
 #: src/olympia/devhub/views.py
@@ -7476,6 +7588,10 @@ msgstr "Ова датотека није видљива на интернету.
 msgid "This file is a directory."
 msgstr "Ова датотека је директоријум."
 
+#: src/olympia/files/models.py
+msgid "Access your data for {name} website"
+msgstr ""
+
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -9859,6 +9975,38 @@ msgstr "Обрисана критика"
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Друго (молимо наведите)"
+
+#: src/olympia/reviews/serializers.py
+#, fuzzy
+msgid "This field is required."
+msgstr "Обавезно поље"
+
+#: src/olympia/reviews/serializers.py
+#, fuzzy
+msgid "You can't change the add-on of a review once it has been created."
+msgstr "Можете да ажурирате дизајн Ваше теме наком што се одобри."
+
+#: src/olympia/reviews/serializers.py
+msgid "You can't reply to a review that is already a reply."
+msgstr ""
+
+#: src/olympia/reviews/serializers.py
+msgid "You can't change the version of the add-on reviewed once the review has been created."
+msgstr ""
+
+#: src/olympia/reviews/serializers.py
+msgid "This version of the add-on doesn't exist or isn't public."
+msgstr ""
+
+#: src/olympia/reviews/serializers.py
+#, fuzzy
+msgid "You can't leave a review on your own add-on."
+msgstr "неко пише рецензију на мој додатак"
+
+#: src/olympia/reviews/serializers.py
+#, fuzzy
+msgid "You can't leave more than one review for the same version of an add-on."
+msgstr "Не можете више датотека отпремити за ову верзију."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
