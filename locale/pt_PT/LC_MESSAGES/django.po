@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-20 21:32+0000\n"
+"PO-Revision-Date: 2017-02-20 21:51+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -914,14 +914,12 @@ msgid "by %(users)s"
 msgstr "por %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} aviso"
+msgstr "[Aviso]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Permissions"
-msgstr "Versões"
+msgstr "Permissões"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -1100,18 +1098,20 @@ msgstr "fechar"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Alguns extras pedem permissões para desempenhar certas funções (exemplo: um extra de gestão de separadores irá pedir permissão para aceder ao sistema de separadores do seu navegador)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Como está em controlo do seu Firefox, a escolha de conceder ou negar estes pedidos é sua. Aceitar permissões não compromete inerentemente o desempenho ou segurança do seu navegador, mas em alguns "
+"casos raros o risco pode estar envolvido."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr ""
+msgstr "Pode:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1805,9 +1805,8 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr "<p>Tente voltar para a página anterior, atualize e depois tente novamente.</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Não encontrado"
+msgstr "Página não encontrada"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Firefox Add-ons"
@@ -1815,11 +1814,11 @@ msgstr "Extras do Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Desculpe, mas não conseguimos encontrar nada no endereço que introduziu. Se seguiu uma ligação para um extra, é possível que esse extra tenha sido removido pelo seu autor."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Páginas sugeridas"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Browse all extensions"
@@ -1837,7 +1836,7 @@ msgstr "Página do extra"
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "Se seguiu uma ligação de algum lado, por favor %(open_bug_link)ssubmeta um issue%(close_bug_link)s. Diga-nos de onde veio e o que estava à procura, e faremos o nosso melhor para corrigir."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3800,7 +3799,7 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Aceder aos seus dados para todos os websites"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access bookmarks"
@@ -3808,19 +3807,19 @@ msgstr "Aceder aos marcadores"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
-msgstr ""
+msgstr "Aceder ao texto da área de transferência"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
-msgstr ""
+msgstr "Descarregar ficheiros e ler e modificar o histórico de descargas do navegador"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
-msgstr ""
+msgstr "Aceder ao histórico do navegador"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Trocar mensagens com programas que não o Firefox"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Display notifications to you"
@@ -3828,11 +3827,11 @@ msgstr "Mostrar-lhe notificações"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr ""
+msgstr "Aceder ao histórico do navegador para restaurar separadores"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Aceder aos separadores do navegador"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browsing history"
@@ -3840,7 +3839,7 @@ msgstr "Aceder ao histórico de navegação"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "Aceder à atividade do navegador durante a navegação"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
@@ -10004,9 +10003,8 @@ msgid "You can't leave a review on your own add-on."
 msgstr "Não pode deixar uma análise no seu próprio extra."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Não pode carregar mais ficheiros para esta versão."
+msgstr "Não pode deixar mais do que uma análise para a mesma versão de um extra."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
