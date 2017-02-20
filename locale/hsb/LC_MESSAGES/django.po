@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-20 19:31+0000\n"
+"PO-Revision-Date: 2017-02-20 19:49+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -925,14 +925,12 @@ msgid "by %(users)s"
 msgstr "wot %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} warnowanje"
+msgstr "[Warnowanje]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Permissions"
-msgstr "Wersije"
+msgstr "Prawa"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -1123,11 +1121,13 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Dokelž maće kontrolu nad swojim Firefox, móžeće wy tutym próstwam wotpowědować dać abo próstwa wotpokazać. Hdyž prawa daće, so zasadnje wukon abo wěstota wašeho wobhladowaka njepohubjeńša, ale w "
+"rědkich padach je wěste riziko."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr ""
+msgstr "Móže:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1822,37 +1822,32 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr "<p>Spytajće so k předchadnej stronje wróćić, aktualzujće a spytajće hišće raz.</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Njenamakany"
+msgstr "Strona njeje so namakała"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Dalše přidatki"
+msgstr "Přidatki Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Bohužel njemóžemy ničo na adresy namakać, kotruž sće podał. Jeli sće wotkazej k přidatkej slědował, je móžno, zo přidatk je so wot swojeho awtora wotstronił."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Namjetowane strony"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Wšě přidatki přepytować"
+msgstr "Wšě rozšěrjenja přepytować"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Wšě přidatki přepytować"
+msgstr "Wšě drasty přepytować"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Startowa strona přidatka"
+msgstr "Startowa strona přidatkow"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
@@ -3840,9 +3835,8 @@ msgid "Access your data for all websites"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access bookmarks"
-msgstr "Zapołožki"
+msgstr "Přistup na zapołožki"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
@@ -3861,9 +3855,8 @@ msgid "Exchange messages with programs other than Firefox"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Display notifications to you"
-msgstr "Wužiwarske zdźělenja"
+msgstr "Dóstane zdźělenja pokazać"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
@@ -3874,9 +3867,8 @@ msgid "Access browser tabs"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access browsing history"
-msgstr "Wersijowa historija %s"
+msgstr "Přistup na přehladowansku historiju"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
@@ -4284,9 +4276,8 @@ msgid "Review requested."
 msgstr "Přepruwowanje je so požadało."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "You must provide further details to proceed."
-msgstr "Přepruwowanje požadane. Dyrbiće dalše podrobnosće podać, zo byšće pokročował."
+msgstr "Dyrbiće dalše podrobnosće podać, zo byšće pokročował."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -10031,9 +10022,8 @@ msgid "Other (please specify)"
 msgstr "Druhe (prošu podać)"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "This field is required."
-msgstr "Polo je trěbne"
+msgstr "Tute polo je trěbne."
 
 #: src/olympia/reviews/serializers.py
 #, fuzzy
