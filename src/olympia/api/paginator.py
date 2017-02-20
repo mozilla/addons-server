@@ -1,6 +1,6 @@
 from rest_framework.pagination import PageNumberPagination
 from django.core.paginator import (
-    EmptyPage, Page, PageNotAnInteger, Paginator)
+    EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator)
 
 
 class ESPaginator(Paginator):
@@ -10,6 +10,13 @@ class ESPaginator(Paginator):
     results contain the total number of results, we can take an optimistic
     slice and then adjust the count.
     """
+
+    # Maximum result position. Should match 'index.max_result_window' ES
+    # setting if present. ES defaults to 10000 but we'd like more to make sure
+    # all our extensions can be found if searching without a query and
+    # paginating through all results.
+    max_result_window = 25000
+
     def validate_number(self, number):
         """
         Validates the given 1-based page number.
@@ -32,6 +39,10 @@ class ESPaginator(Paginator):
         number = self.validate_number(number)
         bottom = (number - 1) * self.per_page
         top = bottom + self.per_page
+
+        if bottom > self.max_result_window:
+            raise InvalidPage(
+                'That page number is too high for the current page size')
 
         # Force the search to evaluate and then attach the count. We want to
         # avoid an extra useless query even if there are no results, so we
