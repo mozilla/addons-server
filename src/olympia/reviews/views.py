@@ -8,6 +8,7 @@ from django.core.exceptions import PermissionDenied
 from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
+from django.utils.encoding import force_text
 from django.utils.http import urlquote
 from django.utils.translation import ugettext as _
 
@@ -351,14 +352,14 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             self.kwargs['addon_pk'] = (
                 self.request.data.get('addon') or
                 self.request.GET.get('addon'))
-        if self.kwargs['addon_pk'] is None:
+        if not self.kwargs['addon_pk']:
             # If we don't have an addon object, set it as None on the instance
             # and return immediately, that's fine.
             self.addon_object = None
             return
         else:
             # AddonViewSet.get_lookup_field() expects a string.
-            self.kwargs['addon_pk'] = unicode(self.kwargs['addon_pk'])
+            self.kwargs['addon_pk'] = force_text(self.kwargs['addon_pk'])
         # When loading the add-on, pass a specific permission class - the
         # default from AddonViewSet is too restrictive, we are not modifying
         # the add-on itself so we don't need all the permission checks it does.
@@ -386,12 +387,17 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
 
     def filter_queryset(self, qs):
         if self.action == 'list':
-            if 'addon' in self.request.GET:
+            addon_identifier = self.request.GET.get('addon')
+            user_identifier = self.request.GET.get('user')
+            if addon_identifier:
                 qs = qs.filter(is_latest=True, addon=self.get_addon_object())
-            if 'user' in self.request.GET:
-                qs = qs.filter(user=unicode(self.request.GET.get('user')))
-            if ('addon' not in self.request.GET and
-                    'user' not in self.request.GET):
+            if user_identifier:
+                try:
+                    user_identifier = int(user_identifier)
+                except ValueError:
+                    raise ParseError('user parameter should be an integer.')
+                qs = qs.filter(user=user_identifier)
+            if not addon_identifier and not user_identifier:
                 # Don't allow listing reviews without filtering by add-on or
                 # user.
                 raise ParseError('Need an addon or user parameter')

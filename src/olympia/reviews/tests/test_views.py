@@ -1121,11 +1121,29 @@ class TestReviewViewSetGet(TestCase):
         assert data['results'][2]['id'] == review_deleted.pk
 
     def test_list_weird_parameters(self):
-        response = self.client.get(self.url, {'addon': u'éøà', 'user': u''})
-        assert response.status_code == 404
+        self.addon.update(slug=u'my-slûg')
+        user = user_factory()
+        Review.objects.create(addon=self.addon, body='A review.', user=user)
 
-        response = self.client.get(self.url, {'addon': u'', 'user': u'çæ→'})
-        assert response.status_code == 404
+        # No user, but addon is present.
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'user': u''})
+        assert response.status_code == 200
+
+        # No addon, but user is present.
+        response = self.client.get(self.url, {'addon': u'', 'user': user.pk})
+        assert response.status_code == 200
+
+        # Addon parameter is utf-8.
+        response = self.client.get(self.url, {'addon': u'my-slûg'})
+        assert response.status_code == 200
+
+        # User parameter is weird (it should be a pk, as string): 404.
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'user': u'çæ→'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == {'detail': 'user parameter should be an integer.'}
 
 
 class TestReviewViewSetDelete(TestCase):
