@@ -30,8 +30,11 @@ class TestSearchPaginator(TestCase):
     def test_invalid_page(self):
         mocked_qs = MagicMock()
         paginator = ESPaginator(mocked_qs, 5)
+        assert ESPaginator.max_result_window == 25000
         with self.assertRaises(InvalidPage):
-            paginator.page(100000 + 1)
+            # We're fetching 5 items per page, so requesting page 5001 should
+            # fail, since the max result window should is set to 25000.
+            paginator.page(5000 + 1)
 
         with self.assertRaises(EmptyPage):
             paginator.page(0)
