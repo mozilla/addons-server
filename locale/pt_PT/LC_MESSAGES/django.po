@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-20 21:51+0000\n"
+"PO-Revision-Date: 2017-02-20 21:58+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -890,7 +890,7 @@ msgstr "por %(user)s em %(date)s"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/addons/templates/addons/review_list_box.html
 msgid "Show the developer's reply to this review"
-msgstr "Mostrar a resposta do programador a esta revisão"
+msgstr "Mostrar a resposta do programador para esta revisão"
 
 #: src/olympia/addons/templates/addons/review_list_box.html
 #, python-format
@@ -1829,9 +1829,8 @@ msgid "Browse all themes"
 msgstr "Navegar em todos os temas"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Página do extra"
+msgstr "Página inicial dos Extras"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
@@ -3843,11 +3842,11 @@ msgstr "Aceder à atividade do navegador durante a navegação"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
-msgstr ""
+msgstr "Providenciar armazenamento ilimitado de dados do lado do cliente"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
-msgstr ""
+msgstr "Aceder ao navegador durante a atividade Web"
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4189,7 +4188,7 @@ msgstr "Não pode submeter este tipo de extras"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Não pode submeter um extra com um guid que acabe em \"@mozilla.org\""
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -7479,7 +7478,7 @@ msgstr "Este ficheiro é uma directoria."
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name} website"
-msgstr ""
+msgstr "Aceder aos seus dados para o website {name}"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -9280,7 +9279,7 @@ msgstr "Como eu posso responder a um utilizador que publicou uma análise negati
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "Um programador pode responder qualquer análise publicada para o seu extra desde que esteja identificado no AMO. Além disso, qualquer utilizador pode denunciar uma análise como:"
+msgstr "Um programador pode responder a qualquer análise publicada para o seu extra desde que tenha sessão iniciada no AMO. Além disso, qualquer utilizador pode denunciar uma análise como:"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
@@ -9988,15 +9987,15 @@ msgstr "Não pode alterar o extra de uma análise assim que for criada."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Não pode responder a uma análise que já é uma resposta."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Não pode alterar a versão do extra analisado assim que a análise for criada."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Esta versão do extra não existe ou não é pública."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't leave a review on your own add-on."
@@ -10033,7 +10032,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
-msgstr "Responder à análise de {0}"
+msgstr "Responder à análise por {0}"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
@@ -10085,7 +10084,7 @@ msgstr "Reportar esta avaliação"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Reply to review"
-msgstr "Responder à avaliação"
+msgstr "Responder à análise"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit reply"
