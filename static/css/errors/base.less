@@ -1,0 +1,56 @@
+@import (less) '../common/normalize.css';
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  src:
+    local("Fira Sans"),
+    local("Fira Sans Regular"),
+    url("../../fonts/fira/woff2/FiraSans-Regular.woff2") format("woff2"),
+    url("../../fonts/fira/woff/FiraSans-Regular.woff") format("woff"),
+    url("../../fonts/fira/otf/FiraSans-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fira Sans';
+  src:
+    local("Fira Sans Bold"),
+    url("../../fonts/fira/woff2/FiraSans-Bold.woff2") format("woff2"),
+    url("../../fonts/fira/woff/FiraSans-Bold.woff") format("woff"),
+    url("../../fonts/fira/otf/FiraSans-Bold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+body, html {
+  background: #fbfbfb;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 14px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 35px;
+
+  &::before {
+    content: '';
+    min-width: 50px;
+    min-height: 50px;
+    background: url('../../img/developers/addons-logo-black.svg') no-repeat left center;
+    margin-right: 10px;
+  }
+}
+
+.ErrorPage {
+  margin: 0 auto;
+  max-width: 680px;
+  min-width: 260px;
+  padding: 30px 20px 20px;
+}

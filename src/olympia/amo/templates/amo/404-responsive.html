@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{ LANG }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if not settings.ENGAGE_ROBOTS %}
+      <meta name="robots" content="noindex">
+    {% endif %}
+    <title>{% block title %}{{ _('Page Not Found') }}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon"
+          href="{{ STATIC_URL }}img/favicon.ico">
+    {% block site_css %}
+      {{ css('errors/css') }}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="ErrorPage NotFound">
+      <h1 class="logo">{{ _('Firefox Add-ons') }}</h1>
+      <h2>{{ _('Page Not Found') }}</h3>
+      <p>
+        {% trans %}
+        Sorry, but we can't find anything at the address you entered. If you
+        followed a link to an add-on, it's possible that add-on has been removed
+        by its author.
+        {% endtrans %}
+      </p>
+
+      <h3>{{ _('Suggested Pages') }}</h3>
+      <ul>
+         <li><a href="{{ url('browse.extensions') }}">{{ _('Browse all extensions') }}</a></li>
+         <li><a href="{{ url('browse.personas') }}">{{ _('Browse all themes') }}</a></li>
+         <li><a href="{{ url('home') }}">{{ _('Add-ons Home Page') }}</a></li>
+      </ul>
+      <p>
+        {% trans open_bug_link='<a href="https://github.com/mozilla/addons/issues/new">'|safe, close_bug_link='</a>'|safe %}
+        If you followed a link from somewhere, please {{ open_bug_link }}file
+        an issue{{ close_bug_link }}. Tell us where you came from and what you
+        were looking for, and we'll do our best to fix it.
+        {% endtrans %}
+      </p>
+    </div>
+  </body>
+</html>
