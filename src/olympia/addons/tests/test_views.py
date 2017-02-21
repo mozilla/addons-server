@@ -792,6 +792,38 @@ class TestDetailPage(TestCase):
             doc('#webext-permissions div.prose').text())
         assert doc('.webext-permissions-list').length == 0
 
+    @override_switch('webext-permissions', active=True)
+    def test_permissions_xss_single_url(self):
+        file_ = self.addon.current_version.all_files[0]
+        file_.update(is_webextension=True)
+        WebextPermission.objects.create(file=file_, permissions=[
+            u'<script>alert("//")</script>'])
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('li.webext-permissions-list').text() == (
+            u'Read and change your data for '
+            u'<script>alert("//")</script> website')
+        assert '<script>alert(' not in response.content
+        assert '&lt;script&gt;alert(' in response.content
+
+    @override_switch('webext-permissions', active=True)
+    def test_permissions_xss_multiple_url(self):
+        file_ = self.addon.current_version.all_files[0]
+        file_.update(is_webextension=True)
+        WebextPermission.objects.create(file=file_, permissions=[
+            '<script>alert("//")</script>',
+            '<script>foo("https://")</script>'])
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('li.webext-permissions-list').text() == (
+            u'Read and change your data on various websites '
+            u'<script>alert("//")</script> '
+            u'<script>foo("https://")</script>')
+        assert '<script>alert(' not in response.content
+        assert '<script>foo(' not in response.content
+        assert '&lt;script&gt;alert(' in response.content
+        assert '&lt;script&gt;foo(' in response.content
+
     def test_simple_html_is_rendered_in_privacy(self):
         self.addon.privacy_policy = """
             <strong> what the hell..</strong>
