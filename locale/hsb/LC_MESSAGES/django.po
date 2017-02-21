@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-20 20:29+0000\n"
+"PO-Revision-Date: 2017-02-21 20:46+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3878,7 +3878,7 @@ msgstr "Mějće přistup na aktiwitu wobhladowaka při nawigaciji"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
-msgstr "Njewobmjezowany skład za daty na boku klienta púoskićić"
+msgstr "Njewobmjezowany skład za daty na boku klienta poskićić"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
@@ -10029,7 +10029,7 @@ msgstr "Tute polo je trěbne."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Njemóžeće přidatk přepruwowanja změnić, hdyž je wutworjeny."
+msgstr "Njemóžeće přidatk pohódnoćenja změnić, hdyž je wutworjeny."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
