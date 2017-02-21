@@ -12,7 +12,9 @@ ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
 ADD docker/epel.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
 ADD docker/nodesource.repo docker/epel.repo /etc/yum.repos.d/
 
-RUN yum install -y                                          \
+# Upgrade git
+RUN rpm -U http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm \
+    && yum install -y                                       \
         gcc-c++                                             \
         gettext                                             \
         # Git, because we're using git-checkout dependencies
