@@ -848,20 +848,6 @@ class TestFileUpload(UploadTest):
         assert validation['messages'][0]['type'] == 'error'
 
 
-def test_file_upload_passed_auto_validation_passed():
-    upload = FileUpload(validation=json.dumps({
-        'passed_auto_validation': True,
-    }))
-    assert upload.passed_auto_validation
-
-
-def test_file_upload_passed_auto_validation_failed():
-    upload = FileUpload(validation=json.dumps({
-        'passed_auto_validation': False,
-    }))
-    assert not upload.passed_auto_validation
-
-
 def test_file_upload_passed_all_validations_processing():
     upload = FileUpload(valid=False, validation='')
     assert not upload.passed_all_validations
@@ -899,17 +885,23 @@ class TestFileFromUpload(UploadTest):
         if os.path.splitext(name)[-1] not in EXTENSIONS:
             name = name + '.xpi'
 
-        v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={},
-                            signing_summary={'trivial': 0, 'low': 0,
-                                             'medium': 0, 'high': 0},
-                            passed_auto_validation=1))
+        validation_data = json.dumps({
+            'errors': 0,
+            'warnings': 1,
+            'notices': 2,
+            'metadata': {},
+        })
         fname = nfd_str(self.xpi_path(name))
         if not storage.exists(fname):
             with storage.open(fname, 'w') as fs:
                 copyfileobj(open(fname), fs)
-        d = dict(path=fname, name=name,
-                 hash='sha256:%s' % name, validation=v)
-        return FileUpload.objects.create(**d)
+        data = {
+            'path': fname,
+            'name': name,
+            'hash': 'sha256:%s' % name,
+            'validation': validation_data
+        }
+        return FileUpload.objects.create(**data)
 
     def test_jetpack_version(self):
         upload = self.upload('jetpack')

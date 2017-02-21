@@ -126,8 +126,8 @@ class TestBetaSignedLog(EditorTest):
         self.file1_url = reverse('files.list', args=[self.file1.pk])
         self.file2_url = reverse('files.list', args=[self.file2.pk])
 
-        self.log1 = amo.log(amo.LOG.BETA_SIGNED_VALIDATION_PASSED, self.file1)
-        self.log2 = amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, self.file2)
+        self.log1 = amo.log(amo.LOG.BETA_SIGNED, self.file1)
+        self.log2 = amo.log(amo.LOG.BETA_SIGNED, self.file2)
 
     def test_log(self):
         response = self.client.get(self.url)
@@ -138,22 +138,6 @@ class TestBetaSignedLog(EditorTest):
         results = pq(response.content)('tbody tr')
         assert results.length == 2
         assert self.file1_url in unicode(results)
-        assert self.file2_url in unicode(results)
-
-    def test_action_filter_validation_passed(self):
-        response = self.client.get(
-            self.url, {'filter': amo.LOG.BETA_SIGNED_VALIDATION_PASSED.id})
-        results = pq(response.content)('tbody tr')
-        assert results.length == 1
-        assert self.file1_url in unicode(results)
-        assert self.file2_url not in unicode(results)
-
-    def test_action_filter_validation_failed(self):
-        response = self.client.get(
-            self.url, {'filter': amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id})
-        results = pq(response.content)('tbody tr')
-        assert results.length == 1
-        assert self.file1_url not in unicode(results)
         assert self.file2_url in unicode(results)
 
     def test_no_results(self):

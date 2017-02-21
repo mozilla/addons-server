@@ -242,35 +242,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             'notices': 2,
             'metadata': {},
             'messages': [],
-            'signing_summary': {
-                'trivial': 1, 'low': 0, 'medium': 0, 'high': 0
-            },
-            'passed_auto_validation': True
-        }
-        self.upload = self.get_upload(
-            'extension.xpi', validation=json.dumps(result))
-        self.post(listed=False)
-        addon = Addon.objects.get()
-        version = addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert version
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert addon.status == amo.STATUS_NULL
-        assert mock_sign_file.called
-
-    @mock.patch('olympia.editors.helpers.sign_file')
-    def test_success_unlisted_fail_validation(self, mock_sign_file):
-        assert Addon.objects.count() == 0
-        result = {
-            'errors': 0,
-            'warnings': 0,
-            'notices': 2,
-            'metadata': {},
-            'messages': [],
-            'signing_summary': {
-                'trivial': 0, 'low': 1, 'medium': 0, 'high': 0
-            },
-            'passed_auto_validation': False
         }
         self.upload = self.get_upload(
             'extension.xpi', validation=json.dumps(result))
@@ -994,9 +965,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
             validation=json.dumps({
                 "notices": 2, "errors": 0, "messages": [],
                 "metadata": {}, "warnings": 1,
-                "signing_summary": {"trivial": 1, "low": 0,
-                                    "medium": 0, "high": 1},
-                "passed_auto_validation": 0}))
+            }))
         self.addon.update(guid='experiment@xpi', status=amo.STATUS_PUBLIC)
         self.post()
         # Make sure the file created and signed is for this addon.
@@ -1050,33 +1019,6 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
             'notices': 2,
             'metadata': {},
             'messages': [],
-            'signing_summary': {
-                'trivial': 1, 'low': 0, 'medium': 0, 'high': 0
-            },
-            'passed_auto_validation': True
-        }
-        self.upload = self.get_upload(
-            'extension.xpi', validation=json.dumps(result))
-        response = self.post()
-        version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert version.all_files[0].status == amo.STATUS_PUBLIC
-        self.assert3xx(response, self.get_next_url(version))
-        assert mock_sign_file.called
-
-    @mock.patch('olympia.editors.helpers.sign_file')
-    def test_success_fail_validation(self, mock_sign_file):
-        result = {
-            'errors': 0,
-            'warnings': 0,
-            'notices': 2,
-            'metadata': {},
-            'messages': [],
-            'signing_summary': {
-                'trivial': 0, 'low': 1, 'medium': 0, 'high': 0
-            },
-            'passed_auto_validation': False
         }
         self.upload = self.get_upload(
             'extension.xpi', validation=json.dumps(result))
@@ -1329,10 +1271,6 @@ class TestFileSubmitUpload(UploadTest):
             'notices': 2,
             'metadata': {},
             'messages': [],
-            'signing_summary': {
-                'trivial': 1, 'low': 0, 'medium': 0, 'high': 0
-            },
-            'passed_auto_validation': True
         }
         FileValidation.from_json(files_pre[0], json.dumps(result))
         response = self.post()
@@ -1384,10 +1322,6 @@ class TestFileSubmitUpload(UploadTest):
             'notices': 2,
             'metadata': {},
             'messages': [],
-            'signing_summary': {
-                'trivial': 1, 'low': 0, 'medium': 0, 'high': 0
-            },
-            'passed_auto_validation': True
         }
         FileValidation.from_json(existing_file, json.dumps(result))
         self.version.save()

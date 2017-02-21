@@ -76,12 +76,6 @@
         "version": "4.2.3"
     },
     "notices": 8,
-    "signing_summary": {
-        "high": 0,
-        "low": 2,
-        "medium": 0,
-        "trivial": 0
-    },
     "success": false,
     "warnings": 1
 }

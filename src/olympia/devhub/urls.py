@@ -99,10 +99,6 @@ detail_patterns = patterns(
         views.json_file_validation,
         name='devhub.json_file_validation'),
 
-    url('^file/(?P<file_id>[^/]+)/validation/annotate$',
-        views.annotate_file_validation,
-        name='devhub.annotate_file_validation'),
-
     url('^validation-result/(?P<result_id>\d+)$',
         views.bulk_compat_result,
         name='devhub.bulk_compat_result'),

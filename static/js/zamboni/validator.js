@@ -155,27 +155,8 @@ function initValidator($doc) {
         this.appTrans = null;
         this.versionChangeLinks = null;
         this.allCounts = {error: 0, warning: 0};
-        this.automatedSigning = suite.is('.automated-signing');
-        this.annotateURL = suite.data('annotateUrl');
         this.fileURL = suite.data('fileUrl');
         this.fileID = suite.data('fileId');
-
-        if (this.automatedSigning) {
-            this.hideNonSigning = $('#signing-hide-unnecessary').prop('checked');
-
-            // Hiding ignored messages only makes sense if we're only
-            // showing signing-related messages.
-            $('#signing-hide-ignored-container input').prop('disabled', !this.hideNonSigning);
-            if (!this.hideNonSigning) {
-                $('#signing-hide-ignored').prop('checked', false);
-            }
-
-            this.hideIgnored = $('#signing-hide-ignored').prop('checked');
-        }
-
-        if (!data.signing_ignored_summary) {
-            $("#signing-hide-ignored-container").hide();
-        }
     }
 
     MsgVisitor.prototype.createTier = function(tierId, options) {
@@ -225,9 +206,7 @@ function initValidator($doc) {
     };
 
     MsgVisitor.prototype.filterMessage = function(msg) {
-        return !(this.hideIgnored && msg.ignored ||
-                 this.hideNonSigning && !(msg.signing_severity ||
-                                          msg.type == "error"))
+        return !(this.hideIgnored && msg.ignored)
     };
 
     MsgVisitor.prototype.message = function(msg, options) {
@@ -250,24 +229,12 @@ function initValidator($doc) {
         msgDiv.attr('id', 'v-msg-' + msg.uid);
         msgDiv.addClass('msg-' + effectiveType);
 
-        // The "message", "description", and "signing_help"
-        // properties are escaped and linkified before we receive
-        // them.
+        // The "message" and "description" properties are escaped and linkified
+        // before we receive them.
         $('h5', msgDiv).html(msg.message);  // Sanitized HTML value.
 
-        if (msg.ignore_duplicates != null && this.annotateURL) {
-            msgDiv.append($('<p>').append(
-                $('<label>', {
-                    text: ' ' + gettext('Ignore this message in future updates')
-                }).prepend($('<input>', { type: 'checkbox', checked: msg.ignore_duplicates,
-                                          'class': 'ignore-duplicates-checkbox',
-                                          name: JSON.stringify(msg) }))));
-        }
-
-        // The validator returns the "description" and
-        // "signing_help" properties as either strings, or
-        // arrays of strings. We turn them all into arrays
-        // when sanitizing.
+        // The validator returns the "description" as either string, or
+        // arrays of strings. We turn it into arrays when sanitizing.
         $.each(msg.description, function(i, val) {
             var $desc = $('<p>').html(val);  // Sanitized HTML value.
             if (i === 0) {
@@ -275,30 +242,6 @@ function initValidator($doc) {
             }
             msgDiv.append($desc);
         });
-
-        if (msg.signing_severity) {
-            msgDiv.append(format(
-                '<div class="validator-signing-only">' +
-                '    <p><label>{0}</label> {1}</p>' +
-                '</div>',
-                [gettext('Severity for automated signing:'),
-                 msg.signing_severity]));
-        }
-
-        if (msg.signing_help) {
-            var messages = msg.signing_help.map(function(help_msg) {
-                // Sanitized HTML value.
-                return format('<p>{0}</p>', [help_msg]);
-            });
-
-            msgDiv.append(format(
-                '<div class="validator-signing-only">' +
-                '    <h5>{0}</h5>' +
-                '    {1}' +
-                '</div>',
-                [gettext('Suggestions for passing automated signing:'),
-                 messages.join('\n')]));
-        }
 
         if (msg.file) {
             var file = msg.file;
@@ -438,18 +381,11 @@ function initValidator($doc) {
             validation = data.validation,
             summaryTxt;
 
-        $('#signing-hide-unnecessary, #signing-hide-ignored').change(function() {
-            // User changed the message visibility options. Clear
-            // results and build a new set.
-            vis.clear();
-            rebuildResults();
-        });
-
-        function sortBySeverity(messages) {
-            var signingSeverityOrderings = [
-                'high', 'medium', 'low', 'trivial', undefined /* no severity */];
+        function sortByType(messages) {
+            var ordering = [
+                'error', 'warning', 'notice', undefined /* no type */];
             return _.sortBy(messages, function(msg) {
-                return signingSeverityOrderings.indexOf(msg.signing_severity);
+                return ordering.indexOf(msg.type);
             });
         }
 
@@ -459,7 +395,7 @@ function initValidator($doc) {
             } else {
                 vis = new MsgVisitor(suite, data);
             }
-            $.each(sortBySeverity(validation.messages), function(i, msg) {
+            $.each(sortByType(validation.messages), function(i, msg) {
                 vis.message(msg);
             });
             vis.finish();

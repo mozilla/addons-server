@@ -51,9 +51,9 @@ class EventLogForm(happyforms.Form):
 class BetaSignedLogForm(happyforms.Form):
     VALIDATION_CHOICES = (
         ('', ''),
-        (amo.LOG.BETA_SIGNED_VALIDATION_PASSED.id,
+        (amo.LOG.BETA_SIGNED.id,
          _lazy(u'Passed automatic validation')),
-        (amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id,
+        (amo.LOG.BETA_SIGNED.id,
          _lazy(u'Failed automatic validation')))
     filter = forms.ChoiceField(required=False, choices=VALIDATION_CHOICES,
                                label=_lazy(u'Filter by automatic validation'))

@@ -450,13 +450,13 @@ class ADDON_UNLISTED(_LOG):
     keep = True
 
 
-class BETA_SIGNED_VALIDATION_PASSED(_LOG):
+class BETA_SIGNED(_LOG):
     id = 131
     format = _(u'{file} was signed.')
     keep = True
 
 
-class BETA_SIGNED_VALIDATION_FAILED(_LOG):
+class BETA_SIGNED_OBSOLETE(_LOG):  # Obsolete.
     id = 132
     format = _(u'{file} was signed.')
     keep = True
@@ -476,25 +476,25 @@ class EXPERIMENT_SIGNED(_LOG):
     keep = True
 
 
-class UNLISTED_SIGNED_VALIDATION_PASSED(_LOG):
+class UNLISTED_SIGNED(_LOG):
     id = 135
     format = _(u'{file} was signed.')
     keep = True
 
 
-class UNLISTED_SIGNED_VALIDATION_FAILED(_LOG):
+class UNLISTED_SIGNED_VALIDATION_FAILED(_LOG):  # Obsolete.
     id = 136
     format = _(u'{file} was signed.')
     keep = True
 
 
-class UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED(_LOG):
+class UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED(_LOG):  # Obsolete.
     id = 137
     format = _(u'{file} was signed.')
     keep = True
 
 
-class UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED(_LOG):
+class UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED(_LOG):  # Obsolete.
     id = 138
     format = _(u'{file} was signed.')
     keep = True

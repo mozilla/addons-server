@@ -41,12 +41,9 @@ from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import CheckCompatibilityForm
 from olympia.devhub.models import ActivityLog, BlogPost, RssKey, VersionLog
-from olympia.devhub.utils import (
-    ValidationAnnotator, ValidationComparator, process_validation)
-from olympia.editors.decorators import addons_reviewer_required
+from olympia.devhub.utils import process_validation
 from olympia.editors.helpers import get_position, ReviewHelper
-from olympia.files.models import (
-    File, FileUpload, FileValidation, ValidationAnnotation)
+from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import is_beta, parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.search.views import BaseAjaxSearch
@@ -677,53 +674,17 @@ def file_validation(request, addon_id, addon, file_id):
 
     validate_url = reverse('devhub.json_file_validation',
                            args=[addon.slug, file_.id])
-
-    prev_file = ValidationAnnotator(file_).prev_file
-    if prev_file:
-        file_url = reverse('files.compare', args=[file_.id, prev_file.id,
-                                                  'file', ''])
-    else:
-        file_url = reverse('files.list', args=[file_.id, 'file', ''])
+    file_url = reverse('files.list', args=[file_.id, 'file', ''])
 
     context = {'validate_url': validate_url, 'file_url': file_url,
                'file': file_, 'filename': file_.filename,
                'timestamp': file_.created, 'addon': addon,
                'automated_signing': file_.automated_signing}
 
-    if acl.check_addons_reviewer(request):
-        context['annotate_url'] = reverse('devhub.annotate_file_validation',
-                                          args=[addon.slug, file_id])
-
     if file_.has_been_validated:
         context['validation_data'] = file_.validation.processed_validation
 
     return render(request, 'devhub/validation.html', context)
-
-
-@post_required
-@addons_reviewer_required
-@json_view
-def annotate_file_validation(request, addon_id, file_id):
-    file_ = get_object_or_404(File, pk=file_id)
-
-    form = forms.AnnotateFileForm(request.POST)
-    if not form.is_valid():
-        return {'status': 'fail',
-                'errors': dict(form.errors.items())}
-
-    message_key = ValidationComparator.message_key(
-        form.cleaned_data['message'])
-
-    updates = {'ignore_duplicates': form.cleaned_data['ignore_duplicates']}
-
-    annotation, created = ValidationAnnotation.objects.get_or_create(
-        file_hash=file_.original_hash, message_key=json.dumps(message_key),
-        defaults=updates)
-
-    if not created:
-        annotation.update(**updates)
-
-    return {'status': 'ok'}
 
 
 @dev_required(allow_editors=True)
@@ -1252,10 +1213,7 @@ def auto_sign_file(file_, is_beta=False):
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
-        if file_.validation.passed_auto_validation:
-            amo.log(amo.LOG.BETA_SIGNED_VALIDATION_PASSED, file_)
-        else:
-            amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, file_)
+        amo.log(amo.LOG.BETA_SIGNED, file_)
         sign_file(file_, settings.SIGNING_SERVER)
     elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
@@ -1265,10 +1223,7 @@ def auto_sign_file(file_, is_beta=False):
         helper.set_data({'addon_files': [file_],
                          'comments': 'automatic validation'})
         helper.handler.process_public()
-        if file_.validation.passed_auto_validation:
-            amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED, file_)
-        else:
-            amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED, file_)
+        amo.log(amo.LOG.UNLISTED_SIGNED, file_)
 
 
 def auto_sign_version(version, **kwargs):

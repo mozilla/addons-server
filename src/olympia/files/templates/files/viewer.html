@@ -14,8 +14,6 @@
      data-version="{{ version }}"
      data-validate-url="{{ validate_url }}"
      {% if validation_data %}data-validation="{{ validation_data|json }}"{% endif %}
-     {% if annotate_url %}data-annotate-url="{{ annotate_url }}"{% endif %}
-     {% if automated_signing %}data-automated-signing="true"{% endif %}
      data-validation-failed="{{ _("Validation failed:") }}"></div>
 
 <div class="modal highlighter-output-broken js-hidden">
@@ -41,7 +39,7 @@
     <input type="submit" value="{{ _('Go') }}">
   </form>
 </div>
-<div id="file-viewer" class="featured{% if automated_signing %} automated-signing{% endif %}">
+<div id="file-viewer" class="featured">
   <div class="featured-inner">
     <div id="file-viewer-inner">
       <div id="messages">
@@ -142,24 +140,6 @@
         {{ _('Fetching file.') }}
         </p>
       </div>
-      {% if automated_signing %}
-        <div id="validation-options">
-          <div>
-            <label>
-              <input type="checkbox" id="signing-hide-unnecessary" checked="true">
-              {{ _('Hide messages not required for automated signing') }}
-            </label>
-          </div>
-          <div id="signing-hide-ignored-container"
-                {% if not (validation_data and validation_data.signing_ignored_summary) %}class="js-hidden"{% endif
-            %}>
-            <label>
-              <input type="checkbox" id="signing-hide-ignored" checked="true">
-              {{ _('Hide messages present in previous version and ignored') }}
-            </label>
-          </div>
-        </div>
-      {% endif %}
       {% include "files/content.html" %}
     </div>
   </div>

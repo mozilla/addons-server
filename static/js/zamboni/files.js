@@ -370,25 +370,9 @@ function bind_viewer(nodes) {
             this.show_selected();
         };
         this.update_message_filters = function() {
-            if (file_metadata.automatedSigning) {
-                this.hideNonSigning = $('#signing-hide-unnecessary').prop('checked');
-
-                // Hiding ignored messages only makes sense if we're only
-                // showing signing-related messages.
-                $('#signing-hide-ignored-container input').prop('disabled', !this.hideNonSigning);
-                if (!this.hideNonSigning) {
-                    $('#signing-hide-ignored').prop('checked', false);
-                }
-
-                this.hideIgnored = $('#signing-hide-ignored').prop('checked');
-            }
-
             var $root = this.nodes.$root;
-            $root.addClass('messages-signing');
             $root.toggleClass('messages-duplicate', !this.hideIgnored);
-            $root.toggleClass('messages-all', !this.hideNonSigning);
-
-            $("#signing-hide-ignored-container").toggle(!!this.validation.signing_ignored_summary);
+            $root.toggleClass('messages-all');
         };
         this.message_type_map = {
             'error': 'error',
@@ -398,13 +382,9 @@ function bind_viewer(nodes) {
         this.message_classes = function(message, base_class) {
             base_class = base_class || '';
             var classes = [''];
-            if (message.signing_severity || message.type == "error") {
-                // For the moment, we only ignore messages in signing
-                // validation.
+            if (message.type == "error") {
                 if (message.ignored) {
                     classes.push('-ignored');
-                } else {
-                    classes.push('-signing');
                 }
             }
             return classes.map(function(cls) { return [base_class, message.type, cls].join(""); });
@@ -430,22 +410,6 @@ function bind_viewer(nodes) {
                                    message.type[0].toUpperCase(),
                                    message.type.substr(1),
                                    message.message)];
-
-                if (message.ignore_duplicates != null && file_metadata.annotateUrl) {
-                    var checked = message.ignore_duplicates ? 'checked="checked" ' : '';
-
-                    html.push('<p><label>',
-                              format('<input type="checkbox" class="ignore-duplicates-checkbox"' +
-                                     ' {0}name="{1}">', [checked, _.escape(JSON.stringify(message))]),
-                              ' ', gettext('Ignore this message in future updates'), '</label></p>');
-                }
-
-                if (message.signing_severity && file_metadata.automatedSigning) {
-                    html.push(format(
-                        '<p><label>{0}</label> {1}</p>',
-                        [gettext('Severity for automated signing:'),
-                         message.signing_severity]));
-                }
 
                 $.each(message.description, function(i, msg) {
                     html.push('<p>', msg, '</p>');
@@ -930,24 +894,6 @@ function bind_viewer(nodes) {
     }));
 
     var file_metadata = $('#metadata').data();
-
-    if (file_metadata.annotateUrl) {
-        $('#file-viewer').delegate('.ignore-duplicates-checkbox', 'change',
-                                   function(event) {
-            var $target = $(event.target);
-            $.ajax({type: 'POST',
-                    url: file_metadata.annotateUrl,
-                    data: { message: $target.attr('name'),
-                            ignore_duplicates: $target.prop('checked') || undefined },
-                    dataType: 'json'})
-        });
-    }
-
-    if (file_metadata.automatedSigning) {
-        $('#signing-hide-unnecessary, #signing-hide-ignored').change(function() {
-            viewer.update_message_filters();
-        });
-    }
 
     if (file_metadata.validation) {
         viewer.update_validation({validation: file_metadata.validation,

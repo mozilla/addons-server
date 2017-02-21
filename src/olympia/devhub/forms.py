@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import json
 import os
 import socket
 
@@ -34,7 +33,7 @@ from olympia.translations.forms import TranslationFormMixin
 from olympia.versions.models import (
     ApplicationsVersions, License, VALID_SOURCE_EXTENSIONS, Version)
 
-from . import tasks, utils
+from . import tasks
 
 
 paypal_log = commonware.log.getLogger('z.paypal')
@@ -93,25 +92,6 @@ class DeleteForm(happyforms.Form):
         data = self.cleaned_data
         if not data['slug'] == self.addon.slug:
             raise forms.ValidationError(_('Slug incorrect.'))
-
-
-class AnnotateFileForm(happyforms.Form):
-    message = forms.CharField()
-    ignore_duplicates = forms.BooleanField(required=False)
-
-    def clean_message(self):
-        msg = self.cleaned_data['message']
-        try:
-            msg = json.loads(msg)
-        except ValueError:
-            raise forms.ValidationError(_('Invalid JSON object'))
-
-        key = utils.ValidationComparator.message_key(msg)
-        if key is None:
-            raise forms.ValidationError(
-                _('Message not eligible for annotation'))
-
-        return msg
 
 
 class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
