@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 14:03+0000\n"
+"PO-Revision-Date: 2017-02-21 14:41+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -9267,7 +9267,7 @@ msgid "Why must my add-on be reviewed?"
 msgstr "Zakaj je treba moj dodatek pregledati?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
@@ -9280,15 +9280,15 @@ msgid "Who reviews my add-on?"
 msgstr "Kdo bo pregledal moj dodatek?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Dodatke pregledajo uredniki AMO, skupina talentiranih razvijalcev, ki prostovoljno pomagajo v projektu Mozilla s pregledovanjem dodatkov, da uporabnikom zagotovijo stabilno in varno izkušnjo. Ko "
-"komunicirate z uredniki, bodite vljudni, strpni in spoštljivi, saj trdo delajo, da zagotovijo, da je vaš dodatek pravilno narejen in spoštuje smernice, opisane v <a href=\"%(url)s\">Vodniku za "
-"preglede za urednike</a>."
+"Dodatke pregledujejo pregledovalci, skupina talentiranih razvijalcev, ki prostovoljno pomagajo v projektu Mozilla s pregledovanjem dodatkov, da uporabnikom zagotovijo stabilno in varno izkušnjo. Ko "
+"komunicirate s pregledovalcem, bodite vljudni, strpni in spoštljivi, saj trdo delajo, da zagotovijo, da je vaš dodatek pravilno narejen in spoštuje smernice, opisane v <a href=\"%(url)s\">vodniku za"
+" pregledovalce</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
