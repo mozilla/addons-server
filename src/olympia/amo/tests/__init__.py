@@ -684,10 +684,10 @@ def addon_factory(
 
     application = version_kw.get('application', amo.FIREFOX.id)
     if not category:
-        category = Category.from_static_category(
-            next(CATEGORIES[application][type_].itervalues()))
-        category.created = datetime.now()
-        category.save()
+        static_category = random.choice(
+            CATEGORIES[application][type_].values())
+        category, _ = Category.objects.get_or_create(
+            id=static_category.id, defaults=static_category.__dict__)
     AddonCategory.objects.create(addon=addon, category=category)
 
     # Put signals back.
@@ -745,13 +745,13 @@ def license_factory(**kw):
 
 
 def file_factory(**kw):
-    v = kw['version']
-    filename = kw.pop('filename', '%s-%s' % (v.addon_id, v.id))
+    version = kw['version']
+    filename = kw.pop('filename', '%s-%s' % (version.addon_id, version.id))
     status = kw.pop('status', amo.STATUS_PUBLIC)
     platform = kw.pop('platform', amo.PLATFORM_ALL.id)
-    f = File.objects.create(filename=filename,
-                            platform=platform, status=status, **kw)
-    return f
+    file_ = File.objects.create(filename=filename,
+                                platform=platform, status=status, **kw)
+    return file_
 
 
 def req_factory_factory(url, user=None, post=False, data=None, session=None):
@@ -792,24 +792,31 @@ def version_factory(file_kw=None, **kw):
     # not already created in fixtures (use fake versions).
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
-    version = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    version_str = kw.pop('version', '%.1f' % random.uniform(0, 2))
     application = kw.pop('application', amo.FIREFOX.id)
     if not kw.get('license') and not kw.get('license_id'):
-        kw['license'] = license_factory(**(kw.get('license_kw', {})))
-    v = Version.objects.create(version=version, **kw)
-    v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
-    v.save()
+        # Is there a built-in one we can use?
+        builtins = License.objects.builtins()
+        if builtins.count():
+            kw['license_id'] = builtins[0].id
+        else:
+            license_kw = {'builtin': 99}
+            license_kw.update(kw.get('license_kw', {}))
+            kw['license'] = license_factory(**license_kw)
+    ver = Version.objects.create(version=version_str, **kw)
+    ver.created = ver.last_updated = _get_created(kw.pop('created', 'now'))
+    ver.save()
     if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_SEARCH):
         av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
         av_max, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=max_app_version)
         ApplicationsVersions.objects.get_or_create(application=application,
-                                                   version=v, min=av_min,
+                                                   version=ver, min=av_min,
                                                    max=av_max)
     file_kw = file_kw or {}
-    file_factory(version=v, **file_kw)
-    return v
+    file_factory(version=ver, **file_kw)
+    return ver
 
 
 @pytest.mark.es_tests
