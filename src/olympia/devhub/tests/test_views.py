@@ -307,7 +307,9 @@ class TestDashboard(HubTest):
 
     def test_mixed_versions_addon_with_incomplete_metadata(self):
         self.make_addon_unlisted(self.addon)
-        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version.update(license=None)
         self.addon.reload()
         assert not self.addon.has_complete_metadata()
 

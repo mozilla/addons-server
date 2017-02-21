@@ -1222,6 +1222,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.version = version_factory(addon=self.addon,
                                        channel=amo.RELEASE_CHANNEL_LISTED)
+        self.version.update(license=None)  # Addon needs to be missing data.
         self.url = reverse('devhub.submit.version.details',
                            args=['a3615', self.version.pk])
         self.next_step = reverse('devhub.submit.version.finish',

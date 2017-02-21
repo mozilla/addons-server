@@ -41,16 +41,18 @@ from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
 from olympia.addons.models import (
-    Addon, Persona, update_search_index as addon_update_search_index)
+    Addon, AddonCategory, Category, Persona,
+    update_search_index as addon_update_search_index)
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
+from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File
 from olympia.lib.es.utils import timestamp_index
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
-from olympia.versions.models import ApplicationsVersions, Version
+from olympia.versions.models import ApplicationsVersions, License, Version
 from olympia.users.models import UserProfile
 
 from . import dynamic_urls
@@ -633,6 +635,7 @@ def addon_factory(
     tags = kw.pop('tags', [])
     users = kw.pop('users', [])
     when = _get_created(kw.pop('created', None))
+    category = kw.pop('category', None)
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
     name = kw.pop('name', u'Addôn %s' % unicode(uuid.uuid4()).replace('-', ''))
@@ -649,6 +652,7 @@ def addon_factory(
         'weekly_downloads': popularity or random.randint(200, 2000),
         'created': when,
         'last_updated': when,
+        'summary': u'Summary for %s' % name,
     }
     kwargs.update(kw)
 
@@ -677,6 +681,14 @@ def addon_factory(
 
     for user in users:
         addon.addonuser_set.create(user=user)
+
+    application = version_kw.get('application', amo.FIREFOX.id)
+    if not category:
+        static_category = random.choice(
+            CATEGORIES[application][type_].values())
+        category, _ = Category.objects.get_or_create(
+            id=static_category.id, defaults=static_category.__dict__)
+    AddonCategory.objects.create(addon=addon, category=category)
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -717,13 +729,29 @@ def collection_factory(**kw):
     return c
 
 
+def license_factory(**kw):
+    data = {
+        'name': {
+            'en-US': u'My License',
+            'fr': u'Mä Licence',
+        },
+        'text': {
+            'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+        },
+        'url': 'http://license.example.com/',
+    }
+    data.update(**kw)
+    return License.objects.create(**data)
+
+
 def file_factory(**kw):
-    v = kw['version']
+    version = kw['version']
+    filename = kw.pop('filename', '%s-%s' % (version.addon_id, version.id))
     status = kw.pop('status', amo.STATUS_PUBLIC)
     platform = kw.pop('platform', amo.PLATFORM_ALL.id)
-    f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            platform=platform, status=status, **kw)
-    return f
+    file_ = File.objects.create(filename=filename,
+                                platform=platform, status=status, **kw)
+    return file_
 
 
 def req_factory_factory(url, user=None, post=False, data=None, session=None):
@@ -764,22 +792,31 @@ def version_factory(file_kw=None, **kw):
     # not already created in fixtures (use fake versions).
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
-    version = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    version_str = kw.pop('version', '%.1f' % random.uniform(0, 2))
     application = kw.pop('application', amo.FIREFOX.id)
-    v = Version.objects.create(version=version, **kw)
-    v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
-    v.save()
+    if not kw.get('license') and not kw.get('license_id'):
+        # Is there a built-in one we can use?
+        builtins = License.objects.builtins()
+        if builtins.exists():
+            kw['license_id'] = builtins[0].id
+        else:
+            license_kw = {'builtin': 99}
+            license_kw.update(kw.get('license_kw', {}))
+            kw['license'] = license_factory(**license_kw)
+    ver = Version.objects.create(version=version_str, **kw)
+    ver.created = ver.last_updated = _get_created(kw.pop('created', 'now'))
+    ver.save()
     if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_SEARCH):
         av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
         av_max, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=max_app_version)
         ApplicationsVersions.objects.get_or_create(application=application,
-                                                   version=v, min=av_min,
+                                                   version=ver, min=av_min,
                                                    max=av_max)
     file_kw = file_kw or {}
-    file_factory(version=v, **file_kw)
-    return v
+    file_factory(version=ver, **file_kw)
+    return ver
 
 
 @pytest.mark.es_tests
