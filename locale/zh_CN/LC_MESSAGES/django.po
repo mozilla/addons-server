@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-20 21:16+0000\n"
+"PO-Revision-Date: 2017-02-21 16:18+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -683,7 +683,7 @@ msgstr "今日用户 {0} 名"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "要安装这个或其他数以千计的附加组件，<b>下载 Firefox</b>，Mozilla 出品的免费、开放的网页浏览器。"
+msgstr "要安装这与其他（成千上万）的附加组件，<b>下载 Firefox</b> —— 自由、开放的网页浏览器，Mozilla 出品。"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
@@ -709,7 +709,7 @@ msgstr "进一步了解 Thunderbird"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "要安装这个或者数以千计的更多主题，<b>下载 Firefox</b>，Mozilla 出品的免费开放的网页浏览器。"
+msgstr "要安装这与其他（成千上万）的主题，<b>下载 Firefox</b> —— 自由、开放的网页浏览器，Mozilla 出品。"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -10475,7 +10475,7 @@ msgstr "欢迎访问 {0} 附加组件。"
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "从数以千计的额外功能和样式里选择打造您的专属 Firefox。"
+msgstr "从成千上万的额外功能和样式中选择，打造您专属的 Firefox。"
 
 #: src/olympia/templates/impala/base.html
 #, python-format
