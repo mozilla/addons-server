@@ -223,8 +223,6 @@ class TestValidator(ValidatorTestCase):
         _mock.return_value = self.mock_sign_addon_warning
         tasks.validate(self.upload, listed=True)
         validation = json.loads(self.get_upload().validation)
-        # FIXME: this is because we removed the already signed warning, need to
-        # figure out what to do.
         assert validation['warnings'] == 0
         assert len(validation['messages']) == 0
 
