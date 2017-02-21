@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 03:41+0000\n"
+"PO-Revision-Date: 2017-02-21 03:56+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -9696,9 +9696,8 @@ msgid "This field is required."
 msgstr "此欄位必填。"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "通過審核後，您可以在這裡更新您的主題設計。"
+msgstr "已經建立評論後，就不能再變更要評論的附加元件。"
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
@@ -9713,14 +9712,12 @@ msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "此版本的附加元件不存在，或尚未公開。"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "某位使用者評論我的附加元件"
+msgstr "您不能評論自己的附加元件。"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "您不行再對這個版本上傳檔案。"
+msgstr "您不能對同一套附加元件的相同版本評論超過一次。"
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
