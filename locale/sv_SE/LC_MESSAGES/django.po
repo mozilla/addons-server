@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-20 23:50+0000\n"
+"PO-Revision-Date: 2017-02-20 23:57+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1084,18 +1084,20 @@ msgstr "stäng"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Vissa tillägg be om behörighet att utföra vissa funktioner (exempel: en flikhanterar tillägg kommer att be om behörighet för att komma åt din webbläsares fliksystem)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Eftersom du har kontroll över Firefox, är valet att bevilja eller neka dessa önskemål ditt. Att acceptera behörigheter äventyrar inte webbläsarens prestanda eller säkerhet, men i vissa sällsynta "
+"fall kan det vara en risk."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr ""
+msgstr "Det kan:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1793,7 +1795,7 @@ msgstr "Firefox tillägg"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Ledsen, men vi kan inte hitta något på den adress du angivit. Om du följt en länk till ett tillägg, är det möjligt att tillägget har tagits bort av dess skapare."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
@@ -1815,6 +1817,8 @@ msgstr "Hemsida för tillägg"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Om du följde en länk från någonstans, vänligen %(open_bug_link)sskicka in en fråga%(close_bug_link)s. Berätta vart du kom ifrån och vad du letade efter, och vi kommer att göra vårt bästa för att "
+"åtgärda det."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3810,11 +3814,11 @@ msgstr "Åtkomst till webbläsarens aktivitet under navigering"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
-msgstr ""
+msgstr "Ger obegränsad lagring av klientsidans data"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
-msgstr ""
+msgstr "Åtkomst till webbläsaren under webbaktivitet"
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4156,7 +4160,7 @@ msgstr "Du kan inte skicka in denna typ av tillägg"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Du kan inte skicka in ett tillägg med en guid som slutar med \"@mozilla.org\""
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -7475,7 +7479,7 @@ msgstr "Filen är en katalog."
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name} website"
-msgstr ""
+msgstr "Åtkomst till data för webbplatsen {name}"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -9986,15 +9990,15 @@ msgstr "Du kan inte ändra tillägget när en granskning har skapats."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Du kan inte svara på en recension som redan är ett svar."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Du kan inte ändra versionen på tillägget så snart granskningen har skapats."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Denna version av tillägget finns inte eller är inte publik."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't leave a review on your own add-on."
