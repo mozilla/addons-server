@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 09:18+0000\n"
+"PO-Revision-Date: 2017-02-21 09:40+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1847,6 +1847,8 @@ msgstr "Початкова сторінка додатків"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Якщо ви перейшли за посиланням з іншого місця, будь ласка, %(open_bug_link)sповідомте про проблему%(close_bug_link)s. Розкажіть нам звідки ви перейшли і що ви намагались знайти, і ми спробуємо "
+"виправити це."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3815,7 +3817,7 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Доступ до ваших даних для всіх веб-сайтів"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access bookmarks"
@@ -3823,19 +3825,19 @@ msgstr "Доступ до закладок"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
-msgstr ""
+msgstr "Доступ до тексту буфера обміну"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
-msgstr ""
+msgstr "Завантаження файлів, а також читання й зміна історії завантажень"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
-msgstr ""
+msgstr "Доступ до історії браузера"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Обмін повідомленнями з іншими програмами, окрім Firefox"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Display notifications to you"
@@ -3843,11 +3845,11 @@ msgstr "Показ сповіщень"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr ""
+msgstr "Доступ до історії браузера для відновлення вкладок"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Доступ до вкладок браузера"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browsing history"
@@ -3855,15 +3857,15 @@ msgstr "Доступ до історії перегляду"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "Доступ до активності браузера під час навігації"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
-msgstr ""
+msgstr "Надання необмеженого сховища даних зі сторони клієнта"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
-msgstr ""
+msgstr "Доступ до браузера під час діяльності в Інтернеті"
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4207,7 +4209,7 @@ msgstr "Не можна подавати додаток такого типу"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Ви не можете подати додаток з інструкцією, що завершується на \"@mozilla.org\""
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -7505,7 +7507,7 @@ msgstr "Цей файл є каталогом."
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name} website"
-msgstr ""
+msgstr "Доступ до ваших даних для {name} веб-сайту"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -10014,15 +10016,15 @@ msgstr "Ви можете змінити додаток після поданн�
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Ви не можете відповідати на відповідь."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Ви не можете змінювати версію додатка після подання на перевірку."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Ця версія додатку не існує, або вона не загальнодоступна."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't leave a review on your own add-on."
