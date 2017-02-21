@@ -12,7 +12,9 @@ ADD docker/mysql.repo /etc/yum.repos.d/mysql.repo
 # This is temporary until https://bugzilla.mozilla.org/show_bug.cgi?id=1226533
 ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
 
-RUN yum install -y \
+# Upgrade git
+RUN rpm -U http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm \
+    && yum install -y \
         # Supervisor is being used to start and keep our services running
         supervisor \
         # General (dev-) dependencies
