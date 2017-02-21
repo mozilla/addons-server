@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 13:52+0000\n"
+"PO-Revision-Date: 2017-02-21 14:03+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3869,7 +3869,7 @@ msgstr "Dostopa do odložišča besedila"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
-msgstr ""
+msgstr "Prenaša datoteke ter bere in spreminja zgodovino prenosov"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
