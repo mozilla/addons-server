@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 11:10+0000\n"
+"PO-Revision-Date: 2017-02-21 11:13+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3851,7 +3851,7 @@ msgstr "Korlátlan ügyfél-oldali tárolás biztosítása"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
-msgstr ""
+msgstr "Hozzáférés a böngészőhöz Webes tevékenységek során"
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -9994,7 +9994,7 @@ msgstr "Nem válaszolhat olyan értékelésre, amely már egy válasz."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Nem módosíthatja az értékelt kiegészítő verzióját az értékelés létrehozása után."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
