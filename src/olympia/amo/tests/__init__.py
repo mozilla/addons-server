@@ -797,7 +797,7 @@ def version_factory(file_kw=None, **kw):
     if not kw.get('license') and not kw.get('license_id'):
         # Is there a built-in one we can use?
         builtins = License.objects.builtins()
-        if builtins.count():
+        if builtins.exists():
             kw['license_id'] = builtins[0].id
         else:
             license_kw = {'builtin': 99}
