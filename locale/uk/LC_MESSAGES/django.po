@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 08:45+0000\n"
+"PO-Revision-Date: 2017-02-21 09:18+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1109,18 +1109,20 @@ msgstr "закрити"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Деяким додаткам потрібен дозвіл для виконання певних функцій (наприклад: додаток для керування вкладками запитає вас про дозвіл на доступ до системи вкладок браузера)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"У зв'язку з тим, що ви контролюєте Firefox, вибір надання чи заборони дозволу цілком належить вам. Загалом, надання дозволів не впливає на швидкодію і безпеку браузера, але в окремих рідкісних "
+"випадках є певний ризик."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr ""
+msgstr "Він може:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1823,11 +1825,11 @@ msgstr "Додатки Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Вибачте, але нам не вдалося знайти нічого за введеною адресою. Якщо ви перейшли за посиланням, ймовірно, автор видалив свій додаток."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Пропоновані сторінки"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Browse all extensions"
