@@ -456,7 +456,7 @@ class BETA_SIGNED(_LOG):
     keep = True
 
 
-class BETA_SIGNED_OBSOLETE(_LOG):  # Obsolete.
+class BETA_SIGNED_VALIDATION_FAILED(_LOG):  # Obsolete.
     id = 132
     format = _(u'{file} was signed.')
     keep = True
