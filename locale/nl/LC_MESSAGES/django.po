@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 07:10+0000\n"
+"PO-Revision-Date: 2017-02-21 07:20+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -911,14 +911,12 @@ msgid "by %(users)s"
 msgstr "door %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} waarschuwing"
+msgstr "[Waarschuwing]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Permissions"
-msgstr "Versies"
+msgstr "Toestemmingen"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -1805,14 +1803,12 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr "<p>Probeer terug te gaan naar de vorige pagina, te verversen en probeer het dan opnieuw.</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Niet gevonden"
+msgstr "Pagina niet gevonden"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Meer add-ons"
+msgstr "Firefox-add-ons"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
@@ -1823,19 +1819,16 @@ msgid "Suggested Pages"
 msgstr "Gesuggereerde pagina’s"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Door alle add-ons bladeren"
+msgstr "Door alle extensies bladeren"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Door alle add-ons bladeren"
+msgstr "Door alle thema’s bladeren"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Add-on-startpagina"
+msgstr "Add-ons-startpagina"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
@@ -3813,13 +3806,12 @@ msgid "Access your data for all websites"
 msgstr "Toegang tot uw gegevens voor alle websites"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access bookmarks"
-msgstr "Bladwijzers"
+msgstr "Bladwijzers openen"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
-msgstr "Toegang tot het tekstklembord"
+msgstr "Het tekstklembord benaderen"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
@@ -3827,41 +3819,39 @@ msgstr "Bestanden downloaden en de downloadgeschiedenis van de browser lezen en 
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
-msgstr ""
+msgstr "De browsergeschiedenis benaderen"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Berichten met andere programma’s dan Firefox uitwisselen"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Display notifications to you"
-msgstr "Gebruikersnotificaties"
+msgstr "Notificaties voor u weergeven"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr ""
+msgstr "De browsergeschiedenis benaderen om tabbladen te herstellen"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Browsertabbladen benaderen"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access browsing history"
-msgstr "%s-versiegeschiedenis"
+msgstr "Browsergeschiedenis benaderen"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "Browseractiviteit tijdens navigeren benaderen"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
-msgstr ""
+msgstr "Onbeperkte opslag van gegevens aan de clientzijde bieden"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
-msgstr ""
+msgstr "De browser tijdens webactiviteit benaderen"
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4207,7 +4197,7 @@ msgstr "U kunt dit type add-on niet indienen"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "U kunt geen add-on met een GUID die eindigt op “@mozilla.org” indienen"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -4259,9 +4249,8 @@ msgid "Review requested."
 msgstr "Beoordeling aangevraagd."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "You must provide further details to proceed."
-msgstr "Beoordeling aangevraagd.  U dient meer details op te geven om verder te gaan."
+msgstr "U dient meer details op te geven om verder te gaan."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -7482,7 +7471,7 @@ msgstr "Dit bestand is een map."
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name} website"
-msgstr ""
+msgstr "Uw gegevens voor de website {name} benaderen"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -9971,36 +9960,32 @@ msgid "Other (please specify)"
 msgstr "Overig (specificeer deze)"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "This field is required."
-msgstr "Veld verplicht"
+msgstr "Dit veld is verplicht."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "U kunt het ontwerp van uw thema hier bijwerken zodra dit is goedgekeurd."
+msgstr "U kunt de bij een beoordeling behorende add-on niet wijzigen zodra deze is aangemaakt."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "U kunt niet antwoorden op een beoordeling die al een antwoord is."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "U kunt de versie van de beoordeelde add-on niet wijzigen als de beoordeling is aangemaakt."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Deze versie van de add-on bestaat niet of is niet openbaar."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "iemand schrijft een beoordeling over mijn add-on"
+msgstr "U kunt geen beoordeling voor uw eigen add-on schrijven."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "U kunt geen bestanden meer uploaden voor deze versie."
+msgstr "U kunt niet meerdere beoordelingen voor dezelfde versie van een add-on schrijven."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
