@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 11:13+0000\n"
+"PO-Revision-Date: 2017-02-21 12:20+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1818,7 +1818,7 @@ msgstr "Firefox kiegészítők"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Sajnáljuk, de nem találunk semmit a megadott címen. Ha egy hivatkozást követett a kiegészítőhöz, akkor lehetséges hogy a szerző eltávolította a kiegészítőt."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
@@ -3831,7 +3831,7 @@ msgstr "Felhasználói értesítések megjelenítése"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr ""
+msgstr "Hozzáférés a böngészőelőzményekhez a lapok helyreállítása miatt"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
