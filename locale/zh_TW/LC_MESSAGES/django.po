@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 03:31+0000\n"
+"PO-Revision-Date: 2017-02-21 03:41+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -885,14 +885,12 @@ msgstr "作者：%(users)s"
 
 # {0} is a number
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} 個警告"
+msgstr "[警告]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Permissions"
-msgstr "版本"
+msgstr "權限"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -1066,18 +1064,18 @@ msgstr "關閉"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "某些附加元件會向您詢問是否要授權進行某些行為（例如：分頁管理附加元件，會請您授權存取瀏覽器的分頁系統）。"
+msgstr "某些附加元件會向您詢問是否要授權進行某些行為（例如: 分頁管理附加元件，會請您授權存取瀏覽器的分頁系統）。"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
-msgstr ""
+msgstr "由於您對 Firefox 有完整的控制權，您可以自行決定是否要允許這些請求。同意這些權限不一定會降低您瀏覽器的效能或安全性，但在少數情況下，可能會有所關聯。"
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr ""
+msgstr "本附加元件可以:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1766,42 +1764,37 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr "<p>嘗試回到之前的頁面，請重新整理再試一次。</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
 msgstr "找不到頁面"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "更多附加元件"
+msgstr "Firefox 附加元件"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "很抱歉，我們無法在您輸入的網址找到任何東西。若您原先是要開啟某套附加元件的網址，則可能是該附加元件已被作者下架。"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "推薦頁面"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "瀏覽所有附加元件"
+msgstr "瀏覽所有擴充套件"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all themes"
-msgstr "瀏覽所有附加元件"
+msgstr "瀏覽所有佈景主題"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Add-ons Home Page"
 msgstr "附加元件首頁"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "若您是從某個網頁上的鏈結過來的，請%(open_bug_link)s回報問題%(close_bug_link)s給我們。告訴我們您是從哪張網頁過來的，想要尋找什麼東西，我們會盡力修復。"
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3743,58 +3736,55 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "存取您在所有網站中的資料"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access bookmarks"
-msgstr "書籤"
+msgstr "存取書籤"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
-msgstr ""
+msgstr "存取剪貼簿"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
-msgstr ""
+msgstr "下載檔案、讀取或修改瀏覽器的下載紀錄"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
-msgstr ""
+msgstr "存取瀏覽紀錄"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "與 Firefox 以外的程式交換訊息"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Display notifications to you"
-msgstr "使用者通知"
+msgstr "向您顯示通知"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr ""
+msgstr "存取瀏覽紀錄，以還原分頁"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "存取瀏覽器分頁"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access browsing history"
-msgstr "%s 的版本歷史"
+msgstr "存取瀏覽紀錄"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "在上網時存取瀏覽器的行為"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
-msgstr ""
+msgstr "提供不受限的客戶端資料儲存空間"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
-msgstr ""
+msgstr "在上網時存取瀏覽器"
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4132,7 +4122,7 @@ msgstr "您無法送出此類型的附加元件。"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "您不得送出 GUID 結尾為「@mozilla.org」的附加元件"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -4184,9 +4174,8 @@ msgid "Review requested."
 msgstr "已要求審核。"
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "You must provide further details to proceed."
-msgstr "已要求審查，您必須提供更多資訊才能繼續。"
+msgstr "您必須提供更多資訊才能繼續。"
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -7354,7 +7343,7 @@ msgstr "此檔案是一個目錄。"
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name} website"
-msgstr ""
+msgstr "存取您在 {name} 網站上的資料"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -9703,9 +9692,8 @@ msgid "Other (please specify)"
 msgstr "其他（請詳述）"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "This field is required."
-msgstr "必填項目"
+msgstr "此欄位必填。"
 
 #: src/olympia/reviews/serializers.py
 #, fuzzy
@@ -9714,15 +9702,15 @@ msgstr "通過審核後，您可以在這裡更新您的主題設計。"
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "您不能回覆已經回覆過的評論。"
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "您不能在評論已經建立後，更改要評論的附加元件版本。"
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "此版本的附加元件不存在，或尚未公開。"
 
 #: src/olympia/reviews/serializers.py
 #, fuzzy
