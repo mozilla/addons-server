@@ -1113,7 +1113,7 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr "Permette di:"
+msgstr ""
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -3812,7 +3812,7 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access bookmarks"
-msgstr "Accedi ai segnalibri"
+msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
