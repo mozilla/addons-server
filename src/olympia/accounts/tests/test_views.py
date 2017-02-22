@@ -31,9 +31,20 @@ FXA_CONFIG = {
     'redirect_url': 'https://addons.mozilla.org/fxa-authenticate',
     'scope': 'profile',
 }
+SKIP_REDIRECT_FXA_CONFIG = {
+    'oauth_host': 'https://accounts.firefox.com/v1',
+    'client_id': 'amodefault',
+    'redirect_url': 'https://addons.mozilla.org/fxa-authenticate',
+    'scope': 'profile',
+    'skip_register_redirect': True,
+}
 
 
-@override_settings(FXA_CONFIG={'default': FXA_CONFIG, 'internal': FXA_CONFIG})
+@override_settings(FXA_CONFIG={
+    'default': FXA_CONFIG,
+    'internal': FXA_CONFIG,
+    'skip': SKIP_REDIRECT_FXA_CONFIG,
+})
 class BaseAuthenticationView(APITestCase, PatchMixin,
                              InitializeSessionMixin):
 
@@ -805,6 +816,28 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.assertRedirects(
             response, reverse('users.edit'), target_status_code=302)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
+        assert not self.login_user.called
+        self.register_user.assert_called_with(mock.ANY, identity)
+
+    @mock.patch('olympia.accounts.views.AuthenticateView.ALLOWED_FXA_CONFIGS',
+                ['default', 'skip'])
+    def test_register_redirects_next_when_config_says_to(self):
+        user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
+        assert not user_qs.exists()
+        identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
+        self.fxa_identify.return_value = identity
+        user = UserProfile(username='foo', email='me@yeahoo.com')
+        self.register_user.return_value = user
+        response = self.client.get(self.url, {
+            'code': 'codes!!',
+            'state': ':'.join(
+                [self.fxa_state, base64.urlsafe_b64encode('/go/here')]),
+            'config': 'skip',
+        })
+        self.fxa_identify.assert_called_with(
+            'codes!!', config=SKIP_REDIRECT_FXA_CONFIG)
+        self.assertRedirects(
+            response, '/go/here', fetch_redirect_response=False)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
 
