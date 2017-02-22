@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-22 09:51+0000\n"
+"PO-Revision-Date: 2017-02-22 10:10+0000\n"
 "Last-Translator: Miha Knavs <miha@abecednik.si>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4251,7 +4251,7 @@ msgstr "Te vrste dodatka ne morete oddati"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Ne smete oddati dodatka, katerega guid se končuje z \"@mozilla.org\""
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -5458,7 +5458,7 @@ msgstr "Ustvari nova poverila"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Dokončajte objavo dodatka, tako da dodate različico ali manjkajoče metapodatke."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -5731,7 +5731,7 @@ msgstr "Poročevalec o združljivosti"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Promote"
-msgstr ""
+msgstr "Promoviraj"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get Your Add-on Featured"
@@ -7276,9 +7276,8 @@ msgid "Update the whiteboard"
 msgstr "Posodobi tablo"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Čakalne vrste za nenavedene"
+msgstr "Čakalna vrsta za nenavedene"
 
 #: src/olympia/editors/templates/editors/review.html
 #, fuzzy
@@ -9295,13 +9294,13 @@ msgid "What are the guidelines used to review my add-on?"
 msgstr "Kakšne smernice se uporablja pri pregledu mojega dodatka?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"Kadar preskuša dodatke za sprejem na AMO, ekipa pregledovalcev Mozilla sledi smernicam vodnika <a href=\"%(url)s\">Editors Reviewing Guide</a>. Pomembno je, da razvijalci dodatkov pred pošiljanjem "
-"svojih dodatkov za pregled pregledajo ta vodnik, da zagotovijo obravnavo področja splošnih težav. To bo zelo pomagalo pri pospeševanju procesa pregleda."
+"Kadar se preskušajo dodatki za sprejem na AMO, ekipa pregledovalcev sledi smernicam vodnika  <a href=\"%(url)s\">Vodnik urednikov za pregledovanje</a>. Pomembno je, da razvijalci dodatkov pred "
+"pošiljanjem svojih dodatkov za pregled pregledajo ta vodnik, da se izognejo splošnim pogostim pomanjkljivostim. To bo zelo pomagalo pri hitrosti procesa pregledovanja."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9327,13 +9326,13 @@ msgid "number of problem areas discovered"
 msgstr "število odkritih problematičnih območij"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Zaradi tega je zelo pomembno, da preberete <a href=\"%(g_url)s\">Vodnik urednikov za pregledovanje</a> zaradi zagotovitve, da je vaš dodatek ustrezno nastavljen.  Pametno je tudi prebrati objavo "
-"bloga <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a>, ki nudi izvrsten vpogled v zagotovitev tekočega pregleda vašega dodatka."
+"Zato je zelo pomembno, da preberete <a href=\"%(g_url)s\">Vodnik urednikov za pregledovanje</a>, saj tako lahko zagotovite, da je vaš dodatek ustrezno nastavljen. Koristno je tudi prebrati objavo na"
+" blogu <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a>, saj nudi izvrsten vpogled v zagotovitev nemotenega pregleda vašega dodatka."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -10081,11 +10080,11 @@ msgstr "Morda boste posodobili zasnovo teme potem, ko bo odobrena."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Ne morete ze odzvati na oceno, ki je že sama po sebi odziv."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Različice pregledanega dodatka ne morete spreminjati po tem, ko je bil pregled že končan."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
