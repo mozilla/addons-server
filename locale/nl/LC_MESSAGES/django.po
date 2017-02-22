@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 07:20+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2017-02-22 08:25+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -1102,13 +1102,13 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
-"Aangezien u uw Firefox controleert is de keuze om deze aanvragen toe te kennen geheel aan u. Het accepteren van toestemmingen heeft in principe geen gevolgen voor de prestaties of de beveiliging van"
-" uw browser, maar in een enkel geval kan dit aan de orde zijn."
+"Aangezien u de baas over uw Firefox bent, is de keuze om deze aanvragen toe te kennen geheel aan u. Het accepteren van toestemmingen heeft in principe geen gevolgen voor de prestaties of de "
+"beveiliging van uw browser, maar in zeldzame gevallen kan er sprake zijn van een risico."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr "Het kan:"
+msgstr "De add-on kan:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1816,7 +1816,7 @@ msgstr "Sorry, maar we kunnen niets op het door u opgegeven adres vinden. Als u 
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr "Gesuggereerde pagina’s"
+msgstr "Voorgestelde pagina’s"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Browse all extensions"
