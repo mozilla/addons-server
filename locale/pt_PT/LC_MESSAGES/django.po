@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-20 21:58+0000\n"
+"PO-Revision-Date: 2017-02-22 15:30+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -6766,7 +6766,7 @@ msgstr "Razoável (5 a 10 dias)"
 
 #: src/olympia/editors/views.py
 msgid "Overdue (Over 10 days)"
-msgstr "Antigos (mais de 10 dias)"
+msgstr "Atrasados (mais de 10 dias)"
 
 #: src/olympia/editors/views.py
 msgid "An unknown error occurred"
@@ -6899,7 +6899,7 @@ msgstr "Evento"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/home.html
 msgid "More details."
-msgstr "Mais detalhes"
+msgstr "Mais detalhes."
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html
 msgid "No events found for this period."
@@ -8704,11 +8704,11 @@ msgstr "Obrigado!"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Site Credits"
-msgstr "Créditos do sitio"
+msgstr "Créditos do site"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "A mozilla gostaria de agradecer às seguintes pessoas por suas colaborações ao projeto addons.mozilla.org ao longo dos anos:"
+msgstr "A Mozilla gostaria de agradecer às seguintes pessoas pelas suas colaborações ao projeto addons.mozilla.org ao longo dos anos:"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Developers &amp; Administrators"
@@ -8726,7 +8726,7 @@ msgstr "Revisores"
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html
 msgid "More than {0} add-on reviews"
-msgstr "Mais de {0} análises de extras"
+msgstr "Mais de {0} revisões de extras"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Other Contributors"
@@ -8967,7 +8967,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on support multiple locales?"
-msgstr "O meu extra pode suportar mais de um idioma?"
+msgstr "O meu extra pode suportar múltiplos idiomas?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
