@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-22 10:26+0000\n"
+"PO-Revision-Date: 2017-02-22 11:07+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3837,9 +3837,8 @@ msgid "Exchange messages with programs other than Firefox"
 msgstr "Scambiare messaggi con altre applicazioni installate"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Display notifications to you"
-msgstr "Notifiche utente"
+msgstr "Visualizzare notifiche"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
@@ -3850,9 +3849,8 @@ msgid "Access browser tabs"
 msgstr "Accedere alle schede del browser"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access browsing history"
-msgstr "Cronologia Versioni %s"
+msgstr "Accedere alla cronologia di navigazione"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
@@ -3864,7 +3862,7 @@ msgstr "Archiviare dati sul dispositivo senza limiti"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
-msgstr ""
+msgstr "Accedere al browser durante la navigazione"
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4213,7 +4211,7 @@ msgstr "Non è possibile caricare questo tipo di componente aggiuntivo."
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Non è consentito caricare un componente il cui GUID termini in \"@mozilla.org\""
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -7525,7 +7523,7 @@ msgstr "Questo file è una directory."
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name} website"
-msgstr ""
+msgstr "Accedere ai dati personali per il sito {name}"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -10046,17 +10044,16 @@ msgid "This field is required."
 msgstr "Campo obbligatorio"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Potrai aggiornare il motivo del tuo tema da qui una volta che sarà approvato."
+msgstr "Una volta che la recensione è stata creata, non è consentito modificare il componente aggiuntivo a cui essa fa riferimento."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Non è possibile rispondere a una revisione inserita in risposta a un commento precedente."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Una volta che la revisione è stata creata, non è consentito modificare la versione del componente aggiuntivo a cui essa fa riferimento."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
