@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-22 15:30+0000\n"
+"PO-Revision-Date: 2017-02-22 15:50+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -705,7 +705,7 @@ msgstr "Para instalar este extra e muitos mais, <b>obtenha o Firefox</b>, o nave
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
-msgstr "Saber mais sobre o Firefox"
+msgstr "Saber mais acerca do Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
@@ -725,7 +725,7 @@ msgstr "Para instalar este tema <b>obtenha o Thunderbird</b>, um cliente de emai
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Thunderbird"
-msgstr "Saber mais sobre o Thunderbird"
+msgstr "Saber mais acerca do Thunderbird"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -1061,7 +1061,7 @@ msgstr "Licença personalizada"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
-msgstr "Sobre este extra"
+msgstr "Acerca deste extra"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Developer’s Comments"
@@ -1141,8 +1141,8 @@ msgstr "O que há a seguir para o {0}"
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] "Sobre o programador"
-msgstr[1] "Sobre os desenvolvedores"
+msgstr[0] "Acerca do programador"
+msgstr[1] "Acerca dos programadores"
 
 #: src/olympia/addons/templates/addons/impala/developers.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/users/templates/users/edit.html
 #: src/olympia/users/templates/users/profile.html
@@ -1676,11 +1676,11 @@ msgstr "Versão máx. da aplicação atualizada para {version}."
 
 #: src/olympia/amo/log.py
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Email enviado aos autores sobre a compatibilidade de {version}."
+msgstr "Email enviado aos autores acerca da compatibilidade de {version}."
 
 #: src/olympia/amo/log.py
 msgid "Email sent to Author about add-on compatibility."
-msgstr "Email enviado ao autor sobre a compatibilidade do extra."
+msgstr "Email enviado ao autor acerca da compatibilidade do extra."
 
 #: src/olympia/amo/log.py
 msgid "Password changed."
@@ -2286,7 +2286,7 @@ msgstr[1] "<span>%(num)s</span> seguidores"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "About this Collection"
-msgstr "Sobre esta coleção"
+msgstr "Acerca desta coleção"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Add-ons synced to my Mobile Firefox"
@@ -2302,7 +2302,7 @@ msgstr "Tornar esta coleção pública"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Learn about collections"
-msgstr "Saiba mais sobre coleções"
+msgstr "Saiba mais acerca de coleções"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More Options:"
@@ -4319,7 +4319,7 @@ msgstr "Revisores AMO"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Força! Torne-se um revisor AMO hoje e tenha os seus extras revistos mais depressa."
+msgstr "Força! Torne-se um revisor AMO hoje e obtenha os seus extras revistos mais depressa."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Become an AMO Reviewer"
@@ -4327,7 +4327,7 @@ msgstr "Torne-se num revisor AMO"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Learn All About Add-ons"
-msgstr "Saber tudo sobre extras"
+msgstr "Saber tudo acerca os extras"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid ""
@@ -4591,7 +4591,7 @@ msgstr "Autores"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid "About author roles"
-msgstr "Sobre o papel do autor"
+msgstr "Acerca dos papeis do autor"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid ""
@@ -5079,7 +5079,7 @@ msgstr "Ver alterados recentemente"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
-msgstr "Editar os detalhes da listagem pública deste tema."
+msgstr "Editar os detalhes acerca da listagem pública deste tema."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
@@ -5476,8 +5476,8 @@ msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
 msgstr ""
-"O seu perfil de programador vai dar informações aos utilizadores sobre si, porque é que fez este extra e o futuro do seu extra. Este perfil é necessário para extras que pedem contribuições, mas pode"
-" ser interessante para qualquer programador que queira comunicar com os utilizadores."
+"O seu perfil de programador vai dar informações aos utilizadores acerca de si, porque é que fez este extra e o futuro do seu extra. Este perfil é necessário para extras que pedem contribuições, mas "
+"pode ser interessante para qualquer programador que queira comunicar com os utilizadores."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
@@ -5575,7 +5575,7 @@ msgstr "Por favor inclua instruções de como reproduzir o ficheiro de extra fin
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
-msgstr "Saiba mais sobre a política de revisão de código."
+msgstr "Leia mais acerca da política de revisão de código."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
@@ -5964,7 +5964,7 @@ msgid ""
 "We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
 "them to try."
 msgstr ""
-"Recomendamos agradecer ao utilizador e dizer-lhe o quanto gostou da ajuda dele. Pode também querer dizer-lhes o que vem a seguir para o seu extra e outros extras que tenha feito para que eles os "
+"Recomendamos agradecer ao utilizador e dizer-lhe o quanto gostou da ajuda dele. Pode também querer dizer-lhe o que vem a seguir para o seu extra e outros extras que tenha feito para que eles os "
 "possam experimentar."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
@@ -6166,7 +6166,7 @@ msgstr "Passos seguintes:"
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "Forneça mais detalhes sobre o seu tema <a href=\"%(edit_url)s\">editando a sua listagem</a>."
+msgstr "Forneça mais detalhes acerca do seu tema ao <a href=\"%(edit_url)s\">editar a sua listagem</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -6243,7 +6243,7 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Informação sobre as alterações neste lançamento, novas funcionalidades, erros conhecidos e outra informação útil especifica para esta versão/lançamento. Esta informação também é apresentada no "
+"Informação acerca das alterações neste lançamento, novas funcionalidades, erros conhecidos e outra informação útil especifica para esta versão/lançamento. Esta informação também é apresentada no "
 "gestor de extras, ao atualizar."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
@@ -6396,7 +6396,8 @@ msgstr "Eliminar versão {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Está a eliminar a versão atual deste extra. Isto pode fazer com que o estado do seu extra mude ou que a sua listagem perca visibilidade pública, se esta for a única versão pública do seu extra."
+"Está prestes a apagar a versão atual deste extra. Isto pode fazer com que o estado do seu extra mude ou que a sua listagem perca visibilidade pública, se esta for a única versão pública do seu "
+"extra."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Deleting this version will permanently delete:"
@@ -6754,7 +6755,7 @@ msgstr "Envio de tema marcado para revisão"
 
 #: src/olympia/editors/tasks.py
 msgid "A question about your Theme submission"
-msgstr "Uma questão sobre a submissão do seu tema"
+msgstr "Uma questão acerca da submissão do seu tema"
 
 #: src/olympia/editors/views.py
 msgid "New Add-ons (Under 5 days)"
@@ -7797,7 +7798,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More About Add-ons"
-msgstr "Saiba mais sobre os extras"
+msgstr "Saber mais acerca dos extras"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "See all"
@@ -8523,7 +8524,7 @@ msgstr "Dólar do Zimbabué"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
-msgstr "Sobre os Extras da Mozilla"
+msgstr "Acerca dos Extras da Mozilla"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "What is this website?"
@@ -8889,9 +8890,9 @@ msgid ""
 "metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
 " updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
-"Este ficheiro, denominado por <a href=\"%(url)s\">manifesto de instalação</a>, é utilizado por aplicações de gestão de extras baseados em XUL para obter informações sobre um extra enquanto este é "
-"instalado. Contem meta-dados que identificam o extra, fornecendo informação sobre quem o criou, onde pode ser encontrada mais informação sobre ele, com que versões e aplicações é compatível, como "
-"deve ser atualizado, etc. O formato do manifesto de instalação é RDF/XML."
+"Este ficheiro, denominado por <a href=\"%(url)s\">manifesto de instalação</a>, é utilizado por aplicações de gestão de extras baseados em XUL para obter informações acerca de um extra enquanto este "
+"é instalado. Contem meta-dados que identificam o extra, fornecendo informação acerca de quem o criou, onde pode ser encontrada mais informação sobre ele, com que versões e aplicações é compatível, "
+"como deve ser atualizado, etc. O formato do manifesto de instalação é RDF/XML."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
@@ -9328,7 +9329,7 @@ msgid ""
 "provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
 "guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
-"Precisa de mais informação sobre os vários tipos de licença de código aberto? Não sabe qual a licença que deve escolher? Que direitos uma licença especifica garante? Apesar de nada substituir a "
+"Precisa de mais informação acerca dos vários tipos de licença de código aberto? Não sabe qual a licença que deve escolher? Que direitos uma licença especifica garante? Apesar de nada substituir a "
 "leitura de todos os termos de uma licença, em baixo estão alguns sites que contêm informação sobre algumas das licenças chave de código aberto, que podem ajudar a encontrar as diferenças entre as "
 "várias licenças. Estes sites são fornecidos apenas para sua conveniência e como uma referência para uso pessoal. Estes recursos não constituem aconselhamento legal nem devem ser utilizados como "
 "substituto desse aconselhamento. A Mozilla não garante nem é responsável pelo conteúdo destes sites ou pela sua confiança neste conteúdo."
@@ -9386,7 +9387,8 @@ msgid ""
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
 msgstr ""
 "Os extras são pequenos pedaços de software que adicionam novas funcionalidades à sua instalação do %(app_name)s. Os extras podem aumentar o %(app_name)s com novas funcionalidades, dicionários de "
-"idiomas estrangeiros ou alterar o visual. Através dos extras, pode personalizar o %(app_name)s conforme a sua necessidade e gosto. <a href=\"%(learnmore_url)s\">Saber mais sobre a personalização</a>"
+"idiomas estrangeiros ou alterar o visual. Através dos extras, pode personalizar o %(app_name)s conforme a sua necessidade e gosto. <a href=\"%(learnmore_url)s\">Saber mais acerca da "
+"personalização</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Will add-ons work with my web browser or application?"
@@ -9460,9 +9462,9 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
-"Na maioria dos casos, extras podem ser instalados simplesmente ao clicar no botão instalar fornecido. Os extras podem ser geridos, desativados ou removidos no gestor de extras do %(app_name)s. Para "
-"instruções mais detalhadas, leia <a href=\"%(extension_url)s\">este artigo sobre extensões</a> ou <a href=\"%(theme_url)s\">este para temas e temas completos</a>. Se tiver dificuldades a instalar "
-"extras, consulte <a href=\"%(troubleshooting_url)s\">resolver problemas com extensões e temas</a>."
+"Na maioria dos casos, os extras podem ser instalados simplesmente ao clicar no botão de instalar fornecido. Os extras podem ser geridos, desativados ou desinstalados no Gestor de extras no "
+"%(app_name)s. Para instruções mais detalhadas, leia <a href=\"%(extension_url)s\">este artigo sobre extensões</a> ou <a href=\"%(theme_url)s\">este para temas e temas completos</a>. Se tiver "
+"dificuldades a instalar extras, veja <a href=\"%(troubleshooting_url)s\">resolver problemas com extensões e temas</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
@@ -9775,7 +9777,7 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
-"As análises de extras são uma forma de você partilhar as suas opiniões sobre os extras que instalou e utilizou. A nossa equipa de moderação reserva-se ao direito de recusar ou de remover qualquer "
+"As análises de extras são uma forma de você partilhar as suas opiniões acerca dos extras que instalou e utilizou. A nossa equipa de moderação reserva-se ao direito de recusar ou de remover qualquer "
 "análise que não cumpra estas orientações."
 
 #: src/olympia/pages/templates/pages/review_guide.html
@@ -9918,7 +9920,7 @@ msgstr "Nós recomendamos migrar para o <a href=\"%(tb_url)s\">Thunderbird</a> e
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Read more about Sunbird"
-msgstr "Saiba mais sobre o Sunbird"
+msgstr "Ler mais acerca do Sunbird"
 
 #: src/olympia/paypal/__init__.py
 msgid "There was an error communicating with PayPal. Please try again later."
@@ -10671,7 +10673,7 @@ msgstr "Fonte das descargas por data"
 
 #: src/olympia/stats/templates/stats/reports/sources.html
 msgid "About tracking external sources..."
-msgstr "Sobre o monitoramento de fontes externas..."
+msgstr "Acerca da monitorização de fontes externas..."
 
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
@@ -11065,7 +11067,7 @@ msgstr "o meu extra é revisto por um revisor"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr "A Mozilla necessita contactá-lo sobre o meu extra individual"
+msgstr "A Mozilla precisa de contactar-me acerca do meu extra individual"
 
 # 85%
 #: src/olympia/users/notifications.py
@@ -11075,15 +11077,15 @@ msgstr "meu aplicativo foi analisado por um editor"
 # 90%
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual app"
-msgstr "Mozilla precisa entrar em contato sobre meu aplicativo"
+msgstr "A Mozilla precisa de contactar-me acerca da minha aplicação individual"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
-msgstr "A Mozilla quer contactar-me para notícias e inquéritos relevantes para programadores de aplicações"
+msgstr "A Mozilla quer contactar-me acerca de notícias e inquéritos relevantes para programadores de aplicações"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
-msgstr "A Mozilla quer contactar-me sobre novas regiões adicionadas ao Marketplace"
+msgstr "A Mozilla quer contactar-me acerca de novas regiões adicionadas ao Marketplace"
 
 #: src/olympia/users/notifications.py
 msgid "User Notifications"
@@ -11217,7 +11219,7 @@ msgstr "Eliminar foto atual"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This is the default locale used to display information about you (like your description)."
-msgstr "Este é o idioma por omissão utilizado para apresentar informações sobre si (como por exemplo, a descrição)."
+msgstr "Este é o idioma predefinido utilizado para apresentar informações acerca de si (como por exemplo, a sua descrição)."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
@@ -11245,11 +11247,11 @@ msgstr "Notificações"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "De tempo a tempo, a Mozilla poderá enviar-lhe um email sobre os próximos lançamentos e eventos sobre extras. Por favor, selecione os tópicos de interesse."
+msgstr "De tempo a tempo, a Mozilla poderá enviar-lhe um email acerca dos próximos lançamentos e eventos de extras. Por favor, selecione os tópicos em que está interessado."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "A Mozilla reserva o direito de o contactar individualmente sobre preocupações específicas sobre os extras hospedados."
+msgstr "A Mozilla reserva o direito de o contactar individualmente acerca de preocupações específicas com os seus extras hospedados."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Admin"
@@ -11314,7 +11316,7 @@ msgstr "Artista de temas"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "About me"
-msgstr "Sobre mim"
+msgstr "Acerca de mim"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "In a little more detail..."
