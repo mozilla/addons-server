@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 12:20+0000\n"
+"PO-Revision-Date: 2017-02-22 14:03+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1106,18 +1106,20 @@ msgstr "bezárás"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Néhány kiegészítő engedélyt kér bizonyos funkciókhoz (például: egy lapkezelő kiegészítő engedélyt fog kérni, hogy hozzáférjen a böngésző lapkezelő rendszeréhez)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Mivel Ön irányítja a saját Firefoxát, ezért ezen kérések engedélyezése vagy megtagadása Önre bízott. A jogosultságok elfogadása nem feltétlenül csökkenti a böngészője teljesítményét vagy "
+"biztonságát, de ritka esetekben lehetnek kockázatok."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr ""
+msgstr "A következőket teheti:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1839,7 +1841,7 @@ msgstr "Kiegészítő honlapja"
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "Ha egy hivatkozást követett valahonnan, akkor %(open_bug_link)snyújtson be egy hibajegyet%(close_bug_link)s. Mondja el honnan jött, és mit keresett, és megtesszük amit tudunk, hogy javítsuk."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3803,7 +3805,7 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Hozzéférés az adataihoz minden weboldalon"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access bookmarks"
@@ -9984,9 +9986,8 @@ msgid "This field is required."
 msgstr "Ez a mező kötelező."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Majd frissítheti a témadizájnt itt, amint az elfogadásra került."
+msgstr "Nem módosíthatja az értékeléshez tartozó kiegészítőt az értékelés létrehozása után."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
