@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-22 08:25+0000\n"
+"PO-Revision-Date: 2017-02-22 08:47+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2260,7 +2260,7 @@ msgstr "of <a id=\"collections-new-cancel\" href=\"#\">Annuleer</a>"
 #. Link to remove a collection vote
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html
 msgid "To rate collections, you must have an add-ons account."
-msgstr "Om collecties te waarderen dient u een add-ons-account te hebben."
+msgstr "Om collecties te waarderen, moet u een add-ons-account hebben."
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Create an Add-ons Account"
@@ -3803,11 +3803,11 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr "Toegang tot uw gegevens voor alle websites"
+msgstr "Uw gegevens voor alle websites benaderen"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access bookmarks"
-msgstr "Bladwijzers openen"
+msgstr "Bladwijzers benaderen"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
@@ -3819,7 +3819,7 @@ msgstr "Bestanden downloaden en de downloadgeschiedenis van de browser lezen en 
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
-msgstr "De browsergeschiedenis benaderen"
+msgstr "Browsergeschiedenis benaderen"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
@@ -3831,7 +3831,7 @@ msgstr "Notificaties voor u weergeven"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr "De browsergeschiedenis benaderen om tabbladen te herstellen"
+msgstr "Browsergeschiedenis benaderen om tabbladen te herstellen"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
@@ -4197,7 +4197,7 @@ msgstr "U kunt dit type add-on niet indienen"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "U kunt geen add-on met een GUID die eindigt op “@mozilla.org” indienen"
+msgstr "U kunt geen add-on indienen met een GUID die op ‘@mozilla.org’ eindigt"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -5189,7 +5189,7 @@ msgstr "Kies een licentie die toepasselijk is voor de rechten die u op uw bronco
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Als uw add-on gegevens verzendt vanaf de computer van de gebruiker, is een privacybeleid verplicht dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt."
+msgstr "Als uw add-on gegevens verzendt vanaf de computer van de gebruiker, is een privacybeleid vereist dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Notes to Reviewer:"
@@ -5566,8 +5566,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Als uw add-on gegevens verzendt vanaf de computer van de gebruiker, is een privacybeleid verplicht dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt. Dit is alleen relevant "
-"voor vermelde add-ons."
+"Als uw add-on gegevens verzendt vanaf de computer van de gebruiker, is een privacybeleid vereist dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt. Dit is alleen relevant voor "
+"vermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -9961,7 +9961,7 @@ msgstr "Overig (specificeer deze)"
 
 #: src/olympia/reviews/serializers.py
 msgid "This field is required."
-msgstr "Dit veld is verplicht."
+msgstr "Dit veld is vereist."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the add-on of a review once it has been created."
@@ -10720,7 +10720,7 @@ msgstr "Andere toepassingen"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Om uw eigen collecties aan te maken dient u een Mozilla-add-ons-account te hebben."
+msgstr "Om uw eigen collecties aan te maken, moet u een Mozilla-add-ons-account hebben."
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Footer logo"
