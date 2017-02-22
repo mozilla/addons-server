@@ -23,7 +23,7 @@ combined together.
     :query string addon: The add-on id to fetch reviews from. When passed, the reviews shown will always be the latest posted by each user on this particular add-on (which means there should only be one review per user in the results).
     :query string filter: The :ref:`filter <review-filtering-param>` to apply.
     :query string user: The user id to fetch reviews from.
-    :query int show_grouped_ratings: Whether or not to show ratings aggregates for this add-on in the response.
+    :query boolean show_grouped_ratings: Whether or not to show ratings aggregates for this add-on in the response (Use "true"/"1" as truthy values, "0"/"false" as falsy ones).
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.

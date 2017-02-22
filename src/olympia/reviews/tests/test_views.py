@@ -761,6 +761,9 @@ class TestReviewViewSetGet(TestCase):
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == review2.pk
         assert data['results'][1]['id'] == review1.pk
+
+        if 'show_grouped_ratings' not in kwargs:
+            assert 'grouped_ratings' not in data
         return data
 
     def test_list_addon_queries(self):
@@ -864,12 +867,24 @@ class TestReviewViewSetGet(TestCase):
         assert data['results'][2]['reply']['body'] == reply1.body
 
     def test_list_addon_grouped_ratings(self):
-        data = self.test_list_addon(show_grouped_ratings=1)
+        data = self.test_list_addon(show_grouped_ratings='true')
         assert data['grouped_ratings']['1'] == 1
         assert data['grouped_ratings']['2'] == 1
         assert data['grouped_ratings']['3'] == 0
         assert data['grouped_ratings']['4'] == 0
         assert data['grouped_ratings']['5'] == 0
+
+    def test_list_addon_without_grouped_ratings(self):
+        data = self.test_list_addon(show_grouped_ratings='false')
+        assert 'grouped_ratings' not in data
+
+    def test_list_addon_with_funky_grouped_ratings_param(self):
+        response = self.client.get(self.url, {
+            'addon': self.addon.pk, 'show_grouped_ratings': 'blah'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data['detail'] == (
+            'show_grouped_ratings parameter should be a boolean')
 
     def test_list_addon_unknown(self, **kwargs):
         params = {'addon': self.addon.pk + 42}

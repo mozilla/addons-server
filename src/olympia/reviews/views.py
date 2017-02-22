@@ -14,6 +14,7 @@ from django.utils.translation import ugettext as _
 
 import commonware.log
 from mobility.decorators import mobile_template
+from rest_framework import serializers
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -405,10 +406,17 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
 
     def get_paginated_response(self, data):
         response = super(ReviewViewSet, self).get_paginated_response(data)
-        show_grouped_ratings = self.request.GET.get('show_grouped_ratings')
-        if show_grouped_ratings and self.get_addon_object():
-            response.data['grouped_ratings'] = dict(GroupedRating.get(
-                self.addon_object.id))
+        if 'show_grouped_ratings' in self.request.GET:
+            try:
+                show_grouped_ratings = (
+                    serializers.BooleanField().to_internal_value(
+                        self.request.GET['show_grouped_ratings']))
+            except serializers.ValidationError:
+                raise ParseError(
+                    'show_grouped_ratings parameter should be a boolean')
+            if show_grouped_ratings and self.get_addon_object():
+                response.data['grouped_ratings'] = dict(GroupedRating.get(
+                    self.addon_object.id))
         return response
 
     def get_queryset(self):
