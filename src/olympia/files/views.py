@@ -37,11 +37,6 @@ def setup_viewer(request, file_obj):
 
         data['validate_url'] = reverse('devhub.json_file_validation',
                                        args=[addon.slug, file_obj.id])
-
-        if acl.check_addons_reviewer(request):
-            data['annotate_url'] = reverse('devhub.annotate_file_validation',
-                                           args=[addon.slug, file_obj.id])
-
         data['automated_signing'] = file_obj.automated_signing
 
         if file_obj.has_been_validated:

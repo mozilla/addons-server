@@ -450,12 +450,13 @@ class ADDON_UNLISTED(_LOG):
     keep = True
 
 
-class BETA_SIGNED_VALIDATION_PASSED(_LOG):
+class BETA_SIGNED(_LOG):
     id = 131
     format = _(u'{file} was signed.')
     keep = True
 
 
+# Obsolete, we don't care about validation results on beta files.
 class BETA_SIGNED_VALIDATION_FAILED(_LOG):
     id = 132
     format = _(u'{file} was signed.')
@@ -476,24 +477,29 @@ class EXPERIMENT_SIGNED(_LOG):
     keep = True
 
 
-class UNLISTED_SIGNED_VALIDATION_PASSED(_LOG):
+class UNLISTED_SIGNED(_LOG):
     id = 135
     format = _(u'{file} was signed.')
     keep = True
 
 
+# Obsolete, we don't care about validation results on unlisted files anymore.
 class UNLISTED_SIGNED_VALIDATION_FAILED(_LOG):
     id = 136
     format = _(u'{file} was signed.')
     keep = True
 
 
+# Obsolete, we don't care about validation results on unlisted files anymore,
+# and the distinction for sideloading add-ons is gone as well.
 class UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED(_LOG):
     id = 137
     format = _(u'{file} was signed.')
     keep = True
 
 
+# Obsolete, we don't care about validation results on unlisted files anymore,
+# and the distinction for sideloading add-ons is gone as well.
 class UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED(_LOG):
     id = 138
     format = _(u'{file} was signed.')

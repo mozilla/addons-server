@@ -106,8 +106,7 @@ class File(OnChangeMixin, ModelBase):
     @property
     def automated_signing(self):
         """True if this file is eligible for automated signing. This currently
-        means that either its add-on is eligible for automated signing, or
-        this file is a beta version."""
+        means that either its version is unlisted, or it's a beta version."""
         return (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED or
                 self.status == amo.STATUS_BETA)
 
@@ -190,15 +189,7 @@ class File(OnChangeMixin, ModelBase):
             os.path.join(version.path_prefix, nfd_str(file_.filename)))
 
         if upload.validation:
-            # Import loop.
-            from olympia.devhub.tasks import annotate_validation_results
-            from olympia.devhub.utils import ValidationAnnotator
-
-            validation = annotate_validation_results(validation)
             FileValidation.from_json(file_, validation)
-
-            # Copy annotations from any previously approved file.
-            ValidationAnnotator(file_).update_annotations()
 
         return file_
 
@@ -477,13 +468,6 @@ def cleanup_file(sender, instance, **kw):
                      % (filename, instance.pk))
             storage.delete(filename)
 
-    if not (File.objects.filter(original_hash=instance.original_hash)
-            .exclude(pk=instance.pk).exists()):
-        # This is the last remaining file with this hash.
-        # Delete any validation annotations keyed to it.
-        ValidationAnnotation.objects.filter(
-            file_hash=instance.original_hash).delete()
-
 
 @File.on_change
 def check_file(old_attr, new_attr, instance, sender, **kw):
@@ -667,10 +651,6 @@ class FileUpload(ModelBase):
     def passed_all_validations(self):
         return self.processed and self.valid
 
-    @property
-    def passed_auto_validation(self):
-        return self.load_validation()['passed_auto_validation']
-
     def load_validation(self):
         return json.loads(self.validation)
 
@@ -688,11 +668,6 @@ class FileValidation(ModelBase):
     errors = models.IntegerField(default=0)
     warnings = models.IntegerField(default=0)
     notices = models.IntegerField(default=0)
-    signing_trivials = models.IntegerField(default=0)
-    signing_lows = models.IntegerField(default=0)
-    signing_mediums = models.IntegerField(default=0)
-    signing_highs = models.IntegerField(default=0)
-    passed_auto_validation = models.BooleanField(default=False)
     validation = models.TextField()
 
     class Meta:
@@ -702,19 +677,11 @@ class FileValidation(ModelBase):
     def from_json(cls, file, validation):
         if isinstance(validation, basestring):
             validation = json.loads(validation)
-
-        signing = validation['signing_summary']
-
         new = cls(file=file, validation=json.dumps(validation),
                   errors=validation['errors'],
                   warnings=validation['warnings'],
                   notices=validation['notices'],
-                  valid=validation['errors'] == 0,
-                  signing_trivials=signing['trivial'],
-                  signing_lows=signing['low'],
-                  signing_mediums=signing['medium'],
-                  signing_highs=signing['high'],
-                  passed_auto_validation=validation['passed_auto_validation'])
+                  valid=validation['errors'] == 0)
 
         if 'metadata' in validation:
             if (validation['metadata'].get('contains_binary_extension') or
@@ -740,15 +707,6 @@ class FileValidation(ModelBase):
         from olympia.devhub.utils import process_validation
         return process_validation(json.loads(self.validation),
                                   file_hash=self.file.original_hash)
-
-
-class ValidationAnnotation(ModelBase):
-    file_hash = models.CharField(max_length=255, db_index=True)
-    message_key = models.CharField(max_length=1024)
-    ignore_duplicates = models.NullBooleanField(blank=True, null=True)
-
-    class Meta:
-        db_table = 'validation_annotations'
 
 
 class WebextPermission(ModelBase):

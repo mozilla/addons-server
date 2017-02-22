@@ -311,7 +311,6 @@ VALIDATOR_SKELETON_RESULTS = {
     "notices": 0,
     "success": True,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "signing_summary": {"high": 0, "medium": 0, "trivial": 0, "low": 0},
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [],
     "message_tree": {},
@@ -326,7 +325,6 @@ VALIDATOR_SKELETON_EXCEPTION = {
     "notices": 0,
     "success": True,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "signing_summary": {"high": 0, "medium": 0, "trivial": 0, "low": 0},
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [
         {"id": ["validator", "unexpected_exception"],
@@ -344,7 +342,6 @@ VALIDATOR_SKELETON_EXCEPTION = {
     "message_tree": {},
     "detected_type": "extension",
     "ending_tier": 5,
-    "passed_auto_validation": False,
 }
 
 VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
@@ -353,7 +350,6 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "notices": 0,
     "success": True,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "signing_summary": {"high": 0, "medium": 0, "trivial": 0, "low": 0},
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [
         {"id": ["validator", "unexpected_exception"],
@@ -372,7 +368,6 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "message_tree": {},
     "detected_type": "extension",
     "ending_tier": 5,
-    "passed_auto_validation": False,
 }
 
 # Contributions.

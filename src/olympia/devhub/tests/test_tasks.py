@@ -206,27 +206,6 @@ class TestValidator(ValidatorTestCase):
         assert 'WebExtension' in validation['messages'][0]['message']
         assert not self.upload.valid
 
-    @override_settings(CELERY_EAGER_PROPAGATES_EXCEPTIONS=False)
-    @mock.patch('olympia.devhub.tasks.annotate_validation_results')
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_annotation_error(self, run_validator, annotate):
-        """Test that an error that occurs during annotation is saved as an
-        error result."""
-        annotate.side_effect = Exception
-        run_validator.return_value = '{"errors": 0}'
-
-        assert self.upload.validation is None
-
-        tasks.validate(self.upload, listed=True)
-        self.upload.reload()
-
-        validation = self.upload.processed_validation
-        assert validation
-        assert validation['errors'] == 1
-        assert validation['messages'][0]['id'] == ['validator',
-                                                   'unexpected_exception']
-        assert not self.upload.valid
-
     @override_settings(SIGNING_SERVER='http://full')
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_validation_signing_warning(self, _mock):
@@ -246,40 +225,6 @@ class TestValidator(ValidatorTestCase):
         validation = json.loads(self.get_upload().validation)
         assert validation['warnings'] == 0
         assert len(validation['messages']) == 0
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_annotate_passed_auto_validation(self, _mock):
-        """Set passed_auto_validation on reception of the results."""
-        result = {'signing_summary': {'trivial': 1, 'low': 0, 'medium': 0,
-                                      'high': 0},
-                  'errors': 0}
-
-        _mock.return_value = json.dumps(result)
-        tasks.validate(self.upload, listed=True)
-        validation = json.loads(self.get_upload().validation)
-        assert validation['passed_auto_validation']
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_annotate_failed_auto_validation(self, _mock):
-        """Set passed_auto_validation on reception of the results."""
-        result = {'signing_summary': {'trivial': 0, 'low': 1, 'medium': 0,
-                                      'high': 0},
-                  'errors': 0}
-
-        _mock.return_value = json.dumps(result)
-        tasks.validate(self.upload, listed=True)
-        validation = json.loads(self.get_upload().validation)
-        assert not validation['passed_auto_validation']
-
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_annotate_passed_auto_validation_bogus_result(self, _mock):
-        """Don't set passed_auto_validation, don't fail if results is bogus."""
-        _mock.return_value = '{"errors": 0}'
-        tasks.validate(self.upload, listed=True)
-        assert (json.loads(self.get_upload().validation) ==
-                {"passed_auto_validation": True, "errors": 0,
-                 "signing_summary": {"high": 0, "medium": 0,
-                                     "low": 0, "trivial": 0}})
 
     @mock.patch('validator.validate.validate')
     @mock.patch('olympia.devhub.tasks.track_validation_stats')
@@ -438,84 +383,6 @@ class TestTrackValidatorStats(TestCase):
         tasks.track_validation_stats(self.result(metadata={'listed': False}))
         self.mock_incr.assert_any_call(
             'devhub.validator.results.unlisted.success'
-        )
-
-    def test_count_unsignable_addon_for_low_error(self):
-        tasks.track_validation_stats(self.result(
-            errors=1,
-            signing_summary={
-                'low': 1,
-                'medium': 0,
-                'high': 0,
-            },
-            metadata={
-                'listed': False,
-            },
-        ))
-        self.mock_incr.assert_any_call(
-            'devhub.validator.results.unlisted.is_not_signable'
-        )
-
-    def test_count_unsignable_addon_for_medium_error(self):
-        tasks.track_validation_stats(self.result(
-            errors=1,
-            signing_summary={
-                'low': 0,
-                'medium': 1,
-                'high': 0,
-            },
-            metadata={
-                'listed': False,
-            },
-        ))
-        self.mock_incr.assert_any_call(
-            'devhub.validator.results.unlisted.is_not_signable'
-        )
-
-    def test_count_unsignable_addon_for_high_error(self):
-        tasks.track_validation_stats(self.result(
-            errors=1,
-            signing_summary={
-                'low': 0,
-                'medium': 0,
-                'high': 1,
-            },
-            metadata={
-                'listed': False,
-            },
-        ))
-        self.mock_incr.assert_any_call(
-            'devhub.validator.results.unlisted.is_not_signable'
-        )
-
-    def test_count_unlisted_signable_addons(self):
-        tasks.track_validation_stats(self.result(
-            signing_summary={
-                'low': 0,
-                'medium': 0,
-                'high': 0,
-            },
-            metadata={
-                'listed': False,
-            },
-        ))
-        self.mock_incr.assert_any_call(
-            'devhub.validator.results.unlisted.is_signable'
-        )
-
-    def test_count_listed_signable_addons(self):
-        tasks.track_validation_stats(self.result(
-            signing_summary={
-                'low': 0,
-                'medium': 0,
-                'high': 0,
-            },
-            metadata={
-                'listed': True,
-            },
-        ))
-        self.mock_incr.assert_any_call(
-            'devhub.validator.results.listed.is_signable'
         )
 
 

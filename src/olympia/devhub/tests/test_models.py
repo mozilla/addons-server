@@ -209,29 +209,16 @@ class TestActivityLog(TestCase):
         # There should only be one a, the link to the addon, but no tag link.
         assert len(pq(text)('a')) == 1
 
-    def test_beta_signed_events_validation_passed(self):
+    def test_beta_signed_events_validation_ignored(self):
         addon = Addon.objects.get()
         file_ = addon.versions.first().files.first()
         # Signed beta file which passed validation.
-        amo.log(amo.LOG.BETA_SIGNED_VALIDATION_PASSED, file_)
+        amo.log(amo.LOG.BETA_SIGNED, file_)
         log = ActivityLog.objects.beta_signed_events().first().to_string()
         link = pq(log)('a')
         assert len(link) == 1
         assert link[0].attrib['href'] == reverse('files.list', args=[file_.pk])
-        msg = '<a href="{0}">{1}</a> (validation passed) was signed.'.format(
-            reverse('files.list', args=[file_.pk]), file_.filename)
-        assert log == msg
-
-    def test_beta_signed_events_validation_failed(self):
-        addon = Addon.objects.get()
-        file_ = addon.versions.first().files.first()
-        # Signed beta file which failed validation.
-        amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, file_)
-        log = ActivityLog.objects.beta_signed_events().first().to_string()
-        link = pq(log)('a')
-        assert len(link) == 1
-        assert link[0].attrib['href'] == reverse('files.list', args=[file_.pk])
-        msg = '<a href="{0}">{1}</a> (validation failed) was signed.'.format(
+        msg = '<a href="{0}">{1}</a> (validation ignored) was signed.'.format(
             reverse('files.list', args=[file_.pk]), file_.filename)
         assert log == msg
 

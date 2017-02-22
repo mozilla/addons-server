@@ -161,8 +161,10 @@ class ActivityLogManager(ManagerBase):
 
     def beta_signed_events(self):
         """List of all the auto signatures of beta files."""
+        # Even though we don't use BETA_SIGNED_VALIDATION_FAILED anymore, some
+        # old logs might have it.
         return self.filter(action__in=[
-            amo.LOG.BETA_SIGNED_VALIDATION_PASSED.id,
+            amo.LOG.BETA_SIGNED.id,
             amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id])
 
     def total_reviews(self, theme=False):
@@ -367,8 +369,12 @@ class ActivityLog(ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, File) and not file_:
                 validation = 'passed'
-                if self.action == amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id:
-                    validation = 'failed'
+                if self.action in (
+                        amo.LOG.BETA_SIGNED.id,
+                        amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id,
+                        amo.LOG.UNLISTED_SIGNED.id,
+                        amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED.id):
+                    validation = 'ignored'
 
                 file_ = self.f(u'<a href="{0}">{1}</a> (validation {2})',
                                reverse('files.list', args=[arg.pk]),

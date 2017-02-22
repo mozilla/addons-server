@@ -1,22 +1,17 @@
 import uuid
-import json
-from json.decoder import JSONArray
 
 from django.conf import settings
 from django.db.models import Q
 from django.forms import ValidationError
 from django.utils.translation import ugettext as _
 
-from celery import chain, group
-from validator.constants import SIGNING_SEVERITIES
+from celery import chain
 from validator.version import Version as VersionString
 import commonware.log
 
 from olympia import amo
-from olympia.addons.models import Addon
-from olympia.amo.decorators import write
 from olympia.amo.urlresolvers import linkify_escape
-from olympia.files.models import File, FileUpload, ValidationAnnotation
+from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
 
 from . import tasks
@@ -40,9 +35,6 @@ def process_validation(validation, is_compatibility=False, file_hash=None):
     if not validation['ending_tier'] and validation['messages']:
         validation['ending_tier'] = max(msg.get('tier', -1)
                                         for msg in validation['messages'])
-
-    if file_hash:
-        ValidationComparator(validation).annotate_results(file_hash)
 
     limit_validation_results(validation)
 
@@ -76,10 +68,7 @@ def limit_validation_results(validation):
         TYPES = {'error': 0, 'warning': 2, 'notice': 3}
 
         def message_key(message):
-            if message.get('signing_severity'):
-                return 1
-            else:
-                return TYPES.get(message.get('type'))
+            return TYPES.get(message.get('type'))
         messages.sort(key=message_key)
 
         leftover_count = len(messages) - lim
@@ -112,21 +101,20 @@ def limit_validation_results(validation):
 
 
 def htmlify_validation(validation):
-    """Process the `message`, `description`, and `signing_help` fields into
+    """Process the `message` and `description` fields into
     safe HTML, with URLs turned into links."""
 
     for msg in validation['messages']:
         msg['message'] = linkify_escape(msg['message'])
 
-        for key in 'description', 'signing_help':
-            if key in msg:
-                # These may be returned as single strings, or lists of
-                # strings. Turn them all into lists for simplicity
-                # on the client side.
-                if not isinstance(msg[key], (list, tuple)):
-                    msg[key] = [msg[key]]
+        if 'description' in msg:
+            # Description may be returned as a single string, or list of
+            # strings. Turn it into lists for simplicity on the client side.
+            if not isinstance(msg['description'], (list, tuple)):
+                msg['description'] = [msg['description']]
 
-                msg[key] = [linkify_escape(text) for text in msg[key]]
+            msg['description'] = [
+                linkify_escape(text) for text in msg['description']]
 
 
 def fix_addons_linter_output(validation, listed=True):
@@ -171,12 +159,6 @@ def fix_addons_linter_output(validation, listed=True):
             'processed_by_addons_linter': True,
             'is_webextension': True
         },
-        'signing_summary': {
-            'low': 0,
-            'medium': 0,
-            'high': 0,
-            'trivial': 0
-        },
         # The addons-linter only deals with WebExtensions and no longer
         # outputs this itself, so we hardcode it.
         'detected_type': 'extension',
@@ -187,8 +169,7 @@ def fix_addons_linter_output(validation, listed=True):
 def find_previous_version(addon, file, version_string, channel):
     """
     Find the most recent previous version of this add-on, prior to
-    `version`, that can be used to compare validation results or
-    issue upgrade warnings.
+    `version`, that can be used to issue upgrade warnings.
     """
     if not addon or not version_string:
         return
@@ -231,11 +212,9 @@ def find_previous_version(addon, file, version_string, channel):
             return file_
 
 
-class ValidationAnnotator(object):
+class Validator(object):
     """Class which handles creating or fetching validation results for File
-    and FileUpload instances, and annotating them based on information not
-    available to the validator. This includes finding previously approved
-    versions and comparing newer results with those."""
+    and FileUpload instances."""
 
     def __init__(self, file_, addon=None, listed=None):
         self.addon = addon
@@ -279,32 +258,14 @@ class ValidationAnnotator(object):
         else:
             raise ValueError
 
-        if addon_data and addon_data['guid']:
-            # If we have a valid file, try to find an associated Addon
-            # object, and a valid former submission to compare against.
-            try:
-                self.addon = (self.addon or
-                              Addon.objects.get(guid=addon_data['guid']))
-            except Addon.DoesNotExist:
-                pass
-
-            self.prev_file = find_previous_version(
-                self.addon, self.file, addon_data['version'], channel)
-
-            if self.prev_file:
-                # Group both tasks so the results can be merged when
-                # the jobs complete.
-                validate = group((validate,
-                                  self.validate_file(self.prev_file)))
-
         # Fallback error handler to save a set of exception results, in case
         # anything unexpected happens during processing.
         on_error = save.subtask(
             [amo.VALIDATOR_SKELETON_EXCEPTION, file_.pk, channel],
-            {'annotate': False}, immutable=True)
+            immutable=True)
 
         # When the validation jobs complete, pass the results to the
-        # appropriate annotate/save task for the object type.
+        # appropriate save task for the object type.
         self.task = chain(validate, save.subtask([file_.pk, channel],
                                                  link_error=on_error))
 
@@ -313,34 +274,6 @@ class ValidationAnnotator(object):
         opts = file_._meta
         self.cache_key = 'validation-task:{0}.{1}:{2}:{3}'.format(
             opts.app_label, opts.object_name, file_.pk, listed)
-
-    @write
-    def update_annotations(self):
-        """Update the annotations for our file with the annotations for any
-        previous matching file, if it exists."""
-
-        if not (self.file and self.prev_file):
-            # We don't have two Files to work with. Nothing to do.
-            return
-
-        hash_ = self.file.original_hash
-        if ValidationAnnotation.objects.filter(file_hash=hash_).exists():
-            # We already have annotations for this file hash.
-            # Don't add any more.
-            return
-
-        comparator = ValidationComparator(
-            json.loads(self.file.validation.validation))
-
-        keys = [json.dumps(key) for key in comparator.messages.iterkeys()]
-
-        annos = ValidationAnnotation.objects.filter(
-            file_hash=self.prev_file.original_hash, message_key__in=keys)
-
-        ValidationAnnotation.objects.bulk_create(
-            ValidationAnnotation(file_hash=hash_, message_key=anno.message_key,
-                                 ignore_duplicates=anno.ignore_duplicates)
-            for anno in annos)
 
     @staticmethod
     def validate_file(file):
@@ -360,158 +293,3 @@ class ValidationAnnotator(object):
             'listed': (channel == amo.RELEASE_CHANNEL_LISTED),
             'is_webextension': is_webextension}
         return tasks.validate_file_path.subtask([upload.path], kwargs)
-
-
-def JSONTuple(*args, **kw):
-    """Parse a JSON array, and return it in tuple form, along with the
-    character position where we stopped parsing. Simple wrapper around
-    the stock JSONArray parser."""
-    values, end = JSONArray(*args, **kw)
-    return tuple(values), end
-
-
-class HashableJSONDecoder(json.JSONDecoder):
-    """A JSON decoder which deserializes arrays as tuples rather than lists."""
-    def __init__(self, *args, **kwargs):
-        super(HashableJSONDecoder, self).__init__()
-        self.parse_array = JSONTuple
-        self.scan_once = json.scanner.py_make_scanner(self)
-
-
-json_decode = HashableJSONDecoder().decode
-
-
-class ValidationComparator(object):
-    """Compares the validation results from an older version with a version
-    currently being checked, and annotates results based on which messages
-    may be ignored for the purposes of automated signing."""
-
-    def __init__(self, validation):
-        self.validation = validation
-
-        self.messages = {self.message_key(msg): msg
-                         for msg in validation['messages']}
-        if None in self.messages:
-            # `message_key` returns None for messages we can't compare.
-            # They should all wind up in a single bucket in the messages dict,
-            # so delete that item if it exists.
-            del self.messages[None]
-
-    @staticmethod
-    def message_key(message):
-        """Returns a hashable key for a message based on properties
-        required when searching for a match."""
-
-        # No context, message is not matchable.
-        if not message.get('context'):
-            return None
-
-        def file_key(filename):
-            """Return a hashable key for a message's filename, which may be
-            a string, tuple, or list by default."""
-
-            return (u'/'.join(filename) if isinstance(filename, (list, tuple))
-                    else filename)
-
-        # We need all of these values to be iterable, which means tuples
-        # anywhere we might otherwise use lists. This includes any tuple
-        # values emitted by the validator (since `json.loads` turns them into
-        # lists), the return value of `.items()`, and so forth.
-        return (tuple(message['id']),
-                tuple(message['context']),
-                file_key(message['file']),
-                message.get('signing_severity'),
-                ('context_data' in message and
-                 tuple(sorted(message['context_data'].items()))))
-
-    @staticmethod
-    def match_messages(message1, message2):
-        """Returns true if the two given messages match. The two messages
-        are assumed to have identical `message_key` values."""
-
-        # We'll eventually want to make this matching stricter, in particular
-        # matching line numbers with some sort of slop factor.
-        # For now, though, we just rely on the basic heuristic of file name
-        # and context data extracted by `message_key`.
-        return True
-
-    def find_matching_message(self, message):
-        """Finds a matching message in the saved validation results,
-        based on the return value of `message_key` and `match_messages`,
-        and return it. If no matching message exists, return None."""
-
-        msg = self.messages.get(self.message_key(message))
-        if msg and self.match_messages(msg, message):
-            return msg
-
-    @staticmethod
-    def is_ignorable(message):
-        """Returns true if a message may be ignored when a matching method
-        appears in past results."""
-
-        # The `ignore_duplicates` flag will be set by editors, to overrule
-        # the basic signing severity heuristic. If it's present, it takes
-        # precedence.
-        low_severity = (message.get('type') != 'error' and
-                        message.get('signing_severity') in ('trivial', 'low'))
-        return message.get('ignore_duplicates', low_severity)
-
-    def compare_results(self, validation):
-        """Compare the saved validation results with a newer set, and annotate
-        the newer set as appropriate.
-
-        Any results in `validation` which match a result in the older set
-        will be annotated with a 'matched' key, containing a copy of the
-        message from the previous results.
-
-        Any results which both match a previous message and which can as a
-        result be ignored will be annotated with an 'ignored' key, with a value
-        of `True`.
-
-        The 'signing_summary' dict will be replaced with a new dict containing
-        counts of non-ignored messages. An 'ignored_signing_summary' dict
-        will be added, containing counts only of ignored messages."""
-
-        signing_summary = {level: 0 for level in SIGNING_SEVERITIES}
-        ignored_summary = {level: 0 for level in SIGNING_SEVERITIES}
-
-        for msg in validation['messages']:
-            severity = msg.get('signing_severity')
-            prev_msg = self.find_matching_message(msg)
-            if prev_msg:
-                msg['matched'] = prev_msg.copy()
-                if 'matched' in msg['matched']:
-                    del msg['matched']['matched']
-                if severity:
-                    msg['ignored'] = self.is_ignorable(prev_msg)
-
-            if severity:
-                if 'ignore_duplicates' not in msg and self.message_key(msg):
-                    msg['ignore_duplicates'] = self.is_ignorable(msg)
-                if msg.get('ignored'):
-                    ignored_summary[severity] += 1
-                else:
-                    signing_summary[severity] += 1
-
-        validation['signing_summary'] = signing_summary
-        validation['signing_ignored_summary'] = ignored_summary
-        return validation
-
-    def annotate_results(self, file_hash):
-        """Annotate our `validation` result set with any stored annotations
-        for a file with `file_hash`."""
-
-        annotations = (ValidationAnnotation.objects
-                       .filter(file_hash=file_hash,
-                               ignore_duplicates__isnull=False)
-                       .values_list('message_key', 'ignore_duplicates'))
-
-        for message_key, ignore_duplicates in annotations:
-            key = json_decode(message_key)
-            msg = self.messages.get(key)
-            if msg:
-                msg['ignore_duplicates'] = ignore_duplicates
-
-        for msg in self.messages.itervalues():
-            if 'ignore_duplicates' not in msg and 'signing_severity' in msg:
-                msg['ignore_duplicates'] = self.is_ignorable(msg)
