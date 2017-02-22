@@ -404,12 +404,12 @@ class File(OnChangeMixin, ModelBase):
         if len(urls) == 1:
             out.append(Permission(
                 u'single-match',
-                _(u'Read and change your data for {name} website')
+                _(u'Access your data for {name}')
                 .format(name=urls[0]), ''))
         elif len(urls) > 1:
             details = (u'<details><summary>{copy}</summary><ul>{sites}</ul>'
                        u'</details>')
-            copy = _(u'Read and change your data on various websites')
+            copy = _(u'Access your data on various websites')
             sites = ''.join(
                 [u'<li>%s</li>' % jinja2_escape(name) for name in urls])
             out.append(Permission(

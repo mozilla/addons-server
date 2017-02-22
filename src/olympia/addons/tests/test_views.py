@@ -761,8 +761,8 @@ class TestDetailPage(TestCase):
         # See File.webext_permissions for the order logic
         assert doc('li.webext-permissions-list').text() == (
             u'Access your data for all websites '
-            u'Access bookmarks '
-            u'Read and change your data for https://google.com/ website')
+            u'Read and modify bookmarks '
+            u'Access your data for https://google.com/')
 
     @override_switch('webext-permissions', active=True)
     def test_permissions_webext_no_permissions(self):
@@ -801,8 +801,8 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('li.webext-permissions-list').text() == (
-            u'Read and change your data for '
-            u'<script>alert("//")</script> website')
+            u'Access your data for '
+            u'<script>alert("//")</script>')
         assert '<script>alert(' not in response.content
         assert '&lt;script&gt;alert(' in response.content
 
@@ -816,7 +816,7 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('li.webext-permissions-list').text() == (
-            u'Read and change your data on various websites '
+            u'Access your data on various websites '
             u'<script>alert("//")</script> '
             u'<script>foo("https://")</script>')
         assert '<script>alert(' not in response.content

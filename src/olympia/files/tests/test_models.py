@@ -250,11 +250,12 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         # First should be catch-all match urls, if present.
         assert permissions[0] == ALL_URLS_PERMISSION
         # Second should be known permission(s).
-        assert permissions[1] == (u'bookmarks', 'Access bookmarks', '')
+        assert permissions[1] == (
+            u'bookmarks', 'Read and modify bookmarks', '')
         # Third is match urls for specified site(s).
         assert permissions[2] == (
             u'single-match',
-            u'Read and change your data for https://google.com/ website', '')
+            u'Access your data for https://google.com/', '')
 
     def test_webext_permissions(self):
         perm_list = [u'http://*/*', u'<all_urls>', u'bookmarks',
@@ -278,7 +279,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         perm_name, perm_desc, _ = file_.webext_permissions[0]
         assert perm_name == u'multiple-match'
         assert perm_desc == (
-            u'<details><summary>Read and change your data on various websites'
+            u'<details><summary>Access your data on various websites'
             u'</summary><ul><li>https://mozilla.org/</li>'
             u'<li>https://mozillians.org/</li></ul></details>')
 
