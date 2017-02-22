@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 16:31+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2017-02-22 10:26+0000\n"
+"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1103,17 +1103,21 @@ msgstr "chiudi"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
+"Alcuni componenti aggiuntivi richiedono permessi speciali per svolgere determinate operazioni (ad esempio, un componente per la gestione delle schede chiederà il permesso di accedere alle funzioni e"
+" ai dati interni del browser adibiti alle schede)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Sei tu ad avere il controllo di Firefox, pertanto la scelta di accordare o negare i permessi spetta solo a te. Accordare un permesso in genere non compromette le prestazioni o la sicurezza del "
+"browser, ma in rari casi potresti andare incontro a dei rischi."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr ""
+msgstr "Questo componente  aggiuntivo può:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1815,7 +1819,7 @@ msgstr "Componenti aggiuntivi per Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Spiacenti, non è possibile trovare alcuna risorsa all’indirizzo indicato. Nel caso il link facesse riferimento a un componente aggiuntivo, è possibile che l'autore lo abbia rimosso."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
@@ -1837,6 +1841,8 @@ msgstr "Sito web del componente aggiuntivo"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Se sei giunto su questa pagina seguendo un link sul sito, %(open_bug_link)sapri un bug%(close_bug_link)s. Ricordati di indicare la pagina in cui era inserito il link e la risorsa a cui avrebbe "
+"dovuto reindirizzare."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3808,27 +3814,27 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Accedere ai dati personali dei siti web"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access bookmarks"
-msgstr ""
+msgstr "Accedere ai segnalibri"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
-msgstr ""
+msgstr "Accedere ai contenuti in formato testo negli Appunti"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
-msgstr ""
+msgstr "Scaricare file e accedere in lettura/scrittura alla cronologia dei download"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
-msgstr ""
+msgstr "Accedere alla cronologia del browser"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Scambiare messaggi con altre applicazioni installate"
 
 #: src/olympia/constants/webext_permissions.py
 #, fuzzy
@@ -3837,11 +3843,11 @@ msgstr "Notifiche utente"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr ""
+msgstr "Accedere alla cronologia del browser per ripristinare le schede precedentemente aperte"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Accedere alle schede del browser"
 
 #: src/olympia/constants/webext_permissions.py
 #, fuzzy
@@ -3850,11 +3856,11 @@ msgstr "Cronologia Versioni %s"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "Accedere alle operazioni in corso durante la navigazione"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
-msgstr ""
+msgstr "Archiviare dati sul dispositivo senza limiti"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
