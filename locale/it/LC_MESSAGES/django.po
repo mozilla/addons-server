@@ -10054,7 +10054,7 @@ msgstr ""
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "La versione richiesta di questo componente aggiuntivo non esiste oppure non è stata resa pubblica."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't leave a review on your own add-on."
