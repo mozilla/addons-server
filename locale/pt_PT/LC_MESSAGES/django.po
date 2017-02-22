@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-22 15:50+0000\n"
+"PO-Revision-Date: 2017-02-22 15:59+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2857,7 +2857,7 @@ msgstr "Recursos adicionais"
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr "Saiba mais sobre a <a href=\"http://support.mozilla.com/kb/Search+bar\">Barra de pesquisa</a> em {0}"
+msgstr "Saiba mais acerca da <a href=\"http://support.mozilla.com/kb/Search+bar\">Barra de pesquisa</a> em {0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
@@ -4731,7 +4731,7 @@ msgstr "Idioma por defeito"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "A informação sobre o seu extra é apresentada neste idioma a menos que a sobreponha com uma tradução específica de um idioma. Isto apenas é relevante para extras listados."
+msgstr "A informação acerca do seu extra é apresentada neste idioma a menos que a sobreponha com uma tradução específica de um idioma. Isto apenas é relevante para extras listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
@@ -8857,7 +8857,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
-msgstr "Pode saber mais sobre como configurar o seu ambiente de desenvolvimento através do artigo da MDN <a href=\"%(url)s\">Configurar o ambiente de desenvolvimento de extensões</a>"
+msgstr "Pode saber mais acerca de como configurar o seu ambiente de desenvolvimento através do artigo da MDN <a href=\"%(url)s\">Configurar o ambiente de desenvolvimento de extensões</a>"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is a \".xpi\" file?"
@@ -8976,8 +8976,8 @@ msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
-"Sim. Detalhes sobre como traduzir o seu extra podem ser encontrados na <a href=\"%(l10n_url)s\">página de Tradução da Central de Programadores da Mozilla</a>. <a href=\"%(bz_url)s\">O projeto "
-"BabelZilla</a> é também um ótimo recurso para saber mais sobre tradução e contribuir com a tradução de extras."
+"Sim. Detalhes acerca de como traduzir o seu extra podem ser encontrados na <a href=\"%(l10n_url)s\">página de Tradução da Central de Programadores da Mozilla</a>. <a href=\"%(bz_url)s\">O projeto "
+"BabelZilla</a> é também um ótimo recurso para saber mais acerca de tradução e contribuir com a tradução de extras."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -8996,7 +8996,7 @@ msgstr "#amo (para suporte relacionado à hospedagem do seu extra no AMO)"
 #. #jetpack is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
-msgstr "#jetpack (para discussões sobre o SDK de Extras e cfx/jpm - anteriormente conhecido por Jetpack)"
+msgstr "#jetpack (para discussões acerca do SDK de Extras e cfx/jpm - anteriormente conhecido por Jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9507,7 +9507,7 @@ msgid ""
 msgstr ""
 "A menos que seja claramente indicado o contrário, os extras presentes nesta galeria foram verificados e aprovados pela equipa de editores da Mozilla e a sua instalação é considerada segura. "
 "Recomendamos que instale apenas extras que tenham sido aprovados. Se desejar instalar extras não aprovados a partir de outros websites, tenha cuidado pois estes extras podem danificar o seu "
-"computador ou violar a sua privacidade. <a href=\"%(learnmore_url)s\">Saiba mais sobre o nosso processo de aprovação</a>"
+"computador ou violar a sua privacidade. <a href=\"%(learnmore_url)s\">Saiba mais acerca do nosso processo de aprovação</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9596,9 +9596,9 @@ msgid ""
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
-"Os extras experimentais foram marcados pelos seus programadores como não adequados para uma audiência grande.  Eles foram verificados pelos nossos editores para se certificar de que não têm "
+"Os extras experimentais foram marcados pelos seus programadores como não adequados para uma audiência grande.  Eles foram verificados pelos nossos editores para se certificar de que não têm "
 "problemas de segurança, mas podem ainda ter erros ou não funcionar corretamente. Tenha cuidado ao instalar extras experimentais e desinstale o extra imediatamente se notar problemas. <a "
-"href=\"%(url)s\">Saiba mais sobre o nosso processo de revisão</a></dd>"
+"href=\"%(url)s\">Saiba mais acerca do nosso processo de revisão</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -9611,7 +9611,7 @@ msgid ""
 " they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Embora todos os extras disponíveis publicamente na nossa galeria são revistos por um editor, poderá receber uma ligação direta para um extra que ainda não foi revisto. Tenha cuidado ao instalar "
-"estes extras, pois eles podem danificar o seu computador ou violar sua privacidade. Recomendamos que você instale apenas extras revistos. <a href=\"%(url)s\">Saiba mais sobre o nosso processo de "
+"estes extras, pois podem danificar o seu computador ou violar sua privacidade. Recomendamos que instale apenas extras revistos. <a href=\"%(url)s\">Saiba mais acerca do nosso processo de "
 "revisão</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -9770,15 +9770,15 @@ msgstr "Algumas dicas para escrever uma excelente análise"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Frequently Asked Questions about Reviews"
-msgstr "Dúvidas comuns sobre análises"
+msgstr "Questões frequentemente colocadas acerca das análises"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
-"As análises de extras são uma forma de você partilhar as suas opiniões acerca dos extras que instalou e utilizou. A nossa equipa de moderação reserva-se ao direito de recusar ou de remover qualquer "
-"análise que não cumpra estas orientações."
+"As análises de extras são uma forma de partilhar as suas opiniões acerca dos extras que instalou e utilizou. A nossa equipa de moderação reserva-se no direito de recusar ou de remover qualquer "
+"análise que não cumpra com essas diretrizes."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Do:"
@@ -9834,7 +9834,7 @@ msgid ""
 "section."
 msgstr ""
 "Colocar problemas técnicos, pedidos de apoio ou sugestões de funcionalidades. Se disponível, utilize as opções de apoio disponíveis para cada extra. Pode encontrá-las na coluna lateral perto da "
-"secção Sobre este extra."
+"secção Acerca este extra."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Write reviews for add-ons which you have not personally used."
@@ -11203,7 +11203,7 @@ msgstr "Perfil"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Dê-nos mais alguma informação sobre si. Todos estes campos são opcionais, mas ajudam outros a conhecê-lo melhor."
+msgstr "Dê-nos mais alguma informação acerca de si. Todos estes campos são opcionais, mas ajudam outros utilizadores a conhecê-lo melhor."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This URL will only be visible if you are a developer."
