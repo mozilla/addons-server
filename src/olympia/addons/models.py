@@ -1731,11 +1731,10 @@ class AddonApprovalsCounter(ModelBase):
         AddonApprovalsCounter already exists, it updates it, otherwise it
         creates and saves a new instance.
         """
-        try:
-            obj = cls.objects.get(addon=addon)
+        obj, created = cls.objects.get_or_create(
+            addon=addon, defaults={'counter': 1})
+        if not created:
             obj.update(counter=F('counter') + 1)
-        except cls.DoesNotExist:
-            obj = cls.objects.create(addon=addon, counter=1)
         return obj
 
     @classmethod
