@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-23 11:25+0000\n"
+"PO-Revision-Date: 2017-02-23 11:39+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1125,6 +1125,8 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Keďže kontrola nad vašim Firefoxom patrí vám, je len na vás či doplnkom tieto povolenia udelíte alebo nie. Udelenie týchto povolení nemusí nevyhnutne ovplyvniť výkon alebo bezpečnosť vášho "
+"prehliadača, aj keď toto nemožno vylúčiť."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -3843,7 +3845,7 @@ msgstr "Prístup k záložkám"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
-msgstr ""
+msgstr "Prístup k textu v schránke"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
@@ -3863,7 +3865,7 @@ msgstr "Zobrazovať oznámenia"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr ""
+msgstr "Prístup k histórii prehliadania za účelom obnovy kariet"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
@@ -3883,7 +3885,7 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
-msgstr ""
+msgstr "Prístup k prehliadaču v priebehu aktivity na webe"
 
 #: src/olympia/core/apps.py
 msgid "Core"
