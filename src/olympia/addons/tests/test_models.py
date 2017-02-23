@@ -18,10 +18,10 @@ from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.amo import set_user
 from olympia.amo.helpers import absolutify, user_media_url
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonDependency, AddonFeatureCompatibility,
-    AddonUser, AppSupport, DeniedGuid, DeniedSlug, Category, Charity,
-    CompatOverride, CompatOverrideRange, FrozenAddon, IncompatibleVersions,
-    Persona, Preview, track_addon_status_change)
+    Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
+    AddonFeatureCompatibility, AddonUser, AppSupport, DeniedGuid, DeniedSlug,
+    Category, Charity, CompatOverride, CompatOverrideRange, FrozenAddon,
+    IncompatibleVersions, Persona, Preview, track_addon_status_change)
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
@@ -2994,3 +2994,39 @@ class TestQueue(TestCase):
         assert not addon.in_escalation_queue()
         EscalationQueue.objects.create(addon=addon)
         assert addon.in_escalation_queue()
+
+
+class TestAddonApprovalsCounter(TestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+
+    def test_increment_existing(self):
+        assert not AddonApprovalsCounter.objects.filter(
+            addon=self.addon).exists()
+        AddonApprovalsCounter.increment_for_addon(self.addon)
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 1
+        AddonApprovalsCounter.increment_for_addon(self.addon)
+        approval_counter.reload()
+        assert approval_counter.counter == 2
+
+    def test_increment_non_existing(self):
+        approval_counter = AddonApprovalsCounter.objects.create(
+            addon=self.addon, counter=0)
+        AddonApprovalsCounter.increment_for_addon(self.addon)
+        approval_counter.reload()
+        assert approval_counter.counter == 1
+
+    def test_reset_existing(self):
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, counter=42)
+        AddonApprovalsCounter.reset_for_addon(self.addon)
+        assert not AddonApprovalsCounter.objects.filter(
+            addon=self.addon).exists()
+
+    def test_reset_non_existing(self):
+        assert not AddonApprovalsCounter.objects.filter(
+            addon=self.addon).exists()
+        AddonApprovalsCounter.reset_for_addon(self.addon)
+        assert not AddonApprovalsCounter.objects.filter(
+            addon=self.addon).exists()
