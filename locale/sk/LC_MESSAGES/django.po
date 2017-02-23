@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-23 11:10+0000\n"
+"PO-Revision-Date: 2017-02-23 11:25+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -929,14 +929,12 @@ msgstr "od %(users)s"
 
 # {0} is a number
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} upozornenie"
+msgstr "[Upozornenie]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Permissions"
-msgstr "Verzie"
+msgstr "Povolenia"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -1120,7 +1118,7 @@ msgstr "zavrieť"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Niektoré doplnky žiadajú o povolenia, aby mohli vykonávať určité funkcie (napríklad doplnok na správu kariet požiada o povolenie prístupu ku kartám prehliadača)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
@@ -1131,7 +1129,7 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr ""
+msgstr "Doplnok môže:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -2393,13 +2391,12 @@ msgstr ""
 " bola verejne dostupná, kliknite na tlačidlo zobrazené nižšie."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Tu sa objavia doplnky, ktoré označíte ako obľúbené pomocou funkcie <b>Pridať medzi obľúbené</b>. Táto kolekcia je momentálne <b>súkromná</b>, čo znamená, že ju môže vidieť iba vy.  Ak chcete, aby ju"
-" videli všetci, kliknite na tlačidlo zobrazené nižšie."
+"Tu sa objavia doplnky, ktoré označíte ako obľúbené pomocou funkcie <b>Pridať medzi obľúbené</b>. Táto kolekcia je momentálne <b>súkromná</b>, čo znamená, že ju môže vidieť iba vy. Ak chcete, aby ju "
+"videli všetci, kliknite na tlačidlo zobrazené nižšie."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -3838,12 +3835,11 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Prístup k údajom pre všetky webové stránky"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access bookmarks"
-msgstr "Záložky"
+msgstr "Prístup k záložkám"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
@@ -3851,20 +3847,19 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
-msgstr ""
+msgstr "Preberať súbory a čítať a upravovať históriu prevzatých súborov"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
-msgstr ""
+msgstr "Prístup k histórii prehliadania"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Vymieniť si správy s inými programami ako Firefox"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Display notifications to you"
-msgstr "Notifikácie pre používateľa"
+msgstr "Zobrazovať oznámenia"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
@@ -3872,16 +3867,15 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Prístup ku kartám prehliadača"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access browsing history"
-msgstr "História verzií %s"
+msgstr "Prístup k histórii prehliadania"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "Prístup k aktivitám prehliadača v priebehu prehliadania"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
@@ -5267,7 +5261,6 @@ msgid "Submission Complete"
 msgstr "Odoslanie dokončené"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done!"
 msgstr "Hotovo!"
 
@@ -5646,9 +5639,8 @@ msgid "Resources"
 msgstr "Zdroje"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "WebExtensions"
-msgstr "WebExtension"
+msgstr "WebExtensions"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Community"
