@@ -1372,6 +1372,12 @@ class Addon(OnChangeMixin, ModelBase):
             feature_compatibility = AddonFeatureCompatibility()
         return feature_compatibility
 
+    def should_show_permissions(self, version=None):
+        version = version or self.current_version
+        return (version and version.all_files[0] and
+                (not version.all_files[0].is_webextension or
+                 version.all_files[0].webext_permissions))
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')

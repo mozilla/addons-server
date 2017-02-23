@@ -18,6 +18,9 @@ import commonware
 from cache_nuggets.lib import memoize
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
+from django.utils.safestring import mark_safe
+
+from jinja2 import escape as jinja2_escape
 
 from olympia import amo
 from olympia.amo.models import OnChangeMixin, ModelBase, UncachedManagerBase
@@ -370,13 +373,13 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def webext_permissions(self):
-        """Return permissions with descriptions in defined order:
+        """Return permissions that should be displayed, with descriptions, in
+        defined order:
         1) match all urls (e.g. <all-urls>)
         2) known permissions, in constants order (alphabetically),
         3) match urls for sites
-        4) unknown permissions
         """
-        out, urls, unknowns = [], [], []
+        out, urls = [], []
         for name in self.webext_permissions_list:
             perm = WEBEXT_PERMISSIONS.get(name, None)
             if perm:
@@ -387,17 +390,23 @@ class File(OnChangeMixin, ModelBase):
             elif '//' in name:
                 # Filter out match urls so we can group them.
                 urls.append(name)
-            else:
-                # Other strings are unknown permissions.
-                unknowns.append(name)
+            # Other strings are unknown permissions we don't care about
         out.sort()
-        # TODO: group match urls.
-        out += [
-            Permission(name, _(u'Access your data for {name} website').format(
-                name=name), '')
-            for name in urls]
-        # return + other (unknown) permissions at the end.
-        return out + [Permission(name, name, '') for name in unknowns]
+        if len(urls) == 1:
+            out.append(Permission(
+                u'single-match',
+                _(u'Access your data for {name}')
+                .format(name=urls[0]), ''))
+        elif len(urls) > 1:
+            details = (u'<details><summary>{copy}</summary><ul>{sites}</ul>'
+                       u'</details>')
+            copy = _(u'Access your data on various websites')
+            sites = ''.join(
+                [u'<li>%s</li>' % jinja2_escape(name) for name in urls])
+            out.append(Permission(
+                u'multiple-match',
+                mark_safe(details.format(copy=copy, sites=sites)), ''))
+        return out
 
     @amo.cached_property(writable=True)
     def webext_permissions_list(self):
