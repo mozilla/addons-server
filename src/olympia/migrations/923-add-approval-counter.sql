@@ -1,7 +1,8 @@
+-- Note: if the migration fails for you locally, remove the 'unsigned' next to addon_id below.
 CREATE TABLE `addons_addonapprovalscounter` (
     `created` datetime(6) NOT NULL,
     `modified` datetime(6) NOT NULL,
-    `addon_id` integer NOT NULL PRIMARY KEY,
+    `addon_id` unsigned integer NOT NULL PRIMARY KEY,
     `counter` integer UNSIGNED NOT NULL
 );
 ALTER TABLE `addons_addonapprovalscounter` ADD CONSTRAINT `addon_id_refs_id_8fcb7166` FOREIGN KEY (`addon_id`) REFERENCES `addons` (`id`);
