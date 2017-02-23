@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-23 09:50+0000\n"
+"PO-Revision-Date: 2017-02-23 10:01+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -1101,18 +1101,20 @@ msgstr "mbylle"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Disa shtesa kërkojnë leje të kryejnë disa funksione (për shembull: një shtesë për administrim skedash do të kërkojë leje të hyjë në sistemin e skedave të shfletuesit)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Meqë kontrollin e Firefox-it tuaj e keni ju, zgjedhja e akordimit apo e mohimit të këtyre lejeve bie mbi ju. Pranimi i lejeve nuk do të thotë në vetvete komprometim të punës apo sigurisë së "
+"shfletuesit tuaj, por në disa raste ky rrezik mund të jetë real."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr ""
+msgstr "Mundet: "
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1814,11 +1816,11 @@ msgstr "Shtesa Firefox-i"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Na ndjeni, por s’gjejmë dot gjë në adresën që dhatë. Nëse ndoqët një lidhje për te një shtesë, mundet që shtesa të jetë hequr prej autorit."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Faqe të Këshilluara"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Browse all extensions"
@@ -1836,6 +1838,7 @@ msgstr "Faqe Hyrëse mbi Shtesat"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Nëse ndoqët një lidhje prej diku gjetkë, ju lutemi, %(open_bug_link)sfile një të metë%(close_bug_link)s. Tregonani se prej nga erdhët dhe ç’po kërkonit, dhe do të bëjmë ç’është e mundur ta ndreqim."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3799,7 +3802,7 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Hyni në të dhënat tuaja për krejt sajtet"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access bookmarks"
@@ -3807,19 +3810,19 @@ msgstr "Të hyjë në faqerojtës"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
-msgstr ""
+msgstr "Hyni te e papastra për kopjime tekstesh"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
-msgstr ""
+msgstr "Shkarkojini kartelat dhe lexoni dhe ndryshoni historikun e shfletimeve të shfletuesit"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
-msgstr ""
+msgstr "Hyni në historikun e shfletuesit"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Shkëmbeni mesazhe me programe të tjerë veç Firefox-it"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Display notifications to you"
@@ -3827,11 +3830,11 @@ msgstr "T’ju shfaqë njoftime"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr ""
+msgstr "Hyni në historikun e shfletuesit që të riktheni skeda"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Hyni në skedat e shfletuesit"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browsing history"
@@ -3839,7 +3842,7 @@ msgstr "Të hyjë në historik shfletimesh"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "Hyni në veprimtarinë e shfletuesit gjatë lëvizjeve"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
@@ -10001,9 +10004,8 @@ msgid "You can't leave a review on your own add-on."
 msgstr "S’mund të lini një shqyrtim rreth shtesës tuaj."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "S’mund të ngarkoni më kartela për këtë version."
+msgstr "S’mund të ngarkoni më tepër se një shqyrtim për të njëjtin version të një shtese."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
