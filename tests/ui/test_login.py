@@ -1,16 +1,16 @@
 import pytest
 
 from pages.desktop.home import Home
-from waffle.models import Flag
 
 
 @pytest.mark.django_db
-def test_login(base_url, selenium, user):
+def test_login(our_base_url, selenium, super_user, session_cookie):
     """User can login"""
-    Flag.objects.get_or_create(name='super-create-accounts')
-    page = Home(selenium, base_url).open()
+    page = Home(selenium, our_base_url).open()
     assert not page.logged_in
-    page.login(user['email'], user['password'])
+    selenium.add_cookie(session_cookie)
+    selenium.refresh()
+    page.login(super_user['email'], super_user['password'])
     assert page.logged_in
 
 
