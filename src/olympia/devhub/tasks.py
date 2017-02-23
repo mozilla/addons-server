@@ -105,12 +105,6 @@ def create_version_for_upload(addon, upload, channel):
         version = Version.from_upload(
             upload, addon, [amo.PLATFORM_ALL.id], channel,
             is_beta=beta)
-        # The add-on's status will be STATUS_NULL when its first version is
-        # created because the version has no files when it gets added and it
-        # gets flagged as invalid. We need to manually set the status.
-        if (addon.status == amo.STATUS_NULL and
-                channel == amo.RELEASE_CHANNEL_LISTED):
-            addon.update(status=amo.STATUS_NOMINATED)
         auto_sign_version(version, is_beta=version.is_beta)
 
 

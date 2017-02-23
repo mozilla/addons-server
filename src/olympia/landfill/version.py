@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 import random
 from datetime import datetime
 
 from olympia import amo
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
-from olympia.versions.models import ApplicationsVersions, Version
+from olympia.versions.models import ApplicationsVersions, License, Version
 
 
 def generate_version(addon, app=None):
@@ -18,7 +19,17 @@ def generate_version(addon, app=None):
     min_app_version = '4.0'
     max_app_version = '50.0'
     version = '%.1f' % random.uniform(0, 2)
-    v = Version.objects.create(addon=addon, version=version)
+    license = License.objects.create(
+        name={
+            'en-US': u'My License',
+            'fr': u'Mä Licence',
+        },
+        text={
+            'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+        },
+        url='http://license.example.com/'
+    )
+    v = Version.objects.create(addon=addon, version=version, license=license)
     v.created = v.last_updated = datetime.now()
     v.save()
     if app is not None:  # Not for themes.
@@ -31,4 +42,5 @@ def generate_version(addon, app=None):
                                                    max=av_max)
     File.objects.create(filename='%s-%s' % (v.addon_id, v.id), version=v,
                         platform=amo.PLATFORM_ALL.id, status=amo.STATUS_PUBLIC)
+    v.save()
     return v

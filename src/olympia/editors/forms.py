@@ -412,7 +412,7 @@ class ThemeReviewForm(happyforms.Form):
         if action == rvw.ACTION_APPROVE:
             if is_rereview:
                 approve_rereview(theme)
-            theme.addon.update(status=amo.STATUS_PUBLIC)
+            theme.update_status(amo.STATUS_PUBLIC)
             theme.approve = datetime.datetime.now()
             theme.save()
 
@@ -420,17 +420,17 @@ class ThemeReviewForm(happyforms.Form):
             if is_rereview:
                 reject_rereview(theme)
             else:
-                theme.addon.update(status=amo.STATUS_REJECTED)
+                theme.update_status(amo.STATUS_REJECTED)
 
         elif action == rvw.ACTION_FLAG:
             if is_rereview:
                 mail_and_log = False
             else:
-                theme.addon.update(status=amo.STATUS_REVIEW_PENDING)
+                theme.update_status(amo.STATUS_REVIEW_PENDING)
 
         elif action == rvw.ACTION_MOREINFO:
             if not is_rereview:
-                theme.addon.update(status=amo.STATUS_REVIEW_PENDING)
+                theme.update_status(amo.STATUS_REVIEW_PENDING)
 
         if mail_and_log:
             send_mail(self.cleaned_data, theme_lock)

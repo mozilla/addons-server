@@ -12,6 +12,7 @@ def generate_addon_user_and_category(addon, user, category):
     AddonUser.objects.create(addon=addon, user=user)
     AddonCategory.objects.create(addon=addon, category=category,
                                  feature=True)
+    del addon.all_categories
 
 
 def generate_user(email):

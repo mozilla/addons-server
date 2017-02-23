@@ -915,30 +915,42 @@ class Addon(OnChangeMixin, ModelBase):
     def update_status(self, ignore_version=None):
         self.reload()
 
-        if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED] or
-                self.is_disabled or self.is_persona()):
+        if (self.status in [amo.STATUS_DISABLED, amo.STATUS_DELETED] or
+                self.disabled_by_user or self.is_persona()):
+            # DISABLED and DELETED are explicitly set statuses so we don't
+            # override those, and we don't touch background themes status.
             self.update_version(ignore=ignore_version)
             return
 
+        # Only consider listed versions for status reasons.
         versions = self.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-        status = None
+        new_status = self.status
+        force_update = False
+
         if not versions.exists():
-            status = amo.STATUS_NULL
+            # No versions means null.
+            new_status = amo.STATUS_NULL
             reason = 'no listed versions'
-        elif not versions.filter(
-                files__status__in=amo.VALID_FILE_STATUSES).exists():
-            status = amo.STATUS_NULL
+        elif versions.filter(files__status=amo.STATUS_PUBLIC):
+            # If there's at least one approved version the add-on is approved.
+            new_status = amo.STATUS_PUBLIC
+            reason = 'approved listed versions'
+        elif versions.filter(files__status=amo.STATUS_AWAITING_REVIEW):
+            # Otherwise, if there's a version awaiting review, it's nominated.
+            new_status = amo.STATUS_NOMINATED
+            reason = 'versions awaiting review'
+        else:
+            # No approved, or awaiting review versions mean null again.
+            new_status = amo.STATUS_NULL
             reason = 'no listed version with valid file'
-        elif (self.status == amo.STATUS_PUBLIC and
-              not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
-            if versions.filter(
-                    files__status=amo.STATUS_AWAITING_REVIEW).exists():
-                status = amo.STATUS_NOMINATED
-                reason = 'only an unreviewed file'
-            else:
-                status = amo.STATUS_NULL
-                reason = 'no reviewed files'
-        elif self.status == amo.STATUS_PUBLIC:
+
+        if not self.has_complete_metadata() and new_status > self.status:
+            # If the add-on doesn't have complete_metadata we don't want to
+            # 'upgrade' it's status to approved or nominated.  (But we
+            # shouldn't block a downgrade either).
+            new_status = self.status
+
+        if self.status == amo.STATUS_PUBLIC:
             latest_version = self.find_latest_version(
                 channel=amo.RELEASE_CHANNEL_LISTED)
             if (latest_version and latest_version.has_files and
@@ -947,13 +959,13 @@ class Addon(OnChangeMixin, ModelBase):
                 # Addon is public, but its latest file is not (it's the case on
                 # a new file upload). So, call update, to trigger watch_status,
                 # which takes care of setting nomination time when needed.
-                status = self.status
+                force_update = True
                 reason = 'triggering watch_status'
 
-        if status is not None:
+        if new_status != self.status or force_update:
             log.info('Changing add-on status [%s]: %s => %s (%s).'
-                     % (self.id, self.status, status, reason))
-            self.update(status=status)
+                     % (self.id, self.status, new_status, reason))
+            self.update(status=new_status)
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
         self.update_version(ignore=ignore_version)
@@ -1659,6 +1671,9 @@ class Persona(caching.CachingMixin, models.Model):
     @amo.cached_property(writable=True)
     def listed_authors(self):
         return self.addon.listed_authors
+
+    def update_status(self, new_status):
+        self.addon.update(status=amo.new_status)
 
 
 class AddonCategory(caching.CachingMixin, models.Model):

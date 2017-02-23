@@ -75,6 +75,7 @@ class TestSubmitBase(TestCase):
         assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = self.get_addon()
+        self.addon.update_status()
 
     def get_addon(self):
         return Addon.objects.no_cache().get(pk=3615)
@@ -513,6 +514,7 @@ class TestAddonSubmitDetails(TestSubmitBase):
 
     def test_nomination_date_set_only_once(self):
         self.get_version().update(nomination=None)
+        self.get_addon().update(status=amo.STATUS_NULL)
         self.is_success(self.get_dict())
         self.assertCloseToNow(self.get_version().nomination)
 
