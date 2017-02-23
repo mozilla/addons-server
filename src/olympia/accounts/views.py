@@ -313,7 +313,11 @@ class AuthenticateView(FxAConfigMixin, APIView):
     def get(self, request, user, identity, next_path):
         if user is None:
             user = register_user(request, identity)
-            response = safe_redirect(reverse('users.edit'), 'register')
+            fxa_config = self.get_fxa_config(request)
+            if fxa_config.get('skip_register_redirect'):
+                response = safe_redirect(next_path, 'register')
+            else:
+                response = safe_redirect(reverse('users.edit'), 'register')
         else:
             login_user(request, user, identity)
             response = safe_redirect(next_path, 'login')
