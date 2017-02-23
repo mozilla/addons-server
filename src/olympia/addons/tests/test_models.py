@@ -3018,15 +3018,15 @@ class TestAddonApprovalsCounter(TestCase):
         assert approval_counter.counter == 1
 
     def test_reset_existing(self):
-        AddonApprovalsCounter.objects.create(
+        approval_counter = AddonApprovalsCounter.objects.create(
             addon=self.addon, counter=42)
         AddonApprovalsCounter.reset_for_addon(self.addon)
-        assert not AddonApprovalsCounter.objects.filter(
-            addon=self.addon).exists()
+        approval_counter.reload()
+        assert approval_counter.counter == 0
 
     def test_reset_non_existing(self):
         assert not AddonApprovalsCounter.objects.filter(
             addon=self.addon).exists()
         AddonApprovalsCounter.reset_for_addon(self.addon)
-        assert not AddonApprovalsCounter.objects.filter(
-            addon=self.addon).exists()
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 0

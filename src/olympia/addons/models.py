@@ -1742,7 +1742,11 @@ class AddonApprovalsCounter(ModelBase):
         """
         Reset the approval counter for the specified addon.
         """
-        return cls.objects.filter(addon=addon).delete()
+        obj, created = cls.objects.get_or_create(
+            addon=addon, defaults={'counter': 0})
+        if not created:
+            obj.update(counter=0)
+        return obj
 
 
 class DeniedGuid(ModelBase):
