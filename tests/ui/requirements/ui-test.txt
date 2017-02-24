@@ -5,7 +5,17 @@ django-selenium-login==1.0.2 \
 django_waffle==0.11.1
 fxapom==1.9.1 \
     --hash=sha256:5f22d614456d8c4221647b2f69a9d13476af08c0cffb65b440cdf5f74afe465d
+hawkauthlib==0.1.1 \
+    --hash=sha256:7ac93c892e7629721dde196193c9af3bde1f20540945569f7c7d34d3ea92680a
 olefile==0.44
+pytest_base_url==1.2.0 \
+    --hash=sha256:248dae2e3e7bb2c69d10101724b68fe756853e4ece4d9feb8bf09b38c027f65b
+pytest_html==1.13.0 \
+     --hash=sha256:df423fb613e0e3e1f02b4a4f09e2a670f51f79051617c84545039ff817556bb8
+PyBrowserID==0.11.0 \
+    --hash=sha256:bf72f57eaa4d2ea36c6888e868f49e588c7b9c0b78dfbf2bc79fee93e97f39d2
+PyFxA==0.3.0 \
+    --hash=sha256:e5963db092b71bff0f51e0695eeeb59405e5646c51998c2d3f06b96d5aca6ace
 PyJWT==1.4.2
 PyPOM==1.1.1 \
     --hash=sha256:4d6c9b4148ef88ec57a569576e29a34d8e80eaaf0a7e347630fd216adee4d75f
@@ -19,3 +29,11 @@ pytest-variables==1.4 \
 pytest-xdist==1.15.0
 selenium==3.0.2 \
     --hash=sha256:33be5a03d87bf0e6c7a57d3f9bba5314cc66ce4acd44f003465386af2f5a7b4f
+WebOb==1.7.1 \
+    --hash=sha256:e56ba5abf09f7ab4360d34acf5d4c21ae4420e710906c6e51daad4a431743510
+zope.component==4.3.0 \
+    --hash=sha256:bb4136c7443610f8c2d2d357cad247c3e90bb5e6f0b7a02b0edfb11924ff9bc2
+zope.event==4.2.0 \
+    --hash=sha256:ae320bdbdf32f84be0a3882e6291063fb237f7612dfa0cd3f51d210ba0271175
+zope.interface==4.3.3 \
+    --hash=sha256:8780ef68ca8c3fe1abb30c058a59015129d6e04a6b02c2e56b9c7de6078dfa88
