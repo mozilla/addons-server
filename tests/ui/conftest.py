@@ -11,12 +11,11 @@ import json
 
 from django.core.management import call_command
 from olympia.amo.tests import create_switch
-from olympia.access.models import Group
 
 
-@pytest.fixture
-def our_base_url(our_live_server):
-    return our_live_server.url
+@pytest.fixture(scope='session')
+def base_url(base_url):
+    return base_url or os.getenv('PYTEST_BASE_URL')
 
 
 @pytest.fixture
@@ -27,43 +26,39 @@ def capabilities(capabilities):
 
 
 @pytest.fixture
-def fxa_account(our_base_url):
-    url = DEV_URL if 'dev' or 'localhost' in our_base_url else PROD_URL
+def fxa_account(base_url):
+    url = DEV_URL if 'dev' or 'localhost' in base_url else PROD_URL
     return FxATestAccount(url)
 
 
 @pytest.fixture
-def jwt_issuer(our_base_url, json_file):
+def jwt_issuer(base_url, json_file):
     try:
-        hostname = urlparse.urlsplit(our_base_url).hostname
+        hostname = urlparse.urlsplit(base_url).hostname
         return json_file['api'][hostname]['jwt_issuer']
     except KeyError:
         return os.getenv('JWT_ISSUER')
 
 
 @pytest.fixture
-def jwt_secret(our_base_url, json_file):
+def jwt_secret(base_url, json_file):
     try:
-        hostname = urlparse.urlsplit(our_base_url).hostname
+        hostname = urlparse.urlsplit(base_url).hostname
         return json_file['api'][hostname]['jwt_secret']
     except KeyError:
         return os.getenv('JWT_SECRET')
 
 
-@pytest.fixture()
-def initial_data(transactional_db, live_server, our_base_url):
-    # call_command('reset_db', interactive=False)
-    # call_command('syncdb', interactive=False)
-
-    call_command('loaddata', 'initial.json')
-    create_switch('super-create-accounts')
-    # call_command('import_prod_versions')
+@pytest.fixture
+def initial_data(transactional_db, live_server, base_url):
     call_command('generate_addons', 10, app='firefox')
 
 
 @pytest.fixture
-def create_superuser(transactional_db, live_server, our_base_url):
-    hostname = urlparse.urlsplit(our_base_url).hostname
+def create_superuser(transactional_db, live_server, base_url):
+    hostname = urlparse.urlsplit(base_url).hostname
+    create_switch('super-create-accounts')
+    call_command('loaddata', 'initial.json')
 
     call_command(
         'createsuperuser',
@@ -77,38 +72,17 @@ def create_superuser(transactional_db, live_server, our_base_url):
 
 
 @pytest.fixture
-def session_cookie():
-    from django.conf import settings
-    from django.contrib.auth import (
-        SESSION_KEY, BACKEND_SESSION_KEY, HASH_SESSION_KEY
-    )
-    from django.contrib.sessions.backends.db import SessionStore
+def force_user_login():
     from olympia.users.models import UserProfile
-
-    # First, create a new test user
     user = UserProfile.objects.get(username='uitest')
-
-    # Then create the authenticated session using the new user credentials
-    session = SessionStore()
-    session[SESSION_KEY] = user.pk
-    session[BACKEND_SESSION_KEY] = settings.AUTHENTICATION_BACKENDS[0]
-    session[HASH_SESSION_KEY] = user.get_session_auth_hash()
-    session.save()
-
-    # Finally, create the cookie dictionary
-    cookie = {
-        'name': settings.SESSION_COOKIE_NAME,
-        'value': session.session_key,
-        'secure': False,
-        'path': '/',
-    }
-    return cookie
+    return user
 
 
 @pytest.fixture
-def super_user(transactional_db, initial_data, create_superuser, our_live_server, our_base_url,
-               fxa_account, jwt_token):
-    url = '{base_url}/api/v3/accounts/super-create/'.format(base_url=our_base_url)
+def user(
+        transactional_db, create_superuser, our_live_server, base_url,
+        fxa_account, jwt_token):
+    url = '{base_url}/api/v3/accounts/super-create/'.format(base_url=base_url)
 
     params = {
         'email': fxa_account.email,
@@ -147,7 +121,7 @@ def our_live_server(request):
 
 
 @pytest.fixture
-def jwt_token(our_base_url, jwt_issuer, jwt_secret):
+def jwt_token(base_url, jwt_issuer, jwt_secret):
     payload = {
         'iss': jwt_issuer,
         'iat': datetime.datetime.utcnow(),

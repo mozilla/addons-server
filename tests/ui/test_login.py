@@ -1,16 +1,29 @@
+import os
 import pytest
 
 from pages.desktop.home import Home
+from seleniumlogin import force_login
 
 
 @pytest.mark.django_db
-def test_login(our_base_url, selenium, super_user, session_cookie):
+@pytest.mark.skipif('localhost' not in os.getenv('PYTEST_BASE_URL'),
+                    reason='No force login for dev, prod testing')
+def test_login(base_url, selenium, user, force_user_login):
     """User can login"""
-    page = Home(selenium, our_base_url).open()
+    page = Home(selenium, base_url).open()
     assert not page.logged_in
-    selenium.add_cookie(session_cookie)
-    selenium.refresh()
-    page.login(super_user['email'], super_user['password'])
+    force_login(force_user_login, selenium, base_url)
+    assert page.logged_in
+
+
+@pytest.mark.django_db
+@pytest.mark.skipif('dev' not in os.getenv('PYTEST_BASE_URL'),
+                    reason='No UI login for local testing')
+def test_login_ui(base_url, selenium, user, force_user_login):
+    """User can login"""
+    page = Home(selenium, base_url).open()
+    assert not page.logged_in
+    page.login(user['email'], user['password'])
     assert page.logged_in
 
 
