@@ -112,17 +112,6 @@ LOGGING = {
     'loggers': {}
 }
 
-FXA_CONFIG['default'] = {
-    'client_id': '76e2c5adef357fbe',
-    'client_secret':
-        'bff8b8d85f8146d857e7f3aeb6a40f9b6f8b3be6da8e350d3b6f799c317036a8',
-    'content_host': 'https://stable.dev.lcip.org',
-    'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
-    'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-    'redirect_url': 'http://localhost:8081/api/v3/accounts/authenticate/',
-    'scope': 'profile',
-}
-
 ###############################################################################
 # Only if running on a CI server.
 ###############################################################################

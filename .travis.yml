@@ -17,6 +17,12 @@ env:
   - TOXENV=main
 
 matrix:
+  include:
+    - python: 2.7
+      env:
+        - TOXENV=ui-tests
+      addons:
+        firefox: latest-nightly
   fast_finish: true
 
 cache:
@@ -49,6 +55,7 @@ before_script:
   - node --version
 
 script:
+  - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] PYTEST_BASE_URL=http://localhost:8081'
   - RUNNING_IN_CI=True tox -v
 
 notifications:
