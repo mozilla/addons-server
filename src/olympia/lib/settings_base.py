@@ -260,6 +260,8 @@ SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
 )
 
 # paths that don't require an app prefix
+# This needs to be kept in sync with addons-frontend's validUrlExceptions
+# https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js#L27
 SUPPORTED_NONAPPS = (
     'about', 'admin', 'apps', 'blocklist', 'contribute.json', 'credits',
     'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
