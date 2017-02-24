@@ -22,6 +22,9 @@ matrix:
       env:
         - TOXENV=ui-tests
       addons:
+        apt:
+          packages:
+            - swig
         firefox: latest-nightly
   fast_finish: true
 
@@ -55,7 +58,7 @@ before_script:
   - node --version
 
 script:
-  - '[ "${TRAVIS_PULL_REQUEST}" != "false" ] PYTEST_BASE_URL=http://localhost:8081'
+  - test $TRAVIS_PULL_REQUEST != false && export PYTEST_BASE_URL=http://localhost:8081
   - RUNNING_IN_CI=True tox -v
 
 notifications:
