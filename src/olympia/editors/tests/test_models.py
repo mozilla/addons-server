@@ -87,9 +87,12 @@ class TestPendingQueue(TestQueue):
     channel = amo.RELEASE_CHANNEL_LISTED
 
     def new_addon(self, name=u'Pending', version=u'1.0'):
+        """Creates an approved addon with two listed versions, one approved,
+        the second awaiting review."""
         addon = addon_factory(
             name=name,
-            version_kw={'version': u'0.0.1', 'channel': self.channel})
+            version_kw={'version': u'0.0.1', 'channel': self.channel,
+                        'created': self.days_ago(1)})
         version_factory(
             addon=addon, version=version, channel=self.channel,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'no_restart': True})

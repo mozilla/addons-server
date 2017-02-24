@@ -1838,7 +1838,8 @@ class TestReview(ReviewBase):
         self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     def generate_deleted_versions(self):
-        self.addon = addon_factory()
+        self.addon = addon_factory(version_kw={
+            'version': '1.0', 'created': self.days_ago(1)})
         self.url = reverse('editors.review', args=[self.addon.slug])
 
         versions = ({'version': '0.1', 'action': 'comment',
@@ -1849,25 +1850,21 @@ class TestReview(ReviewBase):
                      'comments': 'I told em'},
                     {'version': '0.3'})
 
-        to_delete = [self.addon.current_version]
         for i, version_data in enumerate(versions):
             version = version_factory(
                 addon=self.addon, version=version_data['version'],
+                created=self.days_ago(-i),
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW})
-            self.addon.update(status=amo.STATUS_PUBLIC)
-
-            version.update(created=version.created + timedelta(days=i))
 
             if 'action' in version_data:
-                data = dict(action=version_data['action'],
-                            operating_systems='win',
-                            applications='something',
-                            comments=version_data['comments'])
+                data = {'action': version_data['action'],
+                        'operating_systems': 'win',
+                        'applications': 'something',
+                        'comments': version_data['comments']}
                 self.client.post(self.url, data)
-                to_delete.append(version)
+                version.delete(hard=True)
 
-        for v in to_delete:
-            v.delete(hard=True)
+        self.addon.current_version.delete(hard=True)
 
     @patch('olympia.editors.helpers.sign_file')
     def test_item_history_deleted(self, mock_sign):
