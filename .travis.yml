@@ -60,9 +60,12 @@ install:
 before_script:
   - mysql -e 'create database olympia;'
   - node --version
+  - sh -e /etc/init.d/xvfb start
+  - sleep 10
 
 script:
   - test $TRAVIS_PULL_REQUEST != false && export PYTEST_BASE_URL=http://localhost:8081 || export PYTEST_BASE_URL=http://addons-dev.allizom.org
+  - echo $PYTEST_BASE_URL
   - RUNNING_IN_CI=True tox -v
 
 notifications:
