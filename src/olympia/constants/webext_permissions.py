@@ -19,20 +19,28 @@ WEBEXT_PERMISSIONS = {
 
     u'bookmarks': Permission(
         u'bookmarks',
-        _lazy(u'Access bookmarks'),
+        _lazy(u'Read and modify bookmarks'),
         ''),
-    u'clipboard': Permission(
+    u'clipboardRead': Permission(
         u'clipboard',
-        _lazy(u'Access text clipboard'),
+        _lazy(u'Get data from the clipboard'),
+        ''),
+    u'clipboardWrite': Permission(
+        u'clipboard',
+        _lazy(u'Input data to the clipboard'),
         ''),
     u'downloads': Permission(
         u'downloads',
-        _lazy(u"Download files and read and modify the browser's download"
+        _lazy(u"Download files and read and modify the browser's download "
               u"history"),
+        ''),
+    u'geolocation': Permission(
+        u'history',
+        _lazy(u'Access your location'),
         ''),
     u'history': Permission(
         u'history',
-        _lazy(u'Access browser history'),
+        _lazy(u'Access browsing history'),
         ''),
     u'nativeMessaging': Permission(
         u'nativeMessaging',
@@ -44,7 +52,7 @@ WEBEXT_PERMISSIONS = {
         ''),
     u'sessions': Permission(
         u'sessions',
-        _lazy(u'Access browser history to restore tabs'),
+        _lazy(u'Access recently closed tabs'),
         ''),
     u'tabs': Permission(
         u'tabs',
@@ -58,15 +66,4 @@ WEBEXT_PERMISSIONS = {
         u'webNavigation',
         _lazy(u'Access browser activity during navigation'),
         ''),
-    u'unlimitedStorage': Permission(
-        u'unlimitedStorage',
-        _lazy(u'Provide unlimited storage of client-side data'),
-        ''),
-    u'webRequest': Permission(
-        u'webRequest',
-        _lazy(u'Access browser during Web activity'),
-        ''),
 }
-
-# webRequestBlocking has the same description as webRequest.
-WEBEXT_PERMISSIONS[u'webRequestBlocking'] = WEBEXT_PERMISSIONS[u'webRequest']

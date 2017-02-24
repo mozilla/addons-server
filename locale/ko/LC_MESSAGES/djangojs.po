@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-10 12:51+0000\n"
-"Last-Translator: SeulGi Choi (Chase) <cs09gi@gmail.com>\n"
+"PO-Revision-Date: 2017-02-23 02:36+0000\n"
+"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "오류 {0}개"
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "부가 기능을 처리하기위한 새 린터를 활성화했습니다. 이슈가 발생하면 GitHub에 보고해 주세요."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
@@ -110,7 +110,7 @@ msgstr "부가 기능이 오류와 경고 없이 검증되었습니다."
 
 #: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "제출은 자동으로 서명됩니다."
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
@@ -118,7 +118,7 @@ msgstr "WebExtension 업그레이드"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "업그레이드를 허용하고 장려하지만 이 순서를 거꾸로 할 수는 없습니다. WebExtension을 설치한 사용자는 이전의 부가 기능을 설치할 수 없습니다."
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
@@ -126,7 +126,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "자세한 버전 정보를 포함합니다(다음 단계에서 할 수 있습니다)."
 
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
@@ -134,7 +134,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "부가기능 제출 체크리스트"
 
 #: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"

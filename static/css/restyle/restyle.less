@@ -2575,20 +2575,39 @@ body.windows .install-shell .platform.mac {
 }
 
 .webext-permissions.badge {
+  display: block;
   img {
     height: 1.1em;
+    margin-right: 0.25em;
   }
 }
 
 #webext-permissions {
-  li {
-    list-style: circle;
-    list-style-position: inside;
+  ul {
+    margin-left: 1.5em;
+    li {
+      list-style: circle;
+      details {
+        summary {
+          list-style: none;
+        }
+        li {
+          list-style-type: disc;
+        }
+      }
+      details[open] summary:after {
+        content: " \25b2"
+      }
+      details summary:after {
+        content: " \25bc"
+      }
+    }
+  }
+  h3 {
+      font-size: larger;
+      margin-top: 1em;
   }
   .prose {
-    h3 {
-      font-size: larger
-    }
     img {
       float: left;
       margin: 10px;
@@ -2598,5 +2617,5 @@ body.windows .install-shell .platform.mac {
 
 div.detailed {
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: middle;
 }

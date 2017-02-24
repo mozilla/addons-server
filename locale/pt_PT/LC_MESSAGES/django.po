@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-22 15:59+0000\n"
+"PO-Revision-Date: 2017-02-23 23:46+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2186,7 +2186,7 @@ msgstr "Nome"
 
 #: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Recently Updated"
-msgstr "Atualizado recentemente"
+msgstr "Recentemente atualizado"
 
 #: src/olympia/bandwagon/views.py
 msgid "Recently Popular"
@@ -2976,7 +2976,7 @@ msgstr "Ver os mais populares"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Top Rated"
-msgstr "Ver todas as avaliações"
+msgstr "Ver todos do top de avaliações"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
