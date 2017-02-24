@@ -78,7 +78,7 @@ class TestEmailBouncing(TestCase):
         assert out.subject == 'Re: This is the subject of a test message.'
         assert out.to == ['sender@example.com']
 
-    def test_exception_in_add_email_to_activity_log(self):
+    def test_exception_because_invalid_token(self):
         # Fails because the token doesn't exist in ActivityToken.objects
         assert not add_email_to_activity_log_wrapper(self.email_text)
         assert len(mail.outbox) == 1
@@ -87,6 +87,22 @@ class TestEmailBouncing(TestCase):
             self.bounce_reply %
             'UUID found in email address TO: header but is not a valid token '
             '(5a0b8a83d501412589cc5d562334b46b).')
+        assert out.subject == 'Re: This is the subject of a test message.'
+        assert out.to == ['sender@example.com']
+
+    def test_exception_because_invalid_email(self):
+        # Fails because the token doesn't exist in ActivityToken.objects
+        email_text = copy.deepcopy(self.email_text)
+        email_text['To'] = [{
+            'EmailAddress': 'foobar@addons.mozilla.org',
+            'FriendlyName': 'not a valid activity mail reply'}]
+        assert not add_email_to_activity_log_wrapper(email_text)
+        assert len(mail.outbox) == 1
+        out = mail.outbox[0]
+        assert out.body == (
+            self.bounce_reply %
+            'TO: address does not contain activity email uuid ('
+            'foobar@addons.mozilla.org).')
         assert out.subject == 'Re: This is the subject of a test message.'
         assert out.to == ['sender@example.com']
 
@@ -241,7 +257,7 @@ class TestLogAndNotify(TestCase):
         assert self.developer.email not in recipients
 
         self._check_email(send_mail_mock.call_args_list[0],
-                          self.addon.get_dev_url('versions'))
+                          absolutify(self.addon.get_dev_url('versions')))
         review_url = absolutify(
             reverse('editors.review', args=[self.addon.pk], add_prefix=False))
         self._check_email(send_mail_mock.call_args_list[1],
@@ -270,9 +286,9 @@ class TestLogAndNotify(TestCase):
         assert self.reviewer.email not in recipients
 
         self._check_email(send_mail_mock.call_args_list[0],
-                          self.addon.get_dev_url('versions'))
+                          absolutify(self.addon.get_dev_url('versions')))
         self._check_email(send_mail_mock.call_args_list[1],
-                          self.addon.get_dev_url('versions'))
+                          absolutify(self.addon.get_dev_url('versions')))
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_log_with_no_comment(self, send_mail_mock):
