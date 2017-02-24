@@ -5,6 +5,7 @@ django-selenium-login==1.0.2
 django_waffle==0.11.1
 fxapom==1.9.1
     --hash=sha256:5f22d614456d8c4221647b2f69a9d13476af08c0cffb65b440cdf5f74afe465d
+olefile==0.44
 PyJWT==1.4.2
 PyPOM==1.1.1
     --hash=sha256:4d6c9b4148ef88ec57a569576e29a34d8e80eaaf0a7e347630fd216adee4d75f
