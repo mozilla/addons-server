@@ -85,14 +85,6 @@ class TestCollections(TestCase):
         assert c.uuid != ''
         assert isinstance(c.uuid, basestring)
 
-    def test_addon_index(self):
-        c = Collection.objects.get(pk=512)
-        c.author = self.user
-        assert c.addon_index is None
-        ids = c.addons.values_list('id', flat=True)
-        c.save()
-        assert c.addon_index == Collection.make_index(ids)
-
     def test_set_addons(self):
         addons = list(Addon.objects.values_list('id', flat=True))
         c = Collection.objects.create(author=self.user)

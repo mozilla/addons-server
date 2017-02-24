@@ -474,7 +474,7 @@ def contribute(request, addon):
                                              'paykey': ''}),
                                  content_type='application/json')
 
-    contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
+    contribution_uuid = hashlib.sha256(str(uuid.uuid4())).hexdigest()
 
     if addon.charity:
         # TODO(andym): Figure out how to get this in the addon authors

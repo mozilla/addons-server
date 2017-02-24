@@ -1,4 +1,3 @@
-import hashlib
 import os
 import re
 import time
@@ -133,10 +132,6 @@ class Collection(ModelBase):
     users = models.ManyToManyField(UserProfile, through='CollectionUser',
                                    related_name='collections_publishable')
 
-    addon_index = models.CharField(
-        max_length=40, null=True, db_index=True,
-        help_text='Custom index for the add-ons in this collection')
-
     objects = CollectionManager()
 
     top_tags = TopTags()
@@ -148,22 +143,12 @@ class Collection(ModelBase):
     def __unicode__(self):
         return u'%s (%s)' % (self.name, self.addon_count)
 
-    @classmethod
-    def make_index(cls, addon_ids):
-        ids = ':'.join(map(str, sorted(addon_ids)))
-        return hashlib.md5(ids).hexdigest()
-
     def save(self, **kw):
         if not self.uuid:
             self.uuid = unicode(uuid.uuid4())
         if not self.slug:
             self.slug = self.uuid[:30]
         self.clean_slug()
-
-        # Maintain our index of add-on ids.
-        if self.id:
-            ids = self.addons.values_list('id', flat=True)
-            self.addon_index = self.make_index(ids)
 
         super(Collection, self).save(**kw)
 

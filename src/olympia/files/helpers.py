@@ -23,7 +23,7 @@ from olympia import amo
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.amo.urlresolvers import reverse
 from olympia.files.utils import (
-    extract_xpi, get_md5, get_all_files, atomic_lock)
+    extract_xpi, get_sha256, get_all_files, atomic_lock)
 
 # Allow files with a shebang through.
 denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
@@ -377,7 +377,7 @@ class FileViewer(object):
                 'directory': directory,
                 'filename': filename,
                 'full': path,
-                'md5': get_md5(path) if not directory else '',
+                'sha256': get_sha256(path) if not directory else '',
                 'mimetype': mime or 'application/octet-stream',
                 'syntax': self.get_syntax(filename),
                 'modified': os.stat(path)[stat.ST_MTIME],
@@ -464,7 +464,7 @@ class DiffHelper(object):
         different = []
         for key, file in left_files.items():
             file['url'] = self.get_url(file['short'])
-            diff = file['md5'] != right_files.get(key, {}).get('md5')
+            diff = file['sha256'] != right_files.get(key, {}).get('sha256')
             file['diff'] = diff
             if diff:
                 different.append(file)

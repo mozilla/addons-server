@@ -730,8 +730,8 @@ def parse_addon(pkg, addon=None, check=True):
     return parsed
 
 
-def _get_hash(filename, block_size=2 ** 20, hash=hashlib.md5):
-    """Returns an MD5 hash for a filename."""
+def _get_hash(filename, block_size=2 ** 20, hash=hashlib.sha256):
+    """Returns an sha256 hash for a filename."""
     f = open(filename, 'rb')
     hash_ = hash()
     while True:
@@ -740,10 +740,6 @@ def _get_hash(filename, block_size=2 ** 20, hash=hashlib.md5):
             break
         hash_.update(data)
     return hash_.hexdigest()
-
-
-def get_md5(filename, **kw):
-    return _get_hash(filename, **kw)
 
 
 def get_sha256(filename, **kw):

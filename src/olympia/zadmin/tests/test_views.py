@@ -389,10 +389,10 @@ class TestBulkValidation(BulkValidationTest):
 
         assert (
             doc('table tr').eq(1).find('td').eq(0).text() ==
-            'ab24f1e609f5c5860e37e32b2359572a')
+            '19ab4e645c1dc715977d707481f89292654c19cd558db4e0b9c97f2a438c2282')
         assert (
             doc('table tr').eq(2).find('td').eq(0).text() ==
-            'ee59c03fd64d266e838b771dc91c62b0')
+            '5a997b84c5f318d9a0189d2bf0d616ffb02dbfbaf70fb5545c651bee0e1b9c1a')
 
     def test_bulk_validation_summary_detail(self):
         self.addon.name = '美味的食物'

@@ -31,8 +31,8 @@ BlItem = collections.namedtuple('BlItem', 'rows os modified block_id prefs')
 @non_atomic_requests
 def blocklist(request, apiver, app, appver):
     key = 'blocklist:%s:%s:%s' % (apiver, app, appver)
-    # Use md5 to make sure the memcached key is clean.
-    key = hashlib.md5(force_bytes(key)).hexdigest()
+    # Use sha256 to make sure the memcached key is clean.
+    key = hashlib.sha256(force_bytes(key)).hexdigest()
     cache.add('blocklist:keyversion', 1)
     version = cache.get('blocklist:keyversion')
     response = cache.get(key, version=version)

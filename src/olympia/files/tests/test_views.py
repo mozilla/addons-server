@@ -164,7 +164,7 @@ class FilesBase(object):
         self.file_viewer.extract()
         self.file_viewer.select('install.js')
         obj = getattr(self.file_viewer, 'left', self.file_viewer)
-        etag = obj.selected.get('md5')
+        etag = obj.selected.get('sha256')
         res = self.client.get(self.file_url('install.js'),
                               HTTP_IF_NONE_MATCH=etag)
         assert res.status_code == 304
@@ -420,11 +420,12 @@ class TestFileViewer(FilesBase, TestCase):
             assert doc('#content').attr('data-content').startswith('<script')
 
     def test_binary(self):
-        self.file_viewer.extract()
+        viewer = self.file_viewer
+        viewer.extract()
         self.add_file('file.php', '<script>alert("foo")</script>')
         res = self.client.get(self.file_url('file.php'))
         assert res.status_code == 200
-        assert self.file_viewer.get_files()['file.php']['md5'] in res.content
+        assert viewer.get_files()['file.php']['sha256'] in res.content
 
     def test_tree_no_file(self):
         self.file_viewer.extract()
