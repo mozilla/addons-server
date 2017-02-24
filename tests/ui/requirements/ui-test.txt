@@ -1,5 +1,9 @@
 -r dev.txt
 
+django-cache-machine==0.9.1 \
+    --hash=sha256:b377709bfa60ca483645c29c77a673550cba4267fa2e06eee1a0f2f634619506
+django-mobility==0.1 \
+    --hash=sha256:b925e1a4f40a93fd81841ef9a7222b7053da46245d2fc8764d53420dcffd014d
 django-selenium-login==1.0.2 \
     --hash=sha256:15029a4d5a4b6d7ac1bb2f52cf8c8cf9d332a88127978f20ffba14e8ee0d988a
 django_waffle==0.11.1
@@ -7,6 +11,8 @@ fxapom==1.9.1 \
     --hash=sha256:5f22d614456d8c4221647b2f69a9d13476af08c0cffb65b440cdf5f74afe465d
 hawkauthlib==0.1.1 \
     --hash=sha256:7ac93c892e7629721dde196193c9af3bde1f20540945569f7c7d34d3ea92680a
+jingo-minify==0.6.0 \
+    --hash=sha256:5b804282fb5b00738a279633b2f1943aefbc0b9e3c5b8c12eeade6d96ce262f0
 olefile==0.44 \
     --hash=sha256:61f2ca0cd0aa77279eb943c07f607438edf374096b66332fae1ee64a6f0f73ad
 pytest_base_url==1.2.0 \
