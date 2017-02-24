@@ -58,7 +58,7 @@ before_script:
   - node --version
 
 script:
-  - test $TRAVIS_PULL_REQUEST != false && export PYTEST_BASE_URL=http://localhost:8081
+  - test $TRAVIS_PULL_REQUEST != false && export PYTEST_BASE_URL=http://localhost:8081 || export PYTEST_BASE_URL=http://addons-dev.allizom.org
   - RUNNING_IN_CI=True tox -v
 
 notifications:
