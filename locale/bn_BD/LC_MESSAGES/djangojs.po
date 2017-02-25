@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-25 23:12+0000\n"
+"PO-Revision-Date: 2017-02-25 23:26+0000\n"
 "Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -399,15 +399,15 @@ msgstr "হোমপেজ প্রেমো"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
-msgstr ""
+msgstr "হোমপেজ বৈশিষ্ট্যযুক্ত করা হয়েছে"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "হোমপেইজ আসন্ন"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "সবচেয়ে জনপ্রিয় হোমপেইজ"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
@@ -415,7 +415,7 @@ msgstr "পেজ এর বিস্তারিত"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "বিস্তারিত পৃষ্ঠা(নিচে)"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
