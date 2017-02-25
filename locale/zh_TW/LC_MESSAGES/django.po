@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-25 08:48+0000\n"
+"PO-Revision-Date: 2017-02-25 09:07+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -8744,8 +8744,8 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
-"是，可以。但這些程式庫需透過 XPCOM、XUL 及 JavaScript 才能提供某些功能。此外，作者應該注意程式庫是否會修改到原始物件原型（String.prototype, Date.prototype 等等）或定義全域函數（例如 $ 函數）。這些行為很容易會與其他附加元件相衝突，尤其是當不同附加元件使用了不同版本的函示庫的時候。開發者使用時請一定要很小心、很小心、很小心。Mozilla"
-" 不提供關於如何使用這些工具開發附加元件的相關文件。"
+"可以。但這些程式庫當中的某些功能透過 XPCOM、XUL 或 JavaScript 就已經能提供了。此外，作者應該注意程式庫是否會修改到原始物件原型（String.prototype、Date.prototype 等等）或定義全域函數（例如 $ "
+"函數）。這些行為很容易會與其他附加元件相衝突，尤其是當不同附加元件使用了不同版本的函式庫的時候。開發者使用時請一定要很小心、很小心、很小心。Mozilla 不提供關於如何使用這些工具開發附加元件的相關文件。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I debug my add-on?"
@@ -8765,7 +8765,7 @@ msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
 " cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
 "to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
-msgstr "為了確保與最新版 Mozilla 軟體的相容信，在有更新推出時就下載安裝，並測試是否能如常工作就相當重要。大部分情況下，最新版的 Mozilla 軟體會是 Beta 測試版，這些版本常常會帶來一些可能影響您的附加元件功能的技術更動，您應該主動參與 beta 測試流程，以確保您的附加元件使用者不會在最終版 Mozilla 軟體發行時得到負面影響。"
+msgstr "為了確保與最新版 Mozilla 軟體的相容性，在有更新推出時就下載安裝，並測試附加元件是否能如常工作就相當重要。大部分情況下，最新版的 Mozilla 軟體會是 Beta 測試版，這些版本常常會帶來一些可能影響您的附加元件功能的技術更動，您應該主動參與 Beta 測試流程，以確保您的附加元件使用者不會在最終版 Mozilla 軟體發行時得到負面影響。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How to improve the performance of my add-on?"
@@ -8776,7 +8776,7 @@ msgstr "如何改善我的附加元件效能？"
 msgid ""
 "Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
 "href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
-msgstr "寫得不好的擴充套件可能會影響使用者的瀏覽體驗，包含 Firefox 本身的效能。下列頁面包含許多不錯的 <a href=\"%(url)s\">指南</a>，能夠幫務您在不論是開發 Mozilla 核心功能或附加元件時改善效能。"
+msgstr "寫得不好的擴充套件可能會影響使用者的瀏覽體驗，包含 Firefox 本身的效能。下列頁面包含許多不錯的<a href=\"%(url)s\">指南</a>，能夠幫務您在不論是開發 Mozilla 核心功能或附加元件時改善效能。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on support multiple locales?"
@@ -8787,11 +8787,11 @@ msgstr "我的附加元件可以支援多個不同的語系嗎？"
 msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
-msgstr "可以。可以在 <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a> 找到關於讓您的附加元件能夠在地化的詳細資訊。<a href=\"%(bz_url)s\">BabelZilla 專案</a> 也是一個讓您了解在地化與加入幫忙翻譯附加元件的好所在。"
+msgstr "可以。您可在 <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a> 找到如何讓您的附加元件能夠在地化的詳細資訊。<a href=\"%(bz_url)s\">BabelZilla 專案</a>也是一個讓您了解在地化與加入幫忙翻譯的好所在。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr "我需要一些關於打造附加元件的勸告。哪裡可以找到文件幫忙？"
+msgstr "我需要一些關於打造附加元件的建議。哪裡可以找到幫忙？"
 
 #. #extdev is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8837,7 +8837,7 @@ msgstr "Mozilla 有在幫人開發附加元件嗎？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No."
-msgstr "尚未提供。"
+msgstr "沒有。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
@@ -8850,11 +8850,11 @@ msgid ""
 "href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 "可以，您可以在 <a href=\"%(forum_url)s\">附加元件討論區</a>、<a href=\"%(list_url)s\">mozilla.jobs 郵件群組</a>、<a href=\"%(mz_url)s\">mozillaZine 討論區</a> 和 <a href=\"%(wiki_url)s\">Mozilla Wiki</a> 上找到第三方開發者。Mozilla "
-"並不特別推薦某位開發者。"
+"並不提供推薦的開發者清單。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I host my own add-on?"
-msgstr "我可以自己 host 我的附加元件嗎？"
+msgstr "我可以自己為我的附加元件提供下載嗎？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8868,7 +8868,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can Mozilla host my add-on?"
-msgstr "Mozilla 可以 host 我的附加元件嗎？"
+msgstr "Mozilla 可以幫我 host 我的附加元件嗎？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8883,7 +8883,7 @@ msgstr "AMO 是什麼？"
 msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
 "Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
-msgstr "Mozilla 的 AMO（<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>）是幫助開發者建構、散佈以及支援 Mozilla 出售超棒消費者產品。它提供您必要的工具和基礎知識來管理、host 以及讓 Mozilla 使用者看見您的附加元件。"
+msgstr "Mozilla 的 AMO（<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>）是幫助開發者打造、散佈以及為 Mozilla 超棒的消費者產品提供支援的地方。它提供您必要的工具來管理、host 以及讓 Mozilla 使用者看見您的附加元件。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla keep my account information private?"
@@ -8913,7 +8913,7 @@ msgstr "Mozilla 有任何關於可接受的提交的標準政策嗎？"
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr "是的。Mozilla 的 <a href=\"%(p_url)s\">附加元件政策</a> 當中描述了什麼是可接受的提交。此政策可能會隨時修訂，不另行公告。此外，附加元件審核者團隊將透過 <a href=\"%(g_url)s\">Add-on Review Guide</a> 來確保您附加元件的功能與安全性符合此指南當中的規範。"
+msgstr "有。Mozilla 的<a href=\"%(p_url)s\">附加元件政策</a>當中描述了怎樣的上架請求會被接受。此政策可能會隨時修訂，不另行公告。此外，附加元件審核者團隊將透過 <a href=\"%(g_url)s\">Add-on Review Guide</a> 來確保您附加元件的功能與安全性符合此指南當中的規範。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
@@ -8928,11 +8928,11 @@ msgstr "開發者工具儀表板可讓您上傳並送出附加元件到 AMO。�
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
-msgstr "我需要幫我的附加元件挑選那些作業系統？"
+msgstr "我需要幫我的附加元件挑選哪些作業系統？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr "您必須選擇您的附加元件可以在什麼作業系統當中正常工作。"
+msgstr "您必須選擇您的附加元件可以在哪些作業系統當中正常工作。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What category do I choose for my add-on?"
@@ -9030,7 +9030,7 @@ msgstr "我要如何看到我的附加元件已經被下載幾次？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr "開發者工具儀表板當中的統計儀表板會提供您將該附加元件提交至 AMO 之後被下載了多少次的統計資訊。"
+msgstr "「開發者工具儀表板」當中的「統計儀表板」會提供您將附加元件上架至 AMO 之後被下載了多少次的統計資訊。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many active users are using my add-on?"
@@ -9039,7 +9039,7 @@ msgstr "我要如何看到現在有多少使用者正在使用我的附加元件
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
-msgstr "在開發者工具儀表板的統計數據儀表板提供的資料可以協助您瞭解自您提交進 AMO 後有多少人正在使用該附加元件。"
+msgstr "「開發者工具儀表板」的「統計數據儀表板」當中的資料可以協助您瞭解自您將附加元件上架至 AMO 後有多少人正在使用。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit an update for my add-on?"
@@ -9065,7 +9065,7 @@ msgstr "我要如何回應某個對我的附加元件留下負面意見的使用
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr "開發者可以再登入後回覆任何對於他們的附加元件的回應。另外，任何使用者都可以把回應標示為："
+msgstr "開發者可以在登入後回覆任何對於他們的附加元件的評論。另外，任何使用者都可以把評論標示為:"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
@@ -9119,7 +9119,7 @@ msgstr "您需要更多關於開放原始碼的授權資訊嗎？您對該選擇
 msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
 "you want to use or distribute code licensed under it."
-msgstr "如果您想要使用或者以 Mozilla Public License(\"MPL\") 釋出原始碼，除完整本文外，我們亦提供有註解版的 MPL 以及 <abbr title=\"Frequently Asked Questions\">FAQ</abbr> 協助您瞭解。"
+msgstr "如果您想要使用或者以 Mozilla Public License(\"MPL\") 釋出原始碼，除完整的條款外，我們亦提供加註版的 MPL 以及 <abbr title=\"常見問題\">FAQ</abbr> 協助您瞭解。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
