@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-25 22:29+0000\n"
+"PO-Revision-Date: 2017-02-25 22:45+0000\n"
 "Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -327,15 +327,15 @@ msgstr "সংগ্রহ তৈরি করা হয়েছে"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "ব্যবহৃত হচ্ছে এমন এডঅনস"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
-msgstr ""
+msgstr "এড-অনস তৈরি করা হয়েছে"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "এড-অনস ডাউনলোড করা হয়েছে"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
@@ -343,7 +343,7 @@ msgstr "এড-অনস আপডেটে করা হয়েছে"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
-msgstr ""
+msgstr "পর্যালোচনা লিখেছেন"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
