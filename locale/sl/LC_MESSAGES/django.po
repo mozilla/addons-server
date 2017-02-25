@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-22 15:38+0000\n"
+"PO-Revision-Date: 2017-02-25 09:30+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5522,7 +5522,7 @@ msgstr "Čakalne vrste niso pregledane natanko po vrsti"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Podpisano za samostojno distribucijo. Za posodobitve skrbite sami."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
@@ -7280,9 +7280,8 @@ msgid "Unlisted Review Page"
 msgstr "Čakalna vrsta za nenavedene"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Zadnji pregled"
+msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -10074,9 +10073,8 @@ msgid "This field is required."
 msgstr "To polje je obvezno."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Morda boste posodobili zasnovo teme potem, ko bo odobrena."
+msgstr "Potem ko ga ustvarite, ne morete spremeniti dodatka pregleda."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
