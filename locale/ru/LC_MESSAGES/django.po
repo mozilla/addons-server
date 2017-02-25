@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-25 16:50+0000\n"
+"PO-Revision-Date: 2017-02-25 16:56+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -1824,42 +1824,38 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr "<p>Попробуйте вернуться на предыдущую страницу, обновите, а затем попробуйте снова.</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Не найдено"
+msgstr "Страница не найдена"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Ещё дополнения"
+msgstr "Дополнения Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Извините, но нам не удалось ничего найти по введённому адресу. Если вы перешли по ссылке на дополнение, то вероятно, что автор удалил его."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Предложенные страницы"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all extensions"
 msgstr "Обзор всех дополнений"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Обзор всех дополнений"
+msgstr "Обзор всех тем"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Домашняя страница дополнения"
+msgstr "Домашняя страница дополнений"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Если вы перешли по ссылке с другого места, пожалуйста, %(open_bug_link)sсообщите об ошибке%(close_bug_link)s. Расскажите нам откуда вы перешли и что пытались найти, и мы попробуем исправить это."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3836,58 +3832,55 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Получать доступ к вашим данных на всех сайтах"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access bookmarks"
-msgstr "Закладки"
+msgstr "Получать доступ к закладкам"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
-msgstr ""
+msgstr "Получать доступ к буферу обмена"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's downloadhistory"
-msgstr ""
+msgstr "Загружать файлы, а также читать и изменять историю загрузок браузера"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history"
-msgstr ""
+msgstr "Получать доступ к истории браузера"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Обмениваться сообщениями с программами, кроме Firefox"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Display notifications to you"
-msgstr "Уведомления пользователя"
+msgstr "Показывать вам уведомления"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser history to restore tabs"
-msgstr ""
+msgstr "Получать доступ к истории браузера, чтобы восстанавливать вкладки"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Получать доступ ко вкладкам браузера"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access browsing history"
-msgstr "История версий %s"
+msgstr "Получать доступ к истории веб-сёрфинга"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "Получать доступ к активности браузера при навигации"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Provide unlimited storage of client-side data"
-msgstr ""
+msgstr "Получить неограниченное хранилище для хранения данных на стороне клиента"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser during Web activity"
-msgstr ""
+msgstr "Получать доступ к браузеру при веб-сёрфинге"
 
 #: src/olympia/core/apps.py
 msgid "Core"
@@ -4234,7 +4227,7 @@ msgstr "Вы не можете загрузить этот тип дополне
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Вы не можете представить дополнение с guid, оканчивающимся на «@mozilla.org»"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -4286,9 +4279,8 @@ msgid "Review requested."
 msgstr "Запрошена проверка."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "You must provide further details to proceed."
-msgstr "Запрошена проверка.  Вы должны предоставить дополнительные детали, чтобы продолжить."
+msgstr "Предоставьте дополнительную информацию для продолжения."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -7561,7 +7553,7 @@ msgstr "Этот файл является каталогом."
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name} website"
-msgstr ""
+msgstr "Получать доступ к вашим данным на сайте {name}"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -10072,36 +10064,32 @@ msgid "Other (please specify)"
 msgstr "Другая (пожалуйста укажите)"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "This field is required."
-msgstr "Это поле обязательно"
+msgstr "Обязательное поле."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Вы можете обновить дизайн вашей темы здесь после того, как она будет одобрена."
+msgstr "Вы не можете изменить дополнение до окончания проверки."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Нельзя ответить на отзыв с ответом."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Вы не можете изменить версию дополнения до окончания проверки."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Эта версия дополнения не существует или не публичная."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "кто-то пишет отзыв на моё дополнение"
+msgstr "Нельзя оставить отзыв на свое дополнение."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Вы не можете загрузить больше файлов для этой версии."
+msgstr "Нельзя оставить более одного отзыва для одной версии дополнения."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
