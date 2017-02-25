@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-21 03:56+0000\n"
+"PO-Revision-Date: 2017-02-25 08:48+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -8660,17 +8660,17 @@ msgstr "Mozilla 附加元件部落格"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What tools do I need to be able to build an Add-on?"
-msgstr "我需要那些工具才能打造附加元件？"
+msgstr "我需要哪些工具才能打造附加元件？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
 "You will need to have a version of the Mozilla software that you're building the add-on for and a code editor of your choice. Add-ons can be built for almost all Mozilla software but are primarily "
 "targeted for:"
-msgstr "您需要打造附加元件時所使用的 Mozilla 軟體的版本，以及選擇一種程式碼編輯器。幾乎所有的 Mozilla 軟體都可以使用附加元件，但主要是下列軟體："
+msgstr "您需要附加元件要能夠用上的 Mozilla 軟體，以及一套程式碼編輯器。幾乎所有的 Mozilla 軟體都可以使用附加元件，但主要是下列軟體:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Popular code editors include:"
-msgstr "知名的程式碼編輯器包含:"
+msgstr "比較知名的程式碼編輯器有:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8692,7 +8692,7 @@ msgstr "「.xpi」檔是什麼？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr "擴充套件都被封裝盛 ZIP 格式的封包檔，但是使用 XPI（念作「zippy」）副檔名進行散佈。"
+msgstr "擴充套件會被封裝成 ZIP 格式的封包檔，但是副檔名為 XPI（念作「zippy」）。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is XUL?"
@@ -8702,11 +8702,11 @@ msgstr "XUL 是什麼？"
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr "XUL (XML User Interface Language) 是 Mozilla 打造多功能跨平台的 XML 語言。提供按鈕、選單、工具列、樹，讓您能透過附加元件修改部分瀏覽器介面。"
+msgstr "XUL (XML User Interface Language) 是 Mozilla 一套以 XML 為基礎的語言，可讓您打造出功能豐富的跨平台應用程式。此語言提供按鈕、選單、工具列、樹狀元素等使用者介面工具，讓您可透過修改部分介面來加強瀏覽器的功能。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
-msgstr "\"Install.rdf\" 檔是做什麼用的?"
+msgstr "「Install.rdf」檔是做什麼用的？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8714,7 +8714,7 @@ msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
 "metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
 " updated, and so on. The format of the Install Manifest is RDF/XML."
-msgstr "這個檔案名為 <a href=\"%(url)s\">安裝資訊檔</a>，是在附加元件安裝後，附加元件管理員用來確認附加元件資料，其格式為 RDF/XML。其中，該 metadata 資料包含開發者、相容版本、更新資訊等。"
+msgstr "這個檔案也叫做<a href=\"%(url)s\">安裝資訊檔</a>，是在安裝附加元件時，讓附加元件管理員用來確認套件資訊所使用，其格式為 RDF/XML。安裝資訊檔當中包含用來識別附加元件的代碼、開發者資訊、可以在哪裡找到關於該套件的更多資訊、相容版本、更新方式等後設資料（metadata）。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
@@ -8722,17 +8722,17 @@ msgstr "「maxVersion」是什麼？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "This determines the maximum version of Firefox you're saying this extension will work with. Set this to be no newer than the newest currently available version!"
-msgstr "這代表您所開發的附加元件能夠相容的最新 Firefox 版本號，請開發者勿將最大相容版本號的數值設定大於現有最新的版本號。"
+msgstr "這代表附加元件能夠相容的最新 Firefox 版本號，請勿將此數值設定為超過現有最新的版本號！"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on contain binary components?"
-msgstr "我的附加元件可以包含二進位元件嗎？"
+msgstr "我的附加元件當中可以包含二進位元件嗎？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
 "Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object model</a> to enhance your add-ons. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
-msgstr "當然可以。您可以使用 Mozilla 的<a href=\"%(url)s\">XPCOM 元件模組</a>來提昇您的附加元件品質。XPCOM 元件使用JavaScript、Java、Python、C++ 撰寫。"
+msgstr "當然可以。您可以使用 Mozilla 的 <a href=\"%(url)s\">XPCOM 元件物件模型</a> 來加強您的附加元件。XPCOM 元件可在 JavaScript、Java、Python、C++ 等語言當中使用。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
