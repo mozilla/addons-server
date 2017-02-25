@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-25 22:45+0000\n"
+"PO-Revision-Date: 2017-02-25 23:12+0000\n"
 "Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -387,7 +387,7 @@ msgstr "এড-অনস ম্যানেজার সম্বন্ধে �
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
-msgstr ""
+msgstr "অনুসন্ধান প্রস্তাবনা"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
