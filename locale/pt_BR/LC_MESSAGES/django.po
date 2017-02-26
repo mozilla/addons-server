@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 14:10+0000\n"
+"PO-Revision-Date: 2017-02-26 20:09+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -892,8 +892,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"Consulte <a href=\"%(support)s\">seção de suporte</a> para saber essa extensão tem assistência disponível. Você também pode tentar pedir ajuda na <a href=\"https://discourse.mozilla-community.org/c"
-"/add-ons/add-on-support\">comunidade</a>."
+"Consulte a <a href=\"%(support)s\">seção de suporte</a> desta extensão para descobrir se a assistência está disponível. Também pode tentar pedir ajuda à <a href=\"https://discourse.mozilla-"
+"community.org/c/add-ons/add-on-support\">comunidade de extensões</a>."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -4309,7 +4309,7 @@ msgstr "Esse arquivo falhou em algum dos testes de validação e pode não apres
 
 #: src/olympia/devhub/views.py
 msgid "Review requested."
-msgstr "Revisão solicitada."
+msgstr "Análise solicitada."
 
 #: src/olympia/devhub/views.py
 #, fuzzy
