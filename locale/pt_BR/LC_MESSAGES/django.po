@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 13:34+0000\n"
+"PO-Revision-Date: 2017-02-26 14:10+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4510,7 +4510,7 @@ msgstr "Blog dos Complementos"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Forum"
-msgstr "Fórum de Complementos"
+msgstr "Fórum das extensões"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "More Resources"
@@ -4522,7 +4522,7 @@ msgstr "Pesquisar documentação"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Use the field below to upload your add-on package."
-msgstr "Use o campo abaixo para enviar o pacote do seu complemento."
+msgstr "Use o campo abaixo para enviar o pacote da extensão."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
@@ -4534,7 +4534,7 @@ msgstr "Depois do envio, uma série de testes automáticos de validação serão
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr "Gostaria que o seu complemento fosse distribuído neste site?"
+msgstr "Gostaria que a sua extensão fosse distribuído neste site?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 # {0} is a filename. example: windows.exe
@@ -4558,7 +4558,7 @@ msgstr "Compatibilidade testada para:"
 # 100%
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for My Add-ons"
-msgstr "Atividade recente dos Meus complementos"
+msgstr "Atividade recente das minhas extensões"
 
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
@@ -4589,8 +4589,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Esse complemento não é compatível com o <b>%(app_name)s %(app_version)s</b>, a versão mais recente do %(app_name)s. Por favor, considere atualizar as informações de compatibilidade do seu "
-"complemento ou enviar uma nova versão desse complemento."
+"Esta extensão não é compatível com o <b>%(app_name)s %(app_version)s</b>, a versão mais recente do %(app_name)s. Por favor, considere atualizar as informações de compatibilidade da sua extensão ou "
+"envie uma nova versão."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
@@ -4615,7 +4615,7 @@ msgstr "Atualizar compatibilidade"
 # %s is href=... and should stay in the <a> tag.
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Ajustando as informações do aplicativo aqui, permitirá aos usuários instalarem o seu complemento mesmo que o manifesto de instalação do pacote indique que o complemento é incompatível."
+msgstr "Ajustando as informações do aplicativo aqui, permitirá aos usuários instalarem sua extensão mesmo que o manifesto de instalação no pacote indique que a extensão é incompatível."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Supported Versions"
@@ -4643,7 +4643,7 @@ msgstr "%(ago)s por %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Older activity for My Add-ons"
-msgstr "Atividade anterior dos Meus complementos"
+msgstr "Atividade antiga das minhas extensões"
 
 #. {0} is an integer.
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
@@ -4720,16 +4720,16 @@ msgstr "Informações básicas de {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Add-on URL"
-msgstr "URL do complemento"
+msgstr "URL da extensão"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Escolha uma URL curta e exclusiva para o seu complemento."
+msgstr "Escolha uma URL curta e exclusiva para sua extensão."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html
 #: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/single.html
 msgid "View Listing"
-msgstr "Ver página do complemento"
+msgstr "Ver listagem"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Summary"
@@ -4739,10 +4739,8 @@ msgstr "Resumo"
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
-"Uma curta explicação do funcionamento básico\n"
-"                          do seu complemento que será exibida na busca e nas\n"
-"                          listagens, assim como no topo da página de detalhamento\n"
-"                          do complemento. É relevante apenas para complementos listados."
+"Uma explicação curta da funcionalidade básica da sua extensão que é apresentada em listas de pesquisa e de navegação, bem como no topo da página de detalhes da sua extensão. Isto apenas é relevante "
+"para extensões listadas."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Experimental?"
@@ -4750,22 +4748,21 @@ msgstr "Experimental?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "Se seus complementos são experimentais ou não estão pronto para o uso.  O complemento será listado mas terá visibilidade reduzida. "
+msgstr "Se sua extensão é experimental ou não está pronta para o uso.  A extensão será listada mas terá visibilidade reduzida. "
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
-msgstr "Este complemento é experimental."
+msgstr "Esta extensão é experimental."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is ready for general use."
-msgstr "Este complemento está pronto para uso geral."
+msgstr "Esta extensão está pronta para uso geral."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
-"Categorias são a principal forma de navegação através dos complementos.\n"
-"                        Selecione qualquer uma que se encaixe nas funcionalidades do seu complemento\n"
-"                        para maior exposição. É relevante apenas para complementos listados."
+"As categorias são o método mais comum que os usuários usam para navegar pelas extensões. Escolha uma que se enquadre na funcionalidade da sua extensão para uma maior exposição. Isto apenas é "
+"relevante para extensões listadas."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
