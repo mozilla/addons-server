@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 07:09+0000\n"
+"PO-Revision-Date: 2017-02-26 07:57+0000\n"
 "Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -3839,23 +3839,23 @@ msgstr "অন্তত একজন মালিক থাকতে হবে�
 
 #: src/olympia/devhub/forms.py
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "একজন লেখককে অবশ্যই তালিকা ভুক্ত হতে পারবেন।"
 
 #: src/olympia/devhub/forms.py
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "একজন লেখক একবারই তালিকায় ঢুকতে পারবেন।"
 
 #: src/olympia/devhub/forms.py
 msgid "Slug incorrect."
-msgstr ""
+msgstr "স্লাগটি ভুল।"
 
 #: src/olympia/devhub/forms.py
 msgid "Invalid JSON object"
-msgstr ""
+msgstr "অবৈধ JSON অবজেক্ট"
 
 #: src/olympia/devhub/forms.py
 msgid "Message not eligible for annotation"
-msgstr ""
+msgstr "টিকার জন্যে বার্তাটি উপযুক্ত নয়"
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/users/templates/users/edit.html
 msgid "Details"
@@ -3863,11 +3863,11 @@ msgstr "বিস্তারিত"
 
 #: src/olympia/devhub/forms.py
 msgid "What is your license's name?"
-msgstr ""
+msgstr "আপনার লাইসেন্সের নাম কি?"
 
 #: src/olympia/devhub/forms.py
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "আপনার লাইসেন্স এ লিখিত লেখাটি দিন।"
 
 #: src/olympia/devhub/forms.py
 msgid "License text is required when choosing Other."
