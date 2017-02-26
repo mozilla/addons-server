@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 20:31+0000\n"
+"PO-Revision-Date: 2017-02-26 20:42+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -912,14 +912,12 @@ msgstr "af %(users)s"
 
 # {0} is a number
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} advarsel"
+msgstr "[Advarsel]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Permissions"
-msgstr "Versioner"
+msgstr "Tilladelser"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -6469,9 +6467,8 @@ msgid "Automatically play YouTube videos in high-def, turn off annotations, adju
 msgstr ""
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokér reklamer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Emoji-udtryk {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
