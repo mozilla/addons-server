@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 13:40+0000\n"
+"PO-Revision-Date: 2017-02-26 19:50+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -636,12 +636,12 @@ msgstr "Versões da extensões de {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
-msgstr "Status do complemento nos últimos {0} dias"
+msgstr "Status da extensão nos últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
-msgstr "Status do complemento de {0} a {1}"
+msgstr "Status da extensão de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -676,42 +676,42 @@ msgstr "Estatísticas do site de {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
-msgstr "Complementos em uso nos últimos {0} dias"
+msgstr "Extensões em uso nos últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
-msgstr "Complementos em uso de {0} a {1}"
+msgstr "Extensões em uso de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Complementos baixados nos últimos {0} dias"
+msgstr "Extensões baixadas nos últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Complementos baixados de {0} a {1}"
+msgstr "Extensões baixadas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
-msgstr "Complementos criados nos últimos {0} dias"
+msgstr "Extensões criadas nos últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
-msgstr "Complementos criados de {0} a {1}"
+msgstr "Extensões criadas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
-msgstr "Complementos atualizados nos últimos {0} dias"
+msgstr "Extensões atualizadas nos últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "Complementos atualizados de {0} a {1}"
+msgstr "Extensões atualizadas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -817,8 +817,8 @@ msgstr "Selecione uma aplicação antes"
 #: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Definir a versão máxima do complemento {0} para {1} e notificar o autor."
-msgstr[1] "Definir a versão máxima dos complementos {0} para {1} e notificar os autores."
+msgstr[0] "Definir a versão máxima da extensão {0} para {1} e notificar o autor."
+msgstr[1] "Definir a versão máxima das extensões {0} para {1} e notificar os autores."
 
 #: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
@@ -927,7 +927,7 @@ msgstr "Comentário"
 
 #: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
-msgstr "Remover esse complemento da coleção"
+msgstr "Remover esta extensão da coleção"
 
 #: static/js/zamboni/collections.js
 msgid "Remove"
@@ -1019,7 +1019,7 @@ msgstr "Recibo não verificado pelo aplicativo."
 
 #: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
-msgstr "{name} estava visualizando esse complemento antes."
+msgstr "{name} estava vendo esta extensão primeiro."
 
 #: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
@@ -1168,11 +1168,11 @@ msgstr "Testes de compatibilidade"
 
 #: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
-msgstr "A validação do complemento falhou."
+msgstr "A extensão falhou na validação."
 
 #: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
-msgstr "O complemento foi aprovado na validação."
+msgstr "A extensão passou na validação."
 
 #: static/js/zamboni/validator.js
 msgid "{0} error"
@@ -1238,7 +1238,7 @@ msgstr "Instalando..."
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Este complemento foi avaliado preliminarmente pela Mozilla."
+msgstr "Esta extensão foi avaliada preliminarmente pela Mozilla."
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Keep it"
