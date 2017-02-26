@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 04:08+0000\n"
+"PO-Revision-Date: 2017-02-26 07:09+0000\n"
 "Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -2001,7 +2001,7 @@ msgstr "অন্য বডি"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr ""
+msgstr "স্বাক্ষর মেয়াদ উত্তীর্ণ হয়েছে।"
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
@@ -2009,7 +2009,7 @@ msgstr "ভুল ডিকোডিং স্বাক্ষর।"
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "অবৈধ JWT টোকেন।"
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
@@ -2021,7 +2021,7 @@ msgstr ""
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "ফিল্ডের অবশ্যই ন্যূনতম {num} দৈর্ঘ্য আছে।"
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
@@ -2044,9 +2044,8 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html
-#, fuzzy
 msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
@@ -2194,7 +2193,7 @@ msgstr "সংগ্রহ তৈরি করা হয়েছে!"
 #: src/olympia/bandwagon/views.py
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "আপনার নতুন সংগ্রহ নীচে দেখান হল। আপনি যদি চান <a href=\"%(url)s\">অতিরিক্ত সেটিংস সম্পাদনা</a> করতে পারেন।"
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection updated!"
@@ -2546,7 +2545,7 @@ msgstr "নতুন সংগ্রহ"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Collections by Name"
-msgstr ""
+msgstr "নাম দিয়ে সংগ্রহ"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Updated Collections"
@@ -2977,7 +2976,7 @@ msgstr "আসন্ন থিম সমূহ"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "আপকামিং সবকিছু দেখুন"
 
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
@@ -2985,7 +2984,7 @@ msgstr "কোন থিমস পাওয়া যায়নি"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "সহজ পদ্ধতিতে Firefox এর থিম ব্যাবহার"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Popular"
@@ -3016,7 +3015,7 @@ msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "আপনার অ্যাড-অনের রিপোর্ট"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Enter the GUID of an add-on below to view any reports we've received."
@@ -3184,7 +3183,7 @@ msgstr "ল্যাংগুয়েজ প্যাক (Application)"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "ভাষার প্যাক (অ্যাড-অন)"
 
 #: src/olympia/constants/base.py
 msgid "Plugin"
@@ -3209,7 +3208,7 @@ msgstr "ল্যাংগুয়েজ প্যাক (Application)"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "ভাষার প্যাক (অ্যাড-অন)"
 
 #: src/olympia/constants/base.py
 msgid "Plugins"
@@ -3257,9 +3256,8 @@ msgid "Manual Reviewer Points"
 msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "সম্পূর্ণ অ্যাড-অন পর্যালোচনা"
+msgstr "নতুন অ্যাড-অন পর্যালোচনা"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -3270,9 +3268,8 @@ msgid "Updated Add-on Review"
 msgstr "অ্যাড-অন পর্যালোচনা হালনাগাদ করা হয়েছে"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "সম্পূর্ণ ডিকশনারি পর্যালোচনা"
+msgstr "নতুন অভিধান পর্যালোচনা"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3283,9 +3280,8 @@ msgid "Updated Dictionary Review"
 msgstr ""
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "ভাষা প্যাক"
+msgstr "নতুন ভাষা প্যাক পর্যালোচনা"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3308,9 +3304,8 @@ msgid "Theme Review"
 msgstr "থিম রিভিউ"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "অনুসন্ধান সরবরাহকারী"
+msgstr "নতুন অনুসন্ধান সরবরাহকারীর পর্যালোচনা"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3321,9 +3316,8 @@ msgid "Updated Search Provider Review"
 msgstr ""
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "সম্পূর্ণ থিম পর্যালোচনা"
+msgstr "নতুন সম্পূর্ণ থিম পর্যালোচনা"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -3403,7 +3397,7 @@ msgstr "ব্যবস্থাপনা ডাউনলোড করুন"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "ফিড, নিউজ ও ব্লগিং"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
@@ -3640,27 +3634,27 @@ msgstr "ডাউনলোডিং এবং ফাইল ম্যানেজ
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
-msgstr ""
+msgstr "ইন্টারফেস কাস্টমাইজেশন"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "ভাষার সাপোর্ট এবং অনুবাদ"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
-msgstr ""
+msgstr "ছবিগুলো এবং মিডিয়া"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, সংবাদ এবং ব্লগিং"
 
 #: src/olympia/constants/categories.py
 msgid "Site-specific"
-msgstr ""
+msgstr "সাইট-নির্দিষ্ট"
 
 #: src/olympia/constants/categories.py
 msgid "Web and Developer Tools"
-msgstr ""
+msgstr "ওয়েব এবং ডেভেলোপার টুলস"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -3684,7 +3678,7 @@ msgstr "অনুমোদন"
 
 #: src/olympia/constants/editors.py
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "যৌন অথবা পর্নোগ্রাফি সংশ্লিষ্ট বিষয়"
 
 #: src/olympia/constants/editors.py
 msgid "Inappropriate or offensive content"
@@ -3779,9 +3773,8 @@ msgid "Access your data for all websites"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access bookmarks"
-msgstr "বুকমার্কস"
+msgstr "বুকমার্কসে প্রবেশাধিকার"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
@@ -3812,9 +3805,8 @@ msgid "Access browser tabs"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access browsing history"
-msgstr "সংস্করণ ইতিহাস"
+msgstr "সংস্করণ ইতিহাসে প্রবেশাধিকার"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
