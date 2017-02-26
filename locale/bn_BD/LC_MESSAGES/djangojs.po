@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-25 23:26+0000\n"
+"PO-Revision-Date: 2017-02-25 23:56+0000\n"
 "Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -415,19 +415,19 @@ msgstr "পেজ এর বিস্তারিত"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
-msgstr "বিস্তারিত পৃষ্ঠা(নিচে)"
+msgstr "বিস্তারিত পৃষ্ঠা (নিচে)"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "বিস্তারিত পৃষ্ঠায় (অগ্রগতি চ্যানেল)"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
-msgstr ""
+msgstr "প্রায়ই ব্যবহার"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
-msgstr ""
+msgstr "অন্যদের কাছে লেখক"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
