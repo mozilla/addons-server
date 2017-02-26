@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-03 21:48+0000\n"
+"PO-Revision-Date: 2017-02-26 13:40+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -278,7 +278,7 @@ msgstr "{0} usuários"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
-msgstr "{0} complementos"
+msgstr "{0} extensões"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} collections"
@@ -331,19 +331,19 @@ msgstr "Coleções criadas"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
-msgstr "Complementos em uso"
+msgstr "Extensões em uso"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
-msgstr "Complementos criados"
+msgstr "Extensões criadas"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
-msgstr "Complementos baixados"
+msgstr "Extensões baixadas"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
-msgstr "Complementos atualizados"
+msgstr "Extensões atualizadas"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
@@ -375,15 +375,15 @@ msgstr "Desconhecido"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
-msgstr "Gerenciador de complementos"
+msgstr "Gerenciador de extensões"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
-msgstr "Gerenciador de complementos em promoção"
+msgstr "Gerenciador de extensões em promoção"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
-msgstr "Gerenciador de complementos em destaque"
+msgstr "Gerenciador de extensões em destaque"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
@@ -407,7 +407,7 @@ msgstr "Em destaque na página inicial"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
-msgstr "Complementos em ascensão da página inicial"
+msgstr "Brevemente na página inicial"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
@@ -626,12 +626,12 @@ msgstr "Idiomas de {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
-msgstr "Versões do complemento nos últimos {0} dias"
+msgstr "Versões da extensões, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Versões do complemento de {0} a {1}"
+msgstr "Versões da extensões de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
