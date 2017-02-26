@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 21:27+0000\n"
+"PO-Revision-Date: 2017-02-26 21:38+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -870,6 +870,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"Se denne tilføjelses <a href=\"%(support)s\">supportafsnit</a> for at finde ud af, om du kan få hjælp. Du kan også prøve, at bede <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">the add-on community</a> om hjælp."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -1098,7 +1100,7 @@ msgstr "luk"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Nogle tilføjelser beder om tilladelse til, at udføre visse funktioner (Fx: En tilføjelse, der håndterer faneblade, vil bede om love til at tilgå din browsers fanebladssystem)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
@@ -1109,7 +1111,7 @@ msgstr ""
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "It can:"
-msgstr ""
+msgstr "Den kan:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
