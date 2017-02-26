@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 21:09+0000\n"
+"PO-Revision-Date: 2017-02-26 21:27+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -2362,13 +2362,12 @@ msgstr ""
 "Hvis du ønsker at skjule den for offentligheden, skal du klikke på knappen nedenfor for at gøre den privat."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Tilføjelser, som du markerer som favoritter ved hjælp af funktionen <b>Føj til favoritter</b> vises nedenfor. Denne samling er i øjeblikket <b>privat</b>, hvilket betyder, at kun du kan se den.  "
-"Hvis du ønsker at alle skal kunne se dine favoritter, klik på knappen nedenunder for at gøre den offentlig."
+"Tilføjelser, som du markerer som favoritter ved hjælp af funktionen <b>Føj til favoritter</b> vises nedenfor. Denne samling er i øjeblikket <b>privat</b>, hvilket betyder, at kun du kan se den. Hvis"
+" du ønsker at alle skal kunne se dine favoritter, så klik på knappen nedenunder for at gøre den offentlig."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2497,13 +2496,12 @@ msgid "Collection Contributors"
 msgstr "Samlings bidragsydere"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Du kan tilføje flere bidragsydere til denne samling.  En bidragsyder kan tilføje eller fjerne tilføjelser fra denne samling, man kan ikke ændre dens navn eller beskrivelse.  Indtast en mailadresse i"
-" feltet nedenunder for at tilføje en bidragsyder. Bidragsydere skal have en konto til dette websted."
+"Du kan tilføje flere bidragsydere til denne samling. En bidragsyder kan tilføje eller fjerne tilføjelser fra denne samling, man kan ikke ændre dens navn eller beskrivelse. Indtast en mailadresse i "
+"feltet nedenunder for at tilføje en bidragsyder. Bidragsydere skal have en konto til dette websted."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2684,13 +2682,13 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Den problematiske tilføjelse eller plugin bliver automatisk deaktiveret og vil ikke kunne bruges."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
 "Når Mozilla bliver bekendt med tilføjelser, plugins eller andre tredjeparts software, der alvorligt kompromitterer %(app)s sikkerhed, stabilitet eller ydelse, og opfylder <a "
-"href=\"%(criteria)s\">visse kriterier</a>, kan softwaren blive blokeret for generel brug.  For mere information, læs <a href=\"%(support)s\">denne supportartikel</a>."
+"href=\"%(criteria)s\">visse kriterier</a>, kan softwaren blive blokeret for generel brug. For mere information, læs <a href=\"%(support)s\">denne supportartikel</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -5591,9 +5589,8 @@ msgstr "Yderligere kilder"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "WebExtensions"
-msgstr "Udvidelser"
+msgstr "WebExtensions"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #, fuzzy
@@ -5779,9 +5776,8 @@ msgid "Docs"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Log ind"
+msgstr "Log ud"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, fuzzy
@@ -5789,14 +5785,13 @@ msgid "User Photo"
 msgstr "Slet brugerfoto"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Registrer dig</a> eller <a href=\"%(login)s\">Log ind</a>"
+msgstr "<a href=\"%(register)s\">Registrer dig</a> eller <a href=\"%(login)s\">Log ind</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Tilpas din Firefox"
+msgstr "Tilpas Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, python-format
@@ -5806,7 +5801,6 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to Make an Add-on"
 msgstr "Læs hvordan man laver en tilføjelse"
 
@@ -8584,7 +8578,7 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Lav din egen tilføjelse</a>. Vi leverer gratis hosting og opdateringsservice, og kan hjælpe dig med at nå en stort kreds af brugere."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
@@ -9903,9 +9897,8 @@ msgid "Other (please specify)"
 msgstr "Andet (angiv hvad)"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "This field is required."
-msgstr "En mailadresse er påkrævet."
+msgstr "Dette felt er påkrævet."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the add-on of a review once it has been created."
