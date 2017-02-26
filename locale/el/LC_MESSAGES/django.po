@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 10:28+0000\n"
+"PO-Revision-Date: 2017-02-26 10:50+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -802,6 +802,8 @@ msgstr "Κώδικας QR για το πρόσθετο"
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
+"Θέλετε το {0} στο Firefox του κινητού σας τηλεφώνου; Σαρώστε αυτό τον κωδικό QR για άμεση εγκατάσταση στο τηλέφωνό σας. (Θα χρειαστείτε μια εφαρμογή ανάγνωσης QR. Αν δεν έχετε ήδη μία, ψάξτε στο "
+"κατάστημα του τηλεφώνου σας.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 msgid "Report Abuse"
@@ -5636,7 +5638,7 @@ msgstr "Αναφορά σφάλματος"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Site Status"
-msgstr ""
+msgstr "Κατάσταση ιστοσελίδας"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Compatibility Checker"
@@ -5648,7 +5650,7 @@ msgstr "Αναφορά συμβατότητας"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Promote"
-msgstr ""
+msgstr "Προώθηση"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #, fuzzy
@@ -6133,7 +6135,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Δώστε ένα όνομα στο θέμα σας."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
@@ -8828,7 +8830,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "Τι είναι ένα αρχείο \".xpi\";"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
@@ -8836,7 +8838,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is XUL?"
-msgstr ""
+msgstr "Τι είναι το XUL;"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9679,15 +9681,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Do:"
-msgstr ""
+msgstr "Να:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Γράφετε σαν να μιλάτε σε ένα φίλο σχετικά με την εμπειρία σας με το πρόσθετο."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Κρατάτε τις κριτικές περιεκτικές και εύκολες στην κατανόηση."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Give specific and helpful details. For example:"
@@ -10045,11 +10047,11 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Add a Review"
-msgstr ""
+msgstr "Προσθήκη κριτικής"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Log in to add a review"
-msgstr ""
+msgstr "Συνδεθείτε για προσθήκη κριτικής"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "No ratings yet."
@@ -10099,11 +10101,11 @@ msgstr "αναζήτηση για συλλογές"
 
 #: src/olympia/search/forms.py
 msgid "search for themes"
-msgstr ""
+msgstr "αναζήτηση για θέματα"
 
 #: src/olympia/search/forms.py
 msgid "search for apps"
-msgstr ""
+msgstr "αναζήτηση για εφαρμογές"
 
 #: src/olympia/search/forms.py
 msgid "Sort By"
@@ -10240,7 +10242,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "Μη έγκυρο GUID στο URL"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
@@ -10260,7 +10262,7 @@ msgstr "Επισκόπηση"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Source"
-msgstr ""
+msgstr "κατά πηγή"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Add-on Version"
@@ -10276,7 +10278,7 @@ msgstr "κατά γλώσσα"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Platform"
-msgstr ""
+msgstr "κατά πλατφόρμα"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Add-on Status"
@@ -10284,19 +10286,19 @@ msgstr "κατά κατάσταση πρόσθετου"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Subscribers"
-msgstr ""
+msgstr "Εγγεγραμμένοι"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Ratings"
-msgstr ""
+msgstr "Βαθμολογίες"
 
 #: src/olympia/stats/templates/stats/dashboard.html
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "Στατιστικές προσθέτου"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Πρόσθετα σε χρήση"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Created"
@@ -10344,7 +10346,7 @@ msgstr "Ενημέρωση"
 
 #: src/olympia/stats/templates/stats/report.html
 msgid "Export"
-msgstr ""
+msgstr "Εξαγωγή"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html
@@ -10378,7 +10380,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Group by:"
-msgstr ""
+msgstr "Ομαδοποίηση κατά:"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "day"
@@ -10496,11 +10498,11 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> λήψεις"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Loading..."
-msgstr ""
+msgstr "Φόρτωση..."
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Average Daily Users"
@@ -10954,7 +10956,7 @@ msgstr ""
 
 #: src/olympia/users/notifications.py
 msgid "User Notifications"
-msgstr ""
+msgstr "Ειδοποιήσεις χρήστη"
 
 #: src/olympia/users/views.py
 msgid "An email address is required."
@@ -11148,7 +11150,7 @@ msgstr "Σύνδεση χρήστη"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Σύνδεση με Λογαριασμό Firefox"
 
 #: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
@@ -11197,7 +11199,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes I've created"
-msgstr ""
+msgstr "Θέματα που έχω δημιουργήσει"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Followed by Me"
@@ -11219,7 +11221,7 @@ msgstr "Δεν υπάρχουν για την ώρα αξιολογήσεις γ
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Report User"
-msgstr ""
+msgstr "Αναφορά χρήστη"
 
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
@@ -11285,21 +11287,21 @@ msgstr ""
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} πρόσθετα"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s θέμα"
+msgstr[1] "%(num)s θέματα"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s πρόσθετο"
+msgstr[1] "%(num)s πρόσθετα"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
@@ -11354,8 +11356,8 @@ msgstr "Ιστορικό εκδόσεων {0} "
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> έκδοση"
+msgstr[1] "<b>{0}</b> εκδόσεις"
 
 #: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
 msgid "Be careful with old versions!"
