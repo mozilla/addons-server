@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 11:10+0000\n"
+"PO-Revision-Date: 2017-02-26 11:11+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3810,9 +3810,8 @@ msgid "Access your data for all websites"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access bookmarks"
-msgstr "Σελιδοδείκτες"
+msgstr "Πρόσβαση στους σελιδοδείκτες"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access text clipboard"
@@ -5695,7 +5694,6 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get started"
 msgstr "Ξεκινήστε"
 
