@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-20 16:16+0000\n"
-"PO-Revision-Date: 2017-02-26 07:57+0000\n"
+"PO-Revision-Date: 2017-02-26 08:43+0000\n"
 "Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -3923,7 +3923,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Could not validate PayPal id."
-msgstr ""
+msgstr "PayPal আইডি সত্যতা নিরূপন করা সম্ভব হয় নাই।"
 
 #: src/olympia/devhub/forms.py
 msgid "Unsupported file type, please upload an archive file {extensions}."
