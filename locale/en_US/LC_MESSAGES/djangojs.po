@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1057,14 +1057,6 @@ msgstr "Number of Reviews"
 msgid "Error loading translation"
 msgstr "Error loading translation"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Ignore this message in future updates"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Severity for automated signing:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Loading..."
@@ -1149,10 +1141,6 @@ msgstr "Error"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Warning"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Suggestions for passing automated signing:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

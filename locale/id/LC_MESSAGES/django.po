@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1096,7 +1096,7 @@ msgid "close"
 msgstr "tutup"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
+msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1107,8 +1107,9 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
-msgid "It can:"
-msgstr ""
+#, fuzzy
+msgid "This add-on can:"
+msgstr "Pengaya ini merupakan percobaan"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -3800,21 +3801,30 @@ msgid "Access your data for all websites"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
+msgid "Read and modify bookmarks"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Get data from the clipboard"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
 #, fuzzy
-msgid "Access bookmarks"
-msgstr "Markah"
+msgid "Input data to the clipboard"
+msgstr "Perbarui papan tulis"
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Access text clipboard"
+msgid "Download files and read and modify the browser's download history"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's downloadhistory"
+msgid "Access your location"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Access browser history"
-msgstr ""
+#, fuzzy
+msgid "Access browsing history"
+msgstr "%s Riwayat Versi"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
@@ -3826,7 +3836,7 @@ msgid "Display notifications to you"
 msgstr "Notifikasi Pengguna"
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Access browser history to restore tabs"
+msgid "Access recently closed tabs"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
@@ -3834,20 +3844,7 @@ msgid "Access browser tabs"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Access browsing history"
-msgstr "%s Riwayat Versi"
-
-#: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Provide unlimited storage of client-side data"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser during Web activity"
 msgstr ""
 
 #: src/olympia/core/apps.py
@@ -3878,14 +3875,6 @@ msgstr "Penulis hanya akan terdaftar sekali."
 #: src/olympia/devhub/forms.py
 msgid "Slug incorrect."
 msgstr "Slug tidak benar."
-
-#: src/olympia/devhub/forms.py
-msgid "Invalid JSON object"
-msgstr "Salah objek JSON"
-
-#: src/olympia/devhub/forms.py
-msgid "Message not eligible for annotation"
-msgstr "Pesan tidak memenuhi syarat untuk anotasi"
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/users/templates/users/edit.html
 msgid "Details"
@@ -5009,11 +4998,11 @@ msgstr "Tes Pelokalan"
 msgid "Compatibility Tests"
 msgstr "Tes Kompatibilitas"
 
-#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
+#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Hide messages not required for automated signing"
 msgstr "Pesan tidak perlu disembunyikan untuk penandatanganan otomatis"
 
-#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
+#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Hide messages present in previous version and ignored"
 msgstr "Menyembunyikan pesan ada di versi sebelumnya dan tidak diindahkan"
 
@@ -7616,7 +7605,11 @@ msgid "This file is a directory."
 msgstr "Berkas ini adalah direktori."
 
 #: src/olympia/files/models.py
-msgid "Access your data for {name} website"
+msgid "Access your data for {name}"
+msgstr ""
+
+#: src/olympia/files/models.py
+msgid "Access your data on various websites"
 msgstr ""
 
 #: src/olympia/files/utils.py

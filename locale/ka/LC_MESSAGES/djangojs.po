@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-12-18 12:19+0000\n"
 "Last-Translator: mindaKhinzmarauli <beseliaa.design-mozilla-firefox@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1049,14 +1049,6 @@ msgstr "განხილვების რაოდენობა:"
 msgid "Error loading translation"
 msgstr "შეცდომა თარგმანის ჩატვირთვისას"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "ამ შეტყობინების უგულებელყოფა მომავალ განახლებებში"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "ანგარიშზე ავტომატური შესვლის გამკაცრება:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "იტვირთება...."
@@ -1139,10 +1131,6 @@ msgstr "შეცდომა"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "გაფრთხილება"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "შემოთავაზებები, ანგარიშზე ავტომატურად შესვლისთვის:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

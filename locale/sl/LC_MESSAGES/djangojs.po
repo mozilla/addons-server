@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-11-04 10:22+0000\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1073,14 +1073,6 @@ msgstr "Število ocen"
 msgid "Error loading translation"
 msgstr "Napaka pri nalaganju prevoda"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Prezri to sporočilo v prihodnjih posodobitvah"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Stopnja samodejnega podpisovanja:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Nalaganje..."
@@ -1169,10 +1161,6 @@ msgstr "Napaka"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Opozorilo"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Predlogi za opravljanje samodejnega podpisovanja:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

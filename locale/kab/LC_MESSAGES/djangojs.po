@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2017-01-27 12:24+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1056,14 +1056,6 @@ msgstr "Amḍan n iceggiren"
 msgid "Error loading translation"
 msgstr "Tuccda deg usali n tsuqilt"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Anef izen-agi deg ileqman d-iteddun"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Aswir n uqbel i uzmul awurman:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Asali..."
@@ -1148,10 +1140,6 @@ msgstr "Tuccḍa"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Ɣur-k"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Asumer akken ad tawiḍ azmul awurman:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

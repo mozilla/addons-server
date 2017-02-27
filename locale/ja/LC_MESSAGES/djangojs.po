@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-10-31 03:10+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -1047,14 +1047,6 @@ msgstr "レビュー数"
 msgid "Error loading translation"
 msgstr "翻訳読み込みエラー"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "今後の更新でこのメッセージを無視する"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "自動署名の厳格さ:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "読み込み中..."
@@ -1137,10 +1129,6 @@ msgstr "エラー"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "警告"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "自動署名をパスするための提案:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

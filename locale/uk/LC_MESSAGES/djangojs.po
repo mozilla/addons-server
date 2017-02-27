@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2017-02-12 09:07+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1064,14 +1064,6 @@ msgstr "Кількість відгуків"
 msgid "Error loading translation"
 msgstr "Помилка завантаження перекладу"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Ігнорувати це повідомлення в майбутніх оновленнях"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Поглибленість для автоматичного підпису:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Завантажується..."
@@ -1158,10 +1150,6 @@ msgstr "Помилка"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Попередження"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Пропозиції для проходження автоматичного підпису:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

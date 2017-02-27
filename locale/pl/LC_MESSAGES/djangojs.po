@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2015-11-03 11:53+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1058,14 +1058,6 @@ msgstr ""
 msgid "Error loading translation"
 msgstr "Błąd wczytywania tłumaczenia"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Ignoruj ten komunikat w przyszłych aktualizacjach."
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr ""
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Wczytywanie…"
@@ -1150,10 +1142,6 @@ msgstr "Błąd"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Ostrzeżenie"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr ""
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

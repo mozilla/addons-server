@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-10-31 12:31+0000\n"
 "Last-Translator: Inma Barrios <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1056,14 +1056,6 @@ msgstr "Número de revisiones"
 msgid "Error loading translation"
 msgstr "Error al cargar traducción"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "No haga caso de este mensaje en futuras actualizaciones"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Severidad de la firma automatizada"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Cargando..."
@@ -1148,10 +1140,6 @@ msgstr "Error"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Advertencia"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Sugerencias para pasar la firma automatizada:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-11-08 08:02+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1059,14 +1059,6 @@ msgstr "Oantal beoardielingen"
 msgid "Error loading translation"
 msgstr "Flater by laden oersetting"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Dit berjocht yn takomstige fernijingen negearje"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Earnst foar automatyske ûndertekening:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Lade…"
@@ -1151,10 +1143,6 @@ msgstr "Flater"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Warskôging"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Suggestjes foar trochstean fan automatyske ûndertekening:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

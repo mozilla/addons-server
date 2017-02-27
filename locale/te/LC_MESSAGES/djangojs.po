@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2012-03-02 17:35-0700\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1050,14 +1050,6 @@ msgstr ""
 msgid "Error loading translation"
 msgstr ""
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr ""
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr ""
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr ""
@@ -1141,10 +1133,6 @@ msgstr ""
 
 #: static/js/zamboni/validator.js
 msgid "Warning"
-msgstr ""
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
 msgstr ""
 
 #: static/js/zamboni/validator.js

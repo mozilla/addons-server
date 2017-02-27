@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-12-23 22:41+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1066,14 +1066,6 @@ msgstr "Počet hodnocení"
 msgid "Error loading translation"
 msgstr "Chyba při načítání překladu"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Ignorovat tuto zprávu při budoucích aktualizacích"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Závažnost pro automatické podepisování:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Probíhá načítání..."
@@ -1160,10 +1152,6 @@ msgstr "Chyba"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Varování"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Doporučení k úspěšnému dokončení automatického podepsání:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

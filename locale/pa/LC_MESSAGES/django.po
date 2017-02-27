@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1090,7 +1090,7 @@ msgid "close"
 msgstr "ਬੰਦ"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
+msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1101,8 +1101,9 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
-msgid "It can:"
-msgstr ""
+#, fuzzy
+msgid "This add-on can:"
+msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -3826,20 +3827,30 @@ msgid "Access your data for all websites"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Access bookmarks"
+msgid "Read and modify bookmarks"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Access text clipboard"
+msgid "Get data from the clipboard"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's downloadhistory"
+#, fuzzy
+msgid "Input data to the clipboard"
+msgstr "ਵਾਇਟਬੋਰਡ ਅੱਪਡੇਟ ਕਰੋ"
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Download files and read and modify the browser's download history"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Access browser history"
+msgid "Access your location"
 msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+#, fuzzy
+msgid "Access browsing history"
+msgstr "%s ਵਰਜਨ ਇਤਿਹਾਸ"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
@@ -3851,7 +3862,7 @@ msgid "Display notifications to you"
 msgstr "ਉਪਭੋਗੀ ਅਧਿਸੂਚਨਾਵਾਂ"
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Access browser history to restore tabs"
+msgid "Access recently closed tabs"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
@@ -3859,20 +3870,7 @@ msgid "Access browser tabs"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Access browsing history"
-msgstr "%s ਵਰਜਨ ਇਤਿਹਾਸ"
-
-#: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Provide unlimited storage of client-side data"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser during Web activity"
 msgstr ""
 
 #: src/olympia/core/apps.py
@@ -3902,14 +3900,6 @@ msgstr "ਇੱਕ ਲੇਖਕ ਕੇਵਲ ਇੱਕ ਵਾਰ ਸੂਚੀਬ�
 
 #: src/olympia/devhub/forms.py
 msgid "Slug incorrect."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Invalid JSON object"
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Message not eligible for annotation"
 msgstr ""
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/users/templates/users/edit.html
@@ -4983,11 +4973,11 @@ msgstr "ਲੋਕੇਲਾਈਜੇਸ਼ਨ ਪਰਖ"
 msgid "Compatibility Tests"
 msgstr "ਅਨੁਕੂਲਤਾ ਪਰਖਾਂ"
 
-#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
+#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Hide messages not required for automated signing"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
+#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Hide messages present in previous version and ignored"
 msgstr ""
 
@@ -7549,7 +7539,11 @@ msgid "This file is a directory."
 msgstr "ਇਹ ਫ਼ਾਈਲ ਇੱਕ ਡਾਇਰੈਕਟਰੀ ਹੈ।"
 
 #: src/olympia/files/models.py
-msgid "Access your data for {name} website"
+msgid "Access your data for {name}"
+msgstr ""
+
+#: src/olympia/files/models.py
+msgid "Access your data on various websites"
 msgstr ""
 
 #: src/olympia/files/utils.py

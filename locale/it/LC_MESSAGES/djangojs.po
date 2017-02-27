@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-10-27 15:33+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -1063,14 +1063,6 @@ msgstr "Numero recensioni"
 msgid "Error loading translation"
 msgstr "Si è verificato un errore durante il caricamento della traduzione"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Ignorare questo messaggio per gli aggiornamenti futuri"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Livello di sicurezza della firma digitale automatica:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Caricamento…"
@@ -1155,10 +1147,6 @@ msgstr "Errore"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Avviso"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Suggerimenti per superare il processo automatico di firma digitale:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
