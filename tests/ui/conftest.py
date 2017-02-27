@@ -55,10 +55,11 @@ def initial_data(transactional_db, live_server):
 
 
 @pytest.fixture
-def create_superuser(transactional_db, live_server, base_url):
+def create_superuser(transactional_db, live_server, base_url, tmpdir):
     hostname = urlparse.urlsplit(base_url).hostname
     create_switch('super-create-accounts')
     call_command('loaddata', 'initial.json')
+    temp = tmpdir.join('variables.json')
 
     call_command(
         'createsuperuser',
@@ -66,7 +67,7 @@ def create_superuser(transactional_db, live_server, base_url):
         username='uitest',
         email='uitester@mozilla.org',
         add_to_supercreate_group=True,
-        save_api_credentials='tests/ui/variables.json',
+        save_api_credentials=str(temp),
         hostname=hostname
     )
 
@@ -100,12 +101,17 @@ def user(
     }
     assert requests.codes.created == response.status_code
     user.update(response.json())
-    print(user)
     return user
 
 
 @pytest.fixture(scope='function')
 def live_server(request):
+    """
+        This fixture overrides the live_server fixture provided by
+        pytest_django. live_server allows us to create a running version of the
+        addons django application within pytest for testing.
+    """
+
     import django
     request.getfixturevalue('transactional_db')
 
@@ -117,7 +123,8 @@ def live_server(request):
 
     server = live_server_helper.LiveServer(addr)
     request.addfinalizer(server.stop)
-    return server
+    yield server
+    server.stop()
 
 
 @pytest.fixture
@@ -130,6 +137,6 @@ def jwt_token(base_url, jwt_issuer, jwt_secret):
 
 
 @pytest.fixture
-def json_file():
-    with open('tests/ui/variables.json') as f:
+def json_file(tmpdir):
+    with tmpdir.join('variables.json').open() as f:
         return json.load(f)
