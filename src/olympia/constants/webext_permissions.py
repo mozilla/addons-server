@@ -16,6 +16,7 @@ WEBEXT_PERMISSIONS = {
     u'http://*/*': ALL_URLS_PERMISSION,
     u'https://*/*': ALL_URLS_PERMISSION,
     u'*://*/*': ALL_URLS_PERMISSION,
+    # FIXME: how about https://*/path ?
 
     u'bookmarks': Permission(
         u'bookmarks',

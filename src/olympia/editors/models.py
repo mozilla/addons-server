@@ -1,4 +1,5 @@
 import datetime
+import json
 
 from django.conf import settings
 from django.core.cache import cache
@@ -16,11 +17,12 @@ from olympia.access.models import Group
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
-from olympia.addons.models import Addon, Persona
+from olympia.addons.models import Addon, AddonApprovalsCounter, Persona
 from olympia.devhub.models import ActivityLog
 from olympia.editors.sql_model import RawSQLModel
+from olympia.files.models import FileValidation
 from olympia.users.models import UserForeignKey, UserProfile
-from olympia.versions.models import version_uploaded
+from olympia.versions.models import Version, version_uploaded
 
 
 user_log = commonware.log.getLogger('z.users')
@@ -666,6 +668,129 @@ class ReviewerScore(ModelBase):
                 prev = score['level']
 
         return scores
+
+
+class AutoApprovalNotEnoughFilesError(Exception):
+    pass
+
+
+class AutoApprovalNoValidationResultError(Exception):
+    pass
+
+
+class AutoApprovalSummary(ModelBase):
+    """Model holding the results of an auto-approval attempt on a Version."""
+    version = models.OneToOneField(
+        Version, on_delete=models.CASCADE, primary_key=True)
+    uses_custom_csp = models.BooleanField(default=False)
+    uses_native_messaging = models.BooleanField(default=False)
+    uses_content_script_for_all_urls = models.BooleanField(default=False)
+    average_daily_users = models.PositiveIntegerField(default=0)
+    approved_updates = models.PositiveIntegerField(default=0)
+    verdict = models.PositiveSmallIntegerField(
+        choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
+        default=amo.NOT_AUTO_APPROVED)
+
+    def calculate_verdict(
+            self, max_average_daily_users=0, min_approved_updates=0,
+            dry_run=False):
+        """Calculate the verdict for this instance based on the values set
+        on it and the current configuration.
+
+        Return a dict containing more information about what critera passed
+        or not."""
+        if dry_run:
+            success_verdict = amo.WOULD_HAVE_BEEN_AUTO_APPROVED
+            failure_verdict = amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
+        else:
+            success_verdict = amo.AUTO_APPROVED
+            failure_verdict = amo.NOT_AUTO_APPROVED
+
+        # We need everything in that dict to be False for verdict to be
+        # successful.
+        verdict_info = {
+            'uses_custom_csp': self.uses_custom_csp,
+            'uses_native_messaging': self.uses_native_messaging,
+            'uses_content_script_for_all_urls':
+                self.uses_content_script_for_all_urls,
+            'too_many_average_daily_users':
+                self.average_daily_users >= max_average_daily_users,
+            'too_few_approved_updates':
+                self.approved_updates < min_approved_updates,
+        }
+        if any(verdict_info.values()):
+            self.verdict = failure_verdict
+        else:
+            self.verdict = success_verdict
+
+        return verdict_info
+
+    @classmethod
+    def check_uses_custom_csp(cls, version):
+        def _check_uses_custom_csp_in_file(file_):
+            try:
+                validation = file_.validation
+            except FileValidation.DoesNotExist:
+                raise AutoApprovalNoValidationResultError()
+            validation_data = json.loads(validation.validation)
+            return any('MANIFEST_CSP' in message['id']
+                       for message in validation_data.get('messages', []))
+        return any(_check_uses_custom_csp_in_file(file_)
+                   for file_ in version.all_files)
+
+    @classmethod
+    def check_uses_native_messaging(cls, version):
+        return any('nativeMessaging' in file_.webext_permissions_list
+                   for file_ in version.all_files)
+
+    @classmethod
+    def check_uses_content_script_for_all_urls(cls, version):
+        return any(p.name == 'all_urls' for file_ in version.all_files
+                   for p in file_.webext_permissions)
+
+    @classmethod
+    def create_summary_for_version(
+            cls, version, max_average_daily_users=0,
+            min_approved_updates=0, dry_run=False):
+        """Create a AutoApprovalSummary instance in db from the specified
+        version.
+
+        Return a tuple with the AutoApprovalSummary instance as first item,
+        and a dict containing information about the auto approval verdict as
+        second item.
+
+        If dry_run parameter is True, then the instance is created/updated
+        normally but when storing the verdict the WOULD_ constants are used
+        instead.
+
+        If not using dry_run it's the caller responsability to approve the
+        version to make sure the AutoApprovalSummary is not overwritten later
+        when the auto-approval process fires again."""
+        if len(version.all_files) == 0:
+            raise AutoApprovalNotEnoughFilesError()
+
+        addon = version.addon
+        try:
+            approved_updates = addon.addonapprovalscounter.counter
+        except AddonApprovalsCounter.DoesNotExist:
+            approved_updates = 0
+
+        data = {
+            'version': version,
+            'uses_custom_csp': cls.check_uses_custom_csp(version),
+            'uses_native_messaging': cls.check_uses_native_messaging(version),
+            'uses_content_script_for_all_urls':
+                cls.check_uses_content_script_for_all_urls(version),
+            'average_daily_users': addon.average_daily_users,
+            'approved_updates': approved_updates,
+        }
+        instance = cls(**data)
+        verdict_info = instance.calculate_verdict(
+            dry_run=dry_run, max_average_daily_users=max_average_daily_users,
+            min_approved_updates=min_approved_updates)
+        instance, _ = cls.objects.update_or_create(
+            version=version, defaults=data)
+        return instance, verdict_info
 
 
 class RereviewQueueThemeManager(ManagerBase):
