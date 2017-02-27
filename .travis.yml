@@ -8,18 +8,86 @@ env:
   global:
     - DISPLAY=:99.0
 
-env:
-  - TOXENV=flake8
-  - TOXENV=docs
-  - TOXENV=assets
-  - TOXENV=es
-  - TOXENV=addons
-  - TOXENV=devhub
-  - TOXENV=editors
-  - TOXENV=amo
-  - TOXENV=users
-  - TOXENV=main
-
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=flake8
+      addons:
+        apt:
+          packages:
+            - swig
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=docs
+      addons:
+        apt:
+          packages:
+            - swig
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=assets
+      addons:
+        apt:
+          packages:
+            - swig
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=es
+      addons:
+        apt:
+          packages:
+            - swig
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=addons
+      addons:
+        apt:
+          packages:
+            - swig
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=devhub
+      addons:
+        apt:
+          packages:
+            - swig
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=editors
+      addons:
+        apt:
+          packages:
+            - swig
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=amo
+      addons:
+        apt:
+          packages:
+            - swig
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=users
+      addons:
+        apt:
+          packages:
+            - swig
+matrix:
+  include:
+    - python: 2.7
+      env: TOXENV=main
+      addons:
+        apt:
+          packages:
+            - swig
 matrix:
   include:
     - python: 2.7
@@ -31,7 +99,6 @@ matrix:
           packages:
             - swig
         firefox: latest
-  fast_finish: true
 
 cache:
   pip: true
@@ -41,11 +108,6 @@ cache:
 
 services:
   - memcached
-
-addons:
-  apt:
-    packages:
-      - swig
 
 before_install:
   - scripts/travis_es.sh
