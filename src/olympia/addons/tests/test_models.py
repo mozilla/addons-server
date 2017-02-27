@@ -26,7 +26,6 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import ActivityLog, AddonLog, RssKey
-from olympia.editors.models import EscalationQueue
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.reviews.models import Review, ReviewFlag
@@ -2985,15 +2984,6 @@ class TestIncompatibleVersions(TestCase):
 
         version2.delete()
         assert IncompatibleVersions.objects.count() == 0
-
-
-class TestQueue(TestCase):
-
-    def test_in_queue(self):
-        addon = Addon.objects.create(guid='f', type=amo.ADDON_EXTENSION)
-        assert not addon.in_escalation_queue()
-        EscalationQueue.objects.create(addon=addon)
-        assert addon.in_escalation_queue()
 
 
 class TestAddonApprovalsCounter(TestCase):

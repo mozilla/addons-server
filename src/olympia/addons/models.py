@@ -1344,9 +1344,6 @@ class Addon(OnChangeMixin, ModelBase):
 
         return self.installed.filter(user=user).exists()
 
-    def in_escalation_queue(self):
-        return self.escalationqueue_set.exists()
-
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
         """

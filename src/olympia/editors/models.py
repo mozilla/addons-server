@@ -668,13 +668,6 @@ class ReviewerScore(ModelBase):
         return scores
 
 
-class EscalationQueue(ModelBase):
-    addon = models.ForeignKey(Addon)
-
-    class Meta:
-        db_table = 'escalation_queue'
-
-
 class RereviewQueueThemeManager(ManagerBase):
 
     def __init__(self, include_deleted=False):
