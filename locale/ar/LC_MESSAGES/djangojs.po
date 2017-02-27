@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2015-11-07 13:06+0000\n"
 "Last-Translator: Mohamed Hafez <mohamed7afezz@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -1092,14 +1092,6 @@ msgstr ""
 msgid "Error loading translation"
 msgstr ""
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr ""
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr ""
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "يُحمّل..."
@@ -1191,10 +1183,6 @@ msgstr "خطأ"
 
 #: static/js/zamboni/validator.js
 msgid "Warning"
-msgstr ""
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
 msgstr ""
 
 #: static/js/zamboni/validator.js

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-08-08 12:39+0000\n"
 "Last-Translator: Amanpreet Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1059,14 +1059,6 @@ msgstr ""
 msgid "Error loading translation"
 msgstr "ਲ੍ਹੋਡ ਕਰਨ ਦੌਰਾਨ ਅਨੁਵਾਦ ਗਲਤੀ"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr ""
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr ""
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
@@ -1151,10 +1143,6 @@ msgstr "ਗਲਤੀ"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "ਚੇਤਾਵਨੀ"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr ""
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

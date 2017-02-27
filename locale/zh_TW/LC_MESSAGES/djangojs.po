@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-10-25 12:05+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -1044,14 +1044,6 @@ msgstr "留言數量"
 msgid "Error loading translation"
 msgstr "讀取翻譯錯誤"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "在未來的更新中忽略此錯誤"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "自動簽署的嚴重性:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "載入中..."
@@ -1134,10 +1126,6 @@ msgstr "錯誤"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "警告"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "通過自動簽署的建議:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

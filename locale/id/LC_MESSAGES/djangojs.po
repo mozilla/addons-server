@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-09-15 07:49+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1048,14 +1048,6 @@ msgstr "Jumlah Ulasan"
 msgid "Error loading translation"
 msgstr "Ada masalah memuat terjemahan"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Abaikan pesan ini untuk pembaruan selanjutnya"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Kepelikan untuk menandai otomatis:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Memuat..."
@@ -1138,10 +1130,6 @@ msgstr "Masalah"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Peringatan"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Saran untuk lulus tanda tangan otomatis:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

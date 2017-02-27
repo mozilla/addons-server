@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-10-27 14:27+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -1065,14 +1065,6 @@ msgstr "Количество отзывов"
 msgid "Error loading translation"
 msgstr "Ошибка при загрузке перевода"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Игнорировать это сообщение в будущих обновлениях"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Критичность для автоматического подписания:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Загрузка..."
@@ -1159,10 +1151,6 @@ msgstr "Ошибка"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Предупреждение"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Предложения для прохождения автоматизированного подписания:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-09-20 09:50+0000\n"
 "Last-Translator: Stjepan Treger <stjepan.treger@gmail.com>\n"
 "Language-Team: Croatian\n"
@@ -1068,14 +1068,6 @@ msgstr "Broj ocjena"
 msgid "Error loading translation"
 msgstr "Greška pokretanja prijevoda"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Ignoriraj ovu poruku u budućim ažuriranjima"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Točnost automatskog potpisivanja:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Pokretanje..."
@@ -1162,10 +1154,6 @@ msgstr "Pogreška"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Upozorenje"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Sugestije za prolazak kroz automatsko potpisivanje:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

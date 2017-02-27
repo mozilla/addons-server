@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1105,7 +1105,7 @@ msgid "close"
 msgstr "затвори"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-msgid "Some add-ons ask for permissions to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
+msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1116,8 +1116,9 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
-msgid "It can:"
-msgstr ""
+#, fuzzy
+msgid "This add-on can:"
+msgstr "Овај додатак захтева спољашњи софтвер."
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -3858,21 +3859,31 @@ msgid "Access your data for all websites"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
+msgid "Read and modify bookmarks"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
+msgid "Get data from the clipboard"
+msgstr ""
+
+#: src/olympia/constants/webext_permissions.py
 #, fuzzy
-msgid "Access bookmarks"
-msgstr "Књиге"
+msgid "Input data to the clipboard"
+msgstr "Ажурирај таблу"
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Access text clipboard"
+msgid "Download files and read and modify the browser's download history"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's downloadhistory"
+msgid "Access your location"
 msgstr ""
 
+# {0} is the add-on name
 #: src/olympia/constants/webext_permissions.py
-msgid "Access browser history"
-msgstr ""
+#, fuzzy
+msgid "Access browsing history"
+msgstr "%s историјат верзије"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
@@ -3884,29 +3895,15 @@ msgid "Display notifications to you"
 msgstr "Обавештења корисника"
 
 #: src/olympia/constants/webext_permissions.py
-msgid "Access browser history to restore tabs"
+msgid "Access recently closed tabs"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
 msgstr ""
 
-# {0} is the add-on name
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Access browsing history"
-msgstr "%s историјат верзије"
-
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Provide unlimited storage of client-side data"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser during Web activity"
 msgstr ""
 
 #: src/olympia/core/apps.py
@@ -3936,14 +3933,6 @@ msgstr "Аутор може бити на листи само једном."
 
 #: src/olympia/devhub/forms.py
 msgid "Slug incorrect."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Invalid JSON object"
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Message not eligible for annotation"
 msgstr ""
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/users/templates/users/edit.html
@@ -5018,11 +5007,11 @@ msgstr "Тестови локализације"
 msgid "Compatibility Tests"
 msgstr "Тестови компатибилности"
 
-#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
+#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Hide messages not required for automated signing"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html src/olympia/files/templates/files/viewer.html
+#: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Hide messages present in previous version and ignored"
 msgstr ""
 
@@ -7589,7 +7578,11 @@ msgid "This file is a directory."
 msgstr "Ова датотека је директоријум."
 
 #: src/olympia/files/models.py
-msgid "Access your data for {name} website"
+msgid "Access your data for {name}"
+msgstr ""
+
+#: src/olympia/files/models.py
+msgid "Access your data on various websites"
 msgstr ""
 
 #: src/olympia/files/utils.py

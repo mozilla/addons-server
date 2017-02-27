@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-20 16:16+0000\n"
+"POT-Creation-Date: 2017-02-27 07:24+0000\n"
 "PO-Revision-Date: 2016-10-25 17:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1074,14 +1074,6 @@ msgstr "Ličba pohódnoćenjow"
 msgid "Error loading translation"
 msgstr "Zmylk při začitowanju přełožka"
 
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Ignore this message in future updates"
-msgstr "Tutu zdźělenku w přichodnych aktualizacijach ignorować"
-
-#: static/js/zamboni/files.js static/js/zamboni/validator.js
-msgid "Severity for automated signing:"
-msgstr "Nuznosć za awtomatiske signowanje:"
-
 #: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Začituje so..."
@@ -1170,10 +1162,6 @@ msgstr "Zmylk"
 #: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Warnowanje"
-
-#: static/js/zamboni/validator.js
-msgid "Suggestions for passing automated signing:"
-msgstr "Namjety za wobstaće awtomatiskeho signowanja:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
