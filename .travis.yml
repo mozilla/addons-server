@@ -15,18 +15,22 @@ env:
   - TOXENV=amo
   - TOXENV=users
   - TOXENV=main
+  - DISPLAY=:99.0
 
 matrix:
   include:
     - python: 2.7
       env:
         - TOXENV=ui-tests
-        - DISPLAY=:99.0
+        - PYTEST_BASE_URL=http://localhost:8081
       addons:
         apt:
           packages:
             - swig
-        firefox: latest-nightly
+        firefox: latest
+      before_script:
+        - sh -e /etc/init.d/xvfb start
+        - sleep 10
   fast_finish: true
 
 cache:
@@ -61,12 +65,8 @@ install:
 before_script:
   - mysql -e 'create database olympia;'
   - node --version
-  - sh -e /etc/init.d/xvfb start
-  - sleep 10
 
 script:
-  - test $TRAVIS_PULL_REQUEST != false && export PYTEST_BASE_URL=http://localhost:8081 || export PYTEST_BASE_URL=http://addons-dev.allizom.org
-  - echo $PYTEST_BASE_URL
   - RUNNING_IN_CI=True tox -v
 
 notifications:
