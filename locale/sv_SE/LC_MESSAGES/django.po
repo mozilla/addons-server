@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-27 17:05+0000\n"
+"PO-Revision-Date: 2017-02-27 17:26+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1083,9 +1083,8 @@ msgid "close"
 msgstr "stäng"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "Vissa tillägg be om behörighet att utföra vissa funktioner (exempel: en flikhanterar tillägg kommer att be om behörighet för att komma åt din webbläsares fliksystem)."
+msgstr "Vissa tillägg kan be om behörighet att utföra vissa funktioner (exempel: ett flikhanterande tillägg kan be om behörighet för att komma åt din webbläsares fliksystem)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
@@ -3775,25 +3774,23 @@ msgstr "Åtkomst till data för alla webbplatser"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks"
-msgstr ""
+msgstr "Läsa och ändra bokmärken"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Get data from the clipboard"
-msgstr ""
+msgstr "Hämta data från urklipp"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Input data to the clipboard"
-msgstr "Uppdatera anslagstavla"
+msgstr "Mata in data till urklipp"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Download files and read and modify the browser's download history"
 msgstr "Ladda ner filer och läsa och ändra webbläsarens nedladdningshistorik"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your location"
-msgstr ""
+msgstr "Åtkomst till din position"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browsing history"
@@ -3808,9 +3805,8 @@ msgid "Display notifications to you"
 msgstr "Visa meddelanden till dig"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access recently closed tabs"
-msgstr "Åtkomst till webbläsarens flikar"
+msgstr "Åtkomst till webbläsarens nyligen stängda flikar"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
@@ -7470,14 +7466,12 @@ msgid "This file is a directory."
 msgstr "Filen är en katalog."
 
 #: src/olympia/files/models.py
-#, fuzzy
 msgid "Access your data for {name}"
-msgstr "Åtkomst till data för webbplatsen {name}"
+msgstr "Åtkomst till dina data för {name}"
 
 #: src/olympia/files/models.py
-#, fuzzy
 msgid "Access your data on various websites"
-msgstr "Åtkomst till data för alla webbplatser"
+msgstr "Åtkomst till data för olika webbplatser"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
