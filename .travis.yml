@@ -5,6 +5,10 @@ python:
   - "2.7"
 
 env:
+  global:
+    - DISPLAY=:99.0
+
+env:
   - TOXENV=flake8
   - TOXENV=docs
   - TOXENV=assets
@@ -15,8 +19,6 @@ env:
   - TOXENV=amo
   - TOXENV=users
   - TOXENV=main
-  global:
-    - DISPLAY=:99.0
 
 matrix:
   include:
@@ -29,9 +31,6 @@ matrix:
           packages:
             - swig
         firefox: latest
-      before_script:
-        - sh -e /etc/init.d/xvfb start
-        - sleep 10
   fast_finish: true
 
 cache:
@@ -66,6 +65,8 @@ install:
 before_script:
   - mysql -e 'create database olympia;'
   - node --version
+  - if [[ "${TOXENV}" = "ui-tests" ]]; then sh -e /etc/init.d/xvfb start; fi
+  - if [[ "${TOXENV}" = "ui-tests" ]]; then  sleep 10 &&; fi
 
 script:
   - RUNNING_IN_CI=True tox -v
