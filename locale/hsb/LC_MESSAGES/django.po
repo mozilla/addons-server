@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-27 17:23+0000\n"
+"PO-Revision-Date: 2017-02-27 17:38+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1114,7 +1114,7 @@ msgstr "začinić"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "Někotre přidatki proša wo prawa, zo bychu wěste funkcije wuwjedli (na přikład: přidatk za rjadowanje rajtarkow prosy wo přistup na rajtarkowy system wašeho wobhladowaka)."
+msgstr "Někotre přidatki proša wo prawo, zo bychu wěste funkcije wuwjedli (na přikład: přidatk za rjadowanje rajtarkow prosy wo přistup na rajtarkowy system wašeho wobhladowaka)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
@@ -3850,7 +3850,7 @@ msgstr "Daty do mjezyskłada zapodać"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's download history"
-msgstr "Sćehńće dataje a čitajće a změńće sćehnjensku hiostoriju wobhladowaka"
+msgstr "Sćehńće dataje a čitajće a změńće sćehnjensku historiju wobhladowaka"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your location"
@@ -3858,7 +3858,7 @@ msgstr "Mějće přistup na swoje městno"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browsing history"
-msgstr "Přistup na přehladowansku historiju"
+msgstr "Přistup na přehladowansku historiju měć"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
