@@ -79,6 +79,8 @@ matrix:
           packages:
             - swig
         firefox: latest
+  exclude:
+    - python: 2.7
   fast_finish: true
 
 cache:
