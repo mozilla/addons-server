@@ -16,80 +16,60 @@ matrix:
         apt:
           packages:
             - swig
-matrix:
-  include:
     - python: 2.7
       env: TOXENV=docs
       addons:
         apt:
           packages:
             - swig
-matrix:
-  include:
     - python: 2.7
       env: TOXENV=assets
       addons:
         apt:
           packages:
             - swig
-matrix:
-  include:
     - python: 2.7
       env: TOXENV=es
       addons:
         apt:
           packages:
             - swig
-matrix:
-  include:
     - python: 2.7
       env: TOXENV=addons
       addons:
         apt:
           packages:
             - swig
-matrix:
-  include:
     - python: 2.7
       env: TOXENV=devhub
       addons:
         apt:
           packages:
             - swig
-matrix:
-  include:
     - python: 2.7
       env: TOXENV=editors
       addons:
         apt:
           packages:
             - swig
-matrix:
-  include:
     - python: 2.7
       env: TOXENV=amo
       addons:
         apt:
           packages:
             - swig
-matrix:
-  include:
     - python: 2.7
       env: TOXENV=users
       addons:
         apt:
           packages:
             - swig
-matrix:
-  include:
     - python: 2.7
       env: TOXENV=main
       addons:
         apt:
           packages:
             - swig
-matrix:
-  include:
     - python: 2.7
       env:
         - TOXENV=ui-tests
@@ -99,6 +79,7 @@ matrix:
           packages:
             - swig
         firefox: latest
+  fast_finish: true
 
 cache:
   pip: true
