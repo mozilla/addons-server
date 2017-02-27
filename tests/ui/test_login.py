@@ -18,7 +18,7 @@ def test_login(base_url, selenium, user, force_user_login):
 
 @pytest.mark.django_db
 @pytest.mark.skipif('dev' not in os.getenv('PYTEST_BASE_URL'),
-                    reason='No UI login for local testing')
+                    reason='No UI login for live_server testing')
 def test_login_ui(base_url, selenium, user, force_user_login):
     """User can login"""
     page = Home(selenium, base_url).open()

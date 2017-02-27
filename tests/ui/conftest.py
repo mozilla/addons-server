@@ -15,7 +15,7 @@ from olympia.amo.tests import create_switch
 
 @pytest.fixture(scope='session')
 def base_url(base_url):
-    return base_url or os.getenv('PYTEST_BASE_URL')
+    return base_url
 
 
 @pytest.fixture
@@ -80,7 +80,7 @@ def force_user_login():
 
 @pytest.fixture
 def user(
-        transactional_db, create_superuser, our_live_server, base_url,
+        transactional_db, create_superuser, live_server, base_url,
         fxa_account, jwt_token):
     url = '{base_url}/api/v3/accounts/super-create/'.format(base_url=base_url)
 
@@ -105,7 +105,7 @@ def user(
 
 
 @pytest.fixture(scope='function')
-def our_live_server(request):
+def live_server(request):
     import django
     request.getfixturevalue('transactional_db')
 
