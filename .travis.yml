@@ -66,7 +66,7 @@ before_script:
   - mysql -e 'create database olympia;'
   - node --version
   - if [[ "${TOXENV}" = "ui-tests" ]]; then sh -e /etc/init.d/xvfb start; fi
-  - if [[ "${TOXENV}" = "ui-tests" ]]; then  sleep 10 &&; fi
+  - if [[ "${TOXENV}" = "ui-tests" ]]; then sleep 10; fi
 
 script:
   - RUNNING_IN_CI=True tox -v
