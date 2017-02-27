@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-27 16:48+0000\n"
+"PO-Revision-Date: 2017-02-27 16:51+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3884,7 +3884,7 @@ msgstr "Dostopa do zgodovine brskanja"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr "Omogoči izmenjavo sporočil z drugimi programi poleg Firefoxa"
+msgstr "Izmenjuje sporočila z drugimi programi poleg Firefoxa"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Display notifications to you"
@@ -3900,7 +3900,7 @@ msgstr "Dostopa do zavihkov brskalnika"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr "Dostop do dejavnosti brskalnika med krmarjenjem"
+msgstr "Dostopa do dejavnosti brskalnika med krmarjenjem"
 
 #: src/olympia/core/apps.py
 msgid "Core"
