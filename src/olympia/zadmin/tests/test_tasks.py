@@ -10,6 +10,7 @@ from olympia.addons.models import Addon
 from olympia.applications.models import AppVersion
 from olympia.files.utils import make_xpi
 from olympia.versions.compare import version_int
+from olympia.versions.models import License
 from olympia.zadmin import tasks
 
 
@@ -78,6 +79,7 @@ class TestLangpackFetcher(TestCase):
         request_patch = mock.patch('olympia.zadmin.tasks.requests.get')
         self.mock_request = request_patch.start()
         self.addCleanup(request_patch.stop)
+        License.objects.create(name=u'MPL', builtin=1)
 
     def get_langpacks(self):
         return (Addon.objects.no_cache()
@@ -115,12 +117,15 @@ class TestLangpackFetcher(TestCase):
         addon = langpacks[0]
         assert addon.default_locale == 'de-DE'
         assert addon.target_locale == 'de-DE'
+        assert addon.summary == addon.name
 
         assert addon._current_version
         assert addon.current_version.version == amo.FIREFOX.latest_version
 
-        assert addon.status == amo.STATUS_PUBLIC
+        # has_complete_metadata checks license and categories were set.
+        assert addon.has_complete_metadata(), addon.get_required_metadata()
         assert addon.current_version.files.all()[0].status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_PUBLIC
 
         mock_sign_file.assert_called_once_with(
             addon.current_version.files.get(), settings.SIGNING_SERVER)
@@ -140,7 +145,10 @@ class TestLangpackFetcher(TestCase):
 
         addon = langpacks[0]
         assert addon.versions.count() == 2
+        assert addon.summary == addon.name
 
+        # has_complete_metadata checks license and categories were set.
+        assert addon.has_complete_metadata(), addon.get_required_metadata()
         version = addon.versions.get(version=versions[1])
         assert version.files.all()[0].status == amo.STATUS_PUBLIC
 
@@ -175,14 +183,15 @@ class TestLangpackFetcher(TestCase):
 
         self.fetch_langpacks(versions[0])
 
-        assert self.get_langpacks().count() == 1
+        langpacks = self.get_langpacks()
+        assert langpacks.count() == 1
+        addon = langpacks[0]
+        assert addon.status == amo.STATUS_PUBLIC
 
         self.fetch_langpacks(versions[1])
 
-        langpacks = self.get_langpacks()
-        assert langpacks.count() == 1
+        assert self.get_langpacks().count() == 1
 
-        addon = langpacks[0]
         assert addon.versions.count() == 2
 
         version = addon.versions.get(version=versions[1])

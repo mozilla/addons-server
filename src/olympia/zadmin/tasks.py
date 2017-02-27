@@ -19,20 +19,21 @@ from django.utils import translation
 import requests
 
 from olympia import amo
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
 from olympia.amo import set_user
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked, send_mail, sorted_groupby
+from olympia.constants.categories import CATEGORIES
 from olympia.devhub.tasks import run_validator
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
-from olympia.versions.models import Version
+from olympia.versions.models import License, Version
 from olympia.zadmin.models import (
     EmailPreviewTopic, ValidationJob, ValidationResult)
 
@@ -578,7 +579,6 @@ def fetch_langpack(url, xpi, **kw):
             AddonUser(addon=addon, user=owner).save()
             version = addon.versions.get()
 
-            addon.status = amo.STATUS_PUBLIC
             if addon.default_locale.lower() == lang.lower():
                 addon.target_locale = addon.default_locale
 
@@ -587,6 +587,25 @@ def fetch_langpack(url, xpi, **kw):
             log.info('[@None] Created new "{0}" language pack, version {1}'
                      .format(xpi, data['version']))
 
+        # Set the category
+        for app in version.compatible_apps:
+            static_category = (
+                CATEGORIES.get(app.id, []).get(amo.ADDON_LPAPP, [])
+                .get('general'))
+            if static_category:
+                category, _ = Category.objects.get_or_create(
+                    id=static_category.id, defaults=static_category.__dict__)
+                AddonCategory.objects.get_or_create(
+                    addon=addon, category=category)
+
+        # Clear potentially outdated categories cached_property on Addon.
+        del addon.all_categories
+
+        # Add a license if there isn't one already
+        if not version.license:
+            license = License.objects.builtins().get(builtin=1)
+            version.update(license=license)
+
         file_ = version.files.get()
         if not is_beta:
             # Not `version.files.update`, because we need to trigger save
@@ -594,7 +613,10 @@ def fetch_langpack(url, xpi, **kw):
             file_.update(status=amo.STATUS_PUBLIC)
         sign_file(file_, settings.SIGNING_SERVER)
 
-        addon.update_version()
+        # Finally, set the addon summary if one wasn't provided in the xpi.
+        addon.update(status=amo.STATUS_PUBLIC,
+                     summary=(addon.summary if addon.summary else addon.name))
+        addon.update_status()
 
 
 @task
