@@ -50,7 +50,7 @@ def jwt_secret(base_url, json_file):
 
 
 @pytest.fixture
-def initial_data(transactional_db, live_server, base_url):
+def initial_data(transactional_db, live_server):
     call_command('generate_addons', 10, app='firefox')
 
 
