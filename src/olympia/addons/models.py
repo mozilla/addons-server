@@ -1338,12 +1338,6 @@ class Addon(OnChangeMixin, ModelBase):
         """Return all the (valid) add-ons this add-on depends on."""
         return list(self.dependencies.valid().all()[:3])
 
-    def has_installed(self, user):
-        if not user or not isinstance(user, UserProfile):
-            return False
-
-        return self.installed.filter(user=user).exists()
-
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
         """
