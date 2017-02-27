@@ -22,8 +22,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonDependency, AddonFeatureCompatibility,
-    AddonUser, Category, Charity, Persona)
+    Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
+    Charity, Persona)
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import WebextPermission
@@ -2646,20 +2646,26 @@ class TestAddonSearchView(ESTestCase):
         assert data['results'][0]['id'] == tb_addon.pk
 
     def test_filter_by_category(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn')
-        category = Category.from_static_category(
+        static_category = (
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates'])
-        category.save()
-        AddonCategory.objects.create(addon=addon, category=category)
-        addon_factory(slug='different-addon', name=u'Addôn not in that cat')
+        category, _ = Category.objects.get_or_create(
+            id=static_category.id, defaults=static_category.__dict__)
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', category=category)
 
-        # Because the AddonCategory was created manually after the initial
-        # save, we need to reindex and not just refresh.
-        self.reindex(Addon)
+        self.refresh()
 
+        # Create an add-on in a different category.
+        static_category = (
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['tabs'])
+        other_category, _ = Category.objects.get_or_create(
+            id=static_category.id, defaults=static_category.__dict__)
+        addon_factory(slug='different-addon', category=other_category)
+
+        # Search for add-ons in the first category. There should be only one.
         data = self.perform_search(self.url, {'app': 'firefox',
                                               'type': 'extension',
-                                              'category': 'alerts-updates'})
+                                              'category': category.slug})
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk

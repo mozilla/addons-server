@@ -45,7 +45,7 @@ class TestGetCreaturedIds(TestCase):
     fixtures = ['addons/featured', 'bandwagon/featured_collections',
                 'base/addon_3615', 'base/collections', 'base/featured',
                 'base/users']
-    category = 22
+    category_id = 22
 
     no_locale = (1001,)
     en_us_locale = (3481,)
@@ -54,50 +54,50 @@ class TestGetCreaturedIds(TestCase):
         super(TestGetCreaturedIds, self).setUp()
 
     def test_by_category_static(self):
-        category = CATEGORIES_BY_ID[self.category]
+        category = CATEGORIES_BY_ID[self.category_id]
         assert set(get_creatured_ids(category, None)) == (
             set(self.no_locale))
 
     def test_by_category_dynamic(self):
-        category = Category.objects.get(pk=self.category)
+        category = Category.objects.get(pk=self.category_id)
         assert set(get_creatured_ids(category, None)) == (
             set(self.no_locale))
 
     def test_by_category_id(self):
-        assert set(get_creatured_ids(self.category, None)) == (
+        assert set(get_creatured_ids(self.category_id, None)) == (
             set(self.no_locale))
 
     def test_by_category_app(self):
         # Add an addon to the same category, but in a featured collection
         # for a different app: it should not be returned.
-        extra_addon = addon_factory()
-        extra_addon.addoncategory_set.create(category_id=self.category)
+        extra_addon = addon_factory(
+            category=Category.objects.get(pk=self.category_id))
         collection = collection_factory()
         collection.add_addon(extra_addon)
         FeaturedCollection.objects.create(
             application=amo.THUNDERBIRD.id, collection=collection)
 
-        assert set(get_creatured_ids(self.category, None)) == (
+        assert set(get_creatured_ids(self.category_id, None)) == (
             set(self.no_locale))
 
     def test_by_locale(self):
-        assert set(get_creatured_ids(self.category, 'en-US')) == (
+        assert set(get_creatured_ids(self.category_id, 'en-US')) == (
             set(self.no_locale + self.en_us_locale))
 
     def test_by_category_app_and_locale(self):
         # Add an addon to the same category and locale, but in a featured
         # collection for a different app: it should not be returned.
-        extra_addon = addon_factory()
-        extra_addon.addoncategory_set.create(category_id=self.category)
+        extra_addon = addon_factory(
+            category=Category.objects.get(pk=self.category_id))
         collection = collection_factory()
         collection.add_addon(extra_addon)
         FeaturedCollection.objects.create(
             application=amo.THUNDERBIRD.id, collection=collection,
             locale='en-US')
 
-        assert set(get_creatured_ids(self.category, 'en-US')) == (
+        assert set(get_creatured_ids(self.category_id, 'en-US')) == (
             set(self.no_locale + self.en_us_locale))
 
     def test_shuffle(self):
-        ids = get_creatured_ids(self.category, 'en-US')
+        ids = get_creatured_ids(self.category_id, 'en-US')
         assert (ids[0],) == self.en_us_locale

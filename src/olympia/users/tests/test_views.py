@@ -22,6 +22,7 @@ from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo.helpers import urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
+from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import ActivityLog
 from olympia.reviews.models import Review
 from olympia.users import notifications as email
@@ -854,13 +855,16 @@ class TestThemesProfile(TestCase):
         assert res.status_code == 200
 
     def test_themes_category(self):
-        self.theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        self.theme.addonuser_set.create(user=self.user, listed=True)
-        cat = Category.objects.create(type=amo.ADDON_PERSONA, slug='swag')
-        self.theme.addoncategory_set.create(category=cat)
+        static_category = (
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA]['fashion'])
+        category, _ = Category.objects.get_or_create(
+            id=static_category.id, defaults=static_category.__dict__)
+
+        self.theme = amo.tests.addon_factory(
+            type=amo.ADDON_PERSONA, users=[self.user], category=category)
 
         res = self.client.get(
-            self.user.get_user_url('themes', args=[cat.slug]))
+            self.user.get_user_url('themes', args=[category.slug]))
         self._test_good(res)
 
 
