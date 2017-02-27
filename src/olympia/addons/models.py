@@ -1742,10 +1742,8 @@ class AddonApprovalsCounter(ModelBase):
         """
         Reset the approval counter for the specified addon.
         """
-        obj, created = cls.objects.get_or_create(
+        obj, created = cls.objects.update_or_create(
             addon=addon, defaults={'counter': 0})
-        if not created:
-            obj.update(counter=0)
         return obj
 
 
