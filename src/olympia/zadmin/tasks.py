@@ -590,10 +590,15 @@ def fetch_langpack(url, xpi, **kw):
         # Set the category
         for app in version.compatible_apps:
             static_category = (
-                CATEGORIES[app.id][amo.ADDON_LPAPP]['general'])
-            category, _ = Category.objects.get_or_create(
-                id=static_category.id, defaults=static_category.__dict__)
-            AddonCategory.objects.get_or_create(addon=addon, category=category)
+                CATEGORIES.get(app.id, []).get(amo.ADDON_LPAPP, [])
+                .get('general'))
+            if static_category:
+                category, _ = Category.objects.get_or_create(
+                    id=static_category.id, defaults=static_category.__dict__)
+                AddonCategory.objects.get_or_create(
+                    addon=addon, category=category)
+
+        # Clear potentially outdated categories cached_property on Addon.
         del addon.all_categories
 
         # Add a license if there isn't one already
@@ -608,6 +613,7 @@ def fetch_langpack(url, xpi, **kw):
             file_.update(status=amo.STATUS_PUBLIC)
         sign_file(file_, settings.SIGNING_SERVER)
 
+        # Finally, set the addon summary if one wasn't provided in the xpi.
         addon.update(status=amo.STATUS_PUBLIC,
                      summary=(addon.summary if addon.summary else addon.name))
         addon.update_status()

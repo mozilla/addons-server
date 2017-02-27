@@ -117,10 +117,12 @@ class TestLangpackFetcher(TestCase):
         addon = langpacks[0]
         assert addon.default_locale == 'de-DE'
         assert addon.target_locale == 'de-DE'
+        assert addon.summary == addon.name
 
         assert addon._current_version
         assert addon.current_version.version == amo.FIREFOX.latest_version
 
+        # has_complete_metadata checks license and categories were set.
         assert addon.has_complete_metadata(), addon.get_required_metadata()
         assert addon.current_version.files.all()[0].status == amo.STATUS_PUBLIC
         assert addon.status == amo.STATUS_PUBLIC
@@ -143,7 +145,10 @@ class TestLangpackFetcher(TestCase):
 
         addon = langpacks[0]
         assert addon.versions.count() == 2
+        assert addon.summary == addon.name
 
+        # has_complete_metadata checks license and categories were set.
+        assert addon.has_complete_metadata(), addon.get_required_metadata()
         version = addon.versions.get(version=versions[1])
         assert version.files.all()[0].status == amo.STATUS_PUBLIC
 
