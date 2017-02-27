@@ -13,8 +13,8 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
+from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
-from django.db.models import Max, Q, signals as dbsignals
 from django.utils.translation import trans_real, ugettext_lazy as _
 
 import caching.base as caching
@@ -1717,6 +1717,40 @@ class AddonFeatureCompatibility(ModelBase):
 
     def get_e10s_classname(self):
         return amo.E10S_COMPATIBILITY_CHOICES_API[self.e10s]
+
+
+class AddonApprovalsCounter(ModelBase):
+    """Model holding a counter of the number of times a listed version
+    belonging to an add-on has been approved by a human. Reset everytime a
+    listed version is auto-approved for this add-on."""
+    addon = models.OneToOneField(
+        Addon, primary_key=True, on_delete=models.CASCADE)
+    counter = models.PositiveIntegerField(default=0)
+
+    def __unicode__(self):
+        return u'%s: %d' % (unicode(self.pk), self.counter) if self.pk else u''
+
+    @classmethod
+    def increment_for_addon(cls, addon):
+        """
+        Increment approval counter for the specified addon. If an
+        AddonApprovalsCounter already exists, it updates it, otherwise it
+        creates and saves a new instance.
+        """
+        obj, created = cls.objects.get_or_create(
+            addon=addon, defaults={'counter': 1})
+        if not created:
+            obj.update(counter=F('counter') + 1)
+        return obj
+
+    @classmethod
+    def reset_for_addon(cls, addon):
+        """
+        Reset the approval counter for the specified addon.
+        """
+        obj, created = cls.objects.update_or_create(
+            addon=addon, defaults={'counter': 0})
+        return obj
 
 
 class DeniedGuid(ModelBase):

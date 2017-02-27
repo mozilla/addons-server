@@ -19,7 +19,7 @@ from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.activity.utils import send_activity_mail
 from olympia.addons.helpers import new_context
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.helpers import absolutify, page_title
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail as amo_send_mail, to_language
@@ -563,8 +563,8 @@ class ReviewAddon(ReviewBase):
 
     def process_public(self):
         """Set an addon to public."""
-        assert not self.version or (
-            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
+        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
+
         # Sign addon.
         for file_ in self.files:
             sign_file(file_, settings.SIGNING_SERVER)
@@ -576,6 +576,9 @@ class ReviewAddon(ReviewBase):
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_PUBLIC, self.files)
         self.set_addon(status=amo.STATUS_PUBLIC)
+
+        # Increment approvals counter.
+        AddonApprovalsCounter.increment_for_addon(addon=self.addon)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
@@ -591,8 +594,8 @@ class ReviewAddon(ReviewBase):
 
     def process_sandbox(self):
         """Set an addon back to sandbox."""
-        assert not self.version or (
-            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
+        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
@@ -614,8 +617,8 @@ class ReviewAddon(ReviewBase):
 
     def process_super_review(self):
         """Give an addon super review."""
-        assert not self.version or (
-            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
+        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
+
         self.addon.update(admin_review=True)
         self.notify_email('author_super_review',
                           u'Mozilla Add-ons: %s %s flagged for Admin Review')
@@ -631,8 +634,8 @@ class ReviewFiles(ReviewBase):
 
     def process_public(self):
         """Set an addons files to public."""
-        assert not self.version or (
-            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
+        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
+
         # Sign addon.
         for file_ in self.files:
             sign_file(file_, settings.SIGNING_SERVER)
@@ -641,6 +644,9 @@ class ReviewFiles(ReviewBase):
         status = self.addon.status
 
         self.set_files(amo.STATUS_PUBLIC, self.files)
+
+        # Increment approvals counter.
+        AddonApprovalsCounter.increment_for_addon(addon=self.addon)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
@@ -657,8 +663,8 @@ class ReviewFiles(ReviewBase):
 
     def process_sandbox(self):
         """Set an addons files to sandbox."""
-        assert not self.version or (
-            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
+        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
+
         # Hold onto the status before we change it.
         status = self.addon.status
 
@@ -681,8 +687,8 @@ class ReviewFiles(ReviewBase):
 
     def process_super_review(self):
         """Give an addon super review."""
-        assert not self.version or (
-            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
+        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
+
         self.addon.update(admin_review=True)
 
         self.notify_email('author_super_review',
@@ -700,8 +706,8 @@ class ReviewUnlisted(ReviewBase):
 
     def process_public(self):
         """Set an addons files to public."""
-        assert not self.version or (
-            self.version.channel == amo.RELEASE_CHANNEL_UNLISTED)
+        assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
+
         # Sign addon.
         for file_ in self.files:
             sign_file(file_, settings.SIGNING_SERVER)
@@ -719,8 +725,8 @@ class ReviewUnlisted(ReviewBase):
 
     def process_super_review(self):
         """Give an addon super review."""
-        assert not self.version or (
-            self.version.channel == amo.RELEASE_CHANNEL_UNLISTED)
+        assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
+
         self.addon.update(admin_review=True)
 
         self.notify_email('author_super_review',
