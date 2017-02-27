@@ -15,7 +15,8 @@ env:
   - TOXENV=amo
   - TOXENV=users
   - TOXENV=main
-  - DISPLAY=:99.0
+  global:
+    - DISPLAY=:99.0
 
 matrix:
   include:
