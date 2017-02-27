@@ -5,6 +5,7 @@ RUN touch /addons-server-centos7-container
 
 ADD docker/mysql-community.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
+ADD docker/git.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-git
 
 # For mysql-python dependencies
 ADD docker/mysql.repo /etc/yum.repos.d/mysql.repo
@@ -12,9 +13,11 @@ ADD docker/mysql.repo /etc/yum.repos.d/mysql.repo
 # This is temporary until https://bugzilla.mozilla.org/show_bug.cgi?id=1226533
 ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
 
+# For git dependencies
+ADD docker/git.repo /etc/yum.repos.d/git.repo
+
 # Upgrade git
-RUN rpm -U http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm \
-    && yum install -y \
+RUN yum install -y \
         # Supervisor is being used to start and keep our services running
         supervisor \
         # General (dev-) dependencies
