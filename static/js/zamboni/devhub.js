@@ -720,6 +720,10 @@ function initVersions() {
 
     function loadReviewHistory(div, nextLoad) {
         div.removeClass("hidden");
+        replybox = div.children('.dev-review-reply')
+        if (replybox.size() == 1) {
+            replybox[0].scrollIntoView(false);
+        }
         var token = div.data('token');
         var container = div.children('.history-container');
         container.children('.review-entry-loading').removeClass("hidden");
