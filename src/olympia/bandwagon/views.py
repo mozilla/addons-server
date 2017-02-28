@@ -148,7 +148,7 @@ def collection_listing(request, base=None):
     filter = get_filter(request, base)
     # Counts are hard to cache automatically, and accuracy for this
     # one is less important. Remember it for 5 minutes.
-    countkey = hashlib.md5(str(filter.qs.query) + '_count').hexdigest()
+    countkey = hashlib.sha256(str(filter.qs.query) + '_count').hexdigest()
     count = cache.get(countkey)
     if count is None:
         count = filter.qs.count()

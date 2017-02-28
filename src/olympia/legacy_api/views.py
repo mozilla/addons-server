@@ -287,7 +287,7 @@ def guid_search(request, api_version, guids):
 
     def guid_search_cache_key(guid):
         key = 'guid_search:%s:%s:%s' % (api_version, lang, guid)
-        return hashlib.md5(force_bytes(key)).hexdigest()
+        return hashlib.sha256(force_bytes(key)).hexdigest()
 
     guids = [guid.strip() for guid in guids.split(',')] if guids else []
 

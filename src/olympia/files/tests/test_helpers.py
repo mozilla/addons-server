@@ -295,9 +295,9 @@ class TestFileViewer(TestCase):
         assert res == ''
         assert self.viewer.selected['msg'].startswith('That file no')
 
-    @patch('olympia.files.helpers.get_md5')
-    def test_delete_mid_tree(self, get_md5):
-        get_md5.side_effect = IOError('ow')
+    @patch('olympia.files.helpers.get_sha256')
+    def test_delete_mid_tree(self, get_sha256):
+        get_sha256.side_effect = IOError('ow')
         self.viewer.extract()
         assert {} == self.viewer.get_files()
 
