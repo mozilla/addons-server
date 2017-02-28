@@ -21,7 +21,7 @@ from waffle.models import Flag
 from olympia import amo, paypal
 from olympia.amo.tests import TestCase
 from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, Charity)
+    Addon, AddonFeatureCompatibility, AddonUser, Charity)
 from olympia.amo.helpers import url as url_reverse
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
@@ -1713,6 +1713,23 @@ class TestUploadDetail(BaseUploadTest):
             {u'tier': 1, u'message': u'You cannot submit an add-on with a '
                                      u'guid ending "@mozilla.org"',
              u'fatal': True, u'type': u'error'}]
+
+    @mock.patch('olympia.devhub.tasks.run_validator')
+    def test_system_addon_update_allowed(self, mock_validator):
+        """Updates to system addons are allowed from anyone."""
+        user = user_factory(email='pinkpanda@notzilla.com')
+        addon = addon_factory(guid='systemaddon@mozilla.org')
+        AddonUser.objects.create(addon=addon, user=user)
+        assert self.client.login(email='pinkpanda@notzilla.com')
+        mock_validator.return_value = json.dumps(self.validation_ok())
+        self.upload_file(
+            '../../../files/fixtures/files/mozilla_guid.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail_for_version',
+                                           args=[addon.slug, upload.uuid.hex]))
+        print response.content
+        data = json.loads(response.content)
+        assert data['validation']['messages'] == []
 
     def test_no_redirect_for_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')

@@ -131,7 +131,8 @@ class VersionView(APIView):
                 _(u'You cannot submit this type of add-on'),
                 status.HTTP_400_BAD_REQUEST)
 
-        if not system_addon_submission_allowed(request.user, pkg):
+        if not addon and not system_addon_submission_allowed(
+                request.user, pkg):
             raise forms.ValidationError(
                 _(u'You cannot submit an add-on with a guid ending '
                   u'"@mozilla.org"'),
