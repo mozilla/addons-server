@@ -184,13 +184,6 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
 
     $self.blur(clearCurrentSuggestions);
     $form.submit(function(e) {
-        var $sel = $results.find('.sel');
-        if ($sel.length && $sel.eq(0).attr('href') != '#') {
-            e.stopPropagation();
-            e.preventDefault();
-            $self.val('');
-            $sel[0].click();
-        }
         $self.blur();
         clearCurrentSuggestions(e);
     });
