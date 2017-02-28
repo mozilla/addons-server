@@ -766,7 +766,8 @@ def json_upload_detail(request, upload, addon_slug=None):
             if not acl.submission_allowed(request.user, pkg):
                 raise django_forms.ValidationError(
                     _(u'You cannot submit this type of add-on'))
-            if not system_addon_submission_allowed(request.user, pkg):
+            if not addon and not system_addon_submission_allowed(
+                    request.user, pkg):
                 raise django_forms.ValidationError(
                     _(u'You cannot submit an add-on with a guid ending '
                       u'"@mozilla.org"'))

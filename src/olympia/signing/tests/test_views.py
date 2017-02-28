@@ -15,7 +15,7 @@ from rest_framework.response import Response
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import addon_factory
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.applications.models import AppVersion
@@ -277,6 +277,29 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 400
         assert response.data['error'] == (
             'You cannot submit this type of add-on')
+
+    def test_system_addon_update_allowed(self):
+        """Updates to system addons are allowed from anyone."""
+        guid = 'systemaddon@mozilla.org'
+        self.user.update(email='pinkpanda@notzilla.com')
+        orig_addon = addon_factory(
+            guid='systemaddon@mozilla.org',
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        AddonUser.objects.create(
+            addon=orig_addon,
+            user=self.user)
+        response = self.request(
+            'PUT',
+            addon=guid, version='0.0.1',
+            filename='src/olympia/files/fixtures/files/'
+                     'mozilla_guid.xpi')
+        assert response.status_code == 202
+        addon = Addon.unfiltered.filter(guid=guid).get()
+        assert addon.versions.count() == 2
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.auto_sign_version.assert_called_with(
+            latest_version, is_beta=False)
 
     def test_version_is_beta_unlisted(self):
         addon = Addon.objects.get(guid=self.guid)
