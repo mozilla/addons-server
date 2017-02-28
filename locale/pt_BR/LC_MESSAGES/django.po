@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-28 13:10+0000\n"
+"PO-Revision-Date: 2017-02-28 13:18+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -937,9 +937,8 @@ msgstr "por %(users)s"
 
 # {0} is a number
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} alerta"
+msgstr "[Aviso]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Permissions"
@@ -1125,19 +1124,20 @@ msgstr "fechar"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Algumas extensões pedem permissão para desempenhar certas funções (exemplo: uma extensão de gerenciamento de abas irá pedir permissão para acessar o sistema de abas do seu navegador)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Como você está em controle do seu Firefox, a escolha de conceder ou negar estes pedidos é sua. Aceitar permissões não compromete inerentemente o desempenho ou segurança do seu navegador, mas em "
+"alguns casos raros o risco pode estar envolvido."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "This add-on can:"
-msgstr "Este complemento é experimental"
+msgstr "Esta extensão pode:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1859,26 +1859,23 @@ msgstr "Extensões do Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Desculpe, mas não conseguimos encontrar nada no endereço que informou. Se clicou em um link para uma extensão, é possível que essa extensão tenha sido removida pelo seu autor."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Páginas sugeridas"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Ver todas as extensões"
+msgstr "Navegar em todas as extensões"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Ver todas as extensões"
+msgstr "Navegar em todos os temas"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Página da extensão"
+msgstr "Página inicial das extensões"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
@@ -3896,9 +3893,8 @@ msgid "Exchange messages with programs other than Firefox"
 msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Display notifications to you"
-msgstr "Notificações do usuário"
+msgstr "Mostrar-lhe notificações"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access recently closed tabs"
