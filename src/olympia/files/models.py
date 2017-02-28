@@ -7,13 +7,15 @@ import time
 import unicodedata
 import uuid
 import zipfile
+from collections import namedtuple
 
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_bytes, force_text
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
+
 import commonware
 from cache_nuggets.lib import memoize
 from django_extensions.db.fields.json import JSONField
@@ -23,14 +25,16 @@ from django.utils.safestring import mark_safe
 from jinja2 import escape as jinja2_escape
 
 from olympia import amo
-from olympia.amo.models import OnChangeMixin, ModelBase, UncachedManagerBase
+from olympia.amo.models import (
+    OnChangeMixin, ManagerBase, ModelBase, UncachedManagerBase)
 from olympia.amo.decorators import use_master
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import user_media_path, user_media_url
 from olympia.applications.models import AppVersion
-from olympia.constants.webext_permissions import Permission, WEBEXT_PERMISSIONS
 from olympia.files.utils import SafeUnzip, write_crx_as_xpi
+from olympia.translations.fields import TranslatedField
+
 
 log = commonware.log.getLogger('z.files')
 
@@ -379,24 +383,22 @@ class File(OnChangeMixin, ModelBase):
         2) known permissions, in constants order (alphabetically),
         3) match urls for sites
         """
-        out, urls = [], []
+        outset, urls = set(), []
         for name in self.webext_permissions_list:
-            perm = WEBEXT_PERMISSIONS.get(name, None)
+            perm = WebextPermissionDescription.objects.get_permission(name)
             if perm:
                 # Add known permissions, including match-alls.
-                if perm not in out:
-                    # We don't want duplicates.
-                    out.append(perm)
+                outset.add(perm)
             elif '//' in name:
                 # Filter out match urls so we can group them.
                 urls.append(name)
             # Other strings are unknown permissions we don't care about
-        out.sort()
+        out = sorted(outset)
         if len(urls) == 1:
             out.append(Permission(
                 u'single-match',
                 _(u'Access your data for {name}')
-                .format(name=urls[0]), ''))
+                .format(name=urls[0])))
         elif len(urls) > 1:
             details = (u'<details><summary>{copy}</summary><ul>{sites}</ul>'
                        u'</details>')
@@ -405,7 +407,7 @@ class File(OnChangeMixin, ModelBase):
                 [u'<li>%s</li>' % jinja2_escape(name) for name in urls])
             out.append(Permission(
                 u'multiple-match',
-                mark_safe(details.format(copy=copy, sites=sites)), ''))
+                mark_safe(details.format(copy=copy, sites=sites))))
         return out
 
     @amo.cached_property(writable=True)
@@ -727,6 +729,36 @@ class WebextPermission(ModelBase):
 
     class Meta:
         db_table = 'webext_permissions'
+
+
+Permission = namedtuple('Permission',
+                        'name, description')
+
+
+class WebextPermissionDescriptionManager(ManagerBase):
+    MATCH_ALL_REGEX = r'^\<all_urls\>|(\*|http|https):\/\/\*\/\*'
+    ALL_URLS_PERMISSION = Permission(
+        u'all_urls',
+        _lazy(u'Access your data for all websites')
+    )
+
+    def get_permission(self, name):
+        try:
+            return self.get(name=name)
+        except self.model.DoesNotExist:
+            if re.match(self.MATCH_ALL_REGEX, name):
+                return self.ALL_URLS_PERMISSION
+        return None
+
+
+class WebextPermissionDescription(ModelBase):
+    name = models.CharField(max_length=255)
+    description = TranslatedField()
+
+    objects = WebextPermissionDescriptionManager()
+
+    class Meta:
+        db_table = 'webext_permission_descriptions'
 
 
 def nfd_str(u):

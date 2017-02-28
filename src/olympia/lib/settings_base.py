@@ -1666,3 +1666,10 @@ SHELL_PLUS_POST_IMPORTS = (
 DEFAULT_FXA_CONFIG_NAME = 'default'
 INTERNAL_FXA_CONFIG_NAME = 'internal'
 ALLOWED_FXA_CONFIGS = ['default']
+
+WEBEXT_PERM_DESCRIPTIONS_URL = (
+    'https://hg.mozilla.org/mozilla-central/raw-file/tip/'
+    'browser/locales/en-US/chrome/browser/browser.properties')
+WEBEXT_PERM_DESCRIPTIONS_LOCALISED_URL = (
+    'https://hg.mozilla.org/l10n-central/{locale}/raw-file/tip/'
+    'browser/chrome/browser/browser.properties')
