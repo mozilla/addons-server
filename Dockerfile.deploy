@@ -15,7 +15,7 @@ ADD docker/epel.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
 ADD docker/nodesource.repo docker/epel.repo /etc/yum.repos.d/
 ADD docker/git.repo /etc/yum.repos.d/git.repo
 
-RUN yum install -y                                              \
+RUN yum install -y                                          \
         gcc-c++                                             \
         gettext                                             \
         # Git, because we're using git-checkout dependencies
