@@ -195,12 +195,10 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         clearCurrentSuggestions(e);
     });
 
-    var $sel = $results.find('.sel');
-    if ($sel.length) {
-      $sel.click(function(e) {
+    $results.find('.sel').click(function(e) {
+        e.preventDefault();
         $form.submit();
-      });
-    }
+    });
 
     $results.delegate('li, p', 'mouseenter mouseleave', function() {
         $results.find('.sel').removeClass('sel');
