@@ -256,14 +256,13 @@ DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 # path that isn't just one /, and doesn't require any locale or app.
 SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
     'api/v3',
-    'blocked/blocklists.json',
 )
 
 # paths that don't require an app prefix
 # This needs to be kept in sync with addons-frontend's validUrlExceptions
 # https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js#L27
 SUPPORTED_NONAPPS = (
-    'about', 'admin', 'apps', 'blocklist', 'contribute.json', 'credits',
+    'about', 'admin', 'apps', 'contribute.json', 'credits',
     'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
     'jsi18n', 'review_guide', 'google1f3e37b7351799a5.html',
     'robots.txt', 'statistics', 'services', 'sunbird', 'static', 'user-media',
@@ -274,7 +273,7 @@ DEFAULT_APP = 'firefox'
 # paths that don't require a locale prefix
 SUPPORTED_NONLOCALES = (
     'contribute.json', 'google1f3e37b7351799a5.html', 'robots.txt', 'services',
-    'downloads', 'blocklist', 'static', 'user-media', '__version__',
+    'downloads', 'static', 'user-media', '__version__',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -429,7 +428,6 @@ INSTALLED_APPS = (
     'olympia.api',
     'olympia.applications',
     'olympia.bandwagon',
-    'olympia.blocklist',
     'olympia.browse',
     'olympia.compat',
     'olympia.devhub',
@@ -1421,8 +1419,6 @@ DEFAULT_SUGGESTED_CONTRIBUTION = 5
 
 # Path to `ps`.
 PS_BIN = '/bin/ps'
-
-BLOCKLIST_COOKIE = 'BLOCKLIST_v1'
 
 # The maximum file size that is shown inside the file viewer.
 FILE_VIEWER_SIZE_LIMIT = 1048576

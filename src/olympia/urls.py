@@ -22,12 +22,6 @@ urlpatterns = patterns(
     # Legacy Discovery pane is first for undetectable efficiency wins.
     ('^discovery/', include('olympia.legacy_discovery.urls')),
 
-    # There are many more params but we only care about these three. The end is
-    # not anchored on purpose!
-    url('^blocklist/(?P<apiver>\d+)/(?P<app>[^/]+)/(?P<appver>[^/]+)/',
-        'olympia.blocklist.views.blocklist', name='blocklist'),
-    ('^blocked/', include('olympia.blocklist.urls')),
-
     # Home.
     url('^$', 'olympia.addons.views.home', name='home'),
 
