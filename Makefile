@@ -10,6 +10,7 @@ current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 
 COMPOSE_PROJECT_NAME?=$(shell echo "${current_dir}" | tr -d '-' | tr -d '_')
 DOCKER_NAME="${COMPOSE_PROJECT_NAME}_web_1"
+DOCKER_NAME_WORKER="${COMPOSE_PROJECT_NAME}_worker_1"
 
 UNAME_S := $(shell uname -s)
 
@@ -164,6 +165,7 @@ ifneq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the host)
 endif
 	docker exec -t -i ${DOCKER_NAME} make update_docker_inner
+	docker exec -t -i ${DOCKER_NAME_WORKER} make update_deps
 
 update_docker_inner:
 ifeq ($(IN_DOCKER),)
