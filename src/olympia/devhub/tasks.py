@@ -364,7 +364,10 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
             'message': msg,
             'description': [],
             'compatibility_type': None})
-        results['errors'] += 1
+        if channel == amo.RELEASE_CHANNEL_LISTED:
+            results['errors'] += 1
+        else:
+            results['warnings'] += 1
 
     return results
 

@@ -111,6 +111,7 @@ class ValidatorTestCase(TestCase):
         # amo-validator.
         # The other ones are app-versions we're using in our
         # tests
+        self.create_appversion('firefox', '2.0')
         self.create_appversion('firefox', '3.7a1pre')
         self.create_appversion('firefox', '38.0a1')
 
@@ -607,6 +608,7 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
 
         assert validation['messages'][0]['id'] == expected
         assert validation['messages'][0]['type'] == 'warning'
+        assert validation['errors'] == 0
 
     def test_webextension_cannot_be_downgraded_ignore_deleted_version(self):
         """Make sure there's no workaround the downgrade error."""
