@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-01 09:50+0000\n"
+"PO-Revision-Date: 2017-03-01 10:07+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -42,7 +42,7 @@ msgstr "Vurderingsmerknad"
 
 #: src/olympia/activity/views.py
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Berre siste versjonar av utvidingar kan ha merknadar."
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -215,7 +215,7 @@ msgstr "Denne utvidinga er ikkje vurdert av Mozilla. <a href=\"%(url)s\">Les mei
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "Denne utvidinga er merkt som eksperimentell av utviklarane."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
@@ -261,7 +261,7 @@ msgstr "Utvilklaren av denne utvidinga ber deg om å vurdera å donera til <a hr
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
+msgstr "Utviklarane av denne utvidinga ber deg vurdera å gje eit lite bidrag til <a href=\"%(charity_url)s\">%(charity_name)s</a> om du likar å bruka den."
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
@@ -454,6 +454,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
+"<strong>Åtvaring:</strong> Utviklarversjonen av denne utvidinga er ikkje vurdert av Mozilla. Når du installerer ein utviklarversjon, vil du halde fram med å få utviklaroppdateringar frå denne "
+"utviklaren. For å ikkje få fleire utviklaroppdateringars, installerer du standardversjonen frå lenka ovanfor."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Version {0}:"
@@ -1202,11 +1204,11 @@ msgstr "Vurderingshistorikk"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Beklagar, dette temaet er under utarbeiding. Kom tilbake seinare."
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Dette temaet er under utarbeiding, og er usynleg for alle andre enn deg."
 
 #: src/olympia/addons/templates/addons/listing/items.html
 msgid "Collector's Note"
@@ -1725,9 +1727,8 @@ msgid "{addon} migrated from preliminary."
 msgstr "{addon} migrert frå førebuande."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reply by developer on {addon} {version}."
-msgstr "Kommentar på {addon} {version}."
+msgstr "Svar frå utviklar på {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Developer Reply"
