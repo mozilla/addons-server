@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 16:49+0000\n"
+"PO-Revision-Date: 2017-03-02 16:59+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1369,12 +1369,12 @@ msgstr "登出"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Manage My Submissions"
-msgstr "管理我的提交"
+msgstr "管理我上架的套件"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/addons/submit/base.html
 #: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Submit a New Add-on"
-msgstr "上傳一個新的附加元件"
+msgstr "上傳新的附加元件"
 
 #: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
 #: src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
@@ -4521,7 +4521,7 @@ msgstr "管理開發者個人檔案"
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr "您的<a href=\"%(url)s\">開發者個人檔案</a>目前狀態為<strong>公開</strong>且<strong>接受</strong>募款。"
+msgstr "您的<a href=\"%(url)s\">開發者個人檔案</a>目前狀態為<strong>公開</strong>且<strong>接受</strong>捐款。"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Remove Both"
@@ -4818,7 +4818,7 @@ msgstr "於附加元件詳細資訊頁面中使用。"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Upload a Custom Icon..."
-msgstr "上傳一個自定圖示..."
+msgstr "上傳自定圖示..."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
@@ -5241,7 +5241,7 @@ msgstr "若需詳細的操作教學，請參考 <a href=\"%(docs_url)s\">API 文
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "保護您的 API 金鑰安全，<strong>絕對不要透漏給其他人</strong>，就算是 Mozilla 貢獻者也一樣。"
+msgstr "務必保護好您的 API 金鑰，<strong>絕對不要透漏給任何人</strong>，就算是其他 Mozilla 貢獻者也一樣。"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -5742,7 +5742,7 @@ msgstr "已申請加入我們的捐款方案的附加元件可以向使用者請
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr "在您的開發者個人檔案鼓勵使用者資助您的附加元件開發"
+msgstr "在您的個人檔案鼓勵使用者資助您附加元件開發"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Choose when and how users are asked to contribute"
@@ -5750,7 +5750,7 @@ msgstr "選擇使用者可以在何時以何種方式來捐款"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "在您的 Paypal 帳號收到捐款，或是將捐款送到您指定的組織"
+msgstr "捐款可直接匯到您的 Paypal 帳號，或是轉捐給您指定的單位"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for add-ons with listed versions."
@@ -5759,7 +5759,7 @@ msgstr "僅有公開上架的附加元件可使用捐款功能。"
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr "只有附上<a href=\"%(url)s\">完整開發者個人檔案</a>的附加元件才可以使用捐款功能。"
+msgstr "只有附上<a href=\"%(url)s\">完整開發者個人檔案</a>的附加元件才可以使用募款功能。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for approved add-ons."
@@ -6249,7 +6249,7 @@ msgstr "所有版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
-msgstr "上傳一個新版本"
+msgstr "上傳新版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
@@ -10573,7 +10573,7 @@ msgstr "登入"
 #: src/olympia/translations/templates/translations/trans-menu.html
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr "在地化成: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
+msgstr "切換內容語系: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 #, python-format
