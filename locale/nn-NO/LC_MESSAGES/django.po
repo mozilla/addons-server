@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 13:11+0000\n"
+"PO-Revision-Date: 2017-03-02 13:16+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -167,7 +167,7 @@ msgstr "Brukarar vil altid bli spurt i Utvidingshandsamaren (Firefox 4 og nyare)
 
 #: src/olympia/addons/models.py src/olympia/constants/base.py
 msgid "Listed"
-msgstr "Lista"
+msgstr "Oppført"
 
 #. l10n: {0} is the addon name
 #: src/olympia/addons/views.py
@@ -5338,18 +5338,16 @@ msgid "Listed on this site after passing code review. Automatic updates are hand
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Siste versjon:"
+msgstr "Oppført versjon:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Siste versjon:"
+msgstr "Neste oppførte versjon:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
@@ -6251,9 +6249,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed versions"
-msgstr "Vis andre versjonar"
+msgstr "Oppførte versjonar"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -7072,9 +7069,8 @@ msgid "Unlisted Review Page"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Ikkje vurdert"
+msgstr "Vurderingsside for oppførte"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
