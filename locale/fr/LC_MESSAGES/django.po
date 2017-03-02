@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 18:05+0000\n"
+"PO-Revision-Date: 2017-03-02 18:23+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1829,7 +1829,7 @@ msgstr "Nous n'avons malheureusement rien trouvé à l'adresse indiquée. Si vou
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Pages suggérées"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, fuzzy
@@ -3818,15 +3818,15 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Accéder à vos données pour tous les sites"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks"
-msgstr ""
+msgstr "Consulter et modifier les marque-pages"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Get data from the clipboard"
-msgstr ""
+msgstr "Consulter les données du presse-papiers"
 
 #: src/olympia/constants/webext_permissions.py
 #, fuzzy
@@ -3839,7 +3839,7 @@ msgstr "Télécharger des fichiers, lire et modifier l'historique de télécharg
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your location"
-msgstr ""
+msgstr "Accéder à votre localisation"
 
 #: src/olympia/constants/webext_permissions.py
 #, fuzzy
@@ -3848,7 +3848,7 @@ msgstr "%s Historique des versions"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Communiquer avec d’autres programmes que Firefox"
 
 #: src/olympia/constants/webext_permissions.py
 #, fuzzy
@@ -3857,15 +3857,15 @@ msgstr "Notification utilisateur"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access recently closed tabs"
-msgstr ""
+msgstr "Accéder aux onglets récemment fermés"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Accéder aux onglets du navigateur"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "Accéder à l’activité du navigateur lors de la navigation"
 
 #: src/olympia/core/apps.py
 msgid "Core"
