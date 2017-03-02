@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-28 16:15+0000\n"
-"Last-Translator: Michal Vašíček <michalvasicek@icloud.com>\n"
+"PO-Revision-Date: 2017-03-02 21:06+0000\n"
+"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -1119,12 +1119,13 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Jelikož jste to vy, kdo má kontrolu nad svým Firefoxem, rozhodnutí, zda oprávnění udělit či neudělit, je jen na vás. Udělení oprávnění nemusí znamenat ovlivnění výkonu nebo bezpečnosti vašeho "
+"prohlížeče, ale v některých vzácných případech toto riziko vyskytuje."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "This add-on can:"
-msgstr "Tento doplněk je experimentální"
+msgstr "Tento doplněk může:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1819,32 +1820,28 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr "<p>Zkuste přejít o stránku zpět, obnovte ji, a poté to zkuste znovu.</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Nenalezeno"
+msgstr "Stránka nebyla nalezena"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Více doplňků"
+msgstr "Doplňky pro Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Omlouváme se, ale na adrese, kterou jste zadali, nemůžeme nic najít. Pokud jste klepli na odkaz na doplněk, je možné, že byl odebrán jeho autorem."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Doporučené stránky"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Procházet všechny doplňky"
+msgstr "Procházet všechna rozšíření"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Procházet všechny doplňky"
+msgstr "Procházet všechny motivy"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, fuzzy
@@ -1855,6 +1852,8 @@ msgstr "Domovská stránka"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Pokud jste se sem dostali pomocí některého z odkazů, %(open_bug_link)snahlaste nám prosím chybu%(close_bug_link)s. Sdělte nám, odkud jste přišli a co jste hledali, a my uděláme vše proto, abychom to"
+" napravili."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3825,50 +3824,47 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Přistupovat k vašim datům pro všechny webové stránky"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks"
-msgstr ""
+msgstr "Číst a upravovat záložky"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Get data from the clipboard"
-msgstr ""
+msgstr "Získávat data ze schránky"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Input data to the clipboard"
-msgstr "Aktualizovat poznámku pro redaktora"
+msgstr "Vkládat data do schránky"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's download history"
-msgstr ""
+msgstr "Stahovat soubory, číst a upravovat historii stahování prohlížeče"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your location"
-msgstr ""
+msgstr "Přistupovat k vaší poloze"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access browsing history"
-msgstr "Historie verzí pro %s"
+msgstr "Přistupovat k historii prohlížení"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Vyměňovat si zprávy s jinými programy než s Firefoxem"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Display notifications to you"
-msgstr "Uživatelská oznámení"
+msgstr "Zobrazovat vám upozornění"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access recently closed tabs"
-msgstr ""
+msgstr "Přistupovat k nedávno zavřeným panelům"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Přistupovat k panelům prohlížeče"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
@@ -4214,7 +4210,7 @@ msgstr "Přidávání tohoto typu doplňku není povoleno"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Nemůžete odeslat doplněk s GUID končícím \"@mozilla.org\""
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -4266,9 +4262,8 @@ msgid "Review requested."
 msgstr "Vyžádána kontrola."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "You must provide further details to proceed."
-msgstr "Vyžádána kontrola. Pro pokračování musíte poskytnout bližší informace."
+msgstr "Pro pokračování musíte poskytnout více detailů."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5125,7 +5120,7 @@ msgstr "Smazání tohoto motivu."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Tomuto doplňku chybí některé požadované informace, aby mohl být odeslán k publikaci."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any versions."
@@ -7495,11 +7490,11 @@ msgstr "Tento soubor je adresář."
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Přistupovat k vašim datům pro {name}"
 
 #: src/olympia/files/models.py
 msgid "Access your data on various websites"
-msgstr ""
+msgstr "Přistupovat k vašim datům na různých webových stránkách"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -7591,7 +7586,7 @@ msgstr "Obsah souboru není zvýrazňovačem syntaxe podporován"
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "Výstup může být rozbitý, buďte prosím opatrní a případné problémy %(link_start)shlaste%(link_end)s co nejdříve!"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
@@ -9970,18 +9965,16 @@ msgid "Other (please specify)"
 msgstr "Jiné (prosím upřesněte)"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "This field is required."
-msgstr "Pole je vyžadováno"
+msgstr "Toto pole je vyžadováno."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Svůj návrh motivu budete moci aktualizovat až bude schválen."
+msgstr ""
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Nemůžete odpovědět na recenzi, která je odpovědí."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
@@ -9989,17 +9982,15 @@ msgstr ""
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Tato verze doplňku neexistuje nebo je neveřejná."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "někdo napíše recenzi k mému doplňku"
+msgstr "Nemůžete svůj vlastní doplněk."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "K této verzi nemůžete nahrát více souborů."
+msgstr "Nemůžete zanechat více než jednu recenzi ke stejné verzi doplňku."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
