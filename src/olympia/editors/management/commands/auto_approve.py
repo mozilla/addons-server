@@ -74,15 +74,14 @@ class Command(BaseCommand):
                 stats['locked'] += 1
                 continue
 
-            # Lock the addon for ourselves, no reviewer should touch it.
-            set_reviewing_cache(version.addon.pk, settings.TASK_USER_ID)
-
             # If admin review or more information was requested, skip this
             # version, let a human handle it.
             if version.addon.admin_review or version.has_info_request:
                 stats['flagged'] += 1
-                clear_reviewing_cache(version.addon.pk)
                 continue
+
+            # Lock the addon for ourselves, no reviewer should touch it.
+            set_reviewing_cache(version.addon.pk, settings.TASK_USER_ID)
 
             try:
                 log.info('Processing %s version %s...',
