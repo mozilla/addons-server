@@ -106,9 +106,8 @@ class Command(BaseCommand):
                     'Version %s was skipped either because it had no '
                     'file or because it had no validation attached.', version)
                 stats['error'] += 1
+            finally:
                 clear_reviewing_cache(version.addon.pk)
-                continue
-            clear_reviewing_cache(version.addon.pk)
 
         self.log_final_summary(stats, dry_run=dry_run)
 
