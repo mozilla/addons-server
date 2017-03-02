@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 11:11+0000\n"
+"PO-Revision-Date: 2017-03-02 11:21+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2534,12 +2534,12 @@ msgstr "Nyleg oppdaterte samlingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Popular Collections"
-msgstr "NYleg populære samlingar"
+msgstr "Nyleg populære samlingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
+msgstr "Samlingar er grupper av tillegg som kven som helst kan lage og dele. Utforsk samlingar oppretta av andre brukarar eller <a href=\"%(url)s\">lag di eiga</a>."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
@@ -2555,7 +2555,7 @@ msgstr "Lag ei samling"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "Samlingar gjer det enkelt å følgje med på favorittutvidingane dine, og dele den perfekte tilpassa nettlesaren din med andre."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Collection Icon"
@@ -6085,7 +6085,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Vis og abonner på <a href=\"%(feed_url)s\">aktivitetskjelda</a> til ditt tema, for å halde deg oppdatert på vurderingar, samlingar osb."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -9469,7 +9469,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "Samlingar og favorittar"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is a collection?"
@@ -9477,7 +9477,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr ""
+msgstr "Samlingar er grupper av liknande utvidingar oppretta av brukarar for å dele."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is the My Favorites collection?"
@@ -9951,7 +9951,7 @@ msgstr ""
 
 #: src/olympia/search/forms.py
 msgid "search for collections"
-msgstr ""
+msgstr "søk etter samlingar"
 
 #: src/olympia/search/forms.py
 msgid "search for themes"
@@ -10161,7 +10161,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Collections Created"
-msgstr ""
+msgstr "Samling oppretta"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Reviews Written"
@@ -10315,7 +10315,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/collections_created.html
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Samlingar oppretta etter dato"
 
 #: src/olympia/stats/templates/stats/reports/contributions.html
 msgid "Contributions by Date"
@@ -10455,7 +10455,7 @@ msgstr "Andre appar"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "For å opprette eigne samlingar, må du ha ein konto for Mozilla-utvidingar."
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Footer logo"
@@ -10934,15 +10934,15 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Bestem kva for samlingar som skal visast i profilen din."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Vis samlingane eghar oppretta"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Display collections I'm following"
-msgstr ""
+msgstr "Vis samlingane eg følgjer"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Notifications"
