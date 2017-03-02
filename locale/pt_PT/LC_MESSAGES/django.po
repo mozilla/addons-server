@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-27 19:59+0000\n"
+"PO-Revision-Date: 2017-03-02 04:31+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5232,7 +5232,7 @@ msgstr "Versão submetida para revisão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Está concluído! Esta versão foi submetida para revisão. Será notificado quando a revisão estiver completa ou se os nossos revisores tiverem alguma questão acerca da sua submissão."
+msgstr "Está feito! Esta versão foi submetida para revisão. Será notificado quando a revisão estiver completa, ou se os nossos revisores tiverem quaisquer questões acerca da sua submissão."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -5264,7 +5264,7 @@ msgstr "Versão assinada"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Está concluído! Esta versão foi assinada e está pronta para distribuição própria. Pode descarregá-lo clicando no botão abaixo."
+msgstr "Está feito! Esta versão foi assinada e está pronta para distribuição própria. Pode descarregá-la clicando no botão abaixo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
@@ -9233,7 +9233,7 @@ msgstr "Como posso ver quantas vezes o meu extra foi descarregado?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr "O painel de estatísticas encontrado na página Meus extras oferece informações que podem ajudá-lo a determinar o número de downloads desde a data de envio do extra para o AMO."
+msgstr "O painel de estatísticas encontrado no painel de ferramentas de programador oferece informações que podem ajudá-lo a determinar o número de descargas do seu extra desde que o submeteu no AMO."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many active users are using my add-on?"
@@ -9857,8 +9857,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Criticar um extra por algo que é suposto fazer. Por exemplo, deixar uma análise negativa de um extra por apresentar publicidade ou necessitar de recolher dados, quando este é o objetivo do extra, ou"
-" se o extra necessita de recolher dados para funcionar."
+"Criticar um extra por algo que é suposto fazer. Por exemplo, deixar uma análise negativa de um extra por apresentar anúncios ou necessitar de recolher dados, quando este é o objetivo do extra, ou se"
+" o extra necessita de recolher dados para funcionar."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "How can I report a problematic review?"
@@ -10811,7 +10811,7 @@ msgstr "<a href=\"%(reg)s\">Crie uma conta</a> ou <a href=\"%(login)s\">Inicie s
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Para experimentar as centenas de extras aqui disponíveis, descarregue o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de navegar na Web!"
+msgstr "Para experimentar os milhares de extras aqui disponíveis, descarregue o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira fácil e gratuita de navegar na Web!"
 
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
