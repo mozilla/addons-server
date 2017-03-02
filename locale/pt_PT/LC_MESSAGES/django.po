@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 04:31+0000\n"
+"PO-Revision-Date: 2017-03-02 04:50+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3963,7 +3963,7 @@ msgstr "Houve um erro com o seu carregamento. Por favor, tente novamente."
 
 #: src/olympia/devhub/forms.py
 msgid "Override failed validation"
-msgstr "Sobrepor avaliação falhada"
+msgstr "Sobrepor validação falhada"
 
 #: src/olympia/devhub/forms.py
 msgid "Submit my add-on for manual review."
@@ -4237,7 +4237,7 @@ msgstr "As suas credenciais antigas foram revogadas e já não são válidas. At
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr "As suas credenciais antigas foram revogadas e deixaram de ser válidas."
+msgstr "As suas credenciais antigas foram revogadas e já não são válidas."
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
@@ -5371,7 +5371,7 @@ msgstr "Revogar"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke and regenerate credentials"
-msgstr "Revogue e regenere as credenciais"
+msgstr "Revogar e regenerar credenciais"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Generate new credentials"
@@ -5482,7 +5482,7 @@ msgstr "Seja uma ideia que teve enquantoestava na fila do supermercado ou a solu
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr "Dizer aos seus utilizadores o que aí vem irá dar-lhes algo para ver."
+msgstr "Dizer aos seus utilizadores o que virá brevemente irá dar-lhes algo para ver."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
@@ -7786,7 +7786,7 @@ msgstr "O que são extras?"
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
 "Os extras são aplicações que permitem personalizar o %(app)s com funcionalidades extra ou estilo. Experimente uma barra lateral de poupança de tempo, um notificador sobre o tempo, ou um tema para "
-"tornar o %(app)s só seu."
+"tornar o %(app)s seu."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More About Add-ons"
@@ -9119,11 +9119,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
-msgstr "Que sistema operacional eu escolho para meu extra?"
+msgstr "Que sistema operacional escolho para o meu extra?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr "Você deve escolher os sistemas operacionais nos quais o seu extra funcionará com sucesso."
+msgstr "Deve escolher os sistemas operacionais nos quais o seu extra funcionará com sucesso."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What category do I choose for my add-on?"
@@ -9560,13 +9560,13 @@ msgid ""
 "There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
-"Existem frequentemente vários extras que têm funcionalidades similares. Para descobrir qual é o certo para si, leia a descrição na integra do extra e veja as suas capturas de ecrã. Se ainda existem "
+"Muitas vezes existem vários extras que têm funcionalidades similares. Para descobrir qual é o certo para si, leia a descrição do extra na integra e veja as suas capturas de ecrã. Se ainda existem "
 "vários na corrida, leia pelas avaliações do extra, análises de utilizador, e estatísticas para ver qual é o mais apreciado por outros utilizadores. Lembre-se que pode simplesmente experimentar ambos"
-" e ver qual é o que gosta mais."
+" e ver qual é o que mais gosta."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I can't find an add-on I'm looking for?"
-msgstr "E se não conseguir encontra o extra que procuro?"
+msgstr "E se não conseguir encontrar o extra que procuro?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9716,8 +9716,8 @@ msgstr "Qual é a minha coleção favorita?"
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
-"Extras favoritos são extras que adicionou aos marcadores para voltar facilmente mais tarde. Pode adicionar um extra à sua coleção de favoritos clicando em \"Adicionar aos favoritos\" na página de "
-"detalhes."
+"Os extras favoritos são extras que adicionou aos marcadores para que possa voltar facilmente mais tarde. Pode adicionar um extra à sua coleção de favoritos clicando em \"Adicionar aos favoritos\" na"
+" página de detalhes do mesmo."
 
 #: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
@@ -10001,7 +10001,7 @@ msgstr "Não pode deixar mais do que uma análise para a mesma versão de um ext
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Obrigado; esta avaliação foi marcada para aprovação do editor."
+msgstr "Obrigado; esta análise foi marcada para aprovação do editor."
 
 #: src/olympia/reviews/templates/reviews/add.html
 msgid "Add a review for {0}"
@@ -10054,7 +10054,7 @@ msgstr "por %(user)s <b>(Programador)</b> em %(date)s"
 #. {0} is a version number (like 1.01)
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review.html
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr "Esta avaliação é para uma versão anterior do extra ({0})."
+msgstr "Esta análise é para uma versão anterior do extra ({0})."
 
 #: src/olympia/reviews/templates/reviews/review.html
 #, python-format
@@ -10074,7 +10074,7 @@ msgstr "Marcado para revisão"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Report this review"
-msgstr "Reportar esta avaliação"
+msgstr "Reportar esta análise"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Reply to review"
@@ -10086,7 +10086,7 @@ msgstr "Editar resposta"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit review"
-msgstr "Editar revisão"
+msgstr "Editar análise"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Delete reply"
@@ -10106,8 +10106,8 @@ msgstr "Análises para {0}"
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> avaliação para este extra"
-msgstr[1] "<b>{0}</b> avaliações para este extra"
+msgstr[0] "<b>{0}</b> análise para este extra"
+msgstr[1] "<b>{0}</b> análises para este extra"
 
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html
@@ -10118,12 +10118,12 @@ msgstr "Resposta do programador por {0}"
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] "Avaliação para o %(addon)s por %(user)s"
-msgstr[1] "Avaliações para o %(addon)s por %(user)s"
+msgstr[0] "Análise para o %(addon)s por %(user)s"
+msgstr[1] "Análises para o %(addon)s por %(user)s"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "No reviews found."
-msgstr "Nenhuma avaliação encontrada."
+msgstr "Nenhuma análise encontrada."
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 #, python-format
@@ -10132,7 +10132,7 @@ msgstr "<strong>Média</strong> (%(total)s)"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "Write a New Review"
-msgstr "Escrever uma nova avaliação"
+msgstr "Escrever uma nova análise"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Be the first to write a review."
@@ -10653,7 +10653,7 @@ msgstr "Ver mais plataformas&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/ratings.html
 msgid "Ratings by Date"
-msgstr "Avaliações por Data"
+msgstr "Avaliações por data"
 
 #: src/olympia/stats/templates/stats/reports/reviews_created.html
 msgid "Reviews Created by Date"
@@ -10717,7 +10717,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/users_created.html
 msgid "User Signups by Date"
-msgstr "Cadastros por Data"
+msgstr "Registos de utilizador por data"
 
 #: src/olympia/stats/templates/stats/reports/versions.html
 msgid "Application versions by Date"
@@ -10919,7 +10919,7 @@ msgstr "Ignorar alterações"
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Tem a certeza que deseja remover todas as <b>{0}</b> traduções? Isto não poderá ser anulado."
+msgstr "Tem a certeza que deseja remover todas as <b>{0}</b> traduções? Isto não poderá ser desfeito."
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Delete Locale"
@@ -10955,7 +10955,7 @@ msgstr "Idioma por omissão"
 
 #: src/olympia/users/forms.py
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Este URL tem um formato inválido. URLs válidos são do tipo http://example.com/my_page."
+msgstr "Este URL tem um formato inválido. Os URLs válidos são do tipo http://example.com/my_page."
 
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
@@ -11151,7 +11151,7 @@ msgstr "Confirmar eliminação da conta"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "I understand this step cannot be undone."
-msgstr "Eu compreendo que este passo não pode ser anulado"
+msgstr "Eu compreendo que este passo não pode ser desfeito."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Delete my user account now"
