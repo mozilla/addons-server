@@ -7,81 +7,21 @@ python:
 env:
   global:
     - DISPLAY=:99.0
-
-matrix:
-  include:
-    - python: 2.7
-      env: TOXENV=flake8
-      addons:
-        apt:
-          packages:
-            - swig
-    - python: 2.7
-      env: TOXENV=docs
-      addons:
-        apt:
-          packages:
-            - swig
-    - python: 2.7
-      env: TOXENV=assets
-      addons:
-        apt:
-          packages:
-            - swig
-    - python: 2.7
-      env: TOXENV=es
-      addons:
-        apt:
-          packages:
-            - swig
-    - python: 2.7
-      env: TOXENV=addons
-      addons:
-        apt:
-          packages:
-            - swig
-    - python: 2.7
-      env: TOXENV=devhub
-      addons:
-        apt:
-          packages:
-            - swig
-    - python: 2.7
-      env: TOXENV=editors
-      addons:
-        apt:
-          packages:
-            - swig
-    - python: 2.7
-      env: TOXENV=amo
-      addons:
-        apt:
-          packages:
-            - swig
-    - python: 2.7
-      env: TOXENV=users
-      addons:
-        apt:
-          packages:
-            - swig
-    - python: 2.7
-      env: TOXENV=main
-      addons:
-        apt:
-          packages:
-            - swig
-    - python: 2.7
-      env:
-        - TOXENV=ui-tests
-        - PYTEST_BASE_URL=http://localhost:8081
-      addons:
-        apt:
-          packages:
-            - swig
-        firefox: latest
-  exclude:
-    - python: 2.7
-  fast_finish: true
+  matrix:
+  - TOXENV=flake8
+  - TOXENV=docs
+  - TOXENV=assets
+  - TOXENV=es
+  - TOXENV=addons
+  - TOXENV=devhub
+  - TOXENV=editors
+  - TOXENV=amo
+  - TOXENV=users
+  - TOXENV=main
+  - TOXENV=ui-tests PYTEST_BASE_URL=http://localhost:8081
+    exclude:
+      - python: 2.7
+    fast_finish: true
 
 cache:
   pip: true
@@ -95,9 +35,9 @@ services:
 before_install:
   - scripts/travis_es.sh
   - /tmp/elasticsearch/elasticsearch-1.6.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
-  - wget -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.14.0/geckodriver-v0.14.0-linux64.tar.gz
-  - mkdir $HOME/geckodriver && tar xvf /tmp/geckodriver.tar.gz -C $HOME/geckodriver
-  - export PATH=$HOME/geckodriver:$PATH
+  - if [["${TOXENV}" = "ui-tests" ]]; then wget -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.14.0/geckodriver-v0.14.0-linux64.tar.gz; fi
+  - if [["${TOXENV}" = "ui-tests" ]]; then mkdir $HOME/geckodriver && tar xvf /tmp/geckodriver.tar.gz -C $HOME/geckodriver; fi
+  - if [["${TOXENV}" = "ui-tests" ]]; then export PATH=$HOME/geckodriver:$PATH; fi
   - firefox --version
   - geckodriver --version
 install:
