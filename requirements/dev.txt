@@ -1,4 +1,5 @@
 -r prod.txt
+-r flake8.txt
 
 # apipkg is required by execnet
 apipkg==1.4 \
