@@ -19,9 +19,6 @@ env:
   - TOXENV=users
   - TOXENV=main
   - TOXENV=ui-tests PYTEST_BASE_URL=http://localhost:8081
-    exclude:
-      - python: 2.7
-    fast_finish: true
 
 cache:
   pip: true
