@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-28 11:24+0000\n"
+"PO-Revision-Date: 2017-03-02 13:51+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4136,7 +4136,7 @@ msgstr "圖檔的寬必須剛好為 {0} 像素並且高 {1} 像素。"
 
 #: src/olympia/devhub/views.py
 msgid "There was an error uploading your preview."
-msgstr "上傳截圖的過程中發生錯誤。"
+msgstr "上傳擷圖的過程中發生錯誤。"
 
 #: src/olympia/devhub/views.py
 #, python-format
@@ -4313,7 +4313,7 @@ msgstr "返回至開發者交流中心首頁"
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "<small>附加套件</small>開發者交流中心"
+msgstr "<small>附加元件</small>開發者交流中心"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
@@ -4578,7 +4578,7 @@ msgstr "實驗中？"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "若您的附加元件還在實驗中，或尚未準備好供一般大眾使用。此附加元件將公開展示出來，但曝光度會被降低。"
+msgstr "若您的附加元件還在實驗測試中，或尚未準備好供一般大眾使用請勾選此選項。仍將公開上架此附加元件，但曝光度會被降低。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
@@ -4586,7 +4586,7 @@ msgstr "這個附加元件仍在實驗中。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is ready for general use."
-msgstr "這個附加元件已可供大眾使用。"
+msgstr "此附加元件已可供一般日常使用。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -4599,7 +4599,7 @@ msgstr "當您的附加元件成為該應用程式的精選時，您無法更變
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
-msgstr "使用標籤能幫助使用者找到您的附加元件，這個欄位應該盡量減短，例如可輸入「tab」、「toolbar」、「twitter」。您最多可設定 {0} 個標籤。這僅與公開上架的附加元件有關。"
+msgstr "使用標籤能幫助使用者找到您的附加元件，這個欄位應該盡量縮短，例如輸入「分頁」、「工具列」、「twitter」就好。您最多可設定 {0} 個標籤。這僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Comma-separated, minimum of {0} character."
@@ -4827,19 +4827,19 @@ msgstr "支援 PNG 與 JPG 檔案格式。圖示必須縮放至 64x64 像素。"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Screenshots"
-msgstr "截圖"
+msgstr "擷圖"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "請提供至少一張您的附加元件的螢幕截圖:"
+msgstr "請提供至少一張您的附加元件的螢幕擷圖:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Please provide a caption for this screenshot:"
-msgstr "請提供一段此螢幕截圖的說明："
+msgstr "請提供一段有關此擷圖的說明:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add a Screenshot..."
-msgstr "新增一張螢幕截圖…"
+msgstr "新增一張螢幕擷圖…"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html
 msgid "Tests"
@@ -5039,7 +5039,7 @@ msgstr "您的 URL 只能含有字母，數字，下劃線與破折號。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Summary:"
-msgstr "摘要："
+msgstr "摘要:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -9520,7 +9520,7 @@ msgstr "您喜歡或不喜歡那些功能？"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it useful?"
-msgstr "該附加套件有用嗎？"
+msgstr "該附加元件有用嗎？"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it easy to use?"
