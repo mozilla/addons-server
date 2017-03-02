@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 10:50+0000\n"
+"PO-Revision-Date: 2017-03-02 11:11+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2530,11 +2530,11 @@ msgstr "Samlingar etter namn"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Nyleg oppdaterte samlingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "NYleg populære samlingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
@@ -2842,11 +2842,11 @@ msgstr "Utvidingar etter namn"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Utvidingar etter nedlasting pr. veke"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Nyleg oppdaterte utvidingar"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Extensions"
@@ -2860,7 +2860,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Mest populære komplette tema"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Complete Themes"
@@ -2929,7 +2929,7 @@ msgstr "Vis alle som er nyleg lagt til"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Vis alle Mest populære"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Top Rated"
@@ -2965,7 +2965,7 @@ msgstr "Fann ingen tema"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "Enkle-å-bruke-tema for Firefox"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Popular"
@@ -3640,7 +3640,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Web and Developer Tools"
-msgstr ""
+msgstr "Web og utviklarverktøy"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -4066,7 +4066,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "User Collections"
-msgstr ""
+msgstr "Brukarsamlingar"
 
 #: src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
 msgid "User Reviews"
@@ -4344,7 +4344,7 @@ msgstr "Dokumentasjon"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Extension Development"
-msgstr ""
+msgstr "Utvidingsutvikling"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Lightweight Themes"
@@ -4504,8 +4504,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> tema"
+msgstr[1] "<b>{0}</b> tema"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Edit Information"
@@ -4874,7 +4874,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Extension Tests"
-msgstr ""
+msgstr "Utvidingstestar"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Localization Tests"
@@ -5440,7 +5440,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "Developer News"
-msgstr ""
+msgstr "Utviklarnytt"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "View the blog &#9658;"
@@ -5537,7 +5537,7 @@ msgstr "Om"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
 msgid "Blog"
@@ -6646,7 +6646,7 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -7194,7 +7194,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Fann ingen sletta tema for denne perioden."
 
 #: src/olympia/editors/templates/editors/themes/history.html
 msgid "Theme Review History for {0}"
@@ -7236,7 +7236,7 @@ msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Flagga tema"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Theme Review Queue"
@@ -7284,7 +7284,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Det finst ingen tema-vurderingar no."
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Clear Search"
@@ -8667,7 +8667,7 @@ msgstr ""
 #. Heading for a list of resources for developers
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Support Resources"
-msgstr ""
+msgstr "Brukarstøtteresursar"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Contributing your Add-on"
@@ -8855,21 +8855,21 @@ msgstr ""
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mailing List"
-msgstr ""
+msgstr "E-postliste"
 
 #. Label for a link to the extension developers newsgroup
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Newsgroup"
-msgstr ""
+msgstr "Nyheitsgruppe"
 
 #. Label for a link to the extension developers Google Group
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Google Group"
-msgstr ""
+msgstr "Google-gruppe"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Utvidingsforum"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Stack Overflow"
@@ -9504,12 +9504,12 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Developer Topics"
-msgstr ""
+msgstr "Utviklaremne"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr ""
+msgstr "Sjå <a href=\"%(faq_url)s\">FAQ for utviklarar</a> og <a href=\"%(hub_url)s\">utviklarsenteret</a> for svar på utviklarrelaterte spørsmål om utvidingar."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Still have questions?"
@@ -9858,7 +9858,7 @@ msgstr[1] ""
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Utviklarsvar frå {0}"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 #, python-format
@@ -9935,15 +9935,15 @@ msgstr[1] ""
 
 #: src/olympia/search/forms.py
 msgid "Most popular this week"
-msgstr ""
+msgstr "Mest populære denne veka"
 
 #: src/olympia/search/forms.py
 msgid "Most popular this month"
-msgstr ""
+msgstr "Mest populære denne månaden"
 
 #: src/olympia/search/forms.py
 msgid "Most popular all time"
-msgstr ""
+msgstr "Mest populære totalt"
 
 #: src/olympia/search/forms.py
 msgid "search for add-ons"
@@ -9955,7 +9955,7 @@ msgstr ""
 
 #: src/olympia/search/forms.py
 msgid "search for themes"
-msgstr ""
+msgstr "søk etter tema"
 
 #: src/olympia/search/forms.py
 msgid "search for apps"
@@ -10451,7 +10451,7 @@ msgstr "Finn utvidingar for andre program"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Other Applications"
-msgstr "Andre program"
+msgstr "Andre appar"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
@@ -10489,7 +10489,7 @@ msgstr "bli kjend med <b>utvidingar</b>"
 
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Other languages"
-msgstr ""
+msgstr "Andre språk"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -10522,7 +10522,7 @@ msgstr ""
 #: src/olympia/templates/impala/user_login.html src/olympia/templates/user_login.html
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">Registrer deg</a> eller <a href=\"%(login)s\">Logg inn</a>"
 
 #: src/olympia/templates/impala/base.html
 #, python-format
@@ -10598,7 +10598,7 @@ msgstr ""
 
 #: src/olympia/templates/mobile/header_auth.html
 msgid "Register"
-msgstr ""
+msgstr "Registrer deg"
 
 #: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
@@ -11011,11 +11011,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Add-ons Developer"
-msgstr ""
+msgstr "Utvidingsutviklar"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes Artist"
-msgstr ""
+msgstr "Tema-artist"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "About me"
@@ -11031,11 +11031,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Mine mest populære tema"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes I've created"
-msgstr ""
+msgstr "Tema eg har laga"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Followed by Me"
@@ -11101,7 +11101,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
-msgstr ""
+msgstr "Utviklarinformasjon"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "User since"
@@ -11127,8 +11127,8 @@ msgstr ""
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s tema"
+msgstr[1] "%(num)s tema"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
