@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 21:06+0000\n"
+"PO-Revision-Date: 2017-03-02 21:41+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -30,7 +30,7 @@ msgstr "Váš pokus o přihlášení se nepodařilo zpracovat. Zkuste to prosím
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Váš účet Firefox Account nebyl nalezen. Zkuste to prosím znovu."
+msgstr "Váš účet Firefoxu nebyl nalezen. Zkuste to prosím znovu."
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
@@ -10933,7 +10933,7 @@ msgstr "Zaměstnání"
 
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Uživatelé s účtem Firefox Account v tuto chvíli nemohou měnit své e-mailové adresy."
+msgstr "Uživatelé s účtem Firefoxu v tuto chvíli nemohou měnit své e-mailové adresy."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -11174,7 +11174,7 @@ msgstr "E-mailová adresa"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
-msgstr "Spravovat účet Firefox Account..."
+msgstr "Spravovat účet Firefoxu..."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
@@ -11254,7 +11254,7 @@ msgstr "vše"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Server s doplňky nyní pro přihlášení využívá účty Firefox Account. Pokračujte prosím pro dokončení jednoduchého přihlašovacího procesu."
+msgstr "Server s doplňky nyní pro přihlášení využívá účty Firefoxu. Pokračujte prosím pro dokončení jednoduchého přihlašovacího procesu."
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "User Login"
@@ -11262,7 +11262,7 @@ msgstr "Přihlášení uživatele"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Log in with Firefox Accounts"
-msgstr "Přihlásit se účtem Firefox Account"
+msgstr "Přihlásit se účtem Firefoxu"
 
 #: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
