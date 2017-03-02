@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 18:23+0000\n"
+"PO-Revision-Date: 2017-03-02 18:43+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1814,11 +1814,11 @@ msgstr "Tilføjelser til Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Vi beklager, men vi kan ikke finde noget på adressen, du indtastede. Hvis du fulgte et link til en tilføjelse, er det muligt, at tilføjelsen er blevet fjernet af dens udvikler."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Foreslåede sider"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Browse all extensions"
@@ -1835,7 +1835,7 @@ msgstr "Tilføjelsens hjemmeside"
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "Hvis du fulgte et link fra et sted, så %(open_bug_link)s indberet fejlen%(close_bug_link)s. Fortæl os hvorfra du kom og hvad du ledte efter, og vi vil gøre vores bedste for at ordne det."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -2022,7 +2022,7 @@ msgstr ""
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Ugyldig JWT-token."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
