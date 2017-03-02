@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 18:43+0000\n"
+"PO-Revision-Date: 2017-03-02 18:56+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -6714,7 +6714,7 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -8756,7 +8756,7 @@ msgstr "Udvikler OSS"
 
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Sections"
-msgstr ""
+msgstr "Afsnit"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developing an Add-on"
@@ -8971,7 +8971,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla offer development services?"
