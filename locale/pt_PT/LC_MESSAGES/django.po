@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 05:10+0000\n"
+"PO-Revision-Date: 2017-03-02 05:12+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -9256,7 +9256,7 @@ msgstr "Como submeto uma atualização para o meu extra?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr "Pode submeter uma atualização para o seu extra pelo painel de ferramentas de programador escolhendo a opção \"Enviar uma nova versão\" e carregando um novo ficheiro .xpi para o seu extra."
+msgstr "Pode enviar uma atualização do seu extra através do painel de ferramentas de programador escolhendo a opção \"Enviar uma nova versão\" e carregando um novo ficheiro .xpi para o seu extra."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does my update need to be reviewed by reviewers?"
@@ -9296,7 +9296,7 @@ msgstr "Relatório de erro mal colocado ou pedido de ajuda"
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Other (provides a pop-up prompt for information)"
-msgstr "Outro (você poderá fornecer mais informações)"
+msgstr "Outro (providencia uma solicitação pop-up para mais informação)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
@@ -9798,7 +9798,7 @@ msgstr "O extra funciona como esperado?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "What features did you like or dislike?"
-msgstr "Que recursos você gostou ou não gostou?"
+msgstr "Que funcionalidades gostou ou desgostou?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it useful?"
@@ -9810,7 +9810,7 @@ msgstr "Foi fácil de usar?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Will you continue to use this add-on?"
-msgstr "Você continuará usando este extra?"
+msgstr "Continuará a utilizar este extra?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Take a moment to read your review before submitting it to minimize typos."
