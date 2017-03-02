@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 04:50+0000\n"
+"PO-Revision-Date: 2017-03-02 05:10+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2368,8 +2368,8 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Os extras que você marcar como favoritos utilizando a funcionalidade <b>Adicionar aos favoritos</b> aparecem abaixo. Esta coleção atualmente é <b>privada</b>, o que significa que apenas você a pode "
-"visualizar. Se você desejar que toda a gente possa visualizar os seus favoritos, clique no botão abaixo para torná-los públicos."
+"Os extras que marcar como favoritos utilizando a funcionalidade <b>Adicionar aos favoritos</b> aparecem abaixo. Esta coleção atualmente é <b>privada</b>, o que significa que apenas você a pode "
+"visualizar. Se desejar que toda a gente possa visualizar os seus favoritos, clique no botão abaixo para torná-la pública."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2502,8 +2502,8 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Você pode adicionar múltiplos colaboradores a esta coleção. Um colaborador pode adicionar e remover os extras nesta coleção, mas não pode alterar o nome ou a descrição da mesma. Para adicionar um "
-"colaborador, introduza o respetivo endereço email na caixa abaixo. Os colaboradores deverão ter conta de extras da Mozilla."
+"Pode adicionar múltiplos colaboradores a esta coleção. Um colaborador pode adicionar e remover extras desta coleção, mas não pode alterar o nome ou descrição da mesma. Para adicionar um colaborador,"
+" introduza o respetivo endereço email na caixa abaixo. Os colaboradores deverão ter conta de extras da Mozilla."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -5567,7 +5567,7 @@ msgstr "Leia mais acerca da política de revisão de código."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
-msgstr "Você não pode remover um ficheiro individual, após o processo de revisão iniciado. Deve excluir a versão inteira."
+msgstr "Não pode remover um ficheiro individual, após o processo de revisão ter iniciado. Deve apagar a versão inteira."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "This file will be deleted on save."
@@ -5747,7 +5747,7 @@ msgstr "Ver todas as submissões"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "Aqui é onde você vê e gere os seus extras e temas. Para publicar o seu primeiro extra, clique em \"Submeter o seu primeiro extra\" ou \"Submeter o seu primeiro tema\"."
+msgstr "Aqui é onde vê e gere os seus extras e temas. Para publicar o seu primeiro extra, clique em \"Submeter o seu primeiro extra\" ou \"Submeter o seu primeiro tema\"."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Submit Your First Add-on"
@@ -6960,7 +6960,7 @@ msgstr "Novos revisores"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
-msgstr "Você está na posição #{0} com {1} revisões"
+msgstr "Está na posição #{0} com {1} revisões"
 
 #. num = number of reviews in the queue
 #: src/olympia/editors/templates/editors/home.html
@@ -7264,7 +7264,7 @@ msgstr "Desde sempre"
 #. {0} is a number, like "480".
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "You have <span>{0}</span> points."
-msgstr "Você possui <span>{0}</span> pontos."
+msgstr "Possui <span>{0}</span> pontos."
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
@@ -8680,8 +8680,8 @@ msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
 msgstr ""
-"Se você atualizar para uma nova versão do Firefox ou atualizar o complemento, seus relatórios para as versões antigas não serão exibidos para que você possa testar a nova versão. Se você tiver "
-"dúvidas, por favor, pergunte nos <a href=\"%(url)s\">nossos fóruns</a>."
+"Se atualizar para uma nova versão do Firefox ou atualizar os seus extras, os seus relatórios para as versões antigas serão ocultados para lhe permitir testar a nova versão. Se tiver quaisquer "
+"dúvidas, por favor pergunte nos <a href=\"%(url)s\">nossos fóruns</a>."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
@@ -8830,8 +8830,8 @@ msgid ""
 "You will need to have a version of the Mozilla software that you're building the add-on for and a code editor of your choice. Add-ons can be built for almost all Mozilla software but are primarily "
 "targeted for:"
 msgstr ""
-"Você precisará de uma versão da aplicação Mozilla para a qual você está criando um extra e um editor de código da sua escolha. Extras podem ser criados para quase todas as aplicações baseadas na "
-"tecnologia Mozilla, mas o foco primário é:"
+"Precisará de uma versão do software da Mozilla para o qual está a criar um extra e um editor de código da sua escolha. Os extras podem ser criados para quase todos os softwares da Mozilla mas são "
+"primariamente direcionados para:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Popular code editors include:"
@@ -8892,7 +8892,7 @@ msgstr "O que significa \"maxVersion\"?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "This determines the maximum version of Firefox you're saying this extension will work with. Set this to be no newer than the newest currently available version!"
-msgstr "Essa propriedade determina a versão máxima do Firefox com a qual você afirma que seu extra vai funcionar. Defina um valor que não seja maior que a versão mais recente atualmente!"
+msgstr "Esta propriedade determina a versão máxima do Firefox com a qual afirma que o seu extra vai funcionar. Defina um valor que não seja maior do que a versão mais recente atualmente disponível!"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on contain binary components?"
@@ -8903,8 +8903,8 @@ msgstr "O meu extra pode conter componentes binários?"
 msgid ""
 "Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object model</a> to enhance your add-ons. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
 msgstr ""
-"Sim. Você pode usar o <a href=\"%(url)s\">XPCOM</a>, modelo de componentes e objetos da Mozilla, para melhorar seus extras. Os componentes XPCOM podem ser usados e implementados em Javascript, Java "
-"e Python, além de C++."
+"Sim. Pode utilizar o <a href=\"%(url)s\">modelo de componentes e objetos XPCOM</a> da Mozilla para melhorar os seus extras. Os componentes XPCOM podem ser utilizados e implementados em Javascript, "
+"Java e Python, além de C++."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
@@ -9114,8 +9114,8 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
-"O painel Ferramentas do programador permite-lhe enviar e submeter extras para o AMO. Você deverá ser um utilizador registado no AMO antes de poder submeter um extra. Antes de submeter o seu extra, "
-"certifique-se de que leu o <a href=\"%(url)s\">Guia de revisão de extras</a> da Mozilla para garantir que o seu extra atende aos critérios utilizados pelos revisores."
+"O painel ferramentas de programador irá permitir-lhe carregar e submeter extras para o AMO. Deverá ser um utilizador registado do AMO antes de poder submeter um extra. Antes de submeter o seu extra,"
+" certifique-se de que leu o <a href=\"%(url)s\">Guia de revisão de extras</a> para garantir que o seu extra atende às diretrizes utilizadas pelos revisores."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9143,7 +9143,9 @@ msgstr "Eu posso especificar um acordo de licença para usar com meu extra?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr "Sim. Você pode especificar um acordo de licença ao enviar um extra. Você também pode adicionar ou atualizar um acordo de licença usando a página Meus extras após o envio do seu extra."
+msgstr ""
+"Sim. Pode especificar um acordo de licença ao submeter o seu extra. Pode também adicionar ou atualizar um acordo de licença através do painel de ferramentas de programador após o seu extra ser "
+"submetido."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I include a privacy policy for my add-on?"
@@ -9152,7 +9154,8 @@ msgstr "Eu posso incluir uma política de privacidade no meu extra?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
-"Sim. Você pode especificar uma política de privacidade ao enviar um extra. Você também pode adicionar ou atualizar uma política de privacidade usando a página Meus extras após o envio do seu extra."
+"Sim. Pode especificar uma política de privacidade ao submeter o seu extra. Pode também adicionar ou atualizar uma política de privacidade através do painel de ferramentas de programador após o seu "
+"extra ser submetido."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Why must my add-on be reviewed?"
@@ -9201,7 +9204,7 @@ msgstr "Quanto tempo levará para o meu extra ser analisado?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr "Nós não podemos informar um tempo estimado de espera até seu complemento ser analisado. Muitos fatores afetam o tempo de espera, incluindo:"
+msgstr "Nós não podemos dar uma estimativa do tempo que demorará até um extra ser revisto. Muitos fatores afetam o tempo, incluindo:"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9233,7 +9236,8 @@ msgstr "Como posso ver quantas vezes o meu extra foi descarregado?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr "O painel de estatísticas encontrado no painel de ferramentas de programador oferece informações que podem ajudá-lo a determinar o número de descargas do seu extra desde que o submeteu no AMO."
+msgstr ""
+"O painel de estatísticas encontrado no painel de ferramentas de programador providencia informações que podem ajudá-lo a determinar o número de descargas do seu extra desde que o submeteu no AMO."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many active users are using my add-on?"
@@ -9243,8 +9247,8 @@ msgstr "Como posso ver quantos utilizadores ativos estão a utilizar o meu extra
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
 msgstr ""
-"O painel de estatísticas disponível na página de Ferramentas do programador, fornece informações que podem ajudá-lo a determinar quantos utilizadores estão a utilizar o seu extra ativamente desde a "
-"data de envio do mesmo para o AMO."
+"O painel de estatísticas encontrado no painel de ferramentas de programador providencia informações que podem ajudá-lo a determinar quantos utilizadores estão a utilizar o seu extra ativamente desde"
+" que o submeteu no AMO."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit an update for my add-on?"
@@ -9252,7 +9256,7 @@ msgstr "Como submeto uma atualização para o meu extra?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr "Você pode enviar uma atualização do seu extra pela página \"Meus extras\" escolhendo a opção \"Enviar uma nova versão\" e enviando um novo arquivo .xpi para o seu extra."
+msgstr "Pode submeter uma atualização para o seu extra pelo painel de ferramentas de programador escolhendo a opção \"Enviar uma nova versão\" e carregando um novo ficheiro .xpi para o seu extra."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does my update need to be reviewed by reviewers?"
