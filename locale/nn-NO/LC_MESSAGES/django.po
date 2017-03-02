@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 11:21+0000\n"
+"PO-Revision-Date: 2017-03-02 12:55+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -892,14 +892,12 @@ msgid "by %(users)s"
 msgstr "av %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} åtvaring"
+msgstr "[Åtvaring]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Permissions"
-msgstr "Versjonar"
+msgstr "Løyve"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -1791,7 +1789,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Føreslåtte sider"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, fuzzy
@@ -3232,12 +3230,11 @@ msgstr "Persona"
 
 #: src/olympia/constants/base.py
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Manuelle vurderarpoeng"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Full vurdering av utviding"
+msgstr "Ny vurdering av utviding"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -3248,9 +3245,8 @@ msgid "Updated Add-on Review"
 msgstr ""
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Ordbøker"
+msgstr "Nye ordboksvurderingar"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3285,9 +3281,8 @@ msgid "Theme Review"
 msgstr "Temavurdering"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Søkjetilbydarar"
+msgstr "Ny vurdering av søkjetilbydar"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3535,17 +3530,14 @@ msgid "Solid"
 msgstr "Fast"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Websites"
-msgstr "Nettside"
+msgstr "Nettstadar"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Device Features & Location"
-msgstr "Framheva samlingar"
+msgstr "Eininga sin funksjon og plassering"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Experimental"
 msgstr "Eksperimentell"
 
@@ -3555,23 +3547,23 @@ msgstr "RSS-kanalar, nyheiter og bloggning"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html
 msgid "Performance"
-msgstr ""
+msgstr "Yting"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
-msgstr ""
+msgstr "Foto og media"
 
 #: src/olympia/constants/categories.py
 msgid "Security & Privacy"
-msgstr ""
+msgstr "SIkkerheit og personvern"
 
 #: src/olympia/constants/categories.py
 msgid "Social Networking"
-msgstr ""
+msgstr "Sosiale nettverk"
 
 #: src/olympia/constants/categories.py
 msgid "Sports & Games"
-msgstr ""
+msgstr "Sport og spel"
 
 #: src/olympia/constants/categories.py
 msgid "User Interface"
@@ -3579,11 +3571,11 @@ msgstr "Brukargrensesnitt"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "Utsjånad og tilpassingar"
 
 #: src/olympia/constants/categories.py
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "Kalender og dato/tid"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
@@ -3612,23 +3604,23 @@ msgstr "Meldings- og nyhendelesing"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Personvern og sikkerheit"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "Nedlasting og filhandsaming"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
-msgstr ""
+msgstr "Grensesnitttilpassingar"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "Språkstøtte og omsetting"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
-msgstr ""
+msgstr "Foto og media"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
@@ -3644,7 +3636,7 @@ msgstr "Web og utviklarverktøy"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
-msgstr ""
+msgstr "Be om meir info"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flag"
@@ -3684,7 +3676,7 @@ msgstr ""
 
 #: src/olympia/constants/editors.py
 msgid "Online gambling"
-msgstr ""
+msgstr "Onlinespel"
 
 #: src/olympia/constants/editors.py
 msgid "Spam content"
@@ -4178,9 +4170,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review requested."
-msgstr "Det er bedt om ei vurdering"
+msgstr "Vurdering førespurd."
 
 #: src/olympia/devhub/views.py
 msgid "You must provide further details to proceed."
@@ -4196,7 +4187,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
-msgstr ""
+msgstr "Ny API-nykel laga"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
@@ -4216,17 +4207,17 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "eller <a href=\"{0}\">Avbryt</a>"
 
 #: src/olympia/devhub/templates/devhub/base.html src/olympia/devhub/templates/devhub/base_impala.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Tilbake til utvidingar"
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Søk"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py src/olympia/editors/templates/editors/queue.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
@@ -4245,15 +4236,15 @@ msgstr "Søkjeresultat"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Skriv inn nokre søkeord."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Lastar resultat &hellip;"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
-msgstr ""
+msgstr "Send inn ei utviding"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
@@ -4409,7 +4400,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validation Results"
-msgstr ""
+msgstr "Valideringsresultat"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validated at:"
@@ -6633,7 +6624,7 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "More Information Requested"
-msgstr ""
+msgstr "Meir informasjon er påkravd"
 
 #: src/olympia/editors/models.py
 #, fuzzy
@@ -6811,7 +6802,7 @@ msgstr "Hending"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/home.html
 msgid "More details."
-msgstr ""
+msgstr "Fleire detaljar."
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html
 msgid "No events found for this period."
@@ -7106,7 +7097,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "More Information"
-msgstr ""
+msgstr "Meir informasjon"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Resolution"
@@ -7717,7 +7708,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "More ways to customize"
-msgstr ""
+msgstr "Fleire måtar å tilpasse på"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Browse all add-ons"
@@ -11080,7 +11071,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "More Actions:"
-msgstr ""
+msgstr "Fleire handlingar:"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your notification settings"
