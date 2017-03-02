@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-28 18:03+0000\n"
+"PO-Revision-Date: 2017-03-02 09:37+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -7544,14 +7544,12 @@ msgid "This file is a directory."
 msgstr "El archivo es un directorio."
 
 #: src/olympia/files/models.py
-#, fuzzy
 msgid "Access your data for {name}"
-msgstr "Acceder a tus datos para todos los sitios web"
+msgstr "Acceder a tus datos para {name}"
 
 #: src/olympia/files/models.py
-#, fuzzy
 msgid "Access your data on various websites"
-msgstr "Acceder a tus datos para todos los sitios web"
+msgstr "Acceder a tus datos en varios sitios web"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -10089,31 +10087,28 @@ msgid "This field is required."
 msgstr "Este campo es obligatorio."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Aquí puedes actualizar el diseño de tu tema una vez que se haya aprobado."
+msgstr "Una vez creada, no puedes modificar el complemento de una revisión."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "No puedes responder a una revisión que ya es una respuesta."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "No puedes cambiar la versión del complemento revisado cuando la revisión ya ha sido creada."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Esta versión del complemento no existe o no es pública."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "alguien escribe una valoración de mi complemento"
+msgstr "No puedes escribir una revisión de tu propio complemento."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "No puedes subir más archivos para esta versión."
+msgstr "No puedes escribir más de una revisión para la misma versión del complemento."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
