@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 16:08+0000\n"
-"Last-Translator: superfetatoire <superfetatoire@outlook.com>\n"
+"PO-Revision-Date: 2017-03-02 16:28+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1109,7 +1109,7 @@ msgstr "fermer"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Certains modules demanderont votre permission pour effectuer certaines tâches (par exemple, un module de gestion des onglets vous demandera d’accéder à la liste de vos onglets)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
@@ -1825,7 +1825,7 @@ msgstr "Plus de modules"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Nous n'avons malheureusement rien trouvé à l'adresse indiquée. Si vous avez suivi un lien vers un module, il est possible que celui-ci ait été supprimé par son auteur."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
@@ -1850,6 +1850,8 @@ msgstr "Page d’accueil du module"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Si vous avez suivi un lien depuis un autre endroit, merci de %(open_bug_link)snous signaler le problème%(close_bug_link)s. Dites-nous d'où vous veniez, ce que vous cherchiez et nous ferons de notre "
+"mieux pour le corriger."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -3833,7 +3835,7 @@ msgstr "Mettre à jour le tableau blanc"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's download history"
-msgstr ""
+msgstr "Télécharger des fichiers, lire et modifier l'historique de téléchargement du navigateur"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your location"
@@ -4204,7 +4206,7 @@ msgstr "Vous ne pouvez pas envoyer ce type de module"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Vous ne pouvez pas proposer un module dont le guid se termine par « @mozilla.org »"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -5460,7 +5462,7 @@ msgstr "La compatibilité de votre module avec Firefox en mode multi-processus (
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Visible sur ce site après avoir passé un examen du code. Les mises à jour automatiques sont gérées par ce site."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, fuzzy
