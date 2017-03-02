@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 14:49+0000\n"
+"PO-Revision-Date: 2017-03-02 16:31+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5115,7 +5115,7 @@ msgstr "如何散布此版本"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
-msgstr "附加元件發行與簽署的更多資訊"
+msgstr "關於附加元件發行與簽署的更多資訊"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
@@ -5185,7 +5185,7 @@ msgstr "前往我的提交"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Add-on Distribution Agreement"
-msgstr "附加元件散布協議"
+msgstr "附加元件發行同意書"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
@@ -5193,7 +5193,7 @@ msgstr "上傳附加元件"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host File"
-msgstr "於何處代管此檔案"
+msgstr "於何處代管此檔案？"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
@@ -5229,7 +5229,7 @@ msgstr "簽署附加元件"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
-msgstr "Firefox 附加元件散布協議"
+msgstr "Firefox 附加元件發行同意書"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "API Credentials"
