@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-01 10:07+0000\n"
+"PO-Revision-Date: 2017-03-02 10:50+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3632,7 +3632,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, nyheiter og bloggar"
 
 #: src/olympia/constants/categories.py
 msgid "Site-specific"
@@ -4525,7 +4525,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid "About author roles"
-msgstr ""
+msgstr "Om roller for upphavsmenn"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid ""
@@ -5444,7 +5444,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Les bloggen &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
@@ -5517,7 +5517,7 @@ msgstr "Siste nytt"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Read more in our Blog"
-msgstr ""
+msgstr "Les meir på bloggen vår"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Resources"
@@ -5533,7 +5533,7 @@ msgstr "Fellesskap"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "About"
-msgstr ""
+msgstr "Om"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "Forum"
@@ -5541,7 +5541,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/templates/footer.html
 msgid "Blog"
-msgstr ""
+msgstr "Blogg"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Contact Us"
@@ -7709,7 +7709,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Les meir om utvidingar"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "See all"
@@ -8435,7 +8435,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Om Mozilla-utvidingar"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "What is this website?"
@@ -8468,7 +8468,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Utvidingsbloggen</a> vår vert vert med jamne mellomrom oppdatert med informasjon for både utvidingsentusiastar og utviklarar."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -8700,11 +8700,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "Innlegget «How to develop a Firefox extension» på Ad-ons-bloggen"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Mozilla-blogg for utvidingar"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What tools do I need to be able to build an Add-on?"
