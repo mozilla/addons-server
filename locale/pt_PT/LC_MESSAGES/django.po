@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 05:12+0000\n"
+"PO-Revision-Date: 2017-03-02 16:31+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -6779,7 +6779,7 @@ msgstr "foi aprovado"
 
 #: src/olympia/editors/views.py
 msgid "given preliminary review"
-msgstr "dada revisão preliminar"
+msgstr "efetuada revisão preliminar"
 
 #: src/olympia/editors/views.py
 msgid "rejected"
