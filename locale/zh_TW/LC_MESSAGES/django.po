@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 13:51+0000\n"
+"PO-Revision-Date: 2017-03-02 14:00+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -381,7 +381,7 @@ msgstr "不可見"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
-msgstr "必要的附加元件"
+msgstr "必須先安裝的附加元件"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html
@@ -431,7 +431,7 @@ msgstr "圖片集"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Developer Comments"
-msgstr "開發者意見"
+msgstr "開發者留言"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Development Channel"
@@ -3962,7 +3962,7 @@ msgstr "先選擇一個應用程式"
 
 #: src/olympia/devhub/forms.py
 msgid "There cannot be more than 3 required add-ons."
-msgstr "必要的附加元件不能超過三個。"
+msgstr "不能超過三套必須先安裝的附加元件。"
 
 #: src/olympia/devhub/forms.py
 msgid ""
@@ -4629,7 +4629,7 @@ msgstr "關於功能或其他相關資訊更完整的描述。此欄位僅顯示
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Default Locale"
-msgstr "預設地區"
+msgstr "預設語系"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
@@ -4687,7 +4687,7 @@ msgstr "任何使用者可能會想要知道但與附加元件概要、描述無
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Limit 3"
-msgstr "限制3"
+msgstr "不超過 3 套"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Add-on Flags"
@@ -4711,7 +4711,7 @@ msgstr "是否要將附加元件原始碼顯示於我們的線上檢視器。此
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on's source code is publicly viewable."
-msgstr "這個附加元件的原始碼為可公開瀏覽。"
+msgstr "可公開瀏覽此附加元件的原始碼。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "No, this add-on's source code is not publicly viewable."
@@ -4727,7 +4727,7 @@ msgstr "是否要將您附加元件的下載次數與使用統計顯示於我們
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on's stats are publicly viewable."
-msgstr "這個附加元件的統計資訊是公開的。"
+msgstr "公開此附加元件的統計資訊。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "No, this add-on's stats are not publicly viewable."
@@ -4771,7 +4771,7 @@ msgstr "Whiteboard"
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
-msgstr "這個「白板」是用來提供您的附加元件與版本無關的資訊給編輯的地方。您可以用白板來提供測試附加元件的方式，或是任何有用的附加資訊。編輯也可以編輯此白板中內容。"
+msgstr "這個「白板」是用來提供您的附加元件與版本無關的資訊給編輯的地方。您可以留下附加元件的測試方式，或是任何其他資訊。編輯也可修改白板中的內容。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html
 msgid "Remove this dependent add-on"
@@ -4839,7 +4839,7 @@ msgstr "請提供一段有關此擷圖的說明:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add a Screenshot..."
-msgstr "新增一張螢幕擷圖…"
+msgstr "新增螢幕擷圖…"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html
 msgid "Tests"
@@ -5135,7 +5135,7 @@ msgstr "搞定了！已將此版本送出審核。審核完成後，或審核者
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "加上詳細的描述與畫面截圖可讓您的附加元件更成功。讓您的附加元件準備就緒後即可公開："
+msgstr "加上詳細的描述與畫面擷圖可讓您的附加元件更成功。讓您的附加元件準備就緒後即可公開:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Manage Listing"
@@ -5415,7 +5415,7 @@ msgstr "請選擇您的原始碼要使用哪個條款釋出，此欄位僅與公
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Allowed HTML: {0}"
-msgstr "允許使用 HTML：{0}"
+msgstr "允許使用的 HTML 標籤: {0}"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Some HTML supported."
