@@ -1,7 +1,8 @@
+-- Note: if the migration fails for you locally, remove the 'UNSIGNED' next to version_id below.
 CREATE TABLE `editors_autoapprovalsummary` (
     `created` datetime(6) NOT NULL,
     `modified` datetime(6) NOT NULL,
-    `version_id` integer NOT NULL PRIMARY KEY,
+    `version_id` integer UNSIGNED NOT NULL PRIMARY KEY,
     `uses_custom_csp` bool NOT NULL,
     `uses_native_messaging` bool NOT NULL,
     `uses_content_script_for_all_urls` bool NOT NULL,
