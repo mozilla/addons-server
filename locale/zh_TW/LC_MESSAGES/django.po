@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 14:00+0000\n"
+"PO-Revision-Date: 2017-03-02 14:49+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5197,7 +5197,7 @@ msgstr "於何處代管此檔案"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Where to Host Version"
-msgstr "於何處代管此版本"
+msgstr "於何處代管此版本？"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Version"
