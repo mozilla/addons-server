@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 16:29+0000\n"
+"PO-Revision-Date: 2017-03-02 16:40+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -777,7 +777,7 @@ msgstr "安裝數，從 {0} 至 {1}"
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
-msgstr "最近 {1} 天有 <b>{0}</b> 個"
+msgstr "最近 {1} 天有 <b>{0}</b> 次"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -787,7 +787,7 @@ msgstr "從 {1} 至 {2} 的 <b>{0}</b>"
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
-msgstr "最近 {1} 天平均有 <b>{0}</b> 個"
+msgstr "最近 {1} 天平均有 <b>{0}</b> 位"
 
 #: static/js/impala/stats/overview.js
 msgid "No data available."

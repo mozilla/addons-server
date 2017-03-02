@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 16:31+0000\n"
+"PO-Revision-Date: 2017-03-02 16:49+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -942,7 +942,7 @@ msgstr "相關分類"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Part of these Collections"
-msgstr "這些收藏集的一部份"
+msgstr "也在這些收藏集當中"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 #, python-format
@@ -954,7 +954,7 @@ msgstr[0] "這些作者的其他附加元件"
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> 個使用者意見"
+msgstr[0] "使用者有 <span itemprop=\"ratingCount\">%(num)s</span> 筆評論"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "View statistics"
@@ -1033,7 +1033,7 @@ msgstr "關於此附加元件"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Developer’s Comments"
-msgstr "開發者的回覆"
+msgstr "開發者留言"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Version Information"
@@ -2421,11 +2421,11 @@ msgstr "儲存變更"
 # <option> text in a <select> for Author role in an add-on.
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/constants/base.py
 msgid "Owner"
-msgstr "所有人"
+msgstr "擁有者"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Make Owner"
-msgstr "成為所有人"
+msgstr "成為擁有者"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Remove this user as a contributor"
@@ -4512,8 +4512,7 @@ msgid ""
 "<p>Add-ons can have any number of authors with 3 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
-msgstr ""
-"<p>一個附加元件可以有許多作者，每個作者可能擔當三種角色中的其中一種:</p><ul><li><b>附加元件所有人:</b>能夠管理附加元件各項資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項資訊，但不能新增與移除其他作者，或是管理款項。</li><li><b>觀眾</b>可以檢視附加元件的設定與統計數據，但不能修改任何資料</li></ul>"
+msgstr "<p>一個附加元件可以有許多作者，每個作者可擔當下列任一種角色:</p><ul><li><b>擁有者:</b>能夠管理附加元件各項資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項資訊，但不能新增與移除其他作者，或是管理款項。</li><li><b>檢視者:</b>只能看到附加元件的設定與統計數據，但不能修改任何資料</li></ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
@@ -4980,7 +4979,7 @@ msgstr "檢視這個佈景主題到目前為止的熱門度"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Change the owner of this theme."
-msgstr "變更這個佈景主題的所有人"
+msgstr "變更這個佈景主題的擁有者。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Transfer Ownership"
@@ -5071,7 +5070,7 @@ msgstr "請選擇您的原始碼要使用哪個條款釋出。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "若您的附加元件會從使用者電腦傳出任何資料，將需要提供隱私權保護政策，當中解釋會傳出哪些資料、這些資料會被如何使用。"
+msgstr "若您的附加元件會從使用者電腦傳出任何資料，將需要提供隱私權保護政策，當中需解釋會傳出哪些資料，以及這些資料會被如何使用。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Notes to Reviewer:"
@@ -5355,13 +5354,13 @@ msgstr "管理您的開發者個人檔案"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Create a Developer Profile"
-msgstr "建立一份開發者個人檔案"
+msgstr "建立開發者個人檔案"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
-msgstr "您的開發者個人檔案將讓使用者了解關於您、為什麼開發這個附加元件與附加元件的未來發展。當附加元件接受募款時，則為必填項目。對於使用者而言，是個非常實用的聯繫管道。"
+msgstr "您的開發者個人檔案將讓使用者了解您、為什麼要開發這個附加元件與附加元件的未來發展。當附加元件接受募款時，則為必填項目。對於使用者而言，是個非常實用的聯繫管道。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
@@ -5440,7 +5439,7 @@ msgstr "使用者將需要先接受下列終端使用者授權合約（EULA）�
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr "若您的附加元件會從使用者電腦傳出任何資料，將需要提供隱私權保護政策，當中解釋會傳出那些資料、這些資料會被如何使用。此欄位僅與公開上架的附加元件有關。"
+msgstr "若您的附加元件會從使用者電腦傳出任何資料，將需要提供隱私權保護政策，當中需解釋會傳出哪些資料、這些資料會被如何使用。此欄位僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -10250,7 +10249,7 @@ msgstr "貢獻統計資訊目前是<b>不公開的</b>。"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "This dashboard is currently <b>private</b>."
-msgstr "這個儀表板目前是<b>不公開的</b>。"
+msgstr "這個儀表板目前<b>並未公開</b>。"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Change settings."
@@ -10328,7 +10327,7 @@ msgstr "看更多應用程式&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Languages"
-msgstr "最常見的語言"
+msgstr "最熱門的語言版本"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more languages&hellip;"
@@ -11135,7 +11134,7 @@ msgstr "此版本的永久連結"
 #. {0} is a timestamp, such as September 28, 2011.
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
-msgstr "釋出時間 {0}"
+msgstr "發行於 {0}"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
