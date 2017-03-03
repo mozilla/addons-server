@@ -788,6 +788,10 @@ class AutoApprovalSummary(ModelBase):
         verdict_info = instance.calculate_verdict(
             dry_run=dry_run, max_average_daily_users=max_average_daily_users,
             min_approved_updates=min_approved_updates)
+        # We can't do instance.save(), because we want to handle the case where
+        # it already existed. So we put the verdict we just calculated in data
+        # and use update_or_create().
+        data['verdict'] = instance.verdict
         instance, _ = cls.objects.update_or_create(
             version=version, defaults=data)
         return instance, verdict_info
