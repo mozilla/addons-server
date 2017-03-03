@@ -9,6 +9,7 @@ import requests
 from django.core.management import call_command
 from fxapom.fxapom import DEV_URL, PROD_URL, FxATestAccount
 from olympia.amo.tests import create_switch
+
 from pytest_django import live_server_helper
 
 
@@ -65,7 +66,73 @@ def create_superuser(transactional_db, live_server, base_url, tmpdir):
 
 
 @pytest.fixture
+def ui_addon():
+    import random
+
+    from olympia import amo
+    from olympia.amo.tests import addon_factory, user_factory, version_factory
+    from olympia.addons.forms import icons
+    from olympia.addons.models import Addon, Category, Preview, AddonUser
+    from olympia.addons.utils import generate_addon_guid
+    from olympia.constants.categories import CATEGORIES
+    from olympia.constants.applications import APPS
+    from olympia.reviews.models import Review
+    from olympia.landfill.collection import generate_collection
+
+    cat1 = Category.from_static_category(
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
+    cat1.save()
+    default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
+    addon = addon_factory(
+        status=amo.STATUS_PUBLIC,
+        average_daily_users=4242,
+        average_rating=4.21,
+        category=cat1,
+        description=u'My Addon description',
+        file_kw={
+            'hash': 'fakehash',
+            'platform': amo.PLATFORM_ALL.id,
+            'size': 42,
+        },
+        guid=generate_addon_guid(),
+        homepage=u'https://www.example.org/',
+        icon_type=random.choice(default_icons),
+        name=u'Ui-Test',
+        public_stats=True,
+        slug='ui-test',
+        summary=u'My Addon summary',
+        support_email=u'support@example.org',
+        support_url=u'https://support.example.org/support/ui-test-addon/',
+        tags=['some_tag', 'another_tag', 'ui-testing', 'selenium', 'python'],
+        total_reviews=777,
+        weekly_downloads=2147483647,
+        developer_comments='This is a testing addon, used within pytest.',
+        is_experimental=True,
+    )
+    first_preview = Preview.objects.create(addon=addon, position=1)
+    Review.objects.create(addon=addon, rating=5, user=user_factory())
+    Review.objects.create(addon=addon, rating=3, user=user_factory())
+    Review.objects.create(addon=addon, rating=2, user=user_factory())
+    Review.objects.create(addon=addon, rating=1, user=user_factory())
+    addon.reload()
+    AddonUser.objects.create(user=user_factory(username='ui-tester'),
+                             addon=addon, listed=True)
+    AddonUser.objects.create(user=user_factory(username='ui-tester2'),
+                             addon=addon, listed=True)
+    version_factory(addon=addon, file_kw={'status': amo.STATUS_BETA},
+                    version='1.1beta')
+    generate_collection(addon, APPS['firefox'])
+
+    print(addon)
+
+
+@pytest.fixture
 def force_user_login():
+    """
+        Fixture for providing the user object to seleniumlogin for logging into
+        the live_server specifically. Does not run on 'dev' or 'stage'
+        environments.
+    """
     from olympia.users.models import UserProfile
     user = UserProfile.objects.get(username='uitest')
     return user
@@ -95,6 +162,26 @@ def live_server(request):
         This fixture overrides the live_server fixture provided by
         pytest_django. live_server allows us to create a running version of the
         addons django application within pytest for testing.
+
+        Christopher Grebs:
+        From what I found out was that the `live_server` fixture (in our setup,
+        couldn't reproduce in a fresh project) apparently starts up the
+        LiveServerThread way too early before pytest-django configures the
+        settings correctly.
+
+        That resulted in the LiveServerThread querying the 'default' database
+        which was different from what the other fixtures and tests were using
+        which resulted in the problem that the just created api keys could not
+        be found in the api methods in the live-server.
+
+        I worked around that by implementing the live_server fixture ourselfs
+        and make it function-scoped so that it now runs in a proper
+        database-transaction.
+
+        This is a HACK and I'll work on a more permanent solution but for now
+        it should be enough to continue working on porting tests...
+
+        Also investigating if there are any problems in pytest-django directly.
     """
 
     request.getfixturevalue('transactional_db')
