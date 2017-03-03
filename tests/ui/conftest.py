@@ -32,19 +32,19 @@ def fxa_account(base_url):
 
 
 @pytest.fixture
-def jwt_issuer(base_url, json_file):
+def jwt_issuer(base_url, variables):
     try:
         hostname = urlparse.urlsplit(base_url).hostname
-        return json_file['api'][hostname]['jwt_issuer']
+        return variables['api'][hostname]['jwt_issuer']
     except KeyError:
         return os.getenv('JWT_ISSUER')
 
 
 @pytest.fixture
-def jwt_secret(base_url, json_file):
+def jwt_secret(base_url, variables):
     try:
         hostname = urlparse.urlsplit(base_url).hostname
-        return json_file['api'][hostname]['jwt_secret']
+        return variables['api'][hostname]['jwt_secret']
     except KeyError:
         return os.getenv('JWT_SECRET')
 
@@ -59,7 +59,6 @@ def create_superuser(transactional_db, live_server, base_url, tmpdir):
     hostname = urlparse.urlsplit(base_url).hostname
     create_switch('super-create-accounts')
     call_command('loaddata', 'initial.json')
-    temp = tmpdir.join('variables.json')
 
     call_command(
         'createsuperuser',
@@ -67,7 +66,7 @@ def create_superuser(transactional_db, live_server, base_url, tmpdir):
         username='uitest',
         email='uitester@mozilla.org',
         add_to_supercreate_group=True,
-        save_api_credentials=str(temp),
+        save_api_credentials=str(tmpdir.join('variables.json')),
         hostname=hostname
     )
 
@@ -80,9 +79,8 @@ def force_user_login():
 
 
 @pytest.fixture
-def user(
-        transactional_db, create_superuser, live_server, base_url,
-        fxa_account, jwt_token):
+def user(transactional_db, create_superuser, live_server, base_url,
+         fxa_account, jwt_token):
     url = '{base_url}/api/v3/accounts/super-create/'.format(base_url=base_url)
 
     params = {
@@ -90,7 +88,6 @@ def user(
         'password': fxa_account.password,
         'username': fxa_account.email.split('@')[0],
         'fxa_id': fxa_account.session.uid}
-    print(fxa_account.password)
     headers = {'Authorization': 'JWT {token}'.format(token=jwt_token)}
     response = requests.post(url, data=params, headers=headers)
     user = {
@@ -137,6 +134,7 @@ def jwt_token(base_url, jwt_issuer, jwt_secret):
 
 
 @pytest.fixture
-def json_file(tmpdir):
+def variables(tmpdir, variables):
     with tmpdir.join('variables.json').open() as f:
-        return json.load(f)
+        variables.update(json.load(f))
+        return variables
