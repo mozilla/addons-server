@@ -38,6 +38,9 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **kwargs):
+        # if not settings.DEBUG:
+        #    raise CommandError('You can only run this command with your '
+        #                       'DEBUG setting set to True.')
 
         num = int(args[0])
         email = kwargs.get('email')
