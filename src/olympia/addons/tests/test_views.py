@@ -793,6 +793,18 @@ class TestDetailPage(TestCase):
         assert doc('.webext-permissions-list').length == 0
 
     @override_switch('webext-permissions', active=True)
+    def test_permissions_non_extension(self):
+        self.addon.update(type=amo.ADDON_THEME)
+        file_ = self.addon.current_version.all_files[0]
+        assert not file_.is_webextension
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # Don't show the link for non-extensions
+        assert doc('a.webext-permissions').length == 0
+        # And no model dialog
+        assert doc('#webext-permissions').length == 0
+
+    @override_switch('webext-permissions', active=True)
     def test_permissions_xss_single_url(self):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=True)

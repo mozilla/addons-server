@@ -1365,7 +1365,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     def should_show_permissions(self, version=None):
         version = version or self.current_version
-        return (version and version.all_files[0] and
+        return (self.type == amo.ADDON_EXTENSION and
+                version and version.all_files[0] and
                 (not version.all_files[0].is_webextension or
                  version.all_files[0].webext_permissions))
 
