@@ -5,6 +5,7 @@ Inspired by django.contrib.auth.management.commands.createsuperuser.
 (http://bit.ly/2cTgsNV)
 """
 import json
+import os
 from datetime import datetime
 
 from olympia.api.models import APIKey
@@ -37,6 +38,24 @@ and email address and that's it.
             default=False,
             help='Assign the user to the Accounts:SuperCreate group',
         )
+
+        parser.add_argument(
+            '--save-api-credentials',
+            type=str,
+            dest='save_api_credentials',
+            default=False,
+            help='Saves the generated API credentials into a JSON file',
+        )
+
+        parser.add_argument(
+            '--hostname',
+            type=str,
+            dest='hostname',
+            default=False,
+            help='Sets the hostname of the credentials JSON file',
+        )
+
+        CreateSuperUserCommand.add_arguments(self, parser)
 
     def handle(self, *args, **options):
         user_data = {}
@@ -79,6 +98,29 @@ and email address and that's it.
                 'api-key': apikey.key,
                 'api-secret': apikey.secret
             }))
+
+        if options.get('save_api_credentials', False):
+            # json object for variables file
+            # set hostname to stdin or env variable
+            if options.get('hostname', False):
+                hostname = options.get('hostname')
+            else:
+                hostname = os.environ['PYTEST_BASE_URL']
+
+            credentials = {
+                'api': {
+                    hostname: {
+                        'username': user.username,
+                        'jwt_issuer': apikey.key,
+                        'jwt_secret': apikey.secret,
+                    }
+                }
+            }
+            options.copy
+
+            # write to json file
+            with open(options.get('save_api_credentials'), 'w') as outfile:
+                json.dump(credentials, outfile, indent=2)
 
     def get_value(self, field_name):
         field = get_user_model()._meta.get_field(field_name)

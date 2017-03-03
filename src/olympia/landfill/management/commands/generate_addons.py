@@ -1,7 +1,7 @@
 from optparse import make_option
 
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.utils import translation
 
 from olympia.landfill.generators import generate_addons
@@ -38,9 +38,9 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **kwargs):
-        if not settings.DEBUG:
-            raise CommandError('You can only run this command with your '
-                               'DEBUG setting set to True.')
+        # if not settings.DEBUG:
+        #    raise CommandError('You can only run this command with your '
+        #                       'DEBUG setting set to True.')
 
         num = int(args[0])
         email = kwargs.get('email')
