@@ -730,13 +730,13 @@ class TestAutoApprovalSummary(TestCase):
             self.version) is True
 
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
-    def test_create_summary_for_version(self, calculate_summary_mock):
-        calculate_summary_mock.return_value = {'dummy_verdict': True}
+    def test_create_summary_for_version(self, calculate_verdict_mock):
+        calculate_verdict_mock.return_value = {'dummy_verdict': True}
         summary, info = AutoApprovalSummary.create_summary_for_version(
             self.version,
             max_average_daily_users=111, min_approved_updates=222)
-        assert calculate_summary_mock.call_count == 1
-        assert calculate_summary_mock.call_args == ({
+        assert calculate_verdict_mock.call_count == 1
+        assert calculate_verdict_mock.call_args == ({
             'max_average_daily_users': 111,
             'min_approved_updates': 222,
             'dry_run': False
@@ -753,10 +753,10 @@ class TestAutoApprovalSummary(TestCase):
 
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
     def test_create_summary_no_previously_approved_versions(
-            self, calculate_summary_mock):
+            self, calculate_verdict_mock):
         AddonApprovalsCounter.objects.all().delete()
         self.version.reload()
-        calculate_summary_mock.return_value = {'dummy_verdict': True}
+        calculate_verdict_mock.return_value = {'dummy_verdict': True}
         summary, info = AutoApprovalSummary.create_summary_for_version(
             self.version,
             max_average_daily_users=111, min_approved_updates=222)
@@ -764,48 +764,45 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.approved_updates == 0
         assert info == {'dummy_verdict': True}
 
-    @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
-    def test_create_summary_already_existing(self, calculate_summary_mock):
+    def test_create_summary_already_existing(self):
         # Create a dummy summary manually, then call the method to create a
         # real one. It should have just updated the previous instance.
-        summary = AutoApprovalSummary.objects.create(version=self.version)
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version,
+            uses_custom_csp=True,
+            uses_native_messaging=True,
+            uses_content_script_for_all_urls=True)
         assert summary.pk
-        assert summary.version == self.version
-        assert summary.uses_custom_csp is False
-        assert summary.uses_native_messaging is False
-        assert summary.uses_content_script_for_all_urls is False
-        assert summary.average_daily_users == 0
-        assert summary.approved_updates == 0
-
-        previous_summary_pk = summary.pk
-
-        # Create what's needed for this summary to return True for everything.
-        WebextPermission.objects.create(
-            file=self.file,
-            permissions=['<all_urls>', 'nativeMessaging'])
-        self.file_validation.update(
-            validation=json.dumps({'messages': [{'id': ['MANIFEST_CSP'], }]}))
-        del self.file.webext_permissions_list
-        del self.version.all_files
-        calculate_summary_mock.return_value = {'dummy_verdict': True}
-
-        summary, info = AutoApprovalSummary.create_summary_for_version(
-            self.version,
-            max_average_daily_users=111, min_approved_updates=222)
-        assert calculate_summary_mock.call_count == 1
-        assert calculate_summary_mock.call_args == ({
-            'max_average_daily_users': 111,
-            'min_approved_updates': 222,
-            'dry_run': False
-        },)
-        assert summary.pk == previous_summary_pk
         assert summary.version == self.version
         assert summary.uses_custom_csp is True
         assert summary.uses_native_messaging is True
         assert summary.uses_content_script_for_all_urls is True
+        assert summary.average_daily_users == 0
+        assert summary.approved_updates == 0
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
+
+        previous_summary_pk = summary.pk
+
+        summary, info = AutoApprovalSummary.create_summary_for_version(
+            self.version,
+            max_average_daily_users=self.addon.average_daily_users + 1,
+            min_approved_updates=1)
+
+        assert summary.pk == previous_summary_pk
+        assert summary.version == self.version
+        assert summary.uses_custom_csp is False
+        assert summary.uses_native_messaging is False
+        assert summary.uses_content_script_for_all_urls is False
         assert summary.average_daily_users == self.addon.average_daily_users
         assert summary.approved_updates == 1
-        assert info == calculate_summary_mock.return_value
+        assert summary.verdict == amo.AUTO_APPROVED
+        assert info == {
+            'too_few_approved_updates': False,
+            'too_many_average_daily_users': False,
+            'uses_content_script_for_all_urls': False,
+            'uses_custom_csp': False,
+            'uses_native_messaging': False
+        }
 
     def test_create_summary_no_files(self):
         self.file.delete()
