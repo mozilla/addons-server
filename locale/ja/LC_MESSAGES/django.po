@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-27 22:57+0000\n"
+"PO-Revision-Date: 2017-03-03 19:53+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1746,7 +1746,7 @@ msgstr "{addon} {version} に関する承認メモが変更されました。"
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
-msgstr ""
+msgstr "承認記録が変更されました"
 
 #: src/olympia/amo/log.py
 msgid "Source code uploaded for {addon} {version}."
@@ -4110,7 +4110,7 @@ msgstr "この種類のアドオンを送信することはできません"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "「@mozilla.org」で終わる GUID が設定されたアドオンを投稿することはできません"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -4163,7 +4163,7 @@ msgstr "審査が申請されました。"
 
 #: src/olympia/devhub/views.py
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "続けるにはさらに詳しい情報を提供してください。"
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5079,7 +5079,7 @@ msgstr "審査担当者へのメモ:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "このアドオンの審査にあたって担当者に何か伝えたいことはありますか？"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will only be visible to you and our reviewers."
@@ -5103,15 +5103,15 @@ msgstr "リリースノート:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "このバージョンでの新機能や変更点をユーザーに伝えましょう。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "これらのメモは詳細ページに表示されます。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "このバージョンの配布手段"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -5211,7 +5211,7 @@ msgstr "このファイルの対応プラットフォーム"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "このバージョンをベータチャンネルでのみ公開"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Administrative overrides"
@@ -5649,7 +5649,7 @@ msgstr "アドオン開発者センター"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
-msgstr ""
+msgstr "ドキュメント"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Sign Out"
@@ -6150,7 +6150,7 @@ msgstr "0 個のファイル"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
-msgstr ""
+msgstr "バージョンを再度有効化"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
@@ -6400,7 +6400,7 @@ msgstr "アドオンの種類"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "アドオンの名前 / 作者のメールアドレス / GUID で検索"
 
 #: src/olympia/editors/forms.py
 msgid "Max. Version"
@@ -6512,7 +6512,7 @@ msgstr[0] "{0} 日"
 
 #: src/olympia/editors/helpers.py
 msgid "Last Review"
-msgstr ""
+msgstr "最後のレビュー"
 
 #: src/olympia/editors/helpers.py
 msgid "Last Update"
