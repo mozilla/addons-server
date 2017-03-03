@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 18:23+0000\n"
+"PO-Revision-Date: 2017-03-03 00:32+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -923,14 +923,12 @@ msgstr "par %(users)s"
 
 # {0} is a number
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} avertissement"
+msgstr "[Avertissement]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Permissions"
-msgstr "Versions"
+msgstr "Permissions"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -1119,9 +1117,8 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "This add-on can:"
-msgstr "Ce module est expérimental"
+msgstr "Ce module peut :"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1814,14 +1811,12 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr "<p>Essayez de revenir à la page précédente, recharger et d’essayer encore.</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Non trouvé"
+msgstr "Page introuvable"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Plus de modules"
+msgstr "Modules Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
@@ -1832,19 +1827,16 @@ msgid "Suggested Pages"
 msgstr "Pages suggérées"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Parcourir tous les modules"
+msgstr "Parcourir toutes les extensions"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Parcourir tous les modules"
+msgstr "Parcourir tous les thèmes"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Page d’accueil du module"
+msgstr "Page d’accueil des modules"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
@@ -3829,9 +3821,8 @@ msgid "Get data from the clipboard"
 msgstr "Consulter les données du presse-papiers"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Input data to the clipboard"
-msgstr "Mettre à jour le tableau blanc"
+msgstr "Ajouter des données dans le presse-papiers"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's download history"
@@ -3842,18 +3833,16 @@ msgid "Access your location"
 msgstr "Accéder à votre localisation"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access browsing history"
-msgstr "%s Historique des versions"
+msgstr "Accéder à l’historique de navigation"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
 msgstr "Communiquer avec d’autres programmes que Firefox"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Display notifications to you"
-msgstr "Notification utilisateur"
+msgstr "Vous afficher des notifications"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access recently closed tabs"
@@ -4258,9 +4247,8 @@ msgid "Review requested."
 msgstr "Revue demandée."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "You must provide further details to proceed."
-msgstr "Revue demandée. Vous devez fournir plus de détails pour continuer."
+msgstr "Vous devez fournir plus de détails pour continuer."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5127,7 +5115,7 @@ msgstr "Supprimer ce thème."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Il manque certaines informations requises à ce module pour qu’il puisse être soumis à la publication."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 #, fuzzy
