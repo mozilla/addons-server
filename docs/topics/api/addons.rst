@@ -16,8 +16,9 @@ Featured
 
 This endpoint allows you to list featured add-ons matching some parameters.
 Results are sorted randomly and therefore, the standard pagination parameters
-are not accepted. Instead, only ``page_size`` is allowed to customize the
-number of results returned.
+are not accepted. The query parameter ``page_size`` is allowed but only serves
+to customize the number of results returned, clients can not request a specific
+page.
 
 .. http:get:: /api/v3/addons/featured/
 
@@ -236,6 +237,8 @@ This endpoint allows you to list all versions belonging to a specific add-on.
 
     :query string filter: The :ref:`filter <version-filtering-param>` to apply.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query int page: 1-based page number. Defaults to 1.
+    :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :>json int count: The number of versions for this add-on.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.

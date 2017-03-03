@@ -67,8 +67,13 @@ Example:
 Pagination
 ~~~~~~~~~~
 
-Unless specified, endpoints returning a list of results will be paginated. The
-following properties will be available in the responses of those endpoints:
+By default, all endpoints returning a list of results are paginated.
+The default number of items per page is 25 and clients can use the `page_size`
+query parameter to change it to any value between 1 and 50. Exceptions to those
+rules are possible but will be noted in the corresponding documentation for
+affected endpoints.
+
+The following properties will be available in paginated responses:
 
 * *next*: the URL for the next page in the pagination.
 * *previous*: the URL for the previous page in the pagination.
