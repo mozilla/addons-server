@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
+import json
+import mock
 import time
 
 from django.conf import settings
@@ -7,14 +9,17 @@ from django.core import mail
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.amo.tests import addon_factory, user_factory, version_factory
-from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests import (
+    addon_factory, file_factory, user_factory, version_factory)
+from olympia.addons.models import Addon, AddonApprovalsCounter, AddonUser
+from olympia.files.models import FileValidation
 from olympia.versions.models import (
     Version, version_uploaded)
-from olympia.files.models import File
+from olympia.files.models import File, WebextPermission
 from olympia.editors.models import (
-    EditorSubscription, RereviewQueueTheme, ReviewerScore, send_notifications,
-    ViewFullReviewQueue, ViewPendingQueue,
+    AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
+    AutoApprovalSummary, EditorSubscription, RereviewQueueTheme, ReviewerScore,
+    send_notifications, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
 from olympia.users.models import UserProfile
 
@@ -652,3 +657,233 @@ class TestRereviewQueueTheme(TestCase):
         # Delete the addon: it shouldn't be listed anymore.
         addon.update(status=amo.STATUS_DELETED)
         assert addon.persona.rereviewqueuetheme_set.all().count() == 0
+
+
+class TestAutoApprovalSummary(TestCase):
+    def setUp(self):
+        self.addon = addon_factory(average_daily_users=666)
+        self.version = version_factory(
+            addon=self.addon, file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_webextension': True})
+        self.file = self.version.all_files[0]
+        self.file_validation = FileValidation.objects.create(
+            file=self.version.all_files[0], validation=u'{}')
+        AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
+
+    def test_check_uses_custom_csp(self):
+        assert AutoApprovalSummary.check_uses_custom_csp(self.version) is False
+
+        validation_data = {
+            'messages': [{
+                'id': ['MANIFEST_CSP'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        assert AutoApprovalSummary.check_uses_custom_csp(self.version) is True
+
+    def test_check_uses_custom_csp_file_validation_missing(self):
+        self.file_validation.delete()
+        del self.version.all_files
+        with self.assertRaises(AutoApprovalNoValidationResultError):
+            AutoApprovalSummary.check_uses_custom_csp(self.version)
+
+        # Also happens if only one file is missing validation info.
+        self.file_validation = FileValidation.objects.create(
+            file=self.version.all_files[0], validation=u'{}')
+        del self.version.all_files
+        file_factory(version=self.version, status=amo.STATUS_AWAITING_REVIEW)
+        with self.assertRaises(AutoApprovalNoValidationResultError):
+            AutoApprovalSummary.check_uses_custom_csp(self.version)
+
+    def test_check_uses_native_messaging(self):
+        assert (
+            AutoApprovalSummary.check_uses_native_messaging(self.version)
+            is False)
+
+        webext_permissions = WebextPermission.objects.create(
+            file=self.file, permissions=['foobar'])
+        del self.file.webext_permissions_list
+        assert (
+            AutoApprovalSummary.check_uses_native_messaging(self.version)
+            is False)
+
+        webext_permissions.update(permissions=['nativeMessaging', 'foobar'])
+        del self.file.webext_permissions_list
+        assert (
+            AutoApprovalSummary.check_uses_native_messaging(self.version)
+            is True)
+
+    def test_check_uses_content_script_for_all_urls(self):
+        assert AutoApprovalSummary.check_uses_content_script_for_all_urls(
+            self.version) is False
+
+        webext_permissions = WebextPermission.objects.create(
+            file=self.file, permissions=['https://example.com/*'])
+        del self.file.webext_permissions_list
+        assert AutoApprovalSummary.check_uses_content_script_for_all_urls(
+            self.version) is False
+
+        webext_permissions.update(permissions=['<all_urls>'])
+        del self.file.webext_permissions_list
+        assert AutoApprovalSummary.check_uses_content_script_for_all_urls(
+            self.version) is True
+
+    @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
+    def test_create_summary_for_version(self, calculate_summary_mock):
+        calculate_summary_mock.return_value = {'dummy_verdict': True}
+        summary, info = AutoApprovalSummary.create_summary_for_version(
+            self.version,
+            max_average_daily_users=111, min_approved_updates=222)
+        assert calculate_summary_mock.call_count == 1
+        assert calculate_summary_mock.call_args == ({
+            'max_average_daily_users': 111,
+            'min_approved_updates': 222,
+            'dry_run': False
+        },)
+        assert summary.pk
+        assert summary.version == self.version
+        assert summary.uses_custom_csp is False
+        assert summary.uses_native_messaging is False
+        assert summary.uses_content_script_for_all_urls is False
+        assert summary.average_daily_users == self.addon.average_daily_users
+        assert (summary.approved_updates ==
+                self.addon.addonapprovalscounter.counter)
+        assert info == {'dummy_verdict': True}
+
+    @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
+    def test_create_summary_no_previously_approved_versions(
+            self, calculate_summary_mock):
+        AddonApprovalsCounter.objects.all().delete()
+        self.version.reload()
+        calculate_summary_mock.return_value = {'dummy_verdict': True}
+        summary, info = AutoApprovalSummary.create_summary_for_version(
+            self.version,
+            max_average_daily_users=111, min_approved_updates=222)
+        assert summary.pk
+        assert summary.approved_updates == 0
+        assert info == {'dummy_verdict': True}
+
+    @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
+    def test_create_summary_already_existing(self, calculate_summary_mock):
+        # Create a dummy summary manually, then call the method to create a
+        # real one. It should have just updated the previous instance.
+        summary = AutoApprovalSummary.objects.create(version=self.version)
+        assert summary.pk
+        assert summary.version == self.version
+        assert summary.uses_custom_csp is False
+        assert summary.uses_native_messaging is False
+        assert summary.uses_content_script_for_all_urls is False
+        assert summary.average_daily_users == 0
+        assert summary.approved_updates == 0
+
+        previous_summary_pk = summary.pk
+
+        # Create what's needed for this summary to return True for everything.
+        WebextPermission.objects.create(
+            file=self.file,
+            permissions=['<all_urls>', 'nativeMessaging'])
+        self.file_validation.update(
+            validation=json.dumps({'messages': [{'id': ['MANIFEST_CSP'], }]}))
+        del self.file.webext_permissions_list
+        del self.version.all_files
+        calculate_summary_mock.return_value = {'dummy_verdict': True}
+
+        summary, info = AutoApprovalSummary.create_summary_for_version(
+            self.version,
+            max_average_daily_users=111, min_approved_updates=222)
+        assert calculate_summary_mock.call_count == 1
+        assert calculate_summary_mock.call_args == ({
+            'max_average_daily_users': 111,
+            'min_approved_updates': 222,
+            'dry_run': False
+        },)
+        assert summary.pk == previous_summary_pk
+        assert summary.version == self.version
+        assert summary.uses_custom_csp is True
+        assert summary.uses_native_messaging is True
+        assert summary.uses_content_script_for_all_urls is True
+        assert summary.average_daily_users == self.addon.average_daily_users
+        assert summary.approved_updates == 1
+        assert info == calculate_summary_mock.return_value
+
+    def test_create_summary_no_files(self):
+        self.file.delete()
+        del self.version.all_files
+        with self.assertRaises(AutoApprovalNotEnoughFilesError):
+            AutoApprovalSummary.create_summary_for_version(self.version)
+
+    def test_calculate_verdict_failure_dry_run(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, average_daily_users=1, approved_updates=2)
+        info = summary.calculate_verdict(
+            max_average_daily_users=summary.average_daily_users + 1,
+            min_approved_updates=summary.approved_updates + 1, dry_run=True)
+        assert info == {
+            'too_few_approved_updates': True,
+            'too_many_average_daily_users': False,
+            'uses_content_script_for_all_urls': False,
+            'uses_custom_csp': False,
+            'uses_native_messaging': False
+        }
+        assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
+
+    def test_calculate_verdict_failure(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version,
+            uses_custom_csp=True,
+            uses_native_messaging=True,
+            uses_content_script_for_all_urls=True,
+            average_daily_users=self.addon.average_daily_users,
+            approved_updates=333)
+        info = summary.calculate_verdict(
+            max_average_daily_users=summary.average_daily_users - 1,
+            min_approved_updates=summary.approved_updates + 1)
+        assert info == {
+            'too_few_approved_updates': True,
+            'too_many_average_daily_users': True,
+            'uses_content_script_for_all_urls': True,
+            'uses_custom_csp': True,
+            'uses_native_messaging': True
+        }
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
+
+    def test_calculate_verdict_success(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version,
+            uses_custom_csp=False,
+            uses_native_messaging=False,
+            uses_content_script_for_all_urls=False,
+            average_daily_users=self.addon.average_daily_users,
+            approved_updates=333)
+        info = summary.calculate_verdict(
+            max_average_daily_users=summary.average_daily_users + 1,
+            min_approved_updates=summary.approved_updates)
+        assert info == {
+            'too_few_approved_updates': False,
+            'too_many_average_daily_users': False,
+            'uses_content_script_for_all_urls': False,
+            'uses_custom_csp': False,
+            'uses_native_messaging': False
+        }
+        assert summary.verdict == amo.AUTO_APPROVED
+
+    def test_calculate_verdict_success_dry_run(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version,
+            uses_custom_csp=False,
+            uses_native_messaging=False,
+            uses_content_script_for_all_urls=False,
+            average_daily_users=self.addon.average_daily_users,
+            approved_updates=333)
+        info = summary.calculate_verdict(
+            max_average_daily_users=summary.average_daily_users + 1,
+            min_approved_updates=summary.approved_updates, dry_run=True)
+        assert info == {
+            'too_few_approved_updates': False,
+            'too_many_average_daily_users': False,
+            'uses_content_script_for_all_urls': False,
+            'uses_custom_csp': False,
+            'uses_native_messaging': False
+        }
+        assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED

@@ -8,6 +8,7 @@ from product_details import product_details
 
 from olympia.constants.applications import *  # noqa
 from olympia.constants.base import *  # noqa
+from olympia.constants.editors import *  # noqa
 from olympia.constants.licenses import *  # noqa
 from olympia.constants.payments import *  # noqa
 from olympia.constants.platforms import *  # noqa

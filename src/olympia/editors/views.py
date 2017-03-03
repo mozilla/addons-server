@@ -602,7 +602,7 @@ def review(request, addon, channel=None):
         if form.cleaned_data.get('adminflag') and is_admin:
             addon.update(admin_review=False)
         amo.messages.success(request, _('Review successfully processed.'))
-        clear_review_reviewing_cache(addon.id)
+        clear_reviewing_cache(addon.id)
         return redirect(redirect_url)
 
     # Kick off validation tasks for any files in this version which don't have
@@ -677,12 +677,24 @@ def review(request, addon, channel=None):
     return render(request, 'editors/review.html', ctx)
 
 
-_review_viewing_cache_key = '%s:review_viewing:%s'
+def get_reviewing_cache_key(addon_id):
+    return '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
 
 
-def clear_review_reviewing_cache(addon_id):
-    key = _review_viewing_cache_key % (settings.CACHE_PREFIX, addon_id)
-    cache.delete(key)
+def clear_reviewing_cache(addon_id):
+    return cache.delete(get_reviewing_cache_key(addon_id))
+
+
+def get_reviewing_cache(addon_id):
+    return cache.get(get_reviewing_cache_key(addon_id))
+
+
+def set_reviewing_cache(addon_id, user_id):
+    # We want to save it for twice as long as the ping interval,
+    # just to account for latency and the like.
+    cache.set(get_reviewing_cache_key(addon_id),
+              user_id,
+              amo.EDITOR_VIEWING_INTERVAL * 2)
 
 
 @never_cache
@@ -696,12 +708,12 @@ def review_viewing(request):
     user_id = request.user.id
     current_name = ''
     is_user = 0
-    key = _review_viewing_cache_key % (settings.CACHE_PREFIX, addon_id)
+    key = get_reviewing_cache_key(addon_id)
     user_key = '%s:review_viewing_user:%s' % (settings.CACHE_PREFIX, user_id)
     interval = amo.EDITOR_VIEWING_INTERVAL
 
     # Check who is viewing.
-    currently_viewing = cache.get(key)
+    currently_viewing = get_reviewing_cache(addon_id)
 
     # If nobody is viewing or current user is, set current user as viewing
     if not currently_viewing or currently_viewing == user_id:
@@ -711,9 +723,7 @@ def review_viewing(request):
             len(review_locks) < amo.EDITOR_REVIEW_LOCK_LIMIT or
             acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
         if can_lock_more_reviews or currently_viewing == user_id:
-            # We want to save it for twice as long as the ping interval,
-            # just to account for latency and the like.
-            cache.set(key, user_id, interval * 2)
+            set_reviewing_cache(addon_id, user_id)
             # Give it double expiry just to be safe.
             cache.set(user_key, set(review_locks) | {key}, interval * 4)
             currently_viewing = user_id
@@ -742,7 +752,7 @@ def queue_viewing(request):
 
     for addon_id in request.POST['addon_ids'].split(','):
         addon_id = addon_id.strip()
-        key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
+        key = get_reviewing_cache_key(addon_id)
         currently_viewing = cache.get(key)
         if currently_viewing and currently_viewing != user_id:
             viewing[addon_id] = (UserProfile.objects
