@@ -1,4 +1,8 @@
+from collections import OrderedDict
+
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
+
 from django.core.paginator import (
     EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator)
 
@@ -67,6 +71,19 @@ class ESPaginator(Paginator):
 class CustomPageNumberPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 50
+
+    def get_paginated_response(self, data):
+        # Like PageNumberPagination.get_paginated_response, but with
+        # 'page_size' added to the top of the response data.
+        return Response(OrderedDict([
+            # Note that self.page_size doesn't work, it contains the default
+            # page size.
+            ('page_size', self.page.paginator.per_page),
+            ('count', self.page.paginator.count),
+            ('next', self.get_next_link()),
+            ('previous', self.get_previous_link()),
+            ('results', data)
+        ]))
 
 
 class ESPageNumberPagination(CustomPageNumberPagination):

@@ -1,9 +1,15 @@
-from django.core.paginator import EmptyPage, InvalidPage, PageNotAnInteger
-
 from mock import MagicMock
 
+from django.core.paginator import EmptyPage, InvalidPage, PageNotAnInteger
+
+from rest_framework import generics
+from rest_framework import serializers
+from rest_framework import status
+from rest_framework.test import APIRequestFactory
+
 from olympia.amo.tests import TestCase
-from olympia.api.paginator import ESPaginator, Paginator
+from olympia.api.paginator import (
+    CustomPageNumberPagination, ESPaginator, Paginator)
 
 
 class TestSearchPaginator(TestCase):
@@ -41,3 +47,41 @@ class TestSearchPaginator(TestCase):
 
         with self.assertRaises(PageNotAnInteger):
             paginator.page('lol')
+
+
+class TestCustomPageNumberPagination(TestCase):
+    def setUp(self):
+        class PassThroughSerializer(serializers.BaseSerializer):
+            def to_representation(self, item):
+                return item
+
+        self.factory = APIRequestFactory()
+        self.view = generics.ListAPIView.as_view(
+            serializer_class=PassThroughSerializer,
+            queryset=range(1, 101),
+            pagination_class=CustomPageNumberPagination
+        )
+
+    def test_metadata_with_page_size(self):
+        request = self.factory.get('/', {'page_size': 10, 'page': 2})
+        response = self.view(request)
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data == {
+            'page_size': 10,
+            'results': range(11, 21),
+            'previous': 'http://testserver/?page_size=10',
+            'next': 'http://testserver/?page=3&page_size=10',
+            'count': 100
+        }
+
+    def test_metadata_with_default_page_size(self):
+        request = self.factory.get('/')
+        response = self.view(request)
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data == {
+            'page_size': 25,
+            'results': range(1, 26),
+            'previous': None,
+            'next': 'http://testserver/?page=2',
+            'count': 100
+        }
