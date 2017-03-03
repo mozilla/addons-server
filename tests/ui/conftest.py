@@ -1,21 +1,15 @@
 import datetime
+import json
 import os
 import urlparse
 
-from fxapom.fxapom import DEV_URL, PROD_URL, FxATestAccount
-from pytest_django import live_server_helper
 import jwt
 import pytest
 import requests
-import json
-
 from django.core.management import call_command
+from fxapom.fxapom import DEV_URL, PROD_URL, FxATestAccount
 from olympia.amo.tests import create_switch
-
-
-@pytest.fixture(scope='session')
-def base_url(base_url):
-    return base_url
+from pytest_django import live_server_helper
 
 
 @pytest.fixture
@@ -56,7 +50,6 @@ def initial_data(transactional_db, live_server):
 
 @pytest.fixture
 def create_superuser(transactional_db, live_server, base_url, tmpdir):
-    hostname = urlparse.urlsplit(base_url).hostname
     create_switch('super-create-accounts')
     call_command('loaddata', 'initial.json')
 
@@ -67,7 +60,7 @@ def create_superuser(transactional_db, live_server, base_url, tmpdir):
         email='uitester@mozilla.org',
         add_to_supercreate_group=True,
         save_api_credentials=str(tmpdir.join('variables.json')),
-        hostname=hostname
+        hostname=urlparse.urlsplit(base_url).hostname
     )
 
 
@@ -90,12 +83,7 @@ def user(transactional_db, create_superuser, live_server, base_url,
         'fxa_id': fxa_account.session.uid}
     headers = {'Authorization': 'JWT {token}'.format(token=jwt_token)}
     response = requests.post(url, data=params, headers=headers)
-    user = {
-        'email': fxa_account.email,
-        'password': fxa_account.password,
-        'username': fxa_account.email.split('@')[0],
-        'fxa_id': fxa_account.session.uid
-    }
+    user = params
     assert requests.codes.created == response.status_code
     user.update(response.json())
     return user
@@ -109,7 +97,6 @@ def live_server(request):
         addons django application within pytest for testing.
     """
 
-    import django
     request.getfixturevalue('transactional_db')
 
     addr = (request.config.getvalue('liveserver') or
