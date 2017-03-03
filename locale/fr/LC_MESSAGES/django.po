@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-03 00:32+0000\n"
+"PO-Revision-Date: 2017-03-03 00:40+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5118,13 +5118,12 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr "Il manque certaines informations requises à ce module pour qu’il puisse être soumis à la publication."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Ce module n’est pas compatible avec votre version de %(app)s."
+msgstr "Ce module ne possède aucune version."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "Cette extension ne possède aucune version approuvée, ses pages publiques (y compris les versions bêta) sont donc masquées."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -5215,9 +5214,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ces notes seront uniquement visibles par vous-même et nos testeurs."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "Réactiver la version"
+msgstr "Annuler la revue et désactiver la version"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5409,7 +5407,7 @@ msgstr "Générer de nouvelles informations d’authentification"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Complétez votre module en ajoutant une version ou les métadonnées manquantes."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -5453,9 +5451,8 @@ msgid "Listed on this site after passing code review. Automatic updates are hand
 msgstr "Visible sur ce site après avoir passé un examen du code. Les mises à jour automatiques sont gérées par ce site."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Dernière version :"
+msgstr "Version publiée :"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
@@ -5475,10 +5472,9 @@ msgstr "Les files ne sont pas revues dans un ordre strict"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Signé pour une distribution personnelle. Vous gérez les mises à jour."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "This is the newest uploaded unlisted version."
 msgstr "C’est la dernière version envoyée, cependant elle n’est pas encore publiée sur le site."
 
@@ -5720,7 +5716,7 @@ msgstr "Écrire du code"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Aidez-nous à améliorer les modules en contribuant grâce à vos compétences de codage."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get started"
@@ -5832,12 +5828,11 @@ msgid "Port a Chrome Extension"
 msgstr "Effectuez le portage d’une extension Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"Firefox prend en charge les API WebExtension, qui sont la plupart du temps compatibles avec les API d’extensions prises en charge par Google, Chrome et Opera, si bien que vos extensions ne "
-"demanderont que des changements minimes pour fonctionner avec Firefox."
+"Firefox prend en charge les API WebExtension, qui sont la plupart du temps compatibles avec les API d’extensions prises en charge par Chrome, Opera et Edge, si bien que vos extensions ne demanderont"
+" que des changements minimes pour fonctionner avec Firefox."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
