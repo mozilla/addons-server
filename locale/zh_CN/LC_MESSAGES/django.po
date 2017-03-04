@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-27 19:07+0000\n"
+"PO-Revision-Date: 2017-03-04 21:53+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1066,13 +1066,13 @@ msgstr "关闭"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "一些附加组件需要某些权限以执行特定功能（例如：标签页管理的附加组件会要求访问浏览器标签页系统的权限）。"
+msgstr "部分附加组件需要某些权限以执行特定功能（例如：增强标签页的附加组件将需要访问浏览器标签页系统的权限）。"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
-msgstr "因为您是 Firefox 的掌控者，所以您可以允许或拒绝这些请求。接受权限在本质上不会影响您的浏览器的性能或安全性，但在极少数情况下增加了风险。"
+msgstr "作为 Firefox 使用者，您可以选择接受或者拒绝这些请求。接受权限本身并不会影响您的浏览器性能或者安全性，但在极少数情况下可能有风险。"
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
