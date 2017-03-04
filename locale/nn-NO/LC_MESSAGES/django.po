@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 13:16+0000\n"
+"PO-Revision-Date: 2017-03-04 23:10+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2340,8 +2340,8 @@ msgstr "Mine favorittutvidingar"
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(addons)s</span> utviding"
+msgstr[1] "<span>%(addons)s</span> utvidingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html
 #, python-format
@@ -2565,15 +2565,15 @@ msgstr "Tilbakestill"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG og JPG er støtta.  Bilde vert skalerte til 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Det er feil i dette skjemaet.  Ver snill og rett dei opp nedanfor."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Utvidingar i samlinga di"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
@@ -2601,7 +2601,7 @@ msgstr "Legg til ein kommentar"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Fjern denne utvidinga frå samlinga"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "COLLECTIONS"
@@ -2870,15 +2870,15 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Komplette tema etter namn"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Komplette tema etter nedlastingar pr. veke"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Nyleg oppdaterte komplette tema"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Complete Themes"
