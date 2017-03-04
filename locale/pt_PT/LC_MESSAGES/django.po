@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 16:31+0000\n"
+"PO-Revision-Date: 2017-03-04 06:00+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4241,7 +4241,7 @@ msgstr "As suas credenciais antigas foram revogadas e já não são válidas."
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
-msgstr "Nova chave de API criada"
+msgstr "Nova chave da API criada"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
@@ -4402,7 +4402,7 @@ msgstr "Temas leves"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Policies"
-msgstr "Políticas do extra"
+msgstr "Políticas de extras"
 
 #: src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Add-on Validator"
@@ -5342,7 +5342,7 @@ msgstr "Para instruções detalhadas, consulte a <a href=\"%(docs_url)s\">docume
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Mantenha as suas chaves de API secretas e <strong>nunca as partilhe com ninguém</strong>, incluindo colaboradores da Mozilla."
+msgstr "Mantenha as suas chaves da API secretas e <strong>nunca as partilhe com ninguém</strong>, incluindo colaboradores da Mozilla."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -5363,7 +5363,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "You don't have any API credentials."
-msgstr "Não quaisquer credenciais de API."
+msgstr "Não possui quaisquer credenciais da API."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
