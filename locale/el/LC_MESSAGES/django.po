@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-04 11:01+0000\n"
+"PO-Revision-Date: 2017-03-04 13:19+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1429,9 +1429,8 @@ msgid "Manage API Keys"
 msgstr "Διαχείριση κλειδιών API"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Απάντηση δημιουργού από {0}"
+msgstr "Εργαλεία κριτή"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -1772,9 +1771,8 @@ msgid "Reply by reviewer on {addon} {version}."
 msgstr "Σχόλιο για το πρόσθετο {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Απάντηση δημιουργού από {0}"
+msgstr "Απάντηση κριτή"
 
 #: src/olympia/amo/log.py
 #, fuzzy
@@ -6949,9 +6947,8 @@ msgid "Reviews This Month"
 msgstr "Αξιολογήσεις μηνός"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "Καμία κριτική"
+msgstr "Νέοι κριτές"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
