@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-04 06:00+0000\n"
+"PO-Revision-Date: 2017-03-04 20:51+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -162,7 +162,7 @@ msgstr "Os utilizadores têm a opção de contribuir com mais ou menos desta qua
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "Os utilizadores serão sempre questionados no Gestor de Extras (Firefox 4 ou mais recente). Isto aplica-se apenas à versão para computadores."
+msgstr "Os utilizadores serão sempre questionados no Gestor de extras (Firefox 4 ou mais recente). Isto aplica-se apenas à versão para computadores."
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/constants/base.py
@@ -6232,7 +6232,7 @@ msgid ""
 "updating."
 msgstr ""
 "Informação acerca das alterações neste lançamento, novas funcionalidades, erros conhecidos e outra informação útil especifica para esta versão/lançamento. Esta informação também é apresentada no "
-"gestor de extras, ao atualizar."
+"Gestor de extras, ao atualizar."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Approval Status"

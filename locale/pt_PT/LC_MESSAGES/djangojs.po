@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-03 00:15+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2017-03-04 20:53+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -374,19 +374,19 @@ msgstr "Desconhecido"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
-msgstr "Gestor de Extras"
+msgstr "Gestor de extras"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
-msgstr "Gestor de Promoção de Extras"
+msgstr "Promoção no Gestor de extras"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
-msgstr "Gestor de Destaques de Extras"
+msgstr "Destaque no Gestor de extras"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
-msgstr "Gestor de Saber Mais sobre Extras"
+msgstr "Saber mais no Gestor de extras"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
