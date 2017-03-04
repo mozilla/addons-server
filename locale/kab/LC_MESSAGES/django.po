@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 19:57+0000\n"
+"PO-Revision-Date: 2017-03-04 09:17+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1799,7 +1799,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Isebtar d-ittusumren"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, fuzzy
@@ -7846,7 +7846,7 @@ msgstr "Adular n Birmud"
 
 #: src/olympia/lib/constants.py
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "Adulaṛ n Brunay Daṛsalam"
 
 #: src/olympia/lib/constants.py
 msgid "Bolivia Boliviano"
@@ -7914,23 +7914,23 @@ msgstr "Apizu n Kuba"
 
 #: src/olympia/lib/constants.py
 msgid "Cape Verde Escudo"
-msgstr ""
+msgstr "Askudu n Kap Vir"
 
 #: src/olympia/lib/constants.py
 msgid "Czech Republic Koruna"
-msgstr ""
+msgstr "Akurun n Čik"
 
 #: src/olympia/lib/constants.py
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "Afrank n Ǧibuti"
 
 #: src/olympia/lib/constants.py
 msgid "Denmark Krone"
-msgstr ""
+msgstr "Akurun n Danmaṛk"
 
 #: src/olympia/lib/constants.py
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "Apisu n Duminik"
 
 #: src/olympia/lib/constants.py
 msgid "Algeria Dinar"
@@ -7938,15 +7938,15 @@ msgstr "Ẓzeyer Dinaṛ"
 
 #: src/olympia/lib/constants.py
 msgid "Egypt Pound"
-msgstr ""
+msgstr "Apawnd n Maseṛ"
 
 #: src/olympia/lib/constants.py
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "Anafka n Iritirya"
 
 #: src/olympia/lib/constants.py
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "Abir n Ityupya"
 
 #: src/olympia/lib/constants.py
 msgid "Euro Member Countries"
@@ -10158,7 +10158,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "GUID arameɣu di URL"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
@@ -10166,11 +10166,11 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Ulac afaylu yulin i uzegrir neɣ lqem-nni."
 
 #: src/olympia/stats/models.py
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "Tanemmirt ɣef uttekki di {addon_name}"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Overview"
