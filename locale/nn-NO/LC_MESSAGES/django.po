@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-04 23:10+0000\n"
+"PO-Revision-Date: 2017-03-04 23:31+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2854,7 +2854,7 @@ msgstr ""
 #. theme.
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Utvalde komplette tema"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Complete Themes"
@@ -2862,11 +2862,11 @@ msgstr "Mest populære komplette tema"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Høgast vurderte komplette tema"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Nyaste komplette tema"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Name"
@@ -2940,7 +2940,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Vil du ha fleire tilpassingar?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -3002,7 +3002,7 @@ msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "{addon} kompatibilitetsrapportar"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} success report"
@@ -3293,9 +3293,8 @@ msgid "Updated Search Provider Review"
 msgstr ""
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Fullstendig tema"
+msgstr "Ny vurdering av komplette tema"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -3582,9 +3581,8 @@ msgid "Chat and IM"
 msgstr "Prat og IM"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Message Composition"
-msgstr "Gje bidrag"
+msgstr "Skriv melding"
 
 #: src/olympia/constants/categories.py
 msgid "Contacts"
@@ -3752,7 +3750,7 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks"
-msgstr ""
+msgstr "Lese og endre bokmerke"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Get data from the clipboard"
@@ -3768,11 +3766,11 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your location"
-msgstr ""
+msgstr "Tilgang til plasseringa di"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browsing history"
-msgstr ""
+msgstr "Tilgang til nettlesarhistorikk"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
@@ -3857,7 +3855,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Why did you make this add-on?"
-msgstr ""
+msgstr "Kvifor laga du denne utvidinga?"
 
 #: src/olympia/devhub/forms.py
 msgid "What's next for this add-on?"
@@ -3901,7 +3899,7 @@ msgstr "Vis gjeldande"
 
 #: src/olympia/devhub/forms.py
 msgid "Invalid version range."
-msgstr ""
+msgstr "Ugyldig versjonsintervall."
 
 #: src/olympia/devhub/forms.py
 msgid "Need at least one compatible application."
@@ -4028,12 +4026,12 @@ msgstr "%s svarte med %s (%s)."
 #: src/olympia/devhub/tasks.py
 #, python-format
 msgid "Connection to \"%s\" timed out."
-msgstr ""
+msgstr "Tilkoplinga til \"%s\" fekk tidsavbrot."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Klarte ikkje å kontakte verten på \"%s\"."
 
 #: src/olympia/devhub/utils.py
 #, python-format
@@ -4042,7 +4040,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Alle utvidingane mine"
 
 #: src/olympia/devhub/views.py
 msgid "All Activity"
@@ -4050,11 +4048,11 @@ msgstr "All aktivitet"
 
 #: src/olympia/devhub/views.py
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Utvidingsoppdateringar"
 
 #: src/olympia/devhub/views.py
 msgid "Add-on Status"
-msgstr ""
+msgstr "Status for utvidingar"
 
 #: src/olympia/devhub/views.py
 msgid "User Collections"
@@ -4062,11 +4060,11 @@ msgstr "Brukarsamlingar"
 
 #: src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
 msgid "User Reviews"
-msgstr ""
+msgstr "Brukarvurderingar"
 
 #: src/olympia/devhub/views.py
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Endringane er lagra."
 
 #: src/olympia/devhub/views.py
 msgid "Please check the form for errors."
@@ -4078,7 +4076,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "Theme deleted."
-msgstr ""
+msgstr "Temaet er sletta."
 
 #: src/olympia/devhub/views.py
 msgid "Add-on deleted."
@@ -4203,7 +4201,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "Eg godtek denne avtalen"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "or <a href=\"{0}\">Cancel</a>"
@@ -4489,7 +4487,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Eldre aktivitet for utvidingane mine"
 
 #. {0} is an integer.
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
@@ -4641,7 +4639,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Default Locale"
-msgstr ""
+msgstr "Standardspråk"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
@@ -4649,7 +4647,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
-msgstr ""
+msgstr "Heimeside"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid ""
@@ -4731,7 +4729,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Public Stats?"
-msgstr ""
+msgstr "Offentleg statistikk?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
@@ -4775,7 +4773,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whiteboard"
-msgstr ""
+msgstr "Oppslagstavle"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
@@ -4789,11 +4787,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Skriv inn namnet på ei utviding"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Utvidingsmedia for {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on icon"
@@ -4837,7 +4835,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Screenshots"
-msgstr ""
+msgstr "Skjermbilde"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Please provide at least one screen shot of your add-on:"
@@ -4849,7 +4847,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Legg til eit skjermbilde…"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html
 msgid "Tests"
@@ -4973,7 +4971,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Vis siste endringar"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
@@ -4982,7 +4980,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Edit Listing"
-msgstr ""
+msgstr "Rediger oppføringa"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
@@ -4998,7 +4996,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete this theme."
-msgstr ""
+msgstr "Slett dette temaet."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -5014,7 +5012,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
-msgstr ""
+msgstr "Slått av"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 #, python-format
@@ -5050,7 +5048,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Summary:"
-msgstr ""
+msgstr "Samandrag:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5058,7 +5056,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "Denne utvidinga er eksperimentell"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
@@ -5134,7 +5132,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done!"
-msgstr ""
+msgstr "Du er klar!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5183,7 +5181,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
-msgstr ""
+msgstr "Last ned {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
@@ -5323,7 +5321,7 @@ msgstr "Oppretta:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Add-on Multi Process Status:"
@@ -5375,7 +5373,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Create a Developer Profile"
-msgstr ""
+msgstr "Opprett ein utviklarprofil"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid ""
@@ -5390,7 +5388,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 #, python-format
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\"><strong>Oppdater brukarprofilen din.</strong></a>"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
@@ -5402,7 +5400,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
-msgstr ""
+msgstr "Vis alle"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -5410,7 +5408,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Kompatibilitetsrapportar"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "{0} failure reports"
@@ -5491,7 +5489,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #: src/olympia/templates/mobile/base_addons.html
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "{0} utvidingar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Latest News"
@@ -5544,7 +5542,7 @@ msgstr "Rapporter feil"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Site Status"
-msgstr ""
+msgstr "Nettstadstatus"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 #, fuzzy
@@ -5571,7 +5569,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
-msgstr ""
+msgstr "Juridisk"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
@@ -5579,7 +5577,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Legal Notices"
-msgstr ""
+msgstr "Juridisk informasjon"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Review Add-ons"
@@ -5595,7 +5593,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
-msgstr ""
+msgstr "Skriv litt kode"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
@@ -5616,10 +5614,9 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "See how"
-msgstr ""
+msgstr "Sjå korleis"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
-#, fuzzy
 msgid "Manage Your Add-on"
 msgstr "Fleire utvidingar"
 
@@ -5678,7 +5675,7 @@ msgstr "Utviklarsenter"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
-msgstr ""
+msgstr "Dokument"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, fuzzy
@@ -5814,7 +5811,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Contributions"
-msgstr ""
+msgstr "Bidrag"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
@@ -5842,7 +5839,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Registrer deg på PayPal"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your suggested contribution?"
@@ -6004,7 +6001,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Background"
-msgstr ""
+msgstr "Bakgrunn"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tabs."
