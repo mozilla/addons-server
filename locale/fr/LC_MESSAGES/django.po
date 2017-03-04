@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-03 00:40+0000\n"
+"PO-Revision-Date: 2017-03-04 23:41+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -10031,17 +10031,15 @@ msgstr ""
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "La version de cette extension n’existe pas ou n’est pas publique."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "quelqu’un a écrit une critique sur mon module"
+msgstr "Vous ne pouvez pas laisser d’avis sur votre propre module."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Vous ne pouvez plus envoyer de fichier pour cette version."
+msgstr "Vous ne pouvez pas laisser plus d’un avis pour la même version d’une extension."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
@@ -10394,7 +10392,7 @@ msgstr "Seules les WebExtensions sont autorisées à omettre le GUID"
 
 #: src/olympia/signing/views.py
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "GUID invalide dans l’URL"
 
 #: src/olympia/signing/views.py
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
