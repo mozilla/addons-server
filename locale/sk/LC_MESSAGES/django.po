@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-27 16:04+0000\n"
+"PO-Revision-Date: 2017-03-04 21:48+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -522,7 +522,7 @@ msgstr "Populárne doplnky"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py
 msgid "Most Popular"
-msgstr "Najobľúbenejšie"
+msgstr "Najpopulárnejšie"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "All »"
