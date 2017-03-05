@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-04 13:19+0000\n"
+"PO-Revision-Date: 2017-03-05 11:10+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4393,7 +4393,7 @@ msgstr "Ανάπτυξη επεκτάσεων"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "\"Ελαφριά\" θέματα"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Policies"
@@ -7224,7 +7224,7 @@ msgstr "Σύγκριση"
 #: src/olympia/editors/templates/editors/includes/history.html
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Από %(user)s στις %(date)s</div>"
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html
 msgid "Older"
@@ -7371,7 +7371,7 @@ msgstr "Διαδραστική ουρά θεμάτων"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Οδηγός του κριτή"
 
 #: src/olympia/editors/templates/editors/themes/single.html
 msgid "Theme Review for {0}"
@@ -7438,7 +7438,7 @@ msgstr ""
 
 #: src/olympia/files/helpers.py
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Αυτό το αρχείο δεν υπάρχει πλέον."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: src/olympia/files/helpers.py
@@ -8428,7 +8428,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Νέο Δολάριο Ταϊβάν"
 
 #: src/olympia/lib/constants.py
 msgid "Tanzania Shilling"
@@ -8444,11 +8444,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "United States Dollar"
-msgstr ""
+msgstr "Δολάριο Ηνωμένων Πολιτειών"
 
 #: src/olympia/lib/constants.py
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Πέσο Ουρουγουάης"
 
 #: src/olympia/lib/constants.py
 msgid "Uzbekistan Som"
@@ -8928,12 +8928,12 @@ msgstr ""
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mailing List"
-msgstr ""
+msgstr "Λίστα αλληλογραφίας"
 
 #. Label for a link to the extension developers newsgroup
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Newsgroup"
-msgstr ""
+msgstr "Ομάδα ειδήσεων"
 
 #. Label for a link to the extension developers Google Group
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -10172,7 +10172,7 @@ msgstr[1] ""
 
 #: src/olympia/search/templates/search/results.html
 msgid "Filter Results"
-msgstr ""
+msgstr "Φιλτράρισμα αποτελεσμάτων"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Category"
@@ -10196,7 +10196,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Δεν κατέχετε αυτό το πρόσθετο."
 
 #: src/olympia/signing/views.py
 msgid "Missing \"upload\" key in multipart file data."
@@ -10213,7 +10213,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "Version already exists."
-msgstr ""
+msgstr "Η έκδοση υπάρχει ήδη."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
@@ -10395,7 +10395,7 @@ msgstr "365 ημέρες"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Custom..."
-msgstr ""
+msgstr "Προσαρμοσμένο..."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
