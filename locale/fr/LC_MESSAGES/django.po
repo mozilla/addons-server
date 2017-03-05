@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-04 23:41+0000\n"
+"PO-Revision-Date: 2017-03-05 18:52+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1114,6 +1114,8 @@ msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Puisque vous avez le contrôle de votre navigateur Firefox, vous avez le choix d’accepter ou d’annuler ces requêtes. Accepter les autorisations ne compromettra pas les performances ou la sécurité de "
+"votre navigateur, mais de rares risques du contraire existent."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1820,7 +1822,7 @@ msgstr "Modules Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr "Nous n'avons malheureusement rien trouvé à l'adresse indiquée. Si vous avez suivi un lien vers un module, il est possible que celui-ci ait été supprimé par son auteur."
+msgstr "Nous n’avons malheureusement rien trouvé à l’adresse indiquée. Si vous avez suivi un lien vers un module, il est possible que celui-ci ait été supprimé par son auteur."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
@@ -1842,7 +1844,7 @@ msgstr "Page d’accueil des modules"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
-"Si vous avez suivi un lien depuis un autre endroit, merci de %(open_bug_link)snous signaler le problème%(close_bug_link)s. Dites-nous d'où vous veniez, ce que vous cherchiez et nous ferons de notre "
+"Si vous avez suivi un lien depuis un autre endroit, merci de %(open_bug_link)snous signaler le problème%(close_bug_link)s. Dites-nous d’où vous veniez, ce que vous cherchiez et nous ferons de notre "
 "mieux pour le corriger."
 
 #: src/olympia/amo/templates/amo/404.html
@@ -3826,7 +3828,7 @@ msgstr "Ajouter des données dans le presse-papiers"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's download history"
-msgstr "Télécharger des fichiers, lire et modifier l'historique de téléchargement du navigateur"
+msgstr "Télécharger des fichiers, lire et modifier l’historique de téléchargement du navigateur"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your location"
@@ -7586,12 +7588,12 @@ msgstr "Validation échouée :"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Le contenu du fichier n’est pas supporté par la coloration syntaxique"
 
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "Le résultat peut être cassé, s’il vous plaît soyez prudent et %(link_start)s signalez un problème %(link_end)s immédiatement !"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
@@ -10017,9 +10019,8 @@ msgid "This field is required."
 msgstr "Champ nécessaire"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Vous pouvez mettre à jour votre thème une fois qu’il sera accepté."
+msgstr "Vous ne pouvez pas changer l’extension d’un avis une fois qu’il est créé."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
@@ -10027,7 +10028,7 @@ msgstr ""
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Vous ne pouvez modifier l’extension une fois qu’elle est acceptée."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
