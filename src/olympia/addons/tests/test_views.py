@@ -747,7 +747,7 @@ class TestDetailPage(TestCase):
         file_.update(is_webextension=True)
         WebextPermission.objects.create(file=file_, permissions=[
             u'http://*/*', u'<all_urls>', u'bookmarks',
-            u'made up permission', u'https://google.com/'])
+            u'made up permission'])
         WebextPermissionDescription.objects.create(
             name='bookmarks', description='Read and modify bookmarks')
 
@@ -760,12 +760,11 @@ class TestDetailPage(TestCase):
         assert u'perform certain functions (example: a tab management' in (
             doc('#webext-permissions div.prose').text())
         assert doc('ul.webext-permissions-list').length == 1
-        assert doc('li.webext-permissions-list').length == 3
+        assert doc('li.webext-permissions-list').length == 2
         # See File.webext_permissions for the order logic
         assert doc('li.webext-permissions-list').text() == (
             u'Access your data for all websites '
-            u'Read and modify bookmarks '
-            u'Access your data for https://google.com/')
+            u'Read and modify bookmarks')
 
     @override_switch('webext-permissions', active=True)
     def test_permissions_webext_no_permissions(self):

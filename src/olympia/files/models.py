@@ -377,18 +377,20 @@ class File(OnChangeMixin, ModelBase):
     def webext_permissions(self):
         """Return permissions that should be displayed, with descriptions, in
         defined order:
-        1) match all urls (e.g. <all-urls>)
-        2) known permissions, in constants order (alphabetically),
-        3) match urls for sites
+        1) Either the match all permission, if present (e.g. <all-urls>), or
+           match urls for sites (<all-urls> takes preference over match urls)
+        2) nativeMessaging permission, if present
+        3) other known permissions in alphabetical order
         """
         knowns = list(WebextPermissionDescription.objects.filter(
             name__in=self.webext_permissions_list).iterator())
 
-        match_all, urls = [], []
+        urls = []
         for name in self.webext_permissions_list:
             if re.match(WebextPermissionDescription.MATCH_ALL_REGEX, name):
-                # Add match-alls.  Yes, assign not append - no dupes plz.
-                match_all = [WebextPermissionDescription.ALL_URLS_PERMISSION]
+                # We found a match-all, so no need to continue.
+                return (
+                    [WebextPermissionDescription.ALL_URLS_PERMISSION] + knowns)
             elif '//' in name:
                 # Filter out match urls so we can group them.
                 urls.append(name)
@@ -410,7 +412,7 @@ class File(OnChangeMixin, ModelBase):
                 u'multiple-match',
                 mark_safe(details.format(copy=copy, sites=sites))))
 
-        return match_all + knowns + match_urls
+        return match_urls + knowns
 
     @amo.cached_property(writable=True)
     def webext_permissions_list(self):
@@ -725,6 +727,7 @@ class FileValidation(ModelBase):
 
 
 class WebextPermission(ModelBase):
+    NATIVE_MESSAGING_NAME = u'nativeMessaging'
     permissions = JSONField(default={})
     file = models.OneToOneField('File', related_name='_webext_permissions',
                                 on_delete=models.CASCADE)
@@ -748,6 +751,7 @@ class WebextPermissionDescription(ModelBase):
 
     class Meta:
         db_table = 'webext_permission_descriptions'
+        ordering = ['name']
 
 
 def nfd_str(u):

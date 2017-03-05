@@ -21,7 +21,7 @@ from olympia.amo.utils import rm_local_tmp_dir, chunked
 from olympia.addons.models import Addon
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
-    EXTENSIONS, File, FileUpload, FileValidation, nfd_str,
+    EXTENSIONS, File, FileUpload, FileValidation, nfd_str, Permission,
     track_file_status_change, WebextPermission, WebextPermissionDescription,
 )
 from olympia.files.helpers import copyfileobj
@@ -243,47 +243,65 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         addon.update(status=amo.STATUS_DELETED)
         assert f.addon.id == addon_id
 
-    def _check_permissions_order(self, permissions):
-        # We have two match-all urls - no dupes!
-        assert len(permissions) == 3
-        # First should be catch-all match urls, if present.
-        assert permissions[0] == (
-            WebextPermissionDescription.ALL_URLS_PERMISSION)
-        # Second should be known permission(s).
-        assert (permissions[1].name, permissions[1].description) == (
-            u'bookmarks', 'Read and modify bookmarks')
-        # Third is match urls for specified site(s).
-        assert (permissions[2].name, permissions[2].description) == (
-            u'single-match',
-            u'Access your data for https://google.com/')
+    def _cmp_permission(self, perm_a, perm_b):
+        return (perm_a.name == perm_b.name and
+                perm_a.description == perm_b.description)
 
-    def test_webext_permissions(self):
-        perm_list = [u'http://*/*', u'<all_urls>', u'bookmarks',
+    def test_webext_permissions_order(self):
+        perm_list = [u'tabs', u'bookmarks',
                      u'made up permission', u'https://google.com/']
         WebextPermissionDescription.objects.create(
-            name='bookmarks', description='Read and modify bookmarks')
+            name=u'bookmarks', description=u'Read and modify bookmarks')
+        WebextPermissionDescription.objects.create(
+            name=u'tabs', description=u'Access browser tabs')
+
+        result = [
+            # First match urls for specified site(s).
+            Permission('single-match',
+                       'Access your data for https://google.com/'),
+            # Then any known permission(s).
+            Permission(u'bookmarks',
+                       u'Read and modify bookmarks'),
+            Permission(u'tabs',
+                       u'Access browser tabs'),
+        ]
+
         file_ = File.objects.get(pk=67442)
         file_.webext_permissions_list = perm_list
-        self._check_permissions_order(file_.webext_permissions)
+
+        # Check the order
+        assert len(file_.webext_permissions) == 3
+        assert all(map(self._cmp_permission, result,
+                       file_.webext_permissions))
 
         # Check the order isn't dependent on the order in the manifest
         file_.webext_permissions_list.reverse()
-        self._check_permissions_order(file_.webext_permissions)
+        assert all(map(self._cmp_permission, result,
+                       file_.webext_permissions))
 
         # Unknown permission strings aren't included.
         assert ((u'made up permission', u'made up permission')
                 not in file_.webext_permissions)
 
+    def test_webext_permissions_match_urls(self):
+        file_ = File.objects.get(pk=67442)
         # Multiple urls for specified sites should be grouped together
         file_.webext_permissions_list = [
             u'https://mozilla.org/', u'https://mozillians.org/']
+
         assert len(file_.webext_permissions) == 1
-        perm_name, perm_desc = file_.webext_permissions[0]
-        assert perm_name == u'multiple-match'
-        assert perm_desc == (
+        perm = file_.webext_permissions[0]
+        assert perm.name == u'multiple-match'
+        assert perm.description == (
             u'<details><summary>Access your data on various websites'
             u'</summary><ul><li>https://mozilla.org/</li>'
             u'<li>https://mozillians.org/</li></ul></details>')
+
+        file_.webext_permissions_list += [u'http://*/*', u'<all_urls>']
+        # Match-all patterns should override the specific sites
+        assert len(file_.webext_permissions) == 1
+        assert file_.webext_permissions[0] == (
+            WebextPermissionDescription.ALL_URLS_PERMISSION)
 
     def test_webext_permissions_list_string_only(self):
         file_ = File.objects.get(pk=67442)
