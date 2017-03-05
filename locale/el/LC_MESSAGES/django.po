@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-05 11:21+0000\n"
+"PO-Revision-Date: 2017-03-05 12:30+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -858,11 +858,10 @@ msgid "Submit review"
 msgstr "Υποβολή αξιολόγησης"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
-"Παρακαλούμε μη χρησιμοποιείτε τις επιθεωρήσεις για αναφορά σφαλμάτων. Οι δημιουργοί είναι πιθανό να χρειαστεί να επικοινωνήσουν μαζί σας για να επιλυθεί το πρόβλημα κι εμείς δεν τους γνωστοποιούμε "
-"τη διεύθυνση του ηλεκτρονικού σας ταχυδρομείου."
+"Παρακαλώ μην δημοσιεύετε αναφορές σφαλμάτων εδώ. Δεν καθιστούμε τη διεύθυνση email σας διαθέσιμη προς τους προγραμματιστές, επομένως δεν μπορούν να επικοινωνήσουν μαζί σας για να λύσουν το ζήτημά "
+"σας."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -870,6 +869,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"Δείτε την <a href=\"%(support)s\">ενότητα υποστήριξης</a> του προσθέτου για να μάθετε αν υπάρχει διαθέσιμη βοήθεια. Μπορείτε επίσης να δοκιμάσετε να ρωτήσετε την <a href=\"https://discourse.mozilla-"
+"community.org/c/add-ons/add-on-support\">κοινότητα των προσθέτων</a> για βοήθεια."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -998,9 +999,8 @@ msgid "Add-on Review"
 msgstr "Αξιολόγηση προσθέτου"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Σήμανση για διαχειριστές"
+msgstr "Διαχείριση διαχειριστή"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1008,11 +1008,11 @@ msgid "Icon of {0}"
 msgstr "Εικονίδιο του {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "Γνωρίστε τον δημιουργό: <a href=\"%(url)s\">%(name)s</a>"
-msgstr[1] "<a href=\"%(url)s\">Γνωρίστε τους δημιουργούς</a>"
+msgstr[0] "Γνωρίστε τον προγραμματιστή: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Γνωρίστε τους προγραμματιστές</a>"
 
 # {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1084,11 +1084,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>Προσοχή:</strong> Οι εκδόσεις ανάπτυξης αυτού του προσθέτου δεν έχουν αξιολογηθεί από τη Mozilla."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete development channel history"
-msgstr ""
+msgstr "Δείτε το πλήρες ιστορικό του καναλιού ανάπτυξης"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/files/templates/files/viewer.html
 #: src/olympia/stats/templates/stats/popup.html src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
@@ -1306,7 +1306,7 @@ msgstr "Αποδοχή"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "Τα πρόσθετα δεν είναι διαθέσιμα στο Firefox για iOS αυτή τη στιγμή."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
@@ -1442,7 +1442,7 @@ msgstr "Εσφαλμένο, παρακαλώ δοκιμάστε ξανά."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Σφάλμα κατά την επαλήθευση της εισόδου, παρακαλώ δοκιμάστε ξανά."
 
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
@@ -3823,7 +3823,7 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browsing history"
-msgstr "Πρόσβαση στο ιστορικό περιήγησης"
+msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
@@ -4375,9 +4375,8 @@ msgstr "Επιστροφή στην αρχική σελίδα του DevHub"
 
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html
-#, fuzzy
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "<small>Add-on</small> Developer Hub"
+msgstr "Κέντρο προγραμματιστών <small>προσθέτων</small>"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
@@ -4445,7 +4444,7 @@ msgstr "Μετά τη μεταφόρτωση, μια σειρά από αυτό�
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Θέλετε το πρόσθετό σας να διανεμηθεί σε αυτή την ιστοσελίδα;"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html
