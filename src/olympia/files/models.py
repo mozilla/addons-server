@@ -25,8 +25,7 @@ from django.utils.safestring import mark_safe
 from jinja2 import escape as jinja2_escape
 
 from olympia import amo
-from olympia.amo.models import (
-    OnChangeMixin, ManagerBase, ModelBase, UncachedManagerBase)
+from olympia.amo.models import OnChangeMixin, ModelBase, UncachedManagerBase
 from olympia.amo.decorators import use_master
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.urlresolvers import reverse
@@ -383,19 +382,22 @@ class File(OnChangeMixin, ModelBase):
         2) known permissions, in constants order (alphabetically),
         3) match urls for sites
         """
-        outset, urls = set(), []
+        knowns = list(WebextPermissionDescription.objects.filter(
+            name__in=self.webext_permissions_list).iterator())
+
+        match_all, urls = [], []
         for name in self.webext_permissions_list:
-            perm = WebextPermissionDescription.objects.get_permission(name)
-            if perm:
-                # Add known permissions, including match-alls.
-                outset.add(perm)
+            if re.match(WebextPermissionDescription.MATCH_ALL_REGEX, name):
+                # Add match-alls.  Yes, assign not append - no dupes plz.
+                match_all = [WebextPermissionDescription.ALL_URLS_PERMISSION]
             elif '//' in name:
                 # Filter out match urls so we can group them.
                 urls.append(name)
             # Other strings are unknown permissions we don't care about
-        out = sorted(outset)
+
+        match_urls = []
         if len(urls) == 1:
-            out.append(Permission(
+            match_urls.append(Permission(
                 u'single-match',
                 _(u'Access your data for {name}')
                 .format(name=urls[0])))
@@ -405,10 +407,11 @@ class File(OnChangeMixin, ModelBase):
             copy = _(u'Access your data on various websites')
             sites = ''.join(
                 [u'<li>%s</li>' % jinja2_escape(name) for name in urls])
-            out.append(Permission(
+            match_urls.append(Permission(
                 u'multiple-match',
                 mark_safe(details.format(copy=copy, sites=sites))))
-        return out
+
+        return match_all + knowns + match_urls
 
     @amo.cached_property(writable=True)
     def webext_permissions_list(self):
@@ -735,27 +738,14 @@ Permission = namedtuple('Permission',
                         'name, description')
 
 
-class WebextPermissionDescriptionManager(ManagerBase):
+class WebextPermissionDescription(ModelBase):
     MATCH_ALL_REGEX = r'^\<all_urls\>|(\*|http|https):\/\/\*\/\*'
     ALL_URLS_PERMISSION = Permission(
         u'all_urls',
         _lazy(u'Access your data for all websites')
     )
-
-    def get_permission(self, name):
-        try:
-            return self.get(name=name)
-        except self.model.DoesNotExist:
-            if re.match(self.MATCH_ALL_REGEX, name):
-                return self.ALL_URLS_PERMISSION
-        return None
-
-
-class WebextPermissionDescription(ModelBase):
     name = models.CharField(max_length=255)
     description = TranslatedField()
-
-    objects = WebextPermissionDescriptionManager()
 
     class Meta:
         db_table = 'webext_permission_descriptions'

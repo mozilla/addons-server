@@ -23,7 +23,6 @@ from olympia.applications.models import AppVersion
 from olympia.files.models import (
     EXTENSIONS, File, FileUpload, FileValidation, nfd_str,
     track_file_status_change, WebextPermission, WebextPermissionDescription,
-    WebextPermissionDescriptionManager
 )
 from olympia.files.helpers import copyfileobj
 from olympia.files.utils import check_xpi_info, parse_addon, parse_xpi
@@ -249,7 +248,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert len(permissions) == 3
         # First should be catch-all match urls, if present.
         assert permissions[0] == (
-            WebextPermissionDescriptionManager.ALL_URLS_PERMISSION)
+            WebextPermissionDescription.ALL_URLS_PERMISSION)
         # Second should be known permission(s).
         assert (permissions[1].name, permissions[1].description) == (
             u'bookmarks', 'Read and modify bookmarks')
