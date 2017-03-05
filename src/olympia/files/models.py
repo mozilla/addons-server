@@ -384,6 +384,15 @@ class File(OnChangeMixin, ModelBase):
         """
         knowns = list(WebextPermissionDescription.objects.filter(
             name__in=self.webext_permissions_list).iterator())
+        # Move nativeMessaging permission to front of the list, if present
+        for index, perm in enumerate(knowns):
+            if perm.name == WebextPermission.NATIVE_MESSAGING_NAME:
+                perm.description.localized_string = (
+                    perm.description.localized_string.replace('%S',
+                                                              _('Firefox')))
+                knowns.pop(index)
+                knowns.insert(0, perm)
+                break
 
         urls = []
         for name in self.webext_permissions_list:
@@ -396,23 +405,25 @@ class File(OnChangeMixin, ModelBase):
                 urls.append(name)
             # Other strings are unknown permissions we don't care about
 
-        match_urls = []
-        if len(urls) == 1:
-            match_urls.append(Permission(
+        match_url = None
+        if len(urls) == 0:
+            return knowns
+        elif len(urls) == 1:
+            match_url = Permission(
                 u'single-match',
                 _(u'Access your data for {name}')
-                .format(name=urls[0])))
-        elif len(urls) > 1:
+                .format(name=urls[0]))
+        else:
             details = (u'<details><summary>{copy}</summary><ul>{sites}</ul>'
                        u'</details>')
             copy = _(u'Access your data on various websites')
             sites = ''.join(
                 [u'<li>%s</li>' % jinja2_escape(name) for name in urls])
-            match_urls.append(Permission(
+            match_url = Permission(
                 u'multiple-match',
-                mark_safe(details.format(copy=copy, sites=sites))))
+                mark_safe(details.format(copy=copy, sites=sites)))
 
-        return match_urls + knowns
+        return [match_url] + knowns
 
     @amo.cached_property(writable=True)
     def webext_permissions_list(self):

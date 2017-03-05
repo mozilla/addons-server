@@ -248,18 +248,25 @@ class TestFile(TestCase, amo.tests.AMOPaths):
                 perm_a.description == perm_b.description)
 
     def test_webext_permissions_order(self):
-        perm_list = [u'tabs', u'bookmarks',
+        perm_list = [u'tabs', u'bookmarks', u'nativeMessaging',
                      u'made up permission', u'https://google.com/']
         WebextPermissionDescription.objects.create(
             name=u'bookmarks', description=u'Read and modify bookmarks')
         WebextPermissionDescription.objects.create(
             name=u'tabs', description=u'Access browser tabs')
+        WebextPermissionDescription.objects.create(
+            name=u'nativeMessaging',
+            # the %S will be replaced with Firefox
+            description=u'Exchange messages with programs other than %S')
 
         result = [
             # First match urls for specified site(s).
             Permission('single-match',
                        'Access your data for https://google.com/'),
-            # Then any known permission(s).
+            # Then nativeMessaging, if specified
+            Permission(u'nativeMessaging',
+                       u'Exchange messages with programs other than Firefox'),
+            # Then any other known permission(s).
             Permission(u'bookmarks',
                        u'Read and modify bookmarks'),
             Permission(u'tabs',
@@ -270,7 +277,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_.webext_permissions_list = perm_list
 
         # Check the order
-        assert len(file_.webext_permissions) == 3
+        assert len(file_.webext_permissions) == len(result)
         assert all(map(self._cmp_permission, result,
                        file_.webext_permissions))
 
