@@ -13,6 +13,7 @@ from PIL import Image
 from pyquery import PyQuery as pq
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.amo.helpers import user_media_path
 from olympia.amo.tests import (
@@ -24,7 +25,6 @@ from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, Category)
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, FeaturedCollection)
-from olympia.devhub.models import ActivityLog
 from olympia.devhub.views import edit_theme
 from olympia.tags.models import Tag, AddonTag
 from olympia.users.models import UserProfile

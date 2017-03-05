@@ -13,7 +13,7 @@ import jinja2
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-from olympia import amo
+from olympia import activity, amo
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.amo.decorators import use_master
@@ -155,7 +155,7 @@ class Version(OnChangeMixin, ModelBase):
         )
         log.info(
             'New version: %r (%s) from %r' % (version, version.id, upload))
-        amo.log(amo.LOG.ADD_VERSION, version, addon)
+        activity.log_create(amo.LOG.ADD_VERSION, version, addon)
         # Update the add-on e10s compatibility since we're creating a new
         # version that may change that.
         e10s_compatibility = parsed_data.get('e10s_compatibility')
@@ -256,7 +256,8 @@ class Version(OnChangeMixin, ModelBase):
 
     def delete(self, hard=False):
         log.info(u'Version deleted: %r (%s)' % (self, self.id))
-        amo.log(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
+        activity.log_create(amo.LOG.DELETE_VERSION, self.addon,
+                            str(self.version))
         if hard:
             super(Version, self).delete()
         else:
@@ -308,7 +309,7 @@ class Version(OnChangeMixin, ModelBase):
 
     @amo.cached_property(writable=True)
     def all_activity(self):
-        from olympia.devhub.models import VersionLog  # yucky
+        from olympia.activity.models import VersionLog  # yucky
         al = (VersionLog.objects.filter(version=self.id).order_by('created')
               .select_related('activity_log', 'version').no_cache())
         return al
@@ -508,7 +509,7 @@ class Version(OnChangeMixin, ModelBase):
     @classmethod
     def transformer_activity(cls, versions):
         """Attach all the activity to the versions."""
-        from olympia.devhub.models import VersionLog  # yucky
+        from olympia.activity.models import VersionLog  # yucky
 
         ids = set(v.id for v in versions)
         if not versions:

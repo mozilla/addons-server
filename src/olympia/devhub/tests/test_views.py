@@ -19,6 +19,7 @@ from pyquery import PyQuery as pq
 from waffle.models import Flag
 
 from olympia import amo, core, paypal
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, AddonUser, Charity)
@@ -30,7 +31,7 @@ from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import ContribForm
-from olympia.devhub.models import ActivityLog, BlogPost
+from olympia.devhub.models import BlogPost
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
 from olympia.reviews.models import Review
@@ -1078,7 +1079,7 @@ class TestActivityFeed(TestCase):
 
     def add_log(self, action=amo.LOG.ADD_REVIEW):
         core.set_user(UserProfile.objects.get(email='del@icio.us'))
-        amo.log(action, self.addon, self.version)
+        ActivityLog.create(action, self.addon, self.version)
 
     def add_hidden_log(self, action=amo.LOG.COMMENT_VERSION):
         self.add_log(action=action)

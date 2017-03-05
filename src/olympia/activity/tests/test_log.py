@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 
 from olympia import amo, core
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.users.models import UserProfile
@@ -22,7 +23,7 @@ class LogTest(TestCase):
         a = Addon.objects.create(name='kumar is awesome',
                                  type=amo.ADDON_EXTENSION)
         magic = dict(title='no', body='way!')
-        al = amo.log(amo.LOG.DELETE_REVIEW, 1, a, details=magic)
+        al = ActivityLog.create(amo.LOG.DELETE_REVIEW, 1, a, details=magic)
 
         assert al.details == magic
         assert al._details == json.dumps(magic)
@@ -31,6 +32,7 @@ class LogTest(TestCase):
         """
         Verify that we preserve the create date.
         """
-        al = amo.log(amo.LOG.CUSTOM_TEXT, 'hi', created=datetime(2009, 1, 1))
+        al = ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi',
+                                created=datetime(2009, 1, 1))
 
         assert al.created == datetime(2009, 1, 1)

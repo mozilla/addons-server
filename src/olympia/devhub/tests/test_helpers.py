@@ -7,6 +7,7 @@ import pytest
 from mock import Mock
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo import LOG
 from olympia.amo.tests import addon_factory, days_ago, TestCase, user_factory
 from olympia.amo.tests.test_helpers import render
@@ -156,8 +157,8 @@ def test_pending_activity_log_count_for_developer(
     user = user_factory()
     addon = addon_factory()
     version = addon.current_version
-    amo.log(action1, addon, version, user=user, created=days_ago(2))
-    amo.log(action2, addon, version, user=user, created=days_ago(1))
-    amo.log(action3, addon, version, user=user, created=days_ago(0))
+    ActivityLog.create(action1, addon, version, user=user, created=days_ago(2))
+    ActivityLog.create(action2, addon, version, user=user, created=days_ago(1))
+    ActivityLog.create(action3, addon, version, user=user, created=days_ago(0))
 
     assert helpers.pending_activity_log_count_for_developer(version) == count

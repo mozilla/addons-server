@@ -22,6 +22,7 @@ import jinja2
 
 from olympia import amo, core
 from olympia.amo import search
+from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonUser, CompatOverride
 from olympia.amo import messages
@@ -33,7 +34,6 @@ from olympia.amo.utils import HttpResponseSendFile, chunked, render
 from olympia.bandwagon.models import Collection
 from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.models import AppCompat, CompatTotals
-from olympia.devhub.models import ActivityLog, AddonLog
 from olympia.editors.helpers import ItemStateTable
 from olympia.files.models import File, FileUpload
 from olympia.search.indexers import get_mappings as get_addons_mappings
@@ -605,7 +605,8 @@ def addon_manage(request, addon):
 
     if form.is_valid() and formset.is_valid():
         if 'status' in form.changed_data:
-            amo.log(amo.LOG.CHANGE_STATUS, addon, form.cleaned_data['status'])
+            ActivityLog.create(amo.LOG.CHANGE_STATUS, addon,
+                               form.cleaned_data['status'])
             log.info('Addon "%s" status changed to: %s' % (
                 addon.slug, form.cleaned_data['status']))
             form.save()

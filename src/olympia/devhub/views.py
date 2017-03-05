@@ -26,6 +26,7 @@ from olympia import amo
 from olympia.amo import utils as amo_utils
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
+from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import forms as addon_forms
 from olympia.addons.decorators import addon_view
@@ -40,7 +41,7 @@ from olympia.api.models import APIKey
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import CheckCompatibilityForm
-from olympia.devhub.models import ActivityLog, BlogPost, RssKey, VersionLog
+from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import process_validation
 from olympia.editors.helpers import get_position, ReviewHelper
 from olympia.files.models import File, FileUpload, FileValidation
@@ -367,7 +368,7 @@ def delete(request, addon_id, addon, theme=False):
 @post_required
 def enable(request, addon_id, addon):
     addon.update(disabled_by_user=False)
-    amo.log(amo.LOG.USER_ENABLE, addon)
+    ActivityLog.create(amo.LOG.USER_ENABLE, addon)
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -376,7 +377,8 @@ def enable(request, addon_id, addon):
 def cancel(request, addon_id, addon):
     if addon.status == amo.STATUS_NOMINATED:
         addon.update(status=amo.STATUS_NULL)
-        amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+        ActivityLog.create(amo.LOG.CHANGE_STATUS, addon.get_status_display(),
+                           addon)
     latest_version = addon.find_latest_version(
         channel=amo.RELEASE_CHANNEL_LISTED)
     if latest_version:
@@ -400,7 +402,7 @@ def disable(request, addon_id, addon):
     addon.update_version()
     addon.update_status()
     addon.update(disabled_by_user=True)
-    amo.log(amo.LOG.USER_DISABLE, addon)
+    ActivityLog.create(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -459,17 +461,18 @@ def ownership(request, addon_id, addon):
 
             author.save()
             if action:
-                amo.log(action, author.user, author.get_role_display(), addon)
+                ActivityLog.create(action, author.user,
+                                   author.get_role_display(), addon)
             if (author._original_user_id and
                     author.user_id != author._original_user_id):
-                amo.log(amo.LOG.REMOVE_USER_WITH_ROLE,
-                        (UserProfile, author._original_user_id),
-                        author.get_role_display(), addon)
+                ActivityLog.create(amo.LOG.REMOVE_USER_WITH_ROLE,
+                                   (UserProfile, author._original_user_id),
+                                   author.get_role_display(), addon)
 
         for author in user_form.deleted_objects:
             author.delete()
-            amo.log(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
-                    author.get_role_display(), addon)
+            ActivityLog.create(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
+                               author.get_role_display(), addon)
             authors_emails.add(author.user.email)
             mail_user_changes(
                 author=author,
@@ -511,7 +514,7 @@ def payments(request, addon_id, addon):
             if valid:
                 addon.save()
                 messages.success(request, _('Changes successfully saved.'))
-                amo.log(amo.LOG.EDIT_CONTRIBUTIONS, addon)
+                ActivityLog.create(amo.LOG.EDIT_CONTRIBUTIONS, addon)
 
                 return redirect(addon.get_dev_url('payments'))
     errors = charity_form.errors or contrib_form.errors or profile_form.errors
@@ -560,7 +563,7 @@ def profile(request, addon_id, addon):
 
     if request.method == 'POST' and profile_form.is_valid():
         profile_form.save()
-        amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+        ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
         messages.success(request, _('Changes successfully saved.'))
         return redirect(addon.get_dev_url('profile'))
 
@@ -939,9 +942,9 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
                 editable = False
                 if section == 'media':
-                    amo.log(amo.LOG.CHANGE_ICON, addon)
+                    ActivityLog.create(amo.LOG.CHANGE_ICON, addon)
                 else:
-                    amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+                    ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
 
                 valid_slug = addon.slug
             if cat_form:
@@ -1121,11 +1124,11 @@ def version_edit(request, addon_id, addon, version_id):
                                    request.user,
                                    version)
                 else:
-                    amo.log(amo.LOG.APPROVAL_NOTES_CHANGED,
-                            addon, version, request.user)
+                    ActivityLog.create(amo.LOG.APPROVAL_NOTES_CHANGED,
+                                       addon, version, request.user)
             else:
-                amo.log(amo.LOG.APPROVAL_NOTES_CHANGED,
-                        addon, version, request.user)
+                ActivityLog.create(amo.LOG.APPROVAL_NOTES_CHANGED,
+                                   addon, version, request.user)
 
         if ('source' in version_form.changed_data and
                 version_form.cleaned_data['source']):
@@ -1138,11 +1141,11 @@ def version_edit(request, addon_id, addon, version_id):
                                    request.user,
                                    version)
                 else:
-                    amo.log(amo.LOG.SOURCE_CODE_UPLOADED,
-                            addon, version, request.user)
+                    ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
+                                       addon, version, request.user)
             else:
-                amo.log(amo.LOG.SOURCE_CODE_UPLOADED,
-                        addon, version, request.user)
+                ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
+                                   addon, version, request.user)
 
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
@@ -1156,8 +1159,8 @@ def _log_max_version_change(addon, version, appversion):
     details = {'version': version.version,
                'target': appversion.version.version,
                'application': appversion.application}
-    amo.log(amo.LOG.MAX_APPVERSION_UPDATED,
-            addon, version, details=details)
+    ActivityLog.create(amo.LOG.MAX_APPVERSION_UPDATED,
+                       addon, version, details=details)
 
 
 @dev_required
@@ -1204,12 +1207,12 @@ def auto_sign_file(file_, is_beta=False):
     addon = file_.version.addon
 
     if file_.is_experiment:  # See bug 1220097.
-        amo.log(amo.LOG.EXPERIMENT_SIGNED, file_)
+        ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_)
         sign_file(file_, settings.SIGNING_SERVER)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
-        amo.log(amo.LOG.BETA_SIGNED, file_)
+        ActivityLog.create(amo.LOG.BETA_SIGNED, file_)
         sign_file(file_, settings.SIGNING_SERVER)
     elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
@@ -1219,7 +1222,7 @@ def auto_sign_file(file_, is_beta=False):
         helper.set_data({'addon_files': [file_],
                          'comments': 'automatic validation'})
         helper.handler.process_public()
-        amo.log(amo.LOG.UNLISTED_SIGNED, file_)
+        ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_)
 
 
 def auto_sign_version(version, **kwargs):
@@ -1633,7 +1636,8 @@ def request_review(request, addon_id, addon):
     else:
         messages.success(request, _(
             'You must provide further details to proceed.'))
-    amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
+    ActivityLog.create(amo.LOG.CHANGE_STATUS, addon.get_status_display(),
+                       addon)
     return redirect(addon.get_dev_url('versions'))
 
 

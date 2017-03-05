@@ -12,11 +12,11 @@ from django.utils.translation import ugettext as _, ungettext as ngettext
 from olympia import amo
 from olympia.constants import editors as rvw
 from olympia.access import acl
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Persona
 from olympia.amo.decorators import json_view, post_required
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
-from olympia.devhub.models import ActivityLog
 from olympia.editors import forms
 from olympia.editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
 from olympia.editors.views import base_context as context

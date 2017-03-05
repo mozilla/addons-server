@@ -6,9 +6,9 @@ from django.utils import translation
 
 from olympia import amo
 from olympia.amo import helpers
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import addon_factory, TestCase, ESTestCase, user_factory
 from olympia.addons.models import Addon
-from olympia.devhub.models import ActivityLog
 from olympia.reviews import tasks
 from olympia.reviews.models import (
     check_spam, GroupedRating, Review, ReviewFlag, Spam)

@@ -13,9 +13,12 @@ import mock
 from olympia.amo.models import FakeEmail
 from olympia.amo.tests import BaseTestCase
 from olympia.amo.utils import send_mail, send_html_mail_jinja
-from olympia.devhub.tests.test_models import ATTACHMENTS_DIR
 from olympia.users.models import UserProfile, UserNotification
 from olympia.users import notifications
+
+
+TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
+ATTACHMENTS_DIR = os.path.join(TESTS_DIR, 'attachments')
 
 
 class TestSendMail(BaseTestCase):

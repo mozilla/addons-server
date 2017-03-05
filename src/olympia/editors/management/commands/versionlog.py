@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 from celery.task.sets import TaskSet
 
 from olympia.amo.utils import chunked
-from olympia.devhub.models import ActivityLog
+from olympia.activity.models import ActivityLog
 from olympia.editors.tasks import add_versionlog
 
 

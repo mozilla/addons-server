@@ -23,7 +23,7 @@ from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 
 import olympia.core.logger
-from olympia import amo, core
+from olympia import activity, amo, core
 from olympia.amo.models import (
     SlugField, OnChangeMixin, ModelBase, ManagerBase, manual_order)
 from olympia.access import acl
@@ -424,7 +424,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @transaction.atomic
     def delete(self, msg='', reason=''):
-        # To avoid a circular import.
+        # To avoid a circular import
         from . import tasks
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE) with no versions.
@@ -492,7 +492,8 @@ class Addon(OnChangeMixin, ModelBase):
             models.signals.pre_delete.send(sender=Addon, instance=self)
             self._reviews.all().delete()
             # The last parameter is needed to automagically create an AddonLog.
-            amo.log(amo.LOG.DELETE_ADDON, self.pk, unicode(self.guid), self)
+            activity.log_create(amo.LOG.DELETE_ADDON, self.pk,
+                                unicode(self.guid), self)
             self.update(status=amo.STATUS_DELETED, slug=None,
                         _current_version=None, modified=datetime.now())
             models.signals.post_delete.send(sender=Addon, instance=self)
@@ -569,7 +570,7 @@ class Addon(OnChangeMixin, ModelBase):
         Version.from_upload(upload, addon, platforms, source=source,
                             channel=channel)
 
-        amo.log(amo.LOG.CREATE_ADDON, addon)
+        activity.log_create(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))
 
         return addon
@@ -954,7 +955,8 @@ class Addon(OnChangeMixin, ModelBase):
             log.info('Changing add-on status [%s]: %s => %s (%s).'
                      % (self.id, self.status, status, reason))
             self.update(status=status)
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
+            activity.log_create(amo.LOG.CHANGE_STATUS,
+                                self.get_status_display(), self)
 
         self.update_version(ignore=ignore_version)
 

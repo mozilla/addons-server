@@ -14,6 +14,7 @@ from pyquery import PyQuery as pq
 from olympia import amo, core
 from olympia.amo.tests import TestCase
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.addons.tests.test_views import TestMobile
 from olympia.amo.urlresolvers import reverse
@@ -25,7 +26,6 @@ from olympia.bandwagon.models import (
     CollectionWatcher)
 from olympia.bandwagon.views import CollectionFilter
 from olympia.browse.tests import TestFeeds
-from olympia.devhub.models import ActivityLog
 from olympia.users.models import UserProfile
 
 

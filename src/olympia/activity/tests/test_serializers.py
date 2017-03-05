@@ -2,6 +2,7 @@
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.activity.serializers import ActivityLogSerializer
 from olympia.amo.helpers import absolutify
 from olympia.amo.tests import (
@@ -17,7 +18,7 @@ class LogMixin(object):
         details = {'comments': comments}
         details['version'] = version.version
         kwargs = {'user': self.user, 'created': created, 'details': details}
-        return amo.log(action, self.addon, version, **kwargs)
+        return ActivityLog.create(action, self.addon, version, **kwargs)
 
 
 class TestReviewNotesSerializerOutput(TestCase, LogMixin):
@@ -74,7 +75,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
 
     def test_log_entry_without_details(self):
         # Create a log but without a details property.
-        self.entry = amo.log(
+        self.entry = ActivityLog.create(
             amo.LOG.APPROVAL_NOTES_CHANGED, self.addon,
             self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED),
             user=self.user)

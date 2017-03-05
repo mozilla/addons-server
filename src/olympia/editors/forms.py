@@ -9,6 +9,7 @@ from django.utils.translation import (
 
 import olympia.core.logger
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.constants import editors as rvw
 from olympia.addons.models import Addon, Persona
 from olympia.amo.urlresolvers import reverse
@@ -436,7 +437,8 @@ class ThemeReviewForm(happyforms.Form):
             send_mail(self.cleaned_data, theme_lock)
 
             # Log.
-            amo.log(amo.LOG.THEME_REVIEW, theme.addon, details={
+            ActivityLog.create(
+                amo.LOG.THEME_REVIEW, theme.addon, details={
                     'theme': theme.addon.name.localized_string,
                     'action': action,
                     'reject_reason': reject_reason,

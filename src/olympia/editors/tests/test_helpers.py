@@ -12,11 +12,10 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.activity.models import ActivityLogToken
+from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.amo.tests import TestCase, version_factory
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.urlresolvers import reverse
-from olympia.devhub.models import ActivityLog
 from olympia.editors import helpers
 from olympia.editors.models import ReviewerScore
 from olympia.files.models import File

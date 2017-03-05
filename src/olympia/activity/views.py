@@ -15,6 +15,7 @@ from waffle.decorators import waffle_switch
 
 import olympia.core.logger
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.activity.serializers import ActivityLogSerializer
 from olympia.activity.tasks import process_email
 from olympia.activity.utils import (
@@ -22,7 +23,6 @@ from olympia.activity.utils import (
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
-from olympia.devhub.models import ActivityLog
 from olympia.versions.models import Version
 
 

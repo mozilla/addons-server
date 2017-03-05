@@ -10,11 +10,10 @@ import waffle
 import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
-from olympia.activity.models import ActivityLogToken
+from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import no_translation, send_mail
-from olympia.devhub.models import ActivityLog
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 
@@ -167,7 +166,7 @@ def log_and_notify(action, comments, note_creator, version):
         # only so prevent language jumble by forcing into en-US.
         with no_translation():
             comments = '%s' % action.short
-    note = amo.log(action, version.addon, version, **log_kwargs)
+    note = ActivityLog.create(action, version.addon, version, **log_kwargs)
 
     # Collect reviewers involved with this version.
     review_perm = ('Review' if version.channel == amo.RELEASE_CHANNEL_LISTED

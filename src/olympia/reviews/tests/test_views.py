@@ -15,8 +15,8 @@ from olympia.amo.tests import (
     addon_factory, APITestClient, TestCase, MobileTest, version_factory,
     user_factory)
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
-from olympia.devhub.models import ActivityLog
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 
