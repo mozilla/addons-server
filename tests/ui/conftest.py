@@ -49,6 +49,7 @@ def jwt_secret(base_url, variables):
         return os.getenv('JWT_SECRET')
 
 
+<<<<<<< 9a8cb1873c7b63de19ba3672a7c14d35d6cd42ba
 @pytest.fixture
 def initial_data(transactional_db):
     from olympia.amo.tests import addon_factory, user_factory
@@ -56,6 +57,16 @@ def initial_data(transactional_db):
 
     for x in range(10):
         AddonUser.objects.create(user=user_factory(), addon=addon_factory())
+=======
+@pytest.fixture(scope='session')
+def initial_data(live_server):
+    from olympia.amo.tests import addon_factory
+    from olympia.constants.applications import APPS
+    from olympia.landfill.collection import generate_collection
+    call_command('generate_addons', 10, app='firefox')
+    addon = addon_factory()
+    generate_collection(addon, APPS['firefox'])
+>>>>>>> Changed conftest for proper db initialization and use
 
 
 @pytest.fixture
@@ -78,23 +89,23 @@ def create_superuser(transactional_db, my_base_url, tmpdir, variables):
         variables.update(json.load(f))
 =======
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def ui_addon():
     import random
 
     from olympia import amo
     from olympia.amo.tests import addon_factory, user_factory, version_factory
     from olympia.addons.forms import icons
-    from olympia.addons.models import Addon, Category, Preview, AddonUser
+    from olympia.addons.models import Addon, AddonCategory, Category, Preview, AddonUser
     from olympia.addons.utils import generate_addon_guid
     from olympia.constants.categories import CATEGORIES
     from olympia.constants.applications import APPS
     from olympia.reviews.models import Review
     from olympia.landfill.collection import generate_collection
 
+
     cat1 = Category.from_static_category(
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
-    cat1.save()
     default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
     addon = addon_factory(
         status=amo.STATUS_PUBLIC,
@@ -122,6 +133,11 @@ def ui_addon():
         developer_comments='This is a testing addon, used within pytest.',
         is_experimental=True,
     )
+    static_category = random.choice(
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION].values())
+    category, _ = Category.objects.get_or_create(
+        id=static_category.id, defaults=static_category.__dict__)
+    AddonCategory.objects.create(addon=addon, category=category)
     first_preview = Preview.objects.create(addon=addon, position=1)
     Review.objects.create(addon=addon, rating=5, user=user_factory())
     Review.objects.create(addon=addon, rating=3, user=user_factory())
@@ -136,7 +152,7 @@ def ui_addon():
                     version='1.1beta')
     generate_collection(addon, APPS['firefox'])
 
-    print(addon)
+    print('Create custom addon for testing successfully')
 
 
 @pytest.fixture
@@ -169,8 +185,13 @@ def user(create_superuser, my_base_url, fxa_account, jwt_token):
     return params
 
 
+<<<<<<< 9a8cb1873c7b63de19ba3672a7c14d35d6cd42ba
 @pytest.fixture(scope='function')
 def live_server(request, transactional_db):
+=======
+@pytest.fixture(autouse=True)
+def live_server(request, initial_data, ui_addon):
+>>>>>>> Changed conftest for proper db initialization and use
     """
         This fixture overrides the live_server fixture provided by
         pytest_django. live_server allows us to create a running version of the
