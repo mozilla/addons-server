@@ -56,6 +56,7 @@ def update_webext_descriptions(url, locale='en-US', create=True, **kw):
              (locale, url))
     try:
         response = requests.get(url)
+        response.raise_for_status()
     except RequestException as e:
         log.warn('Error retrieving %s: %s' % (url, e))
         return False

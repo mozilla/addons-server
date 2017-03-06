@@ -5,6 +5,7 @@ from django.test.utils import override_settings
 from django.utils import translation
 
 import responses
+from requests import HTTPError
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -69,7 +70,7 @@ class TestWebextExtractPermissions(UploadTest):
         assert len(file_.webext_permissions_list) == 5
 
 
-@override_settings(AMO_LANGUAGES=('fr', 'de', 'zh-CN'))
+@override_settings(AMO_LANGUAGES=('fr', 'de', 'elvish', 'zh-CN'))
 class TestWebextUpdateDescriptions(TestCase):
 
     def _register_uris(self):
@@ -102,6 +103,10 @@ class TestWebextUpdateDescriptions(TestCase):
             body=u'\n'.join([
                 u'webextPerms.description.bookmarks=讀取並修改書籤',
                 u'webextPerms.description.sessions=存取瀏覽器最近關閉的分頁']))
+        responses.add(
+            responses.GET,
+            localised_url.format(locale='elvish'),
+            body=HTTPError('Only the tongues of men are spoken here'))
 
     def _check_objects(self):
         assert WebextPermissionDescription.objects.get(
@@ -148,6 +153,10 @@ class TestWebextUpdateDescriptions(TestCase):
             name='bookmarks')
         assert Translation.objects.filter(
             id=bookmarks_perm.description_id).count() == 4
+
+        # Check we didn't save any translation for unsupported (klingon) locale
+        assert not Translation.objects.filter(
+            locale='klingon').exists()
 
     @responses.activate
     def test_add_descriptions(self):

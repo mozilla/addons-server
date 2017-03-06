@@ -744,7 +744,7 @@ class WebextPermissionDescription(ModelBase):
         u'all_urls',
         _lazy(u'Access your data for all websites')
     )
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     description = TranslatedField()
 
     class Meta:

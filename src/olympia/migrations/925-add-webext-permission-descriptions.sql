@@ -4,7 +4,7 @@ CREATE TABLE `webext_permission_descriptions` (
     `id` int(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
-    `name` char(255),
+    `name` char(255) NOT NULL UNIQUE,
     `description` int(11) unsigned NOT NULL
 ) DEFAULT CHARSET=utf8;
 
