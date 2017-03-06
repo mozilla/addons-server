@@ -370,8 +370,9 @@ class AddonSerializerOutputTestMixin(object):
             translated_homepages['fr'])
 
     def test_persona_with_persona_id(self):
-        self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
+        self.addon = addon_factory(type=amo.ADDON_PERSONA)
         persona = self.addon.persona
+        persona.persona_id = 42
         persona.header = u'myheader.jpg'
         persona.footer = u'myfooter.jpg'
         persona.accentcolor = u'336699'
@@ -379,6 +380,8 @@ class AddonSerializerOutputTestMixin(object):
         persona.author = u'Me-me-me-Myself'
         persona.display_username = u'my-username'
         persona.save()
+        assert not persona.is_new()
+
         result = self.serialize()
         assert result['theme_data'] == persona.theme_data
 
@@ -388,13 +391,16 @@ class AddonSerializerOutputTestMixin(object):
             description=u'<script>alert(42)</script>My Personä description',
             type=amo.ADDON_PERSONA)
         persona = self.addon.persona
-        persona.header = u'myheader.jpg'
-        persona.footer = u'myfooter.jpg'
+        persona.persona_id = 0  # For "new" style Personas this is always 0.
+        persona.header = u'myheader.png'
+        persona.footer = u'myfooter.png'
         persona.accentcolor = u'336699'
         persona.textcolor = u'f0f0f0'
         persona.author = u'Me-me-me-Myself'
         persona.display_username = u'my-username'
         persona.save()
+        assert persona.is_new()
+
         result = self.serialize()
         assert result['theme_data'] == persona.theme_data
         assert '<script>' not in result['theme_data']['description']

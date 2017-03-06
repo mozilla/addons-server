@@ -421,7 +421,9 @@ class ESBaseAddonSerializer(BaseESSerializer):
                     display_username=persona_data['author'],
                     header=persona_data['header'],
                     footer=persona_data['footer'],
-                    persona_id=1 if persona_data['is_new'] else None,
+                    # "New" Persona do not have a persona_id, it's an old relic
+                    # from old ones.
+                    persona_id=0 if persona_data['is_new'] else 42,
                     textcolor=persona_data['textcolor']
                 )
             else:
