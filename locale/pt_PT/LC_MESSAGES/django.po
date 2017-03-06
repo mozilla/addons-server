@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-04 20:54+0000\n"
+"PO-Revision-Date: 2017-03-06 04:06+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4817,7 +4817,7 @@ msgstr "Estatísticas públicas?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Se as estatísticas de transferências e de utilização para o seu extra podem ser apresentadas no nosso visualizador online. Isto apenas é relevante para extras listados."
+msgstr "Se as estatísticas de descargas e de utilização do seu extra podem ser apresentadas no nosso visualizador online. Isto é apenas relevante para extras listados."
 
 # 76%
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
