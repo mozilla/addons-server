@@ -17,7 +17,7 @@ import mock
 from mock import Mock, patch
 from pyquery import PyQuery as pq
 
-from olympia import amo, reviews
+from olympia import amo, core, reviews
 from olympia.amo.tests import (
     addon_factory, TestCase, version_factory, user_factory)
 from olympia.abuse.models import AbuseReport
@@ -59,7 +59,7 @@ class TestEventLog(EditorTest):
         super(TestEventLog, self).setUp()
         self.login_as_editor()
         self.url = reverse('editors.eventlog')
-        amo.set_user(UserProfile.objects.get(username='editor'))
+        core.set_user(UserProfile.objects.get(username='editor'))
 
     def test_log(self):
         r = self.client.get(self.url)
@@ -116,7 +116,7 @@ class TestBetaSignedLog(EditorTest):
         super(TestBetaSignedLog, self).setUp()
         self.login_as_editor()
         self.url = reverse('editors.beta_signed_log')
-        amo.set_user(UserProfile.objects.get(username='editor'))
+        core.set_user(UserProfile.objects.get(username='editor'))
         addon = amo.tests.addon_factory()
         version = addon.versions.get()
         self.file1 = version.files.get()
@@ -357,10 +357,10 @@ class TestHome(EditorTest):
         self.user = UserProfile.objects.get(id=5497308)
         self.user.display_name = 'editor'
         self.user.save()
-        amo.set_user(self.user)
+        core.set_user(self.user)
 
     def approve_reviews(self):
-        amo.set_user(self.user)
+        core.set_user(self.user)
         for addon in Addon.objects.all():
             amo.log(amo.LOG['APPROVE_VERSION'], addon, addon.current_version)
 
@@ -426,12 +426,12 @@ class TestHome(EditorTest):
         self.undelete_review(review, allowed=True)
 
     def test_undelete_review_other(self):
-        amo.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
+        core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         review = self.delete_review()
 
         # Normal editors undeleting reviews deleted by other editors is
         # not allowed.
-        amo.set_user(self.user)
+        core.set_user(self.user)
         self.undelete_review(review, allowed=False)
 
     def test_undelete_review_admin(self):
@@ -453,7 +453,7 @@ class TestHome(EditorTest):
     def test_stats_total_admin(self):
         self.login_as_admin()
         self.user = UserProfile.objects.get(email='admin@mozilla.com')
-        amo.set_user(self.user)
+        core.set_user(self.user)
 
         addon_factory(
             status=amo.STATUS_NOMINATED,
@@ -1205,17 +1205,17 @@ class TestPerformance(QueueTest):
 
     def setUpEditor(self):
         self.login_as_editor()
-        amo.set_user(UserProfile.objects.get(username='editor'))
+        core.set_user(UserProfile.objects.get(username='editor'))
         self.create_logs()
 
     def setUpSeniorEditor(self):
         self.login_as_senior_editor()
-        amo.set_user(UserProfile.objects.get(username='senioreditor'))
+        core.set_user(UserProfile.objects.get(username='senioreditor'))
         self.create_logs()
 
     def setUpAdmin(self):
         self.login_as_admin()
-        amo.set_user(UserProfile.objects.get(username='admin'))
+        core.set_user(UserProfile.objects.get(username='admin'))
         self.create_logs()
 
     def get_url(self, args=None):
@@ -1259,7 +1259,7 @@ class TestPerformance(QueueTest):
 
     def test_usercount_with_more_than_one_editor(self):
         self.client.login(email='clouserw@gmail.com')
-        amo.set_user(UserProfile.objects.get(username='clouserw'))
+        core.set_user(UserProfile.objects.get(username='clouserw'))
         self.create_logs()
         self.setUpEditor()
         r = self.client.get(self.get_url())
@@ -1270,7 +1270,7 @@ class TestPerformance(QueueTest):
         assert data[label]['usercount'] == len(amo.LOG_EDITOR_REVIEW_ACTION)
 
     def _test_performance_other_user_as_admin(self):
-        userid = amo.get_user().pk
+        userid = core.get_user().pk
 
         r = self.client.get(self.get_url([10482]))
         doc = pq(r.content)
@@ -2455,8 +2455,7 @@ class TestReview(ReviewBase):
         # Create an activy log for each of the following: user addition, role
         # change and deletion.
         author = self.addon.addonuser_set.get()
-        from olympia.amo import set_user
-        set_user(author.user)
+        core.set_user(author.user)
         amo.log(amo.LOG.ADD_USER_WITH_ROLE,
                 author.user, author.get_role_display(), self.addon)
         amo.log(amo.LOG.CHANGE_USER_WITH_ROLE,
@@ -2758,7 +2757,7 @@ class TestLeaderboard(EditorTest):
 
         self.user = UserProfile.objects.get(email='editor@mozilla.com')
         self.login_as_editor()
-        amo.set_user(self.user)
+        core.set_user(self.user)
 
     def _award_points(self, user, score):
         ReviewerScore.objects.create(user=user, note_key=amo.REVIEWED_MANUAL,

@@ -3,11 +3,11 @@ import functools
 from django import http
 from django.shortcuts import get_object_or_404
 
-import commonware.log
+import olympia.core.logger
 from olympia.access import acl
 from olympia.addons.models import Addon
 
-log = commonware.log.getLogger('mkt.purchase')
+log = olympia.core.logger.getLogger('mkt.purchase')
 
 
 def owner_or_unlisted_reviewer(request, addon):

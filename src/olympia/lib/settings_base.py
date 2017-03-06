@@ -384,7 +384,7 @@ MIDDLEWARE_CLASSES = (
     'olympia.amo.middleware.RemoveSlashMiddleware',
 
     # Munging REMOTE_ADDR must come before ThreadRequest.
-    'commonware.middleware.SetRemoteAddrFromForwardedFor',
+    'olympia.amo.middleware.SetRemoteAddrFromForwardedFor',
 
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -401,14 +401,14 @@ MIDDLEWARE_CLASSES = (
     'olympia.amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
-    'commonware.log.ThreadRequestMiddleware',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',
 
-    # This should come after authentication middleware
-    'olympia.access.middleware.ACLMiddleware',
+    # This should come after AuthenticationMiddlewareWithoutAPI and after
+    # SetRemoteAddrFromForwardedFor.
+    'olympia.access.middleware.UserAndAddrMiddleware',
 
-    'commonware.middleware.ScrubRequestOnException',
+    'olympia.amo.middleware.ScrubRequestOnException',
 )
 
 # Auth

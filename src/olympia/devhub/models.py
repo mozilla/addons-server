@@ -10,9 +10,9 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext as _
 
-import commonware.log
 import jinja2
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.models import ModelBase, ManagerBase
 from olympia.access.models import Group
@@ -26,7 +26,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
-log = commonware.log.getLogger('devhub')
+log = olympia.core.logger.getLogger('devhub')
 
 
 class RssKey(models.Model):

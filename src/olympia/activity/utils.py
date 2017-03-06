@@ -1,5 +1,4 @@
 import datetime
-import logging
 import re
 
 from django.conf import settings
@@ -8,6 +7,7 @@ from django.template import Context, loader
 from email_reply_parser import EmailReplyParser
 import waffle
 
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLogToken
@@ -18,7 +18,7 @@ from olympia.devhub.models import ActivityLog
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 
-log = logging.getLogger('z.amo.activity')
+log = olympia.core.logger.getLogger('z.amo.activity')
 
 # Prefix of the reply to address in devcomm emails.
 REPLY_TO_PREFIX = 'reviewreply+'

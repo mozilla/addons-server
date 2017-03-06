@@ -1,12 +1,12 @@
-import logging
-
 from django.conf import settings as dj_settings
 
 from django_statsd.clients import statsd
 from elasticsearch import Elasticsearch
 
+import olympia.core.logger
 
-log = logging.getLogger('z.es')
+
+log = olympia.core.logger.getLogger('z.es')
 
 
 DEFAULT_HOSTS = ['localhost:9200']

@@ -6,10 +6,10 @@ from django.conf import settings
 from django.utils.http import urlquote
 from django.utils.translation import ugettext as _
 
-import commonware.log
-from django_statsd.clients import statsd
 import requests
+from django_statsd.clients import statsd
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
@@ -71,7 +71,7 @@ messages = {'589023': _("The amount is too small for conversion "
             # L10n: {0} is the currency.
             '559044': _(u'The seller does not accept payments in %s.')}
 
-paypal_log = commonware.log.getLogger('z.paypal')
+paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 
 def should_ignore_paypal():

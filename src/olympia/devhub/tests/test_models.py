@@ -7,7 +7,7 @@ import jingo
 from mock import Mock
 from pyquery import PyQuery as pq
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon, AddonUser
 from olympia.bandwagon.models import Collection
@@ -31,10 +31,10 @@ class TestActivityLog(TestCase):
         u = UserProfile.objects.create(username='yolo')
         self.request = Mock()
         self.request.user = self.user = u
-        amo.set_user(u)
+        core.set_user(u)
 
     def tearDown(self):
-        amo.set_user(None)
+        core.set_user(None)
         super(TestActivityLog, self).tearDown()
 
     def test_basic(self):
@@ -47,7 +47,7 @@ class TestActivityLog(TestCase):
             assert x in unicode(entries[0])
 
     def test_no_user(self):
-        amo.set_user(None)
+        core.set_user(None)
         count = ActivityLog.objects.count()
         amo.log(amo.LOG.CUSTOM_TEXT, 'hi')
         assert count == ActivityLog.objects.count()
@@ -288,7 +288,7 @@ class TestActivityLogCount(TestCase):
         bom = datetime(now.year, now.month, 1)
         self.lm = bom - timedelta(days=1)
         self.user = UserProfile.objects.get()
-        amo.set_user(self.user)
+        core.set_user(self.user)
 
     def add_approve_logs(self, count):
         for x in range(0, count):
@@ -353,7 +353,7 @@ class TestActivityLogCount(TestCase):
     def test_user_approve_reviews(self):
         self.add_approve_logs(3)
         other = UserProfile.objects.create(email="no@mozil.la", username="o")
-        amo.set_user(other)
+        core.set_user(other)
         self.add_approve_logs(2)
         result = ActivityLog.objects.user_approve_reviews(self.user).count()
         assert result == 3

@@ -1,16 +1,15 @@
-import logging
-
 from django.db.models import Count, Avg, F
 
 import caching.base as caching
 
+import olympia.core.logger
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 
 from .models import Review, GroupedRating
 
-log = logging.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.task')
 
 
 @task(rate_limit='50/m')

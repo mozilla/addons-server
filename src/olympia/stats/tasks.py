@@ -6,11 +6,11 @@ from django.conf import settings
 from django.db import connection
 from django.db.models import Sum, Max
 
-import commonware.log
 from apiclient.discovery import build
 from elasticsearch.helpers import bulk_index
 from oauth2client.client import OAuth2Credentials
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo import search as amo_search
 from olympia.addons.models import Addon
@@ -27,7 +27,7 @@ from .models import (
     ThemeUserCount, UpdateCount)
 
 
-log = commonware.log.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.task')
 
 
 @task

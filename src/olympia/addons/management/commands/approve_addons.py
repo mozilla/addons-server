@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-import logging
-
 from django.core.management.base import BaseCommand, CommandError
 
+import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.utils import chunked
 from olympia.editors.helpers import ReviewHelper
 
-log = logging.getLogger('z.addons')
+log = olympia.core.logger.getLogger('z.addons')
 
 
 class Command(BaseCommand):

@@ -5,8 +5,7 @@ from django.db.transaction import non_atomic_requests
 from django.forms.models import modelformset_factory
 from django.shortcuts import get_object_or_404, redirect
 
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import reverse
@@ -27,7 +26,7 @@ from .modules import PromoVideoCollection, registry as module_registry
 
 addon_view = addon_view_factory(Addon.objects.valid)
 
-log = commonware.log.getLogger('z.disco')
+log = olympia.core.logger.getLogger('z.disco')
 
 
 def get_compat_mode(version):

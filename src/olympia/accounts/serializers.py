@@ -1,11 +1,10 @@
-import logging
-
 from rest_framework import serializers
 
+import olympia.core.logger
 from olympia.access.models import Group
 from olympia.users.models import UserProfile
 
-log = logging.getLogger('accounts')
+log = olympia.core.logger.getLogger('accounts')
 
 
 class UserProfileSerializer(serializers.ModelSerializer):

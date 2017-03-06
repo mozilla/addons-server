@@ -1,10 +1,9 @@
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.search.utils import floor_version
 
 
-log = commonware.log.getLogger('z.compat')
+log = olympia.core.logger.getLogger('z.compat')
 
 # This is a list of dictionaries that we should generate compat info for.
 # main: the app version we're generating compat info for.

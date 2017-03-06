@@ -2,8 +2,7 @@ import datetime
 
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.utils import get_email_backend
@@ -12,7 +11,7 @@ from olympia.devhub.models import ActivityLog
 from olympia.stats.models import Contribution
 
 
-log = commonware.log.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.task')
 
 
 @task

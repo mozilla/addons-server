@@ -1,17 +1,16 @@
 import uuid
-import logging
 import random
 
 from django.db.models import Q
 
-import commonware.log
 from cache_nuggets.lib import memoize
 
+import olympia.core.logger
 from olympia.constants.categories import CATEGORIES_BY_ID
 
 
-log = commonware.log.getLogger('z.redis')
-rnlog = logging.getLogger('z.rn')
+log = olympia.core.logger.getLogger('z.redis')
+rnlog = olympia.core.logger.getLogger('z.rn')
 
 
 def generate_addon_guid():

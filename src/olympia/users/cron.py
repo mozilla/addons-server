@@ -1,17 +1,18 @@
 from django.db import connections
 
-import commonware.log
+import cronjobs
 import multidb
 from celery.task.sets import TaskSet
 
-import cronjobs
+
+import olympia.core.logger
 from olympia.amo import VALID_ADDON_STATUSES
 from olympia.amo.utils import chunked
 
 from .models import UserProfile
 from .tasks import update_user_ratings_task
 
-task_log = commonware.log.getLogger('z.task')
+task_log = olympia.core.logger.getLogger('z.task')
 
 
 @cronjobs.register

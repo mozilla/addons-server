@@ -1,4 +1,3 @@
-import logging
 import re
 
 from django.utils import translation
@@ -6,6 +5,7 @@ from django.utils import translation
 import requests
 from requests.exceptions import RequestException
 
+import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.files.models import (
@@ -14,7 +14,7 @@ from olympia.files.utils import parse_xpi
 from olympia.translations.models import Translation
 
 
-log = logging.getLogger('z.files.task')
+log = olympia.core.logger.getLogger('z.files.task')
 
 
 @task

@@ -1,5 +1,4 @@
 import json
-import logging
 import os
 import sys
 import time
@@ -12,6 +11,7 @@ from elasticsearch.exceptions import NotFoundError
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
+import olympia.core.logger
 from olympia.amo.search import get_es
 from olympia.amo.celery import task
 from olympia.search import indexers as search_indexers
@@ -20,7 +20,7 @@ from olympia.lib.es.utils import (
     is_reindexing_amo, unflag_reindexing_amo, flag_reindexing_amo,
     timestamp_index)
 
-logger = logging.getLogger('z.elasticsearch')
+logger = olympia.core.logger.getLogger('z.elasticsearch')
 time_limits = settings.CELERY_TIME_LIMITS[
     'olympia.lib.es.management.commands.reindex']
 

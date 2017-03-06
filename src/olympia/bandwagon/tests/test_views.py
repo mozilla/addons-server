@@ -11,7 +11,7 @@ import pytest
 from mock import patch, Mock
 from pyquery import PyQuery as pq
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.tests import TestCase
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
@@ -159,7 +159,7 @@ class TestViews(TestCase):
         addon = Addon.objects.all()[0]
         addon.status = amo.STATUS_NOMINATED
         c = u.favorites_collection()
-        amo.set_user(u)
+        core.set_user(u)
         c.add_addon(addon)
 
         self.client.login(email='jbalogh@mozilla.com')
@@ -170,7 +170,7 @@ class TestViews(TestCase):
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
         addon = addon = Addon.objects.all()[0]
         c = u.favorites_collection()
-        amo.set_user(u)
+        core.set_user(u)
         c.add_addon(addon)
 
         assert self.client.login(email='jbalogh@mozilla.com')

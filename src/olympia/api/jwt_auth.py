@@ -12,8 +12,6 @@ AMO uses JWT tokens in a different way. Notes:
 
 See https://github.com/GetBlimp/django-rest-framework-jwt/ for more info.
 """
-import logging
-
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -21,9 +19,10 @@ import jwt
 from rest_framework import exceptions
 from rest_framework_jwt.settings import api_settings
 
+import olympia.core.logger
 from olympia.api.models import APIKey
 
-log = logging.getLogger('z.jwt')
+log = olympia.core.logger.getLogger('z.jwt')
 
 
 def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):

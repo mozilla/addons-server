@@ -1,14 +1,14 @@
+import re
+import sys
 from collections import defaultdict
 from email.Utils import formatdate
-import re
 from string import Template
-import sys
 from time import time
 from urlparse import parse_qsl
 
-
-import commonware.log
 import jinja2
+
+import olympia.core.logger
 
 from utils import log_configure
 
@@ -18,7 +18,7 @@ from django_statsd.clients import statsd
 # Go configure the log.
 log_configure()
 
-error_log = commonware.log.getLogger('z.pfs')
+error_log = olympia.core.logger.getLogger('z.pfs')
 
 xml_template = """\
 <?xml version="1.0"?>

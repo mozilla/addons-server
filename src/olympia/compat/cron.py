@@ -1,4 +1,3 @@
-import logging
 from collections import defaultdict
 
 from django.db.models import Count, Max
@@ -6,6 +5,7 @@ from django.db.models import Count, Max
 import cronjobs
 import elasticsearch.helpers
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo import search as amo_search
 from olympia.amo.utils import chunked
@@ -18,7 +18,7 @@ from olympia.lib.es.utils import get_indices
 
 from .models import AppCompat, CompatReport, CompatTotals
 
-log = logging.getLogger('z.compat')
+log = olympia.core.logger.getLogger('z.compat')
 
 
 @cronjobs.register

@@ -1,15 +1,14 @@
-import commonware
 import requests
-
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+import olympia.core.logger
 from olympia.files.models import FileUpload
 from olympia.github.tasks import process_webhook
 from olympia.github.utils import GithubRequest, GithubCallback
 
-log = commonware.log.getLogger('z.github')
+log = olympia.core.logger.getLogger('z.github')
 
 
 class GithubView(APIView):

@@ -9,10 +9,10 @@ from django.db import models
 from django.utils.translation import ugettext as _
 
 import caching.base
-import commonware.log
 import jinja2
 from django_statsd.clients import statsd
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
@@ -28,7 +28,7 @@ from olympia.users.models import UserProfile
 
 from .compare import version_dict, version_int
 
-log = commonware.log.getLogger('z.versions')
+log = olympia.core.logger.getLogger('z.versions')
 
 VALID_SOURCE_EXTENSIONS = (
     '.zip', '.tar', '.7z', '.tar.gz', '.tgz', '.tbz', '.txz', '.tar.bz2',

@@ -16,8 +16,9 @@ production, we're piping everything into ``syslog``.
 Configuration
 -------------
 
-The root logger is set up from ``log_settings.py`` in the base of olympia's
-tree.  It sets up sensible defaults, but you can twiddle with these settings:
+The root logger is set up from ``log_settings.py`` in the ``src/olympia/lib``
+directory of addons-server. It sets up sensible defaults, but you can twiddle
+with these settings:
 
 ``LOG_LEVEL``
     This setting is required, and defaults to ``logging.DEBUG``, which will let
@@ -62,16 +63,16 @@ tree.  It sets up sensible defaults, but you can twiddle with these settings:
 Using Loggers
 -------------
 
-The ``logging`` package uses global objects to make the same logging
-configuration available to all code loaded in the interpreter.  Loggers are
-created in a pseudo-namespace structure, so app-level loggers can inherit
+The ``olympia.core.logger`` package uses global objects to make the same
+logging configuration available to all code loaded in the interpreter.  Loggers
+are created in a pseudo-namespace structure, so app-level loggers can inherit
 settings from a root logger.  olympia's root namespace is just ``"z"``, in the
 interest of brevity.  In the caching package, we create a logger that inherits
 the configuration by naming it ``"z.caching"``::
 
-    import commonware.log
+    import olympia.core.logger
 
-    log = commonware.log.getLogger('z.caching')
+    log = olympia.core.logger.getLogger('z.caching')
 
     log.debug("I'm in the caching package.")
 
@@ -80,11 +81,12 @@ because we can turn up the logging output for a particular section of olympia
 without becoming overwhelmed with logging from all other parts.
 
 
-commonware.log vs. logging
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+olympia.core.logging vs. logging
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``commonware.log.getLogger`` should be used inside the request cycle.  It
-returns a ``LoggingAdapter`` that inserts the current user's IP address into
-the log message.
+``olympia.core.logger.getLogger`` should be used everywhere.  It returns a
+``LoggingAdapter`` that inserts the current user's IP address and username into
+the log message. For code that lives outside the request-response cycle, it
+will insert empty values, keeping the message formatting the same.
 
 Complete logging docs: http://docs.python.org/library/logging.html

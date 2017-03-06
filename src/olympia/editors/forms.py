@@ -1,5 +1,4 @@
 import datetime
-import logging
 from datetime import timedelta
 
 from django import forms
@@ -8,6 +7,7 @@ from django.forms import widgets
 from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, get_language)
 
+import olympia.core.logger
 from olympia import amo
 from olympia.constants import editors as rvw
 from olympia.addons.models import Addon, Persona
@@ -19,7 +19,7 @@ from olympia.editors.tasks import approve_rereview, reject_rereview, send_mail
 from olympia.lib import happyforms
 
 
-log = logging.getLogger('z.reviewers.forms')
+log = olympia.core.logger.getLogger('z.reviewers.forms')
 
 
 ACTION_FILTERS = (('', ''), ('approved', _lazy(u'Approved reviews')),

@@ -6,9 +6,9 @@ from django.conf import settings
 from django.db import connection
 
 import cronjobs
-import commonware.log
 import waffle
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.utils import chunked
 from olympia.amo.helpers import user_media_path
@@ -20,7 +20,7 @@ from olympia.stats.models import Contribution
 
 from . import tasks
 
-log = commonware.log.getLogger('z.cron')
+log = olympia.core.logger.getLogger('z.cron')
 
 
 @cronjobs.register

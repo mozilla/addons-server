@@ -4,12 +4,12 @@ import os
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.core.files.storage import default_storage as storage
-import commonware.log
 
+import olympia.core.logger
 from olympia import amo
 from olympia.applications.models import AppVersion
 
-log = commonware.log.getLogger('z.cron')
+log = olympia.core.logger.getLogger('z.cron')
 
 
 # The validator uses the file created here to keep up to date with the

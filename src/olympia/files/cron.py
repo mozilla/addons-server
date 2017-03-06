@@ -4,12 +4,12 @@ from datetime import datetime
 
 from django.conf import settings
 
-import commonware.log
 import cronjobs
 
+import olympia.core.logger
 from olympia.files.models import FileValidation
 
-log = commonware.log.getLogger('z.cron')
+log = olympia.core.logger.getLogger('z.cron')
 
 
 @cronjobs.register

@@ -2,7 +2,6 @@ import cStringIO
 import csv
 import itertools
 import json
-import logging
 import os
 import time
 from datetime import date, timedelta, datetime
@@ -26,6 +25,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.utils import render, AMOJSONEncoder
 from olympia.access import acl
@@ -44,7 +44,7 @@ from .models import (
     CollectionCount, Contribution, DownloadCount, ThemeUserCount, UpdateCount)
 
 
-logger = logging.getLogger('z.apps.stats.views')
+logger = olympia.core.logger.getLogger('z.apps.stats.views')
 
 
 SERIES_GROUPS = ('day', 'week', 'month')

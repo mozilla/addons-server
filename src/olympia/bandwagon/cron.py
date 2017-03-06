@@ -3,10 +3,10 @@ from datetime import date
 from django.db import connection
 from django.db.models import Count
 
-import commonware.log
 import cronjobs
 from celery.task.sets import TaskSet
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.utils import chunked
@@ -14,7 +14,7 @@ from olympia.bandwagon.models import (
     Collection, CollectionVote, CollectionWatcher)
 
 
-task_log = commonware.log.getLogger('z.task')
+task_log = olympia.core.logger.getLogger('z.task')
 
 
 @cronjobs.register

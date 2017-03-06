@@ -3,7 +3,6 @@ import contextlib
 import glob
 import hashlib
 import json
-import logging
 import os
 import re
 import shutil
@@ -31,14 +30,15 @@ import flufl.lock
 import rdflib
 import waffle
 
-from olympia import amo
+import olympia.core.logger
+from olympia import amo, core
 from olympia.amo.utils import rm_local_tmp_dir, find_language, decode_json
 from olympia.applications.models import AppVersion
 from olympia.versions.compare import version_int as vint
 from olympia.lib.safe_xml import lxml
 
 
-log = logging.getLogger('z.files.utils')
+log = olympia.core.logger.getLogger('z.files.utils')
 
 
 class ParseError(forms.ValidationError):
@@ -676,9 +676,10 @@ def check_xpi_info(xpi_info, addon=None):
         raise forms.ValidationError(_("Could not find an add-on ID."))
 
     if guid:
-        if amo.get_user():
+        current_user = core.get_user()
+        if current_user:
             deleted_guid_clashes = Addon.unfiltered.exclude(
-                authors__id=amo.get_user().id).filter(guid=guid)
+                authors__id=current_user.id).filter(guid=guid)
         else:
             deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
         guid_too_long = (

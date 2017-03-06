@@ -9,8 +9,9 @@ from django.test import RequestFactory
 import mock
 import pytest
 
+from olympia import core
 from olympia.amo.tests import BaseTestCase, TestCase, fxa_login_link
-from olympia.amo import decorators, get_user, set_user
+from olympia.amo import decorators
 from olympia.users.models import UserProfile
 
 
@@ -84,12 +85,12 @@ class TestTaskUser(TestCase):
     def test_set_task_user(self):
         @decorators.set_task_user
         def some_func():
-            return get_user()
+            return core.get_user()
 
-        set_user(UserProfile.objects.get(username='regularuser'))
-        assert get_user().pk == 999
+        core.set_user(UserProfile.objects.get(username='regularuser'))
+        assert core.get_user().pk == 999
         assert some_func().pk == int(settings.TASK_USER_ID)
-        assert get_user().pk == 999
+        assert core.get_user().pk == 999
 
 
 class TestLoginRequired(BaseTestCase):

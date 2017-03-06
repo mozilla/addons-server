@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-import logging
-
 from addons.models import Addon
 from editors.models import RereviewQueueTheme
 
+import olympia.core.logger
 
-log = logging.getLogger('z.task')
+
+log = olympia.core.logger.getLogger('z.task')
 
 
 def run():

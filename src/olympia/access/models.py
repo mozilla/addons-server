@@ -1,13 +1,13 @@
 from django.db import models
 from django import dispatch
 from django.db.models import signals
-import commonware.log
 
 from olympia import amo
 from olympia.amo.models import ModelBase
+import olympia.core.logger
 
 
-log = commonware.log.getLogger('z.users')
+log = olympia.core.logger.getLogger('z.users')
 
 
 class Group(ModelBase):

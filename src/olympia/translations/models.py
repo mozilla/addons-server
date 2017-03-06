@@ -3,15 +3,15 @@ from django.db.models.deletion import Collector
 from django.utils.encoding import force_text
 
 import bleach
-import commonware.log
 
+import olympia.core.logger
 from olympia.amo.models import ModelBase, ManagerBase
 from olympia.amo import urlresolvers
 
 from . import utils
 
 
-log = commonware.log.getLogger('z.translations')
+log = olympia.core.logger.getLogger('z.translations')
 
 
 class TranslationManager(ManagerBase):

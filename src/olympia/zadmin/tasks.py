@@ -1,5 +1,4 @@
 import collections
-import logging
 import os
 import re
 import sys
@@ -18,9 +17,9 @@ from django.utils import translation
 
 import requests
 
-from olympia import amo
+import olympia.core.logger
+from olympia import amo, core
 from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
-from olympia.amo import set_user
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.amo.helpers import absolutify
@@ -37,7 +36,7 @@ from olympia.versions.models import License, Version
 from olympia.zadmin.models import (
     EmailPreviewTopic, ValidationJob, ValidationResult)
 
-log = logging.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.task')
 
 
 @task(rate_limit='3/s')
@@ -194,7 +193,7 @@ def update_maxversions(version_pks, job_pk, data, **kw):
     log.info('[%s@%s] Updating max version for job %s.'
              % (len(version_pks), update_maxversions.rate_limit, job_pk))
     job = ValidationJob.objects.get(pk=job_pk)
-    set_user(get_task_user())
+    core.set_user(get_task_user())
     dry_run = data['preview_only']
     app_id = job.target_version.application
     stats = collections.defaultdict(int)
@@ -347,7 +346,7 @@ def notify_compatibility(job, params):
 def notify_compatibility_chunk(users, job, data, **kw):
     log.info('[%s@%s] Sending notification mail for job %s.'
              % (len(users), notify_compatibility.rate_limit, job.pk))
-    set_user(get_task_user())
+    core.set_user(get_task_user())
     dry_run = data['preview_only']
     app_id = job.target_version.application
     stats = collections.defaultdict(int)

@@ -17,7 +17,7 @@ Now we don't clear the GUID so this migration is unneeded."""
 # addons = Addon.unfiltered.no_cache().filter(status=amo.STATUS_DELETED,
 #                                             guid__isnull=False)
 # user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
-# amo.set_user(user)
+# core.set_user(user)
 # for addon in addons:
 #     amo.log(amo.LOG.DELETE_ADDON, addon.pk, addon.guid, addon,
 #             created=addon.modified)

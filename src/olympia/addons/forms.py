@@ -9,9 +9,9 @@ from django.forms.formsets import formset_factory
 from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext)
 
-import commonware.log
 from quieter_formset.formset import BaseFormSet
 
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.fields import (
@@ -35,7 +35,7 @@ from olympia.users.models import UserEmailField
 from olympia.versions.models import Version
 
 
-log = commonware.log.getLogger('z.addons')
+log = olympia.core.logger.getLogger('z.addons')
 
 
 def clean_addon_slug(slug, instance):

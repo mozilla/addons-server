@@ -6,8 +6,7 @@ from os import path, unlink
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon, Persona
 from olympia.stats.models import ThemeUpdateCount
@@ -15,7 +14,7 @@ from olympia.stats.models import ThemeUpdateCount
 from . import get_date_from_file, save_stats_to_file
 
 
-log = commonware.log.getLogger('adi.themeupdatecount')
+log = olympia.core.logger.getLogger('adi.themeupdatecount')
 
 
 class Command(BaseCommand):

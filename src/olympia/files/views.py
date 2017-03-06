@@ -5,9 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
 from django.utils.translation import ugettext as _
 
-import commonware.log
 from cache_nuggets.lib import Message, Token
 
+import olympia.core.logger
 from olympia.access import acl
 from olympia.amo.decorators import json_view
 from olympia.amo.urlresolvers import reverse
@@ -18,7 +18,7 @@ from olympia.files.helpers import extract_file
 
 from . import forms
 
-log = commonware.log.getLogger('z.addons')
+log = olympia.core.logger.getLogger('z.addons')
 
 
 def setup_viewer(request, file_obj):

@@ -16,15 +16,15 @@ from django.utils.html import format_html
 from django.views import debug
 from django.views.decorators.cache import never_cache
 
-import commonware.log
+import olympia.core.logger
 import django_tables2 as tables
 import jinja2
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo import search
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonUser, CompatOverride
-from olympia.amo import messages, get_user
+from olympia.amo import messages
 from olympia.amo.decorators import (
     any_permission_required, json_view, login_required, post_required)
 from olympia.amo.mail import DevEmailBackend
@@ -54,7 +54,7 @@ from .models import (
     EmailPreviewTopic, ValidationJob, ValidationResultMessage,
     ValidationResultAffectedAddon)
 
-log = commonware.log.getLogger('z.zadmin')
+log = olympia.core.logger.getLogger('z.zadmin')
 
 
 @admin_required(reviewers=True)
@@ -168,7 +168,7 @@ def start_validation(request):
     form = BulkValidationForm(request.POST)
     if form.is_valid():
         job = form.save(commit=False)
-        job.creator = get_user()
+        job.creator = core.get_user()
         job.save()
         find_files(job)
         return redirect(reverse('zadmin.validation'))

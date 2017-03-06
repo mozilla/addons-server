@@ -4,28 +4,32 @@ their ACLs into the request.
 """
 from functools import partial
 
-import commonware.log
-
-from olympia import amo
+import olympia.core.logger
+from olympia import core
 from olympia.access import acl
 
-log = commonware.log.getLogger('z.access')
+
+log = olympia.core.logger.getLogger('z.access')
 
 
-class ACLMiddleware(object):
+class UserAndAddrMiddleware(object):
 
     def process_request(self, request):
-        """Attach authentication/permission helpers to request."""
+        """Attach authentication/permission helpers to request, and persist
+        user and remote addr in current thread."""
         request.check_ownership = partial(acl.check_ownership, request)
 
-        # Persist the user in the thread to make it accessible in log()
-        # statements etc.
+        # Persist the user and remote addr in the thread to make it accessible
+        # in log() statements etc.
         if request.user.is_authenticated():
-            amo.set_user(request.user)
+            core.set_user(request.user)
+        core.set_remote_addr(request.META.get('REMOTE_ADDR'))
 
     def process_response(self, request, response):
-        amo.set_user(None)
+        core.set_user(None)
+        core.set_remote_addr(None)
         return response
 
     def process_exception(self, request, exception):
-        amo.set_user(None)
+        core.set_user(None)
+        core.set_remote_addr(None)

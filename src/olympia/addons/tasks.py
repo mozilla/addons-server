@@ -1,5 +1,4 @@
 import hashlib
-import logging
 import os
 
 from django.conf import settings
@@ -8,6 +7,7 @@ from django.db import transaction
 
 from PIL import Image
 
+import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import (
     Addon, attach_tags, attach_translations, AppSupport, CompatOverride,
@@ -26,7 +26,7 @@ from olympia.versions.models import Version
 from . import cron  # noqa
 
 
-log = logging.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.task')
 
 
 @task

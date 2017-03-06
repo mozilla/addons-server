@@ -1,4 +1,3 @@
-import logging
 import socket
 import time
 
@@ -7,7 +6,10 @@ from django.core.management.base import BaseCommand
 
 import redis as redislib
 
-log = logging.getLogger('z.redis')
+import olympia.core.logger
+
+
+log = olympia.core.logger.getLogger('z.redis')
 
 # We process the keys in chunks of size CHUNK.
 CHUNK = 3000

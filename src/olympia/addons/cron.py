@@ -1,4 +1,3 @@
-import logging
 import os
 import time
 from datetime import datetime, timedelta
@@ -13,6 +12,7 @@ import multidb
 from celery.task.sets import TaskSet
 import waffle
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
@@ -23,8 +23,8 @@ from olympia.lib.es.utils import raise_if_reindex_in_progress
 from olympia.stats.models import UpdateCount
 
 
-log = logging.getLogger('z.cron')
-task_log = logging.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.cron')
+task_log = olympia.core.logger.getLogger('z.task')
 
 
 @cronjobs.register
@@ -221,7 +221,7 @@ def hide_disabled_files():
 def unhide_disabled_files():
     # Files are getting stuck in /guarded-addons for some reason. This job
     # makes sure guarded add-ons are supposed to be disabled.
-    log = logging.getLogger('z.files.disabled')
+    log = olympia.core.logger.getLogger('z.files.disabled')
     q = (Q(version__addon__status=amo.STATUS_DISABLED) |
          Q(version__addon__disabled_by_user=True))
     files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))

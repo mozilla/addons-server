@@ -4,16 +4,16 @@ from django import forms
 from django.forms import widgets
 from django.utils.translation import ugettext as _
 
-import commonware.log
 import jinja2
 
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.files.models import File
 from olympia.lib import happyforms
 from olympia.versions.models import Version
 
-log = commonware.log.getLogger('z.files')
+log = olympia.core.logger.getLogger('z.files')
 
 
 class FileSelectWidget(widgets.Select):

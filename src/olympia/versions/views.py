@@ -5,9 +5,9 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 
 import caching.base as caching
-import commonware.log
 from mobility.decorators import mobile_template
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, urlparams, render
@@ -24,7 +24,7 @@ from olympia.versions.models import Version
 PER_PAGE = 30
 addon_view = addon_view_factory(Addon.objects.valid)
 
-log = commonware.log.getLogger('z.versions')
+log = olympia.core.logger.getLogger('z.versions')
 
 
 def _version_list_qs(addon, beta=False):

@@ -13,9 +13,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.utils.translation import ugettext_lazy as _lazy, ugettext as _
 
 import caching.base as caching
-import commonware.log
 from django_statsd.clients import statsd
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo import messages
 from olympia.amo.decorators import (
@@ -37,7 +37,7 @@ from .models import (
     SPECIAL_SLUGS)
 from . import forms, tasks
 
-log = commonware.log.getLogger('z.collections')
+log = olympia.core.logger.getLogger('z.collections')
 
 
 @non_atomic_requests

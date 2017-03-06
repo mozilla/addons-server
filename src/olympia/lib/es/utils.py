@@ -1,6 +1,5 @@
 import os
 import datetime
-import logging
 from copy import deepcopy
 
 from django.core.management.base import CommandError
@@ -8,12 +7,13 @@ from django.conf import settings
 
 from elasticsearch import helpers
 
+import olympia.core.logger
 from olympia.amo import search as amo_search
 
 from .models import Reindexing
 
 
-log = logging.getLogger('z.es')
+log = olympia.core.logger.getLogger('z.es')
 
 # shortcut functions
 is_reindexing_amo = Reindexing.objects.is_reindexing_amo

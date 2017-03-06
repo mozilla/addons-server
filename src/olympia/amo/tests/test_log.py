@@ -2,7 +2,7 @@
 import json
 from datetime import datetime
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.users.models import UserProfile
@@ -12,7 +12,7 @@ class LogTest(TestCase):
     def setUp(self):
         super(LogTest, self).setUp()
         u = UserProfile.objects.create(username='foo')
-        amo.set_user(u)
+        core.set_user(u)
 
     def test_details(self):
         """
