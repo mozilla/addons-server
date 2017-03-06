@@ -51,6 +51,6 @@ six==1.10.0 \
 sphinxcontrib-httpdomain==1.5.0 \
     --hash=sha256:eab097505caee272ca6a313edb2cbc3d2103bb6bcc09923ef43054e238452f6b \
     --hash=sha256:b71d0cb398691a1aab0c74e26cdc0e4293dba6bb495f53fea6794bc14ea001ee
-sphinx-rtd-theme==0.2.0 \
-    --hash=sha256:4be979d356aeaf13d306db3ffd82d44efd8006e4fb280de3cffb09a7dc52955d \
-    --hash=sha256:ecdcb87cbed7c4cc3ff5fbf44a3afe2fb4cbc4eb8e4751cea3564832d225bd3b
+sphinx-rtd-theme==0.2.2 \
+    --hash=sha256:88ec8560fbcb471ee1041030979b48ceb28d21ccc21a97ef2e323243f715d863 \
+    --hash=sha256:0b038fa8e6214eb1502cd39452744bd4503452a077e206aef60ff6ebfee9808c
