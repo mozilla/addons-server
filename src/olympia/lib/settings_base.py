@@ -1243,6 +1243,7 @@ LOGGING = {
         'rdflib': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
+        'z.editors.auto_approve': {'handlers': ['syslog', 'console']},
         's.client': {'level': logging.INFO},
     },
 }
