@@ -44,14 +44,14 @@ def jwt_secret(base_url, variables):
         return os.getenv('JWT_SECRET')
 
 
-@pytest.fixture(scope='session')
-def initial_data(live_server):
+@pytest.fixture
+def gen_10_addons():
     from olympia.amo.tests import addon_factory
     from olympia.constants.applications import APPS
     from olympia.landfill.collection import generate_collection
     call_command('generate_addons', 10, app='firefox')
-    addon = addon_factory()
-    generate_collection(addon, APPS['firefox'])
+    # call_command('generate_themes', 6)
+    generate_collection(addon_factory(), APPS['firefox'])
 
 
 @pytest.fixture
@@ -70,7 +70,7 @@ def create_superuser(transactional_db, live_server, base_url, tmpdir):
     )
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture
 def ui_addon():
     import random
 
@@ -83,7 +83,6 @@ def ui_addon():
     from olympia.constants.applications import APPS
     from olympia.reviews.models import Review
     from olympia.landfill.collection import generate_collection
-
 
     cat1 = Category.from_static_category(
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
@@ -114,11 +113,6 @@ def ui_addon():
         developer_comments='This is a testing addon, used within pytest.',
         is_experimental=True,
     )
-    static_category = random.choice(
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION].values())
-    category, _ = Category.objects.get_or_create(
-        id=static_category.id, defaults=static_category.__dict__)
-    AddonCategory.objects.create(addon=addon, category=category)
     first_preview = Preview.objects.create(addon=addon, position=1)
     Review.objects.create(addon=addon, rating=5, user=user_factory())
     Review.objects.create(addon=addon, rating=3, user=user_factory())
@@ -132,6 +126,7 @@ def ui_addon():
     version_factory(addon=addon, file_kw={'status': amo.STATUS_BETA},
                     version='1.1beta')
     generate_collection(addon, APPS['firefox'])
+    addon.save()
 
     print('Create custom addon for testing successfully')
 
@@ -166,7 +161,7 @@ def user(transactional_db, create_superuser, live_server, base_url,
     return user
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def live_server(request, initial_data, ui_addon):
     """
         This fixture overrides the live_server fixture provided by
@@ -205,7 +200,7 @@ def live_server(request, initial_data, ui_addon):
     server = live_server_helper.LiveServer(addr)
     request.addfinalizer(server.stop)
     yield server
-    server.stop()
+    # server.stop()
 
 
 @pytest.fixture
