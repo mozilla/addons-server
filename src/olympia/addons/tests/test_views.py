@@ -26,7 +26,7 @@ from olympia.addons.models import (
     Charity, Persona)
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.files.models import WebextPermission
+from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.paypal.tests.test import other_error
 from olympia.stats.models import Contribution
 from olympia.users.helpers import users_list
@@ -748,6 +748,9 @@ class TestDetailPage(TestCase):
         WebextPermission.objects.create(file=file_, permissions=[
             u'http://*/*', u'<all_urls>', u'bookmarks',
             u'made up permission', u'https://google.com/'])
+        WebextPermissionDescription.objects.create(
+            name='bookmarks', description='Read and modify bookmarks')
+
         response = self.client.get(self.url)
         doc = pq(response.content)
         # The link next to the button

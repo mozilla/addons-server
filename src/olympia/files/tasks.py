@@ -1,9 +1,17 @@
 import logging
+import re
+
+from django.utils import translation
+
+import requests
+from requests.exceptions import RequestException
 
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
-from olympia.files.models import File, WebextPermission
+from olympia.files.models import (
+    File, WebextPermission, WebextPermissionDescription)
 from olympia.files.utils import parse_xpi
+from olympia.translations.models import Translation
 
 
 log = logging.getLogger('z.files.task')
@@ -29,3 +37,52 @@ def extract_webext_permissions(ids, **kw):
                     defaults={'permissions': permissions}, file=file_)
         except Exception, err:
             log.error('Failed to extract: %s, error: %s' % (file_.pk, err))
+
+
+WEBEXTPERMS_DESCRIPTION_REGEX = r'^webextPerms\.description\.(.+)=(.+)'
+
+
+@task
+@write
+def update_webext_descriptions(url, locale='en-US', create=True, **kw):
+    class DummyContextManager(object):
+        def __enter__(self):
+            pass
+
+        def __exit__(*x):
+            pass
+
+    log.info('Updating webext permission descriptions in [%s] from %s' %
+             (locale, url))
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+    except RequestException as e:
+        log.warn('Error retrieving %s: %s' % (url, e))
+        return False
+
+    # We only need to activate the locale for creating new permission objects.
+    context = translation.override(locale) if create else DummyContextManager()
+    with context:
+        for line in response.text.splitlines():
+            match = re.match(WEBEXTPERMS_DESCRIPTION_REGEX, line)
+            if match:
+                (perm, description) = match.groups()
+                if create:
+                    log.info(u'Adding permission "%s" = "%s"' %
+                             (perm, description))
+                    WebextPermissionDescription.objects.update_or_create(
+                        name=perm, defaults={'description': description})
+                else:
+                    log.info(u'Updating permission "%s" = "%s" for [%s]' %
+                             (perm, description, locale))
+                    try:
+                        perm_obj = WebextPermissionDescription.objects.get(
+                            name=perm)
+                        Translation.objects.update_or_create(
+                            id=perm_obj.description_id, locale=locale.lower(),
+                            defaults={'localized_string': description})
+                    except WebextPermissionDescription.DoesNotExist:
+                        log.warn('No "%s" permission found to update with '
+                                 '[%s] locale' % (perm, locale))
+    return True
