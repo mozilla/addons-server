@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-02 18:56+0000\n"
+"PO-Revision-Date: 2017-03-07 14:10+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -3800,11 +3800,11 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Tilgå dine data for alle websteder"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks"
-msgstr ""
+msgstr "Læse og ændre bogmærker"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Get data from the clipboard"
