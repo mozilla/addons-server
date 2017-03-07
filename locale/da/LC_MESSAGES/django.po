@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-07 14:10+0000\n"
+"PO-Revision-Date: 2017-03-07 14:30+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -3820,33 +3820,31 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your location"
-msgstr ""
+msgstr "Se din position"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Access browsing history"
-msgstr "%s versionshistorik"
+msgstr "Tilgå browserhistorik"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Exchange messages with programs other than Firefox"
-msgstr ""
+msgstr "Udveksle beskeder med andre programmer end Firefox"
 
 #: src/olympia/constants/webext_permissions.py
-#, fuzzy
 msgid "Display notifications to you"
-msgstr "Brugeradvisering"
+msgstr "Vise notifikationer"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access recently closed tabs"
-msgstr ""
+msgstr "Tilgå nyligt lukkede faneblade"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser tabs"
-msgstr ""
+msgstr "Tilgå faneblade"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access browser activity during navigation"
-msgstr ""
+msgstr "Tilgå browser-aktivitet under navigation"
 
 #: src/olympia/core/apps.py
 msgid "Core"
