@@ -456,7 +456,7 @@ class BaseCompatFormSet(BaseModelFormSet):
                         [{'application': a.id} for a in apps])
         self.extra = len(amo.APP_GUIDS) - len(self.forms)
 
-        # After these changes, the foms need to be rebuilt. `forms`
+        # After these changes, the forms need to be rebuilt. `forms`
         # is a cached property, so we delete the existing cache and
         # ask for a new one to be built.
         del self.forms
@@ -644,26 +644,13 @@ class FileForm(happyforms.ModelForm):
                 plats.append([pid, amo.PLATFORMS[pid].name])
             self.fields['platform'].choices = plats
 
-    def clean_DELETE(self):
-        if any(self.errors):
-            return
-        delete = self.cleaned_data['DELETE']
-
-        if (delete and not self.instance.version.is_all_unreviewed):
-            error = _('You cannot delete a file once the review process has '
-                      'started.  You must delete the whole version.')
-            raise forms.ValidationError(error)
-
-        return delete
-
 
 class BaseFileFormSet(BaseModelFormSet):
 
     def clean(self):
         if any(self.errors):
             return
-        files = [f.cleaned_data for f in self.forms
-                 if not f.cleaned_data.get('DELETE', False)]
+        files = [f.cleaned_data for f in self.forms]
 
         if self.forms and 'platform' in self.forms[0].fields:
             platforms = [f['platform'] for f in files]
@@ -679,7 +666,7 @@ class BaseFileFormSet(BaseModelFormSet):
 
 
 FileFormSet = modelformset_factory(File, formset=BaseFileFormSet,
-                                   form=FileForm, can_delete=True, extra=0)
+                                   form=FileForm, can_delete=False, extra=0)
 
 
 class DescribeForm(AddonFormBase):
