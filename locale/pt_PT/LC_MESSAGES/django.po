@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-06 04:06+0000\n"
+"PO-Revision-Date: 2017-03-07 03:38+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -11247,7 +11247,7 @@ msgstr "De tempo a tempo, a Mozilla poderá enviar-lhe um email acerca dos próx
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "A Mozilla reserva o direito de o contactar individualmente acerca de preocupações específicas com os seus extras hospedados."
+msgstr "A Mozilla reserva o direito de lhe contactar individualmente acerca de preocupações específicas com os seus extras hospedados."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Admin"
