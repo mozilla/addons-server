@@ -2579,12 +2579,18 @@ body.windows .install-shell .platform.mac {
   img {
     height: 1.1em;
     margin-right: 0.25em;
+    .html-rtl & {
+      margin-left: 0.25em;
+    }
   }
 }
 
 #webext-permissions {
   ul {
     margin-left: 1.5em;
+    .html-rtl & {
+      margin-right: 1.5em;
+    }
     li {
       list-style: circle;
       details {
