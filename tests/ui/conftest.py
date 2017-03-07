@@ -95,6 +95,26 @@ def live_server(request):
         This fixture overrides the live_server fixture provided by
         pytest_django. live_server allows us to create a running version of the
         addons django application within pytest for testing.
+
+        Christopher Grebs:
+        From what I found out was that the `live_server` fixture (in our setup,
+        couldn't reproduce in a fresh project) apparently starts up the
+        LiveServerThread way too early before pytest-django configures the
+        settings correctly.
+
+        That resulted in the LiveServerThread querying the 'default' database
+        which was different from what the other fixtures and tests were using
+        which resulted in the problem that the just created api keys could not
+        be found in the api methods in the live-server.
+
+        I worked around that by implementing the live_server fixture ourselfs
+        and make it function-scoped so that it now runs in a proper
+        database-transaction.
+
+        This is a HACK and I'll work on a more permanent solution but for now
+        it should be enough to continue working on porting tests...
+
+        Also investigating if there are any problems in pytest-django directly.
     """
 
     request.getfixturevalue('transactional_db')

@@ -1,24 +1,9 @@
-import os
 import pytest
 
 from pages.desktop.home import Home
-from seleniumlogin import force_login
 
 
-@pytest.mark.django_db
-@pytest.mark.skipif('localhost' not in os.getenv('PYTEST_BASE_URL'),
-                    reason='No force login for dev, prod testing')
-def test_login(base_url, selenium, user, force_user_login):
-    """User can login"""
-    page = Home(selenium, base_url).open()
-    assert not page.logged_in
-    force_login(force_user_login, selenium, base_url)
-    assert page.logged_in
-
-
-@pytest.mark.django_db
-@pytest.mark.skipif('dev' not in os.getenv('PYTEST_BASE_URL'),
-                    reason='No UI login for live_server testing')
+@pytest.mark.skip(reason='Live Server login currently not functioning.')
 def test_login_ui(base_url, selenium, user, force_user_login):
     """User can login"""
     page = Home(selenium, base_url).open()
