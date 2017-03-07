@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-07 07:09+0000\n"
+"PO-Revision-Date: 2017-03-07 13:21+0000\n"
 "Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -11156,7 +11156,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "User since"
-msgstr "থেকে ব্যবহারকারী"
+msgstr "কবে থেকে ব্যবহারকারী"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Time of last login"
