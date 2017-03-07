@@ -22,7 +22,7 @@ from olympia.addons.models import Addon
 from olympia.applications.models import AppVersion
 from olympia.constants.webext_permissions import ALL_URLS_PERMISSION
 from olympia.files.models import (
-    EXTENSIONS, File, FileUpload, FileValidation, nfd_str,
+    EXTENSIONS, File, FileUpload, FileValidation, nfd_str, WebextPermission,
     track_file_status_change,
 )
 from olympia.files.helpers import copyfileobj
@@ -282,6 +282,21 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             u'<details><summary>Access your data on various websites'
             u'</summary><ul><li>https://mozilla.org/</li>'
             u'<li>https://mozillians.org/</li></ul></details>')
+
+    def test_webext_permissions_list_string_only(self):
+        file_ = File.objects.get(pk=67442)
+        file_.update(is_webextension=True)
+        permissions = [u'iamstring',
+                       u'iamnutherstring',
+                       {u'iamadict': u'hmm'},
+                       [u'iamalistinalist', u'indeedy'],
+                       13,
+                       u'laststring!']
+        WebextPermission.objects.create(permissions=permissions, file=file_)
+        del file_.webext_permissions_list
+        # Strings only plz.
+        assert file_.webext_permissions_list == [
+            u'iamstring', u'iamnutherstring', u'laststring!']
 
 
 class TestTrackFileStatusChange(TestCase):

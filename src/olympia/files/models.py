@@ -413,7 +413,9 @@ class File(OnChangeMixin, ModelBase):
         if not self.is_webextension:
             return []
         try:
-            return list(self._webext_permissions.permissions)
+            # Filter out any errant non-strings included in the manifest JSON.
+            return [p for p in self._webext_permissions.permissions
+                    if isinstance(p, basestring)]
         except WebextPermission.DoesNotExist:
             return []
 
