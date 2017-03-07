@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-07 14:30+0000\n"
+"PO-Revision-Date: 2017-03-07 14:32+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -3816,7 +3816,7 @@ msgstr ""
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's download history"
-msgstr ""
+msgstr "Hente filer, samt læse og ændre browserens filhentningshistorik"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your location"
