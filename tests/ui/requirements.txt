@@ -1,5 +1,3 @@
-# If using live_server use ui-test.txt from project requirements
-
 django-cache-machine==0.9.1 \
     --hash=sha256:b377709bfa60ca483645c29c77a673550cba4267fa2e06eee1a0f2f634619506
 django-mobility==0.1 \
