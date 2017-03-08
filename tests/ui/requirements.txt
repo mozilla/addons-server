@@ -2,10 +2,6 @@ django-cache-machine==0.9.1 \
     --hash=sha256:b377709bfa60ca483645c29c77a673550cba4267fa2e06eee1a0f2f634619506
 django-mobility==0.1 \
     --hash=sha256:b925e1a4f40a93fd81841ef9a7222b7053da46245d2fc8764d53420dcffd014d
-django-selenium-login==1.0.2 \
-    --hash=sha256:15029a4d5a4b6d7ac1bb2f52cf8c8cf9d332a88127978f20ffba14e8ee0d988a
-django_waffle==0.11.1 \
-    --hash=sha256:68d246e6f5562309f05c2743ae536b2569933e7d8ed65ecf3606e7a780968b68
 fxapom==1.9.1 \
     --hash=sha256:5f22d614456d8c4221647b2f69a9d13476af08c0cffb65b440cdf5f74afe465d
 hawkauthlib==0.1.1 \
@@ -14,10 +10,6 @@ jingo-minify==0.6.0 \
     --hash=sha256:5b804282fb5b00738a279633b2f1943aefbc0b9e3c5b8c12eeade6d96ce262f0
 olefile==0.44 \
     --hash=sha256:61f2ca0cd0aa77279eb943c07f607438edf374096b66332fae1ee64a6f0f73ad
-pytest_base_url==1.2.0 \
-    --hash=sha256:248dae2e3e7bb2c69d10101724b68fe756853e4ece4d9feb8bf09b38c027f65b
-pytest_html==1.14.0 \
-    --hash=sha256:fcd90a13d41abcc69a0388bf5da8b81c78ed07f92789f8058a1b9da6d2cedb59
 PyBrowserID==0.11.0 \
     --hash=sha256:bf72f57eaa4d2ea36c6888e868f49e588c7b9c0b78dfbf2bc79fee93e97f39d2
 PyFxA==0.3.0 \
@@ -29,6 +21,10 @@ PyPOM==1.1.1 \
     --hash=sha256:4d6c9b4148ef88ec57a569576e29a34d8e80eaaf0a7e347630fd216adee4d75f
 pytest==3.0.6 \
     --hash=sha256:da0ab50c7eec0683bc24f1c1137db1f4111752054ecdad63125e7ec71316b813
+pytest_base_url==1.2.0 \
+    --hash=sha256:248dae2e3e7bb2c69d10101724b68fe756853e4ece4d9feb8bf09b38c027f65b
+pytest_base_url==1.2.0 \
+    --hash=sha256:248dae2e3e7bb2c69d10101724b68fe756853e4ece4d9feb8bf09b38c027f65b
 pytest-instafail==0.3.0 \
     --hash=sha256:b4d5fc3ca81e530a8d0e15a7771dc14b06fc9a0930c4b3909a7f4527040572c3
 pytest-metadata==1.3.0 \
