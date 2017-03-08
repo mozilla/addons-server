@@ -99,14 +99,11 @@ and email address and that's it.
                 'api-secret': apikey.secret
             }))
 
-        if options.get('save_api_credentials', False):
-            # json object for variables file
-            # set hostname to stdin or env variable
-            if options.get('hostname', False):
-                hostname = options.get('hostname')
-            else:
-                hostname = os.environ['PYTEST_BASE_URL']
+        hostname = options.get('hostname', os.environ['PYTEST_BASE_URL'])
+        # json object for variables file
+        # set hostname to stdin or env variable
 
+        if hostname:
             credentials = {
                 'api': {
                     hostname: {
