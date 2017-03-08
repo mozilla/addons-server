@@ -99,25 +99,27 @@ and email address and that's it.
                 'api-secret': apikey.secret
             }))
 
-        hostname = options.get('hostname', os.environ['PYTEST_BASE_URL'])
-        # json object for variables file
-        # set hostname to stdin or env variable
+        if options.get('save_api_credentials', False):
+            hostname = options.get('hostname', False) or os.environ[
+                'PYTEST_BASE_URL']
+            # json object for variables file
+            # set hostname to stdin or env variable
 
-        if hostname:
-            credentials = {
-                'api': {
-                    hostname: {
-                        'username': user.username,
-                        'jwt_issuer': apikey.key,
-                        'jwt_secret': apikey.secret,
+            if hostname:
+                credentials = {
+                    'api': {
+                        hostname: {
+                            'username': user.username,
+                            'jwt_issuer': apikey.key,
+                            'jwt_secret': apikey.secret,
+                        }
                     }
                 }
-            }
-            options.copy
+                options.copy
 
-            # write to json file
-            with open(options.get('save_api_credentials'), 'w') as outfile:
-                json.dump(credentials, outfile, indent=2)
+                # write to json file
+                with open(options.get('save_api_credentials'), 'w') as outfile:
+                    json.dump(credentials, outfile, indent=2)
 
     def get_value(self, field_name):
         field = get_user_model()._meta.get_field(field_name)
