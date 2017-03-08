@@ -35,8 +35,8 @@ pytest-variables==1.5 \
     --hash=sha256:6784a2bf8c6c22c7d04a0e43db754178442a3ae8c924fc7b9d9e351b7cb1a3c8
 pytest-xdist==1.15.0 \
     --hash=sha256:6238395f8bd050f9288a3b10f34330edece80f4424cf2b4204d6e7d622f0f00b
-selenium==3.0.2 \
-    --hash=sha256:33be5a03d87bf0e6c7a57d3f9bba5314cc66ce4acd44f003465386af2f5a7b4f
+selenium==3.3.0 \
+    --hash=sha256:acc1b6867ba1e6fc75c709dcfccc1447b29e961fcaea3bba675e9ad719e8b905
 WebOb==1.7.1 \
     --hash=sha256:e56ba5abf09f7ab4360d34acf5d4c21ae4420e710906c6e51daad4a431743510
 zope.component==4.3.0 \
