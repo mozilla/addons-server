@@ -13,6 +13,15 @@ from pytest_django import live_server_helper
 
 
 @pytest.fixture
+def local_base_url(live_server):
+    # If localhost is set as base_url, run the live_server
+    if 'localhost' in os.environ.get('PYTEST_BASE_URL'):
+        return live_server.url
+    else:
+        return os.environ.get('PYTEST_BASE_URL')
+
+
+@pytest.fixture
 def capabilities(capabilities):
     # In order to run these tests in Firefox 48, marionette is required
     capabilities['marionette'] = True
@@ -25,7 +34,7 @@ def fxa_account(base_url):
     return FxATestAccount(url)
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def jwt_issuer(base_url, variables):
     try:
         hostname = urlparse.urlsplit(base_url).hostname
@@ -34,7 +43,7 @@ def jwt_issuer(base_url, variables):
         return os.getenv('JWT_ISSUER')
 
 
-@pytest.fixture
+@pytest.fixture(scope='session')
 def jwt_secret(base_url, variables):
     try:
         hostname = urlparse.urlsplit(base_url).hostname
@@ -44,12 +53,13 @@ def jwt_secret(base_url, variables):
 
 
 @pytest.fixture
-def initial_data(transactional_db, live_server):
+def initial_data(transactional_db):
     call_command('generate_addons', 10, app='firefox')
 
 
 @pytest.fixture
-def create_superuser(transactional_db, live_server, base_url, tmpdir):
+def create_superuser(
+        transactional_db, live_server, base_url, tmpdir, variables):
     create_switch('super-create-accounts')
     call_command('loaddata', 'initial.json')
 
@@ -63,16 +73,12 @@ def create_superuser(transactional_db, live_server, base_url, tmpdir):
         hostname=urlparse.urlsplit(base_url).hostname
     )
 
-
-@pytest.fixture
-def force_user_login():
-    from olympia.users.models import UserProfile
-    user = UserProfile.objects.get(username='uitest')
-    return user
+    with tmpdir.join('variables.json').open() as f:
+        variables.update(json.load(f))
 
 
 @pytest.fixture
-def user(transactional_db, create_superuser, live_server, base_url,
+def user(transactional_db, create_superuser, base_url,
          fxa_account, jwt_token):
     url = '{base_url}/api/v3/accounts/super-create/'.format(base_url=base_url)
 
@@ -138,10 +144,3 @@ def jwt_token(base_url, jwt_issuer, jwt_secret):
         'iat': datetime.datetime.utcnow(),
         'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=30)}
     return jwt.encode(payload, jwt_secret, algorithm='HS256')
-
-
-@pytest.fixture
-def variables(tmpdir, variables):
-    with tmpdir.join('variables.json').open() as f:
-        variables.update(json.load(f))
-        return variables

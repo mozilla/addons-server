@@ -23,8 +23,8 @@ pytest==3.0.6 \
     --hash=sha256:da0ab50c7eec0683bc24f1c1137db1f4111752054ecdad63125e7ec71316b813
 pytest_base_url==1.2.0 \
     --hash=sha256:248dae2e3e7bb2c69d10101724b68fe756853e4ece4d9feb8bf09b38c027f65b
-pytest_base_url==1.2.0 \
-    --hash=sha256:248dae2e3e7bb2c69d10101724b68fe756853e4ece4d9feb8bf09b38c027f65b
+pytest_html==1.14.0 \
+    --hash=sha256:fcd90a13d41abcc69a0388bf5da8b81c78ed07f92789f8058a1b9da6d2cedb59
 pytest-instafail==0.3.0 \
     --hash=sha256:b4d5fc3ca81e530a8d0e15a7771dc14b06fc9a0930c4b3909a7f4527040572c3
 pytest-metadata==1.3.0 \
