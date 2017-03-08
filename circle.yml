@@ -19,7 +19,7 @@ dependencies:
 
 test:
   override:
-    - echo "Beep Boop"
+    - echo "UI Tests are run on Travis CI. https://travis-ci.org/mozilla/addons-server/"
 
 deployment:
   latest:
