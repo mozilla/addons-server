@@ -54,7 +54,7 @@ def cleanup(master, slave):
             drop = [k for k, size in zip(ks, pipe.execute())
                     if 0 < size < MIN or size > MAX]
         except RedisError, err:
-            log.warn('ignoring pipe.execute() error: {}'.format(err))
+            log.warning('ignoring pipe.execute() error: {}'.format(err))
             continue
         num += len(ks)
         percent = round(float(num) / total[0] * 100, 1) if total[0] else 0
@@ -66,7 +66,7 @@ def cleanup(master, slave):
         try:
             pipe.execute()
         except RedisError, err:
-            log.warn('ignoring pipe.execute() error: {}'.format(err))
+            log.warning('ignoring pipe.execute() error: {}'.format(err))
             continue
         time.sleep(1)  # Poor man's rate limiting.
 

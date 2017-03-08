@@ -58,7 +58,7 @@ def update_webext_descriptions(url, locale='en-US', create=True, **kw):
         response = requests.get(url)
         response.raise_for_status()
     except RequestException as e:
-        log.warn('Error retrieving %s: %s' % (url, e))
+        log.warning('Error retrieving %s: %s' % (url, e))
         return False
 
     # We only need to activate the locale for creating new permission objects.
@@ -83,6 +83,6 @@ def update_webext_descriptions(url, locale='en-US', create=True, **kw):
                             id=perm_obj.description_id, locale=locale.lower(),
                             defaults={'localized_string': description})
                     except WebextPermissionDescription.DoesNotExist:
-                        log.warn('No "%s" permission found to update with '
-                                 '[%s] locale' % (perm, locale))
+                        log.warning('No "%s" permission found to update with '
+                                    '[%s] locale' % (perm, locale))
     return True
