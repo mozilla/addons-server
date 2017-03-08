@@ -1,5 +1,4 @@
 import json
-import logging
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
@@ -14,6 +13,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from waffle.decorators import waffle_switch
 
+import olympia.core.logger
 from olympia import amo
 from olympia.activity.serializers import ActivityLogSerializer
 from olympia.activity.tasks import process_email
@@ -74,7 +74,7 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-log = logging.getLogger('z.amo.activity')
+log = olympia.core.logger.getLogger('z.amo.activity')
 
 
 class EmailCreationPermission(object):

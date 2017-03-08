@@ -8,7 +8,6 @@ import datetime
 from django.conf import settings
 from django.core.cache import cache
 
-import commonware.log
 from celery import Celery
 from celery.signals import task_failure, task_postrun, task_prerun
 from celery.task.sets import TaskSet
@@ -16,10 +15,11 @@ from django_statsd.clients import statsd
 from raven import Client
 from raven.contrib.celery import register_signal, register_logger_signal
 
+import olympia.core.logger
 from olympia.amo.utils import chunked, utc_millesecs_from_epoch
 
 
-log = commonware.log.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.task')
 
 
 app = Celery('olympia')

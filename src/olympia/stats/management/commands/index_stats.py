@@ -1,10 +1,10 @@
-import logging
 from datetime import date, timedelta
 from optparse import make_option
 
 from django.core.management.base import BaseCommand
 from django.db.models import Max, Min
 
+import olympia.core.logger
 from olympia.amo.celery import create_subtasks
 from olympia.stats.models import (
     CollectionCount, DownloadCount, ThemeUserCount, UpdateCount)
@@ -14,7 +14,7 @@ from olympia.stats.tasks import (
     index_update_counts)
 
 
-log = logging.getLogger('z.stats')
+log = olympia.core.logger.getLogger('z.stats')
 
 # Number of days of stats to process in one chunk if we're indexing everything.
 STEP = 5

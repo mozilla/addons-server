@@ -6,8 +6,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.accounts.views import fxa_error_message
 from olympia.amo.fields import HttpHttpsOnlyURLField
@@ -24,7 +23,7 @@ from .widgets import (
     RequiredTextarea)
 
 
-log = commonware.log.getLogger('z.users')
+log = olympia.core.logger.getLogger('z.users')
 admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
 
 

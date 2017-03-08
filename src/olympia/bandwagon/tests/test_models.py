@@ -3,7 +3,7 @@ import random
 
 import mock
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.tests import TestCase
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
@@ -34,7 +34,7 @@ class TestCollections(TestCase):
         super(TestCollections, self).setUp()
         self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
-        amo.set_user(self.user)
+        core.set_user(self.user)
 
     def test_description(self):
         c = Collection.objects.create(

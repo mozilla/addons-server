@@ -6,8 +6,7 @@ from os import path, unlink
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-import commonware.log
-
+import olympia.core.logger
 from olympia.addons.models import Addon
 from olympia.files.models import File
 from olympia.stats.models import update_inc, DownloadCount
@@ -16,7 +15,7 @@ from olympia.zadmin.models import DownloadSource
 from . import get_date_from_file, save_stats_to_file
 
 
-log = commonware.log.getLogger('adi.downloadcountsfromfile')
+log = olympia.core.logger.getLogger('adi.downloadcountsfromfile')
 
 
 def is_valid_source(src, fulls, prefixes):

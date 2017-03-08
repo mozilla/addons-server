@@ -5,9 +5,9 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
-import commonware.log
 from django_statsd.clients import statsd
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.utils import clean_nl, has_links, slug_validator, slugify
 from olympia.lib import happyforms
@@ -28,7 +28,7 @@ collection_types = (
     if k not in (amo.COLLECTION_ANONYMOUS, amo.COLLECTION_RECOMMENDED))
 
 
-log = commonware.log.getLogger('z.collections')
+log = olympia.core.logger.getLogger('z.collections')
 
 
 class AdminForm(happyforms.Form):

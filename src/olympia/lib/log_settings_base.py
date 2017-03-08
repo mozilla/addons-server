@@ -4,7 +4,7 @@ import logging.handlers
 
 from django.conf import settings
 
-import commonware.log
+import olympia.core.logger
 
 
 base_fmt = ('%(name)s:%(levelname)s %(message)s '
@@ -14,24 +14,24 @@ error_fmt = ('%(name)s:%(levelname)s %(request_path)s %(message)s '
 
 formatters = {
     'debug': {
-        '()': commonware.log.Formatter,
+        '()': olympia.core.logger.Formatter,
         'datefmt': '%H:%M:%S',
         'format': '%(asctime)s ' + base_fmt,
     },
     'prod': {
-        '()': commonware.log.Formatter,
+        '()': olympia.core.logger.Formatter,
         'datefmt': '%H:%M:%S',
         'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
                    % (settings.HOSTNAME, settings.SYSLOG_TAG, base_fmt)),
     },
     'prod2': {
-        '()': commonware.log.Formatter,
+        '()': olympia.core.logger.Formatter,
         'datefmt': '%H:%M:%S',
         'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
                    % (settings.HOSTNAME, settings.SYSLOG_TAG2, base_fmt)),
     },
     'error': {
-        '()': commonware.log.Formatter,
+        '()': olympia.core.logger.Formatter,
         'datefmt': '%H:%M:%S',
         'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
                    % (settings.HOSTNAME, settings.SYSLOG_TAG, error_fmt)),

@@ -7,9 +7,8 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.db import connection, transaction
 
-import commonware.log
-
-from olympia.amo import get_user, set_user
+import olympia.core.logger
+from olympia import core
 from olympia.accounts.utils import redirect_for_login
 from olympia.users.utils import get_task_user
 
@@ -17,7 +16,7 @@ from . import models as context
 from .utils import AMOJSONEncoder
 
 
-task_log = commonware.log.getLogger('z.task')
+task_log = olympia.core.logger.getLogger('z.task')
 
 
 def login_required(f=None, redirect=True):
@@ -209,12 +208,12 @@ def set_task_user(f):
     """Sets the user to be the task user, then unsets it."""
     @functools.wraps(f)
     def wrapper(*args, **kw):
-        old_user = get_user()
-        set_user(get_task_user())
+        old_user = core.get_user()
+        core.set_user(get_task_user())
         try:
             result = f(*args, **kw)
         finally:
-            set_user(old_user)
+            core.set_user(old_user)
         return result
     return wrapper
 

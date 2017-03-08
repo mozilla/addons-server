@@ -1,10 +1,9 @@
-import commonware.log
-
+import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.tags.models import Tag
 
 
-task_log = commonware.log.getLogger('z.task')
+task_log = olympia.core.logger.getLogger('z.task')
 
 
 @task(rate_limit='10/m')

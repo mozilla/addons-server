@@ -1,11 +1,9 @@
 """
 Miscellaneous helpers that make Django compatible with AMO.
 """
-import threading
-
-import commonware.log
 from product_details import product_details
 
+import olympia.core.logger
 from olympia.constants.applications import *  # noqa
 from olympia.constants.base import *  # noqa
 from olympia.constants.editors import *  # noqa
@@ -19,18 +17,7 @@ from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITOR_REVIEW_ACTION,  # noqa
                   LOG_REVIEW_QUEUE_DEVELOPER, LOG_REVIEW_EMAIL_USER, log)
 
 
-logger_log = commonware.log.getLogger('z.amo')
-
-_locals = threading.local()
-_locals.user = None
-
-
-def get_user():
-    return getattr(_locals, 'user', None)
-
-
-def set_user(user):
-    _locals.user = user
+logger_log = olympia.core.logger.getLogger('z.amo')
 
 
 def cached_property(*args, **kw):

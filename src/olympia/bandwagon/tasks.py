@@ -1,9 +1,9 @@
-import logging
 import math
 
 from django.core.files.storage import default_storage as storage
 from django.db.models import Count
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on
@@ -16,7 +16,7 @@ from .indexers import CollectionIndexer
 from .models import (
     Collection, CollectionAddon, CollectionVote, CollectionWatcher)
 
-log = logging.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.task')
 
 
 @task

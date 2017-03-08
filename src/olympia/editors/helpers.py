@@ -8,12 +8,12 @@ from django.utils import translation
 from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext)
 
-import commonware.log
 import django_tables2 as tables
 import jinja2
 import waffle
 from jingo import register
 
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
@@ -282,7 +282,7 @@ class ViewFullReviewQueueTable(EditorQueueTable):
         model = ViewFullReviewQueue
 
 
-log = commonware.log.getLogger('z.mailer')
+log = olympia.core.logger.getLogger('z.mailer')
 
 
 PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_NULL,

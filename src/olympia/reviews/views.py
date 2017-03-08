@@ -12,7 +12,6 @@ from django.utils.encoding import force_text
 from django.utils.http import urlquote
 from django.utils.translation import ugettext as _
 
-import commonware.log
 from mobility.decorators import mobile_template
 from rest_framework import serializers
 from rest_framework.decorators import detail_route
@@ -21,6 +20,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from waffle.decorators import waffle_switch
 
+import olympia.core.logger
 from olympia.amo import messages
 from olympia.amo.decorators import (
     json_view, login_required, post_required, restricted_content)
@@ -41,7 +41,7 @@ from .serializers import ReviewSerializer, ReviewSerializerReply
 from . import forms
 
 
-log = commonware.log.getLogger('z.reviews')
+log = olympia.core.logger.getLogger('z.reviews')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 

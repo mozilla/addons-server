@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
-import commonware.log
-
+import olympia.core.logger
 from olympia.access.models import Group, GroupUser
 from olympia.users.models import UserProfile
 
@@ -10,7 +9,7 @@ class Command(BaseCommand):
     help = ('Remove a user from a group. Syntax: \n'
             '    ./manage.py removeuserfromgroup <user_id|email> <group_id>')
 
-    log = commonware.log.getLogger('z.users')
+    log = olympia.core.logger.getLogger('z.users')
 
     def handle(self, *args, **options):
         try:

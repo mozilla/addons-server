@@ -13,9 +13,8 @@ from django.utils import translation
 
 from mock import Mock, patch
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.tests import addon_factory, TestCase, version_factory
-from olympia.amo import set_user
 from olympia.amo.helpers import absolutify, user_media_url
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
@@ -193,7 +192,7 @@ class TestAddonManager(TestCase):
 
     def setUp(self):
         super(TestAddonManager, self).setUp()
-        set_user(None)
+        core.set_user(None)
         self.addon = Addon.objects.get(pk=3615)
 
     def test_managers_public(self):
@@ -567,7 +566,7 @@ class TestAddonModels(TestCase):
 
     def _delete(self, addon_id):
         """Test deleting add-ons."""
-        set_user(UserProfile.objects.last())
+        core.set_user(UserProfile.objects.last())
         addon_count = Addon.unfiltered.count()
         addon = Addon.objects.get(pk=addon_id)
         guid = addon.guid
@@ -1223,7 +1222,7 @@ class TestAddonModels(TestCase):
 
     def test_update_logs(self):
         addon = Addon.objects.get(id=3615)
-        set_user(UserProfile.objects.all()[0])
+        core.set_user(UserProfile.objects.all()[0])
         addon.versions.all().delete()
 
         entries = ActivityLog.objects.all()
@@ -1339,11 +1338,11 @@ class TestAddonModels(TestCase):
     def test_delete_by(self):
         try:
             user = Addon.objects.get(id=3615).authors.all()[0]
-            set_user(user)
+            core.set_user(user)
             self.delete()
             assert 'DELETED BY: 55021' in mail.outbox[0].body
         finally:
-            set_user(None)
+            core.set_user(None)
 
     def test_delete_by_unknown(self):
         self.delete()
@@ -1840,7 +1839,7 @@ class TestBackupVersion(TestCase):
         super(TestBackupVersion, self).setUp()
         self.version_1_2_0 = 105387
         self.addon = Addon.objects.get(pk=1865)
-        set_user(None)
+        core.set_user(None)
 
     def setup_new_version(self):
         for version in Version.objects.filter(pk__gte=self.version_1_2_0):
@@ -2143,7 +2142,7 @@ class TestAddonFromUpload(UploadTest):
     def setUp(self):
         super(TestAddonFromUpload, self).setUp()
         u = UserProfile.objects.get(pk=999)
-        set_user(u)
+        core.set_user(u)
         self.platform = amo.PLATFORM_MAC.id
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application=1, version=version)

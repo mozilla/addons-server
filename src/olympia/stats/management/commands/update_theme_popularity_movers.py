@@ -3,13 +3,12 @@ import datetime
 from django.core.management.base import BaseCommand
 from django.db import connection
 
-import commonware.log
-
+import olympia.core.logger
 from olympia.stats.models import (
     ThemeUpdateCount, ThemeUpdateCountBulk, ThemeUserCount)
 
 
-log = commonware.log.getLogger('adi.themepopularitymovers')
+log = olympia.core.logger.getLogger('adi.themepopularitymovers')
 
 
 class Command(BaseCommand):

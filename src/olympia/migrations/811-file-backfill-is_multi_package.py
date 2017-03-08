@@ -1,11 +1,10 @@
-import logging
-
+import olympia.core.logger
 from olympia import amo
-from files.models import File
-from files.utils import parse_addon
+from olympia.files.models import File
+from olympia.files.utils import parse_addon
 
 
-log = logging.getLogger('backfill-files-is_multi_package')
+log = olympia.core.logger.getLogger('backfill-files-is_multi_package')
 
 
 def run():

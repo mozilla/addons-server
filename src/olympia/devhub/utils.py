@@ -7,8 +7,8 @@ from django.utils.translation import ugettext as _
 
 from celery import chain
 from validator.version import Version as VersionString
-import commonware.log
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
@@ -16,7 +16,7 @@ from olympia.files.utils import parse_addon
 
 from . import tasks
 
-log = commonware.log.getLogger('z.devhub')
+log = olympia.core.logger.getLogger('z.devhub')
 
 
 def process_validation(validation, is_compatibility=False, file_hash=None):

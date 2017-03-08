@@ -1,14 +1,13 @@
-import logging
-
 from django.conf import settings
 
+import olympia.core.logger
 from olympia.constants.search import SEARCH_ANALYZER_MAP
 
 from .models import SearchMixin
 from .utils import to_language
 
 
-log = logging.getLogger('z.es')
+log = olympia.core.logger.getLogger('z.es')
 
 
 class BaseSearchIndexer(object):

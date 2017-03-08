@@ -3,19 +3,19 @@ import datetime
 from django.core.management import call_command
 from django.db.models import Sum, Max
 
-import commonware.log
 import cronjobs
 import waffle
 from celery.task.sets import TaskSet
 
+import olympia.core.logger
 from olympia.amo.utils import chunked
 from .models import (
     AddonCollectionCount, CollectionCount, UpdateCount)
 from . import tasks
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 
-task_log = commonware.log.getLogger('z.task')
-cron_log = commonware.log.getLogger('z.cron')
+task_log = olympia.core.logger.getLogger('z.task')
+cron_log = olympia.core.logger.getLogger('z.cron')
 
 
 @cronjobs.register

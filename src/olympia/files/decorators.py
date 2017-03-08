@@ -1,21 +1,21 @@
 from datetime import datetime
 import functools
 
-import commonware.log
-from cache_nuggets.lib import Token
-
 from django import http
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.http import http_date
 
+from cache_nuggets.lib import Token
+
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import owner_or_unlisted_reviewer
 from olympia.files.helpers import DiffHelper, FileViewer
 from olympia.files.models import File
 
-log = commonware.log.getLogger('z.addons')
+log = olympia.core.logger.getLogger('z.addons')
 
 
 def allowed(request, file):

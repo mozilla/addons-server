@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
 import json
-import logging
 import os
 import socket
 import subprocess
@@ -25,6 +24,7 @@ from PIL import Image
 import validator
 import waffle
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import atomic, set_modified_on, write
@@ -40,7 +40,7 @@ from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
 
-log = logging.getLogger('z.devhub.task')
+log = olympia.core.logger.getLogger('z.devhub.task')
 
 
 def validate(file_, listed=None, subtask=None):

@@ -18,7 +18,7 @@ from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
 from waffle.models import Flag
 
-from olympia import amo, paypal
+from olympia import amo, core, paypal
 from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, AddonUser, Charity)
@@ -1077,7 +1077,7 @@ class TestActivityFeed(TestCase):
         assert response.status_code == 302
 
     def add_log(self, action=amo.LOG.ADD_REVIEW):
-        amo.set_user(UserProfile.objects.get(email='del@icio.us'))
+        core.set_user(UserProfile.objects.get(email='del@icio.us'))
         amo.log(action, self.addon, self.version)
 
     def add_hidden_log(self, action=amo.LOG.COMMENT_VERSION):

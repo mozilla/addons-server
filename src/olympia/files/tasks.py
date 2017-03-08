@@ -1,4 +1,3 @@
-import logging
 import re
 
 from django.utils import translation
@@ -6,6 +5,7 @@ from django.utils import translation
 import requests
 from requests.exceptions import RequestException
 
+import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 from olympia.files.models import (
@@ -14,7 +14,7 @@ from olympia.files.utils import parse_xpi
 from olympia.translations.models import Translation
 
 
-log = logging.getLogger('z.files.task')
+log = olympia.core.logger.getLogger('z.files.task')
 
 
 @task
@@ -58,7 +58,7 @@ def update_webext_descriptions(url, locale='en-US', create=True, **kw):
         response = requests.get(url)
         response.raise_for_status()
     except RequestException as e:
-        log.warn('Error retrieving %s: %s' % (url, e))
+        log.warning('Error retrieving %s: %s' % (url, e))
         return False
 
     # We only need to activate the locale for creating new permission objects.
@@ -83,6 +83,6 @@ def update_webext_descriptions(url, locale='en-US', create=True, **kw):
                             id=perm_obj.description_id, locale=locale.lower(),
                             defaults={'localized_string': description})
                     except WebextPermissionDescription.DoesNotExist:
-                        log.warn('No "%s" permission found to update with '
-                                 '[%s] locale' % (perm, locale))
+                        log.warning('No "%s" permission found to update with '
+                                    '[%s] locale' % (perm, locale))
     return True

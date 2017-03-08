@@ -1,11 +1,10 @@
-import logging
-
 from elasticsearch import TransportError
 
+import olympia.core.logger
 from olympia.amo.utils import render
 
 
-log = logging.getLogger('z.es')
+log = olympia.core.logger.getLogger('z.es')
 
 
 class ElasticsearchExceptionMiddleware(object):

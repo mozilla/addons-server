@@ -21,6 +21,7 @@ import sqlalchemy.pool as pool
 from django.utils import importlib
 settings = importlib.import_module(settingmodule)
 
+import olympia.core.logger
 from olympia.lib.log_settings_base import formatters, handlers
 
 # Ugh. But this avoids any olympia models or django imports at all.
@@ -123,10 +124,10 @@ def log_exception(data):
     # Note: although this logs exceptions, it logs at the info level so that
     # on prod, we log at the error level and result in no logs on prod.
     typ, value, discard = sys.exc_info()
-    error_log = logging.getLogger('z.update')
+    error_log = olympia.core.logger.getLogger('z.update')
     error_log.exception(u'Type: %s, %s. Data: %s' % (typ, value, data))
 
 
 def log_info(msg):
-    error_log = logging.getLogger('z.update')
+    error_log = olympia.core.logger.getLogger('z.update')
     error_log.info(msg)

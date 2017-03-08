@@ -5,8 +5,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.core.urlresolvers import reverse
 
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
@@ -17,7 +16,7 @@ from olympia.versions.models import Version
 from olympia.zadmin.models import get_config
 
 
-log = commonware.log.getLogger('z.editors.auto_approve')
+log = olympia.core.logger.getLogger('z.editors.auto_approve')
 
 
 class Command(BaseCommand):

@@ -8,13 +8,13 @@ from django.conf import settings
 from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
 
-import commonware.log
 from Cookie import SimpleCookie
 from lxml import etree
 import mock
 from mock import patch
 from pyquery import PyQuery as pq
 
+from olympia import core
 from olympia.amo.tests import TestCase
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
@@ -281,13 +281,17 @@ class TestOtherStuff(TestCase):
         assert doc('input[type=hidden][name=bar]').attr('value') == 'barval'
 
     @patch.object(settings, 'KNOWN_PROXIES', ['127.0.0.1'])
-    def test_remote_addr(self):
+    @patch.object(core, 'set_remote_addr')
+    def test_remote_addr(self, set_remote_addr_mock):
         """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
         client = test.Client()
         # Send X-Forwarded-For as it shows up in a wsgi request.
         client.get('/en-US/firefox/', follow=True,
-                   HTTP_X_FORWARDED_FOR='1.1.1.1')
-        assert commonware.log.get_remote_addr() == '1.1.1.1'
+                   HTTP_X_FORWARDED_FOR='1.1.1.1',
+                   REMOTE_ADDR='127.0.0.1')
+        assert set_remote_addr_mock.call_count == 2
+        assert set_remote_addr_mock.call_args_list[0] == (('1.1.1.1',), {})
+        assert set_remote_addr_mock.call_args_list[1] == ((None,), {})
 
     @patch.object(settings, 'CDN_HOST', 'https://cdn.example.com')
     def test_jsi18n_caching_and_cdn(self):

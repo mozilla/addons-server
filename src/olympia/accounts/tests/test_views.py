@@ -206,9 +206,9 @@ class TestLoginUser(TestCase):
         patcher = mock.patch('olympia.accounts.views.login')
         self.login = patcher.start()
         self.addCleanup(patcher.stop)
-        patcher = mock.patch('olympia.users.models.commonware.log')
-        commonware_log = patcher.start()
-        commonware_log.get_remote_addr.return_value = '8.8.8.8'
+        patcher = mock.patch('olympia.core.get_remote_addr')
+        get_remote_addr_mock = patcher.start()
+        get_remote_addr_mock.return_value = '8.8.8.8'
         self.addCleanup(patcher.stop)
 
     def test_user_gets_logged_in(self):

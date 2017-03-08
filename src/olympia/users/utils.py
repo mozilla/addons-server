@@ -8,11 +8,10 @@ from django.conf import settings
 from django.db.models import Q
 from django.utils.encoding import force_bytes
 
-import commonware.log
-
+import olympia.core.logger
 from olympia.users.models import UserProfile, DeniedName
 
-log = commonware.log.getLogger('z.users')
+log = olympia.core.logger.getLogger('z.users')
 
 
 class UnsubscribeCode(object):

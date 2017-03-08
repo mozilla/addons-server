@@ -15,10 +15,10 @@ from validator.testcases.packagelayout import (
     blacklisted_extensions, blacklisted_magic_numbers)
 
 import jinja2
-import commonware.log
 from cache_nuggets.lib import memoize, Message
 from jingo import register, get_env
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.amo.urlresolvers import reverse
@@ -29,7 +29,7 @@ from olympia.files.utils import (
 denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
                         if b != (0x23, 0x21)]
 denied_extensions = [b for b in list(blacklisted_extensions) if b != 'sh']
-task_log = commonware.log.getLogger('z.task')
+task_log = olympia.core.logger.getLogger('z.task')
 
 LOCKED_LIFETIME = 60 * 5
 

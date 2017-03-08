@@ -1,4 +1,3 @@
-import logging
 import os
 import re
 import shutil
@@ -6,6 +5,7 @@ import shutil
 from django.conf import settings
 from django.db.models import Q
 
+import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.celery import task
@@ -15,7 +15,7 @@ from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
 
-log = logging.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.task')
 
 
 MAIL_SUBJECT = u'Mozilla Add-ons: {addon} has been automatically signed on AMO'

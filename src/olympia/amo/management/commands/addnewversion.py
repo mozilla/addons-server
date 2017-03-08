@@ -1,8 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db import IntegrityError
 
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.applications.models import AppVersion
 
@@ -11,7 +10,7 @@ class Command(BaseCommand):
     use_argparse = False
     help = ('Add a new version of an application. Syntax: \n'
             '    ./manage.py addnewversion <application_name> <version>')
-    log = commonware.log.getLogger('z.appversions')
+    log = olympia.core.logger.getLogger('z.appversions')
 
     def handle(self, *args, **options):
         try:

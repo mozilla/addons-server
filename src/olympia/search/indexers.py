@@ -1,5 +1,4 @@
-import logging
-
+import olympia.core.logger
 from olympia.amo.indexers import BaseSearchIndexer
 from olympia.addons.cron import reindex_addons
 from olympia.addons.indexers import AddonIndexer
@@ -12,7 +11,7 @@ from olympia.users.cron import reindex_users
 from olympia.users.indexers import UserProfileIndexer
 
 
-log = logging.getLogger('z.es')
+log = olympia.core.logger.getLogger('z.es')
 
 
 # Search-related indexers.

@@ -6,17 +6,17 @@ from django import http
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
-import commonware.log
 import phpserialize as php
 import requests
 from django_statsd.clients import statsd
 
+import olympia.core.logger
 from olympia.amo.decorators import post_required, write
 from olympia.stats.db import StatsDictField
 from olympia.stats.models import Contribution, ContributionError
 
 
-paypal_log = commonware.log.getLogger('z.paypal')
+paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 
 @write

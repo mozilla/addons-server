@@ -17,7 +17,6 @@ from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
 import jinja2
-import commonware.log
 import session_csrf
 import waffle
 from elasticsearch_dsl import Search
@@ -32,6 +31,7 @@ from rest_framework.settings import api_settings
 from rest_framework.viewsets import GenericViewSet
 from session_csrf import anonymous_csrf_exempt
 
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.amo import messages
@@ -71,8 +71,8 @@ from .serializers import (
 from .utils import get_creatured_ids, get_featured_ids
 
 
-log = commonware.log.getLogger('z.addons')
-paypal_log = commonware.log.getLogger('z.paypal')
+log = olympia.core.logger.getLogger('z.addons')
+paypal_log = olympia.core.logger.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_valid_disabled_pending_view = addon_view_factory(
     qs=Addon.objects.valid_and_disabled_and_pending)

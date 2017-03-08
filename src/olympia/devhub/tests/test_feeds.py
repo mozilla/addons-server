@@ -3,7 +3,7 @@ from urllib import urlencode
 
 from pyquery import PyQuery as pq
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.urlresolvers import reverse
 from olympia.devhub.models import RssKey
 from olympia.devhub.tests.test_views import HubTest
@@ -20,7 +20,7 @@ class TestActivity(HubTest):
         """Start with one user, two add-ons."""
         super(TestActivity, self).setUp()
         self.clone_addon(2)
-        amo.set_user(self.user_profile)
+        core.set_user(self.user_profile)
         self.addon, self.addon2 = list(self.user_profile.addons.all())
 
     def log_creates(self, num, addon=None):

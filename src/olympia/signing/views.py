@@ -1,5 +1,4 @@
 import functools
-import logging
 
 from django import forms
 from django.conf import settings
@@ -10,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
@@ -24,7 +24,7 @@ from olympia.versions.models import Version
 from olympia.signing.serializers import FileUploadSerializer
 
 
-log = logging.getLogger('signing')
+log = olympia.core.logger.getLogger('signing')
 
 
 def handle_read_only_mode(fn):

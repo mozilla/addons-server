@@ -5,6 +5,7 @@ Note: didn't make sense to use localeurl since we need to capture app as well
 """
 import contextlib
 import re
+import socket
 import urllib
 
 from django.conf import settings
@@ -190,3 +191,61 @@ class ReadOnlyMiddleware(object):
     def process_exception(self, request, exception):
         if isinstance(exception, mysql.OperationalError):
             return render(request, 'amo/read-only.html', status=503)
+
+
+class SetRemoteAddrFromForwardedFor(object):
+    """
+    Set request.META['REMOTE_ADDR'] from request.META['HTTP_X_FORWARDED_FOR'].
+
+    Our application servers should always be behind a load balancer that sets
+    this header correctly.
+    """
+    def is_valid_ip(self, ip):
+        for af in (socket.AF_INET, socket.AF_INET6):
+            try:
+                socket.inet_pton(af, ip)
+                return True
+            except socket.error:
+                pass
+        return False
+
+    def process_request(self, request):
+        ips = []
+
+        if 'HTTP_X_FORWARDED_FOR' in request.META:
+            xff = [i.strip() for i in
+                   request.META['HTTP_X_FORWARDED_FOR'].split(',')]
+            ips = [ip for ip in xff if self.is_valid_ip(ip)]
+        else:
+            return
+
+        ips.append(request.META['REMOTE_ADDR'])
+
+        known = getattr(settings, 'KNOWN_PROXIES', [])
+        ips.reverse()
+        for ip in ips:
+            request.META['REMOTE_ADDR'] = ip
+            if ip not in known:
+                break
+
+
+class ScrubRequestOnException(object):
+    """
+    Hide sensitive information so they're not recorded in error logging.
+    * passwords in request.POST
+    * sessionid in request.COOKIES
+    """
+
+    def process_exception(self, request, exception):
+        # Get a copy so it's mutable.
+        request.POST = request.POST.copy()
+        for key in request.POST:
+            if 'password' in key.lower():
+                request.POST[key] = '******'
+
+        # Remove session id from cookies
+        if settings.SESSION_COOKIE_NAME in request.COOKIES:
+            request.COOKIES[settings.SESSION_COOKIE_NAME] = '******'
+            # Clearing out all cookies in request.META. They will already
+            # be sent with request.COOKIES.
+            request.META['HTTP_COOKIE'] = '******'

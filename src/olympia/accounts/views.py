@@ -1,6 +1,5 @@
 import base64
 import functools
-import logging
 import os
 
 from django.conf import settings
@@ -21,6 +20,7 @@ from rest_framework.views import APIView
 from rest_framework_jwt.settings import api_settings as jwt_api_settings
 from waffle.decorators import waffle_switch
 
+import olympia.core.logger
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
@@ -32,7 +32,7 @@ from . import verify
 from .serializers import AccountSuperCreateSerializer, UserProfileSerializer
 from .utils import fxa_login_url, generate_fxa_state
 
-log = logging.getLogger('accounts')
+log = olympia.core.logger.getLogger('accounts')
 
 ERROR_AUTHENTICATED = 'authenticated'
 ERROR_NO_CODE = 'no-code'

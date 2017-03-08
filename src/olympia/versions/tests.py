@@ -14,7 +14,7 @@ import mock
 import pytest
 from pyquery import PyQuery
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.tests import TestCase, version_factory
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
@@ -217,7 +217,7 @@ class TestVersion(TestCase):
 
     def test_version_delete_logs(self):
         user = UserProfile.objects.get(pk=55021)
-        amo.set_user(user)
+        core.set_user(user)
         # The transform don't know bout my users.
         version = Version.objects.get(pk=81551)
         assert ActivityLog.objects.count() == 0

@@ -9,9 +9,9 @@ from django.forms.models import modelformset_factory
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
-import commonware
 from quieter_formset.formset import BaseModelFormSet
 
+import olympia.core.logger
 from olympia.access import acl
 from olympia import amo, paypal
 from olympia.amo.helpers import mark_safe_lazy
@@ -36,7 +36,7 @@ from olympia.versions.models import (
 from . import tasks
 
 
-paypal_log = commonware.log.getLogger('z.paypal')
+paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 
 class AuthorForm(happyforms.ModelForm):

@@ -1,20 +1,20 @@
 from django.utils.encoding import smart_text
 from django.utils.translation import ugettext as _
 
-import commonware
 import jwt
 from rest_framework import exceptions
 from rest_framework.authentication import get_authorization_header
 from rest_framework_jwt.authentication import (
     JSONWebTokenAuthentication as UpstreamJSONWebTokenAuthentication)
 
-from olympia import amo
+import olympia.core.logger
+from olympia import core
 from olympia.api import jwt_auth
 from olympia.api.models import APIKey
 from olympia.users.models import UserProfile
 
 
-log = commonware.log.getLogger('z.api.authentication')
+log = olympia.core.logger.getLogger('z.api.authentication')
 
 
 class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
@@ -24,9 +24,10 @@ class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
 
     def authenticate_credentials(self, payload):
         """
-        Mimic what our ACLMiddleware does after a successful authentication,
-        because otherwise that behaviour would be missing in the API since API
-        auth happens after the middleware process request phase.
+        Mimic what our UserAndAddrMiddleware does after a successful
+        authentication, because otherwise that behaviour would be missing in
+        the API since API auth happens after the middleware process request
+        phase.
         """
         if 'user_id' not in payload:
             log.info('No user_id in JWT payload {}'.format(payload))
@@ -41,7 +42,7 @@ class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
             log.info('Not allowing deleted user to log in {}'.format(user.pk))
             raise exceptions.AuthenticationFailed('User account is disabled.')
 
-        amo.set_user(user)
+        core.set_user(user)
         return user
 
 
@@ -122,7 +123,7 @@ class JWTKeyAuthentication(UpstreamJSONWebTokenAuthentication):
             msg = 'User has not read developer agreement.'
             raise exceptions.AuthenticationFailed(msg)
 
-        amo.set_user(api_key.user)
+        core.set_user(api_key.user)
         return api_key.user
 
     def get_jwt_value(self, request):

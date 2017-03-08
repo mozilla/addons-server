@@ -2,17 +2,18 @@ import os
 import uuid
 import zipfile
 
-import commonware.log
-import requests
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+
+import requests
 from django_statsd.clients import statsd
 
+import olympia.core.logger
 from olympia.amo.helpers import user_media_path
 from olympia.files.utils import SafeUnzip
 
-log = commonware.log.getLogger('z.github')
+log = olympia.core.logger.getLogger('z.github')
 
 
 class GithubCallback(object):

@@ -13,7 +13,6 @@ from services.utils import mypool, settings
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
 
-import commonware.log
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
 
@@ -23,6 +22,7 @@ except ImportError:
     from olympia.versions.compare import version_int
 
 from olympia.constants import applications, base
+import olympia.core.logger
 
 from utils import (
     APP_GUIDS, get_cdn_url, log_configure, PLATFORMS)
@@ -75,8 +75,8 @@ no_updates_rdf = """<?xml version="1.0"?>
 </RDF:RDF>"""
 
 
-timing_log = commonware.log.getLogger('z.timer')
-error_log = commonware.log.getLogger('z.services')
+timing_log = olympia.core.logger.getLogger('z.timer')
+error_log = olympia.core.logger.getLogger('z.services')
 
 
 class Update(object):

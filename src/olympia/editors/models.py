@@ -9,8 +9,7 @@ from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _lazy
 
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.access.models import Group
@@ -25,7 +24,7 @@ from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.models import Version, version_uploaded
 
 
-user_log = commonware.log.getLogger('z.users')
+user_log = olympia.core.logger.getLogger('z.users')
 
 
 class CannedResponse(ModelBase):

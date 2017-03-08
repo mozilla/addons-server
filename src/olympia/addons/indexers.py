@@ -1,14 +1,13 @@
-import logging
-
 from django.core.exceptions import ObjectDoesNotExist
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.indexers import BaseSearchIndexer
 from olympia.amo.utils import attach_trans_dict
 from olympia.versions.compare import version_int
 
 
-log = logging.getLogger('z.es')
+log = olympia.core.logger.getLogger('z.es')
 
 
 class AddonIndexer(BaseSearchIndexer):

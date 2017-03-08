@@ -16,9 +16,9 @@ from django.utils.encoding import force_text
 from django.utils.functional import lazy
 
 import caching.base as caching
-import commonware.log
 
-from olympia import amo
+import olympia.core.logger
+from olympia import amo, core
 from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
 from olympia.access.models import Group, GroupUser
 from olympia.amo.urlresolvers import reverse
@@ -26,7 +26,7 @@ from olympia.translations.fields import NoLinksField, save_signal
 from olympia.translations.models import Translation
 from olympia.translations.query import order_by_translation
 
-log = commonware.log.getLogger('z.users')
+log = olympia.core.logger.getLogger('z.users')
 
 
 class UserForeignKey(models.ForeignKey):
@@ -345,12 +345,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def log_login_attempt(self, successful):
         """Log a user's login attempt"""
         self.last_login_attempt = datetime.now()
-        self.last_login_attempt_ip = commonware.log.get_remote_addr()
+        self.last_login_attempt_ip = core.get_remote_addr()
 
         if successful:
             log.debug(u"User (%s) logged in successfully" % self)
             self.failed_login_attempts = 0
-            self.last_login_ip = commonware.log.get_remote_addr()
+            self.last_login_ip = core.get_remote_addr()
         else:
             log.debug(u"User (%s) failed to log in" % self)
             if self.failed_login_attempts < 16777216:

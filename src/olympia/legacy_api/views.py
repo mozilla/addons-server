@@ -15,12 +15,12 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _, ugettext_lazy, get_language
 from django.utils.encoding import force_bytes
 
-import commonware.log
 import jingo
 import waffle
 from caching.base import cached_with
 from jingo import get_standard_processors
 
+import olympia.core.logger
 from olympia import amo, legacy_api
 from olympia.addons.models import Addon, CompatOverride
 from olympia.amo.decorators import (
@@ -51,7 +51,7 @@ MAX_LIMIT, BUFFER = 30, 10
 # "New" is arbitrarily defined as 10 days old.
 NEW_DAYS = 10
 
-log = commonware.log.getLogger('z.api')
+log = olympia.core.logger.getLogger('z.api')
 
 
 def partition(seq, key):

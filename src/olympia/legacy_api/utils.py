@@ -4,8 +4,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils.html import strip_tags
 
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
@@ -15,7 +14,7 @@ from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
 
-log = commonware.log.getLogger('z.api')
+log = olympia.core.logger.getLogger('z.api')
 
 
 # For app version major.minor matching.

@@ -2,12 +2,11 @@ import uuid
 
 from django.db import models
 
-import commonware.log
-
+import olympia.core.logger
 from olympia.amo.models import ModelBase
 from olympia.versions.models import Version
 
-log = commonware.log.getLogger('z.amo.activity')
+log = olympia.core.logger.getLogger('z.amo.activity')
 
 # Number of times a token can be used.
 MAX_TOKEN_USE_COUNT = 100

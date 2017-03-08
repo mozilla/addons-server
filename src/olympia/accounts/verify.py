@@ -1,10 +1,10 @@
-import logging
-
 import requests
 
 from django_statsd.clients import statsd
 
-log = logging.getLogger('accounts.verify')
+import olympia.core.logger
+
+log = olympia.core.logger.getLogger('accounts.verify')
 IdentificationError = LookupError
 
 

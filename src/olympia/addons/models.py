@@ -18,12 +18,12 @@ from django.dispatch import receiver
 from django.utils.translation import trans_real, ugettext_lazy as _
 
 import caching.base as caching
-import commonware.log
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 
-from olympia import amo
+import olympia.core.logger
+from olympia import amo, core
 from olympia.amo.models import (
     SlugField, OnChangeMixin, ModelBase, ManagerBase, manual_order)
 from olympia.access import acl
@@ -51,7 +51,7 @@ from olympia.versions.models import inherit_nomination, Version
 from . import signals
 
 
-log = commonware.log.getLogger('z.addons')
+log = olympia.core.logger.getLogger('z.addons')
 
 
 def clean_slug(instance, slug_field='slug'):
@@ -449,7 +449,7 @@ class Addon(OnChangeMixin, ModelBase):
             log.debug('Deleting add-on: %s' % self.id)
 
             to = [settings.FLIGTAR]
-            user = amo.get_user()
+            user = core.get_user()
 
             # Don't localize email to admins, use 'en-US' always.
             with no_translation():

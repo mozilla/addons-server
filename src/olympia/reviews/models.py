@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-import logging
 
 from django.core.cache import cache
 from django.db import models
@@ -10,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 import bleach
 import caching.base as caching
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo import helpers
 from olympia.amo.celery import task
@@ -19,7 +19,7 @@ from olympia.translations.fields import save_signal, TranslatedField
 from olympia.translations.helpers import truncate
 
 
-log = logging.getLogger('z.reviews')
+log = olympia.core.logger.getLogger('z.reviews')
 
 
 class ReviewManager(ManagerBase):

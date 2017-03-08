@@ -17,11 +17,11 @@ from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
-import commonware.log
 import waffle
 from django_statsd.clients import statsd
 from PIL import Image
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo import utils as amo_utils
 from olympia.access import acl
@@ -56,8 +56,8 @@ from olympia.zadmin.models import get_config, ValidationResult
 from . import forms, tasks, feeds, signals
 
 
-log = commonware.log.getLogger('z.devhub')
-paypal_log = commonware.log.getLogger('z.paypal')
+log = olympia.core.logger.getLogger('z.devhub')
+paypal_log = olympia.core.logger.getLogger('z.paypal')
 
 
 # We use a session cookie to make sure people see the dev agreement.

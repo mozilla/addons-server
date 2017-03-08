@@ -1,7 +1,6 @@
-import logging
-
 from django.conf import settings
 
+import olympia.core.logger
 from olympia.accounts.views import LoginBaseView, LoginStartBaseView
 from olympia.addons.models import Addon
 from olympia.addons.views import AddonViewSet, AddonSearchView
@@ -12,7 +11,7 @@ from olympia.api.permissions import AnyOf, GroupPermission
 from olympia.search.filters import (
     InternalSearchParameterFilter, SearchQueryFilter, SortingFilter)
 
-log = logging.getLogger('internal_tools')
+log = olympia.core.logger.getLogger('internal_tools')
 
 
 class InternalAddonSearchView(AddonSearchView):

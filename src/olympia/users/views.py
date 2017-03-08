@@ -9,10 +9,10 @@ from django.utils.http import is_safe_url
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext as _
 
-import commonware.log
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
+import olympia.core.logger
 from olympia import amo
 from olympia.users import notifications as notifications
 from olympia.abuse.models import send_abuse_report
@@ -37,7 +37,7 @@ from .signals import logged_out
 from .utils import UnsubscribeCode
 
 
-log = commonware.log.getLogger('z.users')
+log = olympia.core.logger.getLogger('z.users')
 
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
