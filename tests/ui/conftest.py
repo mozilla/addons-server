@@ -54,7 +54,9 @@ def jwt_secret(base_url, variables):
 
 @pytest.fixture
 def initial_data(transactional_db):
-    call_command('generate_addons', 10, app='firefox')
+    from olympia.amo.tests import addon_factory
+    for x in range(10):
+        addon_factory()
 
 
 @pytest.fixture
