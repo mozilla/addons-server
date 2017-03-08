@@ -6,7 +6,7 @@ from pages.desktop.home import Home
 
 @pytest.mark.skipif('localhost' in os.environ.get('PYTEST_BASE_URL'),
                     reason='Live Server login currently not functioning')
-def test_login_ui(local_base_url, selenium, user, force_user_login):
+def test_login_ui(local_base_url, selenium, user):
     """User can login"""
     page = Home(selenium, local_base_url).open()
     assert not page.logged_in
