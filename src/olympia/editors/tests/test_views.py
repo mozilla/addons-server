@@ -75,8 +75,9 @@ class TestEventLog(EditorTest):
         1/1/2011.  To not do as such would be dishonorable.
         """
         review = self.make_review(username='b')
-        ActivityLog.create(amo.LOG.APPROVE_REVIEW, review, review.addon,
-                           created=datetime(2011, 1, 1))
+        ActivityLog.create(
+            amo.LOG.APPROVE_REVIEW, review, review.addon).update(
+            created=datetime(2011, 1, 1))
 
         r = self.client.get(self.url, dict(end='2011-01-01'))
         assert r.status_code == 200

@@ -1,6 +1,4 @@
-"""Tests for the activitylog."""
 import json
-from datetime import datetime
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -27,12 +25,3 @@ class LogTest(TestCase):
 
         assert al.details == magic
         assert al._details == json.dumps(magic)
-
-    def test_created(self):
-        """
-        Verify that we preserve the create date.
-        """
-        al = ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi',
-                                created=datetime(2009, 1, 1))
-
-        assert al.created == datetime(2009, 1, 1)

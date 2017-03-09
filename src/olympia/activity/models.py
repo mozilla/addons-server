@@ -437,8 +437,7 @@ class ActivityLog(ModelBase):
         user = kw.get('user', core.get_user())
 
         if not user:
-            olympia.core.logger.getLogger('z.amo').warning(
-                'Activity log called with no user: %s' % action.id)
+            log.warning('Activity log called with no user: %s' % action.id)
             return
 
         al = ActivityLog(user=user, action=action.id)
@@ -449,12 +448,6 @@ class ActivityLog(ModelBase):
 
         if 'details' in kw and 'comments' in al.details:
             CommentLog(comments=al.details['comments'], activity_log=al).save()
-
-        # TODO(davedash): post-remora this may not be necessary.
-        if 'created' in kw:
-            al.created = kw['created']
-            # Double save necessary since django resets created date on save.
-            al.save()
 
         for arg in args:
             if isinstance(arg, tuple):

@@ -11,14 +11,15 @@ from olympia.amo.tests import (
 
 class LogMixin(object):
     def log(self, comments, action, created=None):
-        if not created:
-            created = self.days_ago(0)
         version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
-        details = {'comments': comments}
-        details['version'] = version.version
-        kwargs = {'user': self.user, 'created': created, 'details': details}
-        return ActivityLog.create(action, self.addon, version, **kwargs)
+        details = {'comments': comments,
+                   'version': version.version}
+        kwargs = {'user': self.user, 'details': details}
+        al = ActivityLog.create(action, self.addon, version, **kwargs)
+        if created:
+            al.update(created=created)
+        return al
 
 
 class TestReviewNotesSerializerOutput(TestCase, LogMixin):

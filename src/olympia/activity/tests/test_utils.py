@@ -217,9 +217,10 @@ class TestLogAndNotify(TestCase):
         details = {
             'comments': u'I spy, with my líttle €ye...',
             'version': self.version.version}
-        return ActivityLog.create(
-            action, self.addon, self.version, user=author, details=details,
-            created=self.days_ago(1))
+        activity = ActivityLog.create(
+            action, self.addon, self.version, user=author, details=details)
+        activity.update(created=self.days_ago(1))
+        return activity
 
     def _recipients(self, email_mock):
         recipients = []
