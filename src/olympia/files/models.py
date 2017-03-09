@@ -392,25 +392,23 @@ class File(OnChangeMixin, ModelBase):
                 break
 
         urls = []
+        match_url = None
         for name in self.webext_permissions_list:
             if re.match(WebextPermissionDescription.MATCH_ALL_REGEX, name):
                 # We found a match-all, so no need to continue.
-                return (
-                    [WebextPermissionDescription.ALL_URLS_PERMISSION] + knowns)
+                match_url = WebextPermissionDescription.ALL_URLS_PERMISSION
+                break
             elif '//' in name:
                 # Filter out match urls so we can group them.
                 urls.append(name)
             # Other strings are unknown permissions we don't care about
 
-        match_url = None
-        if len(urls) == 0:
-            return knowns
-        elif len(urls) == 1:
+        if match_url is None and len(urls) == 1:
             match_url = Permission(
                 u'single-match',
                 _(u'Access your data for {name}')
                 .format(name=urls[0]))
-        else:
+        elif match_url is None and len(urls) > 1:
             details = (u'<details><summary>{copy}</summary><ul>{sites}</ul>'
                        u'</details>')
             copy = _(u'Access your data on various websites')
@@ -420,7 +418,7 @@ class File(OnChangeMixin, ModelBase):
                 u'multiple-match',
                 mark_safe(details.format(copy=copy, sites=sites)))
 
-        return [match_url] + knowns
+        return ([match_url] if match_url else []) + knowns
 
     @amo.cached_property(writable=True)
     def webext_permissions_list(self):
