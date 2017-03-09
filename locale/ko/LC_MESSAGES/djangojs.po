@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-23 02:36+0000\n"
+"PO-Revision-Date: 2017-03-09 03:27+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -138,17 +138,17 @@ msgstr "부가기능 제출 체크리스트"
 
 #: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "제출을 마무리 하기 전에 다음 사항을 확인 하십시오. 이 사항들은 지연이나 검토 과정에서의 오해를 최소화할 것입니다:"
 
 #: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
+msgstr "컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 귀하의 제출이 거절되지 않도록 소스 코드 업로드 필드를 사용하고 있는지 확인하십시오."
 
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "유효성 검사 과정에서 거부 원인이 될 수 있는 문제들 발견:"
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
@@ -874,7 +874,7 @@ msgstr "다른 버전 보기"
 
 #: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "오직 Firefox에서만 — 지금 Firefox를 받으세요!"
 
 #: static/js/zamboni/buttons.js
 #, fuzzy
@@ -883,7 +883,7 @@ msgstr "다운로드"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Firefox 데스크톱에서만 이용 가능함"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -1033,15 +1033,15 @@ msgstr ""
 
 #: static/js/zamboni/editors.js
 msgid "Review notes found"
-msgstr ""
+msgstr "심사 메모가 발견됨"
 
 #: static/js/zamboni/editors.js
 msgid "Average Reviews"
-msgstr ""
+msgstr "평균 심사 횟수"
 
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
-msgstr ""
+msgstr "심사 횟수"
 
 #: static/js/zamboni/editors.js
 msgid "Error loading translation"
@@ -1132,7 +1132,7 @@ msgstr "경고"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} 줄 {1} 열 {2}"
 
 #: static/js/zamboni/validator.js
 #, fuzzy
