@@ -36,7 +36,6 @@ class CoreConfig(AppConfig):
 
         self.configure_logging()
         self.load_product_details()
-        self.load_webext_permission_descriptions()
         self.set_recursion_limit()
         self.enable_urllib_certificate_checking()
 
@@ -61,10 +60,6 @@ class CoreConfig(AppConfig):
             log.info('Product details missing, downloading...')
             call_command('update_product_details')
             product_details.__init__()  # reload the product details
-
-    def load_webext_permission_descriptions(self):
-        """Update webext descriptions from mozilla-central."""
-        call_command('update_permissions_from_mc')
 
     def set_recursion_limit(self):
         """Set explicit recursion limit if set in the environment.

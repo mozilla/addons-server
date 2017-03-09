@@ -67,4 +67,7 @@ RUN npm install \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets -t \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput
 
+# fetch updated webext permission descriptions from mozilla-central
+RUN python manage.py update_permissions_from_mc
+
 RUN rm -f settings_local.py settings_local.pyc
