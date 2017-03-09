@@ -387,9 +387,6 @@ class File(OnChangeMixin, ModelBase):
         # Move nativeMessaging permission to front of the list, if present
         for index, perm in enumerate(knowns):
             if perm.name == WebextPermission.NATIVE_MESSAGING_NAME:
-                perm.description.localized_string = (
-                    perm.description.localized_string.replace('%S',
-                                                              _('Firefox')))
                 knowns.pop(index)
                 knowns.insert(0, perm)
                 break

@@ -752,8 +752,7 @@ class TestDetailPage(TestCase):
             name=u'bookmarks', description=u'Read and modify bookmarks')
         WebextPermissionDescription.objects.create(
             name=u'nativeMessaging',
-            # the %S will be replaced with Firefox
-            description=u'Exchange messages with programs other than %S')
+            description=u'Exchange messages with programs other than Firefox')
 
         response = self.client.get(self.url)
         doc = pq(response.content)

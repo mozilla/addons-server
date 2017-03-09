@@ -256,8 +256,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             name=u'tabs', description=u'Access browser tabs')
         WebextPermissionDescription.objects.create(
             name=u'nativeMessaging',
-            # the %S will be replaced with Firefox
-            description=u'Exchange messages with programs other than %S')
+            description=u'Exchange messages with programs other than Firefox')
 
         result = [
             # First match urls for specified site(s).
