@@ -7,36 +7,5 @@
     <td>{{ file.size|filesizeformat(binary=True) }}</td>
     <td>{{ form.platform }}</td>
     <td>{{ choices[file.status] }}</td>
-    <td>
-      <span class="js-hidden">
-        <span class="delete">{{ form.DELETE }}</span>
-        {{ form.id }}
-      </span>
-      {# Don't let them delete an individual file any of the files have been reviewed. #}
-      {% if version and version.is_all_unreviewed: %}
-        <a class="remove" href="#">x</a>
-      {% else: %}
-      <span class="remove tooltip" href="#"
-            title="{% trans -%}
-               You cannot remove an individual file after the review process has begun.
-               You must delete the entire version.
-               {%- endtrans %}">x</span>
-      {% endif %}
-    </td>
-  </tr>
-  {% if form.DELETE.errors %}
-  <tr>
-    <td colspan="4">
-      {{ form.DELETE.errors }}
-    </td>
-  </tr>
-  {% endif %}
-  <tr class="hide">
-    <td colspan="4">
-      <span class="delete-msg error_message">{% trans %}This file will be deleted on save.{% endtrans %}</span>
-    </td>
-    <td>
-      <a class="undo" href="#">{{ _("Undo") }}</a>
-    </td>
   </tr>
 {% endwith %}

@@ -820,32 +820,6 @@ class TestVersionEditFiles(TestVersionEditBase):
         compat.update(kw)
         return super(TestVersionEditFiles, self).formset(*args, **compat)
 
-    def test_delete_file(self):
-        version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
-
-        assert self.version.files.count() == 1
-        forms = map(initial,
-                    self.client.get(self.url).context['file_form'].forms)
-        forms[0]['DELETE'] = True
-        assert ActivityLog.objects.count() == 0
-        response = self.client.post(
-            self.url, self.formset(*forms, prefix='files'))
-
-        assert ActivityLog.objects.count() == 2
-        log = ActivityLog.objects.order_by('created')[1]
-        log_string = (
-            u'File delicious_bookmarks-2.1.072-fx.xpi deleted from '
-            u'<a href="/en-US/firefox/addon/a3615/versions/2.1.072">'
-            u'Version 2.1.072</a> of '
-            # no url because no current version becomes none.
-            u'<a href="">Delicious Bookmarks</a>.')
-        assert log.to_string() == log_string
-        assert response.status_code == 302
-        assert self.version.files.count() == 0
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
     def test_unique_platforms(self):
         # Move the existing file to Linux.
         file_ = self.version.files.get()
@@ -877,19 +851,6 @@ class TestVersionEditFiles(TestVersionEditBase):
             self.url, self.formset(*forms, prefix='files'))
         assert response.context['file_form'].non_form_errors()[0] == (
             'The platform All cannot be combined with specific platforms.')
-
-    def test_all_platforms_and_delete(self):
-        version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
-
-        File.objects.create(
-            version=self.version, platform=amo.PLATFORM_MAC.id)
-        forms = self.client.get(self.url).context['file_form'].forms
-        forms = map(initial, forms)
-        # A test that we don't check the platform for deleted files.
-        forms[1]['DELETE'] = 1
-        self.client.post(self.url, self.formset(*forms, prefix='files'))
-        assert self.version.files.count() == 1
 
     def add_in_bsd(self):
         file_ = self.version.files.get()
