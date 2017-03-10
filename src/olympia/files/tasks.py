@@ -59,7 +59,7 @@ def update_webext_descriptions(url, locale='en-US', create=True, **kw):
         response.raise_for_status()
     except RequestException as e:
         log.warning('Error retrieving %s: %s' % (url, e))
-        return False
+        return
 
     # We only need to activate the locale for creating new permission objects.
     context = translation.override(locale) if create else DummyContextManager()
@@ -86,4 +86,3 @@ def update_webext_descriptions(url, locale='en-US', create=True, **kw):
                     except WebextPermissionDescription.DoesNotExist:
                         log.warning('No "%s" permission found to update with '
                                     '[%s] locale' % (perm, locale))
-    return True
