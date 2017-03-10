@@ -55,6 +55,10 @@ appdirs==1.4.3 \
 argparse==1.4.0 \
     --hash=sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314 \
     --hash=sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4
+# asn1crypto is required by cryptography
+asn1crypto==0.21.0 \
+    --hash=sha256:975069ce7341c60f570f74ee57c3152eeedb72d98eed7d40082f0ae120e1a96b \
+    --hash=sha256:0398fd42bce2de1a97131abfa705799b11c1ca565ad4c68e0926a56ef07efd65
 # billiard is required by celery
 billiard==3.3.0.23 \
     --hash=sha256:c0cbe8d45ba8d8213ad68ef9a1881002a151569c9424d551634195a18c3a4160 \
@@ -308,17 +312,6 @@ puente==0.5.0 \
 pyOpenSSL==16.2.0 \
     --hash=sha256:26ca380ddf272f7556e48064bbcd5bd71f83dfc144f3583501c7ddbd9434ee17 \
     --hash=sha256:7779a3bbb74e79db234af6a08775568c6769b5821faecf6e2f4143edb227516e
-# pyasn1 is required by cryptography
-pyasn1==0.2.3 \
-    --hash=sha256:73d7681d29ea487386c2904f42cc2db91267874723ac1064a62671fc2877b537 \
-    --hash=sha256:0439b9bd518418260c2641a571f0e07fce4370cab13b68f19b5e023306c03cad \
-    --hash=sha256:a2c7e7a14b6ad0cff2f86f95fe772642acfdbced01868020e569bd1f2f674633 \
-    --hash=sha256:3200eba6a5d9b6e26d815ba8d8c3018620801e38aef6cac682271bfb6420cb9c \
-    --hash=sha256:bac3cd27bf6a3a67f347fb4d9cc41879671ec893dc85a07e783cc0f691132ef1 \
-    --hash=sha256:ebdc97401e0e8f50af6ad4de1585f480b93628b583bc4dc08a86ce18f624ef15 \
-    --hash=sha256:b1127038a82d829ee131353287c5fbdae54b0fe44639688d39df4490c3b00f31 \
-    --hash=sha256:8b38f73c486cde4ea4264a4ecc3a2b6a029bb861939135f1d11a9d7d99d1d90b \
-    --hash=sha256:738c4ebd88a718e700ee35c8d129acce2286542daa80a82823a7073644f706ad
 # pycparser is required by cffi
 pycparser==2.17 \
     --hash=sha256:0aac31e917c24cb3357f5a4d5566f2cc91a19ca41862f6c3c22dc60a629673b6
