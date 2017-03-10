@@ -1,6 +1,7 @@
 {% with file = form.instance %}
   <tr>
     <td>
+      {{ form.id }}
       <a href="{{ file.get_url_path('devhub') }}">
         {{ file.pretty_filename() }}</a>
     </td>

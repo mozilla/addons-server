@@ -668,6 +668,9 @@ class TestVersionEditDetails(TestVersionEditBase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('a.add-file')
+        # Make sure the files form is present.
+        assert doc('#id_files-0-id').val() == str(
+            self.version.files.all()[0].pk)
 
     def test_add(self):
         response = self.client.get(self.url)
