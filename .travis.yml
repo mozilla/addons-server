@@ -18,7 +18,7 @@ env:
   - TOXENV=amo
   - TOXENV=users
   - TOXENV=main
-  - TOXENV=ui-tests PYTEST_BASE_URL=http://localhost:8081
+  - TOXENV=ui-tests
 
 cache:
   pip: true
