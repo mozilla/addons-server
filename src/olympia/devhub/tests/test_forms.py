@@ -24,7 +24,7 @@ from olympia.files.helpers import copyfileobj
 from olympia.files.models import FileUpload
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, License, Version
+from olympia.versions.models import ApplicationsVersions, License
 
 
 class TestNewUploadForm(TestCase):
@@ -67,40 +67,6 @@ class TestNewUploadForm(TestCase):
         form = forms.NewUploadForm(
             {'upload': upload.uuid, 'supported_platforms': [1]},
             addon=addon, request=mock.Mock())
-        form.clean()
-        assert mock_check_xpi_info.called
-
-
-class TestNewFileForm(TestCase):
-
-    # Those three patches are so files.utils.parse_addon doesn't fail on a
-    # non-existent file even before having a chance to call check_xpi_info.
-    @mock.patch('olympia.files.utils.Extractor.parse')
-    @mock.patch('olympia.files.utils.extract_xpi', lambda xpi, path: None)
-    @mock.patch('olympia.files.utils.get_file', lambda xpi: None)
-    # This is the one we want to test.
-    @mock.patch('olympia.files.utils.check_xpi_info')
-    def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
-        """Make sure the check_xpi_info helper is called.
-
-        There's some important checks made in check_xpi_info, if we ever
-        refactor the form to not call it anymore, we need to make sure those
-        checks are run at some point.
-        """
-        mock_parse.return_value = None
-        mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
-        upload = FileUpload.objects.create(valid=True)
-        addon = Addon.objects.create()
-        version = Version.objects.create(addon=addon)
-        version.compatible_platforms = mock.Mock()
-        version.compatible_platforms.return_value = amo.SUPPORTED_PLATFORMS
-        form = forms.NewFileForm(
-            {'upload': upload.uuid, 'supported_platforms': [1],
-             'nomination_type': amo.STATUS_NOMINATED,
-             'platform': '1'},
-            addon=addon,
-            version=version,
-            request=mock.Mock())
         form.clean()
         assert mock_check_xpi_info.called
 

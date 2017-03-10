@@ -642,13 +642,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         response = self.client.get(url, follow=True)
         self.assert3xx(response, self.url)
 
-    def test_supported_platforms(self):
-        response = self.client.get(self.url)
-        choices = response.context['new_file_form'].fields['platform'].choices
-        taken = [f.platform for f in self.version.files.all()]
-        platforms = set(self.version.compatible_platforms()) - set(taken)
-        assert len(choices) == len(platforms)
-
     def test_version_deleted(self):
         self.version.delete()
         response = self.client.get(self.url)

@@ -578,53 +578,6 @@ class NewUploadForm(AddonUploadForm):
         return self.cleaned_data
 
 
-class NewFileForm(AddonUploadForm):
-    platform = forms.TypedChoiceField(
-        choices=amo.SUPPORTED_PLATFORMS_CHOICES,
-        widget=forms.RadioSelect(attrs={'class': 'platform'}),
-        coerce=int,
-        # We don't want the id value of the field to be output to the user
-        # when choice is invalid. Make a generic error message instead.
-        error_messages={
-            'invalid_choice': _lazy(u'Select a valid choice. That choice is '
-                                    u'not one of the available choices.')
-        }
-    )
-    beta = forms.BooleanField(
-        required=False,
-        help_text=_lazy(u'A file with a version ending with a|alpha|b|beta and'
-                        u' an optional number is detected as beta.'))
-
-    def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon')
-        self.version = kw.pop('version')
-        super(NewFileForm, self).__init__(*args, **kw)
-        # Reset platform choices to just those compatible with target app.
-        field = self.fields['platform']
-        field.choices = sorted((p.id, p.name) for p in
-                               self.version.compatible_platforms().values())
-        # Don't allow platforms we already have.
-        to_exclude = set(File.objects.filter(version=self.version)
-                                     .values_list('platform', flat=True))
-        # Don't allow platform=ALL if we already have platform files.
-        if len(to_exclude):
-            to_exclude.add(amo.PLATFORM_ALL.id)
-
-        field.choices = [p for p in field.choices if p[0] not in to_exclude]
-
-    def clean(self):
-        if not self.version.is_allowed_upload():
-            raise forms.ValidationError(
-                _('You cannot upload any more files for this version.'))
-
-        # Check for errors in the xpi.
-        if not self.errors:
-            xpi = parse_addon(self.cleaned_data['upload'], self.addon)
-            if xpi['version'] != self.version.version:
-                raise forms.ValidationError(_("Version doesn't match"))
-        return self.cleaned_data
-
-
 class FileForm(happyforms.ModelForm):
     platform = File._meta.get_field('platform').formfield()
 

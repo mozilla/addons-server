@@ -1076,10 +1076,6 @@ def version_edit(request, addon_id, addon, version_id):
         instance=version
     )
 
-    new_file_form = forms.NewFileForm(request.POST or None,
-                                      addon=addon, version=version,
-                                      request=request)
-
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
 
@@ -1147,7 +1143,7 @@ def version_edit(request, addon_id, addon, version_id):
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
 
-    data.update(addon=addon, version=version, new_file_form=new_file_form,
+    data.update(addon=addon, version=version,
                 is_admin=is_admin, choices=File.STATUS_CHOICES)
     return render(request, 'devhub/versions/edit.html', data)
 
@@ -1232,14 +1228,12 @@ def auto_sign_version(version, **kwargs):
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo_utils.paginate(request, qs)
-    new_file_form = forms.NewUploadForm(None, addon=addon, request=request)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
     token = request.COOKIES.get('jwt_api_auth_token', None)
 
     data = {'addon': addon,
             'versions': versions,
-            'new_file_form': new_file_form,
             'token': token,
             'is_admin': is_admin}
     return render(request, 'devhub/versions/list.html', data)
