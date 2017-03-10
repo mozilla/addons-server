@@ -5,6 +5,7 @@ from django.core.management.base import BaseCommand, CommandError
 from celery import chord, group
 
 from olympia.addons.models import Addon
+from olympia.addons.tasks import find_inconsistencies_between_es_and_db
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import convert_purified, get_preview_sizes
 from olympia.lib.crypto.tasks import sign_addons
@@ -12,6 +13,8 @@ from olympia.reviews.tasks import addon_review_aggregates
 
 
 tasks = {
+    'find_inconsistencies_between_es_and_db': {
+        'method': find_inconsistencies_between_es_and_db, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []},
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
@@ -33,6 +36,10 @@ class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--task', action='store', type='string',
                     dest='task', help='Run task on the addons.'),
+        make_option('--with-deleted', action='store_true',
+                    dest='with_deleted',
+                    help='Include deleted add-ons when determining which '
+                         'add-ons to process.'),
     )
 
     def handle(self, *args, **options):
@@ -40,9 +47,13 @@ class Command(BaseCommand):
         if not task:
             raise CommandError('Unknown task provided. Options are: %s'
                                % ', '.join(tasks.keys()))
-        pks = (Addon.objects.filter(*task['qs'])
+        if options.get('with_deleted'):
+            addon_manager = Addon.unfiltered
+        else:
+            addon_manager = Addon.objects
+        pks = (addon_manager.filter(*task['qs'])
                             .values_list('pk', flat=True)
-                            .order_by('-last_updated'))
+                            .order_by('id'))
         if 'pre' in task:
             # This is run in process to ensure its run before the tasks.
             pks = task['pre'](pks)
