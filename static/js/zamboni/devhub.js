@@ -794,11 +794,16 @@ function initVersions() {
     $(".dev-review-reply-form").submit(function (e) {
         e.preventDefault();
         $replyForm = $(e.target)
+        if ($replyForm.children('textarea').val() == '') {
+            return false
+        }
+        var submitButton = $replyForm.children('button')
         $.ajax({
             type: 'POST',
             url: $replyForm.attr('action'),
             data: $replyForm.serialize(),
             beforeSend: function (xhr) {
+                submitButton.prop('disabled', true)
                 var token = $replyForm.data('token');
                 xhr.setRequestHeader ("Authorization", 'Bearer '+token);
             },
@@ -807,6 +812,9 @@ function initVersions() {
                 var container = historyDiv.children('.history-container');
                 addToReviewHistory([json], container, true)
                 $replyForm.children('textarea').val('')
+            },
+            complete: function() {
+                submitButton.prop('disabled', false)
             },
             dataType: 'json'
         });
