@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 
+from elasticsearch_dsl import Search
 from PIL import Image
 
 import olympia.core.logger
@@ -374,3 +375,37 @@ def calc_checksum(theme_id, **kw):
         theme.save()
     except IOError as e:
         log.error(str(e))
+
+
+@task
+@write  # To bypass cache and use the primary replica.
+def find_inconsistencies_between_es_and_db(ids, **kw):
+    length = len(ids)
+    log.info(
+        'Searching for inconsistencies between db and es %d-%d [%d].',
+        ids[0], ids[-1], length)
+    db_addons = Addon.unfiltered.in_bulk(ids)
+    es_addons = Search(
+        doc_type=AddonIndexer.get_doctype_name(),
+        index=AddonIndexer.get_index_alias(),
+        using=amo.search.get_es()).filter('ids', values=ids)[:length].execute()
+    es_addons = es_addons
+    db_len = len(db_addons)
+    es_len = len(es_addons)
+    if db_len != es_len:
+        log.info('Inconsistency found: %d in db vs %d in es.',
+                 db_len, es_len)
+    for result in es_addons.hits.hits:
+        pk = result['_source']['id']
+        db_modified = db_addons[pk].modified.isoformat()
+        es_modified = result['_source']['modified']
+        if db_modified != es_modified:
+            log.info('Inconsistency found for addon %d: '
+                     'modified is %s in db vs %s in es.',
+                     pk, db_modified, es_modified)
+        db_status = db_addons[pk].status
+        es_status = result['_source']['status']
+        if db_status != es_status:
+            log.info('Inconsistency found for addon %d: '
+                     'status is %s in db vs %s in es.',
+                     pk, db_status, es_status)
