@@ -120,10 +120,6 @@ and email address and that's it.
                 # write to json file
                 with open(options.get('save_api_credentials'), 'w') as outfile:
                     json.dump(credentials, outfile, indent=2)
-        else:
-            raise CommandError(
-                'No hostname is specified. Please set PYTEST_BASE_URL or \
-                provide a hostname using the --hostname command.')
 
     def get_value(self, field_name):
         field = get_user_model()._meta.get_field(field_name)
