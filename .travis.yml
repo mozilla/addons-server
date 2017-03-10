@@ -38,16 +38,6 @@ addons:
 before_install:
   - scripts/travis_es.sh
   - /tmp/elasticsearch/elasticsearch-1.6.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
-  - |
-      if [[ $TOXENV == "ui-tests" ]]; then
-        wget -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.15.0/geckodriver-v0.15.0-linux64.tar.gz
-        mkdir $HOME/geckodriver && tar xvf /tmp/geckodriver.tar.gz -C $HOME/geckodriver
-        export PATH=$HOME/geckodriver:$PATH
-        firefox --version
-        geckodriver --version
-        sh -e /etc/init.d/xvfb start
-        sleep 10
-      fi
 
 install:
   - nvm current
