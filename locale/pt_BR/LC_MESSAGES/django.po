@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-02-28 22:03+0000\n"
-"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
+"PO-Revision-Date: 2017-03-10 15:31+0000\n"
+"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1370,8 +1370,8 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
-"Complementos são pedaços de programas que permitem personalizar o Firefox com recursos e estilo extras. Quer você digite errado o nome de um site ou não consiga ler uma página ocupada, existe um "
-"complemento para melhorar a sua navegação."
+"Extensões são aplicações que te permitem personalizar o Firefox com funcionalidade e estilo extra. Se você digitar errado o nome de um site ou não conseguir ler uma página ocupada, existe uma "
+"extensão para melhorar a sua navegação."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1385,17 +1385,17 @@ msgstr "Temas"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Featured add-ons"
-msgstr "Ver todos os complementos em destaque"
+msgstr "Ver todas as extensões em destaque"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Popular add-ons"
-msgstr "Ver todos os complementos populares"
+msgstr "Ver todas as extensões populares"
 
 # 78%
 # 100%
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "More Add-ons"
-msgstr "Mais complementos"
+msgstr "Mais extensões"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/search/forms.py
 msgid "Highest Rated"
@@ -1909,7 +1909,7 @@ msgstr "Ops"
 #: src/olympia/amo/templates/amo/500.html
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Opa!  Tivemos um problema.</h1> <p>Nós consertaremos isso logo.</p> <p>Você pode tentar atualizar a página ou voltar para a <a href=\"%(home)s\">página inicial dos complementos</a>.</p>"
+msgstr "<h1>Opa!  Tivemos um problema.</h1> <p>Nós consertaremos isso logo.</p> <p>Você pode tentar atualizar a página ou voltar para a <a href=\"%(home)s\">página inicial das extensões</a>.</p>"
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
@@ -1993,7 +1993,7 @@ msgstr "Coleções que estou seguindo"
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/users/models.py
 msgid "My Favorite Add-ons"
-msgstr "Meus complementos favoritos"
+msgstr "Minhas extensões favoritas"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "More&hellip;"
@@ -2001,7 +2001,7 @@ msgstr "Mais&hellip;"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Add-ons for Mobile"
-msgstr "Complementos para o Firefox Móvel"
+msgstr "Extensões para dispositivos móveis"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
@@ -2135,7 +2135,7 @@ msgstr "Coleções :: %s"
 
 #: src/olympia/bandwagon/feeds.py src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Coleções são grupos de complementos relacionados que qualquer pessoa pode criar e compartilhar."
+msgstr "Coleções são grupos de extensões relacionadas que qualquer pessoa pode criar e compartilhar."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py
@@ -2377,8 +2377,8 @@ msgstr[1] "%(num)s temas nessa coleção"
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s complemento nessa coleção"
-msgstr[1] "%(num)s complementos nessa coleção"
+msgstr[0] "%(num)s extensão nessa coleção"
+msgstr[1] "%(num)s extensões nessa coleção"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
