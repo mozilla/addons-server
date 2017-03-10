@@ -384,20 +384,19 @@ class File(OnChangeMixin, ModelBase):
         """
         knowns = list(WebextPermissionDescription.objects.filter(
             name__in=self.webext_permissions_list).iterator())
-        # Move nativeMessaging permission to front of the list, if present
-        for index, perm in enumerate(knowns):
-            if perm.name == WebextPermission.NATIVE_MESSAGING_NAME:
-                knowns.pop(index)
-                knowns.insert(0, perm)
-                break
 
         urls = []
         match_url = None
         for name in self.webext_permissions_list:
             if re.match(WebextPermissionDescription.MATCH_ALL_REGEX, name):
-                # We found a match-all, so no need to continue.
                 match_url = WebextPermissionDescription.ALL_URLS_PERMISSION
-                break
+            elif name == WebextPermission.NATIVE_MESSAGING_NAME:
+                # Move nativeMessaging to front of the list
+                for index, perm in enumerate(knowns):
+                    if perm.name == WebextPermission.NATIVE_MESSAGING_NAME:
+                        knowns.pop(index)
+                        knowns.insert(0, perm)
+                        break
             elif '//' in name:
                 # Filter out match urls so we can group them.
                 urls.append(name)
