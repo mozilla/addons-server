@@ -2,7 +2,7 @@ from django.db import models
 from django import dispatch
 from django.db.models import signals
 
-from olympia import amo
+from olympia import activity, amo
 from olympia.amo.models import ModelBase
 import olympia.core.logger
 
@@ -40,7 +40,8 @@ def groupuser_post_save(sender, instance, **kw):
     if kw.get('raw'):
         return
 
-    amo.log(amo.LOG.GROUP_USER_ADDED, instance.group, instance.user)
+    activity.log_create(amo.LOG.GROUP_USER_ADDED, instance.group,
+                        instance.user)
     log.info('Added %s to %s' % (instance.user, instance.group))
     del instance.user.groups_list
 
@@ -51,6 +52,7 @@ def groupuser_post_delete(sender, instance, **kw):
     if kw.get('raw'):
         return
 
-    amo.log(amo.LOG.GROUP_USER_REMOVED, instance.group, instance.user)
+    activity.log_create(amo.LOG.GROUP_USER_REMOVED, instance.group,
+                        instance.user)
     log.info('Removed %s from %s' % (instance.user, instance.group))
     del instance.user.groups_list

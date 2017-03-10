@@ -22,11 +22,11 @@ from olympia.amo.tests import (
     addon_factory, TestCase, version_factory, user_factory)
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonDependency, AddonUser
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
-from olympia.devhub.models import ActivityLog
 from olympia.editors.models import EditorSubscription, ReviewerScore
 from olympia.files.models import File, FileValidation
 from olympia.reviews.models import Review, ReviewFlag
@@ -75,8 +75,9 @@ class TestEventLog(EditorTest):
         1/1/2011.  To not do as such would be dishonorable.
         """
         review = self.make_review(username='b')
-        amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon,
-                created=datetime(2011, 1, 1))
+        ActivityLog.create(
+            amo.LOG.APPROVE_REVIEW, review, review.addon).update(
+            created=datetime(2011, 1, 1))
 
         r = self.client.get(self.url, dict(end='2011-01-01'))
         assert r.status_code == 200
@@ -90,8 +91,8 @@ class TestEventLog(EditorTest):
         """
         review = self.make_review()
         for i in xrange(2):
-            amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon)
-            amo.log(amo.LOG.DELETE_REVIEW, review.id, review.addon)
+            ActivityLog.create(amo.LOG.APPROVE_REVIEW, review, review.addon)
+            ActivityLog.create(amo.LOG.DELETE_REVIEW, review.id, review.addon)
         r = self.client.get(self.url, dict(filter='deleted'))
         assert pq(r.content)('tbody tr').length == 2
 
@@ -104,7 +105,7 @@ class TestEventLogDetail(TestEventLog):
 
     def test_me(self):
         review = self.make_review()
-        amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon)
+        ActivityLog.create(amo.LOG.APPROVE_REVIEW, review, review.addon)
         id = ActivityLog.objects.editor_events()[0].id
         r = self.client.get(reverse('editors.eventlog.detail', args=[id]))
         assert r.status_code == 200
@@ -124,8 +125,8 @@ class TestBetaSignedLog(EditorTest):
         self.file1_url = reverse('files.list', args=[self.file1.pk])
         self.file2_url = reverse('files.list', args=[self.file2.pk])
 
-        self.log1 = amo.log(amo.LOG.BETA_SIGNED, self.file1)
-        self.log2 = amo.log(amo.LOG.BETA_SIGNED, self.file2)
+        self.log1 = ActivityLog.create(amo.LOG.BETA_SIGNED, self.file1)
+        self.log2 = ActivityLog.create(amo.LOG.BETA_SIGNED, self.file2)
 
     def test_log(self):
         response = self.client.get(self.url)
@@ -157,8 +158,9 @@ class TestReviewLog(EditorTest):
 
     def make_approvals(self):
         for addon in Addon.objects.all():
-            amo.log(amo.LOG.REJECT_VERSION, addon, addon.current_version,
-                    user=self.get_user(), details={'comments': 'youwin'})
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION, addon, addon.current_version,
+                user=self.get_user(), details={'comments': 'youwin'})
 
     def make_an_approval(self, action, comment='youwin', username=None,
                          addon=None):
@@ -168,8 +170,8 @@ class TestReviewLog(EditorTest):
             user = self.get_user()
         if not addon:
             addon = Addon.objects.all()[0]
-        amo.log(action, addon, addon.current_version, user=user,
-                details={'comments': comment})
+        ActivityLog.create(action, addon, addon.current_version, user=user,
+                           details={'comments': comment})
 
     def test_basic(self):
         self.make_approvals()
@@ -201,8 +203,8 @@ class TestReviewLog(EditorTest):
         a = Addon.objects.all()[0]
         a.name = '<script>alert("xss")</script>'
         a.save()
-        amo.log(amo.LOG.REJECT_VERSION, a, a.current_version,
-                user=self.get_user(), details={'comments': 'xss!'})
+        ActivityLog.create(amo.LOG.REJECT_VERSION, a, a.current_version,
+                           user=self.get_user(), details={'comments': 'xss!'})
 
         r = self.client.get(self.url)
         assert r.status_code == 200
@@ -321,7 +323,7 @@ class TestReviewLog(EditorTest):
         assert r.status_code == 200
         assert pq(r.content)('.no-results').length == 1
 
-    @patch('olympia.devhub.models.ActivityLog.arguments', new=Mock)
+    @patch('olympia.activity.models.ActivityLog.arguments', new=Mock)
     def test_addon_missing(self):
         self.make_approvals()
         r = self.client.get(self.url)
@@ -362,21 +364,22 @@ class TestHome(EditorTest):
     def approve_reviews(self):
         core.set_user(self.user)
         for addon in Addon.objects.all():
-            amo.log(amo.LOG['APPROVE_VERSION'], addon, addon.current_version)
+            ActivityLog.create(amo.LOG['APPROVE_VERSION'], addon,
+                               addon.current_version)
 
     def delete_review(self):
         review = self.make_review()
         review.delete()
-        amo.log(amo.LOG.DELETE_REVIEW, review.addon, review,
-                details=dict(addon_title='test', title='foo', body='bar',
-                             is_flagged=True))
+        ActivityLog.create(
+            amo.LOG.DELETE_REVIEW, review.addon, review, details=dict(
+                addon_title='test', title='foo', body='bar', is_flagged=True))
         return review
 
     def test_approved_review(self):
         review = self.make_review()
-        amo.log(amo.LOG.APPROVE_REVIEW, review, review.addon,
-                details=dict(addon_name='test', addon_id=review.addon.pk,
-                             is_flagged=True))
+        ActivityLog.create(
+            amo.LOG.APPROVE_REVIEW, review, review.addon, details=dict(
+                addon_name='test', addon_id=review.addon.pk, is_flagged=True))
         r = self.client.get(self.url)
         row = pq(r.content)('.row')
         assert 'approved' in row.text(), (
@@ -494,8 +497,9 @@ class TestHome(EditorTest):
         assert not p.text()
 
     def test_new_editors(self):
-        amo.log(amo.LOG.GROUP_USER_ADDED,
-                Group.objects.get(name='Add-on Reviewers'), self.user)
+        ActivityLog.create(
+            amo.LOG.GROUP_USER_ADDED,
+            Group.objects.get(name='Add-on Reviewers'), self.user)
 
         doc = pq(self.client.get(self.url).content)
 
@@ -506,8 +510,9 @@ class TestHome(EditorTest):
         former_reviewer = UserProfile.objects.get(id=20)
         former_reviewer.display_name = 'Former reviewer'
         former_reviewer.save()
-        amo.log(amo.LOG.GROUP_USER_ADDED,
-                Group.objects.get(name='Add-on Reviewers'), former_reviewer)
+        ActivityLog.create(
+            amo.LOG.GROUP_USER_ADDED,
+            Group.objects.get(name='Add-on Reviewers'), former_reviewer)
 
         doc = pq(self.client.get(self.url).content)
 
@@ -1188,11 +1193,11 @@ class TestUnlistedAllList(QueueTest):
     def test_review_notes_json(self):
         latest_version = self.expected_addons[0].find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
-        log = amo.log(amo.LOG.APPROVE_VERSION,
-                      latest_version,
-                      self.expected_addons[0],
-                      user=UserProfile.objects.get(pk=999),
-                      details={'comments': 'stish goin` down son'})
+        log = ActivityLog.create(amo.LOG.APPROVE_VERSION,
+                                 latest_version,
+                                 self.expected_addons[0],
+                                 user=UserProfile.objects.get(pk=999),
+                                 details={'comments': 'stish goin` down son'})
         url = reverse('editors.queue_review_text') + str(log.id)
         r = self.client.get(url)
         assert json.loads(r.content) == {'reviewtext': 'stish goin` down son'}
@@ -1227,10 +1232,11 @@ class TestPerformance(QueueTest):
         addon = Addon.objects.all()[0]
         version = addon.versions.all()[0]
         for i in amo.LOG_EDITOR_REVIEW_ACTION:
-            amo.log(amo.LOG_BY_ID[i], addon, version)
+            ActivityLog.create(amo.LOG_BY_ID[i], addon, version)
         # Throw in an automatic approval - should be ignored.
-        amo.log(amo.LOG.APPROVE_VERSION, addon, version,
-                user=UserProfile.objects.get(id=settings.TASK_USER_ID))
+        ActivityLog.create(
+            amo.LOG.APPROVE_VERSION, addon, version,
+            user=UserProfile.objects.get(id=settings.TASK_USER_ID))
 
     def _test_chart(self):
         r = self.client.get(self.get_url())
@@ -2456,12 +2462,12 @@ class TestReview(ReviewBase):
         # change and deletion.
         author = self.addon.addonuser_set.get()
         core.set_user(author.user)
-        amo.log(amo.LOG.ADD_USER_WITH_ROLE,
-                author.user, author.get_role_display(), self.addon)
-        amo.log(amo.LOG.CHANGE_USER_WITH_ROLE,
-                author.user, author.get_role_display(), self.addon)
-        amo.log(amo.LOG.REMOVE_USER_WITH_ROLE,
-                author.user, author.get_role_display(), self.addon)
+        ActivityLog.create(amo.LOG.ADD_USER_WITH_ROLE,
+                           author.user, author.get_role_display(), self.addon)
+        ActivityLog.create(amo.LOG.CHANGE_USER_WITH_ROLE,
+                           author.user, author.get_role_display(), self.addon)
+        ActivityLog.create(amo.LOG.REMOVE_USER_WITH_ROLE,
+                           author.user, author.get_role_display(), self.addon)
 
         response = self.client.get(self.url)
         assert 'user_changes' in response.context

@@ -8,7 +8,7 @@ from django.test.utils import override_settings
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.activity.models import ActivityLogToken
+from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.activity.tests.test_utils import sample_message_content
 from olympia.activity.views import inbound_email, EmailCreationPermission
@@ -18,7 +18,6 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import AddonUser
 from olympia.addons.utils import generate_addon_guid
-from olympia.devhub.models import ActivityLog
 from olympia.users.models import UserProfile
 
 

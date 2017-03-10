@@ -14,6 +14,7 @@ from django.utils import translation
 from mock import Mock, patch
 
 from olympia import amo, core
+from olympia.activity.models import ActivityLog, AddonLog
 from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.amo.helpers import absolutify, user_media_url
 from olympia.addons.models import (
@@ -24,7 +25,7 @@ from olympia.addons.models import (
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.devhub.models import ActivityLog, AddonLog, RssKey
+from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.reviews.models import Review, ReviewFlag

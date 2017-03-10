@@ -5,9 +5,9 @@ from django.core.management.base import CommandError
 import pytest
 
 from olympia import amo
+from olympia.activity.models import AddonLog
 from olympia.addons.management.commands import approve_addons
 from olympia.amo.tests import addon_factory
-from olympia.devhub.models import AddonLog
 from olympia.editors.models import ReviewerScore
 
 

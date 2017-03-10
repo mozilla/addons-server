@@ -6,10 +6,10 @@ import mock
 from olympia import amo, core
 from olympia.amo.tests import TestCase
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, CollectionUser, CollectionWatcher)
-from olympia.devhub.models import ActivityLog
 from olympia.bandwagon import tasks
 from olympia.users.models import UserProfile
 

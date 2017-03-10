@@ -4,6 +4,7 @@ from urllib import urlencode
 from pyquery import PyQuery as pq
 
 from olympia import amo, core
+from olympia.activity.models import ActivityLog
 from olympia.amo.urlresolvers import reverse
 from olympia.devhub.models import RssKey
 from olympia.devhub.tests.test_views import HubTest
@@ -27,33 +28,34 @@ class TestActivity(HubTest):
         if not addon:
             addon = self.addon
         for i in xrange(num):
-            amo.log(amo.LOG.CREATE_ADDON, addon)
+            ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
 
     def log_updates(self, num, version_string='1'):
         version = Version.objects.create(version=version_string,
                                          addon=self.addon)
 
         for i in xrange(num):
-            amo.log(amo.LOG.ADD_VERSION, self.addon, version)
+            ActivityLog.create(amo.LOG.ADD_VERSION, self.addon, version)
 
     def log_status(self, num):
         for i in xrange(num):
-            amo.log(amo.LOG.USER_DISABLE, self.addon)
+            ActivityLog.create(amo.LOG.USER_DISABLE, self.addon)
 
     def log_collection(self, num, prefix='foo'):
         for i in xrange(num):
             collection = Collection.objects.create(name='%s %d' % (prefix, i))
-            amo.log(amo.LOG.ADD_TO_COLLECTION, self.addon, collection)
+            ActivityLog.create(amo.LOG.ADD_TO_COLLECTION, self.addon,
+                               collection)
 
     def log_tag(self, num, prefix='foo'):
         for i in xrange(num):
             tag = Tag.objects.create(tag_text='%s %d' % (prefix, i))
-            amo.log(amo.LOG.ADD_TAG, self.addon, tag)
+            ActivityLog.create(amo.LOG.ADD_TAG, self.addon, tag)
 
     def log_review(self, num):
         review = Review(addon=self.addon)
         for i in xrange(num):
-            amo.log(amo.LOG.ADD_REVIEW, self.addon, review)
+            ActivityLog.create(amo.LOG.ADD_REVIEW, self.addon, review)
 
     def get_response(self, **kwargs):
         url = reverse('devhub.feed_all')
@@ -285,7 +287,7 @@ class TestActivity(HubTest):
 
     def test_hidden(self):
         version = Version.objects.create(addon=self.addon)
-        amo.log(amo.LOG.COMMENT_VERSION, self.addon, version)
+        ActivityLog.create(amo.LOG.COMMENT_VERSION, self.addon, version)
         res = self.get_response(addon=self.addon.id)
         key = RssKey.objects.get()
         res = self.get_response(privaterss=key.key)

@@ -18,6 +18,7 @@ from olympia import amo
 from olympia.amo.tests import (
     TestCase, formset, initial, file_factory, version_factory)
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
@@ -27,7 +28,6 @@ from olympia.bandwagon.models import FeaturedCollection, MonthlyPick
 from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.tests import TestCompatibilityReportCronMixin
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
-from olympia.devhub.models import ActivityLog
 from olympia.files.models import File, FileUpload
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
@@ -1853,8 +1853,9 @@ class TestEmailDevs(TestCase):
 
     def test_depreliminary_addon_devs(self):
         # We just need a user for the log(), it would normally be task user.
-        amo.log(amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
-                details={'email': True}, user=self.addon.authors.get())
+        ActivityLog.create(
+            amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
+            details={'email': True}, user=self.addon.authors.get())
         res = self.post(recipients='depreliminary')
         self.assertNoFormErrors(res)
         self.assert3xx(res, reverse('zadmin.email_devs'))
@@ -1870,8 +1871,9 @@ class TestEmailDevs(TestCase):
 
     def test_we_only_email_devs_that_need_emailing(self):
         # Doesn't matter the reason, but this addon doesn't get an email.
-        amo.log(amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
-                details={'email': False}, user=self.addon.authors.get())
+        ActivityLog.create(
+            amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
+            details={'email': False}, user=self.addon.authors.get())
         res = self.post(recipients='depreliminary')
         self.assertNoFormErrors(res)
         self.assert3xx(res, reverse('zadmin.email_devs'))

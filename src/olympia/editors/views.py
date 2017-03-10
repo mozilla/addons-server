@@ -17,13 +17,13 @@ from olympia import amo
 from olympia.devhub import tasks as devhub_tasks
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
+from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
 from olympia.addons.models import Addon, Version
 from olympia.amo.decorators import json_view, post_required
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
-from olympia.devhub.models import ActivityLog, AddonLog, CommentLog
 from olympia.editors import forms
 from olympia.editors.models import (
     AddonCannedResponse, EditorSubscription, EventLog, get_flags,

@@ -18,6 +18,7 @@ from olympia import amo, core
 from olympia.amo.tests import TestCase, version_factory
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.amo.helpers import user_media_url
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
@@ -26,7 +27,6 @@ from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, CompatOverride, CompatOverrideRange)
 from olympia.addons.tests.test_views import TestMobile
 from olympia.applications.models import AppVersion
-from olympia.devhub.models import ActivityLog
 from olympia.editors.models import ViewFullReviewQueue, ViewPendingQueue
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest

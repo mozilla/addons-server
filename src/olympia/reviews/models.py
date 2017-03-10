@@ -10,7 +10,7 @@ import bleach
 import caching.base as caching
 
 import olympia.core.logger
-from olympia import amo
+from olympia import activity, amo
 from olympia.amo import helpers
 from olympia.amo.celery import task
 from olympia.amo.models import ManagerBase, ModelBase
@@ -130,13 +130,13 @@ class Review(ModelBase):
     def moderator_delete(self, user):
         from olympia.editors.models import ReviewerScore
 
-        amo.log(amo.LOG.DELETE_REVIEW, self.addon, self,
-                user=user,
-                details=dict(title=unicode(self.title),
-                             body=unicode(self.body),
-                             addon_id=self.addon.pk,
-                             addon_title=unicode(self.addon.name),
-                             is_flagged=self.reviewflag_set.exists()))
+        activity.log_create(
+            amo.LOG.DELETE_REVIEW, self.addon, self, user=user, details=dict(
+                title=unicode(self.title),
+                body=unicode(self.body),
+                addon_id=self.addon.pk,
+                addon_title=unicode(self.addon.name),
+                is_flagged=self.reviewflag_set.exists()))
         for flag in self.reviewflag_set.all():
             flag.delete()
         self.delete(user_responsible=user)
@@ -145,13 +145,13 @@ class Review(ModelBase):
     def moderator_approve(self, user):
         from olympia.editors.models import ReviewerScore
 
-        amo.log(amo.LOG.APPROVE_REVIEW, self.addon, self,
-                user=user,
-                details=dict(title=unicode(self.title),
-                             body=unicode(self.body),
-                             addon_id=self.addon.pk,
-                             addon_title=unicode(self.addon.name),
-                             is_flagged=self.reviewflag_set.exists()))
+        activity.log_create(
+            amo.LOG.APPROVE_REVIEW, self.addon, self, user=user, details=dict(
+                title=unicode(self.title),
+                body=unicode(self.body),
+                addon_id=self.addon.pk,
+                addon_title=unicode(self.addon.name),
+                is_flagged=self.reviewflag_set.exists()))
         for flag in self.reviewflag_set.all():
             flag.delete()
         self.editorreview = False
@@ -238,8 +238,8 @@ class Review(ModelBase):
             new_review_or_edit = not instance.reply_to or not created
             if new_review_or_edit:
                 action = amo.LOG.ADD_REVIEW if created else amo.LOG.EDIT_REVIEW
-                amo.log(action, instance.addon, instance,
-                        user=instance.user_responsible)
+                activity.log_create(action, instance.addon, instance,
+                                    user=instance.user_responsible)
 
             # For new reviews and new replies we want to send an email.
             if created:

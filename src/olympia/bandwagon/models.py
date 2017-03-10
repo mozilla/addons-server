@@ -10,7 +10,7 @@ from django.db import connection, models
 
 import caching.base as caching
 
-from olympia import amo
+from olympia import activity, amo
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.access import acl
 from olympia.addons.models import Addon
@@ -272,8 +272,8 @@ class Collection(ModelBase):
                            (self.id, ','.join(map(str, remove))))
             if self.listed:
                 for addon in remove:
-                    amo.log(amo.LOG.REMOVE_FROM_COLLECTION,
-                            (Addon, addon), self)
+                    activity.log_create(amo.LOG.REMOVE_FROM_COLLECTION,
+                                        (Addon, addon), self)
         if add:
             insert = '(%s, %s, %s, NOW(), NOW(), 0)'
             values = [insert % (a, self.id, idx) for a, idx in add]
@@ -284,8 +284,8 @@ class Collection(ModelBase):
                 VALUES %s""" % ','.join(values))
             if self.listed:
                 for addon_id, idx in add:
-                    amo.log(amo.LOG.ADD_TO_COLLECTION,
-                            (Addon, addon_id), self)
+                    activity.log_create(amo.LOG.ADD_TO_COLLECTION,
+                                        (Addon, addon_id), self)
         for addon, ordering in update:
             (CollectionAddon.objects.filter(collection=self.id, addon=addon)
              .update(ordering=ordering, modified=now))
@@ -310,13 +310,13 @@ class Collection(ModelBase):
         "Adds an addon to the collection."
         CollectionAddon.objects.get_or_create(addon=addon, collection=self)
         if self.listed:
-            amo.log(amo.LOG.ADD_TO_COLLECTION, addon, self)
+            activity.log_create(amo.LOG.ADD_TO_COLLECTION, addon, self)
         self.save()  # To invalidate Collection.
 
     def remove_addon(self, addon):
         CollectionAddon.objects.filter(addon=addon, collection=self).delete()
         if self.listed:
-            amo.log(amo.LOG.REMOVE_FROM_COLLECTION, addon, self)
+            activity.log_create(amo.LOG.REMOVE_FROM_COLLECTION, addon, self)
         self.save()  # To invalidate Collection.
 
     def owned_by(self, user):

@@ -8,13 +8,13 @@ import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, Category
 from olympia.amo.tests import (
     addon_factory, formset, initial, TestCase, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.devhub import views
-from olympia.devhub.models import ActivityLog
 from olympia.files.models import FileValidation
 from olympia.files.tests.test_models import UploadTest
 from olympia.users.models import UserProfile

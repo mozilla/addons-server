@@ -13,11 +13,11 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.access.models import Group
+from olympia.activity.models import ActivityLog
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter, Persona
-from olympia.devhub.models import ActivityLog
 from olympia.editors.sql_model import RawSQLModel
 from olympia.files.models import FileValidation
 from olympia.users.models import UserForeignKey, UserProfile

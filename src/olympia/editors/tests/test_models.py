@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core import mail
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import (
     addon_factory, file_factory, user_factory, version_factory)
@@ -237,8 +238,8 @@ class TestUnlistedAllList(TestCase):
         today = datetime.today().date()
         addon = self.new_addon(version='1.0')
         v2 = version_factory(addon=addon, version='2.0', channel=self.channel)
-        log = amo.log(amo.LOG.APPROVE_VERSION, v2, v2.addon,
-                      user=UserProfile.objects.get(pk=999))
+        log = ActivityLog.create(amo.LOG.APPROVE_VERSION, v2, v2.addon,
+                                 user=UserProfile.objects.get(pk=999))
         version_factory(addon=addon, version='3.0', channel=self.channel)
         row = self.Queue.objects.all()[0]
         assert row.review_date == today
@@ -247,22 +248,22 @@ class TestUnlistedAllList(TestCase):
 
     def test_no_developer_actions(self):
         addon = self.new_addon(version='1.0')
-        amo.log(amo.LOG.ADD_VERSION, addon.latest_unlisted_version, addon,
-                user=UserProfile.objects.get(pk=999))
+        ActivityLog.create(amo.LOG.ADD_VERSION, addon.latest_unlisted_version,
+                           addon, user=UserProfile.objects.get(pk=999))
         row = self.Queue.objects.all()[0]
         assert row.review_version_num is None
 
         ver2 = version_factory(version='2.0', addon=addon,
                                channel=self.channel)
-        amo.log(amo.LOG.APPROVE_VERSION, ver2, addon,
-                user=UserProfile.objects.get(pk=999))
+        ActivityLog.create(amo.LOG.APPROVE_VERSION, ver2, addon,
+                           user=UserProfile.objects.get(pk=999))
         row = self.Queue.objects.all()[0]
         assert row.review_version_num == '2.0'
 
         ver3 = version_factory(version='3.0', addon=addon,
                                channel=self.channel)
-        amo.log(amo.LOG.EDIT_VERSION, ver3, addon,
-                user=UserProfile.objects.get(pk=999))
+        ActivityLog.create(amo.LOG.EDIT_VERSION, ver3, addon,
+                           user=UserProfile.objects.get(pk=999))
         row = self.Queue.objects.all()[0]
         # v2.0 is still the last reviewed version.
         assert row.review_version_num == '2.0'
@@ -270,8 +271,9 @@ class TestUnlistedAllList(TestCase):
     def test_no_automatic_reviews(self):
         ver = self.new_addon(
             name='addon789', version='1.0').latest_unlisted_version
-        amo.log(amo.LOG.APPROVE_VERSION, ver, ver.addon,
-                user=UserProfile.objects.get(pk=settings.TASK_USER_ID))
+        ActivityLog.create(
+            amo.LOG.APPROVE_VERSION, ver, ver.addon,
+            user=UserProfile.objects.get(pk=settings.TASK_USER_ID))
         row = self.Queue.objects.all()[0]
         assert row.review_version_num is None
 

@@ -9,12 +9,12 @@ from django.core.files import temp
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests import formset, initial
 from olympia.addons.models import Addon, AddonUser
 from olympia.applications.models import AppVersion
-from olympia.devhub.models import ActivityLog
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
@@ -515,8 +515,10 @@ class TestVersion(TestCase):
     def test_pending_activity_count(self):
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
         # Add some activity log messages
-        amo.log(amo.LOG.REQUEST_INFORMATION, v2.addon, v2, user=self.user)
-        amo.log(amo.LOG.REQUEST_INFORMATION, v2.addon, v2, user=self.user)
+        ActivityLog.create(amo.LOG.REQUEST_INFORMATION, v2.addon, v2,
+                           user=self.user)
+        ActivityLog.create(amo.LOG.REQUEST_INFORMATION, v2.addon, v2,
+                           user=self.user)
 
         response = self.client.get(self.url)
         assert response.status_code == 200

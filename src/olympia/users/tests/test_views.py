@@ -18,12 +18,12 @@ from olympia.amo.tests import TestCase
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import JWT_TOKEN_COOKIE
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo.helpers import urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.constants.categories import CATEGORIES
-from olympia.devhub.models import ActivityLog
 from olympia.reviews.models import Review
 from olympia.users import notifications as email
 from olympia.users.models import UserProfile, UserNotification

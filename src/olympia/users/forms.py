@@ -9,6 +9,7 @@ from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 import olympia.core.logger
 from olympia import amo
 from olympia.accounts.views import fxa_error_message
+from olympia.activity.models import ActivityLog
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.users import notifications
 from olympia.amo.utils import clean_nl, has_links, slug_validator
@@ -255,12 +256,13 @@ class AdminUserEditForm(UserEditForm):
     def save(self, *args, **kw):
         profile = super(AdminUserEditForm, self).save(log_for_developer=False)
         if self.cleaned_data['anonymize']:
-            amo.log(amo.LOG.ADMIN_USER_ANONYMIZED, self.instance,
-                    self.cleaned_data['admin_log'])
+            ActivityLog.create(amo.LOG.ADMIN_USER_ANONYMIZED, self.instance,
+                               self.cleaned_data['admin_log'])
             profile.anonymize()  # This also logs
         else:
-            amo.log(amo.LOG.ADMIN_USER_EDITED, self.instance,
-                    self.cleaned_data['admin_log'], details=self.changes())
+            ActivityLog.create(amo.LOG.ADMIN_USER_EDITED, self.instance,
+                               self.cleaned_data['admin_log'],
+                               details=self.changes())
             log.info('Admin edit user: %s changed fields: %s' %
                      (self.instance, self.changed_fields()))
         return profile

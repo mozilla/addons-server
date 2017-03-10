@@ -17,6 +17,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.activity.utils import send_activity_mail
 from olympia.addons.helpers import new_context
 from olympia.addons.models import Addon, AddonApprovalsCounter
@@ -464,7 +465,7 @@ class ReviewBase(object):
 
         kwargs = {'user': self.user, 'created': datetime.datetime.now(),
                   'details': details}
-        amo.log(action, *args, **kwargs)
+        ActivityLog.create(action, *args, **kwargs)
 
     def notify_email(self, template, subject, perm_setting='editor_reviewed'):
         """Notify the authors that their addon has been reviewed."""

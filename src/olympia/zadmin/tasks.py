@@ -19,6 +19,7 @@ import requests
 
 import olympia.core.logger
 from olympia import amo, core
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
@@ -227,11 +228,12 @@ def update_maxversions(version_pks, job_pk, data, **kw):
             app.max = job.target_version
             if not dry_run:
                 app.save()
-                amo.log(amo.LOG.MAX_APPVERSION_UPDATED,
-                        version.addon, version,
-                        details={'version': version.version,
-                                 'target': job.target_version.version,
-                                 'application': app_id})
+                ActivityLog.create(
+                    amo.LOG.MAX_APPVERSION_UPDATED,
+                    version.addon, version,
+                    details={'version': version.version,
+                             'target': job.target_version.version,
+                             'application': app_id})
 
     log.info('[%s@%s] bulk update stats for job %s: {%s}'
              % (len(version_pks), update_maxversions.rate_limit, job_pk,
@@ -400,7 +402,7 @@ def notify_compatibility_chunk(users, job, data, **kw):
             else:
                 stats['author_emailed'] += 1
                 send_mail(*args, **kwargs)
-                amo.log(
+                ActivityLog.create(
                     amo.LOG.BULK_VALIDATION_USER_EMAILED,
                     user,
                     details={'passing': [a.id for a in user.passing_addons],

@@ -31,7 +31,8 @@ def admin_site_links():
             ('Manage elasticsearch', reverse('zadmin.elastic')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
             ('View event log', reverse('admin:editors_eventlog_changelist')),
-            ('View addon log', reverse('admin:devhub_activitylog_changelist')),
+            ('View addon log',
+             reverse('admin:activity_activitylog_changelist')),
             ('Site Status', reverse('amo.monitor')),
         ],
     }

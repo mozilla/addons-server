@@ -15,13 +15,13 @@ from olympia.access.models import Group, GroupUser
 from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, user_factory, TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.activity.models import ActivityLogToken, MAX_TOKEN_USE_COUNT
+from olympia.activity.models import (
+    ActivityLog, ActivityLogToken, MAX_TOKEN_USE_COUNT)
 from olympia.activity.utils import (
     add_email_to_activity_log, add_email_to_activity_log_wrapper,
     log_and_notify, send_activity_mail, ActivityEmailEncodingError,
     ActivityEmailParser, ActivityEmailTokenError, ActivityEmailUUIDError,
     ACTIVITY_MAIL_GROUP)
-from olympia.devhub.models import ActivityLog
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -56,7 +56,7 @@ class TestEmailBouncing(TestCase):
             self.BOUNCE_REPLY % ('%s', settings.SITE_URL, settings.SITE_URL))
         self.email_text = sample_message_content['Message']
 
-    @mock.patch('olympia.activity.utils.amo.log')
+    @mock.patch('olympia.activity.utils.ActivityLog.create')
     def test_no_note_logged(self, log_mock):
         # First set everything up so it's working
         addon = addon_factory()
@@ -217,8 +217,10 @@ class TestLogAndNotify(TestCase):
         details = {
             'comments': u'I spy, with my líttle €ye...',
             'version': self.version.version}
-        return amo.log(action, self.addon, self.version,
-                       user=author, details=details, created=self.days_ago(1))
+        activity = ActivityLog.create(
+            action, self.addon, self.version, user=author, details=details)
+        activity.update(created=self.days_ago(1))
+        return activity
 
     def _recipients(self, email_mock):
         recipients = []

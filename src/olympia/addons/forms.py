@@ -14,6 +14,7 @@ from quieter_formset.formset import BaseFormSet
 import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
+from olympia.activity.models import ActivityLog
 from olympia.amo.fields import (
     ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
 from olympia.amo.urlresolvers import reverse
@@ -605,7 +606,7 @@ class EditThemeForm(AddonFormBase):
             persona.save()
 
         if self.changed_data:
-            amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+            ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
         self.instance.modified = datetime.now()
 
         # Update Addon-specific data.
