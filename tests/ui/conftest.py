@@ -50,9 +50,11 @@ def jwt_secret(base_url, variables):
 
 @pytest.fixture
 def initial_data(transactional_db):
-    from olympia.amo.tests import addon_factory
+    from olympia.amo.tests import addon_factory, user_factory
+    from olympia.addons.models import AddonUser
+
     for x in range(10):
-        addon_factory()
+        AddonUser.objects.create(user=user_factory(), addon=addon_factory())
 
 
 @pytest.fixture
