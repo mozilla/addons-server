@@ -377,40 +377,47 @@ class File(OnChangeMixin, ModelBase):
     def webext_permissions(self):
         """Return permissions that should be displayed, with descriptions, in
         defined order:
-        1) match all urls (e.g. <all-urls>)
-        2) known permissions, in constants order (alphabetically),
-        3) match urls for sites
+        1) Either the match all permission, if present (e.g. <all-urls>), or
+           match urls for sites (<all-urls> takes preference over match urls)
+        2) nativeMessaging permission, if present
+        3) other known permissions in alphabetical order
         """
         knowns = list(WebextPermissionDescription.objects.filter(
             name__in=self.webext_permissions_list).iterator())
 
-        match_all, urls = [], []
+        urls = []
+        match_url = None
         for name in self.webext_permissions_list:
             if re.match(WebextPermissionDescription.MATCH_ALL_REGEX, name):
-                # Add match-alls.  Yes, assign not append - no dupes plz.
-                match_all = [WebextPermissionDescription.ALL_URLS_PERMISSION]
+                match_url = WebextPermissionDescription.ALL_URLS_PERMISSION
+            elif name == WebextPermission.NATIVE_MESSAGING_NAME:
+                # Move nativeMessaging to front of the list
+                for index, perm in enumerate(knowns):
+                    if perm.name == WebextPermission.NATIVE_MESSAGING_NAME:
+                        knowns.pop(index)
+                        knowns.insert(0, perm)
+                        break
             elif '//' in name:
                 # Filter out match urls so we can group them.
                 urls.append(name)
             # Other strings are unknown permissions we don't care about
 
-        match_urls = []
-        if len(urls) == 1:
-            match_urls.append(Permission(
+        if match_url is None and len(urls) == 1:
+            match_url = Permission(
                 u'single-match',
                 _(u'Access your data for {name}')
-                .format(name=urls[0])))
-        elif len(urls) > 1:
+                .format(name=urls[0]))
+        elif match_url is None and len(urls) > 1:
             details = (u'<details><summary>{copy}</summary><ul>{sites}</ul>'
                        u'</details>')
             copy = _(u'Access your data on various websites')
             sites = ''.join(
                 [u'<li>%s</li>' % jinja2_escape(name) for name in urls])
-            match_urls.append(Permission(
+            match_url = Permission(
                 u'multiple-match',
-                mark_safe(details.format(copy=copy, sites=sites))))
+                mark_safe(details.format(copy=copy, sites=sites)))
 
-        return match_all + knowns + match_urls
+        return ([match_url] if match_url else []) + knowns
 
     @amo.cached_property(writable=True)
     def webext_permissions_list(self):
@@ -725,6 +732,7 @@ class FileValidation(ModelBase):
 
 
 class WebextPermission(ModelBase):
+    NATIVE_MESSAGING_NAME = u'nativeMessaging'
     permissions = JSONField(default={})
     file = models.OneToOneField('File', related_name='_webext_permissions',
                                 on_delete=models.CASCADE)
@@ -748,6 +756,7 @@ class WebextPermissionDescription(ModelBase):
 
     class Meta:
         db_table = 'webext_permission_descriptions'
+        ordering = ['name']
 
 
 def nfd_str(u):

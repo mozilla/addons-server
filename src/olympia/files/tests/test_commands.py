@@ -80,7 +80,9 @@ class TestWebextUpdateDescriptions(TestCase):
             body=u'\n'.join([
                 u'webextPerms.description.bookmarks=Read and modify bookmarks',
                 u'webextPerms.description.geolocation=Access your location',
-                u'webextPerms.description.tabs=Access browser tabs']))
+                u'webextPerms.description.tabs=Access browser tabs',
+                u'webextPerms.description.nativeMessaging='  # no linebreak
+                u'Exchange messages with programs other than %S']))
         localised_url = settings.WEBEXT_PERM_DESCRIPTIONS_LOCALISED_URL
         responses.add(
             responses.GET,
@@ -102,7 +104,9 @@ class TestWebextUpdateDescriptions(TestCase):
             content_type='text/plain; charset="UTF-8"',
             body=u'\n'.join([
                 u'webextPerms.description.bookmarks=讀取並修改書籤',
-                u'webextPerms.description.sessions=存取瀏覽器最近關閉的分頁']))
+                u'webextPerms.description.sessions=存取瀏覽器最近關閉的分頁',
+                u'webextPerms.description.nativeMessaging='  # no linebreak
+                u'與 %S 以外的程式交換訊息']))
         responses.add(
             responses.GET,
             localised_url.format(locale='elvish'),
@@ -115,6 +119,10 @@ class TestWebextUpdateDescriptions(TestCase):
             name='geolocation').description == u'Access your location'
         assert WebextPermissionDescription.objects.get(
             name='tabs').description == u'Access browser tabs'
+        # %S in the description is replaced with Firefox.
+        assert WebextPermissionDescription.objects.get(
+            name='nativeMessaging').description == (
+            u'Exchange messages with programs other than Firefox')
 
     def _check_locales(self):
         with translation.override('fr'):
@@ -144,6 +152,10 @@ class TestWebextUpdateDescriptions(TestCase):
             # There wasn't any Chinese l10n; so en fallback
             assert WebextPermissionDescription.objects.get(
                 name='tabs').description == u'Access browser tabs'
+            # %S replaced with Firefox in 110ns too.
+            assert WebextPermissionDescription.objects.get(
+                name='nativeMessaging').description == (
+                u'與 Firefox 以外的程式交換訊息')
 
         # Chinese had an extra localisation, check it was ignored.
         assert not Translation.objects.filter(
@@ -165,9 +177,12 @@ class TestWebextUpdateDescriptions(TestCase):
         # Add an existing permission that won't be updated.
         WebextPermissionDescription.objects.create(
             name='oldpermission', description=u'somethunk craaazie')
+        # Add a permission that will be updated.
+        WebextPermissionDescription.objects.create(
+            name='bookmarks', description=u'Not updating your bookmarks!')
 
         call_command('update_permissions_from_mc')
-        assert WebextPermissionDescription.objects.count() == 4
+        assert WebextPermissionDescription.objects.count() == 5
         self._check_objects()
         self._check_locales()
         # Existing permission is still there.
@@ -185,7 +200,7 @@ class TestWebextUpdateDescriptions(TestCase):
 
         call_command('update_permissions_from_mc', clear=True)
 
-        assert WebextPermissionDescription.objects.count() == 3
+        assert WebextPermissionDescription.objects.count() == 4
         self._check_objects()
         # Existing permission is cleared.
         assert not WebextPermissionDescription.objects.filter(

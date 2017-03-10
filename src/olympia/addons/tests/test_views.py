@@ -746,10 +746,13 @@ class TestDetailPage(TestCase):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=True)
         WebextPermission.objects.create(file=file_, permissions=[
-            u'http://*/*', u'<all_urls>', u'bookmarks',
-            u'made up permission', u'https://google.com/'])
+            u'http://*/*', u'<all_urls>', u'bookmarks', u'nativeMessaging',
+            u'made up permission'])
         WebextPermissionDescription.objects.create(
-            name='bookmarks', description='Read and modify bookmarks')
+            name=u'bookmarks', description=u'Read and modify bookmarks')
+        WebextPermissionDescription.objects.create(
+            name=u'nativeMessaging',
+            description=u'Exchange messages with programs other than Firefox')
 
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -764,8 +767,8 @@ class TestDetailPage(TestCase):
         # See File.webext_permissions for the order logic
         assert doc('li.webext-permissions-list').text() == (
             u'Access your data for all websites '
-            u'Read and modify bookmarks '
-            u'Access your data for https://google.com/')
+            u'Exchange messages with programs other than Firefox '
+            u'Read and modify bookmarks')
 
     @override_switch('webext-permissions', active=True)
     def test_permissions_webext_no_permissions(self):
