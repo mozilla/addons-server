@@ -797,7 +797,7 @@ function initVersions() {
         if ($replyForm.children('textarea').val() == '') {
             return false
         }
-        submitButton = $replyForm.children('button')
+        var submitButton = $replyForm.children('button')
         $.ajax({
             type: 'POST',
             url: $replyForm.attr('action'),
