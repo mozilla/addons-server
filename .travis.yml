@@ -59,7 +59,17 @@ install:
 before_script:
   - mysql -e 'create database olympia;'
   - node --version
-  - if [[ $TOXENV == "ui-tests" ]]; then make update_deps; fi
+  - |
+      if [[ $TOXENV == "ui-tests" ]]; then
+        wget -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.15.0/geckodriver-v0.15.0-linux64.tar.gz
+        mkdir $HOME/geckodriver && tar xvf /tmp/geckodriver.tar.gz -C $HOME/geckodriver
+        export PATH=$HOME/geckodriver:$PATH
+        firefox --version
+        geckodriver --version
+        sh -e /etc/init.d/xvfb start
+        sleep 10
+        make update_deps
+      fi
 
 script:
   - RUNNING_IN_CI=True tox -v

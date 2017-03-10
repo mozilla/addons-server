@@ -25,8 +25,8 @@ def capabilities(capabilities):
 
 
 @pytest.fixture
-def fxa_account(base_url):
-    url = DEV_URL if 'dev' or 'localhost' in base_url else PROD_URL
+def fxa_account(my_base_url):
+    url = DEV_URL if 'dev' or 'localhost' in my_base_url else PROD_URL
     return FxATestAccount(url)
 
 
