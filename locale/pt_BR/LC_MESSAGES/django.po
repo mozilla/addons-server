@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-10 15:31+0000\n"
+"PO-Revision-Date: 2017-03-10 15:51+0000\n"
 "Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2411,27 +2411,27 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"Complementos que marca como favoritos usando o recurso <b>Adicionar aos favoritos</b> aparecem abaixo. Essa coleção atualmente é <b>pública</b>, o que significa que todo mundo pode vê-la. Se desejar"
-" escondê-la do público, clique no botão abaixo para torná-la privada."
+"Extensões que você marcar como favoritas usando a funcionalidade <b>Adicionar aos favoritos</b> aparecem abaixo. Essa coleção atualmente é <b>pública</b>, o que significa que todo mundo pode vê-la. "
+"Se desejar escondê-la do público, clique no botão abaixo para torná-la privada."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Extensões que você marcar como favoritos usando a funcionalidade <b>Adicionar aos Favoritos</b> são exibidos abaixo. Esta coleção é <b>privada</b>, apenas você pode vê-la. Se você quiser que "
+"Extensões que você marcar como favoritas usando a funcionalidade <b>Adicionar aos Favoritos</b> são exibidos abaixo. Esta coleção é <b>privada</b>, apenas você pode vê-la. Se você quiser que "
 "qualquer pessoa possa vê-la, clique no botão abaixo para torná-la pública."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
-msgstr "Meus complementos favoritos"
+msgstr "Minhas extensões favoritas"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> complemento"
-msgstr[1] "<span>%(addons)s</span> complementos"
+msgstr[0] "<span>%(addons)s</span> extensão"
+msgstr[1] "<span>%(addons)s</span> extensões"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html
 #, python-format
@@ -2589,7 +2589,7 @@ msgstr "Configurações de administração"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Alerta:</b> ao mudar o dono dessa coleção, você não poderá mais editá-la. Você somente poderá adicionar e remover complementos dela."
+msgstr "<b>Alerta:</b> ao mudar o dono dessa coleção, você não poderá mais editá-la. Você somente poderá adicionar e remover extensões dela."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
@@ -2633,12 +2633,12 @@ msgstr "Coleções populares recentemente"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Coleções são grupos de complementos relacionados que qualquer pessoa pode criar e compartilhar. Explore coleções criadas por outros usuários ou <a href=\"%(url)s\">crie a sua</a>."
+msgstr "Coleções são grupos de extensões relacionadas que qualquer pessoa pode criar e compartilhar. Explore coleções criadas por outros usuários ou <a href=\"%(url)s\">crie a sua</a>."
 
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
-msgstr "Assinar"
+msgstr "Inscrever"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Following"
@@ -2650,7 +2650,7 @@ msgstr "Criar uma coleção"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Coleções tornam fácil acompanhar seus complementos favoritos e compartilhar o seu navegador perfeitamente personalizado com outras pessoas."
+msgstr "Coleções tornam fácil acompanhar suas extensões favoritas e compartilhar o seu navegador perfeitamente personalizado com outras pessoas."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Collection Icon"
@@ -4565,7 +4565,7 @@ msgstr "Atividade"
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Subscribe to this feed"
-msgstr "Assinar este feed"
+msgstr "Inscrever neste feed"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
@@ -7908,7 +7908,7 @@ msgstr "Novidades"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr "Conheça os últimos complementos em destaque"
+msgstr "Obtenha as extensões mais recentes e indispensáveis do momento."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Worry-free browsing"
@@ -8681,7 +8681,7 @@ msgstr "Dólar do Zimbabué"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
-msgstr "Sobre os complementos Mozilla"
+msgstr "Sobre as extensões da Mozilla"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "What is this website?"
@@ -8692,8 +8692,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"O addons.mozilla.org, comumente conhecido como \"AMO\", é o site oficial de complementos para softwares da Mozilla como o Firefox, Thunderbird e o SeaMonkey. Os complementos permitem que adicione "
-"novas funcionalidades e altere a forma que o navegador e aplicação funcionam. Dê uma olhada em volta e explore as milhares de formas de personalizar o seu jeito de fazer as coisas online."
+"O addons.mozilla.org, comumente conhecido como \"AMO\", é o site oficial de extensões para softwares da Mozilla como o Firefox, Thunderbird e o SeaMonkey. As extensões te permitem adicionar novas "
+"funcionalidades e alterar a forma que o navegador e aplicação funcionam. Dê uma olhada em volta e explore as milhares de formas de personalizar o seu jeito de fazer as coisas on-line."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
@@ -10948,7 +10948,7 @@ msgstr ""
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
-msgstr "conheça os <b>complementos</b>"
+msgstr "conheça as <b>extensões</b>"
 
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Other languages"
@@ -11005,7 +11005,7 @@ msgstr "Para experimentar os milhares de complementos disponíveis aqui, baixe o
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
-msgstr "Bem-vindo aos Complementos para o {0}."
+msgstr "Bem-vindo as Extensões para o {0}."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
@@ -11554,7 +11554,7 @@ msgstr "Desinscrever-se"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "You are successfully unsubscribed!"
-msgstr "Você deixou de assinar com sucesso!"
+msgstr "Você cancelou a inscrição com sucesso!"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 #, python-format
