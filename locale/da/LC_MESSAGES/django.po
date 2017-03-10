@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-07 15:31+0000\n"
-"Last-Translator: Kim Ludvigsen <ludvigs@kimludvigsen.dk>\n"
+"PO-Revision-Date: 2017-03-10 17:02+0000\n"
+"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -7458,11 +7458,11 @@ msgstr ""
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Tilgå dine data for {name}"
 
 #: src/olympia/files/models.py
 msgid "Access your data on various websites"
-msgstr ""
+msgstr "Tilgå dine data på forskellige websteder"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
