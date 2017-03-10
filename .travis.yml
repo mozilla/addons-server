@@ -47,7 +47,6 @@ before_install:
         geckodriver --version
         sh -e /etc/init.d/xvfb start
         sleep 10
-        make update_deps
       fi
 
 install:
@@ -60,6 +59,7 @@ install:
 before_script:
   - mysql -e 'create database olympia;'
   - node --version
+  - if [[ $TOXENV == "ui-tests" ]]; then make update_deps; fi
 
 script:
   - RUNNING_IN_CI=True tox -v
