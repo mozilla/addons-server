@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-10 15:51+0000\n"
+"PO-Revision-Date: 2017-03-10 15:59+0000\n"
 "Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6749,7 +6749,7 @@ msgstr[1] "Análises moderadas ({0})"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
-msgstr "Todos os complementos não listados"
+msgstr "Todos as extensões não listadas"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
@@ -6883,7 +6883,7 @@ msgstr "Uma questão sobre a submissão do seu tema"
 
 #: src/olympia/editors/views.py
 msgid "New Add-ons (Under 5 days)"
-msgstr "Complementos novos (menos de 5 dias)"
+msgstr "Extensões novas (menos de 5 dias)"
 
 #: src/olympia/editors/views.py
 msgid "Passable (5 to 10 days)"
@@ -6981,7 +6981,7 @@ msgstr "Filas"
 # 100%
 #: src/olympia/editors/templates/editors/base.html
 msgid "New Add-ons"
-msgstr "Novos complementos"
+msgstr "Novas extensões"
 
 # %1 is the review count
 #: src/olympia/editors/templates/editors/base.html
@@ -7086,8 +7086,8 @@ msgstr "Tempo de espera atual:"
 #: src/olympia/editors/templates/editors/home.html
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} complemento"
-msgstr[1] "{0} complementos"
+msgstr[0] "{0} extensão"
+msgstr[1] "{0} extensões"
 
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
@@ -7820,7 +7820,7 @@ msgstr "Crie o site perfeito"
 # A header on the admin page to toggle trusted status.
 #: src/olympia/legacy_discovery/modules.py
 msgid "First time with Add-ons?"
-msgstr "Primeira vez usando complementos?"
+msgstr "Primeira vez usando extensões?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Not to worry, here are three to get started."
@@ -7852,7 +7852,7 @@ msgstr "Recline sua poltrona e relaxe"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add-ons that help you on your travels!"
-msgstr "Complementos que ajudam em suas viagens!"
+msgstr "Extensões que ajudam em suas viagens!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Displays a country flag depicting the location of the current website's server and more."
@@ -7868,11 +7868,11 @@ msgstr "Encontre automaticamente o menor preço ao pesquisar passagens e voos on
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "A+ add-ons for School"
-msgstr "Complementos nota 10 para estudar"
+msgstr "Extensões nota 10 para estudar"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr "Complementos para professores, pais e estudantes voltando às aulas."
+msgstr "Extensões para professores, pais e estudantes voltando às aulas."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Would you like to know which websites you can trust?"
@@ -7916,7 +7916,7 @@ msgstr "Navegue sem dores de cabeça"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr "Proteja sua privacidade online com os complementos dessa coleção"
+msgstr "Proteja sua privacidade on-line com as extensões dessa coleção."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
@@ -7940,7 +7940,7 @@ msgstr "Tire melhores capturas de telas, melhore sua experiência de vídeo on-l
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
-msgstr "Descobrir complementos"
+msgstr "Descobrir extensões"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "What are Add-ons?"
@@ -8697,7 +8697,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
-msgstr "Quem cria estes complementos?"
+msgstr "Quem cria estas extensões?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
