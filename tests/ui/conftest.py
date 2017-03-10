@@ -12,13 +12,9 @@ from olympia.amo.tests import create_switch
 from pytest_django import live_server_helper
 
 
-@pytest.fixture
-def local_base_url(live_server):
-    # If localhost is set as base_url, run the live_server
-    if 'localhost' in os.environ.get('PYTEST_BASE_URL'):
-        return live_server.url
-    else:
-        return os.environ.get('PYTEST_BASE_URL')
+@pytest.fixture(scope='function')
+def my_base_url(base_url, request):
+    return base_url or request.getfixturevalue("live_server").url
 
 
 @pytest.fixture
@@ -60,8 +56,7 @@ def initial_data(transactional_db):
 
 
 @pytest.fixture
-def create_superuser(
-        transactional_db, live_server, base_url, tmpdir, variables):
+def create_superuser(transactional_db, my_base_url, tmpdir, variables):
     create_switch('super-create-accounts')
     call_command('loaddata', 'initial.json')
 
@@ -72,7 +67,7 @@ def create_superuser(
         email='uitester@mozilla.org',
         add_to_supercreate_group=True,
         save_api_credentials=str(tmpdir.join('variables.json')),
-        hostname=urlparse.urlsplit(base_url).hostname
+        hostname=urlparse.urlsplit(my_base_url).hostname
     )
 
     with tmpdir.join('variables.json').open() as f:
@@ -80,9 +75,9 @@ def create_superuser(
 
 
 @pytest.fixture
-def user(transactional_db, create_superuser, base_url,
-         fxa_account, jwt_token):
-    url = '{base_url}/api/v3/accounts/super-create/'.format(base_url=base_url)
+def user(create_superuser, my_base_url, fxa_account, jwt_token):
+    url = '{base_url}/api/v3/accounts/super-create/'.format(
+        base_url=my_base_url)
 
     params = {
         'email': fxa_account.email,
@@ -91,14 +86,13 @@ def user(transactional_db, create_superuser, base_url,
         'fxa_id': fxa_account.session.uid}
     headers = {'Authorization': 'JWT {token}'.format(token=jwt_token)}
     response = requests.post(url, data=params, headers=headers)
-    user = params
     assert requests.codes.created == response.status_code
-    user.update(response.json())
-    return user
+    params.update(response.json())
+    return params
 
 
 @pytest.fixture(scope='function')
-def live_server(request):
+def live_server(request, transactional_db):
     """
         This fixture overrides the live_server fixture provided by
         pytest_django. live_server allows us to create a running version of the
@@ -125,8 +119,6 @@ def live_server(request):
         Also investigating if there are any problems in pytest-django directly.
     """
 
-    request.getfixturevalue('transactional_db')
-
     addr = (request.config.getvalue('liveserver') or
             os.getenv('DJANGO_LIVE_TEST_SERVER_ADDRESS'))
 
@@ -134,7 +126,6 @@ def live_server(request):
         addr = 'localhost:8081,8100-8200'
 
     server = live_server_helper.LiveServer(addr)
-    request.addfinalizer(server.stop)
     yield server
     server.stop()
 
