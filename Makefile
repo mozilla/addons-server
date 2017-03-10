@@ -104,6 +104,7 @@ endif
 	schematic --fake src/olympia/migrations/
 	python manage.py createsuperuser
 	python manage.py loaddata zadmin/users
+	python manage.py update_permissions_from_mc
 
 populate_data:
 ifeq ($(IN_DOCKER),)
@@ -164,14 +165,15 @@ update_docker:
 ifneq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the host)
 endif
-	docker exec -t -i ${DOCKER_NAME} make update_docker_inner
 	docker exec -t -i ${DOCKER_NAME_WORKER} make update_deps
+	docker exec -t -i ${DOCKER_NAME} make update_docker_inner
 
 update_docker_inner:
 ifeq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the container)
 endif
 	$(MAKE) update_deps update_db update_assets
+	python manage.py update_permissions_from_mc
 
 full_init:
 ifeq ($(IN_DOCKER),)
