@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 15:31+0000\n"
+"PO-Revision-Date: 2017-03-12 15:39+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -4398,7 +4398,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Siste aktivitet for mine utvidingar"
 
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
@@ -4615,7 +4615,7 @@ msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
-msgstr ""
+msgstr "Utvidingsdetaljar"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details for {0}"
@@ -4913,11 +4913,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Resume"
-msgstr ""
+msgstr "Fortset"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Slett denne utvidinga."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete"
@@ -5228,7 +5228,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "API Credentials"
-msgstr ""
+msgstr "API-inloggingsopplysningar"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
@@ -5389,11 +5389,11 @@ msgstr "Kompatibilitetsrapportar"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} misslykka rapportar"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} godkjende rapportar"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "Developer News"
@@ -5418,15 +5418,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Remove this application"
-msgstr ""
+msgstr "Fjern denne appen"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vel <b>opp til {0}</b> {1} kategori for denne utvidinga:"
+msgstr[1] "Vel <b>opp til {0}</b> {1} kategoriar for denne utvidinga:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid ""
@@ -5574,7 +5574,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get started"
-msgstr ""
+msgstr "Kom i gang"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "More Ways to Participate"
@@ -5619,7 +5619,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Show Me"
-msgstr ""
+msgstr "Vis meg"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "View All Submissions"
