@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 12:58+0000\n"
+"PO-Revision-Date: 2017-03-12 13:31+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1733,9 +1733,8 @@ msgid "Developer Reply"
 msgstr "Utviklarsvar"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Kommentar på {addon} {version}."
+msgstr "Svar frå vurderar for {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Reviewer Reply"
@@ -1750,14 +1749,12 @@ msgid "Approval notes changed"
 msgstr ""
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Kommentar på {addon} {version}."
+msgstr "Kjeldekode lasta opp for {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Kjeldekodelisens"
+msgstr "Kjeldekode lasta opp"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -1772,14 +1769,12 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr "<p>Prøv å gå tilbake til føregåande side, oppdater og prøv på nytt.</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Ikkje funne"
+msgstr "Fann ikkje sida"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Fleire utvidingar"
+msgstr "Firefox-utvidingar"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
@@ -1790,19 +1785,16 @@ msgid "Suggested Pages"
 msgstr "Føreslåtte sider"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Mest populære utvidingar"
+msgstr "Bla i alle utvidingar"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Vis alle tema i kategorien {0}"
+msgstr "Bla i alle tema"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Heimesida for utvidinga"
+msgstr "Heimeside for utvidingar"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
@@ -2020,9 +2012,8 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html
-#, fuzzy
 msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
@@ -3027,9 +3018,8 @@ msgid "Report Type"
 msgstr "Rapporttype"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "Application Version"
-msgstr "Applikasjonsversjonar"
+msgstr "Appversjon"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -5133,9 +5123,8 @@ msgid "You’re done!"
 msgstr "Du er klar!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Send inn vurdering"
+msgstr "Versjon sendt inn for vurdering"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
@@ -5146,32 +5135,28 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Handsam bidraga mine"
+msgstr "Handter oppføring"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Versjon {0}"
+msgstr "Rediger versjon {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "File Signed"
-msgstr "Versjonsmerknad"
+msgstr "Fil signert"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "Versjonsmerknad"
+msgstr "Versjon signert"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
@@ -5190,18 +5175,16 @@ msgid "Upload File"
 msgstr "Last opp fil"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "Handsam bidraga mine"
+msgstr "Gå til bidraga mine"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Add-on Distribution Agreement"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Blokkerte utvidingar"
+msgstr "Last opp utviding"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5214,9 +5197,8 @@ msgid "Where to Host Version"
 msgstr "Siste versjon:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Version"
-msgstr "Last opp ny versjon"
+msgstr "Last opp versjon"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5239,9 +5221,8 @@ msgid "Submit File"
 msgstr "Send inn fil"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "Utviding"
+msgstr "SIgner utviding"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
@@ -5526,9 +5507,8 @@ msgid "Contact Us"
 msgstr "Kontakt oss"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Review Policies"
-msgstr "Vurderingsmerknad"
+msgstr "Vurderingspraksis"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "FAQ"
@@ -5543,23 +5523,20 @@ msgid "Site Status"
 msgstr "Nettstadstatus"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Kompatiblitetskontroll for tillegg"
+msgstr "Kompatibilitetskontrollerar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
-#, fuzzy
 msgid "Compatibility Reporter"
-msgstr "Kompatiblitetskontroll for tillegg"
+msgstr "Kompatiblitetsrapporterar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Promote"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "Fleire utvidingar"
+msgstr "Få utvidinga di framheva"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
@@ -5602,9 +5579,8 @@ msgid "Get started"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "Meir av denne artisten"
+msgstr "Fleire måtar å delta på"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
@@ -5648,23 +5624,20 @@ msgid "Show Me"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Vis alle versjonar"
+msgstr "Vis alle bidrag"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Submit Your First Add-on"
-msgstr "Send inn ei ny utviding"
+msgstr "Send inn den første utvidinga di"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "Submit Your First Theme"
-msgstr "Send inn eit nytt tema"
+msgstr "Send inn det første temaet ditt"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, fuzzy
@@ -5726,9 +5699,8 @@ msgid "Have an add-on ready? Submit your extension or theme to be listed on addo
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Sign In"
-msgstr "Utviding"
+msgstr "Logg inn"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Validator"
@@ -6196,18 +6168,16 @@ msgid "Validate now."
 msgstr "Valider no."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Temavurdering"
+msgstr "Be om vurdering"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Loading Review History..."
-msgstr "Vurderingshistorikk"
+msgstr "Lastar vurderingshistorikk…"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
@@ -11223,9 +11193,8 @@ msgid "Message"
 msgstr ""
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Compat Type"
-msgstr "Kompatibel"
+msgstr "Kompatibel type"
 
 #: src/olympia/zadmin/views.py
 msgid "Addons Affected"
@@ -11236,6 +11205,5 @@ msgid "Addon"
 msgstr ""
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Validation Result"
-msgstr "Gyldige applikasjonsversjonar"
+msgstr "Valideringsresultat"
