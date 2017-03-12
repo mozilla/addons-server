@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 17:23+0000\n"
+"PO-Revision-Date: 2017-03-12 18:10+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -7003,7 +7003,7 @@ msgstr "Testa på:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Åtvaring!</strong> Ein annan brukar såg på denne sida før deg."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
@@ -7023,11 +7023,11 @@ msgstr "Vurderingsside for oppførte"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
-msgstr ""
+msgstr "(admin)"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Admin Page"
-msgstr ""
+msgstr "Administrasjonsside"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Review This Add-on"
@@ -7061,11 +7061,11 @@ msgstr "Gøym kommentarar"
 
 #: src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Fann ingen vurderingar for denne perioden."
 
 #: src/olympia/editors/templates/editors/includes/daily-message.html
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Avvis denne kunngjeringa"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Files in this version:"
@@ -7077,7 +7077,7 @@ msgstr "Innhald"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Compare"
-msgstr ""
+msgstr "Samanlikn"
 
 #: src/olympia/editors/templates/editors/includes/history.html
 #, python-format
@@ -7094,11 +7094,11 @@ msgstr "Nyare"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "Recent Points"
-msgstr ""
+msgstr "Siste poeng"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Ingen poeng er delte ut enno."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "Top Reviewers (past 7 days)"
@@ -7119,7 +7119,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
-msgstr ""
+msgstr "Dato sletta"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "No deleted themes found for this period."
@@ -7131,7 +7131,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Review Date"
-msgstr ""
+msgstr "Vurderingsdato"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Action"
@@ -7139,29 +7139,29 @@ msgstr "Handling"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Reason"
-msgstr ""
+msgstr "Grunn"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Det finst for tida ingen vurderingar."
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} ventande temavurdering"
+msgstr[1] "{num} ventande temavurderingar"
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} flagga vurdering"
+msgstr[1] "{num} flagga vurderingar"
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} oppdatering"
+msgstr[1] "{num} oppdateringar"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Flagged Themes"
@@ -7169,11 +7169,11 @@ msgstr "Flagga tema"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Vurderingskø for tema"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Review Options"
-msgstr ""
+msgstr "Vurderingsalternativ"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Auto-advance after review"
@@ -7404,7 +7404,7 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
-msgstr ""
+msgstr "Validering feila:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
@@ -7425,11 +7425,11 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Deleted files:"
-msgstr ""
+msgstr "Sletta filer:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Hide known files"
-msgstr ""
+msgstr "Gøym kjende filer"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on SDK Version:"
