@@ -197,8 +197,9 @@ djangorestframework==3.5.4 \
 djangorestframework-jwt==1.9.0 \
     --hash=sha256:c9fa3c1847569ac1c96d04c7fa38f8dacf894ab405d9e772f0776c4d57fa35ad \
     --hash=sha256:319fd2de82a798f46c03c0289e790f2ddbe65dbf7196ed46815225497606abb1
-drf-nested-routers==0.11.1 \
-    --hash=sha256:edaa03541acd83d90b80453eba588e239ebb989b096211e27ef8dbde2355d79b
+drf-nested-routers==0.90.0 \
+    --hash=sha256:818fcc37b6cafff52f4afae012b8de85970a1b931f1e47c2f07a24fd141eb476 \
+    --hash=sha256:3346bcfb151d221d499b3b7932cc6e5cee005ea50f1343a2f5cd2f85e7b1d77f
 easy-thumbnails==2.3 \
     --hash=sha256:5ae57f086026dbfe4aa59e9bc80bcae1ae6daca63dec02a2d510c3ab098f0de2 \
     --hash=sha256:d6113cf1e1ece85216ab8cd62c352da21853c9ef31341161d904801d347d7aee
