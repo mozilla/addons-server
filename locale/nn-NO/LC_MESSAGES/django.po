@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 18:31+0000\n"
+"PO-Revision-Date: 2017-03-12 18:50+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2170,7 +2170,7 @@ msgstr "Samling oppdatert!"
 #: src/olympia/bandwagon/views.py
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Vis samlinga di</a> for å sjå endringane."
 
 #: src/olympia/bandwagon/views.py
 msgid "Icon Deleted"
@@ -2199,7 +2199,7 @@ msgstr "Start ei ny samling..."
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Start ei ny samling"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name:"
@@ -2466,7 +2466,7 @@ msgstr "Rolle"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Enter the email address of the contributor to add"
-msgstr ""
+msgstr "Skriv inn e-postadressa til bidragsytaren som skal leggast til"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Add Contributor"
@@ -2598,7 +2598,7 @@ msgstr "SAMLINGAR"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
-msgstr ""
+msgstr "Grupper av beslekta utvidingar som alle kan lage."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocked Add-ons"
@@ -2671,7 +2671,7 @@ msgstr "Utvalde utvidingar :: %s"
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "Her er nokre av favorittutvidingane våre for å hjelpe deg med å kome i gang med å tilpasse %s."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -2720,7 +2720,7 @@ msgstr "Utvalde utvidingar"
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "Her er nokre av favorittutvidingane våre for å hjelpe deg med å kome i gang med å tilpasse %(app)s."
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Dictionary"
@@ -2784,7 +2784,7 @@ msgstr "Søk i utvidingar"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Legg til søkerelatert funksjonalitet i Firefox"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Providers"
@@ -2792,7 +2792,7 @@ msgstr "Søkjetilbydarar"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Finn nye tilbydarar for søkelinja"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Additional Resources"
@@ -2801,15 +2801,15 @@ msgstr "Fleire ressursar"
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr ""
+msgstr "Les meir om <a href=\"http://support.mozilla.com/kb/Search+bar\">søkelinja</a> i {0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Bla gjennom enno fleire søkeleverandørar på <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Lag ditt eige</a> søkeverktøy"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
@@ -2837,7 +2837,7 @@ msgstr "Nyleg oppdaterte utvidingar"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Framgangsrike utvidingar"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -2871,13 +2871,13 @@ msgstr "Nyleg oppdaterte komplette tema"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Framgangsrike fullstendige tema"
 
 #: src/olympia/browse/templates/browse/impala/category_landing.html
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
+msgstr[0] "Vis %(cnt)s utvidinga i %(name)s &raquo;"
 msgstr[1] ""
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
@@ -2904,7 +2904,7 @@ msgstr "Lag ditt eige tema"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Din nettlesar, din stil! Kle han opp med ditt eige design!"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Learn more"
@@ -2925,7 +2925,7 @@ msgstr "Vis alle topprangerte"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Over 300 000 design å bruke for å tilpasse nettlesaren! Flytt musepeikaren over eit bakgrunnstema for å prøve det ut. <a href=\"%(url)s\" class=\"more-info\">Start utforskinga</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Want more personalization?"
@@ -2936,7 +2936,7 @@ msgstr "Vil du ha fleire tilpassingar?"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Komplette tema endrar utsjånaden av nettlesaren med stilar for vindausgramma, adresselinja, knappar, faner og menyar. <a href=\"%(url)s\" class=\"more-info\">Start utforskinga</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
@@ -2972,7 +2972,7 @@ msgstr "Alle"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Rapportar for utvidingskompatiblitet"
 
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
@@ -2980,14 +2980,16 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
 " supporting an upcoming Firefox version. </p>"
 msgstr ""
+"<p> Rapportar sendt til oss gjennom <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> vert samla her slik at utviklarar kan sjå dei. Desse rapportane hjelper oss med å avgjere kva for "
+"utvidingar som treng hjelp med støtte for ein komande Firefox-versjon. </p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Rapportar for tillegga dine"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "Skriv inn GUID for ei utviding nedanfor for å vise rapportar som er mottatt."
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{addon} Compatibility Reports"
@@ -3181,7 +3183,7 @@ msgstr "Programtillegg"
 
 #: src/olympia/constants/base.py
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "Berre spør på denne utvidinga si side og utviklarprofil"
 
 #: src/olympia/constants/base.py
 msgid "Ask after users start downloading this add-on"
