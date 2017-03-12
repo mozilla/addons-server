@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 16:25+0000\n"
+"PO-Revision-Date: 2017-03-12 17:23+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -6979,11 +6979,11 @@ msgstr "Last ned filer"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Utviklaren har kome med kjeldekode."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Denne versjonen er ikkje vurdert."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -6991,7 +6991,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Set inn standardsvar…"
 
 #: src/olympia/editors/templates/editors/review.html src/olympia/files/templates/files/viewer.html
 msgid "Files:"
