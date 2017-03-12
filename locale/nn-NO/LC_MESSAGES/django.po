@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 13:31+0000\n"
+"PO-Revision-Date: 2017-03-12 13:44+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5187,14 +5187,12 @@ msgid "Upload Add-on"
 msgstr "Last opp utviding"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Siste versjon:"
+msgstr "Kvar filer skal husast"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host Version"
-msgstr "Siste versjon:"
+msgstr "Kvar skal versjonar husast"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Version"
@@ -5640,28 +5638,25 @@ msgid "Submit Your First Theme"
 msgstr "Send inn det første temaet ditt"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Utviklarsenter"
+msgstr "Utviklarhub for utvidingar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Docs"
 msgstr "Dokument"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "Sign Out"
-msgstr "Utviding"
+msgstr "Logg ut"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Ingen foto"
+msgstr "Brukarbilde"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "Side <a href=\"%(current_pg_url)s\">%(current_pg)s</a> av <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
+msgstr "<a href=\"%(register)s\">Registrer deg</a> eller <a href=\"%(login)s\">Logg inn</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Customize Firefox"
@@ -5675,14 +5670,12 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
-#, fuzzy
 msgid "Learn How to Make an Add-on"
-msgstr "Lær alt om utvidingar"
+msgstr "Lær korleis du lagar ei utviding"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "Populære utvidingar"
+msgstr "Porter ei Chrome-utviding"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
@@ -5690,9 +5683,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
-#, fuzzy
 msgid "Publish Your Add-on"
-msgstr "Publiser utvidingane dine!"
+msgstr "Publiser utvidinga di"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
@@ -5752,9 +5744,8 @@ msgid "Receive contributions in your PayPal account or send them to an organizat
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "Bidrag til {addon}."
+msgstr "Bidrag er berre tilgjengelegefor utvidingar med oppførte versjonar."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -5762,9 +5753,8 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "Bidrag til {addon}."
+msgstr "Bidrag er berre tilgjengelege for godkjende utvidingar."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6155,9 +6145,8 @@ msgid "Re-enable Version"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Close Review History"
-msgstr "Vurderingshistorikk"
+msgstr "Lukk vurderingshistorikk"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
@@ -6200,9 +6189,8 @@ msgid "Reply"
 msgstr "Svar"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Synlegheit"
+msgstr "Synlegheit i opføring"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
@@ -6697,9 +6685,8 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Gå tilbake til heimesida for {0}-utvidingar"
+msgstr "Gå tilbake til heimesida for redigeringsverktøy"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
@@ -10927,9 +10914,8 @@ msgid "User Login"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-#, fuzzy
 msgid "Log in with Firefox Accounts"
-msgstr "Du kan no logga inn på utvidingar med Firefox-kontoen din."
+msgstr "Logg inn med Firefox-kontoar"
 
 #: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
