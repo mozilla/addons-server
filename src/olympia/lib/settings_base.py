@@ -259,8 +259,9 @@ SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
 )
 
 # paths that don't require an app prefix
-# This needs to be kept in sync with addons-frontend's validUrlExceptions
-# https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js#L27
+# This needs to be kept in sync with addons-frontend's
+# validClientAppUrlExceptions
+# https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONAPPS = (
     'about', 'admin', 'apps', 'contribute.json', 'credits',
     'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
@@ -271,6 +272,8 @@ SUPPORTED_NONAPPS = (
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
+# This needs to be kept in sync with addons-frontend's validLocaleUrlExceptions
+# https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONLOCALES = (
     'contribute.json', 'google1f3e37b7351799a5.html', 'robots.txt', 'services',
     'downloads', 'static', 'user-media', '__version__',
