@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 13:44+0000\n"
+"PO-Revision-Date: 2017-03-12 15:04+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -747,7 +747,7 @@ msgstr "Oppgrader {0}"
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
+msgstr "eller vis <a href=\"%(href)s\"> eldre versjonar av denne utvidinga</a>."
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -1746,7 +1746,7 @@ msgstr "Godkjenningsmerknadar endra for {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Godkjenningsmerknadar endra"
 
 #: src/olympia/amo/log.py
 msgid "Source code uploaded for {addon} {version}."
@@ -2107,11 +2107,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "Legg til ei positiv røyst for denne samlinga"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "Legg til ei negativ røyst for denne samlinga"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Remove my vote for this collection"
