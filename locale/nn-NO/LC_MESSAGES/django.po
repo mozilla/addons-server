@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-04 23:50+0000\n"
+"PO-Revision-Date: 2017-03-12 12:58+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1738,14 +1738,12 @@ msgid "Reply by reviewer on {addon} {version}."
 msgstr "Kommentar på {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Utviklar"
+msgstr "Svar frå vurderar"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Kommentar på {addon} {version}."
+msgstr "Godkjenningsmerknadar endra for {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Approval notes changed"
@@ -6496,7 +6494,7 @@ msgstr "[status: %s]"
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
 msgstr[0] "Ny utviding ({0})"
-msgstr[1] ""
+msgstr[1] "Nye utvidingar for ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Update ({0})"
