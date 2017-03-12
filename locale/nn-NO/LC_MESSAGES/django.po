@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 15:39+0000\n"
+"PO-Revision-Date: 2017-03-12 16:11+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5725,7 +5725,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Voluntary Contributions"
-msgstr ""
+msgstr "Frivillige bidrag"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
@@ -5758,7 +5758,7 @@ msgstr "Bidrag er berre tilgjengelege for godkjende utvidingar."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
-msgstr ""
+msgstr "Konfigurer bidrag"
 
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 msgid "Step 2. Pricing and Availability"
@@ -5807,7 +5807,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "(Example: 3.99)"
-msgstr ""
+msgstr "(Døme: 3,99)"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "When should users be asked for contributions?"
@@ -5861,7 +5861,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme License"
-msgstr ""
+msgstr "Temalisens"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others share your Theme, as long as you're given credit?"
@@ -5913,11 +5913,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Design"
-msgstr ""
+msgstr "Temautformgjeving"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upload New Design"
-msgstr ""
+msgstr "Last opp ny formgjeving"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
@@ -5941,11 +5941,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Header"
-msgstr ""
+msgstr "Overskrift"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Footer"
-msgstr ""
+msgstr "Botntekst"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select colors for your Theme."
@@ -5969,11 +5969,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Preview"
-msgstr ""
+msgstr "Førehandsvising"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Namn på temaet ditt"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
@@ -6002,11 +6002,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
-msgstr ""
+msgstr "Send inn temaet"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
-msgstr ""
+msgstr "Du er klar!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
@@ -6014,7 +6014,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Next steps:"
-msgstr ""
+msgstr "Neste steg:"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -6041,7 +6041,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "300 KB max"
-msgstr ""
+msgstr "Maks 300 KB"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "PNG or JPG"
@@ -6096,7 +6096,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Approval Status"
-msgstr ""
+msgstr "Godkjenningsstatus"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Notes for Reviewers"
@@ -6108,7 +6108,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
-msgstr ""
+msgstr "Kjeldekode"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
@@ -6130,11 +6130,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Status & Versions"
-msgstr ""
+msgstr "Status og versjonar"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
-msgstr ""
+msgstr "Rediger denne versjonen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
@@ -6182,7 +6182,7 @@ msgstr "på"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Leave a reply"
-msgstr ""
+msgstr "Legg att eit svar"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
@@ -6207,7 +6207,7 @@ msgstr "Oppførte versjonar"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
-msgstr ""
+msgstr "For tida på AMO"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Validation"
@@ -6215,11 +6215,11 @@ msgstr "Validering"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Slett/Slå av"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Neste versjon av denne utvidinga"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
@@ -6252,19 +6252,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette denne versjonen?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version"
-msgstr ""
+msgstr "Slett versjonen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Disable Version"
-msgstr ""
+msgstr "Slå av versjonen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Gøym utvidinga"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
@@ -6320,11 +6320,11 @@ msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
-msgstr ""
+msgstr "Godkjende vurderingar"
 
 #: src/olympia/editors/forms.py
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Sletta vurderingar"
 
 #: src/olympia/editors/forms.py
 msgid "View entries between"
