@@ -5817,7 +5817,7 @@ msgstr "Når bør brukarar bli spurde om bidrag?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "Sende eit takkekort?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "We'll automatically email users who contribute to your add-on with this message."
