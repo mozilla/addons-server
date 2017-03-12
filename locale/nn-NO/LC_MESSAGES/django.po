@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 19:30+0000\n"
+"PO-Revision-Date: 2017-03-12 19:50+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -5764,7 +5764,7 @@ msgstr "Konfigurer bidrag"
 
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 msgid "Step 2. Pricing and Availability"
-msgstr ""
+msgstr "Steg 2. Prisar och tilgjengelegheit"
 
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 #, python-format
@@ -5781,23 +5781,23 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "Kven vil få bidrag for dette tillegget?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the name of the organization?"
-msgstr ""
+msgstr "Kva er namnet på organisasjonen?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "Kva er URL-en for organisasjonen?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "Kva er PayPal ID-en for organisasjonen?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your PayPal ID?"
-msgstr ""
+msgstr "Kva er PayPal ID-en din?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Sign up for PayPal"
@@ -5805,7 +5805,7 @@ msgstr "Registrer deg på PayPal"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your suggested contribution?"
-msgstr ""
+msgstr "Kva er ditt føreslåtte bidrag?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "(Example: 3.99)"
@@ -5813,7 +5813,7 @@ msgstr "(Døme: 3,99)"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "Når bør brukarar bli spurde om bidrag?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Send a thank-you note?"
