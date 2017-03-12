@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-04 21:53+0000\n"
+"PO-Revision-Date: 2017-03-12 21:26+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -7301,7 +7301,7 @@ msgstr "访问您用于 {name} 的数据"
 
 #: src/olympia/files/models.py
 msgid "Access your data on various websites"
-msgstr "访问您用于各个网站的数据"
+msgstr "访问您用于多个网站的数据"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
