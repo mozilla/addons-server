@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 15:04+0000\n"
+"PO-Revision-Date: 2017-03-12 15:31+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3923,12 +3923,12 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Version doesn't match"
-msgstr ""
+msgstr "Verjon stemmer ikkje"
 
 #: src/olympia/devhub/forms.py
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
-msgstr ""
+msgstr "Versjon %s finst allereie, eller er lasta opp tidlegare."
 
 #: src/olympia/devhub/forms.py
 msgid "Select a valid choice. That choice is not one of the available choices."
@@ -3956,7 +3956,7 @@ msgstr "Program"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
-msgstr ""
+msgstr "Vel ein app først"
 
 #: src/olympia/devhub/forms.py
 msgid "There cannot be more than 3 required add-ons."
@@ -4139,17 +4139,17 @@ msgstr ""
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Versjon %s slått av."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Versjon %s sletta."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Versjon %s slått på gjen."
 
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
@@ -4185,7 +4185,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Printable Version"
-msgstr ""
+msgstr "Utskriftsvennleg versjon"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "I Accept this Agreement"
