@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 19:10+0000\n"
+"PO-Revision-Date: 2017-03-12 19:30+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3809,7 +3809,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Feilaktig slugg."
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/users/templates/users/edit.html
 msgid "Details"
@@ -3821,11 +3821,11 @@ msgstr "Kva er lisensnamnet ditt?"
 
 #: src/olympia/devhub/forms.py
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Spesifiser lisensteksten for lisensen din."
 
 #: src/olympia/devhub/forms.py
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Lisenstekst er nødvendig når du vel «Annan»."
 
 #: src/olympia/devhub/forms.py
 msgid "This add-on has an End-User License Agreement"
@@ -4118,25 +4118,25 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Ikon kan ikkje vere animerte."
 
 #: src/olympia/devhub/views.py
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Bilde kan ikkje vere animerte."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Bilde kan ikkje vere større enn %dkB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: src/olympia/devhub/views.py
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Bilde må vere akkurat {0} pikslar breie og {1} pikslar høge."
 
 #: src/olympia/devhub/views.py
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Det oppstod ein feil under opplasting av førehandsvisinga di."
 
 #: src/olympia/devhub/views.py
 #, python-format
@@ -4163,7 +4163,7 @@ msgstr "Vurdering førespurd."
 
 #: src/olympia/devhub/views.py
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Du må spesifisere ytterlegare detaljar for å gå vidare."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -4179,7 +4179,7 @@ msgstr "Ny API-nykel laga"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
-msgstr ""
+msgstr "API-nykel tilbakekalla"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -4263,7 +4263,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Start Making Add-ons"
-msgstr ""
+msgstr "Begynn å lage utvidingar"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
@@ -4306,7 +4306,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Gå tilbake til heimesida for DevHub"
 
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html
@@ -4384,7 +4384,7 @@ msgstr ""
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Valideringsresultat for {0}"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validation Results"
@@ -4396,7 +4396,7 @@ msgstr "Validerad på:"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Testa for kompatibilitet mot:"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for My Add-ons"
@@ -4473,7 +4473,7 @@ msgstr "Nyleg aktivitet"
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s av %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Older activity for My Add-ons"
@@ -4515,7 +4515,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
-msgstr ""
+msgstr "Handter utviklarprofil"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 #, python-format
@@ -4612,8 +4612,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Reservert tagg:"
+msgstr[1] "Reserverte taggar:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
@@ -4621,7 +4621,7 @@ msgstr "Utvidingsdetaljar"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Utvidingsdetaljar for {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
@@ -4691,7 +4691,7 @@ msgstr "Grense 3"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Add-on Flags"
-msgstr ""
+msgstr "Flagg for utvidingar"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
@@ -4817,11 +4817,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Last opp eit tilpassa ikon…"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "PNG og JPG er støtta. Ikon endrar storleik til 64x64 pikslar, om dei er større."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Screenshots"
@@ -5243,11 +5243,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT-utferdaren"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT-hemmelegheit"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
@@ -5412,11 +5412,11 @@ msgstr ""
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Allowed HTML: {0}"
-msgstr ""
+msgstr "Tillaten HTML: {0}"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Noko HTML-støtte."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Remove this application"
@@ -5564,7 +5564,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
-msgstr ""
+msgstr "Bli med!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
@@ -5723,7 +5723,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Disable Contributions"
-msgstr ""
+msgstr "Slå av bidrag"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Voluntary Contributions"
@@ -5769,7 +5769,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 #, python-format
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr ""
+msgstr "eller <a href=\"%(cancel)s\">Avbryt</a>"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Contributions"
