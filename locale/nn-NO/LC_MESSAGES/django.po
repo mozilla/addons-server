@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 16:11+0000\n"
+"PO-Revision-Date: 2017-03-12 16:25+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -6328,7 +6328,7 @@ msgstr "Sletta vurderingar"
 
 #: src/olympia/editors/forms.py
 msgid "View entries between"
-msgstr ""
+msgstr "Vurder oppføringar mellom"
 
 #: src/olympia/editors/forms.py
 msgid "and"
@@ -6336,19 +6336,19 @@ msgstr "og"
 
 #: src/olympia/editors/forms.py
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filtrer etter type/handling"
 
 #: src/olympia/editors/forms.py
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Passerte automatisk validering"
 
 #: src/olympia/editors/forms.py
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Passerte ikkje automatisk validering"
 
 #: src/olympia/editors/forms.py
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Filtrer etter automatisk validering"
 
 #: src/olympia/editors/forms.py
 msgid "containing"
@@ -6367,7 +6367,7 @@ msgstr "slutt"
 #. L10n: Description of what can be searched for
 #: src/olympia/editors/forms.py
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "utviding, redigerar eller kommentar"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email"
@@ -6690,7 +6690,7 @@ msgstr "Gå tilbake til heimesida for redigeringsverktøy"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
-msgstr ""
+msgstr "Køar"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "New Add-ons"
@@ -6698,11 +6698,11 @@ msgstr "Nye utvidingar"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "Modererte vurderingar"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Ikkje-oppførte køar"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -6710,19 +6710,19 @@ msgstr "Loggar"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/reviewlog.html
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Vurderingslogg for utvidingar"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/eventlog.html
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Moderert vurderingslogg"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/beta_signed_log.html
 msgid "Signed Beta Files Log"
-msgstr ""
+msgstr "SIgnert beta-fillogg"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/includes/daily-message.html
 msgid "Announcement"
-msgstr ""
+msgstr "Kunngjering"
 
 #. "Filter" is a button label (verb)
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
@@ -6745,15 +6745,15 @@ msgstr "Fleire detaljar."
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html
 msgid "No events found for this period."
-msgstr ""
+msgstr "Fann ingen hendingar for denne perioden."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
-msgstr ""
+msgstr "Loggdetaljar"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Add-on Title"
-msgstr ""
+msgstr "Tittel på utviding"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review Title"
@@ -6800,11 +6800,11 @@ msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
-msgstr ""
+msgstr "Totale vurderingar"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Vurderingar denne månaden"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "New Reviewers"
@@ -6812,22 +6812,22 @@ msgstr "Nye vurderarar"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "Du er nummer {0} med {1} vurderingar"
 
 #. num = number of reviews in the queue
 #: src/olympia/editors/templates/editors/home.html
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Moderert vurdering ({num})"
+msgstr[1] "Modererte vurderingar ({num})"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html src/olympia/editors/templates/editors/leaderboard.html
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Leiartavle for vurderarar"
 
 #: src/olympia/editors/templates/editors/leaderboard.html src/olympia/editors/templates/editors/performance.html
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Ingen vurderingspoeng delte ut enno."
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Rank"
@@ -6835,7 +6835,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
-msgstr ""
+msgstr "Poeng"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Update message of the day"
@@ -6859,7 +6859,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Your Reviews"
-msgstr ""
+msgstr "Dine vurderinga"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "By {user_name}"
@@ -6879,7 +6879,7 @@ msgstr "Dette året"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Månadsyting"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-time Point Breakdown by Type"
@@ -6903,7 +6903,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Advanced Search"
-msgstr ""
+msgstr "Avansert søk"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "clear search"
@@ -6915,7 +6915,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Modererande handlingar:"
 
 #: src/olympia/editors/templates/editors/queue.html
 #, python-format
@@ -6925,7 +6925,7 @@ msgstr "av %(user)s den %(date)s %(stars)s (%(locale)s)"
 #: src/olympia/editors/templates/editors/queue.html
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Flagga av %(user)s den %(date)s</span>"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "All reviews have been moderated. Good work!"
@@ -6937,11 +6937,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Nyttige lenker:"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Add-on Policy"
-msgstr ""
+msgstr "Praksis for utvidingar"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Editors' Guide"
@@ -6950,7 +6950,7 @@ msgstr ""
 #. "Review [add-on name]"
 #: src/olympia/editors/templates/editors/review.html
 msgid "Review {0}"
-msgstr ""
+msgstr "Vurder {0}"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Add-on user change history"
@@ -6958,12 +6958,12 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Add-on History"
-msgstr ""
+msgstr "Utvidingshistorikk"
 
 #: src/olympia/editors/templates/editors/review.html
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Versjon %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Compatibility:"
@@ -6971,7 +6971,7 @@ msgstr "Kompatibilitet:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Additional sources:"
-msgstr ""
+msgstr "Ytterlegare kjelder:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Download files"
