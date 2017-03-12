@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-02-27 07:24+0000\n"
-"PO-Revision-Date: 2017-03-12 18:50+0000\n"
+"PO-Revision-Date: 2017-03-12 19:10+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3187,11 +3187,11 @@ msgstr "Berre spør på denne utvidinga si side og utviklarprofil"
 
 #: src/olympia/constants/base.py
 msgid "Ask after users start downloading this add-on"
-msgstr ""
+msgstr "Spør etter at brukarar startar å laste ned denne utvidinga"
 
 #: src/olympia/constants/base.py
 msgid "Ask before users can download this add-on"
-msgstr ""
+msgstr "Spør før brukarar kan laste ned denne utvidinga"
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
@@ -3228,11 +3228,11 @@ msgstr "Ny vurdering av utviding"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Foreløpig gjennomgang av utviding"
 
 #: src/olympia/constants/base.py
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Oppdatert gjennomgang av utviding"
 
 #: src/olympia/constants/base.py
 msgid "New Dictionary Review"
@@ -3240,11 +3240,11 @@ msgstr "Nye ordboksvurderingar"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Foreløpig gjennomgang av ordbok"
 
 #: src/olympia/constants/base.py
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Oppdatert gjennomgang av ordbok"
 
 #: src/olympia/constants/base.py
 msgid "New Language Pack Review"
@@ -3252,19 +3252,19 @@ msgstr "Ny språkpakke-vurdering"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Foreløpig gjennomgang av språkpakke"
 
 #: src/olympia/constants/base.py
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Oppdatert gjennomgang av språkpakke"
 
 #: src/olympia/constants/base.py
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus for forseinka vurderingar"
 
 #: src/olympia/constants/base.py
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dagar før bonuspoeng vert lagt på"
 
 #: src/olympia/constants/base.py
 msgid "Theme Review"
@@ -3276,11 +3276,11 @@ msgstr "Ny vurdering av søkjetilbydar"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Foreløpig gjennomgang av søketilbydar"
 
 #: src/olympia/constants/base.py
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Oppdatert gjennomgang av søketilbydar"
 
 #: src/olympia/constants/base.py
 msgid "New Complete Theme Review"
@@ -3288,19 +3288,19 @@ msgstr "Ny vurdering av komplette tema"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Foreløpig gjennomgang av tema"
 
 #: src/olympia/constants/base.py
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Oppdatert gjennomgang av komplett tema"
 
 #: src/olympia/constants/base.py
 msgid "Moderated Addon Review"
-msgstr ""
+msgstr "Gjennomgang av moderert utviding"
 
 #: src/olympia/constants/base.py
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Tilbakestilt moderert utvidingsvurdering"
 
 #: src/olympia/constants/base.py
 msgid "Level 1"
@@ -3444,7 +3444,7 @@ msgstr "Business"
 
 #: src/olympia/constants/categories.py
 msgid "Dictionaries & Encyclopedias"
-msgstr ""
+msgstr "Ordbøker og allkunnebøker"
 
 #: src/olympia/constants/categories.py
 msgid "Kids"
@@ -3644,23 +3644,23 @@ msgstr "Godkjenn"
 
 #: src/olympia/constants/editors.py
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Sexuelt eller pornografisk innhald"
 
 #: src/olympia/constants/editors.py
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Upassande eller støytande innhald"
 
 #: src/olympia/constants/editors.py
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Vald, krig eller våpenbilde"
 
 #: src/olympia/constants/editors.py
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nazistiskt eller anna hatinnhald"
 
 #: src/olympia/constants/editors.py
 msgid "Defamatory content"
-msgstr ""
+msgstr "Krenkande innhald"
 
 #: src/olympia/constants/editors.py
 msgid "Online gambling"
@@ -3672,7 +3672,7 @@ msgstr "Inneheld spam (søppel)"
 
 #: src/olympia/constants/editors.py
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Lågkvalitet, strekt eller tomt bilde"
 
 #: src/olympia/constants/editors.py
 msgid "Header image alignment problem"
@@ -3684,27 +3684,27 @@ msgstr "Alle rettar med atterhald"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/platforms.py
 msgid "All Platforms"
@@ -3736,7 +3736,7 @@ msgstr "Android"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Tilgang til dine data for alle nettstadar"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Read and modify bookmarks"
@@ -3744,15 +3744,15 @@ msgstr "Lese og endre bokmerke"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Get data from the clipboard"
-msgstr ""
+msgstr "Hent data frå utklippstavle"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Input data to the clipboard"
-msgstr ""
+msgstr "Mat inn data til utklippstavla"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Download files and read and modify the browser's download history"
-msgstr ""
+msgstr "Hente filer, samt lese og endre nettlesaren sin nedlastingshistorikk"
 
 #: src/olympia/constants/webext_permissions.py
 msgid "Access your location"
