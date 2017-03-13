@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-27 07:24+0000\n"
+"POT-Creation-Date: 2017-03-13 17:07+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,6 +31,15 @@ msgstr ""
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr ""
+
+#: src/olympia/activity/models.py src/olympia/reviews/templates/reviews/add.html
+msgid "Review"
+msgstr "Revisão"
+
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
+msgid "Version {0}"
+msgstr "Versão {0}"
 
 #: src/olympia/activity/serializers.py
 #, fuzzy
@@ -643,11 +652,11 @@ msgstr "Licença"
 msgid "Awaiting Review"
 msgstr "A aguardar pela revisão"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py src/olympia/editors/helpers.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
 msgstr "Rejeitado"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Aprovado"
 
@@ -1039,11 +1048,6 @@ msgstr "Página de ajuda"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support E-mail"
 msgstr "Email de suporte"
-
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/models.py src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
-msgid "Version {0}"
-msgstr "Versão {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Info"
@@ -1463,338 +1467,6 @@ msgstr "Dicionários e pacotes de idioma"
 #: src/olympia/amo/helpers.py
 msgid "{0} ago"
 msgstr "à {0}"
-
-#: src/olympia/amo/log.py
-msgid "{addon} was created."
-msgstr "O {addon} foi criado."
-
-#: src/olympia/amo/log.py
-msgid "{addon} properties edited."
-msgstr "Propriedades de {addon} editadas."
-
-#: src/olympia/amo/log.py
-msgid "{addon} description edited."
-msgstr "Descrição {addon} editada."
-
-#: src/olympia/amo/log.py
-msgid "Categories edited for {addon}."
-msgstr "Categorias editadas para {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) adicionado a {addon}."
-
-#. L10n: {0} is the user being removed, {1} is their role.
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) removido de {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Contributions for {addon}."
-msgstr "Contribuições para {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} disabled."
-msgstr "{addon} desativado."
-
-#: src/olympia/amo/log.py
-msgid "{addon} enabled."
-msgstr "{addon} ativado."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{addon} status changed to {0}."
-msgstr "O estado de {addon} mudou para {0}."
-
-#: src/olympia/amo/log.py
-msgid "{version} added to {addon}."
-msgstr "{version} adicionada a {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{version} edited for {addon}."
-msgstr "{version} editada para {addon}."
-
-#. L10n: {0} is the version number
-#: src/olympia/amo/log.py
-msgid "Version {0} deleted from {addon}."
-msgstr "Versão {0} eliminada de {addon}."
-
-#: src/olympia/amo/log.py
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "O ficheiro {0.name} foi adicionado a {version} do {addon}."
-
-#: src/olympia/amo/log.py
-msgid "File {0} deleted from {version} of {addon}."
-msgstr "O ficheiro {0} foi eliminado da {version} do {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved."
-msgstr "{addon} {version} aprovado."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} given preliminary review."
-msgstr "Efetuada uma revisão preliminar de {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Preliminarily approved"
-msgstr "Aprovado preliminarmente"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} rejected."
-msgstr "{addon} {version} rejeitado."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} retained."
-msgstr "{addon} {version} retido."
-
-#: src/olympia/amo/log.py
-msgid "Retained"
-msgstr "Retido"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} escalado."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "Solicitada uma super revisão"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} review requested."
-msgstr "Solicitada análise a {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Review requested"
-msgstr "Solicitada análise"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} more information requested."
-msgstr "Solicitada mais informação para {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "More information requested"
-msgstr "Solicitada mais informação"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} super review requested."
-msgstr "Solicitada super-revisão para {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
-
-#: src/olympia/amo/log.py
-msgid "Comment on {addon} {version}."
-msgstr "Comentário a {addon} {version}."
-
-#: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
-msgid "Comment"
-msgstr "Comentário"
-
-#: src/olympia/amo/log.py
-msgid "{tag} added to {addon}."
-msgstr "{tag} adicionada a {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{tag} removed from {addon}."
-msgstr "{tag} removida de {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} added to {collection}."
-msgstr "{addon} adicionado a {collection}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} removed from {collection}."
-msgstr "{addon} removido de {collection}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} written."
-msgstr "{review} para {addon} escrita."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} featured in {0}."
-msgstr "{addon} incluído em {0}."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} já não está destacado em {0}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now featured."
-msgstr "{addon} está agora em destaque."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is no longer featured."
-msgstr "{addon} já não está em destaque."
-
-#. L10n: {0} is the application, {1} is the version of the app
-#: src/olympia/amo/log.py
-msgid "{0} {1} added."
-msgstr "{0} {1} adicionado."
-
-#. L10n: {0} is a user, {1} is their role
-#: src/olympia/amo/log.py
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "Perfil de {0.name} alterado para {1} para {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} está agora licenciado sob {0.name}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} policy changed."
-msgstr "A política de {addon} alterada."
-
-#: src/olympia/amo/log.py
-msgid "{addon} icon changed."
-msgstr "Ícone {addon} alterado."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} approved."
-msgstr "{review} para {addon} aprovada."
-
-#: src/olympia/amo/log.py
-msgid "{user} approved {review} for {addon}."
-msgstr "{user} aprovou a {review} para {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Review {review} for {addon} deleted."
-msgstr "Revisão {review} para {addon} eliminada."
-
-#: src/olympia/amo/log.py
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} eliminou {review} para {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Application max version for {version} updated."
-msgstr "Atualizada a versão máxima da aplicação para {version}."
-
-#: src/olympia/amo/log.py
-msgid "Authors emailed about compatibility of {version}."
-msgstr "Email enviado aos autores sobre a compatibilidade da {version}."
-
-#: src/olympia/amo/log.py
-msgid "Email sent to Author about add-on compatibility."
-msgstr "Email enviado ao autor sobre a compatibilidade do extra."
-
-#: src/olympia/amo/log.py
-msgid "Password changed."
-msgstr "Palavra-passe alterada."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} aprovado mas a aguardar pela publicação."
-
-#: src/olympia/amo/log.py
-msgid "Approved but waiting"
-msgstr "Aprovado mas em espera"
-
-#: src/olympia/amo/log.py
-msgid "Account updated."
-msgstr "Conta atualizada."
-
-#: src/olympia/amo/log.py
-msgid "Created: {0}."
-msgstr "Criado: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Edited field: {2} set to: {0}."
-msgstr "Campo editado: {2} definido para: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Deleted: {1}."
-msgstr "Eliminado: {1}."
-
-#: src/olympia/amo/log.py
-msgid "User {user} edited, reason: {1}"
-msgstr "Utilizador {user} editado, razão: {1}"
-
-#: src/olympia/amo/log.py
-msgid "User {user} anonymized."
-msgstr "Utilizador {user} anonimado."
-
-#: src/olympia/amo/log.py
-msgid "User {user} restricted."
-msgstr "Utilizador {user} restringido."
-
-#: src/olympia/amo/log.py
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "O administrador {0} visualizou o registo de atividade de {user}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} updated."
-msgstr "{review} para {addon} atualizado."
-
-#: src/olympia/amo/log.py
-msgid "{addon} reviewed."
-msgstr "{addon} revisto."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} added to {group}."
-msgstr "Utilizador {0.name} adicionado a {group}."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} removed from {group}."
-msgstr "Utilizador {0.name} removido de {group}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} unlisted."
-msgstr "{addon} não listado."
-
-#: src/olympia/amo/log.py
-msgid "{file} was signed."
-msgstr "{file} foi assinado."
-
-#. L10n: {0} is the add-on GUID.
-#: src/olympia/amo/log.py
-msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "Extra com o ID {0} com o GUID {1} foi eliminado"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "{addon} migrated from preliminary."
-msgstr "Efetuada uma revisão preliminar de {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reply by developer on {addon} {version}."
-msgstr "Comentário a {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Developer Reply"
-msgstr "Notícias do programador"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reply by reviewer on {addon} {version}."
-msgstr "Comentário a {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reviewer Reply"
-msgstr "Notícias do programador"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Approval notes changed for {addon} {version}."
-msgstr "Comentário a {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed"
-msgstr ""
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Source code uploaded for {addon} {version}."
-msgstr "Comentário a {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Source code uploaded"
-msgstr "Código fonte"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -2635,6 +2307,11 @@ msgstr ""
 msgid "Add-on"
 msgstr "Extra"
 
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/activity.py src/olympia/editors/helpers.py
+#: src/olympia/editors/templates/editors/themes/history_table.html
+msgid "Comment"
+msgstr "Comentário"
+
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
 msgstr "Escreva o nome do extra a incluir"
@@ -2662,58 +2339,6 @@ msgstr "COLEÇÕES"
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
 msgstr "Grupos de extras relacionados que podem ser criados por qualquer um."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocked Add-ons"
-msgstr "Extras bloqueados"
-
-#. {0} is an add-on name.
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "<b>{0}</b> has been blocked for your protection."
-msgstr "<b>{0}</b> foi bloqueado para sua proteção."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Why was it blocked?"
-msgstr "Porque que foi bloqueado?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Who is affected?"
-msgstr "Quem é afetado?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "What does this mean?"
-msgstr "O que é que isto significa?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr "Os utilizadores são fortemente encorajados a desativar o extra ou plugin problemático, mas podem optar por continuar a utilizá-los se aceitarem os riscos descritos."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr "O extra ou plugin problemático será automaticamente desativado e não poderá ser utilizado."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
-msgid ""
-"When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
-msgstr ""
-"Quando a Mozilla toma conhecimento de extras, plugins, ou software de terceiros, que comprometam seriamente a segurança, estabilidade ou desempenho do %(app)s em conjunto com <a href=\"%(criteria)s"
-"\">determinados critérios </a >, o software pode ser impedido de ser utilizado. Para mais informações, por favor leia <a href=\"%(support)s\">este artigo de ajuda</a>."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "Bloqueado a %(date)s. <a href=\"%(link)s\">Ver pedido de bloqueio</a>."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s."
-msgstr "Bloqueado a %(date)s."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr "O seguinte software é conhecido por causar problemas graves de segurança, estabilidade ou de desempenho com o {app}."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -3124,6 +2749,334 @@ msgstr "Problema"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
 msgstr "Não foram encontrados relatórios."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} was created."
+msgstr "O {addon} foi criado."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} properties edited."
+msgstr "Propriedades de {addon} editadas."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} description edited."
+msgstr "Descrição {addon} editada."
+
+#: src/olympia/constants/activity.py
+msgid "Categories edited for {addon}."
+msgstr "Categorias editadas para {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) added to {addon}."
+msgstr "{0.name} ({1}) adicionado a {addon}."
+
+#. L10n: {0} is the user being removed, {1} is their role.
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) removed from {addon}."
+msgstr "{0.name} ({1}) removido de {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Contributions for {addon}."
+msgstr "Contribuições para {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} disabled."
+msgstr "{addon} desativado."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} enabled."
+msgstr "{addon} ativado."
+
+#. L10n: {0} is the status
+#: src/olympia/constants/activity.py
+msgid "{addon} status changed to {0}."
+msgstr "O estado de {addon} mudou para {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} added to {addon}."
+msgstr "{version} adicionada a {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} edited for {addon}."
+msgstr "{version} editada para {addon}."
+
+#. L10n: {0} is the version number
+#: src/olympia/constants/activity.py
+msgid "Version {0} deleted from {addon}."
+msgstr "Versão {0} eliminada de {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "File {0.name} added to {version} of {addon}."
+msgstr "O ficheiro {0.name} foi adicionado a {version} do {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "File {0} deleted from {version} of {addon}."
+msgstr "O ficheiro {0} foi eliminado da {version} do {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved."
+msgstr "{addon} {version} aprovado."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} given preliminary review."
+msgstr "Efetuada uma revisão preliminar de {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Preliminarily approved"
+msgstr "Aprovado preliminarmente"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} rejected."
+msgstr "{addon} {version} rejeitado."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} retained."
+msgstr "{addon} {version} retido."
+
+#: src/olympia/constants/activity.py
+msgid "Retained"
+msgstr "Retido"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} escalated."
+msgstr "{addon} {version} escalado."
+
+#: src/olympia/constants/activity.py
+msgid "Super review requested"
+msgstr "Solicitada uma super revisão"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} review requested."
+msgstr "Solicitada análise a {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Review requested"
+msgstr "Solicitada análise"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} more information requested."
+msgstr "Solicitada mais informação para {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "More information requested"
+msgstr "Solicitada mais informação"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} super review requested."
+msgstr "Solicitada super-revisão para {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
+
+#: src/olympia/constants/activity.py
+msgid "Comment on {addon} {version}."
+msgstr "Comentário a {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} added to {addon}."
+msgstr "{tag} adicionada a {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} removed from {addon}."
+msgstr "{tag} removida de {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} added to {collection}."
+msgstr "{addon} adicionado a {collection}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} removed from {collection}."
+msgstr "{addon} removido de {collection}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} written."
+msgstr "{review} para {addon} escrita."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} featured in {0}."
+msgstr "{addon} incluído em {0}."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} no longer featured in {0}."
+msgstr "{addon} já não está destacado em {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now featured."
+msgstr "{addon} está agora em destaque."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is no longer featured."
+msgstr "{addon} já não está em destaque."
+
+#. L10n: {0} is the application, {1} is the version of the app
+#: src/olympia/constants/activity.py
+msgid "{0} {1} added."
+msgstr "{0} {1} adicionado."
+
+#. L10n: {0} is a user, {1} is their role
+#: src/olympia/constants/activity.py
+msgid "{0.name} role changed to {1} for {addon}."
+msgstr "Perfil de {0.name} alterado para {1} para {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now licensed under {0.name}."
+msgstr "{addon} está agora licenciado sob {0.name}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} policy changed."
+msgstr "A política de {addon} alterada."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} icon changed."
+msgstr "Ícone {addon} alterado."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} approved."
+msgstr "{review} para {addon} aprovada."
+
+#: src/olympia/constants/activity.py
+msgid "{user} approved {review} for {addon}."
+msgstr "{user} aprovou a {review} para {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Review {review} for {addon} deleted."
+msgstr "Revisão {review} para {addon} eliminada."
+
+#: src/olympia/constants/activity.py
+msgid "{user} deleted {review} for {addon}."
+msgstr "{user} eliminou {review} para {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Application max version for {version} updated."
+msgstr "Atualizada a versão máxima da aplicação para {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Authors emailed about compatibility of {version}."
+msgstr "Email enviado aos autores sobre a compatibilidade da {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Email sent to Author about add-on compatibility."
+msgstr "Email enviado ao autor sobre a compatibilidade do extra."
+
+#: src/olympia/constants/activity.py
+msgid "Password changed."
+msgstr "Palavra-passe alterada."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved but waiting to be made public."
+msgstr "{addon} {version} aprovado mas a aguardar pela publicação."
+
+#: src/olympia/constants/activity.py
+msgid "Approved but waiting"
+msgstr "Aprovado mas em espera"
+
+#: src/olympia/constants/activity.py
+msgid "Account updated."
+msgstr "Conta atualizada."
+
+#: src/olympia/constants/activity.py
+msgid "Created: {0}."
+msgstr "Criado: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Edited field: {2} set to: {0}."
+msgstr "Campo editado: {2} definido para: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Deleted: {1}."
+msgstr "Eliminado: {1}."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} edited, reason: {1}"
+msgstr "Utilizador {user} editado, razão: {1}"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} anonymized."
+msgstr "Utilizador {user} anonimado."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} restricted."
+msgstr "Utilizador {user} restringido."
+
+#: src/olympia/constants/activity.py
+msgid "Admin {0} viewed activity log for {user}."
+msgstr "O administrador {0} visualizou o registo de atividade de {user}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} updated."
+msgstr "{review} para {addon} atualizado."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} reviewed."
+msgstr "{addon} revisto."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} added to {group}."
+msgstr "Utilizador {0.name} adicionado a {group}."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} removed from {group}."
+msgstr "Utilizador {0.name} removido de {group}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} unlisted."
+msgstr "{addon} não listado."
+
+#: src/olympia/constants/activity.py
+msgid "{file} was signed."
+msgstr "{file} foi assinado."
+
+#. L10n: {0} is the add-on GUID.
+#: src/olympia/constants/activity.py
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr "Extra com o ID {0} com o GUID {1} foi eliminado"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "{addon} migrated from preliminary."
+msgstr "Efetuada uma revisão preliminar de {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "Comentário a {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "Notícias do programador"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "Comentário a {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reviewer Reply"
+msgstr "Notícias do programador"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "Comentário a {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "Comentário a {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "Código fonte"
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -3834,57 +3787,6 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your data for all websites"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Read and modify bookmarks"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Get data from the clipboard"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Input data to the clipboard"
-msgstr "Atualizar o quadro branco"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's download history"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your location"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Access browsing history"
-msgstr "Histórico da versão %s"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Exchange messages with programs other than Firefox"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Display notifications to you"
-msgstr "Notificações do utilizador"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access recently closed tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser activity during navigation"
-msgstr ""
-
 #: src/olympia/core/apps.py
 msgid "Core"
 msgstr ""
@@ -4044,11 +3946,6 @@ msgid "A file with a version ending with a|alpha|b|beta and an optional number i
 msgstr "Um ficheiro com uma versão que termine com a|alpha|b|beta e um número opcional é detetado como beta."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
-msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr "Não pode eliminar um ficheiro depois do processo de análise começar. Tem de eliminar a versão completa."
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "A plataforma Todos não pode ser combinada com plataformas específicas."
 
@@ -4096,10 +3993,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
-
-#: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
-msgid "Review"
-msgstr "Revisão"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
@@ -5646,18 +5539,6 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr "Saiba mais sobre a política de revisão de código."
 
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
-msgstr "Não pode remover um ficheiro individual, após o processo de revisão ter sido iniciado. Tem de eliminar a versão integralmente."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "This file will be deleted on save."
-msgstr "Este ficheiro será eliminado ao guardar."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "Undo"
-msgstr "Anular"
-
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #: src/olympia/templates/mobile/base_addons.html
@@ -6419,11 +6300,6 @@ msgstr ""
 #, fuzzy
 msgid "Load older..."
 msgstr "A carregar..."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
-msgid "on"
-msgstr "Ícone"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -7598,6 +7474,10 @@ msgstr ""
 msgid "Access your data on various websites"
 msgstr ""
 
+#: src/olympia/files/models.py
+msgid "Access your data for all websites"
+msgstr ""
+
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -7666,8 +7546,8 @@ msgid "Back to add-on"
 msgstr "Voltar ao extra"
 
 #: src/olympia/files/templates/files/file.html
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
+#, fuzzy, python-format
+msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 msgstr "Versão: %(version)s &bull; Tamanho: %(size)s &bull; hash MD5: %(md5)s &bull; Tipo de mime: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html

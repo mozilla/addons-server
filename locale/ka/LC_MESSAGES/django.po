@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-27 07:24+0000\n"
+"POT-Creation-Date: 2017-03-13 17:07+0000\n"
 "PO-Revision-Date: 2016-10-15 18:03+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,15 @@ msgstr "შესვლა ვერ მოხერხდა. გთხოვ�
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr "გესაჭირეობათ დახმარება?"
+
+#: src/olympia/activity/models.py src/olympia/reviews/templates/reviews/add.html
+msgid "Review"
+msgstr ""
+
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
+msgid "Version {0}"
+msgstr "ვერსია {0}"
 
 #: src/olympia/activity/serializers.py
 #, fuzzy
@@ -637,11 +646,11 @@ msgstr "ლიცენზია"
 msgid "Awaiting Review"
 msgstr "ელოდება განხილვას"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py src/olympia/editors/helpers.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
 msgstr "უარყოფილია"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "მიღებულია"
 
@@ -1024,11 +1033,6 @@ msgstr "მხარდაჭერის საიტი"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support E-mail"
 msgstr "მხარდაჭერის ელ-ფოსტა"
-
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/models.py src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
-msgid "Version {0}"
-msgstr "ვერსია {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Info"
@@ -1445,338 +1449,6 @@ msgstr "ლექსიკონები & ენის პაკეტებ�
 #: src/olympia/amo/helpers.py
 msgid "{0} ago"
 msgstr "{0}-ის წინ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} was created."
-msgstr "{addon} შექმნილია."
-
-#: src/olympia/amo/log.py
-msgid "{addon} properties edited."
-msgstr "{addon} თვისებები ჩასწორებულია."
-
-#: src/olympia/amo/log.py
-msgid "{addon} description edited."
-msgstr "{addon} აღწერა ჩასწორებულია."
-
-#: src/olympia/amo/log.py
-msgid "Categories edited for {addon}."
-msgstr "{addon}-ის კატეგორიები ჩასწორებულია."
-
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) დამატებულია {addon}-ში."
-
-#. L10n: {0} is the user being removed, {1} is their role.
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) ამოღებულია {addon}-იდან."
-
-#: src/olympia/amo/log.py
-msgid "Contributions for {addon}."
-msgstr "შემოწირულობა {addon}-სთვის."
-
-#: src/olympia/amo/log.py
-msgid "{addon} disabled."
-msgstr "{addon} გათიშულია."
-
-#: src/olympia/amo/log.py
-msgid "{addon} enabled."
-msgstr "{addon} ჩართულია."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{addon} status changed to {0}."
-msgstr "{addon} სტატუსი გახდა {0}."
-
-#: src/olympia/amo/log.py
-msgid "{version} added to {addon}."
-msgstr "{version} დაემატა {addon}-ს."
-
-#: src/olympia/amo/log.py
-msgid "{version} edited for {addon}."
-msgstr "{addon}-ის {version} ჩასწორებულია."
-
-#. L10n: {0} is the version number
-#: src/olympia/amo/log.py
-msgid "Version {0} deleted from {addon}."
-msgstr "{addon}-ის Version {0} წაშლილია."
-
-#: src/olympia/amo/log.py
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "ფაილის {0.name} დამატებულია {addon}-ის {version}-ზე."
-
-#: src/olympia/amo/log.py
-msgid "File {0} deleted from {version} of {addon}."
-msgstr "{addon}-ის {version}-იდან ფაილის {0} წაშლილია."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved."
-msgstr "{addon} {version} მიღებულია."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} given preliminary review."
-msgstr "{addon} {version} გადაცემულია წინასწარი განხილვისთვის."
-
-#: src/olympia/amo/log.py
-msgid "Preliminarily approved"
-msgstr "წინასწარი ვარიანტი მიღებულია"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} rejected."
-msgstr "{addon} {version} უარყოფილია."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} retained."
-msgstr "{addon} {version} შეჩერებულია."
-
-#: src/olympia/amo/log.py
-msgid "Retained"
-msgstr "შეჩერებულია"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} გაგრძელდა."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "საჭიროებს პროფესიონალურ განხილვას."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} review requested."
-msgstr "{addon} {version} საჭიროებს განხილვას."
-
-#: src/olympia/amo/log.py
-msgid "Review requested"
-msgstr "საჭიროებს განხილვას"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} more information requested."
-msgstr "{addon} {version} საჭიროა მეტი ინფორმაციის მითითება."
-
-#: src/olympia/amo/log.py
-msgid "More information requested"
-msgstr "საჭიროა მეტი ინფორმაციის მითითება."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} საჭიროებს პროფესიონალურ განხილვას."
-
-#: src/olympia/amo/log.py
-msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
-
-#: src/olympia/amo/log.py
-msgid "Comment on {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
-
-#: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
-msgid "Comment"
-msgstr "კომენტარი"
-
-#: src/olympia/amo/log.py
-msgid "{tag} added to {addon}."
-msgstr "{tag} დამატებულია {addon}-ზე."
-
-#: src/olympia/amo/log.py
-msgid "{tag} removed from {addon}."
-msgstr "{tag} მოცილებულია {addon}-იდან."
-
-#: src/olympia/amo/log.py
-msgid "{addon} added to {collection}."
-msgstr "{addon} დამატებულია {collection}-ში."
-
-#: src/olympia/amo/log.py
-msgid "{addon} removed from {collection}."
-msgstr "{addon} ამოღებულია {collection}-იდან."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} written."
-msgstr "{addon}-ის {review} გაკეთებულია."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} featured in {0}."
-msgstr "{addon} რჩეულია {0}-ში."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} აღარაა რჩეული {0}-ში."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now featured."
-msgstr "{addon} გახდა რჩეული."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is no longer featured."
-msgstr "{addon} აღარაა რჩეული."
-
-#. L10n: {0} is the application, {1} is the version of the app
-#: src/olympia/amo/log.py
-msgid "{0} {1} added."
-msgstr "{0} {1} დამატებულია."
-
-#. L10n: {0} is a user, {1} is their role
-#: src/olympia/amo/log.py
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{addon}-ის {0.name} ფუნქცია შეიცვალა {1}-ით."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} უკვე ლიცენზირებულია {0.name}-ით."
-
-#: src/olympia/amo/log.py
-msgid "{addon} policy changed."
-msgstr "{addon}-ის დებულება შეიცვალა."
-
-#: src/olympia/amo/log.py
-msgid "{addon} icon changed."
-msgstr "{addon}-ის ხატულა შეიცვალა."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} approved."
-msgstr "{addon}-ის {review} მიღებულია."
-
-#: src/olympia/amo/log.py
-msgid "{user} approved {review} for {addon}."
-msgstr "{addon}-ის {review} მიიღო {user}-მა."
-
-#: src/olympia/amo/log.py
-msgid "Review {review} for {addon} deleted."
-msgstr "{addon}-ის {review} მიმოხილვა წაიშალა."
-
-#: src/olympia/amo/log.py
-msgid "{user} deleted {review} for {addon}."
-msgstr "{addon}-ის {review} წაშალა {user}-მა."
-
-#: src/olympia/amo/log.py
-msgid "Application max version for {version} updated."
-msgstr "პროგრამის ვერსიის ზედა ზღვარი განახლებულია {version}-სთვის."
-
-#: src/olympia/amo/log.py
-msgid "Authors emailed about compatibility of {version}."
-msgstr "{version}-ის თავსებადობის შესახებ, ავტორებს ეცნობებათ ელ-ფოსტით."
-
-#: src/olympia/amo/log.py
-msgid "Email sent to Author about add-on compatibility."
-msgstr "დამატების თავსებადობის შესახებ შეტყობინება გაეგზავნა ავტორს."
-
-#: src/olympia/amo/log.py
-msgid "Password changed."
-msgstr "პაროლი შეიცვალა."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} მიღებულია, მაგრამ დროა საჭირო, სანამ გამოქვეყნდება."
-
-#: src/olympia/amo/log.py
-msgid "Approved but waiting"
-msgstr "მიღებულია, მაგრამ მოლოდინის რეჟიმშია"
-
-#: src/olympia/amo/log.py
-msgid "Account updated."
-msgstr "ანგარიში განახლდა."
-
-#: src/olympia/amo/log.py
-msgid "Created: {0}."
-msgstr "შეიქმნა: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Edited field: {2} set to: {0}."
-msgstr "ჩასწორებულია ველი: {2}-ს მიეთითა {0}."
-
-#: src/olympia/amo/log.py
-msgid "Deleted: {1}."
-msgstr "წაიშალა: {1}."
-
-#: src/olympia/amo/log.py
-msgid "User {user} edited, reason: {1}"
-msgstr "მომხმარებელი {user} ჩასწორებულია, მიზეზი: {1}"
-
-#: src/olympia/amo/log.py
-msgid "User {user} anonymized."
-msgstr "მომხმარებელი {user} გახდა ანონიმური."
-
-#: src/olympia/amo/log.py
-msgid "User {user} restricted."
-msgstr "მომხმარებელი {user} შეიზღუდა."
-
-#: src/olympia/amo/log.py
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "ადმინისტრატორმა {0} გადახედა {user}-ის აღრიცხულ მოქმედებებს."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} updated."
-msgstr "{addon}-ის {review} განახლდა."
-
-#: src/olympia/amo/log.py
-msgid "{addon} reviewed."
-msgstr "{addon} განხილულია."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} added to {group}."
-msgstr "მომხმარებელი {0.name} დაემატა {group}-ში."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} removed from {group}."
-msgstr "მომხამრებელი {0.name} წაიშალა {group}-იდან."
-
-#: src/olympia/amo/log.py
-msgid "{addon} unlisted."
-msgstr ""
-
-#: src/olympia/amo/log.py
-msgid "{file} was signed."
-msgstr ""
-
-#. L10n: {0} is the add-on GUID.
-#: src/olympia/amo/log.py
-msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} გადაცემულია წინასწარი განხილვისთვის."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reply by developer on {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Developer Reply"
-msgstr "დეველოპერთა ბაზა"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reply by reviewer on {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reviewer Reply"
-msgstr "დეველოპერთა ბაზა"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Approval notes changed for {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed"
-msgstr ""
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Source code uploaded for {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Source code uploaded"
-msgstr "წყაროს კოდის ლიცენზია"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -2591,6 +2263,11 @@ msgstr ""
 msgid "Add-on"
 msgstr ""
 
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/activity.py src/olympia/editors/helpers.py
+#: src/olympia/editors/templates/editors/themes/history_table.html
+msgid "Comment"
+msgstr "კომენტარი"
+
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
 msgstr ""
@@ -2617,56 +2294,6 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
-msgstr ""
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocked Add-ons"
-msgstr ""
-
-#. {0} is an add-on name.
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "<b>{0}</b> has been blocked for your protection."
-msgstr ""
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Why was it blocked?"
-msgstr ""
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Who is affected?"
-msgstr ""
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "What does this mean?"
-msgstr ""
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr ""
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr ""
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid ""
-"When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
-msgstr ""
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr ""
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s."
-msgstr ""
-
-#: src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
 msgstr ""
 
 #. L10n: %s is a category name.
@@ -3067,6 +2694,334 @@ msgstr ""
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
 msgstr ""
+
+#: src/olympia/constants/activity.py
+msgid "{addon} was created."
+msgstr "{addon} შექმნილია."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} properties edited."
+msgstr "{addon} თვისებები ჩასწორებულია."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} description edited."
+msgstr "{addon} აღწერა ჩასწორებულია."
+
+#: src/olympia/constants/activity.py
+msgid "Categories edited for {addon}."
+msgstr "{addon}-ის კატეგორიები ჩასწორებულია."
+
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) added to {addon}."
+msgstr "{0.name} ({1}) დამატებულია {addon}-ში."
+
+#. L10n: {0} is the user being removed, {1} is their role.
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) removed from {addon}."
+msgstr "{0.name} ({1}) ამოღებულია {addon}-იდან."
+
+#: src/olympia/constants/activity.py
+msgid "Contributions for {addon}."
+msgstr "შემოწირულობა {addon}-სთვის."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} disabled."
+msgstr "{addon} გათიშულია."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} enabled."
+msgstr "{addon} ჩართულია."
+
+#. L10n: {0} is the status
+#: src/olympia/constants/activity.py
+msgid "{addon} status changed to {0}."
+msgstr "{addon} სტატუსი გახდა {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} added to {addon}."
+msgstr "{version} დაემატა {addon}-ს."
+
+#: src/olympia/constants/activity.py
+msgid "{version} edited for {addon}."
+msgstr "{addon}-ის {version} ჩასწორებულია."
+
+#. L10n: {0} is the version number
+#: src/olympia/constants/activity.py
+msgid "Version {0} deleted from {addon}."
+msgstr "{addon}-ის Version {0} წაშლილია."
+
+#: src/olympia/constants/activity.py
+msgid "File {0.name} added to {version} of {addon}."
+msgstr "ფაილის {0.name} დამატებულია {addon}-ის {version}-ზე."
+
+#: src/olympia/constants/activity.py
+msgid "File {0} deleted from {version} of {addon}."
+msgstr "{addon}-ის {version}-იდან ფაილის {0} წაშლილია."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved."
+msgstr "{addon} {version} მიღებულია."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} given preliminary review."
+msgstr "{addon} {version} გადაცემულია წინასწარი განხილვისთვის."
+
+#: src/olympia/constants/activity.py
+msgid "Preliminarily approved"
+msgstr "წინასწარი ვარიანტი მიღებულია"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} rejected."
+msgstr "{addon} {version} უარყოფილია."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} retained."
+msgstr "{addon} {version} შეჩერებულია."
+
+#: src/olympia/constants/activity.py
+msgid "Retained"
+msgstr "შეჩერებულია"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} escalated."
+msgstr "{addon} {version} გაგრძელდა."
+
+#: src/olympia/constants/activity.py
+msgid "Super review requested"
+msgstr "საჭიროებს პროფესიონალურ განხილვას."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} review requested."
+msgstr "{addon} {version} საჭიროებს განხილვას."
+
+#: src/olympia/constants/activity.py
+msgid "Review requested"
+msgstr "საჭიროებს განხილვას"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} more information requested."
+msgstr "{addon} {version} საჭიროა მეტი ინფორმაციის მითითება."
+
+#: src/olympia/constants/activity.py
+msgid "More information requested"
+msgstr "საჭიროა მეტი ინფორმაციის მითითება."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} super review requested."
+msgstr "{addon} {version} საჭიროებს პროფესიონალურ განხილვას."
+
+#: src/olympia/constants/activity.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
+
+#: src/olympia/constants/activity.py
+msgid "Comment on {addon} {version}."
+msgstr "კომენტარი {addon} {version}-ზე."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} added to {addon}."
+msgstr "{tag} დამატებულია {addon}-ზე."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} removed from {addon}."
+msgstr "{tag} მოცილებულია {addon}-იდან."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} added to {collection}."
+msgstr "{addon} დამატებულია {collection}-ში."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} removed from {collection}."
+msgstr "{addon} ამოღებულია {collection}-იდან."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} written."
+msgstr "{addon}-ის {review} გაკეთებულია."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} featured in {0}."
+msgstr "{addon} რჩეულია {0}-ში."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} no longer featured in {0}."
+msgstr "{addon} აღარაა რჩეული {0}-ში."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now featured."
+msgstr "{addon} გახდა რჩეული."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is no longer featured."
+msgstr "{addon} აღარაა რჩეული."
+
+#. L10n: {0} is the application, {1} is the version of the app
+#: src/olympia/constants/activity.py
+msgid "{0} {1} added."
+msgstr "{0} {1} დამატებულია."
+
+#. L10n: {0} is a user, {1} is their role
+#: src/olympia/constants/activity.py
+msgid "{0.name} role changed to {1} for {addon}."
+msgstr "{addon}-ის {0.name} ფუნქცია შეიცვალა {1}-ით."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now licensed under {0.name}."
+msgstr "{addon} უკვე ლიცენზირებულია {0.name}-ით."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} policy changed."
+msgstr "{addon}-ის დებულება შეიცვალა."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} icon changed."
+msgstr "{addon}-ის ხატულა შეიცვალა."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} approved."
+msgstr "{addon}-ის {review} მიღებულია."
+
+#: src/olympia/constants/activity.py
+msgid "{user} approved {review} for {addon}."
+msgstr "{addon}-ის {review} მიიღო {user}-მა."
+
+#: src/olympia/constants/activity.py
+msgid "Review {review} for {addon} deleted."
+msgstr "{addon}-ის {review} მიმოხილვა წაიშალა."
+
+#: src/olympia/constants/activity.py
+msgid "{user} deleted {review} for {addon}."
+msgstr "{addon}-ის {review} წაშალა {user}-მა."
+
+#: src/olympia/constants/activity.py
+msgid "Application max version for {version} updated."
+msgstr "პროგრამის ვერსიის ზედა ზღვარი განახლებულია {version}-სთვის."
+
+#: src/olympia/constants/activity.py
+msgid "Authors emailed about compatibility of {version}."
+msgstr "{version}-ის თავსებადობის შესახებ, ავტორებს ეცნობებათ ელ-ფოსტით."
+
+#: src/olympia/constants/activity.py
+msgid "Email sent to Author about add-on compatibility."
+msgstr "დამატების თავსებადობის შესახებ შეტყობინება გაეგზავნა ავტორს."
+
+#: src/olympia/constants/activity.py
+msgid "Password changed."
+msgstr "პაროლი შეიცვალა."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved but waiting to be made public."
+msgstr "{addon} {version} მიღებულია, მაგრამ დროა საჭირო, სანამ გამოქვეყნდება."
+
+#: src/olympia/constants/activity.py
+msgid "Approved but waiting"
+msgstr "მიღებულია, მაგრამ მოლოდინის რეჟიმშია"
+
+#: src/olympia/constants/activity.py
+msgid "Account updated."
+msgstr "ანგარიში განახლდა."
+
+#: src/olympia/constants/activity.py
+msgid "Created: {0}."
+msgstr "შეიქმნა: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Edited field: {2} set to: {0}."
+msgstr "ჩასწორებულია ველი: {2}-ს მიეთითა {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Deleted: {1}."
+msgstr "წაიშალა: {1}."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} edited, reason: {1}"
+msgstr "მომხმარებელი {user} ჩასწორებულია, მიზეზი: {1}"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} anonymized."
+msgstr "მომხმარებელი {user} გახდა ანონიმური."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} restricted."
+msgstr "მომხმარებელი {user} შეიზღუდა."
+
+#: src/olympia/constants/activity.py
+msgid "Admin {0} viewed activity log for {user}."
+msgstr "ადმინისტრატორმა {0} გადახედა {user}-ის აღრიცხულ მოქმედებებს."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} updated."
+msgstr "{addon}-ის {review} განახლდა."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} reviewed."
+msgstr "{addon} განხილულია."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} added to {group}."
+msgstr "მომხმარებელი {0.name} დაემატა {group}-ში."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} removed from {group}."
+msgstr "მომხამრებელი {0.name} წაიშალა {group}-იდან."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} unlisted."
+msgstr ""
+
+#: src/olympia/constants/activity.py
+msgid "{file} was signed."
+msgstr ""
+
+#. L10n: {0} is the add-on GUID.
+#: src/olympia/constants/activity.py
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr ""
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "{addon} migrated from preliminary."
+msgstr "{addon} {version} გადაცემულია წინასწარი განხილვისთვის."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "კომენტარი {addon} {version}-ზე."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "დეველოპერთა ბაზა"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "კომენტარი {addon} {version}-ზე."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reviewer Reply"
+msgstr "დეველოპერთა ბაზა"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "კომენტარი {addon} {version}-ზე."
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "კომენტარი {addon} {version}-ზე."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "წყაროს კოდის ლიცენზია"
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -3756,54 +3711,6 @@ msgstr ""
 msgid "Android"
 msgstr ""
 
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your data for all websites"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Read and modify bookmarks"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Get data from the clipboard"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Input data to the clipboard"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's download history"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your location"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browsing history"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Exchange messages with programs other than Firefox"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Display notifications to you"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access recently closed tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser activity during navigation"
-msgstr ""
-
 #: src/olympia/core/apps.py
 msgid "Core"
 msgstr ""
@@ -3963,10 +3870,6 @@ msgid "A file with a version ending with a|alpha|b|beta and an optional number i
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr ""
 
@@ -4012,10 +3915,6 @@ msgstr[0] ""
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
-
-#: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
-msgid "Review"
-msgstr ""
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
@@ -5501,18 +5400,6 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "This file will be deleted on save."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "Undo"
-msgstr ""
-
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #: src/olympia/templates/mobile/base_addons.html
@@ -6253,11 +6140,6 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
 msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
-msgid "on"
-msgstr "ხატულა"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Leave a reply"
@@ -7399,6 +7281,10 @@ msgstr ""
 msgid "Access your data on various websites"
 msgstr ""
 
+#: src/olympia/files/models.py
+msgid "Access your data for all websites"
+msgstr ""
+
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -7468,7 +7354,7 @@ msgstr "დამატების QR კოდი"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
+msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html

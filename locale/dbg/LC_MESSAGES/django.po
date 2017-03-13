@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-27 07:24+0000\n"
+"POT-Creation-Date: 2017-03-13 17:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,6 +32,15 @@ msgstr "Ẏǿŭ ƈǿŭŀḓ ƞǿŧ ƀḗ ŀǿɠɠḗḓ īƞ. Ƥŀḗȧşḗ ŧ�
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr "Ƞḗḗḓ ħḗŀƥ?"
+
+#: src/olympia/activity/models.py src/olympia/reviews/templates/reviews/add.html
+msgid "Review"
+msgstr "Řḗṽīḗẇ"
+
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
+msgid "Version {0}"
+msgstr "Ṽḗřşīǿƞ {0}"
 
 #: src/olympia/activity/serializers.py
 msgid "Review note"
@@ -638,11 +647,11 @@ msgstr "Ŀīƈḗƞşḗ"
 msgid "Awaiting Review"
 msgstr "Ȧẇȧīŧīƞɠ Řḗṽīḗẇ"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py src/olympia/editors/helpers.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
 msgstr "Řḗĵḗƈŧḗḓ"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Ȧƥƥřǿṽḗḓ"
 
@@ -905,14 +914,12 @@ msgid "by %(users)s"
 msgstr "ƀẏ %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} ẇȧřƞīƞɠ"
+msgstr "[Ẇȧřƞīƞɠ]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Permissions"
-msgstr "Ṽḗřşīǿƞş"
+msgstr "Ƥḗřḿīşşīǿƞş"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -1029,11 +1036,6 @@ msgstr "Şŭƥƥǿřŧ şīŧḗ"
 msgid "Support E-mail"
 msgstr "Şŭƥƥǿřŧ Ḗ-ḿȧīŀ"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/models.py src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
-msgid "Version {0}"
-msgstr "Ṽḗřşīǿƞ {0}"
-
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Info"
 msgstr "Īƞƒǿ"
@@ -1090,19 +1092,20 @@ msgstr "ƈŀǿşḗ"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Şǿḿḗ ȧḓḓ-ǿƞş ȧşķ ƒǿř ƥḗřḿīşşīǿƞ ŧǿ ƥḗřƒǿřḿ ƈḗřŧȧīƞ ƒŭƞƈŧīǿƞş (ḗẋȧḿƥŀḗ: ȧ ŧȧƀ ḿȧƞȧɠḗḿḗƞŧ ȧḓḓ-ǿƞ ẇīŀŀ ȧşķ ƥḗřḿīşşīǿƞ ŧǿ ȧƈƈḗşş ẏǿŭř ƀřǿẇşḗř’ş ŧȧƀ şẏşŧḗḿ)."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
+"Şīƞƈḗ ẏǿŭ’řḗ īƞ ƈǿƞŧřǿŀ ǿƒ ẏǿŭř Ƒīřḗƒǿẋ, ŧħḗ ƈħǿīƈḗ ŧǿ ɠřȧƞŧ ǿř ḓḗƞẏ ŧħḗşḗ řḗɋŭḗşŧş īş ẏǿŭřş. Ȧƈƈḗƥŧīƞɠ ƥḗřḿīşşīǿƞş ḓǿḗş ƞǿŧ īƞħḗřḗƞŧŀẏ ƈǿḿƥřǿḿīşḗ ẏǿŭř ƀřǿẇşḗř’ş ƥḗřƒǿřḿȧƞƈḗ ǿř şḗƈŭřīŧẏ, ƀŭŧ īƞ "
+"şǿḿḗ řȧřḗ ƈȧşḗş řīşķ ḿȧẏ ƀḗ īƞṽǿŀṽḗḓ."
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "This add-on can:"
-msgstr "Ŧħīş ȧḓḓ-ǿƞ īş ḗẋƥḗřīḿḗƞŧȧŀ"
+msgstr "Ŧħīş ȧḓḓ-ǿƞ ƈȧƞ:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1452,330 +1455,6 @@ msgstr "Ḓīƈŧīǿƞȧřīḗş & Ŀȧƞɠŭȧɠḗ Ƥȧƈķş"
 msgid "{0} ago"
 msgstr "{0} ȧɠǿ"
 
-#: src/olympia/amo/log.py
-msgid "{addon} was created."
-msgstr "{ȧḓḓǿƞ} ẇȧş ƈřḗȧŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{addon} properties edited."
-msgstr "{ȧḓḓǿƞ} ƥřǿƥḗřŧīḗş ḗḓīŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{addon} description edited."
-msgstr "{ȧḓḓǿƞ} ḓḗşƈřīƥŧīǿƞ ḗḓīŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "Categories edited for {addon}."
-msgstr "Ƈȧŧḗɠǿřīḗş ḗḓīŧḗḓ ƒǿř {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.ƞȧḿḗ} ({1}) ȧḓḓḗḓ ŧǿ {ȧḓḓǿƞ}."
-
-#. L10n: {0} is the user being removed, {1} is their role.
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.ƞȧḿḗ} ({1}) řḗḿǿṽḗḓ ƒřǿḿ {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "Contributions for {addon}."
-msgstr "Ƈǿƞŧřīƀŭŧīǿƞş ƒǿř {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} disabled."
-msgstr "{ȧḓḓǿƞ} ḓīşȧƀŀḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{addon} enabled."
-msgstr "{ȧḓḓǿƞ} ḗƞȧƀŀḗḓ."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{addon} status changed to {0}."
-msgstr "{ȧḓḓǿƞ} şŧȧŧŭş ƈħȧƞɠḗḓ ŧǿ {0}."
-
-#: src/olympia/amo/log.py
-msgid "{version} added to {addon}."
-msgstr "{ṽḗřşīǿƞ} ȧḓḓḗḓ ŧǿ {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "{version} edited for {addon}."
-msgstr "{ṽḗřşīǿƞ} ḗḓīŧḗḓ ƒǿř {ȧḓḓǿƞ}."
-
-#. L10n: {0} is the version number
-#: src/olympia/amo/log.py
-msgid "Version {0} deleted from {addon}."
-msgstr "Ṽḗřşīǿƞ {0} ḓḗŀḗŧḗḓ ƒřǿḿ {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Ƒīŀḗ {0.ƞȧḿḗ} ȧḓḓḗḓ ŧǿ {ṽḗřşīǿƞ} ǿƒ {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "File {0} deleted from {version} of {addon}."
-msgstr "Ƒīŀḗ {0} ḓḗŀḗŧḗḓ ƒřǿḿ {ṽḗřşīǿƞ} ǿƒ {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved."
-msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ȧƥƥřǿṽḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} given preliminary review."
-msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ɠīṽḗƞ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ."
-
-#: src/olympia/amo/log.py
-msgid "Preliminarily approved"
-msgstr "Ƥřḗŀīḿīƞȧřīŀẏ ȧƥƥřǿṽḗḓ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} rejected."
-msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} řḗĵḗƈŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} retained."
-msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} řḗŧȧīƞḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "Retained"
-msgstr "Řḗŧȧīƞḗḓ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} escalated."
-msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ḗşƈȧŀȧŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "Şŭƥḗř řḗṽīḗẇ řḗɋŭḗşŧḗḓ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} review requested."
-msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} řḗṽīḗẇ řḗɋŭḗşŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "Review requested"
-msgstr "Řḗṽīḗẇ řḗɋŭḗşŧḗḓ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} more information requested."
-msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ḿǿřḗ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "More information requested"
-msgstr "Ḿǿřḗ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧḗḓ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} super review requested."
-msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} şŭƥḗř řḗṽīḗẇ řḗɋŭḗşŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr "Ŧħḗ ȧḓḓǿƞ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ƒǿř Ȧḓḿīƞ Řḗṽīḗẇ.  Īŧ'ş şŧīŀŀ īƞ ǿŭř řḗṽīḗẇ ɋŭḗŭḗ, ƀŭŧ īŧ ẇīŀŀ ƞḗḗḓ ŧǿ ƀḗ ƈħḗƈķḗḓ ƀẏ ǿƞḗ ǿƒ ǿŭř ȧḓḿīƞ řḗṽīḗẇḗřş. Ŧħḗ řḗṽīḗẇ ḿīɠħŧ ŧȧķḗ ŀǿƞɠḗř ŧħȧƞ ŭşŭȧŀ."
-
-#: src/olympia/amo/log.py
-msgid "Comment on {addon} {version}."
-msgstr "Ƈǿḿḿḗƞŧ ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
-
-#: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
-msgid "Comment"
-msgstr "Ƈǿḿḿḗƞŧ"
-
-#: src/olympia/amo/log.py
-msgid "{tag} added to {addon}."
-msgstr "{ŧȧɠ} ȧḓḓḗḓ ŧǿ {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "{tag} removed from {addon}."
-msgstr "{ŧȧɠ} řḗḿǿṽḗḓ ƒřǿḿ {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} added to {collection}."
-msgstr "{ȧḓḓǿƞ} ȧḓḓḗḓ ŧǿ {ƈǿŀŀḗƈŧīǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} removed from {collection}."
-msgstr "{ȧḓḓǿƞ} řḗḿǿṽḗḓ ƒřǿḿ {ƈǿŀŀḗƈŧīǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} written."
-msgstr "{řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ẇřīŧŧḗƞ."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} featured in {0}."
-msgstr "{ȧḓḓǿƞ} ƒḗȧŧŭřḗḓ īƞ {0}."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} no longer featured in {0}."
-msgstr "{ȧḓḓǿƞ} ƞǿ ŀǿƞɠḗř ƒḗȧŧŭřḗḓ īƞ {0}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now featured."
-msgstr "{ȧḓḓǿƞ} īş ƞǿẇ ƒḗȧŧŭřḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is no longer featured."
-msgstr "{ȧḓḓǿƞ} īş ƞǿ ŀǿƞɠḗř ƒḗȧŧŭřḗḓ."
-
-#. L10n: {0} is the application, {1} is the version of the app
-#: src/olympia/amo/log.py
-msgid "{0} {1} added."
-msgstr "{0} {1} ȧḓḓḗḓ."
-
-#. L10n: {0} is a user, {1} is their role
-#: src/olympia/amo/log.py
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.ƞȧḿḗ} řǿŀḗ ƈħȧƞɠḗḓ ŧǿ {1} ƒǿř {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{ȧḓḓǿƞ} īş ƞǿẇ ŀīƈḗƞşḗḓ ŭƞḓḗř {0.ƞȧḿḗ}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} policy changed."
-msgstr "{ȧḓḓǿƞ} ƥǿŀīƈẏ ƈħȧƞɠḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{addon} icon changed."
-msgstr "{ȧḓḓǿƞ} īƈǿƞ ƈħȧƞɠḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} approved."
-msgstr "{řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ȧƥƥřǿṽḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{user} approved {review} for {addon}."
-msgstr "{ŭşḗř} ȧƥƥřǿṽḗḓ {řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "Review {review} for {addon} deleted."
-msgstr "Řḗṽīḗẇ {řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ḓḗŀḗŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{user} deleted {review} for {addon}."
-msgstr "{ŭşḗř} ḓḗŀḗŧḗḓ {řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "Application max version for {version} updated."
-msgstr "Ȧƥƥŀīƈȧŧīǿƞ ḿȧẋ ṽḗřşīǿƞ ƒǿř {ṽḗřşīǿƞ} ŭƥḓȧŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "Authors emailed about compatibility of {version}."
-msgstr "Ȧŭŧħǿřş ḗḿȧīŀḗḓ ȧƀǿŭŧ ƈǿḿƥȧŧīƀīŀīŧẏ ǿƒ {ṽḗřşīǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "Email sent to Author about add-on compatibility."
-msgstr "Ḗḿȧīŀ şḗƞŧ ŧǿ Ȧŭŧħǿř ȧƀǿŭŧ ȧḓḓ-ǿƞ ƈǿḿƥȧŧīƀīŀīŧẏ."
-
-#: src/olympia/amo/log.py
-msgid "Password changed."
-msgstr "Ƥȧşşẇǿřḓ ƈħȧƞɠḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ȧƥƥřǿṽḗḓ ƀŭŧ ẇȧīŧīƞɠ ŧǿ ƀḗ ḿȧḓḗ ƥŭƀŀīƈ."
-
-#: src/olympia/amo/log.py
-msgid "Approved but waiting"
-msgstr "Ȧƥƥřǿṽḗḓ ƀŭŧ ẇȧīŧīƞɠ"
-
-#: src/olympia/amo/log.py
-msgid "Account updated."
-msgstr "Ȧƈƈǿŭƞŧ ŭƥḓȧŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "Created: {0}."
-msgstr "Ƈřḗȧŧḗḓ: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Edited field: {2} set to: {0}."
-msgstr "Ḗḓīŧḗḓ ƒīḗŀḓ: {2} şḗŧ ŧǿ: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Deleted: {1}."
-msgstr "Ḓḗŀḗŧḗḓ: {1}."
-
-#: src/olympia/amo/log.py
-msgid "User {user} edited, reason: {1}"
-msgstr "Ŭşḗř {ŭşḗř} ḗḓīŧḗḓ, řḗȧşǿƞ: {1}"
-
-#: src/olympia/amo/log.py
-msgid "User {user} anonymized."
-msgstr "Ŭşḗř {ŭşḗř} ȧƞǿƞẏḿīzḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "User {user} restricted."
-msgstr "Ŭşḗř {ŭşḗř} řḗşŧřīƈŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Ȧḓḿīƞ {0} ṽīḗẇḗḓ ȧƈŧīṽīŧẏ ŀǿɠ ƒǿř {ŭşḗř}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} updated."
-msgstr "{řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ŭƥḓȧŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{addon} reviewed."
-msgstr "{ȧḓḓǿƞ} řḗṽīḗẇḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} added to {group}."
-msgstr "Ŭşḗř {0.ƞȧḿḗ} ȧḓḓḗḓ ŧǿ {ɠřǿŭƥ}."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} removed from {group}."
-msgstr "Ŭşḗř {0.ƞȧḿḗ} řḗḿǿṽḗḓ ƒřǿḿ {ɠřǿŭƥ}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} unlisted."
-msgstr "{ȧḓḓǿƞ} ŭƞŀīşŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "{file} was signed."
-msgstr "{ƒīŀḗ} ẇȧş şīɠƞḗḓ."
-
-#. L10n: {0} is the add-on GUID.
-#: src/olympia/amo/log.py
-msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "Ȧḓḓǿƞ īḓ {0} ẇīŧħ ƓŬĪḒ {1} ħȧş ƀḗḗƞ ḓḗŀḗŧḗḓ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} migrated from preliminary."
-msgstr "{ȧḓḓǿƞ} ḿīɠřȧŧḗḓ ƒřǿḿ ƥřḗŀīḿīƞȧřẏ."
-
-#: src/olympia/amo/log.py
-msgid "Reply by developer on {addon} {version}."
-msgstr "Řḗƥŀẏ ƀẏ ḓḗṽḗŀǿƥḗř ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "Developer Reply"
-msgstr "Ḓḗṽḗŀǿƥḗř Řḗƥŀẏ"
-
-#: src/olympia/amo/log.py
-msgid "Reply by reviewer on {addon} {version}."
-msgstr "Řḗƥŀẏ ƀẏ řḗṽīḗẇḗř ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "Reviewer Reply"
-msgstr "Řḗṽīḗẇḗř Řḗƥŀẏ"
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed for {addon} {version}."
-msgstr "Ȧƥƥřǿṽȧŀ ƞǿŧḗş ƈħȧƞɠḗḓ ƒǿř {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed"
-msgstr "Ȧƥƥřǿṽȧŀ ƞǿŧḗş ƈħȧƞɠḗḓ"
-
-#: src/olympia/amo/log.py
-msgid "Source code uploaded for {addon} {version}."
-msgstr "Şǿŭřƈḗ ƈǿḓḗ ŭƥŀǿȧḓḗḓ ƒǿř {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
-
-#: src/olympia/amo/log.py
-msgid "Source code uploaded"
-msgstr "Şǿŭřƈḗ ƈǿḓḗ ŭƥŀǿȧḓḗḓ"
-
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
 msgstr "Ƞǿŧ ȧŀŀǿẇḗḓ"
@@ -1789,42 +1468,37 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr "<p>Ŧřẏ ɠǿīƞɠ ƀȧƈķ ŧǿ ŧħḗ ƥřḗṽīǿŭş ƥȧɠḗ, řḗƒřḗşħīƞɠ ȧƞḓ ŧħḗƞ ŧřẏīƞɠ ȧɠȧīƞ.</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Ƞǿŧ Ƒǿŭƞḓ"
+msgstr "Ƥȧɠḗ Ƞǿŧ Ƒǿŭƞḓ"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Ḿǿřḗ Ȧḓḓ-ǿƞş"
+msgstr "Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞş"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Şǿřřẏ, ƀŭŧ ẇḗ ƈȧƞ'ŧ ƒīƞḓ ȧƞẏŧħīƞɠ ȧŧ ŧħḗ ȧḓḓřḗşş ẏǿŭ ḗƞŧḗřḗḓ. Īƒ ẏǿŭ ƒǿŀŀǿẇḗḓ ȧ ŀīƞķ ŧǿ ȧƞ ȧḓḓ-ǿƞ, īŧ'ş ƥǿşşīƀŀḗ ŧħȧŧ ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ řḗḿǿṽḗḓ ƀẏ īŧş ȧŭŧħǿř."
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Şŭɠɠḗşŧḗḓ Ƥȧɠḗş"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Ɓřǿẇşḗ ȧŀŀ ȧḓḓ-ǿƞş"
+msgstr "Ɓřǿẇşḗ ȧŀŀ ḗẋŧḗƞşīǿƞş"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Ɓřǿẇşḗ ȧŀŀ ȧḓḓ-ǿƞş"
+msgstr "Ɓřǿẇşḗ ȧŀŀ ŧħḗḿḗş"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "Ȧḓḓ-ǿƞ ħǿḿḗ ƥȧɠḗ"
+msgstr "Ȧḓḓ-ǿƞş Ħǿḿḗ Ƥȧɠḗ"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "Īƒ ẏǿŭ ƒǿŀŀǿẇḗḓ ȧ ŀīƞķ ƒřǿḿ şǿḿḗẇħḗřḗ, ƥŀḗȧşḗ %(open_bug_link)sƒīŀḗ ȧƞ īşşŭḗ%(close_bug_link)s. Ŧḗŀŀ ŭş ẇħḗřḗ ẏǿŭ ƈȧḿḗ ƒřǿḿ ȧƞḓ ẇħȧŧ ẏǿŭ ẇḗřḗ ŀǿǿķīƞɠ ƒǿř, ȧƞḓ ẇḗ'ŀŀ ḓǿ ǿŭř ƀḗşŧ ŧǿ ƒīẋ īŧ."
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -2610,6 +2284,11 @@ msgstr "Ŧǿ īƞƈŀŭḓḗ ȧƞ ȧḓḓ-ǿƞ īƞ ŧħīş ƈǿŀŀḗƈŧī
 msgid "Add-on"
 msgstr "Ȧḓḓ-ǿƞ"
 
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/activity.py src/olympia/editors/helpers.py
+#: src/olympia/editors/templates/editors/themes/history_table.html
+msgid "Comment"
+msgstr "Ƈǿḿḿḗƞŧ"
+
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
 msgstr "Ḗƞŧḗř ŧħḗ ƞȧḿḗ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ŧǿ īƞƈŀŭḓḗ"
@@ -2637,58 +2316,6 @@ msgstr "ƇǾĿĿḖƇŦĪǾȠŞ"
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
 msgstr "Ɠřǿŭƥş ǿƒ řḗŀȧŧḗḓ ȧḓḓ-ǿƞş ŧħȧŧ ȧƞẏǿƞḗ ƈȧƞ ƈřḗȧŧḗ."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocked Add-ons"
-msgstr "Ɓŀǿƈķḗḓ Ȧḓḓ-ǿƞş"
-
-#. {0} is an add-on name.
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "<b>{0}</b> has been blocked for your protection."
-msgstr "<b>{0}</b> ħȧş ƀḗḗƞ ƀŀǿƈķḗḓ ƒǿř ẏǿŭř ƥřǿŧḗƈŧīǿƞ."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Why was it blocked?"
-msgstr "Ẇħẏ ẇȧş īŧ ƀŀǿƈķḗḓ?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Who is affected?"
-msgstr "Ẇħǿ īş ȧƒƒḗƈŧḗḓ?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "What does this mean?"
-msgstr "Ẇħȧŧ ḓǿḗş ŧħīş ḿḗȧƞ?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr "Ŭşḗřş ȧřḗ şŧřǿƞɠŀẏ ḗƞƈǿŭřȧɠḗḓ ŧǿ ḓīşȧƀŀḗ ŧħḗ ƥřǿƀŀḗḿȧŧīƈ ȧḓḓ-ǿƞ ǿř ƥŀŭɠīƞ, ƀŭŧ ḿȧẏ ƈħǿǿşḗ ŧǿ ƈǿƞŧīƞŭḗ ŭşīƞɠ īŧ īƒ ŧħḗẏ ȧƈƈḗƥŧ ŧħḗ řīşķş ḓḗşƈřīƀḗḓ."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr "Ŧħḗ ƥřǿƀŀḗḿȧŧīƈ ȧḓḓ-ǿƞ ǿř ƥŀŭɠīƞ ẇīŀŀ ƀḗ ȧŭŧǿḿȧŧīƈȧŀŀẏ ḓīşȧƀŀḗḓ ȧƞḓ ƞǿ ŀǿƞɠḗř ŭşȧƀŀḗ."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid ""
-"When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
-msgstr ""
-"Ẇħḗƞ Ḿǿzīŀŀȧ ƀḗƈǿḿḗş ȧẇȧřḗ ǿƒ ȧḓḓ-ǿƞş, ƥŀŭɠīƞş, ǿř ǿŧħḗř ŧħīřḓ-ƥȧřŧẏ şǿƒŧẇȧřḗ ŧħȧŧ şḗřīǿŭşŀẏ ƈǿḿƥřǿḿīşḗş %(app)s şḗƈŭřīŧẏ, şŧȧƀīŀīŧẏ, ǿř ƥḗřƒǿřḿȧƞƈḗ ȧƞḓ ḿḗḗŧş <a href=\"%(criteria)s\">ƈḗřŧȧīƞ "
-"ƈřīŧḗřīȧ</a>, ŧħḗ şǿƒŧẇȧřḗ ḿȧẏ ƀḗ ƀŀǿƈķḗḓ ƒřǿḿ ɠḗƞḗřȧŀ ŭşḗ. Ƒǿř ḿǿřḗ īƞƒǿřḿȧŧīǿƞ, ƥŀḗȧşḗ řḗȧḓ <a href=\"%(support)s\">ŧħīş şŭƥƥǿřŧ ȧřŧīƈŀḗ</a>."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "Ɓŀǿƈķḗḓ ǿƞ %(date)s. <a href=\"%(link)s\">Ṽīḗẇ ƀŀǿƈķ řḗɋŭḗşŧ</a>."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s."
-msgstr "Ɓŀǿƈķḗḓ ǿƞ %(date)s."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr "Ŧħḗ ƒǿŀŀǿẇīƞɠ şǿƒŧẇȧřḗ īş ķƞǿẇƞ ŧǿ ƈȧŭşḗ şḗřīǿŭş şḗƈŭřīŧẏ, şŧȧƀīŀīŧẏ, ǿř ƥḗřƒǿřḿȧƞƈḗ īşşŭḗş ẇīŧħ {ȧƥƥ}."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -3094,6 +2721,326 @@ msgstr "Ƥřǿƀŀḗḿ"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
 msgstr "Ƞǿ řḗƥǿřŧş ƒǿŭƞḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} was created."
+msgstr "{ȧḓḓǿƞ} ẇȧş ƈřḗȧŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} properties edited."
+msgstr "{ȧḓḓǿƞ} ƥřǿƥḗřŧīḗş ḗḓīŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} description edited."
+msgstr "{ȧḓḓǿƞ} ḓḗşƈřīƥŧīǿƞ ḗḓīŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "Categories edited for {addon}."
+msgstr "Ƈȧŧḗɠǿřīḗş ḗḓīŧḗḓ ƒǿř {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) added to {addon}."
+msgstr "{0.ƞȧḿḗ} ({1}) ȧḓḓḗḓ ŧǿ {ȧḓḓǿƞ}."
+
+#. L10n: {0} is the user being removed, {1} is their role.
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) removed from {addon}."
+msgstr "{0.ƞȧḿḗ} ({1}) řḗḿǿṽḗḓ ƒřǿḿ {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "Contributions for {addon}."
+msgstr "Ƈǿƞŧřīƀŭŧīǿƞş ƒǿř {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} disabled."
+msgstr "{ȧḓḓǿƞ} ḓīşȧƀŀḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} enabled."
+msgstr "{ȧḓḓǿƞ} ḗƞȧƀŀḗḓ."
+
+#. L10n: {0} is the status
+#: src/olympia/constants/activity.py
+msgid "{addon} status changed to {0}."
+msgstr "{ȧḓḓǿƞ} şŧȧŧŭş ƈħȧƞɠḗḓ ŧǿ {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} added to {addon}."
+msgstr "{ṽḗřşīǿƞ} ȧḓḓḗḓ ŧǿ {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} edited for {addon}."
+msgstr "{ṽḗřşīǿƞ} ḗḓīŧḗḓ ƒǿř {ȧḓḓǿƞ}."
+
+#. L10n: {0} is the version number
+#: src/olympia/constants/activity.py
+msgid "Version {0} deleted from {addon}."
+msgstr "Ṽḗřşīǿƞ {0} ḓḗŀḗŧḗḓ ƒřǿḿ {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "File {0.name} added to {version} of {addon}."
+msgstr "Ƒīŀḗ {0.ƞȧḿḗ} ȧḓḓḗḓ ŧǿ {ṽḗřşīǿƞ} ǿƒ {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "File {0} deleted from {version} of {addon}."
+msgstr "Ƒīŀḗ {0} ḓḗŀḗŧḗḓ ƒřǿḿ {ṽḗřşīǿƞ} ǿƒ {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved."
+msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ȧƥƥřǿṽḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} given preliminary review."
+msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ɠīṽḗƞ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ."
+
+#: src/olympia/constants/activity.py
+msgid "Preliminarily approved"
+msgstr "Ƥřḗŀīḿīƞȧřīŀẏ ȧƥƥřǿṽḗḓ"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} rejected."
+msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} řḗĵḗƈŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} retained."
+msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} řḗŧȧīƞḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "Retained"
+msgstr "Řḗŧȧīƞḗḓ"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} escalated."
+msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ḗşƈȧŀȧŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "Super review requested"
+msgstr "Şŭƥḗř řḗṽīḗẇ řḗɋŭḗşŧḗḓ"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} review requested."
+msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} řḗṽīḗẇ řḗɋŭḗşŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "Review requested"
+msgstr "Řḗṽīḗẇ řḗɋŭḗşŧḗḓ"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} more information requested."
+msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ḿǿřḗ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "More information requested"
+msgstr "Ḿǿřḗ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧḗḓ"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} super review requested."
+msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} şŭƥḗř řḗṽīḗẇ řḗɋŭḗşŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr "Ŧħḗ ȧḓḓǿƞ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ƒǿř Ȧḓḿīƞ Řḗṽīḗẇ.  Īŧ'ş şŧīŀŀ īƞ ǿŭř řḗṽīḗẇ ɋŭḗŭḗ, ƀŭŧ īŧ ẇīŀŀ ƞḗḗḓ ŧǿ ƀḗ ƈħḗƈķḗḓ ƀẏ ǿƞḗ ǿƒ ǿŭř ȧḓḿīƞ řḗṽīḗẇḗřş. Ŧħḗ řḗṽīḗẇ ḿīɠħŧ ŧȧķḗ ŀǿƞɠḗř ŧħȧƞ ŭşŭȧŀ."
+
+#: src/olympia/constants/activity.py
+msgid "Comment on {addon} {version}."
+msgstr "Ƈǿḿḿḗƞŧ ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} added to {addon}."
+msgstr "{ŧȧɠ} ȧḓḓḗḓ ŧǿ {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} removed from {addon}."
+msgstr "{ŧȧɠ} řḗḿǿṽḗḓ ƒřǿḿ {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} added to {collection}."
+msgstr "{ȧḓḓǿƞ} ȧḓḓḗḓ ŧǿ {ƈǿŀŀḗƈŧīǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} removed from {collection}."
+msgstr "{ȧḓḓǿƞ} řḗḿǿṽḗḓ ƒřǿḿ {ƈǿŀŀḗƈŧīǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} written."
+msgstr "{řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ẇřīŧŧḗƞ."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} featured in {0}."
+msgstr "{ȧḓḓǿƞ} ƒḗȧŧŭřḗḓ īƞ {0}."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} no longer featured in {0}."
+msgstr "{ȧḓḓǿƞ} ƞǿ ŀǿƞɠḗř ƒḗȧŧŭřḗḓ īƞ {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now featured."
+msgstr "{ȧḓḓǿƞ} īş ƞǿẇ ƒḗȧŧŭřḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is no longer featured."
+msgstr "{ȧḓḓǿƞ} īş ƞǿ ŀǿƞɠḗř ƒḗȧŧŭřḗḓ."
+
+#. L10n: {0} is the application, {1} is the version of the app
+#: src/olympia/constants/activity.py
+msgid "{0} {1} added."
+msgstr "{0} {1} ȧḓḓḗḓ."
+
+#. L10n: {0} is a user, {1} is their role
+#: src/olympia/constants/activity.py
+msgid "{0.name} role changed to {1} for {addon}."
+msgstr "{0.ƞȧḿḗ} řǿŀḗ ƈħȧƞɠḗḓ ŧǿ {1} ƒǿř {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now licensed under {0.name}."
+msgstr "{ȧḓḓǿƞ} īş ƞǿẇ ŀīƈḗƞşḗḓ ŭƞḓḗř {0.ƞȧḿḗ}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} policy changed."
+msgstr "{ȧḓḓǿƞ} ƥǿŀīƈẏ ƈħȧƞɠḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} icon changed."
+msgstr "{ȧḓḓǿƞ} īƈǿƞ ƈħȧƞɠḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} approved."
+msgstr "{řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ȧƥƥřǿṽḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{user} approved {review} for {addon}."
+msgstr "{ŭşḗř} ȧƥƥřǿṽḗḓ {řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "Review {review} for {addon} deleted."
+msgstr "Řḗṽīḗẇ {řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ḓḗŀḗŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{user} deleted {review} for {addon}."
+msgstr "{ŭşḗř} ḓḗŀḗŧḗḓ {řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "Application max version for {version} updated."
+msgstr "Ȧƥƥŀīƈȧŧīǿƞ ḿȧẋ ṽḗřşīǿƞ ƒǿř {ṽḗřşīǿƞ} ŭƥḓȧŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "Authors emailed about compatibility of {version}."
+msgstr "Ȧŭŧħǿřş ḗḿȧīŀḗḓ ȧƀǿŭŧ ƈǿḿƥȧŧīƀīŀīŧẏ ǿƒ {ṽḗřşīǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "Email sent to Author about add-on compatibility."
+msgstr "Ḗḿȧīŀ şḗƞŧ ŧǿ Ȧŭŧħǿř ȧƀǿŭŧ ȧḓḓ-ǿƞ ƈǿḿƥȧŧīƀīŀīŧẏ."
+
+#: src/olympia/constants/activity.py
+msgid "Password changed."
+msgstr "Ƥȧşşẇǿřḓ ƈħȧƞɠḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved but waiting to be made public."
+msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ȧƥƥřǿṽḗḓ ƀŭŧ ẇȧīŧīƞɠ ŧǿ ƀḗ ḿȧḓḗ ƥŭƀŀīƈ."
+
+#: src/olympia/constants/activity.py
+msgid "Approved but waiting"
+msgstr "Ȧƥƥřǿṽḗḓ ƀŭŧ ẇȧīŧīƞɠ"
+
+#: src/olympia/constants/activity.py
+msgid "Account updated."
+msgstr "Ȧƈƈǿŭƞŧ ŭƥḓȧŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "Created: {0}."
+msgstr "Ƈřḗȧŧḗḓ: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Edited field: {2} set to: {0}."
+msgstr "Ḗḓīŧḗḓ ƒīḗŀḓ: {2} şḗŧ ŧǿ: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Deleted: {1}."
+msgstr "Ḓḗŀḗŧḗḓ: {1}."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} edited, reason: {1}"
+msgstr "Ŭşḗř {ŭşḗř} ḗḓīŧḗḓ, řḗȧşǿƞ: {1}"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} anonymized."
+msgstr "Ŭşḗř {ŭşḗř} ȧƞǿƞẏḿīzḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} restricted."
+msgstr "Ŭşḗř {ŭşḗř} řḗşŧřīƈŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "Admin {0} viewed activity log for {user}."
+msgstr "Ȧḓḿīƞ {0} ṽīḗẇḗḓ ȧƈŧīṽīŧẏ ŀǿɠ ƒǿř {ŭşḗř}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} updated."
+msgstr "{řḗṽīḗẇ} ƒǿř {ȧḓḓǿƞ} ŭƥḓȧŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} reviewed."
+msgstr "{ȧḓḓǿƞ} řḗṽīḗẇḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} added to {group}."
+msgstr "Ŭşḗř {0.ƞȧḿḗ} ȧḓḓḗḓ ŧǿ {ɠřǿŭƥ}."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} removed from {group}."
+msgstr "Ŭşḗř {0.ƞȧḿḗ} řḗḿǿṽḗḓ ƒřǿḿ {ɠřǿŭƥ}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} unlisted."
+msgstr "{ȧḓḓǿƞ} ŭƞŀīşŧḗḓ."
+
+#: src/olympia/constants/activity.py
+msgid "{file} was signed."
+msgstr "{ƒīŀḗ} ẇȧş şīɠƞḗḓ."
+
+#. L10n: {0} is the add-on GUID.
+#: src/olympia/constants/activity.py
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr "Ȧḓḓǿƞ īḓ {0} ẇīŧħ ƓŬĪḒ {1} ħȧş ƀḗḗƞ ḓḗŀḗŧḗḓ"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} migrated from preliminary."
+msgstr "{ȧḓḓǿƞ} ḿīɠřȧŧḗḓ ƒřǿḿ ƥřḗŀīḿīƞȧřẏ."
+
+#: src/olympia/constants/activity.py
+msgid "Reply by developer on {addon} {version}."
+msgstr "Řḗƥŀẏ ƀẏ ḓḗṽḗŀǿƥḗř ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "Developer Reply"
+msgstr "Ḓḗṽḗŀǿƥḗř Řḗƥŀẏ"
+
+#: src/olympia/constants/activity.py
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "Řḗƥŀẏ ƀẏ řḗṽīḗẇḗř ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "Reviewer Reply"
+msgstr "Řḗṽīḗẇḗř Řḗƥŀẏ"
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed for {addon} {version}."
+msgstr "Ȧƥƥřǿṽȧŀ ƞǿŧḗş ƈħȧƞɠḗḓ ƒǿř {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed"
+msgstr "Ȧƥƥřǿṽȧŀ ƞǿŧḗş ƈħȧƞɠḗḓ"
+
+#: src/olympia/constants/activity.py
+msgid "Source code uploaded for {addon} {version}."
+msgstr "Şǿŭřƈḗ ƈǿḓḗ ŭƥŀǿȧḓḗḓ ƒǿř {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
+
+#: src/olympia/constants/activity.py
+msgid "Source code uploaded"
+msgstr "Şǿŭřƈḗ ƈǿḓḗ ŭƥŀǿȧḓḗḓ"
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -3774,57 +3721,6 @@ msgstr "Şǿŀȧřīş"
 msgid "Android"
 msgstr "Ȧƞḓřǿīḓ"
 
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your data for all websites"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Read and modify bookmarks"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Get data from the clipboard"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Input data to the clipboard"
-msgstr "Ŭƥḓȧŧḗ ŧħḗ ẇħīŧḗƀǿȧřḓ"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's download history"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your location"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Access browsing history"
-msgstr "%s Ṽḗřşīǿƞ Ħīşŧǿřẏ"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Exchange messages with programs other than Firefox"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Display notifications to you"
-msgstr "Ŭşḗř Ƞǿŧīƒīƈȧŧīǿƞş"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access recently closed tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser activity during navigation"
-msgstr ""
-
 #: src/olympia/core/apps.py
 msgid "Core"
 msgstr "Ƈǿřḗ"
@@ -3984,10 +3880,6 @@ msgid "A file with a version ending with a|alpha|b|beta and an optional number i
 msgstr "Ȧ ƒīŀḗ ẇīŧħ ȧ ṽḗřşīǿƞ ḗƞḓīƞɠ ẇīŧħ ȧ|ȧŀƥħȧ|ƀ|ƀḗŧȧ ȧƞḓ ȧƞ ǿƥŧīǿƞȧŀ ƞŭḿƀḗř īş ḓḗŧḗƈŧḗḓ ȧş ƀḗŧȧ."
 
 #: src/olympia/devhub/forms.py
-msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr "Ẏǿŭ ƈȧƞƞǿŧ ḓḗŀḗŧḗ ȧ ƒīŀḗ ǿƞƈḗ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş ħȧş şŧȧřŧḗḓ.  Ẏǿŭ ḿŭşŧ ḓḗŀḗŧḗ ŧħḗ ẇħǿŀḗ ṽḗřşīǿƞ."
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Ŧħḗ ƥŀȧŧƒǿřḿ Ȧŀŀ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ ẇīŧħ şƥḗƈīƒīƈ ƥŀȧŧƒǿřḿş."
 
@@ -4038,10 +3930,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
-
-#: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
-msgid "Review"
-msgstr "Řḗṽīḗẇ"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
@@ -4157,7 +4045,7 @@ msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ŧħīş ŧẏƥḗ ǿƒ ȧḓḓ-ǿ�
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Ẏǿŭ ƈȧƞƞǿŧ şŭƀḿīŧ ȧƞ ȧḓḓ-ǿƞ ẇīŧħ ȧ ɠŭīḓ ḗƞḓīƞɠ \"@ḿǿzīŀŀȧ.ǿřɠ\""
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -4209,9 +4097,8 @@ msgid "Review requested."
 msgstr "Řḗṽīḗẇ řḗɋŭḗşŧḗḓ."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "You must provide further details to proceed."
-msgstr "Řḗṽīḗẇ řḗɋŭḗşŧḗḓ.  Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ƒŭřŧħḗř ḓḗŧȧīŀş ŧǿ ƥřǿƈḗḗḓ."
+msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ƒŭřŧħḗř ḓḗŧȧīŀş ŧǿ ƥřǿƈḗḗḓ."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5535,18 +5422,6 @@ msgstr "Ƥŀḗȧşḗ īƞƈŀŭḓḗ īƞşŧřŭƈŧīǿƞş ǿƞ ħǿẇ ŧ
 msgid "Read more about the source code review policy."
 msgstr "Řḗȧḓ ḿǿřḗ ȧƀǿŭŧ ŧħḗ şǿŭřƈḗ ƈǿḓḗ řḗṽīḗẇ ƥǿŀīƈẏ."
 
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
-msgstr "Ẏǿŭ ƈȧƞƞǿŧ řḗḿǿṽḗ ȧƞ īƞḓīṽīḓŭȧŀ ƒīŀḗ ȧƒŧḗř ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş ħȧş ƀḗɠŭƞ. Ẏǿŭ ḿŭşŧ ḓḗŀḗŧḗ ŧħḗ ḗƞŧīřḗ ṽḗřşīǿƞ."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "This file will be deleted on save."
-msgstr "Ŧħīş ƒīŀḗ ẇīŀŀ ƀḗ ḓḗŀḗŧḗḓ ǿƞ şȧṽḗ."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "Undo"
-msgstr "Ŭƞḓǿ"
-
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #: src/olympia/templates/mobile/base_addons.html
@@ -6269,10 +6144,6 @@ msgstr "Ẇḗ ħȧḓ ȧ ƥřǿƀŀḗḿ řḗŧřīḗṽīƞɠ řḗṽīḗ
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
 msgstr "Ŀǿȧḓ ǿŀḓḗř..."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "on"
-msgstr "ǿƞ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Leave a reply"
@@ -7413,11 +7284,15 @@ msgstr "Ŧħīş ƒīŀḗ īş ȧ ḓīřḗƈŧǿřẏ."
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Ȧƈƈḗşş ẏǿŭř ḓȧŧȧ ƒǿř {ƞȧḿḗ}"
 
 #: src/olympia/files/models.py
 msgid "Access your data on various websites"
-msgstr ""
+msgstr "Ȧƈƈḗşş ẏǿŭř ḓȧŧȧ ǿƞ ṽȧřīǿŭş ẇḗƀşīŧḗş"
+
+#: src/olympia/files/models.py
+msgid "Access your data for all websites"
+msgstr "Ȧƈƈḗşş ẏǿŭř ḓȧŧȧ ƒǿř ȧŀŀ ẇḗƀşīŧḗş"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -7487,8 +7362,8 @@ msgstr "Ɓȧƈķ ŧǿ ȧḓḓ-ǿƞ"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
-msgstr "Ṽḗřşīǿƞ: %(version)s &bull; Şīzḗ: %(size)s &bull; ḾḒ5 ħȧşħ: %(ḿḓ5)ş &bull; Ḿīḿḗŧẏƥḗ: %(mimetype)s"
+msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
+msgstr "Ṽḗřşīǿƞ: %(version)s &bull; Şīzḗ: %(size)s &bull; ŞĦȦ256 ħȧşħ: %(şħȧ256)ş &bull; Ḿīḿḗŧẏƥḗ: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Compare :: Reviewer tools"
@@ -9892,36 +9767,32 @@ msgid "Other (please specify)"
 msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "This field is required."
-msgstr "Ƒīḗŀḓ řḗɋŭīřḗḓ"
+msgstr "Ŧħīş ƒīḗŀḓ īş řḗɋŭīřḗḓ."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Ẏǿŭ ḿȧẏ ŭƥḓȧŧḗ ẏǿŭř ŧħḗḿḗ ḓḗşīɠƞ ħḗřḗ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ ȧƥƥřǿṽḗḓ."
+msgstr "Ẏǿŭ ƈȧƞ'ŧ ƈħȧƞɠḗ ŧħḗ ȧḓḓ-ǿƞ ǿƒ ȧ řḗṽīḗẇ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ ƈřḗȧŧḗḓ."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Ẏǿŭ ƈȧƞ'ŧ řḗƥŀẏ ŧǿ ȧ řḗṽīḗẇ ŧħȧŧ īş ȧŀřḗȧḓẏ ȧ řḗƥŀẏ."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Ẏǿŭ ƈȧƞ'ŧ ƈħȧƞɠḗ ŧħḗ ṽḗřşīǿƞ ǿƒ ŧħḗ ȧḓḓ-ǿƞ řḗṽīḗẇḗḓ ǿƞƈḗ ŧħḗ řḗṽīḗẇ ħȧş ƀḗḗƞ ƈřḗȧŧḗḓ."
 
 #: src/olympia/reviews/serializers.py
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Ŧħīş ṽḗřşīǿƞ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ḓǿḗşƞ'ŧ ḗẋīşŧ ǿř īşƞ'ŧ ƥŭƀŀīƈ."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "şǿḿḗǿƞḗ ẇřīŧḗş ȧ řḗṽīḗẇ ǿƒ ḿẏ ȧḓḓ-ǿƞ"
+msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ȧ řḗṽīḗẇ ǿƞ ẏǿŭř ǿẇƞ ȧḓḓ-ǿƞ."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Ẏǿŭ ƈȧƞƞǿŧ ŭƥŀǿȧḓ ȧƞẏ ḿǿřḗ ƒīŀḗş ƒǿř ŧħīş ṽḗřşīǿƞ."
+msgstr "Ẏǿŭ ƈȧƞ'ŧ ŀḗȧṽḗ ḿǿřḗ ŧħȧƞ ǿƞḗ řḗṽīḗẇ ƒǿř ŧħḗ şȧḿḗ ṽḗřşīǿƞ ǿƒ ȧƞ ȧḓḓ-ǿƞ."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."

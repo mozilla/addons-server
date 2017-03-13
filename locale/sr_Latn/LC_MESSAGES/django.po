@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-27 07:24+0000\n"
+"POT-Creation-Date: 2017-03-13 17:07+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -34,6 +34,19 @@ msgstr ""
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr ""
+
+#: src/olympia/activity/models.py
+#: src/olympia/reviews/templates/reviews/add.html
+msgid "Review"
+msgstr "Pregled"
+
+#: src/olympia/activity/models.py
+#: src/olympia/addons/templates/addons/impala/details.html
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/versions/templates/versions/mobile/version.html
+#: src/olympia/versions/templates/versions/version.html
+msgid "Version {0}"
+msgstr "Verzija {0}"
 
 #: src/olympia/activity/serializers.py
 #, fuzzy
@@ -836,13 +849,13 @@ msgid "Awaiting Review"
 msgstr "Čekam ocenu"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
-#: src/olympia/amo/log.py src/olympia/constants/base.py
+#: src/olympia/constants/activity.py src/olympia/constants/base.py
 #: src/olympia/editors/helpers.py
 msgid "Rejected"
 msgstr "Odbijeno"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
-#: src/olympia/amo/log.py src/olympia/constants/base.py
+#: src/olympia/constants/activity.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Odobreno"
 
@@ -1359,14 +1372,6 @@ msgstr "Sajt podrške"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support E-mail"
 msgstr "E-pošta podrške"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/devhub/models.py
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/versions/templates/versions/mobile/version.html
-#: src/olympia/versions/templates/versions/version.html
-msgid "Version {0}"
-msgstr "Verzija {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Info"
@@ -1894,344 +1899,6 @@ msgstr "Rečnici i jezički paketi"
 #: src/olympia/amo/helpers.py
 msgid "{0} ago"
 msgstr "pre {0}"
-
-#: src/olympia/amo/log.py
-msgid "{addon} was created."
-msgstr "{addon} je kreiran."
-
-#: src/olympia/amo/log.py
-msgid "{addon} properties edited."
-msgstr "Svojstva su izmenjena za {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} description edited."
-msgstr "Opis je izmenjen za {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Categories edited for {addon}."
-msgstr "Kategorije su izmenjene za {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) dodat u {addon}."
-
-#. L10n: {0} is the user being removed, {1} is their role.
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) uklonjeno iz {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Contributions for {addon}."
-msgstr "Prilozi za {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} disabled."
-msgstr "{addon} onemogućen."
-
-#: src/olympia/amo/log.py
-msgid "{addon} enabled."
-msgstr "{addon} omogućen."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{addon} status changed to {0}."
-msgstr "{addon} status izmenjen na {0}."
-
-#: src/olympia/amo/log.py
-msgid "{version} added to {addon}."
-msgstr "{version} dodata u {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{version} edited for {addon}."
-msgstr "{version} izmenjen za {addon}."
-
-#. L10n: {0} is the version number
-#: src/olympia/amo/log.py
-msgid "Version {0} deleted from {addon}."
-msgstr "Verzija {0} izbrisana iz {addon}."
-
-#: src/olympia/amo/log.py
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Datoteka {0.name} dodata u {version} dodatka {addon}."
-
-#: src/olympia/amo/log.py
-msgid "File {0} deleted from {version} of {addon}."
-msgstr "Datoteka {0} izbrisana iz {version} dodatka {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved."
-msgstr "{addon} {version} odobren."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} given preliminary review."
-msgstr "Data je preliminarna recenzija za {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Preliminarily approved"
-msgstr "Premiliminarno odobreno"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} rejected."
-msgstr "{addon} {version} je odbijen."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} retained."
-msgstr "{addon} {version} je zadržan."
-
-#: src/olympia/amo/log.py
-msgid "Retained"
-msgstr "Zadržano"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} se eskalirao."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "Zahtevana super recenzija"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} review requested."
-msgstr "Zahtevana je recenzija za {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Review requested"
-msgstr "Zahtevana recenzija"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} more information requested."
-msgstr "Zahtevane su dodatne informacije za {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "More information requested"
-msgstr "Zahtevane dodatne informacije"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} super review requested."
-msgstr "Zahtevana je super recenzija za {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid ""
-"The addon has been flagged for Admin Review.  It's still in our review "
-"queue, but it will need to be checked by one of our admin reviewers. The "
-"review might take longer than usual."
-msgstr ""
-
-#: src/olympia/amo/log.py
-msgid "Comment on {addon} {version}."
-msgstr "Komentar na {addon} {version}."
-
-#: src/olympia/amo/log.py
-#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
-#: src/olympia/editors/helpers.py
-#: src/olympia/editors/templates/editors/themes/history_table.html
-msgid "Comment"
-msgstr "Komentariši"
-
-#: src/olympia/amo/log.py
-msgid "{tag} added to {addon}."
-msgstr "{tag} dodato u {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{tag} removed from {addon}."
-msgstr "{tag} uklonjeno iz {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} added to {collection}."
-msgstr "{addon} dodat u {collection}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} removed from {collection}."
-msgstr "{addon} uklonjeno iz {collection}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} written."
-msgstr "{review} za {addon} je napisana."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} featured in {0}."
-msgstr "{addon} je istaknut u {0}."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} više nije istaknut u {0}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now featured."
-msgstr "{addon} je sada istaknut."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is no longer featured."
-msgstr "{addon} više nije istaknut."
-
-#. L10n: {0} is the application, {1} is the version of the app
-#: src/olympia/amo/log.py
-msgid "{0} {1} added."
-msgstr "{0} {1} je dodat."
-
-#. L10n: {0} is a user, {1} is their role
-#: src/olympia/amo/log.py
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "Uloga korisnika {0.name} je promenjena u {1} za {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} je sada licenciran pod {0.name}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} policy changed."
-msgstr "Polisa izmenjena za {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} icon changed."
-msgstr "Ikonica je promenjena za {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} approved."
-msgstr "{review} za {addon} je odobren."
-
-#: src/olympia/amo/log.py
-msgid "{user} approved {review} for {addon}."
-msgstr "{user} je odobrio {review} za {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Review {review} for {addon} deleted."
-msgstr "Recenzija {review} za {addon} je izbrisana."
-
-#: src/olympia/amo/log.py
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} je izbrisao {review} za {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Application max version for {version} updated."
-msgstr "Maksimalna verzija aplikacije za {version} je ažurirana."
-
-#: src/olympia/amo/log.py
-msgid "Authors emailed about compatibility of {version}."
-msgstr "Autori poslali e-poštu o kompatibilnosti verzije {version}."
-
-#: src/olympia/amo/log.py
-msgid "Email sent to Author about add-on compatibility."
-msgstr "E-pošta poslata autoru o kompatibilnosti dodatka."
-
-#: src/olympia/amo/log.py
-msgid "Password changed."
-msgstr "Lozinka je izmenjena."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} je odobren ali čeka da postane javan."
-
-#: src/olympia/amo/log.py
-msgid "Approved but waiting"
-msgstr "Odobren ali na čekanju"
-
-#: src/olympia/amo/log.py
-msgid "Account updated."
-msgstr "Nalog ažuriran."
-
-#: src/olympia/amo/log.py
-msgid "Created: {0}."
-msgstr "Napravljeno: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Edited field: {2} set to: {0}."
-msgstr "Izmenjeno polje: {2} podešeno na: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Deleted: {1}."
-msgstr "Izbrisano: {1}."
-
-#: src/olympia/amo/log.py
-msgid "User {user} edited, reason: {1}"
-msgstr "Korisnik {user} izmenjen, razlog: {1}"
-
-#: src/olympia/amo/log.py
-msgid "User {user} anonymized."
-msgstr "Korisnik {user} promenjen u anonimnog."
-
-#: src/olympia/amo/log.py
-msgid "User {user} restricted."
-msgstr "Korisnik {user} je ograničen."
-
-#: src/olympia/amo/log.py
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Administrator {0} je pregledao dnevnik aktivnosti za {user}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} updated."
-msgstr "{review} za {addon} je ažuriran."
-
-#: src/olympia/amo/log.py
-msgid "{addon} reviewed."
-msgstr "{addon} je pregledan."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} added to {group}."
-msgstr "Korisnik {0.name} je dodat u {group}."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} removed from {group}."
-msgstr "Korisnik {0.name} je uklonjen iz {group}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} unlisted."
-msgstr ""
-
-#: src/olympia/amo/log.py
-msgid "{file} was signed."
-msgstr ""
-
-#. L10n: {0} is the add-on GUID.
-#: src/olympia/amo/log.py
-msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "{addon} migrated from preliminary."
-msgstr "Data je preliminarna recenzija za {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reply by developer on {addon} {version}."
-msgstr "Komentar na {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Developer Reply"
-msgstr "Programerske vesti"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reply by reviewer on {addon} {version}."
-msgstr "Komentar na {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reviewer Reply"
-msgstr "Programerske vesti"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Approval notes changed for {addon} {version}."
-msgstr "Komentar na {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed"
-msgstr ""
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Source code uploaded for {addon} {version}."
-msgstr "Komentar na {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Source code uploaded"
-msgstr "Izvorni kod"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -3274,6 +2941,12 @@ msgid "Add-on"
 msgstr "Dodatak"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
+#: src/olympia/constants/activity.py src/olympia/editors/helpers.py
+#: src/olympia/editors/templates/editors/themes/history_table.html
+msgid "Comment"
+msgstr "Komentariši"
+
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
 msgstr "Unesite naziv dodatka da biste da dodali"
 
@@ -3301,80 +2974,6 @@ msgstr "KOLEKCIJE"
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
 msgstr "Grupe srodnih dodataka koje svako može da napravi."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#: src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocked Add-ons"
-msgstr "Blokirani dodaci"
-
-#. {0} is an add-on name.
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "<b>{0}</b> has been blocked for your protection."
-msgstr "<b>{0}</b> je blokiran zbog Vaše bezbednosti."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Why was it blocked?"
-msgstr "Zašto je blokiran?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Who is affected?"
-msgstr "Ko je pogođen?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "What does this mean?"
-msgstr "Šta ovo znači?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid ""
-"Users are strongly encouraged to disable the problematic add-on or plugin, "
-"but may choose to continue using it if they accept the risks described."
-msgstr ""
-"Korisnici se strogo ohrabruju da onemoguće problematičan dodatak ili "
-"priključak, ali mogu da nastave sa njihovom upotrebom ako prihvataju opisane "
-"rizike."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid ""
-"The problematic add-on or plugin will be automatically disabled and no "
-"longer usable."
-msgstr ""
-"Problematičan dodatak ili priključak će biti automatski onemogućen i "
-"neupotrebljiv."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
-msgid ""
-"When Mozilla becomes aware of add-ons, plugins, or other third-party "
-"software that seriously compromises %(app)s security, stability, or "
-"performance and meets <a href=\"%(criteria)s\">certain criteria</a>, the "
-"software may be blocked from general use. For more information, please read "
-"<a href=\"%(support)s\">this support article</a>."
-msgstr ""
-"Kada Mozilla postane svesna o dodacima, priključcima, ili drugim nezavisnim "
-"softverima koji ozbiljno narušavaju bezbednost, stabilnost, ili performanse "
-"%(app)s-a, i ispunjava <a href=\"%(criteria)s\">određene kriterijume</a>, "
-"softver može biti blokiran za korišćenje. Za više informacije, molimo Vas "
-"pročitajte <a href=\"%(support)s\">ovaj članak podrške</a>."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr ""
-"Blokiran dana %(date)s. <a href=\"%(link)s\">Pogledajte zahtev za "
-"blokiranjem</a>."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s."
-msgstr "Blokiran dana %(date)s."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid ""
-"The following software is known to cause serious security, stability, or "
-"performance issues with {app}."
-msgstr ""
-"Sledeći softver je poznat da pravi ozbiljne probleme u bezbednosti, "
-"stabilnosti, ili performansama sa {app}."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -3834,6 +3433,337 @@ msgstr "Problem"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
 msgstr "Nema nađenih izveštaja."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} was created."
+msgstr "{addon} je kreiran."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} properties edited."
+msgstr "Svojstva su izmenjena za {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} description edited."
+msgstr "Opis je izmenjen za {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Categories edited for {addon}."
+msgstr "Kategorije su izmenjene za {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) added to {addon}."
+msgstr "{0.name} ({1}) dodat u {addon}."
+
+#. L10n: {0} is the user being removed, {1} is their role.
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) removed from {addon}."
+msgstr "{0.name} ({1}) uklonjeno iz {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Contributions for {addon}."
+msgstr "Prilozi za {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} disabled."
+msgstr "{addon} onemogućen."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} enabled."
+msgstr "{addon} omogućen."
+
+#. L10n: {0} is the status
+#: src/olympia/constants/activity.py
+msgid "{addon} status changed to {0}."
+msgstr "{addon} status izmenjen na {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} added to {addon}."
+msgstr "{version} dodata u {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} edited for {addon}."
+msgstr "{version} izmenjen za {addon}."
+
+#. L10n: {0} is the version number
+#: src/olympia/constants/activity.py
+msgid "Version {0} deleted from {addon}."
+msgstr "Verzija {0} izbrisana iz {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "File {0.name} added to {version} of {addon}."
+msgstr "Datoteka {0.name} dodata u {version} dodatka {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "File {0} deleted from {version} of {addon}."
+msgstr "Datoteka {0} izbrisana iz {version} dodatka {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved."
+msgstr "{addon} {version} odobren."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} given preliminary review."
+msgstr "Data je preliminarna recenzija za {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Preliminarily approved"
+msgstr "Premiliminarno odobreno"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} rejected."
+msgstr "{addon} {version} je odbijen."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} retained."
+msgstr "{addon} {version} je zadržan."
+
+#: src/olympia/constants/activity.py
+msgid "Retained"
+msgstr "Zadržano"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} escalated."
+msgstr "{addon} {version} se eskalirao."
+
+#: src/olympia/constants/activity.py
+msgid "Super review requested"
+msgstr "Zahtevana super recenzija"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} review requested."
+msgstr "Zahtevana je recenzija za {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Review requested"
+msgstr "Zahtevana recenzija"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} more information requested."
+msgstr "Zahtevane su dodatne informacije za {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "More information requested"
+msgstr "Zahtevane dodatne informacije"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} super review requested."
+msgstr "Zahtevana je super recenzija za {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid ""
+"The addon has been flagged for Admin Review.  It's still in our review "
+"queue, but it will need to be checked by one of our admin reviewers. The "
+"review might take longer than usual."
+msgstr ""
+
+#: src/olympia/constants/activity.py
+msgid "Comment on {addon} {version}."
+msgstr "Komentar na {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} added to {addon}."
+msgstr "{tag} dodato u {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} removed from {addon}."
+msgstr "{tag} uklonjeno iz {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} added to {collection}."
+msgstr "{addon} dodat u {collection}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} removed from {collection}."
+msgstr "{addon} uklonjeno iz {collection}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} written."
+msgstr "{review} za {addon} je napisana."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} featured in {0}."
+msgstr "{addon} je istaknut u {0}."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} no longer featured in {0}."
+msgstr "{addon} više nije istaknut u {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now featured."
+msgstr "{addon} je sada istaknut."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is no longer featured."
+msgstr "{addon} više nije istaknut."
+
+#. L10n: {0} is the application, {1} is the version of the app
+#: src/olympia/constants/activity.py
+msgid "{0} {1} added."
+msgstr "{0} {1} je dodat."
+
+#. L10n: {0} is a user, {1} is their role
+#: src/olympia/constants/activity.py
+msgid "{0.name} role changed to {1} for {addon}."
+msgstr "Uloga korisnika {0.name} je promenjena u {1} za {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now licensed under {0.name}."
+msgstr "{addon} je sada licenciran pod {0.name}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} policy changed."
+msgstr "Polisa izmenjena za {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} icon changed."
+msgstr "Ikonica je promenjena za {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} approved."
+msgstr "{review} za {addon} je odobren."
+
+#: src/olympia/constants/activity.py
+msgid "{user} approved {review} for {addon}."
+msgstr "{user} je odobrio {review} za {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Review {review} for {addon} deleted."
+msgstr "Recenzija {review} za {addon} je izbrisana."
+
+#: src/olympia/constants/activity.py
+msgid "{user} deleted {review} for {addon}."
+msgstr "{user} je izbrisao {review} za {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Application max version for {version} updated."
+msgstr "Maksimalna verzija aplikacije za {version} je ažurirana."
+
+#: src/olympia/constants/activity.py
+msgid "Authors emailed about compatibility of {version}."
+msgstr "Autori poslali e-poštu o kompatibilnosti verzije {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Email sent to Author about add-on compatibility."
+msgstr "E-pošta poslata autoru o kompatibilnosti dodatka."
+
+#: src/olympia/constants/activity.py
+msgid "Password changed."
+msgstr "Lozinka je izmenjena."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved but waiting to be made public."
+msgstr "{addon} {version} je odobren ali čeka da postane javan."
+
+#: src/olympia/constants/activity.py
+msgid "Approved but waiting"
+msgstr "Odobren ali na čekanju"
+
+#: src/olympia/constants/activity.py
+msgid "Account updated."
+msgstr "Nalog ažuriran."
+
+#: src/olympia/constants/activity.py
+msgid "Created: {0}."
+msgstr "Napravljeno: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Edited field: {2} set to: {0}."
+msgstr "Izmenjeno polje: {2} podešeno na: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Deleted: {1}."
+msgstr "Izbrisano: {1}."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} edited, reason: {1}"
+msgstr "Korisnik {user} izmenjen, razlog: {1}"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} anonymized."
+msgstr "Korisnik {user} promenjen u anonimnog."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} restricted."
+msgstr "Korisnik {user} je ograničen."
+
+#: src/olympia/constants/activity.py
+msgid "Admin {0} viewed activity log for {user}."
+msgstr "Administrator {0} je pregledao dnevnik aktivnosti za {user}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} updated."
+msgstr "{review} za {addon} je ažuriran."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} reviewed."
+msgstr "{addon} je pregledan."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} added to {group}."
+msgstr "Korisnik {0.name} je dodat u {group}."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} removed from {group}."
+msgstr "Korisnik {0.name} je uklonjen iz {group}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} unlisted."
+msgstr ""
+
+#: src/olympia/constants/activity.py
+msgid "{file} was signed."
+msgstr ""
+
+#. L10n: {0} is the add-on GUID.
+#: src/olympia/constants/activity.py
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr ""
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "{addon} migrated from preliminary."
+msgstr "Data je preliminarna recenzija za {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "Komentar na {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "Programerske vesti"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "Komentar na {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reviewer Reply"
+msgstr "Programerske vesti"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "Komentar na {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "Komentar na {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "Izvorni kod"
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -4575,58 +4505,6 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your data for all websites"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Read and modify bookmarks"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Get data from the clipboard"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Input data to the clipboard"
-msgstr "Ažuriraj tablu"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's download history"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your location"
-msgstr ""
-
-# {0} is the add-on name
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Access browsing history"
-msgstr "%s istorijat verzije"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Exchange messages with programs other than Firefox"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Display notifications to you"
-msgstr "Obaveštenja korisnika"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access recently closed tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser activity during navigation"
-msgstr ""
-
 #: src/olympia/core/apps.py
 msgid "Core"
 msgstr ""
@@ -4800,15 +4678,6 @@ msgstr ""
 "detektovana kao beta."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
-msgid ""
-"You cannot delete a file once the review process has started.  You must "
-"delete the whole version."
-msgstr ""
-"Ne možete obrisati datoteku čim proces recenzije započne. Morate obrisati "
-"celu verziju."
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platforma Sve ne može se ukombinovati sa određenim platformama."
 
@@ -4866,10 +4735,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} upozorenje"
 msgstr[1] "{0} upozorenja"
-
-#: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
-msgid "Review"
-msgstr "Pregled"
 
 #: src/olympia/devhub/tasks.py
 msgid ""
@@ -6670,22 +6535,6 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr "Pročitajte više o polisi pregleda izvornog koda."
 
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid ""
-"You cannot remove an individual file after the review process has begun. You "
-"must delete the entire version."
-msgstr ""
-"Vi ne možete da uklonite pojedinačnu datoteku nakon što je proces revizije "
-"započeo. Morate obrisati celu verziju."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "This file will be deleted on save."
-msgstr "Ova datoteka će biti izbrisana pri snimanju."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "Undo"
-msgstr "Poništi"
-
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html
 #: src/olympia/search/views.py src/olympia/templates/base.html
@@ -7587,11 +7436,6 @@ msgstr ""
 #, fuzzy
 msgid "Load older..."
 msgstr "Učitavam..."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
-msgid "on"
-msgstr "Ikonica"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -8878,6 +8722,10 @@ msgstr ""
 msgid "Access your data on various websites"
 msgstr ""
 
+#: src/olympia/files/models.py
+msgid "Access your data for all websites"
+msgstr ""
+
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -8956,10 +8804,10 @@ msgid "Back to add-on"
 msgstr "Nazad na dodatke"
 
 #: src/olympia/files/templates/files/file.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; "
-"Mimetype: %(mimetype)s"
+"Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s "
+"&bull; Mimetype: %(mimetype)s"
 msgstr ""
 "Verzija: %(version)s &bull; Veličina: %(size)s &bull; MD5 hash: %(md5)s "
 "&bull; Mimetype: %(mimetype)s"
