@@ -1087,6 +1087,9 @@ CELERY_ROUTES = {
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
 
+    # Activity (goes to devhub queue).
+    'olympia.activity.tasks.process_email': {'queue': 'devhub'},
+
     # This is currently used only by validation tasks.
     # This puts the chord_unlock task on the devhub queue. Which means anything
     # that uses chord() or group() must also be running in this queue or must
@@ -1117,7 +1120,9 @@ CELERY_ROUTES = {
     'olympia.addons.tasks.update_incompatible_appversions': {
         'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
-    'olympia.files.tasks.update_webext_descriptions': {'queue': 'addons'},
+
+    # Files (goes to devhub queue).
+    'olympia.files.tasks.update_webext_descriptions': {'queue': 'devhub'},
 
     # API
     'olympia.api.tasks.process_results': {'queue': 'api'},
