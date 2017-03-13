@@ -1187,6 +1187,7 @@ CELERY_ROUTES = {
     # Users
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
+    'olympia.users.tasks.generate_secret_for_users': {'queue': 'users'},
 
     # Zadmin
     'olympia.zadmin.tasks.add_validation_jobs': {'queue': 'zadmin'},
