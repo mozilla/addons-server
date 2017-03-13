@@ -1114,6 +1114,7 @@ CELERY_ROUTES = {
     'olympia.addons.tasks.update_incompatible_appversions': {
         'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
+    'olympia.files.tasks.update_webext_descriptions': {'queue': 'addons'},
 
     # API
     'olympia.api.tasks.process_results': {'queue': 'api'},
