@@ -44,6 +44,16 @@ WEBEXTPERMS_DESCRIPTION_REGEX = r'^webextPerms\.description\.(.+)=(.+)'
 
 @task
 @write
+def update_webext_descriptions_all(primary, additional, **kw):
+    """primary is a (url, locale) tuple; additional is a list of tuples."""
+    url, locale = primary
+    update_webext_descriptions(url, locale)
+    for url, locale in additional:
+        update_webext_descriptions(url, locale, create=False)
+
+
+@task
+@write
 def update_webext_descriptions(url, locale='en-US', create=True, **kw):
     class DummyContextManager(object):
         def __enter__(self):
