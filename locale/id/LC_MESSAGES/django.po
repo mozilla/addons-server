@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-27 07:24+0000\n"
+"POT-Creation-Date: 2017-03-13 17:07+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -38,6 +38,15 @@ msgstr "Anda bisa tidak bisa masuk. Silakan coba lagi."
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr "Perlu bantuan?"
+
+#: src/olympia/activity/models.py src/olympia/reviews/templates/reviews/add.html
+msgid "Review"
+msgstr "Ulasan"
+
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
+msgid "Version {0}"
+msgstr "Versi {0}"
 
 #: src/olympia/activity/serializers.py
 msgid "Review note"
@@ -643,11 +652,11 @@ msgstr "Lisensi"
 msgid "Awaiting Review"
 msgstr "Menunggu Ulasan"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py src/olympia/editors/helpers.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
 msgstr "Ditolak"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Disetujui"
 
@@ -1035,11 +1044,6 @@ msgstr "Situs dukungan"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support E-mail"
 msgstr "E-mail dukungan"
-
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/models.py src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
-msgid "Version {0}"
-msgstr "Versi {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Info"
@@ -1460,337 +1464,6 @@ msgstr "Kamus & Paket Bahasa"
 #: src/olympia/amo/helpers.py
 msgid "{0} ago"
 msgstr "{0} yang lalu"
-
-#: src/olympia/amo/log.py
-msgid "{addon} was created."
-msgstr "{addon} dibuat."
-
-#: src/olympia/amo/log.py
-msgid "{addon} properties edited."
-msgstr "{addon} properti disunting."
-
-#: src/olympia/amo/log.py
-msgid "{addon} description edited."
-msgstr "Deskripsi {addon} diedit."
-
-#: src/olympia/amo/log.py
-msgid "Categories edited for {addon}."
-msgstr "Kategori diedit untuk {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) ditambahkan ke {addon}."
-
-#. L10n: {0} is the user being removed, {1} is their role.
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) dihapus dari {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Contributions for {addon}."
-msgstr "Kontribusi untuk {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} disabled."
-msgstr "{addon} dinonaktifkan."
-
-#: src/olympia/amo/log.py
-msgid "{addon} enabled."
-msgstr "{addon} diaktifkan."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{addon} status changed to {0}."
-msgstr "{addon} status diubah menjadi {0}."
-
-#: src/olympia/amo/log.py
-msgid "{version} added to {addon}."
-msgstr "{version} ditambahkan ke {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{version} edited for {addon}."
-msgstr "{version} disunting untuk {addon}."
-
-#. L10n: {0} is the version number
-#: src/olympia/amo/log.py
-msgid "Version {0} deleted from {addon}."
-msgstr "Versi {0} dihapus dari {addon}."
-
-#: src/olympia/amo/log.py
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Berkas {0.name} ditambahkan ke {version} dari {addon}."
-
-#: src/olympia/amo/log.py
-msgid "File {0} deleted from {version} of {addon}."
-msgstr "Berkas {0} dihapus dari {version} dari {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved."
-msgstr "{addon} {version} disetujui."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} given preliminary review."
-msgstr "{addon} {version} diberikan ulasan awal."
-
-#: src/olympia/amo/log.py
-msgid "Preliminarily approved"
-msgstr "Disetujui sebelumnya"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} rejected."
-msgstr "{addon} {version} ditolak."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} retained."
-msgstr "{addon} {version} dipertahankan."
-
-#: src/olympia/amo/log.py
-msgid "Retained"
-msgstr "Dipertahankan"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} dieskalasi."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "Ulasan super dimintakan"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} review requested."
-msgstr "{addon} {version} ulasan dimintakan."
-
-#: src/olympia/amo/log.py
-msgid "Review requested"
-msgstr "Ulasan diminta"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} more information requested."
-msgstr "{addon} {version} tambahan informasi dimintakan."
-
-#: src/olympia/amo/log.py
-msgid "More information requested"
-msgstr "Diperlukan lebih banyak informasi"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} ulasan super dimintakan."
-
-#: src/olympia/amo/log.py
-msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
-
-#: src/olympia/amo/log.py
-msgid "Comment on {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
-
-#: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
-msgid "Comment"
-msgstr "Komentar"
-
-#: src/olympia/amo/log.py
-msgid "{tag} added to {addon}."
-msgstr "{tag} ditambahkan ke {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{tag} removed from {addon}."
-msgstr "{tag} dihapus dari {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} added to {collection}."
-msgstr "{addon} ditambahkan ke {collection}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} removed from {collection}."
-msgstr "{addon} dihapus dari {collection}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} written."
-msgstr "{review} untuk {addon} ditulis."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} featured in {0}."
-msgstr "{addon} diunggulkan di {0}."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} tidak lagi diunggulkan di {0}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now featured."
-msgstr "{addon} sekarang diunggulkan."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is no longer featured."
-msgstr "{addon} tidak lagi diunggulkan."
-
-#. L10n: {0} is the application, {1} is the version of the app
-#: src/olympia/amo/log.py
-msgid "{0} {1} added."
-msgstr "{0} {1} ditambahkan."
-
-#. L10n: {0} is a user, {1} is their role
-#: src/olympia/amo/log.py
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} peran berubah menjadi {1} untuk {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} sekarang berlisensi di bawah {0.name}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} policy changed."
-msgstr "{addon} kebijakan diubah."
-
-#: src/olympia/amo/log.py
-msgid "{addon} icon changed."
-msgstr "Ikon {addon} diganti."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} approved."
-msgstr "{review} untuk {addon} disetujui."
-
-#: src/olympia/amo/log.py
-msgid "{user} approved {review} for {addon}."
-msgstr "{user} menyetujui {review} untuk {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Review {review} for {addon} deleted."
-msgstr "Ulasan {review} untuk {addon} dihapus."
-
-#: src/olympia/amo/log.py
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} menghapus {review} untuk {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Application max version for {version} updated."
-msgstr "Versi aplikasi maksimal untuk {version} diperbarui."
-
-#: src/olympia/amo/log.py
-msgid "Authors emailed about compatibility of {version}."
-msgstr "Penulis mengirim surel tentang kompatibilitas {version}."
-
-#: src/olympia/amo/log.py
-msgid "Email sent to Author about add-on compatibility."
-msgstr "Surel dikirimkan pada Penulis tentang kompatibilitas pengaya."
-
-#: src/olympia/amo/log.py
-msgid "Password changed."
-msgstr "Kata sandi diganti."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} disetuji namun menunggu dipublikasikan."
-
-#: src/olympia/amo/log.py
-msgid "Approved but waiting"
-msgstr "Disetujui tapi menunggu"
-
-#: src/olympia/amo/log.py
-msgid "Account updated."
-msgstr "Akun diperbarui."
-
-#: src/olympia/amo/log.py
-msgid "Created: {0}."
-msgstr "Dibuat: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Edited field: {2} set to: {0}."
-msgstr "Bidang yang disunting: {2} diatur jadi: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Deleted: {1}."
-msgstr "Dihapus: {1}."
-
-#: src/olympia/amo/log.py
-msgid "User {user} edited, reason: {1}"
-msgstr "Pengguna {user} diedit, alasan: {1}"
-
-#: src/olympia/amo/log.py
-msgid "User {user} anonymized."
-msgstr "Pengguna {user} dianonimkan."
-
-#: src/olympia/amo/log.py
-msgid "User {user} restricted."
-msgstr "Pengguna {user} dibatasi."
-
-#: src/olympia/amo/log.py
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Admin {0} memperlihatkan catatan aktivitas untuk {user}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} updated."
-msgstr "{review} untuk {addon} diperbarui."
-
-#: src/olympia/amo/log.py
-msgid "{addon} reviewed."
-msgstr "{addon} diulas."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} added to {group}."
-msgstr "Pengguna {0.name} ditambahkan ke {group}."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} removed from {group}."
-msgstr "Pengguna {0.name} dihilangkan dari {group}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} unlisted."
-msgstr "{addon} tidak terdaftar."
-
-#: src/olympia/amo/log.py
-msgid "{file} was signed."
-msgstr "{file} telah ditandatangani."
-
-#. L10n: {0} is the add-on GUID.
-#: src/olympia/amo/log.py
-msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "ID pengaya {0} dengan GUID {1} telah dihapus"
-
-#: src/olympia/amo/log.py
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} dimigrasi dari awal."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reply by developer on {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Developer Reply"
-msgstr "Berita Pengembang"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reply by reviewer on {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reviewer Reply"
-msgstr "Berita Pengembang"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Approval notes changed for {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed"
-msgstr ""
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Source code uploaded for {addon} {version}."
-msgstr "Komentar untuk {addon} {version}."
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Source code uploaded"
-msgstr "Kode sumber"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -2626,6 +2299,11 @@ msgstr "Untuk menyertakan pengaya pada koleksi ini, masukkan nama dalam kotak di
 msgid "Add-on"
 msgstr "Pengaya"
 
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/activity.py src/olympia/editors/helpers.py
+#: src/olympia/editors/templates/editors/themes/history_table.html
+msgid "Comment"
+msgstr "Komentar"
+
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
 msgstr "Masukkan nama pengaya untuk disertakan"
@@ -2653,58 +2331,6 @@ msgstr "KOLEKSI"
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
 msgstr "Kelompok pengaya yang berkaitan yang bisa dibuat siapa saja."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocked Add-ons"
-msgstr "Pengaya yang Diblokir"
-
-#. {0} is an add-on name.
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "<b>{0}</b> has been blocked for your protection."
-msgstr "<b>{0}</b> telah diblokir untuk melindungi anda."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Why was it blocked?"
-msgstr "Mengapa pengaya ini diblokir?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Who is affected?"
-msgstr "Siapa yang terpengaruh?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "What does this mean?"
-msgstr "Apakah maksudnya?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr "Pengguna disarankan untuk mematikan pengaya atau plugin yang bermasalah, tapi bisa memilih untuk melanjutkan menggunakannya jika mereka menerima resiko yang dijelaskan."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr "Pengaya atau plugin yang bermasalah akan secara otomatis dimatikan dan tidak bisa digunakan lagi."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
-msgid ""
-"When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
-msgstr ""
-"Saat Mozilla menyadari keberadaan pengaya, plugin atau perangkat lunak pihak ketiga lainnya yang sungguh-sungguh membahayakan %(app)s keamanan, stabilitas, atau performa dan memenuhi <a href="
-"\"%(criteria)s\">sejumlah kriteria</a>, perangkat lunak tersebut akan diblokir dari penggunaan umum.  Untuk keterangan lebih lanjut, silakan baca <a href=\"%(support)s\">artikel pendukung ini</a>."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "Diblokir pada %(date)s. <a href=\"%(link)s\">Tampilkan permintaan blokir</a>."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s."
-msgstr "Diblokir pada tanggal %(date)s."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr "Perangkat lunak berikut ini diketahui menyebabkan persoalan serius terkait keamanan, stabilitas dan performa {app}."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -3108,6 +2734,333 @@ msgstr "Masalah"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
 msgstr "Tak ada laporan ditemukan."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} was created."
+msgstr "{addon} dibuat."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} properties edited."
+msgstr "{addon} properti disunting."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} description edited."
+msgstr "Deskripsi {addon} diedit."
+
+#: src/olympia/constants/activity.py
+msgid "Categories edited for {addon}."
+msgstr "Kategori diedit untuk {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) added to {addon}."
+msgstr "{0.name} ({1}) ditambahkan ke {addon}."
+
+#. L10n: {0} is the user being removed, {1} is their role.
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) removed from {addon}."
+msgstr "{0.name} ({1}) dihapus dari {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Contributions for {addon}."
+msgstr "Kontribusi untuk {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} disabled."
+msgstr "{addon} dinonaktifkan."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} enabled."
+msgstr "{addon} diaktifkan."
+
+#. L10n: {0} is the status
+#: src/olympia/constants/activity.py
+msgid "{addon} status changed to {0}."
+msgstr "{addon} status diubah menjadi {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} added to {addon}."
+msgstr "{version} ditambahkan ke {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} edited for {addon}."
+msgstr "{version} disunting untuk {addon}."
+
+#. L10n: {0} is the version number
+#: src/olympia/constants/activity.py
+msgid "Version {0} deleted from {addon}."
+msgstr "Versi {0} dihapus dari {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "File {0.name} added to {version} of {addon}."
+msgstr "Berkas {0.name} ditambahkan ke {version} dari {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "File {0} deleted from {version} of {addon}."
+msgstr "Berkas {0} dihapus dari {version} dari {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved."
+msgstr "{addon} {version} disetujui."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} given preliminary review."
+msgstr "{addon} {version} diberikan ulasan awal."
+
+#: src/olympia/constants/activity.py
+msgid "Preliminarily approved"
+msgstr "Disetujui sebelumnya"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} rejected."
+msgstr "{addon} {version} ditolak."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} retained."
+msgstr "{addon} {version} dipertahankan."
+
+#: src/olympia/constants/activity.py
+msgid "Retained"
+msgstr "Dipertahankan"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} escalated."
+msgstr "{addon} {version} dieskalasi."
+
+#: src/olympia/constants/activity.py
+msgid "Super review requested"
+msgstr "Ulasan super dimintakan"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} review requested."
+msgstr "{addon} {version} ulasan dimintakan."
+
+#: src/olympia/constants/activity.py
+msgid "Review requested"
+msgstr "Ulasan diminta"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} more information requested."
+msgstr "{addon} {version} tambahan informasi dimintakan."
+
+#: src/olympia/constants/activity.py
+msgid "More information requested"
+msgstr "Diperlukan lebih banyak informasi"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} super review requested."
+msgstr "{addon} {version} ulasan super dimintakan."
+
+#: src/olympia/constants/activity.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
+
+#: src/olympia/constants/activity.py
+msgid "Comment on {addon} {version}."
+msgstr "Komentar untuk {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} added to {addon}."
+msgstr "{tag} ditambahkan ke {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} removed from {addon}."
+msgstr "{tag} dihapus dari {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} added to {collection}."
+msgstr "{addon} ditambahkan ke {collection}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} removed from {collection}."
+msgstr "{addon} dihapus dari {collection}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} written."
+msgstr "{review} untuk {addon} ditulis."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} featured in {0}."
+msgstr "{addon} diunggulkan di {0}."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} no longer featured in {0}."
+msgstr "{addon} tidak lagi diunggulkan di {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now featured."
+msgstr "{addon} sekarang diunggulkan."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is no longer featured."
+msgstr "{addon} tidak lagi diunggulkan."
+
+#. L10n: {0} is the application, {1} is the version of the app
+#: src/olympia/constants/activity.py
+msgid "{0} {1} added."
+msgstr "{0} {1} ditambahkan."
+
+#. L10n: {0} is a user, {1} is their role
+#: src/olympia/constants/activity.py
+msgid "{0.name} role changed to {1} for {addon}."
+msgstr "{0.name} peran berubah menjadi {1} untuk {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now licensed under {0.name}."
+msgstr "{addon} sekarang berlisensi di bawah {0.name}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} policy changed."
+msgstr "{addon} kebijakan diubah."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} icon changed."
+msgstr "Ikon {addon} diganti."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} approved."
+msgstr "{review} untuk {addon} disetujui."
+
+#: src/olympia/constants/activity.py
+msgid "{user} approved {review} for {addon}."
+msgstr "{user} menyetujui {review} untuk {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Review {review} for {addon} deleted."
+msgstr "Ulasan {review} untuk {addon} dihapus."
+
+#: src/olympia/constants/activity.py
+msgid "{user} deleted {review} for {addon}."
+msgstr "{user} menghapus {review} untuk {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Application max version for {version} updated."
+msgstr "Versi aplikasi maksimal untuk {version} diperbarui."
+
+#: src/olympia/constants/activity.py
+msgid "Authors emailed about compatibility of {version}."
+msgstr "Penulis mengirim surel tentang kompatibilitas {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Email sent to Author about add-on compatibility."
+msgstr "Surel dikirimkan pada Penulis tentang kompatibilitas pengaya."
+
+#: src/olympia/constants/activity.py
+msgid "Password changed."
+msgstr "Kata sandi diganti."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved but waiting to be made public."
+msgstr "{addon} {version} disetuji namun menunggu dipublikasikan."
+
+#: src/olympia/constants/activity.py
+msgid "Approved but waiting"
+msgstr "Disetujui tapi menunggu"
+
+#: src/olympia/constants/activity.py
+msgid "Account updated."
+msgstr "Akun diperbarui."
+
+#: src/olympia/constants/activity.py
+msgid "Created: {0}."
+msgstr "Dibuat: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Edited field: {2} set to: {0}."
+msgstr "Bidang yang disunting: {2} diatur jadi: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Deleted: {1}."
+msgstr "Dihapus: {1}."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} edited, reason: {1}"
+msgstr "Pengguna {user} diedit, alasan: {1}"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} anonymized."
+msgstr "Pengguna {user} dianonimkan."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} restricted."
+msgstr "Pengguna {user} dibatasi."
+
+#: src/olympia/constants/activity.py
+msgid "Admin {0} viewed activity log for {user}."
+msgstr "Admin {0} memperlihatkan catatan aktivitas untuk {user}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} updated."
+msgstr "{review} untuk {addon} diperbarui."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} reviewed."
+msgstr "{addon} diulas."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} added to {group}."
+msgstr "Pengguna {0.name} ditambahkan ke {group}."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} removed from {group}."
+msgstr "Pengguna {0.name} dihilangkan dari {group}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} unlisted."
+msgstr "{addon} tidak terdaftar."
+
+#: src/olympia/constants/activity.py
+msgid "{file} was signed."
+msgstr "{file} telah ditandatangani."
+
+#. L10n: {0} is the add-on GUID.
+#: src/olympia/constants/activity.py
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr "ID pengaya {0} dengan GUID {1} telah dihapus"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} migrated from preliminary."
+msgstr "{addon} dimigrasi dari awal."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "Komentar untuk {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "Berita Pengembang"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "Komentar untuk {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reviewer Reply"
+msgstr "Berita Pengembang"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "Komentar untuk {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "Komentar untuk {addon} {version}."
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "Kode sumber"
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -3796,57 +3749,6 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your data for all websites"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Read and modify bookmarks"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Get data from the clipboard"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Input data to the clipboard"
-msgstr "Perbarui papan tulis"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's download history"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your location"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Access browsing history"
-msgstr "%s Riwayat Versi"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Exchange messages with programs other than Firefox"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Display notifications to you"
-msgstr "Notifikasi Pengguna"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access recently closed tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser activity during navigation"
-msgstr ""
-
 #: src/olympia/core/apps.py
 msgid "Core"
 msgstr "Inti"
@@ -4006,10 +3908,6 @@ msgid "A file with a version ending with a|alpha|b|beta and an optional number i
 msgstr "File dengan versi yang diakhiri dengan a|alpha|b|beta|pre|rc dan nomor opsional dideteksi sebagai beta."
 
 #: src/olympia/devhub/forms.py
-msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr "Anda tidak dapat menghapus file setelah proses peninjauan dimulai.   Anda harus menghapus seluruh versinya."
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platform Semua tidak bisa digabungkan dengan platform yang spesifik."
 
@@ -4057,10 +3955,6 @@ msgstr[0] "{0} galat"
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} pesan peringatan"
-
-#: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
-msgid "Review"
-msgstr "Ulasan"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
@@ -5659,18 +5553,6 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr "Baca lebih lanjut mengenai kebijakan mengulas kode sumber."
 
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
-msgstr "Anda tidak bisa menghapus berkas individu setelah proses ulasan dimulai. Anda harus menghapus seluruh versi."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "This file will be deleted on save."
-msgstr "Berkas ini akan dihapus saat menyimpan."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "Undo"
-msgstr "Urung"
-
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #: src/olympia/templates/mobile/base_addons.html
@@ -6444,10 +6326,6 @@ msgstr "Kami menghadapi masalah menerima catatan ulasan"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
 msgstr "Memuat yang lebih lama..."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "on"
-msgstr "aktif"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -7612,6 +7490,10 @@ msgstr ""
 msgid "Access your data on various websites"
 msgstr ""
 
+#: src/olympia/files/models.py
+msgid "Access your data for all websites"
+msgstr ""
+
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Dibutuhkan GUID pada Firefox 47 dan versi sebelumnya."
@@ -7679,8 +7561,8 @@ msgid "Back to add-on"
 msgstr "Kembali ke pengaya"
 
 #: src/olympia/files/templates/files/file.html
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
+#, fuzzy, python-format
+msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 msgstr "Versi: %(version)s &bull; Ukuran: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html

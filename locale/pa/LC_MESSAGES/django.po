@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-27 07:24+0000\n"
+"POT-Creation-Date: 2017-03-13 17:07+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,6 +31,15 @@ msgstr ""
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr ""
+
+#: src/olympia/activity/models.py src/olympia/reviews/templates/reviews/add.html
+msgid "Review"
+msgstr "ਸਮੀਖਿਆ"
+
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
+msgid "Version {0}"
+msgstr "ਵਰਜਨ {0}"
 
 #: src/olympia/activity/serializers.py
 #, fuzzy
@@ -638,11 +647,11 @@ msgstr "ਲਾਇਸੰਸ"
 msgid "Awaiting Review"
 msgstr "ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py src/olympia/editors/helpers.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
 msgstr "ਠੁਕਰਾਇਆ"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
 
@@ -1029,11 +1038,6 @@ msgstr "ਸਹਿਯੋਗ ਸਾਈਟ"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support E-mail"
 msgstr "ਸਹਿਯੋਗ ਈ-ਮੇਲ"
-
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/models.py src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
-msgid "Version {0}"
-msgstr "ਵਰਜਨ {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Info"
@@ -1453,338 +1457,6 @@ msgstr "ਸ਼ਬਦਕੋਸ ਅਤੇ ਭਾਸ਼ਾ ਪੈਕ"
 #: src/olympia/amo/helpers.py
 msgid "{0} ago"
 msgstr "{0} ਪਹਿਲਾਂ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} was created."
-msgstr "{addon} ਰਚਿਆ ਗਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} properties edited."
-msgstr "{addon} ਵਿਸ਼ੇਸਤਾਵਾਂ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} description edited."
-msgstr "{addon} ਵੇਰਵੇ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Categories edited for {addon}."
-msgstr "{addon}ਲਈ ਵਰਗਾਂ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) {addon}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
-
-#. L10n: {0} is the user being removed, {1} is their role.
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) {addon}ਵਿੱਚੋਂ ਹਟਾਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Contributions for {addon}."
-msgstr "{addon}ਲਈ ਯੋਗਦਾਨ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} disabled."
-msgstr "{addon} ਆਯੋਗ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} enabled."
-msgstr "{addon} ਯੋਗ ਹੋਇਆ।"
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{addon} status changed to {0}."
-msgstr "{addon} ਦਰਜਾ {0} ਵਿੱਚ ਬਦਲਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{version} added to {addon}."
-msgstr "{version} {addon}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{version} edited for {addon}."
-msgstr "{addon} ਲਈ {version}ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
-
-#. L10n: {0} is the version number
-#: src/olympia/amo/log.py
-msgid "Version {0} deleted from {addon}."
-msgstr "ਵਰਜਨ {0} {addon}ਤੋਂ ਹਟਾਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "{addon}ਦੇ {version} ਵਿੱਚ File {0.name} ਸ਼ਾਮਲ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "File {0} deleted from {version} of {addon}."
-msgstr "{addon}ਦੇ {version} ਤੋਂ File {0} ਹਟਾਈ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved."
-msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} given preliminary review."
-msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
-
-#: src/olympia/amo/log.py
-msgid "Preliminarily approved"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਤੌਰ ਤੇ ਸਵੀਕਾਰ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} rejected."
-msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} retained."
-msgstr "{addon} {version} ਰੱਖਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Retained"
-msgstr "ਰੱਖਿਆ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} ਵਧਾਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} review requested."
-msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
-
-#: src/olympia/amo/log.py
-msgid "Review requested"
-msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} more information requested."
-msgstr "{addon} {version} ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ।"
-
-#: src/olympia/amo/log.py
-msgid "More information requested"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
-
-#: src/olympia/amo/log.py
-msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
-
-#: src/olympia/amo/log.py
-msgid "Comment on {addon} {version}."
-msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
-
-#: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
-msgid "Comment"
-msgstr "ਟਿੱਪਣੀ"
-
-#: src/olympia/amo/log.py
-msgid "{tag} added to {addon}."
-msgstr "{tag} {addon}ਵਿੱਚ ਸ਼ਾਮਲ।"
-
-#: src/olympia/amo/log.py
-msgid "{tag} removed from {addon}."
-msgstr "{tag} {addon}ਤੋਂ ਹਟਾਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} added to {collection}."
-msgstr "{addon} {collection}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} removed from {collection}."
-msgstr "{addon} ਤੋਂ{collection}ਹਟਾਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} written."
-msgstr "{addon} ਲਈ {review} ਲਿਖਿਆ।"
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} featured in {0}."
-msgstr "{addon} {0}ਵਿੱਚ ਪੇਸ਼ ਕੀਤਾ।"
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} {0} ਵਿੱਚ ਹੁਣ ਨਹੀਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now featured."
-msgstr "{addon} ਹੁਣ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} is no longer featured."
-msgstr "{addon} ਹੁਣ ਨਹੀਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
-
-#. L10n: {0} is the application, {1} is the version of the app
-#: src/olympia/amo/log.py
-msgid "{0} {1} added."
-msgstr "{0} {1} ਸ਼ਾਮਲ ਹੋਏ।"
-
-#. L10n: {0} is a user, {1} is their role
-#: src/olympia/amo/log.py
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{addon} ਲਈ {0.name}ਭੂਮਿਕਾ ਨੂੰ {1} ਵਿੱਚ ਬਦਲਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} ਨੂੰ ਹੁਣ {0.name}ਦੇ ਅਧੀਨ ਲਾਇਸੰਸ ਮਿਲਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} policy changed."
-msgstr "{addon} ਨੀਤੀ ਬਦਲ ਗਈ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} icon changed."
-msgstr "{addon} ਆਈਕਾਨ ਬਦਲਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} approved."
-msgstr "{addon} ਲਈ {review} ਸਵੀਕਾਰ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{user} approved {review} for {addon}."
-msgstr "{user} ਨੇ {addon} ਲਈ {review}ਸਵੀਕਾਰ ਕੀਤਾ।"
-
-#: src/olympia/amo/log.py
-msgid "Review {review} for {addon} deleted."
-msgstr "{addon} ਦੀ {review} ਸਮੀਖਿਆ ਹਟਾਈ।"
-
-#: src/olympia/amo/log.py
-msgid "{user} deleted {review} for {addon}."
-msgstr "{addon} ਦੀ {user} {review} ਹਟਾਈ।"
-
-#: src/olympia/amo/log.py
-msgid "Application max version for {version} updated."
-msgstr "{version} ਲਈ ਐਪਲੀਕੇਸ਼ਨ ਮੈਕਸ ਵਰਜਨ ਅੱਪਡੇਟ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Authors emailed about compatibility of {version}."
-msgstr "ਲੇਖਕਾਂ ਨੂੰ {version} ਦੀ ਅਨੁਕੂਲਤਾ ਬਾਰੇ ਈਮੇਲ ਕੀਤੀ ਗਈ।"
-
-#: src/olympia/amo/log.py
-msgid "Email sent to Author about add-on compatibility."
-msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਬਾਰੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਭੇਜੀ ਗਈ।"
-
-#: src/olympia/amo/log.py
-msgid "Password changed."
-msgstr "ਪਾਸਵਰਡ ਬਦਲਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਜਨਤਕ ਹੋਣ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ।"
-
-#: src/olympia/amo/log.py
-msgid "Approved but waiting"
-msgstr "ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਉਡੀਕ ਕਰ ਰਿਹਾ"
-
-#: src/olympia/amo/log.py
-msgid "Account updated."
-msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Created: {0}."
-msgstr "ਰਚਿਆ: {0}।"
-
-#: src/olympia/amo/log.py
-msgid "Edited field: {2} set to: {0}."
-msgstr "ਸੋਧਿਆ ਗਿਆ ਖੇਤਰ: {2} ਸੈੱਟ ਕੀਤਾ: {0}।"
-
-#: src/olympia/amo/log.py
-msgid "Deleted: {1}."
-msgstr "ਹਟਾਇਆ: {1}।"
-
-#: src/olympia/amo/log.py
-msgid "User {user} edited, reason: {1}"
-msgstr "ਉਪਭੋਗੀ {user} ਸੋਧਿਆ ਗਿਆ, ਕਾਰਨ: {1}"
-
-#: src/olympia/amo/log.py
-msgid "User {user} anonymized."
-msgstr "ਉਪਭੋਗੀ {user} ਗੁਮਨਾਮ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "User {user} restricted."
-msgstr "ਉਪਭੋਗੀ {user} ਸੀਮਿਤ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "ਐਡਮਿਨ {0} ਨੇ { user} ਲਈ ਸਰਗਰਮੀ ਲਾਗ ਸਮਝਿਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} updated."
-msgstr "{addon} ਲਈ {review} ਅੱਪਡੇਟ ਹੋਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} reviewed."
-msgstr "{addon} ਦੀ ਸਮੀਖਿਆ ਹੋਈ।"
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} added to {group}."
-msgstr "ਉਪਭੋਗੀ {0.name} ਨੂੰ {group}ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ।"
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} removed from {group}."
-msgstr "{group} ਤੋਂ ਉਪਭੋਗੀ {0.name} ਹਟਾਇਆ।"
-
-#: src/olympia/amo/log.py
-msgid "{addon} unlisted."
-msgstr "{addon} ਅਣਸੂਚੀਬੱਧ।"
-
-#: src/olympia/amo/log.py
-msgid "{file} was signed."
-msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
-
-#. L10n: {0} is the add-on GUID.
-#: src/olympia/amo/log.py
-msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reply by developer on {addon} {version}."
-msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Developer Reply"
-msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reply by reviewer on {addon} {version}."
-msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Reviewer Reply"
-msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Approval notes changed for {addon} {version}."
-msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed"
-msgstr ""
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Source code uploaded for {addon} {version}."
-msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
-
-#: src/olympia/amo/log.py
-#, fuzzy
-msgid "Source code uploaded"
-msgstr "ਸੋਰਸ ਕੋਡ"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -2625,6 +2297,11 @@ msgstr ""
 msgid "Add-on"
 msgstr "ਐਡ-ਆਨ"
 
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/activity.py src/olympia/editors/helpers.py
+#: src/olympia/editors/templates/editors/themes/history_table.html
+msgid "Comment"
+msgstr "ਟਿੱਪਣੀ"
+
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
 msgstr "ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਦਾ ਨਾਂ ਦਰਜ ਕਰੋ"
@@ -2652,58 +2329,6 @@ msgstr "ਸੰਗ੍ਰਹਿ"
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
 msgstr "ਸਬੰਧਤ ਐਡ-ਆਨ ਦੇ ਗਰੁੱਪ ਇਹ ਕੋਈ ਵੀ ਬਣਾ ਸਕਦਾ ਹੈ।"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocked Add-ons"
-msgstr "ਬਲਾਕ ਕੀਤੇ ਐਡ-ਆਨ"
-
-#. {0} is an add-on name.
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "<b>{0}</b> has been blocked for your protection."
-msgstr "ਤੁਹਾਡੀ ਸੁਰੱਖਿਆ ਲਈ <b>{0}</b> ਬਲਾਕ ਕੀਤਾ ਗਿਆ।"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Why was it blocked?"
-msgstr "ਇਹ ਬਲਾਕ ਕਿਉਂ ਕੀਤਾ ਗਿਆ?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Who is affected?"
-msgstr "ਕੌਣ ਪ੍ਰਭਾਵਿਤ ਹੋਇਆ ਹੈ?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "What does this mean?"
-msgstr "ਇਸ ਦਾ ਕੀ ਮਤਲਬ ਹੈ?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr "ਉਪਭੋਗੀਆਂ ਨੂੰ ਸਮੱਸਿਆ ਵਾਲੇ ਐਡ-ਆਨ ਜਾਂ ਪਲੱਗਇਨ ਅਯੋਗ ਕਰਨ ਲਈ ਜ਼ੋਰਦਾਰ ਉਤਸ਼ਾਹਿਤ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਪਰ ਉਹ ਇਸ ਦੀ ਵਰਤੋਂ ਜਾਰੀ ਰੱਖਣਾ ਚੁਣ ਸਕਦੇ ਹਨ ਜੇਕਰ ਉਹ ਦੱਸੇ ਗਏ ਖਤਰਿਆਂ ਨੂੰ ਸਵੀਕਾਰ ਕਰਦੇ ਹਨ।"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr "ਸਮੱਸਿਆ ਵਾਲੇ ਐਡ-ਆਨ ਜਾਂ ਪਲੱਗਇਨ ਆਪਣੇ ਆਪ ਹੀ ਅਯੋਗ ਹੋ ਜਾਣਗੇ ਅਤੇ ਹੁਣ ਵਰਤਣਯੋਗ ਨਹੀਂ ਰਹਿਣਗੇ।"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
-msgid ""
-"When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
-msgstr ""
-"ਜਦੋਂ ਮੌਜੀਲਾ ਐਡ-ਆਨ, ਪਲੱਗਇਨ, ਜਾਂ ਤੀਜੀ-ਧਿਰ ਦੇ ਸਾਫ਼ਟਵੇਅਰ ਤੋਂ ਜਾਣੂ ਹੋ ਜਾਂਦਾ ਜੋ ਗੰਭੀਰਤਾ ਨਾਲ %(app)s ਸੁਰੱਖਿਆ, ਸਥਿਰਤਾ, ਜਾਂ ਕਾਰਗੁਜ਼ਾਰੀ ਨਾਲ ਸਮਝੌਤਾ ਕਰਦਾ ਅਤੇ <a href=\"%(criteria)s\">ਯਕੀਨੀ ਮਾਪਦੰਡ</a> ਪੂਰੇ ਕਰਦਾ, ਸਾਫ਼ਟਵੇਅਰ ਆਮ ਵਰਤੋਂ ਤੋਂ ਬਲਾਕ ਹੋ "
-"ਕੀਤਾ ਜਾ ਸਕਦਾ। ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ. ਕਿਰਪਾ ਕਰਕੇ ਪੜ੍ਹੋ <a href=\"%(support)s\">ਇਹ ਸਹਾਇਤਾ ਲੇਖ</a>।"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "%(date)s ਨੂੰ ਬਲਾਕ ਕੀਤਾ। <a href=\"%(link)s\">ਬਲਾਕ ਬੇਨਤੀ ਵੇਖੋ</a>।"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s."
-msgstr "%(date)s ਨੂੰ ਬਲਾਕ ਕੀਤਾ।"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr "ਅੱਗੇ ਦਿੱਤਾ ਗਿਆ ਸਾਫ਼ਟਵੇਅਰ {app} ਨਾਲ ਗੰਭੀਰ ਸੁਰੱਖਿਆ, ਸਥਿਰਤਾ ਜਾਂ ਕਾਰਗੁਜ਼ਾਰੀ ਮਸਲੇ ਪੈਦਾ ਕਰਨ ਲਈ ਜਾਣਿਆ ਜਾਂਦਾ ਹੈ।"
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -3112,6 +2737,334 @@ msgstr "ਪਰੇਸ਼ਾਨੀ"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
 msgstr "ਕੋਈ ਰਿਪੋਰਟ ਨਹੀਂ ਮਿਲੀ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} was created."
+msgstr "{addon} ਰਚਿਆ ਗਿਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} properties edited."
+msgstr "{addon} ਵਿਸ਼ੇਸਤਾਵਾਂ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} description edited."
+msgstr "{addon} ਵੇਰਵੇ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "Categories edited for {addon}."
+msgstr "{addon}ਲਈ ਵਰਗਾਂ ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) added to {addon}."
+msgstr "{0.name} ({1}) {addon}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
+
+#. L10n: {0} is the user being removed, {1} is their role.
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) removed from {addon}."
+msgstr "{0.name} ({1}) {addon}ਵਿੱਚੋਂ ਹਟਾਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "Contributions for {addon}."
+msgstr "{addon}ਲਈ ਯੋਗਦਾਨ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} disabled."
+msgstr "{addon} ਆਯੋਗ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} enabled."
+msgstr "{addon} ਯੋਗ ਹੋਇਆ।"
+
+#. L10n: {0} is the status
+#: src/olympia/constants/activity.py
+msgid "{addon} status changed to {0}."
+msgstr "{addon} ਦਰਜਾ {0} ਵਿੱਚ ਬਦਲਿਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{version} added to {addon}."
+msgstr "{version} {addon}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{version} edited for {addon}."
+msgstr "{addon} ਲਈ {version}ਵਿੱਚ ਸੋਧ ਹੋਇਆ।"
+
+#. L10n: {0} is the version number
+#: src/olympia/constants/activity.py
+msgid "Version {0} deleted from {addon}."
+msgstr "ਵਰਜਨ {0} {addon}ਤੋਂ ਹਟਾਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "File {0.name} added to {version} of {addon}."
+msgstr "{addon}ਦੇ {version} ਵਿੱਚ File {0.name} ਸ਼ਾਮਲ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "File {0} deleted from {version} of {addon}."
+msgstr "{addon}ਦੇ {version} ਤੋਂ File {0} ਹਟਾਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved."
+msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} given preliminary review."
+msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
+
+#: src/olympia/constants/activity.py
+msgid "Preliminarily approved"
+msgstr "ਸ਼ੁਰੂਆਤੀ ਤੌਰ ਤੇ ਸਵੀਕਾਰ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} rejected."
+msgstr "{addon} {version} ਠੁਕਰਾਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} retained."
+msgstr "{addon} {version} ਰੱਖਿਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "Retained"
+msgstr "ਰੱਖਿਆ"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} escalated."
+msgstr "{addon} {version} ਵਧਾਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "Super review requested"
+msgstr "ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} review requested."
+msgstr "{addon} {version} ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "Review requested"
+msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} more information requested."
+msgstr "{addon} {version} ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "More information requested"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਮੰਗ ਹੋਈ"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} super review requested."
+msgstr "{addon} {version} ਸੁਪਰ ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
+
+#: src/olympia/constants/activity.py
+msgid "Comment on {addon} {version}."
+msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "{tag} added to {addon}."
+msgstr "{tag} {addon}ਵਿੱਚ ਸ਼ਾਮਲ।"
+
+#: src/olympia/constants/activity.py
+msgid "{tag} removed from {addon}."
+msgstr "{tag} {addon}ਤੋਂ ਹਟਾਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} added to {collection}."
+msgstr "{addon} {collection}ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} removed from {collection}."
+msgstr "{addon} ਤੋਂ{collection}ਹਟਾਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} written."
+msgstr "{addon} ਲਈ {review} ਲਿਖਿਆ।"
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} featured in {0}."
+msgstr "{addon} {0}ਵਿੱਚ ਪੇਸ਼ ਕੀਤਾ।"
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} no longer featured in {0}."
+msgstr "{addon} {0} ਵਿੱਚ ਹੁਣ ਨਹੀਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now featured."
+msgstr "{addon} ਹੁਣ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is no longer featured."
+msgstr "{addon} ਹੁਣ ਨਹੀਂ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ।"
+
+#. L10n: {0} is the application, {1} is the version of the app
+#: src/olympia/constants/activity.py
+msgid "{0} {1} added."
+msgstr "{0} {1} ਸ਼ਾਮਲ ਹੋਏ।"
+
+#. L10n: {0} is a user, {1} is their role
+#: src/olympia/constants/activity.py
+msgid "{0.name} role changed to {1} for {addon}."
+msgstr "{addon} ਲਈ {0.name}ਭੂਮਿਕਾ ਨੂੰ {1} ਵਿੱਚ ਬਦਲਿਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now licensed under {0.name}."
+msgstr "{addon} ਨੂੰ ਹੁਣ {0.name}ਦੇ ਅਧੀਨ ਲਾਇਸੰਸ ਮਿਲਿਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} policy changed."
+msgstr "{addon} ਨੀਤੀ ਬਦਲ ਗਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} icon changed."
+msgstr "{addon} ਆਈਕਾਨ ਬਦਲਿਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} approved."
+msgstr "{addon} ਲਈ {review} ਸਵੀਕਾਰ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{user} approved {review} for {addon}."
+msgstr "{user} ਨੇ {addon} ਲਈ {review}ਸਵੀਕਾਰ ਕੀਤਾ।"
+
+#: src/olympia/constants/activity.py
+msgid "Review {review} for {addon} deleted."
+msgstr "{addon} ਦੀ {review} ਸਮੀਖਿਆ ਹਟਾਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "{user} deleted {review} for {addon}."
+msgstr "{addon} ਦੀ {user} {review} ਹਟਾਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "Application max version for {version} updated."
+msgstr "{version} ਲਈ ਐਪਲੀਕੇਸ਼ਨ ਮੈਕਸ ਵਰਜਨ ਅੱਪਡੇਟ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "Authors emailed about compatibility of {version}."
+msgstr "ਲੇਖਕਾਂ ਨੂੰ {version} ਦੀ ਅਨੁਕੂਲਤਾ ਬਾਰੇ ਈਮੇਲ ਕੀਤੀ ਗਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "Email sent to Author about add-on compatibility."
+msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਬਾਰੇ ਲੇਖਕ ਨੂੰ ਈਮੇਲ ਭੇਜੀ ਗਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "Password changed."
+msgstr "ਪਾਸਵਰਡ ਬਦਲਿਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved but waiting to be made public."
+msgstr "{addon} {version} ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਜਨਤਕ ਹੋਣ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ।"
+
+#: src/olympia/constants/activity.py
+msgid "Approved but waiting"
+msgstr "ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਉਡੀਕ ਕਰ ਰਿਹਾ"
+
+#: src/olympia/constants/activity.py
+msgid "Account updated."
+msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "Created: {0}."
+msgstr "ਰਚਿਆ: {0}।"
+
+#: src/olympia/constants/activity.py
+msgid "Edited field: {2} set to: {0}."
+msgstr "ਸੋਧਿਆ ਗਿਆ ਖੇਤਰ: {2} ਸੈੱਟ ਕੀਤਾ: {0}।"
+
+#: src/olympia/constants/activity.py
+msgid "Deleted: {1}."
+msgstr "ਹਟਾਇਆ: {1}।"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} edited, reason: {1}"
+msgstr "ਉਪਭੋਗੀ {user} ਸੋਧਿਆ ਗਿਆ, ਕਾਰਨ: {1}"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} anonymized."
+msgstr "ਉਪਭੋਗੀ {user} ਗੁਮਨਾਮ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} restricted."
+msgstr "ਉਪਭੋਗੀ {user} ਸੀਮਿਤ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "Admin {0} viewed activity log for {user}."
+msgstr "ਐਡਮਿਨ {0} ਨੇ { user} ਲਈ ਸਰਗਰਮੀ ਲਾਗ ਸਮਝਿਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} updated."
+msgstr "{addon} ਲਈ {review} ਅੱਪਡੇਟ ਹੋਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} reviewed."
+msgstr "{addon} ਦੀ ਸਮੀਖਿਆ ਹੋਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} added to {group}."
+msgstr "ਉਪਭੋਗੀ {0.name} ਨੂੰ {group}ਵਿੱਚ ਸ਼ਾਮਲ ਕੀਤਾ।"
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} removed from {group}."
+msgstr "{group} ਤੋਂ ਉਪਭੋਗੀ {0.name} ਹਟਾਇਆ।"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} unlisted."
+msgstr "{addon} ਅਣਸੂਚੀਬੱਧ।"
+
+#: src/olympia/constants/activity.py
+msgid "{file} was signed."
+msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
+
+#. L10n: {0} is the add-on GUID.
+#: src/olympia/constants/activity.py
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr ""
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "{addon} migrated from preliminary."
+msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Reviewer Reply"
+msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Approval notes changed for {addon} {version}."
+msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed"
+msgstr ""
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Source code uploaded for {addon} {version}."
+msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+
+#: src/olympia/constants/activity.py
+#, fuzzy
+msgid "Source code uploaded"
+msgstr "ਸੋਰਸ ਕੋਡ"
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -3822,57 +3775,6 @@ msgstr "ਸੋਲਰਿਸ"
 msgid "Android"
 msgstr "ਐਨਡਰੋਇਡ"
 
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your data for all websites"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Read and modify bookmarks"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Get data from the clipboard"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Input data to the clipboard"
-msgstr "ਵਾਇਟਬੋਰਡ ਅੱਪਡੇਟ ਕਰੋ"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's download history"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your location"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Access browsing history"
-msgstr "%s ਵਰਜਨ ਇਤਿਹਾਸ"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Exchange messages with programs other than Firefox"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Display notifications to you"
-msgstr "ਉਪਭੋਗੀ ਅਧਿਸੂਚਨਾਵਾਂ"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access recently closed tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser activity during navigation"
-msgstr ""
-
 #: src/olympia/core/apps.py
 msgid "Core"
 msgstr ""
@@ -4032,11 +3934,6 @@ msgid "A file with a version ending with a|alpha|b|beta and an optional number i
 msgstr "ਇੱਕ ਫ਼ਾਈਲ ਦਾ ਏ|ਐਲਫ਼ਾ|ਬੀ|ਬੀਟਾ ਦੇ ਇੱਕ ਵਰਜਨ ਅਤੇ ਇੱਕ ਚੋਣਵੇਂ ਅੰਕ ਨਾਲ ਅੰਤ ਹੋਵੇ ਬੀਟਾ ਪਛਾਣੀ ਜਾਵੇਗੀ।"
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
-msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr "ਜਦੋਂ ਸਮੀਖਿਆ ਕਾਰਜ ਸ਼ੁਰੂ ਹੋ ਗਿਆ ਤੁਸੀਂ ਇੱਕ ਫ਼ਾਈਲ ਹਟਾ ਨਹੀਂ ਸਕਦੇ। ਤੁਹਾਨੂੰ ਸਾਰਾ ਵਰਜਨ ਹਟਾਉਣਾ ਚਾਹੀਦਾ ਹੈ।"
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "ਪਲੇਟਫ਼ਾਰਮ ਆਲ ਨੂੰ ਖਾਸ ਪਲੇਟਫ਼ਾਰਮਾਂ ਦੇ ਨਾਲ ਜੋੜਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
@@ -4084,10 +3981,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} ਚੇਤਾਵਨੀ"
 msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
-
-#: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
-msgid "Review"
-msgstr "ਸਮੀਖਿਆ"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
@@ -5605,18 +5498,6 @@ msgstr ""
 msgid "Read more about the source code review policy."
 msgstr "ਸੋਰਸ ਕੋਡ ਸਮੀਖਿਆ ਨੀਤੀ ਬਾਰੇ ਹੋਰ ਪੜ੍ਹੋ।"
 
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
-msgstr "ਸਮੀਖਿਆ ਕਾਰਜ ਸ਼ੁਰੂ ਹੋਣ ਤੋਂ ਬਾਅਦ ਤੁਸੀਂ ਵਿਅਕਤੀਗਤ ਫ਼ਾਈਲ ਨੂੰ ਹਟਾ ਨਹੀਂ ਸਕਦੇ। ਤੁਹਾਨੂੰ ਪੂਰੇ ਵਰਜਨ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੀਦਾ।"
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "This file will be deleted on save."
-msgstr "ਸੰਭਾਲ੍ਹਣ ਤੇ ਇਹ ਫ਼ਾਈਲ ਹਟਾ ਦਿੱਤੀ ਜਾਵੇਗੀ।"
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "Undo"
-msgstr "ਵਾਪਸ"
-
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #: src/olympia/templates/mobile/base_addons.html
@@ -6373,11 +6254,6 @@ msgstr ""
 #, fuzzy
 msgid "Load older..."
 msgstr "ਲੋਡ ਕਰ ਰਿਹਾ..."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
-msgid "on"
-msgstr "ਆਈਕਾਨ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -7546,6 +7422,10 @@ msgstr ""
 msgid "Access your data on various websites"
 msgstr ""
 
+#: src/olympia/files/models.py
+msgid "Access your data for all websites"
+msgstr ""
+
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -7614,8 +7494,8 @@ msgid "Back to add-on"
 msgstr "ਐਡਆਨ ਤੇ ਵਾਪਸ"
 
 #: src/olympia/files/templates/files/file.html
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
+#, fuzzy, python-format
+msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 msgstr "ਵਰਜਨ: %(version)s &bull; ਅਕਾਰ: %(size)s &bull; MD5 ਹੈਸ਼: %(md5)s &bull; ਮਾਈਮ ਕਿਸਮ: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html

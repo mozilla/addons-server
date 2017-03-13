@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-27 07:24+0000\n"
+"POT-Creation-Date: 2017-03-13 17:07+0000\n"
 "PO-Revision-Date: 2017-01-30 01:14+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -37,6 +37,15 @@ msgstr "로그인에 실패하였습니다. 다시 시도 하십시오."
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr "도움이 필요하십니까?"
+
+#: src/olympia/activity/models.py src/olympia/reviews/templates/reviews/add.html
+msgid "Review"
+msgstr "평가"
+
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
+msgid "Version {0}"
+msgstr "버전 {0}"
 
 #: src/olympia/activity/serializers.py
 msgid "Review note"
@@ -637,11 +646,11 @@ msgstr "라이선스"
 msgid "Awaiting Review"
 msgstr "심사 대기중"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py src/olympia/editors/helpers.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
 msgstr "심사 거부됨"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "승인됨"
 
@@ -1027,11 +1036,6 @@ msgstr "기술 지원 사이트"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support E-mail"
 msgstr "기술 지원 이메일"
-
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/models.py src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
-msgid "Version {0}"
-msgstr "버전 {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Info"
@@ -1452,332 +1456,6 @@ msgstr "맞춤법 사전 및 언어팩"
 #: src/olympia/amo/helpers.py
 msgid "{0} ago"
 msgstr "{0} 전"
-
-#: src/olympia/amo/log.py
-msgid "{addon} was created."
-msgstr "{addon}이(가) 제작되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} properties edited."
-msgstr "{addon}의 등록 정보가 수정되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} description edited."
-msgstr "{addon}의 설명이 수정되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "Categories edited for {addon}."
-msgstr "{addon}의 분류 정보가 수정되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{addon}에 {0.name} ({1})이(가) 추가됐습니다."
-
-#. L10n: {0} is the user being removed, {1} is their role.
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{addon}에 {0.name} ({1})이(가) 삭제됐습니다."
-
-#: src/olympia/amo/log.py
-msgid "Contributions for {addon}."
-msgstr "{addon}에 기부금이 들어왔습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} disabled."
-msgstr "{addon}이(가) 사용 정지됐습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} enabled."
-msgstr "{addon}이(가) 사용 가능합니다."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{addon} status changed to {0}."
-msgstr "{addon}의 상태가 {0}(으)로 변경되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{version} added to {addon}."
-msgstr "{addon}에 {version} 버전이 추가되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{version} edited for {addon}."
-msgstr "{addon}의 {version} 버전이 수정되었습니다."
-
-#. L10n: {0} is the version number
-#: src/olympia/amo/log.py
-msgid "Version {0} deleted from {addon}."
-msgstr "{addon}에서 {0} 버전이 삭제되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "{addon}의 {version} 버전에서 {0.name} 파일이 추가되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "File {0} deleted from {version} of {addon}."
-msgstr "{addon}의 {version} 버전에서 {0} 파일이 삭제되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved."
-msgstr "{addon} {version}이(가) 승인되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} given preliminary review."
-msgstr "{addon} {version}에 예비 심사 등급이 주어졌습니다."
-
-#: src/olympia/amo/log.py
-msgid "Preliminarily approved"
-msgstr "예비 심사 등급 승인"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} rejected."
-msgstr "{addon} {version}이(가) 심사 거부 되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} retained."
-msgstr "{addon} {version}의 등급이 종전 그대로 유지되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "Retained"
-msgstr "등급 유지됨"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version}이(가) 검토 대상이 되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "상급 심사 요청됨"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} review requested."
-msgstr "{addon} {version}의 심사가 요청되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "Review requested"
-msgstr "심사 요청됨"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} more information requested."
-msgstr "{addon} {version}의 보다 자세한 정보가 필요합니다."
-
-#: src/olympia/amo/log.py
-msgid "More information requested"
-msgstr "추가 정보 필요"
-
-# 85%
-# 100%
-#: src/olympia/amo/log.py
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version}의 상급 심사가 요청되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr "부가 기능이 관리자 검토를 위해 마크되었습니다.  저희의 검토 목록에 있으며, 저희 관리 검토자중 한분에게 확인되어야 합니다. 검토는 평상시보다 더 오래걸릴 수 있습니다."
-
-#: src/olympia/amo/log.py
-msgid "Comment on {addon} {version}."
-msgstr "{addon} {version}에 코멘트가 달렸습니다."
-
-#: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
-msgid "Comment"
-msgstr "코멘트"
-
-#: src/olympia/amo/log.py
-msgid "{tag} added to {addon}."
-msgstr "{addon}에 {tag} 태그가 추가되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{tag} removed from {addon}."
-msgstr "{addon}에 {tag} 태그가 삭제되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} added to {collection}."
-msgstr "{addon}이(가) {collection}에 추가되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} removed from {collection}."
-msgstr "{addon}이(가) {collection}에 삭제되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} written."
-msgstr "{addon}에 {review} 평가가 작성되었습니다."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} featured in {0}."
-msgstr "{addon}이(가) {0}의 추천 부가 기능이 되었습니다."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon}은(는) 더이상 {0}의 추천 부가 기능이 아닙니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now featured."
-msgstr "{addon}이(가) 추천 부가 기능이 되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is no longer featured."
-msgstr "{addon}이(가) 더이상 추천 부가 기능이 아닙니다."
-
-#. L10n: {0} is the application, {1} is the version of the app
-#: src/olympia/amo/log.py
-msgid "{0} {1} added."
-msgstr "{0} {1}이(가) 추가되었습니다."
-
-#. L10n: {0} is a user, {1} is their role
-#: src/olympia/amo/log.py
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{addon}에서 {0.name}님의 역할이 {1}(으)로 변경되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon}이(가) {0.name} 라이선스를 채용했습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} policy changed."
-msgstr "{addon}의 개인 정보 보호 정책이 변경되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} icon changed."
-msgstr "{addon} 아이콘이 변경되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} approved."
-msgstr "{addon}의 {review}가 승인되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{user} approved {review} for {addon}."
-msgstr "{user}님이 {addon}의 {review}를 승인했습니다."
-
-#: src/olympia/amo/log.py
-msgid "Review {review} for {addon} deleted."
-msgstr "{addon}의 삭제를 위해 {review}를 검토해 주십시오."
-
-#: src/olympia/amo/log.py
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} 님이 {addon}의 {review}를 제거하였습니다."
-
-#: src/olympia/amo/log.py
-msgid "Application max version for {version} updated."
-msgstr "애플리케이션 최신 버전인 {version} 버전으로 업데이트 되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "Authors emailed about compatibility of {version}."
-msgstr "제작자에게 {version}의 호환성에 관한 이메일을 보냈습니다."
-
-#: src/olympia/amo/log.py
-msgid "Email sent to Author about add-on compatibility."
-msgstr "부가 기능 호환성에 대해 개발자에게 보낸 메일"
-
-#: src/olympia/amo/log.py
-msgid "Password changed."
-msgstr "비밀번호가 변경됐습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version}이(가) 승인되었지만 공개 전환을 대기중에 있습니다."
-
-#: src/olympia/amo/log.py
-msgid "Approved but waiting"
-msgstr "승인되었으나 대기중"
-
-#: src/olympia/amo/log.py
-msgid "Account updated."
-msgstr "계좌가 업데이트됐습니다."
-
-#: src/olympia/amo/log.py
-msgid "Created: {0}."
-msgstr "생성: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Edited field: {2} set to: {0}."
-msgstr "항목 수정됨: {2}이(가) 수정: {0}"
-
-#: src/olympia/amo/log.py
-msgid "Deleted: {1}."
-msgstr "삭제: {1}"
-
-#: src/olympia/amo/log.py
-msgid "User {user} edited, reason: {1}"
-msgstr "사용자 {user}이(가) 수정됨, 사유: {1}"
-
-#: src/olympia/amo/log.py
-msgid "User {user} anonymized."
-msgstr "사용자 {user}이(가) 익명으로 변경됨."
-
-#: src/olympia/amo/log.py
-msgid "User {user} restricted."
-msgstr "사용자 {user}님은 이용이 제한되고 있습니다."
-
-#: src/olympia/amo/log.py
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "관리자 {0}님이 {user}님의 활동 내역을 조회했습니다."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} updated."
-msgstr "{addon}의 {review}이(가) 업데이트됐습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} reviewed."
-msgstr "{addon}이(가) 심사를 받았습니다."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} added to {group}."
-msgstr "사용자 {0.name}님이 {group}에 추가됐습니다."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} removed from {group}."
-msgstr "사용자 {0.name}님이 {group}에서 제명됐습니다."
-
-#: src/olympia/amo/log.py
-msgid "{addon} unlisted."
-msgstr "{addon}이 목록에서 제거되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "{file} was signed."
-msgstr "{file} 파일이 서명되었습니다."
-
-#. L10n: {0} is the add-on GUID.
-#: src/olympia/amo/log.py
-msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "부가 기능 id {0}와 GUID {1}이 삭제됨"
-
-#: src/olympia/amo/log.py
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} 이 예비 심사 등급으로부터 마이그레이션 되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "Reply by developer on {addon} {version}."
-msgstr "{addon} {version}에 개발자의 코멘트가 달렸습니다."
-
-#: src/olympia/amo/log.py
-msgid "Developer Reply"
-msgstr "개발자 코멘트"
-
-#: src/olympia/amo/log.py
-msgid "Reply by reviewer on {addon} {version}."
-msgstr "{addon} {version}에 심사원의 코멘트가 달렸습니다."
-
-#: src/olympia/amo/log.py
-msgid "Reviewer Reply"
-msgstr "검토자 코멘트"
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed for {addon} {version}."
-msgstr "{addon} {version}의 승인 노트가 변경되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed"
-msgstr "승인 노트가 변경되었음"
-
-#: src/olympia/amo/log.py
-msgid "Source code uploaded for {addon} {version}."
-msgstr "{addon} {version} 버전에 대한 소스 코드가 업로드 되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "Source code uploaded"
-msgstr "소스 코드가 업로드 됨"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -2614,6 +2292,11 @@ msgstr "이 콜렉션에 부가 기능을 포함하고 싶다면, 부가 기능�
 msgid "Add-on"
 msgstr "부가 기능"
 
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/activity.py src/olympia/editors/helpers.py
+#: src/olympia/editors/templates/editors/themes/history_table.html
+msgid "Comment"
+msgstr "코멘트"
+
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
 msgstr "추가하고자 하는 부가 기능의 이름을 입력하세요"
@@ -2641,58 +2324,6 @@ msgstr "모음집"
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
 msgstr "누구나 제작 가능한 유사한 부가 기능끼리의 모음집입니다."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocked Add-ons"
-msgstr "차단된 부가 기능"
-
-#. {0} is an add-on name.
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "<b>{0}</b> has been blocked for your protection."
-msgstr "<b>{0}</b>은(는) 보호 설정에 따라 차단되었습니다."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Why was it blocked?"
-msgstr "차단 사유는 무엇입니까?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Who is affected?"
-msgstr "누가 이런 문제를 일으킨건가요?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "What does this mean?"
-msgstr "차단되면 어떻게 되는건가요?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr "문제가 발생한 부가 기능 및 플러그인을 사용할 수 없게 되어 굉장히 불편한 사용자들은 위험 요소에 대한 설명에 동의할 경우에 한해 계속 사용할 수 있는 방법도 있습니다."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr "문제가 발생한 부가 기능 및 플러그인은 자동으로 사용 중단 처리되어 더이상 사용할 수 없게 됩니다."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
-msgid ""
-"When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
-msgstr ""
-"Mozilla에선 부가 기능, 플러그인, 기타 서드파티 소프트웨어에서 %(app)s에 심각한 보안, 안정성, 성능 저하 문제를 초래하는 것이 있을 경우 <a href=\"%(criteria)s\">규정</a>에 의거, 해당 소프트웨어를 일반"
-"적인 사용을 할 수 없도록 차단하게 됩니다. 보다 자세한 정보를 보시려면 <a href=\"%(support)s\">다음의 도움말</a>을 읽어보시기 바랍니다."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "%(date)s자로 차단되었습니다. <a href=\"%(link)s\">차단 요청 내역 보기</a>"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s."
-msgstr "%(date)s자로 차단되었습니다."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr "다음의 소프트웨어들은 {app}에 심각한 보안, 안정성, 성능 저하 문제를 일으키는 것으로 알려져 있습니다."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -3097,6 +2728,328 @@ msgstr "문제"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
 msgstr "제보가 없습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} was created."
+msgstr "{addon}이(가) 제작되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} properties edited."
+msgstr "{addon}의 등록 정보가 수정되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} description edited."
+msgstr "{addon}의 설명이 수정되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Categories edited for {addon}."
+msgstr "{addon}의 분류 정보가 수정되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) added to {addon}."
+msgstr "{addon}에 {0.name} ({1})이(가) 추가됐습니다."
+
+#. L10n: {0} is the user being removed, {1} is their role.
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) removed from {addon}."
+msgstr "{addon}에 {0.name} ({1})이(가) 삭제됐습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Contributions for {addon}."
+msgstr "{addon}에 기부금이 들어왔습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} disabled."
+msgstr "{addon}이(가) 사용 정지됐습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} enabled."
+msgstr "{addon}이(가) 사용 가능합니다."
+
+#. L10n: {0} is the status
+#: src/olympia/constants/activity.py
+msgid "{addon} status changed to {0}."
+msgstr "{addon}의 상태가 {0}(으)로 변경되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{version} added to {addon}."
+msgstr "{addon}에 {version} 버전이 추가되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{version} edited for {addon}."
+msgstr "{addon}의 {version} 버전이 수정되었습니다."
+
+#. L10n: {0} is the version number
+#: src/olympia/constants/activity.py
+msgid "Version {0} deleted from {addon}."
+msgstr "{addon}에서 {0} 버전이 삭제되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "File {0.name} added to {version} of {addon}."
+msgstr "{addon}의 {version} 버전에서 {0.name} 파일이 추가되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "File {0} deleted from {version} of {addon}."
+msgstr "{addon}의 {version} 버전에서 {0} 파일이 삭제되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved."
+msgstr "{addon} {version}이(가) 승인되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} given preliminary review."
+msgstr "{addon} {version}에 예비 심사 등급이 주어졌습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Preliminarily approved"
+msgstr "예비 심사 등급 승인"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} rejected."
+msgstr "{addon} {version}이(가) 심사 거부 되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} retained."
+msgstr "{addon} {version}의 등급이 종전 그대로 유지되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Retained"
+msgstr "등급 유지됨"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} escalated."
+msgstr "{addon} {version}이(가) 검토 대상이 되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Super review requested"
+msgstr "상급 심사 요청됨"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} review requested."
+msgstr "{addon} {version}의 심사가 요청되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Review requested"
+msgstr "심사 요청됨"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} more information requested."
+msgstr "{addon} {version}의 보다 자세한 정보가 필요합니다."
+
+#: src/olympia/constants/activity.py
+msgid "More information requested"
+msgstr "추가 정보 필요"
+
+# 85%
+# 100%
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} super review requested."
+msgstr "{addon} {version}의 상급 심사가 요청되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr "부가 기능이 관리자 검토를 위해 마크되었습니다.  저희의 검토 목록에 있으며, 저희 관리 검토자중 한분에게 확인되어야 합니다. 검토는 평상시보다 더 오래걸릴 수 있습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Comment on {addon} {version}."
+msgstr "{addon} {version}에 코멘트가 달렸습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} added to {addon}."
+msgstr "{addon}에 {tag} 태그가 추가되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} removed from {addon}."
+msgstr "{addon}에 {tag} 태그가 삭제되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} added to {collection}."
+msgstr "{addon}이(가) {collection}에 추가되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} removed from {collection}."
+msgstr "{addon}이(가) {collection}에 삭제되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} written."
+msgstr "{addon}에 {review} 평가가 작성되었습니다."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} featured in {0}."
+msgstr "{addon}이(가) {0}의 추천 부가 기능이 되었습니다."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} no longer featured in {0}."
+msgstr "{addon}은(는) 더이상 {0}의 추천 부가 기능이 아닙니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now featured."
+msgstr "{addon}이(가) 추천 부가 기능이 되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is no longer featured."
+msgstr "{addon}이(가) 더이상 추천 부가 기능이 아닙니다."
+
+#. L10n: {0} is the application, {1} is the version of the app
+#: src/olympia/constants/activity.py
+msgid "{0} {1} added."
+msgstr "{0} {1}이(가) 추가되었습니다."
+
+#. L10n: {0} is a user, {1} is their role
+#: src/olympia/constants/activity.py
+msgid "{0.name} role changed to {1} for {addon}."
+msgstr "{addon}에서 {0.name}님의 역할이 {1}(으)로 변경되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now licensed under {0.name}."
+msgstr "{addon}이(가) {0.name} 라이선스를 채용했습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} policy changed."
+msgstr "{addon}의 개인 정보 보호 정책이 변경되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} icon changed."
+msgstr "{addon} 아이콘이 변경되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} approved."
+msgstr "{addon}의 {review}가 승인되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{user} approved {review} for {addon}."
+msgstr "{user}님이 {addon}의 {review}를 승인했습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Review {review} for {addon} deleted."
+msgstr "{addon}의 삭제를 위해 {review}를 검토해 주십시오."
+
+#: src/olympia/constants/activity.py
+msgid "{user} deleted {review} for {addon}."
+msgstr "{user} 님이 {addon}의 {review}를 제거하였습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Application max version for {version} updated."
+msgstr "애플리케이션 최신 버전인 {version} 버전으로 업데이트 되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Authors emailed about compatibility of {version}."
+msgstr "제작자에게 {version}의 호환성에 관한 이메일을 보냈습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Email sent to Author about add-on compatibility."
+msgstr "부가 기능 호환성에 대해 개발자에게 보낸 메일"
+
+#: src/olympia/constants/activity.py
+msgid "Password changed."
+msgstr "비밀번호가 변경됐습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved but waiting to be made public."
+msgstr "{addon} {version}이(가) 승인되었지만 공개 전환을 대기중에 있습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Approved but waiting"
+msgstr "승인되었으나 대기중"
+
+#: src/olympia/constants/activity.py
+msgid "Account updated."
+msgstr "계좌가 업데이트됐습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Created: {0}."
+msgstr "생성: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Edited field: {2} set to: {0}."
+msgstr "항목 수정됨: {2}이(가) 수정: {0}"
+
+#: src/olympia/constants/activity.py
+msgid "Deleted: {1}."
+msgstr "삭제: {1}"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} edited, reason: {1}"
+msgstr "사용자 {user}이(가) 수정됨, 사유: {1}"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} anonymized."
+msgstr "사용자 {user}이(가) 익명으로 변경됨."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} restricted."
+msgstr "사용자 {user}님은 이용이 제한되고 있습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Admin {0} viewed activity log for {user}."
+msgstr "관리자 {0}님이 {user}님의 활동 내역을 조회했습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} updated."
+msgstr "{addon}의 {review}이(가) 업데이트됐습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} reviewed."
+msgstr "{addon}이(가) 심사를 받았습니다."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} added to {group}."
+msgstr "사용자 {0.name}님이 {group}에 추가됐습니다."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} removed from {group}."
+msgstr "사용자 {0.name}님이 {group}에서 제명됐습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} unlisted."
+msgstr "{addon}이 목록에서 제거되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "{file} was signed."
+msgstr "{file} 파일이 서명되었습니다."
+
+#. L10n: {0} is the add-on GUID.
+#: src/olympia/constants/activity.py
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr "부가 기능 id {0}와 GUID {1}이 삭제됨"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} migrated from preliminary."
+msgstr "{addon} 이 예비 심사 등급으로부터 마이그레이션 되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Reply by developer on {addon} {version}."
+msgstr "{addon} {version}에 개발자의 코멘트가 달렸습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Developer Reply"
+msgstr "개발자 코멘트"
+
+#: src/olympia/constants/activity.py
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "{addon} {version}에 심사원의 코멘트가 달렸습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Reviewer Reply"
+msgstr "검토자 코멘트"
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed for {addon} {version}."
+msgstr "{addon} {version}의 승인 노트가 변경되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed"
+msgstr "승인 노트가 변경되었음"
+
+#: src/olympia/constants/activity.py
+msgid "Source code uploaded for {addon} {version}."
+msgstr "{addon} {version} 버전에 대한 소스 코드가 업로드 되었습니다."
+
+#: src/olympia/constants/activity.py
+msgid "Source code uploaded"
+msgstr "소스 코드가 업로드 됨"
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -3793,56 +3746,6 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "안드로이드"
 
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your data for all websites"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Read and modify bookmarks"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Get data from the clipboard"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Input data to the clipboard"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's download history"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your location"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Access browsing history"
-msgstr "%s의 판올림 내역"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Exchange messages with programs other than Firefox"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Display notifications to you"
-msgstr "사용자 알림 메시지"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access recently closed tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser activity during navigation"
-msgstr ""
-
 #: src/olympia/core/apps.py
 msgid "Core"
 msgstr "코어"
@@ -4001,11 +3904,6 @@ msgstr "유효한 선택을 해주세요. 선택하신 것은 가능한 선택�
 msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
 msgstr "a|alpha|b|beta와 함께 추가적인 숫자로 끝나는 버전의 파일은 베타로 감지합니다."
 
-#: src/olympia/devhub/forms.py
-#, fuzzy
-msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr "심사가 시작된 이후엔 파일을 삭제할 수 없습니다. 버전 전체를 삭제해야 합니다."
-
 # 98%
 # 100%
 #: src/olympia/devhub/forms.py
@@ -4056,10 +3954,6 @@ msgstr[0] "오류 {0}개"
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
-
-#: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
-msgid "Review"
-msgstr "평가"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
@@ -5566,18 +5460,6 @@ msgstr "README 파일, 혹은 심사원에게 알려줄 주의 사항으로 마�
 msgid "Read more about the source code review policy."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
-msgstr "심사가 시작된 뒤에는 파일을 개별적으로 지울 수 없습니다. 버전 전체를 삭제해야 합니다."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "This file will be deleted on save."
-msgstr "이 파일은 저장시 삭제됩니다."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "Undo"
-msgstr "되돌리기"
-
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #: src/olympia/templates/mobile/base_addons.html
@@ -6349,11 +6231,6 @@ msgstr ""
 #, fuzzy
 msgid "Load older..."
 msgstr "불러오는 중..."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
-msgid "on"
-msgstr "아이콘"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -7525,6 +7402,10 @@ msgstr ""
 msgid "Access your data on various websites"
 msgstr ""
 
+#: src/olympia/files/models.py
+msgid "Access your data for all websites"
+msgstr ""
+
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -7595,8 +7476,8 @@ msgid "Back to add-on"
 msgstr "부가 기능으로 돌아가기"
 
 #: src/olympia/files/templates/files/file.html
-#, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
+#, fuzzy, python-format
+msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 msgstr "버전: %(version)s &bull; 크기: %(size)s &bull; MD5 해쉬값: %(md5)s &bull; Mimetype: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html

@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-27 07:24+0000\n"
+"POT-Creation-Date: 2017-03-13 17:07+0000\n"
 "PO-Revision-Date: 2017-03-04 09:17+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,15 @@ msgstr "Tuqqna yinek ur teddi ara. Ma ulac aɣilif, ɛreḍ tikelt nniḍen."
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr "Tesriḍ tallalt?"
+
+#: src/olympia/activity/models.py src/olympia/reviews/templates/reviews/add.html
+msgid "Review"
+msgstr "Acegger"
+
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
+msgid "Version {0}"
+msgstr "Lqem {0}"
 
 #: src/olympia/activity/serializers.py
 msgid "Review note"
@@ -278,12 +287,15 @@ msgstr "Ttekki di tneflit iteddun n <strong>%(addon_name)s</strong> s umuddu n c
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr "Akke  ad d-beggneḍ afus d-ttmuddud i <b>%(addon_name)s</b>, aneflay  yessutur cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a> s <a href=\"%(paypal_url)s\">Paypal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
+"a>."
 msgstr "Akke  ad d-beggneḍ afus d-ttmuddud i <b>%(addon_name)s</b>, aneflay  yessutur cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a> s <a href=\"%(paypal_url)s\">Paypal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
@@ -633,11 +645,11 @@ msgstr "Turagt"
 msgid "Awaiting Review"
 msgstr "Acegger yettṛaǧun"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py src/olympia/editors/helpers.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
 msgstr "Yettwagwi"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Yettwaqbel"
 
@@ -758,8 +770,8 @@ msgstr "Persona yesra %(app)s %(new_version)s. Acukan, tesseqdaceḍ tura %(app)
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
+"might harm your computer."
 msgstr ""
 "<strong>Ɣur-k&nbsp;:</strong> Azegrir-agi ur yettwasenqed ara sɣuṛ Mozilla, ihi ur yezmir ara ad yebded ɣef ileqman  Firefox 43 neq ugar.  Ɣur-k ticki tsebdadeḍ iqeɣẓanen wis kraḍ izemren ad "
 "rwinaselkim inek."
@@ -805,8 +817,8 @@ msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
 msgstr ""
-"Ma tɣileḍ d akken azegrir-agi yeṛza <a href=\"%(url)s\">tisertityin nneɣ</a> neɣ yetthaz tudert tabadnit neɣ taɣellist, tanemmirt ma teččureḍ tiferkit-agi daw-a akken aɣ-d-azneḍ ayen i k-iceɣben. Ur"
-" seqdac ara tiferkit-agi i wayen nniḍen."
+"Ma tɣileḍ d akken azegrir-agi yeṛza <a href=\"%(url)s\">tisertityin nneɣ</a> neɣ yetthaz tudert tabadnit neɣ taɣellist, tanemmirt ma teččureḍ tiferkit-agi daw-a akken aɣ-d-azneḍ ayen i k-iceɣben. "
+"Ur seqdac ara tiferkit-agi i wayen nniḍen."
 
 #: src/olympia/addons/templates/addons/report_abuse.html src/olympia/users/templates/users/report_abuse.html
 msgid "Send Report"
@@ -857,8 +869,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"Wali <a href=\"%(support)s\">tigezmi n tallalt</a> n uzegrir-agi akken ad tafeḍ ma tella tallalt. Tzemreḍ daɣen ad tɛerḍeḍ ad tesutreḍ tallalt i <a href=\"https://discourse.mozilla-community.org/c"
-"/add-ons/add-on-support\">tamezdagunut n uzegrir</a>."
+"Wali <a href=\"%(support)s\">tigezmi n tallalt</a> n uzegrir-agi akken ad tafeḍ ma tella tallalt. Tzemreḍ daɣen ad tɛerḍeḍ ad tesutreḍ tallalt i <a href=\"https://discourse.mozilla-community.org/c/"
+"add-ons/add-on-support\">tamezdagunut n uzegrir</a>."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -1024,11 +1036,6 @@ msgstr "Asmel n tallalt"
 msgid "Support E-mail"
 msgstr "Imayl n tallalt"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/models.py src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
-msgid "Version {0}"
-msgstr "Lqem {0}"
-
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Info"
 msgstr "Talɣut"
@@ -1089,8 +1096,8 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 
 #. This is a header of a list of things the add-on can do.
@@ -1447,330 +1454,6 @@ msgstr "Imawalen & ikemmusen n tutlayin"
 msgid "{0} ago"
 msgstr "{0} aya"
 
-#: src/olympia/amo/log.py
-msgid "{addon} was created."
-msgstr "{addon} yettwarna."
-
-#: src/olympia/amo/log.py
-msgid "{addon} properties edited."
-msgstr "Timzliyin n {addon} ttwasniflent."
-
-#: src/olympia/amo/log.py
-msgid "{addon} description edited."
-msgstr "Aglam n {addon} ittusnifel."
-
-#: src/olympia/amo/log.py
-msgid "Categories edited for {addon}."
-msgstr "Taggayin ttwasniflent i {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) yettwarna ɣer {addon}."
-
-#. L10n: {0} is the user being removed, {1} is their role.
-#: src/olympia/amo/log.py
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) yettwakkes si {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Contributions for {addon}."
-msgstr "Ittekkiyen di {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} disabled."
-msgstr "{addon} yetwassens."
-
-#: src/olympia/amo/log.py
-msgid "{addon} enabled."
-msgstr "{addon} yettwarmed."
-
-#. L10n: {0} is the status
-#: src/olympia/amo/log.py
-msgid "{addon} status changed to {0}."
-msgstr "Addad n {addon} yettusnifel ar {0}."
-
-#: src/olympia/amo/log.py
-msgid "{version} added to {addon}."
-msgstr "{version} yettwarna ɣer {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{version} edited for {addon}."
-msgstr "{version} yettwaẓreg i {addon}."
-
-#. L10n: {0} is the version number
-#: src/olympia/amo/log.py
-msgid "Version {0} deleted from {addon}."
-msgstr "Lqem {0} yettwakkes seg uzegrir {addon}."
-
-#: src/olympia/amo/log.py
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Afaylu {0.name} yettwarna ɣer lqem {version} n {addon}."
-
-#: src/olympia/amo/log.py
-msgid "File {0} deleted from {version} of {addon}."
-msgstr "Afaylu {0} yettwakkes si {version} n {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved."
-msgstr "{addon} {version} yettwaqbel."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} given preliminary review."
-msgstr "{addon} {version} acegger amezwaru yettwag."
-
-#: src/olympia/amo/log.py
-msgid "Preliminarily approved"
-msgstr "Yettwaqbel di tazwara"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} rejected."
-msgstr "{addon} {version} yettwagi."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} retained."
-msgstr "{addon} {version} yettwaqbel."
-
-#: src/olympia/amo/log.py
-msgid "Retained"
-msgstr "Yettwaqbel"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} escalated."
-msgstr "{addon} {version} yuli."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "Acegger leqqayen yettusuter"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} review requested."
-msgstr "{addon} {version} acegger yettusuter."
-
-#: src/olympia/amo/log.py
-msgid "Review requested"
-msgstr "Aceggir yettwasuter"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} more information requested."
-msgstr "{addon} {version} ugar n telɣut tettusuter."
-
-#: src/olympia/amo/log.py
-msgid "More information requested"
-msgstr "Ugar n telɣut tettusuter"
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} super review requested."
-msgstr "{addon} {version} acegger leqqayen yettusuter."
-
-#: src/olympia/amo/log.py
-msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr "Azegrir-agi yettwammel am akken yessefk ad ittucegger sɣur anedbal. Hatan yezga deg udras, acukan yessefk ad ittwasenqed sɣuṛ imsekyaden inedbalen. Acegger-agi yezmer ad isuter ugar n wakud."
-
-#: src/olympia/amo/log.py
-msgid "Comment on {addon} {version}."
-msgstr "Awennit ɣef {addon} {version}."
-
-#: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
-msgid "Comment"
-msgstr "Awennit"
-
-#: src/olympia/amo/log.py
-msgid "{tag} added to {addon}."
-msgstr "{tag} yettwarna ɣer {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{tag} removed from {addon}."
-msgstr "{tag} yettwakkes si {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} added to {collection}."
-msgstr "{addon} yettwarna ɣer {collection}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} removed from {collection}."
-msgstr "{addon} yettwakkes si {collection}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} written."
-msgstr "{review} i {addon} yura."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} featured in {0}."
-msgstr "{addon} d itri di {0}."
-
-#. L10n: {0} is a category name.
-#: src/olympia/amo/log.py
-msgid "{addon} no longer featured in {0}."
-msgstr "{addon} ur yezgi d itri di {0}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now featured."
-msgstr "{addon} yuɣal tura d itri."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is no longer featured."
-msgstr "{addon} ur yezgi d itri."
-
-#. L10n: {0} is the application, {1} is the version of the app
-#: src/olympia/amo/log.py
-msgid "{0} {1} added."
-msgstr "{0} {1} yettwarna."
-
-#. L10n: {0} is a user, {1} is their role
-#: src/olympia/amo/log.py
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} yuɣal tura {1} i uzegrir {addon}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} hatan tura daw n turagt {0.name}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} policy changed."
-msgstr "{addon} yesnifel tasertit."
-
-#: src/olympia/amo/log.py
-msgid "{addon} icon changed."
-msgstr "{addon} yesnifel tignit."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} approved."
-msgstr "{review} i {addon} yettwaqbel."
-
-#: src/olympia/amo/log.py
-msgid "{user} approved {review} for {addon}."
-msgstr "{user} yeqbel {review} i {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Review {review} for {addon} deleted."
-msgstr "Aceggir {review} n {addon} yettwakkes."
-
-#: src/olympia/amo/log.py
-msgid "{user} deleted {review} for {addon}."
-msgstr "{user} yekkes {review} n {addon}."
-
-#: src/olympia/amo/log.py
-msgid "Application max version for {version} updated."
-msgstr "Lqem afellay n usnas i {version} yettusnifel."
-
-#: src/olympia/amo/log.py
-msgid "Authors emailed about compatibility of {version}."
-msgstr "Imeskaren ttwalɣan s yimayl ɣef umṣada n {version}."
-
-#: src/olympia/amo/log.py
-msgid "Email sent to Author about add-on compatibility."
-msgstr "Imayl yettwazen i umeskar n umṣada n izegrar."
-
-#: src/olympia/amo/log.py
-msgid "Password changed."
-msgstr "Awal uffir yettusnifel."
-
-#: src/olympia/amo/log.py
-msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} yettwasentem acukan yettṛaǧu ad d-yeffeɣ s wudem azayez."
-
-#: src/olympia/amo/log.py
-msgid "Approved but waiting"
-msgstr "Yettwaqbel acukan yettṛagu"
-
-#: src/olympia/amo/log.py
-msgid "Account updated."
-msgstr "Amiḍa yettusnifel."
-
-#: src/olympia/amo/log.py
-msgid "Created: {0}."
-msgstr "Yettwarna: {0}."
-
-#: src/olympia/amo/log.py
-msgid "Edited field: {2} set to: {0}."
-msgstr "Urti yettwaẓergen:{2} yettuwennez ɣer {0}."
-
-#: src/olympia/amo/log.py
-msgid "Deleted: {1}."
-msgstr "Yettwakkes: {1}."
-
-#: src/olympia/amo/log.py
-msgid "User {user} edited, reason: {1}"
-msgstr "Aseqdac {user} yettwaẓreg, acuɣer: {1}"
-
-#: src/olympia/amo/log.py
-msgid "User {user} anonymized."
-msgstr "Aseqdac {user} yettwasedreg."
-
-#: src/olympia/amo/log.py
-msgid "User {user} restricted."
-msgstr "Aseqdac {user} yettuẓẓeyeṛ."
-
-#: src/olympia/amo/log.py
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Anebdal {0} yeɣra aɣmis n urmud n {user}."
-
-#: src/olympia/amo/log.py
-msgid "{review} for {addon} updated."
-msgstr "{review} i {addon} yettusnifel."
-
-#: src/olympia/amo/log.py
-msgid "{addon} reviewed."
-msgstr "{addon} yettacegger."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} added to {group}."
-msgstr "Aseqdac {0.name} yettwarna ɣer {group}."
-
-#: src/olympia/amo/log.py
-msgid "User {0.name} removed from {group}."
-msgstr "Aseqdac {0.name} yettwakkes si {group}."
-
-#: src/olympia/amo/log.py
-msgid "{addon} unlisted."
-msgstr "{addon} ur yettwabder ara."
-
-#: src/olympia/amo/log.py
-msgid "{file} was signed."
-msgstr "{file} yettwazmel."
-
-#. L10n: {0} is the add-on GUID.
-#: src/olympia/amo/log.py
-msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "Asulay n usegziz {0} s GUID {1} yettwakkes"
-
-#: src/olympia/amo/log.py
-msgid "{addon} migrated from preliminary."
-msgstr "{addon} yussa-d si lqem amezwaru."
-
-#: src/olympia/amo/log.py
-msgid "Reply by developer on {addon} {version}."
-msgstr "Tiririt n uneflay  ɣef {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Developer Reply"
-msgstr "Tiririt n uneflay"
-
-#: src/olympia/amo/log.py
-msgid "Reply by reviewer on {addon} {version}."
-msgstr "Tiririt n umeɣri nniḍen i {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Reviewer Reply"
-msgstr "Tiririt n umcegger"
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed for {addon} {version}."
-msgstr "Awennit ɣef {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Approval notes changed"
-msgstr "Tizmilin n usentem ttusniflent"
-
-#: src/olympia/amo/log.py
-msgid "Source code uploaded for {addon} {version}."
-msgstr "Tangalt aɣbalu tuli i {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Source code uploaded"
-msgstr "Tangalt aɣbalu tuli"
-
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
 msgstr "Ur yettusireg ara"
@@ -1829,16 +1512,16 @@ msgstr "Ulac-it"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Suref-aɣ, ur nezmir ara ad d-naf ayen tettnadiḍ.</h1> <p> Asebter neɣ afaylu i tebɣiḍ ulac-it deg usmel nneɣ. Ahat tsiteḍ ɣef useɣwen yemmmuten neɣ yegber tuccḍa. </p> <ul> <li>Ma yella turiḍ "
-"tansa, senqed-itt.</li> <li> La yella tḍefred aseɣwen, ma ulac aɣilif <a href=\"https://github.com/mozilla/addons-server/issues/new/\">azen-d abug</a>. Ini-yaɣ-d ansa d-ekkiḍ udiɣ ayen tettnadiḍ, ad"
-" neg ayen nezmer  akken ad nefru ugur. </li> </ul> <p>Tzemreḍ daɣen ad tedduḍ ar isebtar nneɣ izayazen.</p> <ul> <li>Ahat tebɣiḍ <a href=\"%(rec)s\">tabdart n izegrar s yetran</a> ?</li> <li> Tebɣiḍ"
-" <a href=\"%(search)s\">ad tnadiḍ izegrar</a>&nbsp;? Tzemreḍ ad tedduḍ ar <a href=\"%(search)s\">usebter n unadi</a> neɣ ad tesqedceḍ urti n unadi daw-a. </li> <li> Ma tebɣiḍ ad talseḍ, ddu ar <a "
-"href=\"%(home)s\">usebter agejdan n izegrar</a>. </li> </ul>"
+"tansa, senqed-itt.</li> <li> La yella tḍefred aseɣwen, ma ulac aɣilif <a href=\"https://github.com/mozilla/addons-server/issues/new/\">azen-d abug</a>. Ini-yaɣ-d ansa d-ekkiḍ udiɣ ayen tettnadiḍ, "
+"ad neg ayen nezmer  akken ad nefru ugur. </li> </ul> <p>Tzemreḍ daɣen ad tedduḍ ar isebtar nneɣ izayazen.</p> <ul> <li>Ahat tebɣiḍ <a href=\"%(rec)s\">tabdart n izegrar s yetran</a> ?</li> <li> "
+"Tebɣiḍ <a href=\"%(search)s\">ad tnadiḍ izegrar</a>&nbsp;? Tzemreḍ ad tedduḍ ar <a href=\"%(search)s\">usebter n unadi</a> neɣ ad tesqedceḍ urti n unadi daw-a. </li> <li> Ma tebɣiḍ ad talseḍ, ddu "
+"ar <a href=\"%(home)s\">usebter agejdan n izegrar</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -2341,13 +2024,13 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"Izegrar i tceṛḍeḍ d inuraf s tmahilt <b>Rnu ar inuraf</b> ad d-banen daw-a. Tagrumma-agi tura yakan d <b>tazayezt</b>. Ihi yal yiwen yezmer ad ten-iwali. Ma yella tebɣiḍ ad ten-tefreḍ ur ten-ttwalin"
-" ara yemdanen, sit ɣef tqeffalt daw-a akken ad ten-terreḍ d usligen."
+"Izegrar i tceṛḍeḍ d inuraf s tmahilt <b>Rnu ar inuraf</b> ad d-banen daw-a. Tagrumma-agi tura yakan d <b>tazayezt</b>. Ihi yal yiwen yezmer ad ten-iwali. Ma yella tebɣiḍ ad ten-tefreḍ ur ten-"
+"ttwalin ara yemdanen, sit ɣef tqeffalt daw-a akken ad ten-terreḍ d usligen."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Izegrar yettwabezmen d inurifen s useqdec n  tmahilt <b>Rnu ar inurifen</b> ad d-banen daw-a. Tagrumma-agi akka tura d <b>tusligt</b>, ayen d-immalen d akken ala kečč i yezmren ad tt-waliḍ. Ma "
 "tebɣiḍ akken yal yiwen ad tt-iwali, sit ɣef tqeffalt daw-a akken ad tt-terreḍ d tazayezt."
@@ -2605,6 +2288,11 @@ msgstr "Akken ad ternuḍ azgrir di tagrumma-agi, sekcem isem deg urti-agi sakin
 msgid "Add-on"
 msgstr "Azegrir"
 
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/activity.py src/olympia/editors/helpers.py
+#: src/olympia/editors/templates/editors/themes/history_table.html
+msgid "Comment"
+msgstr "Awennit"
+
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
 msgstr "Sekcem isem n uzegrir ara tsedduḍ"
@@ -2632,58 +2320,6 @@ msgstr "COLLECTIONS"
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
 msgstr "Igrawen n izegrar am wagi, i yezmer yal yiwen ad yernu."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "Blocked Add-ons"
-msgstr "Izegrar yettusweḥlen"
-
-#. {0} is an add-on name.
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "<b>{0}</b> has been blocked for your protection."
-msgstr "<b>{0}</b> yettusewḥel ɣef ummesten inek."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Why was it blocked?"
-msgstr "Acuɣer yettusewḥel?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Who is affected?"
-msgstr "Acuɣer yettuḥaz?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "What does this mean?"
-msgstr "D acu yebɣa ad d-yini?"
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr "Iseqdacen ttuweṣan akken ad sensen izegrar neɣ isiɣzaf i -d-igellun s wuguren, acu kan zemren ad fernen akemmel deg useqdec ma qeblen ayen yezmer ad-yeglu useqdec-nsen."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr "Izegrar neɣ isiɣzaf i d-igellun s wuguren ad ttwasensen s wudem awurman udiɣ ur tezzin ad ttwasqedcen."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
-msgid ""
-"When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
-"criteria</a>, the software may be blocked from general use. For more information, please read <a href=\"%(support)s\">this support article</a>."
-msgstr ""
-"Ticki Mozilla tuffa-d azegrir neɣ asiɣzef, neɣ yal aseɣẓan nniḍen wis kraḍ i yezmren ad d-yeglun s usexseṛ n tɣellist, arkad neɣ timellit n  %(app)s udiɣ ahat <a href=\"%(criteria)s\">kra n "
-"isebdaden</a> duklen, aseɣẓan yezmer ad ittusewḥel.  Ugar n telɣut, ɣeṛ ma ulac aɣilif <a href=\"%(support)s\">amagrad n tallalt</a>."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr "Yettusewḥel di %(date)s. <a href=\"%(link)s\">Sken tuttra iweḥlen</a>."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, python-format
-msgid "Blocked on %(date)s."
-msgstr "Y§ettusewḥel di %(date)s."
-
-#: src/olympia/blocklist/templates/blocklist/blocked_list.html
-msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr "Iseɣẓanen-agi ttwasnen d akken gellun-d s wuguren n tɣellist, arkad, neɣ timmellit akked {app}."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -3012,8 +2648,8 @@ msgstr "Ineqqisen umṣada n izegrar"
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Ineqqisen iɣ-d-yewwḍen s <a href=\"%(url_)s\">Amazan n umṣada n uzegrir</a> ttwaleqḍen-d dagi akken ineflayen ad izmiren ad ten-walin. Ineqqisen-agi aɣ-d-mudden tallalt akken ad d-naf "
 "izegraryesran tallalt di lqem d-iteddun n Firefox. </p>"
@@ -3089,6 +2725,326 @@ msgstr "Ugur"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
 msgstr "Ulac ineqqisen."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} was created."
+msgstr "{addon} yettwarna."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} properties edited."
+msgstr "Timzliyin n {addon} ttwasniflent."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} description edited."
+msgstr "Aglam n {addon} ittusnifel."
+
+#: src/olympia/constants/activity.py
+msgid "Categories edited for {addon}."
+msgstr "Taggayin ttwasniflent i {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) added to {addon}."
+msgstr "{0.name} ({1}) yettwarna ɣer {addon}."
+
+#. L10n: {0} is the user being removed, {1} is their role.
+#: src/olympia/constants/activity.py
+msgid "{0.name} ({1}) removed from {addon}."
+msgstr "{0.name} ({1}) yettwakkes si {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Contributions for {addon}."
+msgstr "Ittekkiyen di {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} disabled."
+msgstr "{addon} yetwassens."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} enabled."
+msgstr "{addon} yettwarmed."
+
+#. L10n: {0} is the status
+#: src/olympia/constants/activity.py
+msgid "{addon} status changed to {0}."
+msgstr "Addad n {addon} yettusnifel ar {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} added to {addon}."
+msgstr "{version} yettwarna ɣer {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{version} edited for {addon}."
+msgstr "{version} yettwaẓreg i {addon}."
+
+#. L10n: {0} is the version number
+#: src/olympia/constants/activity.py
+msgid "Version {0} deleted from {addon}."
+msgstr "Lqem {0} yettwakkes seg uzegrir {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "File {0.name} added to {version} of {addon}."
+msgstr "Afaylu {0.name} yettwarna ɣer lqem {version} n {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "File {0} deleted from {version} of {addon}."
+msgstr "Afaylu {0} yettwakkes si {version} n {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved."
+msgstr "{addon} {version} yettwaqbel."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} given preliminary review."
+msgstr "{addon} {version} acegger amezwaru yettwag."
+
+#: src/olympia/constants/activity.py
+msgid "Preliminarily approved"
+msgstr "Yettwaqbel di tazwara"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} rejected."
+msgstr "{addon} {version} yettwagi."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} retained."
+msgstr "{addon} {version} yettwaqbel."
+
+#: src/olympia/constants/activity.py
+msgid "Retained"
+msgstr "Yettwaqbel"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} escalated."
+msgstr "{addon} {version} yuli."
+
+#: src/olympia/constants/activity.py
+msgid "Super review requested"
+msgstr "Acegger leqqayen yettusuter"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} review requested."
+msgstr "{addon} {version} acegger yettusuter."
+
+#: src/olympia/constants/activity.py
+msgid "Review requested"
+msgstr "Aceggir yettwasuter"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} more information requested."
+msgstr "{addon} {version} ugar n telɣut tettusuter."
+
+#: src/olympia/constants/activity.py
+msgid "More information requested"
+msgstr "Ugar n telɣut tettusuter"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} super review requested."
+msgstr "{addon} {version} acegger leqqayen yettusuter."
+
+#: src/olympia/constants/activity.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr "Azegrir-agi yettwammel am akken yessefk ad ittucegger sɣur anedbal. Hatan yezga deg udras, acukan yessefk ad ittwasenqed sɣuṛ imsekyaden inedbalen. Acegger-agi yezmer ad isuter ugar n wakud."
+
+#: src/olympia/constants/activity.py
+msgid "Comment on {addon} {version}."
+msgstr "Awennit ɣef {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} added to {addon}."
+msgstr "{tag} yettwarna ɣer {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{tag} removed from {addon}."
+msgstr "{tag} yettwakkes si {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} added to {collection}."
+msgstr "{addon} yettwarna ɣer {collection}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} removed from {collection}."
+msgstr "{addon} yettwakkes si {collection}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} written."
+msgstr "{review} i {addon} yura."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} featured in {0}."
+msgstr "{addon} d itri di {0}."
+
+#. L10n: {0} is a category name.
+#: src/olympia/constants/activity.py
+msgid "{addon} no longer featured in {0}."
+msgstr "{addon} ur yezgi d itri di {0}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now featured."
+msgstr "{addon} yuɣal tura d itri."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is no longer featured."
+msgstr "{addon} ur yezgi d itri."
+
+#. L10n: {0} is the application, {1} is the version of the app
+#: src/olympia/constants/activity.py
+msgid "{0} {1} added."
+msgstr "{0} {1} yettwarna."
+
+#. L10n: {0} is a user, {1} is their role
+#: src/olympia/constants/activity.py
+msgid "{0.name} role changed to {1} for {addon}."
+msgstr "{0.name} yuɣal tura {1} i uzegrir {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} is now licensed under {0.name}."
+msgstr "{addon} hatan tura daw n turagt {0.name}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} policy changed."
+msgstr "{addon} yesnifel tasertit."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} icon changed."
+msgstr "{addon} yesnifel tignit."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} approved."
+msgstr "{review} i {addon} yettwaqbel."
+
+#: src/olympia/constants/activity.py
+msgid "{user} approved {review} for {addon}."
+msgstr "{user} yeqbel {review} i {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Review {review} for {addon} deleted."
+msgstr "Aceggir {review} n {addon} yettwakkes."
+
+#: src/olympia/constants/activity.py
+msgid "{user} deleted {review} for {addon}."
+msgstr "{user} yekkes {review} n {addon}."
+
+#: src/olympia/constants/activity.py
+msgid "Application max version for {version} updated."
+msgstr "Lqem afellay n usnas i {version} yettusnifel."
+
+#: src/olympia/constants/activity.py
+msgid "Authors emailed about compatibility of {version}."
+msgstr "Imeskaren ttwalɣan s yimayl ɣef umṣada n {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Email sent to Author about add-on compatibility."
+msgstr "Imayl yettwazen i umeskar n umṣada n izegrar."
+
+#: src/olympia/constants/activity.py
+msgid "Password changed."
+msgstr "Awal uffir yettusnifel."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} {version} approved but waiting to be made public."
+msgstr "{addon} {version} yettwasentem acukan yettṛaǧu ad d-yeffeɣ s wudem azayez."
+
+#: src/olympia/constants/activity.py
+msgid "Approved but waiting"
+msgstr "Yettwaqbel acukan yettṛagu"
+
+#: src/olympia/constants/activity.py
+msgid "Account updated."
+msgstr "Amiḍa yettusnifel."
+
+#: src/olympia/constants/activity.py
+msgid "Created: {0}."
+msgstr "Yettwarna: {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Edited field: {2} set to: {0}."
+msgstr "Urti yettwaẓergen:{2} yettuwennez ɣer {0}."
+
+#: src/olympia/constants/activity.py
+msgid "Deleted: {1}."
+msgstr "Yettwakkes: {1}."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} edited, reason: {1}"
+msgstr "Aseqdac {user} yettwaẓreg, acuɣer: {1}"
+
+#: src/olympia/constants/activity.py
+msgid "User {user} anonymized."
+msgstr "Aseqdac {user} yettwasedreg."
+
+#: src/olympia/constants/activity.py
+msgid "User {user} restricted."
+msgstr "Aseqdac {user} yettuẓẓeyeṛ."
+
+#: src/olympia/constants/activity.py
+msgid "Admin {0} viewed activity log for {user}."
+msgstr "Anebdal {0} yeɣra aɣmis n urmud n {user}."
+
+#: src/olympia/constants/activity.py
+msgid "{review} for {addon} updated."
+msgstr "{review} i {addon} yettusnifel."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} reviewed."
+msgstr "{addon} yettacegger."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} added to {group}."
+msgstr "Aseqdac {0.name} yettwarna ɣer {group}."
+
+#: src/olympia/constants/activity.py
+msgid "User {0.name} removed from {group}."
+msgstr "Aseqdac {0.name} yettwakkes si {group}."
+
+#: src/olympia/constants/activity.py
+msgid "{addon} unlisted."
+msgstr "{addon} ur yettwabder ara."
+
+#: src/olympia/constants/activity.py
+msgid "{file} was signed."
+msgstr "{file} yettwazmel."
+
+#. L10n: {0} is the add-on GUID.
+#: src/olympia/constants/activity.py
+msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr "Asulay n usegziz {0} s GUID {1} yettwakkes"
+
+#: src/olympia/constants/activity.py
+msgid "{addon} migrated from preliminary."
+msgstr "{addon} yussa-d si lqem amezwaru."
+
+#: src/olympia/constants/activity.py
+msgid "Reply by developer on {addon} {version}."
+msgstr "Tiririt n uneflay  ɣef {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Developer Reply"
+msgstr "Tiririt n uneflay"
+
+#: src/olympia/constants/activity.py
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "Tiririt n umeɣri nniḍen i {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Reviewer Reply"
+msgstr "Tiririt n umcegger"
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed for {addon} {version}."
+msgstr "Awennit ɣef {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Approval notes changed"
+msgstr "Tizmilin n usentem ttusniflent"
+
+#: src/olympia/constants/activity.py
+msgid "Source code uploaded for {addon} {version}."
+msgstr "Tangalt aɣbalu tuli i {addon} {version}."
+
+#: src/olympia/constants/activity.py
+msgid "Source code uploaded"
+msgstr "Tangalt aɣbalu tuli"
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -3769,57 +3725,6 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your data for all websites"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Read and modify bookmarks"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Get data from the clipboard"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Input data to the clipboard"
-msgstr "Snifel tafelwit tamellalt"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Download files and read and modify the browser's download history"
-msgstr "Sider ifuyla sakin ɣeṛ udiɣ snifel amazray n usider n iminig"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access your location"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Access browsing history"
-msgstr "Amazray n lqem %s"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Exchange messages with programs other than Firefox"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-#, fuzzy
-msgid "Display notifications to you"
-msgstr "Alɣu n useqdac"
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access recently closed tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser tabs"
-msgstr ""
-
-#: src/olympia/constants/webext_permissions.py
-msgid "Access browser activity during navigation"
-msgstr ""
-
 #: src/olympia/core/apps.py
 msgid "Core"
 msgstr "Iɣes"
@@ -3979,10 +3884,6 @@ msgid "A file with a version ending with a|alpha|b|beta and an optional number i
 msgstr "Afaylu anida lqem yettfak s a|alpha|b|beta, yettwaḍfaṛen ahat s umḍan, yettwammel d lqem beta."
 
 #: src/olympia/devhub/forms.py
-msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr "Ur tezmireḍ ara ad tekkseḍ afaylu arama akala n ucegger yekker. Yessefk ad tekkseḍ lqem i meṛṛa."
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Tawennaṭ Akk ur tezmir ara ad tettwafren akked d tayeḍ."
 
@@ -4011,7 +3912,8 @@ msgstr ""
 "ttwasferken deg usmel-agi. Azegrir-agi ad tt-awi-t Mozillaakken ad tesnerni-t neq ad tger-it deg temzizliyin. Azuzer udmawan n ifuyal yzmer daɣen a yili..</span>"
 
 #: src/olympia/devhub/forms.py
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Asekrek udmawan. <span class=\"helptext\">Tuzna yinek ad tettwazmel imiren kan deg uzuzer udmawan. D kečč ara yesferken ileqman s useqdec n tensa updateURL neɣ ileqman n yesnasen izɣarayen.</span>"
 
@@ -4032,10 +3934,6 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} alɣu"
 msgstr[1] "{0} ilɣa"
-
-#: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
-msgid "Review"
-msgstr "Acegger"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
@@ -4294,13 +4192,13 @@ msgstr "Issin yal taɣawsa ɣef izegrar"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
-"great add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
+"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
+"add-on."
 msgstr ""
-"Izegrar ttaǧǧan ifḍan n iseqdacen n Firefox ad sneflein neɣ ad sniflen tarrayt nsen n tunigin. Ma d aneflay Web i telliḍ udiq tesneḍ <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>,"
-" <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, akked <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, ɣur-k ihi abrid yeldin akken ad tebnuḍ izegrar "
-"ifazen."
+"Izegrar ttaǧǧan ifḍan n iseqdacen n Firefox ad sneflein neɣ ad sniflen tarrayt nsen n tunigin. Ma d aneflay Web i telliḍ udiq tesneḍ <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</"
+"a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, akked <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, ɣur-k ihi abrid yeldin akken ad tebnuḍ "
+"izegrar ifazen."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -4479,8 +4377,12 @@ msgstr "Azegrir-agi ur imṣada ara akked <b>%(app_name)s%(app_version)s</b>, lq
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Leqqem amṣada</a> <a href=\"%(version_url)s\" class=\"button\">Azen lqem amaynut</a> ou <a href=\"#\" class=\"close\">Anef</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
+msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Leqqem amṣada</a> <a href=\"%(version_url)s\" class=\"button\">Azen lqem amaynut</a> ou <a href=\"#\" class=\"close"
+"\">Anef</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html
 msgid "View and update application compatibility ranges."
@@ -4637,7 +4539,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -4707,8 +4610,8 @@ msgstr "Talɣut n tallalt i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
@@ -5306,8 +5209,8 @@ msgstr "Sser JWT"
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
@@ -5507,18 +5410,6 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
 msgstr "Ɣeṛ ugar ɣef tsertit n ucegger n tengalt aɣbalu."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "This file will be deleted on save."
-msgstr "Afaylu-agi ad yettwakkes deg usekles."
-
-#: src/olympia/devhub/templates/devhub/includes/version_file.html
-msgid "Undo"
-msgstr "Uɣal"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
@@ -5723,11 +5614,11 @@ msgstr "Sagen Firefox"
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
-" you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</"
+"a>, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Izegrar ttaǧǧan ifḍan n iseqdacen ad sneflin tarmit-nsen n tunigin. Ma tesneḍ <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, akked <a href=\"%(css_link)s\">CSS</a>,ɣur-k"
-" abrid yeldi akken ad teggeḍ azegrir meqqṛen."
+"Izegrar ttaǧǧan ifḍan n iseqdacen ad sneflin tarmit-nsen n tunigin. Ma tesneḍ <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, akked <a href=\"%(css_link)s\">CSS</a>,ɣur-"
+"k abrid yeldi akken ad teggeḍ azegrir meqqṛen."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to Make an Add-on"
@@ -6238,10 +6129,6 @@ msgstr "Teḍra-d tuccḍa deg awway n tezmilin n iceggiren"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
 msgstr "Sali-d akaram..."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "on"
-msgstr "ɣef"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Leave a reply"
@@ -7393,6 +7280,10 @@ msgstr ""
 msgid "Access your data on various websites"
 msgstr ""
 
+#: src/olympia/files/models.py
+msgid "Access your data for all websites"
+msgstr ""
+
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID yettwasra i Firefox 47 neɣ daw."
@@ -7461,7 +7352,7 @@ msgstr "Uɣal ar uzegrir"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
-msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
+msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
 msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
@@ -8501,11 +8392,13 @@ msgstr "<a href=\"%(url)s\">Snefli azegrir-inek</a>. Nettmuddu amezlu n tnezduɣ
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr "Ma ɣur-k tarmit di tneflit n izegrar, <a href=\"%(url)s\">uɣal d amazrag</a> ! Imaẓragen-nneɣ ḥelmen aṭas izegrar s tmsussni tatiknikant leqqayen akken ad sneqden taɣara n tengalt akked urkad."
+msgstr ""
+"Ma ɣur-k tarmit di tneflit n izegrar, <a href=\"%(url)s\">uɣal d amazrag</a> ! Imaẓragen-nneɣ ḥelmen aṭas izegrar s tmsussni tatiknikant leqqayen akken ad sneqden taɣara n tengalt akked urkad."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Tzemreḍ ad tmuddeḍ tallalt i usnerni n usmel-agi. Ayagi d aɣbalu yeldin, tzemreḍ ad tezneḍ ibugen neɣ ad d-sumreḍ aseɣti. <a href=\"%(url)s\">GitHub</a> tabdart n ibugen imiranen, Bugzilla "
 "yegberibugen imazrayen."
@@ -8533,7 +8426,9 @@ msgstr "Ɣur-i asteqsi"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgid ""
+"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
+"forums</a>."
 msgstr ""
 "Amḍiq ifazen akken ad tebduḍ d <a href=\"%(faq_url)s\"><abbr title=\"Isteqsiyen yettwasnen aṭas\">FAQ</abbr></a>-nneɣ. Ma yella ur tufiḍ-d ara tiririt din-a, tzemreḍ<a href=\"%(forum_url)s\"> "
 "adtessiqsiḍ deg unmager-nneɣ</a>."
@@ -8550,11 +8445,11 @@ msgstr "Anwa i yexedmen deg usmel-agi?"
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
-"href=\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
+"\"%(url)s\"> Site Credits</a> page."
 msgstr ""
-"Iseggasen yezrin, deqs n yemdanen ttekkan deg usmel-agi, d iwiziwen n tmezdagnut neɣ d tirebbaɛ n Mozilla. AMO Tabdart n imttekkiyen ifazen tella deg usebter-nneɣ web <a "
-"href=\"%(url)s\">ismaden</a>."
+"Iseggasen yezrin, deqs n yemdanen ttekkan deg usmel-agi, d iwiziwen n tmezdagnut neɣ d tirebbaɛ n Mozilla. AMO Tabdart n imttekkiyen ifazen tella deg usebter-nneɣ web <a href=\"%(url)s\">ismaden</"
+"a>."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter"
@@ -8643,24 +8538,24 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"Kra n tignitin yettwasqedcen kkant-d si <a href=\"http://www.famfamfam.com/lab/icons/silk/\"> tagrumma n tignitin famfamfam Silk</a>, daw n turagt <a "
-"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5 License</a>."
+"Kra n tignitin yettwasqedcen kkant-d si <a href=\"http://www.famfamfam.com/lab/icons/silk/\"> tagrumma n tignitin famfamfam Silk</a>, daw n turagt <a href=\"http://creativecommons.org/licenses/"
+"by/2.5/\">Creative Commons Attribution 2.5 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
-"Kra n tignitin yettwasqedcen kkant-d si <a href=\"http://www.fatcow.com/free-icons/\">Tagrumma n tignitin Web FatCow Farm-Fresh</a>, Daw turagt n <a "
-"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0 License</a>."
+"Kra n tignitin yettwasqedcen kkant-d si <a href=\"http://www.fatcow.com/free-icons/\">Tagrumma n tignitin Web FatCow Farm-Fresh</a>, Daw turagt n <a href=\"http://creativecommons.org/licenses/"
+"by/3.0/us/\">Creative Commons Attribution 3.0 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
-"Kra nisebtar seqdacen iferdisen n <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), daw n turagt <a href=\"http://creativecommons.org/licenses/by-"
-"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
+"Kra nisebtar seqdacen iferdisen n <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), daw n turagt <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
+"\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
@@ -8777,8 +8672,8 @@ msgstr "Imumi yettuseqdac ufaylu \"install.rdf\" ?"
 #, python-format
 msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
-"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
-" updated, and so on. The format of the Install Manifest is RDF/XML."
+"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should "
+"be updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8825,9 +8720,9 @@ msgstr "Ames ara skeydeɣ azegrir inu ma yemṣada akked lqem aneggaru n useɣ�
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
-" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
-"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
+"many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
+"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8837,8 +8732,8 @@ msgstr "Amek ara snerniq timellit n uzegrir inu?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
-"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
+"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
+"\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8909,8 +8804,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
-"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
+"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 "Ih. Tzemreḍ ad tafeḍ ineflayen wis kraḍ deg <a href=\"%(forum_url)s\">unmager n izegrar</a>, <a href=\"%(list_url)s\">tabdart n tnezwit mozilla.jobs</a>, <a href=\"%(mz_url)s\">inmagaren "
 "mozillaZine</a> neɣ di <a href=\"%(wiki_url)s\">wiki Mozilla</a>. Tamawt: Mozilla ur tettweṣṣi ara ɣef ineflayen ibanen."
@@ -9001,8 +8896,8 @@ msgstr "Anta taggayt ara ferneɣ i uzegrir-inu?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
-"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
+"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9039,9 +8934,9 @@ msgstr "Anwa ara cegren azegrir-inu?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
-" When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
-"href=\"%(url)s\">Add-on Review Guide</a>."
+"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
+"users. When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
+"the <a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9081,8 +8976,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
-"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+"This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
+"\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9170,10 +9065,10 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
-" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
-"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
-"guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
+"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
+"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
+"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9233,13 +9128,12 @@ msgstr "Izegrar ad ddun akked iminig inu neɣ asnas inu?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
-"compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
+"Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
 msgstr ""
-"Izegrar i d-yettwabedren di tmidelt teddun kan akked yesnasen yebnan ɣef  Mozilla, am <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, akked <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Acukan, mačči akk izegrar teddun deg iwet n tikelt fell-asen neɣ yal lqem deg-sen. Yal azegrir "
+"Izegrar i d-yettwabedren di tmidelt teddun kan akked yesnasen yebnan ɣef  Mozilla, am <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a>, akked <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Acukan, mačči akk izegrar teddun deg iwet n tikelt fell-asen neɣ yal lqem deg-sen. Yal azegrir "
 "yemmal-d anwa isnasen neq ileqman anida iteddu, am Firefox 2.0 - 3.6.*. deg izegrar n Firefox, tiqeffalin n usebded mmalent-d ma yella azegrir yemṣada neɣ ala."
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -9257,8 +9151,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">Isiɣzaf</a></strong> Rennun timahinlin timaynutin i %(app_name)s neɣ snifilen tamahilt yellan yakan. Deqs isiɣzaf sirigen asewḥel n udellel, asider n tvidyutin seg"
-" ismal web, aslaɣ akked yesmal web n tmetti, akked timerna n tmahilin i tettwalid deg isnasen nniḍen."
+"<strong><a href=\"%(browse_url)s\">Isiɣzaf</a></strong> Rennun timahinlin timaynutin i %(app_name)s neɣ snifilen tamahilt yellan yakan. Deqs isiɣzaf sirigen asewḥel n udellel, asider n tvidyutin "
+"seg ismal web, aslaɣ akked yesmal web n tmetti, akked timerna n tmahilin i tettwalid deg isnasen nniḍen."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9307,8 +9201,8 @@ msgstr "Amek ara kkseɣ azegrir war ma snekreɣ Firefox tikelt-nniḍen?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
-"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
+"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
+"\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
 "Di Firefox, izegrar yettwacerḍen s \"Asneker ur yettwasri ara\" zemrend ad ttwasbedden war ma tessenkreḍ Firefox. Izegrar-agi ttwarnan s suseqdec n <a href=\"%(sdk_url)s\">SDK n izegrar</a> neɣ <a "
 "href=\"%(bootstrap_url)s\">bootstrapping</a>. Izegrar nniḍen sran asenker send aseqdec-nsen."
@@ -9321,12 +9215,12 @@ msgstr "Amek ara eǧǧeɣ izegrar-iw ttwaleqmen?"
 #, python-format
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
-"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
+"\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
 "Izegrar, mačči akken llan imenṭaḍen, ttwaleqmen s wudem awurman yal ass. Di Firefox, ileqman ttasebdaden s wudem awurman. Ileqman n Firefox daw n 4 (akked yesnasen) ad d-lɣun ticki heggan i "
-"yizegrar.  <a href=\"%(plugin_url)s\">Imenṭaḍen</a> ur ttwaleqmen ara s wudem awurman ihi yessefk ad terzuḍ yal tikelt ar usebter <a href=\"%(plugincheck_url)s\">Senqed amenṭaḍ</a> akken ad teqqimeḍ"
-" deg uleqqem.."
+"yizegrar.  <a href=\"%(plugin_url)s\">Imenṭaḍen</a> ur ttwaleqmen ara s wudem awurman ihi yessefk ad terzuḍ yal tikelt ar usebter <a href=\"%(plugincheck_url)s\">Senqed amenṭaḍ</a> akken ad "
+"teqqimeḍ deg uleqqem.."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Are add-ons safe to install?"
@@ -9336,8 +9230,8 @@ msgstr "Izegrar d iɣelsanen i usebded?"
 #, python-format
 msgid ""
 "Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
-"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
+"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
+"\">Learn more about our approval process</a>"
 msgstr ""
 "Arama kan yettwammel akken nniden, izegrar yellan di tmidelt-agi ttwasneqden udiɣ ttwaqeblen sɣuṛ tarbaɛt  n imaẓragen n Mozilla udiɣ zemren ad ttwasbeddens war akukru. Ak-nweṣṣi akken ur tsebdadeḍ "
 "ara ala izegrar yettwaqeblen. Ma yella tebɣiḍ asebded n izegrar ur yettwaqeblen arai d-yekkan seg ismal-nniḍen,ɣur-k acku izegrar-agi zemren ad sexṣren tawila neɣ ad aznen talɣut inek tudmawant. <a "
@@ -9425,8 +9319,8 @@ msgid ""
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
-"Izegrar irmitanen ttwaceṛḍen sɣuṛ ineflayen nsen ur ttagen ara i tugett n yemdanen. Ur ttwasneqdecn ara sɣuṛ imazragen-nneɣ akken ad walin ma ulac deg-sen uguren n tɣellist, acu kan zemren ad gebren"
-" tuccḍiwin neq ahat ur teddun ara akken iwata. Ɣur-k ticki tessebdadeḍ izegrar irmitanen udiɣ kkes-iten ma tufid-d ugur. <a href=\"%(url)s\">Issin ugar ɣef ukala n ucegger</a></dd>"
+"Izegrar irmitanen ttwaceṛḍen sɣuṛ ineflayen nsen ur ttagen ara i tugett n yemdanen. Ur ttwasneqdecn ara sɣuṛ imazragen-nneɣ akken ad walin ma ulac deg-sen uguren n tɣellist, acu kan zemren ad "
+"gebren tuccḍiwin neq ahat ur teddun ara akken iwata. Ɣur-k ticki tessebdadeḍ izegrar irmitanen udiɣ kkes-iten ma tufid-d ugur. <a href=\"%(url)s\">Issin ugar ɣef ukala n ucegger</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -9435,8 +9329,8 @@ msgstr "D acu d anamek ma yella azegrir \"ur ittwacegger ara\"?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
-" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
+"as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Ma yella akk izegrar ttbanen di tmidelt-nneɣ ttwasneqden sɣuṛ amaẓrag, tzemreḍ ad d-remseḍ aseɣwen srid ar uzegrir ur yettwasneqden ara. Ɣur-k ticki tessebdadeḍ izegrar-agi, acku zemren ad sexṣṛen "
 "tawila neɣ ur ttqadaṛen ara tudert inek tusligt. Ihi ur sebdad ala izegrar yettwasneqden.<a href=\"%(url)s\">Issin ugar ɣef ukala n ucegger</a></dd>"
@@ -9467,11 +9361,11 @@ msgstr "D acuten izegrar beta?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
+"ons are less stable than the general add-on releases."
 msgstr ""
-"Ileqman beta d ileqman ur yettwaskeyden araicudden ar tneflit leqqayen n uneflayn uzegrir. Ɛas akken imeskaren ɣur-sen isebdaden n tɣara n tengalt beta, tzemreḍ ad tawiḍ izegrar-agi amzun rekdenugar"
-" n ileqman i d-yeffɣen."
+"Ileqman beta d ileqman ur yettwaskeyden araicudden ar tneflit leqqayen n uneflayn uzegrir. Ɛas akken imeskaren ɣur-sen isebdaden n tɣara n tengalt beta, tzemreḍ ad tawiḍ izegrar-agi amzun "
+"rekdenugar n ileqman i d-yeffɣen."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -9498,8 +9392,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"Akken ad tazneḍ acegger n useqdac n uzgrir, kcem s imiḍan inek sakin rzu ar usebter n ucegger n uzegrir. Af-d acegger tebɣiḍ ad tazneḍ, Sit ɣer \"Azen acegger-agi\" sakin fren acuɣeṛ. Tarbaɛt-nneɣ n"
-" teẓrigt ad tessenqed acegger sakin ad twali acu ara texdem."
+"Akken ad tazneḍ acegger n useqdac n uzgrir, kcem s imiḍan inek sakin rzu ar usebter n ucegger n uzegrir. Af-d acegger tebɣiḍ ad tazneḍ, Sit ɣer \"Azen acegger-agi\" sakin fren acuɣeṛ. Tarbaɛt-nneɣ "
+"n teẓrigt ad tessenqed acegger sakin ad twali acu ara texdem."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -9517,13 +9411,13 @@ msgstr "D acu-tt turagt n tengalt aɣbalu?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
-"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
-"like the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
+"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
+"the GPL or BSD licenses instead of making up their own."
 msgstr ""
 "Tangalt aɣbalu yettwasqedcen i tmerna n uzegrir yella daw n copyright (izerfan yettwaḥerzen n umeskar), arama kan yettwammel akken nniḍen di turagt n tengalt aɣbalu. Deqs n izegrar ɣef usmel-agi "
-"ɣur-sen  <a href=\"%(url)s\" lang=\"en\"> turagt tilellit</a> yettarran tangalt taqbalut d tazayezt i unɣal akked useqdec s tewtilin i d-imudd umeskar. Tugett n imeskaren seqdacen turagin tilelliyin"
-" yettwasnen am GPL neɣ BSD, deg umḍiq n tmerna n turagt-nsen."
+"ɣur-sen  <a href=\"%(url)s\" lang=\"en\"> turagt tilellit</a> yettarran tangalt taqbalut d tazayezt i unɣal akked useqdec s tewtilin i d-imudd umeskar. Tugett n imeskaren seqdacen turagin "
+"tilelliyin yettwasnen am GPL neɣ BSD, deg umḍiq n tmerna n turagt-nsen."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9561,11 +9455,11 @@ msgstr "D acu-ten izegrar izirazen?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
-" href=\"%(gallery_url)s\">gallery</a>."
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
+"<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Izegrar izirazen teddun akked <a href=\"%(mobile_url)s\">Firefox i uziraz</a> udiɣ rennun neɣ snifilen tamahilt  am izegrar n Firefox i uselkim. Tzemreḍ ad d-afeḍ izegrar iteddun di Firefox i Uziraz"
-" di <a href=\"%(gallery_url)s\">timidelt</a>-nneɣ."
+"Izegrar izirazen teddun akked <a href=\"%(mobile_url)s\">Firefox i uziraz</a> udiɣ rennun neɣ snifilen tamahilt  am izegrar n Firefox i uselkim. Tzemreḍ ad d-afeḍ izegrar iteddun di Firefox i "
+"Uziraz di <a href=\"%(gallery_url)s\">timidelt</a>-nneɣ."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Developer Topics"
@@ -9595,8 +9489,8 @@ msgstr "Isteqsiyen d-ittuɣalen s waṭas ɣef iceggiren"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
@@ -9833,10 +9727,10 @@ msgstr "Rnu acegger i {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
@@ -10467,11 +10361,11 @@ msgstr ""
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/statuses.html

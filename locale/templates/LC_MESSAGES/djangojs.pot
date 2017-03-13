@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-02-27 07:24+0000\n"
+"POT-Creation-Date: 2017-03-13 17:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -820,7 +820,7 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1341
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1353
 #: static/js/zamboni/editors.js:321
 msgid "Select an application first"
 msgstr ""
@@ -1002,15 +1002,15 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:913
+#: static/js/zamboni/devhub.js:925
 msgid "Learn more"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:1242
+#: static/js/zamboni/devhub.js:1254
 msgid "Image changes being processed"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:1392
+#: static/js/zamboni/devhub.js:1404
 msgid "Must be a valid e-mail address."
 msgstr ""
 
