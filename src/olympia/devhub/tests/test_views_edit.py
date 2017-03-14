@@ -559,6 +559,8 @@ class TestEditBasicListed(BaseTestEditBasic):
         assert links.eq(1).attr('href') == reverse(
             'editors.review', args=[self.addon.slug])
         assert links.eq(2).attr('href') == reverse(
+            'editors.review', args=['unlisted', self.addon.slug])
+        assert links.eq(3).attr('href') == reverse(
             'zadmin.addon_manage', args=[self.addon.slug])
 
     def test_not_experimental_flag(self):

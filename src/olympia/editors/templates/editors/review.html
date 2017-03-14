@@ -251,17 +251,15 @@
   {% if not addon.is_deleted %}
   <strong>{{ _('Actions') }}</strong>
   <ul id="actions-addon">
-    {% if version and addon.has_listed_versions() %}
+    {% if addon.has_listed_versions() %}
       <li><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></li>
-      {% if version.channel == amo.RELEASE_CHANNEL_LISTED %}
-        {# On the listed review page, show link to unlisted version review if necessary and allowed #}
-        {% if action_allowed('Addons', 'ReviewUnlisted') and addon.has_unlisted_versions() %}
-          <li><a href="{{ url('editors.review', 'unlisted', addon.slug) }}">{{ _('Unlisted Review Page') }}</a></li>
-        {% endif %}
-      {% else %}
-        {# If we are on the unlisted review page, show the link to the listed review page #}
-        <li><a href="{{ url('editors.review', addon.slug) }}">{{ _('Listed Review Page') }}</a></li>
-      {% endif %}
+    {% endif %}
+    {# If we are on the unlisted review page, show the link to the listed review page #}
+    {% if unlisted and addon.has_listed_versions() %}
+      <li><a href="{{ url('editors.review', addon.slug) }}">{{ _('Listed Review Page') }}</a></li>
+    {# On the listed review page, show link to unlisted version review if necessary and allowed #}
+    {% elif action_allowed('Addons', 'ReviewUnlisted') and addon.has_unlisted_versions() %}
+      <li><a href="{{ url('editors.review', 'unlisted', addon.slug) }}">{{ _('Unlisted Review Page') }}</a></li>
     {% endif %}
     {% if is_admin %}
     <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
