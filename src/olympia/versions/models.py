@@ -188,6 +188,7 @@ class Version(OnChangeMixin, ModelBase):
             File.from_upload(upload, version, platform,
                              parsed_data=parsed_data, is_beta=is_beta)
 
+        version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
         version.disable_old_files()
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
@@ -554,6 +555,16 @@ class Version(OnChangeMixin, ModelBase):
             # But we need the cache to be flushed.
             Version.objects.invalidate(self)
 
+    def inherit_nomination(self, from_statuses=None):
+        last_ver = (Version.objects.filter(addon=self.addon,
+                                           channel=amo.RELEASE_CHANNEL_LISTED)
+                    .exclude(nomination=None).exclude(id=self.pk)
+                    .order_by('-nomination'))
+        if from_statuses:
+            last_ver = last_ver.filter(files__status__in=from_statuses)
+        if last_ver.exists():
+            self.reset_nomination_time(nomination=last_ver[0].nomination)
+
     @property
     def unreviewed_files(self):
         """A File is unreviewed if its status is amo.STATUS_AWAITING_REVIEW."""
@@ -583,10 +594,7 @@ def inherit_nomination(sender, instance, **kw):
     if (instance.nomination is None and
             addon.status in amo.UNREVIEWED_ADDON_STATUSES and not
             instance.is_beta):
-        last_ver = (Version.objects.filter(addon=addon)
-                    .exclude(nomination=None).order_by('-nomination'))
-        if last_ver.exists():
-            instance.reset_nomination_time(nomination=last_ver[0].nomination)
+        instance.inherit_nomination()
 
 
 def update_incompatible_versions(sender, instance, **kw):
