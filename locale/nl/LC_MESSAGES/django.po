@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:07+0000\n"
-"PO-Revision-Date: 2017-03-14 14:46+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2017-03-04 16:06+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -7271,7 +7271,7 @@ msgstr "Meer informatie gevraagd: {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flagged: {0}"
-msgstr "Gelabeld: {0}"
+msgstr "Gemarkeerd: {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Approve Theme"
@@ -7279,7 +7279,7 @@ msgstr "Thema goedkeuren"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Field required"
-msgstr "Veld verplicht"
+msgstr "Veld vereist"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Enter the ID or URL of the duplicate"
@@ -7299,7 +7299,7 @@ msgstr "Een vraag aan de kunstenaar stellen"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Describe your reason for flagging"
-msgstr "Beschrijf uw reden voor het label"
+msgstr "Beschrijf uw reden voor markering"
 
 #: src/olympia/files/forms.py
 msgid "Cannot diff a version against itself"
@@ -7322,7 +7322,7 @@ msgstr "Dat bestand bestaat niet meer."
 #. L10n: {0} is the file size limit of the file viewer.
 #: src/olympia/files/helpers.py
 msgid "File size is over the limit of {0}."
-msgstr "Bestandsgrootte is boven de limiet van {0}."
+msgstr "Bestandsgrootte overschrijdt de limiet van {0}."
 
 #: src/olympia/files/helpers.py
 msgid "Problems decoding {0}."
@@ -7350,7 +7350,7 @@ msgstr "Uw gegevens voor alle websites benaderen"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr "Voor Firefox 47 en lager is een GUID verplicht."
+msgstr "Voor Firefox 47 en lager is een GUID vereist."
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
@@ -7433,7 +7433,7 @@ msgstr "Validatie mislukt:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
-msgstr "Bestandsinhoud wordt niet ondersteund voor syntaxaccentuering"
+msgstr "Bestandsinhoud wordt niet ondersteund voor syntaxismarkering"
 
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
@@ -7534,7 +7534,7 @@ msgstr "Eerste kennismaking met add-ons?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Not to worry, here are three to get started."
-msgstr "Geen zorgen, hier zijn er drie om mee van start te gaan."
+msgstr "Geen zorgen, hier zijn er drie om mee te beginnen."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Translate content on the web from and into over 40 languages."
@@ -7566,7 +7566,7 @@ msgstr "Add-ons die u bij uw reizen helpen!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr "Geeft een vlag van het land van de locatie van de server van de huidige website en meer."
+msgstr "Geeft een vlag van een land weer die de locatie van de server van de huidige website en meer voorstelt."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "FoxClocks let you keep an eye on the time around the world."
@@ -7727,15 +7727,15 @@ msgstr "Word een testpiloot"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
-msgstr "Krijg vroeg toegang tot experimentele browserfuncties."
+msgstr "Verkrijg vroege toegang tot experimentele browserfuncties."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Get Started"
-msgstr "Van start"
+msgstr "Beginnen"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
-msgstr "Verenigde Arabische Emiraten Dirham"
+msgstr "Verenigde Arabische Emiraten-dirham"
 
 #: src/olympia/lib/constants.py
 msgid "Afghanistan Afghani"
@@ -7763,19 +7763,19 @@ msgstr "Argentijnse peso"
 
 #: src/olympia/lib/constants.py
 msgid "Australia Dollar"
-msgstr "Australische Dollar"
+msgstr "Australische dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Aruba Guilder"
-msgstr "Arubaanse Gulden"
+msgstr "Arubaanse gulden"
 
 #: src/olympia/lib/constants.py
 msgid "Azerbaijan New Manat"
-msgstr "Azerbeidzjaanse New Manat"
+msgstr "Azerbeidzjaanse manat"
 
 #: src/olympia/lib/constants.py
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr "Bosnisch-Herzegovinese converteerbare Mark"
+msgstr "Bosnisch-Herzegovinese converteerbare mark"
 
 #: src/olympia/lib/constants.py
 msgid "Barbados Dollar"
@@ -7783,19 +7783,19 @@ msgstr "Barbados-dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Bangladesh Taka"
-msgstr "Bangladese Taka"
+msgstr "Bangladese taka"
 
 #: src/olympia/lib/constants.py
 msgid "Bulgaria Lev"
-msgstr "Bulgaarse Lev"
+msgstr "Bulgaarse lev"
 
 #: src/olympia/lib/constants.py
 msgid "Bahrain Dinar"
-msgstr "Bahreinse Dinar"
+msgstr "Bahreinse dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Burundi Franc"
-msgstr "Burundese Frank"
+msgstr "Burundese frank"
 
 #: src/olympia/lib/constants.py
 msgid "Bermuda Dollar"
@@ -7839,15 +7839,15 @@ msgstr "Canadese dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Congo/Kinshasa Franc"
-msgstr "Kongolese/Kinshasa Frank"
+msgstr "Congolese/Kinshasa frank"
 
 #: src/olympia/lib/constants.py
 msgid "Switzerland Franc"
-msgstr "Zwitserse Frank"
+msgstr "Zwitserse frank"
 
 #: src/olympia/lib/constants.py
 msgid "Chile Peso"
-msgstr "Chileense Peso"
+msgstr "Chileense peso"
 
 #: src/olympia/lib/constants.py
 msgid "China Yuan Renminbi"
@@ -7855,7 +7855,7 @@ msgstr "Chinese Yuan Renminbi"
 
 #: src/olympia/lib/constants.py
 msgid "Colombia Peso"
-msgstr "Colombiaanse Peso"
+msgstr "Colombiaanse peso"
 
 #: src/olympia/lib/constants.py
 msgid "Costa Rica Colon"
@@ -7867,7 +7867,7 @@ msgstr "Cubaanse converteerbare Peso"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Peso"
-msgstr "Cubaanse Peso"
+msgstr "Cubaanse peso"
 
 #: src/olympia/lib/constants.py
 msgid "Cape Verde Escudo"
@@ -7879,7 +7879,7 @@ msgstr "Tsjechische Kroon"
 
 #: src/olympia/lib/constants.py
 msgid "Djibouti Franc"
-msgstr "Djibouti Frank"
+msgstr "Djibouti frank"
 
 #: src/olympia/lib/constants.py
 msgid "Denmark Krone"
@@ -7887,7 +7887,7 @@ msgstr "Deense Kroon"
 
 #: src/olympia/lib/constants.py
 msgid "Dominican Republic Peso"
-msgstr "Dominicaanse Peso"
+msgstr "Dominicaanse peso"
 
 #: src/olympia/lib/constants.py
 msgid "Algeria Dinar"
