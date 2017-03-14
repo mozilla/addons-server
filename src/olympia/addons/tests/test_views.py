@@ -834,7 +834,7 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('li.webext-permissions-list').text() == (
-            u'Access your data on various websites '
+            u'Access your data on the following websites: '
             u'<script>alert("//")</script> '
             u'<script>foo("https://")</script>')
         assert '<script>alert(' not in response.content

@@ -299,7 +299,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         perm = file_.webext_permissions[0]
         assert perm.name == u'multiple-match'
         assert perm.description == (
-            u'<details><summary>Access your data on various websites'
+            u'<details><summary>Access your data on the following websites:'
             u'</summary><ul><li>https://mozilla.org/</li>'
             u'<li>https://mozillians.org/</li></ul></details>')
 

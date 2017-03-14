@@ -410,7 +410,7 @@ class File(OnChangeMixin, ModelBase):
         elif match_url is None and len(urls) > 1:
             details = (u'<details><summary>{copy}</summary><ul>{sites}</ul>'
                        u'</details>')
-            copy = _(u'Access your data on various websites')
+            copy = _(u'Access your data on the following websites:')
             sites = ''.join(
                 [u'<li>%s</li>' % jinja2_escape(name) for name in urls])
             match_url = Permission(
