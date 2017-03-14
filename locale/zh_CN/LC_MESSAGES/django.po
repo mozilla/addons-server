@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:07+0000\n"
-"PO-Revision-Date: 2017-03-13 19:16+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2017-03-14 10:51+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -639,7 +639,7 @@ msgstr "等待审核"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
-msgstr "已被退回"
+msgstr "被退回"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py
 msgid "Approved"
@@ -1192,7 +1192,7 @@ msgstr "编辑主题"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Approve / Reject"
-msgstr "批准/拒绝"
+msgstr "核准/拒绝"
 
 #: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
@@ -2860,7 +2860,7 @@ msgstr "{addon} 的图标已更改。"
 
 #: src/olympia/constants/activity.py
 msgid "{review} for {addon} approved."
-msgstr "{addon} 的 {review} 已通过。"
+msgstr "{addon} 的 {review} 已核准。"
 
 #: src/olympia/constants/activity.py
 msgid "{user} approved {review} for {addon}."
@@ -5633,7 +5633,7 @@ msgstr "捐款仅可用于有<a href=\"%(url)s\">完整的开发者简介</a>的
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for approved add-ons."
-msgstr "仅已批准的附加组件可使用捐款功能。"
+msgstr "仅有通过审核的附加组件可使用捐款功能。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6318,7 +6318,7 @@ msgstr "主题、审核者或评论"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
-msgstr "已拒绝或未审核"
+msgstr "被退回或未审核"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
 #, python-format
@@ -6508,7 +6508,7 @@ msgstr "已给予初步审核"
 
 #: src/olympia/editors/views.py
 msgid "rejected"
-msgstr "已拒绝"
+msgstr "被退回"
 
 #: src/olympia/editors/views.py
 msgctxt "editors_review_history_nominated_adminreview"
@@ -9111,7 +9111,7 @@ msgid ""
 "Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
 "add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
 "href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
-msgstr "除非另有明确标示，否则本展台中的附加组件都已经经过了 Mozilla 团队的审核确定安装是安全的。我们建议您只安装已审核的附加组件。如果您想从第三方网站安装未经审核的附加组件，请谨慎使用那些附加组件，因为它们可能会侵害您的计算机和隐私。<a href=\"%(learnmore_url)s\">了解我们的审批流程</a>"
+msgstr "除非另有明确标示，否则本展台中的附加组件都已经经过了 Mozilla 团队的审核确定安装是安全的。我们建议您只安装被核准的附加组件。如果您想从第三方网站安装未经审核的附加组件，请谨慎使用那些附加组件，因为它们可能会侵害您的计算机和隐私。<a href=\"%(learnmore_url)s\">了解我们的审批流程</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
