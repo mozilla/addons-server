@@ -52,8 +52,6 @@ def update_webext_descriptions_all(primary, additional, **kw):
         update_webext_descriptions(url, locale, create=False)
 
 
-@task
-@write
 def update_webext_descriptions(url, locale='en-US', create=True, **kw):
     class DummyContextManager(object):
         def __enter__(self):
