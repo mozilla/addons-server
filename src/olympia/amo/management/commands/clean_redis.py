@@ -52,7 +52,7 @@ def cleanup(master, slave):
             pipe.scard(k)
         try:
             drop = [k for k, size in zip(ks, pipe.execute())
-                    if 0 < size < MIN or size > MAX]
+                    if not k.startswith(settings.CACHE_PREFIX) or 0 < size < MIN or size > MAX]
         except RedisError, err:
             log.warning('ignoring pipe.execute() error: {}'.format(err))
             continue
