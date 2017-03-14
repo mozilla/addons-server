@@ -1,4 +1,5 @@
 import os
+import random
 import re
 import time
 from contextlib import contextmanager
@@ -27,6 +28,13 @@ from olympia.translations.models import Translation
 from olympia.translations.query import order_by_translation
 
 log = olympia.core.logger.getLogger('z.users')
+
+
+def generate_auth_id():
+    """Generate a random integer to be used when generating API auth tokens."""
+    # We use MySQL's maximum value for an unsigned int:
+    # https://dev.mysql.com/doc/refman/5.7/en/integer-types.html
+    return random.SystemRandom().randint(1, 4294967295)
 
 
 class UserForeignKey(models.ForeignKey):
@@ -139,6 +147,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                             default=settings.LANGUAGE_CODE)
 
     fxa_id = models.CharField(blank=True, null=True, max_length=128)
+
+    # Identifier that is used to invalidate internal API tokens (i.e. those
+    # that we generate for addons-frontend, NOT the API keys external clients
+    # use). Should always be kept secret, and changed if a user is known to
+    # have been compromised.
+    auth_id = models.PositiveIntegerField(null=True, default=generate_auth_id)
 
     class Meta:
         db_table = 'users'
