@@ -886,7 +886,7 @@ class VersionSubmitUploadMixin(object):
         self.version.update(version='0.1')
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.1 already exists, or was uploaded before.')
+            'Version 0.1 already exists.')
 
     def test_same_version_if_previous_is_rejected(self):
         # We can't re-use the same version number, even if the previous
@@ -895,7 +895,7 @@ class VersionSubmitUploadMixin(object):
         self.version.files.update(status=amo.STATUS_DISABLED)
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.1 already exists, or was uploaded before.')
+            'Version 0.1 already exists.')
 
     def test_same_version_if_previous_is_deleted(self):
         # We can't re-use the same version number if the previous
@@ -904,7 +904,19 @@ class VersionSubmitUploadMixin(object):
         self.version.delete()
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.1 already exists, or was uploaded before.')
+            'Version 0.1 was uploaded before and deleted.')
+
+    def test_same_version_if_previous_is_awaiting_review(self):
+        # We can't re-use the same version number - offer to continue.
+        self.version.update(version='0.1')
+        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        response = self.post(expected_status=200)
+        assert pq(response.content)('ul.errorlist').text() == (
+            'Version 0.1 already exists. Continue with existing upload?')
+        # url is always to the details page even for unlisted (will redirect).
+        assert pq(response.content)('ul.errorlist a').attr('href') == (
+            reverse('devhub.submit.version.details', args=[
+                self.addon.slug, self.version.pk]))
 
     def test_distribution_link(self):
         response = self.client.get(self.url)
