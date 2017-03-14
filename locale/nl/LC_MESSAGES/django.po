@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:07+0000\n"
-"PO-Revision-Date: 2017-03-13 19:35+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2017-03-14 14:46+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -3534,7 +3534,7 @@ msgstr "Seizoensgebonden"
 
 #: src/olympia/constants/categories.py
 msgid "Solid"
-msgstr "Vast"
+msgstr "Dekkend"
 
 #: src/olympia/constants/categories.py
 msgid "Websites"
@@ -3646,7 +3646,7 @@ msgstr "Meer informatie vragen"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flag"
-msgstr "Label"
+msgstr "Markeren"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Duplicate"
@@ -3867,7 +3867,7 @@ msgstr "Er dient ten minste één compatibele toepassing te zijn."
 
 #: src/olympia/devhub/forms.py
 msgid "There was an error with your upload. Please try again."
-msgstr "Er is een fout opgetreden tijdens uw upload. Probeer het nog eens."
+msgstr "Er is een fout opgetreden tijdens uw upload. Probeer het opnieuw."
 
 #: src/olympia/devhub/forms.py
 msgid "Override failed validation"
@@ -3928,7 +3928,7 @@ msgstr "Selecteer eerst een toepassing"
 
 #: src/olympia/devhub/forms.py
 msgid "There cannot be more than 3 required add-ons."
-msgstr "Er mogen niet meer dan 3 verplichte add-ons zijn."
+msgstr "Er kunnen niet meer dan 3 vereiste add-ons zijn."
 
 #: src/olympia/devhub/forms.py
 msgid ""
@@ -4133,7 +4133,7 @@ msgstr "Beoordeling aangevraagd."
 
 #: src/olympia/devhub/views.py
 msgid "You must provide further details to proceed."
-msgstr "U dient meer details op te geven om verder te gaan."
+msgstr "U moet meer details opgeven om verder te gaan."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -4141,7 +4141,7 @@ msgstr "Uw oude referenties zijn ingetrokken en niet meer geldig. Zorg ervoor da
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr "Uw oude aanmeldgegevens zijn ingetrokken en zijn niet meer geldig."
+msgstr "Uw oude referenties zijn ingetrokken en niet meer geldig."
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
@@ -4373,7 +4373,7 @@ msgstr "Getest op compatibiliteit met:"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for My Add-ons"
-msgstr "Recente activiteit voor Mijn add-ons"
+msgstr "Recente activiteit voor mijn add-ons"
 
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
@@ -4685,11 +4685,11 @@ msgstr "Maximaal 3"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Add-on Flags"
-msgstr "Add-onmarkeringen"
+msgstr "Add-on-markeringen"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Deze labels worden gebruikt om add-ons te classificeren. Alleen relevant voor vermelde add-ons."
+msgstr "Deze markeringen worden gebruikt om add-ons te classificeren. Alleen relevant voor vermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on requires external software."
@@ -4990,7 +4990,7 @@ msgstr "Dit thema verwijderen."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr "Deze add-on mist enige informatie die verplicht is voor indiening voor publicatie."
+msgstr "Deze add-on mist enige vereiste informatie voordat deze voor publicatie kan worden ingediend."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any versions."
@@ -5076,7 +5076,7 @@ msgstr "Als uw add-on gegevens verzendt vanaf de computer van de gebruiker, is e
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Notes to Reviewer:"
-msgstr "Opmerkingen voor beoordelaars:"
+msgstr "Opmerkingen voor beoordelaar:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
@@ -5084,7 +5084,7 @@ msgstr "Is er iets wat onze beoordelaars in gedachten moeten houden bij de beoor
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Deze opmerkingen zijn alleen zichtbaar voor u en beoordelaars."
+msgstr "Deze opmerkingen zijn alleen voor u en onze beoordelaars zichtbaar."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Cancel Review and Disable Version"
@@ -5116,7 +5116,7 @@ msgstr "Deze versie distribueren"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Meer informatie over add-onverspreiding en ondertekening"
+msgstr "Meer informatie over distributie en ondertekening van add-ons"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
@@ -5262,7 +5262,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "You don't have any API credentials."
-msgstr "U hebt geen API-aanmeldgegevens."
+msgstr "U hebt geen API-referenties."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
@@ -5383,7 +5383,7 @@ msgstr "Of het nu een idee was terwijl u in de rij stond bij de kruidenier of de
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr "Door uw gebruikers te vertellen wat er aan zit te komen geeft u ze iets om naar uit te kijken."
+msgstr "Door uw gebruikers te vertellen wat eraan zit te komen, geeft u ze iets om naar uit te kijken."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
@@ -5458,7 +5458,7 @@ msgstr "Als uw add-on binaire of verborgen code buiten bekende bibliotheken beva
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Neem instructies op over hoe het uiteindelijke add-onbestand kan worden gereproduceerd, in een README-bestand of in de Opmerkingen voor de beoordelaar voor deze versie."
+msgstr "Voeg instructies bij over hoe het uiteindelijke add-onbestand kan worden gereproduceerd, ofwel in een README-bestand, of in de Opmerkingen voor beoordelaar voor deze versie."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
@@ -5505,7 +5505,7 @@ msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Contact Us"
-msgstr "Neem contact met ons op"
+msgstr "Contact opnemen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Review Policies"
@@ -5538,11 +5538,11 @@ msgstr "Promoten"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get Your Add-on Featured"
-msgstr "Krijg uw add-on Aanbevolen"
+msgstr "Uw add-on Aanbevolen krijgen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
-msgstr "Knop “Add-on downloaden”"
+msgstr "Knop ‘Add-on downloaden’"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
@@ -5570,15 +5570,15 @@ msgstr "Doe mee!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
-msgstr "Wat code schrijven"
+msgstr "Code schrijven"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr "Add-ons beter helpen maken door uw codevaardigheden in te zetten."
+msgstr "Help add-ons te verbeteren door uw codevaardigheden in te zetten."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get started"
-msgstr "Van start"
+msgstr "Beginnen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "More Ways to Participate"
@@ -5586,7 +5586,7 @@ msgstr "Meer manieren om mee te doen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr "U hebt geen codevaardigheden nodig om te helpen Firefox de meest aanpasbare browser die te krijgen is te houden!"
+msgstr "U hebt geen codevaardigheden nodig om Firefox de meest aanpasbare browser die verkrijgbaar is te helpen houden!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "See how"
@@ -5623,7 +5623,7 @@ msgstr "Gelukkig nieuwjaar! Lees wat 2017 voor add-ons in petto heeft."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Show Me"
-msgstr "Laten zien"
+msgstr "Tonen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "View All Submissions"
@@ -5714,7 +5714,7 @@ msgstr "Geautomatiseerde codetests voor uw add-on."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr "Bekijk of uw add-on waarschijnlijk door wijzigingen in Firefox wordt beïnvloed."
+msgstr "Bekijk of het aannemelijk is dat uw add-on door wijzigingen in Firefox wordt beïnvloed."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
@@ -6401,7 +6401,7 @@ msgstr "nee"
 
 #: src/olympia/editors/forms.py
 msgid "Admin Flag"
-msgstr "Beheerderslabel"
+msgstr "Beheerdersmarkering"
 
 #: src/olympia/editors/forms.py
 msgid "Add-on Types"
@@ -6433,11 +6433,11 @@ msgstr "Stuur mij een bericht als deze add-on de volgende keer wordt bijgewerkt.
 
 #: src/olympia/editors/forms.py
 msgid "Clear Admin Review Flag"
-msgstr "Beoordelingslabel voor beheerder wissen"
+msgstr "Beoordelingsmarkering voor beheerder wissen"
 
 #: src/olympia/editors/forms.py
 msgid "Clear more info requested flag"
-msgstr "Label Meer informatie gevraagd wissen"
+msgstr "Markering Meer informatie gevraagd wissen"
 
 #: src/olympia/editors/forms.py
 msgid "Choose a canned response..."
@@ -6498,7 +6498,7 @@ msgstr "Wachttijd"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Flags"
-msgstr "Labels"
+msgstr "Markeringen"
 
 # is this preceded by a number?
 #: src/olympia/editors/helpers.py
@@ -6612,7 +6612,7 @@ msgstr "Een probleem met de indiening van uw thema"
 
 #: src/olympia/editors/tasks.py
 msgid "Theme submission flagged for review"
-msgstr "Ingediend thema gelabeld voor beoordeling"
+msgstr "Ingediend thema gemarkeerd voor beoordeling"
 
 #: src/olympia/editors/tasks.py
 msgid "A question about your Theme submission"
@@ -6735,7 +6735,7 @@ msgstr "Add-on-beoordelingslogboek"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/eventlog.html
 msgid "Moderated Review Log"
-msgstr "Gemodereerd beoordelingslogboek"
+msgstr "Logboek van gemodereerde beoordelingen"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/beta_signed_log.html
 msgid "Signed Beta Files Log"
@@ -6786,7 +6786,7 @@ msgstr "Beoordelingstekst"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review was flagged prior to deletion."
-msgstr "Beoordeling is vóór verwijdering gelabeld."
+msgstr "Beoordeling is vóór verwijdering gemarkeerd."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Undelete"
@@ -6868,7 +6868,7 @@ msgstr "Opslaan"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Add-on Reviewer Performance"
-msgstr "Prestaties add-on-beoordelaar"
+msgstr "Prestaties van add-on-beoordelaar"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -6975,7 +6975,7 @@ msgstr "Beoordeling {0}"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Add-on user change history"
-msgstr "Geschiedenis wijzigingen add-ongebruiker"
+msgstr "Wijzigingsgeschiedenis van add-on-gebruiker"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Add-on History"
@@ -7036,11 +7036,11 @@ msgstr "Notitiebord bijwerken"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Unlisted Review Page"
-msgstr "Niet-vermelde beoordelingspagina"
+msgstr "Pagina voor niet-vermelde beoordelingen"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Listed Review Page"
-msgstr "Vermelde beoordelingspagina"
+msgstr "Pagina voor vermelde beoordelingen"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -7175,7 +7175,7 @@ msgstr[1] "{num} themabeoordelingen in wachtrij"
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} gevlagde beoordeling"
+msgstr[0] "{num} gemarkeerde beoordeling"
 msgstr[1] "{num} gevlagde beoordelingen"
 
 #: src/olympia/editors/templates/editors/themes/home.html
