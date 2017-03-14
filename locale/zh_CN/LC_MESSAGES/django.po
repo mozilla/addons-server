@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:07+0000\n"
-"PO-Revision-Date: 2017-03-14 10:51+0000\n"
+"PO-Revision-Date: 2017-03-14 10:52+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1192,7 +1192,7 @@ msgstr "编辑主题"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Approve / Reject"
-msgstr "核准/拒绝"
+msgstr "核准/退回"
 
 #: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
@@ -2864,7 +2864,7 @@ msgstr "{addon} 的 {review} 已核准。"
 
 #: src/olympia/constants/activity.py
 msgid "{user} approved {review} for {addon}."
-msgstr "{user} 批准了 {addon} 的 {review}。"
+msgstr "{user} 核准了 {addon} 的 {review}。"
 
 #: src/olympia/constants/activity.py
 msgid "Review {review} for {addon} deleted."
@@ -3579,7 +3579,7 @@ msgstr "重复"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Reject"
-msgstr "拒绝"
+msgstr "退回"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
@@ -5816,7 +5816,7 @@ msgstr "待定页脚"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "You may update your theme design here once it has been approved."
-msgstr "一旦审批通过，您就可以在此更新您的主题设计了。"
+msgstr "一旦通过审核，您就可以在此更新您的主题设计了。"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Header"
@@ -7129,11 +7129,11 @@ msgstr "输入重复的 ID 或者网址"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Select a reason for rejection"
-msgstr "选择一个拒绝的原因"
+msgstr "选择一个退回的理由"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Describe your reason for rejection"
-msgstr "描述您拒绝的理由"
+msgstr "叙述您退回的理由"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Ask a question to the artist"

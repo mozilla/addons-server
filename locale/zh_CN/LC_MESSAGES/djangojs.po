@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:08+0000\n"
-"PO-Revision-Date: 2017-03-14 10:49+0000\n"
+"PO-Revision-Date: 2017-03-14 10:55+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -148,7 +148,7 @@ msgstr "编译后的二进制文件，以及压缩或混淆后的脚本（不含
 
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "在验证过程中发现下列问题可导致被拒绝："
+msgstr "在验证过程中发现下列问题可导致被退回："
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
@@ -225,7 +225,7 @@ msgstr "已标记评价"
 
 #: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
-msgstr "必须输入"
+msgstr "必填"
 
 #: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
