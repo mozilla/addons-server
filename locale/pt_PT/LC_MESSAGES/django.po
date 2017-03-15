@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:07+0000\n"
-"PO-Revision-Date: 2017-03-15 02:43+0000\n"
+"PO-Revision-Date: 2017-03-15 03:02+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -268,12 +268,12 @@ msgstr "O que é isto?"
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "O programador deste extra gostaria que fizesse um donativo para <a href=\"%(charity_url)s\">%(charity_name)s</a> se gosta de o usar."
+msgstr "O programador deste extra gostaria que fizesse um donativo para <a href=\"%(charity_url)s\">%(charity_name)s</a> se gosta de o utilizar."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "O programador deste extra gostaria que fizesse uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a> se gosta de o usar."
+msgstr "O programador deste extra gostaria que fizesse uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a> se gosta de o utilizar."
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
@@ -291,9 +291,7 @@ msgstr "Ajude a suportar o desenvolvimento contínuo do <strong>%(addon_name)s</
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-"Para mostrar o seu apoio ao <strong>%(addon_name)s</strong>, o programador pede que faça umm donativo para <a href=\"%(charity_url)s\">%(charity_name)s</a> através do <a "
-"href=\"%(paypal_url)s\">PayPal</a>."
+msgstr "Para mostrar o seu apoio ao <b>%(addon_name)s</b>, o programador pede que faça um donativo para <a href=\"%(charity_url)s\">%(charity_name)s</a> através do <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
@@ -2837,7 +2835,7 @@ msgstr "{addon} {version} escalado."
 
 #: src/olympia/constants/activity.py
 msgid "Super review requested"
-msgstr "Solicitada super revisão"
+msgstr "Super revisão solicitada"
 
 #: src/olympia/constants/activity.py
 msgid "{addon} {version} review requested."
@@ -2845,7 +2843,7 @@ msgstr "Solicitada uma análise para {addon} {version}."
 
 #: src/olympia/constants/activity.py
 msgid "Review requested"
-msgstr "Análise solicitada"
+msgstr "Revisão solicitada"
 
 #: src/olympia/constants/activity.py
 msgid "{addon} {version} more information requested."
@@ -2853,7 +2851,7 @@ msgstr "Solicitada mais informação para {addon} {version}."
 
 #: src/olympia/constants/activity.py
 msgid "More information requested"
-msgstr "Solicitada mais informação"
+msgstr "Mais informação solicitada"
 
 #: src/olympia/constants/activity.py
 msgid "{addon} {version} super review requested."
@@ -2866,7 +2864,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py
 msgid "Comment on {addon} {version}."
-msgstr "Comentário sobre {addon} {version}."
+msgstr "Comentário em {addon} {version}."
 
 #: src/olympia/constants/activity.py
 msgid "{tag} added to {addon}."
@@ -2962,7 +2960,7 @@ msgstr "Palavra-passe alterada."
 
 #: src/olympia/constants/activity.py
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} aprovado mas a aguardar para ser publicado."
+msgstr "{addon} {version} aprovado mas a aguardar para ser feito público."
 
 #: src/olympia/constants/activity.py
 msgid "Approved but waiting"
@@ -4122,7 +4120,7 @@ msgstr "Este envio falhou a validação e pode não ter os resultados completos 
 
 #: src/olympia/devhub/views.py
 msgid "Review requested."
-msgstr "Solicitada revisão."
+msgstr "Revisão solicitada."
 
 #: src/olympia/devhub/views.py
 msgid "You must provide further details to proceed."
@@ -5057,7 +5055,7 @@ msgstr "Email de apoio:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Support website:"
-msgstr "Site de apoio:"
+msgstr "Website de apoio:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "License:"
@@ -6596,7 +6594,7 @@ msgstr "Pedida mais informação"
 
 #: src/olympia/editors/models.py
 msgid "Contains Reviewer Comment"
-msgstr "Contém comentários do revisor"
+msgstr "Contém comentário do revisor"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:08+0000\n"
-"PO-Revision-Date: 2017-03-15 02:50+0000\n"
+"PO-Revision-Date: 2017-03-15 02:54+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -680,7 +680,7 @@ msgstr "Extras em uso, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
-msgstr "Extras em utilização de {0} a {1}"
+msgstr "Extras em utilização desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -690,7 +690,7 @@ msgstr "Extras descarregados, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Extras descarregados de {0} a {1}"
+msgstr "Extras descarregados desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -700,7 +700,7 @@ msgstr "Extras criados, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
-msgstr "Extras criados de {0} a {1}"
+msgstr "Extras criados desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -710,7 +710,7 @@ msgstr "Extras atualizados, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "Extras atualizados de {0} a {1}"
+msgstr "Extras atualizados desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -730,7 +730,7 @@ msgstr "Subscrição de utilizadores, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
-msgstr "Subscrições de utilizadores de {0} a {1}"
+msgstr "Registos de utilizadores desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -740,7 +740,7 @@ msgstr "Coleções criadas, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
-msgstr "Coleções criadas de {0} a {1}"
+msgstr "Coleções criadas desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -750,7 +750,7 @@ msgstr "Subscritores, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
-msgstr "Subscritores de {0} a {1}"
+msgstr "Subscritores desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -760,7 +760,7 @@ msgstr "Avaliações, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
-msgstr "Avaliações de {0} a {1}"
+msgstr "Avaliações desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -770,7 +770,7 @@ msgstr "Vendas, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
-msgstr "Vendas de {0} a {1}"
+msgstr "Vendas desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -780,7 +780,7 @@ msgstr "Instalações, últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
-msgstr "Instalações de {0} a {1}"
+msgstr "Instalações desde {0} a {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js
