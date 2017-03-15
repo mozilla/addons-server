@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:07+0000\n"
-"PO-Revision-Date: 2017-03-15 02:31+0000\n"
+"PO-Revision-Date: 2017-03-15 02:43+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -512,7 +512,7 @@ msgstr "Voltar para {0}…"
 # Sunbird
 #: src/olympia/addons/templates/addons/home.html src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py
 msgid "Add-ons for {0}"
-msgstr "Extras para {0}"
+msgstr "Extras para o {0}"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Extensions"
@@ -8825,9 +8825,9 @@ msgid ""
 " cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
 "to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Para garantir a compatibilidade com as últimas versões do software da Mozilla, é importante descarregar atualizações assim que estas são disponibilizadas e testar o seu extra para garantir que ainda"
-" funciona como esperado. Em muitos casos a última versão do software da Mozilla pode ser um lançamento beta. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais, que podem"
-" ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente no processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento "
+"Para garantir compatibilidade com as últimas versões do software da Mozilla, é importante descarregar atualizações assim que estas são disponibilizadas e testar o seu extra para garantir que ainda "
+"funciona como esperado. Em muitos casos a última versão do software da Mozilla pode ser um lançamento beta. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais, que podem "
+"ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente no processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento "
 "do software da Mozilla."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -10354,7 +10354,7 @@ msgstr "Exportar"
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} :: Painel de estatísticas :: Extras para {1}"
+msgstr "{0} :: Painel de estatísticas :: Extras para o {1}"
 
 # 77%
 #: src/olympia/stats/templates/stats/stats.html
@@ -10363,7 +10363,7 @@ msgstr "{0} :: Painel de estatísticas"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "Painel de estatísticas :: Extras para {0}"
+msgstr "Painel de estatísticas :: Extras para o {0}"
 
 #. {0} is an add-on name
 #: src/olympia/stats/templates/stats/stats.html
