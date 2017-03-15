@@ -56,9 +56,9 @@ argparse==1.4.0 \
     --hash=sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314 \
     --hash=sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4
 # asn1crypto is required by cryptography
-asn1crypto==0.21.1 \
-    --hash=sha256:32a2989fc0904e5072abe14bfc87d7ff1afd7317f467bee5d5c424915700f580 \
-    --hash=sha256:4e6d7b22814d680114a439faafeccb9402a78095fb23bf0b25f9404c6938a017
+asn1crypto==0.22.0 \
+    --hash=sha256:d232509fefcfcdb9a331f37e9c9dc20441019ad927c7d2176cf18ed5da0ba097 \
+    --hash=sha256:cbbadd640d3165ab24b06ef25d1dca09a3441611ac15f6a6b452474fdf0aed1a
 # billiard is required by celery
 billiard==3.3.0.23 \
     --hash=sha256:c0cbe8d45ba8d8213ad68ef9a1881002a151569c9424d551634195a18c3a4160 \
