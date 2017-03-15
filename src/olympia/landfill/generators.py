@@ -119,7 +119,7 @@ def create_theme(name, **extra_kwargs):
     return theme
 
 
-def generate_themes(num, owner):
+def generate_themes(num, owner, app=None):
     """Generate `num` themes for the given `owner`."""
     # Disconnect this signal given that we issue a reindex at the end.
     post_save.disconnect(update_search_index, sender=Addon,

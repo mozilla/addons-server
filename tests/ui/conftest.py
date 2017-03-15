@@ -49,34 +49,68 @@ def jwt_secret(base_url, variables):
         return os.getenv('JWT_SECRET')
 
 
-<<<<<<< 7b20c573c86d2ee1c922d52e9989844b58a2be5d
-<<<<<<< 9a8cb1873c7b63de19ba3672a7c14d35d6cd42ba
 @pytest.fixture
 def initial_data(transactional_db):
     from olympia.amo.tests import addon_factory, user_factory
     from olympia.addons.models import AddonUser
+    from olympia.landfill.collection import generate_collection
+    from olympia.constants.applications import APPS
 
     for x in range(10):
         AddonUser.objects.create(user=user_factory(), addon=addon_factory())
-=======
-@pytest.fixture(scope='session')
-def initial_data(live_server):
-=======
+        generate_collection(addon_factory(), APPS['firefox'])
+
+
 @pytest.fixture
-def gen_10_addons():
->>>>>>> Setup config for initial test move
+def gen_20_addons():
     from olympia.amo.tests import addon_factory
     from olympia.constants.applications import APPS
     from olympia.landfill.collection import generate_collection
-    call_command('generate_addons', 10, app='firefox')
-<<<<<<< 7b20c573c86d2ee1c922d52e9989844b58a2be5d
-    addon = addon_factory()
-    generate_collection(addon, APPS['firefox'])
->>>>>>> Changed conftest for proper db initialization and use
-=======
+    # call_command('generate_addons', 10, app='firefox')
+    for x in range(30):
+        generate_collection(addon_factory(), APPS['firefox'])
+
+
+@pytest.fixture
+def generate_themes(transactional_db):
+    from olympia import amo
+    from olympia.amo.tests import addon_factory
+    from olympia.landfill.generators import generate_themes
+    from olympia.landfill.user import generate_addon_user_and_category, generate_user
+    from olympia.landfill.images import generate_addon_preview, generate_theme_images
+    from olympia.landfill.collection import generate_collection
+    from olympia.landfill.translations import generate_translations
+    from olympia.landfill.ratings import generate_ratings
+    from olympia.constants.applications import APPS, FIREFOX
+    from olympia.constants.base import (
+        ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC, ADDON_THEME)
+    from olympia.bandwagon.models import (
+        Collection, CollectionAddon, FeaturedCollection)
+    from olympia.users.models import UserProfile
+    from olympia.addons.utils import generate_addon_guid
+
     # call_command('generate_themes', 6)
-    generate_collection(addon_factory(), APPS['firefox'])
->>>>>>> Setup config for initial test move
+    owner = UserProfile.objects.get(username='uitest')
+    generate_themes(6, owner, app=FIREFOX)
+    for x in range(6):
+        addon = addon_factory(
+            status=STATUS_PUBLIC,
+            type=ADDON_PERSONA,)
+        generate_collection(addon, app=FIREFOX,
+                            author=UserProfile.objects.get(username='uitest'),)
+
+
+@pytest.fixture
+def generate_collections(transactional_db):
+    from olympia import amo
+    from olympia.amo.tests import addon_factory
+    from olympia.constants.applications import APPS, FIREFOX
+    from olympia.landfill.collection import generate_collection
+
+    for x in range(4):
+        generate_collection(addon_factory(
+            type=amo.ADDON_EXTENSION
+        ), APPS['firefox'], type=amo.COLLECTION_FEATURED)
 
 
 @pytest.fixture
@@ -94,33 +128,79 @@ def create_superuser(transactional_db, my_base_url, tmpdir, variables):
         hostname=urlparse.urlsplit(my_base_url).hostname
     )
 
-<<<<<<< d435e4cad5feb4ebb23ab3b0f1297cb20556a993
     with tmpdir.join('variables.json').open() as f:
         variables.update(json.load(f))
-=======
+
 
 @pytest.fixture
-def ui_addon():
+def ui_theme(transactional_db, create_superuser):
+    from olympia import amo
+    from olympia.amo.tests import addon_factory
+    from olympia.addons.utils import generate_addon_guid
+    from olympia.constants.applications import FIREFOX
+    from olympia.users.models import UserProfile
+    from olympia.landfill.collection import generate_collection
+    from olympia.constants.base import ADDON_PERSONA, STATUS_PUBLIC
+
+    addon = addon_factory(
+        status=STATUS_PUBLIC,
+        type=ADDON_PERSONA,
+        average_daily_users=4242,
+        users=[UserProfile.objects.get(username='uitest')],
+        average_rating=4.21,
+        description=u'My UI Theme description',
+        file_kw={
+            'hash': 'fakehash',
+            'platform': amo.PLATFORM_ALL.id,
+            'size': 42,
+        },
+        guid=generate_addon_guid(),
+        homepage=u'https://www.example.org/',
+        name=u'Ui-Test',
+        public_stats=True,
+        slug='ui-test',
+        summary=u'My UI theme summary',
+        support_email=u'support@example.org',
+        support_url=u'https://support.example.org/support/ui-theme-addon/',
+        tags=['some_tag', 'another_tag', 'ui-testing', 'selenium', 'python'],
+        total_reviews=777,
+        weekly_downloads=123456,
+        developer_comments='This is a testing theme, used within pytest.',
+    )
+    addon.save()
+    generate_collection(addon, app=FIREFOX,
+                        author=UserProfile.objects.get(username='uitest'),
+                        )
+
+    print('Created custom addon for testing successfully')
+
+
+@pytest.fixture
+def ui_addon(transactional_db, create_superuser):
     import random
 
     from olympia import amo
-    from olympia.amo.tests import addon_factory, user_factory, version_factory
+    from olympia.amo.tests import addon_factory, user_factory, version_factory, collection_factory
     from olympia.addons.forms import icons
     from olympia.addons.models import Addon, AddonCategory, Category, Preview, AddonUser
     from olympia.addons.utils import generate_addon_guid
     from olympia.constants.categories import CATEGORIES
-    from olympia.constants.applications import APPS
+    from olympia.constants.applications import APPS, FIREFOX
     from olympia.reviews.models import Review
+    from olympia.users.models import UserProfile
     from olympia.landfill.collection import generate_collection
+    from olympia.landfill.user import generate_addon_user_and_category, generate_user
+    from olympia.landfill.categories import generate_categories
+    from olympia.constants.base import (
+        ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC)
 
-    cat1 = Category.from_static_category(
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
     default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
     addon = addon_factory(
-        status=amo.STATUS_PUBLIC,
+        status=STATUS_PUBLIC,
+        type=ADDON_EXTENSION,
         average_daily_users=4242,
+        users=[UserProfile.objects.get(username='uitest')],
         average_rating=4.21,
-        category=cat1,
         description=u'My Addon description',
         file_kw={
             'hash': 'fakehash',
@@ -148,16 +228,16 @@ def ui_addon():
     Review.objects.create(addon=addon, rating=2, user=user_factory())
     Review.objects.create(addon=addon, rating=1, user=user_factory())
     addon.reload()
-    AddonUser.objects.create(user=user_factory(username='ui-tester'),
-                             addon=addon, listed=True)
     AddonUser.objects.create(user=user_factory(username='ui-tester2'),
                              addon=addon, listed=True)
     version_factory(addon=addon, file_kw={'status': amo.STATUS_BETA},
                     version='1.1beta')
-    generate_collection(addon, APPS['firefox'])
     addon.save()
+    generate_collection(addon, app=FIREFOX,
+                        author=UserProfile.objects.get(username='uitest'),
+                        )
 
-    print('Create custom addon for testing successfully')
+    print('Created custom addon for testing successfully')
 
 
 @pytest.fixture
@@ -170,7 +250,6 @@ def force_user_login():
     from olympia.users.models import UserProfile
     user = UserProfile.objects.get(username='uitest')
     return user
->>>>>>> Initial attempt at creating an addon for testing
 
 
 @pytest.fixture
@@ -190,45 +269,12 @@ def user(create_superuser, my_base_url, fxa_account, jwt_token):
     return params
 
 
-<<<<<<< 7b20c573c86d2ee1c922d52e9989844b58a2be5d
-<<<<<<< 9a8cb1873c7b63de19ba3672a7c14d35d6cd42ba
 @pytest.fixture(scope='function')
 def live_server(request, transactional_db):
-=======
-@pytest.fixture(autouse=True)
-=======
-@pytest.fixture
->>>>>>> Setup config for initial test move
-def live_server(request, initial_data, ui_addon):
->>>>>>> Changed conftest for proper db initialization and use
     """
         This fixture overrides the live_server fixture provided by
         pytest_django. live_server allows us to create a running version of the
         addons django application within pytest for testing.
-<<<<<<< d435e4cad5feb4ebb23ab3b0f1297cb20556a993
-=======
-
-        Christopher Grebs:
-        From what I found out was that the `live_server` fixture (in our setup,
-        couldn't reproduce in a fresh project) apparently starts up the
-        LiveServerThread way too early before pytest-django configures the
-        settings correctly.
-
-        That resulted in the LiveServerThread querying the 'default' database
-        which was different from what the other fixtures and tests were using
-        which resulted in the problem that the just created api keys could not
-        be found in the api methods in the live-server.
-
-        I worked around that by implementing the live_server fixture ourselfs
-        and make it function-scoped so that it now runs in a proper
-        database-transaction.
-
-        This is a HACK and I'll work on a more permanent solution but for now
-        it should be enough to continue working on porting tests...
-
-        Also investigating if there are any problems in pytest-django directly.
-    """
->>>>>>> Initial attempt at creating an addon for testing
 
         Christopher Grebs:
         From what I found out was that the `live_server` fixture (in our setup,
@@ -259,7 +305,6 @@ def live_server(request, initial_data, ui_addon):
 
     server = live_server_helper.LiveServer(addr)
     yield server
-    # server.stop()
 
 
 @pytest.fixture
