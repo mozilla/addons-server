@@ -1122,7 +1122,7 @@ CELERY_ROUTES = {
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
 
     # Files (goes to devhub queue).
-    'olympia.files.tasks.update_webext_descriptions': {'queue': 'devhub'},
+    'olympia.files.tasks.update_webext_descriptions_all': {'queue': 'devhub'},
 
     # API
     'olympia.api.tasks.process_results': {'queue': 'api'},
