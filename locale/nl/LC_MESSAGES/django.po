@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:07+0000\n"
-"PO-Revision-Date: 2017-01-10 08:23+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2017-03-15 08:37+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -2347,7 +2347,7 @@ msgstr "%s-add-ons"
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Themes"
-msgstr "%s-thema’s"
+msgstr "Thema’s in %s"
 
 #: src/olympia/browse/feeds.py
 #, python-format
@@ -2574,7 +2574,7 @@ msgstr "Geen resultaten gevonden."
 
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
 msgid "{0} Themes"
-msgstr "{0}-thema’s"
+msgstr "Thema’s in {0}"
 
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html
