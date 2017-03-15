@@ -23,6 +23,7 @@ class HeaderMenu:
         return self.items
 
 
+@pytest.mark.django_db()
 class TestHome:
 
     expected_header_menus = [
@@ -73,10 +74,12 @@ class TestHome:
         theme_page = home_page.click_featured_themes_see_all_link()
         assert theme_page.is_the_current_page
 
+    @pytest.mark.action_chains
     @pytest.mark.native
     @pytest.mark.nondestructive
     def test_that_extensions_link_loads_extensions_page(self, my_base_url, selenium, initial_data):
         home_page = Home(my_base_url, selenium)
+        selenium.maximize_window()
         extensions_page = home_page.header.site_navigation_menu("EXTENSIONS").click()
         assert extensions_page.is_the_current_page
 
@@ -89,13 +92,13 @@ class TestHome:
 
     @pytest.mark.smoke
     @pytest.mark.nondestructive
-    def test_that_featured_collections_exist_on_the_home(self, my_base_url, selenium, initial_data):
+    def test_that_featured_collections_exist_on_the_home(self, my_base_url, selenium, initial_data, generate_collections):
         home_page = Home(my_base_url, selenium)
         assert u'Featured Collections See all \xbb' == home_page.featured_collections_title, 'Featured Collection region title doesn\'t match'
         assert home_page.featured_collections_count > 0
 
     @pytest.mark.nondestructive
-    def test_that_featured_extensions_exist_on_the_home(self, my_base_url, selenium, initial_data):
+    def test_that_featured_extensions_exist_on_the_home(self, my_base_url, selenium, initial_data, generate_collections):
         home_page = Home(my_base_url, selenium)
         assert 'Featured Extensions' == home_page.featured_extensions_title, 'Featured Extensions region title doesn\'t match'
         assert u'See all \xbb' == home_page.featured_extensions_see_all, 'Featured Extensions region see all link is not correct'
@@ -105,8 +108,8 @@ class TestHome:
     def test_that_clicking_see_all_collections_link_works(self, my_base_url, selenium, initial_data, generate_collections):
         home_page = Home(my_base_url, selenium)
         featured_collection_page = home_page.click_featured_collections_see_all_link()
-        assert featured_collection_page.is_the_current_page
         assert featured_collection_page.get_url_current_page().endswith('/collections/?sort=featured')
+        assert featured_collection_page.is_the_current_page
 
     @pytest.mark.native
     @pytest.mark.nondestructive
@@ -217,14 +220,14 @@ class TestHome:
         home_page = Home(my_base_url, selenium)
         featured_extension_page = home_page.click_featured_extensions_see_all_link()
         assert featured_extension_page.get_url_current_page().endswith('/extensions/?sort=featured')
+
         assert featured_extension_page.is_the_current_page
 
+    @pytest.mark.flaky(reruns=3)
     @pytest.mark.nondestructive
-    def test_that_checks_all_categories_side_navigation(self, my_base_url, selenium, initial_data, gen_20_addons):
+    def test_that_checks_all_categories_side_navigation(self, my_base_url, selenium, initial_data, gen_addons):
         home_page = Home(my_base_url, selenium)
         category_region = home_page.get_category()
-        import time
-        time.sleep(30)
         assert 'CATEGORIES' == category_region.categories_side_navigation_header_text
         assert 'Alerts & Updates' == category_region.categories_alert_updates_header_text
         assert 'Appearance' == category_region.categories_appearance_header_text

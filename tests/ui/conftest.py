@@ -14,7 +14,7 @@ from pytest_django import live_server_helper
 
 
 @pytest.fixture(scope='function')
-def my_base_url(base_url, request):
+def my_base_url(base_url, request, live_server):
     return base_url or request.getfixturevalue("live_server").url
 
 
@@ -50,7 +50,7 @@ def jwt_secret(base_url, variables):
 
 
 @pytest.fixture
-def initial_data(transactional_db):
+def initial_data():
     from olympia.amo.tests import addon_factory, user_factory
     from olympia.addons.models import AddonUser
     from olympia.landfill.collection import generate_collection
@@ -62,12 +62,12 @@ def initial_data(transactional_db):
 
 
 @pytest.fixture
-def gen_20_addons():
+def gen_addons():
     from olympia.amo.tests import addon_factory
     from olympia.constants.applications import APPS
     from olympia.landfill.collection import generate_collection
-    # call_command('generate_addons', 10, app='firefox')
-    for x in range(30):
+
+    for x in range(40):
         generate_collection(addon_factory(), APPS['firefox'])
 
 
