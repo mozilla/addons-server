@@ -139,9 +139,10 @@ cssselect==1.0.1 \
     --hash=sha256:4f5f799a1d3182b04814007e9e7fc6c362f4489c7420d6b348cc901ece07ced9 \
     --hash=sha256:73db1c054b9348409e2862fc6c0dde5c4e4fbe4da64c5c5a9e05fbea45744077
 # cssutils is required by amo-validator
-cssutils==1.0.1 \
-    --hash=sha256:78ac48006ac2336b9456e88a75ed35f6a31a030c65162503b7af01a60d78db5a \
-    --hash=sha256:d8a18b2848ea1011750231f1dd64fe9053dbec1be0b37563c582561e7a529063
+cssutils==1.0.2 \
+    --hash=sha256:b45a3a66b304a3217fcc187540cad704a847c60d8b785feb732d3671b7adfc03 \
+    --hash=sha256:c74dbe19c92f5052774eadb15136263548dd013250f1ed1027988e7fef125c8d \
+    --hash=sha256:a2fcf06467553038e98fea9cfe36af2bf14063eb147a70958cfcaa8f5786acaf
 # defusedxml is required by amo-validator
 defusedxml==0.5.0 \
     --hash=sha256:702a91ade2968a82beb0db1e0766a6a273f33d4616a6ce8cde475d8e09853b20 \
