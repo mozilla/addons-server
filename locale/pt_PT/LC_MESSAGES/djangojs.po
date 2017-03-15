@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:08+0000\n"
-"PO-Revision-Date: 2017-03-14 19:26+0000\n"
+"PO-Revision-Date: 2017-03-15 02:30+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -257,7 +257,7 @@ msgstr "Procurar apps para o <b>{0}</b>"
 
 #: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Pesquise extras para o <b>{0}</b>"
+msgstr "Pesquise extras para <b>{0}</b>"
 
 #: static/js/impala/users.js
 msgid "Use original"

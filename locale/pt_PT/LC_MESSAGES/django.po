@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-13 17:07+0000\n"
-"PO-Revision-Date: 2017-03-15 01:43+0000\n"
+"PO-Revision-Date: 2017-03-15 02:31+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -512,7 +512,7 @@ msgstr "Voltar para {0}…"
 # Sunbird
 #: src/olympia/addons/templates/addons/home.html src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py
 msgid "Add-ons for {0}"
-msgstr "Extras para o {0} "
+msgstr "Extras para {0}"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Extensions"
@@ -9066,7 +9066,7 @@ msgid ""
 " When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Os extras são revistos pelos revisores de extras, um grupo de programadores talentosos que voluntariam-se para ajudar no projeto Mozilla, revendo extras para garantir uma experiência estável e "
+"Os extras são revistos pelos revisores de extras, um grupo de programadores talentosos que se voluntariam para ajudar no projeto Mozilla, revendo extras para garantir uma experiência estável e "
 "segura para os utilizadores da Mozilla. Quando comunicar com os revisores, por favor seja cordial, paciente e respeitador, pois eles estão a trabalhar arduamente para garantir que o seu extra seja "
 "configurado corretamente e siga as diretrizes descritas no <a href=\"%(url)s\">Guia de revisão de extras</a>."
 
@@ -9080,8 +9080,8 @@ msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
-"A Equipa de revisões de extras segue o <a href=\"%(url)s\">Guia de revisão de extras</a> ao testar um extra para aceitação no AMO. É importante que os programadores de extras analisem este guia para"
-" garantir que áreas problemáticas frequentes sejam trabalhadas antes de submeter os extras para revisão. Isto irá tornar o processo de revisão mais expedito."
+"A equipa de revisão de extras segue o <a href=\"%(url)s\">Guia de revisão de extras</a> ao testar um extra para aceitação no AMO. É importante que os programadores de extras analisem este guia para "
+"garantir que áreas problemáticas frequentes sejam trabalhadas antes de submeter os extras para revisão. Isto irá tornar o processo de revisão mais expedito."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
