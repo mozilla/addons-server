@@ -4,10 +4,8 @@ from optparse import make_option
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-from celery import chain
-
 from olympia.files.models import WebextPermissionDescription
-from olympia.files.tasks import update_webext_descriptions
+from olympia.files.tasks import update_webext_descriptions_all
 
 
 class Command(BaseCommand):
@@ -24,10 +22,10 @@ class Command(BaseCommand):
 
         central_url = settings.WEBEXT_PERM_DESCRIPTIONS_URL
         locales_url = settings.WEBEXT_PERM_DESCRIPTIONS_LOCALISED_URL
+        amo_locales = [l for l in settings.AMO_LANGUAGES
+                       if l not in ['en-US', 'dbg']]
         # Fetch canonical en-US descriptions first; then l10n after.
-        tasks = [update_webext_descriptions.s(central_url)] + [
-            update_webext_descriptions.si(
-                locales_url.format(locale=locale),
-                locale=locale, create=False)
-            for locale in settings.AMO_LANGUAGES]
-        chain(tasks)()
+        update_webext_descriptions_all.apply_async(
+            args=[(central_url, 'en-US'),
+                  [(locales_url.format(locale=locale), locale)
+                   for locale in amo_locales]])
