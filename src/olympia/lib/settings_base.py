@@ -10,6 +10,8 @@ from django.utils.functional import lazy
 from django.core.urlresolvers import reverse_lazy
 
 import environ
+from kombu import Queue
+
 
 env = environ.Env()
 
@@ -1055,6 +1057,27 @@ CELERYD_HIJACK_ROOT_LOGGER = False
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
     'olympia.lib.es.management.commands.reindex',
+)
+
+CELERY_QUEUES = (
+    Queue('default', routing_key='default'),
+    Queue('priority', routing_key='priority'),
+    Queue('devhub', routing_key='devhub'),
+    Queue('images', routing_key='images'),
+    Queue('limited', routing_key='limited'),
+    Queue('amo', routing_key='amo'),
+    Queue('addons', routing_key='addons'),
+    Queue('api', routing_key='api'),
+    Queue('cron', routing_key='cron'),
+    Queue('bandwagon', routing_key='bandwagon'),
+    Queue('editors', routing_key='editors'),
+    Queue('crypto', routing_key='crypto'),
+    Queue('search', routing_key='search'),
+    Queue('reviews', routing_key='reviews'),
+    Queue('stats', routing_key='stats'),
+    Queue('tags', routing_key='tags'),
+    Queue('users', routing_key='users'),
+    Queue('zadmin', routing_key='zadmin'),
 )
 
 # We have separate celeryds for processing devhub & images as fast as possible
