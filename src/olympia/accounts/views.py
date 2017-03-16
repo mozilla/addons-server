@@ -4,6 +4,7 @@ import os
 
 from django.conf import settings
 from django.contrib.auth import login, logout
+from django.core import signing
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -17,14 +18,14 @@ from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_jwt.settings import api_settings as jwt_api_settings
 from waffle.decorators import waffle_switch
 
 import olympia.core.logger
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
-from olympia.api.authentication import JWTKeyAuthentication
+from olympia.api.authentication import (
+    JWTKeyAuthentication, WebTokenAuthentication)
 from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
 
@@ -54,7 +55,7 @@ LOGIN_ERROR_MESSAGES = {
     ERROR_STATE_MISMATCH: _(u'You could not be logged in. Please try again.'),
 }
 
-JWT_TOKEN_COOKIE = 'jwt_api_auth_token'
+API_TOKEN_COOKIE = 'api_auth_token'
 
 
 def safe_redirect(url, action):
@@ -92,7 +93,8 @@ def register_user(request, identity):
 
 
 def update_user(user, identity):
-    """Update a user's info from FxA if needed."""
+    """Update a user's info from FxA if needed, as well as generating the id
+    that is used as part of the session/api token generation."""
     if (user.fxa_id != identity['uid'] or
             user.email != identity['email']):
         log.info(
@@ -101,6 +103,10 @@ def update_user(user, identity):
                 pk=user.pk, old_email=user.email, old_uid=user.fxa_id,
                 new_email=identity['email'], new_uid=identity['uid']))
         user.update(fxa_id=identity['uid'], email=identity['email'])
+    if user.auth_id is None:
+        # If the user didn't have an auth id (old user account created before
+        # we added the field), generate one for them.
+        user.update(auth_id=UserProfile._meta.get_field('auth_id').default())
 
 
 def login_user(request, user, identity):
@@ -211,15 +217,18 @@ def with_user(format, config=None):
 
 def add_api_token_to_response(response, user, set_cookie=True):
     # Generate API token and add it to the json response.
-    payload = jwt_api_settings.JWT_PAYLOAD_HANDLER(user)
-    token = jwt_api_settings.JWT_ENCODE_HANDLER(payload)
+    data = {
+        'secret': user.get_session_auth_hash(),
+        'user_id': user.pk,
+    }
+    token = signing.dumps(data, salt=WebTokenAuthentication.salt)
     if hasattr(response, 'data'):
         response.data['token'] = token
     if set_cookie:
         # Also include the API token in a session cookie, so that it is
         # available for universal frontend apps.
         response.set_cookie(
-            JWT_TOKEN_COOKIE,
+            API_TOKEN_COOKIE,
             token,
             max_age=settings.SESSION_COOKIE_AGE or None,
             secure=settings.SESSION_COOKIE_SECURE or None,
@@ -229,7 +238,7 @@ def add_api_token_to_response(response, user, set_cookie=True):
 
 
 def remove_api_token_cookie(response):
-    response.delete_cookie(JWT_TOKEN_COOKIE)
+    response.delete_cookie(API_TOKEN_COOKIE)
 
 
 class FxAConfigMixin(object):

@@ -12,6 +12,7 @@ from django.core import validators
 from django.db import models, transaction
 from django.template import Context, loader
 from django.utils import timezone
+from django.utils.crypto import salted_hmac
 from django.utils.translation import ugettext as _, get_language, activate
 from django.utils.encoding import force_text
 from django.utils.functional import lazy
@@ -150,8 +151,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     # Identifier that is used to invalidate internal API tokens (i.e. those
     # that we generate for addons-frontend, NOT the API keys external clients
-    # use). Should always be kept secret, and changed if a user is known to
-    # have been compromised.
+    # use) and django sessions. Should always be kept secret, and changed if a
+    # user is known to have been compromised.
     auth_id = models.PositiveIntegerField(null=True, default=generate_auth_id)
 
     class Meta:
@@ -184,6 +185,20 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     def is_anonymous(self):
         return False
+
+    def get_session_auth_hash(self):
+        """Return a hash used to invalidate sessions of users when necessary.
+
+        Can return None if auth_id is not set on this user."""
+        if self.auth_id is None:
+            # Old user that has not re-logged since we introduced that field,
+            # return None, it won't be used by django session invalidation
+            # mechanism.
+            return None
+        # Mimic what the AbstractBaseUser implementation does, but with our
+        # own custom field instead of password, which we don't have.
+        key_salt = 'olympia.models.users.UserProfile.get_session_auth_hash'
+        return salted_hmac(key_salt, str(self.auth_id)).hexdigest()
 
     @staticmethod
     def create_user_url(id_, username=None, url_name='profile', src=None,

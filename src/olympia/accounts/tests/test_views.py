@@ -13,7 +13,6 @@ import mock
 from waffle.models import Switch
 
 from rest_framework.test import APIRequestFactory, APITestCase
-from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 
 from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
@@ -22,6 +21,7 @@ from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
     assert_url_equal, create_switch, user_factory, APITestClient,
     InitializeSessionMixin, PatchMixin, TestCase, WithDynamicEndpoints)
+from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.users.models import UserProfile
 
@@ -236,6 +236,12 @@ class TestLoginUser(TestCase):
         user = self.user.reload()
         assert user.fxa_id == '9001'
         assert user.email == 'real@yeahoo.com'
+
+    def test_auth_id_updated_if_none(self):
+        self.user.update(auth_id=None)
+        views.login_user(self.request, self.user, self.identity)
+        self.user.reload()
+        assert self.user.auth_id
 
 
 class TestFindUser(TestCase):
@@ -554,6 +560,7 @@ class TestRegisterUser(TestCase):
         user = user_qs.get()
         assert user.username.startswith('anonymous-')
         assert user.fxa_id == '9005'
+        assert user.auth_id
         self.login.assert_called_with(self.request, user)
 
     def test_username_taken_creates_user(self):
@@ -668,8 +675,9 @@ class TestLoginBaseView(WithDynamicEndpoints, TestCase):
             self.url, {'code': 'code', 'state': 'some-blob'})
         assert response.status_code == 200
         assert response.data['email'] == 'real@yeahoo.com'
-        verify = VerifyJSONWebTokenSerializer().validate(response.data)
-        assert verify['user'] == user
+        token = response.data['token']
+        verify = WebTokenAuthentication().authenticate_token(token)
+        assert verify[0] == user
         self.update_user.assert_called_with(user, identity)
 
     def test_multiple_accounts_found(self):
@@ -725,7 +733,7 @@ class TestRegisterView(BaseAuthenticationView):
             self.url, {'code': 'codes!!', 'state': 'some-blob'})
         assert response.status_code == 200
         assert response.data['email'] == 'me@yeahoo.com'
-        assert (response.cookies['jwt_api_auth_token'].value ==
+        assert (response.cookies['api_auth_token'].value ==
                 response.data['token'])
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         self.register_user.assert_called_with(mock.ANY, identity)
@@ -784,21 +792,17 @@ class TestAuthenticateView(BaseAuthenticationView):
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
-        user = UserProfile(
-            username='foo', email='me@yeahoo.com', fxa_id='e0b6f')
-        self.register_user.return_value = user
+        self.register_user.side_effect = (
+            lambda r, i: UserProfile.objects.create(
+                username='foo', email='me@yeahoo.com', fxa_id='e0b6f'))
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state})
-        # This 302s because the user isn't logged in due to mocking.
-        self.assertRedirects(
-            response, reverse('users.edit'), target_status_code=302)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(mock.ANY, identity)
-        user.save()  # Persist the user so it can be verified.
-        data = {'token': response.cookies['jwt_api_auth_token'].value}
-        verify = VerifyJSONWebTokenSerializer().validate(data)
-        assert verify['user'] == user
+        token = response.cookies['api_auth_token'].value
+        verify = WebTokenAuthentication().authenticate_token(token)
+        assert verify[0] == UserProfile.objects.get(username='foo')
 
     def test_register_redirects_edit(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
@@ -849,9 +853,9 @@ class TestAuthenticateView(BaseAuthenticationView):
         response = self.client.get(
             self.url, {'code': 'code', 'state': self.fxa_state})
         self.assertRedirects(response, reverse('home'))
-        data = {'token': response.cookies['jwt_api_auth_token'].value}
-        verify = VerifyJSONWebTokenSerializer().validate(data)
-        assert verify['user'] == user
+        token = response.cookies['api_auth_token'].value
+        verify = WebTokenAuthentication().authenticate_token(token)
+        assert verify[0] == user
         self.login_user.assert_called_with(mock.ANY, user, identity)
         assert not self.register_user.called
 
@@ -1062,12 +1066,12 @@ class TestSessionView(TestCase):
                     url=reverse('accounts.authenticate'),
                     state='myfxastate',
                     code='thecode'))
-            cookie = response.cookies[views.JWT_TOKEN_COOKIE].value
-            assert cookie
-            verify = VerifyJSONWebTokenSerializer().validate({'token': cookie})
-            assert verify['user'] == user
+            token = response.cookies[views.API_TOKEN_COOKIE].value
+            assert token
+            verify = WebTokenAuthentication().authenticate_token(token)
+            assert verify[0] == user
             assert self.client.session['_auth_user_id'] == str(user.id)
-            return cookie
+            return token
 
     def test_delete_when_authenticated(self):
         user = user_factory(fxa_id='123123412')
@@ -1075,7 +1079,7 @@ class TestSessionView(TestCase):
         authorization = 'Bearer {token}'.format(token=token)
         response = self.client.delete(
             reverse('accounts.session'), HTTP_AUTHORIZATION=authorization)
-        assert not response.cookies[views.JWT_TOKEN_COOKIE].value
+        assert not response.cookies[views.API_TOKEN_COOKIE].value
         assert not self.client.session.get('_auth_user_id')
 
     def test_delete_when_unauthenticated(self):
