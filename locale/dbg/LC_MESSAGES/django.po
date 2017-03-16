@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-13 17:08+0000\n"
+"POT-Creation-Date: 2017-03-16 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3872,14 +3872,6 @@ msgid "Version %s already exists, or was uploaded before."
 msgstr "Ṽḗřşīǿƞ %s ȧŀřḗȧḓẏ ḗẋīşŧş, ǿř ẇȧş ŭƥŀǿȧḓḗḓ ƀḗƒǿřḗ."
 
 #: src/olympia/devhub/forms.py
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr "Şḗŀḗƈŧ ȧ ṽȧŀīḓ ƈħǿīƈḗ. Ŧħȧŧ ƈħǿīƈḗ īş ƞǿŧ ǿƞḗ ǿƒ ŧħḗ ȧṽȧīŀȧƀŀḗ ƈħǿīƈḗş."
-
-#: src/olympia/devhub/forms.py
-msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
-msgstr "Ȧ ƒīŀḗ ẇīŧħ ȧ ṽḗřşīǿƞ ḗƞḓīƞɠ ẇīŧħ ȧ|ȧŀƥħȧ|ƀ|ƀḗŧȧ ȧƞḓ ȧƞ ǿƥŧīǿƞȧŀ ƞŭḿƀḗř īş ḓḗŧḗƈŧḗḓ ȧş ƀḗŧȧ."
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Ŧħḗ ƥŀȧŧƒǿřḿ Ȧŀŀ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ ẇīŧħ şƥḗƈīƒīƈ ƥŀȧŧƒǿřḿş."
 
@@ -6188,8 +6180,8 @@ msgid "Next version of this add-on"
 msgstr "Ƞḗẋŧ ṽḗřşīǿƞ ǿƒ ŧħīş ȧḓḓ-ǿƞ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Older versions"
-msgstr "Ǿŀḓḗř ṽḗřşīǿƞş"
+msgid "Other versions"
+msgstr "Ǿŧħḗř ṽḗřşīǿƞş"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "All versions"
@@ -6254,12 +6246,12 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ƈȧƞƈḗŀ ẏǿŭř řḗṽīḗẇ řḗɋŭḗşŧ?"
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧȧķḗ şƈřḗḗƞşħǿŧş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
-msgstr "Ḗȧşīŀẏ ɠřȧƀ ṽīḓḗǿş ƒřǿḿ ẎǿŭŦŭƀḗ, Ḓȧīŀẏḿǿŧīǿƞ, Ƒȧƈḗƀǿǿķ, ȧƞḓ ḿǿşŧ ǿŧħḗř ṽīḓḗǿ şīŧḗş ẇīŧħ ŧħīş şīḿƥŀḗ ḓǿẇƞŀǿȧḓ ŧǿǿŀ."
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr "Ḿǿřḗ ŧħȧƞ ĵŭşŧ şƈřḗḗƞşħǿŧş, Ȧẇḗşǿḿḗ Şƈřḗḗƞşħǿŧ Ƥŀŭş ŀḗŧş ẏǿŭ ȧƞƞǿŧȧŧḗ īḿȧɠḗş ẇīŧħ ŧḗẋŧ ȧƞḓ ɠřȧƥħīƈş. Şŧǿřīƞɠ ȧƞḓ şħȧřīƞɠ ƒīŀḗş īş ȧ ƀřḗḗzḗ."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6270,12 +6262,12 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Ȧ ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ƀŭƞƈħ ǿƒ ḿḗḿǿřẏ."
 
 #: src/olympia/discovery/data.py
-msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ḗƞħȧƞƈḗ ẎǿŭŦŭƀḗ {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
-msgstr "Ȧŭŧǿḿȧŧīƈȧŀŀẏ ƥŀȧẏ ẎǿŭŦŭƀḗ ṽīḓḗǿş īƞ ħīɠħ-ḓḗƒ, ŧŭřƞ ǿƒƒ ȧƞƞǿŧȧŧīǿƞş, ȧḓĵŭşŧ ƥŀȧẏḗř şīzḗ, ȧƞḓ ḿȧƞẏ ǿŧħḗř ẇȧẏş ŧǿ ƥḗřşǿƞȧŀīzḗ ẏǿŭř ṽīḓḗǿ-ẇȧŧƈħīƞɠ ḗẋƥḗřīḗƞƈḗ."
+msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
+msgstr "Ḗȧşīŀẏ ɠřȧƀ ṽīḓḗǿş ƒřǿḿ ẎǿŭŦŭƀḗ, Ḓȧīŀẏḿǿŧīǿƞ, Ƒȧƈḗƀǿǿķ, ȧƞḓ ḿǿşŧ ǿŧħḗř ṽīḓḗǿ şīŧḗş ẇīŧħ ŧħīş şīḿƥŀḗ ḓǿẇƞŀǿȧḓ ŧǿǿŀ."
 
 #: src/olympia/discovery/data.py
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-13 17:07+0000\n"
+"POT-Creation-Date: 2017-03-16 14:02+0000\n"
 "PO-Revision-Date: 2013-10-24 09:38+0300\n"
 "Last-Translator: Ellery <linux.anas@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -3923,14 +3923,6 @@ msgid "Version %s already exists, or was uploaded before."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr ""
 
@@ -6285,8 +6277,9 @@ msgid "Next version of this add-on"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Older versions"
-msgstr ""
+#, fuzzy
+msgid "Other versions"
+msgstr "عرض الإصدارات الأخرى"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6351,11 +6344,11 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6367,11 +6360,11 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
+msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
 msgstr ""
 
 #: src/olympia/discovery/data.py
