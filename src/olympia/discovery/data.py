@@ -15,19 +15,19 @@ class DiscoItem(object):
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
 discopane_items = [
+    # 'Tender Spring Rain' theme.
+    DiscoItem(addon_id=303865),
 
-    # 'Books' theme.
-    DiscoItem(addon_id=778525),
-
-    # Video DownloadHelper
+    # Awesome Screenshot Plus
     DiscoItem(
-        addon_id=3006,
-        heading=_(u'Download videos {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
+        addon_id=287841,
+        heading=_(u'Take screenshots {start_sub_heading}with '
+                  u'{addon_name}{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Easily grab videos from YouTube, Dailymotion, Facebook, and '
-              u'most other video sites with this simple download tool.'),
+            _(u'More than just screenshots, Awesome Screenshot Plus lets you '
+              u'annotate images with text and graphics. Storing and sharing '
+              u'files is a breeze.'),
             '</blockquote>')),
 
     # uBlock Origin
@@ -42,19 +42,18 @@ discopane_items = [
               u'bunch of memory.'),
             '</blockquote>')),
 
-    # 'yellowfield 1' theme.
-    DiscoItem(addon_id=599252, addon_name='Yellowfield'),
+    # 'Abstract Splash' theme.
+    DiscoItem(addon_id=25725, addon_name='Abstract Splash'),
 
-    # YouTube High Definition
+    # Video DownloadHelper
     DiscoItem(
-        addon_id=328839,
-        heading=_(u'Enhance YouTube {start_sub_heading}with '
-                  u'{addon_name}{end_sub_heading}'),
+        addon_id=3006,
+        heading=_(u'Download videos {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Automatically play YouTube videos in high-def, turn off '
-              u'annotations, adjust player size, and many other ways to '
-              u'personalize your video-watching experience.'),
+            _(u'Easily grab videos from YouTube, Dailymotion, Facebook, and '
+              u'most other video sites with this simple download tool.'),
             '</blockquote>')),
 
     # Emoji Keyboard
@@ -68,6 +67,6 @@ discopane_items = [
               u'click away.'),
             '</blockquote>')),
 
-    # 'fon615 by levscaya' theme.
-    DiscoItem(addon_id=777344, addon_name='Fon615'),
+    # 'Owls' theme.
+    DiscoItem(addon_id=558936, addon_name='Owls'),
 ]
