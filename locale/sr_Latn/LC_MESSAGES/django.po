@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-13 17:07+0000\n"
+"POT-Creation-Date: 2017-03-16 14:02+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4666,18 +4666,6 @@ msgid "Version %s already exists, or was uploaded before."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr "Odaberite ispravan izbor. Taj izbor nije jedan od dostupnih izbora."
-
-#: src/olympia/devhub/forms.py
-msgid ""
-"A file with a version ending with a|alpha|b|beta and an optional number is "
-"detected as beta."
-msgstr ""
-"Datoteka sa verzijom koja se završava sa a|alfa|b|beta i opcionim brojem je "
-"detektovana kao beta."
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platforma Sve ne može se ukombinovati sa određenim platformama."
 
@@ -7489,7 +7477,8 @@ msgid "Next version of this add-on"
 msgstr "Sledeća verzija ovog dodatka"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Older versions"
+#, fuzzy
+msgid "Other versions"
 msgstr "Starije verzije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -7574,13 +7563,13 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Da li ste sigurni da želite da prekinete Vaš zahtev za pregled?"
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid ""
-"Easily grab videos from YouTube, Dailymotion, Facebook, and most other video "
-"sites with this simple download tool."
+"More than just screenshots, Awesome Screenshot Plus lets you annotate images "
+"with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -7594,14 +7583,13 @@ msgid ""
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid ""
-"Automatically play YouTube videos in high-def, turn off annotations, adjust "
-"player size, and many other ways to personalize your video-watching "
-"experience."
+"Easily grab videos from YouTube, Dailymotion, Facebook, and most other video "
+"sites with this simple download tool."
 msgstr ""
 
 #: src/olympia/discovery/data.py

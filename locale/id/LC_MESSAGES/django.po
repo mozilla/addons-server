@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-13 17:07+0000\n"
+"POT-Creation-Date: 2017-03-16 14:02+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -3900,14 +3900,6 @@ msgid "Version %s already exists, or was uploaded before."
 msgstr "Versi %s sudah ada, atau sudah diunggah sebelumnya."
 
 #: src/olympia/devhub/forms.py
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr "Ambil pilihan yang valid. Pilihan itu bukanlah salah satu dari pilihan yang tersedia."
-
-#: src/olympia/devhub/forms.py
-msgid "A file with a version ending with a|alpha|b|beta and an optional number is detected as beta."
-msgstr "File dengan versi yang diakhiri dengan a|alpha|b|beta|pre|rc dan nomor opsional dideteksi sebagai beta."
-
-#: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "Platform Semua tidak bisa digabungkan dengan platform yang spesifik."
 
@@ -6374,7 +6366,8 @@ msgid "Next version of this add-on"
 msgstr "Versi selanjutnya dari pengaya ini"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Older versions"
+#, fuzzy
+msgid "Other versions"
 msgstr "Versi sebelumnya"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6444,11 +6437,11 @@ msgstr "Apakah anda ingin membatalkan permintaan ulasan anda?"
 
 #: src/olympia/discovery/data.py
 #, fuzzy
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6461,11 +6454,11 @@ msgstr ""
 
 #: src/olympia/discovery/data.py
 #, fuzzy
-msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Automatically play YouTube videos in high-def, turn off annotations, adjust player size, and many other ways to personalize your video-watching experience."
+msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
 msgstr ""
 
 #: src/olympia/discovery/data.py

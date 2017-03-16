@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-13 17:08+0000\n"
+"POT-Creation-Date: 2017-03-16 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1565,7 +1565,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html:99
 #: src/olympia/compat/templates/compat/reporter_detail.html:44
-#: src/olympia/devhub/forms.py:771
+#: src/olympia/devhub/forms.py:724
 #: src/olympia/devhub/templates/devhub/versions/list.html:237
 msgid "Version"
 msgstr ""
@@ -1781,7 +1781,7 @@ msgstr ""
 msgid "Developer Hub"
 msgstr ""
 
-#: src/olympia/amo/context_processors.py:82 src/olympia/devhub/views.py:1739
+#: src/olympia/amo/context_processors.py:82 src/olympia/devhub/views.py:1733
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2034,7 +2034,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html:71
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:18
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:20
-#: src/olympia/users/models.py:373
+#: src/olympia/users/models.py:387
 msgid "My Favorite Add-ons"
 msgstr ""
 
@@ -4413,11 +4413,11 @@ msgstr ""
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:224 src/olympia/devhub/forms.py:683
+#: src/olympia/devhub/forms.py:224 src/olympia/devhub/forms.py:636
 msgid "This add-on has a Privacy Policy"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:228 src/olympia/devhub/forms.py:687
+#: src/olympia/devhub/forms.py:228 src/olympia/devhub/forms.py:640
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr ""
 
@@ -4501,11 +4501,11 @@ msgid ""
 "number is detected as beta."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:562 src/olympia/devhub/forms.py:620
+#: src/olympia/devhub/forms.py:562
 msgid "You cannot upload any more files for this version."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:570 src/olympia/devhub/forms.py:626
+#: src/olympia/devhub/forms.py:570
 msgid "Version doesn't match"
 msgstr ""
 
@@ -4514,41 +4514,31 @@ msgstr ""
 msgid "Version %s already exists, or was uploaded before."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:591
-msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
-
-#: src/olympia/devhub/forms.py:597
-msgid ""
-"A file with a version ending with a|alpha|b|beta and an optional number is "
-"detected as beta."
-msgstr ""
-
-#: src/olympia/devhub/forms.py:662
+#: src/olympia/devhub/forms.py:615
 msgid "The platform All cannot be combined with specific platforms."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:667
+#: src/olympia/devhub/forms.py:620
 msgid "A platform can only be chosen once."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:768
+#: src/olympia/devhub/forms.py:721
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:17
 #: src/olympia/editors/forms.py:106 src/olympia/editors/forms.py:185
 #: src/olympia/zadmin/forms.py:49
 msgid "Application"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:772 src/olympia/editors/forms.py:191
+#: src/olympia/devhub/forms.py:725 src/olympia/editors/forms.py:191
 #: src/olympia/zadmin/forms.py:53 src/olympia/zadmin/forms.py:56
 msgid "Select an application first"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:824
+#: src/olympia/devhub/forms.py:777
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:833
+#: src/olympia/devhub/forms.py:786
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this"
 " site and the Firefox Add-ons Manager for millions of users, after it passes "
@@ -4557,7 +4547,7 @@ msgid ""
 "the reviewed files is also possible.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:841
+#: src/olympia/devhub/forms.py:794
 msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately "
 "signed for self-distribution. Updates should be handled by you via an "
@@ -4652,11 +4642,11 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:323 src/olympia/devhub/views.py:327
 #: src/olympia/devhub/views.py:487 src/olympia/devhub/views.py:516
-#: src/olympia/devhub/views.py:567 src/olympia/devhub/views.py:1150
+#: src/olympia/devhub/views.py:567 src/olympia/devhub/views.py:1146
 msgid "Changes successfully saved."
 msgstr ""
 
-#: src/olympia/devhub/views.py:330 src/olympia/devhub/views.py:1596
+#: src/olympia/devhub/views.py:330 src/olympia/devhub/views.py:1590
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4738,50 +4728,50 @@ msgstr ""
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1173
+#: src/olympia/devhub/views.py:1169
 #, python-format
 msgid "Version %s disabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1177
+#: src/olympia/devhub/views.py:1173
 #, python-format
 msgid "Version %s deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1188
+#: src/olympia/devhub/views.py:1184
 #, python-format
 msgid "Version %s re-enabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1199
+#: src/olympia/devhub/views.py:1195
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1635
+#: src/olympia/devhub/views.py:1629
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1637
+#: src/olympia/devhub/views.py:1631
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1717
+#: src/olympia/devhub/views.py:1711
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update "
 "all API clients with the new credentials."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1734
+#: src/olympia/devhub/views.py:1728
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1747
+#: src/olympia/devhub/views.py:1741
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1758
+#: src/olympia/devhub/views.py:1752
 msgid "API key revoked"
 msgstr ""
 
@@ -7181,7 +7171,7 @@ msgid "Next version of this add-on"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:222
-msgid "Older versions"
+msgid "Other versions"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
@@ -7256,14 +7246,14 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
-#: src/olympia/discovery/data.py:25
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+#: src/olympia/discovery/data.py:24
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:29
+#: src/olympia/discovery/data.py:28
 msgid ""
-"Easily grab videos from YouTube, Dailymotion, Facebook, and most other video "
-"sites with this simple download tool."
+"More than just screenshots, Awesome Screenshot Plus lets you annotate images "
+"with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 #: src/olympia/discovery/data.py:36
@@ -7277,21 +7267,20 @@ msgid ""
 msgstr ""
 
 #: src/olympia/discovery/data.py:51
-msgid "Enhance YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py:55
 msgid ""
-"Automatically play YouTube videos in high-def, turn off annotations, adjust "
-"player size, and many other ways to personalize your video-watching "
-"experience."
+"Easily grab videos from YouTube, Dailymotion, Facebook, and most other video "
+"sites with this simple download tool."
 msgstr ""
 
-#: src/olympia/discovery/data.py:63
+#: src/olympia/discovery/data.py:62
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:67
+#: src/olympia/discovery/data.py:66
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ""
 
@@ -12093,21 +12082,21 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
-#: src/olympia/users/models.py:69
+#: src/olympia/users/models.py:77
 msgid "No user with that email."
 msgstr ""
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#: src/olympia/users/models.py:267
+#: src/olympia/users/models.py:281
 msgid "Anonymous user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:326
+#: src/olympia/users/models.py:340
 msgid "Your account has been restricted"
 msgstr ""
 
-#: src/olympia/users/models.py:367
+#: src/olympia/users/models.py:381
 msgid "My Mobile Add-ons"
 msgstr ""
 
