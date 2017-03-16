@@ -289,8 +289,8 @@ natsort==5.0.2 \
     --hash=sha256:765edf99a8cf673cb6c78feec0bfa1f25b560ec046aff19eb6f2aa882890062e
 ndg-httpsclient==0.4.2 \
     --hash=sha256:580987ef194334c50389e0d7de885fccf15605c13c6eecaabd8d6c43768eb8ac
-newrelic==2.80.1.61 \
-    --hash=sha256:aaefd852b9c040b048a3b963753ff408e54fedcb4aa43d195900b9bf7bd56be4
+newrelic==2.82.0.62 \
+    --hash=sha256:482bdb36a9858d4d2aaeec4e211bd5b318310b270aa0211adc8e481e8ca235ec
 nobot==0.4.1 \
     --hash=sha256:e835abfe9b813fe5697475e8fc0dfbaf9c7572f4574e3d2d7e5114bc84f4cf0b \
     --hash=sha256:bae7bc785e81d4edcc7e7e66457697995c47475e0a2aba405b3a5cb82697e880
