@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-16 23:06+0000\n"
+"PO-Revision-Date: 2017-03-16 23:20+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6335,6 +6335,7 @@ msgstr "Bloquez les publicités {start_sub_heading} avec {addon_name}{end_sub_he
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
+"Bien plus que réaliser de simples captures d’écran, Awesome Screenshot Plus vous permet d’annoter des images avec du texte et d’autres images. Enregistrez et partagez des fichiers en un clin d’œil."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
