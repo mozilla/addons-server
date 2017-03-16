@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-16 18:51+0000\n"
+"PO-Revision-Date: 2017-03-16 19:58+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6337,7 +6337,7 @@ msgstr "Čińće fota wobrazowki {start_sub_heading}z {addon_name}{end_sub_headi
 
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Wjace hač jenož fota wobrazowki: Z Awesome Screenshot Plus móžeće wobrazy z tekstom a grafikami wuhotować. Dataje dadźa so cyle jadnorje składować a dźělić."
+msgstr "Wjace hač jenož fota wobrazowki: Z Awesome Screenshot Plus móžeće wobrazy z tekstom a grafikami wuhotować. Dataje dadźa so cyle jednorje składować a dźělić."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
