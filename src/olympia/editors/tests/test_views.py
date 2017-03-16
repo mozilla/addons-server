@@ -2004,6 +2004,8 @@ class TestReview(ReviewBase):
         self.login_as_admin()
         r = self.client.get(self.url)
         expected = [
+            ('Unlisted Review Page',
+                reverse('editors.review', args=('unlisted', self.addon.slug))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
                 reverse('zadmin.addon_manage', args=[self.addon.id])),
