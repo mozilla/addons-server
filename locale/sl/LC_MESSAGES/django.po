@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-16 17:09+0000\n"
+"PO-Revision-Date: 2017-03-16 17:16+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -6379,7 +6379,7 @@ msgstr "Zajemajte posnetke zaslona {start_sub_heading}z {addon_name}{end_sub_hea
 
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
+msgstr "Več kot le posnetki zaslona. Awesome Screenshot Plus vam omogoča dodajanje opomb z besedilom in grafiko, shranjevanje in deljenje posnetkov pa je igrača."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
