@@ -37,9 +37,9 @@ PyJWT==1.4.2 \
     --hash=sha256:87a831b7a3bfa8351511961469ed0462a769724d4da48a501cb8c96d1e17f570
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
-amo-validator==1.10.54 \
-    --hash=sha256:41ebbe8170623ea27f7e8963248ff7ad22edece4a1b6f66675a43300f0448f61 \
-    --hash=sha256:d11a6d964cb29c21c8574e7bf05643c5a7b4cff2a002ab896735d8cebb976ad9
+amo-validator==1.10.55 \
+    --hash=sha256:3ed78f30eb37fc9fdf5d010745ff970515ce32273bc2d6146681e53157321a10 \
+    --hash=sha256:c2463f604b9be9b49e3fec754686f692e439a75fedfc0da9c3f2062f07a341e8
 # amqp is required by kombu
 amqp==1.4.9 \
     --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908 \
@@ -403,9 +403,9 @@ six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
     --hash=sha256:105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a
 # spidermonkey is required by amo-validator
-spidermonkey==52.0a2.post1 \
-    --hash=sha256:3a007a65b40f80507619687d0e410e419d5e871d330f9d903efec3ce84d18bb5 \
-    --hash=sha256:cc81cec797d7160944be2b03cda6f7086eee2ecf051bf26fc3599ad544d08d9b
+spidermonkey==54.0a2.post2 \
+    --hash=sha256:f4b784e654a4542f50599b3fa5752ef8f4213706b9fbd3a6fa28d937f009e49d \
+    --hash=sha256:0e3c78a1750c60666a8358490696f00c69187e4dd06fa66be5eb19b46af6b1fe
 # statsd is required by django-statsd-mozilla
 statsd==3.2.1 \
     --hash=sha256:7aff40c6cdda703193fac6231410c6c0ad5939ce053a168016501e982c755c84 \
