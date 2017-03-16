@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-16 14:01+0000\n"
+"PO-Revision-Date: 2017-03-16 18:30+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4822,9 +4822,8 @@ msgstr ""
 "asulay-agisi i yileqman nniḍen."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
-#, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr "Sekcem aḍris-agi akken ad tessentmeḍ ayen tebɣiḍ: {slug}"
+msgstr "Sekcem aḍris-agi akken ad tsentmeḍ ayen tebɣiḍ: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Please tell us why you are deleting your theme:"
@@ -4922,9 +4921,8 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Azegrir agi yemṣada akked lqem inek n %(app)s."
+msgstr "Azegrir-agi ur imṣada xaṛsum akke yiwen seg ileqman-ik."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
@@ -5015,9 +5013,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tizmilin-agi ad d-ttwaseknent kan i kečč akked imceggiren-nneɣ."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Cancel Review and Disable Version"
-msgstr "Rmed tikelt nniḍen lqem-agi"
+msgstr "Sefsex acegger sakin sens lqem"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
@@ -5603,10 +5600,9 @@ msgid "Port a Chrome Extension"
 msgstr "Ttaɛebga n usiɣzef Chrome"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
-#, fuzzy
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr "Firefox isefrak isnasen API WebExtension, tugett deg-sen mṣadan akked usnas API n usiɣzef isefrak Google, Chrome akked Opera, ihi isiɣzaf inek ad ttwaselkmen di Firefox s kra kan n usnifel."
+msgstr "Firefox isefrak isnasen API WebExtension, tugett deg-sen mṣadan akked usnas API n usiɣzef isefrak  Chrome, Opera akked Edge, ihi isiɣzaf inek ad ttwaselkmen di Firefox s kra kan n usnifel."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
@@ -6146,9 +6142,8 @@ msgid "Next version of this add-on"
 msgstr "Lqem d-iteddun n uzegrir-agi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Other versions"
-msgstr "Ileqman iqbuṛen"
+msgstr "Ileqman-nniḍen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "All versions"
