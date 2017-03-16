@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-16 20:10+0000\n"
+"PO-Revision-Date: 2017-03-16 20:13+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6328,7 +6328,7 @@ msgstr "Робіть знімки екрану {start_sub_heading}за допо�
 
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
+msgstr "Більше, ніж просто знімки екрану, Awesome Screenshot Plus дозволяє анотувати зображення текстом та графікою. Збереження файлів і обмін ними - бальзам на душу."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
