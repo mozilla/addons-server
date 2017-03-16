@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-16 18:30+0000\n"
+"PO-Revision-Date: 2017-03-16 18:37+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6207,9 +6207,8 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Tebɣiḍ ad tesfesxeḍ tuttra n ucegger?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "sider tividyutin {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Ṭṭef igdilen {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
@@ -6224,9 +6223,8 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Sider tividyutin  {start_sub_heading} s {addon_name} {end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
@@ -6607,9 +6605,8 @@ msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>udrig</i> di %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Uɣal ar usebter agejdan DevHub"
+msgstr "Uɣal ar usebter agejdan n ifecka n imcegger"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
@@ -6730,9 +6727,8 @@ msgid "Reviews This Month"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Reviewers"
-msgstr "Imceggiren"
+msgstr "Imceggiren imaynuten"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -6770,9 +6766,8 @@ msgid "Save"
 msgstr "Sekles"
 
 #: src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Add-on Reviewer Performance"
-msgstr "Timellit n umazrag n uzegrir"
+msgstr "Timellit n imcegger n uzegrir"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -6939,14 +6934,12 @@ msgid "Update the whiteboard"
 msgstr "Snifel tafelwit tamellalt"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Iceggiren n useqdac"
+msgstr "Asebter n ucegger ur yettwabdren ara"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Acegger aneggaru"
+msgstr "Asebter n ucegger yettwabedren"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
@@ -8358,11 +8351,13 @@ msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and
 msgstr "<a href=\"%(url)s\">Snefli azegrir-inek</a>. Nettmuddu amezlu n tnezduɣt akked uleqqem baṭel udiɣ nezmer ak-d-nefk tallalt akken ad tawḍeḍ deqs n yemdanen."
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr "Ma ɣur-k tarmit di tneflit n izegrar, <a href=\"%(url)s\">uɣal d amazrag</a> ! Imaẓragen-nneɣ ḥelmen aṭas izegrar s tmsussni tatiknikant leqqayen akken ad sneqden taɣara n tengalt akked urkad."
+msgstr ""
+"Ma ɣur-k tarmit di tneflit n izegrar, <a href=\"%(url)s\">uɣal d imcegger n izegrar</a> ! Imceggiren-nneɣ ḥelmen aṭas izegrar s tmsussni tatiknikant leqqayen akken ad sneqden taɣara n tengalt akked "
+"urkad."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9654,9 +9649,8 @@ msgid "This field is required."
 msgstr "Urti agi yettwasra."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Yessefk ad leqqmeḍ afeṣṣel n usentel inek dagi ticki yettwaqbel."
+msgstr "Ur tezmireḍ ara ad tesnifleḍ azegrir n ucegger ticki yettwarna."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
@@ -9671,14 +9665,12 @@ msgid "This version of the add-on doesn't exist or isn't public."
 msgstr ""
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave a review on your own add-on."
-msgstr "yella win yuran acegger ɣef uzegrir inu"
+msgstr "UR tezmireḍ ara ad ternud acegger i uzegrir-inek."
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Ur tezmireḍ ara ad tesaliḍ afaylu i lqem-agi."
+msgstr "Ur tezmireḍ ara ad ternuḍ ugar n yiwen n ucegger i yiwen n lqem n uzegrir."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
@@ -10700,9 +10692,8 @@ msgid "my sdk-based add-on cannot be upgraded"
 msgstr "amṣada n uzegrir inu s useqdec n sdk ur yettwalqem ara"
 
 #: src/olympia/users/notifications.py
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "azegrir-inu yettucegger sɣuṛ yiwen n umaẓrag"
+msgstr "azegrir-inu yettucegger sɣuṛ yiwen n imcegger."
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
