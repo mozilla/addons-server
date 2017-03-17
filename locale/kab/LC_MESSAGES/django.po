@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-17 15:49+0000\n"
+"PO-Revision-Date: 2017-03-17 16:03+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -7888,11 +7888,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "Adinaṛ n Ɛiraq"
 
 #: src/olympia/lib/constants.py
 msgid "Iran Rial"
-msgstr ""
+msgstr "Ariyal n Iran"
 
 #: src/olympia/lib/constants.py
 msgid "Iceland Krona"
@@ -7928,7 +7928,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Comoros Franc"
-msgstr ""
+msgstr "Afrank n Kumur"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (North) Won"
@@ -8720,7 +8720,7 @@ msgstr ""
 #. #amo is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "#amo (i tallelt icudden ar tnezduɣt n uzegri-ik di AMO)"
 
 #. #jetpack is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
