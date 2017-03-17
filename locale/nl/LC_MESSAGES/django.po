@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-15 10:54+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2017-03-17 09:47+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -8288,11 +8288,11 @@ msgstr "Tunesische dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Tonga Pa'anga"
-msgstr "Tongaanse Pa’anga"
+msgstr "Tongaanse pa’anga"
 
 #: src/olympia/lib/constants.py
 msgid "Turkey Lira"
-msgstr "Turkse Lira"
+msgstr "Turkse lira"
 
 #: src/olympia/lib/constants.py
 msgid "Trinidad and Tobago Dollar"
@@ -8300,35 +8300,35 @@ msgstr "Trinidad en Tobago-dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Tuvalu Dollar"
-msgstr "Tuvaluaanse Dollar"
+msgstr "Tuvaluaanse dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Taiwan New Dollar"
-msgstr "Taiwanese Nieuwe Dollar"
+msgstr "Nieuwe Taiwanese dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Tanzania Shilling"
-msgstr "Tanzaniaanse Shilling"
+msgstr "Tanzaniaanse shilling"
 
 #: src/olympia/lib/constants.py
 msgid "Ukraine Hryvna"
-msgstr "Oekraïense Hryvna"
+msgstr "Oekraïense hryvna"
 
 #: src/olympia/lib/constants.py
 msgid "Uganda Shilling"
-msgstr "Oegandese Shilling"
+msgstr "Oegandese shilling"
 
 #: src/olympia/lib/constants.py
 msgid "United States Dollar"
-msgstr "Amerikaanse Dollar"
+msgstr "Amerikaanse dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Uruguay Peso"
-msgstr "Uruguayaanse Peso"
+msgstr "Uruguayaanse peso"
 
 #: src/olympia/lib/constants.py
 msgid "Uzbekistan Som"
-msgstr "Oezbeekse Som"
+msgstr "Oezbeekse som"
 
 #: src/olympia/lib/constants.py
 msgid "Venezuela Bolivar"
@@ -8336,7 +8336,7 @@ msgstr "Venezolaanse Bolivar"
 
 #: src/olympia/lib/constants.py
 msgid "Viet Nam Dong"
-msgstr "Vietnamese Dong"
+msgstr "Vietnamese dong"
 
 #: src/olympia/lib/constants.py
 msgid "Vanuatu Vatu"
@@ -8356,7 +8356,7 @@ msgstr "Oost-Caribische dollar"
 
 #: src/olympia/lib/constants.py
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Speciale trekkingsrechten IMF"
+msgstr "Speciale trekkingsrechten (IMF)"
 
 #: src/olympia/lib/constants.py
 msgid "Communauté Financière Africaine (BCEAO) Franc"
@@ -8368,15 +8368,15 @@ msgstr "CFP-frank"
 
 #: src/olympia/lib/constants.py
 msgid "Yemen Rial"
-msgstr "Jemenitische Rial"
+msgstr "Jemenitische rial"
 
 #: src/olympia/lib/constants.py
 msgid "South Africa Rand"
-msgstr "Zuid-Afrikaanse Rand"
+msgstr "Zuid-Afrikaanse rand"
 
 #: src/olympia/lib/constants.py
 msgid "Zambia Kwacha"
-msgstr "Zambiaanse Kwacha"
+msgstr "Zambiaanse kwacha"
 
 #: src/olympia/lib/constants.py
 msgid "Zimbabwe Dollar"
@@ -8407,8 +8407,8 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
-"De add-ons die u hier kunt vinden zijn gemaakt door duizenden ontwikkelaars uit onze gemeenschap, variërend van individuele hobbyisten tot grote bedrijven. Alle gepubliceerde add-ons worden "
-"beoordeeld door een team editors voordat ze worden vrijgegeven. Als Experimenteel gemarkeerde add-ons zijn niet beoordeeld en moeten met voorzorg worden geïnstalleerd."
+"De add-ons die hier worden vermeld, zijn gemaakt door duizenden ontwikkelaars uit onze gemeenschap, variërend van individuele hobbyisten tot grote bedrijven. Alle gepubliceerde add-ons worden door "
+"een team van editors beoordeeld voordat ze worden vrijgegeven. Als Experimenteel gemarkeerde add-ons zijn niet beoordeeld en dienen alleen met voorzorg te worden geïnstalleerd."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
@@ -8742,8 +8742,8 @@ msgid ""
 " updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
 "Dit bestand, een zogenaamd <a href=\"%(url)s\">installatiemanifest</a>, wordt gebruikt door in de Add-onbeheerder weergegeven XUL-toepassingen om bij installatie informatie over een add-on op te "
-"halen. Het bevat metadata met de identiteit van de add-on, waaronder informatie over de schrijver, waar meer informatie over de add-on gevonden kan worden, met welke versies van welke toepassingen "
-"de add-on compatibel is, hoe deze moet worden bijgewerkt, enzovoorts. De opmaak van het installatiemanifest is RDF/XML."
+"halen. Het bevat metagegevens met de identiteit van de add-on, waaronder informatie over de schrijver, waar meer informatie over de add-on kan worden gevonden, met welke versies van welke "
+"toepassingen de add-on compatibel is, hoe deze moet worden bijgewerkt, enzovoorts. De opmaak van het installatiemanifest is RDF/XML."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
@@ -8775,10 +8775,10 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
-"Ja. Het is mogelijk, maar een deel van de door deze bibliotheken geboden functionaliteit is beschikbaar via XPCOM, XUL en JavaScript. Daarbij moeten schrijvers opletten of bibliothekenprimitieve "
-"objectprototypes (String.prototype, Date.prototype, enz.) wijzigen en/of globale functies (bijv. de $-functie) definiëren. Deze zijn gevoelig voor conflicten met andere add-ons, vooral als andere "
-"add-ons andere versies van bibliotheken gebruiken enzovoorts. Ontwikkelaars dienen heel, heel voorzichtig te zijn in hun gebruik. Mozilla biedt geen documentatie over hun gebruik bij het bouwen van "
-"add-ons."
+"Ja. Het is mogelijk, maar een deel van de door deze bibliotheken geboden functionaliteit is beschikbaar via XPCOM, XUL en JavaScript. Daarbij moeten schrijvers opletten of bibliotheken primitieve "
+"objectprototypen (String.prototype, Date.prototype, enz.) wijzigen en/of globale functies (zoals de $-functie) definiëren. Deze zijn gevoelig voor conflicten met andere add-ons, vooral als "
+"verschillende add-ons verschillende versies van bibliotheken gebruiken, enzovoorts. Ontwikkelaars dienen heel, heel voorzichtig te zijn in hun gebruik. Mozilla biedt geen documentatie over hun "
+"gebruik bij het bouwen van add-ons."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I debug my add-on?"
@@ -8827,8 +8827,8 @@ msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
-"Ja. Details over lokaliseren van uw add-on kunnen worden gevonden op de pagina <a href=\"%(l10n_url)s\">Lozalization op het Mozilla Developer Network</a>. <a href=\"%(bz_url)s\">Het BabelZilla-"
-"project</a> is ook een geweldige bron om te leren over lokaliseren en vrijwillig helpen bij het vertalen van add-ons."
+"Ja. Details over het lokaliseren van uw add-on zijn te vinden op de <a href=\"%(l10n_url)s\">Lokalisatiepagina op het Mozilla Developer Network</a>. <a href=\"%(bz_url)s\">Het BabelZilla-project</a>"
+" is ook een goede bron voor informatie over lokalisatie en het vrijwillig helpen bij het vertalen van add-ons."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -8862,7 +8862,7 @@ msgstr "Nieuwsgroep"
 #. Label for a link to the extension developers Google Group
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Google Group"
-msgstr "Google discussiegroep"
+msgstr "Google-discussiegroep"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-ons forum"
@@ -8882,7 +8882,7 @@ msgstr "Nee."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr "Zijn er externe ontwikkelaars die ik in kan huren om mijn add-on te bouwen?"
+msgstr "Zijn er externe ontwikkelaars die ik kan inhuren om mijn add-on te bouwen?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8905,8 +8905,8 @@ msgid ""
 "source code, version control, bug tracking and documentation."
 msgstr ""
 "Ja. Veel ontwikkelaars kiezen ervoor hun eigen add-ons te hosten. Door er echter voor te kiezen uw add-on op de <a href=\"%(amo_url)s\">add-onwebsite van Mozilla</a> te laten hosten, krijgt uw add-"
-"on meer aandacht door het grote aantal websitebezoekers. <a href=\"%(md_url)s\">mozdev.org</a> biedt gratis projecthosting voor Mozilla-toepassingen en extensies, en biedt ontwikkelaar hulpmiddelen "
-"om broncode te helpen beheren, versiebeheer, bugtracking en documentatie."
+"on meer aandacht door het grote aantal websitebezoekers. <a href=\"%(md_url)s\">mozdev.org</a> biedt gratis projecthosting voor Mozilla-toepassingen en -extensies, en biedt ontwikkelaars "
+"hulpmiddelen om broncode te helpen beheren, versiebeheer, bugtracking en documentatie."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can Mozilla host my add-on?"
@@ -8926,8 +8926,8 @@ msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
 "Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
 msgstr ""
-"AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is de kweekkas die ontwikkelaars helpt bij bouwen, verspreiden en ondersteunen van fantastische consumentenproducten met "
-"steun van Mozilla. Het biedt u de benodigde hulpmiddelen en de infrastructuur voor het beheer, hosten en presenteren van uw add-on aan een enorme groep Mozilla-gebruikers."
+"Mozilla’s AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is de kweekkas die ontwikkelaars helpt bij het bouwen, verspreiden en ondersteunen van fantastische "
+"consumentenproducten met steun van Mozilla. Het biedt u de benodigde hulpmiddelen en de infrastructuur voor het beheren, hosten en presenteren van uw add-on aan een enorme groep Mozilla-gebruikers."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla keep my account information private?"
@@ -8960,8 +8960,8 @@ msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
 "href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Ja. Mozilla’s <a href=\"%(p_url)s\">Add-onbeleid</a> beschrijft wat een acceptabele inzending is. Dit beleid kan zonder bericht worden gewijzigd. Daarnaast gebruikt het beoordelaarsteam van AMO de "
-"<a href=\"%(g_url)s\">Add-on-beoordelingsgids</a> om ervoor te zorgen dat uw add-on voldoet aan specifieke richtlijnen op het vlak van functionaliteit en beveiliging."
+"Ja. Mozilla’s <a href=\"%(p_url)s\">Add-onbeleid</a> beschrijft wat een acceptabele inzending is. Dit beleid kan zonder bericht worden gewijzigd. Daarnaast gebruikt het team van add-on-beoordelaars "
+"de <a href=\"%(g_url)s\">Add-on-beoordelingsrichtlijnen</a> om ervoor te zorgen dat uw add-on aan specifieke richtlijnen op het vlak van functionaliteit en beveiliging voldoet."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
@@ -8973,8 +8973,8 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
-"Via het dashboard Ontwikkelaarshulpmiddelen kunt uw add-ons bij AMO uploaden en indienen. U dient een geregistreerde gebruiker te zijn voordat u een add-on kunt indienen. Lees voordat u uw add-on "
-"indient de <a href=\"%(url)s\">Add-on-beoordelingsrichtlijnen</a> van AMO zodat uw add-on aan de richtlijnen die beoordelaars gebruiken om add-ons te beoordelen voldoet."
+"Via het dashboard Ontwikkelaarshulpmiddelen kunt uw add-ons bij AMO uploaden en indienen. U moet een geregistreerde gebruiker zijn voordat u een add-on kunt indienen. Lees voordat u uw add-on "
+"indient de <a href=\"%(url)s\">Add-on-beoordelingsgids</a> om ervoor te zorgen dat uw add-on aan de richtlijnen voldoet die door beoordelaars worden gebruikt."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9025,7 +9025,7 @@ msgid ""
 "<a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Alle ingediende add-ons, of het nu nieuwe of bijgewerkte zijn, worden beoordeeld om zeker te stellen dat Mozilla-gebruikers een stabiele en veilige ervaring hebben. Alle ingediende add-ons worden "
-"beoordeeld volgens de regels in de <a href=\"%(url)s\">Add-on-beoordelingsrichtlijnen</a>."
+"beoordeeld volgens de regels in de <a href=\"%(url)s\">Add-on-beoordelingsgids</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
@@ -9053,7 +9053,7 @@ msgid ""
 "that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
 "Het Add-on-beoordelaarsteam volgt de <a href=\"%(url)s\">Add-on-beoordelingsgids</a> bij het testen van een add-on voor acceptatie op AMO. Het is belangrijk dat add-onontwikkelaars deze gids "
-"doornemen om ervoor te zorgen dat veelvoorkomende probleemgebieden zijn geadresseerd voordat hun add-on voor beoordeling wordt ingediend. Hierdoor wordt het beoordelingsproces aanzienlijk versneld."
+"doornemen om ervoor te zorgen dat veelvoorkomende probleemgebieden zijn aangepakt voordat hun add-on voor beoordeling wordt ingediend. Hierdoor wordt het beoordelingsproces aanzienlijk versneld."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9084,8 +9084,8 @@ msgid ""
 "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Daarom is het zeer belangrijk om de <a href=\"%(g_url)s\">Add-on-beoordelingsgids</a> te lezen om ervoor te zorgen dat uw add-on is opgezet volgens de verwachtingen. Het is ook een goed idee om de "
-"blogpost <a href=\"%(blog_url)s\">Uw add-on met succes beoordeeld krijgen</a> te lezen, die een uitstekend inzicht in een soepel beoordelingsproces van uw add-on biedt."
+"Daarom is het zeer belangrijk dat u de <a href=\"%(g_url)s\">Add-on-beoordelingsgids</a> leest om ervoor te zorgen dat uw add-on volgens de verwachtingen is opgezet. Het is ook een goed idee om het "
+"blogbericht <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> te lezen, dat een uitstekend inzicht in een soepel beoordelingsproces van uw add-on biedt."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -9097,7 +9097,7 @@ msgstr "Het Statistiekendashboard in het dashboard Ontwikkelaarshulpmiddelen bie
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many active users are using my add-on?"
-msgstr "Hoe kan ik zien hoe veel actieve gebruikers mijn add-on gebruiken?"
+msgstr "Hoe kan ik zien hoeveel actieve gebruikers mijn add-on gebruiken?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9123,7 +9123,7 @@ msgid ""
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
 "Dat hangt ervan af. Als u alleen maar een beschrijving van uw add-on wijzigt of de ‘maxVersion’ bijwerkt om compatibiliteit met een nieuwe versie van Mozilla-software aan te geven, hoeft uw add-on "
-"niet opnieuw te worden beoordeeld. Als u echter een nieuw bijgewerkt bestand uploadt, moet uw add-on door een Add-on-beoordelaar worden beoordeeld."
+"niet opnieuw te worden beoordeeld. Als u echter een nieuw bijgewerkt bestand uploadt, dient uw add-on door een Add-on-beoordelaar te worden beoordeeld."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -9474,7 +9474,7 @@ msgstr "In onze galerij gehoste add-ons zijn gratis, tenzij duidelijk anderszins
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr "Wat betekent het wanneer een add-on vraagt om een bijdrage?"
+msgstr "Wat houdt het in als een add-on om bijdragen vraagt?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -9506,7 +9506,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
-msgstr "Wat betekent het als een add-on als langzaam is gemarkeerd?"
+msgstr "Wat houdt het in als een add-on als langzaam is gemarkeerd?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown."
@@ -9523,8 +9523,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"Meld u aan met uw account en bezoek de beoordelingspagina van de add-on om een gebruikersbeoordeling van een add-on te melden. Zoek de beoordeling die u wilt melden, klik op ‘Deze beoordeling "
-"melden’ en selecteer een reden. Ons editorteam onderzoekt de beoordeling en neemt toepasselijke actie."
+"Meld u aan met uw account en bezoek de beoordelingspagina van de add-on om een gebruikersbeoordeling van een add-on te rapporteren. Zoek de beoordeling die u wilt rapporteren, klik op ‘Deze "
+"beoordeling rapporteren’ en selecteer een reden. Ons editorteam onderzoekt de beoordeling en neemt toepasselijke actie."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -9646,7 +9646,7 @@ msgstr "Geef specifieke en behulpzame details. Bijvoorbeeld:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Did the add-on work as you expected it to?"
-msgstr "Werkte de add-on als verwacht?"
+msgstr "Werkte de add-on zoals verwacht?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "What features did you like or dislike?"
@@ -9681,16 +9681,16 @@ msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
-"Technische problemen, ondersteuningsvragen of functieaanvragen plaatsen. Gebruik indien beschikbaar hiervoor de ondersteuningsopties voor elke add-on. U vindt deze in de zijkolom naast de sectie "
+"Technische problemen, ondersteuningsvragen of functieaanvragen plaatsen. Gebruik hiervoor de ondersteuningsopties voor elke add-on, wanneer beschikbaar. U vindt deze in de zijkolom naast de sectie "
 "Over deze add-on."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Schrijven van beoordelingen voor add-ons die u niet persoonlijk hebt gebruikt."
+msgstr "Beoordelingen schrijven voor add-ons die u niet persoonlijk hebt gebruikt."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Gebruik van lastering, seksueel getinte taal of taal die als haatdragend kan worden bestempeld."
+msgstr "Gevloek, seksueel getinte taal of taal die als haatdragend kan worden bestempeld gebruiken."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
@@ -9713,8 +9713,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Een add-on bekritiseren voor iets waarvoor het bedoeld is. Bijvoorbeeld een negatieve beoordeling van een add-on geven voor het weergeven van advertenties of verplichte gegevensinzameling, wanneer "
-"dat het doel van de add-on is, of als de add-on gegevens moet verzamelen om te werken."
+"Een add-on bekritiseren voor iets waarvoor het is bedoeld. Bijvoorbeeld een negatieve beoordeling van een add-on geven voor het weergeven van advertenties of verplichte gegevensverzameling, wanneer "
+"dat het doel van de add-on is, of als de add-on gegevens moet verzamelen om te kunnen functioneren."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "How can I report a problematic review?"
@@ -9725,12 +9725,12 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Rapporteer of label twijfelachtige beoordelingen door op ‘Deze beoordeling rapporteren’ te klikken, waarna deze ter evaluatie naar de website zal worden gestuurd. Ons evaluatieteam gebruikt de "
+"Rapporteer of markeer twijfelachtige beoordelingen door op ‘Deze beoordeling rapporteren’ te klikken, waarna deze ter evaluatie naar de website zal worden gestuurd. Ons evaluatieteam gebruikt de "
 "Beoordelingsrichtlijnen om te evalueren of de beoordeling al dan niet moet worden verwijderd of op de website moet worden teruggeplaatst."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Ik ben een add-onschrijver, kan ik reageren op beoordelingen?"
+msgstr "Ik ben een add-onschrijver, kan ik op beoordelingen reageren?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 #, python-format
@@ -9813,7 +9813,7 @@ msgstr "Bij het selecteren van ‘Overig’ als reden voor markering moet een ko
 
 #: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
-msgstr "Beoordeling bewaren; labels verwijderen"
+msgstr "Beoordeling behouden; markeringen verwijderen"
 
 #: src/olympia/reviews/forms.py
 msgid "Skip for now"
@@ -9833,7 +9833,7 @@ msgstr "Dit veld is vereist."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "U kunt de bij een beoordeling behorende add-on niet wijzigen zodra deze is aangemaakt."
+msgstr "U kunt de add-on van een beoordeling niet wijzigen als deze is aangemaakt."
 
 #: src/olympia/reviews/serializers.py
 msgid "You can't reply to a review that is already a reply."
@@ -9857,7 +9857,7 @@ msgstr "U kunt niet meerdere beoordelingen voor dezelfde versie van een add-on s
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr "Bedankt; deze beoordeling is aangeduid voor goedkeuring door een editor."
+msgstr "Bedankt; deze beoordeling is gemarkeerd voor goedkeuring door een editor."
 
 #: src/olympia/reviews/templates/reviews/add.html
 msgid "Add a review for {0}"
@@ -10696,7 +10696,7 @@ msgstr "vereist"
 
 #: src/olympia/templates/includes/forms.html
 msgid "Required fields"
-msgstr "Verplichte velden"
+msgstr "Vereiste velden"
 
 #: src/olympia/templates/mobile/base_addons.html
 msgid "Mobile Home"
@@ -10935,7 +10935,7 @@ msgstr "Gebruikersnotificaties"
 
 #: src/olympia/users/views.py
 msgid "An email address is required."
-msgstr "Een e-mailadres is verplicht."
+msgstr "Een e-mailadres is vereist."
 
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
@@ -11025,7 +11025,7 @@ msgstr "Stel uw schermnaam of gebruikersnaam in om het registratieproces te volt
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Beheer basale accountinformatie, zoals uw gebruikersnaam en instellingen van Firefox Accounts."
+msgstr "Basale accountgegevens beheren, zoals uw gebruikersnaam en instellingen van Firefox Accounts."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
