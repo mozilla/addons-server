@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-16 18:37+0000\n"
+"PO-Revision-Date: 2017-03-17 15:49+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6720,11 +6720,11 @@ msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
-msgstr ""
+msgstr "Amḍan amatu n iceggiren"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Iceggiren n waggur-agi"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "New Reviewers"
@@ -6743,7 +6743,7 @@ msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html src/olympia/editors/templates/editors/leaderboard.html
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Agzul n umaẓrag"
 
 #: src/olympia/editors/templates/editors/leaderboard.html src/olympia/editors/templates/editors/performance.html
 msgid "No review points awarded yet."
@@ -7237,15 +7237,15 @@ msgstr "Afaylu-agi d akaram."
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Kcem ar isefka-ik i {name}"
 
 #: src/olympia/files/models.py
 msgid "Access your data on various websites"
-msgstr ""
+msgstr "Kcem ar isefka-ik ɣef yesmal web"
 
 #: src/olympia/files/models.py
 msgid "Access your data for all websites"
-msgstr ""
+msgstr "Kcem ar yesmal-ik deg ismal web meṛṛa"
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -7373,7 +7373,7 @@ msgstr "Sider afaylu"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Previous diff"
-msgstr ""
+msgstr "Amgired yezrin"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Previous note"
@@ -7381,7 +7381,7 @@ msgstr "Tazmilt n deffir"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Next diff"
-msgstr ""
+msgstr "Amgired d-iteddun"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Next note"
@@ -7389,7 +7389,7 @@ msgstr "Tazmilt n zdat"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Expand all"
-msgstr ""
+msgstr "Semɣeṛ akk"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Hide or unhide tree"
@@ -7413,7 +7413,7 @@ msgstr ""
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Ur yettwasebded ara yakan."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Shopping Made Easy"
@@ -7896,27 +7896,27 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Iceland Krona"
-msgstr ""
+msgstr "Akurun n Island"
 
 #: src/olympia/lib/constants.py
 msgid "Jersey Pound"
-msgstr ""
+msgstr "apawnd n Jirzay"
 
 #: src/olympia/lib/constants.py
 msgid "Jamaica Dollar"
-msgstr ""
+msgstr "Adulaṛ n Jamayik"
 
 #: src/olympia/lib/constants.py
 msgid "Jordan Dinar"
-msgstr ""
+msgstr "Adinaṛ n Juṛdan"
 
 #: src/olympia/lib/constants.py
 msgid "Japan Yen"
-msgstr ""
+msgstr "Ayen n Japun"
 
 #: src/olympia/lib/constants.py
 msgid "Kenya Shilling"
-msgstr ""
+msgstr "Aciling n Kinya"
 
 #: src/olympia/lib/constants.py
 msgid "Kyrgyzstan Som"
