@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-16 16:07+0000\n"
+"PO-Revision-Date: 2017-03-15 10:54+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -7800,11 +7800,11 @@ msgstr "Brunei Darussalam-dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Bolivia Boliviano"
-msgstr "Boliviaanse Boliviano"
+msgstr "Boliviaanse boliviano"
 
 #: src/olympia/lib/constants.py
 msgid "Brazil Real"
-msgstr "Braziliaanse Real"
+msgstr "Braziliaanse real"
 
 #: src/olympia/lib/constants.py
 msgid "Bahamas Dollar"
@@ -7812,15 +7812,15 @@ msgstr "Bahama-dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Bhutan Ngultrum"
-msgstr "Bhutaanse Ngultrum"
+msgstr "Bhutaanse ngultrum"
 
 #: src/olympia/lib/constants.py
 msgid "Botswana Pula"
-msgstr "Botswaanse Pula"
+msgstr "Botswaanse pula"
 
 #: src/olympia/lib/constants.py
 msgid "Belarus Ruble"
-msgstr "Wit-Russische Roebel"
+msgstr "Wit-Russische roebel"
 
 #: src/olympia/lib/constants.py
 msgid "Belize Dollar"
@@ -7844,7 +7844,7 @@ msgstr "Chileense peso"
 
 #: src/olympia/lib/constants.py
 msgid "China Yuan Renminbi"
-msgstr "Chinese Yuan Renminbi"
+msgstr "Chinese yuan renminbi"
 
 #: src/olympia/lib/constants.py
 msgid "Colombia Peso"
@@ -7852,11 +7852,11 @@ msgstr "Colombiaanse peso"
 
 #: src/olympia/lib/constants.py
 msgid "Costa Rica Colon"
-msgstr "Costa Ricaanse Colon"
+msgstr "Costa Ricaanse colon"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Convertible Peso"
-msgstr "Cubaanse converteerbare Peso"
+msgstr "Cubaanse converteerbare peso"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Peso"
@@ -7864,11 +7864,11 @@ msgstr "Cubaanse peso"
 
 #: src/olympia/lib/constants.py
 msgid "Cape Verde Escudo"
-msgstr "Kaapverdische Escudo"
+msgstr "Kaapverdische escudo"
 
 #: src/olympia/lib/constants.py
 msgid "Czech Republic Koruna"
-msgstr "Tsjechische Kroon"
+msgstr "Tsjechische kroon"
 
 #: src/olympia/lib/constants.py
 msgid "Djibouti Franc"
@@ -7876,7 +7876,7 @@ msgstr "Djibouti frank"
 
 #: src/olympia/lib/constants.py
 msgid "Denmark Krone"
-msgstr "Deense Kroon"
+msgstr "Deense kroon"
 
 #: src/olympia/lib/constants.py
 msgid "Dominican Republic Peso"
@@ -7884,19 +7884,19 @@ msgstr "Dominicaanse peso"
 
 #: src/olympia/lib/constants.py
 msgid "Algeria Dinar"
-msgstr "Algerijnse Dinar"
+msgstr "Algerijnse dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Egypt Pound"
-msgstr "Egyptische Pond"
+msgstr "Egyptische pond"
 
 #: src/olympia/lib/constants.py
 msgid "Eritrea Nakfa"
-msgstr "Eritrese Nakfa"
+msgstr "Eritrese nakfa"
 
 #: src/olympia/lib/constants.py
 msgid "Ethiopia Birr"
-msgstr "Ethiopische Birr"
+msgstr "Ethiopische birr"
 
 #: src/olympia/lib/constants.py
 msgid "Euro Member Countries"
@@ -7916,31 +7916,31 @@ msgstr "Britse pond"
 
 #: src/olympia/lib/constants.py
 msgid "Georgia Lari"
-msgstr "Georgische Lari"
+msgstr "Georgische lari"
 
 #: src/olympia/lib/constants.py
 msgid "Guernsey Pound"
-msgstr "Guernsey Pond"
+msgstr "Guernsey-pond"
 
 #: src/olympia/lib/constants.py
 msgid "Ghana Cedi"
-msgstr "Ghanese Cedi"
+msgstr "Ghanese cedi"
 
 #: src/olympia/lib/constants.py
 msgid "Gibraltar Pound"
-msgstr "Gibraltarese Pond"
+msgstr "Gibraltarese pond"
 
 #: src/olympia/lib/constants.py
 msgid "Gambia Dalasi"
-msgstr "Gambiaanse Dalasi"
+msgstr "Gambiaanse dalasi"
 
 #: src/olympia/lib/constants.py
 msgid "Guinea Franc"
-msgstr "Guinese Frank"
+msgstr "Guinese frank"
 
 #: src/olympia/lib/constants.py
 msgid "Guatemala Quetzal"
-msgstr "Guatemalteekse Quetzal"
+msgstr "Guatemalteekse quetzal"
 
 #: src/olympia/lib/constants.py
 msgid "Guyana Dollar"
@@ -7952,19 +7952,19 @@ msgstr "Hong Kong-dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Honduras Lempira"
-msgstr "Hondurese Lempira"
+msgstr "Hondurese lempira"
 
 #: src/olympia/lib/constants.py
 msgid "Croatia Kuna"
-msgstr "Kroatische Kuna"
+msgstr "Kroatische kuna"
 
 #: src/olympia/lib/constants.py
 msgid "Haiti Gourde"
-msgstr "Haïtiaanse Gourde"
+msgstr "Haïtiaanse gourde"
 
 #: src/olympia/lib/constants.py
 msgid "Hungary Forint"
-msgstr "Hongaarse Forint"
+msgstr "Hongaarse forint"
 
 #: src/olympia/lib/constants.py
 msgid "Indonesia Rupiah"
@@ -7972,11 +7972,11 @@ msgstr "Indonesische roepia"
 
 #: src/olympia/lib/constants.py
 msgid "Israel Shekel"
-msgstr "Israëlische Shekel"
+msgstr "Israëlische shekel"
 
 #: src/olympia/lib/constants.py
 msgid "Isle of Man Pound"
-msgstr "Isle of Man-Pond"
+msgstr "Isle of Man-pond"
 
 #: src/olympia/lib/constants.py
 msgid "India Rupee"
@@ -7984,59 +7984,59 @@ msgstr "Indiase roepie"
 
 #: src/olympia/lib/constants.py
 msgid "Iraq Dinar"
-msgstr "Iraakse Dinar"
+msgstr "Iraakse dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Iran Rial"
-msgstr "Iraanse Rial"
+msgstr "Iraanse rial"
 
 #: src/olympia/lib/constants.py
 msgid "Iceland Krona"
-msgstr "IJslandse Kroon"
+msgstr "IJslandse kroon"
 
 #: src/olympia/lib/constants.py
 msgid "Jersey Pound"
-msgstr "Jersey-Pond"
+msgstr "Jersey-pond"
 
 #: src/olympia/lib/constants.py
 msgid "Jamaica Dollar"
-msgstr "Jamaicaanse Dollar"
+msgstr "Jamaicaanse dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Jordan Dinar"
-msgstr "Jordaanse Dinar"
+msgstr "Jordaanse dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Japan Yen"
-msgstr "Japanse Yen"
+msgstr "Japanse yen"
 
 #: src/olympia/lib/constants.py
 msgid "Kenya Shilling"
-msgstr "Keniaanse Shilling"
+msgstr "Keniaanse shilling"
 
 #: src/olympia/lib/constants.py
 msgid "Kyrgyzstan Som"
-msgstr "Kirgizische Som"
+msgstr "Kirgizische som"
 
 #: src/olympia/lib/constants.py
 msgid "Cambodia Riel"
-msgstr "Cambodjaanse Riel"
+msgstr "Cambodjaanse riel"
 
 #: src/olympia/lib/constants.py
 msgid "Comoros Franc"
-msgstr "Comorese Frank"
+msgstr "Comorese frank"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (North) Won"
-msgstr "Noord-Koreaanse Won"
+msgstr "Noord-Koreaanse won"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (South) Won"
-msgstr "Zuid-Koreaanse Won"
+msgstr "Zuid-Koreaanse won"
 
 #: src/olympia/lib/constants.py
 msgid "Kuwait Dinar"
-msgstr "Koeweitse Dinar"
+msgstr "Koeweitse dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Cayman Islands Dollar"
@@ -8044,179 +8044,179 @@ msgstr "Kaaimaneilanden-dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Kazakhstan Tenge"
-msgstr "Kazachse Tenge"
+msgstr "Kazachse tenge"
 
 #: src/olympia/lib/constants.py
 msgid "Laos Kip"
-msgstr "Laotiaanse Kip"
+msgstr "Laotiaanse kip"
 
 #: src/olympia/lib/constants.py
 msgid "Lebanon Pound"
-msgstr "Libanese Pond"
+msgstr "Libanese pond"
 
 #: src/olympia/lib/constants.py
 msgid "Sri Lanka Rupee"
-msgstr "Sri Lankese Roepie"
+msgstr "Sri Lankese roepie"
 
 #: src/olympia/lib/constants.py
 msgid "Liberia Dollar"
-msgstr "Liberiaanse Dollar"
+msgstr "Liberiaanse dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Lesotho Loti"
-msgstr "Lesotho-Loti"
+msgstr "Lesothaanse loti"
 
 #: src/olympia/lib/constants.py
 msgid "Lithuania Litas"
-msgstr "Litouwse Litas"
+msgstr "Litouwse litas"
 
 #: src/olympia/lib/constants.py
 msgid "Latvia Lat"
-msgstr "Letse Lat"
+msgstr "Letse lat"
 
 #: src/olympia/lib/constants.py
 msgid "Libya Dinar"
-msgstr "Libische Dinar"
+msgstr "Libische dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Morocco Dirham"
-msgstr "Marokkaanse Dirham"
+msgstr "Marokkaanse dirham"
 
 #: src/olympia/lib/constants.py
 msgid "Moldova Leu"
-msgstr "Moldavische Leu"
+msgstr "Moldavische leu"
 
 #: src/olympia/lib/constants.py
 msgid "Madagascar Ariary"
-msgstr "Malagassische Ariary"
+msgstr "Malagassische ariary"
 
 #: src/olympia/lib/constants.py
 msgid "Macedonia Denar"
-msgstr "Macedonische Denar"
+msgstr "Macedonische denar"
 
 #: src/olympia/lib/constants.py
 msgid "Myanmar (Burma) Kyat"
-msgstr "Myanmar (Burmese) Kyat"
+msgstr "Myanmarese (Birmaanse) kyat"
 
 #: src/olympia/lib/constants.py
 msgid "Mongolia Tughrik"
-msgstr "Mongoolse Tughrik"
+msgstr "Mongoolse tughrik"
 
 #: src/olympia/lib/constants.py
 msgid "Macau Pataca"
-msgstr "Macause Pataca"
+msgstr "Macause pataca"
 
 #: src/olympia/lib/constants.py
 msgid "Mauritania Ouguiya"
-msgstr "Mauritaanse Ouguiya"
+msgstr "Mauritaanse ouguiya"
 
 #: src/olympia/lib/constants.py
 msgid "Mauritius Rupee"
-msgstr "Mauritiaanse Roepie"
+msgstr "Mauritiaanse roepie"
 
 #: src/olympia/lib/constants.py
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr "Maldivische (Malediven) Rufiyaa"
+msgstr "Maldivische (Malediven) rufiyaa"
 
 #: src/olympia/lib/constants.py
 msgid "Malawi Kwacha"
-msgstr "Malawiaanse Kwacha"
+msgstr "Malawiaanse kwacha"
 
 #: src/olympia/lib/constants.py
 msgid "Mexico Peso"
-msgstr "Mexicaanse Peso"
+msgstr "Mexicaanse peso"
 
 #: src/olympia/lib/constants.py
 msgid "Malaysia Ringgit"
-msgstr "Maleisische Ringgit"
+msgstr "Maleisische ringgit"
 
 #: src/olympia/lib/constants.py
 msgid "Mozambique Metical"
-msgstr "Mozambikaanse Metical"
+msgstr "Mozambikaanse metical"
 
 #: src/olympia/lib/constants.py
 msgid "Namibia Dollar"
-msgstr "Namibische Dollar"
+msgstr "Namibische dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Nigeria Naira"
-msgstr "Nigeriaanse Naira"
+msgstr "Nigeriaanse naira"
 
 #: src/olympia/lib/constants.py
 msgid "Nicaragua Cordoba"
-msgstr "Nicaraguaanse Cordoba"
+msgstr "Nicaraguaanse cordoba"
 
 #: src/olympia/lib/constants.py
 msgid "Norway Krone"
-msgstr "Noorse Kroon"
+msgstr "Noorse kroon"
 
 #: src/olympia/lib/constants.py
 msgid "Nepal Rupee"
-msgstr "Nepalese Roepie"
+msgstr "Nepalese roepie"
 
 #: src/olympia/lib/constants.py
 msgid "New Zealand Dollar"
-msgstr "Nieuw-Zeelandse Dollar"
+msgstr "Nieuw-Zeelandse dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Oman Rial"
-msgstr "Omaanse Rial"
+msgstr "Omaanse rial"
 
 #: src/olympia/lib/constants.py
 msgid "Panama Balboa"
-msgstr "Panamese Balboa"
+msgstr "Panamese balboa"
 
 #: src/olympia/lib/constants.py
 msgid "Peru Nuevo Sol"
-msgstr "Peruaanse Nuevo Sol"
+msgstr "Peruviaanse nieuwe sol"
 
 #: src/olympia/lib/constants.py
 msgid "Papua New Guinea Kina"
-msgstr "Papoea Nieuw-Guinese Kina"
+msgstr "Papoea-Nieuw-Guinese kina"
 
 #: src/olympia/lib/constants.py
 msgid "Philippines Peso"
-msgstr "Filipijnse Peso"
+msgstr "Filipijnse peso"
 
 #: src/olympia/lib/constants.py
 msgid "Pakistan Rupee"
-msgstr "Pakistaanse Roepie"
+msgstr "Pakistaanse roepie"
 
 #: src/olympia/lib/constants.py
 msgid "Poland Zloty"
-msgstr "Poolse Zloty"
+msgstr "Poolse zloty"
 
 #: src/olympia/lib/constants.py
 msgid "Paraguay Guarani"
-msgstr "Paraguayaanse Guarani"
+msgstr "Paraguayaanse guarani"
 
 #: src/olympia/lib/constants.py
 msgid "Qatar Riyal"
-msgstr "Qatarese Riyal"
+msgstr "Qatarese riyal"
 
 #: src/olympia/lib/constants.py
 msgid "Romania New Leu"
-msgstr "Roemeense Nieuwe Leu"
+msgstr "Roemeense nieuwe leu"
 
 #: src/olympia/lib/constants.py
 msgid "Serbia Dinar"
-msgstr "Servische Dinar"
+msgstr "Servische dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Russia Ruble"
-msgstr "Russische Roebel"
+msgstr "Russische roebel"
 
 #: src/olympia/lib/constants.py
 msgid "Rwanda Franc"
-msgstr "Rwandese Frank"
+msgstr "Rwandese frank"
 
 #: src/olympia/lib/constants.py
 msgid "Saudi Arabia Riyal"
-msgstr "Saudi-Arabische Riyal"
+msgstr "Saudi-Arabische riyal"
 
 #: src/olympia/lib/constants.py
 msgid "Solomon Islands Dollar"
-msgstr "Salomonseilanden Dollar"
+msgstr "Salomon-dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Seychelles Rupee"
@@ -8224,19 +8224,19 @@ msgstr "Seychellen-roepie"
 
 #: src/olympia/lib/constants.py
 msgid "Sudan Pound"
-msgstr "Soedanese Pond"
+msgstr "Soedanese pond"
 
 #: src/olympia/lib/constants.py
 msgid "Sweden Krona"
-msgstr "Zweedse Kroon"
+msgstr "Zweedse kroon"
 
 #: src/olympia/lib/constants.py
 msgid "Singapore Dollar"
-msgstr "Singaporese Dollar"
+msgstr "Singaporese dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Saint Helena Pound"
-msgstr "Sint-Helena-Pond"
+msgstr "Sint-Heleense pond"
 
 #: src/olympia/lib/constants.py
 msgid "Sierra Leone Leone"
@@ -8244,7 +8244,7 @@ msgstr "Sierraleoonse leone"
 
 #: src/olympia/lib/constants.py
 msgid "Somalia Shilling"
-msgstr "Somalische Shilling"
+msgstr "Somalische shilling"
 
 #: src/olympia/lib/constants.py
 msgid "Seborga Luigino"
@@ -8252,31 +8252,31 @@ msgstr "Seborgese Luigino"
 
 #: src/olympia/lib/constants.py
 msgid "Suriname Dollar"
-msgstr "Surinaamse Dollar"
+msgstr "Surinaamse dollar"
 
 #: src/olympia/lib/constants.py
 msgid "São Tomé and Príncipe Dobra"
-msgstr "São Tomé en Príncipese Dobra"
+msgstr "Santomese dobra"
 
 #: src/olympia/lib/constants.py
 msgid "El Salvador Colon"
-msgstr "El Salvadoraanse Colon"
+msgstr "El Salvadoraanse colon"
 
 #: src/olympia/lib/constants.py
 msgid "Syria Pound"
-msgstr "Syrische Pond"
+msgstr "Syrische pond"
 
 #: src/olympia/lib/constants.py
 msgid "Swaziland Lilangeni"
-msgstr "Swaziland-Lilangeni"
+msgstr "Swazische lilangeni"
 
 #: src/olympia/lib/constants.py
 msgid "Thailand Baht"
-msgstr "Thaise Baht"
+msgstr "Thaise baht"
 
 #: src/olympia/lib/constants.py
 msgid "Tajikistan Somoni"
-msgstr "Tadzjiekse Somoni"
+msgstr "Tadzjiekse somoni"
 
 #: src/olympia/lib/constants.py
 msgid "Turkmenistan Manat"
@@ -8284,7 +8284,7 @@ msgstr "Turkmeense Manat"
 
 #: src/olympia/lib/constants.py
 msgid "Tunisia Dinar"
-msgstr "Tunesische Dinar"
+msgstr "Tunesische dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Tonga Pa'anga"
