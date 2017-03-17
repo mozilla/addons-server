@@ -211,9 +211,9 @@ google-api-python-client==1.2 \
     --hash=sha256:3cb3f39c4a634950aee34f52e2a160b9a064b15210f7196ba364f670780aa675 \
     --hash=sha256:f6506e837a7401ecd97cad45900716eb12fb480f303d0dee5c61e8a4b16ff5ec # pyup: ==1.2
 # html5lib is required by bleach, rdflib
-# see setup.py of bleach for supported and required versions
-html5lib==0.9999999 \
-    --hash=sha256:2612a191a8d5842bfa057e41ba50bbb9dcb722419d2408c78cff4758d0754868 # pyup: <=0.9999999
+html5lib==0.999999999 \
+    --hash=sha256:b8934484cf22f1db684c0fae27569a0db404d0208d20163fbf51cc537245d008 \
+    --hash=sha256:ee747c0ffd3028d2722061936b5c65ee4fe13c8e4613519b4447123fc4546298
 # httplib2 is required by google-api-python-client
 httplib2==0.10.3 \
     --hash=sha256:e404d3b7bd86c1bc931906098e7c1305d6a3a6dcef141b8bb1059903abb3ceeb
@@ -400,3 +400,5 @@ urllib3==1.20 \
 vine==1.1.3 \
     --hash=sha256:739b19304065de99bd1f4665abe461b449b1022c1e4f89a7925db9d50e9741ea \
     --hash=sha256:87b95da19249373430a8fafca36f1aecb7aa0f1cc78545877857afc46aea2441
+webencodings==0.5 \
+    --hash=sha256:a5c55ee93b24e740fe951c37b5c228dccc1f171450e188555a775261cce1b904

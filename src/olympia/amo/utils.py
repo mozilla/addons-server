@@ -36,7 +36,7 @@ import pytz
 from babel import Locale
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
-from html5lib.serializer.htmlserializer import HTMLSerializer
+from html5lib.serializer import HTMLSerializer
 from jingo import get_env, get_standard_processors
 from PIL import Image
 from validator import unicodehelper
