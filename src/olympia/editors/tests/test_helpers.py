@@ -317,6 +317,7 @@ class TestReviewHelper(TestCase):
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
         base_fragment = 'reply to this email or join #addon-reviewers'
+        legacy_cta_fragment = 'add-ons are compatible past Firefox 57'
         for template in ('nominated_to_public', 'nominated_to_sandbox',
                          'pending_to_public', 'pending_to_sandbox',
                          'author_super_review', 'unlisted_to_reviewed_auto'):
@@ -324,11 +325,13 @@ class TestReviewHelper(TestCase):
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
             assert base_fragment in mail.outbox[0].body
+            assert legacy_cta_fragment in mail.outbox[0].body
 
     @override_switch('activity-email', active=True)
     def test_notify_email_activity_email(self):
         self.helper.set_data(self.get_data())
         base_fragment = 'If you need to send file attachments'
+        legacy_cta_fragment = 'add-ons are compatible past Firefox 57'
         user = self.addon.listed_authors[0]
         ActivityLogToken.objects.create(version=self.version, user=user)
         uuid = self.version.token.get(user=user).uuid.hex
@@ -342,7 +345,20 @@ class TestReviewHelper(TestCase):
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
             assert base_fragment in mail.outbox[0].body
+            assert legacy_cta_fragment in mail.outbox[0].body
             assert mail.outbox[0].reply_to == [reply_email]
+
+    def test_no_legacy_addon_cta_in_webext(self):
+        self.version.all_files[0].update(is_webextension=True)
+        self.helper.set_data(self.get_data())
+        legacy_cta_fragment = 'add-ons are compatible past Firefox 57'
+        for template in ('nominated_to_public', 'nominated_to_sandbox',
+                         'pending_to_public', 'pending_to_sandbox',
+                         'author_super_review', 'unlisted_to_reviewed_auto'):
+            mail.outbox = []
+            self.helper.handler.notify_email(template, 'Sample subject %s, %s')
+            assert len(mail.outbox) == 1
+            assert legacy_cta_fragment not in mail.outbox[0].body
 
     def test_email_links(self):
         expected = {
