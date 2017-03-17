@@ -584,7 +584,7 @@ class NewUploadForm(AddonUploadForm):
                         msg = jinja2.Markup('%s <a href="%s">%s</a>' % (
                             _(u'Version {version} already exists.'),
                             next_url,
-                            _(u'Continue with existing upload?')))
+                            _(u'Continue with existing upload instead?')))
                     else:
                         msg = _(u'Version {version} already exists.')
                     raise forms.ValidationError(

@@ -912,7 +912,8 @@ class VersionSubmitUploadMixin(object):
         self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.1 already exists. Continue with existing upload?')
+            'Version 0.1 already exists. '
+            'Continue with existing upload instead?')
         # url is always to the details page even for unlisted (will redirect).
         assert pq(response.content)('ul.errorlist a').attr('href') == (
             reverse('devhub.submit.version.details', args=[
