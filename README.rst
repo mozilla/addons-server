@@ -5,10 +5,6 @@
 .. image:: https://travis-ci.org/mozilla/addons-server.svg?branch=master
     :target: https://travis-ci.org/mozilla/addons-server
 
-.. image:: https://buildtimetrend.herokuapp.com/badge/mozilla/addons-server/
-    :alt: Buildtime Trend badge
-    :target: https://buildtimetrend.herokuapp.com/dashboard/mozilla/addons-server
-
 .. image:: https://pyup.io/repos/github/mozilla/addons-server/shield.svg
     :target: https://pyup.io/repos/github/mozilla/addons-server/
     :alt: Updates
