@@ -14,7 +14,7 @@ from pyquery import PyQuery as pq
 from lxml.html import HTMLParser, fromstring
 
 import olympia
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.tests import (
     TestCase, formset, initial, file_factory, version_factory)
 from olympia.access.models import Group, GroupUser
@@ -50,15 +50,27 @@ ZADMIN_TEST_FILES = os.path.join(
     'zadmin', 'tests', 'resources')
 
 
-class TestHome(TestCase):
+class TestHomeAndIndex(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestHome, self).setUp()
+        super(TestHomeAndIndex, self).setUp()
         self.client.login(email='admin@mozilla.com')
 
-    def test_get(self):
+    def test_get_home(self):
         url = reverse('zadmin.home')
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
+        assert response.context['user'].username == 'admin'
+        assert response.context['user'].email == 'admin@mozilla.com'
+
+    def test_get_index(self):
+        # Add fake log that would be shown in the index page.
+        user = UserProfile.objects.get(email='admin@mozilla.com')
+        core.set_user(user)
+        ActivityLog.create(
+            amo.LOG.GROUP_USER_ADDED, user.groups.latest('pk'), user)
+        url = reverse('zadmin.index')
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
         assert response.context['user'].username == 'admin'
