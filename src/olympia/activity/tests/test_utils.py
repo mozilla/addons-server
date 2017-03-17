@@ -231,9 +231,9 @@ class TestLogAndNotify(TestCase):
             assert reply_to.endswith(settings.INBOUND_EMAIL_DOMAIN)
         return recipients
 
-    def _check_email(self, call, url):
-        assert call[0][0] == (
-            'Mozilla Add-ons: %s Updated' % self.addon.name)
+    def _check_email(self, call, url, action_text):
+        assert call[0][0] == u'Mozilla Add-ons: %s %s %s' % (
+            self.addon.name, self.version.version, action_text)
         assert ('visit %s' % url) in call[0][1]
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -259,11 +259,12 @@ class TestLogAndNotify(TestCase):
         assert self.developer.email not in recipients
 
         self._check_email(send_mail_mock.call_args_list[0],
-                          absolutify(self.addon.get_dev_url('versions')))
+                          absolutify(self.addon.get_dev_url('versions')),
+                          'Developer Reply')
         review_url = absolutify(
             reverse('editors.review', args=[self.addon.pk], add_prefix=False))
         self._check_email(send_mail_mock.call_args_list[1],
-                          review_url)
+                          review_url, 'Developer Reply')
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_reviewer_reply(self, send_mail_mock):
@@ -288,9 +289,11 @@ class TestLogAndNotify(TestCase):
         assert self.reviewer.email not in recipients
 
         self._check_email(send_mail_mock.call_args_list[0],
-                          absolutify(self.addon.get_dev_url('versions')))
+                          absolutify(self.addon.get_dev_url('versions')),
+                          'Reviewer Reply')
         self._check_email(send_mail_mock.call_args_list[1],
-                          absolutify(self.addon.get_dev_url('versions')))
+                          absolutify(self.addon.get_dev_url('versions')),
+                          'Reviewer Reply')
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_log_with_no_comment(self, send_mail_mock):

@@ -3,6 +3,7 @@ import re
 
 from django.conf import settings
 from django.template import Context, loader
+from django.utils import translation
 
 from email_reply_parser import EmailReplyParser
 import waffle
@@ -201,7 +202,9 @@ def log_and_notify(action, comments, note_creator, version):
         reverse('editors.review', args=[version.addon.pk], add_prefix=False))
 
     # Not being localised because we don't know the recipients locale.
-    subject = 'Mozilla Add-ons: %s Updated' % version.addon.name
+    with translation.override('en-US'):
+        subject = u'Mozilla Add-ons: %s %s %s' % (
+            version.addon.name, version.version, action.short)
     template = loader.get_template('activity/emails/developer.txt')
     send_activity_mail(
         subject, template.render(Context(author_context_dict)), version,
