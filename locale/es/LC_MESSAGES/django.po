@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-16 21:34+0000\n"
+"PO-Revision-Date: 2017-03-16 21:44+0000\n"
 "Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -6381,7 +6381,7 @@ msgstr "Haz capturas de pantalla {start_sub_heading}con {addon_name}{end_sub_hea
 
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
+msgstr "No solo capturas de pantalla, Awesome Screenshot Plus te permite comentar las imágenes con texto y gráficos. Es sencillísimo almacenar y compartir archivos."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
