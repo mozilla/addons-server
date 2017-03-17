@@ -292,6 +292,9 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             [mock.call(f, is_beta=False) for f in latest_version.all_files])
 
     def test_with_source(self):
+        response = self.client.get(
+            reverse('devhub.submit.upload', args=['listed']))
+        assert pq(response.content)('#id_source')
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
         source.write('a' * (2 ** 21))
@@ -848,6 +851,8 @@ class VersionSubmitUploadMixin(object):
         raise NotImplementedError
 
     def test_with_source(self):
+        response = self.client.get(self.url)
+        assert pq(response.content)('#id_source')
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
         source.write('a' * (2 ** 21))
@@ -1331,3 +1336,22 @@ class TestFileSubmitUpload(UploadTest):
         # Need latest() rather than find_latest_version as Beta isn't returned.
         version = self.addon.versions.latest()
         assert version.all_files[0].status == amo.STATUS_BETA
+
+    def test_with_source_ignored(self):
+        # Source submit shouldn't be on the page
+        response = self.client.get(self.url)
+        assert not pq(response.content)('#id_source')
+
+        # And even if submitted, should be ignored.
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
+        source.write('a' * (2 ** 21))
+        source.seek(0)
+        # source should be ignored
+        response = self.post(source=source)
+        version = self.addon.find_latest_version(channel=self.version.channel)
+        assert not version.source
+        next_url = reverse('devhub.submit.file.finish',
+                           args=[self.addon.slug, self.version.pk])
+        self.assert3xx(response, next_url)
+        assert not self.addon.reload().admin_review

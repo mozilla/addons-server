@@ -56,7 +56,9 @@
 
   {{ new_addon_form.non_field_errors() }}
 
-  {{ source_form_field(new_addon_form.source) }}
+  {% if submit_page != 'file' %}
+    {{ source_form_field(new_addon_form.source) }}
+  {% endif %}
 
     <div class="platform">
       <div class="supported-platforms">

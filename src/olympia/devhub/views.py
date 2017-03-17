@@ -1362,7 +1362,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
 
         check_validation_override(request, form, addon, version)
         addon_update = {}
-        if data['source']:
+        if data.get('source'):
             addon_update['admin_review'] = True
             activity_log = ActivityLog.objects.create(
                 action=amo.LOG.SOURCE_CODE_UPLOADED.id,
