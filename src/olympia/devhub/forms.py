@@ -9,6 +9,7 @@ from django.forms.models import modelformset_factory
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
+import jinja2
 from quieter_formset.formset import BaseModelFormSet
 
 import olympia.core.logger
@@ -570,12 +571,24 @@ class NewUploadForm(AddonUploadForm):
                     raise forms.ValidationError(_("Version doesn't match"))
             elif self.addon:
                 # Make sure we don't already have this version.
-                version_exists = Version.unfiltered.filter(
-                    addon=self.addon, version=parsed_data['version']).exists()
-                if version_exists:
-                    msg = _(u'Version %s already exists, or was uploaded '
-                            u'before.')
-                    raise forms.ValidationError(msg % parsed_data['version'])
+                existing_versions = Version.unfiltered.filter(
+                    addon=self.addon, version=parsed_data['version'])
+                if existing_versions.exists():
+                    version = existing_versions[0]
+                    if version.deleted:
+                        msg = _(u'Version {version} was uploaded before and '
+                                u'deleted.')
+                    elif version.unreviewed_files:
+                        next_url = reverse('devhub.submit.version.details',
+                                           args=[self.addon.slug, version.pk])
+                        msg = jinja2.Markup('%s <a href="%s">%s</a>' % (
+                            _(u'Version {version} already exists.'),
+                            next_url,
+                            _(u'Continue with existing upload instead?')))
+                    else:
+                        msg = _(u'Version {version} already exists.')
+                    raise forms.ValidationError(
+                        msg.format(version=parsed_data['version']))
             self.cleaned_data['parsed_data'] = parsed_data
         return self.cleaned_data
 
