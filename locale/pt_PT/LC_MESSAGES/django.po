@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-16 15:26+0000\n"
+"PO-Revision-Date: 2017-03-18 21:25+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -542,7 +542,7 @@ msgstr "Temas em destaque"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Featured Collections"
-msgstr "Coleções incluídas"
+msgstr "Coleções em destaque"
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/addons/templates/addons/listing_header.html src/olympia/amo/templates/amo/mobile/sort_by.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
@@ -2396,7 +2396,7 @@ msgstr "{0}: Extras em destaque"
 #. {0} is a category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "No featured add-ons in {0}."
-msgstr "Sem extras em destaque para {0}."
+msgstr "Sem extras em destaque em {0}."
 
 #: src/olympia/browse/templates/browse/featured.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Featured Add-ons"
@@ -2889,16 +2889,16 @@ msgstr "{review} para {addon} escrita."
 #. L10n: {0} is a category name.
 #: src/olympia/constants/activity.py
 msgid "{addon} featured in {0}."
-msgstr "{addon} incluído em {0}."
+msgstr "{addon} em destaque em {0}."
 
 #. L10n: {0} is a category name.
 #: src/olympia/constants/activity.py
 msgid "{addon} no longer featured in {0}."
-msgstr "{addon} já não está incluído em {0}."
+msgstr "{addon} já não está em destaque em {0}."
 
 #: src/olympia/constants/activity.py
 msgid "{addon} is now featured."
-msgstr "{addon} está destacado."
+msgstr "{addon} está agora em destaque."
 
 #: src/olympia/constants/activity.py
 msgid "{addon} is no longer featured."

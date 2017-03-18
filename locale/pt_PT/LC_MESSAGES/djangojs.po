@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-15 02:54+0000\n"
+"PO-Revision-Date: 2017-03-18 21:24+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -382,7 +382,7 @@ msgstr "Promoção no Gestor de extras"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
-msgstr "Destaque no Gestor de extras"
+msgstr "Em destaque no Gestor de extras"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
