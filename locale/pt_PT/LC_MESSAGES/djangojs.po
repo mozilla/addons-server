@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-18 21:24+0000\n"
+"PO-Revision-Date: 2017-03-19 19:27+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -123,7 +123,7 @@ msgstr "Atualização WebExtension"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Uma vez que os seus utilizadores tenham a WebExtension instalada, não poderão instalar um extra de legado."
+msgstr "Permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, não poderão instalar um extra de legado."
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"

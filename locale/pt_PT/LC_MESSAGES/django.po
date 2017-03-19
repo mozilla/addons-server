@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-18 21:25+0000\n"
+"PO-Revision-Date: 2017-03-19 19:28+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -138,7 +138,7 @@ msgstr[1] "Apenas pode ter {0} categorias."
 
 #: src/olympia/addons/forms.py
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "A categoria Diversos não pode ser combinada com outras categorias."
+msgstr "A categoria diversos não pode ser combinada com categorias adicionais."
 
 #: src/olympia/addons/forms.py
 #, python-format
@@ -3955,7 +3955,7 @@ msgstr "Começando com o Firefox 53, novas extensões neste site só podem ser W
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Nós permitimos e encorajamos uma atualização mas não poderá reverter este processo. Assim que os seus utilizadores têm a WebExtension instalada, não poderão instalar um extra de legado."
+msgstr "Permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, não poderão instalar um extra de legado."
 
 #: src/olympia/devhub/tasks.py
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
@@ -6304,7 +6304,7 @@ msgstr "Tem a certeza que deseja cancelar o seu pedido de revisão?"
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tire capturas de ecrã {start_sub_heading}com o {addon_name}{end_sub_heading}"
+msgstr "Tire capturas de ecrã {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
@@ -6312,7 +6312,7 @@ msgstr "Mais do que apenas capturas de ecrã, o Awesome Screenshot Plus deixa-lh
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloqueie anúncios {start_sub_heading}com o {addon_name}{end_sub_heading}"
+msgstr "Bloqueie anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
@@ -6320,7 +6320,7 @@ msgstr "Um bloqueador de anúncios leve e eficaz. O uBlock Origin aplica milhare
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarregue vídeos {start_sub_heading}com o {addon_name}{end_sub_heading}"
+msgstr "Descarregue vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
@@ -6328,7 +6328,7 @@ msgstr "Obtenha vídeos facilmente a partir do YouTube, Dailymotion, Facebook, e
 
 #: src/olympia/discovery/data.py
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Expressão emoji {start_sub_heading}com o {addon_name}{end_sub_heading}"
+msgstr "Expressão emoji {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
@@ -10228,7 +10228,7 @@ msgstr "A versão já existe."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr "Apenas WebExtensions tem permissão para omitir o GUID"
+msgstr "Apenas WebExtensions têm permissão para omitir o GUID"
 
 #: src/olympia/signing/views.py
 msgid "Invalid GUID in URL"
