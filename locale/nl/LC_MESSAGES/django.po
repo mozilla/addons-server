@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-17 18:02+0000\n"
+"PO-Revision-Date: 2017-03-17 14:22+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -8332,7 +8332,7 @@ msgstr "Oezbeekse som"
 
 #: src/olympia/lib/constants.py
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Venezolaanse bolivar"
 
 #: src/olympia/lib/constants.py
 msgid "Viet Nam Dong"
