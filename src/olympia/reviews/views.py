@@ -495,3 +495,6 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             response.content = ''
             response.status_code = 202
         return response
+
+    def perform_destroy(self, instance):
+        instance.delete(user_responsible=self.request.user)

@@ -142,5 +142,16 @@
             "version": 592,
             "datestatuschanged": "2010-01-14 14:15:28"
         }
+    },
+    {
+        "pk": 39,
+        "model": "addons.addonuser",
+        "fields": {
+            "position": 0,
+            "addon": 4,
+            "role": 5,
+            "listed": true,
+            "user": 1
+        }
     }
 ]

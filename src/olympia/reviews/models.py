@@ -127,22 +127,7 @@ class Review(ModelBase):
     def get_url_path(self):
         return helpers.url('addons.reviews.detail', self.addon.slug, self.id)
 
-    def moderator_delete(self, user):
-        from olympia.editors.models import ReviewerScore
-
-        activity.log_create(
-            amo.LOG.DELETE_REVIEW, self.addon, self, user=user, details=dict(
-                title=unicode(self.title),
-                body=unicode(self.body),
-                addon_id=self.addon.pk,
-                addon_title=unicode(self.addon.name),
-                is_flagged=self.reviewflag_set.exists()))
-        for flag in self.reviewflag_set.all():
-            flag.delete()
-        self.delete(user_responsible=user)
-        ReviewerScore.award_moderation_points(user, self.addon, self.pk)
-
-    def moderator_approve(self, user):
+    def approve(self, user):
         from olympia.editors.models import ReviewerScore
 
         activity.log_create(
@@ -163,6 +148,26 @@ class Review(ModelBase):
     def delete(self, user_responsible=None):
         if user_responsible is None:
             user_responsible = self.user
+
+        review_was_moderated = False
+        # Log deleting reviews to moderation log,
+        # except if the author deletes it
+        if not self.addon.has_author(user_responsible):
+            # Remember moderation state
+            review_was_moderated = True
+            from olympia.editors.models import ReviewerScore
+
+            activity.log_create(
+                amo.LOG.DELETE_REVIEW, self.addon, self, user=user_responsible,
+                details=dict(
+                    title=unicode(self.title),
+                    body=unicode(self.body),
+                    addon_id=self.addon.pk,
+                    addon_title=unicode(self.addon.name),
+                    is_flagged=self.reviewflag_set.exists()))
+            for flag in self.reviewflag_set.all():
+                flag.delete()
+
         log.info(u'Review deleted: %s deleted id:%s by %s ("%s": "%s")',
                  user_responsible.name, self.pk, self.user.name,
                  unicode(self.title), unicode(self.body))
@@ -170,6 +175,11 @@ class Review(ModelBase):
         # Force refreshing of denormalized data (it wouldn't happen otherwise
         # because we're not dealing with a creation).
         self.update_denormalized_fields()
+
+        if (review_was_moderated):
+            ReviewerScore.award_moderation_points(user_responsible,
+                                                  self.addon,
+                                                  self.pk)
 
     def undelete(self):
         self.update(deleted=False)
