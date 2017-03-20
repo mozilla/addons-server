@@ -71,6 +71,12 @@ class TestActivityLogToken(TestCase):
         # one.
         assert self.token.is_valid()
 
+    def test_rejected_version_still_valid(self):
+        for file_ in self.version.all_files:
+            file_.update(status=amo.STATUS_DISABLED)
+        # Being a rejected version shouldn't mean you can't reply
+        assert self.token.is_valid()
+
 
 class TestActivityLog(TestCase):
     fixtures = ['base/addon_3615']
