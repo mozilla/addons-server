@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-17 21:50+0000\n"
+"PO-Revision-Date: 2017-03-20 01:23+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -5165,11 +5165,11 @@ msgstr "부가 기능 패키지를 업로드 하시려면 아래 항목을 이�
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "이 파일과 호환되는 플랫폼은 무엇인가요?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "이 버전을 나의 베타 채널에만 게시합니다."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Administrative overrides"
