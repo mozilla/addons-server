@@ -10098,7 +10098,7 @@ msgstr "Kết quả Tìm kiếm cho nhãn \"{0}\""
 #: src/olympia/search/templates/search/results.html
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "<b>{0}</b> kết quả trùng khớp<b>{0}</b> kết quả trùng khớp"
+msgstr[0] "<b>{0}</b> kết quả trùng khớp"
 msgstr[1] ""
 
 #: src/olympia/search/templates/search/results.html
