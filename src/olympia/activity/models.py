@@ -52,7 +52,7 @@ class ActivityLogToken(ModelBase):
     def is_valid(self):
         return (not self.is_expired() and
                 self.version == self.version.addon.find_latest_version(
-                    channel=self.version.channel))
+                    channel=self.version.channel, exclude=(amo.STATUS_BETA,)))
 
     def expire(self):
         self.update(use_count=MAX_TOKEN_USE_COUNT)
