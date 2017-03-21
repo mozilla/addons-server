@@ -50,7 +50,7 @@ class EditorTest(TestCase):
     def make_review(self, username='a'):
         u = UserProfile.objects.create(username=username)
         a = Addon.objects.create(name='yermom', type=amo.ADDON_EXTENSION)
-        return Review.objects.create(user=u, addon=a)
+        return Review.objects.create(user=u, addon=a, title='foo', body='bar')
 
 
 class TestEventLog(EditorTest):
@@ -367,12 +367,9 @@ class TestHome(EditorTest):
             ActivityLog.create(amo.LOG['APPROVE_VERSION'], addon,
                                addon.current_version)
 
-    def delete_review(self):
+    def delete_review(self, user):
         review = self.make_review()
-        review.delete()
-        ActivityLog.create(
-            amo.LOG.DELETE_REVIEW, review.addon, review, details=dict(
-                addon_title='test', title='foo', body='bar', is_flagged=True))
+        review.delete(user_responsible=user)
         return review
 
     def test_approved_review(self):
@@ -387,7 +384,7 @@ class TestHome(EditorTest):
         assert row('a[href*=yermom]'), 'Expected links to approved addon'
 
     def test_deleted_review(self):
-        self.delete_review()
+        self.delete_review(self.user)
         doc = pq(self.client.get(self.url).content)
 
         assert doc('.row').eq(0).text().strip().split('.')[0] == (
@@ -399,13 +396,13 @@ class TestHome(EditorTest):
 
         elems = zip(doc('dt'), doc('dd'))
         expected = [
-            ('Add-on Title', 'test'),
+            ('Add-on Title', 'yermom'),
             ('Review Title', 'foo'),
             ('Review Text', 'bar'),
         ]
         for (dt, dd), texts in zip(elems, expected):
-            assert dt.text == texts[0]
-            assert dd.text == texts[1]
+            assert dt.text == texts[0], texts
+            assert dd.text == texts[1], texts
 
     def undelete_review(self, review, allowed):
         al = ActivityLog.objects.order_by('-id')[0]
@@ -424,13 +421,13 @@ class TestHome(EditorTest):
         assert post == allowed
 
     def test_undelete_review_own(self):
-        review = self.delete_review()
+        review = self.delete_review(self.user)
         # Undeleting a review you deleted is always allowed.
         self.undelete_review(review, allowed=True)
 
     def test_undelete_review_other(self):
-        core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
-        review = self.delete_review()
+        user = UserProfile.objects.get(email='admin@mozilla.com')
+        review = self.delete_review(user)
 
         # Normal editors undeleting reviews deleted by other editors is
         # not allowed.
@@ -438,7 +435,7 @@ class TestHome(EditorTest):
         self.undelete_review(review, allowed=False)
 
     def test_undelete_review_admin(self):
-        review = self.delete_review()
+        review = self.delete_review(self.user)
 
         # Admins can always undelete reviews.
         self.login_as_admin()

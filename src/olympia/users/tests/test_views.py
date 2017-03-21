@@ -675,6 +675,12 @@ class TestProfileSections(TestCase):
         # Edit Review form should be present.
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
 
+    def _get_reviews(self, username):
+        self.client.login(email=username)
+        r = self.client.get(reverse('users.profile', args=[999]))
+        doc = pq(r.content)('#reviews')
+        return doc('#review-218207 .item-actions a.delete-review')
+
     def test_my_reviews_delete_link(self):
         review = Review.objects.filter(reply_to=None)[0]
         review.user_id = 999
@@ -683,30 +689,39 @@ class TestProfileSections(TestCase):
         slug = Addon.objects.get(id=review.addon_id).slug
         delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
 
-        def _get_reviews(username):
-            self.client.login(email=username)
-            r = self.client.get(reverse('users.profile', args=[999]))
-            doc = pq(r.content)('#reviews')
-            return doc('#review-218207 .item-actions a.delete-review')
-
         # Admins get the Delete Review link.
-        r = _get_reviews(username='admin@mozilla.com')
+        r = self._get_reviews(username='admin@mozilla.com')
         assert r.length == 1
         assert r.attr('href') == delete_url
 
-        # Editors get the Delete Review link.
-        r = _get_reviews(username='editor@mozilla.com')
-        assert r.length == 1
-        assert r.attr('href') == delete_url
+        # Editors don't get the Delete Review link
+        # (unless it's pending moderation).
+        r = self._get_reviews(username='editor@mozilla.com')
+        assert r.length == 0
 
         # Author gets the Delete Review link.
-        r = _get_reviews(username='regular@mozilla.com')
+        r = self._get_reviews(username='regular@mozilla.com')
         assert r.length == 1
         assert r.attr('href') == delete_url
 
         # Other user does not get the Delete Review link.
-        r = _get_reviews(username='clouserw@gmail.com')
+        r = self._get_reviews(username='clouserw@gmail.com')
         assert r.length == 0
+
+    def test_my_reviews_delete_link_moderated(self):
+        review = Review.objects.filter(reply_to=None)[0]
+        review.user_id = 999
+        review.editorreview = True
+        review.save()
+        cache.clear()
+        slug = Addon.objects.get(id=review.addon_id).slug
+        delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
+
+        # Editors get the Delete Review link
+        # because the review is pending moderation
+        r = self._get_reviews(username='editor@mozilla.com')
+        assert r.length == 1
+        assert r.attr('href') == delete_url
 
     def test_my_reviews_no_pagination(self):
         r = self.client.get(self.url)

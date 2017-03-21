@@ -257,7 +257,28 @@ class TestDelete(ReviewTest):
         assert Review.objects.count() == cnt - 1
         assert not Review.objects.filter(pk=218468).exists()
 
-    def test_reviewer_can_delete(self):
+    def test_reviewer_can_delete_moderated_review(self):
+        # Test an editor can delete a review if not listed as an author.
+        user = UserProfile.objects.get(email='trev@adblockplus.org')
+        # Remove user from authors.
+        AddonUser.objects.filter(addon=self.addon).delete()
+        # Make user an add-on reviewer.
+        group = Group.objects.create(name='Reviewer', rules='Addons:Review')
+        GroupUser.objects.create(group=group, user=user)
+        # Make review pending moderation
+        Review.objects.get(pk=218207).update(editorreview=True)
+
+        self.client.logout()
+        self.login_dev()
+
+        cnt = Review.objects.count()
+        response = self.client.post(self.url)
+        assert response.status_code == 200
+        # Two are gone since we deleted a review with a reply.
+        assert Review.objects.count() == cnt - 2
+        assert not Review.objects.filter(pk=218207).exists()
+
+    def test_reviewer_cannot_delete_unmoderated_review(self):
         # Test an editor can delete a review if not listed as an author.
         user = UserProfile.objects.get(email='trev@adblockplus.org')
         # Remove user from authors.
@@ -271,10 +292,9 @@ class TestDelete(ReviewTest):
 
         cnt = Review.objects.count()
         response = self.client.post(self.url)
-        assert response.status_code == 200
-        # Two are gone since we deleted a review with a reply.
-        assert Review.objects.count() == cnt - 2
-        assert not Review.objects.filter(pk=218207).exists()
+        assert response.status_code == 403
+        assert Review.objects.count() == cnt
+        assert Review.objects.filter(pk=218207).exists()
 
     def test_editor_own_addon_cannot_delete(self):
         # Test an editor cannot delete a review if listed as an author.
@@ -1192,7 +1212,8 @@ class TestReviewViewSetDelete(TestCase):
         assert Review.objects.count() == 0
         assert Review.unfiltered.count() == 1
 
-    def test_delete_editor(self):
+    def test_delete_editor_moderated(self):
+        self.review.update(editorreview=True)
         admin_user = user_factory()
         self.grant_permission(admin_user, 'Addons:Review')
         self.client.login_api(admin_user)
@@ -1200,6 +1221,14 @@ class TestReviewViewSetDelete(TestCase):
         assert response.status_code == 204
         assert Review.objects.count() == 0
         assert Review.unfiltered.count() == 1
+
+    def test_delete_editor_not_moderated(self):
+        admin_user = user_factory()
+        self.grant_permission(admin_user, 'Addons:Review')
+        self.client.login_api(admin_user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+        assert Review.objects.count() == 1
 
     def test_delete_editor_but_addon_author(self):
         admin_user = user_factory()

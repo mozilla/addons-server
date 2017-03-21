@@ -112,9 +112,9 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                 action = int(form.cleaned_data['action'])
 
                 if action == reviews.REVIEW_MODERATE_DELETE:
-                    form.instance.moderator_delete(user=self.request.user)
+                    form.instance.delete(user_responsible=self.request.user)
                 elif action == reviews.REVIEW_MODERATE_KEEP:
-                    form.instance.moderator_approve(user=self.request.user)
+                    form.instance.approve(user=self.request.user)
 
 
 class ModerateReviewFlagForm(happyforms.ModelForm):

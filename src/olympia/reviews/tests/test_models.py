@@ -115,7 +115,7 @@ class TestReviewModel(TestCase):
         review = Review.objects.get(pk=1)
         review.update(editorreview=True)
         review.reviewflag_set.create()
-        review.moderator_delete(user=moderator)
+        review.delete(user_responsible=moderator)
 
         review.reload()
         assert ActivityLog.objects.count() == 1
@@ -147,7 +147,7 @@ class TestReviewModel(TestCase):
         review = Review.objects.get(pk=1)
         review.update(editorreview=True)
         review.reviewflag_set.create()
-        review.moderator_approve(user=moderator)
+        review.approve(user=moderator)
 
         review.reload()
         assert ActivityLog.objects.count() == 1
@@ -185,14 +185,13 @@ class TestReviewModel(TestCase):
         assert flag.review == review
 
         # Delete the review: reviewflag.review should still work.
-        review.delete()
+        review.delete(user_responsible=review.addon.authors.first())
         flag = ReviewFlag.objects.get(pk=flag.pk)
         assert flag.review == review
 
     def test_creation_triggers_email_and_logging(self):
         addon = Addon.objects.get(pk=4)
-        addon_author = user_factory()
-        addon.addonuser_set.create(user=addon_author)
+        addon_author = addon.authors.first()
         review_user = user_factory()
         review = Review.objects.create(
             user=review_user, addon=addon,
