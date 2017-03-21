@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-17 14:22+0000\n"
+"PO-Revision-Date: 2017-03-20 14:47+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -101,7 +101,7 @@ msgstr "De identificator kan niet ‘%s’ zijn. Kies een andere."
 #: src/olympia/addons/forms.py
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] "Ongeldig label: {0}"
+msgstr[0] ""
 msgstr[1] "Ongeldige labels: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
@@ -3522,7 +3522,7 @@ msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py
 msgid "Holiday"
-msgstr "Vakantie"
+msgstr "Feestdagen"
 
 #: src/olympia/constants/categories.py
 msgid "Scenery"
@@ -7728,7 +7728,7 @@ msgstr "Beginnen"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
-msgstr "Verenigde Arabische Emiraten-dirham"
+msgstr "VAE-dirham"
 
 #: src/olympia/lib/constants.py
 msgid "Afghanistan Afghani"
