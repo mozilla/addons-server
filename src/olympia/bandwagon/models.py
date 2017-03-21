@@ -328,7 +328,6 @@ class Collection(ModelBase):
                     acl.action_allowed(request, 'CollectionStats', 'View'))
         return False
 
-    @caching.cached_method
     def publishable_by(self, user):
         return bool(self.owned_by(user) or self.users.filter(pk=user.id))
 
