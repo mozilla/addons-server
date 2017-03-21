@@ -21,6 +21,7 @@ from olympia.applications.models import AppVersion
 from olympia.files import utils
 from olympia.files.models import File
 from olympia.versions.models import Version
+from olympia.files.tests.test_helpers import get_file
 
 
 pytestmark = pytest.mark.django_db
@@ -638,6 +639,17 @@ def test_atomic_lock_lifetime():
 
         with _get_lock() as lock_attained2:
             assert lock_attained2
+
+
+def test_parse_search_empty_shortname():
+    fname = get_file('search_empty_shortname.xml')
+
+    with pytest.raises(forms.ValidationError) as excinfo:
+        utils.parse_search(fname)
+
+    assert (
+        excinfo.value[0] ==
+        'Could not parse uploaded file, missing <ShortName> element')
 
 
 class TestResolvei18nMessage(object):
