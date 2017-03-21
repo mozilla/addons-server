@@ -1449,6 +1449,18 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert self.addon.feature_compatibility.e10s == (
             amo.E10S_COMPATIBLE_WEBEXTENSION)
 
+    def test_nomination_inherited_for_updates(self):
+        assert self.addon.status == amo.STATUS_PUBLIC
+        self.addon.current_version.update(nomination=self.days_ago(2))
+        pending_version = version_factory(
+            addon=self.addon, nomination=self.days_ago(1), version='9.9',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        assert pending_version.nomination
+        upload_version = Version.from_upload(
+            self.upload, self.addon, [self.platform],
+            amo.RELEASE_CHANNEL_LISTED)
+        assert upload_version.nomination == pending_version.nomination
+
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
     filename = 'search.xml'
