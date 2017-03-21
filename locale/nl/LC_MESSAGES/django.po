@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-20 14:47+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"PO-Revision-Date: 2017-03-21 10:01+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgstr "De identificator kan niet ‘%s’ zijn. Kies een andere."
 #: src/olympia/addons/forms.py
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
+msgstr[0] "Ongeldig label: {0}"
 msgstr[1] "Ongeldige labels: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
@@ -8360,7 +8360,7 @@ msgstr "Speciale trekkingsrechten (IMF)"
 
 #: src/olympia/lib/constants.py
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr "CFA-frank (BEACO)"
+msgstr "CFA-frank (BCEAO)"
 
 #: src/olympia/lib/constants.py
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
