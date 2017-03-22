@@ -301,3 +301,13 @@ class TestWebTokenAuthentication(TestCase):
         self.user.update(auth_id=self.user.auth_id + 42)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
+
+    def test_make_sure_token_is_decodable(self):
+        token = self.client.generate_api_token(self.user)
+        # A token is really a string containing the json dict,
+        # a timestamp and a signature, separated by ':'. The base64 encoding
+        # lacks padding, which is why we need to use signing.b64_decode() which
+        # handles that for us.
+        data = json.loads(signing.b64_decode(token.split(':')[0]))
+        assert data['user_id'] == self.user.pk
+        assert data['secret'] == self.user.get_session_auth_hash()
