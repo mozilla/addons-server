@@ -2,7 +2,7 @@ from django.core.files.storage import default_storage as storage
 
 import olympia.core.logger
 from olympia.amo.celery import task
-from olympia.amo.decorators import set_modified_on, write
+from olympia.amo.decorators import set_modified_on
 from olympia.amo.utils import resize_image
 from olympia.amo.helpers import user_media_path
 from olympia.lib.es.utils import index_objects
@@ -63,11 +63,3 @@ def update_user_ratings_task(data, **kw):
     for pk, rating in data:
         rating = "%.2f" % round(rating, 2)
         UserProfile.objects.filter(pk=pk).update(averagerating=rating)
-
-
-@task
-@write
-def generate_auth_id_for_users(pks, **kw):
-    for pk in pks:
-        UserProfile.objects.filter(pk=pk).update(
-            auth_id=UserProfile._meta.get_field('auth_id').default())

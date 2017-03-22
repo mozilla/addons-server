@@ -310,6 +310,19 @@ class TestUserProfile(TestCase):
         with self.assertRaises(NotImplementedError):
             user.check_password('password')
 
+    def test_get_session_auth_hash(self):
+        user = UserProfile.objects.get(id=4043307)
+        user.update(auth_id=None)
+        assert user.get_session_auth_hash() is None
+
+        user.update(auth_id=12345)
+        hash1 = user.get_session_auth_hash()
+        assert hash1
+
+        user.update(auth_id=67890)
+        hash2 = user.get_session_auth_hash()
+        assert hash1 != hash2
+
 
 class TestDeniedName(TestCase):
     fixtures = ['users/test_backends']

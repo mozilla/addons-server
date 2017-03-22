@@ -1,11 +1,15 @@
+from django.conf import settings
+from django.core import signing
+from django.utils.crypto import constant_time_compare
 from django.utils.encoding import smart_text
 from django.utils.translation import ugettext as _
 
 import jwt
 from rest_framework import exceptions
-from rest_framework.authentication import get_authorization_header
-from rest_framework_jwt.authentication import (
-    JSONWebTokenAuthentication as UpstreamJSONWebTokenAuthentication)
+from rest_framework.authentication import (
+    BaseAuthentication, get_authorization_header
+)
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 import olympia.core.logger
 from olympia import core
@@ -17,36 +21,114 @@ from olympia.users.models import UserProfile
 log = olympia.core.logger.getLogger('z.api.authentication')
 
 
-class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
+class WebTokenAuthentication(BaseAuthentication):
     """
-    DRF authentication class for JWT header auth.
+    DRF authentication class for our internal auth API tokens (i.e. not
+    external clients using API keys - see JWTKeyAuthentication for that).
+
+    Clients should authenticate by passing the token key in the "Authorization"
+    HTTP header, prepended with the "Bearer" prefix. For example:
+
+        Authorization: Bearer eyJhbGciOiAiSFMyNTYiLCAidHlwIj
     """
+    www_authenticate_realm = 'api'
+    auth_header_prefix = 'Bearer'
+    salt = 'olympia.api.auth'
+
+    def authenticate_header(self, request):
+        """
+        Return a string to be used as the value of the `WWW-Authenticate`
+        header in a `401 Unauthenticated` response, or `None` if the
+        authentication scheme should return `403 Permission Denied` responses.
+        """
+        return '{0} realm="{1}"'.format(
+            self.auth_header_prefix.lower(), self.www_authenticate_realm)
+
+    def get_token_value(self, request):
+        auth_header = get_authorization_header(request).split()
+        expected_header_prefix = self.auth_header_prefix.lower()
+
+        if not auth_header or (
+                smart_text(auth_header[0].lower()) != expected_header_prefix):
+            return None
+
+        if len(auth_header) == 1:
+            msg = _('Invalid Authorization header. No credentials provided.')
+            raise exceptions.AuthenticationFailed(msg)
+        elif len(auth_header) > 2:
+            msg = _('Invalid Authorization header. Credentials string '
+                    'should not contain spaces.')
+            raise exceptions.AuthenticationFailed(msg)
+
+        return auth_header[1]
+
+    def authenticate(self, request):
+        """
+        Returns a two-tuple of `User` and token if a valid tolen has been
+        supplied. Otherwise returns `None`.
+
+        Raises AuthenticationFailed if a token was specified but it's invalid
+        in some way (expired signature, invalid token, etc.)
+        """
+        token = self.get_token_value(request)
+        if token is None:
+            # No token specified, skip this authentication method.
+            return None
+        # Proceed.
+        return self.authenticate_token(token)
+
+    def authenticate_token(self, token):
+        try:
+            payload = signing.loads(
+                token, salt=self.salt,
+                max_age=settings.SESSION_COOKIE_AGE or None)
+        except signing.SignatureExpired:
+            msg = 'Signature has expired.'
+            raise exceptions.AuthenticationFailed(msg)
+        except signing.BadSignature:
+            msg = _('Error decoding signature.')
+            raise exceptions.AuthenticationFailed(msg)
+
+        # We have a valid token, try to find the corresponding user.
+        user = self.authenticate_credentials(payload)
+
+        return (user, token)
 
     def authenticate_credentials(self, payload):
         """
-        Mimic what our UserAndAddrMiddleware does after a successful
-        authentication, because otherwise that behaviour would be missing in
+        Return a non-deleted user that matches the payload's user id.
+
+        Mimic what our UserAndAddrMiddleware and django's get_user() do when
+        authenticating, because otherwise that behaviour would be missing in
         the API since API auth happens after the middleware process request
         phase.
         """
         if 'user_id' not in payload:
-            log.info('No user_id in JWT payload {}'.format(payload))
-            raise exceptions.AuthenticationFailed('No user_id in JWT.')
+            log.info('No user_id in token payload {}'.format(payload))
+            raise exceptions.AuthenticationFailed(
+                'No user_id in token payload.')
         try:
-            user = UserProfile.objects.get(pk=payload['user_id'])
+            user = UserProfile.objects.filter(deleted=False).get(
+                pk=payload['user_id'])
         except UserProfile.DoesNotExist:
-            log.info('User not found from JWT payload {}'.format(payload))
+            log.info('User not found from token payload {}'.format(payload))
             raise exceptions.AuthenticationFailed('User not found.')
 
-        if user.deleted:
-            log.info('Not allowing deleted user to log in {}'.format(user.pk))
-            raise exceptions.AuthenticationFailed('User account is disabled.')
+        # Check get_session_auth_hash like django's get_user() does.
+        session_auth_hash = user.get_session_auth_hash()
+        payload_auth_hash = payload.get('auth_hash', '')
+        if not constant_time_compare(payload_auth_hash, session_auth_hash):
+            log.info('User tried to authenticate with invalid auth hash in'
+                     'payload {}'.format(payload))
+            raise exceptions.AuthenticationFailed(
+                'Invalid auth hash in token payload.')
 
+        # Set user in thread like UserAndAddrMiddleware does.
         core.set_user(user)
         return user
 
 
-class JWTKeyAuthentication(UpstreamJSONWebTokenAuthentication):
+class JWTKeyAuthentication(JSONWebTokenAuthentication):
     """
     DRF authentication class for JWT header auth with API keys.
 

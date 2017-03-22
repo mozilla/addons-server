@@ -15,6 +15,7 @@ from django import forms, test
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
+from django.core import signing
 from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.http import HttpRequest, SimpleCookie
@@ -35,6 +36,7 @@ from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
 from olympia.access.acl import check_ownership
+from olympia.api.authentication import WebTokenAuthentication
 from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 from olympia.amo import search as amo_search
@@ -269,13 +271,12 @@ class APITestClient(APIClient):
         """
         Creates a jwt token for this user.
         """
-        from rest_framework_jwt.settings import api_settings
-        payload = api_settings.JWT_PAYLOAD_HANDLER(user)
-        payload.update(payload_overrides)
-        if ('user_id' in payload_overrides and
-                payload_overrides['user_id'] is None):
-            del payload['user_id']
-        token = api_settings.JWT_ENCODE_HANDLER(payload)
+        data = {
+            'auth_hash': user.get_session_auth_hash(),
+            'user_id': user.pk,
+        }
+        data.update(payload_overrides)
+        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
         return token
 
     def login_api(self, user):
@@ -284,8 +285,7 @@ class APITestClient(APIClient):
         will be sent in an Authorization header with all future requests for
         this client.
         """
-        from rest_framework_jwt.settings import api_settings
-        prefix = api_settings.JWT_AUTH_HEADER_PREFIX
+        prefix = WebTokenAuthentication.auth_header_prefix
         token = self.generate_api_token(user)
         self.defaults['HTTP_AUTHORIZATION'] = '{0} {1}'.format(prefix, token)
 
