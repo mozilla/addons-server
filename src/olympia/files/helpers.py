@@ -15,11 +15,11 @@ from validator.testcases.packagelayout import (
     blacklisted_extensions, blacklisted_magic_numbers)
 
 import jinja2
-from cache_nuggets.lib import memoize, Message
 from jingo import register, get_env
 
 import olympia.core.logger
 from olympia import amo
+from olympia.amo.cache_nuggets import memoize, Message
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.amo.urlresolvers import reverse
 from olympia.files.utils import (
