@@ -12,9 +12,6 @@ review_detail_patterns = [
     url('^flag$', views.flag, name='addons.reviews.flag'),
     url('^delete$', views.delete, name='addons.reviews.delete'),
     url('^edit$', views.edit, name='addons.reviews.edit'),
-    url('^translate/(?P<language>[a-z]{2,3}(-[A-Z]{2})?)$',
-        views.translate,
-        name='addons.reviews.translate'),
 ]
 
 
