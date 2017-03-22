@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-# Django settings for olympia project.
+# Django settings for addons-server project.
 
-import datetime
 import logging
 import os
 import socket
@@ -1634,17 +1633,8 @@ JWT_AUTH = {
     # clocks are off.
     'JWT_LEEWAY': 5,
 
-    # Expiration for non-apikey jwt tokens. Since this will be used by our
-    # frontend clients we want a longer expiration than normal, matching the
-    # session cookie expiration.
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=SESSION_COOKIE_AGE),
-
-    # We don't allow refreshes, instead we simply have a long duration.
+    # We don't allow refreshes.
     'JWT_ALLOW_REFRESH': False,
-
-    # Prefix for non-apikey jwt tokens. Should be different from 'JWT' which we
-    # already used for api key tokens.
-    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
 
 REST_FRAMEWORK = {
@@ -1655,7 +1645,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'olympia.api.authentication.JSONWebTokenAuthentication',
+        'olympia.api.authentication.WebTokenAuthentication',
     ),
     # Set parser classes to include the fix for
     # https://github.com/tomchristie/django-rest-framework/issues/3951

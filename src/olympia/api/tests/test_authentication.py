@@ -1,24 +1,26 @@
 from calendar import timegm
+from datetime import datetime, timedelta
 import mock
 import json
 
-from django.core.urlresolvers import reverse
+from django.conf import settings
+from django.core import signing
 from django.test import RequestFactory
 
 import jwt
+from freezegun import freeze_time
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_jwt.settings import api_settings
 from rest_framework_jwt.views import refresh_jwt_token
 
 from olympia.amo.helpers import absolutify
-from olympia.amo.tests import APITestClient, TestCase, WithDynamicEndpoints
+from olympia.amo.tests import (
+    APITestClient, TestCase, user_factory, WithDynamicEndpoints)
 from olympia.api.authentication import (
-    JSONWebTokenAuthentication, JWTKeyAuthentication)
+    WebTokenAuthentication, JWTKeyAuthentication)
 from olympia.api.tests.test_jwt_auth import JWTAuthKeyTester
-from olympia.users.models import UserProfile
 
 
 class JWTKeyAuthTestView(APIView):
@@ -37,20 +39,20 @@ class JWTKeyAuthTestView(APIView):
 
 
 class TestJWTKeyAuthentication(JWTAuthKeyTester):
-    fixtures = ['base/addon_3615']
     client_class = APITestClient
 
     def setUp(self):
         super(TestJWTKeyAuthentication, self).setUp()
         self.factory = RequestFactory()
         self.auth = JWTKeyAuthentication()
-        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.user = user_factory(read_dev_agreement=datetime.now())
 
     def request(self, token):
         return self.factory.get('/', HTTP_AUTHORIZATION='JWT {}'.format(token))
 
-    def _create_token(self):
-        api_key = self.create_api_key(self.user)
+    def _create_token(self, api_key=None):
+        if api_key is None:
+            api_key = self.create_api_key(self.user)
         return self.create_auth_token(api_key.user, api_key.key,
                                       api_key.secret)
 
@@ -146,14 +148,13 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
 
 
 class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
-    fixtures = ['base/addon_3615']
     client_class = APITestClient
 
     def setUp(self):
         super(TestJWTKeyAuthProtectedView, self).setUp()
         self.endpoint(JWTKeyAuthTestView)
         self.client.logout_api()  # just to be sure!
-        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.user = user_factory(read_dev_agreement=datetime.now())
 
     def request(self, method, *args, **kw):
         handler = getattr(self.client, method)
@@ -190,19 +191,18 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
         assert res.status_code == 401, res.content
 
 
-class TestJSONWebTokenAuthentication(TestCase):
-    fixtures = ['base/addon_3615']
+class TestWebTokenAuthentication(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestJSONWebTokenAuthentication, self).setUp()
-        self.auth = JSONWebTokenAuthentication()
+        super(TestWebTokenAuthentication, self).setUp()
+        self.auth = WebTokenAuthentication()
         self.factory = RequestFactory()
-        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.user = user_factory(read_dev_agreement=datetime.now())
 
     def _authenticate(self, token):
-        url = absolutify('/api/whatever')
-        prefix = api_settings.JWT_AUTH_HEADER_PREFIX
+        url = absolutify('/api/v3/whatever/')
+        prefix = WebTokenAuthentication.auth_header_prefix
         request = self.factory.post(
             url, HTTP_HOST='testserver',
             HTTP_AUTHORIZATION='{0} {1}'.format(prefix, token))
@@ -214,16 +214,68 @@ class TestJSONWebTokenAuthentication(TestCase):
         user, _ = self._authenticate(token)
         assert user == self.user
 
-    def test_verify(self):
-        token = self.client.generate_api_token(self.user)
-        verify_token_url = reverse('frontend-token-verify')
-        response = self.client.post(verify_token_url, data={'token': token})
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        assert data['token'] == token
+    def test_authenticate_header(self):
+        request = self.factory.post('/api/v3/whatever/')
+        assert (self.auth.authenticate_header(request) ==
+                'bearer realm="api"')
 
-    def test_no_user_id(self):
+    def test_wrong_header_only_prefix(self):
+        request = self.factory.post(
+            '/api/v3/whatever/',
+            HTTP_AUTHORIZATION=WebTokenAuthentication.auth_header_prefix)
+        with self.assertRaises(AuthenticationFailed):
+            self.auth.authenticate(request)
+
+    def test_wrong_header_too_many_spaces(self):
+        request = self.factory.post(
+            '/api/v3/whatever/',
+            HTTP_AUTHORIZATION='{} foo bar'.format(
+                WebTokenAuthentication.auth_header_prefix))
+        with self.assertRaises(AuthenticationFailed):
+            self.auth.authenticate(request)
+
+    def test_no_token(self):
+        request = self.factory.post('/api/v3/whatever/')
+        self.auth.authenticate(request) is None
+
+    def test_expired_token(self):
+        old_date = datetime.now() - timedelta(
+            seconds=settings.SESSION_COOKIE_AGE + 1)
+        with freeze_time(old_date):
+            token = self.client.generate_api_token(self.user)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+
+    def test_still_valid_token(self):
+        not_so_old_date = datetime.now() - timedelta(
+            seconds=settings.SESSION_COOKIE_AGE - 30)
+        with freeze_time(not_so_old_date):
+            token = self.client.generate_api_token(self.user)
+        assert self._authenticate(token)[0] == self.user
+
+    def test_bad_token(self):
+        token = 'garbage'
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+
+    def test_user_id_is_none(self):
         token = self.client.generate_api_token(self.user, user_id=None)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+
+    def test_no_user_id_in_payload(self):
+        data = {
+            'auth_hash': self.user.get_session_auth_hash(),
+        }
+        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+
+    def test_no_auth_hash_in_payload(self):
+        data = {
+            'user_id': self.user.pk,
+        }
+        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
 
@@ -233,13 +285,29 @@ class TestJSONWebTokenAuthentication(TestCase):
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
 
-    def test_username_changes(self):
-        token = self.client.generate_api_token(self.user)
-        self.user.update(username='different')
-        user, _ = self._authenticate(token)
-        assert user == self.user
-
     def test_invalid_user_not_found(self):
         token = self.client.generate_api_token(self.user, user_id=-1)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
+
+    def test_invalid_user_other_user(self):
+        user2 = user_factory(read_dev_agreement=datetime.now())
+        token = self.client.generate_api_token(self.user, user_id=user2.pk)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+
+    def test_wrong_auth_id(self):
+        token = self.client.generate_api_token(self.user)
+        self.user.update(auth_id=self.user.auth_id + 42)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+
+    def test_make_sure_token_is_decodable(self):
+        token = self.client.generate_api_token(self.user)
+        # A token is really a string containing the json dict,
+        # a timestamp and a signature, separated by ':'. The base64 encoding
+        # lacks padding, which is why we need to use signing.b64_decode() which
+        # handles that for us.
+        data = json.loads(signing.b64_decode(token.split(':')[0]))
+        assert data['user_id'] == self.user.pk
+        assert data['auth_hash'] == self.user.get_session_auth_hash()
