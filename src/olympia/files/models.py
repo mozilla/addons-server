@@ -16,7 +16,6 @@ from django.template.defaultfilters import slugify
 from django.utils.encoding import force_bytes, force_text
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
-from cache_nuggets.lib import memoize
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from django.utils.safestring import mark_safe
@@ -24,6 +23,7 @@ from jinja2 import escape as jinja2_escape
 
 import olympia.core.logger
 from olympia import amo
+from olympia.amo.cache_nuggets import memoize
 from olympia.amo.models import OnChangeMixin, ModelBase, UncachedManagerBase
 from olympia.amo.decorators import use_master
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file

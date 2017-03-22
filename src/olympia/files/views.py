@@ -5,10 +5,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
 from django.utils.translation import ugettext as _
 
-from cache_nuggets.lib import Message, Token
-
 import olympia.core.logger
 from olympia.access import acl
+from olympia.amo.cache_nuggets import Message, Token
 from olympia.amo.decorators import json_view
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, urlparams, render

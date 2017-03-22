@@ -155,8 +155,6 @@ django-aesfield==0.3.0 \
 django-babel==0.5.1 \
     --hash=sha256:a0e342a549d1269cd0c02a1b4b483d6c7c7341db4c87b6b149a2b5bc059cee57 \
     --hash=sha256:c444af7f9dd2ed18868facbf45e1494d5ad0d968401b617d29007dc10027fa60
-django-cache-nuggets==0.1.1 \
-    --hash=sha256:5215ab7ae1d7446a649b27384317afe23e77bf459893d99096ae662538bb547d
 django-cors-headers-multi==1.2.0 \
     --hash=sha256:ca1ccf9fd549fe5447e8ba1d49656582651cd7682f78f62a7cd0f912b9359968 \
     --hash=sha256:c40f17823aa59df3c064234cdc890c56667b5db1ea6aac0172c949dc5c42ed53

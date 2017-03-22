@@ -17,7 +17,6 @@ from django.shortcuts import get_object_or_404
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
 
-from cache_nuggets.lib import memoize
 from dateutil.parser import parse
 from product_details import product_details
 from rest_framework import status
@@ -27,6 +26,7 @@ from rest_framework.views import APIView
 
 import olympia.core.logger
 from olympia import amo
+from olympia.amo.cache_nuggets import memoize
 from olympia.amo.utils import render, AMOJSONEncoder
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory

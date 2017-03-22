@@ -10,11 +10,11 @@ from django.utils.http import http_date
 from django.test.utils import override_settings
 
 import pytest
-from cache_nuggets.lib import Message
 from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia import amo
+from olympia.amo.cache_nuggets import Message
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import Addon
