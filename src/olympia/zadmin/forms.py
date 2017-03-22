@@ -3,14 +3,17 @@ import re
 
 from django import forms
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from django.forms.models import modelformset_factory
 from django.forms.widgets import RadioSelect
+from django.forms.models import BaseModelFormSet
 from django.template import Context, Template, TemplateSyntaxError
+from django.utils.datastructures import MultiValueDictKeyError
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 from product_details import product_details
-from quieter_formset.formset import BaseModelFormSet
 
 import olympia.core.logger
 from olympia import amo
@@ -175,6 +178,56 @@ class BaseFeaturedCollectionFormSet(BaseModelFormSet):
                     .get(id=form.instance.id).collection.id)
             except (FeaturedCollection.DoesNotExist, Collection.DoesNotExist):
                 form.initial['collection'] = None
+
+    @cached_property
+    def forms(self):
+        forms = []
+        for i in xrange(self.total_form_count()):
+            try:
+                forms.append(self._construct_form(i))
+            except MultiValueDictKeyError, err:
+                self._non_form_errors = err
+            except KeyError, err:
+                self._non_form_errors = u'Key not found on form: %s' % err
+            except (ValueError, IndexError), err:
+                self._non_form_errors = err
+        return forms
+
+    def full_clean(self):
+        """
+        Cleans all of self.data and populates self._errors. Copes with forms
+        that failed to be constructed, as long as non_form_errors has been
+        set.
+        """
+        self._errors = []
+        if not self._non_form_errors:
+            self._non_form_errors = self.error_class()
+        if not self.is_bound:  # Stop further processing.
+            return
+        for i in range(0, self.total_form_count()):
+            try:
+                form = self.forms[i]
+                self._errors.append(form.errors)
+            except IndexError:
+                # If the form is not there, but there's nothing in non-form
+                # errors, that's bad.
+                if not self._non_form_errors:
+                    raise
+
+        # Give self.clean() a chance to do cross-form validation.
+        try:
+            self.clean()
+        except ValidationError, e:
+            self._non_form_errors = self.error_class(e.messages)
+
+    def is_valid(self):
+        """
+        Returns True if form.errors is empty for every form in self.forms
+        or there are non_form_errors.
+        """
+        if self._non_form_errors:
+            return False
+        return super(BaseModelFormSet, self).is_valid()
 
 
 FeaturedCollectionFormSet = modelformset_factory(

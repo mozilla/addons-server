@@ -5,12 +5,11 @@ import socket
 from django import forms
 from django.conf import settings
 from django.db.models import Q
-from django.forms.models import modelformset_factory
+from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import jinja2
-from quieter_formset.formset import BaseModelFormSet
 
 import olympia.core.logger
 from olympia.access import acl
