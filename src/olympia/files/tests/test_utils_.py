@@ -649,7 +649,7 @@ def test_parse_search_empty_shortname():
 
     assert (
         excinfo.value[0] ==
-        'Could not parse uploaded file, missing <ShortName> element')
+        'Could not parse uploaded file, missing or empty <ShortName> element')
 
 
 class TestResolvei18nMessage(object):

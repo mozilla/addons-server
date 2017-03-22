@@ -403,7 +403,8 @@ def extract_search(content):
             return dom.getElementsByTagName(tag)[0].childNodes[0].wholeText
         except (IndexError, AttributeError):
             raise forms.ValidationError(
-                _('Could not parse uploaded file, missing <%s> element') % tag)
+                _('Could not parse uploaded file, missing or empty '
+                  '<%s> element') % tag)
 
     rv['name'] = text('ShortName')
     rv['description'] = text('Description')
