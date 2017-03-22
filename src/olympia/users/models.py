@@ -151,8 +151,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     # Identifier that is used to invalidate internal API tokens (i.e. those
     # that we generate for addons-frontend, NOT the API keys external clients
-    # use) and django sessions. Should always be kept secret, and changed if a
-    # user is known to have been compromised.
+    # use) and django sessions. Should be changed if a user is known to have
+    # been compromised.
     auth_id = models.PositiveIntegerField(null=True, default=generate_auth_id)
 
     class Meta:

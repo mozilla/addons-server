@@ -218,7 +218,7 @@ def with_user(format, config=None):
 def add_api_token_to_response(response, user, set_cookie=True):
     # Generate API token and add it to the json response.
     data = {
-        'secret': user.get_session_auth_hash(),
+        'auth_hash': user.get_session_auth_hash(),
         'user_id': user.pk,
     }
     token = signing.dumps(data, salt=WebTokenAuthentication.salt)

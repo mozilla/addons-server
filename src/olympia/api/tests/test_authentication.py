@@ -265,13 +265,13 @@ class TestWebTokenAuthentication(TestCase):
 
     def test_no_user_id_in_payload(self):
         data = {
-            'secret': self.user.get_session_auth_hash(),
+            'auth_hash': self.user.get_session_auth_hash(),
         }
         token = signing.dumps(data, salt=WebTokenAuthentication.salt)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)
 
-    def test_no_secret_in_payload(self):
+    def test_no_auth_hash_in_payload(self):
         data = {
             'user_id': self.user.pk,
         }
@@ -310,4 +310,4 @@ class TestWebTokenAuthentication(TestCase):
         # handles that for us.
         data = json.loads(signing.b64_decode(token.split(':')[0]))
         assert data['user_id'] == self.user.pk
-        assert data['secret'] == self.user.get_session_auth_hash()
+        assert data['auth_hash'] == self.user.get_session_auth_hash()

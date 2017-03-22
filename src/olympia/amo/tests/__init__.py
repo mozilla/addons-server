@@ -272,7 +272,7 @@ class APITestClient(APIClient):
         Creates a jwt token for this user.
         """
         data = {
-            'secret': user.get_session_auth_hash(),
+            'auth_hash': user.get_session_auth_hash(),
             'user_id': user.pk,
         }
         data.update(payload_overrides)

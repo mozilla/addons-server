@@ -116,12 +116,12 @@ class WebTokenAuthentication(BaseAuthentication):
 
         # Check get_session_auth_hash like django's get_user() does.
         session_auth_hash = user.get_session_auth_hash()
-        payload_secret = payload.get('secret', '')
-        if not constant_time_compare(payload_secret, session_auth_hash):
-            log.info('User tried to authenticate with invalid secret in'
+        payload_auth_hash = payload.get('auth_hash', '')
+        if not constant_time_compare(payload_auth_hash, session_auth_hash):
+            log.info('User tried to authenticate with invalid auth hash in'
                      'payload {}'.format(payload))
             raise exceptions.AuthenticationFailed(
-                'Invalid secret in token payload.')
+                'Invalid auth hash in token payload.')
 
         # Set user in thread like UserAndAddrMiddleware does.
         core.set_user(user)
