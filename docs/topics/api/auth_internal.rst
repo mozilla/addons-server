@@ -46,4 +46,4 @@ Creating an Authorization header
 When making an authenticated API request, put your generated API Token into an
 HTTP Authorization header prefixed with ``Bearer``, like this::
 
-    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDcyNzMwOTZ9.MG9LJiEK5_Db8WpF5cWWRebXCtUB48EJzxKIBqQhSOo
+    Authorization: Bearer eyJhdXRoX2hhc2giOiJiY2E0MTZkN2RiMGU3NjFmYTA2NDE4MjAzZWU1NTMwOTM4OGZhNzcxIiwidXNlcl9pZCI6MTIzNDV9:1cqe2Q:cPMlmz8ejIkutD-gNo3EWU8IfL8
