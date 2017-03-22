@@ -398,8 +398,13 @@ def extract_search(content):
     rv = {}
     dom = minidom.parse(content)
 
-    def text(x):
-        return dom.getElementsByTagName(x)[0].childNodes[0].wholeText
+    def text(tag):
+        try:
+            return dom.getElementsByTagName(tag)[0].childNodes[0].wholeText
+        except (IndexError, AttributeError):
+            raise forms.ValidationError(
+                _('Could not parse uploaded file, missing or empty '
+                  '<%s> element') % tag)
 
     rv['name'] = text('ShortName')
     rv['description'] = text('Description')
