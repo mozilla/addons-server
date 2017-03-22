@@ -1535,14 +1535,6 @@ GOOGLE_ANALYTICS_CREDENTIALS = {}
 # Which domain to access GA stats for. If not set, defaults to DOMAIN.
 GOOGLE_ANALYTICS_DOMAIN = None
 
-# Used for general web API access.
-GOOGLE_API_CREDENTIALS = ''
-
-# Google translate settings.
-GOOGLE_TRANSLATE_API_URL = 'https://www.googleapis.com/language/translate/v2'
-GOOGLE_TRANSLATE_REDIRECT_URL = (
-    'https://translate.google.com/#auto/{lang}/{text}')
-
 # Language pack fetcher settings
 LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
 LANGPACK_DOWNLOAD_BASE = 'https://ftp.mozilla.org/pub/mozilla.org/'

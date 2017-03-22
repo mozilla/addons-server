@@ -83,11 +83,6 @@
               by {{ user }} on {{ date }}
               {{ stars }} ({{ locale }})
             {% endtrans %}
-            {% if waffle.switch('reviews-translate') %}
-              &middot;
-              <a class="translate" rel="nofollow"
-                 href="{{ url('addons.reviews.translate', review.instance.addon.slug, review.instance.id, LANG) }}">{{ _('translate') }}</a>
-            {% endif %}
             </p>
             <p class="description">{{ review.instance.body|nl2br }}</p>
             <ul class="reviews-flagged-reasons">

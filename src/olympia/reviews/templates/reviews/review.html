@@ -38,11 +38,6 @@
     &middot;
     <a class="permalink"
       href="{{ url('addons.reviews.detail', addon.slug, review.id) }}">{{ _('permalink') }}</a>
-    {% if waffle.switch('reviews-translate') %}
-      &middot;
-      <a class="translate" rel="nofollow"
-         href="{{ url('addons.reviews.translate', addon.slug, review.id, LANG) }}">{{ _('translate') }}</a>
-    {% endif %}
   </p>
   <p class="description">{{ review.body|nl2br }}</p>
   {% if outdated and not is_reply %}

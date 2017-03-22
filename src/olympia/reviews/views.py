@@ -1,15 +1,9 @@
-import HTMLParser
-import json
-import requests
-
 from django import http
-from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import force_text
-from django.utils.http import urlquote
 from django.utils.translation import ugettext as _
 
 from mobility.decorators import mobile_template
@@ -18,7 +12,6 @@ from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
-from waffle.decorators import waffle_switch
 
 import olympia.core.logger
 from olympia.amo import messages
@@ -93,46 +86,6 @@ def get_flags(request, reviews):
     reviews = [r.id for r in reviews]
     qs = ReviewFlag.objects.filter(review__in=reviews, user=request.user.id)
     return dict((r.review_id, r) for r in qs)
-
-
-def _retrieve_translation(text, language):
-    try:
-        r = requests.get(
-            settings.GOOGLE_TRANSLATE_API_URL, params={
-                'key': getattr(settings, 'GOOGLE_API_CREDENTIALS', ''),
-                'q': text, 'target': language})
-    except Exception, e:
-        log.error(e)
-    try:
-        translated = (HTMLParser.HTMLParser().unescape(r.json()['data']
-                      ['translations'][0]['translatedText']))
-    except (KeyError, IndexError):
-        translated = ''
-    return translated, r
-
-
-@addon_view
-@waffle_switch('reviews-translate')
-@non_atomic_requests
-def translate(request, addon, review_id, language):
-    """
-    Use the Google Translate API for ajax, redirect to Google Translate for
-    non ajax calls.
-    """
-    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
-    if '-' in language:
-        language = language.split('-')[0]
-
-    if request.is_ajax():
-        title, r = _retrieve_translation(review.title, language)
-        body, r = _retrieve_translation(review.body, language)
-        return http.HttpResponse(json.dumps({'title': title, 'body': body}),
-                                 status=r.status_code)
-    else:
-        # Override safe='/' to escape slashes too. Otherwise text containing
-        # a slash becomes truncated at that slash.
-        return redirect(settings.GOOGLE_TRANSLATE_REDIRECT_URL.format(
-            lang=language, text=urlquote(review.body, safe='')))
 
 
 @addon_view
