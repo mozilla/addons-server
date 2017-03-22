@@ -47,6 +47,7 @@ SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = None
 
 CELERY_ALWAYS_EAGER = False
+CELERY_ROUTES = {}
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.

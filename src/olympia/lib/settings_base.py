@@ -10,8 +10,6 @@ from django.utils.functional import lazy
 from django.core.urlresolvers import reverse_lazy
 
 import environ
-from kombu import Queue
-
 
 env = environ.Env()
 
@@ -1059,27 +1057,6 @@ CELERY_IMPORTS = (
     'olympia.lib.es.management.commands.reindex',
 )
 
-CELERY_QUEUES = (
-    Queue('default', routing_key='default'),
-    Queue('priority', routing_key='priority'),
-    Queue('devhub', routing_key='devhub'),
-    Queue('images', routing_key='images'),
-    Queue('limited', routing_key='limited'),
-    Queue('amo', routing_key='amo'),
-    Queue('addons', routing_key='addons'),
-    Queue('api', routing_key='api'),
-    Queue('cron', routing_key='cron'),
-    Queue('bandwagon', routing_key='bandwagon'),
-    Queue('editors', routing_key='editors'),
-    Queue('crypto', routing_key='crypto'),
-    Queue('search', routing_key='search'),
-    Queue('reviews', routing_key='reviews'),
-    Queue('stats', routing_key='stats'),
-    Queue('tags', routing_key='tags'),
-    Queue('users', routing_key='users'),
-    Queue('zadmin', routing_key='zadmin'),
-)
-
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
@@ -1143,6 +1120,9 @@ CELERY_ROUTES = {
     'olympia.addons.tasks.update_incompatible_appversions': {
         'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
+
+    # Files (goes to devhub queue).
+    'olympia.files.tasks.update_webext_descriptions_all': {'queue': 'devhub'},
 
     # API
     'olympia.api.tasks.process_results': {'queue': 'api'},
