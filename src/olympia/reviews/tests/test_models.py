@@ -110,6 +110,14 @@ class TestReviewModel(TestCase):
         assert Review.unfiltered.count() == 3
 
     @mock.patch('olympia.reviews.models.log')
+    def test_author_delete(self, log_mock):
+        review = Review.objects.get(pk=1)
+        review.delete(user_responsible=review.user)
+
+        review.reload()
+        assert ActivityLog.objects.count() == 0
+
+    @mock.patch('olympia.reviews.models.log')
     def test_moderator_delete(self, log_mock):
         moderator = user_factory()
         review = Review.objects.get(pk=1)
@@ -185,7 +193,7 @@ class TestReviewModel(TestCase):
         assert flag.review == review
 
         # Delete the review: reviewflag.review should still work.
-        review.delete(user_responsible=review.addon.authors.first())
+        review.delete(user_responsible=review.user)
         flag = ReviewFlag.objects.get(pk=flag.pk)
         assert flag.review == review
 
