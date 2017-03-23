@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-22 01:23+0000\n"
+"PO-Revision-Date: 2017-03-23 03:00+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -5081,7 +5081,7 @@ msgstr "다 되었습니다! 이 버전은 심사를 위해 제출되었으며, 
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "자세한 설명과 스크린샷이 추가된다면 목록에서 더 성공적일 것입니다. 게시를 위한 목록을 준비하세요:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5090,7 +5090,7 @@ msgstr "목록 보기"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "압축되거나 난독화, 컴파일된 코드를 포함하고 있다면 버전 노트나 소스코드를 추가하도록 버전을 수정할 수 있습니다."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5224,15 +5224,15 @@ msgstr "계정이 없습니다."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
-msgstr ""
+msgstr "취소"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "취소하고 자격 증명 다시 생성"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Generate new credentials"
-msgstr ""
+msgstr "새 자격 증명 생성"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on by adding a version or missing metadata."
