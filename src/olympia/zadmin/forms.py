@@ -6,11 +6,11 @@ from django.conf import settings
 from django.forms import ModelForm
 from django.forms.models import modelformset_factory
 from django.forms.widgets import RadioSelect
+from django.forms.models import BaseModelFormSet
 from django.template import Context, Template, TemplateSyntaxError
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 from product_details import product_details
-from quieter_formset.formset import BaseModelFormSet
 
 import olympia.core.logger
 from olympia import amo

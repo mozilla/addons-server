@@ -5,11 +5,9 @@ import os
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.forms.formsets import formset_factory
+from django.forms.formsets import BaseFormSet, formset_factory
 from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext)
-
-from quieter_formset.formset import BaseFormSet
 
 import olympia.core.logger
 from olympia import amo

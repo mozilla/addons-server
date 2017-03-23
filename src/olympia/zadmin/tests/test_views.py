@@ -1316,9 +1316,9 @@ class TestFeatures(TestCase):
         assert self.initial['collection'] == 80
 
     def test_form_attrs(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('#features tr').attr('data-app') == str(amo.FIREFOX.id)
         assert doc('#features td.app').hasClass(amo.FIREFOX.short)
         assert doc('#features td.collection.loading').attr(
@@ -1328,84 +1328,78 @@ class TestFeatures(TestCase):
 
     def test_disabled_autocomplete_errors(self):
         """If any collection errors, autocomplete field should be enabled."""
-        d = dict(application=amo.FIREFOX.id, collection=999)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        doc = pq(r.content)
+        data = initial(self.f)
+        data['collection'] = 999
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        doc = pq(response.content)
         assert not doc('#features .collection-ac[disabled]')
 
     def test_required_app(self):
-        d = dict(locale='zh-CN', collection=80)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.status_code == 200
-        assert r.context['form'].errors[0]['application'] == (
+        data = initial(self.f)
+        del data['application']
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.status_code == 200
+        assert response.context['form'].errors[0]['application'] == (
             ['This field is required.'])
-        assert r.context['form'].errors[0]['collection'] == (
+        assert response.context['form'].errors[0]['collection'] == (
             ['Invalid collection for this application.'])
 
     def test_bad_app(self):
-        d = dict(application=999, collection=80)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['application'] == [
+        data = initial(self.f)
+        data['application'] = 999
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.context['form'].errors[0]['application'] == [
             'Select a valid choice. 999 is not one of the available choices.']
 
     def test_bad_collection_for_app(self):
-        d = dict(application=amo.THUNDERBIRD.id, collection=80)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['collection'] == (
+        data = initial(self.f)
+        data['application'] = amo.THUNDERBIRD.id
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.context['form'].errors[0]['collection'] == (
             ['Invalid collection for this application.'])
 
-    def test_optional_locale(self):
-        d = dict(application=amo.FIREFOX.id, collection=80)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors == [{}]
-
     def test_bad_locale(self):
-        d = dict(application=amo.FIREFOX.id, locale='klingon', collection=80)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['locale'] == (
+        data = initial(self.f)
+        data['locale'] = 'klingon'
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.context['form'].errors[0]['locale'] == (
             ['Select a valid choice. klingon is not one of the available '
              'choices.'])
 
     def test_required_collection(self):
-        d = dict(application=amo.FIREFOX.id)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['collection'] == (
+        data = initial(self.f)
+        del data['collection']
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.context['form'].errors[0]['collection'] == (
             ['This field is required.'])
 
     def test_bad_collection(self):
-        d = dict(application=amo.FIREFOX.id, collection=999)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['collection'] == (
+        data = initial(self.f)
+        data['collection'] = 999
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.context['form'].errors[0]['collection'] == (
             ['Invalid collection for this application.'])
 
     def test_success_insert(self):
         dupe = initial(self.f)
         del dupe['id']
-        dupe.update(locale='fr')
+        dupe['locale'] = 'fr'
         data = formset(initial(self.f), dupe, initial_count=1)
         self.client.post(self.url, data)
         assert FeaturedCollection.objects.count() == 2
         assert FeaturedCollection.objects.all()[1].locale == 'fr'
 
     def test_success_update(self):
-        d = initial(self.f)
-        d.update(locale='fr')
-        r = self.client.post(self.url, formset(d, initial_count=1))
-        assert r.status_code == 302
+        data = initial(self.f)
+        data['locale'] = 'fr'
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.status_code == 302
         assert FeaturedCollection.objects.all()[0].locale == 'fr'
 
     def test_success_delete(self):
-        d = initial(self.f)
-        d.update(DELETE=True)
-        self.client.post(self.url, formset(d, initial_count=1))
+        data = initial(self.f)
+        data['DELETE'] = True
+        self.client.post(self.url, formset(data, initial_count=1))
         assert FeaturedCollection.objects.count() == 0
 
 
