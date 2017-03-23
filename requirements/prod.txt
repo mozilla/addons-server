@@ -278,8 +278,6 @@ m2secret==0.1.1 \
 mock==2.0.0 \
     --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
     --hash=sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba
-moz-addon-packager==1.0.1 \
-    --hash=sha256:57bafb7c5eea6a91b53542ac485ce94219652c6024ccb8aae8b26ce275e0b0e3
 mozilla-logger==0.2 \
     --hash=sha256:085db73901ea38728ac5eb14197979ae8b9524511ba7f0d8941d70650b586ef5
 # natsort is required by amo-validator
