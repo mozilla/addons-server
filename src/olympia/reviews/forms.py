@@ -5,7 +5,7 @@ from django import forms
 from django.forms.models import modelformset_factory
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
-from bleach import TLDS
+from bleach.linkifier import TLDS
 from quieter_formset.formset import BaseModelFormSet
 
 from olympia import reviews

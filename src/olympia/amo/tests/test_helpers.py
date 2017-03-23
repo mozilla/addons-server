@@ -282,17 +282,17 @@ def test_external_url():
 def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
-    res = urlresolvers.linkify_bounce_url_callback({'href': 'foo'})
+    res = urlresolvers.linkify_bounce_url_callback({(None, 'href'): 'foo'})
 
     # Make sure get_outgoing_url was called.
-    assert res == {'href': 'bar'}
+    assert res == {(None, 'href'): 'bar'}
     mock_get_outgoing_url.assert_called_with('foo')
 
 
 @patch('olympia.amo.helpers.urlresolvers.linkify_bounce_url_callback')
 def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
-        attrs['href'] = 'bar'
+        attrs[(None, 'href')] = 'bar'
         return attrs
 
     mock_linkify_bounce_url_callback.side_effect = side_effect
@@ -316,7 +316,7 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
 @patch('olympia.amo.helpers.urlresolvers.linkify_bounce_url_callback')
 def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
-        attrs['href'] = 'bar'
+        attrs[(None, 'href')] = 'bar'
         return attrs
 
     mock_linkify_bounce_url_callback.side_effect = side_effect

@@ -8,6 +8,7 @@ from urlparse import urlparse
 
 import bleach
 import jinja2
+from bleach.linkifier import TLDS
 
 from django.conf import settings
 from django.core import urlresolvers
@@ -198,7 +199,7 @@ def get_outgoing_url(url):
 
 def linkify_bounce_url_callback(attrs, new=False):
     """Linkify callback that uses get_outgoing_url."""
-    attrs['href'] = get_outgoing_url(attrs['href'])
+    attrs[(None, 'href')] = get_outgoing_url(attrs[(None, 'href')])
     return attrs
 
 
@@ -220,7 +221,7 @@ def linkify_only_full_urls(attrs, new=False):
 # they're followed by a space, or the end of the string.
 URL_RE = re.compile(r'\bhttps?://([a-z0-9-]+\.)+({0})/'
                     r'([^\s<>()"\x27.,]|[.,](?!\s|$))*'
-                    .format('|'.join(bleach.TLDS)))
+                    .format('|'.join(TLDS)))
 
 
 def linkify_escape(text):
