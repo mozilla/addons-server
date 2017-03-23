@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-19 19:28+0000\n"
+"PO-Revision-Date: 2017-03-23 18:50+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2486,7 +2486,7 @@ msgstr "Recursos adicionais"
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr "Saiba mais acerca da <a href=\"http://support.mozilla.com/kb/Search+bar\">Barra de pesquisa</a> em {0}"
+msgstr "Saiba mais acerca da <a href=\"http://support.mozilla.com/kb/Search+bar\">barra de pesquisa</a> no {0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
