@@ -533,8 +533,6 @@ class TestWithUser(TestCase):
         response = self.render_error.return_value
         assert response.set_cookie.call_count == 1
         response.set_cookie.assert_called_with(
-            # Fatal flow: though we are able to set the max age of the cookie,
-            # we aren't setting a different timestamp for the token itself...
             views.API_TOKEN_COOKIE,
             'fake-api-token',
             max_age=settings.SESSION_COOKIE_AGE,
