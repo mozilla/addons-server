@@ -185,9 +185,8 @@ def test_get_locale_from_lang(lang):
     assert isinstance(locale, Locale)
     assert locale.language == lang[:2]
 
-    separator = filter(
-        None, [sep if sep in lang else None for sep in ('-', '_')])
+    separator = '-' if '-' in lang else '_' if '_' in lang else None
 
     if separator:
-        territory = lang.split(separator[0])[1]
+        territory = lang.split(separator)[1]
         assert locale.territory == territory
