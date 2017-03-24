@@ -6,8 +6,8 @@ Authentication (External)
 
 To access the API as an external consumer, you need to include a
 `JSON Web Token (JWT)`_ in the ``Authorization`` header for every request.
-This header authenticates your user account so you could think of it like a
-session cookie.
+This header acts as a one-time token that authenticates your user account.
+No JWT claims are made about the actual API request you are making.
 
 If you are building an app that lives on the AMO domain, read the
 :ref:`documentation for internal authentication <api-auth-internal>` instead.
