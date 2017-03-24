@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-16 14:02+0000\n"
-"PO-Revision-Date: 2017-03-19 19:27+0000\n"
+"PO-Revision-Date: 2017-03-24 00:07+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -390,7 +390,7 @@ msgstr "Saber mais no Gestor de extras"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
-msgstr "Sugestões de Pesquisa"
+msgstr "Sugestões de pesquisa"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
