@@ -497,7 +497,8 @@ class TestWithUser(TestCase):
         assert not self.find_user.called
         assert not self.fxa_identify.called
 
-    def test_logged_in_disallows_login(self):
+    @mock.patch.object(views, 'generate_api_token')
+    def test_logged_in_disallows_login(self, generate_api_token_mock):
         self.request.data = {
             'code': 'foo',
             'state': 'some-blob:{}'.format(base64.urlsafe_b64encode('/next')),
@@ -505,11 +506,14 @@ class TestWithUser(TestCase):
         self.user = UserProfile()
         self.request.user = self.user
         assert self.user.is_authenticated()
+        self.request.COOKIES = {views.API_TOKEN_COOKIE: 'foobar'}
         self.fn(self.request)
         self.render_error.assert_called_with(
             self.request, views.ERROR_AUTHENTICATED, next_path='/next',
             format='json')
         assert not self.find_user.called
+        assert self.render_error.return_value.set_cookie.call_count == 0
+        assert generate_api_token_mock.call_count == 0
 
     @mock.patch.object(views, 'generate_api_token', lambda u: 'fake-api-token')
     def test_already_logged_in_add_api_token_cookie_if_missing(self):
