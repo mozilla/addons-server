@@ -9,10 +9,10 @@ from django.contrib.messages import get_messages
 from django.core.urlresolvers import resolve, reverse
 from django.test import RequestFactory
 from django.test.utils import override_settings
-import mock
-from waffle.models import Switch
 
+import mock
 from rest_framework.test import APIRequestFactory, APITestCase
+from waffle.models import Switch
 
 from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
@@ -510,6 +510,32 @@ class TestWithUser(TestCase):
             self.request, views.ERROR_AUTHENTICATED, next_path='/next',
             format='json')
         assert not self.find_user.called
+
+    @mock.patch.object(views, 'generate_api_token', lambda u: 'fake-api-token')
+    def test_already_logged_in_add_api_token_cookie_if_missing(self):
+        self.request.data = {
+            'code': 'foo',
+            'state': 'some-blob:{}'.format(base64.urlsafe_b64encode('/next')),
+        }
+        self.user = UserProfile()
+        self.request.user = self.user
+        assert self.user.is_authenticated()
+        self.request.COOKIES = {}
+        self.fn(self.request)
+        self.render_error.assert_called_with(
+            self.request, views.ERROR_AUTHENTICATED, next_path='/next',
+            format='json')
+        assert not self.find_user.called
+        response = self.render_error.return_value
+        assert response.set_cookie.call_count == 1
+        response.set_cookie.assert_called_with(
+            # Fatal flow: though we are able to set the max age of the cookie,
+            # we aren't setting a different timestamp for the token itself...
+            views.API_TOKEN_COOKIE,
+            'fake-api-token',
+            max_age=settings.SESSION_COOKIE_AGE,
+            secure=settings.SESSION_COOKIE_SECURE,
+            httponly=settings.SESSION_COOKIE_HTTPONLY)
 
     def test_state_does_not_match(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
