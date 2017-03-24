@@ -204,6 +204,9 @@ def with_user(format, config=None):
                 # If the api token cookie is missing but we're still
                 # authenticated using the session, add it back.
                 if API_TOKEN_COOKIE not in request.COOKIES:
+                    log.info('User %s was already authenticated but did not '
+                             'have an API token cookie, adding one.',
+                             request.user.pk)
                     response = add_api_token_to_response(
                         response, request.user)
                 return response
