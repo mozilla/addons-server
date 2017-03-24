@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2016-11-02 01:08+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1050,10 +1050,6 @@ msgstr "Average Reviews"
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Number of Reviews"
-
-#: static/js/zamboni/editors.js
-msgid "Error loading translation"
-msgstr "Error loading translation"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."

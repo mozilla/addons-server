@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2013-10-23 18:28+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "Review"
 msgstr "Comentari"
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr "Versió {0}"
@@ -493,10 +493,6 @@ msgid ""
 msgstr ""
 "<strong>Atenció:</strong> Mozilla no revisa les versions de desenvolupament d'aquest complement. Un cop instal·leu una versió de desenvolupament, continuareu rebent actualitzacions del complement a "
 "mesura que el desenvolupador les publiqui. Si voleu parar de rebre actualitzacions de desenvolupament, torneu a instal·lar la versió estable amb l'enllaç anterior."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Version {0}:"
-msgstr "Versió {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -1030,7 +1026,7 @@ msgstr "Mostra les estadístiques"
 msgid "Manage"
 msgstr "Gestiona"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/addons/templates/addons/impala/details.html
 #, fuzzy
 msgid "Add-on Review"
 msgstr "Valoració completa del complement"
@@ -1204,10 +1200,6 @@ msgstr "Llicència del codi font"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
 msgstr "enllaç permanent"
-
-#: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
-msgid "translate"
-msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1724,7 +1716,11 @@ msgid "Another Body"
 msgstr ""
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
+msgid "Invalid Authorization header. No credentials provided."
+msgstr ""
+
+#: src/olympia/api/authentication.py
+msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
 #: src/olympia/api/authentication.py
@@ -1732,15 +1728,11 @@ msgid "Error decoding signature."
 msgstr ""
 
 #: src/olympia/api/authentication.py
+msgid "Signature has expired."
+msgstr ""
+
+#: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
-
-#: src/olympia/api/authentication.py
-msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
-
-#: src/olympia/api/authentication.py
-msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
 #: src/olympia/api/fields.py
@@ -3955,8 +3947,16 @@ msgid "Version doesn't match"
 msgstr "La versió no és correcta"
 
 #: src/olympia/devhub/forms.py
-#, python-format
-msgid "Version %s already exists, or was uploaded before."
+msgid "Version {version} was uploaded before and deleted."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+#, fuzzy
+msgid "Version {version} already exists."
+msgstr "S'ha aprovat el complement {addon} {version}"
+
+#: src/olympia/devhub/forms.py
+msgid "Continue with existing upload instead?"
 msgstr ""
 
 #: src/olympia/devhub/forms.py
@@ -5455,6 +5455,18 @@ msgstr "Si expliqueu als vostres usuaris els vostres plans de futur, aquests est
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
 msgstr ""
+
+# 80%
+# 100%
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Listed Review Page"
+msgstr "Revisions moderades"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Unlisted Review Page"
+msgstr "Comentaris dels usuaris"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -7156,18 +7168,6 @@ msgid "Update the whiteboard"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Unlisted Review Page"
-msgstr "Comentaris dels usuaris"
-
-# 80%
-# 100%
-#: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Listed Review Page"
-msgstr "Revisions moderades"
-
-#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr "(administrador)"
 
@@ -7466,7 +7466,7 @@ msgid "Access your data for {name}"
 msgstr ""
 
 #: src/olympia/files/models.py
-msgid "Access your data on various websites"
+msgid "Access your data on the following websites:"
 msgstr ""
 
 #: src/olympia/files/models.py
@@ -7479,6 +7479,11 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
+#, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 #: src/olympia/files/utils.py

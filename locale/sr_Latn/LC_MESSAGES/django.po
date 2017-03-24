@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -41,6 +41,7 @@ msgid "Review"
 msgstr "Pregled"
 
 #: src/olympia/activity/models.py
+#: src/olympia/addons/templates/addons/details_box.html
 #: src/olympia/addons/templates/addons/impala/details.html
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html
@@ -613,11 +614,6 @@ msgstr ""
 "dobijate razvojne nadogradnje od ovog programera. Da biste zaustavili "
 "primanje razvojnih nadogradnji, ponovo instalirajte razvojnu verziju sa gore "
 "navedene veze."
-
-#: src/olympia/addons/templates/addons/details_box.html
-#: src/olympia/addons/templates/addons/impala/details.html
-msgid "Version {0}:"
-msgstr "Verzija {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 #, fuzzy
@@ -1326,7 +1322,6 @@ msgid "Manage"
 msgstr "Upravljaj"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 #, fuzzy
 msgid "Add-on Review"
 msgstr "Puna recenzija dodatka"
@@ -1531,12 +1526,6 @@ msgstr "Licenca izvornog koda"
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
 msgstr "trajna veza"
-
-#: src/olympia/addons/templates/addons/impala/review_list_box.html
-#: src/olympia/editors/templates/editors/queue.html
-#: src/olympia/reviews/templates/reviews/review.html
-msgid "translate"
-msgstr "prevedi"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, fuzzy, python-format
@@ -2213,7 +2202,12 @@ msgid "Another Body"
 msgstr "Drugi sadržaj"
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
+msgid "Invalid Authorization header. No credentials provided."
+msgstr ""
+
+#: src/olympia/api/authentication.py
+msgid ""
+"Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
 #: src/olympia/api/authentication.py
@@ -2221,16 +2215,11 @@ msgid "Error decoding signature."
 msgstr ""
 
 #: src/olympia/api/authentication.py
+msgid "Signature has expired."
+msgstr ""
+
+#: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
-
-#: src/olympia/api/authentication.py
-msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
-
-#: src/olympia/api/authentication.py
-msgid ""
-"Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
 #: src/olympia/api/fields.py
@@ -4661,8 +4650,16 @@ msgid "Version doesn't match"
 msgstr "Verzije se ne poklapaju"
 
 #: src/olympia/devhub/forms.py
-#, python-format
-msgid "Version %s already exists, or was uploaded before."
+msgid "Version {version} was uploaded before and deleted."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+#, fuzzy
+msgid "Version {version} already exists."
+msgstr "{addon} {version} odobren."
+
+#: src/olympia/devhub/forms.py
+msgid "Continue with existing upload instead?"
 msgstr ""
 
 #: src/olympia/devhub/forms.py
@@ -6437,6 +6434,18 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
 msgstr "Prikaži sve"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Listed Review Page"
+msgstr "Kontrolisan dnevnik pregleda"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Unlisted Review Page"
+msgstr "Recenzije korisnika"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -8385,16 +8394,6 @@ msgid "Update the whiteboard"
 msgstr "Ažuriraj tablu"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Unlisted Review Page"
-msgstr "Recenzije korisnika"
-
-#: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Listed Review Page"
-msgstr "Kontrolisan dnevnik pregleda"
-
-#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr "(administrator)"
 
@@ -8707,7 +8706,7 @@ msgid "Access your data for {name}"
 msgstr ""
 
 #: src/olympia/files/models.py
-msgid "Access your data on various websites"
+msgid "Access your data on the following websites:"
 msgstr ""
 
 #: src/olympia/files/models.py
@@ -8723,6 +8722,11 @@ msgid ""
 "Cannot find min/max version. Maybe \"strict_min_version\" or "
 "\"strict_max_version\" contains an unsupported version?"
 msgstr ""
+
+#: src/olympia/files/utils.py
+#, fuzzy, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
+msgstr "Nije moguće raščlaniti otpremljenu datoteku."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."

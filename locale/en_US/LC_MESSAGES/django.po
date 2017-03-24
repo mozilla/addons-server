@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -41,7 +41,7 @@ msgstr "Need help?"
 msgid "Review"
 msgstr "Review"
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr "Version {0}"
@@ -483,10 +483,6 @@ msgid ""
 msgstr ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Version {0}:"
-msgstr "Version {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -1016,7 +1012,7 @@ msgstr "View statistics"
 msgid "Manage"
 msgstr "Manage"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/addons/templates/addons/impala/details.html
 #, fuzzy
 msgid "Add-on Review"
 msgstr "Full Add-on Review"
@@ -1193,10 +1189,6 @@ msgstr "Source Code License"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
 msgstr "permalink"
-
-#: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
-msgid "translate"
-msgstr "translate"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1712,24 +1704,24 @@ msgid "Another Body"
 msgstr "Another Body"
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
-msgstr "Signature has expired."
-
-#: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr "Error decoding signature."
-
-#: src/olympia/api/authentication.py
-msgid "Invalid JWT Token."
-msgstr "Invalid JWT Token."
-
-#: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
 msgstr "Invalid Authorization header. No credentials provided."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Invalid Authorization header. Credentials string should not contain spaces."
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr "Error decoding signature."
+
+#: src/olympia/api/authentication.py
+msgid "Signature has expired."
+msgstr "Signature has expired."
+
+#: src/olympia/api/authentication.py
+msgid "Invalid JWT Token."
+msgstr "Invalid JWT Token."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
@@ -3955,9 +3947,18 @@ msgid "Version doesn't match"
 msgstr "Version doesn't match"
 
 #: src/olympia/devhub/forms.py
-#, python-format
-msgid "Version %s already exists, or was uploaded before."
+#, fuzzy
+msgid "Version {version} was uploaded before and deleted."
 msgstr "Version %s already exists, or was uploaded before."
+
+#: src/olympia/devhub/forms.py
+#, fuzzy
+msgid "Version {version} already exists."
+msgstr "Version already exists."
+
+#: src/olympia/devhub/forms.py
+msgid "Continue with existing upload instead?"
+msgstr "Continue with existing upload instead?"
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -5482,6 +5483,16 @@ msgstr "Telling your users what's coming soon will give them something to look f
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
 msgstr "View All"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Listed Review Page"
+msgstr "Last Review"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Unlisted Review Page"
+msgstr "Unlisted Queues"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -7191,16 +7202,6 @@ msgid "Update the whiteboard"
 msgstr "Update the whiteboard"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Unlisted Review Page"
-msgstr "Unlisted Queues"
-
-#: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Listed Review Page"
-msgstr "Last Review"
-
-#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr "(admin)"
 
@@ -7501,7 +7502,7 @@ msgstr "Access your data for {name} website"
 
 #: src/olympia/files/models.py
 #, fuzzy
-msgid "Access your data on various websites"
+msgid "Access your data on the following websites:"
 msgstr "Access your data for all websites"
 
 #: src/olympia/files/models.py
@@ -7515,6 +7516,11 @@ msgstr "GUID is required for Firefox 47 and below."
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+
+#: src/olympia/files/utils.py
+#, fuzzy, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
+msgstr "Could not parse uploaded file."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."

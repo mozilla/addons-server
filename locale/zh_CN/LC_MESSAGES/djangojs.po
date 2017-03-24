@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2017-03-14 10:55+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1039,10 +1039,6 @@ msgstr "平均评价"
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "评价数量"
-
-#: static/js/zamboni/editors.js
-msgid "Error loading translation"
-msgstr "载入翻译出错"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."

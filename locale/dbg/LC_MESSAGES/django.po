@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr "Ƞḗḗḓ ħḗŀƥ?"
 msgid "Review"
 msgstr "Řḗṽīḗẇ"
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr "Ṽḗřşīǿƞ {0}"
@@ -470,10 +470,6 @@ msgid ""
 msgstr ""
 "<strong>Ƈȧŭŧīǿƞ:</strong> Ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞş ǿƒ ŧħīş ȧḓḓ-ǿƞ ħȧṽḗ ƞǿŧ ƀḗḗƞ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ. Ǿƞƈḗ ẏǿŭ īƞşŧȧŀŀ ȧ ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ ẏǿŭ ẇīŀŀ ƈǿƞŧīƞŭḗ ŧǿ řḗƈḗīṽḗ ḓḗṽḗŀǿƥḿḗƞŧ ŭƥḓȧŧḗş ƒřǿḿ ŧħīş "
 "ḓḗṽḗŀǿƥḗř. Ŧǿ şŧǿƥ řḗƈḗīṽīƞɠ ḓḗṽḗŀǿƥḿḗƞŧ ŭƥḓȧŧḗş, řḗīƞşŧȧŀŀ ŧħḗ ḓḗƒȧŭŀŧ ṽḗřşīǿƞ ƒřǿḿ ŧħḗ ŀīƞķ ȧƀǿṽḗ."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Version {0}:"
-msgstr "Ṽḗřşīǿƞ {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -995,7 +991,7 @@ msgstr "Ṽīḗẇ şŧȧŧīşŧīƈş"
 msgid "Manage"
 msgstr "Ḿȧƞȧɠḗ"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on Review"
 msgstr "Ȧḓḓ-ǿƞ Řḗṽīḗẇ"
 
@@ -1164,10 +1160,6 @@ msgstr "Şǿŭřƈḗ Ƈǿḓḗ Ŀīƈḗƞşḗ"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
 msgstr "ƥḗřḿȧŀīƞķ"
-
-#: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
-msgid "translate"
-msgstr "ŧřȧƞşŀȧŧḗ"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1674,24 +1666,24 @@ msgid "Another Body"
 msgstr "Ȧƞǿŧħḗř Ɓǿḓẏ"
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
-msgstr "Şīɠƞȧŧŭřḗ ħȧş ḗẋƥīřḗḓ."
-
-#: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr "Ḗřřǿř ḓḗƈǿḓīƞɠ şīɠƞȧŧŭřḗ."
-
-#: src/olympia/api/authentication.py
-msgid "Invalid JWT Token."
-msgstr "Īƞṽȧŀīḓ ĴẆŦ Ŧǿķḗƞ."
-
-#: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
 msgstr "Īƞṽȧŀīḓ Ȧŭŧħǿřīzȧŧīǿƞ ħḗȧḓḗř. Ƞǿ ƈřḗḓḗƞŧīȧŀş ƥřǿṽīḓḗḓ."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Īƞṽȧŀīḓ Ȧŭŧħǿřīzȧŧīǿƞ ħḗȧḓḗř. Ƈřḗḓḗƞŧīȧŀş şŧřīƞɠ şħǿŭŀḓ ƞǿŧ ƈǿƞŧȧīƞ şƥȧƈḗş."
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr "Ḗřřǿř ḓḗƈǿḓīƞɠ şīɠƞȧŧŭřḗ."
+
+#: src/olympia/api/authentication.py
+msgid "Signature has expired."
+msgstr "Şīɠƞȧŧŭřḗ ħȧş ḗẋƥīřḗḓ."
+
+#: src/olympia/api/authentication.py
+msgid "Invalid JWT Token."
+msgstr "Īƞṽȧŀīḓ ĴẆŦ Ŧǿķḗƞ."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
@@ -3867,9 +3859,16 @@ msgid "Version doesn't match"
 msgstr "Ṽḗřşīǿƞ ḓǿḗşƞ'ŧ ḿȧŧƈħ"
 
 #: src/olympia/devhub/forms.py
-#, python-format
-msgid "Version %s already exists, or was uploaded before."
-msgstr "Ṽḗřşīǿƞ %s ȧŀřḗȧḓẏ ḗẋīşŧş, ǿř ẇȧş ŭƥŀǿȧḓḗḓ ƀḗƒǿřḗ."
+msgid "Version {version} was uploaded before and deleted."
+msgstr "Ṽḗřşīǿƞ {ṽḗřşīǿƞ} ẇȧş ŭƥŀǿȧḓḗḓ ƀḗƒǿřḗ ȧƞḓ ḓḗŀḗŧḗḓ."
+
+#: src/olympia/devhub/forms.py
+msgid "Version {version} already exists."
+msgstr "Ṽḗřşīǿƞ {ṽḗřşīǿƞ} ȧŀřḗȧḓẏ ḗẋīşŧş."
+
+#: src/olympia/devhub/forms.py
+msgid "Continue with existing upload instead?"
+msgstr "Ƈǿƞŧīƞŭḗ ẇīŧħ ḗẋīşŧīƞɠ ŭƥŀǿȧḓ īƞşŧḗȧḓ?"
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -5340,6 +5339,14 @@ msgstr "Ŧḗŀŀīƞɠ ẏǿŭř ŭşḗřş ẇħȧŧ'ş ƈǿḿīƞɠ şǿǿ�
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
 msgstr "Ṽīḗẇ Ȧŀŀ"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+msgid "Listed Review Page"
+msgstr "Ŀīşŧḗḓ Řḗṽīḗẇ Ƥȧɠḗ"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+msgid "Unlisted Review Page"
+msgstr "Ŭƞŀīşŧḗḓ Řḗṽīḗẇ Ƥȧɠḗ"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -6973,14 +6980,6 @@ msgid "Update the whiteboard"
 msgstr "Ŭƥḓȧŧḗ ŧħḗ ẇħīŧḗƀǿȧřḓ"
 
 #: src/olympia/editors/templates/editors/review.html
-msgid "Unlisted Review Page"
-msgstr "Ŭƞŀīşŧḗḓ Řḗṽīḗẇ Ƥȧɠḗ"
-
-#: src/olympia/editors/templates/editors/review.html
-msgid "Listed Review Page"
-msgstr "Ŀīşŧḗḓ Řḗṽīḗẇ Ƥȧɠḗ"
-
-#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr "(ȧḓḿīƞ)"
 
@@ -7279,8 +7278,8 @@ msgid "Access your data for {name}"
 msgstr "Ȧƈƈḗşş ẏǿŭř ḓȧŧȧ ƒǿř {ƞȧḿḗ}"
 
 #: src/olympia/files/models.py
-msgid "Access your data on various websites"
-msgstr "Ȧƈƈḗşş ẏǿŭř ḓȧŧȧ ǿƞ ṽȧřīǿŭş ẇḗƀşīŧḗş"
+msgid "Access your data on the following websites:"
+msgstr "Ȧƈƈḗşş ẏǿŭř ḓȧŧȧ ǿƞ ŧħḗ ƒǿŀŀǿẇīƞɠ ẇḗƀşīŧḗş:"
 
 #: src/olympia/files/models.py
 msgid "Access your data for all websites"
@@ -7293,6 +7292,11 @@ msgstr "ƓŬĪḒ īş řḗɋŭīřḗḓ ƒǿř Ƒīřḗƒǿẋ 47 ȧƞḓ ƀ
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Ƈȧƞƞǿŧ ƒīƞḓ ḿīƞ/max ṽḗřşīǿƞ. Ḿȧẏƀḗ \"şŧřīƈŧ_ḿīƞ_ṽḗřşīǿƞ\" ǿř \"şŧřīƈŧ_ḿȧẋ_ṽḗřşīǿƞ\" ƈǿƞŧȧīƞş ȧƞ ŭƞşŭƥƥǿřŧḗḓ ṽḗřşīǿƞ?"
+
+#: src/olympia/files/utils.py
+#, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
+msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŭƥŀǿȧḓḗḓ ƒīŀḗ, ḿīşşīƞɠ ǿř ḗḿƥŧẏ <%s> ḗŀḗḿḗƞŧ"
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."

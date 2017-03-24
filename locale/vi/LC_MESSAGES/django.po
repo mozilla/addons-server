@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Review"
 msgstr "Đánh giá"
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr ""
@@ -473,10 +473,6 @@ msgid ""
 msgstr ""
 "<strong>Cẩn thận:</strong> Phiên bản phát triển của tiện ích này chưa được duyệt bởi Mozilla. Một khi cài đặt phiên bản phát triển, bạn sẽ tiếp tục nhận được cập nhật từ nhà phát triển. Để ngừng "
 "nhận cập nhật kiểu này, hãy cài lại phiên bản mặc định từ liên kết bên trên."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Version {0}:"
-msgstr "Phiên bản {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -999,7 +995,7 @@ msgstr ""
 msgid "Manage"
 msgstr "Quản lý"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/addons/templates/addons/impala/details.html
 #, fuzzy
 msgid "Add-on Review"
 msgstr "Quản trị Xét duyệt"
@@ -1171,10 +1167,6 @@ msgstr "Giấy phép Mã nguồn"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
 msgstr "liên kết thường trực"
-
-#: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
-msgid "translate"
-msgstr "dịch"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1688,7 +1680,11 @@ msgid "Another Body"
 msgstr ""
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
+msgid "Invalid Authorization header. No credentials provided."
+msgstr ""
+
+#: src/olympia/api/authentication.py
+msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
 #: src/olympia/api/authentication.py
@@ -1696,15 +1692,11 @@ msgid "Error decoding signature."
 msgstr ""
 
 #: src/olympia/api/authentication.py
+msgid "Signature has expired."
+msgstr ""
+
+#: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
-
-#: src/olympia/api/authentication.py
-msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
-
-#: src/olympia/api/authentication.py
-msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
 #: src/olympia/api/fields.py
@@ -3911,8 +3903,16 @@ msgid "Version doesn't match"
 msgstr "Phiên bản không khớp"
 
 #: src/olympia/devhub/forms.py
-#, python-format
-msgid "Version %s already exists, or was uploaded before."
+msgid "Version {version} was uploaded before and deleted."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+#, fuzzy
+msgid "Version {version} already exists."
+msgstr "{addon} {version} bị từ chối."
+
+#: src/olympia/devhub/forms.py
+msgid "Continue with existing upload instead?"
 msgstr ""
 
 #: src/olympia/devhub/forms.py
@@ -5397,6 +5397,16 @@ msgstr "Nói cho người dùng về những gì sắp tới sẽ cho họ đi�
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
 msgstr "Xem Tất cả"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Listed Review Page"
+msgstr "Ngày Duyệt"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Unlisted Review Page"
+msgstr "Đánh giá của Người dùng"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -7086,16 +7096,6 @@ msgid "Update the whiteboard"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Unlisted Review Page"
-msgstr "Đánh giá của Người dùng"
-
-#: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Listed Review Page"
-msgstr "Ngày Duyệt"
-
-#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr ""
 
@@ -7394,7 +7394,7 @@ msgid "Access your data for {name}"
 msgstr ""
 
 #: src/olympia/files/models.py
-msgid "Access your data on various websites"
+msgid "Access your data on the following websites:"
 msgstr ""
 
 #: src/olympia/files/models.py
@@ -7407,6 +7407,11 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
+#, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 #: src/olympia/files/utils.py

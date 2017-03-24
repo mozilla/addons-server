@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2016-10-31 03:10+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -1042,10 +1042,6 @@ msgstr "レビュー平均"
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "レビュー数"
-
-#: static/js/zamboni/editors.js
-msgid "Error loading translation"
-msgstr "翻訳読み込みエラー"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."

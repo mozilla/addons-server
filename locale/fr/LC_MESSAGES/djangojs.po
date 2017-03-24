@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2017-01-17 03:30+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -1058,10 +1058,6 @@ msgstr "Revues moyennes"
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Nombre de revues"
-
-#: static/js/zamboni/editors.js
-msgid "Error loading translation"
-msgstr "Erreur au chargement de la traduction"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."

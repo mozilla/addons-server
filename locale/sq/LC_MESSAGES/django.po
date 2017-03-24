@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2017-03-02 08:45+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -42,7 +42,7 @@ msgstr "Ju duhet ndihmë?"
 msgid "Review"
 msgstr "Shqyrtim"
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr "Version {0}"
@@ -480,10 +480,6 @@ msgid ""
 msgstr ""
 "<strong>Kujdes:</strong> Versionet beta të kësaj shtese s’janë shqyrtuar nga Mozilla. Pasi të instaloni një version beta, do të vazhdojnë t’ju vijnë përditësime prej këtij zhvilluesi. Që të mos ju "
 "vijnë përditësime lidhur me zhvillimin, riinstaloni versionin parazgjedhje prej lidhjes së më sipërme."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Version {0}:"
-msgstr "Version {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -1011,7 +1007,7 @@ msgstr "Shihni statistika"
 msgid "Manage"
 msgstr "Administro"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on Review"
 msgstr "Shqyrtim Shtese"
 
@@ -1183,10 +1179,6 @@ msgstr "Licencë Kodi Burim"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
 msgstr "permalidhje"
-
-#: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
-msgid "translate"
-msgstr "përktheni"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1697,24 +1689,24 @@ msgid "Another Body"
 msgstr "Tjetër Përmbajtje"
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
-msgstr "Nënshkrimi ka skaduar."
-
-#: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr "Gabim në çkodimin e nënshkrimit."
-
-#: src/olympia/api/authentication.py
-msgid "Invalid JWT Token."
-msgstr "Token JWT i pavlefshëm."
-
-#: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
 msgstr "Krye të Pavlefshme Autorizimi. S’u dhanë kredenciale."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Krye të Pavlefshme Autorizimi. Vargu i kredencialeve s’duhet të përmbajë hapësira."
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr "Gabim në çkodimin e nënshkrimit."
+
+#: src/olympia/api/authentication.py
+msgid "Signature has expired."
+msgstr "Nënshkrimi ka skaduar."
+
+#: src/olympia/api/authentication.py
+msgid "Invalid JWT Token."
+msgstr "Token JWT i pavlefshëm."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
@@ -3904,9 +3896,18 @@ msgid "Version doesn't match"
 msgstr "Versioni s’përputhet"
 
 #: src/olympia/devhub/forms.py
-#, python-format
-msgid "Version %s already exists, or was uploaded before."
+#, fuzzy
+msgid "Version {version} was uploaded before and deleted."
 msgstr "Ka tashmë një version %s, ose qe ngarkuar më herët."
+
+#: src/olympia/devhub/forms.py
+#, fuzzy
+msgid "Version {version} already exists."
+msgstr "Versioni ekziston."
+
+#: src/olympia/devhub/forms.py
+msgid "Continue with existing upload instead?"
+msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -5394,6 +5395,14 @@ msgstr "Duke u treguar përdoruesve se ç’vjen së afërmi, u jepet diçka që
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
 msgstr "Shihini Krejt"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+msgid "Listed Review Page"
+msgstr "Faqe Shqyrtimesh të Shfaqura"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+msgid "Unlisted Review Page"
+msgstr "Faqe Shqyrtimesh të Pashfaqura"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -7046,14 +7055,6 @@ msgid "Update the whiteboard"
 msgstr "Përditësoni tabelën"
 
 #: src/olympia/editors/templates/editors/review.html
-msgid "Unlisted Review Page"
-msgstr "Faqe Shqyrtimesh të Pashfaqura"
-
-#: src/olympia/editors/templates/editors/review.html
-msgid "Listed Review Page"
-msgstr "Faqe Shqyrtimesh të Shfaqura"
-
-#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr "(admin)"
 
@@ -7352,8 +7353,9 @@ msgid "Access your data for {name}"
 msgstr "Të hyjë në të dhënat tuaja për {name}"
 
 #: src/olympia/files/models.py
-msgid "Access your data on various websites"
-msgstr "Të hyjë në të dhënat tuaja për sajte të ndryshëm"
+#, fuzzy
+msgid "Access your data on the following websites:"
+msgstr "Të hyjë në të dhënat tuaja për krejt sajtet"
 
 #: src/olympia/files/models.py
 msgid "Access your data for all websites"
@@ -7366,6 +7368,11 @@ msgstr "GUID është i domosdoshëm për Firefox 47 dhe më të hershëm."
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "S’gjendet dot version minimal/maksimal. Mos vallë \"strict_min_version\" ose \"strict_max_version\" përmban një version të pambuluar?"
+
+#: src/olympia/files/utils.py
+#, fuzzy, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
+msgstr "S’u përtyp dot kartela e ngarkuar."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."

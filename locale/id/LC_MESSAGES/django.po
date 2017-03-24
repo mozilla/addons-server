@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -43,7 +43,7 @@ msgstr "Perlu bantuan?"
 msgid "Review"
 msgstr "Ulasan"
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr "Versi {0}"
@@ -476,10 +476,6 @@ msgid ""
 msgstr ""
 "<strong>Awas:</strong> Versi pengembangan pengaya ini belum diulas oleh Mozilla. Sekali anda memasang versi pengembangan anda akan terus menerima pembaruan pengembangan dari pengembang ini. Untuk "
 "berhenti menerimanya, pasang kembali versi tetap dari tautan di atas."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Version {0}:"
-msgstr "Versi {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -1002,7 +998,7 @@ msgstr "Tampilkan statistik"
 msgid "Manage"
 msgstr "Kelola"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/addons/templates/addons/impala/details.html
 #, fuzzy
 msgid "Add-on Review"
 msgstr "Ulasan Lengkap Pengaya"
@@ -1174,10 +1170,6 @@ msgstr "Lisensi Kode Sumber"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
 msgstr "tautan permanen"
-
-#: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
-msgid "translate"
-msgstr "terjemahkan"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1690,24 +1682,24 @@ msgid "Another Body"
 msgstr "Badan Lain"
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
-msgstr "Tanda tangan telah kedaluwarsa."
-
-#: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr "Kesalahan menguraikan kode tanda tangan."
-
-#: src/olympia/api/authentication.py
-msgid "Invalid JWT Token."
-msgstr "Token JWT tidak valid."
-
-#: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
 msgstr "Otorisasi header tidak valid. Tidak ada pengenal yang diberikan."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Otorisasi header tidak valid. Rangkaian pengenal seharusnya tidak mengandung spasi."
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr "Kesalahan menguraikan kode tanda tangan."
+
+#: src/olympia/api/authentication.py
+msgid "Signature has expired."
+msgstr "Tanda tangan telah kedaluwarsa."
+
+#: src/olympia/api/authentication.py
+msgid "Invalid JWT Token."
+msgstr "Token JWT tidak valid."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
@@ -3895,9 +3887,18 @@ msgid "Version doesn't match"
 msgstr "Versi tidak cocok"
 
 #: src/olympia/devhub/forms.py
-#, python-format
-msgid "Version %s already exists, or was uploaded before."
+#, fuzzy
+msgid "Version {version} was uploaded before and deleted."
 msgstr "Versi %s sudah ada, atau sudah diunggah sebelumnya."
+
+#: src/olympia/devhub/forms.py
+#, fuzzy
+msgid "Version {version} already exists."
+msgstr "Versi yang sudah ada."
+
+#: src/olympia/devhub/forms.py
+msgid "Continue with existing upload instead?"
+msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -5468,6 +5469,16 @@ msgstr "Menyampaikan pada pengguna apa yang akan muncul dalam waktu dekat akan m
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
 msgstr "Tampilkan Semua"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Listed Review Page"
+msgstr "Ulasan Terakhir"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Unlisted Review Page"
+msgstr "Antrean Tidak Terdaftar"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -7175,16 +7186,6 @@ msgid "Update the whiteboard"
 msgstr "Perbarui papan tulis"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Unlisted Review Page"
-msgstr "Antrean Tidak Terdaftar"
-
-#: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Listed Review Page"
-msgstr "Ulasan Terakhir"
-
-#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr "(admin)"
 
@@ -7480,7 +7481,7 @@ msgid "Access your data for {name}"
 msgstr ""
 
 #: src/olympia/files/models.py
-msgid "Access your data on various websites"
+msgid "Access your data on the following websites:"
 msgstr ""
 
 #: src/olympia/files/models.py
@@ -7494,6 +7495,11 @@ msgstr "Dibutuhkan GUID pada Firefox 47 dan versi sebelumnya."
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr "Tidak bisa menemukan versi min/maks. Mungkin \"strict_min_version\" atau \"strict_max_version\" mengandung versi yang tidak didukung?"
+
+#: src/olympia/files/utils.py
+#, fuzzy, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
+msgstr "Tidak dapat mengurai berkas yang diunggah."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."

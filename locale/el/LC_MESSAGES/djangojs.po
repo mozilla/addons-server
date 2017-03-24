@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2017-01-05 11:38+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -1054,10 +1054,6 @@ msgstr "Μέσες αξιολογήσεις"
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Αριθμός αξιολογήσεων"
-
-#: static/js/zamboni/editors.js
-msgid "Error loading translation"
-msgstr "Σφάλμα στο φόρτωμα της μετάφρασης"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."
