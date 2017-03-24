@@ -128,7 +128,7 @@ def fxa_error_message(message):
 def render_error(request, error, next_path=None, format=None):
     if format == 'json':
         status = ERROR_STATUSES.get(error, 422)
-        return Response({'error': error}, status=status)
+        response = Response({'error': error}, status=status)
     else:
         if not is_safe_url(next_path):
             next_path = None
@@ -136,9 +136,10 @@ def render_error(request, error, next_path=None, format=None):
             request, fxa_error_message(LOGIN_ERROR_MESSAGES[error]),
             extra_tags='fxa')
         if next_path is None:
-            return HttpResponseRedirect(reverse('users.login'))
+            response = HttpResponseRedirect(reverse('users.login'))
         else:
-            return HttpResponseRedirect(next_path)
+            response = HttpResponseRedirect(next_path)
+    return response
 
 
 def parse_next_path(state_parts):
@@ -197,9 +198,18 @@ def with_user(format, config=None):
                     request, ERROR_STATE_MISMATCH, next_path=next_path,
                     format=format)
             elif request.user.is_authenticated():
-                return render_error(
+                response = render_error(
                     request, ERROR_AUTHENTICATED, next_path=next_path,
                     format=format)
+                # If the api token cookie is missing but we're still
+                # authenticated using the session, add it back.
+                if API_TOKEN_COOKIE not in request.COOKIES:
+                    log.info('User %s was already authenticated but did not '
+                             'have an API token cookie, adding one.',
+                             request.user.pk)
+                    response = add_api_token_to_response(
+                        response, request.user)
+                return response
             try:
                 identity = verify.fxa_identify(data['code'], config=fxa_config)
             except verify.IdentificationError:
@@ -215,29 +225,36 @@ def with_user(format, config=None):
     return outer
 
 
-def add_api_token_to_response(response, user, set_cookie=True):
-    # Generate API token and add it to the json response.
+def generate_api_token(user):
+    """Generate a new API token for a given user."""
     data = {
         'auth_hash': user.get_session_auth_hash(),
         'user_id': user.pk,
     }
-    token = signing.dumps(data, salt=WebTokenAuthentication.salt)
+    return signing.dumps(data, salt=WebTokenAuthentication.salt)
+
+
+def add_api_token_to_response(response, user):
+    """Generate API token and add it to the response (both as a `token` key in
+    the response if it was json and by setting a cookie named API_TOKEN_COOKIE.
+    """
+    token = generate_api_token(user)
     if hasattr(response, 'data'):
         response.data['token'] = token
-    if set_cookie:
-        # Also include the API token in a session cookie, so that it is
-        # available for universal frontend apps.
-        response.set_cookie(
-            API_TOKEN_COOKIE,
-            token,
-            max_age=settings.SESSION_COOKIE_AGE or None,
-            secure=settings.SESSION_COOKIE_SECURE or None,
-            httponly=settings.SESSION_COOKIE_HTTPONLY or None)
+    # Also include the API token in a session cookie, so that it is
+    # available for universal frontend apps.
+    response.set_cookie(
+        API_TOKEN_COOKIE,
+        token,
+        max_age=settings.SESSION_COOKIE_AGE,
+        secure=settings.SESSION_COOKIE_SECURE,
+        httponly=settings.SESSION_COOKIE_HTTPONLY)
 
     return response
 
 
 def remove_api_token_cookie(response):
+    """Delete the api token cookie."""
     response.delete_cookie(API_TOKEN_COOKIE)
 
 
@@ -284,7 +301,7 @@ class LoginBaseView(FxAConfigMixin, APIView):
         else:
             update_user(user, identity)
             response = Response({'email': identity['email']})
-            add_api_token_to_response(response, user, set_cookie=False)
+            add_api_token_to_response(response, user)
             log.info('Logging in user {} from FxA'.format(user))
             return response
 
