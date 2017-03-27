@@ -33,16 +33,6 @@
         }
     },
     {
-        "pk": 2,
-        "model": "access.group",
-        "fields": {
-            "rules": "Restricted:UGC",
-            "modified": "2012-06-10 16:06:55",
-            "name": "Restricted Users",
-            "created": "2012-06-10 16:06:55"
-        }
-    },
-    {
         "pk": 10,
         "model": "access.groupuser",
         "fields": {

@@ -9,8 +9,7 @@ from django import dispatch, forms
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core import validators
-from django.db import models, transaction
-from django.template import Context, loader
+from django.db import models
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
 from django.utils.translation import ugettext as _, get_language, activate
@@ -340,27 +339,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         self.deleted = True
         self.picture_type = ""
         self.save()
-
-    @transaction.atomic
-    def restrict(self):
-        from olympia.amo.utils import send_mail
-        log.info(u'User (%s: <%s>) is being restricted and '
-                 'its user-generated content removed.' % (self, self.email))
-        g = Group.objects.get(rules='Restricted:UGC')
-        GroupUser.objects.create(user=self, group=g)
-        self.reviews.all().delete()
-        self.collections.all().delete()
-
-        t = loader.get_template('users/email/restricted.ltxt')
-        send_mail(_('Your account has been restricted'),
-                  t.render(Context({})), None, [self.email],
-                  use_deny_list=False)
-
-    def unrestrict(self):
-        log.info(u'User (%s: <%s>) is being unrestricted.' % (self,
-                                                              self.email))
-        GroupUser.objects.filter(user=self,
-                                 group__rules='Restricted:UGC').delete()
 
     def set_unusable_password(self):
         raise NotImplementedError('cannot set unusable password')

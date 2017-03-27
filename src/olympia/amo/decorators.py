@@ -84,22 +84,6 @@ def any_permission_required(pairs):
     return decorator
 
 
-def restricted_content(f):
-    """
-    Prevent access to a view function for accounts restricted from
-    posting user-generated content.
-    """
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        from olympia.access import acl
-        if (acl.action_allowed(request, '*', '*') or
-                not acl.action_allowed(request, 'Restricted', 'UGC')):
-            return f(request, *args, **kw)
-        else:
-            raise PermissionDenied
-    return wrapper
-
-
 def json_response(response, has_trans=False, status_code=200):
     """
     Return a response as JSON. If you are just wrapping a view,

@@ -14,8 +14,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger
-from olympia.amo.decorators import (
-    json_view, login_required, post_required, restricted_content)
+from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo import helpers
 from olympia.amo.utils import render, paginate
 from olympia.access import acl
@@ -169,7 +168,6 @@ def reply(request, addon, review_id):
 @addon_view
 @mobile_template('reviews/{mobile/}add.html')
 @login_required
-@restricted_content
 def add(request, addon, template=None):
     if addon.has_author(request.user):
         raise PermissionDenied
