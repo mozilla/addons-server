@@ -245,7 +245,7 @@ class InitializeSessionMixin(object):
             'max-age': None,
             'path': '/',
             'domain': settings.SESSION_COOKIE_DOMAIN,
-            'secure': settings.SESSION_COOKIE_SECURE or None,
+            'secure': settings.SESSION_COOKIE_SECURE,
             'expires': None,
         }
         self.client.cookies[session_cookie].update(cookie_data)

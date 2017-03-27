@@ -36,7 +36,7 @@ class Base(Page):
         def click_login(self):
             self.find_element(*self._login_locator).click()
             from pages.desktop.login import Login
-            return Login(self.selenium, self.page.base_url)
+            return Login(self.selenium, self.page.base_url, timeout=30)
 
         def click_logout(self):
             user = self.find_element(*self._user_locator)

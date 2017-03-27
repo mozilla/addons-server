@@ -7,6 +7,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2017-03-17 20:57+0000\n"
+"PO-Revision-Date: 2017-03-25 14:13+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -5668,9 +5669,8 @@ msgid "Learn How"
 msgstr "Ďalšie informácie"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
 msgid "What's New"
-msgstr "Najnovšie správy"
+msgstr "Čo je nové"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Happy New Year! See what's in store for add-ons in 2017."
@@ -5715,14 +5715,13 @@ msgid "Sign Out"
 msgstr "Odhlásiť sa"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy
 msgid "User Photo"
-msgstr "Odstránenie obrázku používateľa"
+msgstr "Fotografia používateľa"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(reg)s\">Zaregistrujte</a> alebo <a href=\"%(login)s\">prihláste sa</a>"
+msgstr "<a href=\"%(register)s\">Zaregistrujte sa</a> alebo <a href=\"%(login)s\">a prihláste</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Customize Firefox"
@@ -6372,13 +6371,12 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Naozaj chcete zrušiť vašu žiadosť o kontrolu?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokujte reklamy {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+msgstr "Tvorte snímky obrazovky {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
+msgstr "Viac než len snímky obrazovky - Awesome Screenshot Plus vám umožňuje pridávať k obrázkom text a grafiku. Ukladanie a zdieľanie snímok obrazovky je s jeho pomocou jednoduché a rýchle."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -9936,9 +9934,8 @@ msgid "You can't leave a review on your own add-on."
 msgstr "niekto napíše recenziu na môj doplnok"
 
 #: src/olympia/reviews/serializers.py
-#, fuzzy
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Pre túto verziu nemôžete odoslať žiadne ďalšie súbory."
+msgstr "Pre rovnakú verziu doplnku nemôžete zanechať viac ako jednu recenziu."
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."

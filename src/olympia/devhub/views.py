@@ -94,7 +94,6 @@ def addon_listing(request, default='name', theme=False):
 
 
 def index(request):
-
     ctx = {'blog_posts': _get_posts()}
     if request.user.is_authenticated():
         user_addons = Addon.objects.filter(authors=request.user)
