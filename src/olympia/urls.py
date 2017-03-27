@@ -93,10 +93,6 @@ urlpatterns = patterns(
     # Fall through for any URLs not matched above stats dashboard.
     url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
-    # Review spam.
-    url('^reviews/spam/$', 'olympia.reviews.views.spam',
-        name='addons.reviews.spam'),
-
     # Redirect patterns.
     ('^bookmarks/?$',
      lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),

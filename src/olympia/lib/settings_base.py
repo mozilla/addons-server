@@ -1189,7 +1189,6 @@ CELERY_ROUTES = {
         'queue': 'search'},
 
     # Reviews
-    'olympia.reviews.models.check_spam': {'queue': 'reviews'},
     'olympia.reviews.tasks.addon_bayesian_rating': {'queue': 'reviews'},
     'olympia.reviews.tasks.addon_grouped_rating': {'queue': 'reviews'},
     'olympia.reviews.tasks.addon_review_aggregates': {'queue': 'reviews'},
