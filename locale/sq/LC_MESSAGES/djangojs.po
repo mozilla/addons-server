@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2016-11-09 11:01+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -1055,10 +1055,6 @@ msgstr "Shqyrtime Mesatarisht"
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Numër Shqyrtimesh"
-
-#: static/js/zamboni/editors.js
-msgid "Error loading translation"
-msgstr "Gabim gjatë ngarkimit të përkthimit"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."

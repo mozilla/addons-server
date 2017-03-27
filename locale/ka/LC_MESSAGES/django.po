@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2016-10-15 18:03+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgstr "გესაჭირეობათ დახმარება?"
 msgid "Review"
 msgstr ""
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr "ვერსია {0}"
@@ -473,10 +473,6 @@ msgid ""
 msgstr ""
 "<strong>ფრთხილად:</strong> ამ დამატების განვითარების ვერსიები Mozilla-ს მიერ არ განხილულა. განვითარების ვერსიის დაყენების შემდეგ განვითარების ვერსიის განახლებებს მიიღებთ ამ განმვითარებლისგან. "
 "განვითარების განახლებების მიღების შესაწყვეტად, ხელახლა დააყენეთ ნაგულისხმევი ვერსია ზემოთ მოცემული ბმულით."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Version {0}:"
-msgstr "ვერის {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -992,7 +988,7 @@ msgstr "სტატისტიკის ნახვა"
 msgid "Manage"
 msgstr "მართვა"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/addons/templates/addons/impala/details.html
 #, fuzzy
 msgid "Add-on Review"
 msgstr "განუხილველია"
@@ -1160,10 +1156,6 @@ msgstr "წყაროს კოდის ლიცენზია"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
 msgstr "permalink"
-
-#: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
-msgid "translate"
-msgstr "გადათარგმნა"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1666,24 +1658,24 @@ msgid "Another Body"
 msgstr "სხვა შიგთავსი"
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
-msgstr "ხელმოწერა ამოიწურა."
-
-#: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr "ხელმოწერის გაშიფვრის შეცდომა."
-
-#: src/olympia/api/authentication.py
-msgid "Invalid JWT Token."
-msgstr "არასწორი JWT ჟეტონი."
-
-#: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr "ხელმოწერის გაშიფვრის შეცდომა."
+
+#: src/olympia/api/authentication.py
+msgid "Signature has expired."
+msgstr "ხელმოწერა ამოიწურა."
+
+#: src/olympia/api/authentication.py
+msgid "Invalid JWT Token."
+msgstr "არასწორი JWT ჟეტონი."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
@@ -3857,8 +3849,16 @@ msgid "Version doesn't match"
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-#, python-format
-msgid "Version %s already exists, or was uploaded before."
+msgid "Version {version} was uploaded before and deleted."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+#, fuzzy
+msgid "Version {version} already exists."
+msgstr "{addon} {version} მიღებულია."
+
+#: src/olympia/devhub/forms.py
+msgid "Continue with existing upload instead?"
 msgstr ""
 
 #: src/olympia/devhub/forms.py
@@ -5320,6 +5320,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Listed Review Page"
+msgstr "განუხილველია"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+msgid "Unlisted Review Page"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
@@ -6967,15 +6976,6 @@ msgid "Update the whiteboard"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
-msgid "Unlisted Review Page"
-msgstr ""
-
-#: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Listed Review Page"
-msgstr "განუხილველია"
-
-#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr ""
 
@@ -7271,7 +7271,7 @@ msgid "Access your data for {name}"
 msgstr ""
 
 #: src/olympia/files/models.py
-msgid "Access your data on various websites"
+msgid "Access your data on the following websites:"
 msgstr ""
 
 #: src/olympia/files/models.py
@@ -7284,6 +7284,11 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
+#, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 #: src/olympia/files/utils.py

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2017-03-14 12:28+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,7 +43,7 @@ msgstr "Help nedich?"
 msgid "Review"
 msgstr "Beoardieling"
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr "Ferzje {0}"
@@ -477,10 +477,6 @@ msgid ""
 msgstr ""
 "<strong>Warskôging:</strong> ûntwikkelferzjes fan dizze add-on binne net beoardiele troch Mozilla. As jo in ûntwikkelferzje ynstallearje, ûntfange jo tenei ûntwikkelingsfernijingen fan dizze "
 "ûntwikkeler. Om gjin ûntwikkelingsfernijingen mear te ûntfangen moatte jo de standertferzje fia boppesteande keppeling te ynstallearjen."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Version {0}:"
-msgstr "Ferzje {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -1007,7 +1003,7 @@ msgstr "Statistiken besjen"
 msgid "Manage"
 msgstr "Beheare"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on Review"
 msgstr "Add-on-beoardieling"
 
@@ -1179,10 +1175,6 @@ msgstr "Boarnekoadelisinsje"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
 msgstr "permalink"
-
-#: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
-msgid "translate"
-msgstr "oersette"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1697,24 +1689,24 @@ msgid "Another Body"
 msgstr "Oar berjocht"
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
-msgstr "Undertekening is ferrûn."
-
-#: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr "Flater by dekodearjen ûndertekening."
-
-#: src/olympia/api/authentication.py
-msgid "Invalid JWT Token."
-msgstr "Unjildich JWT-token."
-
-#: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
 msgstr "Unjildige autorisaasjeheader. Gjin oanmeldgegevens opjûn."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Unjildige autorisaasjeheader. De oanmeldingstekst mei gjin spaasjes befetsje."
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr "Flater by dekodearjen ûndertekening."
+
+#: src/olympia/api/authentication.py
+msgid "Signature has expired."
+msgstr "Undertekening is ferrûn."
+
+#: src/olympia/api/authentication.py
+msgid "Invalid JWT Token."
+msgstr "Unjildich JWT-token."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
@@ -3905,9 +3897,18 @@ msgid "Version doesn't match"
 msgstr "Ferzje komt net oerien"
 
 #: src/olympia/devhub/forms.py
-#, python-format
-msgid "Version %s already exists, or was uploaded before."
+#, fuzzy
+msgid "Version {version} was uploaded before and deleted."
 msgstr "Ferzje %s bestiet al of is earder opladen."
+
+#: src/olympia/devhub/forms.py
+#, fuzzy
+msgid "Version {version} already exists."
+msgstr "Ferzje %s bestiet al of is earder opladen."
+
+#: src/olympia/devhub/forms.py
+msgid "Continue with existing upload instead?"
+msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -5394,6 +5395,16 @@ msgstr "Troch jo brûkers te fertellen wat der oan sit te kommen jouwe jo se wat
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
 msgstr "Alles besjen"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Listed Review Page"
+msgstr "Net beoardiele"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+#, fuzzy
+msgid "Unlisted Review Page"
+msgstr "Brûkersbeoardielingen"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -7066,16 +7077,6 @@ msgid "Update the whiteboard"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Unlisted Review Page"
-msgstr "Brûkersbeoardielingen"
-
-#: src/olympia/editors/templates/editors/review.html
-#, fuzzy
-msgid "Listed Review Page"
-msgstr "Net beoardiele"
-
-#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr ""
 
@@ -7374,7 +7375,7 @@ msgid "Access your data for {name}"
 msgstr ""
 
 #: src/olympia/files/models.py
-msgid "Access your data on various websites"
+msgid "Access your data on the following websites:"
 msgstr ""
 
 #: src/olympia/files/models.py
@@ -7387,6 +7388,11 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
+#, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 #: src/olympia/files/utils.py

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2017-02-16 01:59+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1051,10 +1051,6 @@ msgstr "Gjennomsnittlege vurderingar"
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Tal på vurderingar"
-
-#: static/js/zamboni/editors.js
-msgid "Error loading translation"
-msgstr "Feil ved lasting av omsettinga"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."

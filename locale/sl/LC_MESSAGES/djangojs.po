@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
 "PO-Revision-Date: 2016-11-04 10:22+0000\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1068,10 +1068,6 @@ msgstr "Povprečno število ocen"
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Število ocen"
-
-#: static/js/zamboni/editors.js
-msgid "Error loading translation"
-msgstr "Napaka pri nalaganju prevoda"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."

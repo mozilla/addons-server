@@ -4,7 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-16 14:02+0000\n"
+"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"PO-Revision-Date: 2017-03-12 19:50+0000\n"
 "PO-Revision-Date: 2017-03-25 10:39+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +41,7 @@ msgstr "Treng du hjelp?"
 msgid "Review"
 msgstr "Vurdering"
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr "Versjon {0}"
@@ -465,10 +466,6 @@ msgid ""
 msgstr ""
 "<strong>Åtvaring:</strong> Utviklarversjonen av denne utvidinga er ikkje vurdert av Mozilla. Når du installerer ein utviklarversjon, vil du halde fram med å få utviklaroppdateringar frå denne "
 "utviklaren. For å ikkje få fleire utviklaroppdateringars, installerer du standardversjonen frå lenka ovanfor."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Version {0}:"
-msgstr "Versjon {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -982,7 +979,7 @@ msgstr "Vis statistikk"
 msgid "Manage"
 msgstr "Handsam"
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on Review"
 msgstr "Vurdering av utviding"
 
@@ -1147,10 +1144,6 @@ msgstr "Kjeldekodelisens"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
 msgstr "permalenke"
-
-#: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
-msgid "translate"
-msgstr "omset"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1648,24 +1641,24 @@ msgid "Another Body"
 msgstr "Eit anna innhald"
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
-msgstr "Signaturen har gått ut."
-
-#: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr ""
-
-#: src/olympia/api/authentication.py
-msgid "Invalid JWT Token."
-msgstr "Ugylig JWT-token."
-
-#: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
 msgstr "Ugyldig autoriseringshovud. Ingen atoriseringsopplysningar spesifiserte."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr ""
+
+#: src/olympia/api/authentication.py
+msgid "Signature has expired."
+msgstr "Signaturen har gått ut."
+
+#: src/olympia/api/authentication.py
+msgid "Invalid JWT Token."
+msgstr "Ugylig JWT-token."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
@@ -3835,9 +3828,18 @@ msgid "Version doesn't match"
 msgstr "Verjon stemmer ikkje"
 
 #: src/olympia/devhub/forms.py
-#, python-format
-msgid "Version %s already exists, or was uploaded before."
+#, fuzzy
+msgid "Version {version} was uploaded before and deleted."
 msgstr "Versjon %s finst allereie, eller er lasta opp tidlegare."
+
+#: src/olympia/devhub/forms.py
+#, fuzzy
+msgid "Version {version} already exists."
+msgstr "Versjon %s finst allereie, eller er lasta opp tidlegare."
+
+#: src/olympia/devhub/forms.py
+msgid "Continue with existing upload instead?"
+msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -5271,6 +5273,14 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
 msgstr "Vis alle"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+msgid "Listed Review Page"
+msgstr "Vurderingsside for oppførte"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
+msgid "Unlisted Review Page"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -6891,14 +6901,6 @@ msgid "Update the whiteboard"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
-msgid "Unlisted Review Page"
-msgstr ""
-
-#: src/olympia/editors/templates/editors/review.html
-msgid "Listed Review Page"
-msgstr "Vurderingsside for oppførte"
-
-#: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
 msgstr "(admin)"
 
@@ -7197,8 +7199,9 @@ msgid "Access your data for {name}"
 msgstr ""
 
 #: src/olympia/files/models.py
-msgid "Access your data on various websites"
-msgstr ""
+#, fuzzy
+msgid "Access your data on the following websites:"
+msgstr "Tilgang til dine data for alle nettstadar"
 
 #: src/olympia/files/models.py
 msgid "Access your data for all websites"
@@ -7210,6 +7213,11 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
+#, python-format
+msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 #: src/olympia/files/utils.py
