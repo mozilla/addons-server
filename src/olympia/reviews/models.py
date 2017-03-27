@@ -152,7 +152,7 @@ class Review(ModelBase):
         review_was_moderated = False
         # Log deleting reviews to moderation log,
         # except if the author deletes it
-        if not self.addon.has_author(user_responsible):
+        if user_responsible != self.user:
             # Remember moderation state
             review_was_moderated = True
             from olympia.editors.models import ReviewerScore
