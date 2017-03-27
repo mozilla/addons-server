@@ -14,7 +14,6 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger
-from olympia.amo import messages
 from olympia.amo.decorators import (
     json_view, login_required, post_required, restricted_content)
 from olympia.amo import helpers
@@ -28,7 +27,7 @@ from olympia.api.permissions import (
     AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)
 
 from .helpers import user_can_delete_review
-from .models import Review, ReviewFlag, GroupedRating, Spam
+from .models import Review, ReviewFlag, GroupedRating
 from .permissions import CanDeleteReviewPermission
 from .serializers import ReviewSerializer, ReviewSerializerReply
 from . import forms
@@ -211,45 +210,6 @@ def edit(request, addon, review_id):
         return {}
     else:
         return json_view.error(form.errors)
-
-
-@login_required
-def spam(request):
-    if not acl.action_allowed(request, 'Spam', 'Flag'):
-        raise PermissionDenied
-    spam = Spam()
-
-    if request.method == 'POST':
-        review = Review.objects.get(pk=request.POST['review'])
-        if 'del_review' in request.POST:
-            log.info('SPAM: %s' % review.id)
-            delete(request, request.POST['addon'], review.id)
-            messages.success(request, 'Deleted that review.')
-        elif 'del_user' in request.POST:
-            user = review.user
-            log.info('SPAMMER: %s deleted %s' %
-                     (request.user.username, user.username))
-            if not user.is_developer:
-                Review.objects.filter(user=user).delete()
-                user.anonymize()
-            messages.success(request, 'Deleted that dirty spammer.')
-
-        for reason in spam.reasons():
-            spam.redis.srem(reason, review.id)
-        return http.HttpResponseRedirect(request.path)
-
-    buckets = {}
-    for reason in spam.reasons():
-        ids = spam.redis.smembers(reason)
-        key = reason.split(':')[-1]
-        buckets[key] = Review.objects.no_cache().filter(id__in=ids)
-    reviews = dict((review.addon_id, review)
-                   for bucket in buckets.values()
-                   for review in bucket)
-    for addon in Addon.objects.no_cache().filter(id__in=reviews):
-        reviews[addon.id].addon = addon
-    return render(request, 'reviews/spam.html',
-                  dict(buckets=buckets, review_perms=dict(is_admin=True)))
 
 
 class ReviewViewSet(AddonChildMixin, ModelViewSet):

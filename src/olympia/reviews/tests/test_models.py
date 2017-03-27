@@ -10,8 +10,7 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.tests import addon_factory, TestCase, ESTestCase, user_factory
 from olympia.addons.models import Addon
 from olympia.reviews import tasks
-from olympia.reviews.models import (
-    check_spam, GroupedRating, Review, ReviewFlag, Spam)
+from olympia.reviews.models import GroupedRating, Review, ReviewFlag
 from olympia.users.models import UserProfile
 
 
@@ -329,18 +328,6 @@ class TestGroupedRating(TestCase):
         assert GroupedRating.get(self.addon.pk, update_none=False) is None
         assert GroupedRating.get(self.addon.pk, update_none=True) == (
             self.expected_grouped_rating)
-
-
-class TestSpamTest(TestCase):
-    fixtures = ['reviews/test_models']
-
-    def test_create_not_there(self):
-        Review.objects.all().delete()
-        assert Review.objects.count() == 0
-        check_spam(1)
-
-    def test_add(self):
-        assert Spam().add(Review.objects.all()[0], 'numbers')
 
 
 class TestRefreshTest(ESTestCase):

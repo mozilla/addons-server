@@ -1,18 +1,14 @@
-from datetime import datetime, timedelta
-
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
 from django.template import Context
 from django.utils.translation import ugettext_lazy as _
 
-import bleach
 import caching.base as caching
 
 import olympia.core.logger
 from olympia import activity, amo
 from olympia.amo import helpers
-from olympia.amo.celery import task
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.utils import send_mail_jinja
 from olympia.translations.fields import save_signal, TranslatedField
@@ -256,9 +252,6 @@ class Review(ModelBase):
                 instance.send_notification_email()
 
         instance.refresh(update_denorm=created)
-        if created:
-            # Avoid slave lag with the delay.
-            check_spam.apply_async(args=[instance.id], countdown=600)
 
     def refresh(self, update_denorm=False):
         from olympia.addons.models import update_search_index
@@ -345,50 +338,3 @@ class GroupedRating(object):
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
         cache.set(cls.key(addon), ratings)
         return ratings
-
-
-class Spam(object):
-
-    def add(self, review, reason):
-        reason = 'amo:review:spam:%s' % reason
-        try:
-            reasonset = cache.get('amo:review:spam:reasons', set())
-        except KeyError:
-            reasonset = set()
-        try:
-            idset = cache.get(reason, set())
-        except KeyError:
-            idset = set()
-        reasonset.add(reason)
-        cache.set('amo:review:spam:reasons', reasonset)
-        idset.add(review.id)
-        cache.set(reason, idset)
-        return True
-
-    def reasons(self):
-        return cache.get('amo:review:spam:reasons')
-
-
-@task
-def check_spam(review_id, **kw):
-    spam = Spam()
-    try:
-        review = Review.objects.using('default').get(id=review_id)
-    except Review.DoesNotExist:
-        log.error('Review does not exist, check spam for review_id: %s'
-                  % review_id)
-        return
-
-    thirty_days = datetime.now() - timedelta(days=30)
-    others = (Review.objects.no_cache().exclude(id=review.id)
-              .filter(user=review.user, created__gte=thirty_days))
-    if len(others) > 10:
-        spam.add(review, 'numbers')
-    if (review.body is not None and
-            bleach.url_re.search(review.body.localized_string)):
-        spam.add(review, 'urls')
-    for other in others:
-        if ((review.title and review.title == other.title) or
-                review.body == other.body):
-            spam.add(review, 'matches')
-            break
