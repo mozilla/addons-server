@@ -2,17 +2,13 @@ import re
 from urllib2 import unquote
 
 from django import forms
-from django.forms.models import modelformset_factory
-from django.forms.models import BaseModelFormSet
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 from bleach import TLDS
 
-from olympia import reviews
 from olympia.amo.utils import raise_required
-from olympia.lib import happyforms
 
-from .models import Review, ReviewFlag
+from .models import ReviewFlag
 
 
 class ReviewReplyForm(forms.Form):
@@ -95,43 +91,3 @@ class ReviewFlagForm(forms.ModelForm):
                 _(u'A short explanation must be provided when selecting '
                   u'"Other" as a flag reason.'))
         return data
-
-
-class BaseReviewFlagFormSet(BaseModelFormSet):
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super(BaseReviewFlagFormSet, self).__init__(*args, **kwargs)
-
-    def save(self):
-        from olympia.reviews.helpers import user_can_delete_review
-
-        for form in self.forms:
-            if form.cleaned_data and user_can_delete_review(self.request,
-                                                            form.instance):
-                action = int(form.cleaned_data['action'])
-
-                if action == reviews.REVIEW_MODERATE_DELETE:
-                    form.instance.delete(user_responsible=self.request.user)
-                elif action == reviews.REVIEW_MODERATE_KEEP:
-                    form.instance.approve(user=self.request.user)
-
-
-class ModerateReviewFlagForm(happyforms.ModelForm):
-
-    action_choices = [(reviews.REVIEW_MODERATE_KEEP,
-                       _lazy(u'Keep review; remove flags')),
-                      (reviews.REVIEW_MODERATE_SKIP, _lazy(u'Skip for now')),
-                      (reviews.REVIEW_MODERATE_DELETE,
-                       _lazy(u'Delete review'))]
-    action = forms.ChoiceField(choices=action_choices, required=False,
-                               initial=0, widget=forms.RadioSelect())
-
-    class Meta:
-        model = Review
-        fields = ('action',)
-
-
-ReviewFlagFormSet = modelformset_factory(Review, extra=0,
-                                         form=ModerateReviewFlagForm,
-                                         formset=BaseReviewFlagFormSet)
