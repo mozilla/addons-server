@@ -517,7 +517,10 @@ class ReviewBase(object):
                                                  args=[self.addon.pk],
                                                  add_prefix=False)),
                 'comments': self.data.get('comments'),
-                'SITE_URL': settings.SITE_URL}
+                'SITE_URL': settings.SITE_URL,
+                'legacy_addon': (
+                    not self.version.all_files[0].is_webextension
+                    if self.version else False)}
 
     def request_information(self):
         """Send a request for information to the authors."""
