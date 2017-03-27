@@ -357,6 +357,22 @@ class TestCreate(ReviewTest):
         assert '3 out of 5' in mail.outbox[0].body, "Rating not included"
         self.assertTemplateUsed(response, 'reviews/emails/add_review.ltxt')
 
+    def test_reply_not_author_or_admin(self):
+        url = helpers.url('addons.reviews.reply', self.addon.slug, 218207)
+        response = self.client.get(url)
+        assert response.status_code == 403
+
+        response = self.client.post(url, {'body': 'unst unst'})
+        assert response.status_code == 403
+
+    def test_get_reply(self):
+        self.login_dev()
+        url = helpers.url('addons.reviews.reply', self.addon.slug, 218207)
+        response = self.client.get(url)
+        assert response.status_code == 200
+        # We should have a form with title and body in that order.
+        assert response.context['form'].fields.keys() == ['title', 'body']
+
     def test_new_reply(self):
         self.login_dev()
         user = user_factory()
@@ -388,6 +404,13 @@ class TestCreate(ReviewTest):
 
         # Not a new reply, no mail is sent.
         assert len(mail.outbox) == 0
+
+    def test_post_br_in_body_are_replaced_by_newlines(self):
+        response = self.client.post(
+            self.add_url, {'body': 'foo<br>bar', 'rating': 3})
+        self.assertRedirects(response, self.list_url, status_code=302)
+        review = Review.objects.latest('pk')
+        assert unicode(review.body) == "foo\nbar"
 
     def test_add_link_visitor(self):
         """
@@ -531,6 +554,15 @@ class TestEdit(ReviewTest):
                                    self.addon.slug))
         doc = pq(response.content)
         assert doc('#review-218207 .review-edit').text() == 'Edit review'
+
+    def test_edit_error(self):
+        url = helpers.url('addons.reviews.edit', self.addon.slug, 218207)
+        response = self.client.post(url, {'rating': 5},
+                                    X_REQUESTED_WITH='XMLHttpRequest')
+        assert response.status_code == 400
+        assert response['Content-type'] == 'application/json'
+        data = json.loads(response.content)
+        assert data['body'] == ['This field is required.']
 
     def test_edit_not_owner(self):
         url = helpers.url('addons.reviews.edit', self.addon.slug, 218468)

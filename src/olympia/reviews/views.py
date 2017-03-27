@@ -163,7 +163,11 @@ def reply(request, addon, review_id):
         reply, created = Review.unfiltered.update_or_create(**kwargs)
         return redirect(helpers.url('addons.reviews.detail', addon.slug,
                                     review_id))
-    ctx = dict(review=review, form=form, addon=addon)
+    ctx = {
+        'review': review,
+        'form': form,
+        'addon': addon
+    }
     return render(request, 'reviews/reply.html', ctx)
 
 
