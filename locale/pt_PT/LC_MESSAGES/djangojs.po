@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-24 15:46+0000\n"
-"PO-Revision-Date: 2017-03-24 00:07+0000\n"
+"PO-Revision-Date: 2017-03-28 21:05+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -27,7 +27,7 @@ msgstr "Ocorreu um problema ao contactar o servidor."
 
 #: static/js/common/upload-addon.js
 msgid "Select a file..."
-msgstr "Selecione um ficheiro..."
+msgstr "Selecionar um ficheiro..."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
