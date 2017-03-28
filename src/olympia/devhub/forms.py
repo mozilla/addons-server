@@ -544,17 +544,20 @@ class NewUploadForm(AddonUploadForm):
 
         # If we have a version reset platform choices to just those compatible.
         if self.version:
-            field = self.fields['supported_platforms']
+            platforms = self.fields['supported_platforms']
             compat_platforms = self.version.compatible_platforms().values()
-            field.choices = sorted((p.id, p.name) for p in compat_platforms)
+            platforms.choices = sorted(
+                (p.id, p.name) for p in compat_platforms)
             # Don't allow platforms we already have.
             to_exclude = set(File.objects.filter(version=self.version)
                                          .values_list('platform', flat=True))
             # Don't allow platform=ALL if we already have platform files.
             if to_exclude:
                 to_exclude.add(amo.PLATFORM_ALL.id)
-                field.choices = [p for p in field.choices
-                                 if p[0] not in to_exclude]
+                platforms.choices = [p for p in platforms.choices
+                                     if p[0] not in to_exclude]
+            # Don't show the source field for new File uploads
+            del self.fields['source']
 
     def clean(self):
         if self.version and not self.version.is_allowed_upload():
