@@ -4,7 +4,7 @@ import pytest
 from pages.desktop.home import Home
 
 
-@pytest.mark.skipif(os.environ.get('PYTEST_BASE_URL') is None,
+@pytest.mark.skipif(os.environ.get('RUNNING_IN_CI') == 'True',
                     reason='Live Server login currently not functioning')
 def test_login(my_base_url, selenium, user):
     """User can login"""
