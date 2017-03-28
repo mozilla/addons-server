@@ -32,7 +32,6 @@ from olympia.editors.models import (
 from olympia.editors.helpers import (
     is_limited_reviewer, ReviewHelper, ViewFullReviewQueueTable,
     ViewPendingQueueTable, ViewUnlistedAllListTable)
-from olympia.reviews.forms import ReviewFlagFormSet
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 from olympia.zadmin.models import get_config, set_config
@@ -489,9 +488,9 @@ def queue_moderated(request):
 
     flags = dict(ReviewFlag.FLAGS)
 
-    reviews_formset = ReviewFlagFormSet(request.POST or None,
-                                        queryset=page.object_list,
-                                        request=request)
+    reviews_formset = forms.ReviewFlagFormSet(request.POST or None,
+                                              queryset=page.object_list,
+                                              request=request)
 
     if request.method == 'POST':
         if reviews_formset.is_valid():

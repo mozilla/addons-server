@@ -4,11 +4,13 @@ from datetime import timedelta
 from django import forms
 from django.db.models import Q
 from django.forms import widgets
+from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, get_language)
 
 import olympia.core.logger
 from olympia import amo
+from olympia import reviews
 from olympia.activity.models import ActivityLog
 from olympia.constants import editors as rvw
 from olympia.addons.models import Addon, Persona
@@ -18,6 +20,8 @@ from olympia.applications.models import AppVersion
 from olympia.editors.models import CannedResponse, ReviewerScore, ThemeLock
 from olympia.editors.tasks import approve_rereview, reject_rereview, send_mail
 from olympia.lib import happyforms
+from olympia.reviews.helpers import user_can_delete_review
+from olympia.reviews.models import Review
 
 
 log = olympia.core.logger.getLogger('z.reviewers.forms')
@@ -480,3 +484,41 @@ class WhiteboardForm(forms.ModelForm):
     class Meta:
         model = Addon
         fields = ['whiteboard']
+
+
+class ModerateReviewFlagForm(happyforms.ModelForm):
+
+    action_choices = [(reviews.REVIEW_MODERATE_KEEP,
+                       _lazy(u'Keep review; remove flags')),
+                      (reviews.REVIEW_MODERATE_SKIP, _lazy(u'Skip for now')),
+                      (reviews.REVIEW_MODERATE_DELETE,
+                       _lazy(u'Delete review'))]
+    action = forms.ChoiceField(choices=action_choices, required=False,
+                               initial=0, widget=forms.RadioSelect())
+
+    class Meta:
+        model = Review
+        fields = ('action',)
+
+
+class BaseReviewFlagFormSet(BaseModelFormSet):
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(BaseReviewFlagFormSet, self).__init__(*args, **kwargs)
+
+    def save(self):
+        for form in self.forms:
+            if form.cleaned_data and user_can_delete_review(self.request,
+                                                            form.instance):
+                action = int(form.cleaned_data['action'])
+
+                if action == reviews.REVIEW_MODERATE_DELETE:
+                    form.instance.delete(user_responsible=self.request.user)
+                elif action == reviews.REVIEW_MODERATE_KEEP:
+                    form.instance.approve(user=self.request.user)
+
+
+ReviewFlagFormSet = modelformset_factory(Review, extra=0,
+                                         form=ModerateReviewFlagForm,
+                                         formset=BaseReviewFlagFormSet)

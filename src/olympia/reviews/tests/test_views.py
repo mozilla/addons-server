@@ -319,8 +319,9 @@ class TestCreate(ReviewTest):
         super(TestCreate, self).setUp()
         self.add_url = helpers.url('addons.reviews.add', self.addon.slug)
         self.client.login(email='root_x@ukr.net')
+        self.addon = Addon.objects.get(pk=1865)
         self.user = UserProfile.objects.get(email='root_x@ukr.net')
-        self.qs = Review.objects.filter(addon=1865)
+        self.qs = Review.objects.filter(addon=self.addon)
         self.more_url = self.addon.get_url_path(more=True)
         self.list_url = helpers.url('addons.reviews.list', self.addon.slug)
 
@@ -328,6 +329,92 @@ class TestCreate(ReviewTest):
         r = self.client.get(self.add_url)
         assert r.status_code == 200
         self.assertTemplateUsed(r, 'reviews/add.html')
+
+    def test_no_body(self):
+        response = self.client.post(self.add_url, {'body': ''})
+        self.assertFormError(
+            response, 'form', 'body', 'This field is required.')
+        assert len(mail.outbox) == 0
+
+        response = self.client.post(self.add_url, {'body': ' \t \n '})
+        self.assertFormError(
+            response, 'form', 'body', 'This field is required.')
+        assert len(mail.outbox) == 0
+
+    def test_no_rating(self):
+        r = self.client.post(self.add_url, {'body': 'no rating'})
+        self.assertFormError(r, 'form', 'rating', 'This field is required.')
+        assert len(mail.outbox) == 0
+
+    def test_review_success(self):
+        activity_qs = ActivityLog.objects.filter(action=amo.LOG.ADD_REVIEW.id)
+        old_cnt = self.qs.count()
+        log_count = activity_qs.count()
+        response = self.client.post(self.add_url, {'body': 'xx', 'rating': 3})
+        self.assertRedirects(response, self.list_url, status_code=302)
+        assert self.qs.count() == old_cnt + 1
+        # We should have an ADD_REVIEW entry now.
+        assert activity_qs.count() == log_count + 1
+
+        assert len(mail.outbox) == 1
+
+        assert '3 out of 5' in mail.outbox[0].body, "Rating not included"
+        self.assertTemplateUsed(response, 'reviews/emails/add_review.ltxt')
+
+    def test_reply_not_author_or_admin(self):
+        url = helpers.url('addons.reviews.reply', self.addon.slug, 218207)
+        response = self.client.get(url)
+        assert response.status_code == 403
+
+        response = self.client.post(url, {'body': 'unst unst'})
+        assert response.status_code == 403
+
+    def test_get_reply(self):
+        self.login_dev()
+        url = helpers.url('addons.reviews.reply', self.addon.slug, 218207)
+        response = self.client.get(url)
+        assert response.status_code == 200
+        # We should have a form with title and body in that order.
+        assert response.context['form'].fields.keys() == ['title', 'body']
+
+    def test_new_reply(self):
+        self.login_dev()
+        user = user_factory()
+        # Use a new review as a base - since we soft-delete reviews, we can't
+        # just delete the existing review and reply from the fixtures, that
+        # would be considered like an edit and not send the email.
+        review = Review.objects.create(
+            user=user, addon=self.addon, body='A review', rating=3)
+        url = helpers.url('addons.reviews.reply', self.addon.slug, review.pk)
+        response = self.client.post(url, {'body': 'unst unst'})
+        self.assertRedirects(
+            response,
+            helpers.url('addons.reviews.detail', self.addon.slug, review.pk))
+        assert self.qs.filter(reply_to=review.pk).count() == 1
+
+        assert len(mail.outbox) == 1
+        self.assertTemplateUsed(response, 'reviews/emails/reply_review.ltxt')
+
+    def test_double_reply(self):
+        self.login_dev()
+        url = helpers.url('addons.reviews.reply', self.addon.slug, 218207)
+        response = self.client.post(url, {'body': 'unst unst'})
+        self.assertRedirects(
+            response,
+            helpers.url('addons.reviews.detail', self.addon.slug, 218207))
+        assert self.qs.filter(reply_to=218207).count() == 1
+        review = Review.objects.get(id=218468)
+        assert unicode(review.body) == u'unst unst'
+
+        # Not a new reply, no mail is sent.
+        assert len(mail.outbox) == 0
+
+    def test_post_br_in_body_are_replaced_by_newlines(self):
+        response = self.client.post(
+            self.add_url, {'body': 'foo<br>bar', 'rating': 3})
+        self.assertRedirects(response, self.list_url, status_code=302)
+        review = Review.objects.latest('pk')
+        assert unicode(review.body) == "foo\nbar"
 
     def test_add_link_visitor(self):
         """
@@ -471,6 +558,15 @@ class TestEdit(ReviewTest):
                                    self.addon.slug))
         doc = pq(response.content)
         assert doc('#review-218207 .review-edit').text() == 'Edit review'
+
+    def test_edit_error(self):
+        url = helpers.url('addons.reviews.edit', self.addon.slug, 218207)
+        response = self.client.post(url, {'rating': 5},
+                                    X_REQUESTED_WITH='XMLHttpRequest')
+        assert response.status_code == 400
+        assert response['Content-type'] == 'application/json'
+        data = json.loads(response.content)
+        assert data['body'] == ['This field is required.']
 
     def test_edit_not_owner(self):
         url = helpers.url('addons.reviews.edit', self.addon.slug, 218468)
