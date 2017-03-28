@@ -508,13 +508,17 @@ class ReviewBase(object):
                 addon = Addon.unfiltered.get(pk=self.addon.pk)
         else:
             addon = self.addon
+        review_url_kw = {'addon_id': self.addon.pk}
+        if (self.version and
+                self.version.channel == amo.RELEASE_CHANNEL_UNLISTED):
+            review_url_kw['channel'] = 'unlisted'
         return {'name': addon.name,
                 'number': self.version.version if self.version else '',
                 'reviewer': self.user.display_name,
                 'addon_url': absolutify(addon_url),
                 'dev_versions_url': absolutify(dev_ver_url),
                 'review_url': absolutify(reverse('editors.review',
-                                                 args=[self.addon.pk],
+                                                 kwargs=review_url_kw,
                                                  add_prefix=False)),
                 'comments': self.data.get('comments'),
                 'SITE_URL': settings.SITE_URL,

@@ -13,6 +13,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
+from olympia.amo.helpers import absolutify
 from olympia.amo.tests import TestCase, version_factory
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.urlresolvers import reverse
@@ -369,6 +370,8 @@ class TestReviewHelper(TestCase):
             'pending_to_sandbox': 'dev_versions_url',
 
             'unlisted_to_reviewed_auto': 'dev_versions_url',
+
+            'super_review': 'review_url',
         }
 
         self.helper.set_data(self.get_data())
@@ -379,6 +382,29 @@ class TestReviewHelper(TestCase):
             assert len(mail.outbox) == 1
             assert context_key in context_data
             assert context_data.get(context_key) in mail.outbox[0].body
+
+    def test_review_url_correct_channel(self):
+        # Listed email
+        self.helper.set_data(self.get_data())
+        self.helper.handler.notify_email('super_review',
+                                         'Sample subject %s, %s')
+        assert len(mail.outbox) == 1
+        listed_review_url = absolutify(
+            reverse('editors.review', args=[self.addon.pk], add_prefix=False))
+        assert listed_review_url in mail.outbox[0].body
+        mail.outbox = []
+
+        # Unlisted email
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.helper.set_data(self.get_data())
+        self.helper.handler.notify_email('super_review',
+                                         'Sample subject %s, %s')
+        assert len(mail.outbox) == 1
+        unlisted_review_url = absolutify(
+            reverse('editors.review',
+                    kwargs={'addon_id': self.addon.pk, 'channel': 'unlisted'},
+                    add_prefix=False))
+        assert unlisted_review_url in mail.outbox[0].body
 
     def setup_data(self, status, delete=None,
                    file_status=amo.STATUS_AWAITING_REVIEW,
