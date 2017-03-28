@@ -1,5 +1,0 @@
-{% load i18n %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans %}
-Your account has been restricted. You cannot create collections, post
-reviews for addons or apps, and your existing reviews and collections
-have been deleted.
-{% endblocktrans %}

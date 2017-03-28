@@ -19,8 +19,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo import messages
 from olympia.amo.decorators import (
-    allow_mine, json_view, login_required, post_required, restricted_content,
-    write)
+    allow_mine, json_view, login_required, post_required, write)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, urlparams, render
 from olympia.access import acl
@@ -339,7 +338,6 @@ def collection_message(request, collection, option):
 
 @write
 @login_required
-@restricted_content
 def add(request):
     """Displays/processes a form to create a collection."""
     data = {}
