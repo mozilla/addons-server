@@ -331,11 +331,15 @@ class TestCreate(ReviewTest):
         self.assertTemplateUsed(r, 'reviews/add.html')
 
     def test_no_body(self):
-        for body in ('', ' \t \n '):
-            response = self.client.post(self.add_url, {'body': body})
-            self.assertFormError(
-                response, 'form', 'body', 'This field is required.')
-            assert len(mail.outbox) == 0
+        response = self.client.post(self.add_url, {'body': ''})
+        self.assertFormError(
+            response, 'form', 'body', 'This field is required.')
+        assert len(mail.outbox) == 0
+
+        response = self.client.post(self.add_url, {'body': ' \t \n '})
+        self.assertFormError(
+            response, 'form', 'body', 'This field is required.')
+        assert len(mail.outbox) == 0
 
     def test_no_rating(self):
         r = self.client.post(self.add_url, {'body': 'no rating'})
