@@ -256,9 +256,9 @@ isodate==0.5.4 \
 jingo==0.9.0 \
     --hash=sha256:12a983286519303c6afd3da6f0a7e1859e69effb5fe46109424cdfca382bea56 \
     --hash=sha256:37de5435622d05763bc55d1a3d0a7edcf998ece9e6048bb470db431d1aa83c3a
-jingo_minify==0.6.0 \
-    --hash=sha256:5b804282fb5b00738a279633b2f1943aefbc0b9e3c5b8c12eeade6d96ce262f0 \
-    --hash=sha256:f74ce033cb25852d936679ec56fde55455a1812a151494eb93436734fe9e3a55
+jingo_minify==0.7.0 \
+    --hash=sha256:1427946e8d4082c909a98dbacfe1cd908cbdc83572003e1a0236da02b350e31f \
+    --hash=sha256:f47ec7868467a1b270e115c301a4270137836ddb7b5f57552e65dff5c86aee05
 # kombu is required by celery
 kombu==3.0.35 \
     --hash=sha256:2c59a5e087d5895675cdb4d6a38a0aa147f0411366e68330a76e480ba3b25727 \
