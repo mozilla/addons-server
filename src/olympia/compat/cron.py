@@ -2,7 +2,6 @@ from collections import defaultdict
 
 from django.db.models import Count, Max
 
-import cronjobs
 import elasticsearch.helpers
 
 import olympia.core.logger
@@ -21,7 +20,6 @@ from .models import AppCompat, CompatReport, CompatTotals
 log = olympia.core.logger.getLogger('z.compat')
 
 
-@cronjobs.register
 def compatibility_report(index=None):
     docs = defaultdict(dict)
     indices = get_indices(index)

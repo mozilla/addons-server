@@ -23,9 +23,6 @@ from olympia.editors.models import RereviewQueueTheme
 from olympia.lib.es.utils import index_objects
 from olympia.versions.models import Version
 
-# pulling tasks from cron
-from . import cron  # noqa
-
 
 log = olympia.core.logger.getLogger('z.task')
 

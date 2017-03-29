@@ -455,7 +455,6 @@ INSTALLED_APPS = (
 
     # Third party apps
     'product_details',
-    'cronjobs',
     'csp',
     'aesfield',
     'django_extensions',
@@ -1684,3 +1683,42 @@ WEBEXT_PERM_DESCRIPTIONS_URL = (
 WEBEXT_PERM_DESCRIPTIONS_LOCALISED_URL = (
     'https://hg.mozilla.org/l10n-central/{locale}/raw-file/tip/'
     'browser/chrome/browser/browser.properties')
+
+# List all jobs that should be callable with cron here.
+CRON_JOBS = {
+    'update_addon_average_daily_users': 'olympia.addons.cron',
+    'update_addon_download_totals': 'olympia.addons.cron',
+    'addon_last_updated': 'olympia.addons.cron',
+    'update_addon_appsupport': 'olympia.addons.cron',
+    'update_all_appsupport': 'olympia.addons.cron',
+    'hide_disabled_files': 'olympia.addons.cron',
+    'unhide_disabled_files': 'olympia.addons.cron',
+    'deliver_hotness': 'olympia.addons.cron',
+    'reindex_addons': 'olympia.addons.cron',
+    'cleanup_image_files': 'olympia.addons.cron',
+
+    'gc': 'olympia.amo.cron',
+    'category_totals': 'olympia.amo.cron',
+    'collection_subscribers': 'olympia.amo.cron',
+    'weekly_downloads': 'olympia.amo.cron',
+
+    'update_collections_subscribers': 'olympia.bandwagon.cron',
+    'update_collections_votes': 'olympia.bandwagon.cron',
+    'reindex_collections': 'olympia.bandwagon.cron',
+
+    'compatibility_report': 'olympia.compat.cron',
+
+    'update_blog_posts': 'olympia.devhub.cron',
+
+    'cleanup_extracted_file': 'olympia.files.cron',
+    'cleanup_validation_results': 'olympia.files.cron',
+
+    'update_addons_collections_downloads': 'olympia.stats.cron',
+    'update_collections_total': 'olympia.stats.cron',
+    'update_global_totals': 'olympia.stats.cron',
+    'update_google_analytics': 'olympia.stats.cron',
+    'index_latest_stats': 'olympia.stats.cron',
+
+    'update_user_ratings': 'olympia.users.cron',
+    'reindex_users': 'olympia.users.cron',
+}
