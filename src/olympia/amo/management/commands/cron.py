@@ -1,8 +1,7 @@
-import sys
 from importlib import import_module
 
 from django.conf import settings
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 
 from olympia.core import logger
 
@@ -17,17 +16,15 @@ class Command(BaseCommand):
     def handle(self, *args, **opts):
         if not args:
             log.error("Cron called without args")
-            print 'These jobs are available:\n%s' % '\n'.join(
-                sorted(settings.CRON_JOBS.keys()))
-            sys.exit(1)
+            raise CommandError('These jobs are available:\n%s' % '\n'.join(
+                sorted(settings.CRON_JOBS.keys())))
 
         name, args = args[0], args[1:]
         path = settings.CRON_JOBS.get(name)
         if not path:
-            log.error("Cron called with an unknown cron job: %s %s" %
+            log.error('Cron called with an unknown cron job: %s %s' %
                       (name, args))
-            print 'Unrecognized job name: %s' % name
-            sys.exit(1)
+            raise CommandError(u'Unrecognized job name: %s' % name)
 
         module = import_module(path)
 

@@ -1685,6 +1685,7 @@ WEBEXT_PERM_DESCRIPTIONS_LOCALISED_URL = (
     'browser/chrome/browser/browser.properties')
 
 # List all jobs that should be callable with cron here.
+# syntax is: job_and_method_name: full.package.path
 CRON_JOBS = {
     'update_addon_average_daily_users': 'olympia.addons.cron',
     'update_addon_download_totals': 'olympia.addons.cron',
