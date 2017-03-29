@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-24 15:46+0000\n"
-"PO-Revision-Date: 2017-03-28 09:25+0000\n"
+"PO-Revision-Date: 2017-03-29 09:50+0000\n"
 "Last-Translator: Lovegaming <contact@lovegaming.net>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -65,7 +65,7 @@ msgstr "Descarcă"
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #: src/olympia/addons/buttons.py
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr ""
+msgstr "Continuă să descarci&nbsp;&rarr;"
 
 #: src/olympia/addons/buttons.py src/olympia/addons/helpers.py src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
