@@ -158,7 +158,7 @@ update_assets:
 ifeq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the container)
 endif
-	python manage.py compress_assets
+	python manage.py compress_assets --use-uuid
 	python manage.py collectstatic --noinput
 
 update_docker:
