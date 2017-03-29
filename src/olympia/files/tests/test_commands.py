@@ -36,8 +36,9 @@ class TestWebextExtractPermissions(UploadTest):
     def test_extract(self):
         upload = self.get_upload('webextension_no_id.xpi')
         parsed_data = parse_addon(upload)
-        # Delete the permissions from the parsed data so they aren't added.
-        del parsed_data['permissions']
+        # Remove the permissions from the parsed data so they aren't added.
+        pdata_permissions = parsed_data.pop('permissions')
+        pdata_cscript = parsed_data.pop('content_scripts')
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parsed_data)
         assert WebextPermission.objects.count() == 0
@@ -48,10 +49,17 @@ class TestWebextExtractPermissions(UploadTest):
         file_ = File.objects.no_cache().get(id=file_.id)
         assert WebextPermission.objects.get(file=file_)
         permissions_list = file_.webext_permissions_list
-        assert len(permissions_list) == 5
-        assert permissions_list == [u'http://*/*', u'https://*/*', 'bookmarks',
-                                    'made up permission', 'https://google.com/'
-                                    ]
+        assert len(permissions_list) == 8
+        assert permissions_list == [
+            # first 5 are 'permissions'
+            u'http://*/*', u'https://*/*', 'bookmarks', 'made up permission',
+            'https://google.com/',
+            # last 3 are 'content_scripts' matches we treat the same
+            '*://*.mozilla.org/*', '*://*.mozilla.com/*',
+            'https://*.mozillians.org/*']
+        assert permissions_list[0:5] == pdata_permissions
+        assert permissions_list[5:8] == [x for y in [
+            cs['matches'] for cs in pdata_cscript] for x in y]
 
     def test_force_extract(self):
         upload = self.get_upload('webextension_no_id.xpi')
@@ -61,13 +69,13 @@ class TestWebextExtractPermissions(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parsed_data)
         assert WebextPermission.objects.count() == 1
-        assert len(file_.webext_permissions_list) == 4
+        assert len(file_.webext_permissions_list) == 7
 
         call_command('extract_permissions', force=True)
 
         file_ = File.objects.no_cache().get(id=file_.id)
         assert WebextPermission.objects.get(file=file_)
-        assert len(file_.webext_permissions_list) == 5
+        assert len(file_.webext_permissions_list) == 8
 
 
 @override_settings(AMO_LANGUAGES=('fr', 'de', 'elvish', 'zh-CN'))

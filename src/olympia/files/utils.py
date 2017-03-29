@@ -391,6 +391,7 @@ class ManifestJSONExtractor(object):
             'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
             'default_locale': self.get('default_locale'),
             'permissions': self.get('permissions', []),
+            'content_scripts': self.get('content_scripts', []),
         }
 
 

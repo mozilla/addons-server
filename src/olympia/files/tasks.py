@@ -29,7 +29,10 @@ def extract_webext_permissions(ids, **kw):
             log.info('Parsing File.id: %s @ %s' %
                      (file_.pk, file_.current_file_path))
             parsed_data = parse_xpi(file_.current_file_path, check=False)
-            permissions = parsed_data.get('permissions')
+            permissions = parsed_data.get('permissions', [])
+            # Add content_scripts host matches too.
+            for script in parsed_data.get('content_scripts', []):
+                permissions.extend(script.get('matches', []))
             if permissions:
                 log.info('Found %s permissions for: %s' %
                          (len(permissions), file_.pk))

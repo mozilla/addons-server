@@ -1161,15 +1161,27 @@ class TestFileFromUpload(UploadTest):
     def test_permissions(self):
         upload = self.upload('webextension_no_id.xpi')
         parsed_data = parse_addon(upload)
-        # 5 total permissions.
+        # 5 permissions; 2 content_scripts entries.
         assert len(parsed_data['permissions']) == 5
+        assert len(parsed_data['content_scripts']) == 2
+        # Second content_scripts['matches'] contains two matches
+        assert len(parsed_data['content_scripts'][0]['matches']) == 1
+        assert len(parsed_data['content_scripts'][1]['matches']) == 2
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parsed_data=parsed_data)
         permissions_list = file_.webext_permissions_list
-        assert len(permissions_list) == 5
-        assert permissions_list == [u'http://*/*', u'https://*/*', 'bookmarks',
-                                    'made up permission', 'https://google.com/'
-                                    ]
+        # 5 + 2 + 1 = 8
+        assert len(permissions_list) == 8
+        assert permissions_list == [
+            # first 5 are 'permissions'
+            u'http://*/*', u'https://*/*', 'bookmarks', 'made up permission',
+            'https://google.com/',
+            # last 3 are 'content_scripts' matches we treat the same
+            '*://*.mozilla.org/*', '*://*.mozilla.com/*',
+            'https://*.mozillians.org/*']
+        assert permissions_list[0:5] == parsed_data['permissions']
+        assert permissions_list[5:8] == [x for y in [
+            cs['matches'] for cs in parsed_data['content_scripts']] for x in y]
 
 
 class TestZip(TestCase, amo.tests.AMOPaths):
