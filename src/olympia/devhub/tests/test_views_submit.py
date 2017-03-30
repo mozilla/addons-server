@@ -125,6 +125,8 @@ class TestAddonSubmitDistribution(TestCase):
         self.assert3xx(response, reverse('devhub.submit.distribution'))
         response = self.client.get(reverse('devhub.submit.distribution'))
         assert response.status_code == 200
+        # No error shown for a redirect from previous step.
+        assert 'This field is required' not in response.content
 
     def test_submit_notification_warning(self):
         config = Config.objects.create(
@@ -154,6 +156,18 @@ class TestAddonSubmitDistribution(TestCase):
                                     {'channel': 'unlisted'})
         self.assert3xx(response, reverse('devhub.submit.upload',
                                          args=['unlisted']))
+
+    def test_channel_selection_error_shown(self):
+        url = reverse('devhub.submit.distribution')
+        # First load should have no error
+        assert 'This field is required' not in self.client.get(url).content
+
+        # Load with channel preselected (e.g. back from next step) - no error.
+        assert 'This field is required' not in self.client.get(
+            url, args=['listed']).content
+
+        # A post submission without channel selection should be an error
+        assert 'This field is required' in self.client.post(url).content
 
 
 class TestAddonSubmitUpload(UploadTest, TestCase):

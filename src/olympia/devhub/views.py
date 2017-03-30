@@ -1282,7 +1282,8 @@ def _submit_distribution(request, addon, next_view):
         return redirect('devhub.submit.agreement')
     # Accept GET for the first load so we can preselect the channel.
     form = forms.DistributionChoiceForm(
-        request.POST if request.method == 'POST' else request.GET)
+        request.POST if request.method == 'POST' else
+        request.GET if request.GET.get('channel') else None)
 
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
