@@ -183,9 +183,14 @@ class File(OnChangeMixin, ModelBase):
                 file_.requires_chrome = True
 
         file_.save()
-        if file_.is_webextension and parsed_data.get('permissions'):
-            WebextPermission.objects.create(
-                permissions=parsed_data.get('permissions'), file=file_)
+        if file_.is_webextension:
+            permissions = list(parsed_data.get('permissions', []))
+            # Add content_scripts host matches too.
+            for script in parsed_data.get('content_scripts', []):
+                permissions.extend(script.get('matches', []))
+            if permissions:
+                WebextPermission.objects.create(permissions=permissions,
+                                                file=file_)
 
         log.debug('New file: %r from %r' % (file_, upload))
         # Move the uploaded file from the temp location.
@@ -746,7 +751,7 @@ Permission = namedtuple('Permission',
 
 
 class WebextPermissionDescription(ModelBase):
-    MATCH_ALL_REGEX = r'^\<all_urls\>|(\*|http|https):\/\/\*\/\*'
+    MATCH_ALL_REGEX = r'^\<all_urls\>|(\*|http|https):\/\/\*\/'
     ALL_URLS_PERMISSION = Permission(
         u'all_urls',
         _lazy(u'Access your data for all websites')
