@@ -250,11 +250,6 @@ class Contribution(amo.models.ModelBase):
             from_email, [to_email], fail_silently=True,
             perm_setting='dev_thanks')
 
-    @staticmethod
-    def post_save(sender, instance, **kwargs):
-        from . import tasks
-        tasks.addon_total_contributions.delay(instance.addon_id)
-
     def get_amount_locale(self, locale=None):
         """Localise the amount paid into the current locale."""
         if not locale:
@@ -263,9 +258,6 @@ class Contribution(amo.models.ModelBase):
         return numbers.format_currency(self.amount or 0,
                                        self.currency or 'USD',
                                        locale=locale)
-
-
-models.signals.post_save.connect(Contribution.post_save, sender=Contribution)
 
 
 class GlobalStat(caching.base.CachingMixin, models.Model):

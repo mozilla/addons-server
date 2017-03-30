@@ -17,7 +17,6 @@ from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.bandwagon.models import Collection
 from olympia.reviews.models import Review
-from olympia.stats.models import Contribution
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -28,20 +27,6 @@ from .models import (
 
 
 log = olympia.core.logger.getLogger('z.task')
-
-
-@task
-def addon_total_contributions(*addons, **kw):
-    "Updates the total contributions for a given addon."
-
-    log.info('[%s@%s] Updating total contributions.' %
-             (len(addons), addon_total_contributions.rate_limit))
-    # Only count uuid=None; those are verified transactions.
-    stats = (Contribution.objects.filter(addon__in=addons, uuid=None)
-             .values_list('addon').annotate(Sum('amount')))
-
-    for addon, total in stats:
-        Addon.objects.filter(id=addon).update(total_contributions=total)
 
 
 @task
