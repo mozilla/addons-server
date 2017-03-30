@@ -1196,7 +1196,6 @@ CELERY_ROUTES = {
 
 
     # Stats
-    'olympia.stats.tasks.addon_total_contributions': {'queue': 'stats'},
     'olympia.stats.tasks.index_collection_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
