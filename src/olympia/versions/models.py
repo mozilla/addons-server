@@ -24,7 +24,6 @@ from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, save_signal, TranslatedField)
-from olympia.users.models import UserProfile
 
 from .compare import version_dict, version_int
 
@@ -704,19 +703,6 @@ class License(ModelBase):
 
 models.signals.pre_save.connect(
     save_signal, sender=License, dispatch_uid='license_translations')
-
-
-class VersionComment(ModelBase):
-    """Editor comments for version discussion threads."""
-    version = models.ForeignKey(Version)
-    user = models.ForeignKey(UserProfile)
-    reply_to = models.ForeignKey(Version, related_name="reply_to",
-                                 db_column='reply_to', null=True)
-    subject = models.CharField(max_length=1000)
-    comment = models.TextField()
-
-    class Meta(ModelBase.Meta):
-        db_table = 'versioncomments'
 
 
 class ApplicationsVersions(caching.base.CachingMixin, models.Model):
