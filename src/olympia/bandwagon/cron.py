@@ -3,7 +3,6 @@ from datetime import date
 from django.db import connection
 from django.db.models import Count
 
-import cronjobs
 from celery.task.sets import TaskSet
 
 import olympia.core.logger
@@ -17,7 +16,6 @@ from olympia.bandwagon.models import (
 task_log = olympia.core.logger.getLogger('z.task')
 
 
-@cronjobs.register
 def update_collections_subscribers():
     """Update collections subscribers totals."""
 
@@ -45,7 +43,6 @@ def _update_collections_subscribers(data, **kw):
         cursor.execute(q, p)
 
 
-@cronjobs.register
 def update_collections_votes():
     """Update collection's votes."""
 
@@ -81,7 +78,6 @@ def _update_collections_votes(data, stat, **kw):
         cursor.execute(q, p)
 
 
-@cronjobs.register
 def reindex_collections(index=None):
     from . import tasks
     ids = (Collection.objects.exclude(type=amo.COLLECTION_SYNCHRONIZED)

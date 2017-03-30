@@ -169,8 +169,6 @@ django-babel==0.5.1 \
 django-cors-headers-multi==1.2.0 \
     --hash=sha256:ca1ccf9fd549fe5447e8ba1d49656582651cd7682f78f62a7cd0f912b9359968 \
     --hash=sha256:c40f17823aa59df3c064234cdc890c56667b5db1ea6aac0172c949dc5c42ed53
-django-cronjobs==0.2.3 \
-    --hash=sha256:177295b1442400c92cdb67e8e18f9ff5946fb442f85813b9d0837823722ea08d
 django-csp==3.2 \
     --hash=sha256:7cec78ba7c426deba6d4bea188dcfc1a8b2609ad98dd539c365605c9ec2996b2 \
     --hash=sha256:fb56c0126b4e69f854fd1581a4bef25fa7cac1f10235e95f697e297ceef88132

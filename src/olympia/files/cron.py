@@ -4,15 +4,12 @@ from datetime import datetime
 
 from django.conf import settings
 
-import cronjobs
-
 import olympia.core.logger
 from olympia.files.models import FileValidation
 
 log = olympia.core.logger.getLogger('z.cron')
 
 
-@cronjobs.register
 def cleanup_extracted_file():
     log.info('Removing extracted files for file viewer.')
     root = os.path.join(settings.TMP_PATH, 'file_viewer')
@@ -32,7 +29,6 @@ def cleanup_extracted_file():
             shutil.rmtree(full)
 
 
-@cronjobs.register
 def cleanup_validation_results():
     """Will remove all validation results.  Used when the validator is
     upgraded and results may no longer be relevant."""

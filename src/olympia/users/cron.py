@@ -1,6 +1,5 @@
 from django.db import connections
 
-import cronjobs
 import multidb
 from celery.task.sets import TaskSet
 
@@ -15,7 +14,6 @@ from .tasks import update_user_ratings_task
 task_log = olympia.core.logger.getLogger('z.task')
 
 
-@cronjobs.register
 def update_user_ratings():
     """Update add-on author's ratings."""
 
@@ -48,7 +46,6 @@ def update_user_ratings():
     TaskSet(ts).apply_async()
 
 
-@cronjobs.register
 def reindex_users(index=None):
     from . import tasks
     ids = UserProfile.objects.values_list('id', flat=True)

@@ -7,7 +7,6 @@ from django.db import connections
 from django.db.models import Q, F, Avg
 from django.utils.encoding import force_text
 
-import cronjobs
 import multidb
 from celery.task.sets import TaskSet
 import waffle
@@ -27,7 +26,6 @@ log = olympia.core.logger.getLogger('z.cron')
 task_log = olympia.core.logger.getLogger('z.task')
 
 
-@cronjobs.register
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
     if not waffle.switch_is_active('local-statistics-processing'):
@@ -75,7 +73,6 @@ def _update_addon_average_daily_users(data, **kw):
             addon.update(average_daily_users=count)
 
 
-@cronjobs.register
 def update_addon_download_totals():
     """Update add-on total and average downloads."""
     if not waffle.switch_is_active('local-statistics-processing'):
@@ -149,7 +146,6 @@ def _change_last_updated(next):
         addon.save()
 
 
-@cronjobs.register
 @write
 def addon_last_updated():
     next = {}
@@ -165,7 +161,6 @@ def addon_last_updated():
     _change_last_updated(dict(other))
 
 
-@cronjobs.register
 def update_addon_appsupport():
     # Find all the add-ons that need their app support details updated.
     newish = (Q(last_updated__gte=F('appsupport__created')) |
@@ -183,7 +178,6 @@ def update_addon_appsupport():
     TaskSet(ts).apply_async()
 
 
-@cronjobs.register
 def update_all_appsupport():
     from .tasks import update_appsupport
     ids = sorted(set(AppSupport.objects.values_list('addon', flat=True)))
@@ -202,7 +196,6 @@ def _update_appsupport(ids, **kw):
     update_appsupport(ids)
 
 
-@cronjobs.register
 def hide_disabled_files():
     # If an add-on or a file is disabled, it should be moved to
     # GUARDED_ADDONS_PATH so it's not publicly visible.
@@ -217,7 +210,6 @@ def hide_disabled_files():
             f.hide_disabled_file()
 
 
-@cronjobs.register
 def unhide_disabled_files():
     # Files are getting stuck in /guarded-addons for some reason. This job
     # makes sure guarded add-ons are supposed to be disabled.
@@ -242,7 +234,6 @@ def unhide_disabled_files():
                           exc_info=True)
 
 
-@cronjobs.register
 def deliver_hotness():
     """
     Calculate hotness of all add-ons.
@@ -275,7 +266,6 @@ def deliver_hotness():
         time.sleep(10)
 
 
-@cronjobs.register
 def reindex_addons(index=None, addon_type=None):
     from . import tasks
     ids = Addon.unfiltered.values_list('id', flat=True)
@@ -286,7 +276,6 @@ def reindex_addons(index=None, addon_type=None):
     TaskSet(ts).apply_async()
 
 
-@cronjobs.register
 def cleanup_image_files():
     """
     Clean up all header and footer images files for themes.

@@ -32,7 +32,6 @@ REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 
 CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
-CRONJOB_LOCK_PREFIX = DOMAIN
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = env('SERVICES_URL',

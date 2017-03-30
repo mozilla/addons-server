@@ -3,7 +3,6 @@ import datetime
 from django.core.management import call_command
 from django.db.models import Sum, Max
 
-import cronjobs
 import waffle
 from celery.task.sets import TaskSet
 
@@ -18,7 +17,6 @@ task_log = olympia.core.logger.getLogger('z.task')
 cron_log = olympia.core.logger.getLogger('z.cron')
 
 
-@cronjobs.register
 def update_addons_collections_downloads():
     """Update addons+collections download totals."""
     raise_if_reindex_in_progress('amo')
@@ -31,7 +29,6 @@ def update_addons_collections_downloads():
     TaskSet(ts).apply_async()
 
 
-@cronjobs.register
 def update_collections_total():
     """Update collections downloads totals."""
 
@@ -43,7 +40,6 @@ def update_collections_total():
     TaskSet(ts).apply_async()
 
 
-@cronjobs.register
 def update_global_totals(date=None):
     """Update global statistics totals."""
     raise_if_reindex_in_progress('amo')
@@ -64,7 +60,6 @@ def update_global_totals(date=None):
     TaskSet(ts).apply_async()
 
 
-@cronjobs.register
 def update_google_analytics(date=None):
     """
     Update stats from Google Analytics.
@@ -77,7 +72,6 @@ def update_google_analytics(date=None):
     tasks.update_google_analytics.delay(date=date)
 
 
-@cronjobs.register
 def index_latest_stats(index=None):
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
