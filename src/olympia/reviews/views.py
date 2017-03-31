@@ -21,6 +21,7 @@ from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.views import AddonChildMixin
+from olympia.api.paginator import OneOrZeroPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfPublic, AllowOwner,
     AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)
@@ -305,18 +306,37 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         if self.action == 'list':
             addon_identifier = self.request.GET.get('addon')
             user_identifier = self.request.GET.get('user')
+            version_identifier = self.request.GET.get('version')
             if addon_identifier:
-                qs = qs.filter(is_latest=True, addon=self.get_addon_object())
+                qs = qs.filter(addon=self.get_addon_object())
             if user_identifier:
                 try:
                     user_identifier = int(user_identifier)
                 except ValueError:
                     raise ParseError('user parameter should be an integer.')
                 qs = qs.filter(user=user_identifier)
+            if version_identifier:
+                try:
+                    version_identifier = int(version_identifier)
+                except ValueError:
+                    raise ParseError('version parameter should be an integer.')
+                qs = qs.filter(version=version_identifier)
+            elif addon_identifier:
+                # When filtering on addon but not on version, only return the
+                # latest review posted by each user.
+                qs = qs.filter(is_latest=True)
             if not addon_identifier and not user_identifier:
                 # Don't allow listing reviews without filtering by add-on or
                 # user.
                 raise ParseError('Need an addon or user parameter')
+            if user_identifier and addon_identifier and version_identifier:
+                # When user, addon and version identifiers are set, we are
+                # effectively only looking for one or zero objects. Fake
+                # pagination in that case, avoiding all count() calls and
+                # therefore related cache-machine invalidation issues. Needed
+                # because the frontend wants to call this before and after
+                # having posted a new review, and needs accurate results.
+                self.pagination_class = OneOrZeroPageNumberPagination
         return qs
 
     def get_paginated_response(self, data):
