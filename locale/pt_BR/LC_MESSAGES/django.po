@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-24 15:46+0000\n"
-"PO-Revision-Date: 2017-03-27 11:48+0000\n"
+"PO-Revision-Date: 2017-04-01 00:44+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5225,7 +5225,7 @@ msgstr "Submissão concluída"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done!"
-msgstr "Pronto!"
+msgstr "Concluído!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Submitted for Review"
@@ -5233,7 +5233,7 @@ msgstr "Versão submetida para análise"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Feito! Esta versão foi submetida para análise. Você será notificado quando for concluída ou se nossos revisores tiverem alguma dúvida."
+msgstr "Concluído! Esta versão foi submetida para análise. Você será notificado quando for concluída ou se nossos revisores tiverem alguma dúvida."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -5257,7 +5257,7 @@ msgstr "Arquivo assinado"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Pronto! Este arquivo está assinado e pronto para autodistribuição. Você pode baixá-lo clicando no botão abaixo."
+msgstr "Concluído! Este arquivo está assinado e pronto para autodistribuição. Você pode baixá-lo clicando no botão abaixo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Signed"
@@ -5265,7 +5265,7 @@ msgstr "Versão assinada"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
-msgstr "Você terminou! Esta versão está assinada e pronta para distribuição. Você pode baixá-lo clicando no botão abaixo."
+msgstr "Concluído! Esta versão está assinada e pronta para distribuição. Você pode baixá-lo clicando no botão abaixo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
@@ -6149,7 +6149,7 @@ msgstr "Submeter tema"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
-msgstr "Você terminou!"
+msgstr "Concluído!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
@@ -11219,7 +11219,7 @@ msgstr "Confirmar exclusão da conta"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "I understand this step cannot be undone."
-msgstr "Eu entendo que essa ação não poderá ser desfeita."
+msgstr "Eu entendo que essa ação não pode ser desfeita."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Delete my user account now"
