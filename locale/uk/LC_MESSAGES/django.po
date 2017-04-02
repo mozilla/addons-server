@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-24 15:46+0000\n"
-"PO-Revision-Date: 2017-03-27 18:06+0000\n"
+"PO-Revision-Date: 2017-04-02 12:28+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -11194,11 +11194,11 @@ msgstr "Поскаржитись на користувача"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Add-ons Developer"
-msgstr "Розробник додатка"
+msgstr "Розробник додатків"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes Artist"
-msgstr "Створювач тем"
+msgstr "Художник тем"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "About me"
