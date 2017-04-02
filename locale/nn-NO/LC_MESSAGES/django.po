@@ -5,8 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-03-24 15:46+0000\n"
-"PO-Revision-Date: 2017-03-12 19:50+0000\n"
-"PO-Revision-Date: 2017-03-25 10:39+0000\n"
+"PO-Revision-Date: 2017-04-02 15:00+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -3828,14 +3827,12 @@ msgid "Version doesn't match"
 msgstr "Verjon stemmer ikkje"
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "Version {version} was uploaded before and deleted."
-msgstr "Versjon %s finst allereie, eller er lasta opp tidlegare."
+msgstr "Versjon {version} er lasta opp tidlegare og sletta."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "Versjon %s finst allereie, eller er lasta opp tidlegare."
+msgstr "Versjon {version} finst allereie."
 
 #: src/olympia/devhub/forms.py
 msgid "Continue with existing upload instead?"
@@ -4393,7 +4390,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Authors"
-msgstr ""
+msgstr "Opphavsmenn"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid "About author roles"
@@ -7199,9 +7196,8 @@ msgid "Access your data for {name}"
 msgstr ""
 
 #: src/olympia/files/models.py
-#, fuzzy
 msgid "Access your data on the following websites:"
-msgstr "Tilgang til dine data for alle nettstadar"
+msgstr "Få tilgang til dataa dine på følgjande nettsider:"
 
 #: src/olympia/files/models.py
 msgid "Access your data for all websites"
