@@ -7,6 +7,10 @@
       <p>{{ log.to_string('editor') }}</p>
       {% if log.details %}
         <dl>
+          <dt>{{ _("Review Author") }}</dt>
+          {% trans review_author=log.arguments[1].user|user_link %}
+          <dd>{{ review_author }}</dd>
+          {% endtrans %}
           <dt>{{ _("Add-on Title") }}</dt>
           <dd>{{ log.details.addon_title }}</dd>
           <dt>{{ _("Review Title") }}</dt>
