@@ -652,8 +652,10 @@ def addon_factory(
         'weekly_downloads': popularity or random.randint(200, 2000),
         'created': when,
         'last_updated': when,
-        'summary': u'Summary for %s' % name,
     }
+    if type_ != amo.ADDON_PERSONA:
+        # Personas don't have a summary.
+        kwargs['summary'] = u'Summary for %s' % name
     kwargs.update(kw)
 
     # Save 1.
