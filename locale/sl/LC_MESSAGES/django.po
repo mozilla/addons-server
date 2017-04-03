@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-03 06:22+0000\n"
+"PO-Revision-Date: 2017-04-03 08:07+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5688,10 +5688,12 @@ msgstr "Zadnje novice"
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
+"Pretvarjate svoj stari dodatek v WebExtensions? Bolj osebno vam lahko pomagamo med delovnim časom ali prek e-pošte <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-"
+"support@mozilla.org</a>."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "See Schedule"
-msgstr ""
+msgstr "Oglejte si urnik"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "View All Submissions"
