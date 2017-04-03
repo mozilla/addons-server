@@ -257,7 +257,7 @@ class TestButton(ButtonTest):
         b = self.get_button()
         assert not b.featured
         assert b.experimental
-        assert b.button_class == ['caution']
+        assert b.button_class == ['download']
         assert b.install_class == ['lite']
         assert b.install_text == 'Experimental'
 

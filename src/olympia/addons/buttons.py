@@ -206,7 +206,6 @@ class UnreviewedInstallButton(InstallButton):
 
 class ExperimentalInstallButton(InstallButton):
     install_class = ['lite']
-    button_class = ['caution']
     install_text = pgettext_lazy('install_button', u'Experimental')
 
 
