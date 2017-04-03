@@ -2,16 +2,14 @@
 import json
 
 from django.core import mail
-from django.test.client import RequestFactory
 
 import phpserialize as php
 
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
-from olympia.stats.models import ClientData, Contribution
+from olympia.stats.models import Contribution
 from olympia.stats.db import StatsDictField
 from olympia.users.models import UserProfile
-from olympia.zadmin.models import DownloadSource
 
 
 class TestStatsDictField(TestCase):
@@ -60,25 +58,3 @@ class TestEmail(TestCase):
         assert u'Thank "quoted".' in email.body
         assert '<script>' not in email.body
         assert '&lt;script&gt;' not in email.body
-
-
-class TestClientData(TestCase):
-
-    def test_get_or_create(self):
-        download_source = DownloadSource.objects.create(name='mkt-home')
-        device_type = 'desktop'
-        user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:16.0)'
-        client = RequestFactory()
-        request = client.post('/somewhere',
-                              data={'src': download_source.name,
-                                    'device_type': device_type,
-                                    'is_chromeless': False},
-                              **{'HTTP_USER_AGENT': user_agent})
-
-        cli = ClientData.get_or_create(request)
-        assert cli.download_source == download_source
-        assert cli.device_type == device_type
-        assert cli.user_agent == user_agent
-        assert not cli.is_chromeless
-        assert cli.language == 'en-us'
-        assert cli.region is None
