@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,8 @@ msgid "You are already logged in."
 msgstr "Ẏǿŭ ȧřḗ ȧŀřḗȧḓẏ ŀǿɠɠḗḓ īƞ."
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
-msgstr "Ẏǿŭř ŀǿɠ īƞ ȧŧŧḗḿƥŧ ƈǿŭŀḓ ƞǿŧ ƀḗ ƥȧřşḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ."
+msgid "Your login attempt could not be parsed. Please try again."
+msgstr "Ẏǿŭř ŀǿɠīƞ ȧŧŧḗḿƥŧ ƈǿŭŀḓ ƞǿŧ ƀḗ ƥȧřşḗḓ. Ƥŀḗȧşḗ ŧřẏ ȧɠȧīƞ."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
@@ -5573,12 +5573,14 @@ msgid "What's New"
 msgstr "Ẇħȧŧ'ş Ƞḗẇ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
-msgstr "Ħȧƥƥẏ Ƞḗẇ Ẏḗȧř! Şḗḗ ẇħȧŧ'ş īƞ şŧǿřḗ ƒǿř ȧḓḓ-ǿƞş īƞ 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgstr ""
+"Ḿīɠřȧŧīƞɠ ẏǿŭř ŀḗɠȧƈẏ ȧḓḓ-ǿƞ ŧǿ ẆḗƀḖẋŧḗƞşīǿƞş? Ɠḗŧ ḿǿřḗ ƥḗřşǿƞȧŀīzḗḓ ħḗŀƥ ḓŭřīƞɠ Ǿƒƒīƈḗ Ħǿŭřş, ǿř ḗḿȧīŀ <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Show Me"
-msgstr "Şħǿẇ Ḿḗ"
+msgid "See Schedule"
+msgstr "Şḗḗ Şƈħḗḓŭŀḗ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "View All Submissions"
@@ -6404,6 +6406,18 @@ msgstr "Şǿḿḗǿƞḗ ḗŀşḗ īş řḗṽīḗẇīƞɠ ŧħīş ŧħ�
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
 msgstr "ŧħḗḿḗ, řḗṽīḗẇḗř, ǿř ƈǿḿḿḗƞŧ"
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr "Şķīƥ ƒǿř ƞǿẇ"
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
+msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -9746,18 +9760,6 @@ msgstr "Řȧŧḗḓ %d ǿŭŧ ǿƒ 5 şŧȧřş"
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr "Ȧ şħǿřŧ ḗẋƥŀȧƞȧŧīǿƞ ḿŭşŧ ƀḗ ƥřǿṽīḓḗḓ ẇħḗƞ şḗŀḗƈŧīƞɠ \"Ǿŧħḗř\" ȧş ȧ ƒŀȧɠ řḗȧşǿƞ."
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr "Şķīƥ ƒǿř ƞǿẇ"
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr "Ḓḗŀḗŧḗ řḗṽīḗẇ"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Ǿŧħḗř (ƥŀḗȧşḗ şƥḗƈīƒẏ)"
@@ -10773,10 +10775,6 @@ msgstr "Ƞǿ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ."
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
 msgstr "Ȧƞǿƞẏḿǿŭş ŭşḗř {īḓ}"
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
-msgstr "Ẏǿŭř ȧƈƈǿŭƞŧ ħȧş ƀḗḗƞ řḗşŧřīƈŧḗḓ"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"

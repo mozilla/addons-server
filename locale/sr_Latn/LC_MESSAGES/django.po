@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -20,7 +20,7 @@ msgid "You are already logged in."
 msgstr ""
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
 #: src/olympia/accounts/views.py
@@ -6727,13 +6727,15 @@ msgid "What's New"
 msgstr "Poslednja verzija:"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help "
+"during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla."
+"org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
-msgid "Show Me"
-msgstr "Prikaži komentare"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
@@ -7734,6 +7736,19 @@ msgstr "Neko drugi pregledava ovu temu."
 #, fuzzy
 msgid "theme, reviewer, or comment"
 msgstr "aplikacija, recenzent, ili komentar"
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr "Zadrži recenziju; ukloni zastavice"
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr "Preskoči za sada"
+
+#: src/olympia/editors/forms.py
+#: src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
+msgstr "Obrisana kritika"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -11579,19 +11594,6 @@ msgid ""
 "reason."
 msgstr ""
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr "Zadrži recenziju; ukloni zastavice"
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr "Preskoči za sada"
-
-#: src/olympia/reviews/forms.py
-#: src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr "Obrisana kritika"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Drugo (molimo navedite)"
@@ -12714,10 +12716,6 @@ msgstr "Nema korisnika sa tom adresom e-pošte."
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
 msgstr ""
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
-msgstr "Vaš nalog je ograničen"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"

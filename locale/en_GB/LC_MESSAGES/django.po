@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2017-03-18 15:53+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,8 @@ msgid "You are already logged in."
 msgstr "You are already logged in."
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+#, fuzzy
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Your log in attempt could not be parsed. Please try again."
 
 #: src/olympia/accounts/views.py
@@ -5628,12 +5629,13 @@ msgid "What's New"
 msgstr "What's New"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
-msgstr "Happy New Year! See what's in store for add-ons in 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Show Me"
-msgstr "Show Me"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "View All Submissions"
@@ -6465,6 +6467,18 @@ msgstr "Someone else is reviewing this theme."
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
 msgstr "theme, reviewer, or comment"
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr "Keep review; remove flags"
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr "Skip for now"
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
+msgstr "Delete review"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -9830,18 +9844,6 @@ msgstr "Rated %d out of 5 stars"
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr "A short explanation must be provided when selecting \"Other\" as a flag reason."
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr "Keep review; remove flags"
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr "Skip for now"
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr "Delete review"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Other (please specify)"
@@ -10857,10 +10859,6 @@ msgstr "No user with that email."
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
 msgstr "Anonymous user {id}"
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
-msgstr "Your account has been restricted"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -24,7 +24,8 @@ msgid "You are already logged in."
 msgstr ""
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+#, fuzzy
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Upaya masuk Anda tidak bisa diuraikan. Silakan coba lagi."
 
 #: src/olympia/accounts/views.py
@@ -5728,13 +5729,13 @@ msgid "What's New"
 msgstr "Versi Terbaru:"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
-msgid "Show Me"
-msgstr "Tampilkan Komentar"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
@@ -6601,6 +6602,18 @@ msgstr "Orang lain mengulas tema ini."
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
 msgstr "tema, pengulas, atau komentar"
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr "Terus mengulas; hilangkan penanda"
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr "Lewatkan untuk sekarang"
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
+msgstr "Hapus ulasan"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -9990,18 +10003,6 @@ msgstr "Peringkat %d dari 5 bintang"
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr "Terus mengulas; hilangkan penanda"
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr "Lewatkan untuk sekarang"
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr "Hapus ulasan"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Lainnya (isi sendiri)"
@@ -11024,10 +11025,6 @@ msgstr "Tidak ada pengguna dengan email tersebut."
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
 msgstr "Pengguna anonim {id}"
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
-msgstr "Akun anda telah dibatasi"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"
