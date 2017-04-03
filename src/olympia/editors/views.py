@@ -24,6 +24,7 @@ from olympia.amo.decorators import json_view, post_required
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
+from olympia.constants.editors import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.editors import forms
 from olympia.editors.models import (
     AddonCannedResponse, EditorSubscription, EventLog, get_flags,
@@ -413,14 +414,13 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     if hasattr(TableObj, 'translate_sort_cols'):
         order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
-    default = 100
-    per_page = request.GET.get('per_page', default)
+    per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
     try:
         per_page = int(per_page)
     except ValueError:
-        per_page = default
-    if per_page <= 0 or per_page > 200:
-        per_page = default
+        per_page = REVIEWS_PER_PAGE
+    if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
+        per_page = REVIEWS_PER_PAGE
     page = paginate(request, table.rows, per_page=per_page)
     table.set_page(page)
     return render(request, 'editors/queue.html',

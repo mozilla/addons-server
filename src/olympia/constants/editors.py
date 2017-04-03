@@ -1,5 +1,8 @@
 from django.utils.translation import ugettext_lazy as _
 
+# Review queue pagination
+REVIEWS_PER_PAGE = 200
+REVIEWS_PER_PAGE_MAX = 400
 
 # Theme review queue constants.
 THEME_INITIAL_LOCKS = 5  # Initial number of themes to check out.
