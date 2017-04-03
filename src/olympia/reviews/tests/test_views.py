@@ -1324,8 +1324,8 @@ class TestReviewViewSetGet(TestCase):
     # override it, so instead mock the TIMEOUT property in cache-machine.
     @mock.patch('caching.config.TIMEOUT', 300)
     def test_get_then_post_then_get_any_caching_is_cleared(self):
-        """Make sure there is no overzealous caching going when requesting the
-        list of reviews for a given user+addon+version combination.
+        """Make sure there is no overzealous caching going on when requesting
+        the list of reviews for a given user+addon+version combination.
         Regression test for #5006."""
         self.user = user_factory()
         self.client.login_api(self.user)
@@ -1345,8 +1345,7 @@ class TestReviewViewSetGet(TestCase):
         # Do a post to add a review by this user.
         response = self.client.post(self.url, {
             'addon': self.addon.pk, 'body': u'test bodyé', 'title': u'blahé',
-            'rating': 5, 'version': self.addon.current_version.pk},
-            REMOTE_ADDR='213.225.312.5')
+            'rating': 5, 'version': self.addon.current_version.pk})
         assert response.status_code == 201
 
         # Re-do the same get as before, should now find something since the
