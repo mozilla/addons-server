@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -26,7 +26,7 @@ msgid "You are already logged in."
 msgstr ""
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
 #: src/olympia/accounts/views.py
@@ -5713,13 +5713,13 @@ msgid "What's New"
 msgstr "Najnowsza wersja:"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
-msgid "Show Me"
-msgstr "Wyświetl komentarze"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
@@ -6574,6 +6574,18 @@ msgstr "Ktoś jeszcze sprawdza ten motyw."
 #, fuzzy
 msgid "theme, reviewer, or comment"
 msgstr "aplikacja, recenzent lub komentarz"
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr "Zachowaj opinię; usuń oznaczenia"
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr "Pomiń teraz"
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
+msgstr "Usuń opinię"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -9946,18 +9958,6 @@ msgstr "Oceniony jako %d/5"
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr "Zachowaj opinię; usuń oznaczenia"
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr "Pomiń teraz"
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr "Usuń opinię"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Inny (proszę określić)"
@@ -10982,10 +10982,6 @@ msgstr "Nie ma użytkownika z takim adresem e-mail."
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
 msgstr ""
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
-msgstr "Twoje konto zostało ograniczone"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"

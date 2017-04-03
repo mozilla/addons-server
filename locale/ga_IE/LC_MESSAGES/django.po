@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2017-02-08 03:44+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -24,7 +24,8 @@ msgid "You are already logged in."
 msgstr "Tá tú logáilte isteach cheana."
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+#, fuzzy
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Níorbh fhéidir do logáil isteach a pharsáil. Bain triail eile as."
 
 #: src/olympia/accounts/views.py
@@ -5718,13 +5719,13 @@ msgid "What's New"
 msgstr "Leagan Is Déanaí:"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
-msgid "Show Me"
-msgstr "Taispeáin Nótaí"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
@@ -6559,6 +6560,18 @@ msgstr ""
 #, fuzzy
 msgid "theme, reviewer, or comment"
 msgstr "breiseán, eagarthóir nó nóta tráchta"
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr ""
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr ""
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
+msgstr "Scrios an léirmheas"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -9821,18 +9834,6 @@ msgstr "Rátáilte %d as 5 réiltín"
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr ""
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr ""
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr "Scrios an léirmheas"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Cúis eile (sonraigh, le do thoil)"
@@ -10864,10 +10865,6 @@ msgstr "Níl aon úsáideoir leis an seoladh ríomhphoist sin."
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
-msgstr ""
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
 msgstr ""
 
 #: src/olympia/users/models.py

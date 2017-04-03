@@ -5,8 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
-"PO-Revision-Date: 2017-03-17 20:57+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2017-03-25 14:13+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -23,7 +22,8 @@ msgid "You are already logged in."
 msgstr "Už ste prihlásení."
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+#, fuzzy
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Váš pokus o prihlásenie sa nepodarilo spracovať. Skúste to prosím znovu."
 
 #: src/olympia/accounts/views.py
@@ -5673,13 +5673,13 @@ msgid "What's New"
 msgstr "Čo je nové"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
-msgid "Show Me"
-msgstr "Zobraziť komentáre"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
@@ -6522,6 +6522,18 @@ msgstr "Niekto iný aktuálne kontroluje túto tému."
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
 msgstr "téma, recenzia alebo komentár"
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr "Ponechať recenziu, odstrániť označenia"
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr "Teraz preskočiť"
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
+msgstr "Odstrániť recenziu"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -9890,18 +9902,6 @@ msgstr "Hodnotené počtom %d z 5 hviezdičiek"
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr "Ponechať recenziu, odstrániť označenia"
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr "Teraz preskočiť"
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr "Odstrániť recenziu"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Iný (popíšte)"
@@ -10927,10 +10927,6 @@ msgstr "Používateľ s touto e-mailovou adresou neexistuje."
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
 msgstr "Anonymný používateľ {id}"
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
-msgstr "Váš účet bol obmedzený"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"

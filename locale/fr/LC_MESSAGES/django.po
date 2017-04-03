@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2017-03-16 23:20+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -27,7 +27,8 @@ msgid "You are already logged in."
 msgstr "Vous êtes déjà connecté."
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+#, fuzzy
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Votre tentative de connexion n’a pas pu être analysée. Veuillez recommencer."
 
 #: src/olympia/accounts/views.py
@@ -5656,12 +5657,13 @@ msgid "What's New"
 msgstr "Dernières nouvelles"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
-msgstr "Bonne année ! Voyez ce que les modules vous réservent pour 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Show Me"
-msgstr "Dites m’en plus"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "View All Submissions"
@@ -6498,6 +6500,18 @@ msgstr "Quelqu’un d’autre est en train de vérifier ce thème."
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
 msgstr "thème, relecteur ou commentaire"
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr "Conserver la revue ; retirer les étiquettes"
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr "Passer pour le moment"
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
+msgstr "Supprimer la critique"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -9885,18 +9899,6 @@ msgstr "Évalué à %d sur 5 étoiles"
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr "Une courte explication doit être fournie lorsque vous sélectionnez « Autres » comme motif de signalement."
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr "Conserver la revue ; retirer les étiquettes"
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr "Passer pour le moment"
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr "Supprimer la critique"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Autre (veuillez préciser)"
@@ -10922,10 +10924,6 @@ msgstr "Pas d’utilisateur ayant cette adresse courriel."
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
 msgstr "Utilisateur anonyme {id}"
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
-msgstr "Votre compte a été restreint"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"

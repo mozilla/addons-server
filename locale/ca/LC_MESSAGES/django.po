@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2013-10-23 18:28+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -25,7 +25,7 @@ msgid "You are already logged in."
 msgstr ""
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
 #: src/olympia/accounts/views.py
@@ -5713,13 +5713,13 @@ msgid "What's New"
 msgstr "Què és això?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
-msgid "Show Me"
-msgstr "Mostra els comentaris"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
@@ -6565,6 +6565,18 @@ msgstr ""
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
 msgstr ""
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr "Conserva el comentari; suprimeix les marques"
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr "Passa'l per ara"
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
+msgstr "Suprimeix el comentari"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -9839,18 +9851,6 @@ msgstr "Valorat amb %d de 5 estrelles"
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr "Conserva el comentari; suprimeix les marques"
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr "Passa'l per ara"
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr "Suprimeix el comentari"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Un altre motiu (especifica)"
@@ -10862,10 +10862,6 @@ msgstr "No hi ha cap usuari amb una adreça de correu."
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
-msgstr ""
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
 msgstr ""
 
 #: src/olympia/users/models.py

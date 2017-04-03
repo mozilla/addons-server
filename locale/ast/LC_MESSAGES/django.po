@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2016-11-23 15:23+0000\n"
 "Last-Translator: malditoastur <malditoastur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,8 @@ msgid "You are already logged in."
 msgstr "Yá aniciesti sesión."
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+#, fuzzy
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Nun pudo analizase'l to intentu d'aniciu de sesión. Volvi tentalo, por favor."
 
 #: src/olympia/accounts/views.py
@@ -5587,13 +5588,13 @@ msgid "What's New"
 msgstr "Cabera versión:"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
-msgid "Show Me"
-msgstr "Amosar comentarios"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
@@ -6421,6 +6422,18 @@ msgstr "Daquién más ta reseñando esti tema."
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
+msgstr ""
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr ""
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr ""
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
 msgstr ""
 
 #: src/olympia/editors/helpers.py
@@ -9627,18 +9640,6 @@ msgstr ""
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr ""
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr ""
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr ""
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr ""
@@ -10638,10 +10639,6 @@ msgstr "Nun hai usuariu dalu con esi corréu."
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
 msgstr "Usuariu anónimu {id}"
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
-msgstr ""
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"

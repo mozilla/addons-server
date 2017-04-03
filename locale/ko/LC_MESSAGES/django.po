@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2017-03-23 03:00+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -23,7 +23,8 @@ msgid "You are already logged in."
 msgstr "이미 로그인 하셨습니다."
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+#, fuzzy
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr "알 수 없는 로그인 시도입니다. 다시 시도해 주세요."
 
 #: src/olympia/accounts/views.py
@@ -5643,13 +5644,13 @@ msgid "What's New"
 msgstr "최신 버전:"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
-msgid "Show Me"
-msgstr "코멘트 표시"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
@@ -6506,6 +6507,18 @@ msgstr "다른 사람이 이 테마를 심사중입니다."
 #, fuzzy
 msgid "theme, reviewer, or comment"
 msgstr "앱, 심사원, 코멘트"
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr "계속 평가; 표시 삭제"
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr "지금은 접어두기"
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+msgid "Delete review"
+msgstr "심사 삭제"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -9828,18 +9841,6 @@ msgstr "별 5개 만점에 %d개 받음"
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr "계속 평가; 표시 삭제"
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr "지금은 접어두기"
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-msgid "Delete review"
-msgstr "심사 삭제"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "기타 (이유를 적어주세요)"
@@ -10867,10 +10868,6 @@ msgstr "해당 이메일로 등록된 사용자가 없습니다"
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
 msgstr ""
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
-msgstr "당신의 계정은 권한이 제한되어 있습니다."
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"

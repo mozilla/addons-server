@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-24 15:46+0000\n"
+"POT-Creation-Date: 2017-04-03 05:29+0000\n"
 "PO-Revision-Date: 2017-03-14 11:27+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -23,7 +23,8 @@ msgid "You are already logged in."
 msgstr "Giriş yapmış durumdasınız."
 
 #: src/olympia/accounts/views.py
-msgid "Your log in attempt could not be parsed. Please try again."
+#, fuzzy
+msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Oturum açma girişiminiz işlenemedi. Lütfen tekrar deneyin."
 
 #: src/olympia/accounts/views.py
@@ -5772,15 +5773,13 @@ msgid "What's New"
 msgstr "Bu nedir?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Happy New Year! See what's in store for add-ons in 2017."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
-# 87%
-# 100%
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-#, fuzzy
-msgid "Show Me"
-msgstr "Yorum"
+msgid "See Schedule"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, fuzzy
@@ -6676,6 +6675,19 @@ msgstr "Bu temayı başka biri inceliyor."
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
 msgstr "tema, inceleyen veya yorum"
+
+#: src/olympia/editors/forms.py
+msgid "Keep review; remove flags"
+msgstr ""
+
+#: src/olympia/editors/forms.py
+msgid "Skip for now"
+msgstr "Şimdilik geç"
+
+#: src/olympia/editors/forms.py src/olympia/reviews/templates/reviews/review.html
+#, fuzzy
+msgid "Delete review"
+msgstr "İnceleme yazın"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -10058,19 +10070,6 @@ msgstr ""
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
 
-#: src/olympia/reviews/forms.py
-msgid "Keep review; remove flags"
-msgstr ""
-
-#: src/olympia/reviews/forms.py
-msgid "Skip for now"
-msgstr "Şimdilik geç"
-
-#: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-#, fuzzy
-msgid "Delete review"
-msgstr "İnceleme yazın"
-
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
 msgstr "Diğer (lütfen belirtin)"
@@ -11192,10 +11191,6 @@ msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
 msgstr ""
-
-#: src/olympia/users/models.py
-msgid "Your account has been restricted"
-msgstr "Hesabınız kısıtlandı"
 
 #: src/olympia/users/models.py
 #, fuzzy
