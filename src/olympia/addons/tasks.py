@@ -21,6 +21,7 @@ from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
 from olympia.editors.models import RereviewQueueTheme
 from olympia.lib.es.utils import index_objects
+from olympia.translations.models import Translation
 from olympia.versions.models import Version
 
 
@@ -406,3 +407,23 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
             log.info('Inconsistency found for addon %d: '
                      'status is %s in db vs %s in es.',
                      pk, db_status, es_status)
+
+
+@task
+@write
+def remove_summaries(ids, **kw):
+    """Remove summaries from addons with the specified ids."""
+    log.info(
+        'Removing summaries for addons %d-%d [%d].', ids[0], ids[-1], len(ids))
+
+    summaries = Addon.objects.no_cache().values_list(
+        'summary_id', flat=True).filter(id__in=ids)
+    # Fetch translations for those summaries.
+    translations = Translation.objects.filter(id__in=summaries)
+    for translation in translations:
+        # Delete them individually to get django to do the cascade normally.
+        # Deleting individual translations is usually dangerous because it can
+        # remove the default one used a fallback, but in this case we want to
+        # get rid of all of them for a given addon+field combination, so it's
+        # fine.
+        translation.delete()

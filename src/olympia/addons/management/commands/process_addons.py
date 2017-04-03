@@ -1,11 +1,14 @@
 from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
+from django.db.models import Q
 
 from celery import chord, group
 
+from olympia import amo
 from olympia.addons.models import Addon
-from olympia.addons.tasks import find_inconsistencies_between_es_and_db
+from olympia.addons.tasks import (
+    find_inconsistencies_between_es_and_db, remove_summaries)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import convert_purified, get_preview_sizes
 from olympia.lib.crypto.tasks import sign_addons
@@ -19,6 +22,9 @@ tasks = {
     'convert_purified': {'method': convert_purified, 'qs': []},
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
     'sign_addons': {'method': sign_addons, 'qs': []},
+    'remove-summaries-from-personas': {
+        'method': remove_summaries,
+        'qs': [Q(type=amo.ADDON_PERSONA, summary__isnull=False)]},
 }
 
 
