@@ -9,6 +9,7 @@ from django.core.files import temp
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
@@ -426,7 +427,7 @@ class TestVersion(TestCase):
 
     @override_switch('activity-email', active=True)
     def test_version_history(self):
-        self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
+        self.client.cookies[API_TOKEN_COOKIE] = 'magicbeans'
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
         self._extra_version_and_file(amo.STATUS_BETA)
@@ -486,7 +487,7 @@ class TestVersion(TestCase):
             '#%s-review-history' % v2.id)
 
     def test_version_history_activity_email_waffle_off(self):
-        self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
+        self.client.cookies[API_TOKEN_COOKIE] = 'magicbeans'
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
         self._extra_version_and_file(amo.STATUS_BETA)
