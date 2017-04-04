@@ -28,6 +28,7 @@ from django.forms.fields import Field
 from django.template import Context, loader
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_text
+from django.utils.http import _urlparse as django_urlparse
 
 import bleach
 import html5lib
@@ -89,7 +90,7 @@ def urlparams(url_, hash=None, **query):
     New query params will be appended to existing parameters, except duplicate
     names, which will be replaced.
     """
-    url = urlparse.urlparse(url_)
+    url = django_urlparse(url_)
     fragment = hash if hash is not None else url.fragment
 
     # Use dict(parse_qsl) so we don't get lists of values.
