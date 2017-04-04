@@ -2457,7 +2457,7 @@ msgstr "Adnoddau Ychwanegol"
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
-msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
+msgid "Learn more about the <a href=\"https://support.mozilla.org/en-US/kb/use-search-bar-firefox\">search bar</a> in {0}"
 msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
