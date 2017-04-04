@@ -26,6 +26,7 @@ from olympia import amo
 from olympia.amo import utils as amo_utils
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import forms as addon_forms
@@ -1232,7 +1233,7 @@ def version_list(request, addon_id, addon):
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
-    token = request.COOKIES.get('jwt_api_auth_token', None)
+    token = request.COOKIES.get(API_TOKEN_COOKIE, None)
 
     data = {'addon': addon,
             'versions': versions,
