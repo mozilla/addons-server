@@ -86,7 +86,6 @@ class Review(ModelBase):
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
     sandbox = models.BooleanField(default=False)
-    client_data = models.ForeignKey('stats.ClientData', null=True, blank=True)
 
     deleted = models.BooleanField(default=False)
 
