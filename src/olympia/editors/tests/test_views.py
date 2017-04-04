@@ -396,13 +396,14 @@ class TestHome(EditorTest):
 
         elems = zip(doc('dt'), doc('dd'))
         expected = [
+            ('Review Author', 'a'),
             ('Add-on Title', 'yermom'),
             ('Review Title', 'foo'),
             ('Review Text', 'bar'),
         ]
         for (dt, dd), texts in zip(elems, expected):
-            assert dt.text == texts[0], texts
-            assert dd.text == texts[1], texts
+            assert dt.text_content() == texts[0], texts
+            assert dd.text_content() == texts[1], texts
 
     def undelete_review(self, review, allowed):
         al = ActivityLog.objects.order_by('-id')[0]
