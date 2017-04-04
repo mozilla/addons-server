@@ -996,6 +996,137 @@ class TestReviewViewSetGet(TestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == recent_review.pk
 
+    def test_list_addon_and_version(self):
+        self.user = user_factory()
+        old_version = self.addon.current_version
+        other_version = version_factory(addon=self.addon)
+        old_review = Review.objects.create(
+            addon=self.addon, body='old review', user=self.user,
+            version=old_version)
+        old_review.update(created=self.days_ago(42))
+        other_review_same_addon = Review.objects.create(
+            addon=self.addon, body='review from other user',
+            user=user_factory(), version=old_version)
+        # None of those extra reviews should show up.
+        recent_review = Review.objects.create(
+            addon=self.addon, body='recent review', user=self.user,
+            version=other_version)
+        review_deleted = Review.objects.create(
+            addon=self.addon, body='review deleted', user=self.user)
+        review_deleted.delete()
+        Review.objects.create(
+            addon=other_review_same_addon.addon, body='reply to other user',
+            reply_to=other_review_same_addon, user=self.user)
+        Review.objects.create(
+            addon=addon_factory(), body='review from other addon',
+            user=self.user)
+
+        assert Review.unfiltered.count() == 6
+        old_review.reload()
+        recent_review.reload()
+        assert old_review.is_latest is False
+        assert recent_review.is_latest is True
+
+        # Since we're filtering on both addon and version, only the reviews
+        # matching that version should show up.
+        params = {'addon': self.addon.pk, 'version': old_version.pk}
+        response = self.client.get(self.url, params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 2
+        assert data['results']
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == other_review_same_addon.pk
+        assert data['results'][1]['id'] == old_review.pk
+
+    def test_list_user_and_version(self):
+        self.user = user_factory()
+        old_version = self.addon.current_version
+        other_version = version_factory(addon=self.addon)
+        old_review = Review.objects.create(
+            addon=self.addon, body='old review', user=self.user,
+            version=old_version)
+        old_review.update(created=self.days_ago(42))
+        # None of those extra reviews should show up.
+        other_review_same_addon = Review.objects.create(
+            addon=self.addon, body='review from other user',
+            user=user_factory(), version=old_version)
+        recent_review = Review.objects.create(
+            addon=self.addon, body='recent review', user=self.user,
+            version=other_version)
+        review_deleted = Review.objects.create(
+            addon=self.addon, body='review deleted', user=self.user)
+        review_deleted.delete()
+        Review.objects.create(
+            addon=other_review_same_addon.addon, body='reply to other user',
+            reply_to=other_review_same_addon, user=self.user)
+        Review.objects.create(
+            addon=addon_factory(), body='review from other addon',
+            user=self.user)
+
+        assert Review.unfiltered.count() == 6
+        old_review.reload()
+        recent_review.reload()
+        assert old_review.is_latest is False
+        assert recent_review.is_latest is True
+
+        # Since we're filtering on both user and version, only the review
+        # matching that user and version should show up.
+        params = {'user': self.user.pk, 'version': old_version.pk}
+        response = self.client.get(self.url, params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 1
+        assert data['results']
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == old_review.pk
+
+    def test_list_user_and_addon_and_version(self):
+        self.user = user_factory()
+        old_version = self.addon.current_version
+        other_version = version_factory(addon=self.addon)
+        old_review = Review.objects.create(
+            addon=self.addon, body='old review', user=self.user,
+            version=old_version)
+        old_review.update(created=self.days_ago(42))
+        # None of those extra reviews should show up.
+        other_review_same_addon = Review.objects.create(
+            addon=self.addon, body='review from other user',
+            user=user_factory(), version=old_version)
+        recent_review = Review.objects.create(
+            addon=self.addon, body='recent review', user=self.user,
+            version=other_version)
+        review_deleted = Review.objects.create(
+            addon=self.addon, body='review deleted', user=self.user)
+        review_deleted.delete()
+        Review.objects.create(
+            addon=other_review_same_addon.addon, body='reply to other user',
+            reply_to=other_review_same_addon, user=self.user)
+        Review.objects.create(
+            addon=addon_factory(), body='review from other addon',
+            user=self.user)
+
+        assert Review.unfiltered.count() == 6
+        old_review.reload()
+        recent_review.reload()
+        assert old_review.is_latest is False
+        assert recent_review.is_latest is True
+
+        # Since we're filtering on both user and version, only the review
+        # matching that addon, user and version should show up.
+        params = {
+            'addon': self.addon.pk,
+            'user': self.user.pk,
+            'version': old_version.pk
+        }
+        response = self.client.get(self.url, params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 1
+        assert data['results']
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == old_review.pk
+
     def test_list_user_grouped_ratings_not_present(self):
         return
         data = self.test_list_user(show_grouped_ratings=1)
@@ -1181,6 +1312,53 @@ class TestReviewViewSetGet(TestCase):
         assert response.status_code == 400
         data = json.loads(response.content)
         assert data == {'detail': 'user parameter should be an integer.'}
+
+        # Version parameter is weird (it should be a pk, as string): 404.
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'version': u'çæ→'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == {'detail': 'version parameter should be an integer.'}
+
+    # settings_test sets CACHE_COUNT_TIMEOUT to -1 and it's too late to
+    # override it, so instead mock the TIMEOUT property in cache-machine.
+    @mock.patch('caching.config.TIMEOUT', 300)
+    def test_get_then_post_then_get_any_caching_is_cleared(self):
+        """Make sure there is no overzealous caching going on when requesting
+        the list of reviews for a given user+addon+version combination.
+        Regression test for #5006."""
+        self.user = user_factory()
+        self.client.login_api(self.user)
+
+        # Do a get filtering on both addon and user: it should not find
+        # anything.
+        response = self.client.get(self.url, {
+            'addon': self.addon.pk,
+            'version': self.addon.current_version.pk,
+            'user': self.user.pk
+        })
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert len(data['results']) == 0
+        assert data['count'] == 0
+
+        # Do a post to add a review by this user.
+        response = self.client.post(self.url, {
+            'addon': self.addon.pk, 'body': u'test bodyé', 'title': u'blahé',
+            'rating': 5, 'version': self.addon.current_version.pk})
+        assert response.status_code == 201
+
+        # Re-do the same get as before, should now find something since the
+        # view is avoiding count() caching in this case.
+        response = self.client.get(self.url, {
+            'addon': self.addon.pk,
+            'version': self.addon.current_version.pk,
+            'user': self.user.pk
+        })
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert len(data['results']) == 1
+        assert data['count'] == 1
 
 
 class TestReviewViewSetDelete(TestCase):

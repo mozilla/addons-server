@@ -89,3 +89,23 @@ class CustomPageNumberPagination(PageNumberPagination):
 class ESPageNumberPagination(CustomPageNumberPagination):
     """Custom pagination implementation to hook in our `ESPaginator`."""
     django_paginator_class = ESPaginator
+
+
+class OneOrZeroPageNumberPagination(CustomPageNumberPagination):
+    """Fake pagination that returns a result object like
+    CustomPageNumberPagination, but for special cases where we know we're never
+    going to have more than one object in the results anyway.
+    """
+    def paginate_queryset(self, queryset, request, view=None):
+        return list(queryset[:1])
+
+    def get_paginated_response(self, data):
+        # Always consider page_size is 1, avoid the count() call, and never
+        # return next/prev links.
+        return Response(OrderedDict([
+            ('page_size', 1),
+            ('count', len(data)),
+            ('next', None),
+            ('previous', None),
+            ('results', data)
+        ]))
