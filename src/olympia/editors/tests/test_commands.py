@@ -22,7 +22,9 @@ from olympia.zadmin.models import Config, get_config, set_config
 
 class TestAutoApproveCommand(TestCase):
     def setUp(self):
-        self.user = user_factory(id=settings.TASK_USER_ID)
+        self.user = user_factory(
+            id=settings.TASK_USER_ID, username='taskuser',
+            email='taskuser@mozilla.com')
         self.addon = addon_factory(average_daily_users=666)
         self.version = version_factory(
             addon=self.addon, file_kw={
