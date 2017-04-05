@@ -206,9 +206,8 @@ djangorestframework-jwt==1.10.0 \
 drf-nested-routers==0.90.0 \
     --hash=sha256:818fcc37b6cafff52f4afae012b8de85970a1b931f1e47c2f07a24fd141eb476 \
     --hash=sha256:3346bcfb151d221d499b3b7932cc6e5cee005ea50f1343a2f5cd2f85e7b1d77f
-easy-thumbnails==2.3 \
-    --hash=sha256:5ae57f086026dbfe4aa59e9bc80bcae1ae6daca63dec02a2d510c3ab098f0de2 \
-    --hash=sha256:d6113cf1e1ece85216ab8cd62c352da21853c9ef31341161d904801d347d7aee
+easy-thumbnails==2.4 \
+    --hash=sha256:d1f124b1d2457936bbf707e9634053c488d29565e48625760b5378e9e5d42f26
 # elasticsearch is required by elasticsearch-dsl
 # we are in the process of upgrading to 5
 elasticsearch==1.1.1 \
