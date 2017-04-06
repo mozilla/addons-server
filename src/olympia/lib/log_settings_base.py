@@ -18,6 +18,16 @@ formatters = {
         'datefmt': '%H:%M:%S',
         'format': '%(asctime)s ' + base_fmt,
     },
+    'error': {
+        '()': olympia.core.logger.Formatter,
+        'datefmt': '%H:%M:%S',
+        'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
+                   % (settings.HOSTNAME, settings.SYSLOG_TAG, error_fmt)),
+    },
+    'json': {
+        '()': olympia.core.logger.JsonFormatter,
+        'logger_name': settings.MOZLOG_NAME
+    },
     'prod': {
         '()': olympia.core.logger.Formatter,
         'datefmt': '%H:%M:%S',
@@ -30,18 +40,24 @@ formatters = {
         'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
                    % (settings.HOSTNAME, settings.SYSLOG_TAG2, base_fmt)),
     },
-    'error': {
-        '()': olympia.core.logger.Formatter,
-        'datefmt': '%H:%M:%S',
-        'format': ('%s %s: [%%(USERNAME)s][%%(REMOTE_ADDR)s] %s'
-                   % (settings.HOSTNAME, settings.SYSLOG_TAG, error_fmt)),
-    },
 }
 
 handlers = {
     'console': {
         '()': logging.StreamHandler,
         'formatter': 'debug',
+    },
+    'mozlog': {
+        'level': 'DEBUG',
+        'class': 'logging.StreamHandler',
+        'formatter': 'json'
+    },
+    'null': {
+        'class': 'logging.NullHandler',
+    },
+    'statsd': {
+        'level': 'ERROR',
+        'class': 'django_statsd.loggers.errors.StatsdHandler',
     },
     'syslog': {
         'class': 'mozilla_logger.log.UnicodeHandler',
@@ -53,28 +69,10 @@ handlers = {
         'facility': logging.handlers.SysLogHandler.LOG_LOCAL7,
         'formatter': 'prod2',
     },
-    'null': {
-        'class': 'logging.NullHandler',
-    },
-    'statsd': {
-        'level': 'ERROR',
-        'class': 'django_statsd.loggers.errors.StatsdHandler',
-    },
 }
 
 loggers = {
-    'z': {},
     'amo': {},
-    'django.request': {
-        'handlers': ['statsd'],
-        'level': 'ERROR',
-        'propagate': True,
-    },
-    'z.celery': {
-        'handlers': ['statsd'],
-        'level': 'ERROR',
-        'propagate': True,
-    },
     'amo.validator': {
         'handlers': ['statsd'],
         'level': 'ERROR',
@@ -83,11 +81,22 @@ loggers = {
     'caching': {
         'level': 'ERROR',
     },
-    'newrelic': {
-        'level': 'WARNING',
+    'django.request': {
+        'handlers': ['statsd'],
+        'level': 'ERROR',
+        'propagate': True,
     },
     'elasticsearch': {
         'level': 'WARNING',
+    },
+    'newrelic': {
+        'level': 'WARNING',
+    },
+    'z': {},
+    'z.celery': {
+        'handlers': ['statsd'],
+        'level': 'ERROR',
+        'propagate': True,
     },
 }
 
@@ -102,22 +111,40 @@ cfg = {
 
 
 def log_configure():
-    """You have to explicitly call this to configure logging."""
+    """Configure logging by augmenting settings.LOGGING with our custom
+    dynamic configuration.
+
+    This needs to be called explicitely before doing any logging."""
     for key, value in settings.LOGGING.items():
         if isinstance(cfg[key], dict):
             cfg[key].update(value)
         else:
             cfg[key] = value
 
-    USE_SYSLOG = settings.HAS_SYSLOG and not settings.DEBUG
-
-    if USE_SYSLOG:
+    if settings.USE_SYSLOG:
         cfg['loggers']['z.timer'] = {'handlers': ['syslog2']}
+    if settings.USE_MOZLOG:
+        # MozLog Application Request Summary. This is the logger
+        # DockerflowMiddleware uses on every request - we only enable it when
+        # USE_MOZLOG is True.
+        cfg['loggers']['request.summary'] = {
+            'handlers': ['mozlog'],
+            'level': 'DEBUG',
+        }
+    # Enable syslog or mozlog handlers by default if the corresponding settings
+    # are set, otherwise default to the raw basic console.
+    default_handlers = []
+    if settings.USE_MOZLOG:
+        default_handlers.append('mozlog')
+    if settings.USE_SYSLOG:
+        default_handlers.append('syslog')
+    if not default_handlers:
+        default_handlers = ['console']
 
     # Set the level and handlers for all loggers.
     for logger in cfg['loggers'].values() + [cfg['root']]:
         if 'handlers' not in logger:
-            logger['handlers'] = ['syslog' if USE_SYSLOG else 'console']
+            logger['handlers'] = default_handlers
         if 'level' not in logger:
             logger['level'] = settings.LOG_LEVEL
         if logger is not cfg['root'] and 'propagate' not in logger:

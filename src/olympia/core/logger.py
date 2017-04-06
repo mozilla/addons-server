@@ -1,5 +1,7 @@
 import logging
 
+import dockerflow.logging
+
 from olympia import core
 
 
@@ -31,3 +33,15 @@ class Formatter(logging.Formatter):
         for name in 'REMOTE_ADDR', 'USERNAME':
             record.__dict__.setdefault(name, '')
         return super(Formatter, self).format(record)
+
+
+class JsonFormatter(dockerflow.logging.JsonLogFormatter):
+    """Like JsonLogFormatter, but with uid and remoteAddressChain set from
+    current user and ip, following mozlog format.
+
+    See Formatter above for the legacy, console version of this."""
+    def format(self, record):
+        record.__dict__['uid'] = record.__dict__.pop('USERNAME', '')
+        record.__dict__['remoteAddressChain'] = record.__dict__.pop(
+            'REMOTE_ADDR', '')
+        return super(JsonFormatter, self).format(record)

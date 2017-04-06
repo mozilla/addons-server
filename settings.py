@@ -5,7 +5,6 @@ won't be tracked in git).
 
 """
 import os
-import re
 from urlparse import urlparse
 
 from olympia.lib.settings_base import *  # noqa
@@ -40,7 +39,9 @@ CACHES = {
     }
 }
 
-HAS_SYSLOG = False  # syslog is used if HAS_SYSLOG and NOT DEBUG.
+# For local development, we don't need syslog and mozlog loggers.
+USE_SYSLOG = False
+USE_MOZLOG = False
 
 # If you're not running on SSL you'll want this to be False.
 SESSION_COOKIE_SECURE = False
