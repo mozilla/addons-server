@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-03 19:29+0000\n"
+"PO-Revision-Date: 2017-04-06 20:38+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -10816,7 +10816,7 @@ msgstr "O email precisa de ser {email}."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Display Name"
-msgstr "Nome a mostrar"
+msgstr "Nome de apresentação"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Location"
