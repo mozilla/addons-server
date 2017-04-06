@@ -20,6 +20,7 @@ from django.utils.encoding import iri_to_uri, force_bytes
 from django.utils.translation import activate
 
 import MySQLdb as mysql
+from dockerflow.django.middleware import DockerflowMiddleware
 
 from olympia import amo
 from olympia.amo.utils import render
@@ -249,3 +250,9 @@ class ScrubRequestOnException(object):
             # Clearing out all cookies in request.META. They will already
             # be sent with request.COOKIES.
             request.META['HTTP_COOKIE'] = '******'
+
+
+class DockerflowMiddlewareWithoutViews(DockerflowMiddleware):
+    """Like DockerflowMiddleware, but without hijacking any views, because at
+    the moment we have our own."""
+    viewpatterns = []

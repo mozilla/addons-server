@@ -50,3 +50,13 @@ class LoggerTests(TestCase):
         formatter.format(record)
         assert 'USERNAME' in record.__dict__
         assert 'REMOTE_ADDR' in record.__dict__
+
+    def test_json_formatter(self):
+        formatter = olympia.core.logger.JsonFormatter()
+        record = logging.makeLogRecord({})
+        # These would be set by the adapter.
+        record.__dict__['USERNAME'] = 'foo'
+        record.__dict__['REMOTE_ADDR'] = '127.0.0.1'
+        formatter.format(record)
+        assert record.__dict__['uid'] == 'foo'
+        assert record.__dict__['remoteAddressChain'] == '127.0.0.1'
