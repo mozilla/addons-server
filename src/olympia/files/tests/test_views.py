@@ -85,16 +85,18 @@ class FilesBase(object):
         self.check_urls(403)
 
     def test_view_access_anon_view_source(self):
+        # This is disallowed for now, see Bug 1353788 for more details.
         self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.client.logout()
-        self.check_urls(200)
+        self.check_urls(403)
 
     def test_view_access_editor(self):
         self.file_viewer.extract()
         self.check_urls(200)
 
     def test_view_access_editor_view_source(self):
+        # This is disallowed for now, see Bug 1353788 for more details.
         self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.check_urls(200)
@@ -106,6 +108,7 @@ class FilesBase(object):
         self.check_urls(200)
 
     def test_view_access_reviewed(self):
+        # This is disallowed for now, see Bug 1353788 for more details.
         self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.client.logout()
@@ -116,7 +119,7 @@ class FilesBase(object):
 
         for status in amo.REVIEWED_STATUSES:
             self.addon.update(status=status)
-            self.check_urls(200)
+            self.check_urls(403)
 
     def test_view_access_developer_view_source(self):
         self.client.logout()
@@ -132,11 +135,12 @@ class FilesBase(object):
         self.check_urls(403)
 
     def test_view_access_another_developer_view_source(self):
+        # This is disallowed for now, see Bug 1353788 for more details.
         self.client.logout()
         assert self.client.login(email=self.regular.email)
         self.addon.update(view_source=True)
         self.file_viewer.extract()
-        self.check_urls(200)
+        self.check_urls(403)
 
     def test_poll_extracted(self):
         self.file_viewer.extract()
@@ -184,14 +188,6 @@ class FilesBase(object):
         url = res.context['file_link']['url']
         assert url == reverse('editors.review', args=[self.addon.slug])
 
-    def test_file_header_anon(self):
-        self.client.logout()
-        self.file_viewer.extract()
-        self.addon.update(view_source=True)
-        res = self.client.get(self.file_url(not_binary))
-        url = res.context['file_link']['url']
-        assert url == reverse('addons.detail', args=[self.addon.pk])
-
     def test_content_no_file(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url())
@@ -222,13 +218,12 @@ class FilesBase(object):
         assert doc('#commands td')[-1].text_content() == 'Back to review'
 
     def test_files_back_link_anon(self):
+        # This is disallowed for now, see Bug 1353788 for more details.
         self.file_viewer.extract()
         self.client.logout()
         self.addon.update(view_source=True)
         res = self.client.get(self.file_url(not_binary))
-        assert res.status_code == 200
-        doc = pq(res.content)
-        assert doc('#commands td')[-1].text_content() == 'Back to add-on'
+        assert res.status_code == 403
 
     def test_diff_redirect(self):
         ids = self.files[0].id, self.files[1].id

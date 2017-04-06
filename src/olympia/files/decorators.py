@@ -29,8 +29,9 @@ def allowed(request, file):
         # We don't show the file-browser publicly because of potential DOS
         # issues, we're working on a fix but for now, let's not do this.
         # (cgrebs, 06042017)
-        if (acl.check_addons_reviewer(request) or
-            acl.check_addon_ownership(request, addon, viewer=True, dev=True)):
+        is_owner = acl.check_addon_ownership(
+            request, addon, viewer=True, dev=True)
+        if (acl.check_addons_reviewer(request) or is_owner):
             return True  # Public and sources are visible, or reviewer.
         raise PermissionDenied  # Listed but not allowed.
     # Not listed? Needs an owner or an "unlisted" admin.
