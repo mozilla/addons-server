@@ -1257,7 +1257,7 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
 LOG_LEVEL = logging.DEBUG
-USE_SYSLOG = True  # syslog is used if HAS_SYSLOG and NOT DEBUG.
+USE_SYSLOG = True
 USE_MOZLOG = True
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
