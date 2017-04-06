@@ -64,6 +64,7 @@ INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default=DOMAIN)
 
 SYSLOG_TAG = "http_app_addons_dev"
+MOZLOG_NAME = SYSLOG_TAG
 SYSLOG_TAG2 = "http_app_addons_dev_timer"
 SYSLOG_CSP = "http_app_addons_dev_csp"
 

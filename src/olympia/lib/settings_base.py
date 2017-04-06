@@ -378,17 +378,21 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 31536000
 
 MIDDLEWARE_CLASSES = (
-    # AMO URL middleware comes first so everyone else sees nice URLs.
+    # Statsd and logging come first to get timings etc. Munging REMOTE_ADDR
+    # must come before middlewares potentially using REMOTE_ADDR, so it's
+    # also up there.
     'django_statsd.middleware.GraphiteRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
+    'olympia.amo.middleware.SetRemoteAddrFromForwardedFor',
+    'olympia.amo.middleware.DockerflowMiddlewareWithoutViews',
+
+    # AMO URL middleware is as high as possible to get locale/app aware URLs.
     'olympia.amo.middleware.LocaleAndAppURLMiddleware',
+
     # Mobile detection should happen in Zeus.
     'mobility.middleware.DetectMobileMiddleware',
     'mobility.middleware.XMobileMiddleware',
     'olympia.amo.middleware.RemoveSlashMiddleware',
-
-    # Munging REMOTE_ADDR must come before ThreadRequest.
-    'olympia.amo.middleware.SetRemoteAddrFromForwardedFor',
 
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -408,8 +412,9 @@ MIDDLEWARE_CLASSES = (
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',
 
-    # This should come after AuthenticationMiddlewareWithoutAPI and after
-    # SetRemoteAddrFromForwardedFor.
+    # This should come after AuthenticationMiddlewareWithoutAPI (to get the
+    # current user) and after SetRemoteAddrFromForwardedFor (to get the correct
+    # IP).
     'olympia.access.middleware.UserAndAddrMiddleware',
 
     'olympia.amo.middleware.ScrubRequestOnException',
@@ -1250,12 +1255,14 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
 LOG_LEVEL = logging.DEBUG
-HAS_SYSLOG = True  # syslog is used if HAS_SYSLOG and NOT DEBUG.
+USE_SYSLOG = True
+USE_MOZLOG = True
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
-# See PEP 391 and log_settings.py for formatting help.  Each section of
+MOZLOG_NAME = SYSLOG_TAG
+# See PEP 391 and log_settings_base.py for formatting help.  Each section of
 # LOGGING will get merged into the corresponding section of
-# log_settings.py. Handlers and log levels are set up automatically based
+# log_settings_base.py. Handlers and log levels are set up automatically based
 # on LOG_LEVEL and DEBUG unless you set them here.  Messages will not
 # propagate through a logger unless propagate: True is set.
 LOGGING_CONFIG = None

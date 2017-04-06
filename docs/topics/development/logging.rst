@@ -16,9 +16,9 @@ production, we're piping everything into ``syslog``.
 Configuration
 -------------
 
-The root logger is set up from ``log_settings.py`` in the ``src/olympia/lib``
-directory of addons-server. It sets up sensible defaults, but you can twiddle
-with these settings:
+The root logger is set up from ``log_settings_base.py`` in the
+``src/olympia/lib`` of addons-server. It sets up sensible defaults, but you can
+twiddle with these settings:
 
 ``LOG_LEVEL``
     This setting is required, and defaults to ``logging.DEBUG``, which will let
@@ -28,9 +28,12 @@ with these settings:
         import logging
         LOG_LEVEL = logging.WARN
 
-``HAS_SYSLOG``
-    Set this to ``False`` if you don't want logging sent to syslog when
-    ``DEBUG`` is ``False``.
+``USE_SYSLOG``
+    Set this to ``True`` if you want logging sent to syslog.
+
+``USE_MOZLOG``
+    Set this to ``True`` if you want logging sent to the console using mozlog
+    format.
 
 ``LOGGING``
     See PEP 391 and log_settings.py for formatting help.  Each section of LOGGING
