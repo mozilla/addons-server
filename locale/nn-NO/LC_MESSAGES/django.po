@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-03 13:20+0000\n"
+"PO-Revision-Date: 2017-04-07 00:09+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -21,9 +21,8 @@ msgid "You are already logged in."
 msgstr "Du er allereie innlogga."
 
 #: src/olympia/accounts/views.py
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Klarte ikkje å tolka innloggingsforsøket ditt. Prøv på nytt."
+msgstr "Klarte ikkje å tolke innloggingsforsøket ditt. Prøv igjen."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
@@ -3695,19 +3694,19 @@ msgstr "Siste endringar for %s"
 
 #: src/olympia/devhub/feeds.py
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Siste endringar for tillegga mine"
 
 #: src/olympia/devhub/forms.py
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Må ha minst ein eigar."
 
 #: src/olympia/devhub/forms.py
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Minst ein eigar må vere oppført."
 
 #: src/olympia/devhub/forms.py
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Ein utviklar kan berre førast opp ein gong."
 
 #: src/olympia/devhub/forms.py
 msgid "Slug incorrect."
@@ -3751,7 +3750,7 @@ msgstr "Kvifor laga du denne utvidinga?"
 
 #: src/olympia/devhub/forms.py
 msgid "What's next for this add-on?"
-msgstr ""
+msgstr "Kva er det neste for denne utvidinga?"
 
 #: src/olympia/devhub/forms.py
 msgid "The developers of this add-on"
@@ -7592,11 +7591,11 @@ msgstr "Avbryt installasjon"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Mozilla&rsquo;s utvalde denne månaden!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
-msgstr "Bli ein testpilot"
+msgstr "Bli testpilot"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
@@ -7616,7 +7615,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Albania Lek"
-msgstr ""
+msgstr "Albansk Lek"
 
 #: src/olympia/lib/constants.py
 msgid "Armenia Dram"
@@ -7636,7 +7635,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Australia Dollar"
-msgstr ""
+msgstr "Australske Dollar"
 
 #: src/olympia/lib/constants.py
 msgid "Aruba Guilder"
@@ -9645,7 +9644,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit reply"
-msgstr ""
+msgstr "Rediger svar"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit review"
