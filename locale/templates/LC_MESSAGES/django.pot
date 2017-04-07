@@ -3034,7 +3034,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/search_tools.html:91
 msgid ""
 "Learn more about the <a "
-"href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
+"href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
 msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html:92
