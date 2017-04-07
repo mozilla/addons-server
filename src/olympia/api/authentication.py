@@ -118,14 +118,13 @@ class WebTokenAuthentication(BaseAuthentication):
         """
         if 'user_id' not in payload:
             log.info('No user_id in token payload {}'.format(payload))
-            raise exceptions.AuthenticationFailed(
-                'No user_id in token payload.')
+            raise exceptions.AuthenticationFailed()
         try:
             user = UserProfile.objects.filter(deleted=False).get(
                 pk=payload['user_id'])
         except UserProfile.DoesNotExist:
             log.info('User not found from token payload {}'.format(payload))
-            raise exceptions.AuthenticationFailed('User not found.')
+            raise exceptions.AuthenticationFailed()
 
         # Check get_session_auth_hash like django's get_user() does.
         session_auth_hash = user.get_session_auth_hash()
@@ -133,8 +132,7 @@ class WebTokenAuthentication(BaseAuthentication):
         if not constant_time_compare(payload_auth_hash, session_auth_hash):
             log.info('User tried to authenticate with invalid auth hash in'
                      'payload {}'.format(payload))
-            raise exceptions.AuthenticationFailed(
-                'Invalid auth hash in token payload.')
+            raise exceptions.AuthenticationFailed()
 
         # Set user in thread like UserAndAddrMiddleware does.
         core.set_user(user)
