@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-07 00:09+0000\n"
+"PO-Revision-Date: 2017-04-07 00:14+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1651,7 +1651,7 @@ msgstr ""
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Feil ved dekoding av signaturen."
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
@@ -1667,7 +1667,7 @@ msgstr ""
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Språkkoden {lang_code} er ugyldig."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/applications/views.py
 msgid "Application Versions"
@@ -4006,7 +4006,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Bilde må anten vere PNG eller JPG."
 
 #: src/olympia/devhub/views.py
 msgid "Icons cannot be animated."
@@ -4351,7 +4351,7 @@ msgstr "Støtta versjonar"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Legg til ein annan applikasjon&hellip;"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/owner.html
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
