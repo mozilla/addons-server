@@ -53,11 +53,18 @@ class WebTokenAuthentication(BaseAuthentication):
             return None
 
         if len(auth_header) == 1:
-            msg = _('Invalid Authorization header. No credentials provided.')
+            msg = {
+                'detail': _('Invalid Authorization header. '
+                            'No credentials provided.'),
+                'code': 'ERROR_INVALID_HEADER'
+            }
             raise exceptions.AuthenticationFailed(msg)
         elif len(auth_header) > 2:
-            msg = _('Invalid Authorization header. Credentials string '
-                    'should not contain spaces.')
+            msg = {
+                'detail': _('Invalid Authorization header. Credentials string '
+                            'should not contain spaces.'),
+                'code': 'ERROR_INVALID_HEADER',
+            }
             raise exceptions.AuthenticationFailed(msg)
 
         return auth_header[1]
@@ -83,10 +90,16 @@ class WebTokenAuthentication(BaseAuthentication):
                 token, salt=self.salt,
                 max_age=settings.SESSION_COOKIE_AGE or None)
         except signing.SignatureExpired:
-            msg = 'Signature has expired.'
+            msg = {
+                'detail': _('Signature has expired.'),
+                'code': 'ERROR_SIGNATURE_EXPIRED',
+            }
             raise exceptions.AuthenticationFailed(msg)
         except signing.BadSignature:
-            msg = _('Error decoding signature.')
+            msg = {
+                'detail': _('Error decoding signature.'),
+                'code': 'ERROR_DECODING_SIGNATURE'
+            }
             raise exceptions.AuthenticationFailed(msg)
 
         # We have a valid token, try to find the corresponding user.
