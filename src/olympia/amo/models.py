@@ -418,19 +418,6 @@ def manual_order(qs, pks, pk_name='id'):
         order_by=['_manual'])
 
 
-class BlobField(models.Field):
-    """MySQL blob column.
-
-    This is for using AES_ENCYPT() to store values.
-    It could maybe turn into a fancy transparent encypt/decrypt field
-    like http://djangosnippets.org/snippets/2489/
-    """
-    description = "blob"
-
-    def db_type(self, **kw):
-        return 'blob'
-
-
 class SlugField(models.SlugField):
     """
     Django 1.6's SlugField rejects non-ASCII slugs. This field just

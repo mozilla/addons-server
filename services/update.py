@@ -75,7 +75,6 @@ no_updates_rdf = """<?xml version="1.0"?>
 </RDF:RDF>"""
 
 
-timing_log = olympia.core.logger.getLogger('z.timer')
 error_log = olympia.core.logger.getLogger('z.services')
 
 
@@ -324,22 +323,6 @@ class Update(object):
                 ('Last-Modified', self.format_date(0)),
                 ('Expires', self.format_date(3600)),
                 ('Content-Length', str(length))]
-
-
-def mail_exception(data):
-    if settings.EMAIL_BACKEND != 'django.core.mail.backends.smtp.EmailBackend':
-        return
-
-    msg = MIMEText('%s\n\n%s' % (
-        '\n'.join(traceback.format_exception(*sys.exc_info())), data))
-    msg['Subject'] = '[Update] ERROR at /services/update'
-    msg['To'] = ','.join([a[1] for a in settings.ADMINS])
-    msg['From'] = settings.DEFAULT_FROM_EMAIL
-
-    conn = smtplib.SMTP(getattr(settings, 'EMAIL_HOST', 'localhost'),
-                        getattr(settings, 'EMAIL_PORT', '25'))
-    conn.sendmail(settings.DEFAULT_FROM_EMAIL, msg['To'], msg.as_string())
-    conn.close()
 
 
 def log_exception(data):

@@ -1,4 +1,3 @@
-import functools
 import hashlib
 import json
 import random
@@ -76,22 +75,6 @@ paypal_log = olympia.core.logger.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_valid_disabled_pending_view = addon_view_factory(
     qs=Addon.objects.valid_and_disabled_and_pending)
-
-
-def author_addon_clicked(f):
-    """Decorator redirecting clicks on "Other add-ons by author"."""
-    @functools.wraps(f)
-    def decorated(request, *args, **kwargs):
-        redirect_id = request.GET.get('addons-author-addons-select', None)
-        if not redirect_id:
-            return f(request, *args, **kwargs)
-        try:
-            target_id = int(redirect_id)
-            return http.HttpResponsePermanentRedirect(reverse(
-                'addons.detail', args=[target_id]))
-        except ValueError:
-            return http.HttpResponseBadRequest('Invalid add-on ID.')
-    return decorated
 
 
 @addon_valid_disabled_pending_view

@@ -18,7 +18,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import render
 from olympia.addons.models import Addon, AddonCategory, Category, FrozenAddon
 from olympia.addons.utils import get_featured_ids, get_creatured_ids
-from olympia.addons.views import BaseFilter, ESBaseFilter
+from olympia.addons.views import BaseFilter
 
 
 languages = dict((lang.lower(), val)
@@ -71,11 +71,6 @@ class ThemeFilter(AddonFilter):
               ('popular', _lazy(u'Weekly Downloads')),
               ('updated', _lazy(u'Recently Updated')),
               ('hotness', _lazy(u'Up & Coming')))
-
-
-class ESAddonFilter(ESBaseFilter):
-    opts = AddonFilter.opts
-    extras = AddonFilter.extras
 
 
 def addon_listing(request, addon_types, filter_=AddonFilter, default=None):

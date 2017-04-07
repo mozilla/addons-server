@@ -17,10 +17,6 @@ from olympia.versions.models import Version
 log = olympia.core.logger.getLogger('z.api')
 
 
-# For app version major.minor matching.
-m_dot_n_re = re.compile(r'^\d+\.\d+$')
-
-
 def addon_to_dict(addon, disco=False, src='api'):
     """
     Renders an addon in JSON for the API.

@@ -22,14 +22,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         )
 
 
-class AccountSourceSerializer(serializers.ModelSerializer):
-    source = serializers.CharField()
-
-    class Meta:
-        model = UserProfile
-        fields = ['source']
-
-
 group_rules = {
     'reviewer': 'Addons:Review',
     'admin': '*:*',

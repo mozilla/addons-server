@@ -67,10 +67,6 @@ class RequiredInputMixin(object):
         return super(RequiredInputMixin, self).render(name, value, attrs)
 
 
-class RequiredTextInput(RequiredInputMixin, forms.TextInput):
-    """A Django TextInput with required attributes."""
-
-
 class RequiredEmailInput(RequiredInputMixin, forms.EmailInput):
     """A Django EmailInput with required attributes."""
 
