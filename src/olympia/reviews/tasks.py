@@ -48,7 +48,7 @@ def addon_review_aggregates(addons, **kw):
     # [{'rating': 2.0, 'addon': 7L, 'count': 5},
     #  {'rating': 3.75, 'addon': 6L, 'count': 8}, ...]
     qs = (Review.without_replies.all().no_cache()
-          .filter(addon__in=addons)
+          .filter(addon__in=addons, is_latest=True)
           .values('addon')  # Group by addon id.
           .annotate(rating=Avg('rating'), count=Count('addon'))  # Aggregates.
           .order_by())  # Reset order by so that `created` is not included.
