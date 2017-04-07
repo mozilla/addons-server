@@ -13,25 +13,23 @@ def match_rules(rules, app, action):
     return False
 
 
-def action_allowed(request, app, action):
+def action_allowed(request, permission):
     """
     Determines if the request user has permission to do a certain action.
 
-    'Admin:%' is true if the user has any of:
-    ('Admin:*', 'Admin:%s'%whatever, '*:*',) as rules.
+    `permission` is a tuple constant in constants.permissions.
 
     Note: relies in user.groups_list, which is cached on the user instance the
     first time it's accessed. See also action_allowed_user().
     """
-    return action_allowed_user(request.user, app, action)
+    return action_allowed_user(request.user, permission)
 
 
-def action_allowed_user(user, app, action):
+def action_allowed_user(user, permission):
     """
     Determines if the user has permission to do a certain action.
 
-    'Admin:%' is true if the user has any of:
-    ('Admin:*', 'Admin:%s'%whatever, '*:*',) as rules.
+    `permission` is a tuple constant in constants.permissions.
 
     Note: relies in user.groups_list, which is cached on the user instance the
     first time it's accessed.
@@ -40,7 +38,8 @@ def action_allowed_user(user, app, action):
         return False
 
     return any(
-        match_rules(group.rules, app, action) for group in user.groups_list)
+        match_rules(group.rules, permission.app, permission.action)
+        for group in user.groups_list)
 
 
 def submission_allowed(user, parsed_addon_data):
@@ -50,7 +49,7 @@ def submission_allowed(user, parsed_addon_data):
     """
     return (
         not parsed_addon_data.get('is_experiment', False) or
-        action_allowed_user(user, 'Experiments', 'submit'))
+        action_allowed_user(user, amo.permissions.EXPERIMENTS_SUBMIT))
 
 
 def check_ownership(request, obj, require_owner=False, require_author=False,
@@ -71,9 +70,9 @@ def check_collection_ownership(request, collection, require_owner=False):
     if not request.user.is_authenticated():
         return False
 
-    if action_allowed(request, 'Admin', '%'):
+    if action_allowed(request, amo.permissions.ADMIN):
         return True
-    elif action_allowed(request, 'Collections', 'Edit'):
+    elif action_allowed(request, amo.permissions.COLLECTIONS_EDIT):
         return True
     elif request.user.id == collection.author_id:
         return True
@@ -101,7 +100,7 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     if addon.is_deleted:
         return False
     # Users with 'Addons:Edit' can do anything.
-    if admin and action_allowed(request, 'Addons', 'Edit'):
+    if admin and action_allowed(request, amo.permissions.ADDONS_EDIT):
         return True
     # Only admins can edit admin-disabled addons.
     if addon.status == amo.STATUS_DISABLED and not ignore_disabled:
@@ -122,15 +121,15 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
 
 
 def check_addons_reviewer(request):
-    return action_allowed(request, 'Addons', 'Review')
+    return action_allowed(request, amo.permissions.ADDONS_REVIEW)
 
 
 def check_unlisted_addons_reviewer(request):
-    return action_allowed(request, 'Addons', 'ReviewUnlisted')
+    return action_allowed(request, amo.permissions.ADDONS_REVIEWUNLISTED)
 
 
 def check_personas_reviewer(request):
-    return action_allowed(request, 'Personas', 'Review')
+    return action_allowed(request, amo.permissions.THEMES_REVIEW)
 
 
 def is_editor(request, addon):

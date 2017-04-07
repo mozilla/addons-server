@@ -3,6 +3,7 @@ import jinja2
 import jingo
 from django.utils.translation import ugettext as _
 
+from olympia import amo
 from olympia.access import acl
 from olympia.reviews.models import ReviewFlag
 
@@ -88,8 +89,8 @@ def user_can_delete_review(request, review):
         review.user_id == request.user.id or
         not is_author and (
             (acl.is_editor(request, review.addon) and review.editorreview) or
-            acl.action_allowed(request, 'Users', 'Edit') or
-            acl.action_allowed(request, 'Addons', 'Edit')))
+            acl.action_allowed(request, amo.permissions.USERS_EDIT) or
+            acl.action_allowed(request, amo.permissions.ADDONS_EDIT)))
 
 
 @jingo.register.function

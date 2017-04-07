@@ -21,6 +21,7 @@ from rest_framework.views import APIView
 from waffle.decorators import waffle_switch
 
 import olympia.core.logger
+from olympia import amo
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
@@ -377,7 +378,7 @@ class ProfileView(generics.RetrieveAPIView):
 class AccountSuperCreate(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [
-        IsAuthenticated, GroupPermission('Accounts', 'SuperCreate')]
+        IsAuthenticated, GroupPermission(amo.permissions.ACCOUNTS_SUPERCREATE)]
 
     @waffle_switch('super-create-accounts')
     def post(self, request):

@@ -121,9 +121,9 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.ADMINTOOLS,
+                          amo.permissions.REVIEWERADMINTOOLS])
 def validation(request, form=None):
     if not form:
         form = BulkValidationForm()
@@ -156,9 +156,9 @@ def find_files(job):
         tasks.add_validation_jobs.delay(pks, job.pk)
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.ADMINTOOLS,
+                          amo.permissions.REVIEWERADMINTOOLS])
 @transaction.non_atomic_requests
 def start_validation(request):
     # FIXME: `@transaction.non_atomic_requests` is a workaround for an issue
@@ -176,9 +176,9 @@ def start_validation(request):
         return validation(request, form=form)
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.ADMINTOOLS,
+                          amo.permissions.REVIEWERADMINTOOLS])
 @post_required
 @json_view
 def job_status(request):
@@ -194,9 +194,9 @@ def job_status(request):
     return all_stats
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.ADMINTOOLS,
+                          amo.permissions.REVIEWERADMINTOOLS])
 @post_required
 @json_view
 def notify_syntax(request):
@@ -207,9 +207,9 @@ def notify_syntax(request):
         return {'valid': True, 'error': None}
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.ADMINTOOLS,
+                          amo.permissions.REVIEWERADMINTOOLS])
 @post_required
 def notify(request, job):
     job = get_object_or_404(ValidationJob, pk=job)
@@ -223,8 +223,8 @@ def notify(request, job):
     return redirect(reverse('zadmin.validation'))
 
 
-@any_permission_required([('Admin', '%'),
-                          ('ReviewerAdminTools', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.REVIEWERADMINTOOLS])
 def email_preview_csv(request, topic):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/csv; charset=utf-8'
@@ -281,9 +281,9 @@ class BulkValidationAffectedAddonsTable(ItemStateTable, tables.Table):
             for result in results)
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.ADMINTOOLS,
+                          amo.permissions.REVIEWERADMINTOOLS])
 def validation_summary(request, job_id):
     messages = ValidationResultMessage.objects.filter(validation_job=job_id)
     order_by = request.GET.get('sort', 'message_id')
@@ -296,9 +296,9 @@ def validation_summary(request, job_id):
                   {'table': table, 'page': page})
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.ADMINTOOLS,
+                          amo.permissions.REVIEWERADMINTOOLS])
 def validation_summary_affected_addons(request, job_id, message_id):
     affected_addons = list(
         ValidationResultAffectedAddon.objects
@@ -539,9 +539,9 @@ def email_devs(request):
                   dict(form=form, preview_csv=preview_csv))
 
 
-@any_permission_required([('Admin', '%'),
-                          ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.ADMINTOOLS,
+                          amo.permissions.REVIEWERADMINTOOLS])
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
     return render(request, 'zadmin/index.html', {'log': log})
@@ -695,14 +695,14 @@ def delete_site_event(request, event_id):
     return redirect('zadmin.site_events')
 
 
-@any_permission_required([('Admin', '%'),
-                          ('MailingLists', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.MAILINGLISTS])
 def export_email_addresses(request):
     return render(request, 'zadmin/export_button.html', {})
 
 
-@any_permission_required([('Admin', '%'),
-                          ('MailingLists', 'View')])
+@any_permission_required([amo.permissions.ADMIN,
+                          amo.permissions.MAILINGLISTS])
 def email_addresses_file(request):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/plain; charset=utf-8'

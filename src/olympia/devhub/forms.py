@@ -506,8 +506,8 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
         if not (self.cleaned_data['upload'].valid or
                 self.cleaned_data['upload'].validation_timeout or
                 self.cleaned_data['admin_override_validation'] and
-                acl.action_allowed(self.request, 'ReviewerAdminTools',
-                                   'View')):
+                acl.action_allowed(self.request,
+                                   amo.permisions.REVIEWERADMINTOOLS)):
             raise forms.ValidationError(_(u'There was an error with your '
                                           u'upload. Please try again.'))
 

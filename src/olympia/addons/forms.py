@@ -70,7 +70,7 @@ def clean_tags(request, tags):
 
     restricted = (Tag.objects.values_list('tag_text', flat=True)
                      .filter(tag_text__in=target, restricted=True))
-    if not acl.action_allowed(request, 'Addons', 'Edit'):
+    if not acl.action_allowed(request, amo.permissions.ADDONS_EDIT):
         if restricted:
             # L10n: {0} is a single tag or a comma-separated list of tags.
             msg = ngettext('"{0}" is a reserved tag and cannot be used.',
@@ -118,7 +118,7 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
     def get_tags(self, addon):
-        if acl.action_allowed(self.request, 'Addons', 'Edit'):
+        if acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
             return list(addon.tags.values_list('tag_text', flat=True))
         else:
             return list(addon.tags.filter(restricted=False)
@@ -264,7 +264,8 @@ class BaseCategoryFormSet(BaseFormSet):
 
             # If this add-on is featured for this application, category
             # changes are forbidden.
-            if not acl.action_allowed(self.request, 'Addons', 'Edit'):
+            if not acl.action_allowed(self.request,
+                                      amo.permissions.ADDONS_EDIT):
                 form.disabled = (app and self.addon.is_featured(app))
 
     def save(self):

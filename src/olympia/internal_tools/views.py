@@ -1,6 +1,7 @@
 from django.conf import settings
 
 import olympia.core.logger
+from olympia import amo
 from olympia.accounts.views import LoginBaseView, LoginStartBaseView
 from olympia.addons.models import Addon
 from olympia.addons.views import AddonViewSet, AddonSearchView
@@ -27,16 +28,18 @@ class InternalAddonSearchView(AddonSearchView):
     ]
 
     # Restricted to specific permissions.
-    permission_classes = [AnyOf(GroupPermission('AdminTools', 'View'),
-                                GroupPermission('ReviewerAdminTools', 'View'))]
+    permission_classes = [AnyOf(GroupPermission(amo.permissions.ADMINTOOLS),
+                                GroupPermission(
+                                    amo.permissions.REVIEWERADMINTOOLS))]
     # Can display unlisted data.
     serializer_class = ESAddonSerializerWithUnlistedData
 
 
 class InternalAddonViewSet(AddonViewSet):
     # Restricted to specific permissions.
-    permission_classes = [AnyOf(GroupPermission('AdminTools', 'View'),
-                                GroupPermission('ReviewerAdminTools', 'View'))]
+    permission_classes = [AnyOf(GroupPermission(amo.permissions.ADMINTOOLS),
+                                GroupPermission(
+                                    amo.permissions.REVIEWERADMINTOOLS))]
 
     # Internal tools allow access to everything, including deleted add-ons.
     queryset = Addon.unfiltered.all()

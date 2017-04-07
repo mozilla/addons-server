@@ -16,5 +16,5 @@ def check_ownership(context, object, require_owner=False,
 
 @register.function
 @jinja2.contextfunction
-def action_allowed(context, app, action):
-    return acl.action_allowed(context['request'], app, action)
+def action_allowed(context, permission):
+    return acl.action_allowed(context['request'], permission)

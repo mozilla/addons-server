@@ -19,7 +19,7 @@
                         queue_counts['themes'])|f(num=queue_counts['themes']) }}
           </a>
         </div>
-        {% if action_allowed('SeniorPersonasTools', 'View') %}
+        {% if action_allowed(amo.permissions.THEMEADMINTOOLS) %}
           <div class="editor-stats-title">
             <a href="{{ url('editors.themes.list_flagged') }}">
               {{ ngettext('{num} Flagged Review',
@@ -36,7 +36,7 @@
           </div>
         {% endif %}
         <div class="editor-stats">
-          {% if action_allowed('SeniorPersonasTools', 'View') %}
+          {% if action_allowed(amo.permissions.THEMEADMINTOOLS) %}
             {% set queue_types = ['pending_themes', 'flagged_themes', 'rereview_themes'] %}
           {% else %}
             {% set queue_types = ['pending_themes'] %}

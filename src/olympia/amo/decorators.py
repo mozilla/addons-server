@@ -53,13 +53,13 @@ def post_required(f):
     return wrapper
 
 
-def permission_required(app, action):
+def permission_required(permission):
     def decorator(f):
         @functools.wraps(f)
         @login_required
         def wrapper(request, *args, **kw):
             from olympia.access import acl
-            if acl.action_allowed(request, app, action):
+            if acl.action_allowed(request, permission):
                 return f(request, *args, **kw)
             else:
                 raise PermissionDenied
@@ -67,7 +67,7 @@ def permission_required(app, action):
     return decorator
 
 
-def any_permission_required(pairs):
+def any_permission_required(permissions):
     """
     If any permission passes, call the function. Otherwise raise 403.
     """
@@ -76,8 +76,8 @@ def any_permission_required(pairs):
         @login_required
         def wrapper(request, *args, **kw):
             from olympia.access import acl
-            for app, action in pairs:
-                if acl.action_allowed(request, app, action):
+            for permission in permissions:
+                if acl.action_allowed(request, permission):
                     return f(request, *args, **kw)
             raise PermissionDenied
         return wrapper

@@ -46,7 +46,7 @@ def queue_counts_themes(request):
                                  .count(),
     }
 
-    if acl.action_allowed(request, 'SeniorPersonasTools', 'View'):
+    if acl.action_allowed(request, amo.permissions.THEMEADMINTOOLS):
         counts.update({
             'flagged_themes': (Persona.objects.no_cache()
                                .filter(addon__status=amo.STATUS_REVIEW_PENDING)
@@ -150,7 +150,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
 
     # Don't allow self-reviews.
     if (not settings.ALLOW_SELF_REVIEWS and
-            not acl.action_allowed(request, 'Admin', '%')):
+            not acl.action_allowed(request, amo.permissions.ADMIN)):
         if rereview:
             themes = themes.exclude(theme__addon__addonuser__user=reviewer)
         else:
@@ -361,7 +361,7 @@ def themes_single(request, slug):
         reviewable = False
 
     if (not settings.ALLOW_SELF_REVIEWS and
-            not acl.action_allowed(request, 'Admin', '%') and
+            not acl.action_allowed(request, amo.permissions.ADMIN) and
             theme.addon.has_author(request.user)):
         reviewable = False
     else:

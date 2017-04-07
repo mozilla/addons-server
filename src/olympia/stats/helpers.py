@@ -1,6 +1,7 @@
 import jinja2
 from jingo import get_env, register
 
+from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import Collection
@@ -14,7 +15,7 @@ def report_menu(context, request, report, obj=None):
         if isinstance(obj, Addon):
             has_privs = False
             if (request.user.is_authenticated() and (
-                    acl.action_allowed(request, 'Stats', 'View') or
+                    acl.action_allowed(request, amo.permissions.STATS) or
                     obj.has_author(request.user))):
                 has_privs = True
             t = get_env().get_template('stats/addon_report_menu.html')

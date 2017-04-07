@@ -69,7 +69,7 @@ def with_addon(allow_missing=False):
                 (addon.has_author(request.user) or
                     (request.method == 'GET' and
                         acl.action_allowed_user(
-                            request.user, 'Addons', 'Edit'))))
+                            request.user, amo.permissions.ADDONS_EDIT))))
 
             if has_perm:
                 return fn(view, request, addon=addon, **kwargs)

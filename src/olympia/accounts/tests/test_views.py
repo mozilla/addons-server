@@ -14,6 +14,7 @@ import mock
 from rest_framework.test import APIRequestFactory, APITestCase
 from waffle.models import Switch
 
+from olympia import amo
 from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
@@ -1048,7 +1049,7 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
         res = self.post(self.url, {'group': 'reviewer'})
         assert res.status_code == 201, res.content
         user = UserProfile.objects.get(pk=res.data['user_id'])
-        assert action_allowed_user(user, 'Addons', 'Review')
+        assert action_allowed_user(user, amo.permissions.ADDONS_REVIEW)
 
     def test_can_create_an_admin_user(self):
         group = Group.objects.create(rules='*:*', name='admin group')
@@ -1056,7 +1057,8 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
 
         assert res.status_code == 201, res.content
         user = UserProfile.objects.get(pk=res.data['user_id'])
-        assert action_allowed_user(user, 'Any', 'DamnThingTheyWant')
+        assert action_allowed_user(
+            user, amo.permissions.AclPermission('Any', 'Thing'))
         assert res.data['groups'] == [(group.pk, group.name, group.rules)]
 
 

@@ -447,7 +447,7 @@ def ajax_collection_alter(request, action):
 # permission check below to prevent them from doing any modifications.
 @owner_required(require_owner=False)
 def edit(request, collection, username, slug):
-    is_admin = acl.action_allowed(request, 'Collections', 'Edit')
+    is_admin = acl.action_allowed(request, amo.permissions.COLLECTIONS_EDIT)
 
     if not acl.check_collection_ownership(
             request, collection, require_owner=True):
@@ -517,7 +517,7 @@ def edit_addons(request, collection, username, slug):
 @owner_required
 @post_required
 def edit_contributors(request, collection, username, slug):
-    is_admin = acl.action_allowed(request, 'Collections', 'Edit')
+    is_admin = acl.action_allowed(request, amo.permissions.COLLECTIONS_EDIT)
 
     if is_admin:
         admin_form = forms.AdminForm(request.POST)

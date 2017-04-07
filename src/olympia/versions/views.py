@@ -186,8 +186,7 @@ def download_source(request, version_id):
         if not (version.source and
                 (acl.check_addon_ownership(
                     request, version.addon,
-                    viewer=True, ignore_disabled=True) or
-                 acl.action_allowed(request, 'Editors', 'BinarySource'))):
+                    viewer=True, ignore_disabled=True))):
             raise http.Http404()
     else:
         if not owner_or_unlisted_reviewer(request, version.addon):

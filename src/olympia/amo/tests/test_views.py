@@ -14,7 +14,7 @@ import mock
 from mock import patch
 from pyquery import PyQuery as pq
 
-from olympia import core
+from olympia import amo, core
 from olympia.amo.tests import TestCase
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
@@ -132,7 +132,7 @@ class TestCommon(TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         assert not request.user.is_developer
-        assert acl.action_allowed(request, 'Addons', 'Review')
+        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
 
         expected = [
             ('Tools', '#'),
@@ -152,7 +152,7 @@ class TestCommon(TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         assert request.user.is_developer
-        assert acl.action_allowed(request, 'Addons', 'Review')
+        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
 
         expected = [
             ('Tools', '#'),
@@ -170,9 +170,9 @@ class TestCommon(TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         assert not request.user.is_developer
-        assert acl.action_allowed(request, 'Addons', 'Review')
-        assert acl.action_allowed(request, 'Localizer', '%')
-        assert acl.action_allowed(request, 'Admin', '%')
+        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
+        assert acl.action_allowed(request, amo.permissions.LOCALIZER)
+        assert acl.action_allowed(request, amo.permissions.ADMIN)
 
         expected = [
             ('Tools', '#'),
@@ -193,9 +193,9 @@ class TestCommon(TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         assert request.user.is_developer
-        assert acl.action_allowed(request, 'Addons', 'Review')
-        assert acl.action_allowed(request, 'Localizer', '%')
-        assert acl.action_allowed(request, 'Admin', '%')
+        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
+        assert acl.action_allowed(request, amo.permissions.LOCALIZER)
+        assert acl.action_allowed(request, amo.permissions.ADMIN)
 
         expected = [
             ('Tools', '#'),

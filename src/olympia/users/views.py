@@ -111,7 +111,8 @@ def delete(request):
 @login_required
 def delete_photo(request, user_id):
     not_mine = str(request.user.id) != user_id
-    if (not_mine and not acl.action_allowed(request, 'Users', 'Edit')):
+    if (not_mine and not acl.action_allowed(request,
+                                            amo.permissions.USERS_EDIT)):
         return http.HttpResponseForbidden()
 
     user = UserProfile.objects.get(id=user_id)
@@ -159,7 +160,7 @@ def edit(request):
 
 @write
 @login_required
-@permission_required('Users', 'Edit')
+@permission_required(amo.permissions.USERS_EDIT)
 @user_view
 def admin_edit(request, user):
     if request.method == 'POST':
@@ -234,7 +235,7 @@ def profile(request, user):
                     .filter(following__user=user)
                     .order_by('-following__created'))[:10]
 
-    edit_any_user = acl.action_allowed(request, 'Users', 'Edit')
+    edit_any_user = acl.action_allowed(request, amo.permissions.USERS_EDIT)
     own_profile = (request.user.is_authenticated() and
                    request.user.id == user.id)
 

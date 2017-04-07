@@ -2,6 +2,7 @@ import functools
 
 from django.core.exceptions import PermissionDenied
 
+from olympia import amo
 from olympia.access.acl import action_allowed
 from olympia.amo.decorators import login_required
 
@@ -17,8 +18,8 @@ def admin_required(reviewers=False, theme_reviewers=False):
         @login_required
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            admin = (action_allowed(request, 'Admin', '%') or
-                     action_allowed(request, 'AdminTools', 'View'))
+            admin = (action_allowed(request, amo.permissions.ADMIN) or
+                     action_allowed(request, amo.permissions.ADMINTOOLS))
             # Yes, the "is True" is here on purpose... because this decorator
             # takes optional arguments, but doesn't do it properly (so if
             # you're not giving it arguments, it takes the decorated function
@@ -26,11 +27,12 @@ def admin_required(reviewers=False, theme_reviewers=False):
             if reviewers is True:
                 admin = (
                     admin or
-                    action_allowed(request, 'ReviewerAdminTools', 'View'))
+                    action_allowed(request,
+                                   amo.permissions.REVIEWERADMINTOOLS))
             if theme_reviewers is True:
                 admin = (
                     admin or
-                    action_allowed(request, 'SeniorPersonasTools', 'View'))
+                    action_allowed(request, amo.permissions.THEMEADMINTOOLS))
             if admin:
                 return f(request, *args, **kw)
             raise PermissionDenied

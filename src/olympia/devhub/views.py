@@ -303,7 +303,7 @@ def edit(request, addon_id, addon):
         'previews': addon.previews.all(),
     }
 
-    if acl.action_allowed(request, 'Addons', 'Configure'):
+    if acl.action_allowed(request, amo.permissions.ADDONS_CONFIGURE):
         data['admin_form'] = forms.AdminForm(instance=addon)
 
     return render(request, 'devhub/addons/edit.html', data)
@@ -1084,7 +1084,7 @@ def version_edit(request, addon_id, addon, version_id):
 
     data = {'version_form': version_form, 'file_form': file_form}
 
-    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+    is_admin = acl.action_allowed(request, amo.permissions.REVIEWERADMINTOOLS)
 
     if addon.accepts_compatible_apps():
         # We should be in no-caching land but this one stays cached for some
@@ -1231,7 +1231,7 @@ def auto_sign_version(version, **kwargs):
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo_utils.paginate(request, qs)
-    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+    is_admin = acl.action_allowed(request, amo.permissions.REVIEWERADMINTOOLS)
 
     token = request.COOKIES.get(API_TOKEN_COOKIE, None)
 
@@ -1386,7 +1386,7 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                     if channel == amo.RELEASE_CHANNEL_LISTED and not is_beta
                     else next_finish)
         return redirect(next_url, *url_args)
-    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+    is_admin = acl.action_allowed(request, amo.permissions.REVIEWERADMINTOOLS)
     if addon:
         channel_choice_text = (forms.DistributionChoiceForm().LISTED_LABEL
                                if channel == amo.RELEASE_CHANNEL_LISTED else
@@ -1639,7 +1639,7 @@ def request_review(request, addon_id, addon):
 @post_required
 @addon_view
 def admin(request, addon):
-    if not acl.action_allowed(request, 'Addons', 'Configure'):
+    if not acl.action_allowed(request, amo.permissions.ADDONS_CONFIGURE):
         raise PermissionDenied
     form = forms.AdminForm(request, request.POST or None, instance=addon)
     if form.is_valid():

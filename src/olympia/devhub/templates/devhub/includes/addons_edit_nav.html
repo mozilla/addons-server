@@ -44,13 +44,13 @@
       <li><a href="{{ addon.get_url_path() }}">
         {{ _('View Listing') }}</a></li>
       {% endif %}
-      {% if action_allowed("Addons", "Edit") %}
+      {% if action_allowed(amo.permissions.ADDONS_EDIT) %}
         <li><a href="{{ url('editors.review', addon.slug) }}">
           {{ _('Listed Review Page') }}</a></li>
         <li><a href="{{ url('editors.review', 'unlisted', addon.slug) }}">
           {{ _('Unlisted Review Page') }}</a></li>
       {% endif %}
-      {% if action_allowed("ReviewerAdminTools", "View") %}
+      {% if action_allowed(amo.permissions.REVIEWERADMINTOOLS) %}
         <li><a href="{{ url('zadmin.addon_manage', addon.slug) }}">
           {{ _('Admin Manage') }}</a></li>
       {% endif %}
