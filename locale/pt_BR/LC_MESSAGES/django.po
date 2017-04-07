@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-03 16:01+0000\n"
+"PO-Revision-Date: 2017-04-07 11:17+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -23,9 +23,8 @@ msgid "You are already logged in."
 msgstr "Você já está autenticado."
 
 #: src/olympia/accounts/views.py
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "A sua tentativa de entrar não pôde ser analisada. Por favor, tente novamente."
+msgstr "A sua tentativa de identificação não pôde ser analisada. Por favor, tente novamente."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
@@ -5741,6 +5740,8 @@ msgstr "Novidades"
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
+"Migrando sua extensão para WebExtensions? Obtenha ajuda personalizada durante o horário de expediente ou envie um email para <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-"
+"support@mozilla.org</a>."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "See Schedule"
