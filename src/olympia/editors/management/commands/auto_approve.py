@@ -5,7 +5,6 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.core.urlresolvers import reverse
 from django.db import transaction
-from django.utils.translation import ugettext as _
 
 import olympia.core.logger
 from olympia import amo
@@ -130,8 +129,10 @@ class Command(BaseCommand):
         # Note: this should automatically use the TASK_USER_ID user.
         helper = ReviewHelper(addon=version.addon, version=version)
         helper.handler.data = {
-            'comments': _(u'This version has been approved for the public.'
-                          u'\r\n\r\nThank you!')
+            # The comment is not translated on purpose, to behave like regular
+            # human approval does.
+            'comments': u'This version has been approved for the public.'
+                        u'\r\n\r\nThank you!'
         }
         helper.handler.process_public()
 
