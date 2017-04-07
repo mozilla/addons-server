@@ -42,33 +42,6 @@ class AbuseReport(ModelBase):
         send_mail(subject, msg,
                   recipient_list=(settings.ABUSE_EMAIL,))
 
-    @classmethod
-    def recent_high_abuse_reports(cls, threshold, period, addon_id=None,
-                                  addon_type=None):
-        """
-        Returns AbuseReport objects for the given threshold over the given time
-        period (in days). Filters by addon_id or addon_type if provided.
-
-        E.g. Greater than 5 abuse reports for all addons in the past 7 days.
-        """
-        abuse_sql = ['''
-            SELECT `abuse_reports`.*,
-                   COUNT(`abuse_reports`.`addon_id`) AS `num_reports`
-            FROM `abuse_reports`
-            INNER JOIN `addons` ON (`abuse_reports`.`addon_id` = `addons`.`id`)
-            WHERE `abuse_reports`.`created` >= %s ''']
-        params = [period]
-        if addon_id:
-            abuse_sql.append('AND `addons`.`id` = %s ')
-            params.append(addon_id)
-        elif addon_type and addon_type in amo.ADDON_TYPES:
-            abuse_sql.append('AND `addons`.`addontype_id` = %s ')
-            params.append(addon_type)
-        abuse_sql.append('GROUP BY addon_id HAVING num_reports > %s')
-        params.append(threshold)
-
-        return list(cls.objects.raw(''.join(abuse_sql), params))
-
 
 def send_abuse_report(request, obj, message):
     report = AbuseReport(ip_address=request.META.get('REMOTE_ADDR'),
