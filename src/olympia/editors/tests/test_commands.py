@@ -2,13 +2,15 @@
 import mock
 
 from django.conf import settings
+from django.core import mail
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import (
-    addon_factory, file_factory, TestCase, version_factory)
+    addon_factory, file_factory, TestCase, user_factory, version_factory)
 from olympia.editors.management.commands import auto_approve
 from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
@@ -20,6 +22,9 @@ from olympia.zadmin.models import Config, get_config, set_config
 
 class TestAutoApproveCommand(TestCase):
     def setUp(self):
+        self.user = user_factory(
+            id=settings.TASK_USER_ID, username='taskuser',
+            email='taskuser@mozilla.com')
         self.addon = addon_factory(average_daily_users=666)
         self.version = version_factory(
             addon=self.addon, file_kw={
@@ -39,6 +44,8 @@ class TestAutoApproveCommand(TestCase):
         self.addCleanup(patcher.stop)
 
     def _check_stats(self, expected_stats):
+        # We abuse the fact that log_final_summary receives stats as positional
+        # argument to check what happened.
         assert self.log_final_summary_mock.call_count == 1
         stats = self.log_final_summary_mock.call_args[0][0]
         assert stats == expected_stats
@@ -152,14 +159,48 @@ class TestAutoApproveCommand(TestCase):
         assert get_reviewing_cache(self.addon.pk) is None
         self._check_stats({'total': 1, 'flagged': 1})
 
-    def test_full(self):
-        # Simple integration test.
+    @mock.patch(
+        'olympia.editors.management.commands.auto_approve.ReviewHelper')
+    def test_approve(self, review_helper_mock):
+        command = auto_approve.Command()
+        command.approve(self.version)
+        assert review_helper_mock.call_count == 1
+        assert review_helper_mock.call_args == (
+            (), {'addon': self.addon, 'version': self.version}
+        )
+        assert review_helper_mock().handler.process_public.call_count == 1
+
+    @mock.patch('olympia.editors.helpers.sign_file')
+    def test_full(self, sign_file_mock):
+        # Simple integration test with as few mocks as possible.
         assert not AutoApprovalSummary.objects.exists()
+        assert not self.file.reviewed
+        ActivityLog.objects.all().delete()
+        self.author = user_factory()
+        self.addon.addonuser_set.create(user=self.author)
+
         call_command('auto_approve', '--dry-run')
         call_command('auto_approve')
+
+        self.addon.reload()
+        self.file.reload()
         assert AutoApprovalSummary.objects.count() == 1
         assert AutoApprovalSummary.objects.get(version=self.version)
         assert get_reviewing_cache(self.addon.pk) is None
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.file.reviewed
+        assert ActivityLog.objects.count()
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.APPROVE_VERSION.id
+        assert sign_file_mock.call_count == 1
+        assert sign_file_mock.call_args[0][0] == self.file
+        assert len(mail.outbox) == 1
+        msg = mail.outbox[0]
+        assert msg.to == [self.author.email]
+        assert msg.from_email == settings.EDITORS_EMAIL
+        assert msg.subject == 'Mozilla Add-ons: %s %s Approved' % (
+            unicode(self.addon.name), self.version.version)
 
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_already_locked(self, create_summary_for_version_mock):
@@ -205,11 +246,14 @@ class TestAutoApproveCommand(TestCase):
         assert create_summary_for_version_mock.call_count == 1
         self._check_stats({'total': 1, 'error': 1})
 
+    @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
-    def test_successful_verdict_dry_run(self, create_summary_for_version_mock):
+    def test_successful_verdict_dry_run(
+            self, create_summary_for_version_mock, approve_mock):
         create_summary_for_version_mock.return_value = (
             AutoApprovalSummary(verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED), {})
         call_command('auto_approve', '--dry-run')
+        assert approve_mock.call_count == 0
         assert create_summary_for_version_mock.call_args == (
             (self.version, ),
             {'max_average_daily_users': 10000, 'min_approved_updates': 1,
@@ -217,20 +261,28 @@ class TestAutoApproveCommand(TestCase):
         assert get_reviewing_cache(self.addon.pk) is None
         self._check_stats({'total': 1, 'auto_approved': 1})
 
+    @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
-    def test_successful_verdict(self, create_summary_for_version_mock):
+    def test_successful_verdict(
+            self, create_summary_for_version_mock, approve_mock):
         create_summary_for_version_mock.return_value = (
             AutoApprovalSummary(verdict=amo.AUTO_APPROVED), {})
         call_command('auto_approve')
+        assert create_summary_for_version_mock.call_count == 1
         assert create_summary_for_version_mock.call_args == (
             (self.version, ),
             {'max_average_daily_users': 10000, 'min_approved_updates': 1,
              'dry_run': False})
         assert get_reviewing_cache(self.addon.pk) is None
+        assert approve_mock.call_count == 1
+        assert approve_mock.call_args == (
+            (self.version, ), {})
         self._check_stats({'total': 1, 'auto_approved': 1})
 
+    @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
-    def test_failed_verdict(self, create_summary_for_version_mock):
+    def test_failed_verdict(
+            self, create_summary_for_version_mock, approve_mock):
         fake_verdict_info = {
             'uses_custom_csp': True,
             'uses_native_messaging': True,
@@ -242,6 +294,7 @@ class TestAutoApproveCommand(TestCase):
             AutoApprovalSummary(verdict=amo.NOT_AUTO_APPROVED),
             fake_verdict_info)
         call_command('auto_approve')
+        assert approve_mock.call_count == 0
         assert create_summary_for_version_mock.call_args == (
             (self.version, ),
             {'max_average_daily_users': 10000, 'min_approved_updates': 1,
