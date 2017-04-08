@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-03 06:21+0000\n"
+"PO-Revision-Date: 2017-04-08 09:55+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -5687,10 +5687,12 @@ msgstr "Что нового"
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
+"Переводите свои устаревшие дополнения на WebExtensions? Получите более персональную помощь в рабочее время, или отправьте письмо по электронной почте <a href=\"mailto:webextensions-"
+"support@mozilla.org\">webextensions-support@mozilla.org</a>."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "See Schedule"
-msgstr ""
+msgstr "Смотрите расписание"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "View All Submissions"
