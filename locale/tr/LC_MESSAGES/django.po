@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-03-03 16:07+0000\n"
-"Last-Translator: Halil ibrahim Erdemir <halilibrahimerdemir@gmail.com>\n"
+"PO-Revision-Date: 2017-04-09 16:54+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -3306,7 +3306,7 @@ msgstr "Güncellenmiş Dil Paketi İncelemesi"
 
 #: src/olympia/constants/base.py
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Gecikmiş incelemeler için bonus"
 
 #: src/olympia/constants/base.py
 msgid "Days Before Bonus Points Applied"
@@ -4167,7 +4167,7 @@ msgstr "{addon} eklentisinden {0} sürümü silindi."
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Sürüm %s yeniden etkinleştirildi."
 
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
@@ -4545,7 +4545,7 @@ msgstr "Hiçbiri"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Yazarları ve lisansı yönet"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Authors"
@@ -5489,7 +5489,7 @@ msgstr "Profilinizin güncel olduğundan emin olun."
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 #, python-format
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\"><strong>Kullanıcı profilinizi güncelleyin.</strong></a>"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
@@ -6840,7 +6840,7 @@ msgstr "Başvurularımı Yönet"
 
 #: src/olympia/editors/tasks.py
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Temanızı gönderdiğiniz için teşekkürler"
 
 #: src/olympia/editors/tasks.py
 msgid "A problem with your Theme submission"
@@ -7022,7 +7022,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
-msgstr ""
+msgstr "Günlük detayları"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 #, fuzzy
@@ -7073,7 +7073,7 @@ msgstr[0] "<b>{0}</b> eklenti"
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "%%{0}"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 #, fuzzy
@@ -7919,7 +7919,7 @@ msgstr "Xmarks bir numaralı yer imi eklentisidir."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Web sayfası ve metin çevirmeni, sözlük ve daha fazlası!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Love is in the Air"
@@ -9597,7 +9597,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "Bir eklentiyi nasıl yükleyebilirim, yönetebilirim veya silebilirim?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -11066,7 +11066,7 @@ msgstr "veya <a id=\"change-owner-cancel\" href=\"#\">Vazgeç</a>"
 #: src/olympia/translations/templates/translations/trans-menu.html
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Existing Locales"
@@ -11133,7 +11133,7 @@ msgstr "Tüm diller"
 
 #: src/olympia/users/forms.py
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
+msgstr "Bu URL geçersiz biçimde. Geçerli URL'ler http://example.com/my_page şeklinde görünür."
 
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
