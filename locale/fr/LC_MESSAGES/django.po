@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-09 10:56+0000\n"
+"PO-Revision-Date: 2017-04-09 11:28+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3593,7 +3593,7 @@ msgstr "Messagerie instantanée"
 
 #: src/olympia/constants/categories.py
 msgid "Message Composition"
-msgstr "Rédaction de message"
+msgstr "Rédaction de messages"
 
 #: src/olympia/constants/categories.py
 msgid "Contacts"
@@ -5415,7 +5415,7 @@ msgstr "Page des révisions listées"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "Page des révisions non listées"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -5590,7 +5590,7 @@ msgstr "Passer des modules en revue"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "Les  vérificateurs volontaires nous aident à garder les extensions sûres et dignes de confiance. Ils profitent aussi de récompenses !"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
@@ -5653,7 +5653,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "See Schedule"
-msgstr ""
+msgstr "Voir l'agenda"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "View All Submissions"
