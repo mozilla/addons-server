@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-09 10:48+0000\n"
+"PO-Revision-Date: 2017-04-09 10:56+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You are already logged in."
-msgstr "Vous êtes déjà connecté."
+msgstr "Vous êtes déjà connecté(e)."
 
 #: src/olympia/accounts/views.py
 msgid "Your login attempt could not be parsed. Please try again."
@@ -372,7 +372,7 @@ msgstr "Information pour le module {0}"
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Status"
-msgstr "Statut"
+msgstr "État"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html
 #: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
@@ -2791,7 +2791,7 @@ msgstr "{addon} activé."
 #. L10n: {0} is the status
 #: src/olympia/constants/activity.py
 msgid "{addon} status changed to {0}."
-msgstr "{addon} statut changé en {0}."
+msgstr "État de {addon} changé en {0}."
 
 #: src/olympia/constants/activity.py
 msgid "{version} added to {addon}."
@@ -4017,7 +4017,7 @@ msgstr "Mises à jour du module"
 
 #: src/olympia/devhub/views.py
 msgid "Add-on Status"
-msgstr "Statut du module"
+msgstr "État du module"
 
 #: src/olympia/devhub/views.py
 msgid "User Collections"
@@ -4248,7 +4248,7 @@ msgstr "Commencer à créer des modules"
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Status:"
-msgstr "Statut :"
+msgstr "État :"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
@@ -4967,7 +4967,7 @@ msgstr "Gérer les paiements"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Status & Versions"
-msgstr "Gérer les statuts et versions"
+msgstr "Gérer l'états et les versions"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "View Add-on Listing"
@@ -5550,7 +5550,7 @@ msgstr "Signaler un problème"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Site Status"
-msgstr "Statut du site"
+msgstr "État du site"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Compatibility Checker"
@@ -6144,7 +6144,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Approval Status"
-msgstr "Statut d’approbation"
+msgstr "État d’approbation"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Notes for Reviewers"
@@ -6178,7 +6178,7 @@ msgstr "Créé le %(created)s et modifié en %(status)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Status & Versions"
-msgstr "Statut et versions"
+msgstr "État et versions"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
@@ -6288,8 +6288,8 @@ msgstr "Supprimer la version {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Vous êtes sur le point de supprimer la version actuelle de votre module. Cela peut modifier le statut de votre module et la visibilité de celui-ci peut décroître si cette version est la seule qui "
-"soit publique pour ce module."
+"Vous êtes sur le point de supprimer la version actuelle de votre module. Cela peut modifier l'état de votre module et la visibilité de celui-ci peut décroître si cette version est la seule qui soit "
+"publique pour ce module."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Deleting this version will permanently delete:"
@@ -6508,7 +6508,7 @@ msgstr "Rejeté ou non validé"
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
 #, python-format
 msgid "[status:%s]"
-msgstr "[statut :%s]"
+msgstr "[état :%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "New Add-on ({0})"
@@ -10250,7 +10250,7 @@ msgstr "La clé « upload » est absente du fichier de données multipart."
 #: src/olympia/signing/views.py
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr "Vous ne pouvez pas ajouter de version à un module dont le statut est : %s."
+msgstr "Vous ne pouvez pas ajouter de version à un module dont l'état est : %s."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
@@ -10306,7 +10306,7 @@ msgstr "Par plateforme"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Add-on Status"
-msgstr "Par statut du module"
+msgstr "Par état du module"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Subscribers"
@@ -10593,7 +10593,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
-msgstr "Statut du module par Date"
+msgstr "État du module par Date"
 
 #: src/olympia/stats/templates/stats/reports/subscribers.html
 msgid "Subscribers by Date"
