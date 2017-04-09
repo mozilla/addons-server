@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-09 12:31+0000\n"
+"PO-Revision-Date: 2017-04-09 12:49+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -435,7 +435,7 @@ msgstr "EULA"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "More about this add-on"
-msgstr "Ugar ɣef uzegrir agi"
+msgstr "Ugar γef uzegrir-agi"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Image Gallery"
@@ -453,7 +453,7 @@ msgstr "Abadu n tneflit"
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
-msgstr "Abad n tneflit ak-yeǧǧ ad tegeḍ asekyed n lqem armitan n uzegrir-agi send ad yettuzuzer i yak yiwen. Ticki lqem n tneflit yebded, tzemreḍ ad tkemleḍ awway n ileqman n ubadu-agi."
+msgstr "Abad n tneflit ad k-yeǧǧ ad tegeḍ asekyed n lqem armitan n uzegrir-agi send ad yettuzuzer i yak yiwen. Ticki lqem n tneflit yebded, tzemreḍ ad tkemleḍ awway n ileqman n ubadu-agi."
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Install development version"
@@ -464,8 +464,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>Ɣur-k:</strong> Ileqman n tneflit n uzegrir-agi ur ttwasneden ra sɣur Mozilla. Ticki lqem n tneflit yebded, Tzemreḍ ad d-remseḍ ileqman n tneflit seg uneflay-agi. Akken ad tesḥebseḍ, sebded "
-"lqem amezwer n useɣwen daw-a."
+"<strong>Γur-k:</strong> Ileqman n tneflit n uzegrir-agi ur ttwasneden ra sγur Mozilla. Ticki lqem n tneflit yebded, Tzemreḍ ad d-remseḍ ileqman n tneflit seg uneflay-agi. Akken ad tesḥebseḍ, sebded "
+"lqem amezwer n useγwen daw-a."
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -493,7 +493,7 @@ msgstr "Azegrir %(addon_name)s yesra ad tqebleḍ agatu n uselkin i useqdac aneg
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/addons/templates/addons/privacy.html
 msgid "Back to {0}…"
-msgstr "Uɣal ɣer {0}…"
+msgstr "Uγal γer {0}…"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py
 msgid "Add-ons for {0}"
@@ -501,11 +501,11 @@ msgstr "Izegrar i {0}"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Extensions"
-msgstr "Isiɣzaf s itran"
+msgstr "Isiγzaf s itran"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Popular Extensions"
-msgstr "Isiɣzaf yettwasnen"
+msgstr "Isiγzaf yettwasnen"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py
 msgid "Most Popular"
@@ -521,7 +521,7 @@ msgstr "Wali akk »"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Up &amp; Coming Extensions"
-msgstr "Isiɣzaf yettnernin"
+msgstr "Isiγzaf yettnernin"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Featured Themes"
@@ -589,13 +589,13 @@ msgstr "Afru yemmed"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Return to the addon."
-msgstr "Uɣal ɣer uzegrir."
+msgstr "Uγal γer uzegrir."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
 #: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
-msgstr "sɣur"
+msgstr "sγur"
 
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/persona_detail.html
@@ -609,11 +609,11 @@ msgstr "Walli akk {0} isental"
 
 #: src/olympia/addons/templates/addons/persona_detail.html
 msgid "More by this Artist"
-msgstr "Ugar ɣef unaẓur agi"
+msgstr "Ugar γef unaẓur-agi"
 
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all Themes by this Artist"
-msgstr "Wali akk isental n unaẓur agi"
+msgstr "Wali akk isental n unaẓur-agi"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html
 #: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -678,7 +678,7 @@ msgstr "%%Y-%%m-%%d"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "by {0} on {1}"
-msgstr "sɣuṛ {0} di {1}"
+msgstr "sγuṛ {0} di {1}"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/helpers.py src/olympia/reviews/templates/reviews/impala/reviews_link.html
 #: src/olympia/reviews/templates/reviews/review_list.html src/olympia/reviews/templates/reviews/reviews_link.html
@@ -699,11 +699,11 @@ msgstr "Akken ad yebded uzegrir agi d wagimen nniḍen, <b>awi-d Firefox</b>, im
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
-msgstr "Issin ugar ɣef Firefox"
+msgstr "Issin ugar γef Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "neɣ <b><a class=\"button installer\" href=\"{url}\">sider akken yebɣu yella</a></b>"
+msgstr "neγ <b><a class=\"button installer\" href=\"{url}\">sider akken yebɣu yella</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
@@ -903,11 +903,11 @@ msgstr "Tignitin i {0}"
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/users/templates/users/helpers/addon_users_list.html
 #, python-format
 msgid "by %(users)s"
-msgstr "sɣur %(users)s"
+msgstr "sγur %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
 msgid "[Warning]"
-msgstr "[Ɣur-k]"
+msgstr "[Γur-k]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Permissions"
@@ -915,7 +915,7 @@ msgstr "Tisirag"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
-msgstr "Azegrir agi yettwacreḍ d armitan sɣuṛ ineflayen ines"
+msgstr "Azegrir-agi yettwacreḍ d armitan sɣuṛ ineflayen ines"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
@@ -928,7 +928,7 @@ msgstr "<b>%(amt)s</b> yettusumer"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Enjoy this add-on?"
-msgstr "Tḥemleḍ azegrir agi?"
+msgstr "Tḥemleḍ azegrir-agi?"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -1047,7 +1047,7 @@ msgstr "Turagt tudmawant"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
-msgstr "Ɣef uzegrir agi"
+msgstr "Γef uzegrir agi"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Developer’s Comments"
@@ -1122,7 +1122,7 @@ msgstr "D acu d-iteddun di {0}"
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] "Ɣef uneflay"
+msgstr[0] "Γef uneflay"
 msgstr[1] "ɣef ineflayen"
 
 #: src/olympia/addons/templates/addons/impala/developers.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html src/olympia/users/templates/users/edit.html
@@ -1261,7 +1261,7 @@ msgstr "Wali lqem n tneflit"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Caution"
-msgstr "Ɣur-k"
+msgstr "Γur-k"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Visit the Support Site"
@@ -1525,13 +1525,13 @@ msgstr "Ulac igmad yettwafen"
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/mobile/paginator.html src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Prev"
-msgstr "Ɣer deffir"
+msgstr "Γer deffir"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/amo/templates/amo/mobile/paginator.html
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
 msgid "Next"
-msgstr "Ɣer zdat"
+msgstr "Γer zdat"
 
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/editors/templates/editors/includes/paginator_history.html
 #, python-format
@@ -1622,7 +1622,7 @@ msgstr "Uɣal ɣer usebter amezwaru"
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
 msgid "Previous"
-msgstr "Ɣer deffir"
+msgstr "Γer deffir"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to last page"
@@ -1727,7 +1727,7 @@ msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
 msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr "Ɣas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel <a href=\"%(url)s\">dagi</a>."
+msgstr "Γas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel <a href=\"%(url)s\">dagi</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py
@@ -1932,7 +1932,7 @@ msgstr[1] "<span>%(num)s</span> ineḍfaṛen"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "About this Collection"
-msgstr "Ɣef tagrumma-agi"
+msgstr "Γef tagrumma-agi"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Add-ons synced to my Mobile Firefox"
@@ -3014,7 +3014,7 @@ msgstr "Tiririt n umcegger"
 
 #: src/olympia/constants/activity.py
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Awennit ɣef {addon} {version}."
+msgstr "Awennit γef {addon} {version}."
 
 #: src/olympia/constants/activity.py
 msgid "Approval notes changed"
