@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-09 12:49+0000\n"
+"PO-Revision-Date: 2017-04-09 13:04+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3373,7 +3373,7 @@ msgstr "Taneflit Web"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
-msgstr "I ɣeṛsiwen"
+msgstr "Iγeṛsiwen"
 
 #: src/olympia/constants/categories.py
 msgid "Compact"
@@ -3709,7 +3709,7 @@ msgstr "Android"
 
 #: src/olympia/core/apps.py
 msgid "Core"
-msgstr "Iɣes"
+msgstr "Iγes"
 
 #: src/olympia/devhub/feeds.py
 #, python-format
@@ -3914,7 +3914,7 @@ msgstr[1] "{0} tuccḍiwin"
 #: src/olympia/devhub/helpers.py
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} alɣu"
+msgstr[0] "{0} alγu"
 msgstr[1] "{0} ilɣa"
 
 #: src/olympia/devhub/tasks.py
@@ -4084,7 +4084,7 @@ msgstr "Aceggir yettwasuter."
 
 #: src/olympia/devhub/views.py
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Ilaq ugar n talγut akken ad tkemleḍ."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -4338,7 +4338,7 @@ msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> sɣuṛ %
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Refine Activity"
-msgstr ""
+msgstr "Armud aleqqay"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Activity"
@@ -4428,7 +4428,7 @@ msgstr "Imeskaren"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid "About author roles"
-msgstr "Ɣef temlilin"
+msgstr "Γef temlilin"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid ""
@@ -4465,12 +4465,12 @@ msgstr "Rnu amaɣnu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information"
-msgstr "Talɣut tazadurt"
+msgstr "Talγut tazadurt"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information for {0}"
-msgstr "Talɣut tazadurt i {0}"
+msgstr "Talγut tazadurt i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Add-on URL"
@@ -4541,7 +4541,7 @@ msgstr[1] "Ticraḍ yettwaḥerren:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
-msgstr "Talqayt ɣef uzegrir"
+msgstr "Talqayt γef uzegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details for {0}"
@@ -4568,7 +4568,7 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"MA yella ɣur-k asebter nniḍen i uzegrir inek, sekcem tansa yines. Ma yella asmel inek yeb yettusuqel ar deqs n tutlayin, tisuqilin yemgaraden n wurti-agi zemrent ad ttwarnunt. Urti-agi "
+"MA yella γur-k asebter nniḍen i uzegrir inek, sekcem tansa yines. Ma yella asmel inek yeb yettusuqel ar deqs n tutlayin, tisuqilin yemgaraden n wurti-agi zemrent ad ttwarnunt. Urti-agi "
 "yettwaseqdackani yizegrar yettwasnen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html
@@ -4577,12 +4577,12 @@ msgstr "Tugniwin"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information"
-msgstr "Talɣut n tallalt"
+msgstr "Talγut n tallalt"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information for {0}"
-msgstr "Talɣut n tallalt i {0}"
+msgstr "Talγut n tallalt i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
@@ -4707,7 +4707,7 @@ msgstr "Sekcem isem n uzegrir"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on Media for {0}"
-msgstr "Allal n teɣwal n uzegrir i {0}"
+msgstr "Allal n teγwal n uzegrir i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Add-on icon"
@@ -4777,11 +4777,11 @@ msgstr "Ikayaden imuta"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Security Tests"
-msgstr "Ikayaden n tɣellist"
+msgstr "Ikayaden n tγellist"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Extension Tests"
-msgstr "Ikayaden n usiɣzef"
+msgstr "Ikayaden n usiγzef"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Localization Tests"
@@ -4857,7 +4857,7 @@ msgstr "Kkes"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Edit information about this add-on."
-msgstr "Ẓreg talɣut ɣef uzegrir-agi."
+msgstr "Ẓreg talγut γef uzegrir-agi."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5160,7 +5160,7 @@ msgstr "Amtawa n uzuzer n uzegrir n Firefox"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "API Credentials"
-msgstr "Talɣut n usesteb i API"
+msgstr "Talγut n usesteb i API"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
@@ -5408,7 +5408,7 @@ msgstr "Ɣeṛ ugar deg ublug nneɣ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Resources"
-msgstr "Tiɣbula"
+msgstr "Tiγbula"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "WebExtensions"
@@ -5420,7 +5420,7 @@ msgstr "Tamezdagnut"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "About"
-msgstr "Ɣef"
+msgstr "Γef"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/footer.html
 msgid "Forum"
@@ -5432,7 +5432,7 @@ msgstr "Ablug"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Contact Us"
-msgstr "Nermes-aɣ-d"
+msgstr "Nermes-aγ-d"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Review Policies"
@@ -5472,7 +5472,7 @@ msgstr "Tageffalt \"awi-d azegrir\""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
-msgstr ""
+msgstr "Usḍif"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
@@ -5480,7 +5480,7 @@ msgstr "Mmel yir aseqdec n tecreṭ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Legal Notices"
-msgstr "Alɣu usḍif"
+msgstr "Alγu usḍif"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Review Add-ons"
@@ -5549,7 +5549,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "See Schedule"
-msgstr ""
+msgstr "Wali ttiεadat"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "View All Submissions"
@@ -5577,7 +5577,7 @@ msgstr "Isemliyen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "Sign Out"
-msgstr "Ffeɣ"
+msgstr "Ffeγ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 msgid "User Photo"
@@ -5616,11 +5616,11 @@ msgstr "Firefox isefrak isnasen API WebExtension, tugett deg-sen mṣadan akked 
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
-msgstr "Suffeɣ-d azegrir inek"
+msgstr "Suffeγ-d azegrir inek"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr "Ɣur-k yakan azegrir iheggan? Azen asiɣzef-inek neɣ asentel-inek ara d-yettwabedren deg addons.mozilla.org neɣ kcem sakin zuzer asiɣzef-inek iman-ik."
+msgstr "Γur-k yakan azegrir iheggan? Azen asiɣzef-inek neγ asentel-inek ara d-yettwabedren deg addons.mozilla.org neγ kcem sakin zuzer asiγzef-inek iman-ik."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign In"
@@ -6515,7 +6515,7 @@ msgstr "Igber awennit n imcegger"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
-msgstr "Iɣbula d-ittunefken"
+msgstr "Iγbula d-ittunefken"
 
 #: src/olympia/editors/models.py
 msgid "WebExtension"
