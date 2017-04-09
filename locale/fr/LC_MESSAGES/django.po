@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-09 09:23+0000\n"
-"Last-Translator: alizee.aubertin <alizee.aubertin@gmail.com>\n"
+"PO-Revision-Date: 2017-04-09 10:48+0000\n"
+"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +27,8 @@ msgid "You are already logged in."
 msgstr "Vous êtes déjà connecté."
 
 #: src/olympia/accounts/views.py
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Votre tentative de connexion n’a pas pu être analysée. Veuillez recommencer."
+msgstr "Votre tentative de connexion n’a pas pu être analysée. Veuillez réessayer."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
@@ -3902,9 +3901,8 @@ msgid "Version doesn't match"
 msgstr "Version ne correspondant pas"
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "Version {version} was uploaded before and deleted."
-msgstr "La version %s existe déjà ou a déjà été envoyée auparavant."
+msgstr "La version {version} a déjà été envoyée et supprimée."
 
 #: src/olympia/devhub/forms.py
 msgid "Version {version} already exists."
@@ -5412,9 +5410,8 @@ msgid "View All"
 msgstr "Voir toutes les versions"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Dernière revue"
+msgstr "Page des révisions listées"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/editors/templates/editors/review.html
 msgid "Unlisted Review Page"
@@ -6240,15 +6237,15 @@ msgid "Listing visibility"
 msgstr "Visibilité du module"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "Visible sur {0} et inclus dans les résultats de recherche et les pages listant les modules"
+msgstr "{label_open}Visible :{label_close} visible pour tous les utilisateurs du site {site_url} et inclus dans les résultats de recherche et les pages de détails."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "Ne sera pas inclus dans les résultats de recherche, et sa page de détails indiquera que vous l’avez désactivé. La soumission de nouvelles versions ne sera pas acceptée dans cet état."
+msgstr ""
+"{label_open}Invisible :{label_close} ne figurera pas dans les résultats de recherche, et sa page de détails indiquera que vous l’avez désactivé(e). La soumission de nouvelles versions ne sera pas "
+"acceptée dans cet état."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -7396,9 +7393,9 @@ msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max
 msgstr "Impossible de trouver la version min/max. Il se peut que « strict_min_version » ou « strict_max_version » contienne une version non prise en charge."
 
 #: src/olympia/files/utils.py
-#, fuzzy, python-format
+#, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr "Impossible de lire le fichier envoyé."
+msgstr "Impossible d’analyser le fichier envoyé, élément <%s> manquant ou vide"
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
