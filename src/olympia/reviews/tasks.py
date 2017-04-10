@@ -48,10 +48,11 @@ def addon_review_aggregates(addons, **kw):
     # [{'rating': 2.0, 'addon': 7L, 'count': 5},
     #  {'rating': 3.75, 'addon': 6L, 'count': 8}, ...]
     qs = (Review.without_replies.all().no_cache()
+          .filter(addon__in=addons, is_latest=True)
           .values('addon')  # Group by addon id.
           .annotate(rating=Avg('rating'), count=Count('addon'))  # Aggregates.
           .order_by())  # Reset order by so that `created` is not included.
-    stats = dict((x['addon'], (x['rating'], x['count'])) for x in qs)
+    stats = {x['addon']: (x['rating'], x['count']) for x in qs}
     for addon in addon_objs:
         rating, reviews = stats.get(addon.id, [0, 0])
         addon.update(total_reviews=reviews, average_rating=rating)
