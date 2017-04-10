@@ -44,6 +44,7 @@ class AddonIndexer(BaseSearchIndexer):
                         'hash': {'type': 'string', 'index': 'no'},
                         'filename': {
                             'type': 'string', 'index': 'no'},
+                        'is_webextension': {'type': 'boolean'},
                         'platform': {
                             'type': 'byte', 'index': 'no'},
                         'size': {'type': 'long', 'index': 'no'},
@@ -156,6 +157,7 @@ class AddonIndexer(BaseSearchIndexer):
                 'created': file_.created,
                 'filename': file_.filename,
                 'hash': file_.hash,
+                'is_webextension': file_.is_webextension,
                 'platform': file_.platform,
                 'size': file_.size,
                 'status': file_.status,
