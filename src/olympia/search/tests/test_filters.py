@@ -326,6 +326,16 @@ class TestSearchParameterFilter(FilterTestsBase):
                 data={'category': 666, 'app': 'firefox', 'type': 'extension'})
         assert context.exception.detail == ['Invalid "category" parameter.']
 
+    def test_search_by_tag(self):
+        qs = self._filter(data={'tag': 'foo'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'tags': 'foo'}} in must
+
+        qs = self._filter(data={'tag': 'foo,bar'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'tags': 'foo'}} in must
+        assert {'term': {'tags': 'bar'}} in must
+
 
 class TestInternalSearchParameterFilter(TestSearchParameterFilter):
     filter_classes = [InternalSearchParameterFilter]

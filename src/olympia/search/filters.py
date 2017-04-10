@@ -161,6 +161,20 @@ class AddonCategoryFilterParam(AddonFilterParam):
         return self.get_value_from_object_from_reverse_dict()
 
 
+class AddonTagFilterParam(AddonFilterParam):
+    # query_param is needed for SearchParameterFilter below, so we need it
+    # even with the custom get_value() implementation.
+    query_param = 'tag'
+
+    def get_value(self):
+        return self.request.GET.get(self.query_param, '').split(',')
+
+    def get_es_filter(self):
+        # Just using 'terms' would not work, as it would return any tag match
+        # in the list, but we want to exactly match all of them.
+        return [F('term', tags=tag) for tag in self.get_value()]
+
+
 class SearchQueryFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that performs an ES query according
@@ -261,13 +275,13 @@ class SearchQueryFilter(BaseFilterBackend):
 
 class SearchParameterFilter(BaseFilterBackend):
     """
-    A django-rest-framework filter backend that filters only items in an ES
-    query that match a specific set of fields: app, appversion, platform and
-    type.
+    A django-rest-framework filter backend for ES queries that look for items
+    matching a specific set of fields in request.GET: app, appversion,
+    platform, tag and type.
     """
     available_filters = [AddonAppFilterParam, AddonAppVersionFilterParam,
                          AddonPlatformFilterParam, AddonTypeFilterParam,
-                         AddonCategoryFilterParam]
+                         AddonCategoryFilterParam, AddonTagFilterParam]
 
     def filter_queryset(self, request, qs, view):
         must = []
