@@ -36,8 +36,8 @@ class FileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = File
-        fields = ('id', 'created', 'hash', 'platform', 'size', 'status', 'url',
-                  'permissions')
+        fields = ('id', 'created', 'hash', 'is_webextension', 'platform',
+                  'size', 'status', 'url', 'permissions')
 
     def get_url(self, obj):
         # File.get_url_path() is a little different, it's already absolute, but
@@ -316,6 +316,7 @@ class ESBaseAddonSerializer(BaseESSerializer):
         file_ = File(
             id=data['id'], created=self.handle_date(data['created']),
             hash=data['hash'], filename=data['filename'],
+            is_webextension=data.get('is_webextension'),
             platform=data['platform'], size=data['size'],
             status=data['status'], version=obj)
         file_.webext_permissions_list = data.get('webext_permissions_list', [])

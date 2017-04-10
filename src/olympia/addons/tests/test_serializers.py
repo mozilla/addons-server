@@ -49,6 +49,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['created'] == (
             file_.created.replace(microsecond=0).isoformat() + 'Z')
         assert result_file['hash'] == file_.hash
+        assert result_file['is_webextension'] == file_.is_webextension
         assert result_file['platform'] == (
             amo.PLATFORM_CHOICES_API[file_.platform])
         assert result_file['size'] == file_.size
@@ -74,6 +75,7 @@ class AddonSerializerOutputTestMixin(object):
             description=u'My Addôn description',
             file_kw={
                 'hash': 'fakehash',
+                'is_webextension': True,
                 'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
             },
@@ -504,6 +506,7 @@ class TestVersionSerializerOutput(TestCase):
         addon = addon_factory(
             file_kw={
                 'hash': 'fakehash',
+                'is_webextension': True,
                 'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
             },
@@ -541,6 +544,8 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][0]['created'] == (
             first_file.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['files'][0]['hash'] == first_file.hash
+        assert result['files'][0]['is_webextension'] == (
+            first_file.is_webextension)
         assert result['files'][0]['platform'] == 'windows'
         assert result['files'][0]['size'] == first_file.size
         assert result['files'][0]['status'] == 'public'
@@ -550,6 +555,8 @@ class TestVersionSerializerOutput(TestCase):
         assert result['files'][1]['created'] == (
             second_file.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['files'][1]['hash'] == second_file.hash
+        assert result['files'][1]['is_webextension'] == (
+            second_file.is_webextension)
         assert result['files'][1]['platform'] == 'mac'
         assert result['files'][1]['size'] == second_file.size
         assert result['files'][1]['status'] == 'public'
