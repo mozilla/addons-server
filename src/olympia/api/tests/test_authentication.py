@@ -223,16 +223,23 @@ class TestWebTokenAuthentication(TestCase):
         request = self.factory.post(
             '/api/v3/whatever/',
             HTTP_AUTHORIZATION=WebTokenAuthentication.auth_header_prefix)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self.auth.authenticate(request)
+        assert exp.exception.detail['code'] == 'ERROR_INVALID_HEADER'
+        assert exp.exception.detail['detail'] == (
+            'Invalid Authorization header. No credentials provided.')
 
     def test_wrong_header_too_many_spaces(self):
         request = self.factory.post(
             '/api/v3/whatever/',
             HTTP_AUTHORIZATION='{} foo bar'.format(
                 WebTokenAuthentication.auth_header_prefix))
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self.auth.authenticate(request)
+        assert exp.exception.detail['code'] == 'ERROR_INVALID_HEADER'
+        assert exp.exception.detail['detail'] == (
+            'Invalid Authorization header. '
+            'Credentials string should not contain spaces.')
 
     def test_no_token(self):
         request = self.factory.post('/api/v3/whatever/')
@@ -243,8 +250,10 @@ class TestWebTokenAuthentication(TestCase):
             seconds=settings.SESSION_COOKIE_AGE + 1)
         with freeze_time(old_date):
             token = self.client.generate_api_token(self.user)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['detail'] == 'Signature has expired.'
 
     def test_still_valid_token(self):
         not_so_old_date = datetime.now() - timedelta(
@@ -255,8 +264,10 @@ class TestWebTokenAuthentication(TestCase):
 
     def test_bad_token(self):
         token = 'garbage'
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_DECODING_SIGNATURE'
+        assert exp.exception.detail['detail'] == 'Error decoding signature.'
 
     def test_user_id_is_none(self):
         token = self.client.generate_api_token(self.user, user_id=None)

@@ -62,6 +62,26 @@ Example:
              "non_field_errors": ["Error not linked to a specific field."]
          }
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unauthorized and Permission Denied
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When returning ``HTTP 401 Unauthorized`` and ``HTTP 403 Permission Denied``
+responses, the API will try to return some information about the error in the
+body of the response, as a JSON object. A ``detail`` property will contain a
+message explaining the error. In addition, in some cases, an optional ``code``
+property will be present and will contain a constant corresponding to
+specific problems to help clients address the situation programmatically. The
+constants are as follows:
+
+    ========================  =========================================================
+                       Value  Description
+    ========================  =========================================================
+        ERROR_INVALID_HEADER  The ``Authorization`` header is invalid.
+     ERROR_SIGNATURE_EXPIRED  The signature of the token indicates it has expired.
+    ERROR_DECODING_SIGNATURE  The token was impossible to decode and probably invalid.
+    ========================  =========================================================
+
 
 ~~~~~~~~~~
 Pagination
