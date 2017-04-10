@@ -716,6 +716,28 @@ class TestQueueBasics(QueueTest):
         # No exceptions:
         assert r.status_code == 200
 
+    @patch.multiple('olympia.editors.views',
+                    REVIEWS_PER_PAGE_MAX=1,
+                    REVIEWS_PER_PAGE=1)
+    def test_max_per_page(self):
+        self.generate_files()
+
+        r = self.client.get(self.url, {'per_page': '2'})
+        assert r.status_code == 200
+        doc = pq(r.content)
+        assert doc('.data-grid-top .num-results').text() == (
+            u'Results 1 \u2013 1 of 2')
+
+    @patch('olympia.editors.views.REVIEWS_PER_PAGE', new=1)
+    def test_reviews_per_page(self):
+        self.generate_files()
+
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        assert doc('.data-grid-top .num-results').text() == (
+            u'Results 1 \u2013 1 of 2')
+
     def test_grid_headers(self):
         r = self.client.get(self.url)
         assert r.status_code == 200
