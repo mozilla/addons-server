@@ -90,7 +90,3 @@ class APIKey(ModelBase):
                 '{} is too short; secrets must be longer than 32 bytes'
                 .format(byte_length))
         return os.urandom(byte_length).encode('hex')
-
-
-def generate():
-    return os.urandom(64).encode('hex')

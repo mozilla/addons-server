@@ -16,11 +16,8 @@ from defusedxml.common import EntitiesForbidden, NotSupportedError
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.addons.models import Addon
 from olympia.applications.models import AppVersion
 from olympia.files import utils
-from olympia.files.models import File
-from olympia.versions.models import Version
 from olympia.files.tests.test_helpers import get_file
 
 
@@ -83,53 +80,6 @@ def test_is_beta():
     assert utils.is_beta('1.2rc.123')
     assert utils.is_beta('1.2rc-1')
     assert utils.is_beta('1.2rc-123')
-
-
-class TestFindJetpacks(TestCase):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        super(TestFindJetpacks, self).setUp()
-        File.objects.update(jetpack_version='1.0')
-        self.file = File.objects.filter(version__addon=3615).get()
-
-    def test_success(self):
-        files = utils.find_jetpacks('1.0', '1.1')
-        assert files == [self.file]
-
-    def test_skip_autorepackage(self):
-        Addon.objects.update(auto_repackage=False)
-        assert utils.find_jetpacks('1.0', '1.1') == []
-
-    def test_minver(self):
-        files = utils.find_jetpacks('1.1', '1.2')
-        assert files == [self.file]
-        assert not files[0].needs_upgrade
-
-    def test_maxver(self):
-        files = utils.find_jetpacks('.1', '1.0')
-        assert files == [self.file]
-        assert not files[0].needs_upgrade
-
-    def test_unreviewed_files_plus_reviewed_file(self):
-        # We upgrade unreviewed files up to the latest reviewed file.
-        v = Version.objects.create(addon_id=3615)
-        new_file = File.objects.create(version=v, jetpack_version='1.0')
-        Version.objects.create(addon_id=3615)
-        new_file2 = File.objects.create(version=v, jetpack_version='1.0')
-        assert new_file.status == amo.STATUS_AWAITING_REVIEW
-        assert new_file2.status == amo.STATUS_AWAITING_REVIEW
-
-        files = utils.find_jetpacks('1.0', '1.1')
-        assert files == [self.file, new_file, new_file2]
-        assert all(f.needs_upgrade for f in files)
-
-        # Now self.file will not need an upgrade since we skip old versions.
-        new_file.update(status=amo.STATUS_PUBLIC)
-        files = utils.find_jetpacks('1.0', '1.1')
-        assert files == [self.file, new_file, new_file2]
-        assert not files[0].needs_upgrade
-        assert all(f.needs_upgrade for f in files[1:])
 
 
 class TestExtractor(TestCase):

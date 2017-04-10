@@ -11,8 +11,6 @@ log = olympia.core.logger.getLogger('z.es')
 
 DEFAULT_HOSTS = ['localhost:9200']
 DEFAULT_TIMEOUT = 5
-DEFAULT_INDEXES = ['default']
-DEFAULT_DUMP_CURL = None
 
 
 def get_es(hosts=None, timeout=None, **settings):

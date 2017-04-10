@@ -8,8 +8,6 @@ from olympia.lib.misc.urlconf_decorator import decorate
 
 from . import views
 
-PACKAGE_NAME = '(?P<package_name>[_\w]+)'
-
 
 # These will all start with /theme/<slug>/
 theme_detail_patterns = patterns(

@@ -1851,13 +1851,6 @@ class Preview(ModelBase):
         return d
 
     @property
-    def is_landscape(self):
-        size = self.image_size
-        if not size:
-            return False
-        return size[0] > size[1]
-
-    @property
     def thumbnail_url(self):
         template = (
             helpers.user_media_url('previews') +
