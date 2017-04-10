@@ -450,6 +450,10 @@ class Version(OnChangeMixin, ModelBase):
         return any(file_.requires_restart for file_ in self.all_files)
 
     @property
+    def is_webextension(self):
+        return any(file_.is_webextension for file_ in self.all_files)
+
+    @property
     def has_files(self):
         return bool(self.all_files)
 
