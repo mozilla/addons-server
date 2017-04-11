@@ -29,6 +29,7 @@ from olympia.editors.models import (
     ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
 from olympia.lib.crypto.packaged import sign_file
+from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -586,6 +587,10 @@ class ReviewBase(object):
         self.set_files(amo.STATUS_PUBLIC, self.files)
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_PUBLIC)
+
+        # If we've approved a webextension, add a tag identifying them as such.
+        if any(file_.is_webextension for file_ in self.files):
+            Tag(tag_text='firefox57').save_tag(self.addon)
 
         # Increment approvals counter.
         AddonApprovalsCounter.increment_for_addon(addon=self.addon)

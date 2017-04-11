@@ -20,6 +20,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.editors import helpers
 from olympia.editors.models import ReviewerScore
 from olympia.files.models import File
+from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -522,6 +523,9 @@ class TestReviewHelper(TestCase):
 
         self._check_score(amo.REVIEWED_ADDON_FULL)
 
+        # It wasn't a webextension, it should not receive the firefox57 tag.
+        assert self.addon.tags.all().count() == 0
+
     @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_public(self, sign_mock):
         sign_mock.reset()
@@ -564,6 +568,7 @@ class TestReviewHelper(TestCase):
         self.create_paths()
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
+        # Safeguards.
         assert isinstance(self.helper.handler, helpers.ReviewFiles)
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.file.status == amo.STATUS_AWAITING_REVIEW
@@ -594,6 +599,9 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
         self._check_score(amo.REVIEWED_ADDON_UPDATE)
+
+        # It wasn't a webextension, it should not receive the firefox57 tag.
+        assert self.addon.tags.all().count() == 0
 
     @patch('olympia.editors.helpers.sign_file')
     def test_public_addon_with_version_awaiting_review_to_sandbox(
@@ -712,6 +720,42 @@ class TestReviewHelper(TestCase):
         assert storage.exists(self.file.guarded_file_path)
         assert not storage.exists(self.file.file_path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
+
+    @patch('olympia.editors.helpers.sign_file', lambda *a, **kw: None)
+    def test_nomination_to_public_webextension(self):
+        self.file.update(is_webextension=True)
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_public()
+        assert (
+            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
+            set(['firefox57']))
+
+    @patch('olympia.editors.helpers.sign_file', lambda *a, **kw: None)
+    def test_public_to_public_already_had_webextension_tag(self):
+        self.file.update(is_webextension=True)
+        Tag(tag_text='firefox57').save_tag(self.addon)
+        assert (
+            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
+            set(['firefox57']))
+        self.addon.current_version.update(created=self.days_ago(1))
+        self.version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            version='3.0.42',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.file = self.version.files.all()[0]
+        self.setup_data(amo.STATUS_PUBLIC)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, helpers.ReviewFiles)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_AWAITING_REVIEW
+        assert self.addon.current_version.files.all()[0].status == (
+            amo.STATUS_PUBLIC)
+
+        self.helper.handler.process_public()
+        assert (
+            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
+            set(['firefox57']))
 
     def test_email_unicode_monster(self):
         self.addon.name = u'TaobaoShopping淘宝网导航按钮'
