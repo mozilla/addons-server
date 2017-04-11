@@ -17,7 +17,7 @@ class TestPages(TestCase):
                  'pages.shield_study_3', 'pages.shield_study_4',
                  'pages.shield_study_5', 'pages.shield_study_6',
                  'pages.shield_study_7', 'pages.shield_study_8',
-                 'pages.shield_study_9']
+                 'pages.shield_study_9', 'pages.shield_study_10']
         for page in pages:
             self._check(page, 200)
 
