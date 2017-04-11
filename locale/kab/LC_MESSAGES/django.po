@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-09 13:04+0000\n"
+"PO-Revision-Date: 2017-04-03 06:19+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -21,7 +21,6 @@ msgid "You are already logged in."
 msgstr "Teqqneḍ yakan."
 
 #: src/olympia/accounts/views.py
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Awraḍ inek akken ad teqqneḍ ur yettwaswaḍ ara. Ma ulac aɣilif ɛreḍ tikelt nniḍen."
 
