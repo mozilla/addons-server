@@ -8,7 +8,8 @@ from celery import chord, group
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
-    find_inconsistencies_between_es_and_db, remove_summaries)
+    add_firefox57_tag, find_inconsistencies_between_es_and_db,
+    remove_summaries)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import convert_purified, get_preview_sizes
 from olympia.lib.crypto.tasks import sign_addons
@@ -25,6 +26,10 @@ tasks = {
     'remove-summaries-from-personas': {
         'method': remove_summaries,
         'qs': [Q(type=amo.ADDON_PERSONA, summary__isnull=False)]},
+    'add_firefox57_tag_to_webextensions': {
+        'method': add_firefox57_tag,
+        'qs': [Q(status=amo.STATUS_PUBLIC,
+                 _current_version__files__is_webextension=True)]}
 }
 
 

@@ -243,3 +243,31 @@ class RemoveSummariesFromPersonasTestCase(TestCase):
         assert addon.summary is None
 
         assert Translation.objects.filter(id=old_summary_id).count() == 0
+
+
+class AddFirefox57TagTestCase(TestCase):
+    @mock.patch('olympia.addons.tasks.add_firefox57_tag.subtask')
+    def test_affects_only_public_webextensions(self, add_firefox57_tag_mock):
+        addon_factory()
+        addon_factory(file_kw={'is_webextension': True,
+                               'status': amo.STATUS_AWAITING_REVIEW},
+                      status=amo.STATUS_NOMINATED)
+        public_webextension = addon_factory(file_kw={'is_webextension': True})
+
+        call_command(
+            'process_addons', task='add_firefox57_tag_to_webextensions')
+
+        assert add_firefox57_tag_mock.call_count == 1
+        add_firefox57_tag_mock.assert_called_with(
+            args=[[public_webextension.pk]], kwargs={})
+
+    def test_task_works(self):
+        self.addon = addon_factory(file_kw={'is_webextension': True})
+        assert self.addon.tags.all().count() == 0
+
+        call_command(
+            'process_addons', task='add_firefox57_tag_to_webextensions')
+
+        assert (
+            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
+            set(['firefox57']))

@@ -21,6 +21,7 @@ from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
 from olympia.editors.models import RereviewQueueTheme
 from olympia.lib.es.utils import index_objects
+from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.versions.models import Version
 
@@ -427,3 +428,21 @@ def remove_summaries(ids, **kw):
         # get rid of all of them for a given addon+field combination, so it's
         # fine.
         translation.delete()
+
+
+@task
+@write
+def add_firefox57_tag(ids, **kw):
+    """Add firefox57 tag to addons with the specified ids."""
+    log.info(
+        'Adding firefox57 tag to addons %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+
+    addons = Addon.objects.filter(id__in=ids)
+    for addon in addons:
+        # This will create a couple extra queries to check for tag/addontag
+        # existence, and then trigger update_tag_stat tasks. But the
+        # alternative is adding activity log manually, making sure we don't
+        # add duplicate tags, manually updating the tag stats, so it's ok for
+        # a one-off task.
+        Tag(tag_text='firefox57').save_tag(addon)
