@@ -38,3 +38,19 @@ def test_process_email_different_messageid(_mock):
     process_email(message)
     assert _mock.call_count == 1
     assert ActivityLogEmails.objects.count() == 1
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.activity.tasks.add_email_to_activity_log_wrapper')
+def test_process_email_different_messageid_case(_mock):
+    # Test 'Message-Id' (different case)
+    message = {'CustomHeaders': [
+        {'Name': 'Message-Id', 'Value': '<its_ios>'}]}
+    process_email(message)
+    assert ActivityLogEmails.objects.filter(
+        messageid='<its_ios>').exists()
+    assert _mock.call_count == 1
+    # don't try to process the same message twice
+    process_email(message)
+    assert _mock.call_count == 1
+    assert ActivityLogEmails.objects.count() == 1
