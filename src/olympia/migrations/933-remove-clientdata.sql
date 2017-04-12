@@ -30,7 +30,7 @@ CREATE PROCEDURE drop_client_data_cols() BEGIN
         ALTER TABLE stats_contributions DROP FOREIGN KEY client_data_id_refs_id_c8ef1728;
     END IF;
 
-    IF EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE table_schema = (SELECT DATABASE()) AND table_name = 'reviews' AND constraint_name = 'stats_contribu_client_data_id_3a5cd4151b258907_fk_client_data_id') THEN
+    IF EXISTS (SELECT 1 FROM information_schema.table_constraints WHERE table_schema = (SELECT DATABASE()) AND table_name = 'stats_contributions' AND constraint_name = 'stats_contribu_client_data_id_3a5cd4151b258907_fk_client_data_id') THEN
         ALTER TABLE stats_contributions DROP FOREIGN KEY stats_contribu_client_data_id_3a5cd4151b258907_fk_client_data_id;
     END IF;
 
