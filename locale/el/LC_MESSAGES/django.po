@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 17:37+0000\n"
+"PO-Revision-Date: 2017-04-12 17:51+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -8073,151 +8073,151 @@ msgstr "Ντιρχάμ Μαρόκου"
 
 #: src/olympia/lib/constants.py
 msgid "Moldova Leu"
-msgstr ""
+msgstr "Λέου Μολδαβίας"
 
 #: src/olympia/lib/constants.py
 msgid "Madagascar Ariary"
-msgstr ""
+msgstr "Αριάρι Μαδαγασκάρης"
 
 #: src/olympia/lib/constants.py
 msgid "Macedonia Denar"
-msgstr ""
+msgstr "Δηνάριο ΠΓΔΜ"
 
 #: src/olympia/lib/constants.py
 msgid "Myanmar (Burma) Kyat"
-msgstr ""
+msgstr "Κυάτ Μιανμάρ (Μπούρμα)"
 
 #: src/olympia/lib/constants.py
 msgid "Mongolia Tughrik"
-msgstr ""
+msgstr "Τουγκρίκ Μογγολίας"
 
 #: src/olympia/lib/constants.py
 msgid "Macau Pataca"
-msgstr ""
+msgstr "Πατάκα Μακάο"
 
 #: src/olympia/lib/constants.py
 msgid "Mauritania Ouguiya"
-msgstr ""
+msgstr "Ουγκίγια Μαυριτανίας"
 
 #: src/olympia/lib/constants.py
 msgid "Mauritius Rupee"
-msgstr ""
+msgstr "Ρουπία Μαυρίκιου"
 
 #: src/olympia/lib/constants.py
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
+msgstr "Ρουφίγια Μαλδίβων (Μαλδίβες Νήσοι)"
 
 #: src/olympia/lib/constants.py
 msgid "Malawi Kwacha"
-msgstr ""
+msgstr "Κουάτσα Μαλάουι"
 
 #: src/olympia/lib/constants.py
 msgid "Mexico Peso"
-msgstr ""
+msgstr "Πέσο Μεξικού"
 
 #: src/olympia/lib/constants.py
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "Ρινγκίτ Μαλαισίας"
 
 #: src/olympia/lib/constants.py
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "Μετικάλ Μοζαμβίκης"
 
 #: src/olympia/lib/constants.py
 msgid "Namibia Dollar"
-msgstr ""
+msgstr "Δολάριο Ναμίμπιας"
 
 #: src/olympia/lib/constants.py
 msgid "Nigeria Naira"
-msgstr ""
+msgstr "Νάιρα Νιγηρίας"
 
 #: src/olympia/lib/constants.py
 msgid "Nicaragua Cordoba"
-msgstr ""
+msgstr "Κόρντομπα Νικαράγουας"
 
 #: src/olympia/lib/constants.py
 msgid "Norway Krone"
-msgstr ""
+msgstr "Κορόνα Νορβηγίας"
 
 #: src/olympia/lib/constants.py
 msgid "Nepal Rupee"
-msgstr ""
+msgstr "Ρουπία Νεπάλ"
 
 #: src/olympia/lib/constants.py
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "Δολάριο Νέας Ζηλανδίας"
 
 #: src/olympia/lib/constants.py
 msgid "Oman Rial"
-msgstr ""
+msgstr "Ριάλ Ομάν"
 
 #: src/olympia/lib/constants.py
 msgid "Panama Balboa"
-msgstr ""
+msgstr "Μπαλμπόα Παναμάς"
 
 #: src/olympia/lib/constants.py
 msgid "Peru Nuevo Sol"
-msgstr ""
+msgstr "Σολ Περού"
 
 #: src/olympia/lib/constants.py
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "Κίνα Παπούα Νέας Γουινέας"
 
 #: src/olympia/lib/constants.py
 msgid "Philippines Peso"
-msgstr ""
+msgstr "Πέσο Φιλιππίνων"
 
 #: src/olympia/lib/constants.py
 msgid "Pakistan Rupee"
-msgstr ""
+msgstr "Ρουπία Πακιστάν"
 
 #: src/olympia/lib/constants.py
 msgid "Poland Zloty"
-msgstr ""
+msgstr "Ζλότι Πολωνίας"
 
 #: src/olympia/lib/constants.py
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "Γκουαρανί Παραγουάης"
 
 #: src/olympia/lib/constants.py
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Ριγιάλ Κατάρ"
 
 #: src/olympia/lib/constants.py
 msgid "Romania New Leu"
-msgstr ""
+msgstr "Νέο Λέου Ρουμανίας"
 
 #: src/olympia/lib/constants.py
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "Δηνάριο Σερβίας"
 
 #: src/olympia/lib/constants.py
 msgid "Russia Ruble"
-msgstr ""
+msgstr "Ρούβλι Ρωσίας"
 
 #: src/olympia/lib/constants.py
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "Φράγκο Ρουάντα"
 
 #: src/olympia/lib/constants.py
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "Ριάλ Σαουδικής Αραβίας"
 
 #: src/olympia/lib/constants.py
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "Δολάριο Νήσων Σολομώντα"
 
 #: src/olympia/lib/constants.py
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "Ρουπία Σεϋχελλών"
 
 #: src/olympia/lib/constants.py
 msgid "Sudan Pound"
-msgstr ""
+msgstr "Λίρα Σουδάν"
 
 #: src/olympia/lib/constants.py
 msgid "Sweden Krona"
-msgstr ""
+msgstr "Κορόνα Σουηδίας"
 
 #: src/olympia/lib/constants.py
 msgid "Singapore Dollar"
