@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-03 05:29+0000\n"
+"POT-Creation-Date: 2017-04-12 15:17+0000\n"
 "PO-Revision-Date: 2017-03-02 08:45+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1022,6 +1022,14 @@ msgid "Icon of {0}"
 msgstr "Ikonë e {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
+msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid "Compatible with Firefox 57+"
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
@@ -1698,12 +1706,12 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr "Krye të Pavlefshme Autorizimi. Vargu i kredencialeve s’duhet të përmbajë hapësira."
 
 #: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr "Gabim në çkodimin e nënshkrimit."
-
-#: src/olympia/api/authentication.py
 msgid "Signature has expired."
 msgstr "Nënshkrimi ka skaduar."
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr "Gabim në çkodimin e nënshkrimit."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
@@ -6327,11 +6335,11 @@ msgstr "Jeni i sigurt se dëshironi të anulohet kërkesa juaj për shqyrtim?"
 
 #: src/olympia/discovery/data.py
 #, fuzzy
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgid "Manage massive audio, video, and image downloads with this lightweight tool."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6343,12 +6351,13 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Një bllokues i lehtë dhe i efektshëm reklamash. uBlock Origin përforcon mijëra filtra lënde pa ngrënë kujtesë kushedi."
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
-msgstr "Merrni lehtë video nga YouTube, Dailymotion, Facebook, dhe shumica e sajteve të tjerë video përmes këtij mjeti të thjeshtë shkarkimesh."
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6805,6 +6814,16 @@ msgstr "S’u gjetën ngjarje për këtë periudhë."
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
 msgstr "Hollësi regjistri"
+
+#: src/olympia/editors/templates/editors/eventlog_detail.html
+#, fuzzy
+msgid "Review Author"
+msgstr "Historik Shqyrtimesh"
+
+#: src/olympia/editors/templates/editors/eventlog_detail.html
+#, python-format
+msgid "<dd>%(review_author)s</dd>"
+msgstr ""
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Add-on Title"

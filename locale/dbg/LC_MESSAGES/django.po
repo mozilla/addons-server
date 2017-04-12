@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-03 05:29+0000\n"
+"POT-Creation-Date: 2017-04-12 15:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.3.4\n"
+"Generated-By: Babel 2.4.0\n"
 
 #: src/olympia/accounts/views.py
 msgid "You are already logged in."
@@ -1005,6 +1005,14 @@ msgid "Icon of {0}"
 msgstr "Īƈǿƞ ǿƒ {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
+msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
+msgstr "Ŧħīş ȧḓḓ-ǿƞ īş ƀŭīŀŧ ẇīŧħ ƞḗẇ ŧḗƈħƞǿŀǿɠẏ ŧħȧŧ īş ƈǿḿƥȧŧīƀŀḗ ẇīŧħ Ƒīřḗƒǿẋ 57 ȧƞḓ ƀḗẏǿƞḓ."
+
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid "Compatible with Firefox 57+"
+msgstr "Ƈǿḿƥȧŧīƀŀḗ ẇīŧħ Ƒīřḗƒǿẋ 57+"
+
+#: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
@@ -1674,12 +1682,12 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr "Īƞṽȧŀīḓ Ȧŭŧħǿřīzȧŧīǿƞ ħḗȧḓḗř. Ƈřḗḓḗƞŧīȧŀş şŧřīƞɠ şħǿŭŀḓ ƞǿŧ ƈǿƞŧȧīƞ şƥȧƈḗş."
 
 #: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr "Ḗřřǿř ḓḗƈǿḓīƞɠ şīɠƞȧŧŭřḗ."
-
-#: src/olympia/api/authentication.py
 msgid "Signature has expired."
 msgstr "Şīɠƞȧŧŭřḗ ħȧş ḗẋƥīřḗḓ."
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr "Ḗřřǿř ḓḗƈǿḓīƞɠ şīɠƞȧŧŭřḗ."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
@@ -6255,12 +6263,12 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ƈȧƞƈḗŀ ẏǿŭř řḗṽīḗẇ řḗɋŭḗşŧ?"
 
 #: src/olympia/discovery/data.py
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ŧȧķḗ şƈřḗḗƞşħǿŧş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
+msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ḓǿẇƞŀǿȧḓ ḿḗḓīȧ {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Ḿǿřḗ ŧħȧƞ ĵŭşŧ şƈřḗḗƞşħǿŧş, Ȧẇḗşǿḿḗ Şƈřḗḗƞşħǿŧ Ƥŀŭş ŀḗŧş ẏǿŭ ȧƞƞǿŧȧŧḗ īḿȧɠḗş ẇīŧħ ŧḗẋŧ ȧƞḓ ɠřȧƥħīƈş. Şŧǿřīƞɠ ȧƞḓ şħȧřīƞɠ ƒīŀḗş īş ȧ ƀřḗḗzḗ."
+msgid "Manage massive audio, video, and image downloads with this lightweight tool."
+msgstr "Ḿȧƞȧɠḗ ḿȧşşīṽḗ ȧŭḓīǿ, ṽīḓḗǿ, ȧƞḓ īḿȧɠḗ ḓǿẇƞŀǿȧḓş ẇīŧħ ŧħīş ŀīɠħŧẇḗīɠħŧ ŧǿǿŀ."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6271,12 +6279,12 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr "Ȧ ŀīɠħŧẇḗīɠħŧ ȧƞḓ ḗƒƒḗƈŧīṽḗ ȧḓ ƀŀǿƈķḗř. ŭƁŀǿƈķ Ǿřīɠīƞ ḗƞƒǿřƈḗş ŧħǿŭşȧƞḓş ǿƒ ƈǿƞŧḗƞŧ ƒīŀŧḗřş ẇīŧħǿŭŧ ƈħḗẇīƞɠ ŭƥ ȧ ƀŭƞƈħ ǿƒ ḿḗḿǿřẏ."
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ŧȧķḗ şƈřḗḗƞşħǿŧş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
-msgstr "Ḗȧşīŀẏ ɠřȧƀ ṽīḓḗǿş ƒřǿḿ ẎǿŭŦŭƀḗ, Ḓȧīŀẏḿǿŧīǿƞ, Ƒȧƈḗƀǿǿķ, ȧƞḓ ḿǿşŧ ǿŧħḗř ṽīḓḗǿ şīŧḗş ẇīŧħ ŧħīş şīḿƥŀḗ ḓǿẇƞŀǿȧḓ ŧǿǿŀ."
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr "Ḿǿřḗ ŧħȧƞ ĵŭşŧ şƈřḗḗƞşħǿŧş, Ȧẇḗşǿḿḗ Şƈřḗḗƞşħǿŧ Ƥŀŭş ŀḗŧş ẏǿŭ ȧƞƞǿŧȧŧḗ īḿȧɠḗş ẇīŧħ ŧḗẋŧ ȧƞḓ ɠřȧƥħīƈş. Şŧǿřīƞɠ ȧƞḓ şħȧřīƞɠ ƒīŀḗş īş ȧ ƀřḗḗzḗ."
 
 #: src/olympia/discovery/data.py
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6730,6 +6738,15 @@ msgstr "Ƞǿ ḗṽḗƞŧş ƒǿŭƞḓ ƒǿř ŧħīş ƥḗřīǿḓ."
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
 msgstr "Ŀǿɠ ḓḗŧȧīŀş"
+
+#: src/olympia/editors/templates/editors/eventlog_detail.html
+msgid "Review Author"
+msgstr "Řḗṽīḗẇ Ȧŭŧħǿř"
+
+#: src/olympia/editors/templates/editors/eventlog_detail.html
+#, python-format
+msgid "<dd>%(review_author)s</dd>"
+msgstr "<dd>%(review_author)s</dd>"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Add-on Title"

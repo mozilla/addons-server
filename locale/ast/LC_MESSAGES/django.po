@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-03 05:29+0000\n"
+"POT-Creation-Date: 2017-04-12 15:17+0000\n"
 "PO-Revision-Date: 2016-11-23 15:23+0000\n"
 "Last-Translator: malditoastur <malditoastur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1001,6 +1001,14 @@ msgid "Icon of {0}"
 msgstr "Iconu de {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
+msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid "Compatible with Firefox 57+"
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
@@ -1662,12 +1670,12 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr ""
 
 #: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr ""
-
-#: src/olympia/api/authentication.py
 msgid "Signature has expired."
 msgstr "Caducó la robla."
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr ""
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
@@ -6272,11 +6280,11 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgid "Manage massive audio, video, and image downloads with this lightweight tool."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6288,11 +6296,11 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6748,6 +6756,16 @@ msgstr "Nun s'alcontraron eventos pa esi periodu."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
+msgstr ""
+
+#: src/olympia/editors/templates/editors/eventlog_detail.html
+#, fuzzy
+msgid "Review Author"
+msgstr "Editores nuevos"
+
+#: src/olympia/editors/templates/editors/eventlog_detail.html
+#, python-format
+msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
