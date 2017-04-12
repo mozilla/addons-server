@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 17:51+0000\n"
+"PO-Revision-Date: 2017-04-12 18:09+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -8221,55 +8221,55 @@ msgstr "Κορόνα Σουηδίας"
 
 #: src/olympia/lib/constants.py
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "Δολάριο Σιγκαπούρης"
 
 #: src/olympia/lib/constants.py
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "Λίρα Αγίας Ελένης"
 
 #: src/olympia/lib/constants.py
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Λεόνε Σιέρα Λεόνε"
 
 #: src/olympia/lib/constants.py
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Σελίνι Σομαλίας"
 
 #: src/olympia/lib/constants.py
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Λουιτζίνο Σεμπόργκα"
 
 #: src/olympia/lib/constants.py
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "Δολάριο Σουρινάμ"
 
 #: src/olympia/lib/constants.py
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "Ντόμπρα Σάο Τομέ και Πρίνσιπε"
 
 #: src/olympia/lib/constants.py
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "Κολόν Ελ Σαλβαδόρ"
 
 #: src/olympia/lib/constants.py
 msgid "Syria Pound"
-msgstr ""
+msgstr "Λίρα Συρίας"
 
 #: src/olympia/lib/constants.py
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Λιλανγκένι Σουαζιλάνδης"
 
 #: src/olympia/lib/constants.py
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Μπαχτ Ταϊλάνδης"
 
 #: src/olympia/lib/constants.py
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Σομόνι Τατζικιστάν"
 
 #: src/olympia/lib/constants.py
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Μανάτ Τουρκμενιστάν"
 
 #: src/olympia/lib/constants.py
 msgid "Tunisia Dinar"
@@ -8277,7 +8277,7 @@ msgstr "Δηνάριο Τυνησίας"
 
 #: src/olympia/lib/constants.py
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "Παάνγκα Τόνγκα"
 
 #: src/olympia/lib/constants.py
 msgid "Turkey Lira"
@@ -8285,11 +8285,11 @@ msgstr "Λίρα Τουρκίας"
 
 #: src/olympia/lib/constants.py
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Δολάριο Τρινιντάντ και Τομπάγκο"
 
 #: src/olympia/lib/constants.py
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Δολάριο του Τουβαλού"
 
 #: src/olympia/lib/constants.py
 msgid "Taiwan New Dollar"
@@ -8297,7 +8297,7 @@ msgstr "Νέο Δολάριο Ταϊβάν"
 
 #: src/olympia/lib/constants.py
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Σελίνι Τανζανίας"
 
 #: src/olympia/lib/constants.py
 msgid "Ukraine Hryvna"
