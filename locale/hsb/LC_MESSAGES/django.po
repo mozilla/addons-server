@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 17:52+0000\n"
+"PO-Revision-Date: 2017-04-12 17:57+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1030,7 +1030,7 @@ msgstr "Symbol {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr "Tutón přidatk je so z nowej technologiju wuwił, kotraž je kompatibelny z Firefox 57 a nowšim."
+msgstr "Tutón přidatk je so z nowej technologiju wuwił, kotraž je kompatibelna z Firefox 57 a nowšim."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Compatible with Firefox 57+"
