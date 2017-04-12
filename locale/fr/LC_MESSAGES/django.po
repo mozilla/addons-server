@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 21:50+0000\n"
-"Last-Translator: goofy <goofy@babelzilla.org>\n"
+"PO-Revision-Date: 2017-04-12 22:54+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -6344,9 +6344,8 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Voulez-vous vraiment annuler votre requête de revue ?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Téléchargez des vidéos {start_sub_heading} avec {addon_name}{end_sub_heading}"
+msgstr "Téléchargez des éléments multimédias {start_sub_heading} avec {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Manage massive audio, video, and image downloads with this lightweight tool."
@@ -6825,9 +6824,8 @@ msgid "Log details"
 msgstr "Enregistrer les détails"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
-#, fuzzy
 msgid "Review Author"
-msgstr "Voir l’historique"
+msgstr "Auteur du commentaire"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 #, python-format
