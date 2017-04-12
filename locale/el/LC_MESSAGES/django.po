@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 17:11+0000\n"
+"PO-Revision-Date: 2017-04-12 17:37+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -7849,31 +7849,31 @@ msgstr "Μετατρέψιμο Πέσο Κούβας"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Peso"
-msgstr ""
+msgstr "Πέσο Κούβας"
 
 #: src/olympia/lib/constants.py
 msgid "Cape Verde Escudo"
-msgstr ""
+msgstr "Εσκούδο Πρασίνου Ακρωτηρίου"
 
 #: src/olympia/lib/constants.py
 msgid "Czech Republic Koruna"
-msgstr ""
+msgstr "Κορόνα Δημοκρατίας της Τσεχίας"
 
 #: src/olympia/lib/constants.py
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "Φράγκο Τζιμπουτί"
 
 #: src/olympia/lib/constants.py
 msgid "Denmark Krone"
-msgstr ""
+msgstr "Κορόνα Δανίας"
 
 #: src/olympia/lib/constants.py
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "Πέσο Δομινικανής Δημοκρατίας"
 
 #: src/olympia/lib/constants.py
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "Δηνάριο Αλγερίας"
 
 #: src/olympia/lib/constants.py
 msgid "Egypt Pound"
@@ -7881,11 +7881,11 @@ msgstr "Λίρα Αιγύπτου"
 
 #: src/olympia/lib/constants.py
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "Νάκφα Ερυθραίας"
 
 #: src/olympia/lib/constants.py
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "Μπιρ Αιθιοπίας"
 
 #: src/olympia/lib/constants.py
 msgid "Euro Member Countries"
@@ -7897,7 +7897,7 @@ msgstr "Δολάριο Φίτζι"
 
 #: src/olympia/lib/constants.py
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
+msgstr "Λίρα Νήσων Φώκλαντ (Μαλβίνας)"
 
 #: src/olympia/lib/constants.py
 msgid "United Kingdom Pound"
@@ -7905,15 +7905,15 @@ msgstr "Λίρα Ηνωμένου Βασιλείου"
 
 #: src/olympia/lib/constants.py
 msgid "Georgia Lari"
-msgstr ""
+msgstr "Λάρι Γεωργίας"
 
 #: src/olympia/lib/constants.py
 msgid "Guernsey Pound"
-msgstr ""
+msgstr "Λίρα Γκέρνσεϊ"
 
 #: src/olympia/lib/constants.py
 msgid "Ghana Cedi"
-msgstr ""
+msgstr "Σέντι Γκάνας"
 
 #: src/olympia/lib/constants.py
 msgid "Gibraltar Pound"
@@ -7921,7 +7921,7 @@ msgstr "Λίρα Γιβραλτάρ"
 
 #: src/olympia/lib/constants.py
 msgid "Gambia Dalasi"
-msgstr ""
+msgstr "Νταλάζι Γκάμπια"
 
 #: src/olympia/lib/constants.py
 msgid "Guinea Franc"
@@ -7929,47 +7929,47 @@ msgstr "Φράγκο Γουινέας"
 
 #: src/olympia/lib/constants.py
 msgid "Guatemala Quetzal"
-msgstr ""
+msgstr "Κετσάλ Γουατεμάλας"
 
 #: src/olympia/lib/constants.py
 msgid "Guyana Dollar"
-msgstr ""
+msgstr "Δολάριο Γουιάνας"
 
 #: src/olympia/lib/constants.py
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "Δολάριο Χονγκ Κονγκ"
 
 #: src/olympia/lib/constants.py
 msgid "Honduras Lempira"
-msgstr ""
+msgstr "Λεμπίρα\tΟνδούρας"
 
 #: src/olympia/lib/constants.py
 msgid "Croatia Kuna"
-msgstr ""
+msgstr "Κούνα Κροατίας"
 
 #: src/olympia/lib/constants.py
 msgid "Haiti Gourde"
-msgstr ""
+msgstr "Γκουρντ Αϊτής"
 
 #: src/olympia/lib/constants.py
 msgid "Hungary Forint"
-msgstr ""
+msgstr "Φιορίνι Ουγγαρίας"
 
 #: src/olympia/lib/constants.py
 msgid "Indonesia Rupiah"
-msgstr ""
+msgstr "Ρουπία Ινδονησίας"
 
 #: src/olympia/lib/constants.py
 msgid "Israel Shekel"
-msgstr ""
+msgstr "Σέκελ Ισραήλ"
 
 #: src/olympia/lib/constants.py
 msgid "Isle of Man Pound"
-msgstr ""
+msgstr "Λίρα Νήσου Μαν"
 
 #: src/olympia/lib/constants.py
 msgid "India Rupee"
-msgstr ""
+msgstr "Ρουπία Ινδίας"
 
 #: src/olympia/lib/constants.py
 msgid "Iraq Dinar"
@@ -7981,19 +7981,19 @@ msgstr "Ριάλ Ιράν"
 
 #: src/olympia/lib/constants.py
 msgid "Iceland Krona"
-msgstr ""
+msgstr "Κορόνα Ισλανδίας"
 
 #: src/olympia/lib/constants.py
 msgid "Jersey Pound"
-msgstr ""
+msgstr "Λίρα Τζέρσεϊ"
 
 #: src/olympia/lib/constants.py
 msgid "Jamaica Dollar"
-msgstr ""
+msgstr "Δολάριο Τζαμάικας"
 
 #: src/olympia/lib/constants.py
 msgid "Jordan Dinar"
-msgstr ""
+msgstr "Δηνάριο Ιορδανίας"
 
 #: src/olympia/lib/constants.py
 msgid "Japan Yen"
@@ -8001,19 +8001,19 @@ msgstr "Γιεν Ιαπωνίας"
 
 #: src/olympia/lib/constants.py
 msgid "Kenya Shilling"
-msgstr ""
+msgstr "Σελίνι Κένυας"
 
 #: src/olympia/lib/constants.py
 msgid "Kyrgyzstan Som"
-msgstr ""
+msgstr "Σομ Κιργιζίας"
 
 #: src/olympia/lib/constants.py
 msgid "Cambodia Riel"
-msgstr ""
+msgstr "Ριέλ Καμπότζης"
 
 #: src/olympia/lib/constants.py
 msgid "Comoros Franc"
-msgstr ""
+msgstr "Φράγκο Κομόρων"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (North) Won"
@@ -8029,47 +8029,47 @@ msgstr "Δηνάριο Κουβέιτ"
 
 #: src/olympia/lib/constants.py
 msgid "Cayman Islands Dollar"
-msgstr ""
+msgstr "Δολάριο Νησιών Κέιμαν"
 
 #: src/olympia/lib/constants.py
 msgid "Kazakhstan Tenge"
-msgstr ""
+msgstr "Τένγκε Καζακστάν"
 
 #: src/olympia/lib/constants.py
 msgid "Laos Kip"
-msgstr ""
+msgstr "Κιπ Λάος"
 
 #: src/olympia/lib/constants.py
 msgid "Lebanon Pound"
-msgstr ""
+msgstr "Λίρα Λιβάνου"
 
 #: src/olympia/lib/constants.py
 msgid "Sri Lanka Rupee"
-msgstr ""
+msgstr "Ρουπία Σρι Λάνκας"
 
 #: src/olympia/lib/constants.py
 msgid "Liberia Dollar"
-msgstr ""
+msgstr "Δολάριο Λιβερίας"
 
 #: src/olympia/lib/constants.py
 msgid "Lesotho Loti"
-msgstr ""
+msgstr "Λότι Λεσότο"
 
 #: src/olympia/lib/constants.py
 msgid "Lithuania Litas"
-msgstr ""
+msgstr "Λίτας Λιθουανίας"
 
 #: src/olympia/lib/constants.py
 msgid "Latvia Lat"
-msgstr ""
+msgstr "Λατς Λετονίας"
 
 #: src/olympia/lib/constants.py
 msgid "Libya Dinar"
-msgstr ""
+msgstr "Δηνάριο Λιβύης"
 
 #: src/olympia/lib/constants.py
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "Ντιρχάμ Μαρόκου"
 
 #: src/olympia/lib/constants.py
 msgid "Moldova Leu"
