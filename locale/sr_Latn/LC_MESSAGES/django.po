@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-03 05:29+0000\n"
+"POT-Creation-Date: 2017-04-12 15:17+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1338,6 +1338,16 @@ msgid "Icon of {0}"
 msgstr "Ikonica od {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
+msgid ""
+"This add-on is built with new technology that is compatible with Firefox 57 "
+"and beyond."
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid "Compatible with Firefox 57+"
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/details.html
 #, fuzzy, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
@@ -2211,11 +2221,11 @@ msgid ""
 msgstr ""
 
 #: src/olympia/api/authentication.py
-msgid "Error decoding signature."
+msgid "Signature has expired."
 msgstr ""
 
 #: src/olympia/api/authentication.py
-msgid "Signature has expired."
+msgid "Error decoding signature."
 msgstr ""
 
 #: src/olympia/api/authentication.py
@@ -7574,13 +7584,12 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Da li ste sigurni da želite da prekinete Vaš zahtev za pregled?"
 
 #: src/olympia/discovery/data.py
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid ""
-"More than just screenshots, Awesome Screenshot Plus lets you annotate images "
-"with text and graphics. Storing and sharing files is a breeze."
+"Manage massive audio, video, and image downloads with this lightweight tool."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -7594,13 +7603,13 @@ msgid ""
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid ""
-"Easily grab videos from YouTube, Dailymotion, Facebook, and most other video "
-"sites with this simple download tool."
+"More than just screenshots, Awesome Screenshot Plus lets you annotate images "
+"with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -8111,6 +8120,16 @@ msgstr "Nema pronađenih događaja za ovaj period."
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
 msgstr "Detalji dnevnika"
+
+#: src/olympia/editors/templates/editors/eventlog_detail.html
+#, fuzzy
+msgid "Review Author"
+msgstr "Istorija recenzija"
+
+#: src/olympia/editors/templates/editors/eventlog_detail.html
+#, python-format
+msgid "<dd>%(review_author)s</dd>"
+msgstr ""
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Add-on Title"

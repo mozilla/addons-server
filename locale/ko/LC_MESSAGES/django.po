@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-03 05:29+0000\n"
+"POT-Creation-Date: 2017-04-12 15:17+0000\n"
 "PO-Revision-Date: 2017-03-23 03:00+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1009,6 +1009,14 @@ msgid "Icon of {0}"
 msgstr "{0} 아이콘"
 
 #: src/olympia/addons/templates/addons/impala/details.html
+msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/details.html
+msgid "Compatible with Firefox 57+"
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
@@ -1685,12 +1693,12 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr "유효하지 않은 인증 헤더입니다. 인증 문자열은 공백을 포함하면 안됩니다."
 
 #: src/olympia/api/authentication.py
-msgid "Error decoding signature."
-msgstr "서명을 푸는데 오류가 발생하였습니다."
-
-#: src/olympia/api/authentication.py
 msgid "Signature has expired."
 msgstr "서명이 만료 되었습니다."
+
+#: src/olympia/api/authentication.py
+msgid "Error decoding signature."
+msgstr "서명을 푸는데 오류가 발생하였습니다."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
@@ -6355,11 +6363,11 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "정말 심사 요청을 취소하시겠습니까?"
 
 #: src/olympia/discovery/data.py
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgid "Manage massive audio, video, and image downloads with this lightweight tool."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6371,11 +6379,11 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Easily grab videos from YouTube, Dailymotion, Facebook, and most other video sites with this simple download tool."
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6839,6 +6847,16 @@ msgstr "이 기간 동안엔 이벤트가 없습니다."
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
 msgstr "자세한 기록"
+
+#: src/olympia/editors/templates/editors/eventlog_detail.html
+#, fuzzy
+msgid "Review Author"
+msgstr "심사 기록"
+
+#: src/olympia/editors/templates/editors/eventlog_detail.html
+#, python-format
+msgid "<dd>%(review_author)s</dd>"
+msgstr ""
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Add-on Title"
