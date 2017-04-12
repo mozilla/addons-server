@@ -15,19 +15,18 @@ class DiscoItem(object):
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
 discopane_items = [
-    # 'Tender Spring Rain' theme.
-    DiscoItem(addon_id=303865),
+    # 'Japanese Tattoo' theme.
+    DiscoItem(addon_id=18781),
 
-    # Awesome Screenshot Plus
+    # Bulk Media Downloader
     DiscoItem(
-        addon_id=287841,
-        heading=_(u'Take screenshots {start_sub_heading}with '
-                  u'{addon_name}{end_sub_heading}'),
+        addon_id=728674,
+        heading=_(u'Download media {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'More than just screenshots, Awesome Screenshot Plus lets you '
-              u'annotate images with text and graphics. Storing and sharing '
-              u'files is a breeze.'),
+            _(u'Manage massive audio, video, and image downloads with this '
+              u'lightweight tool.'),
             '</blockquote>')),
 
     # uBlock Origin
@@ -42,18 +41,19 @@ discopane_items = [
               u'bunch of memory.'),
             '</blockquote>')),
 
-    # 'Abstract Splash' theme.
-    DiscoItem(addon_id=25725, addon_name='Abstract Splash'),
+    # 'Two Little Birds' theme.
+    DiscoItem(addon_id=153659, addon_name='Two Little Birds'),
 
-    # Video DownloadHelper
+    # Awesome Screenshot Plus
     DiscoItem(
-        addon_id=3006,
-        heading=_(u'Download videos {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
+        addon_id=287841,
+        heading=_(u'Take screenshots {start_sub_heading}with '
+                  u'{addon_name}{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Easily grab videos from YouTube, Dailymotion, Facebook, and '
-              u'most other video sites with this simple download tool.'),
+            _(u'More than just screenshots, Awesome Screenshot Plus lets you '
+              u'annotate images with text and graphics. Storing and sharing '
+              u'files is a breeze.'),
             '</blockquote>')),
 
     # Emoji Keyboard
@@ -67,6 +67,6 @@ discopane_items = [
               u'click away.'),
             '</blockquote>')),
 
-    # 'Owls' theme.
-    DiscoItem(addon_id=558936, addon_name='Owls'),
+    # 'Giz Gaz' theme.
+    DiscoItem(addon_id=292930, addon_name='Giz Gaz'),
 ]
