@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 17:37+0000\n"
+"PO-Revision-Date: 2017-04-12 17:38+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -1019,7 +1019,7 @@ msgstr "Dieses Add-on wurde mit neuer Technologie entwickelt, die mit Firefox 57
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "Kompatibel mit Firefox 57+"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -6327,13 +6327,12 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Möchten Sie Ihre Überprüfungsanfrage wirklich löschen?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Laden Sie Videos herunter {start_sub_heading} mit {addon_name}{end_sub_heading}"
+msgstr "Laden Sie Medien herunter {start_sub_heading} mit {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Manage massive audio, video, and image downloads with this lightweight tool."
-msgstr ""
+msgstr "Verwalten Sie mit diesem unkomplizierten Programm größere Mengen an Audio-, Video- und Grafik-Downloads."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6807,14 +6806,13 @@ msgid "Log details"
 msgstr "Logbuch-Details"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
-#, fuzzy
 msgid "Review Author"
-msgstr "Chronik der Bewertungen"
+msgstr "Autor der Bewertung"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Add-on Title"
