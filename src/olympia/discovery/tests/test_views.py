@@ -13,18 +13,18 @@ class TestDiscoveryViewList(TestCase):
 
         # Represents a dummy version of `olympia.discovery.data`
         self.addons = {
-            303865: addon_factory(
-                id=303865, type=amo.ADDON_PERSONA,
+            18781: addon_factory(
+                id=18781, type=amo.ADDON_PERSONA,
+                users=[user_factory(), user_factory()]),
+            728674: addon_factory(id=728674, type=amo.ADDON_EXTENSION),
+            607454: addon_factory(id=607454, type=amo.ADDON_EXTENSION),
+            153659: addon_factory(
+                id=153659, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
             287841: addon_factory(id=287841, type=amo.ADDON_EXTENSION),
-            607454: addon_factory(id=607454, type=amo.ADDON_EXTENSION),
-            25725: addon_factory(
-                id=25725, type=amo.ADDON_PERSONA,
-                users=[user_factory(), user_factory()]),
-            3006: addon_factory(id=3006, type=amo.ADDON_EXTENSION),
             674732: addon_factory(id=674732, type=amo.ADDON_EXTENSION),
-            558936: addon_factory(
-                id=558936, type=amo.ADDON_PERSONA,
+            292930: addon_factory(
+                id=292930, type=amo.ADDON_PERSONA,
                 users=[user_factory(), user_factory()]),
         }
 
@@ -91,10 +91,10 @@ class TestDiscoveryViewList(TestCase):
         assert response.data['results']
 
     def test_missing_addon(self):
-        addon_deleted = self.addons[303865]
+        addon_deleted = self.addons[18781]
         addon_deleted.delete()
 
-        disabled_by_user = self.addons[287841]
+        disabled_by_user = self.addons[728674]
         disabled_by_user.update(disabled_by_user=True)
 
         self.addons[607454].update(status=amo.STATUS_NOMINATED)
