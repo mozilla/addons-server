@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 18:09+0000\n"
+"PO-Revision-Date: 2017-04-12 18:26+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -8301,11 +8301,11 @@ msgstr "Σελίνι Τανζανίας"
 
 #: src/olympia/lib/constants.py
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Χρίβνια Ουκρανία"
 
 #: src/olympia/lib/constants.py
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Σελίνι Ουγκάντας"
 
 #: src/olympia/lib/constants.py
 msgid "United States Dollar"
@@ -8317,19 +8317,19 @@ msgstr "Πέσο Ουρουγουάης"
 
 #: src/olympia/lib/constants.py
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Σομ Ουζμπεκιστάν"
 
 #: src/olympia/lib/constants.py
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Μπολίβαρ Βενεζουέλας"
 
 #: src/olympia/lib/constants.py
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Ντονγκ Βιετνάμ"
 
 #: src/olympia/lib/constants.py
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "Βάτου Βανουάτου"
 
 #: src/olympia/lib/constants.py
 msgid "Samoa Tala"
@@ -8377,7 +8377,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "What is this website?"
-msgstr ""
+msgstr "Τι είναι αυτή η ιστοσελίδα;"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
