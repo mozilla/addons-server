@@ -17,7 +17,7 @@ def process_email(message, **kwargs):
     if not msg_id:
         custom_headers = message.get('CustomHeaders', [])
         for header in custom_headers:
-            if header.get('Name') == 'Message-ID':
+            if header.get('Name', '').lower() == 'message-id':
                 msg_id = header.get('Value')
     if not msg_id:
         log.error('No MessageId in message, aborting.')
