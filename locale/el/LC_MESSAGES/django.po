@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-03 05:29+0000\n"
-"PO-Revision-Date: 2017-04-12 10:10+0000\n"
+"PO-Revision-Date: 2017-04-12 10:13+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1603,7 +1603,7 @@ msgstr "Επεκτάσεις"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Θέλετε περισσότερη εξατομίκευση; Δοκιμάστε τα <b>Πλήρη Θέματα</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
@@ -1695,7 +1695,7 @@ msgstr ""
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Σφάλμα αποκωδικοποίησης υπογραφής."
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
@@ -1711,7 +1711,7 @@ msgstr ""
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Ο κωδικός γλώσσας {lang_code} δεν είναι έγκυρος."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/applications/views.py
 msgid "Application Versions"
@@ -1788,7 +1788,7 @@ msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Περιγράψτε τη συλλογή σας (δεν επιτρέπονται σύνδεσμοι)."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Privacy:"
