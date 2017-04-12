@@ -1718,7 +1718,8 @@ class AddonApprovalsCounter(ModelBase):
     belonging to an add-on has been auto-approved. Reset everytime a
     listed version is approved by a human for this add-on."""
     addon = models.OneToOneField(
-        Addon, primary_key=True, on_delete=models.CASCADE)
+        Addon, primary_key=True, on_delete=models.CASCADE,
+        related_name='approvalscounter')
     counter = models.PositiveIntegerField(default=0)
     last_human_review = models.DateTimeField(null=True)
 

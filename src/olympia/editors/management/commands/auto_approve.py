@@ -47,23 +47,25 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """Command entry point."""
         self.dry_run = options.get('dry_run', False)
-        self.max_average_daily_users = int(
-            get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0)
-        self.min_approved_updates = int(
-            get_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES') or 0)
+        self.max_average_daily_users = get_config(
+            'AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS')
+        self.max_auto_approved_updates = get_config(
+            'AUTO_APPROVAL_MAX_AUTO_APPROVED_UPDATES')
 
-        if self.min_approved_updates <= 0 or self.max_average_daily_users <= 0:
-            # Auto approval are shut down if one of those values is not present
-            # or <= 0.
+        if (self.max_auto_approved_updates is None or
+                self.max_average_daily_users is None):
+            # Auto approval are shut down if one of those values are not set.
             url = '%s%s' % (
                 settings.SITE_URL,
                 reverse('admin:zadmin_config_changelist'))
             raise CommandError(
                 'Auto-approvals are deactivated because either '
                 'AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS or '
-                'AUTO_APPROVAL_MIN_APPROVED_UPDATES have not been '
-                'set or were set to 0. Use the admin tools Config model to '
-                'set them by going to %s.' % url)
+                'AUTO_APPROVAL_MAX_AUTO_APPROVED_UPDATES have not been '
+                'set. Use the admin tools Config model to set them by going '
+                'to %s.' % url)
+        self.max_auto_approved_updates = int(self.max_auto_approved_updates)
+        self.max_average_daily_users = int(self.max_average_daily_users)
 
         self.successful_verdict = (
             amo.WOULD_HAVE_BEEN_AUTO_APPROVED if self.dry_run
@@ -102,7 +104,7 @@ class Command(BaseCommand):
                      unicode(version.addon.name), unicode(version.version))
             summary, info = AutoApprovalSummary.create_summary_for_version(
                 version, max_average_daily_users=self.max_average_daily_users,
-                min_approved_updates=self.min_approved_updates,
+                max_auto_approved_updates=self.max_auto_approved_updates,
                 dry_run=self.dry_run)
             log.info('Auto Approval for %s version %s: %s',
                      unicode(version.addon.name),
@@ -149,8 +151,8 @@ class Command(BaseCommand):
                  'no validation attached to their files.', stats['error'])
         log.info('%d versions belonged to an add-on with too many daily '
                  'active users.', stats['too_many_average_daily_users'])
-        log.info('%d versions did not have enough approved updates.',
-                 stats['too_few_approved_updates'])
+        log.info('%d versions had too many past auto-approved updates.',
+                 stats['too_many_auto_approved_updates'])
         log.info('%d versions used a custom CSP.',
                  stats['uses_custom_csp'])
         log.info('%d versions used nativeMessaging permission.',

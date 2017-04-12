@@ -685,13 +685,13 @@ class AutoApprovalSummary(ModelBase):
     uses_native_messaging = models.BooleanField(default=False)
     uses_content_script_for_all_urls = models.BooleanField(default=False)
     average_daily_users = models.PositiveIntegerField(default=0)
-    approved_updates = models.PositiveIntegerField(default=0)
+    auto_approved_updates = models.PositiveIntegerField(default=0)
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
 
     def calculate_verdict(
-            self, max_average_daily_users=0, min_approved_updates=0,
+            self, max_average_daily_users=0, max_auto_approved_updates=0,
             dry_run=False):
         """Calculate the verdict for this instance based on the values set
         on it and the current configuration.
@@ -712,10 +712,14 @@ class AutoApprovalSummary(ModelBase):
             'uses_native_messaging': self.uses_native_messaging,
             'uses_content_script_for_all_urls':
                 self.uses_content_script_for_all_urls,
-            'too_many_average_daily_users':
-                self.average_daily_users >= max_average_daily_users,
-            'too_few_approved_updates':
-                self.approved_updates < min_approved_updates,
+            'too_many_average_daily_users': (
+                max_average_daily_users >= 0 and
+                self.average_daily_users >= max_average_daily_users
+            ),
+            'too_many_auto_approved_updates': (
+                max_auto_approved_updates >= 0 and
+                self.auto_approved_updates >= max_auto_approved_updates
+            ),
         }
         if any(verdict_info.values()):
             self.verdict = failure_verdict
@@ -750,7 +754,7 @@ class AutoApprovalSummary(ModelBase):
     @classmethod
     def create_summary_for_version(
             cls, version, max_average_daily_users=0,
-            min_approved_updates=0, dry_run=False):
+            max_auto_approved_updates=0, dry_run=False):
         """Create a AutoApprovalSummary instance in db from the specified
         version.
 
@@ -770,9 +774,9 @@ class AutoApprovalSummary(ModelBase):
 
         addon = version.addon
         try:
-            approved_updates = addon.addonapprovalscounter.counter
+            auto_approved_updates = addon.approvalscounter.counter
         except AddonApprovalsCounter.DoesNotExist:
-            approved_updates = 0
+            auto_approved_updates = 0
 
         data = {
             'version': version,
@@ -781,12 +785,12 @@ class AutoApprovalSummary(ModelBase):
             'uses_content_script_for_all_urls':
                 cls.check_uses_content_script_for_all_urls(version),
             'average_daily_users': addon.average_daily_users,
-            'approved_updates': approved_updates,
+            'auto_approved_updates': auto_approved_updates,
         }
         instance = cls(**data)
         verdict_info = instance.calculate_verdict(
             dry_run=dry_run, max_average_daily_users=max_average_daily_users,
-            min_approved_updates=min_approved_updates)
+            max_auto_approved_updates=max_auto_approved_updates)
         # We can't do instance.save(), because we want to handle the case where
         # it already existed. So we put the verdict we just calculated in data
         # and use update_or_create().

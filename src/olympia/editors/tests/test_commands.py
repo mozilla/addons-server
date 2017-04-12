@@ -8,7 +8,6 @@ from django.core.management.base import CommandError
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import (
     addon_factory, file_factory, TestCase, user_factory, version_factory)
 from olympia.editors.management.commands import auto_approve
@@ -33,9 +32,8 @@ class TestAutoApproveCommand(TestCase):
         self.file = self.version.all_files[0]
         self.file_validation = FileValidation.objects.create(
             file=self.version.all_files[0], validation=u'{}')
-        AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
         set_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS', 10000)
-        set_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES', 1)
+        set_config('AUTO_APPROVAL_MAX_AUTO_APPROVED_UPDATES', 1)
 
         # Always mock log_final_summary() method so we can look at the stats
         # easily.
@@ -58,30 +56,20 @@ class TestAutoApproveCommand(TestCase):
         with self.assertRaises(CommandError):
             call_command('auto_approve')
 
-        # With both keys set but daily users is 0, raise CommandError.
-        set_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS', 0)
-        with self.assertRaises(CommandError):
-            call_command('auto_approve')
-
         # With both keys set to non-zero, everything should work.
         set_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS', 10000)
         call_command('auto_approve')
 
-    def test_handle_no_min_approved_updates(self):
+    def test_handle_no_max_auto_approved_updates(self):
         # With only one of the 2 keys set, raise CommandError.
         Config.objects.get(
-            key='AUTO_APPROVAL_MIN_APPROVED_UPDATES').delete()
-        assert get_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES') is None
-        with self.assertRaises(CommandError):
-            call_command('auto_approve')
-
-        # With both keys set but min approved updates is 0, raise CommandError.
-        set_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES', 0)
+            key='AUTO_APPROVAL_MAX_AUTO_APPROVED_UPDATES').delete()
+        assert get_config('AUTO_APPROVAL_MAX_AUTO_APPROVED_UPDATES') is None
         with self.assertRaises(CommandError):
             call_command('auto_approve')
 
         # With both keys set to non-zero, everything should work.
-        set_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES', 1)
+        set_config('AUTO_APPROVAL_MAX_AUTO_APPROVED_UPDATES', 1)
         call_command('auto_approve')
 
     def test_fetch_candidates(self):
@@ -256,7 +244,7 @@ class TestAutoApproveCommand(TestCase):
         assert approve_mock.call_count == 0
         assert create_summary_for_version_mock.call_args == (
             (self.version, ),
-            {'max_average_daily_users': 10000, 'min_approved_updates': 1,
+            {'max_average_daily_users': 10000, 'max_auto_approved_updates': 1,
              'dry_run': True})
         assert get_reviewing_cache(self.addon.pk) is None
         self._check_stats({'total': 1, 'auto_approved': 1})
@@ -271,7 +259,7 @@ class TestAutoApproveCommand(TestCase):
         assert create_summary_for_version_mock.call_count == 1
         assert create_summary_for_version_mock.call_args == (
             (self.version, ),
-            {'max_average_daily_users': 10000, 'min_approved_updates': 1,
+            {'max_average_daily_users': 10000, 'max_auto_approved_updates': 1,
              'dry_run': False})
         assert get_reviewing_cache(self.addon.pk) is None
         assert approve_mock.call_count == 1
@@ -288,7 +276,7 @@ class TestAutoApproveCommand(TestCase):
             'uses_native_messaging': True,
             'uses_content_script_for_all_urls': True,
             'too_many_average_daily_users': True,
-            'too_few_approved_updates': True,
+            'too_many_auto_approved_updates': True,
         }
         create_summary_for_version_mock.return_value = (
             AutoApprovalSummary(verdict=amo.NOT_AUTO_APPROVED),
@@ -297,7 +285,7 @@ class TestAutoApproveCommand(TestCase):
         assert approve_mock.call_count == 0
         assert create_summary_for_version_mock.call_args == (
             (self.version, ),
-            {'max_average_daily_users': 10000, 'min_approved_updates': 1,
+            {'max_average_daily_users': 10000, 'max_auto_approved_updates': 1,
              'dry_run': False})
         assert get_reviewing_cache(self.addon.pk) is None
         self._check_stats({
@@ -306,5 +294,5 @@ class TestAutoApproveCommand(TestCase):
             'uses_native_messaging': 1,
             'uses_content_script_for_all_urls': 1,
             'too_many_average_daily_users': 1,
-            'too_few_approved_updates': 1,
+            'too_many_auto_approved_updates': 1,
         })
