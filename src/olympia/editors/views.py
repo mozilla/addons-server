@@ -651,8 +651,6 @@ def review(request, addon, channel=None):
     if version:
         version.admin_review = addon.admin_review
         version.sources_provided = bool(version.source)
-        version.is_webextension = any(
-            file_.is_webextension for file_ in version.all_files)
         flags = get_flags(version)
     else:
         flags = []

@@ -104,9 +104,11 @@
           <span itemprop="name">{{ addon.name }}</span>
           {% if version %}
             <span class="version-number" itemprop="version">{{ version.version }}</span>
-          {% endif %}
-          {% if addon.requires_restart %}
-            &nbsp;<span class="requires-restart">{{ _('Requires Restart') }}</span>
+            {% if version.is_webextension %}
+              &nbsp;<span class="is-webextension" title="{{ _('This add-on is built with new technology that is compatible with Firefox 57 and beyond.') }}">{{ _('Compatible with Firefox 57+') }}</span>
+            {% elif version.requires_restart %}
+              &nbsp;<span class="requires-restart">{{ _('Requires Restart') }}</span>
+            {% endif %}
           {% endif %}
         </h1>
         <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>

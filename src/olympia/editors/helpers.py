@@ -29,6 +29,7 @@ from olympia.editors.models import (
     ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
 from olympia.lib.crypto.packaged import sign_file
+from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -442,6 +443,11 @@ class ReviewBase(object):
         self.addon.update(**kw)
         self.version.update(reviewed=datetime.datetime.now())
 
+    def set_data(self, data):
+        self.data = data
+        if 'addon_files' in data:
+            self.files = data['addon_files']
+
     def set_files(self, status, files, hide_disabled_file=False):
         """Change the files to be the new status."""
         for file in files:
@@ -562,14 +568,10 @@ class ReviewBase(object):
             self.version.update(**kw)
         self.log_action(amo.LOG.COMMENT_VERSION)
 
-
-class ReviewAddon(ReviewBase):
-
-    def set_data(self, data):
-        self.data = data
-
     def process_public(self):
-        """Set an addon to public."""
+        """Set an add-on or a version to public."""
+        # Safeguard to force implementation for unlisted add-ons to completely
+        # override this method.
         assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
 
         # Sign addon.
@@ -582,7 +584,12 @@ class ReviewAddon(ReviewBase):
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_files(amo.STATUS_PUBLIC, self.files)
-        self.set_addon(status=amo.STATUS_PUBLIC)
+        if self.set_addon_status:
+            self.set_addon(status=amo.STATUS_PUBLIC)
+
+        # If we've approved a webextension, add a tag identifying them as such.
+        if any(file_.is_webextension for file_ in self.files):
+            Tag(tag_text='firefox57').save_tag(self.addon)
 
         # Increment approvals counter.
         AddonApprovalsCounter.increment_for_addon(addon=self.addon)
@@ -592,7 +599,7 @@ class ReviewAddon(ReviewBase):
         subject = u'Mozilla Add-ons: %s %s Approved'
         self.notify_email(template, subject)
 
-        log.info(u'Making %s public' % (self.addon))
+        self.log_public_message()
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
@@ -600,13 +607,16 @@ class ReviewAddon(ReviewBase):
             ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_sandbox(self):
-        """Set an addon back to sandbox."""
+        """Set an addon or a version back to sandbox."""
+        # Safeguard to force implementation for unlisted add-ons to completely
+        # override this method.
         assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
 
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        self.set_addon(status=amo.STATUS_NULL)
+        if self.set_addon_status:
+            self.set_addon(status=amo.STATUS_NULL)
         self.set_files(amo.STATUS_DISABLED, self.files,
                        hide_disabled_file=True)
 
@@ -615,7 +625,7 @@ class ReviewAddon(ReviewBase):
         subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
         self.notify_email(template, subject)
 
-        log.info(u'Making %s disabled' % (self.addon))
+        self.log_sandbox_message()
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
@@ -624,95 +634,40 @@ class ReviewAddon(ReviewBase):
 
     def process_super_review(self):
         """Give an addon super review."""
-        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
-
         self.addon.update(admin_review=True)
+
         self.notify_email('author_super_review',
                           u'Mozilla Add-ons: %s %s flagged for Admin Review')
+
         self.send_super_mail()
+
+
+class ReviewAddon(ReviewBase):
+    set_addon_status = True
+
+    def log_public_message(self):
+        log.info(u'Making %s public' % (self.addon))
+
+    def log_sandbox_message(self):
+        log.info(u'Making %s disabled' % (self.addon))
 
 
 class ReviewFiles(ReviewBase):
+    set_addon_status = False
 
-    def set_data(self, data):
-        self.data = data
-        if 'addon_files' in data:
-            self.files = data['addon_files']
-
-    def process_public(self):
-        """Set an addons files to public."""
-        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
-
-        # Sign addon.
-        for file_ in self.files:
-            sign_file(file_, settings.SIGNING_SERVER)
-
-        # Hold onto the status before we change it.
-        status = self.addon.status
-
-        self.set_files(amo.STATUS_PUBLIC, self.files)
-
-        # Increment approvals counter.
-        AddonApprovalsCounter.increment_for_addon(addon=self.addon)
-
-        self.log_action(amo.LOG.APPROVE_VERSION)
-        template = u'%s_to_public' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Approved'
-        self.notify_email(template, subject)
-
+    def log_public_message(self):
         log.info(u'Making %s files %s public' %
                  (self.addon, ', '.join([f.filename for f in self.files])))
-        log.info(u'Sending email for %s' % (self.addon))
 
-        # Assign reviewer incentive scores.
-        if self.request:
-            ReviewerScore.award_points(self.request.user, self.addon, status)
-
-    def process_sandbox(self):
-        """Set an addons files to sandbox."""
-        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
-
-        # Hold onto the status before we change it.
-        status = self.addon.status
-
-        self.set_files(amo.STATUS_DISABLED, self.files,
-                       hide_disabled_file=True)
-
-        self.log_action(amo.LOG.REJECT_VERSION)
-        template = u'%s_to_sandbox' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
-        self.notify_email(template, subject)
-
+    def log_sandbox_message(self):
         log.info(u'Making %s files %s disabled' %
-                 (self.addon,
-                  ', '.join([f.filename for f in self.files])))
-        log.info(u'Sending email for %s' % (self.addon))
-
-        # Assign reviewer incentive scores.
-        if self.request:
-            ReviewerScore.award_points(self.request.user, self.addon, status)
-
-    def process_super_review(self):
-        """Give an addon super review."""
-        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
-
-        self.addon.update(admin_review=True)
-
-        self.notify_email('author_super_review',
-                          u'Mozilla Add-ons: %s %s flagged for Admin Review')
-
-        self.send_super_mail()
+                 (self.addon, ', '.join([f.filename for f in self.files])))
 
 
 class ReviewUnlisted(ReviewBase):
 
-    def set_data(self, data):
-        self.data = data
-        if 'addon_files' in data:
-            self.files = data['addon_files']
-
     def process_public(self):
-        """Set an addons files to public."""
+        """Set an unliste addon version files to public."""
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.
@@ -729,17 +684,6 @@ class ReviewUnlisted(ReviewBase):
         log.info(u'Making %s files %s public' %
                  (self.addon, ', '.join([f.filename for f in self.files])))
         log.info(u'Sending email for %s' % (self.addon))
-
-    def process_super_review(self):
-        """Give an addon super review."""
-        assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
-
-        self.addon.update(admin_review=True)
-
-        self.notify_email('author_super_review',
-                          u'Mozilla Add-ons: %s %s flagged for Admin Review')
-
-        self.send_super_mail()
 
 
 @register.function

@@ -168,6 +168,16 @@ class TestVersion(TestCase):
         version = Version.objects.get(pk=81551)
         assert not version.requires_restart
 
+    def test_is_webextension(self):
+        version = Version.objects.get(pk=81551)
+        file_ = version.all_files[0]
+        assert not file_.is_webextension
+        assert not version.is_webextension
+
+        file_.update(is_webextension=True)
+        version = Version.objects.get(pk=81551)
+        assert version.is_webextension
+
     def test_has_files(self):
         v = Version.objects.get(pk=81551)
         assert v.has_files, 'Version with files not recognized.'
