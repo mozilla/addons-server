@@ -20,19 +20,20 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
 from olympia.addons.models import Addon, Version
-from olympia.amo.decorators import json_view, post_required
+from olympia.amo.decorators import (
+    json_view, permission_required, post_required)
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.constants.editors import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.editors import forms
 from olympia.editors.models import (
-    AddonCannedResponse, EditorSubscription, EventLog, get_flags,
-    PerformanceGraph, ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedAllList)
+    AddonCannedResponse, AutoApprovalSummary, EditorSubscription, EventLog,
+    get_flags, PerformanceGraph, ReviewerScore, ViewFullReviewQueue,
+    ViewPendingQueue, ViewUnlistedAllList)
 from olympia.editors.helpers import (
-    is_limited_reviewer, ReviewHelper, ViewFullReviewQueueTable,
-    ViewPendingQueueTable, ViewUnlistedAllListTable)
+    AutoApprovedTable, is_limited_reviewer, ReviewHelper,
+    ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 from olympia.zadmin.models import get_config, set_config
@@ -399,14 +400,19 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     if is_limited_reviewer(request):
         qs = qs.having('waiting_time_hours >=', REVIEW_LIMITED_DELAY_HOURS)
 
-    if request.GET:
-        search_form = SearchForm(request.GET)
-        if search_form.is_valid():
-            qs = search_form.filter_qs(qs)
+    if SearchForm:
+        if request.GET:
+            search_form = SearchForm(request.GET)
+            if search_form.is_valid():
+                qs = search_form.filter_qs(qs)
+        else:
+            search_form = SearchForm()
+        is_searching = search_form.data.get('searching')
     else:
-        search_form = SearchForm()
+        search_form = None
+        is_searching = False
     admin_reviewer = is_admin_reviewer(request)
-    if not admin_reviewer and not search_form.data.get('searching'):
+    if not admin_reviewer and not is_searching and hasattr(qs, 'filter'):
         qs = exclude_admin_only_addons(qs)
 
     motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
@@ -448,14 +454,21 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
 
         return query.count
 
-    counts = {'pending': construct_query(ViewPendingQueue, **kw),
-              'nominated': construct_query(ViewFullReviewQueue, **kw),
-              'moderated': Review.objects.all().to_moderate().count}
+    counts = {
+        'pending': construct_query(ViewPendingQueue, **kw),
+        'nominated': construct_query(ViewFullReviewQueue, **kw),
+        'moderated': Review.objects.all().to_moderate().count,
+        'auto_approved': (
+            AutoApprovalSummary.objects
+                               .filter(verdict=amo.AUTO_APPROVED)
+                               .values('version__addon').distinct().count)
+    }
     if unlisted:
         counts = {
             'all': (ViewUnlistedAllList.objects if admin_reviewer
                     else exclude_admin_only_addons(
-                        ViewUnlistedAllList.objects)).count}
+                        ViewUnlistedAllList.objects)).count
+        }
     rv = {}
     if isinstance(type, basestring):
         return counts[type]()
@@ -521,6 +534,29 @@ def application_versions_json(request):
     app_id = request.POST['application_id']
     f = forms.QueueSearchForm()
     return {'choices': f.version_choices_for_app_id(app_id)}
+
+
+@permission_required('Addons', 'PostReview')
+def queue_auto_approved(request):
+    # We need a GROUP BY addon_id to eliminate duplicates, but django does not
+    # support arbitrary GROUP BY clauses; it has support for DISTINCT ON but
+    # only on PostgreSQL. So, we do it ourselves using .raw().
+    query = """
+        SELECT `versions`.*, `addons_addonapprovalscounter`.`last_human_review`
+        FROM `versions` INNER JOIN `editors_autoapprovalsummary`
+        ON ( `versions`.`id` = `editors_autoapprovalsummary`.`version_id` )
+        INNER JOIN `addons` ON ( `versions`.`addon_id` = `addons`.`id` )
+        LEFT OUTER JOIN `addons_addonapprovalscounter`
+        ON ( `addons`.`id` = `addons_addonapprovalscounter`.`addon_id` )
+        WHERE NOT (`versions`.`deleted` = True)
+        AND `editors_autoapprovalsummary`.`verdict` = %s
+        GROUP BY `versions`.`addon_id`
+        ORDER BY `addons_addonapprovalscounter`.`last_human_review` ASC,
+                 `addons`.`created` ASC
+    """
+    qs = Version.objects.no_cache().raw(query, [amo.AUTO_APPROVED])
+    return _queue(request, AutoApprovedTable, 'auto_approved',
+                  qs=qs, SearchForm=None)
 
 
 def _get_comments_for_hard_deleted_versions(addon):
@@ -649,8 +685,6 @@ def review(request, addon, channel=None):
     count = pager.paginator.count
 
     if version:
-        version.admin_review = addon.admin_review
-        version.sources_provided = bool(version.source)
         flags = get_flags(version)
     else:
         flags = []

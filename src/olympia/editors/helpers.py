@@ -1,6 +1,7 @@
 import datetime
 
 from django.conf import settings
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import force_text
@@ -26,7 +27,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail as amo_send_mail, to_language
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
-    ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
+    get_flags, ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
 from olympia.lib.crypto.packaged import sign_file
 from olympia.tags.models import Tag
@@ -87,6 +88,7 @@ def queue_tabnav(context):
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     counts = context['queue_counts']
+    request = context['request']
     listed = not context.get('unlisted')
 
     if listed:
@@ -105,6 +107,15 @@ def queue_tabnav(context):
                              'Moderated Reviews ({0})',
                              counts['moderated'])
                     .format(counts['moderated'])))]
+
+        if acl.action_allowed(request, 'Addons', 'PostReview'):
+            tabnav.append(
+                ('auto_approved', 'queue_auto_approved',
+                 (ngettext('Auto Approved Add-on ({0})',
+                           'Auto Approved Add-ons ({0})',
+                           counts['auto_approved'])
+                  .format(counts['auto_approved']))),
+            )
     else:
         tabnav = [('all', 'unlisted_queue_all', _('All Unlisted Add-ons'))]
 
@@ -181,6 +192,8 @@ class EditorQueueTable(tables.Table, ItemStateTable):
         return amo.ADDON_TYPE[record.addon_type_id]
 
     def render_flags(self, record):
+        if not hasattr(record, 'flags'):
+            record.flags = get_flags(record)
         return ''.join(u'<div class="app-icon ed-sprite-%s" '
                        u'title="%s"></div>' % flag
                        for flag in record.flags)
@@ -282,6 +295,31 @@ class ViewFullReviewQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewFullReviewQueue
+
+
+class AutoApprovedTable(EditorQueueTable):
+    addon = tables.Column(verbose_name=_lazy(u'Add-on'))
+    # Override empty_values for flags so that they can be displayed even if the
+    # model does not have a flags attribute.
+    flags = tables.Column(
+        verbose_name=_lazy(u'Flags'), empty_values=(), orderable=False)
+    last_human_review = tables.DateTimeColumn(
+        verbose_name=_lazy(u'Last Review'))
+
+    class Meta(EditorQueueTable.Meta):
+        fields = ('addon', 'flags', 'last_human_review')
+        # Exclude base fields EditorQueueTable has that we don't want.
+        exclude = ('addon_name', 'addon_type_id', 'waiting_time_min',)
+        orderable = False
+
+    def render_addon(self, record):
+        url = reverse('editors.review', args=[record.addon.slug])
+        return u'<a href="%s">%s <em>%s</em></a>' % (
+            url, jinja2.escape(record.addon.name),
+            jinja2.escape(record.version))
+
+    def render_last_human_review(self, value):
+        return naturaltime(value) if value else ''
 
 
 log = olympia.core.logger.getLogger('z.mailer')

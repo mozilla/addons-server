@@ -50,6 +50,10 @@
               {{ _('Updates') }} ({{ queue_counts['pending'] }})</a></li>
         <li><a href="{{ url('editors.queue_moderated') }}">
               {{ _('Moderated Reviews') }} ({{ queue_counts['moderated'] }})</a></li>
+        {% if action_allowed('Addons', 'PostReview') %}
+          <li><a href="{{ url('editors.queue_auto_approved') }}">
+                {{ _('Auto Approved Add-ons') }} ({{ queue_counts['auto_approved'] }})</a></li>
+        {% endif %}
       </ul>
     </li>
     {% if action_allowed('Addons', 'ReviewUnlisted') %}

@@ -16,6 +16,8 @@ urlpatterns = (
         name='editors.queue_moderated'),
     url(r'^queue/application_versions\.json$', views.application_versions_json,
         name='editors.application_versions_json'),
+    url(r'^queue/auto_approved', views.queue_auto_approved,
+        name='editors.queue_auto_approved'),
     url(r'^unlisted_queue$', views.unlisted_queue,
         name='editors.unlisted_queue'),
     url(r'^unlisted_queue/all$', views.unlisted_list,
