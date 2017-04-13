@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-13 10:09+0000\n"
+"PO-Revision-Date: 2017-04-13 18:48+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -11021,7 +11021,7 @@ msgstr "Πρόσθετα που έχω δημιουργήσει"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Τα πιο δημοφιλή θέματά μου"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes I've created"
@@ -11068,7 +11068,7 @@ msgstr ""
 #: src/olympia/users/templates/users/unsubscribe.html
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "Η διεύθυνση email <strong>%(email)s</strong> δεν θα λαμβάνει πλέον μηνύματα όταν:"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "More Actions:"
@@ -11076,11 +11076,11 @@ msgstr "Περισσότερες ενέργειες:"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your notification settings"
-msgstr ""
+msgstr "γίνεται επεξεργασία των ρυθμίσεων ειδοποιήσεών σας"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your profile"
-msgstr ""
+msgstr "γίνεται επεξεργασία του προφίλ σας"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "We could not unsubscribe you"
