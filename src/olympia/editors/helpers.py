@@ -604,7 +604,8 @@ class ReviewBase(object):
 
         # Assign reviewer incentive scores.
         if self.request:
-            ReviewerScore.award_points(self.request.user, self.addon, status)
+            ReviewerScore.award_points(
+                self.request.user, self.addon, status, version=self.version)
 
     def process_sandbox(self):
         """Set an addon or a version back to sandbox."""
@@ -630,7 +631,8 @@ class ReviewBase(object):
 
         # Assign reviewer incentive scores.
         if self.request:
-            ReviewerScore.award_points(self.request.user, self.addon, status)
+            ReviewerScore.award_points(
+                self.request.user, self.addon, status, version=self.version)
 
     def process_super_review(self):
         """Give an addon super review."""

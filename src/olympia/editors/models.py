@@ -1,5 +1,5 @@
-import datetime
 import json
+from datetime import date, datetime, timedelta
 
 from django.conf import settings
 from django.core.cache import cache
@@ -413,7 +413,7 @@ class ReviewerScore(ModelBase):
             return None
 
     @classmethod
-    def award_points(cls, user, addon, status, **kwargs):
+    def award_points(cls, user, addon, status, version=None, **kwargs):
         """Awards points to user based on an event and the queue.
 
         `event` is one of the `REVIEWED_` keys in constants.
@@ -423,20 +423,14 @@ class ReviewerScore(ModelBase):
         event = cls.get_event(addon, status, **kwargs)
         score = amo.REVIEWED_SCORES.get(event)
 
-        try:
-            # Add bonus to reviews greater than our limit to encourage fixing
-            # old reviews.
-            vq = ViewQueue.objects.get(
-                addon_slug=addon.slug,
-            )
-
-            if vq.waiting_time_days > amo.REVIEWED_OVERDUE_LIMIT:
-                days_over = vq.waiting_time_days - amo.REVIEWED_OVERDUE_LIMIT
+        # Add bonus to reviews greater than our limit to encourage fixing
+        # old reviews.
+        if version and version.nomination:
+            waiting_time_days = (datetime.now() - version.nomination).days
+            days_over = waiting_time_days - amo.REVIEWED_OVERDUE_LIMIT
+            if days_over > 0:
                 bonus = days_over * amo.REVIEWED_OVERDUE_BONUS
                 score = score + bonus
-        except ViewQueue.DoesNotExist:
-            # If the object does not exist then we simply do not add a bonus
-            pass
 
         if score:
             cls.objects.create(user=user, addon=addon, score=score,
@@ -586,7 +580,7 @@ class ReviewerScore(ModelBase):
         if val is not None:
             return val
 
-        week_ago = datetime.date.today() - datetime.timedelta(days=days)
+        week_ago = date.today() - timedelta(days=days)
 
         leader_top = []
         leader_near = []
