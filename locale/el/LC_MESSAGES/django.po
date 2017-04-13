@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 18:26+0000\n"
+"PO-Revision-Date: 2017-04-13 10:09+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5649,7 +5649,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Learn How to Make an Add-on"
-msgstr ""
+msgstr "Μάθετε πώς να δημιουργήσετε ένα πρόσθετο"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid "Port a Chrome Extension"
@@ -6204,7 +6204,7 @@ msgstr "Επόμενη έκδοση αυτού του προσθέτου"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Other versions"
-msgstr ""
+msgstr "Άλλες εκδόσεις"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "All versions"
@@ -8592,7 +8592,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developer FAQ"
-msgstr ""
+msgstr "Συχνές ερωτήσεις για προγραμματιστές"
 
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Sections"
@@ -8600,7 +8600,7 @@ msgstr "Ενότητες"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Ανάπτυξη ενός προσθέτου"
 
 #. Heading for a list of resources for developers
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8617,7 +8617,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "Διαχείριση του προσθέτου σας"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "References for Open Source Licenses"
@@ -8932,7 +8932,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Μπορώ να συμπεριλάβω μια πολιτική απορρήτου για το πρόσθετό μου;"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
@@ -8940,7 +8940,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Why must my add-on be reviewed?"
-msgstr ""
+msgstr "Γιατί πρέπει να αξιολογηθεί το πρόσθετό μου;"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8951,7 +8951,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "Ποιος αξιολογεί το πρόσθετό μου;"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -10000,11 +10000,11 @@ msgstr ""
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/personas.html
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Αποτελέσματα αναζήτησης θεμάτων για {0}"
 
 #: src/olympia/search/templates/search/personas.html
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Αποτελέσματα αναζήτησης θεμάτων"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
@@ -10014,7 +10014,7 @@ msgstr "{0} :: Ετικέτα"
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Αποτελέσματα αναζήτησης για την ετικέτα \"{0}\""
 
 #: src/olympia/search/templates/search/results.html
 msgid "<b>{0}</b> matching result"
@@ -10133,27 +10133,27 @@ msgstr "Πρόσθετα σε χρήση"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Δημιουργημένα πρόσθετα"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Ληφθέντα πρόσθετα"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Ενημερωμένα πρόσθετα"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Collections Created"
-msgstr ""
+msgstr "Δημιουργημένες συλλογές"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Reviews Written"
-msgstr ""
+msgstr "Γραπτές αξιολογήσεις"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "User Signups"
-msgstr ""
+msgstr "Εγγραφές χρηστών"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Archived Data"
@@ -10207,7 +10207,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "reset zoom"
-msgstr ""
+msgstr "επαναφορά ζουμ"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Group by:"
@@ -10683,7 +10683,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Αυτό το όνομα προβολής δεν μπορεί να χρησιμοποιηθεί."
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -10706,7 +10706,7 @@ msgstr "Δεν υπάρχει χρήστης με αυτή τη διεύθυνσ
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Ανώνυμος χρήστης {id}"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"
@@ -10960,7 +10960,7 @@ msgstr "Ενημέρωση λογαριασμού"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "none"
-msgstr ""
+msgstr "κανένα"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "all"
@@ -11072,7 +11072,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "More Actions:"
-msgstr ""
+msgstr "Περισσότερες ενέργειες:"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your notification settings"
@@ -11084,7 +11084,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Δεν μπορέσαμε να καταργήσουμε την εγγραφή σας"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 #, python-format
