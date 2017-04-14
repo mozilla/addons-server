@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-13 02:59+0000\n"
+"PO-Revision-Date: 2017-04-14 16:24+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2162,7 +2162,7 @@ msgstr "Tornar proprietário"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Remove this user as a contributor"
-msgstr "Remover este utilizador como um colaborador"
+msgstr "Remover este utilizador como um contribuidor"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
@@ -2178,8 +2178,8 @@ msgid ""
 "You can add multiple contributors to this collection. A contributor can add and remove add-ons from this collection, but cannot change its name or description. To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Pode adicionar múltiplos colaboradores a esta coleção. Um colaborador pode adicionar e remover extras desta coleção, mas não pode alterar o nome ou descrição da mesma. Para adicionar um colaborador,"
-" introduza o respetivo endereço email na caixa abaixo. Os colaboradores deverão ter conta de extras da Mozilla."
+"Pode adicionar múltiplos contribuidores a esta coleção. Um contribuidor pode adicionar e remover extras desta coleção, mas não pode alterar o nome ou descrição da mesma. Para adicionar um "
+"contribuidor, introduza o respetivo endereço email na caixa abaixo. Os contribuidores deverão ter uma conta do Extras da Mozilla."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -5236,7 +5236,7 @@ msgstr "Para instruções detalhadas, consulte a <a href=\"%(docs_url)s\">docume
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr "Mantenha as suas chaves da API secretas e <strong>nunca as partilhe com ninguém</strong>, incluindo colaboradores da Mozilla."
+msgstr "Mantenha as suas chaves da API secretas e <strong>nunca as partilhe com ninguém</strong>, incluindo contribuidores da Mozilla."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -8547,7 +8547,7 @@ msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
 "href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
-"Ao longo dos anos, muitas pessoas contribuíram para este website, incluindo voluntários da comunidade e uma equipa dedicada do AMO. Uma lista dos colaboradores mais significativos pode ser "
+"Ao longo dos anos, muitas pessoas contribuíram para este website, incluindo voluntários da comunidade e uma equipa dedicada do AMO. Uma lista dos contribuidores mais significativos pode ser "
 "encontrada na nossa página de <a href=\"%(url)s\">créditos do site</a>."
 
 # 93%
@@ -8633,7 +8633,7 @@ msgstr "Mais de {0} revisões de extras"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Other Contributors"
-msgstr "Outros colaboradores"
+msgstr "Outros contribuidores"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Past Developers &amp; Administrators"
