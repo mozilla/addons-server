@@ -591,8 +591,13 @@ class ReviewBase(object):
         if any(file_.is_webextension for file_ in self.files):
             Tag(tag_text='firefox57').save_tag(self.addon)
 
-        # Increment approvals counter.
-        AddonApprovalsCounter.increment_for_addon(addon=self.addon)
+        # Reset approvals counter if we have a request (it means it's an
+        # human doing the review) otherwise increment it as it's an automatic
+        # approval.
+        if self.request:
+            AddonApprovalsCounter.reset_for_addon(addon=self.addon)
+        else:
+            AddonApprovalsCounter.increment_for_addon(addon=self.addon)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type

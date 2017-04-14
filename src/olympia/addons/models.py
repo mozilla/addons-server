@@ -1715,11 +1715,13 @@ class AddonFeatureCompatibility(ModelBase):
 
 class AddonApprovalsCounter(ModelBase):
     """Model holding a counter of the number of times a listed version
-    belonging to an add-on has been approved by a human. Reset everytime a
-    listed version is auto-approved for this add-on."""
+    belonging to an add-on has been auto-approved. Reset everytime a
+    listed version is approved by a human for this add-on."""
     addon = models.OneToOneField(
-        Addon, primary_key=True, on_delete=models.CASCADE)
+        Addon, primary_key=True, on_delete=models.CASCADE,
+        related_name='approvalscounter')
     counter = models.PositiveIntegerField(default=0)
+    last_human_review = models.DateTimeField(null=True)
 
     def __unicode__(self):
         return u'%s: %d' % (unicode(self.pk), self.counter) if self.pk else u''
@@ -1740,10 +1742,12 @@ class AddonApprovalsCounter(ModelBase):
     @classmethod
     def reset_for_addon(cls, addon):
         """
-        Reset the approval counter for the specified addon.
+        Reset the approval counter for the specified addon, setting the last
+        human review date to now.
         """
+        now = datetime.now()
         obj, created = cls.objects.update_or_create(
-            addon=addon, defaults={'counter': 0})
+            addon=addon, defaults={'counter': 0, 'last_human_review': now})
         return obj
 
 

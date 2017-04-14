@@ -513,9 +513,11 @@ class TestReviewHelper(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == '%s Approved' % self.preamble
 
-        # AddonApprovalsCounter counter is now at 1 for this addon.
+        # AddonApprovalsCounter counter is now at 0 for this addon since there
+        # was a human review.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        assert approval_counter.counter == 1
+        assert approval_counter.counter == 0
+        self.assertCloseToNow(approval_counter.last_human_review)
 
         assert storage.exists(self.file.file_path)
 
@@ -542,9 +544,11 @@ class TestReviewHelper(TestCase):
             '%s Approved' % self.preamble)
         assert 'has been approved' in mail.outbox[0].body
 
-        # AddonApprovalsCounter counter is now at 1 for this addon.
+        # AddonApprovalsCounter counter is now at 0 for this addon since there
+        # was a human review.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        assert approval_counter.counter == 1
+        assert approval_counter.counter == 0
+        self.assertCloseToNow(approval_counter.last_human_review)
 
         sign_mock.assert_called_with(self.file, 'full')
         assert storage.exists(self.file.file_path)
@@ -552,6 +556,39 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
         self._check_score(amo.REVIEWED_ADDON_FULL)
+
+    @patch('olympia.editors.helpers.sign_file')
+    def test_nomination_to_public_no_request(self, sign_mock):
+        self.request = None
+        sign_mock.reset()
+        self.setup_data(amo.STATUS_NOMINATED)
+        with self.settings(SIGNING_SERVER='full'):
+            self.helper.handler.process_public()
+
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.versions.all()[0].files.all()[0].status == (
+            amo.STATUS_PUBLIC)
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            '%s Approved' % self.preamble)
+        assert 'has been approved' in mail.outbox[0].body
+
+        # AddonApprovalsCounter counter is now at 1 for this addon since there
+        # was an automatic approval.
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 1
+        # Since approval counter did not exist for this add-on before, the last
+        # human review field should be empty.
+        assert approval_counter.last_human_review is None
+
+        sign_mock.assert_called_with(self.file, 'full')
+        assert storage.exists(self.file.file_path)
+
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
+
+        # No request, no user, therefore no score.
+        assert ReviewerScore.objects.count() == 0
 
     @patch('olympia.editors.helpers.sign_file')
     def test_public_addon_with_version_awaiting_review_to_public(
@@ -566,7 +603,8 @@ class TestReviewHelper(TestCase):
         self.file = self.version.files.all()[0]
         self.setup_data(amo.STATUS_PUBLIC)
         self.create_paths()
-        AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, counter=1, last_human_review=self.days_ago(42))
 
         # Safeguards.
         assert isinstance(self.helper.handler, helpers.ReviewFiles)
@@ -589,9 +627,11 @@ class TestReviewHelper(TestCase):
             '%s Approved' % self.preamble)
         assert 'has been approved' in mail.outbox[0].body
 
-        # AddonApprovalsCounter counter is now at 2 for this addon.
+        # AddonApprovalsCounter counter is now at 0 for this addon since there
+        # was a human review.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        assert approval_counter.counter == 2
+        assert approval_counter.counter == 0
+        self.assertCloseToNow(approval_counter.last_human_review)
 
         sign_mock.assert_called_with(self.file, 'full')
         assert storage.exists(self.file.file_path)
@@ -616,7 +656,8 @@ class TestReviewHelper(TestCase):
         self.file = self.version.files.all()[0]
         self.setup_data(amo.STATUS_PUBLIC)
         self.create_paths()
-        AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, counter=1, last_human_review=self.days_ago(42))
 
         # Safeguards.
         assert isinstance(self.helper.handler, helpers.ReviewFiles)
@@ -639,9 +680,12 @@ class TestReviewHelper(TestCase):
             "%s didn't pass review" % self.preamble)
         assert 'reviewed and did not meet the criteria' in mail.outbox[0].body
 
-        # AddonApprovalsCounter counter is still at 1 for this addon.
+        # AddonApprovalsCounter counter is still at 1 for this addon, it should
+        # not have been touched.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
+        self.assertCloseToNow(
+            approval_counter.last_human_review, self.days_ago(42))
 
         assert not sign_mock.called
         assert storage.exists(self.file.guarded_file_path)

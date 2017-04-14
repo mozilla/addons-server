@@ -736,11 +736,11 @@ class TestAutoApprovalSummary(TestCase):
         calculate_verdict_mock.return_value = {'dummy_verdict': True}
         summary, info = AutoApprovalSummary.create_summary_for_version(
             self.version,
-            max_average_daily_users=111, min_approved_updates=222)
+            max_average_daily_users=111, max_auto_approved_updates=222)
         assert calculate_verdict_mock.call_count == 1
         assert calculate_verdict_mock.call_args == ({
             'max_average_daily_users': 111,
-            'min_approved_updates': 222,
+            'max_auto_approved_updates': 222,
             'dry_run': False
         },)
         assert summary.pk
@@ -749,8 +749,8 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.uses_native_messaging is False
         assert summary.uses_content_script_for_all_urls is False
         assert summary.average_daily_users == self.addon.average_daily_users
-        assert (summary.approved_updates ==
-                self.addon.addonapprovalscounter.counter)
+        assert (summary.auto_approved_updates ==
+                self.addon.approvalscounter.counter)
         assert info == {'dummy_verdict': True}
 
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
@@ -761,9 +761,9 @@ class TestAutoApprovalSummary(TestCase):
         calculate_verdict_mock.return_value = {'dummy_verdict': True}
         summary, info = AutoApprovalSummary.create_summary_for_version(
             self.version,
-            max_average_daily_users=111, min_approved_updates=222)
+            max_average_daily_users=111, max_auto_approved_updates=222)
         assert summary.pk
-        assert summary.approved_updates == 0
+        assert summary.auto_approved_updates == 0
         assert info == {'dummy_verdict': True}
 
     def test_create_summary_already_existing(self):
@@ -780,15 +780,17 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.uses_native_messaging is True
         assert summary.uses_content_script_for_all_urls is True
         assert summary.average_daily_users == 0
-        assert summary.approved_updates == 0
+        assert summary.auto_approved_updates == 0
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
         previous_summary_pk = summary.pk
 
+        # Allow one more daily user than current, and one more auto approved
+        # update than current.
         summary, info = AutoApprovalSummary.create_summary_for_version(
             self.version,
             max_average_daily_users=self.addon.average_daily_users + 1,
-            min_approved_updates=1)
+            max_auto_approved_updates=self.addon.approvalscounter.counter + 1)
 
         assert summary.pk == previous_summary_pk
         assert summary.version == self.version
@@ -796,10 +798,10 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.uses_native_messaging is False
         assert summary.uses_content_script_for_all_urls is False
         assert summary.average_daily_users == self.addon.average_daily_users
-        assert summary.approved_updates == 1
+        assert summary.auto_approved_updates == 1
         assert summary.verdict == amo.AUTO_APPROVED
         assert info == {
-            'too_few_approved_updates': False,
+            'too_many_auto_approved_updates': False,
             'too_many_average_daily_users': False,
             'uses_content_script_for_all_urls': False,
             'uses_custom_csp': False,
@@ -814,13 +816,15 @@ class TestAutoApprovalSummary(TestCase):
 
     def test_calculate_verdict_failure_dry_run(self):
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, average_daily_users=1, approved_updates=2)
+            version=self.version, average_daily_users=1,
+            auto_approved_updates=2)
         info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users + 1,
-            min_approved_updates=summary.approved_updates + 1, dry_run=True)
+            max_average_daily_users=summary.average_daily_users,
+            max_auto_approved_updates=summary.auto_approved_updates,
+            dry_run=True)
         assert info == {
-            'too_few_approved_updates': True,
-            'too_many_average_daily_users': False,
+            'too_many_auto_approved_updates': True,
+            'too_many_average_daily_users': True,
             'uses_content_script_for_all_urls': False,
             'uses_custom_csp': False,
             'uses_native_messaging': False
@@ -834,12 +838,12 @@ class TestAutoApprovalSummary(TestCase):
             uses_native_messaging=True,
             uses_content_script_for_all_urls=True,
             average_daily_users=self.addon.average_daily_users,
-            approved_updates=333)
+            auto_approved_updates=333)
         info = summary.calculate_verdict(
-            max_average_daily_users=summary.average_daily_users - 1,
-            min_approved_updates=summary.approved_updates + 1)
+            max_average_daily_users=summary.average_daily_users,
+            max_auto_approved_updates=summary.auto_approved_updates)
         assert info == {
-            'too_few_approved_updates': True,
+            'too_many_auto_approved_updates': True,
             'too_many_average_daily_users': True,
             'uses_content_script_for_all_urls': True,
             'uses_custom_csp': True,
@@ -854,12 +858,52 @@ class TestAutoApprovalSummary(TestCase):
             uses_native_messaging=False,
             uses_content_script_for_all_urls=False,
             average_daily_users=self.addon.average_daily_users,
-            approved_updates=333)
+            auto_approved_updates=333)
         info = summary.calculate_verdict(
             max_average_daily_users=summary.average_daily_users + 1,
-            min_approved_updates=summary.approved_updates)
+            max_auto_approved_updates=summary.auto_approved_updates + 1)
         assert info == {
-            'too_few_approved_updates': False,
+            'too_many_auto_approved_updates': False,
+            'too_many_average_daily_users': False,
+            'uses_content_script_for_all_urls': False,
+            'uses_custom_csp': False,
+            'uses_native_messaging': False
+        }
+        assert summary.verdict == amo.AUTO_APPROVED
+
+    def test_calculate_verdict_success_negative_max_auto_approve_updates(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version,
+            uses_custom_csp=False,
+            uses_native_messaging=False,
+            uses_content_script_for_all_urls=False,
+            average_daily_users=self.addon.average_daily_users,
+            auto_approved_updates=333)
+        info = summary.calculate_verdict(
+            max_average_daily_users=summary.average_daily_users + 1,
+            max_auto_approved_updates=-1)
+        assert info == {
+            'too_many_auto_approved_updates': False,
+            'too_many_average_daily_users': False,
+            'uses_content_script_for_all_urls': False,
+            'uses_custom_csp': False,
+            'uses_native_messaging': False
+        }
+        assert summary.verdict == amo.AUTO_APPROVED
+
+    def test_calculate_verdict_success_negative_max_average_daily_users(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version,
+            uses_custom_csp=False,
+            uses_native_messaging=False,
+            uses_content_script_for_all_urls=False,
+            average_daily_users=self.addon.average_daily_users,
+            auto_approved_updates=333)
+        info = summary.calculate_verdict(
+            max_average_daily_users=-1,
+            max_auto_approved_updates=summary.auto_approved_updates + 1)
+        assert info == {
+            'too_many_auto_approved_updates': False,
             'too_many_average_daily_users': False,
             'uses_content_script_for_all_urls': False,
             'uses_custom_csp': False,
@@ -874,12 +918,13 @@ class TestAutoApprovalSummary(TestCase):
             uses_native_messaging=False,
             uses_content_script_for_all_urls=False,
             average_daily_users=self.addon.average_daily_users,
-            approved_updates=333)
+            auto_approved_updates=333)
         info = summary.calculate_verdict(
             max_average_daily_users=summary.average_daily_users + 1,
-            min_approved_updates=summary.approved_updates, dry_run=True)
+            max_auto_approved_updates=summary.auto_approved_updates + 1,
+            dry_run=True)
         assert info == {
-            'too_few_approved_updates': False,
+            'too_many_auto_approved_updates': False,
             'too_many_average_daily_users': False,
             'uses_content_script_for_all_urls': False,
             'uses_custom_csp': False,
