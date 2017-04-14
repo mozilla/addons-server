@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-13 16:56+0000\n"
+"PO-Revision-Date: 2017-04-14 10:28+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6452,9 +6452,8 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Você tem certeza de que deseja cancelar sua solicitação de análise?"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Baixe multimédia {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Manage massive audio, video, and image downloads with this lightweight tool."
@@ -6942,9 +6941,8 @@ msgid "Log details"
 msgstr "Detalhes do registro"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
-#, fuzzy
 msgid "Review Author"
-msgstr "Histórico de análises"
+msgstr "Autor da revisão"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 #, python-format
