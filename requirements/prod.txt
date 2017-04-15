@@ -373,9 +373,9 @@ requests==2.13.0 \
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
-setuptools==34.4.1 \
-    --hash=sha256:1f7aac8b778446406ec5dcd5cc9305b375e7935e38f2fd3b1b70168c21a079d0 \
-    --hash=sha256:704cc0c9fe6c97edd3c6370d165c5a754dfde318b671058523ed3226d944ea1b
+setuptools==35.0.0 \
+    --hash=sha256:b427014a0cf196e57727e141899c20381051233094783aa6274780a100eb65d9 \
+    --hash=sha256:21213bfbff65d7604a98eaa775ee2e158548b6232cea245a534eb9e07bc7a695
 signing-clients==0.1.14 \
     --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
 # simplejson is required by amo-validator
