@@ -4641,7 +4641,7 @@ var VMLElement = {
 		// simplest possible event model for internal use
 		this.element['on' + eventType] = function () {
 			var evt = win.event;
-			evt.target = evt.srcElement;
+			evt.target = evt.originalEvent.srcElement;
 			handler(evt);
 		};
 		return this;
@@ -8470,7 +8470,7 @@ MouseTracker.prototype = {
 		// common IE normalizing
 		e = e || win.event;
 		if (!e.target) {
-			e.target = e.srcElement;
+			e.target = e.originalEvent.srcElement;
 		}
 
 		// Framework specific normalizing (#1165)
