@@ -94,7 +94,7 @@
 
                 $.each(themes, function(i, obj) {
                     var elem = $(obj.element);
-                    obj.top = elem.offset().top + elem.outerHeight()/2;
+                    obj.top = elem.offset().top + elem.outerHeight(false)/2;
                 });
             }
 

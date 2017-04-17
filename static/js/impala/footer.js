@@ -4,7 +4,7 @@
         $win = $(window);
     function stickyFooter() {
         // Stick the footer to the bottom when there's head(foot)room.
-        $footer.toggleClass('sticky', $win.height() - $footer.outerHeight() > $page.outerHeight());
+        $footer.toggleClass('sticky', $win.height() - $footer.outerHeight(false) > $page.outerHeight(false));
     }
     stickyFooter();
     $win.resize(_.debounce(stickyFooter, 200));
