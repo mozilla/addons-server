@@ -172,9 +172,9 @@ django-cors-headers-multi==1.2.0 \
 django-csp==3.3 \
     --hash=sha256:a95eeeb04df155b6270612238700f16abd2b0cc3d32dbcfca8c7fd06d26dacba \
     --hash=sha256:db082b75075672fb9cf4a622c75c94ee624cb566ffe9d2a645687e58598b6d39
-django-environ==0.4.2 \
-    --hash=sha256:0ed8e62d16c5e279f0479769cc9b146a14cde43593e8f2907c08bf9103b1bb40 \
-    --hash=sha256:edd1b9b1c12c0532ae0119ca43500d94a4936031c44e5512d593f2cd12890eac
+django-environ==0.4.1 \
+    --hash=sha256:f7bce5af8a4232f93a9d9e68f0afa6e276c57d8144c17bf330ebda8cc57f2cca \
+    --hash=sha256:0e22bd07b632046848c746f6e135cb568b7810201ba692a2edb3d5d6c76de34d # pyup: ==0.4.1
 django-extensions==1.6.7 \
     --hash=sha256:7c33f1be6acf7414539cfdef2967bf6240d3c9317551b5d84622dff7824cd3c6 \
     --hash=sha256:ebdfc329207231f63b5ccb591407aadbc1a524af752e52690f0646eb7ff52943 # pyup: ==1.6.7
