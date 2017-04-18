@@ -182,10 +182,10 @@ class TestReviewHelper(TestCase):
 
         self.create_paths()
 
-    def _check_score(self, reviewed_type):
+    def _check_score(self, reviewed_type, bonus=0):
         scores = ReviewerScore.objects.all()
         assert len(scores) > 0
-        assert scores[0].score == amo.REVIEWED_SCORES[reviewed_type]
+        assert scores[0].score == amo.REVIEWED_SCORES[reviewed_type] + bonus
         assert scores[0].note_key == reviewed_type
 
     def create_paths(self):
@@ -552,6 +552,36 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
         self._check_score(amo.REVIEWED_ADDON_FULL)
+
+    @patch('olympia.editors.helpers.sign_file')
+    def test_old_nomination_to_public_bonus_score(self, sign_mock):
+        sign_mock.reset()
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.version.update(nomination=self.days_ago(9))
+        with self.settings(SIGNING_SERVER='full'):
+            self.helper.handler.process_public()
+
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.versions.all()[0].files.all()[0].status == (
+            amo.STATUS_PUBLIC)
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            '%s Approved' % self.preamble)
+        assert 'has been approved' in mail.outbox[0].body
+
+        # AddonApprovalsCounter counter is now at 1 for this addon.
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 1
+
+        sign_mock.assert_called_with(self.file, 'full')
+        assert storage.exists(self.file.file_path)
+
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
+
+        # Score has bonus points added for reviewing an old add-on.
+        # 2 days over the limit = 4 points
+        self._check_score(amo.REVIEWED_ADDON_FULL, bonus=4)
 
     @patch('olympia.editors.helpers.sign_file')
     def test_public_addon_with_version_awaiting_review_to_public(

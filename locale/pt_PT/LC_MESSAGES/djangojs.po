@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-03-28 21:05+0000\n"
+"PO-Revision-Date: 2017-04-14 16:22+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -934,7 +934,7 @@ msgstr "Remover"
 
 #: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
-msgstr "Remover este utilizador como colaborador"
+msgstr "Remover este utilizador como um contribuidor"
 
 #: static/js/zamboni/collections.js
 msgid "An email address is required."
@@ -942,7 +942,7 @@ msgstr "É necessário um endereço de email."
 
 #: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
-msgstr "Não se pode adicionar a si próprio como um colaborador."
+msgstr "Não se pode adicionar a si próprio como um contribuidor."
 
 #: static/js/zamboni/collections.js
 msgid "You have already added that user."

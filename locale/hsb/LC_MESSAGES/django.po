@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 17:57+0000\n"
+"PO-Revision-Date: 2017-04-17 21:24+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5708,7 +5708,7 @@ msgstr "Wužiwarske foto"
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Registrować</a> or <a href=\"%(login)s\">PřizjewićSign In</a>"
+msgstr "<a href=\"%(register)s\">Registrować</a> or <a href=\"%(login)s\">Přizjewić</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Customize Firefox"

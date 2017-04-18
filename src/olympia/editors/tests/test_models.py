@@ -418,7 +418,8 @@ class TestReviewerScore(TestCase):
     def _give_points(self, user=None, addon=None, status=None):
         user = user or self.user
         addon = addon or self.addon
-        ReviewerScore.award_points(user, addon, status or addon.status)
+        ReviewerScore.award_points(
+            user, addon, status or addon.status, version=addon.current_version)
 
     def check_event(self, type, status, event, **kwargs):
         self.addon.type = type
