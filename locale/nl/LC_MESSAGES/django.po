@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 20:37+0000\n"
+"PO-Revision-Date: 2017-04-13 14:10+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -32,7 +32,7 @@ msgstr "Uw Firefox-account kon niet worden gevonden. Probeer het opnieuw."
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr "U kunt niet worden aangemeld. Probeer het opnieuw."
+msgstr "U kon niet worden aangemeld. Probeer het opnieuw."
 
 #: src/olympia/accounts/views.py
 msgid "Need help?"
@@ -1703,7 +1703,7 @@ msgstr "Ondertekening is verlopen."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr "Fout bij decoderen ondertekening."
+msgstr "Fout bij decoderen van ondertekening."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
@@ -3847,7 +3847,7 @@ msgstr "PayPal-ID is vereist om bijdragen te kunnen accepteren."
 
 #: src/olympia/devhub/forms.py
 msgid "Could not validate PayPal id."
-msgstr "Kan PayPal-identiteit niet valideren."
+msgstr "Kon PayPal-ID niet valideren."
 
 #: src/olympia/devhub/forms.py
 msgid "Unsupported file type, please upload an archive file {extensions}."
@@ -3990,7 +3990,7 @@ msgstr "Wachttijd voor verbinding met ‘%s’ verstreken."
 #: src/olympia/devhub/tasks.py
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr "Kan geen verbinding maken met de host op ‘%s’."
+msgstr "Kon geen verbinding maken met de host op ‘%s’."
 
 #: src/olympia/devhub/utils.py
 #, python-format
@@ -7386,7 +7386,7 @@ msgstr "Kon geüploade bestand niet uitpakken; ontbrekend of leeg <%s>-element"
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
-msgstr "Kan geüpload bestand niet uitpakken."
+msgstr "Kon geüploade bestand niet uitpakken."
 
 #: src/olympia/files/utils.py
 msgid "Invalid file name in archive: {0}"
@@ -7402,7 +7402,7 @@ msgstr "Ongeldig archief."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse the manifest file."
-msgstr "Kan het manifest-bestand niet verwerken."
+msgstr "Kon het manifest-bestand niet verwerken."
 
 #: src/olympia/files/utils.py
 msgid "Could not find an add-on ID."
@@ -8479,7 +8479,7 @@ msgstr "Er zijn meer dan genoeg manieren om mee te doen. Als u technisch bent in
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr "<a href=\"%(url)s\">Maak uw eigen add-on</a>. Wij bieden gratis hosting en updatediensten en kunnen u helpen een groot publiek te bereiken."
+msgstr "<a href=\"%(url)s\">Maak uw eigen add-on</a>. We bieden gratis hosting- en updatediensten en kunnen u helpen een groot publiek te bereiken."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -10694,7 +10694,7 @@ msgstr "Welkom bij {0} Add-ons."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Kies uit duizenden extra functies en stijlen om Firefox van u te maken."
+msgstr "Maak een keuze uit duizenden extra functies en stijlen om Firefox van uzelf te maken."
 
 #: src/olympia/templates/impala/base.html
 #, python-format
@@ -11252,7 +11252,7 @@ msgstr "uw profiel bewerken"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "We could not unsubscribe you"
-msgstr "We kunnen uw abonnement niet stopzetten"
+msgstr "We konden uw abonnement niet stopzetten"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 #, python-format
