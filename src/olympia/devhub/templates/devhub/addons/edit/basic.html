@@ -29,6 +29,22 @@
           </tr>
           <tr>
             <th>
+                <label data-for="guid">
+                  {{ _("Add-on ID") }}
+                  {{ tip(None,
+                         _('The ID of the extension.')
+                     )}}
+                </label>
+            </th>
+            <td>
+              {{ addon.guid }}
+              {% if editable %}
+                <div class="edit-addon-details">{{ _("The Add-on ID is not editable.") }}</div>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
               {{ tip(_("Add-on URL"),
                  _("Choose a short, unique URL slug for your add-on.")) }}
             </th>
