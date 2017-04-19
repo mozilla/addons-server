@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2016-09-20 09:50+0000\n"
-"Last-Translator: Stjepan Treger <stjepan.treger@gmail.com>\n"
+"PO-Revision-Date: 2017-04-19 19:31+0000\n"
+"Last-Translator: Mikeyy <mihovil@miho.im>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -267,9 +267,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Pretraži dodatke za <b>{0}</b>"
 
 #: static/js/impala/users.js
-#, fuzzy
 msgid "Use original"
-msgstr "koristi original"
+msgstr "Koristi original"
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"
