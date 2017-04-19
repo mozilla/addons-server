@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-13 18:48+0000\n"
+"PO-Revision-Date: 2017-04-19 19:20+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4039,11 +4039,11 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Το όνομα URL ήταν λάθος. Το πρόσθετο δεν διαγράφηκε."
 
 #: src/olympia/devhub/views.py
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Ένας δημιουργός έχει προστεθεί από το πρόσθετό σας"
 
 #: src/olympia/devhub/views.py
 msgid "An author has a role changed on your add-on"
@@ -4051,7 +4051,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Ένας δημιουργός έχει αφαιρεθεί από το πρόσθετό σας"
 
 #: src/olympia/devhub/views.py
 msgid "There were errors in your submission."
@@ -4067,7 +4067,7 @@ msgstr "Έλεγχος συμβατότητας πρόσθετου"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Δεν μπορείτε να υποβάλετε αυτό τον τύπο προσθέτου"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
@@ -4140,7 +4140,7 @@ msgstr "Δημιουργήθηκε νέο κλειδί API"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
-msgstr ""
+msgstr "Ανακλήθηκε κλειδί API"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
