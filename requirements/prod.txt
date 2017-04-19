@@ -35,9 +35,9 @@ Pillow==4.1.0 \
     --hash=sha256:7b769f1115c6c4a6a567a2e4e8406f0469fb4043b20239778aafbdf3d4ff49f5 \
     --hash=sha256:d3499d67551b3699e5478e80c8132cf60180bb78839ed18fafbff968f858cfeb
 # PyJWT is required by djangorestframework-jwt
-PyJWT==1.4.2 \
-    --hash=sha256:99fe612dbe5f41e07124d9002c118c14f3ee703574ffa9779fee78135b8b94b6 \
-    --hash=sha256:87a831b7a3bfa8351511961469ed0462a769724d4da48a501cb8c96d1e17f570
+PyJWT==1.5.0 \
+    --hash=sha256:ad60a3fb9b393667864ed4b8abc9c3b570747f80bf77a113ead2fbaf0f0cedf3 \
+    --hash=sha256:fd182b728d13f04c289d9b2623d09256d356c9b4a6778018001454a954d7c54b
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
 amo-validator==1.10.59 \
