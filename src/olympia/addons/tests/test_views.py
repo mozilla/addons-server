@@ -981,17 +981,19 @@ class TestDetailPage(TestCase):
         assert span_restart not in r.content
 
     def test_is_webextension(self):
-        is_webextension_span = '<span class="is-webextension"'
-        f = self.addon.current_version.all_files[0]
+        file_ = self.addon.current_version.all_files[0]
 
-        assert f.is_webextension is False
-        r = self.client.get(self.url)
-        assert is_webextension_span not in r.content
+        assert file_.is_webextension is False
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('a.is-webextension')
 
-        f.update(is_webextension=True)
-        assert f.is_webextension is True
-        r = self.client.get(self.url)
-        assert is_webextension_span in r.content
+        file_.update(is_webextension=True, no_restart=True)
+        assert file_.is_webextension is True
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        link = doc('a.is-webextension')
+        assert link.attr['href'] == reverse('pages.webextensions_info')
 
     def test_disabled_user_message(self):
         self.addon.update(disabled_by_user=True)

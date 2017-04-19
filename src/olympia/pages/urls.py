@@ -71,6 +71,9 @@ urlpatterns = patterns(
     url('^pages/validation$',
         lambda r: perma_redirect(settings.VALIDATION_FAQ_URL)),
 
+    url('^pages/webextensions_info$', views.webextensions_info,
+        name='pages.webextensions_info'),
+
     url('^sunbird$',
         TemplateView.as_view(template_name='pages/sunbird.html'),
         name='pages.sunbird'),

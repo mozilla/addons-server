@@ -49,3 +49,18 @@ class TestRedirects(TestCase):
                             follow=False)
         self.assert3xx(r, reverse(
             'devhub.docs', args=['policies/agreement']), 301)
+
+    def test_webextensions_info_redirect(self):
+        assert (reverse('pages.webextensions_info') ==
+                '/en-US/firefox/pages/webextensions_info')
+        self._check({
+            '/en-US/firefox/pages/webextensions_info':
+                'https://support.mozilla.org/kb/webextensions-en-us',
+            '/fr/firefox/pages/webextensions_info':
+                'https://support.mozilla.org/kb/webextensions-fr',
+            '/zh-CN/firefox/pages/webextensions_info':
+                'https://support.mozilla.org/kb/webextensions-zh-cn',
+            # Unsupported locale for this page, it should use en-US instead.
+            '/sv-SE/firefox/pages/webextensions_info':
+                'https://support.mozilla.org/kb/webextensions-en-us',
+        })
