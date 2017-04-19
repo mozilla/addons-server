@@ -9,10 +9,8 @@ import pytest
 from olympia import amo
 from olympia.activity.models import AddonLog
 from olympia.addons.management.commands import approve_addons
-from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.editors.models import ReviewerScore
-from olympia.translations.models import Translation
 
 
 # Where to monkeypatch "lib.crypto.tasks.sign_addons" so it's correctly mocked.
@@ -209,40 +207,6 @@ def test_approve_addons_get_review_type(use_case):
 def test_process_addons_invalid_task():
     with pytest.raises(CommandError):
         call_command('process_addons', task='foo')
-
-
-class RemoveSummariesFromPersonasTestCase(TestCase):
-    @mock.patch('olympia.addons.tasks.remove_summaries.subtask')
-    def test_affects_only_personas_with_summaries(self, remove_summaries_mock):
-        persona_with_summary = addon_factory(
-            type=amo.ADDON_PERSONA, summary='foo')
-        addon_factory(type=amo.ADDON_PERSONA)
-        addon_factory()
-
-        call_command('process_addons', task='remove-summaries-from-personas')
-
-        assert remove_summaries_mock.call_count == 1
-        remove_summaries_mock.assert_called_with(
-            args=[[persona_with_summary.pk]], kwargs={})
-
-    def test_task_works(self):
-        addon = addon_factory(type=amo.ADDON_PERSONA, summary='bar')
-        assert addon.summary_id
-        assert addon.summary
-
-        # Even add a translation in a different locale...
-        Translation.objects.create(id=addon.summary_id)
-        old_summary_id = addon.summary_id
-        assert Translation.objects.filter(id=old_summary_id).count() == 2
-
-        call_command('process_addons', task='remove-summaries-from-personas')
-
-        # .reload() doesn't play well with translations.
-        addon = Addon.objects.get(pk=addon.pk)
-        assert addon.summary_id is None
-        assert addon.summary is None
-
-        assert Translation.objects.filter(id=old_summary_id).count() == 0
 
 
 class AddFirefox57TagTestCase(TestCase):
