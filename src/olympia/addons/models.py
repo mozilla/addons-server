@@ -1720,6 +1720,7 @@ class AddonApprovalsCounter(ModelBase):
     addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE)
     counter = models.PositiveIntegerField(default=0)
+    last_human_review = models.DateTimeField(null=True)
 
     def __unicode__(self):
         return u'%s: %d' % (unicode(self.pk), self.counter) if self.pk else u''
@@ -1727,14 +1728,19 @@ class AddonApprovalsCounter(ModelBase):
     @classmethod
     def increment_for_addon(cls, addon):
         """
-        Increment approval counter for the specified addon. If an
-        AddonApprovalsCounter already exists, it updates it, otherwise it
-        creates and saves a new instance.
+        Increment approval counter for the specified addon, setting the last
+        human review date to now. If an AddonApprovalsCounter already exists,
+        it updates it, otherwise it creates and saves a new instance.
         """
+        data = {
+            'counter': 1,
+            'last_human_review': datetime.now(),
+        }
         obj, created = cls.objects.get_or_create(
-            addon=addon, defaults={'counter': 1})
+            addon=addon, defaults=data)
         if not created:
-            obj.update(counter=F('counter') + 1)
+            data['counter'] = F('counter') + 1
+            obj.update(**data)
         return obj
 
     @classmethod
