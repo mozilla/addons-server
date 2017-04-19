@@ -51,15 +51,6 @@
     line-height: 2em;
 }
 
-/**
- * Fix for bug 494070.  The default width is 50%.  I'm assuming
- * pagination will have most of the line, so we can give it more space.
- * Only tested on collections listing and detail pages.
- */
-ol.pagination {
-    width: 70%;
-}
-
 /* clearleft's category padding is 20px */
 li.sub-category {
     padding-left:30px
