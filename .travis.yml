@@ -72,4 +72,4 @@ notifications:
     on_failure: always
 
 git:
-  depth: 3
+  depth: 1
