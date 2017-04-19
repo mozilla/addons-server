@@ -8,6 +8,7 @@ HOME=/tmp
 #once per hour
 5 * * * * %(z_cron)s update_collections_subscribers
 10 * * * * %(z_cron)s update_blog_posts
+15 * * * * %(django)s auto_approve
 20 * * * * %(z_cron)s addon_last_updated
 25 * * * * %(z_cron)s update_collections_votes
 45 * * * * %(z_cron)s update_addon_appsupport
