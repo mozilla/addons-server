@@ -684,6 +684,9 @@ class AutoApprovalSummary(ModelBase):
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
 
+    def __unicode__(self):
+        return u'%s %s' % (self.version.addon.name, self.version)
+
     def calculate_verdict(
             self, max_average_daily_users=0, min_approved_updates=0,
             dry_run=False):

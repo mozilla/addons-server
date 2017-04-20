@@ -137,7 +137,7 @@
         </thead>
         <tbody>
           {% for row in page.object_list %}
-          <tr data-addon="{{ row.record.id }}" class="addon-row" id="addon-{{ row.record.id }}" data-review-log="{{ row.record.review_log_id }}">
+          <tr data-addon="{{ row.record.addon_id or row.record.id }}" class="addon-row" id="addon-{{ row.record.addon_id or row.record.id }}" data-review-log="{{ row.record.review_log_id }}">
             <td><div class="addon-locked"></div></td>
             {% for value in row %}
               <td>{{ value|xssafe }}</td>

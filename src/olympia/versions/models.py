@@ -475,6 +475,14 @@ class Version(OnChangeMixin, ModelBase):
     def is_jetpack(self):
         return all(f.jetpack_version for f in self.all_files)
 
+    @property
+    def sources_provided(self):
+        return bool(self.source)
+
+    @property
+    def admin_review(self):
+        return self.addon.admin_review
+
     @classmethod
     def _compat_map(cls, avs):
         apps = {}

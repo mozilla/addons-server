@@ -23,11 +23,13 @@ from olympia.amo.tests import (
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonDependency, AddonUser
+from olympia.addons.models import (
+    Addon, AddonApprovalsCounter, AddonDependency, AddonUser)
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
-from olympia.editors.models import EditorSubscription, ReviewerScore
+from olympia.editors.models import (
+    AutoApprovalSummary, EditorSubscription, ReviewerScore)
 from olympia.files.models import File, FileValidation
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
@@ -1221,6 +1223,98 @@ class TestUnlistedAllList(QueueTest):
         url = reverse('editors.queue_review_text') + str(log.id)
         r = self.client.get(url)
         assert json.loads(r.content) == {'reviewtext': 'stish goin` down son'}
+
+
+class TestAutoApprovedQueue(QueueTest):
+
+    def setUp(self):
+        super(TestAutoApprovedQueue, self).setUp()
+        self.url = reverse('editors.queue_auto_approved')
+
+    def login_with_permission(self):
+        user = UserProfile.objects.get(email='editor@mozilla.com')
+        self.grant_permission(user, 'Addons:PostReview')
+        self.client.login(email=user.email)
+
+    def get_addon_latest_version(self, addon):
+        """Method used by _test_results() to fetch the version that the queue
+        is supposed to display. Overridden here because in our case, it's not
+        necessarily the latest available version - we want the latest one to
+        have been auto approved."""
+        return AutoApprovalSummary.objects.filter(
+            version__in=list(addon.versions.all())).latest('pk').version
+
+    def generate_files(self):
+        """Generate add-ons needed for these tests."""
+        # Has not been auto-approved.
+        extra_addon = addon_factory(name=u'Extra Addôn 1')
+        AutoApprovalSummary.objects.create(
+            version=extra_addon.current_version, verdict=amo.NOT_AUTO_APPROVED)
+        # Has not been auto-approved either, only dry run.
+        extra_addon2 = addon_factory(name=u'Extra Addôn 2')
+        AutoApprovalSummary.objects.create(
+            version=extra_addon2.current_version,
+            verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED)
+        # Has been auto-approved and reviewed by a human before.
+        addon1 = addon_factory(name=u'Addôn 1')
+        AutoApprovalSummary.objects.create(
+            version=addon1.current_version, verdict=amo.AUTO_APPROVED)
+        AddonApprovalsCounter.objects.create(
+            addon=addon1, counter=1, last_human_review=self.days_ago(42))
+        # Has been auto-approved twice, last_human_review is somehow None.
+        addon2 = addon_factory(name=u'Addôn 2')
+        AutoApprovalSummary.objects.create(
+            version=addon2.current_version, verdict=amo.AUTO_APPROVED)
+        AddonApprovalsCounter.objects.create(
+            addon=addon2, counter=1, last_human_review=None)
+        addon2_version2 = version_factory(addon=addon2)
+        AutoApprovalSummary.objects.create(
+            version=addon2_version2, verdict=amo.AUTO_APPROVED)
+        # Has been auto-approved and never been seen by a human.
+        addon3 = addon_factory(name=u'Addôn 3', created=self.days_ago(10))
+        AutoApprovalSummary.objects.create(
+            version=addon3.current_version, verdict=amo.AUTO_APPROVED)
+        self.expected_addons = [addon2, addon3, addon1]
+
+    def test_only_viewable_with_specific_permission(self):
+        # Regular addon reviewer does not have access.
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+        # Regular user doesn't have access.
+        self.client.logout()
+        assert self.client.login(email='regular@mozilla.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_results(self):
+        self.login_with_permission()
+        self.generate_files()
+        self._test_results()
+
+    def test_queue_count(self):
+        self.login_with_permission()
+        self.generate_files()
+
+        response = self.client.get(self.url, {'per_page': 1})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        link = doc('.tabnav li a').eq(3)
+        assert link.text() == 'Auto Approved Add-ons (3)'
+        assert link.attr('href') == self.url
+        assert doc('.data-grid-top .num-results').text() == (
+            u'Results 1 \u2013 1 of 3')
+
+    def test_navbar_queue_counts(self):
+        self.login_with_permission()
+        self.generate_files()
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#navbar #listed-queues li').eq(3).text() == (
+            'Auto Approved Add-ons (3)'
+        )
 
 
 class TestPerformance(QueueTest):
