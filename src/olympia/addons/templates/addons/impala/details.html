@@ -1,4 +1,6 @@
 {% extends "impala/base_shared.html" %}
+{% from "addons/macros.html" import addon_flags %}
+
 {% set is_author = request.check_ownership(addon, require_owner=False) %}
 {% set is_reviewer = action_allowed("Addons", "Review") %}
 {% set is_staff = action_allowed("ReviewerAdminTools", "View") %}
@@ -102,14 +104,7 @@
         <img id="addon-icon" itemprop="image" src="{{ addon.get_icon_url(64) }}" class="icon" alt="{{ _('Icon of {0}')|fe(addon.name) }}">
         <h1 class="addon"{{ addon.name|locale_html }}>
           <span itemprop="name">{{ addon.name }}</span>
-          {% if version %}
-            <span class="version-number" itemprop="version">{{ version.version }}</span>
-            {% if version.is_webextension %}
-              &nbsp;<span class="is-webextension" title="{{ _('This add-on is built with new technology that is compatible with Firefox 57 and beyond.') }}">{{ _('Compatible with Firefox 57+') }}</span>
-            {% elif version.requires_restart %}
-              &nbsp;<span class="requires-restart">{{ _('Requires Restart') }}</span>
-            {% endif %}
-          {% endif %}
+          {{ addon_flags(addon, version) }}
         </h1>
         <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
       </hgroup>

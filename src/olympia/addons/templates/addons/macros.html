@@ -36,6 +36,16 @@
   </div>
 {% endmacro %}
 
+{% macro addon_flags(addon, version) %}
+    {% if version %}
+      {% if version.requires_restart %}
+        <span class="requires-restart">{{ _('Requires Restart') }}</span>
+      {% elif version.is_webextension %}
+        <a href="{{ url('pages.webextensions_info') }}" class="is-webextension" title="{{ _('This add-on is built with new technology that is compatible with Firefox 57 and beyond.') }}">{{ _('Compatible with Firefox 57+') }}</a>
+      {% endif %}
+    {% endif %}
+{% endmacro %}
+
 {% macro addon_heading(addon, version) %}
   <h1{{ addon.name|locale_html }}>
     {{ addon.name }}

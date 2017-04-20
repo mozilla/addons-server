@@ -2,10 +2,11 @@ from collections import defaultdict
 
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
+from django.http import HttpResponsePermanentRedirect
 
 from olympia.activity.models import ActivityLog
 from olympia.users.models import UserProfile
-from olympia.amo.utils import render
+from olympia.amo.utils import find_language, render
 
 
 @non_atomic_requests
@@ -72,3 +73,17 @@ def credits(request):
     }
 
     return render(request, 'pages/credits.html', context)
+
+
+@non_atomic_requests
+def webextensions_info(request):
+    """Redirect to the support page for webextensions in the right locale (
+    defaulting to english if there isn't one)."""
+    supported_languages = (
+        'de', 'en-US', 'es', 'fr', 'ja', 'pl', 'pt-PT', 'ru', 'zh-CN'
+    )
+    lang = find_language(request.LANG)
+    if lang not in supported_languages:
+        lang = 'en-US'
+    url = 'https://support.mozilla.org/kb/webextensions-%s' % (lang.lower())
+    return HttpResponsePermanentRedirect(url)
