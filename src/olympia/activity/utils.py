@@ -223,8 +223,6 @@ def send_activity_mail(subject, message, version, recipients, from_email,
         if not created:
             token.update(use_count=0)
         else:
-            # We need .uuid to be a real UUID not just a str.
-            token.reload()
             log.info('Created token with UUID %s for user: %s.' % (
                 token.uuid, recipient.id))
         reply_to = "%s%s@%s" % (

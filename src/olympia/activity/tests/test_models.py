@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-# from os import path
+from uuid import UUID
 
 from django.core.urlresolvers import reverse
 
@@ -30,6 +30,10 @@ class TestActivityLogToken(TestCase):
         self.user = user_factory()
         self.token = ActivityLogToken.objects.create(
             version=self.version, user=self.user)
+
+    def test_uuid_is_automatically_created(self):
+        assert self.token.uuid
+        assert isinstance(self.token.uuid, UUID)
 
     def test_validity_use_expiry(self):
         assert self.token.use_count == 0
