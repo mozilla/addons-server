@@ -37,7 +37,7 @@ class ActivityLogToken(ModelBase):
     version = models.ForeignKey(Version, related_name='token')
     user = models.ForeignKey('users.UserProfile',
                              related_name='activity_log_tokens')
-    uuid = models.UUIDField(default=lambda: uuid.uuid4().hex, unique=True)
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     use_count = models.IntegerField(
         default=0,
         help_text='Stores the number of times the token has been used')
