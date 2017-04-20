@@ -264,6 +264,10 @@ class TestManifestJSONExtractor(TestCase):
         with pytest.raises(forms.ValidationError) as exc:
             utils.check_xpi_info(manifest)
 
+        assert (
+            exc.value.message ==
+            'WebExtension theme uploads are currently not supported.')
+
     def test_allow_static_theme_waffle(self):
         create_switch('allow-static-theme-uploads')
 
