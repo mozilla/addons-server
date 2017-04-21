@@ -56,7 +56,7 @@
         {% endif %}
       </ul>
     </li>
-    {% if action_allowed(amo.permissions.ADDONS_REVIEWUNLISTED) %}
+    {% if action_allowed(amo.permissions.ADDONS_REVIEW_UNLISTED) %}
       <li class="top" id="unlisted-queues">
         <a href="{{ url('editors.unlisted_queue') }}" class="controller">
           {{ _('Unlisted Queues') }}</a>

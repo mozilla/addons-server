@@ -1084,7 +1084,8 @@ def version_edit(request, addon_id, addon, version_id):
 
     data = {'version_form': version_form, 'file_form': file_form}
 
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWERADMINTOOLS)
+    is_admin = acl.action_allowed(request,
+                                  amo.permissions.REVIEWER_ADMIN_TOOLS)
 
     if addon.accepts_compatible_apps():
         # We should be in no-caching land but this one stays cached for some
@@ -1231,7 +1232,8 @@ def auto_sign_version(version, **kwargs):
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created').transform(Version.transformer)
     versions = amo_utils.paginate(request, qs)
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWERADMINTOOLS)
+    is_admin = acl.action_allowed(request,
+                                  amo.permissions.REVIEWER_ADMIN_TOOLS)
 
     token = request.COOKIES.get(API_TOKEN_COOKIE, None)
 
@@ -1386,7 +1388,8 @@ def _submit_upload(request, addon, channel, next_details, next_finish,
                     if channel == amo.RELEASE_CHANNEL_LISTED and not is_beta
                     else next_finish)
         return redirect(next_url, *url_args)
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWERADMINTOOLS)
+    is_admin = acl.action_allowed(request,
+                                  amo.permissions.REVIEWER_ADMIN_TOOLS)
     if addon:
         channel_choice_text = (forms.DistributionChoiceForm().LISTED_LABEL
                                if channel == amo.RELEASE_CHANNEL_LISTED else

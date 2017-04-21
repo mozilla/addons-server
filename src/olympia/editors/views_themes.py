@@ -46,7 +46,7 @@ def queue_counts_themes(request):
                                  .count(),
     }
 
-    if acl.action_allowed(request, amo.permissions.THEMEADMINTOOLS):
+    if acl.action_allowed(request, amo.permissions.THEME_ADMIN_TOOLS):
         counts.update({
             'flagged_themes': (Persona.objects.no_cache()
                                .filter(addon__status=amo.STATUS_REVIEW_PENDING)

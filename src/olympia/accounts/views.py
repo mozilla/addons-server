@@ -378,7 +378,8 @@ class ProfileView(generics.RetrieveAPIView):
 class AccountSuperCreate(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [
-        IsAuthenticated, GroupPermission(amo.permissions.ACCOUNTS_SUPERCREATE)]
+        IsAuthenticated,
+        GroupPermission(amo.permissions.ACCOUNTS_SUPER_CREATE)]
 
     @waffle_switch('super-create-accounts')
     def post(self, request):

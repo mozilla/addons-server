@@ -126,7 +126,7 @@ def check_addons_reviewer(request):
 
 
 def check_unlisted_addons_reviewer(request):
-    return action_allowed(request, amo.permissions.ADDONS_REVIEWUNLISTED)
+    return action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED)
 
 
 def check_personas_reviewer(request):

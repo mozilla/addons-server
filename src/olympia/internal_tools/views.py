@@ -28,18 +28,18 @@ class InternalAddonSearchView(AddonSearchView):
     ]
 
     # Restricted to specific permissions.
-    permission_classes = [AnyOf(GroupPermission(amo.permissions.ADMINTOOLS),
+    permission_classes = [AnyOf(GroupPermission(amo.permissions.ADMIN_TOOLS),
                                 GroupPermission(
-                                    amo.permissions.REVIEWERADMINTOOLS))]
+                                    amo.permissions.REVIEWER_ADMIN_TOOLS))]
     # Can display unlisted data.
     serializer_class = ESAddonSerializerWithUnlistedData
 
 
 class InternalAddonViewSet(AddonViewSet):
     # Restricted to specific permissions.
-    permission_classes = [AnyOf(GroupPermission(amo.permissions.ADMINTOOLS),
+    permission_classes = [AnyOf(GroupPermission(amo.permissions.ADMIN_TOOLS),
                                 GroupPermission(
-                                    amo.permissions.REVIEWERADMINTOOLS))]
+                                    amo.permissions.REVIEWER_ADMIN_TOOLS))]
 
     # Internal tools allow access to everything, including deleted add-ons.
     queryset = Addon.unfiltered.all()

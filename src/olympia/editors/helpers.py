@@ -402,7 +402,7 @@ class ReviewHelper(object):
             amo.STATUS_NULL, amo.STATUS_DELETED)
         reviewable_because_admin = (
             not addon.admin_review or
-            acl.action_allowed(request, amo.permissions.REVIEWERADMINTOOLS))
+            acl.action_allowed(request, amo.permissions.REVIEWER_ADMIN_TOOLS))
         reviewable_because_submission_time = (
             not is_limited_reviewer(request) or
             (self.version is not None and
@@ -742,7 +742,8 @@ def logs_tabnav_themes(context):
     rv = [
         ('editors.themes.logs', 'themes', _('Reviews'))
     ]
-    if acl.action_allowed(context['request'], amo.permissions.THEMEADMINTOOLS):
+    if acl.action_allowed(context['request'],
+                          amo.permissions.THEME_ADMIN_TOOLS):
         rv.append(('editors.themes.deleted', 'deleted', _('Deleted')))
 
     return rv
@@ -757,7 +758,8 @@ def queue_tabnav_themes(context):
         tabs.append((
             'editors.themes.list', 'pending_themes', _('Pending'),
         ))
-    if acl.action_allowed(context['request'], amo.permissions.THEMEADMINTOOLS):
+    if acl.action_allowed(context['request'],
+                          amo.permissions.THEME_ADMIN_TOOLS):
         tabs.append((
             'editors.themes.list_flagged', 'flagged_themes', _('Flagged'),
         ))
@@ -777,7 +779,8 @@ def queue_tabnav_themes_interactive(context):
         tabs.append((
             'editors.themes.queue_themes', 'pending', _('Pending'),
         ))
-    if acl.action_allowed(context['request'], amo.permissions.THEMEADMINTOOLS):
+    if acl.action_allowed(context['request'],
+                          amo.permissions.THEME_ADMIN_TOOLS):
         tabs.append((
             'editors.themes.queue_flagged', 'flagged', _('Flagged'),
         ))

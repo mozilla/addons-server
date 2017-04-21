@@ -146,7 +146,7 @@ def add_email_to_activity_log(parser):
 def action_from_user(user, version):
     review_perm = (amo.permissions.ADDONS_REVIEW
                    if version.channel == amo.RELEASE_CHANNEL_LISTED
-                   else amo.permissions.ADDONS_REVIEWUNLISTED)
+                   else amo.permissions.ADDONS_REVIEW_UNLISTED)
     if version.addon.authors.filter(pk=user.pk).exists():
         return amo.LOG.DEVELOPER_REPLY_VERSION
     elif acl.action_allowed_user(user, review_perm):
@@ -173,7 +173,7 @@ def log_and_notify(action, comments, note_creator, version):
     # Collect reviewers involved with this version.
     review_perm = (amo.permissions.ADDONS_REVIEW
                    if version.channel == amo.RELEASE_CHANNEL_LISTED
-                   else amo.permissions.ADDONS_REVIEWUNLISTED)
+                   else amo.permissions.ADDONS_REVIEW_UNLISTED)
     log_users = {
         alog.user for alog in ActivityLog.objects.for_version(version) if
         acl.action_allowed_user(alog.user, review_perm)}

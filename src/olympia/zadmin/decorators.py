@@ -19,7 +19,7 @@ def admin_required(reviewers=False, theme_reviewers=False):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
             admin = (action_allowed(request, amo.permissions.ADMIN) or
-                     action_allowed(request, amo.permissions.ADMINTOOLS))
+                     action_allowed(request, amo.permissions.ADMIN_TOOLS))
             # Yes, the "is True" is here on purpose... because this decorator
             # takes optional arguments, but doesn't do it properly (so if
             # you're not giving it arguments, it takes the decorated function
@@ -28,11 +28,11 @@ def admin_required(reviewers=False, theme_reviewers=False):
                 admin = (
                     admin or
                     action_allowed(request,
-                                   amo.permissions.REVIEWERADMINTOOLS))
+                                   amo.permissions.REVIEWER_ADMIN_TOOLS))
             if theme_reviewers is True:
                 admin = (
                     admin or
-                    action_allowed(request, amo.permissions.THEMEADMINTOOLS))
+                    action_allowed(request, amo.permissions.THEME_ADMIN_TOOLS))
             if admin:
                 return f(request, *args, **kw)
             raise PermissionDenied
