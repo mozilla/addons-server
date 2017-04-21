@@ -564,6 +564,15 @@ class TestHome(EditorTest):
         listed_stats = doc('#editors-stats-charts {0}'.format(selector)).eq(0)
         assert 'New Add-on (1)' in listed_stats.text()
 
+    def test_stat_display_name(self):
+        self.user.display_name = ''
+        core.set_user(self.user)
+        self.approve_reviews()
+
+        doc = pq(self.client.get(self.url).content)
+        cols = doc('#editors-stats .editor-stats-table').eq(1).find('td')
+        assert cols.eq(0).text() != self.user.display_name
+        assert cols.eq(0).text() != self.user.name
 
 class QueueTest(EditorTest):
     fixtures = ['base/users']

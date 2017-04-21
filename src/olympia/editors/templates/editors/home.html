@@ -58,7 +58,11 @@
             <table>
               {% for row in reviews_total: %}
               <tr>
-                <td>{{ row['user__name'] }}</td>
+                {% if row['user__display_name'] != '' %}
+                <td>{{ row['user__display_name'] }}</td>
+                {% else %}
+                <td>{{ row['user__username'] }}</td>
+                {% endif %}
                 <td class="int">{{ row['approval_count']|numberfmt }}</td>
               </tr>
               {% endfor %}
@@ -73,7 +77,11 @@
             <table>
               {% for row in reviews_monthly: %}
               <tr>
-                <td>{{ row['user__name'] }}</td>
+                {% if row['user__display_name'] != '' %}
+                <td>{{ row['user__display_name'] }}</td>
+                {% else %}
+                <td>{{ row['user__username'] }}</td>
+                {% endif %}
                 <td class="int">{{ row['approval_count']|numberfmt }}</td>
               </tr>
               {% endfor %}
