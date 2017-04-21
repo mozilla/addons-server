@@ -572,7 +572,9 @@ class TestHome(EditorTest):
         doc = pq(self.client.get(self.url).content)
         cols = doc('#editors-stats .editor-stats-table').eq(1).find('td')
         assert cols.eq(0).text() != self.user.display_name
-        assert cols.eq(0).text() != self.user.name
+        assert cols.eq(0).text() == self.user.name
+
+
 
 class QueueTest(EditorTest):
     fixtures = ['base/users']
