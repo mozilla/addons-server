@@ -10,17 +10,17 @@ NONE = AclPermission('None', 'None')
 ADMIN = AclPermission('Admin', '%')
 
 # Can view admin tools.
-ADMIN_TOOLS = AclPermission('AdminTools', 'View')
+ADMIN_TOOLS_VIEW = AclPermission('AdminTools', 'View')
 # Can view add-on reviewer admin tools.
-REVIEWER_ADMIN_TOOLS = AclPermission('ReviewerAdminTools', 'View')
+REVIEWER_ADMIN_TOOLS_VIEW = AclPermission('ReviewerAdminTools', 'View')
 # Can view theme reviewer admin tools.
-THEME_ADMIN_TOOLS = AclPermission('SeniorPersonasTools', 'View')
+THEME_ADMIN_TOOLS_VIEW = AclPermission('SeniorPersonasTools', 'View')
 # Can edit the properties of any add-on (pseduo-admin).
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
 # Can configure some settings of an add-on.
 ADDONS_CONFIGURE = AclPermission('Addons', 'Configure')
 # Can view only the reviewer (editor) tools.
-REVIEWER_TOOLS = AclPermission('ReviewerTools', 'View')
+REVIEWER_TOOLS_VIEW = AclPermission('ReviewerTools', 'View')
 
 # These users gain access to the accounts API to super-create users.
 ACCOUNTS_SUPER_CREATE = AclPermission('Accounts', 'SuperCreate')
@@ -40,11 +40,11 @@ THEMES_REVIEW = AclPermission('Personas', 'Review')
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
 
 # Can view statistics for all addons, regardless of privacy settings.
-STATS = AclPermission('Stats', 'View')
+STATS_VIEW = AclPermission('Stats', 'View')
 # Can view collection statistics.
-COLLECTION_STATS = AclPermission('CollectionStats', 'View')
+COLLECTION_STATS_VIEW = AclPermission('CollectionStats', 'View')
 # Can view revenue statistics.
-REVENUE_STATS = AclPermission('RevenueStats', 'View')
+REVENUE_STATS_VIEW = AclPermission('RevenueStats', 'View')
 
 # Can submit experiments.
 EXPERIMENTS_SUBMIT = AclPermission('Experiments', 'submit')
@@ -56,7 +56,7 @@ LOCALIZER = AclPermission('Localizer', '%')
 USERS_EDIT = AclPermission('Users', 'Edit')
 
 # Can access mailing list
-MAILING_LISTS = AclPermission('MailingLists', 'View')
+MAILING_LISTS_VIEW = AclPermission('MailingLists', 'View')
 
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [

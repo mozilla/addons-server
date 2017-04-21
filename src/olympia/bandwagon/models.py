@@ -326,7 +326,7 @@ class Collection(ModelBase):
         if request and request.user:
             return (self.publishable_by(request.user) or
                     acl.action_allowed(request,
-                                       amo.permissions.COLLECTION_STATS))
+                                       amo.permissions.COLLECTION_STATS_VIEW))
         return False
 
     def publishable_by(self, user):

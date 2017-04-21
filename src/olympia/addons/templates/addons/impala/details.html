@@ -3,7 +3,7 @@
 
 {% set is_author = request.check_ownership(addon, require_owner=False) %}
 {% set is_reviewer = action_allowed(amo.permissions.ADDONS_REVIEW) %}
-{% set is_staff = action_allowed(amo.permissions.REVIEWER_ADMIN_TOOLS) %}
+{% set is_staff = action_allowed(amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW) %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block js %}

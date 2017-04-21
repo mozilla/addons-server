@@ -14,7 +14,7 @@ def _view_on_get(request):
     a GET request, they are allowed to view.
     """
     return (request.method == 'GET' and
-            acl.action_allowed(request, amo.permissions.REVIEWER_TOOLS))
+            acl.action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW))
 
 
 def addons_reviewer_required(f):

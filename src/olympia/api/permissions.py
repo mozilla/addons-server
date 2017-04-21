@@ -104,7 +104,7 @@ class AllowReviewer(BasePermission):
     def has_permission(self, request, view):
         return ((request.method in SAFE_METHODS and
                  acl.action_allowed(request,
-                                    amo.permissions.REVIEWER_TOOLS)) or
+                                    amo.permissions.REVIEWER_TOOLS_VIEW)) or
                 acl.check_addons_reviewer(request))
 
     def has_object_permission(self, request, view, obj):

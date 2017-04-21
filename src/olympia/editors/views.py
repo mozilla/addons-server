@@ -95,7 +95,7 @@ def eventlog_detail(request, id):
         review = log.arguments[1]
 
     is_admin = acl.action_allowed(request,
-                                  amo.permissions.REVIEWER_ADMIN_TOOLS)
+                                  amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
 
     can_undelete = review and review.deleted and (
         is_admin or request.user.pk == log.user.pk)
@@ -228,7 +228,7 @@ def performance(request, user_id=False):
 
     is_admin = (acl.action_allowed(request, amo.permissions.ADMIN) or
                 acl.action_allowed(request,
-                                   amo.permissions.REVIEWER_ADMIN_TOOLS))
+                                   amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW))
 
     if is_admin and user_id:
         try:
@@ -394,7 +394,8 @@ def save_motd(request):
 
 
 def is_admin_reviewer(request):
-    return acl.action_allowed(request, amo.permissions.REVIEWER_ADMIN_TOOLS)
+    return acl.action_allowed(request,
+                              amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
 
 
 def exclude_admin_only_addons(queryset):
@@ -774,7 +775,8 @@ def review_viewing(request):
         review_locks = cache.get_many(cache.get(user_key, {}))
         can_lock_more_reviews = (
             len(review_locks) < amo.EDITOR_REVIEW_LOCK_LIMIT or
-            acl.action_allowed(request, amo.permissions.REVIEWER_ADMIN_TOOLS))
+            acl.action_allowed(request,
+                               amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW))
         if can_lock_more_reviews or currently_viewing == user_id:
             set_reviewing_cache(addon_id, user_id)
             # Give it double expiry just to be safe.
