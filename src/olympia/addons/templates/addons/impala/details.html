@@ -104,7 +104,10 @@
         <img id="addon-icon" itemprop="image" src="{{ addon.get_icon_url(64) }}" class="icon" alt="{{ _('Icon of {0}')|fe(addon.name) }}">
         <h1 class="addon"{{ addon.name|locale_html }}>
           <span itemprop="name">{{ addon.name }}</span>
-          {{ addon_flags(addon, version) }}
+          {% if version %}
+            <span class="version-number" itemprop="version">{{ version.version }}</span>
+            {{ addon_flags(addon, version) }}
+          {% endif %}
         </h1>
         <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
       </hgroup>

@@ -997,6 +997,11 @@ class TestDetailPage(TestCase):
         link = doc('a.is-webextension')
         assert link.attr['href'] == reverse('pages.webextensions_info')
 
+    def test_version_displayed(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.version-number').text() == '2.1.072'
+
     def test_disabled_user_message(self):
         self.addon.update(disabled_by_user=True)
         res = self.client.get(self.url)
