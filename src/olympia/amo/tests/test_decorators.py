@@ -157,7 +157,7 @@ class TestSetModifiedOn(TestCase):
 
 
 class TestPermissionRequired(TestCase):
-    empty_permission = amo.permissions.None
+    empty_permission = amo.permissions.NONE
 
     def setUp(self):
         super(TestPermissionRequired, self).setUp()
