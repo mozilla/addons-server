@@ -543,6 +543,7 @@ class TestDetailPage(TestCase):
     fixtures = ['base/addon_3615',
                 'base/users',
                 'base/addon_59',
+                'base/addon_592',
                 'base/addon_4594_a9',
                 'addons/listed',
                 'addons/persona']
@@ -559,6 +560,7 @@ class TestDetailPage(TestCase):
         super(TestDetailPage, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
+        self.more_url = self.addon.get_url_path(more=True)
 
     def test_304(self):
         response = self.client.get(self.url)
@@ -1068,16 +1070,6 @@ class TestDetailPage(TestCase):
         assert pq(content)('.manage-button a').eq(2).attr('href') == (
             reverse('zadmin.addon_manage', args=[self.addon.slug]))
 
-
-class TestImpalaDetailPage(TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
-
-    def setUp(self):
-        super(TestImpalaDetailPage, self).setUp()
-        self.addon = Addon.objects.get(id=3615)
-        self.url = self.addon.get_url_path()
-        self.more_url = self.addon.get_url_path(more=True)
-
     def get_pq(self):
         return pq(self.client.get(self.url).content)
 
@@ -1168,14 +1160,6 @@ class TestImpalaDetailPage(TestCase):
         assert d.find('.install-button a').attr('href').endswith(
             '?src=dp-hc-dependencies')
 
-    def test_requires_restart(self):
-        f = self.addon.current_version.all_files[0]
-        assert f.requires_restart
-        assert self.get_pq()('.requires-restart').length == 1
-        f.update(no_restart=True)
-        assert not f.requires_restart
-        assert self.get_pq()('.requires-restart').length == 0
-
     def test_license_link_builtin(self):
         g = 'http://google.com'
         version = self.addon._current_version
@@ -1204,6 +1188,7 @@ class TestImpalaDetailPage(TestCase):
     def test_other_addons(self):
         """Ensure listed add-ons by the same author show up."""
         other = Addon.objects.get(id=592)
+        Addon.objects.get(id=4594).delete()
         assert list(Addon.objects.listed(amo.FIREFOX).exclude(
             id=self.addon.id)) == [other]
 
