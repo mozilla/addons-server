@@ -2,6 +2,7 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
 import json
+import random
 import re
 
 from django import test
@@ -17,7 +18,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, TestCase
 from olympia.amo.helpers import numberfmt, urlparams
-from olympia.amo.tests import addon_factory, version_factory
+from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
@@ -28,6 +29,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.paypal.tests.test import other_error
+from olympia.reviews.models import Review
 from olympia.stats.models import Contribution
 from olympia.users.helpers import users_list
 from olympia.users.models import UserProfile
@@ -1074,6 +1076,29 @@ class TestDetailPage(TestCase):
             reverse('editors.review', args=[self.addon.slug]))
         assert pq(content)('.manage-button a').eq(2).attr('href') == (
             reverse('zadmin.addon_manage', args=[self.addon.slug]))
+
+    def test_reviews(self):
+        def create_review(body='review text'):
+            return Review.objects.create(
+                addon=self.addon, user=user_factory(),
+                rating=random.randrange(0, 6),
+                body=body)
+
+        url = reverse('addons.detail', args=['a3615'])
+
+        create_review()
+        response = self.client.get(url, follow=True)
+        assert len(response.context['reviews']) == 1
+
+        # Add a new review but with no body - shouldn't be shown on detail page
+        create_review(body=None)
+        response = self.client.get(url, follow=True)
+        assert len(response.context['reviews']) == 1
+
+        # Test one last time in case caching
+        create_review()
+        response = self.client.get(url, follow=True)
+        assert len(response.context['reviews']) == 2
 
     def get_pq(self):
         return pq(self.client.get(self.url).content)

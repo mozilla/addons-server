@@ -105,6 +105,31 @@ class TestViews(ReviewTest):
         assert r.rating is None
         assert item.attr('data-rating') == ''
 
+    def test_empty_reviews_in_list(self):
+        def create_review(body='review text', user=None):
+            return Review.objects.create(
+                addon=self.addon, user=user or user_factory(),
+                rating=3, body=body)
+
+        url = helpers.url('addons.reviews.list', self.addon.slug)
+
+        create_review()
+        create_review(body=None)
+        create_review(
+            body=None,
+            user=UserProfile.objects.get(email='trev@adblockplus.org'))
+
+        # Don't show the reviews with no body.
+        assert len(self.client.get(url).context['reviews']) == 2
+
+        self.login_dev()
+        # Except if it's your review
+        assert len(self.client.get(url).context['reviews']) == 3
+
+        # Or you're an admin
+        self.login_admin()
+        assert len(self.client.get(url).context['reviews']) == 4
+
     def test_list_rss(self):
         r = self.client.get(helpers.url('addons.reviews.list',
                                         self.addon.slug))
