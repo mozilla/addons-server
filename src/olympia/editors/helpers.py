@@ -19,7 +19,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.activity.models import ActivityLog
-from olympia.activity.utils import send_activity_mail
+from olympia.activity.utils import send_activity_mail, log_and_notify
 from olympia.addons.helpers import new_context
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.helpers import absolutify, page_title
@@ -431,13 +431,13 @@ class ReviewHelper(object):
                                  'from the queue. The comments will be sent '
                                  'to the developer.'),
                 'minimal': False}
-        actions['info'] = {
-            'method': self.handler.request_information,
-            'label': _lazy('Request more information'),
-            'details': _lazy('This will request more information from the '
-                             'developer. You will be notified when they '
-                             'reply.'),
-            'minimal': True}
+        if self.version:
+            actions['info'] = {
+                'method': self.handler.request_information,
+                'label': _lazy('Reviewer reply'),
+                'details': _lazy('This will send a message to the developer. '
+                                 'You will be notified when they reply.'),
+                'minimal': True}
         actions['super'] = {
             'method': self.handler.process_super_review,
             'label': _lazy('Request super-review'),
@@ -571,18 +571,19 @@ class ReviewBase(object):
                     not self.files[0].is_webextension if self.files else False}
 
     def request_information(self):
-        """Send a request for information to the authors."""
-        self.log_action(amo.LOG.REQUEST_INFORMATION)
         if self.version:
             kw = {'has_info_request': True}
             if (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
                     not self.version.reviewed):
                 kw['reviewed'] = datetime.datetime.now()
             self.version.update(**kw)
-        log.info(u'Sending request for information for %s to authors' %
-                 self.addon)
-        subject = u'Mozilla Add-ons: %s %s'
-        self.notify_email('info', subject, perm_setting='individual_contact')
+
+        log.info(u'Sending request for information for %s to authors and other'
+                 u'recipients' % self.addon)
+        log_and_notify(amo.LOG.REQUEST_INFORMATION, self.data['comments'],
+                       self.user, self.version,
+                       perm_setting='individual_contact',
+                       details_kw={'reviewtype': self.review_type})
 
     def send_super_mail(self):
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)

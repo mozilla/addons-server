@@ -153,21 +153,36 @@ def action_from_user(user, version):
         return amo.LOG.REVIEWER_REPLY_VERSION
 
 
-def log_and_notify(action, comments, note_creator, version):
+def template_from_user(user, version):
+    review_perm = ('Review' if version.channel == amo.RELEASE_CHANNEL_LISTED
+                   else 'ReviewUnlisted')
+    template = 'activity/emails/developer.txt'
+    if (not version.addon.authors.filter(pk=user.pk).exists() and
+            acl.action_allowed_user(user, 'Addons', review_perm)):
+        template = 'activity/emails/from_reviewer.txt'
+    return loader.get_template(template)
+
+
+def log_and_notify(action, comments, note_creator, version, perm_setting=None,
+                   details_kw=None):
     log_kwargs = {
         'user': note_creator,
         'created': datetime.datetime.now(),
     }
+    if details_kw is None:
+        details_kw = {}
     if comments:
-        log_kwargs['details'] = {
-            'comments': comments,
-            'version': version.version}
+        details_kw['version'] = version.version
+        details_kw['comments'] = comments
     else:
         # Just use the name of the action if no comments provided.  Alas we
         # can't know the locale of recipient, and our templates are English
         # only so prevent language jumble by forcing into en-US.
         with no_translation():
             comments = '%s' % action.short
+    if details_kw:
+        log_kwargs['details'] = details_kw
+
     note = ActivityLog.create(action, version.addon, version, **log_kwargs)
 
     # Collect reviewers involved with this version.
@@ -207,13 +222,13 @@ def log_and_notify(action, comments, note_creator, version):
     with translation.override('en-US'):
         subject = u'Mozilla Add-ons: %s %s %s' % (
             version.addon.name, version.version, action.short)
-    template = loader.get_template('activity/emails/developer.txt')
+    template = template_from_user(note_creator, version)
     send_activity_mail(
         subject, template.render(Context(author_context_dict)), version,
-        addon_authors, settings.EDITORS_EMAIL)
+        addon_authors, settings.EDITORS_EMAIL, perm_setting)
     send_activity_mail(
         subject, template.render(Context(reviewer_context_dict)), version,
-        reviewers, settings.EDITORS_EMAIL)
+        reviewers, settings.EDITORS_EMAIL, perm_setting)
     return note
 
 

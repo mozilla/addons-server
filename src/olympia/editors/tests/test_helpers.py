@@ -433,24 +433,9 @@ class TestReviewHelper(TestCase):
         assert self.version.has_info_request
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == self.preamble
+        assert mail.outbox[0].subject == '%s %s' % (
+            self.preamble, amo.LOG.REQUEST_INFORMATION.short)
 
-        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
-
-    def test_request_more_information_no_versions(self):
-        assert len(mail.outbox) == 0
-        assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 0
-        self.version.delete()
-        self.helper = helpers.ReviewHelper(request=self.request,
-                                           addon=self.addon)
-        data = {'comments': 'foo', 'action': 'info',
-                'operating_systems': 'osx', 'applications': 'Firefox'}
-        self.helper.set_data(data)
-        self.helper.handler.request_information()
-
-        assert len(mail.outbox) == 1
-        subject = 'Mozilla Add-ons: Delicious Bookmarks '
-        assert mail.outbox[0].subject == subject
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
     def test_request_more_information_deleted_addon(self):
