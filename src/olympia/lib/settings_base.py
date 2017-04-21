@@ -221,12 +221,6 @@ SERVICES_DOMAIN = 'services.%s' % DOMAIN
 #   Example: https://services.addons.mozilla.org
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
-# The domain of the mobile site.
-MOBILE_DOMAIN = 'm.%s' % DOMAIN
-
-# The full url of the mobile site.
-MOBILE_SITE_URL = 'http://%s' % MOBILE_DOMAIN
-
 # Filter IP addresses of allowed clients that can post email through the API.
 ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
 # Auth token required to authorize inbound email.
@@ -653,16 +647,6 @@ MINIFY_BUNDLES = {
             'css/lib/syntaxhighlighter/shCoreDefault.css',
             'css/zamboni/files.css',
         ),
-        'zamboni/mobile': (
-            'css/zamboni/mobile.css',
-            'css/mobile/typography.less',
-            'css/mobile/forms.less',
-            'css/mobile/header.less',
-            'css/mobile/search.less',
-            'css/mobile/listing.less',
-            'css/mobile/footer.less',
-            'css/mobile/notifications.less',
-        ),
         'zamboni/admin': (
             'css/zamboni/admin-django.css',
             'css/zamboni/admin-mozilla.css',
@@ -899,27 +883,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/storage.js',
             'js/zamboni/files_templates.js',
             'js/zamboni/files.js',
-        ),
-        'zamboni/mobile': (
-            'js/lib/jquery-1.12.0.js',
-            'js/lib/jquery.browser.js',
-            'js/lib/underscore.js',
-            'js/lib/jqmobile.js',
-            'js/lib/jquery.cookie.js',
-            'js/zamboni/browser.js',
-            'js/zamboni/init.js',
-            'js/impala/capabilities.js',
-            'js/zamboni/analytics.js',
-            'js/lib/format.js',
-            'js/zamboni/mobile/buttons.js',
-            'js/lib/truncate.js',
-            'js/zamboni/truncation.js',
-            'js/impala/footer.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/mobile/personas.js',
-            'js/zamboni/helpers.js',
-            'js/zamboni/mobile/general.js',
-            'js/common/ratingwidget.js',
         ),
         'zamboni/stats': (
             'js/lib/highcharts.src.js',

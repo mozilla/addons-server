@@ -5,7 +5,6 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 
 import caching.base as caching
-from mobility.decorators import mobile_template
 
 import olympia.core.logger
 from olympia import amo
@@ -41,15 +40,14 @@ def _version_list_qs(addon, beta=False):
 
 
 @addon_view
-@mobile_template('versions/{mobile/}version_list.html')
 @non_atomic_requests
-def version_list(request, addon, template, beta=False):
+def version_list(request, addon, beta=False):
     qs = _version_list_qs(addon, beta=beta)
     versions = amo.utils.paginate(request, qs, PER_PAGE)
     versions.object_list = list(versions.object_list)
     Version.transformer(versions.object_list)
-    return render(request, template, {'addon': addon, 'beta': beta,
-                                      'versions': versions})
+    return render(request, 'versions/version_list.html', {
+        'addon': addon, 'beta': beta, 'versions': versions})
 
 
 @addon_view

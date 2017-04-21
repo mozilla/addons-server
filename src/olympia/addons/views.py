@@ -1,8 +1,6 @@
 import hashlib
 import json
-import random
 import uuid
-from operator import attrgetter
 
 from django import http
 from django.conf import settings
@@ -19,7 +17,6 @@ import jinja2
 import session_csrf
 import waffle
 from elasticsearch_dsl import Search
-from mobility.decorators import mobilized, mobile_template
 from rest_framework import serializers
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
@@ -149,17 +146,6 @@ def extension_detail(request, addon):
         return render(request, 'addons/impala/details.html', ctx)
 
 
-@mobilized(extension_detail)
-@non_atomic_requests
-def extension_detail(request, addon):
-    if not request.META.get('HTTP_USER_AGENT'):
-        ios_user = False
-    else:
-        ios_user = 'FxiOS' in request.META.get('HTTP_USER_AGENT')
-    return render(request, 'addons/mobile/details.html',
-                  {'addon': addon, 'ios_user': ios_user})
-
-
 def _category_personas(qs, limit):
     def f():
         return randslice(qs, limit=limit)
@@ -167,9 +153,8 @@ def _category_personas(qs, limit):
     return caching.cached(f, key)
 
 
-@mobile_template('addons/{mobile/}persona_detail.html')
 @non_atomic_requests
-def persona_detail(request, addon, template=None):
+def persona_detail(request, addon):
     """Details page for Personas."""
     if not (addon.is_public() or addon.is_pending()):
         raise http.Http404
@@ -213,7 +198,7 @@ def persona_detail(request, addon, template=None):
             'abuse_form': AbuseForm(request=request),
         })
 
-    return render(request, template, data)
+    return render(request, 'addons/persona_detail.html', data)
 
 
 class BaseFilter(object):
@@ -345,37 +330,6 @@ def home(request):
                   {'popular': popular, 'featured': featured,
                    'hotness': hotness, 'personas': personas,
                    'src': 'homepage', 'collections': collections})
-
-
-@mobilized(home)
-@non_atomic_requests
-def home(request):
-    # Shuffle the list and get 3 items.
-    def rand(xs):
-        return random.shuffle(xs) or xs[:3]
-
-    # Get some featured add-ons with randomness.
-    featured = Addon.featured_random(request.APP, request.LANG)[:3]
-    # Get 10 popular add-ons, then pick 3 at random.
-    qs = list(Addon.objects.listed(request.APP)
-                   .filter(type=amo.ADDON_EXTENSION)
-                   .order_by('-average_daily_users')
-                   .values_list('id', flat=True)[:10])
-    popular = rand(qs)
-    # Do one query and split up the add-ons.
-    addons = (Addon.objects.filter(id__in=featured + popular)
-              .filter(type=amo.ADDON_EXTENSION))
-    featured = [a for a in addons if a.id in featured]
-    popular = sorted([a for a in addons if a.id in popular],
-                     key=attrgetter('average_daily_users'), reverse=True)
-
-    if not request.META.get('HTTP_USER_AGENT'):
-        ios_user = False
-    else:
-        ios_user = 'FxiOS' in request.META.get('HTTP_USER_AGENT')
-    return render(request, 'addons/mobile/home.html',
-                  {'featured': featured, 'popular': popular,
-                   'ios_user': ios_user})
 
 
 @non_atomic_requests

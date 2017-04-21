@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime, timedelta
 from decimal import Decimal
 import json
 import re
 
-from django import test
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
@@ -146,28 +144,6 @@ class TestHomepageFeatures(TestCase):
         for id_, url in sections.iteritems():
             # Check that the "See All" link points to the correct page.
             assert doc.find('%s .seeall' % id_).attr('href') == url
-
-    @amo.tests.mobile_test
-    def test_mobile_home_extensions_only(self):
-        r = self.client.get(self.url)
-        addons = r.context['featured'] + r.context['popular']
-        assert all([a.type == amo.ADDON_EXTENSION for a in addons]), (
-            'Expected only extensions to be listed on mobile homepage')
-
-    @amo.tests.mobile_test
-    def test_mobile_home_featured(self):
-        r = self.client.get(self.url)
-        featured = r.context['featured']
-        assert all([a.is_featured(amo.FIREFOX, 'en-US') for a in featured]), (
-            'Expected only featured extensions to be listed under Featured')
-
-    @amo.tests.mobile_test
-    def test_mobile_home_popular(self):
-        r = self.client.get(self.url)
-        popular = r.context['popular']
-        assert [a.id for a in popular] == (
-            [a.id for a in sorted(popular, key=lambda x: x.average_daily_users,
-                                  reverse=True)])
 
 
 class TestPromobox(TestCase):
@@ -546,14 +522,6 @@ class TestDetailPage(TestCase):
                 'base/addon_4594_a9',
                 'addons/listed',
                 'addons/persona']
-    firefox_ios_user_agents = [
-        ('Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) '
-         'AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 '
-         'Safari/600.1.4'),
-        ('Mozilla/5.0 (iPad; CPU iPhone OS 8_3 like Mac OS X) '
-         'AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 '
-         'Safari/600.1.4')
-    ]
 
     def setUp(self):
         super(TestDetailPage, self).setUp()
@@ -664,14 +632,6 @@ class TestDetailPage(TestCase):
         self.addon.update(status=amo.STATUS_NOMINATED)
         beta = get_pq_content()
         assert beta('#beta-channel').length == 0
-
-    @amo.tests.mobile_test
-    def test_unreviewed_disabled_button(self):
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        assert doc('.button.add').length == 1
-        assert doc('.button.disabled').length == 0
 
     def test_type_redirect(self):
         """
@@ -1022,14 +982,6 @@ class TestDetailPage(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 404
 
-    def test_fx_ios_addons_message(self):
-        c = Client(HTTP_USER_AGENT=self.firefox_ios_user_agents[0])
-        r = c.get(self.url)
-        addons_banner = pq(r.content)('.get-fx-message')
-        banner_message = ('Add-ons are not currently available on Firefox for '
-                          'iOS.')
-        assert addons_banner.text() == banner_message
-
     def test_admin_buttons(self):
         def get_detail():
             return self.client.get(reverse('addons.detail', args=['a3615']),
@@ -1320,10 +1272,6 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
     def test_by(self):
         self._test_by()
 
-    @amo.tests.mobile_test
-    def test_mobile_by(self):
-        self._test_by()
-
 
 class TestStatus(TestCase):
     fixtures = ['base/addon_3615', 'addons/persona']
@@ -1604,120 +1552,6 @@ class TestReportAbuse(TestCase):
         assert len(mail.outbox) == 1
         assert 'spammy' in mail.outbox[0].body
         assert AbuseReport.objects.get(addon=15663)
-
-
-class TestMobile(amo.tests.MobileTest, TestCase):
-    fixtures = ['addons/featured', 'base/users',
-                'base/addon_3615', 'base/featured',
-                'bandwagon/featured_collections']
-
-
-class TestMobileHome(TestMobile):
-
-    def test_addons(self):
-        r = self.client.get('/', follow=True)
-        assert r.status_code == 200
-        app, lang = r.context['APP'], r.context['LANG']
-        featured, popular = r.context['featured'], r.context['popular']
-        # Careful here: we can't be sure of the number of featured addons,
-        # that's why we're not testing len(featured). There's a corner case
-        # when there's less than 3 featured addons: some of the 3 random
-        # featured IDs could correspond to a Persona, and they're filtered out
-        # in the mobilized version of addons.views.home.
-        assert all(a.is_featured(app, lang) for a in featured)
-        assert len(popular) == 3
-        assert [a.id for a in popular] == (
-            [a.id for a in sorted(popular, key=lambda x: x.average_daily_users,
-                                  reverse=True)])
-
-
-class TestMobileDetails(TestPersonas, TestMobile):
-    fixtures = TestMobile.fixtures + ['base/featured', 'base/users']
-
-    def setUp(self):
-        super(TestMobileDetails, self).setUp()
-        self.ext = Addon.objects.get(id=3615)
-        self.url = reverse('addons.detail', args=[self.ext.slug])
-        self.persona = Addon.objects.get(id=15679)
-        self.persona_url = self.persona.get_url_path()
-        self.create_addon_user(self.persona)
-
-    def test_extension(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'addons/mobile/details.html')
-
-    def test_persona(self):
-        r = self.client.get(self.persona_url, follow=True)
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'addons/mobile/persona_detail.html')
-        assert 'review_form' not in r.context
-        assert 'reviews' not in r.context
-        assert 'get_replies' not in r.context
-
-    def test_more_personas(self):
-        other = addon_factory(type=amo.ADDON_PERSONA)
-        self.create_addon_user(other)
-        r = self.client.get(self.persona_url, follow=True)
-        assert pq(r.content)('#more-artist .more-link').length == 1
-
-    def test_new_more_personas(self):
-        other = addon_factory(type=amo.ADDON_PERSONA)
-        self.create_addon_user(other)
-        self.persona.persona.persona_id = 0
-        self.persona.persona.save()
-        r = self.client.get(self.persona_url, follow=True)
-        profile = UserProfile.objects.get(id=999).get_url_path()
-        assert pq(r.content)('#more-artist .more-link').attr('href') == (
-            profile + '?src=addon-detail')
-
-    def test_persona_mobile_url(self):
-        r = self.client.get('/en-US/mobile/addon/15679/')
-        assert r.status_code == 200
-
-    def test_extension_release_notes(self):
-        r = self.client.get(self.url)
-        relnotes = pq(r.content)('.versions li:first-child > a')
-        assert relnotes.text().startswith(self.ext.current_version.version), (
-            'Version number missing')
-        version_url = self.ext.current_version.get_url_path()
-        assert relnotes.attr('href') == version_url
-        self.client.get(version_url, follow=True)
-        assert r.status_code == 200
-
-    def test_extension_adu(self):
-        doc = pq(self.client.get(self.url).content)('table')
-        assert doc('.adu td').text() == numberfmt(self.ext.average_daily_users)
-        self.ext.update(average_daily_users=0)
-        doc = pq(self.client.get(self.url).content)('table')
-        assert doc('.adu').length == 0
-
-    def test_extension_downloads(self):
-        doc = pq(self.client.get(self.url).content)('table')
-        assert doc('.downloads td').text() == numberfmt(
-            self.ext.weekly_downloads)
-        self.ext.update(weekly_downloads=0)
-        doc = pq(self.client.get(self.url).content)('table')
-        assert doc('.downloads').length == 0
-
-    @patch.object(settings, 'CDN_HOST', 'https://cdn.example.com')
-    def test_button_caching_and_cdn(self):
-        """The button popups should be cached for a long time."""
-        # Get the url from a real page so it includes the build id.
-        client = test.Client()
-        doc = pq(client.get('/', follow=True).content)
-        js_url = '%s%s' % (settings.CDN_HOST, reverse('addons.buttons.js'))
-        url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
-
-        response = client.get(url_with_build.replace(settings.CDN_HOST, ''),
-                              follow=False)
-        self.assertCloseToNow(response['Expires'],
-                              now=datetime.now() + timedelta(days=365))
-
-    def test_unicode_redirect(self):
-        url = '/en-US/firefox/addon/2848?xx=\xc2\xbcwhscheck\xc2\xbe'
-        response = test.Client().get(url)
-        assert response.status_code == 301
 
 
 class AddonAndVersionViewSetDetailMixin(object):

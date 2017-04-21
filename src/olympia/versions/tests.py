@@ -25,7 +25,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlencode, urlparams, utc_millesecs_from_epoch
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, CompatOverride, CompatOverrideRange)
-from olympia.addons.tests.test_views import TestMobile
 from olympia.applications.models import AppVersion
 from olympia.editors.models import ViewFullReviewQueue, ViewPendingQueue
 from olympia.files.models import File
@@ -1540,14 +1539,6 @@ class TestStatusFromUpload(TestVersionFromUpload):
         # Check that the previously uploaded version is still pending.
         assert File.objects.filter(version=new_version)[0].status == (
             amo.STATUS_PENDING)
-
-
-class TestMobileVersions(TestMobile):
-
-    def test_versions(self):
-        r = self.client.get(reverse('addons.versions', args=['a3615']))
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'versions/mobile/version_list.html')
 
 
 class TestApplicationsVersions(TestCase):

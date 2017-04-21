@@ -9,7 +9,6 @@ from django.utils.http import is_safe_url
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext as _
 
-from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
 import olympia.core.logger
@@ -192,9 +191,8 @@ def _clean_next_url(request):
 
 
 @anonymous_csrf
-@mobile_template('users/{mobile/}login.html')
-def login(request, template=None):
-    return render(request, template)
+def login(request):
+    return render(request, 'users/login.html')
 
 
 def logout(request):

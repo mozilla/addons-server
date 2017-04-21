@@ -488,22 +488,6 @@ def test_f():
     assert render(u'{{ "foo {0}"|f("baré") }}') == u'foo baré'
 
 
-def test_inline_css(monkeypatch):
-    jingo.load_helpers()
-    env = jingo.get_env()
-    t = env.from_string("{{ inline_css('zamboni/mobile', debug=True) }}")
-
-    # Monkeypatch settings.LESS_BIN to not call the less compiler. We don't
-    # need nor want it in tests.
-    monkeypatch.setattr(settings, 'LESS_BIN', 'ls')
-    # Monkeypatch jingo_minify.helpers.is_external to counter-effect the
-    # autouse fixture in conftest.py.
-    monkeypatch.setattr(amo.helpers, 'is_external', lambda css: False)
-    s = t.render()
-
-    assert 'background-image: url(/static/img/icons/stars.png);' in s
-
-
 class TestStoragePath(TestCase):
 
     @override_settings(ADDONS_PATH=None, MEDIA_ROOT="/path/")

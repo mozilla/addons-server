@@ -6,8 +6,6 @@ from django.utils.encoding import force_bytes
 from django.utils.translation import ugettext as _
 from django.views.decorators.vary import vary_on_headers
 
-from mobility.decorators import mobile_template
-
 import olympia.core.logger
 from olympia import amo
 from olympia.bandwagon.views import get_filter as get_filter_view
@@ -390,10 +388,9 @@ def _filter_search(request, qs, query, filters, sorting,
     return qs
 
 
-@mobile_template('search/{mobile/}results.html')
 @vary_on_headers('X-PJAX')
 @non_atomic_requests
-def search(request, tag_name=None, template=None):
+def search(request, tag_name=None):
     APP = request.APP
     types = (amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
              amo.ADDON_SEARCH, amo.ADDON_LPAPP)
@@ -478,7 +475,7 @@ def search(request, tag_name=None, template=None):
             'versions': version_sidebar(request, form_data, aggregations),
             'tags': tag_sidebar(request, form_data, aggregations),
         })
-    return render(request, template, ctx)
+    return render(request, 'search/results.html', ctx)
 
 
 class FacetLink(object):
