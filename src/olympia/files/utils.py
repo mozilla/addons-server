@@ -390,6 +390,7 @@ class ManifestJSONExtractor(object):
             'default_locale': self.get('default_locale'),
             'permissions': self.get('permissions', []),
             'content_scripts': self.get('content_scripts', []),
+            'is_static_theme': 'theme' in self.data
         }
 
 
@@ -713,6 +714,12 @@ def check_xpi_info(xpi_info, addon=None):
         raise forms.ValidationError(
             _('Version numbers should only contain letters, numbers, '
               'and these punctuation characters: +*.-_.'))
+
+    if is_webextension and xpi_info.get('is_static_theme', False):
+        if not waffle.switch_is_active('allow-static-theme-uploads'):
+            raise forms.ValidationError(
+                _('WebExtension theme uploads are currently not supported.'))
+
     return xpi_info
 
 

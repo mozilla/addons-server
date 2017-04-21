@@ -15,7 +15,7 @@ from django import forms
 from defusedxml.common import EntitiesForbidden, NotSupportedError
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, create_switch
 from olympia.applications.models import AppVersion
 from olympia.files import utils
 from olympia.files.tests.test_helpers import get_file
@@ -256,6 +256,27 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_is_webextension(self):
         assert self.parse({})['is_webextension']
+
+    def test_disallow_static_theme(self):
+        manifest = utils.ManifestJSONExtractor(
+            '/fake_path', '{"theme": {}}').parse()
+
+        with pytest.raises(forms.ValidationError) as exc:
+            utils.check_xpi_info(manifest)
+
+        assert (
+            exc.value.message ==
+            'WebExtension theme uploads are currently not supported.')
+
+    def test_allow_static_theme_waffle(self):
+        create_switch('allow-static-theme-uploads')
+
+        manifest = utils.ManifestJSONExtractor(
+            '/fake_path', '{"theme": {}}').parse()
+
+        utils.check_xpi_info(manifest)
+
+        assert self.parse({'theme': {}})['is_static_theme']
 
     def test_is_e10s_compatible(self):
         data = self.parse({})
