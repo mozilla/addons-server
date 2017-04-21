@@ -575,7 +575,6 @@ class TestHome(EditorTest):
         assert cols.eq(0).text() == self.user.name
 
 
-
 class QueueTest(EditorTest):
     fixtures = ['base/users']
     listed = True
