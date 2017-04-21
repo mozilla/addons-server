@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-14 16:24+0000\n"
+"PO-Revision-Date: 2017-04-21 07:59+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5571,11 +5571,11 @@ msgstr "Os revisores voluntários ajudam a manter os extras seguros e confiávei
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
-msgstr "Junte-se a nós!"
+msgstr "Juntar-se a nós!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
-msgstr "Escreva algum código"
+msgstr "Escrever algum código"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
@@ -5595,7 +5595,7 @@ msgstr "Não precisa de ter capacidades de programação para ajudar a manter o 
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "See how"
-msgstr "Veja como"
+msgstr "Ver como"
 
 # 82%
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
