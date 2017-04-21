@@ -37,6 +37,7 @@ def action_allowed_user(user, permission):
     if not user.is_authenticated():
         return False
 
+    assert permission in amo.permissions.PERMISSIONS_LIST  # constants only.
     return any(
         match_rules(group.rules, permission.app, permission.action)
         for group in user.groups_list)

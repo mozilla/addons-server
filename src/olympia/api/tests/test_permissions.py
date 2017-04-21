@@ -22,7 +22,7 @@ class ProtectedView(APIView):
     # to test the permission, not the authentication.
     authentication_classes = [SessionAuthentication]
     permission_classes = [GroupPermission(
-        amo.permissions.AclPermission('SomeRealm', 'SomePermission'))]
+        amo.permissions.NONE)]
 
     def get(self, request):
         return Response('ok')
@@ -41,7 +41,7 @@ class TestGroupPermissionOnView(WithDynamicEndpoints):
         self.endpoint(ProtectedView)
         self.url = '/en-US/firefox/dynamic-endpoint'
         self.user = user_factory(email='regular@mozilla.com')
-        self.grant_permission(self.user, 'SomeRealm:SomePermission')
+        self.grant_permission(self.user, 'None:None')
         self.login(self.user)
 
     def test_user_must_be_in_required_group(self):
@@ -63,8 +63,7 @@ class TestGroupPermission(TestCase):
         request = RequestFactory().get('/')
         request.user = AnonymousUser()
         view = Mock(spec=[])
-        perm = GroupPermission(
-            amo.permissions.AclPermission('SomeRealm', 'SomePermission'))
+        perm = GroupPermission(amo.permissions.NONE)
         assert not perm.has_permission(request, view)
 
 

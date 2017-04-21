@@ -3,7 +3,7 @@ from collections import namedtuple
 
 AclPermission = namedtuple('AclPermission', 'app, action')
 
-# Special null rule.
+# Null rule.  Only useful in tests really as no access group should have this.
 NONE = AclPermission('None', 'None')
 
 # Admin super powers.  Very few users will have this permission (2-3)
@@ -57,3 +57,7 @@ USERS_EDIT = AclPermission('Users', 'Edit')
 
 # Can access mailing list
 MAILINGLISTS = AclPermission('MailingLists', 'View')
+
+# All permissions, for easy introspection
+PERMISSIONS_LIST = [
+    x for x in vars().values() if isinstance(x, AclPermission)]

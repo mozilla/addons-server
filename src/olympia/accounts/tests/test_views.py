@@ -1057,8 +1057,7 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
 
         assert res.status_code == 201, res.content
         user = UserProfile.objects.get(pk=res.data['user_id'])
-        assert action_allowed_user(
-            user, amo.permissions.AclPermission('Any', 'Thing'))
+        assert action_allowed_user(user, amo.permissions.NONE)
         assert res.data['groups'] == [(group.pk, group.name, group.rules)]
 
 

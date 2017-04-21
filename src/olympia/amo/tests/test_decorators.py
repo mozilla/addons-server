@@ -157,7 +157,7 @@ class TestSetModifiedOn(TestCase):
 
 
 class TestPermissionRequired(TestCase):
-    empty_permission = amo.permissions.AclPermission('', '')
+    empty_permission = amo.permissions.None
 
     def setUp(self):
         super(TestPermissionRequired, self).setUp()
