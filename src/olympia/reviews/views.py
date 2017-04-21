@@ -1,6 +1,6 @@
 from django import http
 from django.core.exceptions import PermissionDenied
-from django.db.models import Prefetch
+from django.db.models import Q, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import force_text
@@ -49,6 +49,7 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
            'grouped_ratings': GroupedRating.get(addon.id)}
 
     ctx['form'] = forms.ReviewForm(None)
+    is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
 
     if review_id is not None:
         ctx['page'] = 'detail'
@@ -66,13 +67,16 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
     else:
         ctx['page'] = 'list'
         qs = qs.filter(is_latest=True)
+        # Don't filter out empty reviews for admins.
+        if not is_admin:
+            # But otherwise, filter out everyone elses empty reviews.
+            qs = qs.filter(~Q(body=None) | Q(user=request.user.pk))
 
     ctx['reviews'] = reviews = paginate(request, qs)
     ctx['replies'] = Review.get_replies(reviews.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {
-            'is_admin': acl.action_allowed(request,
-                                           amo.permissions.ADDONS_EDIT),
+            'is_admin': is_admin,
             'is_editor': acl.is_editor(request, addon),
             'is_author': acl.check_addon_ownership(request, addon, viewer=True,
                                                    dev=True, support=True),

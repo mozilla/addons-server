@@ -133,7 +133,7 @@ def extension_detail(request, addon):
         'grouped_ratings': GroupedRating.get(addon.id),
         'review_form': ReviewForm(),
         'reviews': Review.without_replies.all().filter(
-            addon=addon, is_latest=True),
+            addon=addon, is_latest=True).exclude(body=None),
         'get_replies': Review.get_replies,
         'collections': collections.order_by('-subscribers')[:3],
         'abuse_form': AbuseForm(request=request),
