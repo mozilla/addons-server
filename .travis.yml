@@ -45,7 +45,7 @@ install:
   - nvm deactivate
   - nvm install 4
   - nvm use 4
-  - pip install --upgrade pip wheel setuptools tox==1.8.1
+  - pip install --upgrade pip wheel setuptools tox==2.6.0
 
 before_script:
   - mysql -e 'create database olympia;'
