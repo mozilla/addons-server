@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-23 02:50+0000\n"
+"PO-Revision-Date: 2017-04-23 03:04+0000\n"
 "Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -21,12 +21,11 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You are already logged in."
-msgstr ""
+msgstr "Anda telah masuk."
 
 #: src/olympia/accounts/views.py
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Upaya masuk Anda tidak bisa diuraikan. Silakan coba lagi."
+msgstr "Upaya Anda untuk masuk tidak bisa diuraikan. Silakan coba lagi."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
@@ -55,7 +54,7 @@ msgstr "Catatan ulasan"
 
 #: src/olympia/activity/views.py
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Hanya versi terbaru dari pengaya dapat memiliki catatan yang ditambahkan."
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -388,9 +387,8 @@ msgid "Visibility"
 msgstr "Visibilitas"
 
 #: src/olympia/addons/templates/addons/details_box.html
-#, fuzzy
 msgid "Visible"
-msgstr "Visibilitas"
+msgstr "Tampak"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Invisible"
@@ -861,11 +859,9 @@ msgid "Submit review"
 msgstr "Kirim ulasan"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
-"Mohon tidak mengirimkan laporan bug pada ulasan ini. Kami tidak memberitahukan alamat email anda kepada para pengembang yang mungkin mereka butuhkan untuk menghubungi anda agar masalah anda dapat "
-"diselesaikan."
+"Mohon tidak mengirimkan laporan kutu di sini. Kami tidak akan menampilkan alamat surel Anda kepada pengembang pengaya, sehingga mereka tidak dapat menghubungi Anda untuk memecahkan masalah Anda."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -914,14 +910,12 @@ msgstr "oleh %(users)s"
 
 # {0} is a number
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "[Warning]"
-msgstr "{0} pesan peringatan"
+msgstr "[Peringatan]"
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Permissions"
-msgstr "Versi"
+msgstr "Hak Akses"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -996,9 +990,8 @@ msgid "Manage"
 msgstr "Kelola"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "Add-on Review"
-msgstr "Ulasan Lengkap Pengaya"
+msgstr "Tinjauan Pengaya"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 #, fuzzy
@@ -1112,9 +1105,8 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "This add-on can:"
-msgstr "Pengaya ini merupakan percobaan"
+msgstr "Pengaya ini dapat:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1427,9 +1419,8 @@ msgid "Manage API Keys"
 msgstr "Mengelola Kunci API"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Pengulas"
+msgstr "Alat Peninjau"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
@@ -1475,14 +1466,12 @@ msgid "<p>Try going back to the previous page, refreshing and then trying again.
 msgstr "<p>Cobalah kembali ke laman sebelumnya, segarkan dan kemudian coba lagi.</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Tidak Ditemukan"
+msgstr "Halaman Tidak Ditemukan"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Lebih banyak Pengaya"
+msgstr "Pengaya Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
