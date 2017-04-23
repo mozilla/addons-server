@@ -9,11 +9,21 @@ import requests
 from django.core.management import call_command
 from fxapom.fxapom import DEV_URL, PROD_URL, FxATestAccount
 from olympia.amo.tests import create_switch
+from selenium.webdriver.common.action_chains import ActionChains
+
 from pytest_django import live_server_helper
 
 
+@pytest.fixture
+def selenium(selenium):
+    selenium.implicitly_wait(10)
+    selenium.set_window_size(1920, 1080)
+    ActionChains(selenium).reset_actions()
+    return selenium
+
+
 @pytest.fixture(scope='function')
-def my_base_url(base_url, request):
+def my_base_url(base_url, request, live_server):
     return base_url or request.getfixturevalue("live_server").url
 
 
@@ -49,12 +59,58 @@ def jwt_secret(base_url, variables):
 
 
 @pytest.fixture
-def initial_data(transactional_db):
+def initial_data():
     from olympia.amo.tests import addon_factory, user_factory
     from olympia.addons.models import AddonUser
+    from olympia.landfill.collection import generate_collection
+    from olympia.constants.applications import APPS
 
     for x in range(10):
         AddonUser.objects.create(user=user_factory(), addon=addon_factory())
+        generate_collection(addon_factory(), APPS['firefox'])
+
+
+@pytest.fixture
+def gen_addons():
+    from olympia.amo.tests import addon_factory
+    from olympia.constants.applications import APPS
+    from olympia.landfill.collection import generate_collection
+
+    for x in range(80):
+        generate_collection(addon_factory(), APPS['firefox'])
+
+
+@pytest.fixture
+def generate_themes(transactional_db, create_superuser):
+    from olympia.amo.tests import addon_factory
+    from olympia.landfill.generators import generate_themes
+    from olympia.landfill.collection import generate_collection
+    from olympia.constants.applications import FIREFOX
+    from olympia.constants.base import ADDON_PERSONA, STATUS_PUBLIC
+    from olympia.users.models import UserProfile
+
+    # call_command('generate_themes', 6)
+    owner = UserProfile.objects.get(username='uitest')
+    generate_themes(6, owner, app=FIREFOX)
+    for x in range(6):
+        addon = addon_factory(
+            status=STATUS_PUBLIC,
+            type=ADDON_PERSONA,)
+        generate_collection(addon, app=FIREFOX,
+                            author=UserProfile.objects.get(username='uitest'),)
+
+
+@pytest.fixture
+def generate_collections(transactional_db):
+    from olympia import amo
+    from olympia.amo.tests import addon_factory
+    from olympia.constants.applications import APPS, FIREFOX
+    from olympia.landfill.collection import generate_collection
+
+    for x in range(4):
+        generate_collection(addon_factory(
+            type=amo.ADDON_EXTENSION
+        ), APPS['firefox'], type=amo.COLLECTION_FEATURED)
 
 
 @pytest.fixture
@@ -77,6 +133,126 @@ def create_superuser(transactional_db, my_base_url, tmpdir, variables):
 
 
 @pytest.fixture
+def ui_theme(transactional_db, create_superuser):
+    from olympia import amo
+    from olympia.amo.tests import addon_factory
+    from olympia.addons.utils import generate_addon_guid
+    from olympia.constants.applications import FIREFOX
+    from olympia.users.models import UserProfile
+    from olympia.landfill.collection import generate_collection
+    from olympia.constants.base import ADDON_PERSONA, STATUS_PUBLIC
+
+    addon = addon_factory(
+        status=STATUS_PUBLIC,
+        type=ADDON_PERSONA,
+        average_daily_users=4242,
+        users=[UserProfile.objects.get(username='uitest')],
+        average_rating=4.21,
+        description=u'My UI Theme description',
+        file_kw={
+            'hash': 'fakehash',
+            'platform': amo.PLATFORM_ALL.id,
+            'size': 42,
+        },
+        guid=generate_addon_guid(),
+        homepage=u'https://www.example.org/',
+        name=u'Ui-Test',
+        public_stats=True,
+        slug='ui-test',
+        summary=u'My UI theme summary',
+        support_email=u'support@example.org',
+        support_url=u'https://support.example.org/support/ui-theme-addon/',
+        tags=['some_tag', 'another_tag', 'ui-testing', 'selenium', 'python'],
+        total_reviews=777,
+        weekly_downloads=123456,
+        developer_comments='This is a testing theme, used within pytest.',
+    )
+    addon.save()
+    generate_collection(addon, app=FIREFOX,
+                        author=UserProfile.objects.get(username='uitest'),
+                        )
+
+    print('Created custom addon for testing successfully')
+
+
+@pytest.fixture
+def ui_addon(transactional_db, create_superuser):
+    import random
+
+    from olympia import amo
+    from olympia.amo.tests import addon_factory, user_factory, version_factory, collection_factory
+    from olympia.addons.forms import icons
+    from olympia.addons.models import Addon, AddonCategory, Category, Preview, AddonUser
+    from olympia.addons.utils import generate_addon_guid
+    from olympia.constants.categories import CATEGORIES
+    from olympia.constants.applications import APPS, FIREFOX
+    from olympia.reviews.models import Review
+    from olympia.users.models import UserProfile
+    from olympia.landfill.collection import generate_collection
+    from olympia.landfill.user import generate_addon_user_and_category, generate_user
+    from olympia.landfill.categories import generate_categories
+    from olympia.constants.base import (
+        ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC)
+
+    default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
+    addon = addon_factory(
+        status=STATUS_PUBLIC,
+        type=ADDON_EXTENSION,
+        average_daily_users=4242,
+        users=[UserProfile.objects.get(username='uitest')],
+        average_rating=4.21,
+        description=u'My Addon description',
+        file_kw={
+            'hash': 'fakehash',
+            'platform': amo.PLATFORM_ALL.id,
+            'size': 42,
+        },
+        guid=generate_addon_guid(),
+        homepage=u'https://www.example.org/',
+        icon_type=random.choice(default_icons),
+        name=u'Ui-Test',
+        public_stats=True,
+        slug='ui-test',
+        summary=u'My Addon summary',
+        support_email=u'support@example.org',
+        support_url=u'https://support.example.org/support/ui-test-addon/',
+        tags=['some_tag', 'another_tag', 'ui-testing', 'selenium', 'python'],
+        total_reviews=777,
+        weekly_downloads=2147483647,
+        developer_comments='This is a testing addon, used within pytest.',
+        is_experimental=True,
+    )
+    first_preview = Preview.objects.create(addon=addon, position=1)
+    Review.objects.create(addon=addon, rating=5, user=user_factory())
+    Review.objects.create(addon=addon, rating=3, user=user_factory())
+    Review.objects.create(addon=addon, rating=2, user=user_factory())
+    Review.objects.create(addon=addon, rating=1, user=user_factory())
+    addon.reload()
+    AddonUser.objects.create(user=user_factory(username='ui-tester2'),
+                             addon=addon, listed=True)
+    version_factory(addon=addon, file_kw={'status': amo.STATUS_BETA},
+                    version='1.1beta')
+    addon.save()
+    generate_collection(addon, app=FIREFOX,
+                        author=UserProfile.objects.get(username='uitest'),
+                        )
+
+    print('Created custom addon for testing successfully')
+
+
+@pytest.fixture
+def force_user_login():
+    """
+        Fixture for providing the user object to seleniumlogin for logging into
+        the live_server specifically. Does not run on 'dev' or 'stage'
+        environments.
+    """
+    from olympia.users.models import UserProfile
+    user = UserProfile.objects.get(username='uitest')
+    return user
+
+
+@pytest.fixture
 def user(create_superuser, my_base_url, fxa_account, jwt_token):
     url = '{base_url}/api/v3/accounts/super-create/'.format(
         base_url=my_base_url)
@@ -84,7 +260,8 @@ def user(create_superuser, my_base_url, fxa_account, jwt_token):
     params = {
         'email': fxa_account.email,
         'password': fxa_account.password,
-        'username': fxa_account.email.split('@')[0]}
+        'username': fxa_account.email.split('@')[0],
+        'fxa_id': fxa_account.session.uid}
     headers = {'Authorization': 'JWT {token}'.format(token=jwt_token)}
     response = requests.post(url, data=params, headers=headers)
     assert requests.codes.created == response.status_code
@@ -129,6 +306,7 @@ def live_server(request, transactional_db):
     server = live_server_helper.LiveServer(addr)
     yield server
     server.stop()
+
 
 
 @pytest.fixture
