@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-23 08:34+0000\n"
+"PO-Revision-Date: 2017-04-23 08:59+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1598,7 +1598,7 @@ msgstr "その他&hellip;"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Add-ons for Mobile"
-msgstr "Add-ons for Mobile"
+msgstr "モバイル向けアドオン"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
