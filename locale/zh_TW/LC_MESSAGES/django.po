@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-12 17:01+0000\n"
+"PO-Revision-Date: 2017-04-23 02:07+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -6156,7 +6156,7 @@ msgstr "刪除這個版本會永久刪除:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr "<strong>重要:</strong> 黨您刪除某版本後，您將無法上傳同為該版本號的新版本。"
+msgstr "<strong>重要:</strong> 當您刪除某版本後，您將無法上傳使用該版本號的新版本。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to delete this version?"
