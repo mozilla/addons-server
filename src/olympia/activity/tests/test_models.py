@@ -315,6 +315,7 @@ class TestActivityLogCount(TestCase):
         assert result[0]['approval_count'] == 5
 
     def test_review_last_month(self):
+        log = ActivityLog.create(amo.LOG.APPROVE_VERSION,
                                  Addon.objects.get())
         log.update(created=self.lm)
         assert len(ActivityLog.objects.monthly_reviews()) == 0
