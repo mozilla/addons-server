@@ -19,7 +19,7 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
-from olympia.addons.models import Addon, Version
+from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.decorators import (
     json_view, permission_required, post_required)
 from olympia.amo.utils import paginate, render
@@ -36,6 +36,7 @@ from olympia.editors.helpers import (
     ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
@@ -628,6 +629,14 @@ def review(request, addon, channel=None):
         redirect_url = reverse('editors.unlisted_queue_all')
 
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
+    is_post_reviewer = acl.action_allowed(request, 'Addons', 'PostReview')
+
+    approvals_info = None
+    if is_post_reviewer:
+        try:
+            approvals_info = addon.addonapprovalscounter
+        except AddonApprovalsCounter.DoesNotExist:
+            pass
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
@@ -703,7 +712,9 @@ def review(request, addon, channel=None):
                   actions=actions, actions_minimal=actions_minimal,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
                   user_changes=user_changes_log,
-                  unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED))
+                  unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
+                  approvals_info=approvals_info,
+                  is_post_reviewer=is_post_reviewer)
 
     return render(request, 'editors/review.html', ctx)
 
