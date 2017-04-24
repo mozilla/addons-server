@@ -366,7 +366,7 @@ class TestHome(EditorTest):
     def approve_reviews(self):
         core.set_user(self.user)
         for addon in Addon.objects.all():
-            ActivityLog.create(amo.LOG['APPROVE_VERSION'], addon,
+            ActivityLog.create(amo.LOG.APPROVE_VERSION, addon,
                                addon.current_version)
 
     def delete_review(self, user):
