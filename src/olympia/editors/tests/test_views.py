@@ -2659,6 +2659,29 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('script[src="%s"]' % settings.PAYPAL_JS_URL)
 
+    def test_approvals_info(self):
+        approval_info = AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_human_review=datetime.now(), counter=42)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # No permission: nothing displayed.
+        assert not doc('.last-approval-date')
+        assert not doc('.approval-counter')
+
+        self.login_as_senior_editor()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # Permission present: counter and last human approval date displayed.
+        assert doc('.last-approval-date')
+        assert doc('.approval-counter')
+
+        approval_info.delete()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        # Permission present but no AddonApprovalsCounter: nothing displayed.
+        assert not doc('.last-approval-date')
+        assert not doc('.approval-counter')
+
 
 class TestReviewPending(ReviewBase):
 
