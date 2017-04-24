@@ -2,9 +2,9 @@
 # module rather than `amo.celery`.
 from __future__ import absolute_import
 
+from collections import namedtuple
 from inspect import isclass
 
-from celery.datastructures import AttributeDict
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -551,7 +551,7 @@ LOGS = [x for x in vars().values()
 assert len(LOGS) == len(set(log.id for log in LOGS))
 
 LOG_BY_ID = dict((l.id, l) for l in LOGS)
-LOG = AttributeDict((l.__name__, l) for l in LOGS)
+LOG = namedtuple('LogTuple', [l.__name__ for l in LOGS])(*[l for l in LOGS])
 LOG_ADMINS = [l.id for l in LOGS if hasattr(l, 'admin_event')]
 LOG_KEEP = [l.id for l in LOGS if hasattr(l, 'keep')]
 LOG_EDITORS = [l.id for l in LOGS if hasattr(l, 'editor_event')]
