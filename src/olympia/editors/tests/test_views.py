@@ -536,6 +536,7 @@ class TestHome(EditorTest):
 
         # Both listed and unlisted queues for senior reviewers.
         self.login_as_senior_editor()
+        listed_queues_links.append(reverse('editors.queue_auto_approved'))
         doc = pq(self.client.get(self.url).content)
         queues = doc('#listed-queues ul li a')  # Listed queues links.
         queues_links = [link.attrib['href'] for link in queues]
