@@ -98,7 +98,7 @@ class TestActivityLog(TestCase):
 
     def test_basic(self):
         addon = Addon.objects.get()
-        ActivityLog.create(amo.LOG['CREATE_ADDON'], addon)
+        ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
         entries = ActivityLog.objects.for_addons(addon)
         assert len(entries) == 1
         assert entries[0].arguments[0] == addon
@@ -166,25 +166,25 @@ class TestActivityLog(TestCase):
 
     def test_json_failboat(self):
         addon = Addon.objects.get()
-        ActivityLog.create(amo.LOG['CREATE_ADDON'], addon)
+        ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
         entry = ActivityLog.objects.get()
         entry._arguments = 'failboat?'
         entry.save()
         assert entry.arguments is None
 
     def test_no_arguments(self):
-        ActivityLog.create(amo.LOG['CUSTOM_HTML'])
+        ActivityLog.create(amo.LOG.CUSTOM_HTML)
         entry = ActivityLog.objects.get()
         assert entry.arguments == []
 
     def test_output(self):
-        ActivityLog.create(amo.LOG['CUSTOM_TEXT'], 'hi there')
+        ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi there')
         entry = ActivityLog.objects.get()
         assert unicode(entry) == 'hi there'
 
     def test_user_log(self):
         request = self.request
-        ActivityLog.create(amo.LOG['CUSTOM_TEXT'], 'hi there')
+        ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi there')
         entries = ActivityLog.objects.for_user(request.user)
         assert len(entries) == 1
 
@@ -195,7 +195,7 @@ class TestActivityLog(TestCase):
         """
         user = UserProfile(username='Marlboro Manatee')
         user.save()
-        ActivityLog.create(amo.LOG['ADD_USER_WITH_ROLE'],
+        ActivityLog.create(amo.LOG.ADD_USER_WITH_ROLE,
                            user, 'developer', Addon.objects.get())
         entries = ActivityLog.objects.for_user(self.request.user)
         assert len(entries) == 1
@@ -295,14 +295,14 @@ class TestActivityLogCount(TestCase):
 
     def add_approve_logs(self, count):
         for x in range(0, count):
-            ActivityLog.create(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+            ActivityLog.create(amo.LOG.APPROVE_VERSION, Addon.objects.get())
 
     def test_not_review_count(self):
-        ActivityLog.create(amo.LOG['EDIT_VERSION'], Addon.objects.get())
+        ActivityLog.create(amo.LOG.EDIT_VERSION, Addon.objects.get())
         assert len(ActivityLog.objects.monthly_reviews()) == 0
 
     def test_review_count(self):
-        ActivityLog.create(amo.LOG['APPROVE_VERSION'], Addon.objects.get())
+        ActivityLog.create(amo.LOG.APPROVE_VERSION, Addon.objects.get())
         result = ActivityLog.objects.monthly_reviews()
         assert len(result) == 1
         assert result[0]['approval_count'] == 1
@@ -315,13 +315,12 @@ class TestActivityLogCount(TestCase):
         assert result[0]['approval_count'] == 5
 
     def test_review_last_month(self):
-        log = ActivityLog.create(amo.LOG['APPROVE_VERSION'],
                                  Addon.objects.get())
         log.update(created=self.lm)
         assert len(ActivityLog.objects.monthly_reviews()) == 0
 
     def test_not_total(self):
-        ActivityLog.create(amo.LOG['EDIT_VERSION'], Addon.objects.get())
+        ActivityLog.create(amo.LOG.EDIT_VERSION, Addon.objects.get())
         assert len(ActivityLog.objects.total_reviews()) == 0
 
     def test_total_few(self):
@@ -331,7 +330,7 @@ class TestActivityLogCount(TestCase):
         assert result[0]['approval_count'] == 5
 
     def test_total_last_month(self):
-        log = ActivityLog.create(amo.LOG['APPROVE_VERSION'],
+        log = ActivityLog.create(amo.LOG.APPROVE_VERSION,
                                  Addon.objects.get())
         log.update(created=self.lm)
         result = ActivityLog.objects.total_reviews()
@@ -378,11 +377,11 @@ class TestActivityLogCount(TestCase):
         assert result == 2
 
     def test_log_admin(self):
-        ActivityLog.create(amo.LOG['OBJECT_EDITED'], Addon.objects.get())
+        ActivityLog.create(amo.LOG.OBJECT_EDITED, Addon.objects.get())
         assert len(ActivityLog.objects.admin_events()) == 1
         assert len(ActivityLog.objects.for_developer()) == 0
 
     def test_log_not_admin(self):
-        ActivityLog.create(amo.LOG['EDIT_VERSION'], Addon.objects.get())
+        ActivityLog.create(amo.LOG.EDIT_VERSION, Addon.objects.get())
         assert len(ActivityLog.objects.admin_events()) == 0
         assert len(ActivityLog.objects.for_developer()) == 1
