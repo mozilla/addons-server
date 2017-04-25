@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-19 19:20+0000\n"
+"PO-Revision-Date: 2017-04-25 17:06+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -10605,7 +10605,7 @@ msgstr "Μετάφραση για: <a id=\"change-locale\" href=\"#\">%(dl)s</a>
 #: src/olympia/translations/templates/translations/trans-menu.html
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Existing Locales"
@@ -10679,7 +10679,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py
 msgid "This username is already in use."
-msgstr ""
+msgstr "Αυτό το όνομα χρήστη χρησιμοποιείται ήδη."
 
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
@@ -10766,7 +10766,7 @@ msgstr ""
 
 #: src/olympia/users/notifications.py
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "η εφαρμογή μου αξιολογείται από έναν επιμελητή"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual app"
@@ -10868,7 +10868,7 @@ msgstr "Διαγραφή της φωτογραφίας μου τώρα"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name"
-msgstr ""
+msgstr "Παρακαλώ ορίστε το όνομα προβολής σας"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name or username to complete the registration process."
@@ -10900,7 +10900,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Αυτό το URL θα είναι ορατό μόνο αν είστε προγραμματιστής."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Choose Photo&hellip;"
@@ -11063,7 +11063,7 @@ msgstr "Κατάργηση εγγραφής"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Έχετε καταργήσει επιτυχώς την εγγραφή σας!"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 #, python-format
@@ -11131,7 +11131,7 @@ msgstr[1] "%(num)s πρόσθετα"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Μέσος όρος βαθμολογιών των προσθέτων του προγραμματιστή"
 
 #: src/olympia/versions/feeds.py
 #, python-format
@@ -11166,7 +11166,7 @@ msgstr ""
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Ο πηγαίος κώδικας εκδίδεται από <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "View the source"
@@ -11217,7 +11217,7 @@ msgstr ""
 
 #: src/olympia/zadmin/forms.py
 msgid "Email when finished"
-msgstr ""
+msgstr "Αποστολή e-mail όταν ολοκληρωθεί"
 
 #: src/olympia/zadmin/forms.py
 msgid "Log emails instead of sending"
