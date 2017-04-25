@@ -121,16 +121,14 @@ class TestEdit(UserViewBase):
         self.client.login(email='jbalogh@mozilla.com')
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
-        self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                     'lang': 'en-US'}
+        self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com'}
 
     def test_edit_bio(self):
         assert self.get_profile().bio is None
 
         data = {'username': 'jbalogh',
                 'email': 'jbalogh.changed@mozilla.com',
-                'bio': 'xxx unst unst',
-                'lang': 'en-US'}
+                'bio': 'xxx unst unst'}
 
         r = self.client.post(self.url, data, follow=True)
         self.assert3xx(r, self.url)
@@ -142,6 +140,13 @@ class TestEdit(UserViewBase):
         self.assert3xx(r, self.url)
         self.assertContains(r, data['bio'])
         assert unicode(self.get_profile().bio) == data['bio']
+
+    def test_bio_no_links(self):
+        self.data.update(bio='<a href="https://google.com">google</a>')
+        response = self.client.post(self.url, self.data, follow=True)
+        assert response.status_code == 200
+        print response.context
+        self.assertFormError(response, 'form', 'bio', u'No links are allowed.')
 
     def check_default_choices(self, choices, checked=True):
         doc = pq(self.client.get(self.url).content)
@@ -208,22 +213,6 @@ class TestEdit(UserViewBase):
         doc = pq(r.content)
         assert doc('#profile-misc').length == 1
 
-    def test_remove_locale_bad_request(self):
-        r = self.client.post(self.user.get_user_url('remove-locale'))
-        assert r.status_code == 400
-
-    @patch.object(UserProfile, 'remove_locale')
-    def test_remove_locale(self, remove_locale_mock):
-        r = self.client.post(self.user.get_user_url('remove-locale'),
-                             {'locale': 'el'})
-        assert r.status_code == 200
-        remove_locale_mock.assert_called_with('el')
-
-    def test_remove_locale_default_locale(self):
-        r = self.client.post(self.user.get_user_url('remove-locale'),
-                             {'locale': settings.LANGUAGE_CODE})
-        assert r.status_code == 400
-
 
 class TestEditAdmin(UserViewBase):
     fixtures = ['base/users']
@@ -245,12 +234,6 @@ class TestEditAdmin(UserViewBase):
         return UserProfile.objects.get(pk=10482)
 
     def test_edit(self):
-        res = self.client.get(self.url)
-        assert res.status_code == 200
-
-    def test_edit_without_user_lang(self):
-        self.regular.lang = None
-        self.regular.save()
         res = self.client.get(self.url)
         assert res.status_code == 200
 
@@ -811,6 +794,13 @@ class TestProfileSections(TestCase):
         assert doc('#profile-actions #report-user-abuse').length == 0
         assert doc('#popup-staging #report-user-modal.modal').length == 0
         self.assertTemplateNotUsed(r, 'users/report_abuse.html')
+
+    def test_bio_xss(self):
+        self.user.update(bio='<script>alert("xss")</script>')
+        assert '<script>' in self.user.bio
+        r = self.client.get(self.url)
+        assert '<script>' not in r.content
+        assert '&lt;script&gt;' in r.content
 
 
 class TestThemesProfile(TestCase):

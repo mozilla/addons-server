@@ -18,7 +18,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'display_collections_fav', 'homepage',
             'location', 'notes', 'occupation', 'picture_type',
             'read_dev_agreement', 'is_verified',
-            'region', 'lang', 'picture_url'
+            'picture_url'
         )
 
 

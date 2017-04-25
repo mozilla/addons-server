@@ -2,7 +2,6 @@ import os
 import random
 import re
 import time
-from contextlib import contextmanager
 from datetime import datetime
 
 from django import dispatch, forms
@@ -12,7 +11,7 @@ from django.core import validators
 from django.db import models
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
-from django.utils.translation import ugettext as _, get_language, activate
+from django.utils.translation import ugettext as _
 from django.utils.encoding import force_text
 from django.utils.functional import lazy
 
@@ -23,8 +22,6 @@ from olympia import amo, core
 from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
 from olympia.access.models import Group, GroupUser
 from olympia.amo.urlresolvers import reverse
-from olympia.translations.fields import NoLinksField, save_signal
-from olympia.translations.models import Translation
 from olympia.translations.query import order_by_translation
 
 log = olympia.core.logger.getLogger('z.users')
@@ -119,7 +116,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     email = models.EmailField(unique=True, null=True, max_length=75)
 
     averagerating = models.CharField(max_length=255, blank=True, null=True)
-    bio = NoLinksField(short=False)
+    bio = models.TextField(blank=True, null=True)
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
@@ -141,10 +138,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                                                         editable=False)
 
     is_verified = models.BooleanField(default=True)
-    region = models.CharField(max_length=11, null=True, blank=True,
-                              editable=False)
-    lang = models.CharField(max_length=5, null=True, blank=True,
-                            default=settings.LANGUAGE_CODE)
 
     fxa_id = models.CharField(blank=True, null=True, max_length=128)
 
@@ -388,26 +381,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             c = Collection.objects.using('default').get(id=c.id)
         return c
 
-    @contextmanager
-    def activate_lang(self):
-        """
-        Activate the language for the user. If none is set will go to the site
-        default which is en-US.
-        """
-        lang = self.lang if self.lang else settings.LANGUAGE_CODE
-        old = get_language()
-        activate(lang)
-        yield
-        activate(old)
-
-    def remove_locale(self, locale):
-        """Remove the given locale for the user."""
-        Translation.objects.remove_for(self, locale)
-
-    @classmethod
-    def get_fallback(cls):
-        return cls._meta.get_field('lang')
-
     def addons_for_collection_type(self, type_):
         """Return the addons for the given special collection type."""
         from olympia.bandwagon.models import CollectionAddon
@@ -426,10 +399,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @amo.cached_property
     def watching(self):
         return self.collectionwatcher_set.values_list('collection', flat=True)
-
-
-models.signals.pre_save.connect(save_signal, sender=UserProfile,
-                                dispatch_uid='userprofile_translations')
 
 
 @dispatch.receiver(models.signals.post_save, sender=UserProfile,

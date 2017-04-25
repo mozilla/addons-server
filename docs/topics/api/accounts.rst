@@ -42,9 +42,7 @@ Returns information about your profile.
             "picture_type": "",
             "picture_url": "/static/img/anon_user.png",
             "read_dev_agreement": "2015-11-20T18:36:12",
-            "is_verified": true,
-            "region": null,
-            "lang": "en-US"
+            "is_verified": true
         }
 
     :statuscode 200: profile found.
