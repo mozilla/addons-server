@@ -70,7 +70,9 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
         # Don't filter out empty reviews for admins.
         if not is_admin:
             # But otherwise, filter out everyone elses empty reviews.
-            qs = qs.filter(~Q(body=None) | Q(user=request.user.pk))
+            user_filter = (Q(user=request.user.pk)
+                           if request.user.is_authenticated() else Q())
+            qs = qs.filter(~Q(body=None) | user_filter)
 
     ctx['reviews'] = reviews = paginate(request, qs)
     ctx['replies'] = Review.get_replies(reviews.object_list)
