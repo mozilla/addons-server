@@ -1837,7 +1837,7 @@ class TestReview(ReviewBase):
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
         assert len(mail.outbox) == 1
-        self.assertTemplateUsed(response, 'editors/emails/info.ltxt')
+        self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
 
     def test_super_review_requested(self):
         response = self.client.post(self.url, {'action': 'super',
@@ -1854,7 +1854,7 @@ class TestReview(ReviewBase):
                                                'canned_response': 'foo'})
         assert response.status_code == 302
         assert len(mail.outbox) == 1
-        self.assertTemplateUsed(response, 'editors/emails/info.ltxt')
+        self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
 
     def test_notify(self):
         response = self.client.post(self.url, {'action': 'info',
@@ -2296,7 +2296,7 @@ class TestReview(ReviewBase):
         """The review page should still load if there are no versions. But not
         unless you have unlisted permissions."""
         assert self.client.get(self.url).status_code == 200
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'comment',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
         self.assert3xx(response, reverse('editors.queue_pending'),
@@ -2308,7 +2308,7 @@ class TestReview(ReviewBase):
         self.login_as_senior_editor()
         # Reviewer with more powers can look.
         assert self.client.get(self.url).status_code == 200
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'comment',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
         self.assert3xx(response, reverse('editors.queue_pending'),
@@ -2320,7 +2320,7 @@ class TestReview(ReviewBase):
         self.url = reverse('editors.review', args=[self.addon.pk])
 
         assert self.client.get(self.url).status_code == 200
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'comment',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
         self.assert3xx(response, reverse('editors.queue_pending'),
