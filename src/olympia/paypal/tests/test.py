@@ -81,7 +81,6 @@ class TestPayKey(TestCase):
             u'receiverList.receiver(0).invoiceID':
                 u'mozilla-%s' % self.data['uuid'],
             u'receiverList.receiver(0).paymentType': u'DIGITALGOODS',
-            u'receiverList.receiver(0).primary': u'true',
             u'requestEnvelope.errorLanguage': u'US',
             'returnUrl': (
                 u'%s/en-US/firefox/addon/xx/contribute/complete?uuid=%s' %
