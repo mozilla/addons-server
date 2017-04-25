@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-import time
 import urllib
 import urlparse
+import uuid
 
 from django.conf import settings
 
@@ -40,7 +40,7 @@ class TestPayKey(TestCase):
         self.data = {'slug': 'xx',
                      'amount': 10,
                      'email': 'someone@somewhere.com',
-                     'uuid': time.time(),
+                     'uuid': uuid.uuid4().hex,
                      'ip': '127.0.0.1',
                      'pattern': 'addons.paypal'}
         self.pre = Mock()
@@ -61,10 +61,34 @@ class TestPayKey(TestCase):
         self.assertRaises(paypal.AuthError, paypal.get_paykey, self.data)
 
     @mock.patch('olympia.paypal.requests.post')
-    def test_get_key(self, opener):
-        opener.return_value.text = good_response
+    def test_get_key(self, post_mock):
+        post_mock.return_value.text = good_response
         assert paypal.get_paykey(self.data) == (
             'AP-9GD76073HJ780401K', 'CREATED')
+        assert post_mock.call_count == 1
+        assert post_mock.call_args[0][0] == '%s%s' % (
+            settings.PAYPAL_PAY_URL, 'Pay')
+        data = dict(urlparse.parse_qsl(post_mock.call_args[1]['data']))
+        expected_data = {
+            u'actionType': u'PAY',
+            u'cancelUrl': (
+                u'%s/en-US/firefox/addon/xx/contribute/cancel?uuid=%s' %
+                (settings.SITE_URL, self.data['uuid'])),
+            u'currencyCode': 'USD',
+            u'ipnNotificationUrl': u'%s/services/paypal' % settings.SITE_URL,
+            u'receiverList.receiver(0).amount': u'10',
+            u'receiverList.receiver(0).email': u'someone@somewhere.com',
+            u'receiverList.receiver(0).invoiceID':
+                u'mozilla-%s' % self.data['uuid'],
+            u'receiverList.receiver(0).paymentType': u'DIGITALGOODS',
+            u'receiverList.receiver(0).primary': u'true',
+            u'requestEnvelope.errorLanguage': u'US',
+            'returnUrl': (
+                u'%s/en-US/firefox/addon/xx/contribute/complete?uuid=%s' %
+                (settings.SITE_URL, self.data['uuid'])),
+            u'trackingId': self.data['uuid'],
+        }
+        assert data == expected_data
 
     @mock.patch('olympia.paypal.requests.post')
     def test_error_is_paypal(self, opener):

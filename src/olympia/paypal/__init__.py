@@ -93,6 +93,9 @@ def get_paykey(data):
     memo: any nice message (optional)
     qs: anything you want to append to the complete or cancel (optional)
     currency: valid paypal currency, defaults to USD (optional)
+
+    API Docs from Paypal are at :
+    https://developer.paypal.com/docs/classic/api/adaptive-payments/ ("Pay").
     """
     if data['pattern']:
         complete = reverse(data['pattern'], args=[data['slug'], 'complete'])
@@ -116,7 +119,7 @@ def get_paykey(data):
         'receiverList.receiver(0).email': data['email'],
         'receiverList.receiver(0).amount': data['amount'],
         'receiverList.receiver(0).invoiceID': 'mozilla-%s' % data['uuid'],
-        'receiverList.receiver(0).primary': 'TRUE',
+        'receiverList.receiver(0).primary': 'true',
         'receiverList.receiver(0).paymentType': 'DIGITALGOODS',
         'requestEnvelope.errorLanguage': 'US'
     }
