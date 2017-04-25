@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-21 10:18+0000\n"
+"PO-Revision-Date: 2017-04-25 09:54+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -3910,7 +3910,7 @@ msgstr "Versioni ekziston."
 
 #: src/olympia/devhub/forms.py
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Të vazhdohet me ngarkimin ekzistues?"
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -6812,7 +6812,7 @@ msgstr "Historik Shqyrtimesh"
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Add-on Title"
