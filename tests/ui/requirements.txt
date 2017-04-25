@@ -4,6 +4,6 @@ PyPOM==1.1.1
 pytest==3.0.7
 pytest-instafail==0.3.0
 pytest-selenium==1.9.1
-pytest-variables==1.5.1
+pytest-variables==1.6.0
 pytest-xdist==1.16.0
 selenium==3.3.3
