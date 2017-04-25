@@ -165,24 +165,24 @@ def template_from_user(user, version):
 
 
 def log_and_notify(action, comments, note_creator, version, perm_setting=None,
-                   details_kw=None):
+                   detail_kwargs=None):
     log_kwargs = {
         'user': note_creator,
         'created': datetime.datetime.now(),
     }
-    if details_kw is None:
-        details_kw = {}
+    if detail_kwargs is None:
+        detail_kwargs = {}
     if comments:
-        details_kw['version'] = version.version
-        details_kw['comments'] = comments
+        detail_kwargs['version'] = version.version
+        detail_kwargs['comments'] = comments
     else:
         # Just use the name of the action if no comments provided.  Alas we
         # can't know the locale of recipient, and our templates are English
         # only so prevent language jumble by forcing into en-US.
         with no_translation():
             comments = '%s' % action.short
-    if details_kw:
-        log_kwargs['details'] = details_kw
+    if detail_kwargs:
+        log_kwargs['details'] = detail_kwargs
 
     note = ActivityLog.create(action, version.addon, version, **log_kwargs)
 
