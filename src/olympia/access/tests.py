@@ -60,7 +60,7 @@ def test_match_rules():
 
 def test_anonymous_user():
     fake_request = req_factory_factory('/')
-    assert not action_allowed(fake_request, amo.FIREFOX, 'Admin:%')
+    assert not action_allowed(fake_request, amo.permissions.ADMIN)
 
 
 class ACLTestCase(TestCase):

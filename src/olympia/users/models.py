@@ -172,7 +172,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @property
     def is_staff(self):
         from olympia.access import acl
-        return acl.action_allowed_user(self, 'Admin', '%')
+        return acl.action_allowed_user(self, amo.permissions.ADMIN)
 
     def has_perm(self, perm, obj=None):
         return self.is_superuser

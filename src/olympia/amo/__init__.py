@@ -4,6 +4,7 @@ Miscellaneous helpers that make Django compatible with AMO.
 from product_details import product_details
 
 import olympia.core.logger
+from olympia.constants import permissions  # noqa
 from olympia.constants.activity import (  # noqa
     LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITOR_REVIEW_ACTION,
     LOG_EDITORS, LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,

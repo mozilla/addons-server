@@ -9,7 +9,7 @@ from django.test import RequestFactory
 import mock
 import pytest
 
-from olympia import core
+from olympia import amo, core
 from olympia.amo.tests import BaseTestCase, TestCase, fxa_login_link
 from olympia.amo import decorators
 from olympia.users.models import UserProfile
@@ -157,6 +157,7 @@ class TestSetModifiedOn(TestCase):
 
 
 class TestPermissionRequired(TestCase):
+    empty_permission = amo.permissions.NONE
 
     def setUp(self):
         super(TestPermissionRequired, self).setUp()
@@ -167,19 +168,20 @@ class TestPermissionRequired(TestCase):
     @mock.patch('olympia.access.acl.action_allowed')
     def test_permission_not_allowed(self, action_allowed):
         action_allowed.return_value = False
-        func = decorators.permission_required('', '')(self.f)
+        func = decorators.permission_required(self.empty_permission)(self.f)
         with self.assertRaises(PermissionDenied):
             func(self.request)
 
     @mock.patch('olympia.access.acl.action_allowed')
     def test_permission_allowed(self, action_allowed):
         action_allowed.return_value = True
-        func = decorators.permission_required('', '')(self.f)
+        func = decorators.permission_required(self.empty_permission)(self.f)
         func(self.request)
         assert self.f.called
 
     @mock.patch('olympia.access.acl.action_allowed')
     def test_permission_allowed_correctly(self, action_allowed):
-        func = decorators.permission_required('Admin', '%')(self.f)
+        func = decorators.permission_required(amo.permissions.ADMIN)(self.f)
         func(self.request)
-        action_allowed.assert_called_with(self.request, 'Admin', '%')
+        action_allowed.assert_called_with(
+            self.request, amo.permissions.AclPermission('Admin', '%'))

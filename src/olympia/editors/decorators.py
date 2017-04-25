@@ -2,6 +2,7 @@ import functools
 
 from django.core.exceptions import PermissionDenied
 
+from olympia import amo
 from olympia.access import acl
 from olympia.amo.decorators import login_required
 
@@ -13,7 +14,7 @@ def _view_on_get(request):
     a GET request, they are allowed to view.
     """
     return (request.method == 'GET' and
-            acl.action_allowed(request, 'ReviewerTools', 'View'))
+            acl.action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW))
 
 
 def addons_reviewer_required(f):

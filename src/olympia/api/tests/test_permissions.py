@@ -8,6 +8,7 @@ from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from olympia import amo
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfPublic, AllowNone, AllowOwner,
     AllowReadOnlyIfPublic, AllowRelatedObjectPermissions, AllowReviewer,
@@ -20,7 +21,8 @@ class ProtectedView(APIView):
     # Use session auth for this test view because it's easy, and the goal is
     # to test the permission, not the authentication.
     authentication_classes = [SessionAuthentication]
-    permission_classes = [GroupPermission('SomeRealm', 'SomePermission')]
+    permission_classes = [GroupPermission(
+        amo.permissions.NONE)]
 
     def get(self, request):
         return Response('ok')
@@ -39,7 +41,7 @@ class TestGroupPermissionOnView(WithDynamicEndpoints):
         self.endpoint(ProtectedView)
         self.url = '/en-US/firefox/dynamic-endpoint'
         self.user = user_factory(email='regular@mozilla.com')
-        self.grant_permission(self.user, 'SomeRealm:SomePermission')
+        self.grant_permission(self.user, 'None:None')
         self.login(self.user)
 
     def test_user_must_be_in_required_group(self):
@@ -61,7 +63,7 @@ class TestGroupPermission(TestCase):
         request = RequestFactory().get('/')
         request.user = AnonymousUser()
         view = Mock(spec=[])
-        perm = GroupPermission('SomeRealm', 'SomePermission')
+        perm = GroupPermission(amo.permissions.NONE)
         assert not perm.has_permission(request, view)
 
 

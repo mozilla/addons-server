@@ -1,6 +1,7 @@
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
+from olympia import amo
 from olympia.access import acl
 
 
@@ -12,14 +13,13 @@ class GroupPermission(BasePermission):
     """
     Allow access depending on the result of action_allowed_user().
     """
-    def __init__(self, app, action):
-        self.app = app
-        self.action = action
+    def __init__(self, permission):
+        self.permission = permission
 
     def has_permission(self, request, view):
         if not request.user.is_authenticated():
             return False
-        return acl.action_allowed_user(request.user, self.app, self.action)
+        return acl.action_allowed_user(request.user, self.permission)
 
     def has_object_permission(self, request, view, obj):
         return self.has_permission(request, view)
@@ -103,7 +103,8 @@ class AllowReviewer(BasePermission):
     """
     def has_permission(self, request, view):
         return ((request.method in SAFE_METHODS and
-                 acl.action_allowed(request, 'ReviewerTools', 'View')) or
+                 acl.action_allowed(request,
+                                    amo.permissions.REVIEWER_TOOLS_VIEW)) or
                 acl.check_addons_reviewer(request))
 
     def has_object_permission(self, request, view, obj):

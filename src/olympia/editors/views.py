@@ -65,7 +65,8 @@ def context(request, **kw):
 def eventlog(request):
     form = forms.EventLogForm(request.GET)
     eventlog = ActivityLog.objects.editor_events()
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     if form.is_valid():
         if form.cleaned_data['start']:
@@ -93,7 +94,8 @@ def eventlog_detail(request, id):
     if len(log.arguments) > 1 and isinstance(log.arguments[1], Review):
         review = log.arguments[1]
 
-    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+    is_admin = acl.action_allowed(request,
+                                  amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
 
     can_undelete = review and review.deleted and (
         is_admin or request.user.pk == log.user.pk)
@@ -118,7 +120,8 @@ def beta_signed_log(request):
     """Log of all the beta files that got signed."""
     form = forms.BetaSignedLogForm(request.GET)
     beta_signed_log = ActivityLog.objects.beta_signed_events()
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     if form.is_valid():
         if form.cleaned_data['filter']:
@@ -134,11 +137,12 @@ def beta_signed_log(request):
 
 @any_reviewer_required
 def home(request):
-    if (not acl.action_allowed(request, 'Addons', 'Review') and
-            acl.action_allowed(request, 'Personas', 'Review')):
+    if (not acl.action_allowed(request, amo.permissions.ADDONS_REVIEW) and
+            acl.action_allowed(request, amo.permissions.THEMES_REVIEW)):
         return http.HttpResponseRedirect(reverse('editors.themes.home'))
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
     durations = (('new', _('New Add-ons (Under 5 days)')),
                  ('med', _('Passable (5 to 10 days)')),
                  ('old', _('Overdue (Over 10 days)')))
@@ -222,8 +226,9 @@ def performance(request, user_id=False):
     user = request.user
     editors = _recent_editors()
 
-    is_admin = (acl.action_allowed(request, 'Admin', '%') or
-                acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
+    is_admin = (acl.action_allowed(request, amo.permissions.ADMIN) or
+                acl.action_allowed(request,
+                                   amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW))
 
     if is_admin and user_id:
         try:
@@ -231,7 +236,8 @@ def performance(request, user_id=False):
         except UserProfile.DoesNotExist:
             pass  # Use request.user from above.
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     monthly_data = _performance_by_month(user.id)
     performance_total = _performance_total(monthly_data)
@@ -364,10 +370,11 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
 @addons_reviewer_required
 def motd(request):
     form = None
-    if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
+    if motd_editable:
         form = forms.MOTDForm(
             initial={'motd': get_config('editors_review_motd')})
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
     data = context(request, form=form, motd_editable=motd_editable)
     return render(request, 'editors/motd.html', data)
 
@@ -375,7 +382,8 @@ def motd(request):
 @addons_reviewer_required
 @post_required
 def save_motd(request):
-    if not acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
+    if not acl.action_allowed(
+            request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT):
         raise PermissionDenied
     form = forms.MOTDForm(request.POST)
     if form.is_valid():
@@ -386,7 +394,8 @@ def save_motd(request):
 
 
 def is_admin_reviewer(request):
-    return acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+    return acl.action_allowed(request,
+                              amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
 
 
 def exclude_admin_only_addons(queryset):
@@ -416,7 +425,8 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     if not admin_reviewer and not is_searching and hasattr(qs, 'filter'):
         qs = exclude_admin_only_addons(qs)
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
     order_by = request.GET.get('sort', TableObj.default_order_by())
     if hasattr(TableObj, 'translate_sort_cols'):
         order_by = TableObj.translate_sort_cols(order_by)
@@ -498,7 +508,8 @@ def queue_pending(request):
 def queue_moderated(request):
     qs = Review.objects.all().to_moderate().order_by('reviewflag__created')
     page = paginate(request, qs, per_page=20)
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     flags = dict(ReviewFlag.FLAGS)
 
@@ -537,7 +548,7 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
-@permission_required('Addons', 'PostReview')
+@permission_required(amo.permissions.ADDONS_POST_REVIEW)
 def queue_auto_approved(request):
     # We need a GROUP BY addon_id to eliminate duplicates, but django does not
     # support arbitrary GROUP BY clauses; it has support for DISTINCT ON but
@@ -628,8 +639,9 @@ def review(request, addon, channel=None):
     else:
         redirect_url = reverse('editors.unlisted_queue_all')
 
-    is_admin = acl.action_allowed(request, 'Addons', 'Edit')
-    is_post_reviewer = acl.action_allowed(request, 'Addons', 'PostReview')
+    is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
+    is_post_reviewer = acl.action_allowed(request,
+                                          amo.permissions.ADDONS_POST_REVIEW)
 
     approvals_info = None
     if is_post_reviewer:
@@ -763,7 +775,8 @@ def review_viewing(request):
         review_locks = cache.get_many(cache.get(user_key, {}))
         can_lock_more_reviews = (
             len(review_locks) < amo.EDITOR_REVIEW_LOCK_LIMIT or
-            acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
+            acl.action_allowed(request,
+                               amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW))
         if can_lock_more_reviews or currently_viewing == user_id:
             set_reviewing_cache(addon_id, user_id)
             # Give it double expiry just to be safe.
@@ -824,7 +837,8 @@ def queue_review_text(request, log_id):
 def reviewlog(request):
     data = request.GET.copy()
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     if not data.get('start') and not data.get('end'):
         today = date.today()

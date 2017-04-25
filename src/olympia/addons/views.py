@@ -696,7 +696,8 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         if self.action == 'list':
             if requested == 'all_with_deleted':
                 # To see deleted versions, you need Admin:%.
-                self.permission_classes = [GroupPermission('Admin', '%')]
+                self.permission_classes = [
+                    GroupPermission(amo.permissions.ADMIN)]
             elif requested == 'all_with_unlisted':
                 # To see unlisted versions, you need to be add-on author or
                 # unlisted reviewer.
@@ -721,7 +722,7 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         # see deleted instances, we want to return a 404, behaving as if it
         # does not exist.
         if (obj.deleted and
-            not GroupPermission('Admin', '%').has_object_permission(
+            not GroupPermission(amo.permissions.ADMIN).has_object_permission(
                 request, self, obj)):
             raise http.Http404
 

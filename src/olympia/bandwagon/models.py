@@ -325,7 +325,8 @@ class Collection(ModelBase):
     def can_view_stats(self, request):
         if request and request.user:
             return (self.publishable_by(request.user) or
-                    acl.action_allowed(request, 'CollectionStats', 'View'))
+                    acl.action_allowed(request,
+                                       amo.permissions.COLLECTION_STATS_VIEW))
         return False
 
     def publishable_by(self, user):

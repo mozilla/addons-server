@@ -14,6 +14,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger
+from olympia import amo
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo import helpers
 from olympia.amo.utils import render, paginate
@@ -70,7 +71,8 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
     ctx['replies'] = Review.get_replies(reviews.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {
-            'is_admin': acl.action_allowed(request, 'Addons', 'Edit'),
+            'is_admin': acl.action_allowed(request,
+                                           amo.permissions.ADDONS_EDIT),
             'is_editor': acl.is_editor(request, addon),
             'is_author': acl.check_addon_ownership(request, addon, viewer=True,
                                                    dev=True, support=True),
@@ -146,7 +148,7 @@ def _review_details(request, addon, form, create=True):
 @addon_view
 @login_required
 def reply(request, addon, review_id):
-    is_admin = acl.action_allowed(request, 'Addons', 'Edit')
+    is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
     is_author = acl.check_addon_ownership(request, addon, dev=True)
     if not (is_admin or is_author):
         raise PermissionDenied
@@ -197,7 +199,7 @@ def add(request, addon, template=None):
 @post_required
 def edit(request, addon, review_id):
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
-    is_admin = acl.action_allowed(request, 'Addons', 'Edit')
+    is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
     if not (request.user.id == review.user.id or is_admin):
         raise PermissionDenied
     cls = forms.ReviewReplyForm if review.reply_to else forms.ReviewForm
@@ -230,7 +232,8 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             'post': IsAuthenticated,
 
             # To edit a review you need to be the author or be an admin.
-            'patch': AnyOf(AllowOwner, GroupPermission('Addons', 'Edit')),
+            'patch': AnyOf(AllowOwner, GroupPermission(
+                amo.permissions.ADDONS_EDIT)),
 
             # Implementing PUT would be a little incoherent as we don't want to
             # allow users to change `version` but require it at creation time.
@@ -238,7 +241,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         }),
     ]
     reply_permission_classes = [AnyOf(
-        GroupPermission('Addons', 'Edit'),
+        GroupPermission(amo.permissions.ADDONS_EDIT),
         AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
     )]
     reply_serializer_class = ReviewSerializerReply
@@ -363,7 +366,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             self.should_access_deleted_reviews = (
                 (requested == 'with_deleted' or self.action != 'list') and
                 self.request.user.is_authenticated() and
-                acl.action_allowed(self.request, 'Addons', 'Edit'))
+                acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT))
 
         should_access_only_top_level_reviews = (
             self.action == 'list' and self.get_addon_object())

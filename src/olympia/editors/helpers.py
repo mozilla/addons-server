@@ -108,7 +108,7 @@ def queue_tabnav(context):
                              counts['moderated'])
                     .format(counts['moderated'])))]
 
-        if acl.action_allowed(request, 'Addons', 'PostReview'):
+        if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
             tabnav.append(
                 ('auto_approved', 'queue_auto_approved',
                  (ngettext('Auto Approved Add-on ({0})',
@@ -402,7 +402,8 @@ class ReviewHelper(object):
             amo.STATUS_NULL, amo.STATUS_DELETED)
         reviewable_because_admin = (
             not addon.admin_review or
-            acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
+            acl.action_allowed(request,
+                               amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW))
         reviewable_because_submission_time = (
             not is_limited_reviewer(request) or
             (self.version is not None and
@@ -742,7 +743,8 @@ def logs_tabnav_themes(context):
     rv = [
         ('editors.themes.logs', 'themes', _('Reviews'))
     ]
-    if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
+    if acl.action_allowed(context['request'],
+                          amo.permissions.THEME_ADMIN_TOOLS_VIEW):
         rv.append(('editors.themes.deleted', 'deleted', _('Deleted')))
 
     return rv
@@ -753,11 +755,12 @@ def logs_tabnav_themes(context):
 def queue_tabnav_themes(context):
     """Similar to queue_tabnav, but for themes."""
     tabs = []
-    if acl.action_allowed(context['request'], 'Personas', 'Review'):
+    if acl.action_allowed(context['request'], amo.permissions.THEMES_REVIEW):
         tabs.append((
             'editors.themes.list', 'pending_themes', _('Pending'),
         ))
-    if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
+    if acl.action_allowed(context['request'],
+                          amo.permissions.THEME_ADMIN_TOOLS_VIEW):
         tabs.append((
             'editors.themes.list_flagged', 'flagged_themes', _('Flagged'),
         ))
@@ -773,11 +776,12 @@ def queue_tabnav_themes(context):
 def queue_tabnav_themes_interactive(context):
     """Tabnav for the interactive shiny theme queues."""
     tabs = []
-    if acl.action_allowed(context['request'], 'Personas', 'Review'):
+    if acl.action_allowed(context['request'], amo.permissions.THEMES_REVIEW):
         tabs.append((
             'editors.themes.queue_themes', 'pending', _('Pending'),
         ))
-    if acl.action_allowed(context['request'], 'SeniorPersonasTools', 'View'):
+    if acl.action_allowed(context['request'],
+                          amo.permissions.THEME_ADMIN_TOOLS_VIEW):
         tabs.append((
             'editors.themes.queue_flagged', 'flagged', _('Flagged'),
         ))
