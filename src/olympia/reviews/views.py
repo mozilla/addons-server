@@ -1,6 +1,6 @@
 from django import http
 from django.core.exceptions import PermissionDenied
-from django.db.models import Prefetch
+from django.db.models import Q, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import force_text
@@ -49,6 +49,7 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
            'grouped_ratings': GroupedRating.get(addon.id)}
 
     ctx['form'] = forms.ReviewForm(None)
+    is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
 
     if review_id is not None:
         ctx['page'] = 'detail'
@@ -66,13 +67,18 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
     else:
         ctx['page'] = 'list'
         qs = qs.filter(is_latest=True)
+        # Don't filter out empty reviews for admins.
+        if not is_admin:
+            # But otherwise, filter out everyone elses empty reviews.
+            user_filter = (Q(user=request.user.pk)
+                           if request.user.is_authenticated() else Q())
+            qs = qs.filter(~Q(body=None) | user_filter)
 
     ctx['reviews'] = reviews = paginate(request, qs)
     ctx['replies'] = Review.get_replies(reviews.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {
-            'is_admin': acl.action_allowed(request,
-                                           amo.permissions.ADDONS_EDIT),
+            'is_admin': is_admin,
             'is_editor': acl.is_editor(request, addon),
             'is_author': acl.check_addon_ownership(request, addon, viewer=True,
                                                    dev=True, support=True),
@@ -359,6 +365,8 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
 
     def get_queryset(self):
         requested = self.request.GET.get('filter')
+        has_addons_edit = acl.action_allowed(self.request,
+                                             amo.permissions.ADDONS_EDIT)
 
         # Add this as a property of the view, because we need to pass down the
         # information to the serializer to show/hide delete replies.
@@ -366,7 +374,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             self.should_access_deleted_reviews = (
                 (requested == 'with_deleted' or self.action != 'list') and
                 self.request.user.is_authenticated() and
-                acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT))
+                has_addons_edit)
 
         should_access_only_top_level_reviews = (
             self.action == 'list' and self.get_addon_object())
@@ -386,6 +394,12 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             # included during serialization as children of the relevant
             # reviews instead.
             self.queryset = Review.without_replies.all()
+
+        # Filter out (other user's) empty reviews for non-admins.
+        if self.action == 'list' and not has_addons_edit:
+            user_filter = (Q(user=self.request.user.pk)
+                           if self.request.user.is_authenticated() else Q())
+            self.queryset = self.queryset.filter(~Q(body=None) | user_filter)
 
         qs = super(ReviewViewSet, self).get_queryset()
         # The serializer needs reply, version (only the "version" field) and

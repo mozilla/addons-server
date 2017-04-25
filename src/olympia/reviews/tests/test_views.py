@@ -105,6 +105,31 @@ class TestViews(ReviewTest):
         assert r.rating is None
         assert item.attr('data-rating') == ''
 
+    def test_empty_reviews_in_list(self):
+        def create_review(body='review text', user=None):
+            return Review.objects.create(
+                addon=self.addon, user=user or user_factory(),
+                rating=3, body=body)
+
+        url = helpers.url('addons.reviews.list', self.addon.slug)
+
+        create_review()
+        create_review(body=None)
+        create_review(
+            body=None,
+            user=UserProfile.objects.get(email='trev@adblockplus.org'))
+
+        # Don't show the reviews with no body.
+        assert len(self.client.get(url).context['reviews']) == 2
+
+        self.login_dev()
+        # Except if it's your review
+        assert len(self.client.get(url).context['reviews']) == 3
+
+        # Or you're an admin
+        self.login_admin()
+        assert len(self.client.get(url).context['reviews']) == 4
+
     def test_list_rss(self):
         r = self.client.get(helpers.url('addons.reviews.list',
                                         self.addon.slug))
@@ -925,6 +950,36 @@ class TestReviewViewSetGet(TestCase):
 
     def test_list_addon_slug(self):
         self.test_list_addon(addon_pk=self.addon.slug)
+
+    def test_list_with_empty_reviews(self):
+        def create_review(body='review text', user=None):
+            return Review.objects.create(
+                addon=self.addon, user=user or user_factory(),
+                rating=3, body=body)
+
+        self.user = user_factory()
+
+        create_review()
+        create_review()
+        create_review(body=None)
+        create_review(body=None, user=self.user)
+
+        # Don't show the reviews with no body.
+        response = self.client.get(self.url, {'addon': self.addon.pk})
+        data = json.loads(response.content)
+        assert data['count'] == 2 == len(data['results'])
+
+        # Except if it's your review
+        self.client.login_api(self.user)
+        response = self.client.get(self.url, {'addon': self.addon.pk})
+        data = json.loads(response.content)
+        assert data['count'] == 3 == len(data['results'])
+
+        # Or you're an admin
+        self.grant_permission(self.user, 'Addons:Edit')
+        response = self.client.get(self.url, {'addon': self.addon.pk})
+        data = json.loads(response.content)
+        assert data['count'] == 4 == len(data['results'])
 
     def test_list_user(self, **kwargs):
         self.user = user_factory()
