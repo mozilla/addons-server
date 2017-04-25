@@ -37,6 +37,17 @@ class TestNewUploadForm(TestCase):
         assert ('There was an error with your upload. Please try again.' in
                 form.errors.get('__all__')), form.errors
 
+        # Admin override makes the form ignore the brokenness
+        with mock.patch('olympia.access.acl.action_allowed_user') as acl:
+            # For the 'Addons:Edit' permission check.
+            acl.return_value = True
+            form = forms.NewUploadForm(
+                {'upload': upload.uuid, 'supported_platforms': [1],
+                    'admin_override_validation': True},
+                request=mock.Mock())
+            assert ('There was an error with your upload. Please try' not in
+                    form.errors.get('__all__')), form.errors
+
         upload.validation = '{"errors": 0}'
         upload.save()
         addon = Addon.objects.create()
