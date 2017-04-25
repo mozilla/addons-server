@@ -119,7 +119,6 @@ def get_paykey(data):
         'receiverList.receiver(0).email': data['email'],
         'receiverList.receiver(0).amount': data['amount'],
         'receiverList.receiver(0).invoiceID': 'mozilla-%s' % data['uuid'],
-        'receiverList.receiver(0).primary': 'true',
         'receiverList.receiver(0).paymentType': 'DIGITALGOODS',
         'requestEnvelope.errorLanguage': 'US'
     }
