@@ -583,7 +583,7 @@ class ReviewBase(object):
         log_and_notify(amo.LOG.REQUEST_INFORMATION, self.data['comments'],
                        self.user, self.version,
                        perm_setting='individual_contact',
-                       details_kw={'reviewtype': self.review_type})
+                       detail_kwargs={'reviewtype': self.review_type})
 
     def send_super_mail(self):
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
