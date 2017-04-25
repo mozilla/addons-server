@@ -951,6 +951,36 @@ class TestReviewViewSetGet(TestCase):
     def test_list_addon_slug(self):
         self.test_list_addon(addon_pk=self.addon.slug)
 
+    def test_list_with_empty_reviews(self):
+        def create_review(body='review text', user=None):
+            return Review.objects.create(
+                addon=self.addon, user=user or user_factory(),
+                rating=3, body=body)
+
+        self.user = user_factory()
+
+        create_review()
+        create_review()
+        create_review(body=None)
+        create_review(body=None, user=self.user)
+
+        # Don't show the reviews with no body.
+        response = self.client.get(self.url, {'addon': self.addon.pk})
+        data = json.loads(response.content)
+        assert data['count'] == 2 == len(data['results'])
+
+        # Except if it's your review
+        self.client.login_api(self.user)
+        response = self.client.get(self.url, {'addon': self.addon.pk})
+        data = json.loads(response.content)
+        assert data['count'] == 3 == len(data['results'])
+
+        # Or you're an admin
+        self.grant_permission(self.user, 'Addons:Edit')
+        response = self.client.get(self.url, {'addon': self.addon.pk})
+        data = json.loads(response.content)
+        assert data['count'] == 4 == len(data['results'])
+
     def test_list_user(self, **kwargs):
         self.user = user_factory()
         review1 = Review.objects.create(

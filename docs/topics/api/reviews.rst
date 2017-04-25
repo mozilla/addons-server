@@ -44,6 +44,10 @@ user has already posted a review for the current version of an add-on.
    can change that with the ``filter=with_deleted`` query parameter, which
    requires the Addons:Edit permission.
 
+   Only non-empty reviews (reviews with both a rating and text body) are returned,
+   unless a) the reviews were created by the user making the API request or
+   b) the user has the Addons:Edit permission.
+
 ------
 Detail
 ------
