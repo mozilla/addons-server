@@ -707,6 +707,36 @@ class TestNewLegacyAddonRestrictions(ValidatorTestCase):
         assert upload.processed_validation['messages'] == []
         assert upload.valid
 
+    def test_submit_legacy_extension_1st_version_in_that_channel(self):
+        file_ = get_addon_file('valid_firefox_addon.xpi')
+        addon = addon_factory(
+            version_kw={'version': '0.1',
+                        'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        expected = ['validation', 'messages', 'legacy_extensions_restricted']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+        assert not upload.valid
+
+    def test_submit_legacy_extension_1st_version_in_that_channel_reverse(self):
+        file_ = get_addon_file('valid_firefox_addon.xpi')
+        addon = addon_factory(
+            version_kw={'version': '0.1',
+                        'channel': amo.RELEASE_CHANNEL_LISTED})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=False)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        expected = ['validation', 'messages', 'legacy_extensions_restricted']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+        assert not upload.valid
+
     def test_submit_webextension(self):
         file_ = get_addon_file('valid_webextension.xpi')
         upload = FileUpload.objects.create(path=file_)

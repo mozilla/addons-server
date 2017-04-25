@@ -187,9 +187,13 @@ def handle_upload_validation_result(results, upload_pk, channel):
     FileUpload instance."""
     upload = FileUpload.objects.get(pk=upload_pk)
 
-    if not upload.addon_id:
+    if (not upload.addon_id or
+            not upload.addon.find_latest_version(channel=channel, exclude=())):
+        # Legacy submission restrictions apply if:
+        # - It's the very first upload (there is no addon id yet)
+        # - It's the first upload in that channel
         results = annotate_new_legacy_addon_restrictions(results=results)
-    elif upload.addon_id and upload.version:
+    if upload.addon_id and upload.version:
         results = annotate_webext_incompatibilities(
             results=results, file_=None, addon=upload.addon,
             version_string=upload.version, channel=channel)
