@@ -12,6 +12,9 @@ AMO uses JWT tokens in a different way. Notes:
 
 See https://github.com/GetBlimp/django-rest-framework-jwt/ for more info.
 """
+from calendar import timegm
+from datetime import datetime
+
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -63,7 +66,10 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
         'require_iat': True,
         'require_nbf': False,
     }
+
     try:
+        now = timegm(datetime.utcnow().utctimetuple())
+
         payload = jwt.decode(
             token,
             api_key.secret,
@@ -71,6 +77,14 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
             leeway=api_settings.JWT_LEEWAY,
             algorithms=[api_settings.JWT_ALGORITHM]
         )
+
+        # Verify clock skew for future iat-values pyjwt removed that check in
+        # https://github.com/jpadilla/pyjwt/pull/252/
+        # `verify_iat` is still in options because pyjwt still validates
+        # that `iat` is a proper number.
+        if int(payload['iat']) > (now + api_settings.JWT_LEEWAY):
+            raise jwt.InvalidIssuedAtError(
+                'Issued At claim (iat) cannot be in the future.')
     except jwt.MissingRequiredClaimError, exc:
         log.info(u'Missing required claim during JWT authentication: '
                  u'{e.__class__.__name__}: {e}'.format(e=exc))
