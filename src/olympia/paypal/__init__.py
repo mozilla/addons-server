@@ -93,6 +93,9 @@ def get_paykey(data):
     memo: any nice message (optional)
     qs: anything you want to append to the complete or cancel (optional)
     currency: valid paypal currency, defaults to USD (optional)
+
+    API Docs from Paypal are at :
+    https://developer.paypal.com/docs/classic/api/adaptive-payments/ ("Pay").
     """
     if data['pattern']:
         complete = reverse(data['pattern'], args=[data['slug'], 'complete'])
