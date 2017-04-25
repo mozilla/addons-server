@@ -154,11 +154,12 @@ def action_from_user(user, version):
 
 
 def template_from_user(user, version):
-    review_perm = ('Review' if version.channel == amo.RELEASE_CHANNEL_LISTED
-                   else 'ReviewUnlisted')
+    review_perm = (amo.permissions.ADDONS_REVIEW
+                   if version.channel == amo.RELEASE_CHANNEL_LISTED
+                   else amo.permissions.ADDONS_REVIEW_UNLISTED)
     template = 'activity/emails/developer.txt'
     if (not version.addon.authors.filter(pk=user.pk).exists() and
-            acl.action_allowed_user(user, 'Addons', review_perm)):
+            acl.action_allowed_user(user, review_perm)):
         template = 'activity/emails/from_reviewer.txt'
     return loader.get_template(template)
 
