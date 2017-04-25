@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-12 15:17+0000\n"
-"PO-Revision-Date: 2017-04-23 08:59+0000\n"
+"PO-Revision-Date: 2017-04-25 13:49+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5196,7 +5196,7 @@ msgstr "作成日:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%Y 年 %%m 月 %%e 日"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Add-on Multi Process Status:"
