@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2016-12-23 22:41+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -900,7 +900,7 @@ msgstr "Stáhnout nyní"
 msgid "Only available on Firefox Desktop"
 msgstr "Dostupné pouze pro Firefox pro desktop"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Omlouváme se, ale pro instalaci vyhledávacího modulu potřebujete prohlížeč postavený na Mozille (jako například Firefox)."
 
@@ -1197,55 +1197,3 @@ msgstr "Proces kontroly nemohl být dokončen nebo skončil s chybami"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Interní chyba serveru"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Není aktualizován pro {0} {1}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "Je vyžadována novější verze {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Nezkontrolovaný"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Experimentální <span>(Dozvědět se více)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Není dostupný pro {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Experimentální"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "Motivy vyžadují novější verzi {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "Motivy vyžadují {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Probíhá instalace..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Doplněk byl Mozillou předběžně zkontrolován."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Ponechat"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Nyní ji máte na vyzkoušení!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Přidáno do Firefoxu"

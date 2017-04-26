@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-02-08 03:44+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -44,8 +44,8 @@ msgstr "Cabhair uait?"
 msgid "Review"
 msgstr "Léirmheas"
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/editors/templates/editors/addon_details_box.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr "Leagan {0}"
 
@@ -71,8 +71,8 @@ msgid "Continue to Download&nbsp;&rarr;"
 msgstr "Leathanach Íosluchtaithe&nbsp;&rarr;"
 
 #: src/olympia/addons/buttons.py src/olympia/addons/helpers.py src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
-#: src/olympia/browse/templates/browse/impala/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py
+#: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py src/olympia/browse/templates/browse/impala/category_landing.html
+#: src/olympia/browse/views.py
 msgid "Featured"
 msgstr "Mór-Le-Rá"
 
@@ -211,7 +211,7 @@ msgstr "Rinneadh tuairisc ar dhrochúsáid."
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Níl aon chatagóir oiriúnach do mo bhreiseán seo"
 
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/mobile/button.html
+#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "No compatible versions"
 msgstr "Níl aon leaganacha comhoiriúnacha"
 
@@ -228,12 +228,11 @@ msgstr "Cuir le Firefox Soghluaiste"
 msgid "for {0}"
 msgstr "le haghaidh {0}"
 
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/mobile/button.html
+#: src/olympia/addons/templates/addons/button.html
 msgid "View privacy policy"
 msgstr "Féach ar an bpolasaí príobháideachta"
 
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/button.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+#: src/olympia/addons/templates/addons/button.html src/olympia/editors/templates/editors/addon_details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "View End-User License Agreement"
 msgstr ""
 
@@ -356,7 +355,7 @@ msgid "Leave a comment or request with your contribution."
 msgstr "Cuir nóta nó iarratas le do dheontas."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
-#: src/olympia/reviews/templates/reviews/mobile/add_form.html src/olympia/templates/includes/forms.html
+#: src/olympia/templates/includes/forms.html
 msgid "(optional)"
 msgstr "(roghnach)"
 
@@ -375,131 +374,6 @@ msgstr "Níl, GRMA"
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution made, thank you."
 msgstr "Deontas déanta, go raibh maith agat"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
-#: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "Requires Restart"
-msgstr "Atosú de dhíth"
-
-#. This is a caption for a table. {0} is an add-on name.
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
-msgid "Add-on Information for {0}"
-msgstr "Eolas faoi Bhreiseán {0}"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/search_results_themes.html
-#: src/olympia/editors/templates/editors/themes/queue_list.html
-msgid "Status"
-msgstr "Stádas"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html
-#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
-msgid "Updated"
-msgstr "Nuashonraithe"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "Website"
-msgstr "Suíomh Gréasáin"
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/search/templates/search/results.html
-#: src/olympia/versions/templates/versions/version.html
-msgid "Works with"
-msgstr "Feidhmíonn sé le"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Visibility"
-msgstr "Infheictheacht"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Visible"
-msgstr "Infheicthe"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Invisible"
-msgstr "Dofheicthe"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
-msgid "Required Add-ons"
-msgstr "Breiseáin Riachtanacha"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
-#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
-msgid "Rating"
-msgstr "Rátáil"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/stats/templates/stats/addon_report_menu.html
-#: src/olympia/stats/templates/stats/collection_report_menu.html
-msgid "Downloads"
-msgstr "Íosluchtuithe"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html
-msgid "View Statistics"
-msgstr "Amharc ar Staitisticí"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Average Daily Users"
-msgstr "Meánlíon na nÚsáideoirí Laethúla"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Abuse Reports"
-msgstr "Tuairiscí ar Dhrochúsáid"
-
-#. The Privacy Policy for this add-on.
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
-msgid "Privacy Policy"
-msgstr "Polasaí Príobháideachta"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "View Privacy Policy"
-msgstr "Polasaí Príobháideachta"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "EULA"
-msgstr "EULA"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "More about this add-on"
-msgstr "Tuilleadh eolais faoin bhreiseán seo"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Image Gallery"
-msgstr "Gailearaí Íomhánna"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
-msgid "Developer Comments"
-msgstr "Nótaí Tráchta ón Fhorbróir"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Development Channel"
-msgstr "Cainéal Forbartha"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Install development version"
-msgstr "Suiteáil leagan forbartha"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Níl aon rud le feiceáil anseo!  Níor sholáthair an forbróir aon sonraí."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
-msgid "Version Notes"
-msgstr "Nótaí Eisiúna"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -523,7 +397,7 @@ msgstr "Ar ais go {0}…"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#: src/olympia/addons/templates/addons/home.html src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py
+#: src/olympia/addons/templates/addons/home.html src/olympia/amo/helpers.py
 msgid "Add-ons for {0}"
 msgstr "Breiseáin le haghaidh {0}"
 
@@ -559,23 +433,20 @@ msgstr "Téamaí Mór-Le-Rá"
 msgid "Featured Collections"
 msgstr "Bailiúcháin Mhór-Le-Rá"
 
-#: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/addons/templates/addons/listing_header.html src/olympia/amo/templates/amo/mobile/sort_by.html
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
+#: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/addons/templates/addons/listing_header.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Sort by:"
 msgstr "Sórtáil de réir:"
 
 #. {0} is a date.
 #. {0} is a date
-#: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
+#: src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
+#: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Updated {0}"
 msgstr "Nuashonraithe {0}"
 
 #. {0} is a date.
-#: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
+#: src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html src/olympia/addons/templates/addons/persona_preview.html
+#: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Added {0}"
 msgstr "Curtha leis ar {0}"
 
@@ -598,6 +469,19 @@ msgstr[1] "%(num)s úsáideoir"
 msgstr[2] "%(num)s úsáideoir"
 msgstr[3] "%(num)s n-úsáideoir"
 msgstr[4] "%(num)s úsáideoir"
+
+#: src/olympia/addons/templates/addons/macros.html src/olympia/editors/models.py src/olympia/editors/templates/editors/addon_details_box.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+msgid "Requires Restart"
+msgstr "Atosú de dhíth"
+
+#: src/olympia/addons/templates/addons/macros.html
+msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
+msgstr ""
+
+#: src/olympia/addons/templates/addons/macros.html
+msgid "Compatible with Firefox 57+"
+msgstr ""
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html
@@ -631,9 +515,9 @@ msgstr "Íocaíocht curtha i gcrích"
 msgid "Return to the addon."
 msgstr "Fill ar an mbreiseán."
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "le"
 
@@ -643,7 +527,7 @@ msgid "More {0} Themes"
 msgstr "Tuilleadh Téamaí {0}"
 
 #. {0} is a category name, such as Nature
-#: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
+#: src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all {0} Themes"
 msgstr "Gach Téama {0}"
 
@@ -651,27 +535,35 @@ msgstr "Gach Téama {0}"
 msgid "More by this Artist"
 msgstr "Tuilleadh ón Ealaíontóir seo"
 
-#: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
+#: src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all Themes by this Artist"
 msgstr "Taispeáin gach Téama leis an Ealaíontóir seo"
 
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html
-#: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html src/olympia/browse/templates/browse/macros.html
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/templates/categories.html
 msgid "Categories"
 msgstr "Catagóirí"
 
-#: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/editors/templates/editors/themes/deleted.html
-#: src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Updated"
+msgstr "Nuashonraithe"
+
+#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/editors/templates/editors/themes/deleted.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Artist"
 msgstr "Ealaíontóir"
 
-#: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/stats/templates/stats/addon_report_menu.html
+#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/editors/templates/editors/addon_details_box.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html
+msgid "Rating"
+msgstr "Rátáil"
+
+#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Daily Users"
 msgstr "Úsáideoirí Laethúla"
 
-#: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/devhub/templates/devhub/includes/license_form.html
-#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/devhub/templates/devhub/includes/license_form.html src/olympia/devhub/templates/devhub/versions/edit.html
+#: src/olympia/editors/templates/editors/themes/themes.html
 msgid "License"
 msgstr "Ceadúnas"
 
@@ -688,7 +580,7 @@ msgid "Approved"
 msgstr "Ceadaithe"
 
 #. {0} is the number of users.
-#: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/persona_preview.html
+#: src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/persona_preview.html
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
 msgstr[0] "<strong>{0}</strong> úsáideoir"
@@ -834,6 +726,13 @@ msgstr "Níl an breiseán seo comhoiriúnach leis an leagan de %(app)s atá agat
 msgid "Privacy Policy for {0}"
 msgstr "Polasaí Príobháideachta le haghaidh {0}"
 
+#. The Privacy Policy for this add-on.
+#: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/privacy.html
+#: src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/editors/templates/editors/addon_details_box.html
+#: src/olympia/templates/copyright.html
+msgid "Privacy Policy"
+msgstr "Polasaí Príobháideachta"
+
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "QR code for add-on"
 msgstr "Cód QR le haghaidh an bhreiseáin"
@@ -859,12 +758,12 @@ msgstr ""
 msgid "Send Report"
 msgstr "Seol Tuairisc"
 
-#: src/olympia/addons/templates/addons/mobile/eula.html src/olympia/addons/templates/addons/mobile/persona_confirm.html src/olympia/addons/templates/addons/report_abuse.html
-#: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/profile.html
-#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html src/olympia/zadmin/templates/zadmin/validation.html
+#: src/olympia/addons/templates/addons/report_abuse.html src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
+#: src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/versions/edit.html
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
+#: src/olympia/zadmin/templates/zadmin/validation.html
 msgid "Cancel"
 msgstr "Cealaigh"
 
@@ -877,20 +776,20 @@ msgstr "Cad é do bharúil?"
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "<a href=\"%(login)s\">Logáil isteach</a> chun léirmheas a dhéanamh"
 
-#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
+#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Title:"
 msgstr "Teideal:"
 
-#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
+#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Review:"
 msgstr "Léirmheas:"
 
-#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
+#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Rating:"
 msgstr "Rátáil:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/add.html
-#: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/reviews/templates/reviews/mobile/add_form.html
+#: src/olympia/reviews/templates/reviews/edit_review.html
 msgid "Submit review"
 msgstr "Seol an léirmheas"
 
@@ -912,7 +811,6 @@ msgid "Review Guidelines"
 msgstr "Treoirlínte do Léirmheasanna"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Reviews"
 msgstr "Léirmheasanna"
 
@@ -1058,14 +956,6 @@ msgid "Icon of {0}"
 msgstr "Deilbhín {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
-
-#: src/olympia/addons/templates/addons/impala/details.html
-msgid "Compatible with Firefox 57+"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
@@ -1129,6 +1019,10 @@ msgstr "Eolas faoin Leagan"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete version history"
 msgstr "Stair iomlán na leaganacha"
+
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Development Channel"
+msgstr "Cainéal Forbartha"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
@@ -1222,7 +1116,7 @@ msgid "Source Code License for {addon}"
 msgstr "Ceadúnas an chóid fhoinsigh le haghaidh {addon}"
 
 #. The License for this add-on.
-#: src/olympia/addons/templates/addons/impala/license.html src/olympia/versions/templates/versions/mobile/version.html
+#: src/olympia/addons/templates/addons/impala/license.html
 msgid "Source Code License"
 msgstr "Ceadúnas an Chóid Fhoinsigh"
 
@@ -1273,6 +1167,11 @@ msgstr "Mo Chuid Téamaí"
 msgid "Add to Firefox"
 msgstr "Cuir le Firefox"
 
+#. This is a caption for a table. {0} is an add-on name.
+#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Add-on Information for {0}"
+msgstr "Eolas faoi Bhreiseán {0}"
+
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Edit Theme"
 msgstr "Cuir an Téama in Eagar"
@@ -1297,12 +1196,8 @@ msgstr "Tá an téama seo ar feitheamh. Is tusa amháin atá in ann é a fheice�
 msgid "Collector's Note"
 msgstr "Nóta ón Bhailitheoir"
 
-#: src/olympia/addons/templates/addons/listing/items_mobile.html
-msgid "Not Yet Rated"
-msgstr "Gan Rátáil"
-
 #. {0} is the number of downloads.
-#: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
+#: src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> íosluchtú sa tseachtain"
@@ -1310,133 +1205,6 @@ msgstr[1] "<strong>{0}</strong> íosluchtú sa tseachtain"
 msgstr[2] "<strong>{0}</strong> íosluchtú sa tseachtain"
 msgstr[3] "<strong>{0}</strong> n-íosluchtú sa tseachtain"
 msgstr[4] "<strong>{0}</strong> íosluchtú sa tseachtain"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "Read More"
-msgstr "Tuilleadh Eolais"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "Users"
-msgstr "Úsáideoirí"
-
-#: src/olympia/addons/templates/addons/mobile/details.html src/olympia/browse/views.py src/olympia/search/forms.py
-msgid "Weekly Downloads"
-msgstr "Íosluchtuithe sa tSeachtain"
-
-#: src/olympia/addons/templates/addons/mobile/details.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Version"
-msgstr "Leagan"
-
-#. {0} is a version number.
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "{0} (Version Notes)"
-msgstr "{0} (Nótaí Eisiúna)"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "View All Versions"
-msgstr "Féach ar gach Leagan"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "View Development Version"
-msgstr "Féach ar an Leagan Forbartha"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "Caution"
-msgstr "Fainic"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "Visit the Support Site"
-msgstr "Déan Cuairt ar an Suíomh Tacaíochta"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "Ask the Author a Question"
-msgstr "Cuir Ceist ar an Údar"
-
-#: src/olympia/addons/templates/addons/mobile/eula.html
-msgid "License Agreement"
-msgstr "Comhaontú um Cheadúnas"
-
-#: src/olympia/addons/templates/addons/mobile/eula.html
-#, python-format
-msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "Éilíonn %(name)s go nglacann tú leis an gceadúnas seo a leanas sular féidir leat dul ar aghaidh leis an tsuiteáil:"
-
-#: src/olympia/addons/templates/addons/mobile/eula.html
-msgid "Accept"
-msgstr "Glacaim Leis"
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
-msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr "Ní féidir breiseáin a úsáid le Firefox ar iOS faoi láthair."
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
-msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr "Teastaíonn uait Firefox chun breiseáin a shuiteáil. <a href=\"http://mozilla.com/mobile\">Tuilleadh Eolais&nbsp;&raquo;</a>"
-
-# {0} is the application name.  Example:  Firefox
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/header_title.html src/olympia/templates/impala/header_title.html
-msgid "Return to the {0} Add-ons homepage"
-msgstr "Fill ar leathanach baile na mbreiseán {0}"
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html
-#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html src/olympia/templates/mobile/base_addons.html
-msgid "Add-ons"
-msgstr "Breiseáin"
-
-#: src/olympia/addons/templates/addons/mobile/home.html
-msgid "Easy ways to personalize."
-msgstr ""
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-msgid "Learn More"
-msgstr "Tuilleadh Eolais"
-
-#: src/olympia/addons/templates/addons/mobile/home.html
-msgid ""
-"Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
-"on-the-go browsing."
-msgstr ""
-
-#. {0} is a category name. Ex: "Sports"
-#. {0} is a category name, such as Nature.
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/impala/base_listing.html
-#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/base.html
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html src/olympia/search/templates/search/personas.html
-msgid "Themes"
-msgstr "Téamaí"
-
-#: src/olympia/addons/templates/addons/mobile/home.html
-msgid "View all Featured add-ons"
-msgstr "Féach ar bhreiseáin mór-le-rá"
-
-#: src/olympia/addons/templates/addons/mobile/home.html
-msgid "View all Popular add-ons"
-msgstr "Na breiseáin leis an éileamh is mó orthu"
-
-#: src/olympia/addons/templates/addons/mobile/home.html
-msgid "More Add-ons"
-msgstr "Tuilleadh Breiseán"
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/search/forms.py
-msgid "Highest Rated"
-msgstr "Rátáil Is Airde"
-
-# "sort by"
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/search/forms.py
-msgid "Newest"
-msgstr "Dáta"
-
-#: src/olympia/addons/templates/addons/mobile/persona_confirm.html
-msgid "Try it on!"
-msgstr "Bain triail as!"
-
-#: src/olympia/addons/templates/addons/mobile/persona_confirm.html
-msgid "Theme Info &raquo;"
-msgstr "Eolas faoin téama &raquo;"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -1461,7 +1229,6 @@ msgid "My Favorites"
 msgstr "Na Breiseáin Is Ansa Liom"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/templates/impala/user_login.html
-#: src/olympia/templates/mobile/header_auth.html
 msgid "Log out"
 msgstr "Logáil amach"
 
@@ -1510,13 +1277,17 @@ msgstr ""
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
-#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Collections"
 msgstr "Bailiúcháin"
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/templates/browse/language_tools.html
 msgid "Dictionaries & Language Packs"
 msgstr "Foclóirí agus Pacáistí Teanga"
+
+#: src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/editors/templates/editors/base.html
+#: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
+msgid "Add-ons"
+msgstr "Breiseáin"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/helpers.py
@@ -1605,12 +1376,11 @@ msgid "No results found"
 msgstr "Gan torthaí"
 
 #. abbreviation of 'previous'
-#: src/olympia/amo/templates/amo/mobile/paginator.html src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
+#: src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Prev"
 msgstr "Roimhe Seo"
 
-#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/amo/templates/amo/mobile/paginator.html
-#: src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
+#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
 msgid "Next"
 msgstr "Ar Aghaidh"
@@ -1646,6 +1416,11 @@ msgstr ""
 msgid "Top Rated"
 msgstr "Rátálacha is airde"
 
+# "sort by"
+#: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
+msgid "Newest"
+msgstr "Dáta"
+
 #: src/olympia/amo/templates/amo/side_nav.html
 msgid "Explore"
 msgstr "Taiscéal"
@@ -1654,6 +1429,13 @@ msgstr "Taiscéal"
 #: src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "Eisínteachtaí"
+
+#. {0} is a category name. Ex: "Sports"
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/browse/templates/browse/personas/base.html
+#: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html src/olympia/search/templates/search/personas.html
+msgid "Themes"
+msgstr "Téamaí"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
@@ -1690,17 +1472,17 @@ msgid "Search Tools"
 msgstr "Uirlisí Cuardaigh"
 
 #. This is a page range (e.g., Page 1 of 50).
-#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
+#: src/olympia/amo/templates/amo/impala/paginator.html
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr "Leathanach <a href=\"%(current_pg_url)s\">%(current_pg)s</a> as <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
-#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
+#: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to first page"
 msgstr "An chéad leathanach"
 
-#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
+#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/stats/templates/stats/stats.html
 msgid "Previous"
 msgstr "Siar"
 
@@ -1710,21 +1492,10 @@ msgstr ""
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
-#. First and second arguments are the result range (e.g., 1-20);              third
-#. argument is the number of total results (e.g., 1,000).
-#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
+#: src/olympia/amo/templates/amo/impala/paginator.html
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> as <b>%(count)s</b> á dtaispeáint"
-
-#: src/olympia/amo/templates/amo/mobile/paginator.html
-msgid "Page {n}"
-msgid_plural "Page {n}"
-msgstr[0] "Leathanach {n}"
-msgstr[1] "Leathanach {n}"
-msgstr[2] "Leathanach {n}"
-msgstr[3] "Leathanach {n}"
-msgstr[4] "Leathanach {n}"
 
 #: src/olympia/amo/tests/test_messages.py src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Title"
@@ -2006,7 +1777,7 @@ msgstr "{0} :: Bailiúcháin"
 msgid "private"
 msgstr "príobháideach"
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/mobile/listing_items.html
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
@@ -2396,14 +2167,6 @@ msgstr "Cuir nóta tráchta leis"
 msgid "Remove this add-on from the collection"
 msgstr "Bain an breiseán seo ón bhailiúchán"
 
-#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
-msgid "COLLECTIONS"
-msgstr "BAILIÚCHÁIN"
-
-#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
-msgid "Groups of related add-ons that anyone can create."
-msgstr ""
-
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
 #, python-format
@@ -2445,7 +2208,11 @@ msgstr "Uirlisí cuardaigh"
 msgid "Most Users"
 msgstr "Líon is mó úsáideoirí"
 
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
+#: src/olympia/browse/views.py src/olympia/search/forms.py
+msgid "Weekly Downloads"
+msgstr "Íosluchtuithe sa tSeachtain"
+
+#: src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
 msgid "Up & Coming"
 msgstr "Teacht Chun Cinn"
 
@@ -2456,6 +2223,11 @@ msgstr "Curtha Leis Le Déanaí"
 #: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Created"
 msgstr "Cruthaithe"
+
+#: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/editors/templates/editors/addon_details_box.html src/olympia/stats/templates/stats/addon_report_menu.html
+#: src/olympia/stats/templates/stats/collection_report_menu.html
+msgid "Downloads"
+msgstr "Íosluchtuithe"
 
 #. {0} is the category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
@@ -2640,12 +2412,7 @@ msgstr[2] "Féach ar na %(cnt)s eisínteacht i %(name)s &raquo;"
 msgstr[3] "Féach ar na %(cnt)s n-eisínteacht i %(name)s &raquo;"
 msgstr[4] "Féach ar na %(cnt)s eisínteacht i %(name)s &raquo;"
 
-#: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
-#: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
-msgid "No results found."
-msgstr "Níor aimsíodh aon rud."
-
-#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
+#: src/olympia/browse/templates/browse/personas/base.html
 msgid "{0} Themes"
 msgstr "Téamaí: {0}"
 
@@ -2670,15 +2437,15 @@ msgstr ""
 msgid "Learn more"
 msgstr "Tuilleadh eolais"
 
-#: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
+#: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Recently Added"
 msgstr "Féach ar na breiseáin a bhí curtha leis le déanaí"
 
-#: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
+#: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Most Popular"
 msgstr "Na breiseáin leis an éileamh is mó orthu"
 
-#: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
+#: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Top Rated"
 msgstr "Féach ar na breiseáin a bhfuil na rátálacha is airde acu"
 
@@ -2709,22 +2476,6 @@ msgstr "Féach ar gach ceann atá ag teacht chun cinn"
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
 msgstr ""
-
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
-msgid "Easy-to-use themes for Firefox"
-msgstr "Téamaí so-úsáidte i bhFirefox"
-
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
-msgid "Popular"
-msgstr "Éileamh Is Mó"
-
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
-msgid "More Themes"
-msgstr "Tuilleadh Téamaí"
-
-#: src/olympia/browse/templates/browse/personas/mobile/macros.html
-msgid "&laquo; All Themes"
-msgstr "&laquo; Gach Téama"
 
 #: src/olympia/compat/forms.py
 msgid "All"
@@ -2782,6 +2533,10 @@ msgstr "Scag de réir feidhmchláir"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Report Type"
 msgstr "Cineál Tuairisce"
+
+#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Version"
+msgstr "Leagan"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Version"
@@ -3223,7 +2978,6 @@ msgid "Viewer"
 msgstr "Breathnóir"
 
 #: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#: src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "Tacaíocht"
 
@@ -4264,15 +4018,13 @@ msgid "Back to Add-ons"
 msgstr "Ar ais go dtí na Breiseáin"
 
 #. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
+#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "{0} :: Search"
 msgstr "{0} :: Cuardaigh"
 
 # all of these look good as verbs as of 8 Feb 2011
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py src/olympia/editors/templates/editors/queue.html
-#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
-#: src/olympia/templates/impala/search.html src/olympia/templates/search.html
+#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/results.html src/olympia/templates/impala/search.html src/olympia/templates/search.html
 msgid "Search"
 msgstr "Cuardaigh"
 
@@ -4292,6 +4044,10 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Loading results&hellip;"
 msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/no_results.html
+msgid "No results found."
+msgstr "Níor aimsíodh aon rud."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
@@ -4742,6 +4498,10 @@ msgid ""
 "relevant for listed add-ons."
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/editors/templates/editors/addon_details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+msgid "Website"
+msgstr "Suíomh Gréasáin"
+
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
@@ -4757,11 +4517,19 @@ msgstr "Mionsonraí Teicniúla"
 msgid "Technical Details for {0}"
 msgstr "Mionsonraí Teicniúla le haghaidh {0}"
 
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Developer Comments"
+msgstr "Nótaí Tráchta ón Fhorbróir"
+
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Required Add-ons"
+msgstr "Breiseáin Riachtanacha"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Limit 3"
@@ -5053,6 +4821,10 @@ msgstr "Cuir an Liostáil in Eagar"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
 msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/addon_details_box.html
+msgid "View Statistics"
+msgstr "Amharc ar Staitisticí"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Change the owner of this theme."
@@ -5363,6 +5135,11 @@ msgstr ""
 msgid "Generate new credentials"
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Invisible"
+msgstr "Dofheicthe"
+
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -5561,7 +5338,6 @@ msgstr ""
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
-#: src/olympia/templates/mobile/base_addons.html
 msgid "{0} Add-ons"
 msgstr "Breiseáin {0}"
 
@@ -5653,7 +5429,7 @@ msgstr ""
 msgid "Report Trademark Abuse"
 msgstr "Déan Tuairisc ar Dhrochúsáid"
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Legal Notices"
 msgstr "Fógraí Dlí"
 
@@ -6213,6 +5989,10 @@ msgstr "Comhaid:"
 msgid "Upload Another File"
 msgstr "Uasluchtaigh Comhad Eile"
 
+#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/addon_details_box.html src/olympia/editors/templates/editors/review.html
+msgid "Version Notes"
+msgstr "Nótaí Eisiúna"
+
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
@@ -6334,6 +6114,11 @@ msgstr "Féach leaganacha eile"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
 msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/addon_details_box.html src/olympia/editors/templates/editors/includes/search_results_themes.html
+#: src/olympia/editors/templates/editors/themes/queue_list.html
+msgid "Status"
+msgstr "Stádas"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/files_view.html
@@ -6621,6 +6406,18 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+#: src/olympia/editors/helpers.py
+#, fuzzy
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Breiseáin le haghaidh {0}"
+msgstr[1] "Breiseáin le haghaidh {0}"
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
 msgstr ""
@@ -6692,11 +6489,12 @@ msgid "This will reject this version and remove it from the queue. The comments 
 msgstr ""
 
 #: src/olympia/editors/helpers.py
-msgid "Request more information"
-msgstr ""
+#, fuzzy
+msgid "Reviewer reply"
+msgstr "Nuacht Forbartha"
 
 #: src/olympia/editors/helpers.py
-msgid "This will request more information from the developer. You will be notified when they reply."
+msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
 
 #: src/olympia/editors/helpers.py
@@ -6855,6 +6653,72 @@ msgstr "%(user)s ar %(date)s [%(ip_address)s]"
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>gan ainm</i> ar %(date)s [%(ip_address)s]"
 
+#. This refers to this version's compatible applications, such as Firefox 8.0
+#: src/olympia/editors/templates/editors/addon_details_box.html src/olympia/search/templates/search/results.html src/olympia/versions/templates/versions/version.html
+msgid "Works with"
+msgstr "Feidhmíonn sé le"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Visibility"
+msgstr "Infheictheacht"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Visible"
+msgstr "Infheicthe"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Average Daily Users"
+msgstr "Meánlíon na nÚsáideoirí Laethúla"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Abuse Reports"
+msgstr "Tuairiscí ar Dhrochúsáid"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+msgid "View Privacy Policy"
+msgstr "Polasaí Príobháideachta"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "EULA"
+msgstr "EULA"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+#, fuzzy
+msgid "Last Approval Date"
+msgstr "Stádas Ceadaithe"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Approvals Since Last Automatic Review"
+msgstr ""
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "More about this add-on"
+msgstr "Tuilleadh eolais faoin bhreiseán seo"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Image Gallery"
+msgstr "Gailearaí Íomhánna"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid ""
+"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
+"updates from this channel."
+msgstr ""
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Install development version"
+msgstr "Suiteáil leagan forbartha"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid ""
+"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
+"developer. To stop receiving development updates, reinstall the default version from the link above."
+msgstr ""
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "Níl aon rud le feiceáil anseo!  Níor sholáthair an forbróir aon sonraí."
+
 #: src/olympia/editors/templates/editors/base.html
 #, fuzzy
 msgid "Return to the Reviewer Tools homepage"
@@ -6871,6 +6735,11 @@ msgstr "Breiseáin Nua"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
 msgstr "Scrúduithe le Ceannasaí"
+
+#: src/olympia/editors/templates/editors/base.html
+#, fuzzy
+msgid "Auto Approved Add-ons"
+msgstr "Breiseáin Android"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
@@ -7584,6 +7453,10 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 #: src/olympia/files/utils.py
+msgid "WebExtension theme uploads are currently not supported."
+msgstr ""
+
+#: src/olympia/files/utils.py
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -7844,6 +7717,11 @@ msgid "Add-ons are applications that let you personalize %(app)s with extra func
 msgstr ""
 "Is éard atá i mbreiseán ná feidhmchlár a ligeann duit %(app)s a chur in oiriúint duit féin.  Bain triail as barra taoibh chun luas a chur le do chuid oibre, breiseán réamhaisnéis na haimsire, nó "
 "téama chun %(app)s a mhaisiú."
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+msgid "Learn More"
+msgstr "Tuilleadh Eolais"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More About Add-ons"
@@ -9933,7 +9811,7 @@ msgid "by %(user)s <b>(Developer)</b> on %(date)s"
 msgstr "le %(user)s <b>(Forbróir)</b> ar %(date)s"
 
 #. {0} is a version number (like 1.01)
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review.html
+#: src/olympia/reviews/templates/reviews/review.html
 msgid "This review is for a previous version of the add-on ({0})."
 msgstr "Léirmheas ar leagan níos sine den bhreiseán seo ({0})."
 
@@ -9981,8 +9859,7 @@ msgstr ""
 msgid "{0} :: Reviews"
 msgstr "{0} :: Léirmheasanna"
 
-#. {0} is an addon name.
-#: src/olympia/reviews/templates/reviews/mobile/add.html src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review_list.html
+#: src/olympia/reviews/templates/reviews/review_list.html
 msgid "Reviews for {0}"
 msgstr "Léirmheasanna ar {0}"
 
@@ -10024,7 +9901,7 @@ msgstr ""
 msgid "Write a New Review"
 msgstr "Déan Léirmheas Nua"
 
-#: src/olympia/reviews/templates/reviews/mobile/reviews_link.html src/olympia/reviews/templates/reviews/review_list.html
+#: src/olympia/reviews/templates/reviews/review_list.html
 msgid "Be the first to write a review."
 msgstr ""
 
@@ -10046,46 +9923,6 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#: src/olympia/reviews/templates/reviews/mobile/add_form.html
-msgid "Add a Review"
-msgstr ""
-
-#: src/olympia/reviews/templates/reviews/mobile/add_form.html
-msgid "Log in to add a review"
-msgstr "Logáil isteach chun léirmheas a dhéanamh"
-
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
-msgid "No ratings yet."
-msgstr ""
-
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
-msgid "Average from {0} Rating"
-msgid_plural "Average from {0} Ratings"
-msgstr[0] "Meánrátáil (ó {0} rátáil)"
-msgstr[1] "Meánrátáil (ó {0} rátáil)"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
-#, python-format
-msgid "by %(user)s"
-msgstr "le %(user)s"
-
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
-msgid "Read More&nbsp;&raquo;"
-msgstr "Tuilleadh&nbsp;&raquo;"
-
-#: src/olympia/reviews/templates/reviews/mobile/reviews_link.html
-#, python-format
-msgid "See All Reviews"
-msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
 #: src/olympia/search/forms.py
 msgid "Most popular this week"
 msgstr "Éileamh is mó an tseachtain seo"
@@ -10097,6 +9934,10 @@ msgstr "Éileamh is mó an mhí seo"
 #: src/olympia/search/forms.py
 msgid "Most popular all time"
 msgstr "Éileamh is mó riamh"
+
+#: src/olympia/search/forms.py
+msgid "Highest Rated"
+msgstr "Rátáil Is Airde"
 
 #: src/olympia/search/forms.py
 msgid "search for add-ons"
@@ -10212,10 +10053,6 @@ msgstr "Catagóir"
 #: src/olympia/search/templates/search/results.html
 msgid "Tag"
 msgstr "Clib"
-
-#: src/olympia/search/templates/search/mobile/results.html
-msgid "Search Results <i>({num})</i>"
-msgstr "Torthaí an Chuardaigh <i>({num})</i>"
 
 #: src/olympia/signing/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
@@ -10605,7 +10442,7 @@ msgstr ""
 msgid "Application versions by Date"
 msgstr "Leaganacha an fheidhmchláir de réir Dáta"
 
-#: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Mozilla Add-ons"
 msgstr "Breiseáin Mozilla"
 
@@ -10628,10 +10465,6 @@ msgstr ""
 #: src/olympia/templates/categories.html
 msgid "Choose a category"
 msgstr "Roghnaigh catagóir"
-
-#: src/olympia/templates/categories.html
-msgid "Mobile Categories"
-msgstr "Catagóirí Soghluaiste"
 
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
@@ -10658,6 +10491,11 @@ msgstr "dul in aitheantas ar <b>bhreiseáin</b>"
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Other languages"
 msgstr "Teangacha eile"
+
+# {0} is the application name.  Example:  Firefox
+#: src/olympia/templates/header_title.html src/olympia/templates/impala/header_title.html
+msgid "Return to the {0} Add-ons homepage"
+msgstr "Fill ar leathanach baile na mbreiseán {0}"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -10730,47 +10568,6 @@ msgstr "riachtanach"
 #: src/olympia/templates/includes/forms.html
 msgid "Required fields"
 msgstr "Réimsí riachtanacha"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Mobile Home"
-msgstr "Soghluaiste: Baile"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "View full site"
-msgstr "Féach ar an suíomh iomlán"
-
-#: src/olympia/templates/mobile/header.html
-msgid "Mozilla Firefox"
-msgstr "Mozilla Firefox"
-
-#: src/olympia/templates/mobile/header.html
-msgid "Features"
-msgstr "Gnéithe"
-
-#: src/olympia/templates/mobile/header.html
-msgid "Desktop"
-msgstr "Deasc"
-
-#: src/olympia/templates/mobile/header.html
-msgid "Add-Ons"
-msgstr "Breiseáin"
-
-#: src/olympia/templates/mobile/header.html
-msgid "Visit Mozilla"
-msgstr "Suíomh Mozilla"
-
-#. a link
-#: src/olympia/templates/mobile/header.html
-msgid "menu"
-msgstr "roghchlár"
-
-#: src/olympia/templates/mobile/header_auth.html
-msgid "Register"
-msgstr "Cláraigh"
-
-#: src/olympia/templates/mobile/header_auth.html
-msgid "Log in"
-msgstr "Logáil isteach"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
@@ -10898,10 +10695,6 @@ msgid "an add-on developer replies to my review"
 msgstr ""
 
 #: src/olympia/users/notifications.py
-msgid "an app developer replies to my review"
-msgstr ""
-
-#: src/olympia/users/notifications.py
 msgid "new add-ons or Firefox features are available"
 msgstr ""
 
@@ -10915,10 +10708,6 @@ msgstr ""
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my add-on"
-msgstr ""
-
-#: src/olympia/users/notifications.py
-msgid "someone writes a review of my app"
 msgstr ""
 
 #: src/olympia/users/notifications.py
@@ -10939,22 +10728,6 @@ msgstr ""
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
-
-#: src/olympia/users/notifications.py
-msgid "my app is reviewed by an editor"
-msgstr ""
-
-#: src/olympia/users/notifications.py
-msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
-
-#: src/olympia/users/notifications.py
-msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
-msgstr ""
-
-#: src/olympia/users/notifications.py
-msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
 
 #: src/olympia/users/notifications.py
@@ -11145,11 +10918,11 @@ msgstr "uile"
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr ""
 
-#: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
+#: src/olympia/users/templates/users/login.html
 msgid "User Login"
 msgstr "Logáil Isteach"
 
-#: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
+#: src/olympia/users/templates/users/login.html
 msgid "Log in with Firefox Accounts"
 msgstr ""
 
@@ -11369,27 +11142,14 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-#: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
+#: src/olympia/versions/templates/versions/version_list.html
 msgid "Be careful with old versions!"
 msgstr "Bí cúramach le seanleaganacha!"
 
-#: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
+#: src/olympia/versions/templates/versions/version_list.html
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr ""
-
-#: src/olympia/versions/templates/versions/mobile/version.html
-msgid "Beta Version {0}"
-msgstr "Leagan Béite {0}"
-
-#: src/olympia/versions/templates/versions/mobile/version.html
-msgid "Works with:"
-msgstr "Feidhmíonn sé le:"
-
-#. {0} is an add-on name.
-#: src/olympia/versions/templates/versions/mobile/version_list.html
-msgid "Version History"
-msgstr "Stair na Leaganacha"
 
 #: src/olympia/zadmin/forms.py
 msgid "Current Max. Version"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-02-28 13:06+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -892,7 +892,7 @@ msgstr "Baixe agora"
 msgid "Only available on Firefox Desktop"
 msgstr "Apenas disponível no Firefox para computadores"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Sentimos, mas você precisa de um navegador baseado no Mozilla (como o Firefox) para instalar um plug-in de pesquisa."
 
@@ -1182,55 +1182,3 @@ msgstr "A validação não pôde ser completada ou foi completada com erros"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Erro interno do servidor"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Não atualizado para {0} {1}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "Requer uma versão mais recente de {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Não avaliado"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Experimental <span>(Saiba mais)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Não disponível para o {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Experimental"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "Os temas requerem uma versão mais recente do {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "O uso de temas exige o {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Instalando..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Esta extensão foi avaliada preliminarmente pela Mozilla."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Manter"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Você está experimentando!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Adicionado ao Firefox"

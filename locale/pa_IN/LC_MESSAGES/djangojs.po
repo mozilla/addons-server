@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2016-08-08 12:39+0000\n"
 "Last-Translator: Amanpreet Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -895,7 +895,7 @@ msgstr "ਹੁਣ ਡਾਊਨਲੋਡ ਕਰੋ"
 msgid "Only available on Firefox Desktop"
 msgstr ""
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "ਖਿਮਾ ਕਰੋ, ਤੁਹਾਨੂੰ ਖੋਜ ਪਲੱਗਇਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਮੌਜੀਲਾ-ਅਧਾਰਿਤ ਬਰਾਊਜ਼ਰ ਦੀ ਲੋੜ ਹੈ।"
 
@@ -1185,55 +1185,3 @@ msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਕਾਰਜ ਮੁਕੰਮਲ ਨਹੀ
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "ਅੰਦਰੂਨੀ ਸਰਵਰ ਗਲਤੀ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "{0} {1} ਲਈ ਅੱਪਡੇਟ ਨਹੀਂ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "{0} ਤੋਂ ਨਵੇਂ ਵਰਜਨ ਦੀ ਮੰਗ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "ਨਾ-ਸਮੀਖਿਆ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "ਪ੍ਰਯੋਗਆਤਮਕ <span>(ਹੋਰ ਜਾਣੋ)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "{0} ਲਈ ਉੱਪਲਬਧ ਨਹੀਂ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "ਤਜਰਬੇ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "ਥੀਮਾਂ ਨੂੰ {0} ਦੇ ਨਵੇਂ ਵਰਜਨ ਦੀ ਲੋੜ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "ਥੀਮਾਂ ਨੂੰ {0} ਦੀ ਲੋੜ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "ਇੰਸਟਾਲ ਕਰਨਾ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "ਮੌਜੀਲਾ ਨੇ ਇਸ ਐਡ-ਆਨ ਦੀ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਕੀਤੀ।"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "ਇਸ ਨੂੰ ਰੱਖੋ"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "ਤੁਸੀਂ ਇਸਦੀ ਪਰਖ ਕਰ ਰਹੇ ਹੋ!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਿੱਚ ਸ਼ਾਮਲ"

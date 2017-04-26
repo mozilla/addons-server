@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2016-11-07 11:20+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -889,7 +889,7 @@ msgstr ""
 msgid "Only available on Firefox Desktop"
 msgstr ""
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
 
@@ -1179,55 +1179,3 @@ msgstr "যাচাইকরণের কার্যকলাপ শেষ হ
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "অন্তর্বর্তী সার্ভার ত্রুটি"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "{0} {1}-এর জন্য আপডেট করা হয়নি"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "{0}-এর নতুন সংস্করণ দরকার"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "পরীক্ষামূলক <span>(আরও জানুন)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "থীমের {0}-এর নতুন সংস্করণের প্রয়োজন"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr ""
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "আপনি এটাকে চেষ্টা করছেন!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr ""

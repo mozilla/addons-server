@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-02-12 09:07+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -898,7 +898,7 @@ msgstr "Завантажити зараз"
 msgid "Only available on Firefox Desktop"
 msgstr "Доступно лише для Firefox для Робочого столу"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі Mozilla (наприклад, Firefox)."
 
@@ -1195,55 +1195,3 @@ msgstr "Завдання з перевірки не змогло заверши�
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Внутрішня помилка сервера"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Не оновлено для {0} {1}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "Потребує новішу версію {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Не перевірено"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Експериментальне <span>(дізнатись більше)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Недоступно для {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Експериментальне"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "Для тем потрібна новіша версія {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "Для тем потрібно {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Встановлення..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Цей додаток було попередньо розглянуто Mozilla."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Залишити їх"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Зараз ви це спробуєте!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Додано у Firefox"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-01-05 11:38+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -895,7 +895,7 @@ msgstr "Λήψη τώρα"
 msgid "Only available on Firefox Desktop"
 msgstr "Διαθέσιμο μόνο στο Firefox για υπολογιστές"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Λυπούμαστε αλλά απαιτείται περιηγητής της οικογένειας Mozilla (όπως ο Firefox) για να εγκαταστήσετε πρόσθετα αναζήτησης."
 
@@ -1185,55 +1185,3 @@ msgstr "Δεν ολοκληρώθηκε η επικύρωση ή ολοκληρ�
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Εσωτερικό σφάλμα διακομιστή"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Δεν έχει ενημερωθεί για τον {0} {1}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "Απαιτεί νεότερη έκδοση του {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Δεν έχει αξιολογηθεί"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Πειραματικό <span>(Μάθετε περισσότερα)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Δεν διατίθεται για τον {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Πειραματικό"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "Τα θέματα απαιτούν νεότερη έκδοση του {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "Τα θέματα απαιτούν το {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Γίνεται εγκατάσταση..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Αυτό το πρόσθετο έχει αξιολογηθεί μερικώς από την κοινότητα Mozilla"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Διατήρηση"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Το δοκιμάζετε!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Προστέθηκε στον Firefox"

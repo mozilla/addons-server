@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -889,7 +889,7 @@ msgstr "Ḓǿẇƞŀǿȧḓ ƞǿẇ"
 msgid "Only available on Firefox Desktop"
 msgstr "Ǿƞŀẏ ȧṽȧīŀȧƀŀḗ ǿƞ Ƒīřḗƒǿẋ Ḓḗşķŧǿƥ"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿzīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ şḗȧřƈħ ƥŀŭɠīƞ."
 
@@ -1179,55 +1179,3 @@ msgstr "Ṽȧŀīḓȧŧīǿƞ ŧȧşķ ƈǿŭŀḓ ƞǿŧ ƈǿḿƥŀḗŧḗ �
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Ƞǿŧ Ŭƥḓȧŧḗḓ ƒǿř {0} {1}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "Řḗɋŭīřḗş Ƞḗẇḗř Ṽḗřşīǿƞ ǿƒ {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Ŭƞřḗṽīḗẇḗḓ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ <span>(Ŀḗȧřƞ Ḿǿřḗ)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Ƞǿŧ Ȧṽȧīŀȧƀŀḗ ƒǿř {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "Ŧħḗḿḗş Řḗɋŭīřḗ Ƞḗẇḗř Ṽḗřşīǿƞ ǿƒ {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "Ŧħḗḿḗş Řḗɋŭīřḗ {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Īƞşŧȧŀŀīƞɠ..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Ŧħīş ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Ķḗḗƥ īŧ"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Ẏǿŭ'řḗ ŧřẏīƞɠ īŧ ǿƞ!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Ȧḓḓḗḓ ŧǿ Ƒīřḗƒǿẋ"

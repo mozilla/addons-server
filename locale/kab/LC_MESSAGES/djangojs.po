@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-01-27 12:24+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -892,7 +892,7 @@ msgstr "Sider tura"
 msgid "Only available on Firefox Desktop"
 msgstr "Yella kan di Firefox i uselkim"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Suref-aɣ, tesriḍ iminig yebnan ɣef Mozilla (am Firfefox) akken ad tesbeddeḍ azegrir n unadi."
 
@@ -1182,55 +1182,3 @@ msgstr "Asentem ur yezmir ara ad yemmed neɣ yemmed s tuccḍiwin"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Tuccḍa n uqeddac tagensant"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Ur yettwaleqqem ara i {0} {1}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "Yesra lqem amaynut n {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Ur yettwacegger ara"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "D armitan <span>(Issin ugar)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Ulac i {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Armitan"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "Asentel yesra lqem amaynut n {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "Isental sran {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Asebeded..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Azegrir-agi yettwacegger di tazwara sɣuṛ Mozilla."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Ḥerz-it"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Tettaɛraḍeḍ-t!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Yettwarna ɣer Firefox"

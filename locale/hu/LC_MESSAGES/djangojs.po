@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2016-10-25 12:17+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -894,7 +894,7 @@ msgstr "Letöltés most"
 msgid "Only available on Firefox Desktop"
 msgstr "Csak a Firefox asztali változatán érhető el"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "A keresőszolgáltatások telepítéséhez szükség van egy Mozilla-alapú böngészőre (pl. Firefox)."
 
@@ -1184,55 +1184,3 @@ msgstr "Az ellenőrzés nem fejeződött be vagy hibát okozott"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Belső kiszolgálóhiba"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Nincs frissítve a(z) {0} {1} alkalmazáshoz"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "Újabb {0} verzióra van szüksége"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Ellenőrizetlen"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Kísérleti <span>(Tudjon meg többet)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Nem érhető el a(z) {0} programhoz"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Kísérleti"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "A témák újabb {0} verziót igényelnek"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "A témák ezt igénylik: {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Telepítés..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Ezt a kiegészítőt előzetesen nem vizsgálta meg a Mozilla."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Megtartás"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Próbálja ki!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Hozzáadás Firefoxhoz"

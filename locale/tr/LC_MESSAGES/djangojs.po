@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-02-15 16:57+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -884,7 +884,7 @@ msgstr "Hemen indir"
 msgid "Only available on Firefox Desktop"
 msgstr "Yalnızca masaüstü Firefox'ta kullanılabilir"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Üzgünüz, arama eklentisi yükleyebilmeniz için Mozilla tabanlı (örn. Firefox) bir tarayıcıya ihtiyacınız var."
 
@@ -1167,55 +1167,3 @@ msgstr "Doğrulama görevi tamamlanmadı veya hatalı olarak tamamlandı"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "İç sunucu hatası"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "{0} {1} için güncellenmemiş"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "{0}'un daha yeni sürümünü gerektiriyor"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "İncelenmemiş"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Deneysel <span>(Daha fazla bilgi)</ span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "{0} için mevcut değil"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Deneysel"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "Temalar Daha Yeni {0} Sürümü Gerektiriyor"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "Temalar {0} Gerektiriyor"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Yükleniyor..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Bu eklenti, Mozilla tarafından ön incelemeden geçirilmiştir."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Kalsın"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Deniyorsunuz!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Firefox'a eklendi"
