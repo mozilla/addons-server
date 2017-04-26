@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-04-26 16:10+0000\n"
+"PO-Revision-Date: 2017-04-26 16:24+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2732,11 +2732,11 @@ msgstr "开发者回复"
 
 #: src/olympia/constants/activity.py
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "审核者在 {addon} {version} 上回复。"
+msgstr "审核员在 {addon} {version} 上回复。"
 
 #: src/olympia/constants/activity.py
 msgid "Reviewer Reply"
-msgstr "审核者回复"
+msgstr "审核员回复"
 
 #: src/olympia/constants/activity.py
 msgid "Approval notes changed for {addon} {version}."
@@ -3882,15 +3882,15 @@ msgstr "提交附加组件"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
-msgstr "AMO 审核者"
+msgstr "AMO 审核员"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "来吧！今天就成为 AMO 审核者让您的附加组件更快地完成审核。"
+msgstr "来吧！今天就成为 AMO 审核员，助大家的附加组件更快完成审核。"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Become an AMO Reviewer"
-msgstr "成为 AMO 审核者"
+msgstr "成为 AMO 审核员"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Learn All About Add-ons"
@@ -5222,7 +5222,7 @@ msgstr "审核附加组件"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr "志愿审核者帮助保持附加组件的安全与可靠。他们也有福利待遇。"
+msgstr "志愿者审核员为帮助保证附加组件的安全与可靠性而来。辛勤工作也有些奖励。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
@@ -6110,7 +6110,7 @@ msgstr "其他人正在审核这个主题。"
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
-msgstr "主题、审核者或评论"
+msgstr "主题、审核员或评论"
 
 #: src/olympia/editors/forms.py
 msgid "Keep review; remove flags"
@@ -6213,7 +6213,7 @@ msgstr "这将拒绝此版本并将其从队列中移除。此评论将发送给
 
 #: src/olympia/editors/helpers.py
 msgid "Reviewer reply"
-msgstr "审核者回复"
+msgstr "审核员回复"
 
 #: src/olympia/editors/helpers.py
 msgid "This will send a message to the developer. You will be notified when they reply."
@@ -6347,7 +6347,7 @@ msgstr[0] "{0} 个主题审核成功（+ {1} 点，共 {2} 点）。"
 
 #: src/olympia/editors/views_themes.py
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "您的主题锁已成功释放。其他审核者现在可以审核这些发布的主题。您可能需要刷新本页面，以在下面的表格中查看变化。"
+msgstr "您的主题锁定已成功解开。其他审核员现在可以审核这些发布的主题。您可能需要刷新本页面，然后在下方的表格中查看变化。"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html
 msgid "{addon} :: Abuse Reports"
@@ -6402,7 +6402,7 @@ msgstr "上次批准时间"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "Approvals Since Last Automatic Review"
-msgstr ""
+msgstr "连续自动批准次数"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "More about this add-on"
@@ -6580,7 +6580,7 @@ msgstr[0] "提请仲裁的评论（{num} 项）"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html src/olympia/editors/templates/editors/leaderboard.html
 msgid "Reviewer Leaderboard"
-msgstr "审核者排行榜"
+msgstr "审核员排行榜"
 
 #: src/olympia/editors/templates/editors/leaderboard.html src/olympia/editors/templates/editors/performance.html
 msgid "No review points awarded yet."
@@ -6975,7 +6975,7 @@ msgstr "交互主题队列"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Reviewers' Guide"
-msgstr "审核者指南"
+msgstr "审核员指南"
 
 #: src/olympia/editors/templates/editors/themes/single.html
 msgid "Theme Review for {0}"

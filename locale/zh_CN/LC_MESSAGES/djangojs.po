@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-03-14 10:55+0000\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"PO-Revision-Date: 2017-04-26 16:14+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "主题"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
-msgstr "审核者"
+msgstr "审核员"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Status"
