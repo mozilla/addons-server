@@ -666,8 +666,8 @@ class AddonFilterTest(TestCase):
     def setUp(self):
         super(AddonFilterTest, self).setUp()
         # Start with 2 compatible add-ons.
-        self.addon1 = addon_factory(version_kw=dict(max_app_version='5.0'))
-        self.addon2 = addon_factory(version_kw=dict(max_app_version='6.0'))
+        self.addon1 = addon_factory(version_kw={'max_app_version': '5.0'})
+        self.addon2 = addon_factory(version_kw={'max_app_version': '6.0'})
         self.addons = [self.addon1, self.addon2]
 
     def _defaults(self, **kwargs):
@@ -719,8 +719,8 @@ class AddonFilterTest(TestCase):
 
     def test_version_version_less_than_min(self):
         # Ensure we filter out addons with a higher min than our app.
-        addon3 = addon_factory(version_kw=dict(min_app_version='12.0',
-                                               max_app_version='14.0'))
+        addon3 = addon_factory(version_kw={
+            'min_app_version': '12.0', 'max_app_version': '14.0'})
         addons = self.addons + [addon3]
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
                                                compat_mode='ignore'))
@@ -728,8 +728,8 @@ class AddonFilterTest(TestCase):
 
     def test_version_filter_normal_strict_opt_in(self):
         # Ensure we filter out strict opt-in addons in normal mode.
-        addon3 = addon_factory(version_kw=dict(max_app_version='7.0'),
-                               file_kw=dict(strict_compatibility=True))
+        addon3 = addon_factory(version_kw={'max_app_version': '7.0'},
+                               file_kw={'strict_compatibility': True})
         addons = self.addons + [addon3]
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
                                                compat_mode='normal'))
@@ -737,8 +737,8 @@ class AddonFilterTest(TestCase):
 
     def test_version_filter_normal_binary_components(self):
         # Ensure we filter out strict opt-in addons in normal mode.
-        addon3 = addon_factory(version_kw=dict(max_app_version='7.0'),
-                               file_kw=dict(binary_components=True))
+        addon3 = addon_factory(version_kw={'max_app_version': '7.0'},
+                               file_kw={'binary_components': True})
         addons = self.addons + [addon3]
         addons = addon_filter(**self._defaults(addons=addons, version='11.0',
                                                compat_mode='normal'))

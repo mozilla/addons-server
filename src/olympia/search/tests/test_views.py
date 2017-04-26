@@ -145,7 +145,7 @@ class TestESSearch(SearchBase):
         assert r.status_code == 200
 
     def test_search_tools_omit_users(self):
-        r = self.client.get(self.url, dict(cat='%s,5' % amo.ADDON_SEARCH))
+        r = self.client.get(self.url, {'cat': '%s,5' % amo.ADDON_SEARCH})
         assert r.status_code == 200
         sorter = pq(r.content)('#sorter')
         assert sorter.length == 1
@@ -374,14 +374,14 @@ class TestESSearch(SearchBase):
     def test_facet_data_params_default(self):
         r = self.client.get(self.url)
         a = pq(r.content)('#search-facets a[data-params]:first')
-        assert json.loads(a.attr('data-params')) == (
-            dict(atype=None, cat=None, page=None))
+        assert json.loads(a.attr('data-params')) == {
+            'atype': None, 'cat': None, 'page': None}
 
     def test_facet_data_params_filtered(self):
         r = self.client.get(self.url + '?appver=3.6&platform=mac&page=3')
         a = pq(r.content)('#search-facets a[data-params]:first')
-        assert json.loads(a.attr('data-params')) == (
-            dict(atype=None, cat=None, page=None))
+        assert json.loads(a.attr('data-params')) == {
+            'atype': None, 'cat': None, 'page': None}
 
     def check_cat_filters(self, params=None, selected='All Add-ons'):
         if not params:
@@ -402,23 +402,24 @@ class TestESSearch(SearchBase):
         amo.tests.check_links(expected, links, selected, verify=False)
 
     def test_defaults_atype_no_cat(self):
-        self.check_cat_filters(dict(atype=1))
+        self.check_cat_filters({'atype': 1})
 
     def test_defaults_atype_unknown_cat(self):
-        self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=999))
+        self.check_cat_filters({'atype': amo.ADDON_EXTENSION, 'cat': 999})
 
     def test_defaults_no_atype_unknown_cat(self):
-        self.check_cat_filters(dict(cat=999))
+        self.check_cat_filters({'cat': 999})
 
     def test_defaults_atype_foreign_cat(self):
         cat = Category.objects.create(application=amo.THUNDERBIRD.id,
                                       type=amo.ADDON_EXTENSION)
-        self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=cat.id))
+        self.check_cat_filters({'atype': amo.ADDON_EXTENSION, 'cat': cat.id})
 
     def test_listed_cat(self):
         cat = self.addons[0].all_categories[0]
-        self.check_cat_filters(dict(atype=amo.ADDON_EXTENSION, cat=cat.id),
-                               selected=unicode(cat.name))
+        self.check_cat_filters(
+            {'atype': amo.ADDON_EXTENSION, 'cat': cat.id},
+            selected=unicode(cat.name))
 
     def test_cat_facet_stale(self):
         AddonCategory.objects.all().delete()
@@ -514,52 +515,52 @@ class TestESSearch(SearchBase):
         assert extensions == sorted(a.id for a in self.addons[1:])
 
         # Extensions should show only extensions.
-        r = self.client.get(self.url, dict(atype=amo.ADDON_EXTENSION))
+        r = self.client.get(self.url, {'atype': amo.ADDON_EXTENSION})
         assert r.status_code == 200
         assert self.get_results(r) == extensions
 
         # Themes should show only themes.
-        r = self.client.get(self.url, dict(atype=amo.ADDON_THEME))
+        r = self.client.get(self.url, {'atype': amo.ADDON_THEME})
         assert r.status_code == 200
         assert self.get_results(r) == themes
 
     def test_results_respect_appver_filtering(self):
-        r = self.client.get(self.url, dict(appver='9.00'))
+        r = self.client.get(self.url, {'appver': '9.00'})
         assert self.get_results(r) == []
 
     def test_results_skip_appver_filtering_for_d2c(self):
-        r = self.client.get(self.url, dict(appver='10.0a1'))
+        r = self.client.get(self.url, {'appver': '10.0a1'})
         assert self.get_results(r) == (
             sorted(self.addons.values_list('id', flat=True)))
 
     def test_results_respect_appver_filtering_for_non_extensions(self):
         self.addons.update(type=amo.ADDON_THEME)
-        r = self.client.get(self.url, dict(appver='10.0a1',
-                                           type=amo.ADDON_THEME))
+        r = self.client.get(self.url, {
+            'appver': '10.0a1', 'type': amo.ADDON_THEME})
         assert self.get_results(r) == (
             sorted(self.addons.values_list('id', flat=True)))
 
     def test_results_platform_filter_all(self):
         for platform in ('', 'all'):
-            r = self.client.get(self.url, dict(platform=platform))
+            r = self.client.get(self.url, {'platform': platform})
             assert self.get_results(r) == (
                 sorted(self.addons.values_list('id', flat=True)))
 
     def test_slug_indexed(self):
         a = self.addons[0]
 
-        r = self.client.get(self.url, dict(q='omgyes'))
+        r = self.client.get(self.url, {'q': 'omgyes'})
         assert self.get_results(r) == []
 
         a.update(slug='omgyes')
         self.refresh()
-        r = self.client.get(self.url, dict(q='omgyes'))
+        r = self.client.get(self.url, {'q': 'omgyes'})
         assert self.get_results(r) == [a.id]
 
     def test_authors_indexed(self):
         a = self.addons[0]
 
-        r = self.client.get(self.url, dict(q='boop'))
+        r = self.client.get(self.url, {'q': 'boop'})
         assert self.get_results(r) == []
 
         AddonUser.objects.create(
@@ -568,18 +569,18 @@ class TestESSearch(SearchBase):
             addon=a, user=UserProfile.objects.create(username='ponypet'))
         a.save()
         self.refresh()
-        r = self.client.get(self.url, dict(q='garbage'))
+        r = self.client.get(self.url, {'q': 'garbage'})
         assert self.get_results(r) == []
-        r = self.client.get(self.url, dict(q='boop'))
+        r = self.client.get(self.url, {'q': 'boop'})
         assert self.get_results(r) == [a.id]
-        r = self.client.get(self.url, dict(q='pony'))
+        r = self.client.get(self.url, {'q': 'pony'})
         assert self.get_results(r) == [a.id]
 
     def test_tag_search(self):
         a = self.addons[0]
 
         tag_name = 'tagretpractice'
-        r = self.client.get(self.url, dict(q=tag_name))
+        r = self.client.get(self.url, {'q': tag_name})
         assert self.get_results(r) == []
 
         AddonTag.objects.create(
@@ -588,7 +589,7 @@ class TestESSearch(SearchBase):
         a.save()
         self.refresh()
 
-        r = self.client.get(self.url, dict(q=tag_name))
+        r = self.client.get(self.url, {'q': tag_name})
         assert self.get_results(r) == [a.id]
 
         # Multiple tags.
@@ -597,7 +598,7 @@ class TestESSearch(SearchBase):
             addon=a, tag=Tag.objects.create(tag_text=tag_name_2))
         a.save()
         self.refresh()
-        r = self.client.get(self.url, dict(q='%s %s' % (tag_name, tag_name_2)))
+        r = self.client.get(self.url, {'q': '%s %s' % (tag_name, tag_name_2)})
         assert self.get_results(r) == [a.id]
 
     def test_search_doesnt_return_unlisted_addons(self):
