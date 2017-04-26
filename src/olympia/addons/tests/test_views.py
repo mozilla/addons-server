@@ -957,7 +957,10 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         link = doc('a.is-webextension')
-        assert link.attr['href'] == reverse('pages.webextensions_info')
+        assert (
+            link.attr['href'] ==
+            'https://support.mozilla.org/kb/firefox-add-technology-modernizing'
+        )
 
     def test_version_displayed(self):
         response = self.client.get(self.url)
