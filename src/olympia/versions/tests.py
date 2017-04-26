@@ -1293,6 +1293,23 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.min.version == '3.0'
         assert app.max.version == '3.6.*'
 
+    def test_duplicate_target_apps(self):
+        # Note: the validator prevents this, but we also need to make sure
+        # overriding failed validation is possible, so we need an extra check
+        # in addons-server code.
+        self.filename = 'duplicate_target_applications.xpi'
+        self.addon.update(guid='duplicatetargetapps@xpi')
+        self.upload = self.get_upload(self.filename)
+        version = Version.from_upload(
+            self.upload, self.addon, [self.platform],
+            amo.RELEASE_CHANNEL_LISTED)
+        compatible_apps = version.compatible_apps
+        assert len(compatible_apps) == 1
+        assert amo.FIREFOX in version.compatible_apps
+        app = version.compatible_apps[amo.FIREFOX]
+        assert app.min.version == '3.0'
+        assert app.max.version == '3.6.*'
+
     def test_compatible_apps_is_pre_generated(self):
         # We mock File.from_upload() to prevent it from accessing
         # version.compatible_apps early - we want to test that the cache has
