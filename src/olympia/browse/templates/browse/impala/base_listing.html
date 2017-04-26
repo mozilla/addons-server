@@ -1,8 +1,4 @@
-{% if request.MOBILE %}
-  {% extends "mobile/base.html" %}
-{% else %}
-  {% extends "impala/base_side_categories.html" %}
-{% endif %}
+{% extends "impala/base_side_categories.html" %}
 
 {% if category %}
   {% set title = category.name %}
@@ -53,24 +49,18 @@
   {% endif %}
 {% endif %}
 
-{% if request.MOBILE %}
-  {% block search %}
-    {% include "search/mobile/search.html" %}
-  {% endblock %}
-{% else %}
-  {% block bodyclass %}{{ section }} s-{{ sorting }}{% endblock %}
-  {% block extrahead %}
-    {% if category %}
-      <style>
-        #c-{{ category.id }} a {
-            background: #ecf5fe;
-            color: #333;
-            font-weight: bold;
-        }
-        #c-{{ category.id }} a:after {
-            color: inherit;
-        }
-      </style>
-    {% endif %}
-  {% endblock %}
-{% endif %}
+{% block bodyclass %}{{ section }} s-{{ sorting }}{% endblock %}
+{% block extrahead %}
+  {% if category %}
+    <style>
+      #c-{{ category.id }} a {
+          background: #ecf5fe;
+          color: #333;
+          font-weight: bold;
+      }
+      #c-{{ category.id }} a:after {
+          color: inherit;
+      }
+    </style>
+  {% endif %}
+{% endblock %}

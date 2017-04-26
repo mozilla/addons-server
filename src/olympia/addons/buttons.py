@@ -14,8 +14,7 @@ from olympia.amo.utils import render
 @jinja2.contextfunction
 def install_button(context, addon, version=None, show_contrib=True,
                    show_warning=True, src='', collection=None, size='',
-                   detailed=False, mobile=False, impala=False,
-                   latest_beta=False):
+                   detailed=False, impala=False, latest_beta=False):
     """
     If version isn't given, we use the latest version. You can set latest_beta
     parameter to use latest beta version instead.
@@ -42,8 +41,6 @@ def install_button(context, addon, version=None, show_contrib=True,
          'installed': installed}
     if impala:
         template = 'addons/impala/button.html'
-    elif mobile:
-        template = 'addons/mobile/button.html'
     else:
         template = 'addons/button.html'
     t = jingo.render_to_string(request, template, c)
@@ -56,16 +53,6 @@ def big_install_button(context, addon, **kwargs):
     flags = jinja2.escape(statusflags(context, addon))
     button = install_button(context, addon, detailed=True, size='prominent',
                             **kwargs)
-    markup = u'<div class="install-wrapper %s">%s</div>' % (flags, button)
-    return jinja2.Markup(markup)
-
-
-@jinja2.contextfunction
-def mobile_install_button(context, addon, **kwargs):
-    from olympia.addons.helpers import statusflags
-    button = install_button(context, addon, detailed=True, size='prominent',
-                            mobile=True, show_contrib=False, **kwargs)
-    flags = jinja2.escape(statusflags(context, addon))
     markup = u'<div class="install-wrapper %s">%s</div>' % (flags, button)
     return jinja2.Markup(markup)
 

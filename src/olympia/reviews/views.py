@@ -6,7 +6,6 @@ from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext as _
 
-from mobility.decorators import mobile_template
 from rest_framework import serializers
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
@@ -39,9 +38,8 @@ addon_view = addon_view_factory(qs=Addon.objects.valid)
 
 
 @addon_view
-@mobile_template('reviews/{mobile/}review_list.html')
 @non_atomic_requests
-def review_list(request, addon, review_id=None, user_id=None, template=None):
+def review_list(request, addon, review_id=None, user_id=None):
     qs = Review.without_replies.all().filter(
         addon=addon).order_by('-created')
 
@@ -86,7 +84,7 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
         ctx['flags'] = get_flags(request, reviews.object_list)
     else:
         ctx['review_perms'] = {}
-    return render(request, template, ctx)
+    return render(request, 'reviews/review_list.html', ctx)
 
 
 def get_flags(request, reviews):
@@ -179,9 +177,8 @@ def reply(request, addon, review_id):
 
 
 @addon_view
-@mobile_template('reviews/{mobile/}add.html')
 @login_required
-def add(request, addon, template=None):
+def add(request, addon):
     if addon.has_author(request.user):
         raise PermissionDenied
     form = forms.ReviewForm(request.POST or None)
@@ -196,7 +193,7 @@ def add(request, addon, template=None):
                             note='URLs')
             rf.save()
         return redirect(helpers.url('addons.reviews.list', addon.slug))
-    return render(request, template, dict(addon=addon, form=form))
+    return render(request, 'reviews/add.html', {'addon': addon, 'form': form})
 
 
 @addon_view

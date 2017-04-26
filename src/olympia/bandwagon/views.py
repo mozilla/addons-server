@@ -135,8 +135,6 @@ def render_cat(request, template, data=None, extra=None):
     return render(request, template, data, **extra)
 
 
-# TODO (potch): restore this when we do mobile bandwagon
-# @mobile_template('bandwagon/{mobile/}collection_listing.html')
 @non_atomic_requests
 def collection_listing(request, base=None):
     sort = request.GET.get('sort')

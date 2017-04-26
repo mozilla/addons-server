@@ -85,29 +85,6 @@ class HelpersTest(TestCase):
             {'myaddon': a})
         assert pq(s)('a').attr('href') == u
 
-    def test_mobile_reviews_link(self):
-        def s(a):
-            return pq(self.render('{{ mobile_reviews_link(myaddon) }}',
-                                  {'myaddon': a}))
-
-        a = Addon(total_reviews=0, id=1, type=1, slug='xx')
-        doc = s(a)
-        assert doc('a').attr('href') == (
-            reverse('addons.reviews.add', args=['xx']))
-
-        u = reverse('addons.reviews.list', args=['xx'])
-
-        a = Addon(average_rating=4, total_reviews=37, id=1, type=1, slug='xx')
-        doc = s(a)
-        assert doc('a').attr('href') == u
-        assert doc('a').text() == 'Rated 4 out of 5 stars See All 37 Reviews'
-
-        a = Addon(average_rating=4, total_reviews=1, id=1, type=1, slug='xx')
-        doc = s(a)
-        doc.remove('div')
-        assert doc('a').attr('href') == u
-        assert doc('a').text() == 'See All Reviews'
-
     def test_report_review_popup(self):
         doc = pq(self.render('{{ report_review_popup() }}'))
         assert doc('.popup.review-reason').length == 1

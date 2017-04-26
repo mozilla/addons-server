@@ -7,7 +7,7 @@ import time
 import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
-from functools import partial, wraps
+from functools import partial
 from tempfile import NamedTemporaryFile
 from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
@@ -185,34 +185,6 @@ def create_flag(name=None, **kw):
         flag.__dict__.update(kw)
         flag.save()
     return flag
-
-
-class MobileTest(object):
-    """Mixing for when you want to hit a mobile view."""
-
-    def _pre_setup(self):
-        super(MobileTest, self)._pre_setup()
-        MobileTest._mobile_init(self)
-
-    def mobile_init(self):
-        MobileTest._mobile_init(self)
-
-    # This is a static method so we can call it in @mobile_test.
-    @staticmethod
-    def _mobile_init(self):
-        self.client.cookies['mamo'] = 'on'
-        self.client.defaults['SERVER_NAME'] = settings.MOBILE_DOMAIN
-        self.request = mock.Mock()
-        self.MOBILE = self.request.MOBILE = True
-
-
-def mobile_test(f):
-    """Test decorator for hitting mobile views."""
-    @wraps(f)
-    def wrapper(self, *args, **kw):
-        MobileTest._mobile_init(self)
-        return f(self, *args, **kw)
-    return wrapper
 
 
 class PatchMixin(object):

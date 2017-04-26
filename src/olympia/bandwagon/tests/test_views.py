@@ -16,7 +16,6 @@ from olympia.amo.tests import TestCase
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
-from olympia.addons.tests.test_views import TestMobile
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.amo.tests.test_helpers import get_uploaded_file
@@ -1192,15 +1191,6 @@ class TestCollectionDetailFeed(TestCase):
 
         assert data['addons'][0]['theme']['header']
         assert data['addons'][0]['theme']['footer'] == ''
-
-
-class TestMobileCollections(TestMobile):
-
-    # for now we want collections disabled.
-    def test_collections(self):
-        r = self.client.get(reverse('collections.list'))
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'bandwagon/impala/collection_listing.html')
 
 
 class TestCollectionForm(TestCase):

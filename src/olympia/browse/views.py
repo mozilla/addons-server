@@ -10,7 +10,6 @@ from django.views.decorators.cache import cache_page
 from django.utils.translation import ugettext_lazy as _lazy
 
 from product_details import product_details
-from mobility.decorators import mobile_template
 
 from olympia import amo
 from olympia.amo.models import manual_order
@@ -160,9 +159,8 @@ def themes(request, category=None):
                    'search_cat': '%s,0' % TYPE, 'src': src, 'dl_src': dl_src})
 
 
-@mobile_template('browse/{mobile/}extensions.html')
 @non_atomic_requests
-def extensions(request, category=None, template=None):
+def extensions(request, category=None):
     TYPE = amo.ADDON_EXTENSION
 
     if category is not None:
@@ -182,7 +180,7 @@ def extensions(request, category=None, template=None):
         addons = addons.filter(categories__id=category.id)
 
     addons = amo.utils.paginate(request, addons, count=addons.count())
-    return render(request, template,
+    return render(request, 'browse/extensions.html',
                   {'section': 'extensions', 'addon_type': TYPE,
                    'category': category, 'addons': addons,
                    'filter': filter, 'sorting': sorting,
@@ -295,9 +293,8 @@ def personas_listing(request, category_slug=None):
     return categories, filter_, base, cat
 
 
-@mobile_template('browse/personas/{mobile/}')
 @non_atomic_requests
-def personas(request, category=None, template=None):
+def personas(request, category=None):
     listing = personas_listing(request, category)
 
     # I guess this was a Complete Theme after all.
@@ -325,9 +322,9 @@ def personas(request, category=None, template=None):
     if ('sort' not in request.GET and (
             (request.MOBILE and not cat) or
             (not request.MOBILE and count > MIN_COUNT_FOR_LANDING))):
-        template += 'category_landing.html'
+        template = 'browse/personas/category_landing.html'
     else:
-        template += 'grid.html'
+        template = 'browse/personas/grid.html'
 
     if cat:
         ids = AddonCategory.creatured_random(cat, request.LANG)

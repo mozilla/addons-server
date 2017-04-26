@@ -3,9 +3,7 @@ from pyquery import PyQuery
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.addons.helpers import (
-    statusflags, flag, contribution, mobile_persona_preview,
-    mobile_persona_confirm)
+from olympia.addons.helpers import statusflags, flag, contribution
 from olympia.addons.models import Addon
 
 
@@ -77,45 +75,3 @@ class TestHelpers(TestCase):
         s = contribution(c, a, contribution_src='browse')
         doc = PyQuery(s)
         assert doc('input[name=source]').attr('value') == 'browse'
-
-    def test_mobile_persona_preview(self):
-        ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
-        persona = Addon.objects.get(pk=15679).persona
-        s = mobile_persona_preview(ctx, persona)
-        doc = PyQuery(s)
-        bt = doc('.persona-preview div[data-browsertheme]')
-        assert bt
-        assert persona.preview_url in bt.attr('style')
-        assert persona.json_data == bt.attr('data-browsertheme')
-        assert bt.find('p')
-
-    def _test_mobile_persona_ctx(self):
-        request = Mock()
-        request.APP = amo.FIREFOX
-        request.GET = {}
-        request.user.is_authenticated.return_value = False
-        request.user.mobile_addons = []
-        return {'APP': amo.FIREFOX, 'LANG': 'en-US', 'request': request}
-
-    def test_mobile_persona_confirm_large(self):
-        persona = Addon.objects.get(id=15679).persona
-        s = mobile_persona_confirm(self._test_mobile_persona_ctx(), persona)
-        doc = PyQuery(s)
-        assert not doc('.persona-slider')
-        assert doc('.preview')
-        assert doc('.confirm-buttons .add')
-        assert doc('.confirm-buttons .cancel')
-        assert not doc('.more')
-
-    def test_mobile_persona_confirm_small(self):
-        persona = Addon.objects.get(id=15679).persona
-        s = mobile_persona_confirm(self._test_mobile_persona_ctx(), persona,
-                                   size='small')
-        doc = PyQuery(s)
-        assert doc('.persona-slider')
-        assert not doc('.persona-slider .preview')
-        assert doc('.confirm-buttons .add')
-        assert doc('.confirm-buttons .cancel')
-        more = doc('.more')
-        assert more
-        assert more.attr('href') == persona.addon.get_url_path()

@@ -11,12 +11,6 @@ def version_detail(context, addon, version, src, impala=False,
     return new_context(**locals())
 
 
-@jingo.register.inclusion_tag('versions/mobile/version.html')
-@jinja2.contextfunction
-def mobile_version_detail(context, addon, version, src):
-    return new_context(**locals())
-
-
 @jingo.register.filter
 def nl2br_xhtml(string):
     """Turn newlines into <br/>."""

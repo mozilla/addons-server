@@ -18,7 +18,6 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import absolutify, numberfmt, urlparams
-from olympia.addons.tests.test_views import TestMobile
 from olympia.addons.models import (
     Addon, AddonCategory, Category, AppSupport, FrozenAddon, Persona)
 from olympia.bandwagon.models import (
@@ -29,7 +28,6 @@ from olympia.browse.views import (
     PAGINATE_PERSONAS_BY, ThemeFilter)
 from olympia.constants.applications import THUNDERBIRD
 from olympia.translations.models import Translation
-from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
@@ -1153,149 +1151,3 @@ class TestPersonas(TestCase):
         self.create_personas(PAGINATE_PERSONAS_BY)
         r = self.client.get(self.created_url)
         assert str(r.context['addons']) == '<Page 1 of 2>'
-
-
-class TestMobileFeatured(TestMobile):
-
-    def test_featured(self):
-        r = self.client.get(reverse('browse.extensions') + '?sort=featured')
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
-        assert r.context['sorting'] == 'featured'
-
-
-class TestMobileExtensions(TestMobile):
-
-    def test_extensions(self):
-        r = self.client.get(reverse('browse.extensions'))
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
-        self.assertTemplateUsed(r, 'addons/listing/items_mobile.html')
-        assert r.context['category'] is None
-        assert pq(r.content)('.addon-listing .listview').length == 1
-
-    def test_category_default_sort(self):
-        cat = Category.objects.all()[0]
-        url = reverse('browse.extensions', args=[cat.slug])
-        r = self.client.get(url)
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
-        self.assertTemplateUsed(r, 'addons/listing/items_mobile.html')
-        assert r.context['sorting'] == 'rating'
-        assert r.context['category'] == cat
-        doc = pq(r.content)
-        assert doc('.addon-listing .listview').length == 1
-        assert doc('.addon-listing .listview li.item').length == 1
-
-    def test_category_sort_by_featured(self):
-        cat = Category.objects.all()[0]
-        url = reverse('browse.extensions', args=[cat.slug])
-        url = "{0}?sort=featured".format(url)
-        r = self.client.get(url)
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'browse/mobile/extensions.html')
-        self.assertTemplateNotUsed(r, 'addons/listing/items_mobile.html')
-        assert r.context['category'] == cat
-        doc = pq(r.content)
-        assert doc('.addon-listing .listview').length == 0
-        assert doc('.no-results').length == 1
-
-
-class TestMobileHeader(amo.tests.MobileTest, TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestMobileHeader, self).setUp()
-        self.url = reverse('browse.extensions')
-
-    def get_pq(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        return pq(r.content.decode('utf-8'))
-
-    def test_header(self):
-        nav = self.get_pq()('#auth-nav')
-        assert nav.length == 1
-        assert nav.find('li.purchases').length == 0
-        assert nav.find('li.register').length == 1
-        assert nav.find('li.login').length == 1
-
-    def _test_auth_nav(self, expected):
-        self.client.login(email='regular@mozilla.com')
-        self.url = reverse('browse.extensions')
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content.decode('utf-8'))
-        amo.tests.check_links(expected, doc('#auth-nav li'))
-
-    @amo.tests.mobile_test
-    def test_mobile_auth_nav(self):
-        expected = [
-            (UserProfile.objects.get(username='regularuser').welcome_name,
-             None),
-            ('Log out', reverse('users.logout')),
-        ]
-        self._test_auth_nav(expected)
-
-
-class TestMobilePersonas(TestMobile):
-    fixtures = TestMobile.fixtures + ['addons/persona']
-
-    def test_personas_home(self):
-        r = self.client.get(reverse('browse.personas'))
-        assert r.status_code == 200
-        self.assertTemplateUsed(
-            r, 'browse/personas/mobile/category_landing.html')
-        assert r.context['category'] is None
-        assert 'is_homepage' in r.context
-
-    def test_personas_home_title(self):
-        r = self.client.get(reverse('browse.personas'))
-        doc = pq(r.content)
-        assert doc('title').text() == 'Themes :: Add-ons for Firefox'
-
-    def test_personas_search(self):
-        r = self.client.get(reverse('browse.personas'))
-        assert r.context['search_cat'] == 'themes'
-        s = pq(r.content)('#search')
-        assert s.attr('action') == reverse('search.search')
-        assert s.find('input[name=q]').attr('placeholder') == (
-            'search for themes')
-        assert s.find('input[name=cat]').val() == 'themes'
-
-    def _create_persona_cat(self):
-        category = Category(type=amo.ADDON_PERSONA, slug='xxx',
-                            application=amo.FIREFOX.id)
-        category.save()
-        return category
-
-    def test_personas_grid(self):
-        """Ensure we always hit grid page if there's a category or sorting."""
-        grid = 'browse/personas/mobile/grid.html'
-
-        category = self._create_persona_cat()
-        category_url = reverse('browse.personas', args=[category.slug])
-
-        # Even if the category has 5 add-ons.
-        category.count = 5
-        category.save()
-        r = self.client.get(category_url)
-        self.assertTemplateUsed(r, grid)
-
-        # Show the grid page even with sorting.
-        r = self.client.get(reverse('browse.personas') + '?sort=created')
-        self.assertTemplateUsed(r, grid)
-        r = self.client.get(category_url + '?sort=created')
-        self.assertTemplateUsed(r, grid)
-
-    def test_personas_category_title(self):
-        r = self.client.get(reverse('browse.personas',
-                                    args=[self._create_persona_cat().slug]))
-        doc = pq(r.content)
-        assert doc('title').text() == 'None Themes :: Add-ons for Firefox'
-
-    def test_personas_sorting_title(self):
-        r = self.client.get(reverse('browse.personas') + '?sort=up-and-coming')
-        doc = pq(r.content)
-        assert doc('title').text() == (
-            'Up & Coming Themes :: Add-ons for Firefox')

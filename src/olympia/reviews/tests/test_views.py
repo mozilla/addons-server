@@ -12,8 +12,7 @@ from olympia import amo
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo import helpers
 from olympia.amo.tests import (
-    addon_factory, APITestClient, TestCase, MobileTest, version_factory,
-    user_factory)
+    addon_factory, APITestClient, TestCase, version_factory, user_factory)
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
@@ -667,93 +666,6 @@ class TestEdit(ReviewTest):
         assert activity_log.action == amo.LOG.EDIT_REVIEW.id
 
         assert len(mail.outbox) == 0
-
-
-class TestMobileReviews(MobileTest, TestCase):
-    fixtures = ['reviews/dev-reply.json', 'base/admin', 'base/users']
-
-    def setUp(self):
-        super(TestMobileReviews, self).setUp()
-        self.addon = Addon.objects.get(id=1865)
-        self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.login_regular()
-        self.add_url = helpers.url('addons.reviews.add', self.addon.slug)
-        self.list_url = helpers.url('addons.reviews.list', self.addon.slug)
-
-    def login_regular(self):
-        self.client.login(email='regular@mozilla.com')
-
-    def login_dev(self):
-        self.client.login(email='trev@adblockplus.org')
-
-    def login_admin(self):
-        self.client.login(email='jbalogh@mozilla.com')
-
-    def test_mobile(self):
-        self.client.logout()
-        self.mobile_init()
-        r = self.client.get(self.list_url)
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'reviews/mobile/review_list.html')
-
-    def test_add_visitor(self):
-        self.client.logout()
-        self.mobile_init()
-        r = self.client.get(self.add_url)
-        assert r.status_code == 302
-
-    def test_add_logged(self):
-        r = self.client.get(self.add_url)
-        assert r.status_code == 200
-        self.assertTemplateUsed(r, 'reviews/mobile/add.html')
-
-    def test_add_admin(self):
-        self.login_admin()
-        r = self.client.get(self.add_url)
-        assert r.status_code == 200
-
-    def test_add_dev(self):
-        self.login_dev()
-        r = self.client.get(self.add_url)
-        assert r.status_code == 403
-
-    def test_add_link_visitor(self):
-        self.client.logout()
-        self.mobile_init()
-        r = self.client.get(self.list_url)
-        doc = pq(r.content)
-        assert doc('#add-review').length == 1
-        assert doc('.copy .login-button').length == 1
-        assert doc('#review-form').length == 0
-
-    def test_add_link_logged(self):
-        r = self.client.get(self.list_url)
-        doc = pq(r.content)
-        assert doc('#add-review').length == 1
-        assert doc('#review-form').length == 1
-
-    def test_add_link_dev(self):
-        self.login_dev()
-        r = self.client.get(self.list_url)
-        doc = pq(r.content)
-        assert doc('#add-review').length == 0
-        assert doc('#review-form').length == 0
-
-    def test_add_submit(self):
-        r = self.client.post(self.add_url, {'body': 'hi', 'rating': 3})
-        assert r.status_code == 302
-
-        r = self.client.get(self.list_url)
-        doc = pq(r.content)
-        text = doc('.review').eq(0).text()
-        assert "hi" in text
-        assert "Rated 3 out of 5" in text
-
-    def test_add_logged_out(self):
-        self.client.logout()
-        self.mobile_init()
-        r = self.client.get(helpers.url('addons.reviews.add', self.addon.slug))
-        assert r.status_code == 302
 
 
 class TestReviewViewSetGet(TestCase):
