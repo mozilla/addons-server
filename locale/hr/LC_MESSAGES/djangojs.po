@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-04-19 19:31+0000\n"
 "Last-Translator: Mikeyy <mihovil@miho.im>\n"
 "Language-Team: Croatian\n"
@@ -901,7 +901,7 @@ msgstr "Preuzmi sada"
 msgid "Only available on Firefox Desktop"
 msgstr "Dostupno samo za Firefox Desktop"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Žao nam je, potreban vam je Mozillin preglednik (kao što je Firefox) da biste instalirali priključak za tražilicu."
 
@@ -1198,57 +1198,3 @@ msgstr "Zadatak ovjere se nije mogao dovršiti ili je završen sa pogreškama"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Interna pogreška poslužitelja"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Nije ažurirano već {0} {1}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "Zahtijeva noviju verziju {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Nepregledano"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Eksperimentalni<span>(Saznaj više)</span>"
-
-# 80%
-# 100%
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Nije dostupno za {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Eksperimentalni"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "Teme zahtijevaju novije verzije od {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "Teme zahtijevaju {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Instaliranje..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Ovaj dodatak je preliminarno revidiran od strane Mozille."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Zadrži"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Isprobavate ga!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Dodano u Firefox"

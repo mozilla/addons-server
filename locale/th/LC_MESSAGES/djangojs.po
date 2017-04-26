@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2016-10-17 14:02+0000\n"
 "Last-Translator: Googleโครม! <tamisun32646@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -886,7 +886,7 @@ msgstr "ดาวน์โหลดเดี๋ยวนี้"
 msgid "Only available on Firefox Desktop"
 msgstr ""
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งโปรแกรมเสริมสำหรับการค้นหา"
 
@@ -1170,55 +1170,3 @@ msgstr "งานการตรวจสอบไม่สามารถเส
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "ไม่ได้รับการปรับปรุงสำหรับ {0} {1}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "ต้องการรุ่นใหม่กว่าของ {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "ยังไม่ถูกตรวจสอบ"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "ทดลอง <span>(เรียนรู้เพิ่มเติม)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "ไม่พร้อมใช้งานสำหรับ {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "ทดลอง"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "ชุดตกแต่งต้องการรุ่นที่ใหม่กว่าของ {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "ชุดตกแต่งต้องการ {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "กำลังติดตั้ง…"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "ส่วนเสริมนี้ได้รับการตรวจสอบเบื้องต้นโดย Mozilla"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "เก็บไว้"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "คุณกำลังพยายามทำมันอยู่!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "เพิ่มเข้า Firefox แล้ว"

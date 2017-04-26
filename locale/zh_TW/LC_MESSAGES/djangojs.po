@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-03-02 16:40+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -882,7 +882,7 @@ msgstr "立刻下載"
 msgid "Only available on Firefox Desktop"
 msgstr "僅在 Firefox 桌面版可用"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要 Mozilla 系列的瀏覽器 (像是 Firefox) 才能安裝此搜尋外掛。"
 
@@ -1165,57 +1165,3 @@ msgstr "驗證工作無法完成或是完成時發生錯誤"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "伺服器內部錯誤"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "未為 {0} {1} 更新"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "需要安裝 {0} 的較新版本"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "尚未審查"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "實驗中 <span>(更多資訊)</span>"
-
-# 80%
-# 100%
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "無法使用於 {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "實驗中"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "佈景主題需要 {0} 或更新的版本"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "佈景主題需要 {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "安裝中..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "此附加元件已經通過 Mozilla 初步審查。"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "保留它"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "您正在試穿它!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "已新增至 Firefox"

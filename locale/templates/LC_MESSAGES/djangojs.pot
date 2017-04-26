@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -904,7 +904,7 @@ msgstr ""
 msgid "Only available on Firefox Desktop"
 msgstr ""
 
-#: static/js/zamboni/buttons.js:529 static/js/zamboni/mobile/buttons.js:43
+#: static/js/zamboni/buttons.js:529
 msgid ""
 "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search"
 " plugin."
@@ -1198,57 +1198,5 @@ msgstr ""
 
 #: static/js/zamboni/validator.js:533
 msgid "Internal server error"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:52
-msgid "Not Updated for {0} {1}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:53
-msgid "Requires Newer Version of {0}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:54
-msgid "Unreviewed"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:55
-msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
-msgid "Not Available for {0}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:58
-msgid "Experimental"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:59
-msgid "Themes Require Newer Version of {0}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:60
-msgid "Themes Require {0}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:105
-msgid "Installing..."
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:125
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js:250
-msgid "Keep it"
-msgstr ""
-
-#: static/js/zamboni/mobile/general.js:344
-msgid "You're trying it on!"
-msgstr ""
-
-#: static/js/zamboni/mobile/general.js:356
-msgid "Added to Firefox"
 msgstr ""
 

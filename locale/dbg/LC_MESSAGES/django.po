@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,8 +37,8 @@ msgstr "Ƞḗḗḓ ħḗŀƥ?"
 msgid "Review"
 msgstr "Řḗṽīḗẇ"
 
-#: src/olympia/activity/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
+#: src/olympia/activity/models.py src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/editors/templates/editors/addon_details_box.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
 msgstr "Ṽḗřşīǿƞ {0}"
 
@@ -64,8 +64,8 @@ msgid "Continue to Download&nbsp;&rarr;"
 msgstr "Ƈǿƞŧīƞŭḗ ŧǿ Ḓǿẇƞŀǿȧḓ&nbsp;&rarr;"
 
 #: src/olympia/addons/buttons.py src/olympia/addons/helpers.py src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
-#: src/olympia/browse/templates/browse/impala/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py
+#: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py src/olympia/browse/templates/browse/impala/category_landing.html
+#: src/olympia/browse/views.py
 msgid "Featured"
 msgstr "Ƒḗȧŧŭřḗḓ"
 
@@ -188,7 +188,7 @@ msgstr "Ȧƀŭşḗ řḗƥǿřŧḗḓ."
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Ḿẏ ȧḓḓ-ǿƞ ḓǿḗşƞ'ŧ ƒīŧ īƞŧǿ ȧƞẏ ǿƒ ŧħḗ ƈȧŧḗɠǿřīḗş"
 
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/mobile/button.html
+#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "No compatible versions"
 msgstr "Ƞǿ ƈǿḿƥȧŧīƀŀḗ ṽḗřşīǿƞş"
 
@@ -205,12 +205,11 @@ msgstr "Ȧḓḓ ŧǿ Ḿǿƀīŀḗ"
 msgid "for {0}"
 msgstr "ƒǿř {0}"
 
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/mobile/button.html
+#: src/olympia/addons/templates/addons/button.html
 msgid "View privacy policy"
 msgstr "Ṽīḗẇ ƥřīṽȧƈẏ ƥǿŀīƈẏ"
 
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/button.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+#: src/olympia/addons/templates/addons/button.html src/olympia/editors/templates/editors/addon_details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "View End-User License Agreement"
 msgstr "Ṽīḗẇ Ḗƞḓ-Ŭşḗř Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ"
 
@@ -330,7 +329,7 @@ msgid "Leave a comment or request with your contribution."
 msgstr "Ŀḗȧṽḗ ȧ ƈǿḿḿḗƞŧ ǿř řḗɋŭḗşŧ ẇīŧħ ẏǿŭř ƈǿƞŧřīƀŭŧīǿƞ."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
-#: src/olympia/reviews/templates/reviews/mobile/add_form.html src/olympia/templates/includes/forms.html
+#: src/olympia/templates/includes/forms.html
 msgid "(optional)"
 msgstr "(ǿƥŧīǿƞȧŀ)"
 
@@ -349,135 +348,6 @@ msgstr "Ƞǿ Ŧħȧƞķş"
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution made, thank you."
 msgstr "Ƈǿƞŧřīƀŭŧīǿƞ ḿȧḓḗ, ŧħȧƞķ ẏǿŭ."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
-#: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "Requires Restart"
-msgstr "Řḗɋŭīřḗş Řḗşŧȧřŧ"
-
-#. This is a caption for a table. {0} is an add-on name.
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
-msgid "Add-on Information for {0}"
-msgstr "Ȧḓḓ-ǿƞ Īƞƒǿřḿȧŧīǿƞ ƒǿř {0}"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/search_results_themes.html
-#: src/olympia/editors/templates/editors/themes/queue_list.html
-msgid "Status"
-msgstr "Şŧȧŧŭş"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html
-#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
-msgid "Updated"
-msgstr "Ŭƥḓȧŧḗḓ"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "Website"
-msgstr "Ẇḗƀşīŧḗ"
-
-#. This refers to this version's compatible applications, such as Firefox 8.0
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/search/templates/search/results.html
-#: src/olympia/versions/templates/versions/version.html
-msgid "Works with"
-msgstr "Ẇǿřķş ẇīŧħ"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Visibility"
-msgstr "Ṽīşīƀīŀīŧẏ"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Visible"
-msgstr "Ṽīşīƀŀḗ"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
-msgid "Invisible"
-msgstr "Īƞṽīşīƀŀḗ"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
-msgid "Required Add-ons"
-msgstr "Řḗɋŭīřḗḓ Ȧḓḓ-ǿƞş"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
-#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
-msgid "Rating"
-msgstr "Řȧŧīƞɠ"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/stats/templates/stats/addon_report_menu.html
-#: src/olympia/stats/templates/stats/collection_report_menu.html
-msgid "Downloads"
-msgstr "Ḓǿẇƞŀǿȧḓş"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html
-msgid "View Statistics"
-msgstr "Ṽīḗẇ Şŧȧŧīşŧīƈş"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Average Daily Users"
-msgstr "Ȧṽḗřȧɠḗ Ḓȧīŀẏ Ŭşḗřş"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Abuse Reports"
-msgstr "Ȧƀŭşḗ Řḗƥǿřŧş"
-
-#. The Privacy Policy for this add-on.
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
-msgid "Privacy Policy"
-msgstr "Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "View Privacy Policy"
-msgstr "Ṽīḗẇ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "EULA"
-msgstr "ḖŬĿȦ"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "More about this add-on"
-msgstr "Ḿǿřḗ ȧƀǿŭŧ ŧħīş ȧḓḓ-ǿƞ"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Image Gallery"
-msgstr "Īḿȧɠḗ Ɠȧŀŀḗřẏ"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
-msgid "Developer Comments"
-msgstr "Ḓḗṽḗŀǿƥḗř Ƈǿḿḿḗƞŧş"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
-msgid "Development Channel"
-msgstr "Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ"
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html
-msgid ""
-"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
-"updates from this channel."
-msgstr ""
-"Ŧħḗ Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ ŀḗŧş ẏǿŭ ŧḗşŧ ȧƞ ḗẋƥḗřīḿḗƞŧȧŀ ƞḗẇ ṽḗřşīǿƞ ǿƒ ŧħīş ȧḓḓ-ǿƞ ƀḗƒǿřḗ īŧ'ş řḗŀḗȧşḗḓ ŧǿ ŧħḗ ɠḗƞḗřȧŀ ƥŭƀŀīƈ. Ǿƞƈḗ ẏǿŭ īƞşŧȧŀŀ ŧħḗ ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ, ẏǿŭ ẇīŀŀ ƈǿƞŧīƞŭḗ ŧǿ ɠḗŧ "
-"ŭƥḓȧŧḗş ƒřǿḿ ŧħīş ƈħȧƞƞḗŀ."
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Install development version"
-msgstr "Īƞşŧȧŀŀ ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ"
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid ""
-"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
-"developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"<strong>Ƈȧŭŧīǿƞ:</strong> Ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞş ǿƒ ŧħīş ȧḓḓ-ǿƞ ħȧṽḗ ƞǿŧ ƀḗḗƞ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ. Ǿƞƈḗ ẏǿŭ īƞşŧȧŀŀ ȧ ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ ẏǿŭ ẇīŀŀ ƈǿƞŧīƞŭḗ ŧǿ řḗƈḗīṽḗ ḓḗṽḗŀǿƥḿḗƞŧ ŭƥḓȧŧḗş ƒřǿḿ ŧħīş "
-"ḓḗṽḗŀǿƥḗř. Ŧǿ şŧǿƥ řḗƈḗīṽīƞɠ ḓḗṽḗŀǿƥḿḗƞŧ ŭƥḓȧŧḗş, řḗīƞşŧȧŀŀ ŧħḗ ḓḗƒȧŭŀŧ ṽḗřşīǿƞ ƒřǿḿ ŧħḗ ŀīƞķ ȧƀǿṽḗ."
-
-#: src/olympia/addons/templates/addons/details_box.html
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Ƞǿŧħīƞɠ ŧǿ şḗḗ ħḗřḗ!  Ŧħḗ ḓḗṽḗŀǿƥḗř ḓīḓ ƞǿŧ īƞƈŀŭḓḗ ȧƞẏ ḓḗŧȧīŀş."
-
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
-msgid "Version Notes"
-msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -499,7 +369,7 @@ msgstr "%(addon_name)s řḗɋŭīřḗş ŧħȧŧ ẏǿŭ ȧƈƈḗƥŧ ŧħḗ
 msgid "Back to {0}…"
 msgstr "Ɓȧƈķ ŧǿ {0}…"
 
-#: src/olympia/addons/templates/addons/home.html src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py
+#: src/olympia/addons/templates/addons/home.html src/olympia/amo/helpers.py
 msgid "Add-ons for {0}"
 msgstr "Ȧḓḓ-ǿƞş ƒǿř {0}"
 
@@ -535,23 +405,20 @@ msgstr "Ƒḗȧŧŭřḗḓ Ŧħḗḿḗş"
 msgid "Featured Collections"
 msgstr "Ƒḗȧŧŭřḗḓ Ƈǿŀŀḗƈŧīǿƞş"
 
-#: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/addons/templates/addons/listing_header.html src/olympia/amo/templates/amo/mobile/sort_by.html
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
+#: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/addons/templates/addons/listing_header.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Sort by:"
 msgstr "Şǿřŧ ƀẏ:"
 
 #. {0} is a date.
 #. {0} is a date
-#: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
+#: src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
+#: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Updated {0}"
 msgstr "Ŭƥḓȧŧḗḓ {0}"
 
 #. {0} is a date.
-#: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
-#: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
+#: src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html src/olympia/addons/templates/addons/persona_preview.html
+#: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Added {0}"
 msgstr "Ȧḓḓḗḓ {0}"
 
@@ -568,6 +435,19 @@ msgid "%(num)s user"
 msgid_plural "%(num)s users"
 msgstr[0] "%(num)s ŭşḗř"
 msgstr[1] "%(num)s ŭşḗřş"
+
+#: src/olympia/addons/templates/addons/macros.html src/olympia/editors/models.py src/olympia/editors/templates/editors/addon_details_box.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+msgid "Requires Restart"
+msgstr "Řḗɋŭīřḗş Řḗşŧȧřŧ"
+
+#: src/olympia/addons/templates/addons/macros.html
+msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
+msgstr "Ŧħīş ȧḓḓ-ǿƞ īş ƀŭīŀŧ ẇīŧħ ƞḗẇ ŧḗƈħƞǿŀǿɠẏ ŧħȧŧ īş ƈǿḿƥȧŧīƀŀḗ ẇīŧħ Ƒīřḗƒǿẋ 57 ȧƞḓ ƀḗẏǿƞḓ."
+
+#: src/olympia/addons/templates/addons/macros.html
+msgid "Compatible with Firefox 57+"
+msgstr "Ƈǿḿƥȧŧīƀŀḗ ẇīŧħ Ƒīřḗƒǿẋ 57+"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html
@@ -595,9 +475,9 @@ msgstr "Ƥȧẏḿḗƞŧ ƈǿḿƥŀḗŧḗḓ"
 msgid "Return to the addon."
 msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ ȧḓḓǿƞ."
 
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "ƀẏ"
 
@@ -607,7 +487,7 @@ msgid "More {0} Themes"
 msgstr "Ḿǿřḗ {0} Ŧħḗḿḗş"
 
 #. {0} is a category name, such as Nature
-#: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
+#: src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all {0} Themes"
 msgstr "Şḗḗ ȧŀŀ {0} Ŧħḗḿḗş"
 
@@ -615,27 +495,35 @@ msgstr "Şḗḗ ȧŀŀ {0} Ŧħḗḿḗş"
 msgid "More by this Artist"
 msgstr "Ḿǿřḗ ƀẏ ŧħīş Ȧřŧīşŧ"
 
-#: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
+#: src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all Themes by this Artist"
 msgstr "Şḗḗ ȧŀŀ Ŧħḗḿḗş ƀẏ ŧħīş Ȧřŧīşŧ"
 
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html
-#: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html src/olympia/browse/templates/browse/macros.html
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/templates/categories.html
 msgid "Categories"
 msgstr "Ƈȧŧḗɠǿřīḗş"
 
-#: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/editors/templates/editors/themes/deleted.html
-#: src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Updated"
+msgstr "Ŭƥḓȧŧḗḓ"
+
+#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/editors/templates/editors/themes/deleted.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Artist"
 msgstr "Ȧřŧīşŧ"
 
-#: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/stats/templates/stats/addon_report_menu.html
+#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/editors/templates/editors/addon_details_box.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html
+msgid "Rating"
+msgstr "Řȧŧīƞɠ"
+
+#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Daily Users"
 msgstr "Ḓȧīŀẏ Ŭşḗřş"
 
-#: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/devhub/templates/devhub/includes/license_form.html
-#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/devhub/templates/devhub/includes/license_form.html src/olympia/devhub/templates/devhub/versions/edit.html
+#: src/olympia/editors/templates/editors/themes/themes.html
 msgid "License"
 msgstr "Ŀīƈḗƞşḗ"
 
@@ -652,7 +540,7 @@ msgid "Approved"
 msgstr "Ȧƥƥřǿṽḗḓ"
 
 #. {0} is the number of users.
-#: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/persona_preview.html
+#: src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/persona_preview.html
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
 msgstr[0] "<strong>{0}</strong> ŭşḗř"
@@ -797,6 +685,13 @@ msgstr "Ŧħīş ȧḓḓ-ǿƞ īş ƞǿŧ ƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏ�
 msgid "Privacy Policy for {0}"
 msgstr "Ƥřīṽȧƈẏ Ƥǿŀīƈẏ ƒǿř {0}"
 
+#. The Privacy Policy for this add-on.
+#: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/privacy.html
+#: src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/editors/templates/editors/addon_details_box.html
+#: src/olympia/templates/copyright.html
+msgid "Privacy Policy"
+msgstr "Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
+
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "QR code for add-on"
 msgstr "ɊŘ ƈǿḓḗ ƒǿř ȧḓḓ-ǿƞ"
@@ -822,12 +717,12 @@ msgstr ""
 msgid "Send Report"
 msgstr "Şḗƞḓ Řḗƥǿřŧ"
 
-#: src/olympia/addons/templates/addons/mobile/eula.html src/olympia/addons/templates/addons/mobile/persona_confirm.html src/olympia/addons/templates/addons/report_abuse.html
-#: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/profile.html
-#: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-#: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html src/olympia/zadmin/templates/zadmin/validation.html
+#: src/olympia/addons/templates/addons/report_abuse.html src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
+#: src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/versions/edit.html
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
+#: src/olympia/zadmin/templates/zadmin/validation.html
 msgid "Cancel"
 msgstr "Ƈȧƞƈḗŀ"
 
@@ -840,20 +735,20 @@ msgstr "Ẇħȧŧ ḓǿ ẏǿŭ ŧħīƞķ?"
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
 msgstr "Ƥŀḗȧşḗ <a href=\"%(login)s\">ŀǿɠ īƞ</a> ŧǿ şŭƀḿīŧ ȧ řḗṽīḗẇ"
 
-#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
+#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Title:"
 msgstr "Ŧīŧŀḗ:"
 
-#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
+#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Review:"
 msgstr "Řḗṽīḗẇ:"
 
-#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
+#: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Rating:"
 msgstr "Řȧŧīƞɠ:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/add.html
-#: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/reviews/templates/reviews/mobile/add_form.html
+#: src/olympia/reviews/templates/reviews/edit_review.html
 msgid "Submit review"
 msgstr "Şŭƀḿīŧ řḗṽīḗẇ"
 
@@ -875,7 +770,6 @@ msgid "Review Guidelines"
 msgstr "Řḗṽīḗẇ Ɠŭīḓḗŀīƞḗş"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Reviews"
 msgstr "Řḗṽīḗẇş"
 
@@ -1005,14 +899,6 @@ msgid "Icon of {0}"
 msgstr "Īƈǿƞ ǿƒ {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr "Ŧħīş ȧḓḓ-ǿƞ īş ƀŭīŀŧ ẇīŧħ ƞḗẇ ŧḗƈħƞǿŀǿɠẏ ŧħȧŧ īş ƈǿḿƥȧŧīƀŀḗ ẇīŧħ Ƒīřḗƒǿẋ 57 ȧƞḓ ƀḗẏǿƞḓ."
-
-#: src/olympia/addons/templates/addons/impala/details.html
-msgid "Compatible with Firefox 57+"
-msgstr "Ƈǿḿƥȧŧīƀŀḗ ẇīŧħ Ƒīřḗƒǿẋ 57+"
-
-#: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
@@ -1072,6 +958,10 @@ msgstr "Ṽḗřşīǿƞ Īƞƒǿřḿȧŧīǿƞ"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete version history"
 msgstr "Şḗḗ ƈǿḿƥŀḗŧḗ ṽḗřşīǿƞ ħīşŧǿřẏ"
+
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Development Channel"
+msgstr "Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
@@ -1161,7 +1051,7 @@ msgid "Source Code License for {addon}"
 msgstr "Şǿŭřƈḗ Ƈǿḓḗ Ŀīƈḗƞşḗ ƒǿř {ȧḓḓǿƞ}"
 
 #. The License for this add-on.
-#: src/olympia/addons/templates/addons/impala/license.html src/olympia/versions/templates/versions/mobile/version.html
+#: src/olympia/addons/templates/addons/impala/license.html
 msgid "Source Code License"
 msgstr "Şǿŭřƈḗ Ƈǿḓḗ Ŀīƈḗƞşḗ"
 
@@ -1209,6 +1099,11 @@ msgstr "Ḿẏ Ŧħḗḿḗş"
 msgid "Add to Firefox"
 msgstr "Ȧḓḓ ŧǿ Ƒīřḗƒǿẋ"
 
+#. This is a caption for a table. {0} is an add-on name.
+#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Add-on Information for {0}"
+msgstr "Ȧḓḓ-ǿƞ Īƞƒǿřḿȧŧīǿƞ ƒǿř {0}"
+
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Edit Theme"
 msgstr "Ḗḓīŧ Ŧħḗḿḗ"
@@ -1233,143 +1128,12 @@ msgstr "Ŧħīş ŧħḗḿḗ īş ƥḗƞḓīƞɠ. Īŧ īş īƞṽīşīƀ�
 msgid "Collector's Note"
 msgstr "Ƈǿŀŀḗƈŧǿř'ş Ƞǿŧḗ"
 
-#: src/olympia/addons/templates/addons/listing/items_mobile.html
-msgid "Not Yet Rated"
-msgstr "Ƞǿŧ Ẏḗŧ Řȧŧḗḓ"
-
 #. {0} is the number of downloads.
-#: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
+#: src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> ẇḗḗķŀẏ ḓǿẇƞŀǿȧḓ"
 msgstr[1] "<strong>{0}</strong> ẇḗḗķŀẏ ḓǿẇƞŀǿȧḓş"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "Read More"
-msgstr "Řḗȧḓ Ḿǿřḗ"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "Users"
-msgstr "Ŭşḗřş"
-
-#: src/olympia/addons/templates/addons/mobile/details.html src/olympia/browse/views.py src/olympia/search/forms.py
-msgid "Weekly Downloads"
-msgstr "Ẇḗḗķŀẏ Ḓǿẇƞŀǿȧḓş"
-
-#: src/olympia/addons/templates/addons/mobile/details.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Version"
-msgstr "Ṽḗřşīǿƞ"
-
-#. {0} is a version number.
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "{0} (Version Notes)"
-msgstr "{0} (Ṽḗřşīǿƞ Ƞǿŧḗş)"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "View All Versions"
-msgstr "Ṽīḗẇ Ȧŀŀ Ṽḗřşīǿƞş"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "View Development Version"
-msgstr "Ṽīḗẇ Ḓḗṽḗŀǿƥḿḗƞŧ Ṽḗřşīǿƞ"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "Caution"
-msgstr "Ƈȧŭŧīǿƞ"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "Visit the Support Site"
-msgstr "Ṽīşīŧ ŧħḗ Şŭƥƥǿřŧ Şīŧḗ"
-
-#: src/olympia/addons/templates/addons/mobile/details.html
-msgid "Ask the Author a Question"
-msgstr "Ȧşķ ŧħḗ Ȧŭŧħǿř ȧ Ɋŭḗşŧīǿƞ"
-
-#: src/olympia/addons/templates/addons/mobile/eula.html
-msgid "License Agreement"
-msgstr "Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ"
-
-#: src/olympia/addons/templates/addons/mobile/eula.html
-#, python-format
-msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(name)s řḗɋŭīřḗş ŧħȧŧ ẏǿŭ ȧƈƈḗƥŧ ŧħḗ ƒǿŀŀǿẇīƞɠ Ḗƞḓ-Ŭşḗř Ŀīƈḗƞşḗ Ȧɠřḗḗḿḗƞŧ ƀḗƒǿřḗ īƞşŧȧŀŀȧŧīǿƞ ƈȧƞ ƥřǿƈḗḗḓ:"
-
-#: src/olympia/addons/templates/addons/mobile/eula.html
-msgid "Accept"
-msgstr "Ȧƈƈḗƥŧ"
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
-msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr "Ȧḓḓ-ǿƞş ȧřḗ ƞǿŧ ƈŭřřḗƞŧŀẏ ȧṽȧīŀȧƀŀḗ ǿƞ Ƒīřḗƒǿẋ ƒǿř īǾŞ."
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
-msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr "Ẏǿŭ ƞḗḗḓ Ƒīřḗƒǿẋ ŧǿ īƞşŧȧŀŀ ȧḓḓ-ǿƞş. <a href=\"http://mozilla.com/mobile\">Ŀḗȧřƞ Ḿǿřḗ&nbsp;&raquo;</a>"
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/header_title.html src/olympia/templates/impala/header_title.html
-msgid "Return to the {0} Add-ons homepage"
-msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ {0} Ȧḓḓ-ǿƞş ħǿḿḗƥȧɠḗ"
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html
-#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html src/olympia/templates/mobile/base_addons.html
-msgid "Add-ons"
-msgstr "Ȧḓḓ-ǿƞş"
-
-#: src/olympia/addons/templates/addons/mobile/home.html
-msgid "Easy ways to personalize."
-msgstr "Ḗȧşẏ ẇȧẏş ŧǿ ƥḗřşǿƞȧŀīzḗ."
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-msgid "Learn More"
-msgstr "Ŀḗȧřƞ Ḿǿřḗ"
-
-#: src/olympia/addons/templates/addons/mobile/home.html
-msgid ""
-"Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
-"on-the-go browsing."
-msgstr ""
-"Ȧḓḓ-ǿƞş ȧřḗ ȧƥƥŀīƈȧŧīǿƞş ŧħȧŧ ŀḗŧ ẏǿŭ ƥḗřşǿƞȧŀīzḗ Ƒīřḗƒǿẋ ẇīŧħ ḗẋŧřȧ ƒŭƞƈŧīǿƞȧŀīŧẏ ȧƞḓ şŧẏŀḗ. Ẇħḗŧħḗř ẏǿŭ ḿīşŧẏƥḗ ŧħḗ ƞȧḿḗ ǿƒ ȧ ẇḗƀşīŧḗ ǿř ƈȧƞ'ŧ řḗȧḓ ȧ ƀŭşẏ ƥȧɠḗ, ŧħḗřḗ'ş ȧƞ ȧḓḓ-ǿƞ ŧǿ īḿƥřǿṽḗ ẏǿŭř "
-"ǿƞ-ŧħḗ-ɠǿ ƀřǿẇşīƞɠ."
-
-#. {0} is a category name. Ex: "Sports"
-#. {0} is a category name, such as Nature.
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/impala/base_listing.html
-#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/base.html
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html src/olympia/search/templates/search/personas.html
-msgid "Themes"
-msgstr "Ŧħḗḿḗş"
-
-#: src/olympia/addons/templates/addons/mobile/home.html
-msgid "View all Featured add-ons"
-msgstr "Ṽīḗẇ ȧŀŀ Ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş"
-
-#: src/olympia/addons/templates/addons/mobile/home.html
-msgid "View all Popular add-ons"
-msgstr "Ṽīḗẇ ȧŀŀ Ƥǿƥŭŀȧř ȧḓḓ-ǿƞş"
-
-#: src/olympia/addons/templates/addons/mobile/home.html
-msgid "More Add-ons"
-msgstr "Ḿǿřḗ Ȧḓḓ-ǿƞş"
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/search/forms.py
-msgid "Highest Rated"
-msgstr "Ħīɠħḗşŧ Řȧŧḗḓ"
-
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/search/forms.py
-msgid "Newest"
-msgstr "Ƞḗẇḗşŧ"
-
-#: src/olympia/addons/templates/addons/mobile/persona_confirm.html
-msgid "Try it on!"
-msgstr "Ŧřẏ īŧ ǿƞ!"
-
-#: src/olympia/addons/templates/addons/mobile/persona_confirm.html
-msgid "Theme Info &raquo;"
-msgstr "Ŧħḗḿḗ Īƞƒǿ &raquo;"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
@@ -1394,7 +1158,6 @@ msgid "My Favorites"
 msgstr "Ḿẏ Ƒȧṽǿřīŧḗş"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/templates/impala/user_login.html
-#: src/olympia/templates/mobile/header_auth.html
 msgid "Log out"
 msgstr "Ŀǿɠ ǿŭŧ"
 
@@ -1442,13 +1205,17 @@ msgstr "Ŧħīş ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ħḗẋ ƈǿŀǿř ƈǿḓḗ,
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
-#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Collections"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/templates/browse/language_tools.html
 msgid "Dictionaries & Language Packs"
 msgstr "Ḓīƈŧīǿƞȧřīḗş & Ŀȧƞɠŭȧɠḗ Ƥȧƈķş"
+
+#: src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/editors/templates/editors/base.html
+#: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
+msgid "Add-ons"
+msgstr "Ȧḓḓ-ǿƞş"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/helpers.py
@@ -1537,12 +1304,11 @@ msgid "No results found"
 msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ"
 
 #. abbreviation of 'previous'
-#: src/olympia/amo/templates/amo/mobile/paginator.html src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
+#: src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Prev"
 msgstr "Ƥřḗṽ"
 
-#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/amo/templates/amo/mobile/paginator.html
-#: src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
+#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
 msgid "Next"
 msgstr "Ƞḗẋŧ"
@@ -1580,6 +1346,10 @@ msgstr ""
 msgid "Top Rated"
 msgstr "Ŧǿƥ Řȧŧḗḓ"
 
+#: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
+msgid "Newest"
+msgstr "Ƞḗẇḗşŧ"
+
 #: src/olympia/amo/templates/amo/side_nav.html
 msgid "Explore"
 msgstr "Ḗẋƥŀǿřḗ"
@@ -1588,6 +1358,13 @@ msgstr "Ḗẋƥŀǿřḗ"
 #: src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "Ḗẋŧḗƞşīǿƞş"
+
+#. {0} is a category name. Ex: "Sports"
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/browse/templates/browse/personas/base.html
+#: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html
+#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html src/olympia/search/templates/search/personas.html
+msgid "Themes"
+msgstr "Ŧħḗḿḗş"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
@@ -1624,17 +1401,17 @@ msgid "Search Tools"
 msgstr "Şḗȧřƈħ Ŧǿǿŀş"
 
 #. This is a page range (e.g., Page 1 of 50).
-#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
+#: src/olympia/amo/templates/amo/impala/paginator.html
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 msgstr "Ƥȧɠḗ <a href=\"%(current_pg_url)s\">%(current_pg)s</a> ǿƒ <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
-#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
+#: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to first page"
 msgstr "Ĵŭḿƥ ŧǿ ƒīřşŧ ƥȧɠḗ"
 
-#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
+#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/stats/templates/stats/stats.html
 msgid "Previous"
 msgstr "Ƥřḗṽīǿŭş"
 
@@ -1644,18 +1421,10 @@ msgstr "Ĵŭḿƥ ŧǿ ŀȧşŧ ƥȧɠḗ"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
-#. First and second arguments are the result range (e.g., 1-20);              third
-#. argument is the number of total results (e.g., 1,000).
-#: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
+#: src/olympia/amo/templates/amo/impala/paginator.html
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Şħǿẇīƞɠ <b>%(begin)s</b>&ndash;<b>%(end)s</b> ǿƒ <b>%(count)s</b>"
-
-#: src/olympia/amo/templates/amo/mobile/paginator.html
-msgid "Page {n}"
-msgid_plural "Page {n}"
-msgstr[0] "Ƥȧɠḗ {ƞ}"
-msgstr[1] "Ƥȧɠḗ {ƞ}"
 
 #: src/olympia/amo/tests/test_messages.py src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Title"
@@ -1937,7 +1706,7 @@ msgstr "{0} :: Ƈǿŀŀḗƈŧīǿƞş"
 msgid "private"
 msgstr "ƥřīṽȧŧḗ"
 
-#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/mobile/listing_items.html
+#: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
@@ -2309,14 +2078,6 @@ msgstr "Ȧḓḓ ȧ ƈǿḿḿḗƞŧ"
 msgid "Remove this add-on from the collection"
 msgstr "Řḗḿǿṽḗ ŧħīş ȧḓḓ-ǿƞ ƒřǿḿ ŧħḗ ƈǿŀŀḗƈŧīǿƞ"
 
-#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
-msgid "COLLECTIONS"
-msgstr "ƇǾĿĿḖƇŦĪǾȠŞ"
-
-#: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
-msgid "Groups of related add-ons that anyone can create."
-msgstr "Ɠřǿŭƥş ǿƒ řḗŀȧŧḗḓ ȧḓḓ-ǿƞş ŧħȧŧ ȧƞẏǿƞḗ ƈȧƞ ƈřḗȧŧḗ."
-
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
 #, python-format
@@ -2358,7 +2119,11 @@ msgstr "Şḗȧřƈħ ŧǿǿŀş"
 msgid "Most Users"
 msgstr "Ḿǿşŧ Ŭşḗřş"
 
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
+#: src/olympia/browse/views.py src/olympia/search/forms.py
+msgid "Weekly Downloads"
+msgstr "Ẇḗḗķŀẏ Ḓǿẇƞŀǿȧḓş"
+
+#: src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
 msgid "Up & Coming"
 msgstr "Ŭƥ & Ƈǿḿīƞɠ"
 
@@ -2369,6 +2134,11 @@ msgstr "Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
 #: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Created"
 msgstr "Ƈřḗȧŧḗḓ"
+
+#: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/editors/templates/editors/addon_details_box.html src/olympia/stats/templates/stats/addon_report_menu.html
+#: src/olympia/stats/templates/stats/collection_report_menu.html
+msgid "Downloads"
+msgstr "Ḓǿẇƞŀǿȧḓş"
 
 #. {0} is the category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
@@ -2547,12 +2317,7 @@ msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] "Şḗḗ ŧħḗ %(cnt)s ḗẋŧḗƞşīǿƞ īƞ %(name)s &raquo;"
 msgstr[1] "Şḗḗ ȧŀŀ %(cnt)s ḗẋŧḗƞşīǿƞş īƞ %(name)s &raquo;"
 
-#: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
-#: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
-msgid "No results found."
-msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ."
-
-#: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
+#: src/olympia/browse/templates/browse/personas/base.html
 msgid "{0} Themes"
 msgstr "{0} Ŧħḗḿḗş"
 
@@ -2577,15 +2342,15 @@ msgstr "Ẏǿŭř ƀřǿẇşḗř, ẏǿŭř şŧẏŀḗ! Ḓřḗşş īŧ ŭ
 msgid "Learn more"
 msgstr "Ŀḗȧřƞ ḿǿřḗ"
 
-#: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
+#: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Recently Added"
 msgstr "Ṽīḗẇ Ȧŀŀ Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
 
-#: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
+#: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Most Popular"
 msgstr "Ṽīḗẇ Ȧŀŀ Ḿǿşŧ Ƥǿƥŭŀȧř"
 
-#: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
+#: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Top Rated"
 msgstr "Ṽīḗẇ Ȧŀŀ Ŧǿƥ Řȧŧḗḓ"
 
@@ -2616,22 +2381,6 @@ msgstr "Ṽīḗẇ Ȧŀŀ Ŭƥ & Ƈǿḿīƞɠ"
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
 msgstr "Ƞǿ ŧħḗḿḗş ƒǿŭƞḓ"
-
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
-msgid "Easy-to-use themes for Firefox"
-msgstr "Ḗȧşẏ-ŧǿ-ŭşḗ ŧħḗḿḗş ƒǿř Ƒīřḗƒǿẋ"
-
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
-msgid "Popular"
-msgstr "Ƥǿƥŭŀȧř"
-
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
-msgid "More Themes"
-msgstr "Ḿǿřḗ Ŧħḗḿḗş"
-
-#: src/olympia/browse/templates/browse/personas/mobile/macros.html
-msgid "&laquo; All Themes"
-msgstr "&laquo; Ȧŀŀ Ŧħḗḿḗş"
 
 #: src/olympia/compat/forms.py
 msgid "All"
@@ -2685,6 +2434,10 @@ msgstr "Ƒīŀŧḗř ƀẏ Ȧƥƥŀīƈȧŧīǿƞ"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Report Type"
 msgstr "Řḗƥǿřŧ Ŧẏƥḗ"
+
+#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Version"
+msgstr "Ṽḗřşīǿƞ"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Version"
@@ -3111,7 +2864,6 @@ msgid "Viewer"
 msgstr "Ṽīḗẇḗř"
 
 #: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
-#: src/olympia/templates/mobile/header.html
 msgid "Support"
 msgstr "Şŭƥƥǿřŧ"
 
@@ -4136,14 +3888,12 @@ msgid "Back to Add-ons"
 msgstr "Ɓȧƈķ ŧǿ Ȧḓḓ-ǿƞş"
 
 #. {0} is a search term, such as Firebug.
-#. {0} is a search query.
-#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
+#: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "{0} :: Search"
 msgstr "{0} :: Şḗȧřƈħ"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py src/olympia/editors/templates/editors/queue.html
-#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
-#: src/olympia/templates/impala/search.html src/olympia/templates/search.html
+#: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/results.html src/olympia/templates/impala/search.html src/olympia/templates/search.html
 msgid "Search"
 msgstr "Şḗȧřƈħ"
 
@@ -4163,6 +3913,10 @@ msgstr "Ƥŀḗȧşḗ ḗƞŧḗř şǿḿḗ şḗȧřƈħ ŧḗřḿş."
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Loading results&hellip;"
 msgstr "Ŀǿȧḓīƞɠ řḗşŭŀŧş&hellip;"
+
+#: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/no_results.html
+msgid "No results found."
+msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ."
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
@@ -4617,6 +4371,10 @@ msgstr ""
 "Īƒ ẏǿŭ ẇīşħ ŧǿ ḓīşƥŀȧẏ ȧƞ ḗ-ḿȧīŀ ȧḓḓřḗşş ƒǿř şŭƥƥǿřŧ īƞɋŭīřīḗş, ḗƞŧḗř īŧ ħḗřḗ. Īƒ ẏǿŭ ħȧṽḗ ḓīƒƒḗřḗƞŧ ȧḓḓřḗşşḗş ƒǿř ḗȧƈħ ŀȧƞɠŭȧɠḗ ḿŭŀŧīƥŀḗ ŧřȧƞşŀȧŧīǿƞş ǿƒ ŧħīş ƒīḗŀḓ ƈȧƞ ƀḗ ȧḓḓḗḓ. Īŧ īş ǿƞŀẏ "
 "řḗŀḗṽȧƞŧ ƒǿř ŀīşŧḗḓ ȧḓḓ-ǿƞş."
 
+#: src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/editors/templates/editors/addon_details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+msgid "Website"
+msgstr "Ẇḗƀşīŧḗ"
+
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
@@ -4634,6 +4392,10 @@ msgstr "Ŧḗƈħƞīƈȧŀ Ḓḗŧȧīŀş"
 msgid "Technical Details for {0}"
 msgstr "Ŧḗƈħƞīƈȧŀ Ḓḗŧȧīŀş ƒǿř {0}"
 
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Developer Comments"
+msgstr "Ḓḗṽḗŀǿƥḗř Ƈǿḿḿḗƞŧş"
+
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
@@ -4641,6 +4403,10 @@ msgid ""
 msgstr ""
 "Ȧƞẏ īƞƒǿřḿȧŧīǿƞ ḗƞḓ ŭşḗřş ḿȧẏ ẇȧƞŧ ŧǿ ķƞǿẇ ŧħȧŧ īşƞ'ŧ ƞḗƈḗşşȧřīŀẏ ȧƥƥŀīƈȧƀŀḗ ŧǿ ŧħḗ ȧḓḓ-ǿƞ şŭḿḿȧřẏ ǿř ḓḗşƈřīƥŧīǿƞ. Ƈǿḿḿǿƞ ŭşḗş īƞƈŀŭḓḗ ŀīşŧīƞɠ ķƞǿẇƞ ḿȧĵǿř ƀŭɠş, īƞƒǿřḿȧŧīǿƞ ǿƞ ħǿẇ ŧǿ řḗƥǿřŧ ƀŭɠş, "
 "ȧƞŧīƈīƥȧŧḗḓ řḗŀḗȧşḗ ḓȧŧḗ ǿƒ ȧ ƞḗẇ ṽḗřşīǿƞ, ḗŧƈ. Īŧ īş ǿƞŀẏ řḗŀḗṽȧƞŧ ƒǿř ŀīşŧḗḓ ȧḓḓ-ǿƞş."
+
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Required Add-ons"
+msgstr "Řḗɋŭīřḗḓ Ȧḓḓ-ǿƞş"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Limit 3"
@@ -4938,6 +4704,10 @@ msgstr "Ḗḓīŧ Ŀīşŧīƞɠ"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
 msgstr "Ṽīḗẇ ŧħḗ ƥǿƥŭŀȧřīŧẏ ǿƒ ŧħīş ŧħḗḿḗ ǿṽḗř ŧīḿḗ."
+
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/addon_details_box.html
+msgid "View Statistics"
+msgstr "Ṽīḗẇ Şŧȧŧīşŧīƈş"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Change the owner of this theme."
@@ -5237,6 +5007,11 @@ msgstr "Řḗṽǿķḗ ȧƞḓ řḗɠḗƞḗřȧŧḗ ƈřḗḓḗƞŧīȧŀ
 msgid "Generate new credentials"
 msgstr "Ɠḗƞḗřȧŧḗ ƞḗẇ ƈřḗḓḗƞŧīȧŀş"
 
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Invisible"
+msgstr "Īƞṽīşīƀŀḗ"
+
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Ƥŀḗȧşḗ ƈǿḿƥŀḗŧḗ ẏǿŭř ȧḓḓ-ǿƞ ƀẏ ȧḓḓīƞɠ ȧ ṽḗřşīǿƞ ǿř ḿīşşīƞɠ ḿḗŧȧḓȧŧȧ."
@@ -5431,7 +5206,6 @@ msgstr "Řḗȧḓ ḿǿřḗ ȧƀǿŭŧ ŧħḗ şǿŭřƈḗ ƈǿḓḗ řḗ�
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/new-landing/index.html src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
-#: src/olympia/templates/mobile/base_addons.html
 msgid "{0} Add-ons"
 msgstr "{0} Ȧḓḓ-ǿƞş"
 
@@ -5515,7 +5289,7 @@ msgstr "Ŀḗɠȧŀ"
 msgid "Report Trademark Abuse"
 msgstr "Řḗƥǿřŧ Ŧřȧḓḗḿȧřķ Ȧƀŭşḗ"
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Legal Notices"
 msgstr "Ŀḗɠȧŀ Ƞǿŧīƈḗş"
 
@@ -6064,6 +5838,10 @@ msgstr "Ƒīŀḗş"
 msgid "Upload Another File"
 msgstr "Ŭƥŀǿȧḓ Ȧƞǿŧħḗř Ƒīŀḗ"
 
+#: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/addon_details_box.html src/olympia/editors/templates/editors/review.html
+msgid "Version Notes"
+msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
+
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
@@ -6183,6 +5961,11 @@ msgstr "Ŀīşŧḗḓ ṽḗřşīǿƞş"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
 msgstr "Ƈŭřřḗƞŧŀẏ ǿƞ ȦḾǾ"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/addon_details_box.html src/olympia/editors/templates/editors/includes/search_results_themes.html
+#: src/olympia/editors/templates/editors/themes/queue_list.html
+msgid "Status"
+msgstr "Şŧȧŧŭş"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Validation"
@@ -6454,6 +6237,12 @@ msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇ ({0})"
 msgstr[1] "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş ({0})"
 
+#: src/olympia/editors/helpers.py
+msgid "Auto Approved Add-on ({0})"
+msgid_plural "Auto Approved Add-ons ({0})"
+msgstr[0] "Ȧŭŧǿ Ȧƥƥřǿṽḗḓ Ȧḓḓ-ǿƞ ({0})"
+msgstr[1] "Ȧŭŧǿ Ȧƥƥřǿṽḗḓ Ȧḓḓ-ǿƞş ({0})"
+
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
 msgstr "Ȧŀŀ Ŭƞŀīşŧḗḓ Ȧḓḓ-ǿƞş"
@@ -6516,12 +6305,12 @@ msgid "This will reject this version and remove it from the queue. The comments 
 msgstr "Ŧħīş ẇīŀŀ řḗĵḗƈŧ ŧħīş ṽḗřşīǿƞ ȧƞḓ řḗḿǿṽḗ īŧ ƒřǿḿ ŧħḗ ɋŭḗŭḗ. Ŧħḗ ƈǿḿḿḗƞŧş ẇīŀŀ ƀḗ şḗƞŧ ŧǿ ŧħḗ ḓḗṽḗŀǿƥḗř."
 
 #: src/olympia/editors/helpers.py
-msgid "Request more information"
-msgstr "Řḗɋŭḗşŧ ḿǿřḗ īƞƒǿřḿȧŧīǿƞ"
+msgid "Reviewer reply"
+msgstr "Řḗṽīḗẇḗř řḗƥŀẏ"
 
 #: src/olympia/editors/helpers.py
-msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "Ŧħīş ẇīŀŀ řḗɋŭḗşŧ ḿǿřḗ īƞƒǿřḿȧŧīǿƞ ƒřǿḿ ŧħḗ ḓḗṽḗŀǿƥḗř. Ẏǿŭ ẇīŀŀ ƀḗ ƞǿŧīƒīḗḓ ẇħḗƞ ŧħḗẏ řḗƥŀẏ."
+msgid "This will send a message to the developer. You will be notified when they reply."
+msgstr "Ŧħīş ẇīŀŀ şḗƞḓ ȧ ḿḗşşȧɠḗ ŧǿ ŧħḗ ḓḗṽḗŀǿƥḗř. Ẏǿŭ ẇīŀŀ ƀḗ ƞǿŧīƒīḗḓ ẇħḗƞ ŧħḗẏ řḗƥŀẏ."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
@@ -6672,6 +6461,75 @@ msgstr "%(user)s ǿƞ %(date)s [%(ip_address)s]"
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
 msgstr "<i>ȧƞǿƞẏḿǿŭş</i> ǿƞ %(date)s [%(ip_address)s]"
 
+#. This refers to this version's compatible applications, such as Firefox 8.0
+#: src/olympia/editors/templates/editors/addon_details_box.html src/olympia/search/templates/search/results.html src/olympia/versions/templates/versions/version.html
+msgid "Works with"
+msgstr "Ẇǿřķş ẇīŧħ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Visibility"
+msgstr "Ṽīşīƀīŀīŧẏ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Visible"
+msgstr "Ṽīşīƀŀḗ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Average Daily Users"
+msgstr "Ȧṽḗřȧɠḗ Ḓȧīŀẏ Ŭşḗřş"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Abuse Reports"
+msgstr "Ȧƀŭşḗ Řḗƥǿřŧş"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+msgid "View Privacy Policy"
+msgstr "Ṽīḗẇ Ƥřīṽȧƈẏ Ƥǿŀīƈẏ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "EULA"
+msgstr "ḖŬĿȦ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Last Approval Date"
+msgstr "Ŀȧşŧ Ȧƥƥřǿṽȧŀ Ḓȧŧḗ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Approvals Since Last Automatic Review"
+msgstr "Ȧƥƥřǿṽȧŀş Şīƞƈḗ Ŀȧşŧ Ȧŭŧǿḿȧŧīƈ Řḗṽīḗẇ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "More about this add-on"
+msgstr "Ḿǿřḗ ȧƀǿŭŧ ŧħīş ȧḓḓ-ǿƞ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Image Gallery"
+msgstr "Īḿȧɠḗ Ɠȧŀŀḗřẏ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid ""
+"The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
+"updates from this channel."
+msgstr ""
+"Ŧħḗ Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ ŀḗŧş ẏǿŭ ŧḗşŧ ȧƞ ḗẋƥḗřīḿḗƞŧȧŀ ƞḗẇ ṽḗřşīǿƞ ǿƒ ŧħīş ȧḓḓ-ǿƞ ƀḗƒǿřḗ īŧ'ş řḗŀḗȧşḗḓ ŧǿ ŧħḗ ɠḗƞḗřȧŀ ƥŭƀŀīƈ. Ǿƞƈḗ ẏǿŭ īƞşŧȧŀŀ ŧħḗ ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ, ẏǿŭ ẇīŀŀ ƈǿƞŧīƞŭḗ ŧǿ ɠḗŧ "
+"ŭƥḓȧŧḗş ƒřǿḿ ŧħīş ƈħȧƞƞḗŀ."
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Install development version"
+msgstr "Īƞşŧȧŀŀ ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid ""
+"<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
+"developer. To stop receiving development updates, reinstall the default version from the link above."
+msgstr ""
+"<strong>Ƈȧŭŧīǿƞ:</strong> Ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞş ǿƒ ŧħīş ȧḓḓ-ǿƞ ħȧṽḗ ƞǿŧ ƀḗḗƞ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ. Ǿƞƈḗ ẏǿŭ īƞşŧȧŀŀ ȧ ḓḗṽḗŀǿƥḿḗƞŧ ṽḗřşīǿƞ ẏǿŭ ẇīŀŀ ƈǿƞŧīƞŭḗ ŧǿ řḗƈḗīṽḗ ḓḗṽḗŀǿƥḿḗƞŧ ŭƥḓȧŧḗş ƒřǿḿ ŧħīş "
+"ḓḗṽḗŀǿƥḗř. Ŧǿ şŧǿƥ řḗƈḗīṽīƞɠ ḓḗṽḗŀǿƥḿḗƞŧ ŭƥḓȧŧḗş, řḗīƞşŧȧŀŀ ŧħḗ ḓḗƒȧŭŀŧ ṽḗřşīǿƞ ƒřǿḿ ŧħḗ ŀīƞķ ȧƀǿṽḗ."
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Nothing to see here!  The developer did not include any details."
+msgstr "Ƞǿŧħīƞɠ ŧǿ şḗḗ ħḗřḗ!  Ŧħḗ ḓḗṽḗŀǿƥḗř ḓīḓ ƞǿŧ īƞƈŀŭḓḗ ȧƞẏ ḓḗŧȧīŀş."
+
 #: src/olympia/editors/templates/editors/base.html
 msgid "Return to the Reviewer Tools homepage"
 msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ Řḗṽīḗẇḗř Ŧǿǿŀş ħǿḿḗƥȧɠḗ"
@@ -6687,6 +6545,10 @@ msgstr "Ƞḗẇ Ȧḓḓ-ǿƞş"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
 msgstr "Ḿǿḓḗřȧŧḗḓ Řḗṽīḗẇş"
+
+#: src/olympia/editors/templates/editors/base.html
+msgid "Auto Approved Add-ons"
+msgstr "Ȧŭŧǿ Ȧƥƥřǿṽḗḓ Ȧḓḓ-ǿƞş"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
@@ -7375,6 +7237,10 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ǿƞŀẏ ƈǿƞŧȧīƞ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ȧƞḓ ŧħḗşḗ ƥŭƞƈŧŭȧŧīǿƞ ƈħȧřȧƈŧḗřş: +*.-_."
 
 #: src/olympia/files/utils.py
+msgid "WebExtension theme uploads are currently not supported."
+msgstr "ẆḗƀḖẋŧḗƞşīǿƞ ŧħḗḿḗ ŭƥŀǿȧḓş ȧřḗ ƈŭřřḗƞŧŀẏ ƞǿŧ şŭƥƥǿřŧḗḓ."
+
+#: src/olympia/files/utils.py
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> īƞ ẏǿŭř īƞşŧȧŀŀ.řḓƒ (%s) ḓǿḗş ƞǿŧ ḿȧŧƈħ ŧħḗ ŧẏƥḗ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ ǿƞ ȦḾǾ (%s)"
@@ -7633,6 +7499,11 @@ msgstr "Ẇħȧŧ ȧřḗ Ȧḓḓ-ǿƞş?"
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr "Ȧḓḓ-ǿƞş ȧřḗ ȧƥƥŀīƈȧŧīǿƞş ŧħȧŧ ŀḗŧ ẏǿŭ ƥḗřşǿƞȧŀīzḗ %(app)s ẇīŧħ ḗẋŧřȧ ƒŭƞƈŧīǿƞȧŀīŧẏ ǿř şŧẏŀḗ. Ŧřẏ ȧ ŧīḿḗ-şȧṽīƞɠ şīḓḗƀȧř, ȧ ẇḗȧŧħḗř ƞǿŧīƒīḗř, ǿř ȧ ŧħḗḿḗḓ ŀǿǿķ ŧǿ ḿȧķḗ %(app)s ẏǿŭř ǿẇƞ."
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+msgid "Learn More"
+msgstr "Ŀḗȧřƞ Ḿǿřḗ"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More About Add-ons"
@@ -9862,7 +9733,7 @@ msgid "by %(user)s <b>(Developer)</b> on %(date)s"
 msgstr "ƀẏ %(user)s <b>(Ḓḗṽḗŀǿƥḗř)</b> ǿƞ %(date)s"
 
 #. {0} is a version number (like 1.01)
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review.html
+#: src/olympia/reviews/templates/reviews/review.html
 msgid "This review is for a previous version of the add-on ({0})."
 msgstr "Ŧħīş řḗṽīḗẇ īş ƒǿř ȧ ƥřḗṽīǿŭş ṽḗřşīǿƞ ǿƒ ŧħḗ ȧḓḓ-ǿƞ ({0})."
 
@@ -9907,8 +9778,7 @@ msgstr "Ḓḗŀḗŧḗ řḗƥŀẏ"
 msgid "{0} :: Reviews"
 msgstr "{0} :: Řḗṽīḗẇş"
 
-#. {0} is an addon name.
-#: src/olympia/reviews/templates/reviews/mobile/add.html src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review_list.html
+#: src/olympia/reviews/templates/reviews/review_list.html
 msgid "Reviews for {0}"
 msgstr "Řḗṽīḗẇş ƒǿř {0}"
 
@@ -9944,7 +9814,7 @@ msgstr "<strong>Ȧṽḗřȧɠḗ</strong> (%(total)s)"
 msgid "Write a New Review"
 msgstr "Ẇřīŧḗ ȧ Ƞḗẇ Řḗṽīḗẇ"
 
-#: src/olympia/reviews/templates/reviews/mobile/reviews_link.html src/olympia/reviews/templates/reviews/review_list.html
+#: src/olympia/reviews/templates/reviews/review_list.html
 msgid "Be the first to write a review."
 msgstr "Ɓḗ ŧħḗ ƒīřşŧ ŧǿ ẇřīŧḗ ȧ řḗṽīḗẇ."
 
@@ -9963,40 +9833,6 @@ msgstr "Řȧŧḗḓ {0} ǿŭŧ ǿƒ 5 şŧȧřş"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Řȧŧḗḓ %(rating)s ǿŭŧ ǿƒ 5 şŧȧřş"
 
-#: src/olympia/reviews/templates/reviews/mobile/add_form.html
-msgid "Add a Review"
-msgstr "Ȧḓḓ ȧ Řḗṽīḗẇ"
-
-#: src/olympia/reviews/templates/reviews/mobile/add_form.html
-msgid "Log in to add a review"
-msgstr "Ŀǿɠ īƞ ŧǿ ȧḓḓ ȧ řḗṽīḗẇ"
-
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
-msgid "No ratings yet."
-msgstr "Ƞǿ řȧŧīƞɠş ẏḗŧ."
-
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
-msgid "Average from {0} Rating"
-msgid_plural "Average from {0} Ratings"
-msgstr[0] "Ȧṽḗřȧɠḗ ƒřǿḿ {0} Řȧŧīƞɠ"
-msgstr[1] "Ȧṽḗřȧɠḗ ƒřǿḿ {0} Řȧŧīƞɠş"
-
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
-#, python-format
-msgid "by %(user)s"
-msgstr "ƀẏ %(user)s"
-
-#: src/olympia/reviews/templates/reviews/mobile/review_list.html
-msgid "Read More&nbsp;&raquo;"
-msgstr "Řḗȧḓ Ḿǿřḗ&nbsp;&raquo;"
-
-#: src/olympia/reviews/templates/reviews/mobile/reviews_link.html
-#, python-format
-msgid "See All Reviews"
-msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] "Şḗḗ Ȧŀŀ Řḗṽīḗẇş"
-msgstr[1] "Şḗḗ Ȧŀŀ %(cnt)s Řḗṽīḗẇş"
-
 #: src/olympia/search/forms.py
 msgid "Most popular this week"
 msgstr "Ḿǿşŧ ƥǿƥŭŀȧř ŧħīş ẇḗḗķ"
@@ -10008,6 +9844,10 @@ msgstr "Ḿǿşŧ ƥǿƥŭŀȧř ŧħīş ḿǿƞŧħ"
 #: src/olympia/search/forms.py
 msgid "Most popular all time"
 msgstr "Ḿǿşŧ ƥǿƥŭŀȧř ȧŀŀ ŧīḿḗ"
+
+#: src/olympia/search/forms.py
+msgid "Highest Rated"
+msgstr "Ħīɠħḗşŧ Řȧŧḗḓ"
 
 #: src/olympia/search/forms.py
 msgid "search for add-ons"
@@ -10113,10 +9953,6 @@ msgstr "Ƈȧŧḗɠǿřẏ"
 #: src/olympia/search/templates/search/results.html
 msgid "Tag"
 msgstr "Ŧȧɠ"
-
-#: src/olympia/search/templates/search/mobile/results.html
-msgid "Search Results <i>({num})</i>"
-msgstr "Şḗȧřƈħ Řḗşŭŀŧş <i>({ƞŭḿ})</i>"
 
 #: src/olympia/signing/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
@@ -10516,7 +10352,7 @@ msgstr "Ŭşḗř Şīɠƞŭƥş ƀẏ Ḓȧŧḗ"
 msgid "Application versions by Date"
 msgstr "Ȧƥƥŀīƈȧŧīǿƞ ṽḗřşīǿƞş ƀẏ Ḓȧŧḗ"
 
-#: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Mozilla Add-ons"
 msgstr "Ḿǿzīŀŀȧ Ȧḓḓ-ǿƞş"
 
@@ -10539,10 +10375,6 @@ msgstr "Ƒǿǿŧḗř ŀǿɠǿ"
 #: src/olympia/templates/categories.html
 msgid "Choose a category"
 msgstr "Ƈħǿǿşḗ ȧ ƈȧŧḗɠǿřẏ"
-
-#: src/olympia/templates/categories.html
-msgid "Mobile Categories"
-msgstr "Ḿǿƀīŀḗ Ƈȧŧḗɠǿřīḗş"
 
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
@@ -10567,6 +10399,10 @@ msgstr "ɠḗŧ ŧǿ ķƞǿẇ <b>ȧḓḓ-ǿƞş</b>"
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Other languages"
 msgstr "Ǿŧħḗř ŀȧƞɠŭȧɠḗş"
+
+#: src/olympia/templates/header_title.html src/olympia/templates/impala/header_title.html
+msgid "Return to the {0} Add-ons homepage"
+msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ {0} Ȧḓḓ-ǿƞş ħǿḿḗƥȧɠḗ"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -10639,47 +10475,6 @@ msgstr "řḗɋŭīřḗḓ"
 #: src/olympia/templates/includes/forms.html
 msgid "Required fields"
 msgstr "Řḗɋŭīřḗḓ ƒīḗŀḓş"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Mobile Home"
-msgstr "Ḿǿƀīŀḗ Ħǿḿḗ"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "View full site"
-msgstr "Ṽīḗẇ ƒŭŀŀ şīŧḗ"
-
-#: src/olympia/templates/mobile/header.html
-msgid "Mozilla Firefox"
-msgstr "Ḿǿzīŀŀȧ Ƒīřḗƒǿẋ"
-
-#: src/olympia/templates/mobile/header.html
-msgid "Features"
-msgstr "Ƒḗȧŧŭřḗş"
-
-#: src/olympia/templates/mobile/header.html
-msgid "Desktop"
-msgstr "Ḓḗşķŧǿƥ"
-
-#: src/olympia/templates/mobile/header.html
-msgid "Add-Ons"
-msgstr "Ȧḓḓ-Ǿƞş"
-
-#: src/olympia/templates/mobile/header.html
-msgid "Visit Mozilla"
-msgstr "Ṽīşīŧ Ḿǿzīŀŀȧ"
-
-#. a link
-#: src/olympia/templates/mobile/header.html
-msgid "menu"
-msgstr "ḿḗƞŭ"
-
-#: src/olympia/templates/mobile/header_auth.html
-msgid "Register"
-msgstr "Řḗɠīşŧḗř"
-
-#: src/olympia/templates/mobile/header_auth.html
-msgid "Log in"
-msgstr "Ŀǿɠ īƞ"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
@@ -10806,10 +10601,6 @@ msgid "an add-on developer replies to my review"
 msgstr "ȧƞ ȧḓḓ-ǿƞ ḓḗṽḗŀǿƥḗř řḗƥŀīḗş ŧǿ ḿẏ řḗṽīḗẇ"
 
 #: src/olympia/users/notifications.py
-msgid "an app developer replies to my review"
-msgstr "ȧƞ ȧƥƥ ḓḗṽḗŀǿƥḗř řḗƥŀīḗş ŧǿ ḿẏ řḗṽīḗẇ"
-
-#: src/olympia/users/notifications.py
 msgid "new add-ons or Firefox features are available"
 msgstr "ƞḗẇ ȧḓḓ-ǿƞş ǿř Ƒīřḗƒǿẋ ƒḗȧŧŭřḗş ȧřḗ ȧṽȧīŀȧƀŀḗ"
 
@@ -10824,10 +10615,6 @@ msgstr "ḿẏ şḓķ-ƀȧşḗḓ ȧḓḓ-ǿƞ īş ŭƥɠřȧḓḗḓ şŭ�
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my add-on"
 msgstr "şǿḿḗǿƞḗ ẇřīŧḗş ȧ řḗṽīḗẇ ǿƒ ḿẏ ȧḓḓ-ǿƞ"
-
-#: src/olympia/users/notifications.py
-msgid "someone writes a review of my app"
-msgstr "şǿḿḗǿƞḗ ẇřīŧḗş ȧ řḗṽīḗẇ ǿƒ ḿẏ ȧƥƥ"
 
 #: src/olympia/users/notifications.py
 msgid "add-on contests or events are announced"
@@ -10848,22 +10635,6 @@ msgstr "ḿẏ ȧḓḓ-ǿƞ īş řḗṽīḗẇḗḓ ƀẏ ȧ řḗṽīḗ�
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Ḿǿzīŀŀȧ ƞḗḗḓş ŧǿ ƈǿƞŧȧƈŧ ḿḗ ȧƀǿŭŧ ḿẏ īƞḓīṽīḓŭȧŀ ȧḓḓ-ǿƞ"
-
-#: src/olympia/users/notifications.py
-msgid "my app is reviewed by an editor"
-msgstr "ḿẏ ȧƥƥ īş řḗṽīḗẇḗḓ ƀẏ ȧƞ ḗḓīŧǿř"
-
-#: src/olympia/users/notifications.py
-msgid "Mozilla needs to contact me about my individual app"
-msgstr "Ḿǿzīŀŀȧ ƞḗḗḓş ŧǿ ƈǿƞŧȧƈŧ ḿḗ ȧƀǿŭŧ ḿẏ īƞḓīṽīḓŭȧŀ ȧƥƥ"
-
-#: src/olympia/users/notifications.py
-msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
-msgstr "Ḿǿzīŀŀȧ ẇȧƞŧş ŧǿ ƈǿƞŧȧƈŧ ḿḗ ȧƀǿŭŧ řḗŀḗṽȧƞŧ Ȧƥƥ Ḓḗṽḗŀǿƥḗř ƞḗẇş ȧƞḓ şŭřṽḗẏş"
-
-#: src/olympia/users/notifications.py
-msgid "Mozilla wants to contact me about new regions added to the Marketplace"
-msgstr "Ḿǿzīŀŀȧ ẇȧƞŧş ŧǿ ƈǿƞŧȧƈŧ ḿḗ ȧƀǿŭŧ ƞḗẇ řḗɠīǿƞş ȧḓḓḗḓ ŧǿ ŧħḗ Ḿȧřķḗŧƥŀȧƈḗ"
 
 #: src/olympia/users/notifications.py
 msgid "User Notifications"
@@ -11055,11 +10826,11 @@ msgstr "ȧŀŀ"
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Ḿǿzīŀŀȧ Ȧḓḓ-ǿƞş ħȧş ŧřȧƞşīŧīǿƞḗḓ ŧǿ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş ƒǿř ŀǿɠīƞ. Ƈǿƞŧīƞŭḗ ŧǿ ƈǿḿƥŀḗŧḗ ŧħḗ şīḿƥŀḗ ŀǿɠīƞ ƥřǿƈḗşş."
 
-#: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
+#: src/olympia/users/templates/users/login.html
 msgid "User Login"
 msgstr "Ŭşḗř Ŀǿɠīƞ"
 
-#: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
+#: src/olympia/users/templates/users/login.html
 msgid "Log in with Firefox Accounts"
 msgstr "Ŀǿɠ īƞ ẇīŧħ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş"
 
@@ -11266,27 +11037,14 @@ msgid_plural "<b>{0}</b> versions"
 msgstr[0] "<b>{0}</b> ṽḗřşīǿƞ"
 msgstr[1] "<b>{0}</b> ṽḗřşīǿƞş"
 
-#: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
+#: src/olympia/versions/templates/versions/version_list.html
 msgid "Be careful with old versions!"
 msgstr "Ɓḗ ƈȧřḗƒŭŀ ẇīŧħ ǿŀḓ ṽḗřşīǿƞş!"
 
-#: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
+#: src/olympia/versions/templates/versions/version_list.html
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr "Ŧħḗşḗ ṽḗřşīǿƞş ȧřḗ ḓīşƥŀȧẏḗḓ ƒǿř řḗƒḗřḗƞƈḗ ȧƞḓ ŧḗşŧīƞɠ ƥŭřƥǿşḗş. Ẏǿŭ şħǿŭŀḓ ȧŀẇȧẏş ŭşḗ ŧħḗ <a href=\"%(url)s\">ŀȧŧḗşŧ ṽḗřşīǿƞ</a> ǿƒ ȧƞ ȧḓḓ-ǿƞ."
-
-#: src/olympia/versions/templates/versions/mobile/version.html
-msgid "Beta Version {0}"
-msgstr "Ɓḗŧȧ Ṽḗřşīǿƞ {0}"
-
-#: src/olympia/versions/templates/versions/mobile/version.html
-msgid "Works with:"
-msgstr "Ẇǿřķş ẇīŧħ:"
-
-#. {0} is an add-on name.
-#: src/olympia/versions/templates/versions/mobile/version_list.html
-msgid "Version History"
-msgstr "Ṽḗřşīǿƞ Ħīşŧǿřẏ"
 
 #: src/olympia/zadmin/forms.py
 msgid "Current Max. Version"

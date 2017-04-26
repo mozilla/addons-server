@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2016-11-23 15:22+0000\n"
 "Last-Translator: malditoastur <malditoastur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -892,7 +892,7 @@ msgstr "Baxar agora"
 msgid "Only available on Firefox Desktop"
 msgstr "Namái disponible pa Firefox d'escritoriu"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Perdón, precises tener un restolador basáu en Mozilla (como Firefox) pa instalar un complementu de gueta."
 
@@ -1183,55 +1183,3 @@ msgstr "Nun pudo completase la xera de validación o completóse con fallos"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Fallu internu del sirvidor"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Nun s'anovó pa {0} {1}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "Rique una versión más nueva de {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Ensin revisar"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Esperimental <span>(Deprendi más)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Nun disponible pa {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Esperimental"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "Los temes riquen d'una versión más nueva de {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "Los temes riquen {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Instalando..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Esti add-on revisólu Mozilla de mou preliminar."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Caltener"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "¡Tas probándo!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Amestóse a Firefox"

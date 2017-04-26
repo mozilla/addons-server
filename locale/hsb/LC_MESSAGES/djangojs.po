@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2016-10-25 17:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -906,7 +906,7 @@ msgstr "Nětko sćahnyć"
 msgid "Only available on Firefox Desktop"
 msgstr "Jenož za Firefox Desktop k dispoziciji"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Bohužel trjebaće wobhladowak Mozilla (na přikład Firefox), zo byšće pytanski tykač instalował."
 
@@ -1210,55 +1210,3 @@ msgstr "Přepruwowanje njeda so dokónčić abo je so ze zmylkami dokónčiło"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Nutřkowny serwerowy zmylk"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Za {0} {1} njeaktualizowany"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "Wužaduje sej nowšu wersiju {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Njepřepruwowany"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Eksperimentelny <span>(Dalše informacije)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Njeje za {0} k dispoziciji"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Eksperimentelny"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "Drasty sej nowšu wersiju {0} wužaduja"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "Drasty sej {0} wužaduja"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "Instaluje so..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Tutón přidatk je so nachwilu wot Mozilla přepruwował."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Wobchować"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Wupruwujeće jón!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "K Firefox přidaty"

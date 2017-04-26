@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-03-14 10:55+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -882,7 +882,7 @@ msgstr "立即下载"
 msgid "Only available on Firefox Desktop"
 msgstr "仅可在 Firefox 桌面版使用"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要一个基于 Mozilla 的浏览器（例如 Firefox）才能安装此搜索插件。"
 
@@ -1165,55 +1165,3 @@ msgstr "验证任务无法完成或者已完成但有错误"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "内部服务器错误"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "未为 {0} {1} 更新"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "需要较新版本的 {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "尚未审核"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "实验性<span>（详细了解）</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "无法用于 {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "实验性"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "主题需要 {0} 以上版本"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "主题需要 {0}"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "正在安装..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "此附加组件已通过 Mozilla 的初步审核。"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "保留它"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "正在尝试！"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "添加到 Firefox"

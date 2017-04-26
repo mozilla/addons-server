@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-03-27 06:56+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -885,7 +885,7 @@ msgstr "今すぐダウンロード"
 msgid "Only available on Firefox Desktop"
 msgstr "デスクトップ版 Firefox でのみ使用可能"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "申し訳ありませんが、検索プラグインをインストールするには (Firefox など) Mozilla ベースのブラウザーが必要です。"
 
@@ -1168,55 +1168,3 @@ msgstr "検証作業を完了できなかったか、エラーを出力して完
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "内部サーバーエラー"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "まだ {0} {1} には対応していません"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "{0} の新バージョンが必要です"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "未審査"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "実験的 <span>(詳細)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "{0} には対応していません"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "実験的"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "このテーマを使うには {0} の新バージョンが必要です"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "このテーマを使うには {0} が必要です"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "インストール中..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "このアドオンは Mozilla の事前審査を受けています。"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "適用"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "テーマをプレビューしています"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Firefox へ適用済み"

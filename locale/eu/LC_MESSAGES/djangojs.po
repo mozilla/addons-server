@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -892,7 +892,7 @@ msgstr "Deskargatu orain"
 msgid "Only available on Firefox Desktop"
 msgstr ""
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Mozillan oinarritutako nabigatzailea behar duzu (Firefox, adibidez) bilaketa-motorra instalatzeko."
 
@@ -1183,55 +1183,3 @@ msgstr "Ezin izan da balidazio-ataza burutu edo erroreekin burutu da"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Zerbitzariaren barne-errorea"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "Eguneratu gabe {0} {1}(e)rako"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "{0}(r)en bertsio berriagoa eskatzen du"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "Berrikusi gabea"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "Esperimentala <span>(argibide gehiago)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "Ez dago eskuragarri {0}(e)rako"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "Esperimentala"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "Gehigarri hau aurretik Mozilla berrikusi du."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "Mantendu"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "Saiatzen ari zara!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Firefoxera gehituta"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-02-25 23:56+0000\n"
 "Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -889,7 +889,7 @@ msgstr "এখন ডাউনলোড করুন"
 msgid "Only available on Firefox Desktop"
 msgstr ""
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
 
@@ -1179,55 +1179,3 @@ msgstr ""
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "পর্যালোচনা করা হয়নি"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "পরীক্ষামূলক"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "থিমটির জন্য {0} এর নতুন ভার্সন প্রয়োজন"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "{0} প্রয়োজন থিমের জন্য"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "ইন্সটল হচ্ছে..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "রাখো"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr ""
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "ফায়ারফক্স এ যোগকরুন"

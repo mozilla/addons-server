@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-12 15:17+0000\n"
+"POT-Creation-Date: 2017-04-26 13:36+0000\n"
 "PO-Revision-Date: 2017-03-09 03:27+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -887,7 +887,7 @@ msgstr "다운로드"
 msgid "Only available on Firefox Desktop"
 msgstr "Firefox 데스크톱에서만 이용 가능함"
 
-#: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "죄송합니다. 검색 플러그인을 설치하려면 Mozilla 기반 브라우저(Firefox 같은)가 필요합니다."
 
@@ -1171,55 +1171,3 @@ msgstr "검사 작업이 오류로 인해 완료되지 못했습니다"
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "내부 서버 오류"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Updated for {0} {1}"
-msgstr "{0} {1}용으로 아직 업데이트 되지 않음"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Requires Newer Version of {0}"
-msgstr "{0} 최신 버전 필요"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Unreviewed"
-msgstr "미심사"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental <span>(Learn More)</span>"
-msgstr "시험용 <span>(자세히 알아보기)</span>"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Not Available for {0}"
-msgstr "{0}용으로 사용 불가"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Experimental"
-msgstr "시험용"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require Newer Version of {0}"
-msgstr "새로운 버전의 {0}이 필요한 테마"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Themes Require {0}"
-msgstr "{0}이 필요한 테마"
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Installing..."
-msgstr "설치 중..."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr "이 부가 기능은 Mozilla의 예비 심사를 통과했습니다."
-
-#: static/js/zamboni/mobile/buttons.js
-msgid "Keep it"
-msgstr "받기"
-
-#: static/js/zamboni/mobile/general.js
-msgid "You're trying it on!"
-msgstr "시도중입니다!"
-
-#: static/js/zamboni/mobile/general.js
-msgid "Added to Firefox"
-msgstr "Firefox에 추가"
