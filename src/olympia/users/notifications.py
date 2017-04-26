@@ -1,6 +1,6 @@
+from collections import namedtuple
 from inspect import isclass
 
-from celery.datastructures import AttributeDict
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -24,12 +24,6 @@ class reply(_NOTIFICATION):
     label = _('an add-on developer replies to my review')
     mandatory = False
     default_checked = True
-
-
-class app_reply(reply):
-    app = True
-    short = 'app_reply'
-    label = _('an app developer replies to my review')
 
 
 class new_features(_NOTIFICATION):
@@ -66,12 +60,6 @@ class new_review(_NOTIFICATION):
     label = _("someone writes a review of my add-on")
     mandatory = False
     default_checked = True
-
-
-class app_new_review(new_review):
-    app = True
-    short = 'app_new_review'
-    label = _('someone writes a review of my app')
 
 
 class announcements(_NOTIFICATION):
@@ -119,63 +107,18 @@ class individual_contact(_NOTIFICATION):
     default_checked = True
 
 
-class app_reviewed(editor_reviewed):
-    app = True
-    # Note: This is super ambiguous language if we say "reviewer."
-    short = 'app_reviewed'
-    label = _('my app is reviewed by an editor')
-
-
-class app_individual_contact(individual_contact):
-    app = True
-    short = 'app_individual_contact'
-    label = _('Mozilla needs to contact me about my individual app')
-
-
-class app_surveys(_NOTIFICATION):
-    id = 13
-    group = 'dev'
-    short = 'app_surveys'
-    label = _('Mozilla wants to contact me about relevant App Developer news '
-              'and surveys')
-    mandatory = False
-    default_checked = False
-    app = True
-
-
-class app_regions(_NOTIFICATION):
-    id = 14
-    group = 'dev'
-    short = 'app_regions'
-    label = _('Mozilla wants to contact me about new regions added to the '
-              'Marketplace')
-    mandatory = False
-    default_checked = True
-    app = True
-
-
 NOTIFICATION_GROUPS = {'dev': _('Developer'),
                        'user': _('User Notifications')}
 
-APP_NOTIFICATIONS = [app_reply, app_new_review, app_reviewed,
-                     app_individual_contact, app_surveys, app_regions]
-APP_NOTIFICATIONS_BY_ID = dict((l.id, l) for l in APP_NOTIFICATIONS)
-APP_NOTIFICATIONS_DEFAULT = [l.id for l in APP_NOTIFICATIONS]
-APP_NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in APP_NOTIFICATIONS]
-APP_NOTIFICATIONS_CHOICES_NOT_DEV = [(l.id, l.label) for l in APP_NOTIFICATIONS
-                                     if l.group != 'dev']
-
 NOTIFICATIONS = [x for x in vars().values()
                  if isclass(x) and issubclass(x, _NOTIFICATION) and
-                 x != _NOTIFICATION and not getattr(x, 'app', False)]
+                 x != _NOTIFICATION]
 NOTIFICATIONS_BY_ID = dict((l.id, l) for l in NOTIFICATIONS)
 
-ALL_NOTIFICATIONS_BY_ID = dict((l.id, l) for l in
-                               NOTIFICATIONS + APP_NOTIFICATIONS)
-
-NOTIFICATIONS_BY_SHORT = dict((l.short, l) for l in
-                              NOTIFICATIONS + APP_NOTIFICATIONS)
-NOTIFICATION = AttributeDict((l.__name__, l) for l in NOTIFICATIONS)
+NOTIFICATIONS_BY_SHORT = dict((l.short, l) for l in NOTIFICATIONS)
+NOTIFICATION = namedtuple('NotificationTuple',
+                          [n.__name__ for n in NOTIFICATIONS]
+                          )(*[n for n in NOTIFICATIONS])
 
 NOTIFICATIONS_DEFAULT = [l.id for l in NOTIFICATIONS if l.default_checked]
 NOTIFICATIONS_CHOICES = [(l.id, l.label) for l in NOTIFICATIONS]
