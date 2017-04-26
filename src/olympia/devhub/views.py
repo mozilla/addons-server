@@ -13,7 +13,7 @@ from django.db import transaction
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.template import Context, loader
-from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
+from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
@@ -67,18 +67,18 @@ MDN_BASE = 'https://developer.mozilla.org/Add-ons'
 
 
 class AddonFilter(BaseFilter):
-    opts = (('name', _lazy(u'Name')),
-            ('updated', _lazy(u'Updated')),
-            ('created', _lazy(u'Created')),
-            ('popular', _lazy(u'Downloads')),
-            ('rating', _lazy(u'Rating')))
+    opts = (('name', _(u'Name')),
+            ('updated', _(u'Updated')),
+            ('created', _(u'Created')),
+            ('popular', _(u'Downloads')),
+            ('rating', _(u'Rating')))
 
 
 class ThemeFilter(BaseFilter):
-    opts = (('name', _lazy(u'Name')),
-            ('created', _lazy(u'Created')),
-            ('popular', _lazy(u'Downloads')),
-            ('rating', _lazy(u'Rating')))
+    opts = (('name', _(u'Name')),
+            ('created', _(u'Created')),
+            ('popular', _(u'Downloads')),
+            ('rating', _(u'Rating')))
 
 
 def addon_listing(request, default='name', theme=False):
@@ -180,7 +180,7 @@ def _get_addons(request, addons, addon_id, action):
 
     a = MenuItem()
     a.selected = (not addon_id)
-    (a.text, a.url) = (_('All My Add-ons'), reverse('devhub.feed_all'))
+    (a.text, a.url) = (ugettext('All My Add-ons'), reverse('devhub.feed_all'))
     if action:
         a.url += '?action=' + action
     items.append(a)
@@ -207,11 +207,11 @@ def _get_posts(limit=5):
 def _get_activities(request, action):
     url = request.get_full_path()
     choices = (None, 'updates', 'status', 'collections', 'reviews')
-    text = {None: _('All Activity'),
-            'updates': _('Add-on Updates'),
-            'status': _('Add-on Status'),
-            'collections': _('User Collections'),
-            'reviews': _('User Reviews'),
+    text = {None: ugettext('All Activity'),
+            'updates': ugettext('Add-on Updates'),
+            'status': ugettext('Add-on Status'),
+            'collections': ugettext('User Collections'),
+            'reviews': ugettext('User Reviews'),
             }
 
     items = []
@@ -319,14 +319,16 @@ def edit_theme(request, addon_id, addon, theme=False):
         if 'owner_submit' in request.POST:
             if owner_form.is_valid():
                 owner_form.save()
-                messages.success(request, _('Changes successfully saved.'))
+                messages.success(
+                    request, ugettext('Changes successfully saved.'))
                 return redirect('devhub.themes.edit', addon.slug)
         elif form.is_valid():
             form.save()
-            messages.success(request, _('Changes successfully saved.'))
+            messages.success(request, ugettext('Changes successfully saved.'))
             return redirect('devhub.themes.edit', addon.reload().slug)
         else:
-            messages.error(request, _('Please check the form for errors.'))
+            messages.error(
+                request, ugettext('Please check the form for errors.'))
 
     return render(request, 'devhub/personas/edit.html', {
         'addon': addon, 'persona': addon.persona, 'form': form,
@@ -338,7 +340,8 @@ def edit_theme(request, addon_id, addon, theme=False):
 def delete(request, addon_id, addon, theme=False):
     # Database deletes only allowed for free or incomplete addons.
     if not addon.can_be_deleted():
-        msg = _('Add-on cannot be deleted. Disable this add-on instead.')
+        msg = ugettext(
+            'Add-on cannot be deleted. Disable this add-on instead.')
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 
@@ -348,18 +351,19 @@ def delete(request, addon_id, addon, theme=False):
         addon.delete(msg='Removed via devhub', reason=reason)
         messages.success(
             request,
-            _('Theme deleted.') if theme else _('Add-on deleted.'))
+            ugettext('Theme deleted.')
+            if theme else ugettext('Add-on deleted.'))
         return redirect('devhub.%s' % ('themes' if theme else 'addons'))
     else:
         if theme:
             messages.error(
                 request,
-                _('URL name was incorrect. Theme was not deleted.'))
+                ugettext('URL name was incorrect. Theme was not deleted.'))
             return redirect(addon.get_dev_url())
         else:
             messages.error(
                 request,
-                _('URL name was incorrect. Add-on was not deleted.'))
+                ugettext('URL name was incorrect. Add-on was not deleted.'))
             return redirect(addon.get_dev_url('versions'))
 
 
@@ -447,14 +451,15 @@ def ownership(request, addon_id, addon):
                 author.addon = addon
                 mail_user_changes(
                     author=author,
-                    title=_('An author has been added to your add-on'),
+                    title=ugettext('An author has been added to your add-on'),
                     template_part='author_added',
                     recipients=authors_emails)
             elif author.role != author._original_role:
                 action = amo.LOG.CHANGE_USER_WITH_ROLE
+                title = ugettext('An author has a role changed on your add-on')
                 mail_user_changes(
                     author=author,
-                    title=_('An author has a role changed on your add-on'),
+                    title=title,
                     template_part='author_changed',
                     recipients=authors_emails)
 
@@ -475,7 +480,7 @@ def ownership(request, addon_id, addon):
             authors_emails.add(author.user.email)
             mail_user_changes(
                 author=author,
-                title=_('An author has been removed from your add-on'),
+                title=ugettext('An author has been removed from your add-on'),
                 template_part='author_removed',
                 recipients=authors_emails)
 
@@ -483,7 +488,7 @@ def ownership(request, addon_id, addon):
             license_form.save()
         if policy_form in fs:
             policy_form.save()
-        messages.success(request, _('Changes successfully saved.'))
+        messages.success(request, ugettext('Changes successfully saved.'))
 
         return redirect(addon.get_dev_url('owner'))
 
@@ -512,13 +517,15 @@ def payments(request, addon_id, addon):
                     profile_form.save()
             if valid:
                 addon.save()
-                messages.success(request, _('Changes successfully saved.'))
+                messages.success(
+                    request, ugettext('Changes successfully saved.'))
                 ActivityLog.create(amo.LOG.EDIT_CONTRIBUTIONS, addon)
 
                 return redirect(addon.get_dev_url('payments'))
     errors = charity_form.errors or contrib_form.errors or profile_form.errors
     if errors:
-        messages.error(request, _('There were errors in your submission.'))
+        messages.error(
+            request, ugettext('There were errors in your submission.'))
 
     return render(request, 'devhub/payments/payments.html',
                   dict(addon=addon, errors=errors, charity_form=charity_form,
@@ -563,7 +570,7 @@ def profile(request, addon_id, addon):
     if request.method == 'POST' and profile_form.is_valid():
         profile_form.save()
         ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
-        messages.success(request, _('Changes successfully saved.'))
+        messages.success(request, ugettext('Changes successfully saved.'))
         return redirect(addon.get_dev_url('profile'))
 
     return render(request, 'devhub/addons/profile.html',
@@ -582,7 +589,7 @@ def compat_application_versions(request):
 @login_required
 def validate_addon(request):
     return render(request, 'devhub/validate_addon.html',
-                  {'title': _('Validate Add-on'),
+                  {'title': ugettext('Validate Add-on'),
                    'new_addon_form': forms.StandaloneValidationForm(
                        None, None, request=request)})
 
@@ -592,7 +599,7 @@ def check_addon_compatibility(request):
     form = CheckCompatibilityForm()
     return render(request, 'devhub/validate_addon.html',
                   {'appversion_form': form,
-                   'title': _('Check Add-on Compatibility'),
+                   'title': ugettext('Check Add-on Compatibility'),
                    'new_addon_form': forms.StandaloneValidationForm(
                        None, None, request=request)})
 
@@ -767,12 +774,12 @@ def json_upload_detail(request, upload, addon_slug=None):
             pkg = parse_addon(upload, addon=addon)
             if not acl.submission_allowed(request.user, pkg):
                 raise django_forms.ValidationError(
-                    _(u'You cannot submit this type of add-on'))
+                    ugettext(u'You cannot submit this type of add-on'))
             if not addon and not system_addon_submission_allowed(
                     request.user, pkg):
                 raise django_forms.ValidationError(
-                    _(u'You cannot submit an add-on with a guid ending '
-                      u'"@mozilla.org"'))
+                    ugettext(u'You cannot submit an add-on with a guid '
+                             u'ending "@mozilla.org"'))
         except django_forms.ValidationError, exc:
             errors_before = result['validation'].get('errors', 0)
             # FIXME: This doesn't guard against client-side
@@ -1017,15 +1024,15 @@ def ajax_upload_image(request, upload_type, addon_id=None):
         if (not check.is_image() or
                 upload_preview.content_type not in amo.IMG_TYPES):
             if is_icon:
-                errors.append(_('Icons must be either PNG or JPG.'))
+                errors.append(ugettext('Icons must be either PNG or JPG.'))
             else:
-                errors.append(_('Images must be either PNG or JPG.'))
+                errors.append(ugettext('Images must be either PNG or JPG.'))
 
         if check.is_animated():
             if is_icon:
-                errors.append(_('Icons cannot be animated.'))
+                errors.append(ugettext('Icons cannot be animated.'))
             else:
-                errors.append(_('Images cannot be animated.'))
+                errors.append(ugettext('Images cannot be animated.'))
 
         max_size = None
         if is_icon:
@@ -1035,11 +1042,13 @@ def ajax_upload_image(request, upload_type, addon_id=None):
 
         if max_size and upload_preview.size > max_size:
             if is_icon:
-                errors.append(_('Please use images smaller than %dMB.') % (
-                    max_size / 1024 / 1024 - 1))
+                errors.append(
+                    ugettext('Please use images smaller than %dMB.')
+                    % (max_size / 1024 / 1024 - 1))
             if is_persona:
-                errors.append(_('Images cannot be larger than %dKB.') % (
-                    max_size / 1024))
+                errors.append(
+                    ugettext('Images cannot be larger than %dKB.')
+                    % (max_size / 1024))
 
         if check.is_image() and is_persona:
             persona, img_type = upload_type.split('_')  # 'header' or 'footer'
@@ -1048,14 +1057,14 @@ def ajax_upload_image(request, upload_type, addon_id=None):
                 actual_size = Image.open(fp).size
             if actual_size != expected_size:
                 # L10n: {0} is an image width (in pixels), {1} is a height.
-                errors.append(_('Image must be exactly {0} pixels wide '
-                                'and {1} pixels tall.')
+                errors.append(ugettext('Image must be exactly {0} pixels '
+                                       'wide and {1} pixels tall.')
                               .format(expected_size[0], expected_size[1]))
         if errors and upload_type == 'preview' and os.path.exists(loc):
             # Delete the temporary preview file in case of error.
             os.unlink(loc)
     else:
-        errors.append(_('There was an error uploading your preview.'))
+        errors.append(ugettext('There was an error uploading your preview.'))
 
     if errors:
         upload_hash = ''
@@ -1130,7 +1139,7 @@ def version_edit(request, addon_id, addon, version_id):
                 ActivityLog.create(amo.LOG.SOURCE_CODE_UPLOADED,
                                    addon, version, request.user)
 
-        messages.success(request, _('Changes successfully saved.'))
+        messages.success(request, ugettext('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
 
     data.update(addon=addon, version=version,
@@ -1153,11 +1162,15 @@ def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
     if 'disable_version' in request.POST:
-        messages.success(request, _('Version %s disabled.') % version.version)
+        messages.success(
+            request,
+            ugettext('Version %s disabled.') % version.version)
         version.is_user_disabled = True
         version.addon.update_status()
     else:
-        messages.success(request, _('Version %s deleted.') % version.version)
+        messages.success(
+            request,
+            ugettext('Version %s deleted.') % version.version)
         version.delete()
     return redirect(addon.get_dev_url('versions'))
 
@@ -1168,7 +1181,9 @@ def version_delete(request, addon_id, addon):
 def version_reenable(request, addon_id, addon):
     version_id = request.POST.get('version_id')
     version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
-    messages.success(request, _('Version %s re-enabled.') % version.version)
+    messages.success(
+        request,
+        ugettext('Version %s re-enabled.') % version.version)
     version.is_user_disabled = False
     version.addon.update_status()
     return redirect(addon.get_dev_url('versions'))
@@ -1177,11 +1192,13 @@ def version_reenable(request, addon_id, addon):
 def check_validation_override(request, form, addon, version):
     if version and form.cleaned_data.get('admin_override_validation'):
         helper = ReviewHelper(request=request, addon=addon, version=version)
-        helper.set_data(
-            dict(operating_systems='', applications='',
-                 comments=_(u'This upload has failed validation, and may '
-                            u'lack complete validation results. Please '
-                            u'take due care when reviewing it.')))
+        helper.set_data({
+            'operating_systems': '',
+            'applications': '',
+            'comments': ugettext(
+                u'This upload has failed validation, and may '
+                u'lack complete validation results. Please '
+                u'take due care when reviewing it.')})
         helper.actions['super']['method']()
 
 
@@ -1577,7 +1594,9 @@ def submit_theme(request):
         else:
             # Stored unsaved data in request.session since it gets lost on
             # second invalid POST.
-            messages.error(request, _('Please check the form for errors.'))
+            messages.error(
+                request,
+                ugettext('Please check the form for errors.'))
             request.session['unsaved_data'] = data['unsaved_data']
 
     return render(request, 'devhub/personas/submit.html', dict(form=form))
@@ -1616,7 +1635,7 @@ def request_review(request, addon_id, addon):
         latest_version.update(nomination=None)
     if addon.has_complete_metadata():
         addon.update(status=amo.STATUS_NOMINATED)
-        messages.success(request, _('Review requested.'))
+        messages.success(request, ugettext('Review requested.'))
     else:
         messages.success(request, _(
             'You must provide further details to proceed.'))
@@ -1715,12 +1734,13 @@ def api_key(request):
         log.info('revoking JWT key for user: {}, {}'
                  .format(request.user.id, credentials))
         send_key_revoked_email(request.user.email, credentials.key)
-        msg = _('Your old credentials were revoked and are no longer valid.')
+        msg = ugettext(
+            'Your old credentials were revoked and are no longer valid.')
         messages.success(request, msg)
         return redirect(reverse('devhub.api_key'))
 
     return render(request, 'devhub/api/key.html',
-                  {'title': _('Manage API Keys'),
+                  {'title': ugettext('Manage API Keys'),
                    'credentials': credentials})
 
 
@@ -1728,7 +1748,7 @@ def send_key_change_email(to_email, key):
     template = loader.get_template('devhub/email/new-key-email.ltxt')
     url = absolutify(reverse('devhub.api_key'))
     send_mail(
-        _('New API key created'),
+        ugettext('New API key created'),
         template.render(Context({'key': key, 'url': url})),
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],
@@ -1739,7 +1759,7 @@ def send_key_revoked_email(to_email, key):
     template = loader.get_template('devhub/email/revoked-key-email.ltxt')
     url = absolutify(reverse('devhub.api_key'))
     send_mail(
-        _('API key revoked'),
+        ugettext('API key revoked'),
         template.render(Context({'key': key, 'url': url})),
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],

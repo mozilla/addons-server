@@ -7,7 +7,7 @@ from django.db import models
 from django.db.models import Sum
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
-from django.utils.translation import ugettext, ugettext_lazy as _lazy
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
 from olympia import amo
@@ -25,6 +25,16 @@ from olympia.versions.models import Version, version_uploaded
 
 
 user_log = olympia.core.logger.getLogger('z.users')
+
+VIEW_QUEUE_FLAGS = (
+    ('admin_review', 'admin-review', _('Admin Review')),
+    ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
+    ('requires_restart', 'requires_restart', _('Requires Restart')),
+    ('has_info_request', 'info', _('More Information Requested')),
+    ('has_editor_comment', 'editor', _('Contains Reviewer Comment')),
+    ('sources_provided', 'sources-provided', _('Sources provided')),
+    ('is_webextension', 'webextension', _('WebExtension')),
+)
 
 
 def get_reviewing_cache_key(addon_id):
@@ -105,19 +115,7 @@ class EventLog(models.Model):
 def get_flags(record):
     """Return a list of tuples (indicating which flags should be displayed for
     a particular add-on."""
-    props = (
-        ('admin_review', 'admin-review', _lazy('Admin Review')),
-        ('is_jetpack', 'jetpack', _lazy('Jetpack Add-on')),
-        ('requires_restart', 'requires_restart',
-         _lazy('Requires Restart')),
-        ('has_info_request', 'info', _lazy('More Information Requested')),
-        ('has_editor_comment', 'editor', _lazy('Contains Reviewer Comment')),
-        ('sources_provided', 'sources-provided',
-         _lazy('Sources provided')),
-        ('is_webextension', 'webextension', _lazy('WebExtension')),
-    )
-
-    return [(cls, title) for (prop, cls, title) in props
+    return [(cls, title) for (prop, cls, title) in VIEW_QUEUE_FLAGS
             if getattr(record, prop)]
 
 

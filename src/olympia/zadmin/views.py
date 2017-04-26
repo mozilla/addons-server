@@ -11,7 +11,7 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _
 from django.utils.html import format_html
 from django.views import debug
 from django.views.decorators.cache import never_cache
@@ -242,10 +242,10 @@ def email_preview_csv(request, topic):
 
 
 class BulkValidationResultTable(ItemStateTable, tables.Table):
-    message_id = tables.Column(verbose_name=_lazy('Message ID'))
-    message = tables.Column(verbose_name=_lazy('Message'))
-    compat_type = tables.Column(verbose_name=_lazy('Compat Type'))
-    addons_affected = tables.Column(verbose_name=_lazy('Addons Affected'))
+    message_id = tables.Column(verbose_name=_('Message ID'))
+    message = tables.Column(verbose_name=_('Message'))
+    compat_type = tables.Column(verbose_name=_('Compat Type'))
+    addons_affected = tables.Column(verbose_name=_('Addons Affected'))
 
     def render_message_id(self, record):
         detail_url = reverse(
@@ -256,9 +256,9 @@ class BulkValidationResultTable(ItemStateTable, tables.Table):
 
 
 class BulkValidationAffectedAddonsTable(ItemStateTable, tables.Table):
-    addon = tables.Column(verbose_name=_lazy('Addon'))
+    addon = tables.Column(verbose_name=_('Addon'))
     validation_link = tables.Column(
-        verbose_name=_lazy('Validation Result'),
+        verbose_name=_('Validation Result'),
         empty_values=())
 
     def __init__(self, *args, **kwargs):

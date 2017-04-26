@@ -2,7 +2,7 @@ import json
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from rest_framework import status
 from rest_framework.decorators import (api_view, authentication_classes,
@@ -63,8 +63,8 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
         latest_version = version.addon.find_latest_version(
             channel=version.channel, exclude=(amo.STATUS_BETA,))
         if version != latest_version:
-            raise ParseError(
-                _('Only latest versions of addons can have notes added.'))
+            raise ParseError(ugettext(
+                'Only latest versions of addons can have notes added.'))
         activity_object = log_and_notify(
             action_from_user(request.user, version), request.data['comments'],
             request.user, version)

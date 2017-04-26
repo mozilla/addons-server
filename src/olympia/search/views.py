@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.utils import translation
 from django.utils.encoding import force_bytes
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 from django.views.decorators.vary import vary_on_headers
 
 import olympia.core.logger
@@ -258,7 +258,7 @@ def _build_suggestions(request, cat, suggester):
                 if q_ in name_ or word_matches:
                     results.append({
                         'id': a.id,
-                        'name': _(u'{0} Add-ons').format(a.pretty),
+                        'name': ugettext(u'{0} Add-ons').format(a.pretty),
                         'url': locale_url(a.short),
                         'cls': 'app ' + a.short
                     })
@@ -518,7 +518,7 @@ def category_sidebar(request, form_data, aggregations):
 
     rv = []
     cat_params = dict(cat=None)
-    all_label = _(u'All Add-ons')
+    all_label = ugettext(u'All Add-ons')
 
     rv = [FacetLink(all_label, dict(atype=None, cat=None), not qatype)]
 
@@ -547,7 +547,8 @@ def version_sidebar(request, form_data, aggregations):
     exclude_versions = getattr(request.APP, 'exclude_versions', [])
     # L10n: {0} is an application, such as Firefox. This means "any version of
     # Firefox."
-    rv = [FacetLink(_(u'Any {0}').format(app), dict(appver='any'), not appver)]
+    rv = [FacetLink(
+        ugettext(u'Any {0}').format(app), {'appver': 'any'}, not appver)]
     vs = [dict_from_int(f['key']) for f in aggregations['appversions']]
 
     # Insert the filtered app version even if it's not a facet.
@@ -582,7 +583,7 @@ def platform_sidebar(request, form_data):
         app_platforms.append(selected)
 
     # L10n: "All Systems" means show everything regardless of platform.
-    rv = [FacetLink(_(u'All Systems'), dict(platform=ALL.shortname),
+    rv = [FacetLink(ugettext(u'All Systems'), dict(platform=ALL.shortname),
                     selected == ALL)]
     for platform in app_platforms:
         rv.append(FacetLink(platform.name, dict(platform=platform.shortname),
@@ -593,7 +594,7 @@ def platform_sidebar(request, form_data):
 def tag_sidebar(request, form_data, aggregations):
     qtag = form_data.get('tag')
     tags = [facet['key'] for facet in aggregations['tags']]
-    rv = [FacetLink(_(u'All Tags'), dict(tag=None), not qtag)]
+    rv = [FacetLink(ugettext(u'All Tags'), dict(tag=None), not qtag)]
     rv += [FacetLink(tag, dict(tag=tag), tag == qtag) for tag in tags]
     if qtag and qtag not in tags:
         rv += [FacetLink(qtag, dict(tag=qtag), True)]

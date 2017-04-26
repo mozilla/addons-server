@@ -2,7 +2,7 @@ import functools
 
 from django import forms
 from django.conf import settings
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -32,9 +32,10 @@ def handle_read_only_mode(fn):
     def inner(*args, **kwargs):
         if settings.READ_ONLY:
             return Response(
-                {'error': _("Some features are temporarily disabled while we "
-                            "perform website maintenance. We'll be back to "
-                            "full capacity shortly.")},
+                {'error': ugettext(
+                    'Some features are temporarily disabled while we '
+                    'perform website maintenance. We\'ll be back to '
+                    'full capacity shortly.')},
                 status=503)
         else:
             return fn(*args, **kwargs)
@@ -58,9 +59,11 @@ def with_addon(allow_missing=False):
                 if allow_missing:
                     addon = None
                 else:
-                    return Response({'error': _('Could not find add-on with '
-                                                'id "{}".').format(guid)},
-                                    status=status.HTTP_404_NOT_FOUND)
+                    msg = ugettext(
+                        'Could not find add-on with id "{}".').format(guid)
+                    return Response(
+                        {'error': msg},
+                        status=status.HTTP_404_NOT_FOUND)
             # Call the view if there is no add-on, the current user is an
             # auther of the add-on or the current user is an admin and the
             # request is a GET.
@@ -75,7 +78,7 @@ def with_addon(allow_missing=False):
                 return fn(view, request, addon=addon, **kwargs)
             else:
                 return Response(
-                    {'error': _('You do not own this addon.')},
+                    {'error': ugettext('You do not own this addon.')},
                     status=status.HTTP_403_FORBIDDEN)
         return inner
     return wrapper
@@ -121,40 +124,40 @@ class VersionView(APIView):
             filedata = request.FILES['upload']
         else:
             raise forms.ValidationError(
-                _(u'Missing "upload" key in multipart file data.'),
+                ugettext(u'Missing "upload" key in multipart file data.'),
                 status.HTTP_400_BAD_REQUEST)
 
         # Parse the file to get and validate package data with the addon.
         pkg = parse_addon(filedata, addon)
         if not acl.submission_allowed(request.user, pkg):
             raise forms.ValidationError(
-                _(u'You cannot submit this type of add-on'),
+                ugettext(u'You cannot submit this type of add-on'),
                 status.HTTP_400_BAD_REQUEST)
 
         if not addon and not system_addon_submission_allowed(
                 request.user, pkg):
             raise forms.ValidationError(
-                _(u'You cannot submit an add-on with a guid ending '
-                  u'"@mozilla.org"'),
+                ugettext(u'You cannot submit an add-on with a guid ending '
+                         u'"@mozilla.org"'),
                 status.HTTP_400_BAD_REQUEST)
 
         if addon is not None and addon.status == amo.STATUS_DISABLED:
-            raise forms.ValidationError(
-                _('You cannot add versions to an addon that has status: %s.' %
-                  amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED]),
-                status.HTTP_400_BAD_REQUEST)
+            msg = ugettext(
+                'You cannot add versions to an addon that has status: %s.'
+                % amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED])
+            raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
 
         version_string = version_string or pkg['version']
 
         if version_string and pkg['version'] != version_string:
             raise forms.ValidationError(
-                _('Version does not match the manifest file.'),
+                ugettext('Version does not match the manifest file.'),
                 status.HTTP_400_BAD_REQUEST)
 
         if (addon is not None and
                 addon.versions.filter(version=version_string).exists()):
             raise forms.ValidationError(
-                _('Version already exists.'),
+                ugettext('Version already exists.'),
                 status.HTTP_409_CONFLICT)
 
         package_guid = pkg.get('guid', None)
@@ -165,7 +168,7 @@ class VersionView(APIView):
 
         if dont_allow_no_guid:
             raise forms.ValidationError(
-                _('Only WebExtensions are allowed to omit the GUID'),
+                ugettext('Only WebExtensions are allowed to omit the GUID'),
                 status.HTTP_400_BAD_REQUEST)
 
         if guid is not None and not addon and not package_guid:
@@ -174,7 +177,8 @@ class VersionView(APIView):
             # first, validate it properly.
             if not amo.ADDON_GUID_PATTERN.match(guid):
                 raise forms.ValidationError(
-                    _('Invalid GUID in URL'), status.HTTP_400_BAD_REQUEST)
+                    ugettext('Invalid GUID in URL'),
+                    status.HTTP_400_BAD_REQUEST)
             pkg['guid'] = guid
 
         # channel will be ignored for new addons.
@@ -199,9 +203,9 @@ class VersionView(APIView):
             if not addon.has_complete_metadata(
                     has_listed_versions=will_have_listed):
                 raise forms.ValidationError(
-                    _('You cannot add a listed version to this addon '
-                      'via the API due to missing metadata. '
-                      'Please submit via the website'),
+                    ugettext('You cannot add a listed version to this addon '
+                             'via the API due to missing metadata. '
+                             'Please submit via the website'),
                     status.HTTP_400_BAD_REQUEST)
 
         file_upload = handle_upload(
@@ -229,9 +233,8 @@ class VersionView(APIView):
                              addon=addon, version=version_string, uuid=uuid,
                              file_upload=file_upload))
         except FileUpload.DoesNotExist:
-            return Response(
-                {'error': _('No uploaded file for that addon and version.')},
-                status=status.HTTP_404_NOT_FOUND)
+            msg = ugettext('No uploaded file for that addon and version.')
+            return Response({'error': msg}, status=status.HTTP_404_NOT_FOUND)
 
         try:
             version = addon.versions.filter(version=version_string).latest()

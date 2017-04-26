@@ -12,7 +12,7 @@ from django.core.cache import cache
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.utils.decorators import method_decorator
-from django.utils.translation import ugettext as _, ugettext_lazy, get_language
+from django.utils.translation import ugettext, ugettext_lazy as _, get_language
 from django.utils.encoding import force_bytes
 
 import jingo
@@ -36,9 +36,9 @@ from olympia.versions.compare import version_int
 
 
 ERROR = 'error'
-OUT_OF_DATE = ugettext_lazy(
-    u"The API version, {0:.1f}, you are using is not valid. "
-    u"Please upgrade to the current version {1:.1f} API.")
+OUT_OF_DATE = _(
+    u'The API version, {0:.1f}, you are using is not valid. '
+    u'Please upgrade to the current version {1:.1f} API.')
 
 xml_env = jingo.get_env().overlay()
 old_finalize = xml_env.finalize
@@ -255,7 +255,7 @@ class APIView(object):
                                 content_type=self.content_type)
 
     def render_json(self, context):
-        return json.dumps({'msg': _('Not implemented yet.')})
+        return json.dumps({'msg': ugettext('Not implemented yet.')})
 
 
 class AddonDetailView(APIView):

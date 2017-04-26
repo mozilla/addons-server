@@ -6,7 +6,7 @@ from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
@@ -419,7 +419,7 @@ def contribute(request, addon):
     else:
         name, paypal_id = addon.name, addon.paypal_id
     # l10n: {0} is the addon name
-    contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
+    contrib_for = ugettext(u'Contribution for {0}').format(jinja2.escape(name))
 
     paykey, error, status = '', '', ''
     try:
@@ -505,7 +505,7 @@ def report_abuse(request, addon):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
         send_abuse_report(request, addon, form.cleaned_data['text'])
-        messages.success(request, _('Abuse reported.'))
+        messages.success(request, ugettext('Abuse reported.'))
         return http.HttpResponseRedirect(addon.get_url_path())
     else:
         return render(request, 'addons/report_abuse_full.html',

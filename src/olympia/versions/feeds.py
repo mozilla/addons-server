@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import DefaultFeed
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 from jingo.helpers import datetime
 
 from olympia import amo
@@ -58,7 +58,7 @@ class VersionsRss(NonAtomicFeed):
 
     def title(self, addon):
         """Title for the feed"""
-        return _(u'%s Version History' % addon.name)
+        return ugettext(u'%s Version History' % addon.name)
 
     def link(self, addon):
         """Link for the feed"""
@@ -66,7 +66,7 @@ class VersionsRss(NonAtomicFeed):
 
     def description(self, addon):
         """Description for the feed"""
-        return _('Version History with Changelogs')
+        return ugettext('Version History with Changelogs')
 
     def items(self, obj):
         """Return the Versions for this Addon to be output as RSS <item>'s"""

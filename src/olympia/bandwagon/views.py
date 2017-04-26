@@ -10,7 +10,7 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_protect
-from django.utils.translation import ugettext_lazy as _lazy, ugettext as _
+from django.utils.translation import ugettext_lazy as _lazy, ugettext
 
 import caching.base as caching
 from django_statsd.clients import statsd
@@ -323,15 +323,15 @@ def initial_data_from_request(request):
 
 def collection_message(request, collection, option):
     if option == 'add':
-        title = _('Collection created!')
-        msg = _(
+        title = ugettext('Collection created!')
+        msg = ugettext(
             'Your new collection is shown below. You can '
             '<a href="%(url)s">edit additional settings</a> if you\'d '
             'like.'
         ) % {'url': collection.edit_url()}
     elif option == 'update':
-        title = _('Collection updated!')
-        msg = _(
+        title = ugettext('Collection updated!')
+        msg = ugettext(
             '<a href="%(url)s">View your collection</a> to see the changes.'
         ) % {'url': collection.get_url_path()}
     else:
@@ -594,7 +594,7 @@ def delete_icon(request, collection, username, slug):
     if request.is_ajax():
         return {'icon': collection.icon_url}
     else:
-        messages.success(request, _('Icon Deleted'))
+        messages.success(request, ugettext('Icon Deleted'))
         return http.HttpResponseRedirect(collection.edit_url())
 
 

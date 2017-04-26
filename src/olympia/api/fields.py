@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.utils.translation import get_language, ugettext_lazy as _lazy
+from django.utils.translation import get_language, ugettext_lazy as _
 from django.core.exceptions import ValidationError
 
 from rest_framework import fields
@@ -62,9 +62,9 @@ class TranslationSerializerField(fields.Field):
       `field_name` on `obj`, with languages as the keys.
     """
     default_error_messages = {
-        'min_length': _lazy(u'The field must have a length of at least {num} '
-                            'characters.'),
-        'unknown_locale': _lazy(u'The language code {lang_code} is invalid.')
+        'min_length': _(u'The field must have a length of at least {num} '
+                        u'characters.'),
+        'unknown_locale': _(u'The language code {lang_code} is invalid.')
     }
 
     def __init__(self, *args, **kwargs):

@@ -1,7 +1,7 @@
 import urllib
 
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia.amo import helpers
 from olympia.amo.feeds import NonAtomicFeed
@@ -20,7 +20,7 @@ class ReviewsRss(NonAtomicFeed):
 
     def title(self, addon):
         """Title for the feed"""
-        return _(u'Reviews for %s') % addon.name
+        return ugettext(u'Reviews for %s') % addon.name
 
     def link(self, addon):
         """Link for the feed"""
@@ -28,7 +28,7 @@ class ReviewsRss(NonAtomicFeed):
 
     def description(self, addon):
         """Description for the feed"""
-        return _('Review History for this Addon')
+        return ugettext('Review History for this Addon')
 
     def items(self, addon):
         """Return the Reviews for this Addon to be output as RSS <item>'s"""
@@ -47,7 +47,7 @@ class ReviewsRss(NonAtomicFeed):
         tag_line = rating = ''
         if getattr(review, 'rating', None):
             # L10n: This describes the number of stars given out of 5
-            rating = _('Rated %d out of 5 stars') % review.rating
+            rating = ugettext('Rated %d out of 5 stars') % review.rating
         if getattr(review, 'title', None):
             tag_line = review.title
         divider = ' : ' if rating and tag_line else ''

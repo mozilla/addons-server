@@ -11,7 +11,7 @@ from django.core import validators
 from django.db import models
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 from django.utils.encoding import force_text
 from django.utils.functional import lazy
 
@@ -71,7 +71,7 @@ class UserEmailField(forms.EmailField):
         try:
             return UserProfile.objects.get(email=value)
         except UserProfile.DoesNotExist:
-            raise forms.ValidationError(_('No user with that email.'))
+            raise forms.ValidationError(ugettext('No user with that email.'))
 
     def widget_attrs(self, widget):
         lazy_reverse = lazy(reverse, str)
@@ -286,7 +286,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         elif self.has_anonymous_username():
             # L10n: {id} will be something like "13ad6a", just a random number
             # to differentiate this user from other anonymous users.
-            return _('Anonymous user {id}').format(
+            return ugettext('Anonymous user {id}').format(
                 id=self._anonymous_username_id())
         else:
             return force_text(self.username)
@@ -365,13 +365,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.special_collection(
             amo.COLLECTION_MOBILE,
             defaults={'slug': 'mobile', 'listed': False,
-                      'name': _('My Mobile Add-ons')})
+                      'name': ugettext('My Mobile Add-ons')})
 
     def favorites_collection(self):
         return self.special_collection(
             amo.COLLECTION_FAVORITES,
             defaults={'slug': 'favorites', 'listed': False,
-                      'name': _('My Favorite Add-ons')})
+                      'name': ugettext('My Favorite Add-ons')})
 
     def special_collection(self, type_, defaults):
         from olympia.bandwagon.models import Collection

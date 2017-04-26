@@ -22,7 +22,7 @@ from django.conf import settings
 from django.core.files.storage import (
     default_storage as storage, File as DjangoFile)
 from django.utils.jslex import JsLexer
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 import flufl.lock
 import rdflib
@@ -334,7 +334,7 @@ class ManifestJSONExtractor(object):
 
         if self.guid is None and doesnt_support_no_id:
             raise forms.ValidationError(
-                _('GUID is required for Firefox 47 and below.')
+                ugettext('GUID is required for Firefox 47 and below.')
             )
 
         couldnt_find_version = False
@@ -372,7 +372,7 @@ class ManifestJSONExtractor(object):
         specified_versions = self.strict_min_version or self.strict_max_version
 
         if couldnt_find_version and specified_versions:
-            msg = _(
+            msg = ugettext(
                 'Cannot find min/max version. Maybe '
                 '"strict_min_version" or "strict_max_version" '
                 'contains an unsupported version?')
@@ -406,8 +406,8 @@ def extract_search(content):
             return dom.getElementsByTagName(tag)[0].childNodes[0].wholeText
         except (IndexError, AttributeError):
             raise forms.ValidationError(
-                _('Could not parse uploaded file, missing or empty '
-                  '<%s> element') % tag)
+                ugettext('Could not parse uploaded file, missing or empty '
+                         '<%s> element') % tag)
 
     rv['name'] = text('ShortName')
     rv['description'] = text('Description')
@@ -422,7 +422,7 @@ def parse_search(fileorpath, addon=None):
         raise
     except Exception:
         log.error('OpenSearch parse error', exc_info=True)
-        raise forms.ValidationError(_('Could not parse uploaded file.'))
+        raise forms.ValidationError(ugettext('Could not parse uploaded file.'))
 
     return {'guid': None,
             'type': amo.ADDON_SEARCH,
@@ -459,17 +459,17 @@ class SafeUnzip(object):
                 log.error('Extraction error, invalid file name (%s) in '
                           'archive: %s' % (info.filename, self.source))
                 # L10n: {0} is the name of the invalid file.
-                raise forms.ValidationError(
-                    _('Invalid file name in archive: {0}').format(
-                        info.filename))
+                msg = ugettext('Invalid file name in archive: {0}')
+                raise forms.ValidationError(msg.format(info.filename))
 
             if info.file_size > settings.FILE_UNZIP_SIZE_LIMIT:
                 log.error('Extraction error, file too big (%s) for file (%s): '
                           '%s' % (self.source, info.filename, info.file_size))
                 # L10n: {0} is the name of the invalid file.
                 raise forms.ValidationError(
-                    _('File exceeding size limit in archive: {0}').format(
-                        info.filename))
+                    ugettext(
+                        'File exceeding size limit in archive: {0}'
+                    ).format(info.filename))
 
         self.info_list = info_list
         self.zip_file = zip_file
@@ -519,7 +519,7 @@ class SafeUnzip(object):
             if size != info.file_size:
                 log.error('Extraction error, uncompressed size: %s, %s not %s'
                           % (self.source, size, info.file_size))
-                raise forms.ValidationError(_('Invalid archive.'))
+                raise forms.ValidationError(ugettext('Invalid archive.'))
 
     def extract_to_dest(self, dest):
         """Extracts the zip file to a directory."""
@@ -655,10 +655,12 @@ def parse_xpi(xpi, addon=None, check=True):
         else:
             errno, strerror = e
         log.error('I/O error({0}): {1}'.format(errno, strerror))
-        raise forms.ValidationError(_('Could not parse the manifest file.'))
+        raise forms.ValidationError(ugettext(
+            'Could not parse the manifest file.'))
     except Exception:
         log.error('XPI parse error', exc_info=True)
-        raise forms.ValidationError(_('Could not parse the manifest file.'))
+        raise forms.ValidationError(ugettext(
+            'Could not parse the manifest file.'))
     finally:
         rm_local_tmp_dir(path)
 
@@ -681,7 +683,7 @@ def check_xpi_info(xpi_info, addon=None):
     if addon and not guid and is_webextension:
         xpi_info['guid'] = guid = addon.guid
     if not guid and not is_webextension:
-        raise forms.ValidationError(_("Could not find an add-on ID."))
+        raise forms.ValidationError(ugettext('Could not find an add-on ID.'))
 
     if guid:
         current_user = core.get_user()
@@ -696,11 +698,11 @@ def check_xpi_info(xpi_info, addon=None):
         )
         if guid_too_long:
             raise forms.ValidationError(
-                _("Add-on ID must be 64 characters or less."))
+                ugettext('Add-on ID must be 64 characters or less.'))
         if addon and addon.guid != guid:
-            msg = _(
-                "The add-on ID in your manifest.json or install.rdf (%s) "
-                "does not match the ID of your add-on on AMO (%s)")
+            msg = ugettext(
+                'The add-on ID in your manifest.json or install.rdf (%s) '
+                'does not match the ID of your add-on on AMO (%s)')
             raise forms.ValidationError(msg % (guid, addon.guid))
         if (not addon and
             # Non-deleted add-ons.
@@ -709,19 +711,19 @@ def check_xpi_info(xpi_info, addon=None):
              DeniedGuid.objects.filter(guid=guid).exists() or
              # Deleted add-ons that don't belong to the uploader.
              deleted_guid_clashes.exists())):
-            raise forms.ValidationError(_('Duplicate add-on ID found.'))
+            raise forms.ValidationError(ugettext('Duplicate add-on ID found.'))
     if len(xpi_info['version']) > 32:
         raise forms.ValidationError(
-            _('Version numbers should have fewer than 32 characters.'))
+            ugettext('Version numbers should have fewer than 32 characters.'))
     if not VERSION_RE.match(xpi_info['version']):
         raise forms.ValidationError(
-            _('Version numbers should only contain letters, numbers, '
-              'and these punctuation characters: +*.-_.'))
+            ugettext('Version numbers should only contain letters, numbers, '
+                     'and these punctuation characters: +*.-_.'))
 
     if is_webextension and xpi_info.get('is_static_theme', False):
         if not waffle.switch_is_active('allow-static-theme-uploads'):
-            raise forms.ValidationError(
-                _('WebExtension theme uploads are currently not supported.'))
+            raise forms.ValidationError(ugettext(
+                'WebExtension theme uploads are currently not supported.'))
 
     return xpi_info
 
@@ -738,7 +740,7 @@ def parse_addon(pkg, addon=None, check=True):
         parsed = parse_xpi(pkg, addon, check)
 
     if addon and addon.type != parsed['type']:
-        msg = _(
+        msg = ugettext(
             "<em:type> in your install.rdf (%s) "
             "does not match the type of your add-on on AMO (%s)")
         raise forms.ValidationError(msg % (parsed['type'], addon.type))

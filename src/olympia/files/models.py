@@ -14,7 +14,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_bytes, force_text
-from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
@@ -410,12 +410,12 @@ class File(OnChangeMixin, ModelBase):
         if match_url is None and len(urls) == 1:
             match_url = Permission(
                 u'single-match',
-                _(u'Access your data for {name}')
+                ugettext(u'Access your data for {name}')
                 .format(name=urls[0]))
         elif match_url is None and len(urls) > 1:
             details = (u'<details><summary>{copy}</summary><ul>{sites}</ul>'
                        u'</details>')
-            copy = _(u'Access your data on the following websites:')
+            copy = ugettext(u'Access your data on the following websites:')
             sites = ''.join(
                 [u'<li>%s</li>' % jinja2_escape(name) for name in urls])
             match_url = Permission(
@@ -754,7 +754,7 @@ class WebextPermissionDescription(ModelBase):
     MATCH_ALL_REGEX = r'^\<all_urls\>|(\*|http|https):\/\/\*\/'
     ALL_URLS_PERMISSION = Permission(
         u'all_urls',
-        _lazy(u'Access your data for all websites')
+        _(u'Access your data for all websites')
     )
     name = models.CharField(max_length=255, unique=True)
     description = TranslatedField()

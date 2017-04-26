@@ -6,8 +6,7 @@ from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import force_text
 from django.utils import translation
-from django.utils.translation import (
-    ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext)
+from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
 import django_tables2 as tables
 import jinja2
@@ -52,18 +51,19 @@ def file_compare(file_obj, version):
 def file_review_status(addon, file):
     if file.status == amo.STATUS_DISABLED:
         if file.reviewed is not None:
-            return _(u'Rejected')
+            return ugettext(u'Rejected')
         # Can't assume that if the reviewed date is missing its
         # unreviewed.  Especially for versions.
         else:
-            return _(u'Rejected or Unreviewed')
-    return file.STATUS_CHOICES.get(file.status, _('[status:%s]') % file.status)
+            return ugettext(u'Rejected or Unreviewed')
+    return file.STATUS_CHOICES.get(
+        file.status, ugettext('[status:%s]') % file.status)
 
 
 @register.function
 def version_status(addon, version):
     if version.deleted:
-        return _(u'Deleted')
+        return ugettext(u'Deleted')
     return ','.join(unicode(s) for s in version.status)
 
 
@@ -74,7 +74,7 @@ def editor_page_title(context, title=None, addon=None):
     if addon:
         title = u'%s :: %s' % (title, addon.name)
     else:
-        section = _lazy('Reviewer Tools')
+        section = _('Reviewer Tools')
         title = u'%s :: %s' % (title, section) if title else section
     return page_title(context, title)
 
@@ -92,31 +92,33 @@ def queue_tabnav(context):
 
     if listed:
         tabnav = [('nominated', 'queue_nominated',
-                   (ngettext('New Add-on ({0})',
-                             'New Add-ons ({0})',
-                             counts['nominated'])
+                   (ungettext('New Add-on ({0})',
+                              'New Add-ons ({0})',
+                              counts['nominated'])
                     .format(counts['nominated']))),
                   ('pending', 'queue_pending',
-                   (ngettext('Update ({0})',
-                             'Updates ({0})',
-                             counts['pending'])
+                   (ungettext('Update ({0})',
+                              'Updates ({0})',
+                              counts['pending'])
                     .format(counts['pending']))),
                   ('moderated', 'queue_moderated',
-                   (ngettext('Moderated Review ({0})',
-                             'Moderated Reviews ({0})',
-                             counts['moderated'])
+                   (ungettext('Moderated Review ({0})',
+                              'Moderated Reviews ({0})',
+                              counts['moderated'])
                     .format(counts['moderated'])))]
 
         if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
             tabnav.append(
                 ('auto_approved', 'queue_auto_approved',
-                 (ngettext('Auto Approved Add-on ({0})',
-                           'Auto Approved Add-ons ({0})',
-                           counts['auto_approved'])
+                 (ungettext('Auto Approved Add-on ({0})',
+                            'Auto Approved Add-ons ({0})',
+                            counts['auto_approved'])
                   .format(counts['auto_approved']))),
             )
     else:
-        tabnav = [('all', 'unlisted_queue_all', _('All Unlisted Add-ons'))]
+        tabnav = [
+            ('all', 'unlisted_queue_all', ugettext('All Unlisted Add-ons'))
+        ]
 
     return tabnav
 
@@ -172,10 +174,10 @@ def safe_substitute(string, *args):
 
 
 class EditorQueueTable(tables.Table, ItemStateTable):
-    addon_name = tables.Column(verbose_name=_lazy(u'Add-on'))
-    addon_type_id = tables.Column(verbose_name=_lazy(u'Type'))
-    waiting_time_min = tables.Column(verbose_name=_lazy(u'Waiting Time'))
-    flags = tables.Column(verbose_name=_lazy(u'Flags'), orderable=False)
+    addon_name = tables.Column(verbose_name=_(u'Add-on'))
+    addon_type_id = tables.Column(verbose_name=_(u'Type'))
+    waiting_time_min = tables.Column(verbose_name=_(u'Waiting Time'))
+    flags = tables.Column(verbose_name=_(u'Flags'), orderable=False)
 
     class Meta:
         orderable = True
@@ -208,20 +210,20 @@ class EditorQueueTable(tables.Table, ItemStateTable):
 
     def render_waiting_time_min(self, record):
         if record.waiting_time_min == 0:
-            r = _lazy('moments ago')
+            r = _('moments ago')
         elif record.waiting_time_hours == 0:
             # L10n: first argument is number of minutes
-            r = ngettext(
+            r = ungettext(
                 u'{0} minute', u'{0} minutes',
                 record.waiting_time_min).format(record.waiting_time_min)
         elif record.waiting_time_days == 0:
             # L10n: first argument is number of hours
-            r = ngettext(
+            r = ungettext(
                 u'{0} hour', u'{0} hours',
                 record.waiting_time_hours).format(record.waiting_time_hours)
         else:
             # L10n: first argument is number of days
-            r = ngettext(
+            r = ungettext(
                 u'{0} day', u'{0} days',
                 record.waiting_time_days).format(record.waiting_time_days)
         return jinja2.escape(r)
@@ -232,12 +234,12 @@ class EditorQueueTable(tables.Table, ItemStateTable):
 
 
 class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
-    addon_name = tables.Column(verbose_name=_lazy(u'Add-on'))
-    guid = tables.Column(verbose_name=_lazy(u'GUID'))
-    authors = tables.Column(verbose_name=_lazy(u'Authors'),
+    addon_name = tables.Column(verbose_name=_(u'Add-on'))
+    guid = tables.Column(verbose_name=_(u'GUID'))
+    authors = tables.Column(verbose_name=_(u'Authors'),
                             orderable=False)
-    review_date = tables.Column(verbose_name=_lazy(u'Last Review'))
-    version_date = tables.Column(verbose_name=_lazy(u'Last Update'))
+    review_date = tables.Column(verbose_name=_(u'Last Review'))
+    version_date = tables.Column(verbose_name=_(u'Last Update'))
 
     class Meta(EditorQueueTable.Meta):
         model = ViewUnlistedAllList
@@ -259,7 +261,7 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
 
     def render_review_date(self, record):
         if record.review_version_num is None:
-            return _('No Reviews')
+            return ugettext('No Reviews')
         return safe_substitute(
             u'<span class="addon-review-text">'
             u'<a href="#"><em>%s</em> on %s</a></span>',
@@ -297,13 +299,13 @@ class ViewFullReviewQueueTable(EditorQueueTable):
 
 
 class AutoApprovedTable(EditorQueueTable):
-    addon = tables.Column(verbose_name=_lazy(u'Add-on'))
+    addon = tables.Column(verbose_name=_(u'Add-on'))
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
     flags = tables.Column(
-        verbose_name=_lazy(u'Flags'), empty_values=(), orderable=False)
+        verbose_name=_(u'Flags'), empty_values=(), orderable=False)
     last_human_review = tables.DateTimeColumn(
-        verbose_name=_lazy(u'Last Review'))
+        verbose_name=_(u'Last Review'))
 
     class Meta(EditorQueueTable.Meta):
         fields = ('addon', 'flags', 'last_human_review')
@@ -419,16 +421,16 @@ class ReviewHelper(object):
             actions['public'] = {
                 'method': self.handler.process_public,
                 'minimal': False,
-                'details': _lazy('This will approve, sign, and publish this '
-                                 'version. The comments will be sent to the '
-                                 'developer.'),
-                'label': _lazy('Approve')}
+                'details': _('This will approve, sign, and publish this '
+                             'version. The comments will be sent to the '
+                             'developer.'),
+                'label': _('Approve')}
             actions['reject'] = {
                 'method': self.handler.process_sandbox,
-                'label': _lazy('Reject'),
-                'details': _lazy('This will reject this version and remove it '
-                                 'from the queue. The comments will be sent '
-                                 'to the developer.'),
+                'label': _('Reject'),
+                'details': _('This will reject this version and remove it '
+                             'from the queue. The comments will be sent '
+                             'to the developer.'),
                 'minimal': False}
         # If the addon current version was auto-approved, extra actions are
         # available to users with post-review permission, allowing them to
@@ -439,43 +441,43 @@ class ReviewHelper(object):
                     request, amo.permissions.ADDONS_POST_REVIEW)):
             actions['confirm_auto_approved'] = {
                 'method': self.handler.confirm_auto_approved,
-                'label': _lazy('Confirm Approval'),
-                'details': _lazy('The latest public version of this add-on '
-                                 'was automatically approved. This records '
-                                 'your confirmation of the approval, '
-                                 'without notifying the developer.'),
+                'label': _('Confirm Approval'),
+                'details': _('The latest public version of this add-on '
+                             'was automatically approved. This records '
+                             'your confirmation of the approval, '
+                             'without notifying the developer.'),
                 'minimal': True,
                 'comments': False,
             }
             # Not implemented yet, will be in #5275.
             # actions['reject_auto_approved'] = {
             #     'method': self.handler.reject_auto_approved,
-            #     'label': _lazy('Reject'),
-            #     'details': _lazy('This will reject the specified '
-            #                      'auto-approved versions. The comments will '
-            #                      'be sent to the developer.'),
+            #     'label': _('Reject'),
+            #     'details': _('This will reject the specified '
+            #                  'auto-approved versions. The comments will '
+            #                  'be sent to the developer.'),
             #     'minimal': True,
             # }
         if self.version:
             actions['info'] = {
                 'method': self.handler.request_information,
-                'label': _lazy('Reviewer reply'),
-                'details': _lazy('This will send a message to the developer. '
-                                 'You will be notified when they reply.'),
+                'label': _('Reviewer reply'),
+                'details': _('This will send a message to the developer. '
+                             'You will be notified when they reply.'),
                 'minimal': True}
             actions['super'] = {
                 'method': self.handler.process_super_review,
-                'label': _lazy('Request super-review'),
-                'details': _lazy('If you have concerns about this add-on that '
-                                 'an admin reviewer should look into, enter '
-                                 'your comments in the area below. They will '
-                                 'not be sent to the developer.'),
+                'label': _('Request super-review'),
+                'details': _('If you have concerns about this add-on that '
+                             'an admin reviewer should look into, enter '
+                             'your comments in the area below. They will '
+                             'not be sent to the developer.'),
                 'minimal': True}
         actions['comment'] = {
             'method': self.handler.process_comment,
-            'label': _lazy('Comment'),
-            'details': _lazy('Make a comment on this version. The developer '
-                             'won\'t be able to see this.'),
+            'label': _('Comment'),
+            'details': _('Make a comment on this version. The developer '
+                         'won\'t be able to see this.'),
             'minimal': True}
 
         return actions
@@ -774,11 +776,11 @@ def logs_tabnav_themes(context):
     Each tuple contains three elements: (named url, tab_code, tab_text)
     """
     rv = [
-        ('editors.themes.logs', 'themes', _('Reviews'))
+        ('editors.themes.logs', 'themes', ugettext('Reviews'))
     ]
     if acl.action_allowed(context['request'],
                           amo.permissions.THEME_ADMIN_TOOLS_VIEW):
-        rv.append(('editors.themes.deleted', 'deleted', _('Deleted')))
+        rv.append(('editors.themes.deleted', 'deleted', ugettext('Deleted')))
 
     return rv
 
@@ -790,16 +792,18 @@ def queue_tabnav_themes(context):
     tabs = []
     if acl.action_allowed(context['request'], amo.permissions.THEMES_REVIEW):
         tabs.append((
-            'editors.themes.list', 'pending_themes', _('Pending'),
+            'editors.themes.list', 'pending_themes', ugettext('Pending'),
         ))
     if acl.action_allowed(context['request'],
                           amo.permissions.THEME_ADMIN_TOOLS_VIEW):
         tabs.append((
-            'editors.themes.list_flagged', 'flagged_themes', _('Flagged'),
+            'editors.themes.list_flagged',
+            'flagged_themes',
+            ugettext('Flagged'),
         ))
         tabs.append((
             'editors.themes.list_rereview', 'rereview_themes',
-            _('Updates'),
+            ugettext('Updates'),
         ))
     return tabs
 
@@ -811,15 +815,15 @@ def queue_tabnav_themes_interactive(context):
     tabs = []
     if acl.action_allowed(context['request'], amo.permissions.THEMES_REVIEW):
         tabs.append((
-            'editors.themes.queue_themes', 'pending', _('Pending'),
+            'editors.themes.queue_themes', 'pending', ugettext('Pending'),
         ))
     if acl.action_allowed(context['request'],
                           amo.permissions.THEME_ADMIN_TOOLS_VIEW):
         tabs.append((
-            'editors.themes.queue_flagged', 'flagged', _('Flagged'),
+            'editors.themes.queue_flagged', 'flagged', ugettext('Flagged'),
         ))
         tabs.append((
-            'editors.themes.queue_rereview', 'rereview', _('Updates'),
+            'editors.themes.queue_rereview', 'rereview', ugettext('Updates'),
         ))
     return tabs
 

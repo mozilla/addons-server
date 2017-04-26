@@ -3,16 +3,16 @@ from django.conf import settings
 from django.utils.encoding import force_text
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia.addons.models import Category
 
 
 class IconWidgetRenderer(forms.RadioSelect.renderer):
-    """ Return radiobox as a list of images. """
+    """Return radiobox as a list of images."""
 
     def render(self):
-        """ This will output radios as li>img+input. """
+        """This will output radios as li>img+input."""
         output = []
         for w in self:
             value = w.choice_value
@@ -45,8 +45,9 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
         miscs = Category.objects.filter(misc=True).values_list('id', flat=True)
         for c in self.choices:
             if c[0] in miscs:
-                other = (c[0],
-                         _("My add-on doesn't fit into any of the categories"))
+                msg = ugettext(
+                    'My add-on doesn\'t fit into any of the categories')
+                other = (c[0], msg)
             else:
                 choices.append(c)
 

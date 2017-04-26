@@ -3,7 +3,7 @@ import datetime
 from django.conf import settings
 from django.db import models
 from django.utils.translation import (
-    activate, to_locale, get_language, ugettext as _)
+    activate, to_locale, get_language, ugettext)
 
 import bleach
 import caching.base
@@ -233,7 +233,7 @@ class Contribution(amo.models.ModelBase):
         url_parts = self.addon.meet_the_dev_url().split('/')
         url_parts[1] = locale.language
 
-        subject = _('Thanks for contributing to {addon_name}').format(
+        subject = ugettext('Thanks for contributing to {addon_name}').format(
             addon_name=self.addon.name)
 
         # Send the email.
