@@ -116,10 +116,25 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
     def test_invalid_issued_at_time(self):
         api_key = self.create_api_key(self.user)
         payload = self.auth_token_payload(self.user, api_key.key)
-        # Simulate clock skew:
+
+        # Simulate clock skew...
         payload['iat'] = (
             datetime.utcnow() +
             timedelta(seconds=settings.JWT_AUTH['JWT_LEEWAY'] + 10))
+        token = self.encode_token_payload(payload, api_key.secret)
+
+        with self.assertRaises(AuthenticationFailed) as ctx:
+            jwt_auth.jwt_decode_handler(token)
+
+        assert ctx.exception.detail.startswith(
+            'JWT iat (issued at time) is invalid.')
+
+    def test_invalid_issued_at_time_not_number(self):
+        api_key = self.create_api_key(self.user)
+        payload = self.auth_token_payload(self.user, api_key.key)
+
+        # Simulate clock skew...
+        payload['iat'] = 'thisisnotanumber'
         token = self.encode_token_payload(payload, api_key.secret)
 
         with self.assertRaises(AuthenticationFailed) as ctx:
