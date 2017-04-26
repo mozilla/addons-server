@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-04-26 20:50+0000\n"
+"PO-Revision-Date: 2017-04-26 20:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6403,14 +6403,12 @@ msgid "This will reject this version and remove it from the queue. The comments 
 msgstr "To wotpokaza tutu wersiju a wotstroni jón z čakanskeho rynka. Komentary so wuwiwarjej pósćelu."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Reviewer reply"
 msgstr "Wotmołwa přepruwowarja"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "To sej dalše informacije wot wuwiwarja wužaduje. Dóstanjeće zdźělenku, hdyž wotmołwja."
+msgstr "To powěsć na wuwiwarja pósćele. Dóstanjeće zdźělenku, hdyž wotmołwja."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
@@ -6594,9 +6592,8 @@ msgid "EULA"
 msgstr "EULA"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "Status schwalenja"
+msgstr "Datum poslednjeho schwalenja"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "Approvals Since Last Automatic Review"
@@ -6651,9 +6648,8 @@ msgid "Moderated Reviews"
 msgstr "Moderěrowane přepruwowanja"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Přidatki za Android"
+msgstr "Awtomatisce schwalene přidatki"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
