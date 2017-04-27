@@ -2,63 +2,82 @@
 Accounts
 ========
 
-.. note:: This API requires :doc:`authentication <auth>`.
-
 The following API endpoints cover a users account.
 
-.. _`profile`:
 
 -------
 Profile
 -------
 
-Returns information about your profile.
+.. _`profile`:
 
-.. http:get:: /api/v3/accounts/profile/
+This endpoint returns information about a user's profile, by the profile id.
+Most of the information is optional and provided by the user so may be missing or inaccurate.
 
-    **Request:**
+.. http:get:: /api/v3/accounts/profile/(int:user_id)/
 
-    .. sourcecode:: bash
+    .. _profile-object:
 
-        curl "https://addons.mozilla.org/api/v3/accounts/profile/"
-            -H "Authorization: JWT <jwt-token>"
+    :>json int id: The numeric user id.
+    :>json string username: username chosen by the user, used in the profile url. If not set will be a randomly generated string.
+    :>json string name: The name chosen by the user, or the username if not set.
+    :>json array addons_listed: Array holding the :ref:`addons <addon-detail-object>` the user has developed and are listed on this website.
+    :>json float averagerating: The average rating for the `addons_listed`.
+    :>json string|null biography: More details about the user.
+    :>json string|null homepage: The user's website.
+    :>json string|null location: The location of the user.
+    :>json string|null occupation: The occupation of the user.
+    :>json string picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set.
+    :>json string|null picture_type: the image type (only 'image/png' is supported) if a user defined photo has been provided, or none if no photo has been provided.
+    :>json array reviews: Array holding the :ref:`reviews <review-detail-object>` the user has written.
+    :>json boolean is_addon_developer: The user has developed and listed add-ons on this website.
+    :>json boolean is_artist: The user has developed and listed themes on this website.
 
-    **Response:**
-
-    .. sourcecode:: json
-
-        {
-            "username": "bob",
-            "display_name": "bob",
-            "email": "a@m.o",
-            "biography": "Some biography",
-            "deleted": false,
-            "display_collections": false,
-            "display_collections_fav": false,
-            "homepage": "https://a.m.o",
-            "location": "Vancouver",
-            "notes": null,
-            "occupation": "",
-            "picture_type": "",
-            "picture_url": "/static/img/anon_user.png",
-            "read_dev_agreement": "2015-11-20T18:36:12",
-            "is_verified": true
-        }
 
     :statuscode 200: profile found.
     :statuscode 400: an error occurred, check the `error` value in the JSON.
-    :statuscode 401: authentication failed.
+    :statuscode 404: no profile with that user id.
 
 
 .. important::
 
-    * Biography can contain HTML, or other unsanitized content and it's the
-      responsibiliy of the client to clean it appropriately before display.
+    * `Biography` can contain HTML, or other unsanitized content, and it is the
+      responsibiliy of the client to clean and escape it appropriately before display.
+
+
+------------
+Self Profile
+------------
+
+.. _`self-profile`:
+
+If you authenticate and access your own profile (either by specifing your own user_id, or omiting it) the following additional fields are returned.
+If you have `Users:Edit` permission you will see these extra fields for all user profiles.
+
+.. http:get:: /api/v3/accounts/profile/
+
+    .. _self-profile-object:
+
+    :>json string email: Email address used by the user to login and create this account.
+    :>json string|null display_name: The name chosen by the user.
+    :>json array collections: Array holding the collections the user has created.
+    :>json int collections[].id: Numeric collection id.
+    :>json string collections[].name: Collection name.
+    :>json string collections[].url: URL to the collection page.
+    :>json int collections[].addon_count: Number of addons in the collection.
+    :>json boolean is_verified: The user has been verified via FirefoxAccounts.
+    :>json boolean read_dev_agreement: The user has read, and agreed to, the developer agreement that is required to submit addons.
+    :>json boolean deleted: Is the profile deleted.
+    :>json string last_login: The date of the last successful log in to the website.
+    :>json string last_login_ip: The IP address of the last successfull log in to the website.
 
 
 --------------
 Super-creation
 --------------
+
+.. note:: This API requires :doc:`authentication <auth>`.
+
 
 This allows you to generate a new user account and sign in as that user.
 

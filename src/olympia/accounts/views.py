@@ -15,13 +15,14 @@ from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from waffle.decorators import waffle_switch
 
 import olympia.core.logger
 from olympia import amo
+from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
@@ -31,7 +32,9 @@ from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
 
 from . import verify
-from .serializers import AccountSuperCreateSerializer, UserProfileSerializer
+from .serializers import (
+    AccountSuperCreateSerializer, PublicUserProfileSerializer,
+    UserProfileSerializer)
 from .utils import fxa_login_url, generate_fxa_state
 
 log = olympia.core.logger.getLogger('accounts')
@@ -368,11 +371,27 @@ class SessionView(APIView):
 
 class ProfileView(generics.RetrieveAPIView):
     authentication_classes = [JWTKeyAuthentication]
-    permission_classes = [IsAuthenticated]
-    serializer_class = UserProfileSerializer
+    permission_classes = [AllowAny]
+    lookup_url_kwarg = 'user_id'
+    queryset = UserProfile.objects.all()
+    self_view = False
 
-    def retrieve(self, request, *args, **kw):
-        return Response(self.get_serializer(request.user).data)
+    def get_serializer_class(self):
+        if (self.self_view or
+                acl.action_allowed_user(self.request.user,
+                                        amo.permissions.USERS_EDIT)):
+            return UserProfileSerializer
+        else:
+            return PublicUserProfileSerializer
+
+    def get_object(self):
+        if self.request.user.is_authenticated():
+            lookup_value = self.kwargs.get(self.lookup_url_kwarg)
+            user_pk = str(self.request.user.pk)
+            if not lookup_value or lookup_value == user_pk:
+                self.kwargs[self.lookup_url_kwarg] = user_pk
+                self.self_view = True
+        return super(ProfileView, self).get_object()
 
 
 class AccountSuperCreate(APIView):
