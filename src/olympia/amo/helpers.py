@@ -262,7 +262,7 @@ def strip_html(s, just_kidding=False):
         return ''
     else:
         s = re.sub(r'&lt;.*?&gt;', '', force_text(s, errors='ignore'))
-        return re.sub(r'<.*?>', '', s)
+        return jinja2.Markup(re.sub(r'<.*?>', '', s))
 
 
 @register.filter

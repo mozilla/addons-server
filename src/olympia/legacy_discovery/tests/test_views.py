@@ -102,7 +102,7 @@ class TestPromos(TestCase):
         # Create a few add-ons...
         self.addon1 = addon_factory()
         self.addon2 = addon_factory()
-        self.addon3 = addon_factory()
+        self.addon3 = addon_factory(name='That & This', summary='This & That')
         # Create a user for the collection.
         user = UserProfile.objects.create(username='mozilla')
         games_collection = collection_factory(author=user, slug='games')
@@ -236,6 +236,15 @@ class TestPromos(TestCase):
             reverse('collections.detail', args=['mozilla', 'must-have-media']),
             '?src=hp-dl-promo')
         assert h2_link.attr('href') == expected_url
+
+    def test_musthave_media_no_double_escaping(self):
+        response = self.client.get(self.get_home_url(),
+                                   {'version': '10.0', 'platform': 'mac'})
+        assert response.status_code == 200
+
+        doc = pq(response.content)
+        assert 'This &amp; That' in doc.html()
+        assert 'That &amp; This' in doc.html()
 
 
 class TestPane(TestCase):
