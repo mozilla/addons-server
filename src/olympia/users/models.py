@@ -116,7 +116,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     email = models.EmailField(unique=True, null=True, max_length=75)
 
     averagerating = models.CharField(max_length=255, blank=True, null=True)
-    bio = models.TextField(blank=True, null=True)
+    bio = models.TextField(blank=True, null=True, db_column='biography')
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
