@@ -118,6 +118,7 @@ class InstallButton(object):
         if self.show_contrib:
             try:
                 self.button_class.remove('download')
+                self.button_class.remove('caution')
             except ValueError:
                 pass
             self.button_class += ['contrib', 'go']
