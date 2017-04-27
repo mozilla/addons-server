@@ -6,8 +6,6 @@ from pyquery import PyQuery as pq
 
 from django.core.files import temp
 
-from waffle.testutils import override_switch
-
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
@@ -425,7 +423,6 @@ class TestVersion(TestCase):
         assert buttons.length == 1
         assert buttons.text() == u'Request Review'
 
-    @override_switch('activity-email', active=True)
     def test_version_history(self):
         self.client.cookies[API_TOKEN_COOKIE] = 'magicbeans'
         v1 = self.version
@@ -469,7 +466,6 @@ class TestVersion(TestCase):
         review_form.attrib['data-token'] == 'magicbeans'
         review_form.attrib['data-history'] == '#%s-review-history' % v2.id
 
-    @override_switch('activity-email', active=True)
     def test_version_history_mixed_channels(self):
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
@@ -486,33 +482,6 @@ class TestVersion(TestCase):
         doc('.dev-review-reply-form')[1].attrib['data-history'] == (
             '#%s-review-history' % v2.id)
 
-    def test_version_history_activity_email_waffle_off(self):
-        self.client.cookies[API_TOKEN_COOKIE] = 'magicbeans'
-        v1 = self.version
-        v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
-        self._extra_version_and_file(amo.STATUS_BETA)
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        show_links = doc('.review-history-show')
-        assert show_links.length == 2  # beta version does not have the link.
-        assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
-        assert show_links[1].attrib['data-div'] == '#%s-review-history' % v2.id
-        review_history_td = doc('#%s-review-history' % v1.id)[0]
-        assert review_history_td.attrib['data-token'] == 'magicbeans'
-        api_url = reverse(
-            'version-reviewnotes-list', args=[self.addon.id, self.version.id])
-        assert review_history_td.attrib['data-api-url'] == api_url
-        assert doc('.review-history-hide').length == 2
-
-        pending_activity_count = doc('.review-history-pending-count')
-        # No counter, because we don't have any pending activity to show.
-        assert pending_activity_count.length == 0
-
-        # No box div because waffle is off.
-        assert doc('.dev-review-reply').length == 0
-
     def test_pending_activity_count(self):
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
         # Add some activity log messages
@@ -525,8 +494,9 @@ class TestVersion(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
 
+        # Two versions, but three review-history-show because one reply link.
+        assert doc('.review-history-show').length == 3
         # Two versions, but only one counter, for the latest/deleted version
-        assert doc('.review-history-show').length == 2
         pending_activity_count = doc('.review-history-pending-count')
         assert pending_activity_count.length == 1
         # There are two activity logs pending

@@ -11,7 +11,6 @@ from django.utils.translation import (
 
 import django_tables2 as tables
 import jinja2
-import waffle
 from jingo import register
 
 import olympia.core.logger
@@ -530,16 +529,9 @@ class ReviewBase(object):
         message = loader.get_template(
             'editors/emails/%s.ltxt' % template).render(
             Context(data, autoescape=False))
-        if not waffle.switch_is_active('activity-email'):
-            emails = [a.email for a in self.addon.authors.all()]
-            amo_send_mail(
-                subject, message, recipient_list=emails,
-                from_email=settings.EDITORS_EMAIL, use_deny_list=False,
-                perm_setting=perm_setting)
-        else:
-            send_activity_mail(
-                subject, message, self.version, self.addon.authors.all(),
-                settings.EDITORS_EMAIL, perm_setting)
+        send_activity_mail(
+            subject, message, self.version, self.addon.authors.all(),
+            settings.EDITORS_EMAIL, perm_setting)
 
     def get_context_data(self):
         addon_url = self.addon.get_url_path(add_prefix=False)

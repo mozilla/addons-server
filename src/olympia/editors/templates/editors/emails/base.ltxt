@@ -2,13 +2,10 @@
 Hello,
 
 {% block content %}{% endblock %}
-{% switch "activity-email" %}
 If you want to respond please reply to this email or visit {{ dev_versions_url }} . If you need to send file attachments, please include the address amo-editors@mozilla.org and mention it in your reply.
 
 You can also join us in #addon-reviewers on irc.mozilla.org.
-{% else %}
-If you want to respond to this review, or have any questions about it, please reply to this email or join #addon-reviewers on irc.mozilla.org.
-{% endswitch %}
+
 To learn more about the review process, please visit https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews
 {% if legacy_addon %}
 To ensure your add-ons are compatible past Firefox 57, please migrate them to WebExtensions as soon as possible: https://mzl.la/1RzETMA
