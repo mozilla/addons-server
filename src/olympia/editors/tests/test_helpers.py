@@ -277,7 +277,8 @@ class TestReviewHelper(TestCase):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
         # Need to clear self.version.all_files cache since we updated the file.
-        del self.version.all_files
+        if self.version:
+            del self.version.all_files
         return self.get_helper().actions
 
     def test_actions_full_nominated(self):
@@ -299,6 +300,15 @@ class TestReviewHelper(TestCase):
             assert self.get_review_actions(
                 addon_status=amo.STATUS_PUBLIC,
                 file_status=file_status).keys() == expected
+
+    def test_actions_no_version(self):
+        """Deleted addons and addons with no versions in that channel have no
+        version set."""
+        expected = ['comment']
+        self.version = None
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_PUBLIC).keys() == expected
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)

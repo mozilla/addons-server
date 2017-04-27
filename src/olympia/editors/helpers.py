@@ -373,7 +373,7 @@ class ReviewHelper(object):
         self.addon = addon
         self.version = version
         self.get_review_type(request)
-        self.actions = self.get_actions(request, addon)
+        self.actions = self.get_actions(request)
 
     def set_data(self, data):
         self.handler.set_data(data)
@@ -390,17 +390,17 @@ class ReviewHelper(object):
             self.handler = ReviewFiles(
                 request, self.addon, self.version, 'pending')
 
-    def get_actions(self, request, addon):
+    def get_actions(self, request):
         actions = SortedDict()
         if request is None:
             # If request is not set, it means we are just (ab)using the
             # ReviewHelper for its `handler` attribute and we don't care about
             # the actions.
             return actions
-        reviewable_because_complete = addon.status not in (
+        reviewable_because_complete = self.addon.status not in (
             amo.STATUS_NULL, amo.STATUS_DELETED)
         reviewable_because_admin = (
-            not addon.admin_review or
+            not self.addon.admin_review or
             acl.action_allowed(request,
                                amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW))
         reviewable_because_submission_time = (
@@ -437,14 +437,14 @@ class ReviewHelper(object):
                 'details': _lazy('This will send a message to the developer. '
                                  'You will be notified when they reply.'),
                 'minimal': True}
-        actions['super'] = {
-            'method': self.handler.process_super_review,
-            'label': _lazy('Request super-review'),
-            'details': _lazy('If you have concerns about this add-on that an '
-                             'admin reviewer should look into, enter your '
-                             'comments in the area below. They will not be '
-                             'sent to the developer.'),
-            'minimal': True}
+            actions['super'] = {
+                'method': self.handler.process_super_review,
+                'label': _lazy('Request super-review'),
+                'details': _lazy('If you have concerns about this add-on that '
+                                 'an admin reviewer should look into, enter '
+                                 'your comments in the area below. They will '
+                                 'not be sent to the developer.'),
+                'minimal': True}
         actions['comment'] = {
             'method': self.handler.process_comment,
             'label': _lazy('Comment'),

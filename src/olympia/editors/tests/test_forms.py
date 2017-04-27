@@ -34,7 +34,7 @@ class TestReviewActions(TestCase):
             {'addon_files': [self.file.pk]},
             helper=ReviewHelper(request=self.request, addon=self.addon,
                                 version=self.version))
-        return form.helper.get_actions(self.request, self.addon)
+        return form.helper.get_actions(self.request)
 
     def test_reject(self):
         reject = self.set_statuses(
