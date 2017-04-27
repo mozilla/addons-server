@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-04-26 21:19+0000\n"
+"PO-Revision-Date: 2017-04-27 22:05+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5590,7 +5590,7 @@ msgstr "Qual é o seu Id do PayPal?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Sign up for PayPal"
-msgstr "Iniciar sessão no PayPal"
+msgstr "Registar-se no PayPal"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your suggested contribution?"
@@ -5715,7 +5715,7 @@ msgstr "Design do tema"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upload New Design"
-msgstr "Enviar um novo design"
+msgstr "Carregar novo design"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
