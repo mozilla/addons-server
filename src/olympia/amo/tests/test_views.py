@@ -8,7 +8,6 @@ from django.conf import settings
 from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
 
-from Cookie import SimpleCookie
 from lxml import etree
 import mock
 from mock import patch
@@ -65,18 +64,14 @@ class Test404(TestCase):
         data = json.loads(response.content)
         assert data['detail'] == u'Not found.'
 
-    def test_404_with_mamo_cookie(self):
-        self.client.cookies = SimpleCookie({'mamo': 'on'})
-        res = self.client.get('/en-US/firefox/xxxxxxx')
+    def test_404_with_mobile_detected(self):
+        res = self.client.get('/en-US/firefox/xxxxxxx', X_IS_MOBILE_AGENTS='1')
         assert res.status_code == 404
         self.assertTemplateUsed(res, 'amo/404-responsive.html')
 
-    def test_404_with_mobile_ua_string(self):
-        res = self.client.get('/en-US/firefox/xxxxxxx', **{
-            'HTTP_USER_AGENT': ('Mozilla/5.0 (Android 4.4; Mobile; '
-                                'rv:41.0) Gecko/41.0 Firefox/41.0')})
+        res = self.client.get('/en-US/firefox/xxxxxxx', X_IS_MOBILE_AGENTS='0')
         assert res.status_code == 404
-        self.assertTemplateUsed(res, 'amo/404-responsive.html')
+        self.assertTemplateUsed(res, 'amo/404.html')
 
 
 class TestCommon(TestCase):
