@@ -101,7 +101,7 @@
         <div class="prose">
           {% if author.biography %}
             <h3>{{ _('Who is {0}?')|f(author.name) }}</h3>
-            <p class="biography">{{ author.biography|clean|nl2br|no_links }}</p>
+            <p class="biography">{{ author.biography|nl2br|clean|no_links }}</p>
           {% endif %}
         </div>
       </section>
