@@ -382,9 +382,6 @@ MIDDLEWARE_CLASSES = (
     # AMO URL middleware is as high as possible to get locale/app aware URLs.
     'olympia.amo.middleware.LocaleAndAppURLMiddleware',
 
-    # Mobile detection should happen in Zeus.
-    'mobility.middleware.DetectMobileMiddleware',
-    'mobility.middleware.XMobileMiddleware',
     'olympia.amo.middleware.RemoveSlashMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
@@ -1510,11 +1507,6 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
-
-# Modify the user-agents we check for in django-mobility
-# (Android has since changed its user agent).
-MOBILE_USER_AGENTS = ('mozilla.+mobile|android|fennec|iemobile|'
-                      'iphone|opera (?:mini|mobi)')
 
 # Credentials for accessing Google Analytics stats.
 GOOGLE_ANALYTICS_CREDENTIALS = {}
