@@ -6,9 +6,11 @@ from selenium.webdriver.common.action_chains import ActionChains
 class Base(Page):
 
     _url = '{base_url}/{locale}'
+    _amo_header = (By.CLASS_NAME, 'amo-header')
 
     def __init__(self, selenium, base_url, locale='en-US', **kwargs):
-        super(Base, self).__init__(selenium, base_url, locale=locale, **kwargs)
+        super(Base, self).__init__(
+            selenium, base_url, locale=locale, timeout=30, **kwargs)
 
     @property
     def header(self):
@@ -25,6 +27,11 @@ class Base(Page):
 
     def logout(self):
         self.header.click_logout()
+
+    def wait_for_page_to_load(self):
+        self.wait.until(
+            lambda _: self.find_element(*self._amo_header).is_displayed())
+        return self
 
     class Header(Region):
 
