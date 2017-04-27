@@ -31,7 +31,7 @@ Returns information about your profile.
             "username": "bob",
             "display_name": "bob",
             "email": "a@m.o",
-            "bio": "Some biography",
+            "biography": "Some biography",
             "deleted": false,
             "display_collections": false,
             "display_collections_fav": false,
@@ -48,6 +48,13 @@ Returns information about your profile.
     :statuscode 200: profile found.
     :statuscode 400: an error occurred, check the `error` value in the JSON.
     :statuscode 401: authentication failed.
+
+
+.. important::
+
+    * Biography can contain HTML, or other unsanitized content and it's the
+      responsibiliy of the client to clean it appropriately before display.
+
 
 --------------
 Super-creation

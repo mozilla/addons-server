@@ -801,7 +801,7 @@ class TestProfileSections(TestCase):
         assert '<script>' in self.user.biography
         r = self.client.get(self.url)
         assert '<script>' not in r.content
-        assert '&lt;script&gt;' in r.content
+        assert '&lt;script&gt;alert("xss")&lt;/script&gt;' in r.content
 
 
 class TestThemesProfile(TestCase):
