@@ -40,9 +40,9 @@
       {{ profile|user_vcard(is_profile=True) }}
     </div>
     <div class="prose">
-      {% if profile.bio %}
+      {% if profile.biography %}
         <h3>{{ _('In a little more detail...') }}</h3>
-        <p class="intro">{{ profile.bio|clean|nl2br|no_links }}</p>
+        <p class="intro">{{ profile.biography|clean|nl2br|no_links }}</p>
       {% endif %}
     </div>
   </section>

@@ -112,12 +112,12 @@ data-default-locale="{{ request.LANG|lower }}"
             {%- endtrans %}
           </p>
           <div class="formfields">
-          {{ form.bio }}
+          {{ form.biography }}
           {{ some_html_tip(title=
               _('Allowed HTML: {0}. Links are forbidden.')|f(
                   '<abbr title> <acronym title> <b> <blockquote> <code> <em>
                    <i> <li> <ol> <strong> <ul>')|e) }}
-          {{ form.bio.errors }}
+          {{ form.biography.errors }}
           </div>
         </fieldset> {# /.profile-detail #}
         <fieldset id="profile-misc" class="c">

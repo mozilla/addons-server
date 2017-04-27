@@ -70,7 +70,7 @@ class UserEditForm(happyforms.ModelForm):
               u'address.')),
         widget=forms.EmailInput(attrs={'readonly': 'readonly'}))
     photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
-    bio = forms.CharField(widget=forms.Textarea, required=False)
+    biography = forms.CharField(widget=forms.Textarea, required=False)
 
     notifications = forms.MultipleChoiceField(
         choices=[],
@@ -121,7 +121,7 @@ class UserEditForm(happyforms.ModelForm):
         model = UserProfile
         fields = (
             'username', 'email', 'display_name', 'location', 'occupation',
-            'homepage', 'photo', 'bio', 'display_collections',
+            'homepage', 'photo', 'biography', 'display_collections',
             'display_collections_fav', 'notifications',
         )
 
@@ -182,13 +182,13 @@ class UserEditForm(happyforms.ModelForm):
 
         return photo
 
-    def clean_bio(self):
-        bio = self.cleaned_data['bio']
-        normalized = clean_nl(unicode(bio))
+    def clean_biography(self):
+        biography = self.cleaned_data['biography']
+        normalized = clean_nl(unicode(biography))
         if has_links(normalized):
             # There's some links, we don't want them.
             raise forms.ValidationError(_('No links are allowed.'))
-        return bio
+        return biography
 
     def save(self, log_for_developer=True):
         u = super(UserEditForm, self).save(commit=False)

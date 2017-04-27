@@ -19,7 +19,7 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('email', 'username', 'display_name',
-                       'bio', 'homepage', 'location', 'occupation'),
+                       'biography', 'homepage', 'location', 'occupation'),
         }),
         ('Flags', {
             'fields': ('deleted', 'display_collections',

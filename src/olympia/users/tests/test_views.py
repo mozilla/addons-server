@@ -124,29 +124,30 @@ class TestEdit(UserViewBase):
         self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com'}
 
     def test_edit_bio(self):
-        assert self.get_profile().bio is None
+        assert self.get_profile().biography is None
 
         data = {'username': 'jbalogh',
                 'email': 'jbalogh.changed@mozilla.com',
-                'bio': 'xxx unst unst'}
+                'biography': 'xxx unst unst'}
 
         r = self.client.post(self.url, data, follow=True)
         self.assert3xx(r, self.url)
-        self.assertContains(r, data['bio'])
-        assert unicode(self.get_profile().bio) == data['bio']
+        self.assertContains(r, data['biography'])
+        assert unicode(self.get_profile().biography) == data['biography']
 
-        data['bio'] = 'yyy unst unst'
+        data['biography'] = 'yyy unst unst'
         r = self.client.post(self.url, data, follow=True)
         self.assert3xx(r, self.url)
-        self.assertContains(r, data['bio'])
-        assert unicode(self.get_profile().bio) == data['bio']
+        self.assertContains(r, data['biography'])
+        assert unicode(self.get_profile().biography) == data['biography']
 
     def test_bio_no_links(self):
-        self.data.update(bio='<a href="https://google.com">google</a>')
+        self.data.update(biography='<a href="https://google.com">google</a>')
         response = self.client.post(self.url, self.data, follow=True)
         assert response.status_code == 200
         print response.context
-        self.assertFormError(response, 'form', 'bio', u'No links are allowed.')
+        self.assertFormError(response, 'form', 'biography',
+                             u'No links are allowed.')
 
     def check_default_choices(self, choices, checked=True):
         doc = pq(self.client.get(self.url).content)
@@ -796,8 +797,8 @@ class TestProfileSections(TestCase):
         self.assertTemplateNotUsed(r, 'users/report_abuse.html')
 
     def test_bio_xss(self):
-        self.user.update(bio='<script>alert("xss")</script>')
-        assert '<script>' in self.user.bio
+        self.user.update(biography='<script>alert("xss")</script>')
+        assert '<script>' in self.user.biography
         r = self.client.get(self.url)
         assert '<script>' not in r.content
         assert '&lt;script&gt;' in r.content

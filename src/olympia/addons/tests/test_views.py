@@ -406,7 +406,7 @@ class TestDeveloperPages(TestCase):
         r = self.client.get(reverse('addons.meet', args=['a228106']))
         assert r.status_code == 200
         doc = pq(r.content)
-        assert doc('.bio').html() == (
+        assert doc('.biography').html() == (
             'Bio: This is line one.<br/><br/>This is line two')
         addon_reasons = doc('#about-addon p')
         assert addon_reasons.eq(0).html() == (
@@ -419,7 +419,7 @@ class TestDeveloperPages(TestCase):
         # which will trigger the else block in the template.
         r = self.client.get(reverse('addons.meet', args=['a228107']))
         assert r.status_code == 200
-        bios = pq(r.content)('.bio')
+        bios = pq(r.content)('.biography')
         assert bios.eq(0).html() == (
             'Bio1: This is line one.<br/><br/>This is line two')
         assert bios.eq(1).html() == (
