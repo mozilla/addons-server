@@ -38,19 +38,10 @@ def render(s, context=None):
     return t.render(context)
 
 
-def test_strip_html():
-    assert 'Hey Brother!' == render('{{ "Hey <b>Brother!</b>"|strip_html }}')
-
-
 def test_currencyfmt():
     assert helpers.currencyfmt(None, 'USD') == ''
     assert helpers.currencyfmt(5, 'USD') == '$5.00'
     assert helpers.currencyfmt('12', 'USD') == '$12.00'
-
-
-def test_strip_html_none():
-    assert '' == render('{{ a|strip_html }}', {'a': None})
-    assert '' == render('{{ a|strip_html(True) }}', {'a': None})
 
 
 def test_strip_controls():
