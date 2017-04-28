@@ -26,8 +26,7 @@
     {%- endfor %}
     {% endif %}
   </authors>
-  <summary>{%- if new_api -%}{{ addon.summary }}{% else %}{{ addon.summary|clean(true) }}{% endif -%}
-  </summary>
+  <summary>{%- if new_api -%}{{ addon.summary }}{% else %}{{ addon.summary|clean(true) }}{% endif -%}</summary>
   <description>{%- if new_api %}{{ addon.description }}{% else -%}{{ addon.description|clean(true) }}{% endif %}</description>
   {%- if version and version.license -%}
   <license>
