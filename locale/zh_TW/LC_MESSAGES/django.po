@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-04-28 14:32+0000\n"
+"PO-Revision-Date: 2017-04-28 14:33+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2810,7 +2810,7 @@ msgstr "等待審核中"
 
 #: src/olympia/constants/base.py
 msgid "Flagged for further review"
-msgstr "將它標記並等待進一步審核"
+msgstr "已標記，等待進一步審核"
 
 #: src/olympia/constants/base.py
 msgid "Beta"
@@ -6302,7 +6302,7 @@ msgstr "您提交的佈景主題發現問題"
 
 #: src/olympia/editors/tasks.py
 msgid "Theme submission flagged for review"
-msgstr "佈景主題提交被標記以供審核"
+msgstr "已將送出的佈景主題加上旗標以供審核"
 
 #: src/olympia/editors/tasks.py
 msgid "A question about your Theme submission"
