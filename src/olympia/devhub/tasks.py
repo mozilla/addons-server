@@ -289,7 +289,7 @@ def annotate_new_legacy_addon_restrictions(results):
         # the validator should have complained about the non-existant max
         # version, but it doesn't hurt to check that the value is sane anyway.
         max_target_firefox_version > 200100 and
-        max_target_firefox_version < 53000000200100
+        max_target_firefox_version < 53000000000000
     )
 
     if (is_extension_type and

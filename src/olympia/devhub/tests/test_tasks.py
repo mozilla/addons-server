@@ -781,6 +781,27 @@ class TestNewLegacyAddonRestrictions(ValidatorTestCase):
         assert upload.processed_validation['messages'] == []
         assert upload.valid
 
+    def test_restrict_firefox_53_alpha(self):
+        data = {
+            'messages': [],
+            'errors': 0,
+            'metadata': {
+                'is_webextension': False,
+                'is_extension': True,
+                'strict_compatibility': True,
+                'applications': {
+                    'firefox': {
+                        'max': '53a1'
+                    }
+                }
+            }
+        }
+        results = tasks.annotate_new_legacy_addon_restrictions(data)
+        assert results['errors'] == 1
+        assert len(results['messages']) > 0
+        assert results['messages'][0]['id'] == [
+            'validation', 'messages', 'legacy_extensions_restricted']
+
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
 def test_send_welcome_email(send_html_mail_jinja_mock):
