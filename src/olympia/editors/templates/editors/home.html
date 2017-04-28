@@ -58,7 +58,7 @@
             <table>
               {% for row in reviews_total: %}
               <tr>
-                <td>{{ row['user__display_name'] }}</td>
+                <td>{{ row['user__display_name'] or row['user__username'] }}</td>
                 <td class="int">{{ row['approval_count']|numberfmt }}</td>
               </tr>
               {% endfor %}
@@ -73,7 +73,7 @@
             <table>
               {% for row in reviews_monthly: %}
               <tr>
-                <td>{{ row['user__display_name'] }}</td>
+                <td>{{ row['user__display_name'] or row['user__username'] }}</td>
                 <td class="int">{{ row['approval_count']|numberfmt }}</td>
               </tr>
               {% endfor %}
@@ -90,7 +90,7 @@
               <tr>
                 <td>
                   <a href="{{ url('users.profile', editors['user'].username) }}">
-                    {{ editors['user'].display_name }}
+                    {{ editors['user'].name }}
                   </a>
                 </td>
                 <td class="date" title="{{ editors['created']|babel_datetime }}">
