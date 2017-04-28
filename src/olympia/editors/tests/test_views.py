@@ -2683,13 +2683,20 @@ class TestReview(ReviewBase):
         assert not doc('.last-approval-date')
         assert not doc('.approval-counter')
 
+    def test_no_auto_approval_summaries_since_everything_is_public(self):
+        self.login_as_senior_editor()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('.auto_approval')
+
 
 class TestReviewPending(ReviewBase):
 
     def setUp(self):
         super(TestReviewPending, self).setUp()
         self.file = File.objects.create(version=self.version,
-                                        status=amo.STATUS_AWAITING_REVIEW)
+                                        status=amo.STATUS_AWAITING_REVIEW,
+                                        is_webextension=True)
         self.addon.update(status=amo.STATUS_PUBLIC)
 
     def pending_dict(self):
@@ -2752,6 +2759,24 @@ class TestReviewPending(ReviewBase):
         assert self.file.reload().status == amo.STATUS_PUBLIC
 
         assert mock_sign.called
+
+    def test_auto_approval_summary(self):
+        AutoApprovalSummary.objects.create(
+            version=self.version,
+            verdict=amo.NOT_AUTO_APPROVED,
+            uses_custom_csp=True
+        )
+        set_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS', 10000)
+        set_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES', 2)
+        self.login_as_senior_editor()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert (
+            doc('.auto_approval li').eq(0).text() ==
+            'Has too few consecutive human-approved updates')
+        assert (
+            doc('.auto_approval li').eq(1).text() ==
+            'Uses a custom CSP')
 
 
 class TestEditorMOTD(EditorTest):

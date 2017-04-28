@@ -887,3 +887,34 @@ class TestAutoApprovalSummary(TestCase):
             'uses_native_messaging': False
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
+
+    def test_verdict_info_prettifier(self):
+        verdict_info = {
+            'too_few_approved_updates': True,
+            'too_many_average_daily_users': True,
+            'uses_content_script_for_all_urls': True,
+            'uses_custom_csp': True,
+            'uses_native_messaging': True
+        }
+        result = list(
+            AutoApprovalSummary.verdict_info_prettifier(verdict_info))
+        assert result == [
+            u'Has too few consecutive human-approved updates',
+            u'Has too many daily users',
+            u'Uses a content script for all URLs',
+            u'Uses a custom CSP',
+            u'Uses nativeMessaging permission'
+        ]
+
+        verdict_info = {
+            'too_few_approved_updates': True,
+            'uses_content_script_for_all_urls': True,
+            'uses_native_messaging': True
+        }
+        result = list(
+            AutoApprovalSummary.verdict_info_prettifier(verdict_info))
+        assert result == [
+            u'Has too few consecutive human-approved updates',
+            u'Uses a content script for all URLs',
+            u'Uses nativeMessaging permission'
+        ]

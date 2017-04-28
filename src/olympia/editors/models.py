@@ -7,7 +7,7 @@ from django.db import models
 from django.db.models import Sum
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
-from django.utils.translation import ugettext_lazy as _lazy
+from django.utils.translation import ugettext, ugettext_lazy as _lazy
 
 import olympia.core.logger
 from olympia import amo
@@ -720,6 +720,24 @@ class AutoApprovalSummary(ModelBase):
             self.verdict = success_verdict
 
         return verdict_info
+
+    @classmethod
+    def verdict_info_prettifier(cls, verdict_info):
+        """Return a generator of strings representing the a verdict_info
+        (as computed by calculate_verdict()) in human-readable form."""
+        mapping = {
+            'uses_custom_csp': ugettext(u'Uses a custom CSP'),
+            'uses_native_messaging':
+                ugettext(u'Uses nativeMessaging permission'),
+            'uses_content_script_for_all_urls':
+                ugettext(u'Uses a content script for all URLs'),
+            'too_many_average_daily_users':
+                ugettext(u'Has too many daily users'),
+            'too_few_approved_updates':
+                ugettext(u'Has too few consecutive human-approved updates'),
+        }
+        return (mapping[key] for key, value in sorted(verdict_info.items())
+                if value)
 
     @classmethod
     def check_uses_custom_csp(cls, version):

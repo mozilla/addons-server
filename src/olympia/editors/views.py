@@ -686,7 +686,16 @@ def review(request, addon, channel=None):
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
+    # Variables used to re-calculate auto-approval verdict.
+    auto_approval = {
+        'max_average_daily_users': int(
+            get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0),
+        'min_approved_updates': int(
+            get_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES') or 0)
+    }
+
     versions = (Version.unfiltered.filter(addon=addon, channel=channel)
+                                  .select_related('autoapprovalsummary')
                                   .exclude(files__status=amo.STATUS_BETA)
                                   .order_by('-created')
                                   .transform(Version.transformer_activity)
@@ -726,7 +735,8 @@ def review(request, addon, channel=None):
                   user_changes=user_changes_log,
                   unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
                   approvals_info=approvals_info,
-                  is_post_reviewer=is_post_reviewer)
+                  is_post_reviewer=is_post_reviewer,
+                  auto_approval=auto_approval)
 
     return render(request, 'editors/review.html', ctx)
 

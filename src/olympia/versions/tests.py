@@ -600,6 +600,26 @@ class TestVersion(TestCase):
         # otherwise return the status code for reference.
         assert version.status == [u'[status:99]']
 
+    def test_is_ready_for_auto_approval(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        assert not version.is_ready_for_auto_approval
+
+        version.all_files = [
+            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=False)]
+        assert not version.is_ready_for_auto_approval
+
+        version.all_files = [
+            File(status=amo.STATUS_AWAITING_REVIEW, is_webextension=True)]
+        version.channel = amo.RELEASE_CHANNEL_UNLISTED
+        assert not version.is_ready_for_auto_approval
+
+        version.channel = amo.RELEASE_CHANNEL_LISTED
+        assert version.is_ready_for_auto_approval
+
+        addon.type = amo.ADDON_THEME
+        assert not version.is_ready_for_auto_approval
+
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
     (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, True),
