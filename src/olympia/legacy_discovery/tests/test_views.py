@@ -130,7 +130,7 @@ class TestPromos(TestCase):
         content = smart_text(response.content)
         assert unicode(self.addon1.name) in content
         assert unicode(self.addon2.name) in content
-        assert unicode(self.addon3.name) in content
+        assert 'This &amp; That' in content
 
     def test_no_params(self):
         response = self.client.get(self.get_home_url())
@@ -182,7 +182,7 @@ class TestPromos(TestCase):
         content = smart_text(response.content)
         assert unicode(self.addon1.name) not in content
         assert unicode(self.addon2.name) in content
-        assert unicode(self.addon3.name) in content
+        assert 'This &amp; That' in content
 
         # Make sure aliases are working.
         response_mac = self.client.get(self.get_disco_url('10.0', 'mac'))
