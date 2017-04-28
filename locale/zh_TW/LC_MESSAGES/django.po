@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-04-27 04:50+0000\n"
+"PO-Revision-Date: 2017-04-28 14:32+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -6138,7 +6138,7 @@ msgstr "應用程式、審核者或評論"
 
 #: src/olympia/editors/forms.py
 msgid "Keep review; remove flags"
-msgstr "保留意見並移除標記"
+msgstr "保留意見並移除旗標"
 
 #: src/olympia/editors/forms.py
 msgid "Skip for now"
@@ -6191,7 +6191,7 @@ msgstr "等待時間"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Flags"
-msgstr "標記"
+msgstr "旗標"
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
@@ -6257,7 +6257,7 @@ msgstr "為此版本加上留言，開發者不會看到。"
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
-msgstr "已標記"
+msgstr "已加上旗標"
 
 # 85%
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
@@ -6820,7 +6820,7 @@ msgstr "更多資訊"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Resolution"
-msgstr "解析度"
+msgstr "決議"
 
 # 88%
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/history_table.html
