@@ -29,7 +29,8 @@ from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import atomic, set_modified_on, write
 from olympia.amo.utils import (
-    resize_image, send_html_mail_jinja, utc_millesecs_from_epoch)
+    resize_image, send_html_mail_jinja, utc_millesecs_from_epoch,
+    AMOJSONEncoder)
 from olympia.addons.models import Addon
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
@@ -199,7 +200,7 @@ def handle_upload_validation_result(results, upload_pk, channel):
             version_string=upload.version, channel=channel)
 
     results = skip_signing_warning_if_signing_server_not_configured(results)
-    upload.validation = json.dumps(results)
+    upload.validation = json.dumps(results, cls=AMOJSONEncoder)
     upload.save()  # We want to hit the custom save().
 
     # Track the time it took from first upload through validation
