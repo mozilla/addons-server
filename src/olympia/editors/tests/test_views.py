@@ -19,7 +19,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo, core, reviews
 from olympia.amo.tests import (
-    addon_factory, TestCase, version_factory, user_factory)
+    addon_factory, file_factory, TestCase, version_factory, user_factory)
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
@@ -2694,9 +2694,9 @@ class TestReviewPending(ReviewBase):
 
     def setUp(self):
         super(TestReviewPending, self).setUp()
-        self.file = File.objects.create(version=self.version,
-                                        status=amo.STATUS_AWAITING_REVIEW,
-                                        is_webextension=True)
+        self.file = file_factory(version=self.version,
+                                 status=amo.STATUS_AWAITING_REVIEW,
+                                 is_webextension=True)
         self.addon.update(status=amo.STATUS_PUBLIC)
 
     def pending_dict(self):
