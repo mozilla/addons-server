@@ -689,7 +689,7 @@ class AutoApprovalSummary(ModelBase):
 
     def calculate_verdict(
             self, max_average_daily_users=0, min_approved_updates=0,
-            dry_run=False):
+            dry_run=False, pretty=False):
         """Calculate the verdict for this instance based on the values set
         on it and the current configuration.
 
@@ -718,6 +718,9 @@ class AutoApprovalSummary(ModelBase):
             self.verdict = failure_verdict
         else:
             self.verdict = success_verdict
+
+        if pretty:
+            verdict_info = self.verdict_info_prettifier(verdict_info)
 
         return verdict_info
 

@@ -116,17 +116,13 @@
               {% set record = record_version.activity_log %}
               {% include 'editors/includes/history.html' %}
             {% endfor %}
-            {% if is_post_reviewer and version.is_ready_for_auto_approval %}
-              {# If it was not auto-approved, but could have been (i.e. it's a listed, unreviewed webextension update of a public extension) try to find out why. #}
+            {% if version.pk in auto_approval_info %}
               <tr>
-                <th>{{ _('Auto Approval Summary') }}</th>
+                <th>{{ _('Auto Approval Summary') }} </th>
                 <td class="auto_approval">
-                  {% if version.autoapprovalsummary %}
-                    {# Call calculate_verdict() again, it will use the data already stored. Need to pass max_average_daily_users and min_approved_updates current values. #}
-                    {% set verdict_info=version.autoapprovalsummary.calculate_verdict(max_average_daily_users=auto_approval['max_average_daily_users'], min_approved_updates=auto_approval['min_approved_updates']) %}
-                    {% set verdict_info_human=version.autoapprovalsummary.verdict_info_prettifier(verdict_info) %}
+                  {% if auto_approval_info[version.pk] %}
                     <ul>
-                    {% for info in verdict_info_human %}
+                    {% for info in auto_approval_info[version.pk] %}
                       <li>{{ info }}</li>
                     {% endfor %}
                     </ul>

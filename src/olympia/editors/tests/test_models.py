@@ -918,3 +918,25 @@ class TestAutoApprovalSummary(TestCase):
             u'Uses a content script for all URLs',
             u'Uses nativeMessaging permission'
         ]
+
+    def test_verdict_info_pretty(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version,
+            uses_custom_csp=True,
+            uses_native_messaging=True,
+            uses_content_script_for_all_urls=True,
+            average_daily_users=self.addon.average_daily_users,
+            approved_updates=333)
+        expected_result = list(AutoApprovalSummary.verdict_info_prettifier({
+            'too_few_approved_updates': True,
+            'too_many_average_daily_users': True,
+            'uses_content_script_for_all_urls': True,
+            'uses_custom_csp': True,
+            'uses_native_messaging': True
+        }))
+        result = list(summary.calculate_verdict(
+            max_average_daily_users=summary.average_daily_users - 1,
+            min_approved_updates=summary.approved_updates + 1,
+            pretty=True))
+        assert result == expected_result
+        assert summary.verdict == amo.NOT_AUTO_APPROVED

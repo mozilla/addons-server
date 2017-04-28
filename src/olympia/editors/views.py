@@ -686,14 +686,6 @@ def review(request, addon, channel=None):
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
-    # Variables used to re-calculate auto-approval verdict.
-    auto_approval = {
-        'max_average_daily_users': int(
-            get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0),
-        'min_approved_updates': int(
-            get_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES') or 0)
-    }
-
     versions = (Version.unfiltered.filter(addon=addon, channel=channel)
                                   .select_related('autoapprovalsummary')
                                   .exclude(files__status=amo.STATUS_BETA)
@@ -710,9 +702,33 @@ def review(request, addon, channel=None):
                       reverse=True)
 
     pager = amo.utils.paginate(request, all_versions, 10)
-
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
+
+    max_average_daily_users = int(
+        get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0),
+    min_approved_updates = int(
+        get_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES') or 0)
+    auto_approval_info = {}
+    # Now that we've paginated the versions queryset, iterate on them to
+    # generate auto approvals info. Note that the variable should not clash
+    # the already existing 'version'.
+    for a_version in pager.object_list:
+        if not is_post_reviewer or not a_version.is_ready_for_auto_approval:
+            continue
+        try:
+            summary = a_version.autoapprovalsummary
+        except AutoApprovalSummary.DoesNotExist:
+            auto_approval_info[a_version.pk] = None
+            continue
+        # Call calculate_verdict() again, it will use the data already stored.
+        # Need to pass max_average_daily_users and min_approved_updates current
+        # values.
+        verdict_info = summary.calculate_verdict(
+            max_average_daily_users=max_average_daily_users,
+            min_approved_updates=min_approved_updates,
+            pretty=True)
+        auto_approval_info[a_version.pk] = verdict_info
 
     if version:
         flags = get_flags(version)
@@ -736,7 +752,7 @@ def review(request, addon, channel=None):
                   unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
                   approvals_info=approvals_info,
                   is_post_reviewer=is_post_reviewer,
-                  auto_approval=auto_approval)
+                  auto_approval_info=auto_approval_info)
 
     return render(request, 'editors/review.html', ctx)
 
