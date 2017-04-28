@@ -74,8 +74,18 @@ def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
 
 
 @jingo.register.filter
-def clean(string):
-    return jinja2.Markup(clean_nl(bleach.clean(unicode(string))).strip())
+def clean(string, strip_all_html=False):
+    """Clean html with bleach.
+
+    :param string string: The original string to clean.
+    :param bool strip_all_html: If given, remove all html code from `string`.
+    """
+    if strip_all_html:
+        string = bleach.clean(unicode(string), tags=[], strip=True)
+    else:
+        string = bleach.clean(unicode(string))
+
+    return jinja2.Markup(clean_nl(string).strip())
 
 
 @jingo.register.filter

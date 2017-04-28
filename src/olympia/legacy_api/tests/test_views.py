@@ -156,11 +156,13 @@ class StripHTMLTest(TestCase):
         a.summary = '<i>xxx video</i>s'
         a.description = 'FFFF<b>UUUU</b>'
         a.save()
+
         r = make_call('addon/3615', version=1.5)
         doc = pq(r.content)
         assert doc('eula').html() == '<i>free</i> stock tips'
         assert doc('summary').html() == '&lt;i&gt;xxx video&lt;/i&gt;s'
         assert doc('description').html() == 'FFFF<b>UUUU</b>'
+
         r = make_call('addon/3615')
         doc = pq(r.content)
         assert doc('eula').html() == 'free stock tips'

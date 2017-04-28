@@ -37,7 +37,7 @@ class ActivityFeedRSS(Feed):
                            .exclude(action__in=amo.LOG_HIDE_DEVELOPER))[:20]
 
     def item_title(self, item):
-        return clean_html(item.to_string())
+        return clean_html(item.to_string(), True)
 
     def title(self, key):
         """Title for the feed as a whole"""

@@ -90,6 +90,14 @@ def test_clean_in_template():
     assert jingo.get_env().from_string('{{ s|clean }}').render({'s': s}) == s
 
 
+def test_clean_strip_all_html():
+    s = '<a href="#woo">yeah</a>'
+
+    expected = 'yeah'
+    assert jingo.get_env().from_string(
+        '{{ s|clean(true) }}').render({'s': s}) == expected
+
+
 def test_no_links():
     env = jingo.get_env().from_string('{{ s|no_links }}')
 
