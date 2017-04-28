@@ -729,15 +729,15 @@ class AutoApprovalSummary(ModelBase):
         """Return a generator of strings representing the a verdict_info
         (as computed by calculate_verdict()) in human-readable form."""
         mapping = {
-            'uses_custom_csp': ugettext(u'Uses a custom CSP'),
+            'uses_custom_csp': ugettext(u'Uses a custom CSP.'),
             'uses_native_messaging':
-                ugettext(u'Uses nativeMessaging permission'),
+                ugettext(u'Uses nativeMessaging permission.'),
             'uses_content_script_for_all_urls':
-                ugettext(u'Uses a content script for all URLs'),
+                ugettext(u'Uses a content script for all URLs.'),
             'too_many_average_daily_users':
-                ugettext(u'Has too many daily users'),
+                ugettext(u'Has too many daily users.'),
             'too_few_approved_updates':
-                ugettext(u'Has too few consecutive human-approved updates'),
+                ugettext(u'Has too few consecutive human-approved updates.'),
         }
         return (mapping[key] for key, value in sorted(verdict_info.items())
                 if value)
