@@ -2773,10 +2773,10 @@ class TestReviewPending(ReviewBase):
         doc = pq(response.content)
         assert (
             doc('.auto_approval li').eq(0).text() ==
-            'Has too few consecutive human-approved updates')
+            'Has too few consecutive human-approved updates.')
         assert (
             doc('.auto_approval li').eq(1).text() ==
-            'Uses a custom CSP')
+            'Uses a custom CSP.')
 
 
 class TestEditorMOTD(EditorTest):

@@ -899,11 +899,11 @@ class TestAutoApprovalSummary(TestCase):
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
-            u'Has too few consecutive human-approved updates',
-            u'Has too many daily users',
-            u'Uses a content script for all URLs',
-            u'Uses a custom CSP',
-            u'Uses nativeMessaging permission'
+            u'Has too few consecutive human-approved updates.',
+            u'Has too many daily users.',
+            u'Uses a content script for all URLs.',
+            u'Uses a custom CSP.',
+            u'Uses nativeMessaging permission.'
         ]
 
         verdict_info = {
@@ -914,9 +914,9 @@ class TestAutoApprovalSummary(TestCase):
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
-            u'Has too few consecutive human-approved updates',
-            u'Uses a content script for all URLs',
-            u'Uses nativeMessaging permission'
+            u'Has too few consecutive human-approved updates.',
+            u'Uses a content script for all URLs.',
+            u'Uses nativeMessaging permission.'
         ]
 
     def test_verdict_info_pretty(self):
