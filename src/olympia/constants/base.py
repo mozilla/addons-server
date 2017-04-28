@@ -332,8 +332,8 @@ VALIDATOR_SKELETON_EXCEPTION = {
          "description": [
             _("Validation was unable to complete successfully due to an "
               "unexpected error."),
-            _("The error has been logged, but please consider filing an issue "
-              "report here: http://bit.ly/1POrYYU")],
+            _("The error has been logged, but please consider filing an issue"
+              " report here: http://bit.ly/1POrYYU")],
          "type": "error",
          "tier": 1,
          "for_appversions": None,
@@ -357,8 +357,8 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
          "description": [
             _("Validation was unable to complete successfully due to an "
               "unexpected error."),
-            _("Check https://developer.mozilla.org/en-US/Add-ons/WebExtensions "
-              "to ensure your webextension is valid or file a bug at "
+            _("Check https://developer.mozilla.org/en-US/Add-ons/WebExtensions"
+              " to ensure your webextension is valid or file a bug at "
               "http://bit.ly/1POrYYU")],
          "type": "error",
          "tier": 1,
