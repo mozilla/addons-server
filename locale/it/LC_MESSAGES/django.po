@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-04-28 09:10+0000\n"
+"PO-Revision-Date: 2017-04-28 09:15+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -6408,9 +6408,8 @@ msgid "Reviewer reply"
 msgstr "Risposta del revisore"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Questa azione permette di richiedere informazioni aggiuntive allo sviluppatore. Riceverai una notifica alla sua risposta."
+msgstr "Questa azione permette di inviare un messaggio direttamente allo sviluppatore. Riceverai una notifica alla sua risposta."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
@@ -6595,13 +6594,12 @@ msgid "EULA"
 msgstr "EULA"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "Stato approvazione"
+msgstr "Data ultima approvazione"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "Approvals Since Last Automatic Review"
-msgstr ""
+msgstr "Approvazioni da ultima revisione automatica"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "More about this add-on"
@@ -6652,9 +6650,8 @@ msgid "Moderated Reviews"
 msgstr "Revisioni moderate"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Componenti aggiuntivi per Android"
+msgstr "Componenti aggiuntivi approvati automaticamente"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
@@ -7348,7 +7345,7 @@ msgstr "I numeri di versione possono contenere solo lettere, numeri e i seguenti
 
 #: src/olympia/files/utils.py
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "I temi WebExtension non sono supportati al momento."
 
 #: src/olympia/files/utils.py
 #, python-format
