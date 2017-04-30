@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-04-29 12:01+0000\n"
+"PO-Revision-Date: 2017-04-30 09:15+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4923,7 +4923,7 @@ msgstr "Μετάβαση στις υποβολές μου"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Συμφωνία διανομής προσθέτων"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
@@ -4949,11 +4949,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Με ποιες πλατφόρμες είναι συμβατό αυτό το αρχείο;"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Δημοσίευση αυτής της έκδοσης μόνο στο κανάλι beta μου."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Administrative overrides"
@@ -4969,7 +4969,7 @@ msgstr "Υπογραφή πρόσθετου"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Συμφωνία διανομής προσθέτων Firefox"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "API Credentials"
