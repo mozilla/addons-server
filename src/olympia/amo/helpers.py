@@ -253,19 +253,6 @@ def strip_controls(s):
 
 
 @register.filter
-def strip_html(s, just_kidding=False):
-    """Strips HTML.  Confirm lets us opt out easily."""
-    if just_kidding:
-        return s
-
-    if not s:
-        return ''
-    else:
-        s = re.sub(r'&lt;.*?&gt;', '', force_text(s, errors='ignore'))
-        return re.sub(r'<.*?>', '', s)
-
-
-@register.filter
 def external_url(url):
     """Bounce a URL off outgoing.prod.mozaws.net."""
     return urlresolvers.get_outgoing_url(unicode(url))

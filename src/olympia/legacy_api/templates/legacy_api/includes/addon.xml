@@ -26,8 +26,8 @@
     {%- endfor %}
     {% endif %}
   </authors>
-  <summary>{{ addon.summary|strip_html(new_api) }}</summary>
-  <description>{{ addon.description|strip_html(new_api) }}</description>
+  <summary>{%- if new_api -%}{{ addon.summary }}{% else %}{{ addon.summary|clean(true) }}{% endif -%}</summary>
+  <description>{%- if new_api %}{{ addon.description }}{% else -%}{{ addon.description|clean(true) }}{% endif %}</description>
   {%- if version and version.license -%}
   <license>
     <name>{{ version.license.name }}</name>
@@ -65,7 +65,7 @@
     {%- endfor -%}
     {%- endif -%}
   </all_compatible_os>
-  <eula>{{ addon.eula|strip_html(new_api) }}</eula>
+  <eula>{%- if new_api %}{{ addon.eula }}{% else %}{{ addon.eula|clean(true) }}{% endif -%}</eula>
   {%- if new_api -%}
   <previews>
     {%- for preview in addon.all_previews -%}

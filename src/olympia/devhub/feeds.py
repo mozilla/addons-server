@@ -9,7 +9,8 @@ from django.utils.translation import ugettext as _
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
-from olympia.amo.helpers import absolutify, url, strip_html
+from olympia.amo.helpers import absolutify, url
+from olympia.translations.helpers import clean as clean_html
 from olympia.devhub.models import RssKey
 
 
@@ -36,7 +37,7 @@ class ActivityFeedRSS(Feed):
                            .exclude(action__in=amo.LOG_HIDE_DEVELOPER))[:20]
 
     def item_title(self, item):
-        return strip_html(item.to_string())
+        return clean_html(item.to_string(), True)
 
     def title(self, key):
         """Title for the feed as a whole"""

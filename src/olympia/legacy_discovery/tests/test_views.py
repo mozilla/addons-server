@@ -102,7 +102,7 @@ class TestPromos(TestCase):
         # Create a few add-ons...
         self.addon1 = addon_factory()
         self.addon2 = addon_factory()
-        self.addon3 = addon_factory()
+        self.addon3 = addon_factory(name='That & This', summary='This & That')
         # Create a user for the collection.
         user = UserProfile.objects.create(username='mozilla')
         games_collection = collection_factory(author=user, slug='games')
@@ -130,7 +130,7 @@ class TestPromos(TestCase):
         content = smart_text(response.content)
         assert unicode(self.addon1.name) in content
         assert unicode(self.addon2.name) in content
-        assert unicode(self.addon3.name) in content
+        assert 'This &amp; That' in content
 
     def test_no_params(self):
         response = self.client.get(self.get_home_url())
@@ -182,7 +182,7 @@ class TestPromos(TestCase):
         content = smart_text(response.content)
         assert unicode(self.addon1.name) not in content
         assert unicode(self.addon2.name) in content
-        assert unicode(self.addon3.name) in content
+        assert 'This &amp; That' in content
 
         # Make sure aliases are working.
         response_mac = self.client.get(self.get_disco_url('10.0', 'mac'))
@@ -236,6 +236,15 @@ class TestPromos(TestCase):
             reverse('collections.detail', args=['mozilla', 'must-have-media']),
             '?src=hp-dl-promo')
         assert h2_link.attr('href') == expected_url
+
+    def test_musthave_media_no_double_escaping(self):
+        response = self.client.get(self.get_home_url(),
+                                   {'version': '10.0', 'platform': 'mac'})
+        assert response.status_code == 200
+
+        doc = pq(response.content)
+        assert 'This &amp; That' in doc.html()
+        assert 'That &amp; This' in doc.html()
 
 
 class TestPane(TestCase):
