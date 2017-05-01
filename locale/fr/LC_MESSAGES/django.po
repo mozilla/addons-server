@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-04-27 12:02+0000\n"
+"PO-Revision-Date: 2017-05-01 16:47+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6131,7 +6131,7 @@ msgstr "Téléchargez des éléments multimédias {start_sub_heading} avec {addo
 
 #: src/olympia/discovery/data.py
 msgid "Manage massive audio, video, and image downloads with this lightweight tool."
-msgstr "Gérer des téléchargements énormes de fichiers audio, vidéo et d'images grâce à cet outil poids plume."
+msgstr "Gérez le téléchargement de fichiers volumineux (audio, vidéos, images) grâce à cet outil poids plume."
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6143,7 +6143,7 @@ msgstr "Un bloqueur de publicités léger et efficace. uBlock Origin exécute de
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Effectuer des captures d’écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Effectuez des captures d’écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
