@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-04-30 09:15+0000\n"
+"PO-Revision-Date: 2017-05-01 21:12+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4007,7 +4007,7 @@ msgstr "Προβολή όλων των προσθέτων"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Δημοσιεύστε τα πρόσθετά σας!"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
@@ -5001,7 +5001,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Δεν έχετε κανένα διαπιστευτήριο API."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
@@ -5221,7 +5221,7 @@ msgstr "Τελευταίες ειδήσεις"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/blog_posts.html
 msgid "Read more in our Blog"
-msgstr ""
+msgstr "Διαβάστε περισσότερα στο ιστολόγιό μας"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Resources"
@@ -5288,15 +5288,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Κουμπί \"Λήψη προσθέτου\""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Legal"
-msgstr ""
+msgstr "Νομικά"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Αναφορά κατάχρησης εμπορικού σήματος"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html src/olympia/templates/copyright.html
 msgid "Legal Notices"
@@ -5452,7 +5452,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Automated code tests for your add-on."
-msgstr ""
+msgstr "Αυτοματοποιημένες δοκιμές κώδικα για το πρόσθετό σας."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
@@ -5469,7 +5469,7 @@ msgstr "Προς το παρόν ζητάτε <b>δωρεές</b> από του�
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "Η σελίδα συνεισφοράς σας: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Disable Contributions"
@@ -5599,7 +5599,7 @@ msgstr "Λεπτομέρειες θέματος"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Παραθέστε ένα όμορφο URL για τη σελίδα λεπτομερειών σας."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select the category that best describes your Theme."
@@ -5951,7 +5951,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr ""
+msgstr "{label_open}Ορατό:{label_close} Ορατό σε όλους στο {site_url} και περιλαμβάνεται στα αποτελέσματα αναζήτησης και τις σελίδες καταγραφών."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
@@ -6007,7 +6007,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Η διαγραφή αυτής της έκδοσης θα διαγράψει οριστικά:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
@@ -6248,11 +6248,10 @@ msgstr[1] "Ελεγμένες αξιολογήσεις ({0})"
 # Firefox,
 # Sunbird
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Νέο πρόσθετο ({0})"
-msgstr[1] "Νέα πρόσθετα ({0})"
+msgstr[0] "Αυτόματα εγκεκριμένο πρόσθετο ({0})"
+msgstr[1] "Αυτόματα εγκεκριμένα πρόσθετα ({0})"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
@@ -6316,7 +6315,6 @@ msgid "This will reject this version and remove it from the queue. The comments 
 msgstr ""
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Reviewer reply"
 msgstr "Απάντηση κριτή"
 
@@ -6503,9 +6501,8 @@ msgid "EULA"
 msgstr "ΣΑΤΧ (EULA)"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "Κατάσταση έγκρισης"
+msgstr "Ημερομηνία τελευταίας έγκρισης"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "Approvals Since Last Automatic Review"
@@ -6560,9 +6557,8 @@ msgid "Moderated Reviews"
 msgstr "Ελεγμένες αξιολογήσεις"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Πρόσθετα Android"
+msgstr "Αυτόματα εγκεκριμένα πρόσθετα"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
@@ -6616,9 +6612,8 @@ msgid "Log details"
 msgstr "Λεπτομέρειες καταγραφής"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
-#, fuzzy
 msgid "Review Author"
-msgstr "Επιθεώρηση Ιστορικού"
+msgstr "Συγγραφέας κριτικής"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 #, python-format
