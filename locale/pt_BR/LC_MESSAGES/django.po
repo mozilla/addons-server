@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-05-01 09:10+0000\n"
+"PO-Revision-Date: 2017-05-01 09:14+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6496,9 +6496,8 @@ msgid "Reviewer reply"
 msgstr "Resposta do revisor"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Isto solicitará mais informação do desenvolvedor. Você será notificado quando este responder."
+msgstr "Isto vai enviar uma mensagem ao desenvolvedor. Você será notificado quando este responder."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
@@ -6682,13 +6681,12 @@ msgid "EULA"
 msgstr "Licença"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "Status da aprovação"
+msgstr "Data da última aprovação"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "Approvals Since Last Automatic Review"
-msgstr ""
+msgstr "Aprovações desde a última revisão automática"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "More about this add-on"
@@ -6743,9 +6741,8 @@ msgid "Moderated Reviews"
 msgstr "Análises moderadas"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Complementos para Android"
+msgstr "Extensões aprovadas automaticamente"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
@@ -7454,7 +7451,7 @@ msgstr "Os números de versão devem conter apenas letras, números e os seguint
 
 #: src/olympia/files/utils.py
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "O envio de temas WebExtension não são suportados atualmente."
 
 #: src/olympia/files/utils.py
 #, python-format
