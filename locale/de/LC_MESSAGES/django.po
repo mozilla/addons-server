@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 19:14+0000\n"
+"PO-Revision-Date: 2017-05-02 19:16+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -9828,10 +9828,12 @@ msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"Bei Mozilla sind wir stolz darauf, Produkte für Nutzer wie Sie zu entwickeln. Daher benötigen wir Ihre Hilfe. Wenn Sie an dieser Studie teilnehmen, helfen Sie uns, bessere Entscheidungen für Sie zu "
+"treffen und gestalten direkt die Zukunft von Firefox mit!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Präsentiert von:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
