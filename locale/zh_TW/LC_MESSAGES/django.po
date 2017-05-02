@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 13:30+0000\n"
+"PO-Revision-Date: 2017-05-02 14:00+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -9476,11 +9476,11 @@ msgstr "點擊移除按鈕。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "若您提早結束參與研究，我們也會請您填寫問卷。我們非常希望能了解您的使用體驗，就算您沒有參與整個研究過程也沒關係。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "提早結束參與研究並不會影響您未來參與後續研究的機會。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, fuzzy
@@ -9489,16 +9489,16 @@ msgstr "隱私權政策："
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr ""
+msgstr "所有盾牌研究"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "每個盾牌研究都會收集關於重要研究事件的資料，例如安裝、移除、每日使用，以及研究結束等事件。這些研究也會各有一份問卷。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "此資料會與 <a href=\"%(url)s\">Firefox Telemetry 資料收集</a>有關。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
