@@ -1,6 +1,6 @@
 /* Add the new column.*/
 ALTER TABLE `users`
-    ADD COLUMN `biography` longtext NULL,
+    ADD COLUMN `biography` longtext NULL;
 
 /* Copy across the translated values.  There are some users that have multiple
 localizations so we're going to use the default locale (lang) localization. */
