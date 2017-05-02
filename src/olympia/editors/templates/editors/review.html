@@ -116,6 +116,22 @@
               {% set record = record_version.activity_log %}
               {% include 'editors/includes/history.html' %}
             {% endfor %}
+            {% if version.pk in auto_approval_info %}
+              <tr>
+                <th>{{ _('Auto Approval Summary') }} </th>
+                <td class="auto_approval">
+                  {% if auto_approval_info[version.pk] %}
+                    <ul>
+                    {% for info in auto_approval_info[version.pk] %}
+                      <li>{{ info }}</li>
+                    {% endfor %}
+                    </ul>
+                  {% else %}
+                    {{ _('No attempt recorded yet.') }}
+                  {% endif %}
+                </td>
+              </tr>
+            {% endif %}
             {% if not version.releasenotes and not version.approvalnotes and not records %}
             <tr>
               <td class="no-activity">

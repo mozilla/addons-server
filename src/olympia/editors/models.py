@@ -7,7 +7,7 @@ from django.db import models
 from django.db.models import Sum
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
-from django.utils.translation import ugettext_lazy as _lazy
+from django.utils.translation import ugettext, ugettext_lazy as _lazy
 
 import olympia.core.logger
 from olympia import amo
@@ -689,7 +689,7 @@ class AutoApprovalSummary(ModelBase):
 
     def calculate_verdict(
             self, max_average_daily_users=0, min_approved_updates=0,
-            dry_run=False):
+            dry_run=False, pretty=False):
         """Calculate the verdict for this instance based on the values set
         on it and the current configuration.
 
@@ -719,7 +719,28 @@ class AutoApprovalSummary(ModelBase):
         else:
             self.verdict = success_verdict
 
+        if pretty:
+            verdict_info = self.verdict_info_prettifier(verdict_info)
+
         return verdict_info
+
+    @classmethod
+    def verdict_info_prettifier(cls, verdict_info):
+        """Return a generator of strings representing the a verdict_info
+        (as computed by calculate_verdict()) in human-readable form."""
+        mapping = {
+            'uses_custom_csp': ugettext(u'Uses a custom CSP.'),
+            'uses_native_messaging':
+                ugettext(u'Uses nativeMessaging permission.'),
+            'uses_content_script_for_all_urls':
+                ugettext(u'Uses a content script for all URLs.'),
+            'too_many_average_daily_users':
+                ugettext(u'Has too many daily users.'),
+            'too_few_approved_updates':
+                ugettext(u'Has too few consecutive human-approved updates.'),
+        }
+        return (mapping[key] for key, value in sorted(verdict_info.items())
+                if value)
 
     @classmethod
     def check_uses_custom_csp(cls, version):
