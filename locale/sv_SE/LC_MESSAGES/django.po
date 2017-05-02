@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 15:33+0000\n"
+"PO-Revision-Date: 2017-05-02 15:49+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6920,14 +6920,12 @@ msgid "The developer has provided source code."
 msgstr "Utvecklaren har lämnat källkod."
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "Senaste datum för godkännande"
+msgstr "Automatisk godkännande sammanfattning"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "No attempt recorded yet."
-msgstr "Inga poäng har delats ut än."
+msgstr "Inget försök inspelat ännu."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
@@ -9719,9 +9717,8 @@ msgid "What will happen next"
 msgstr "Vad kommer hända härnäst"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Genomsnitt</strong> (%(total)s)"
+msgstr "<strong>Om du går med på</strong> att delta:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
@@ -9753,7 +9750,7 @@ msgstr "Skriv in about:addons i adressfältet och tryck på enter."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Hitta Plugin Safety i listan över tillägg."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
@@ -9761,68 +9758,69 @@ msgstr "Klicka på knappen Ta bort."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "Om du avbryter studien tidigare ber vi dig att fylla i en enkät. Vi är intresserade av att höra om din erfarenhet, även om du inte deltog i hela studien."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Att avbryta en studie hindrar dig inte från att delta i framtida studier."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "Your privacy"
-msgstr "Sekretess:"
+msgstr "Din sekretesspolicy"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Alla Shield studier"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Varje Shield studie samlar data om viktiga studiehändelser, till exempel installera, avinstallera, daglig användning och slutet på studien. Studier inkluderar också en valfri undersökning."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Dessa data är associerade med <a href=\"%(url)s\">Firefox Telemetry collection</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
-msgstr ""
+msgstr "Denna särskilda studie"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Förutom de data som samlas in av alla Shield studier, samlar Mozilla in information om:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Webbplatser du besöker som försök att använda insticksmoduler och vilket innehåll på webbplatsen som kräver insticksmodulen;"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Hur du interagerar med plugininnehåll på de här webbplatserna, inklusive om och hur du väljer att tillåta plugin att köras."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla kommer att hålla denna information privat; all data delas endast i samlad eller anonymiserad form."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Du kan lära dig mer om datainsamlingen för denna studie <a href=\"%(url)s\">här</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Du hjälper till att göra Firefox bättre"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"På Mozilla är vi stolta över att skapa produkter för dig, användaren! Därför behöver vi din hjälp. Genom att delta i denna studie hjälper du oss att fatta bättre beslut för din räkning och direkt "
+"forma framtiden för Firefox!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Presenteras av:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
