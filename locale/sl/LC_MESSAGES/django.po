@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 14:32+0000\n"
+"PO-Revision-Date: 2017-05-02 14:39+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -6514,7 +6514,7 @@ msgstr "Ima preveč dnevnih uporabnikov."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "Ima premalo zapovrstno ročno odobrenih posodobitev."
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -7022,14 +7022,12 @@ msgid "The developer has provided source code."
 msgstr "Razvijalec je priskrbel izvorno kodo."
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "Datum zadnje odobritve"
+msgstr "Povzetek samodejne odobritve"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "No attempt recorded yet."
-msgstr "Dobili niste še nobene točke."
+msgstr "Zabeležen ni še noben poskus."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
@@ -9794,20 +9792,19 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Start Now"
-msgstr ""
+msgstr "Začni zdaj"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
+msgstr "Mozilla želi najti najboljši način, kako ohraniti uporabnike varne, če ti uporabljajo tujo programsko opremo, kot so vtičniki. S sodelovanjem v tem poskusu nam boste pomagali izvedeti!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
-msgstr ""
+msgstr "Kaj se bo zgodilo naslednje"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Povprečje</strong> (%(total)s)"
+msgstr "<strong>Če se strinjate</strong> s sodelovanjem:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
@@ -9907,7 +9904,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Omogoča:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
