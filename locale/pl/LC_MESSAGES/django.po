@@ -9832,9 +9832,8 @@ msgid "What will happen next"
 msgstr "Co nastąpi w dalszej kolejności"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "Jeśli zgodzisz się wziąć udział w badaniu:"
+msgstr "<strong>Jeśli zgodzisz</strong> się wziąć udział w badaniu:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
@@ -9881,7 +9880,6 @@ msgid "Opting out of a study does not prevent you from participating in future s
 msgstr "Rezygnacja z badania nie wyklucza możliwości udziału w przyszłych badaniach."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "Your privacy"
 msgstr "Twoja prywatność"
 
