@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-26 13:36+0000\n"
+"POT-Creation-Date: 2017-05-02 11:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6356,6 +6356,26 @@ msgstr "Şǿŭřƈḗş ƥřǿṽīḓḗḓ"
 msgid "WebExtension"
 msgstr "ẆḗƀḖẋŧḗƞşīǿƞ"
 
+#: src/olympia/editors/models.py
+msgid "Uses a custom CSP."
+msgstr "Ŭşḗş ȧ ƈŭşŧǿḿ ƇŞƤ."
+
+#: src/olympia/editors/models.py
+msgid "Uses nativeMessaging permission."
+msgstr "Ŭşḗş ƞȧŧīṽḗḾḗşşȧɠīƞɠ ƥḗřḿīşşīǿƞ."
+
+#: src/olympia/editors/models.py
+msgid "Uses a content script for all URLs."
+msgstr "Ŭşḗş ȧ ƈǿƞŧḗƞŧ şƈřīƥŧ ƒǿř ȧŀŀ ŬŘĿş."
+
+#: src/olympia/editors/models.py
+msgid "Has too many daily users."
+msgstr "Ħȧş ŧǿǿ ḿȧƞẏ ḓȧīŀẏ ŭşḗřş."
+
+#: src/olympia/editors/models.py
+msgid "Has too few consecutive human-approved updates."
+msgstr "Ħȧş ŧǿǿ ƒḗẇ ƈǿƞşḗƈŭŧīṽḗ ħŭḿȧƞ-ȧƥƥřǿṽḗḓ ŭƥḓȧŧḗş."
+
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
 msgstr "Ḓŭƥŀīƈȧŧḗ Şŭƀḿīşşīǿƞ"
@@ -6839,6 +6859,14 @@ msgstr "Ḓǿẇƞŀǿȧḓ ƒīŀḗş"
 #: src/olympia/editors/templates/editors/review.html
 msgid "The developer has provided source code."
 msgstr "Ŧħḗ ḓḗṽḗŀǿƥḗř ħȧş ƥřǿṽīḓḗḓ şǿŭřƈḗ ƈǿḓḗ."
+
+#: src/olympia/editors/templates/editors/review.html
+msgid "Auto Approval Summary"
+msgstr "Ȧŭŧǿ Ȧƥƥřǿṽȧŀ Şŭḿḿȧřẏ"
+
+#: src/olympia/editors/templates/editors/review.html
+msgid "No attempt recorded yet."
+msgstr "Ƞǿ ȧŧŧḗḿƥŧ řḗƈǿřḓḗḓ ẏḗŧ."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
@@ -9585,6 +9613,124 @@ msgid ""
 msgstr ""
 "Īƞ ɠḗƞḗřȧŀ, ƞǿ. Ɓŭŧ īƒ ŧħḗ řḗṽīḗẇ ḓīḓ ƞǿŧ ḿḗḗŧ ŧħḗ řḗṽīḗẇ ɠŭīḓḗŀīƞḗş ǿŭŧŀīƞḗḓ ȧƀǿṽḗ, ẏǿŭ ƈȧƞ ƈŀīƈķ \"Řḗƥǿřŧ ŧħīş řḗṽīḗẇ\" ȧƞḓ ħȧṽḗ īŧ ḿǿḓḗřȧŧḗḓ. Īƒ ȧ řḗṽīḗẇ īƞƈŀŭḓḗḓ ȧ ƈǿḿƥŀȧīƞŧ ŧħȧŧ īş ƞǿ ŀǿƞɠḗř "
 "ṽȧŀīḓ ḓŭḗ ŧǿ ȧ ƞḗẇ řḗŀḗȧşḗ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ, ẇḗ ḿȧẏ ƈǿƞşīḓḗř ḓḗŀḗŧīƞɠ ŧħḗ řḗṽīḗẇ. Şŭƀḿīŧ ẏǿŭř ḓḗŧȧīŀḗḓ řḗɋŭḗşŧ ŧǿ amo-editors@mozilla.org."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Start Now"
+msgstr "Şŧȧřŧ Ƞǿẇ"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
+msgstr "Ḿǿzīŀŀȧ ẇȧƞŧş ŧǿ ƒīɠŭřḗ ǿŭŧ ŧħḗ ƀḗşŧ ẇȧẏ ŧǿ ķḗḗƥ ǿŭř ŭşḗřş şȧƒḗ īƒ ŧħḗẏ ƈħǿǿşḗ ŧǿ ŭşḗ ŧħīřḓ-ƥȧřŧẏ şǿƒŧẇȧřḗ şŭƈħ ȧş ƥŀŭɠīƞş. Ƥȧřŧīƈīƥȧŧīƞɠ īƞ ŧħīş şŧŭḓẏ ẇīŀŀ ħḗŀƥ ŭş ƒīƞḓ ǿŭŧ!"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "What will happen next"
+msgstr "Ẇħȧŧ ẇīŀŀ ħȧƥƥḗƞ ƞḗẋŧ"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "<strong>If you agree</strong> to participate:"
+msgstr "<strong>Īƒ ẏǿŭ ȧɠřḗḗ</strong> ŧǿ ƥȧřŧīƈīƥȧŧḗ:"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "We may add security and plugin control features to Firefox to help with online security and performance."
+msgstr "Ẇḗ ḿȧẏ ȧḓḓ şḗƈŭřīŧẏ ȧƞḓ ƥŀŭɠīƞ ƈǿƞŧřǿŀ ƒḗȧŧŭřḗş ŧǿ Ƒīřḗƒǿẋ ŧǿ ħḗŀƥ ẇīŧħ ǿƞŀīƞḗ şḗƈŭřīŧẏ ȧƞḓ ƥḗřƒǿřḿȧƞƈḗ."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
+msgstr "Ƈǿƞŧīƞŭḗ ŭşīƞɠ Ƒīřḗƒǿẋ ȧş ẏǿŭ ƞǿřḿȧŀŀẏ ẇǿŭŀḓ. Ḓḗƥḗƞḓīƞɠ ǿƞ ħǿẇ ẏǿŭ ŭşḗ ŧħḗ Ẇḗƀ, ẏǿŭ ḿȧẏ ƞǿŧ ƞǿŧīƈḗ ȧƞẏ ƈħȧƞɠḗş."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
+msgstr "Ȧƒŧḗř ȧ ƒḗẇ ẇḗḗķş, ŧħḗ şŧŭḓẏ ẇīŀŀ ḗƞḓ ǿƞ īŧş ǿẇƞ. Ẏǿŭř Ƒīřḗƒǿẋ ẇīŀŀ ɠǿ ƀȧƈķ ŧǿ ƞǿřḿȧŀ."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
+msgstr "Ẇḗ ẇīŀŀ ȧşķ ẏǿŭ ŧǿ ƒīŀŀ ǿŭŧ ȧ ɋŭīƈķ ǿƥŧīǿƞȧŀ şŭřṽḗẏ ŧǿ ŧḗŀŀ ŭş ȧƀǿŭŧ ẏǿŭř ḗẋƥḗřīḗƞƈḗ. Ŧħḗ şŭřṽḗẏ şħǿŭŀḓ ŧȧķḗ ŀḗşş ŧħȧƞ 5 ḿīƞŭŧḗş ŧǿ ƈǿḿƥŀḗŧḗ."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Leaving the study"
+msgstr "Ŀḗȧṽīƞɠ ŧħḗ şŧŭḓẏ"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
+msgstr "Ŧħḗ şŧŭḓẏ ẇīŀŀ ḗẋƥīřḗ ǿƞ īŧş ǿẇƞ īƞ ȧ ƒḗẇ ẇḗḗķş. Ẏǿŭ ḿȧẏ ŀḗȧṽḗ ŧħḗ şŧŭḓẏ ḗȧřŀẏ. Ŧǿ ḓǿ şǿ, ƒǿŀŀǿẇ ŧħḗşḗ şŧḗƥş:"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Type about:addons into the location bar, and press enter."
+msgstr "Ŧẏƥḗ ȧƀǿŭŧ:ȧḓḓǿƞş īƞŧǿ ŧħḗ ŀǿƈȧŧīǿƞ ƀȧř, ȧƞḓ ƥřḗşş ḗƞŧḗř."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Find Plugin Safety in the addons list."
+msgstr "Ƒīƞḓ Ƥŀŭɠīƞ Şȧƒḗŧẏ īƞ ŧħḗ ȧḓḓǿƞş ŀīşŧ."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Click the remove button."
+msgstr "Ƈŀīƈķ ŧħḗ řḗḿǿṽḗ ƀŭŧŧǿƞ."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
+msgstr "Īƒ ẏǿŭ ǿƥŧ ǿŭŧ ǿƒ ŧħḗ şŧŭḓẏ ḗȧřŀẏ ẇḗ ẇīŀŀ ȧşķ ẏǿŭ ŧǿ ƒīŀŀ ǿŭŧ ȧ şŭřṽḗẏ. Ẇḗ’řḗ īƞŧḗřḗşŧḗḓ īƞ ħḗȧřīƞɠ ȧƀǿŭŧ ẏǿŭř ḗẋƥḗřīḗƞƈḗ, ḗṽḗƞ īƒ ẏǿŭ ḓīḓƞ’ŧ ƥȧřŧīƈīƥȧŧḗ īƞ ŧħḗ ḗƞŧīřḗ şŧŭḓẏ."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Opting out of a study does not prevent you from participating in future studies."
+msgstr "Ǿƥŧīƞɠ ǿŭŧ ǿƒ ȧ şŧŭḓẏ ḓǿḗş ƞǿŧ ƥřḗṽḗƞŧ ẏǿŭ ƒřǿḿ ƥȧřŧīƈīƥȧŧīƞɠ īƞ ƒŭŧŭřḗ şŧŭḓīḗş."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Your privacy"
+msgstr "Ẏǿŭř ƥřīṽȧƈẏ"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "All Shield Studies"
+msgstr "Ȧŀŀ Şħīḗŀḓ Şŧŭḓīḗş"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
+msgstr "Ḗṽḗřẏ Şħīḗŀḓ Şŧŭḓẏ ƈǿŀŀḗƈŧş ḓȧŧȧ ȧƀǿŭŧ īḿƥǿřŧȧƞŧ şŧŭḓẏ ḗṽḗƞŧş, şŭƈħ ȧş īƞşŧȧŀŀ, ŭƞīƞşŧȧŀŀ, ḓȧīŀẏ ŭşȧɠḗ, ȧƞḓ ḗƞḓ ǿƒ şŧŭḓẏ. Şŧŭḓīḗş ȧŀşǿ īƞƈŀŭḓḗ ȧƞ ǿƥŧīǿƞȧŀ şŭřṽḗẏ."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+#, python-format
+msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
+msgstr "Ŧħīş ḓȧŧȧ īş ȧşşǿƈīȧŧḗḓ ẇīŧħ <a href=\"%(url)s\">Ƒīřḗƒǿẋ Ŧḗŀḗḿḗŧřẏ ƈǿŀŀḗƈŧīǿƞ</a>."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "This particular Study"
+msgstr "Ŧħīş ƥȧřŧīƈŭŀȧř Şŧŭḓẏ"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
+msgstr "Īƞ ȧḓḓīŧīǿƞ ŧǿ ŧħḗ ḓȧŧȧ ƈǿŀŀḗƈŧḗḓ ƀẏ ȧŀŀ Şħīḗŀḓ Şŧŭḓīḗş, Ḿǿzīŀŀȧ ẇīŀŀ ƈǿŀŀḗƈŧ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ:"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
+msgstr "Ẇḗƀşīŧḗş ẏǿŭ ṽīşīŧ ŧħȧŧ ŧřẏ ŧǿ ŭşḗ ƥŀŭɠīƞş, ȧƞḓ ẇħȧŧ ƈǿƞŧḗƞŧ ǿƞ ŧħḗ şīŧḗ řḗɋŭīřḗş ŧħḗ ƥŀŭɠīƞ;"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
+msgstr "Ħǿẇ ẏǿŭ īƞŧḗřȧƈŧ ẇīŧħ ƥŀŭɠīƞ ƈǿƞŧḗƞŧ ǿƞ ŧħǿşḗ şīŧḗş, īƞƈŀŭḓīƞɠ ẇħḗŧħḗř ȧƞḓ ħǿẇ ẏǿŭ ƈħǿǿşḗ ŧǿ ȧŀŀǿẇ ŧħḗ ƥŀŭɠīƞ ŧǿ řŭƞ."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
+msgstr "Ḿǿzīŀŀȧ ẇīŀŀ ķḗḗƥ ŧħīş īƞƒǿřḿȧŧīǿƞ ƥřīṽȧŧḗ; ȧƞẏ ḓȧŧȧ ẇīŀŀ ǿƞŀẏ ƀḗ şħȧřḗḓ īƞ ȧɠɠřḗɠȧŧḗ ǿř ȧƞǿƞẏḿīzḗḓ ƒǿřḿ."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+#, python-format
+msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
+msgstr "Ẏǿŭ ƈȧƞ ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ ŧħḗ ḓȧŧȧ ƈǿŀŀḗƈŧīǿƞ ƒǿř ŧħīş şŧŭḓẏ <a href=\"%(url)s\">ħḗřḗ</a>."
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "You Help Make Firefox Better"
+msgstr "Ẏǿŭ Ħḗŀƥ Ḿȧķḗ Ƒīřḗƒǿẋ Ɓḗŧŧḗř"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid ""
+"At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
+"directly shape the future of Firefox!"
+msgstr ""
+"Ȧŧ Ḿǿzīŀŀȧ, ẇḗ ƥřīḓḗ ǿŭřşḗŀṽḗş ǿƞ ƀŭīŀḓīƞɠ ƥřǿḓŭƈŧş ƒǿř ẏǿŭ, ŧħḗ ŭşḗř! Ŧħȧŧ’ş ẇħẏ ẇḗ ƞḗḗḓ ẏǿŭř ħḗŀƥ. Ɓẏ ƥȧřŧīƈīƥȧŧīƞɠ īƞ ŧħīş şŧŭḓẏ, ẏǿŭ ẇīŀŀ ħḗŀƥ ŭş ŧǿ ḿȧķḗ ƀḗŧŧḗř ḓḗƈīşīǿƞş ǿƞ ẏǿŭř ƀḗħȧŀƒ ȧƞḓ "
+"ḓīřḗƈŧŀẏ şħȧƥḗ ŧħḗ ƒŭŧŭřḗ ǿƒ Ƒīřḗƒǿẋ!"
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Brought to you by:"
+msgstr "Ɓřǿŭɠħŧ ŧǿ ẏǿŭ ƀẏ:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"

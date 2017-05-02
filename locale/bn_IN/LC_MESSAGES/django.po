@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-26 13:36+0000\n"
+"POT-Creation-Date: 2017-05-02 11:20+0000\n"
 "PO-Revision-Date: 2016-11-03 13:40+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -6290,6 +6290,26 @@ msgstr ""
 msgid "WebExtension"
 msgstr ""
 
+#: src/olympia/editors/models.py
+msgid "Uses a custom CSP."
+msgstr ""
+
+#: src/olympia/editors/models.py
+msgid "Uses nativeMessaging permission."
+msgstr ""
+
+#: src/olympia/editors/models.py
+msgid "Uses a content script for all URLs."
+msgstr ""
+
+#: src/olympia/editors/models.py
+msgid "Has too many daily users."
+msgstr ""
+
+#: src/olympia/editors/models.py
+msgid "Has too few consecutive human-approved updates."
+msgstr ""
+
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
 msgstr ""
@@ -6770,6 +6790,14 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "The developer has provided source code."
+msgstr ""
+
+#: src/olympia/editors/templates/editors/review.html
+msgid "Auto Approval Summary"
+msgstr ""
+
+#: src/olympia/editors/templates/editors/review.html
+msgid "No attempt recorded yet."
 msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
@@ -9377,6 +9405,122 @@ msgstr ""
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Start Now"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "What will happen next"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "<strong>If you agree</strong> to participate:"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "We may add security and plugin control features to Firefox to help with online security and performance."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Leaving the study"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Type about:addons into the location bar, and press enter."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Find Plugin Safety in the addons list."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Click the remove button."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Opting out of a study does not prevent you from participating in future studies."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Your privacy"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "All Shield Studies"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+#, python-format
+msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "This particular Study"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+#, python-format
+msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "You Help Make Firefox Better"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid ""
+"At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
+"directly shape the future of Firefox!"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html
+msgid "Brought to you by:"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/sunbird.html
