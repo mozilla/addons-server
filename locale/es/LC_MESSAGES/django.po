@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 16:13+0000\n"
-"Last-Translator: dothayer <dothayer@mozilla.com>\n"
+"PO-Revision-Date: 2017-05-02 19:34+0000\n"
+"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -9816,13 +9816,13 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Start Now"
-msgstr "Comienza ahora"
+msgstr "Comenzar ahora"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
-"En Mozilla queremos determinar la mejor manera de proteger a nuestros usuarios si deciden usar programas de terceros como, por ejemplo, complementos. ¡Tu participación en esta encuesta nos ayudará a"
-" lograrlo!"
+"En Mozilla queremos determinar la mejor manera de proteger a nuestros usuarios si deciden usar programas de terceros como, por ejemplo, los plugins. ¡Tu participación en esta encuesta nos ayudará a "
+"lograrlo!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
@@ -9834,11 +9834,11 @@ msgstr "<strong>Si decides</strong> participar:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr "Posiblemente incluyamos funciones de seguridad y de control de complementos en Firefox para mejorar la seguridad en red y el desempeño."
+msgstr "Puede que agreguemos funciones de seguridad y de control de plugins en Firefox para mejorar la seguridad en línea y el rendimiento."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr "Continúa usando Firefox como lo sueles hacer. Quizá no notes ningún cambio; esto dependerá de cómo uses internet."
+msgstr "Continúa usando Firefox como lo sueles hacer. Quizá no notes ningún cambio: dependerá de cómo uses internet."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
@@ -9846,11 +9846,11 @@ msgstr "Pasadas algunas semanas, el estudio finalizará automáticamente y tu Fi
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr "Solicitaremos que respondas una breve encuesta opcional sobre tu experiencia. No te tomará más de cinco minutos."
+msgstr "Te pediremos que respondas una breve encuesta opcional sobre tu experiencia. No te llevará más de 5 minutos."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
-msgstr "Cómo abandonar el estudio"
+msgstr "Abandonar el estudio"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
@@ -9858,7 +9858,7 @@ msgstr "Si bien el estudio finalizará automáticamente pasadas algunas semanas,
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr "Introduce about:addons en la barra de ubicación y pulsa intro."
+msgstr "Escribe about:addons en la barra de direcciones y pulsa intro."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
@@ -9895,7 +9895,7 @@ msgstr "Estos datos están vinculados con la colección <a href=\"%(url)s\">Fire
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
-msgstr "Este estudio en particular"
+msgstr "Este estudio en concreto"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
@@ -9903,11 +9903,11 @@ msgstr "Además de los datos recopilados por todos los estudios de Shield, Mozil
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr "sitios web que visites y que intenten usar complementos, y el contenido específico del sitio que necesite el complemento;"
+msgstr "Sitios web que visites y que intenten usar complementos, y qué contenido en concreto solicita ese plugin;"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr "cómo interactúas con el contenido del complemento en esos sitios y si permites que el complemento se ejecute."
+msgstr "Cómo interactúas con el contenido del plugin en esos sitios y si permites, y cómo, que el complemento se ejecute."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
