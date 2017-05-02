@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 17:51+0000\n"
+"PO-Revision-Date: 2017-05-02 18:09+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1483,7 +1483,7 @@ msgstr "Μη έγκυρο σύμβολο JWT."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Το πεδίο πρέπει να αποτελείται από τουλάχιστον {num} χαρακτήρες."
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
@@ -2806,19 +2806,19 @@ msgstr "Απάντηση κριτή"
 
 #: src/olympia/constants/activity.py
 msgid "Approval notes changed for {addon} {version}."
-msgstr ""
+msgstr "Οι σημειώσεις έγκρισης άλλαξαν για το {addon} {version}."
 
 #: src/olympia/constants/activity.py
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Οι σημειώσεις έγκρισης άλλαξαν"
 
 #: src/olympia/constants/activity.py
 msgid "Source code uploaded for {addon} {version}."
-msgstr ""
+msgstr "Μεταφορτώθηκε ο πηγαίος κώδικας για το {addon} {version}."
 
 #: src/olympia/constants/activity.py
 msgid "Source code uploaded"
-msgstr ""
+msgstr "Μεταφορτώθηκε ο πηγαίος κώδικας"
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -3770,7 +3770,7 @@ msgstr "Οι αλλαγές αποθηκεύτηκαν με επιτυχία. "
 
 #: src/olympia/devhub/views.py
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Παρακαλώ ελέγξτε τη φόρμα για σφάλματα."
 
 #: src/olympia/devhub/views.py
 msgid "Add-on cannot be deleted. Disable this add-on instead."
@@ -3786,7 +3786,7 @@ msgstr "Διαγράφηκε το πρόσθετο."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Το όνομα του URL ήταν λάθος. Το θέμα δεν διαγράφηκε."
 
 #: src/olympia/devhub/views.py
 msgid "URL name was incorrect. Add-on was not deleted."
@@ -3950,7 +3950,7 @@ msgstr "Υποβολή προσθέτου"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Κριτές AMO"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
@@ -4815,7 +4815,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "Σημειώσεις προς τον κριτή:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
@@ -4851,7 +4851,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Πώς να διανείμετε αυτή την έκδοση"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -5931,7 +5931,7 @@ msgstr "Φόρτωση ιστορικού αξιολόγησης..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Αντιμετωπίσαμε πρόβλημα κατά την ανάκτηση σημειώσεων έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
@@ -6376,11 +6376,11 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Χρησιμοποιεί ένα σενάριο περιεχομένου για όλα τα URL."
 
 #: src/olympia/editors/models.py
 msgid "Has too many daily users."
-msgstr ""
+msgstr "Έχει πάρα πολλούς καθημερινούς χρήστες."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
@@ -6475,21 +6475,21 @@ msgstr "Τα θέματα σας ξεκλειδώθηκαν επιτυχώς. Ά
 
 #: src/olympia/editors/templates/editors/abuse_reports.html
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: Αναφορές κατάχρησης"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html
 msgid "Abuse Reports for {addon} ({num})"
-msgstr ""
+msgstr "Αναφορές κατάχρησης για το {addon} ({num})"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s στις %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html
 #, python-format
 msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "<i>ανώνυμος</i> στις %(date)s [%(ip_address)s]"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: src/olympia/editors/templates/editors/addon_details_box.html src/olympia/search/templates/search/results.html src/olympia/versions/templates/versions/version.html
@@ -6768,7 +6768,7 @@ msgstr "Αυτό το έτος"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Μηνιαία επίδοση"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-time Point Breakdown by Type"
@@ -6871,9 +6871,8 @@ msgid "The developer has provided source code."
 msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "Ημερομηνία τελευταίας έγκρισης"
+msgstr "Επισκόπηση αυτόματης έγκρισης"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "No attempt recorded yet."
@@ -7299,15 +7298,15 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "Σύγκριση αρχείων :: Εργαλεία κριτή"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "Προβολή αρχείων :: Εργαλεία κριτή"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
-msgstr ""
+msgstr "Αποτυχία επαλήθευσης:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
@@ -9598,9 +9597,8 @@ msgid "Opting out of a study does not prevent you from participating in future s
 msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "Your privacy"
-msgstr "Ιδιωτικό απόρρητο:"
+msgstr "Το απόρρητό σας"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
@@ -10027,7 +10025,7 @@ msgstr "Μερικές λειτουργίες έχουν προς το παρό�
 
 #: src/olympia/signing/views.py
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Αδυναμία εύρεσης προσθέτου με το id \"{}\"."
 
 #: src/olympia/signing/views.py
 msgid "You do not own this addon."
@@ -10382,11 +10380,11 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid "Daily Users by Date"
-msgstr "Καθημερινοί χρήστες κατά ημερομηνία"
+msgstr "Ημερήσιοι χρήστες κατά ημερομηνία"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid "What are daily users?"
-msgstr ""
+msgstr "Τι είναι οι ημερήσιοι χρήστες;"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid ""
