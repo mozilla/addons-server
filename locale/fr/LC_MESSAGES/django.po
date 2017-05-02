@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-04-26 13:36+0000\n"
-"PO-Revision-Date: 2017-05-01 16:47+0000\n"
+"PO-Revision-Date: 2017-05-01 23:39+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6319,11 +6319,10 @@ msgstr[0] "Revue modérée ({0})"
 msgstr[1] "Revues modérées ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Nouveau module ({0})"
-msgstr[1] "Nouveaux modules ({0})"
+msgstr[0] "Module complémentaire approuvé automatiquement ({0})"
+msgstr[1] "Modules complémentaires approuvés automatiquement ({0})"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
@@ -6387,14 +6386,12 @@ msgid "This will reject this version and remove it from the queue. The comments 
 msgstr "Cette action rejettera le module et le supprimera de la file d’attente des revues. Les commentaires seront envoyés au développeur."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "Réponse d’un relecteur"
+msgstr "Réponse d’un testeur"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Cette action demandera plus d’informations au développeur. Vous serez notifié de sa réponse."
+msgstr "Cette action enverra un message au développeur. Vous serez notifié lorsqu’il vous répondra."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
@@ -6577,13 +6574,12 @@ msgid "EULA"
 msgstr "CLUF"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "État d’approbation"
+msgstr "Dernière date d’approbation"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "Approvals Since Last Automatic Review"
-msgstr ""
+msgstr "Approbations depuis la dernière révision automatique"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "More about this add-on"
@@ -6634,9 +6630,8 @@ msgid "Moderated Reviews"
 msgstr "Revues modérées"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Modules Android"
+msgstr "Modules complémentaires approuvés automatiquement"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
