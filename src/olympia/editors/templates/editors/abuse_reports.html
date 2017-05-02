@@ -5,24 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<h2>{{_('Abuse Reports for {addon} ({num})')|fe(addon=addon.name, num=total|numberfmt) }}</h2>
-<ul>
-  {% for report in reports %}
-  <li>
-    {% with date=report.created|datetime, ip_address=report.ip_address %}
-      {% if report.reporter %}
-        {% trans user=report.reporter|user_link %}
-          {{ user }} on {{ date }} [{{ ip_address }}]
-        {% endtrans %}
-      {% else %}
-        {% trans %}
-          <i>anonymous</i> on {{ date }} [{{ ip_address }}]
-        {% endtrans %}
-      {% endif %}
-    {% endwith %}
-    <blockquote>{{ report.message }}</blockquote>
-  </li>
-  {% endfor %}
-</ul>
-{{ reports|paginator }}
+  <h2>{{_('Abuse Reports for {addon} ({num})')|fe(addon=addon.name, num=reports.paginator.count|numberfmt) }}</h2>
+  {% include "editors/includes/abuse_reports_list.html" %}
+  {{ reports|paginator }}
 {% endblock %}
