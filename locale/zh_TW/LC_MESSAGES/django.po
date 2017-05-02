@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 14:23+0000\n"
+"PO-Revision-Date: 2017-05-02 14:41+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -6301,9 +6301,8 @@ msgid "Uses a content script for all URLs."
 msgstr "針對所有網址使用內容指令碼。"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Has too many daily users."
-msgstr "每日使用者數是指？"
+msgstr "有太多日常使用者。"
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
@@ -6790,14 +6789,12 @@ msgid "The developer has provided source code."
 msgstr "開發者提供了原始碼。"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "最近批准日期"
+msgstr "自動批准摘要"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "No attempt recorded yet."
-msgstr "尚無任何評分。"
+msgstr "尚未記錄任何嘗試。"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
@@ -9434,9 +9431,8 @@ msgid "What will happen next"
 msgstr "未來將發生"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>平均</strong> (%(total)s)"
+msgstr "<strong>若您同意</strong>參與:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
@@ -9483,9 +9479,8 @@ msgid "Opting out of a study does not prevent you from participating in future s
 msgstr "提早結束參與研究並不會影響您未來參與後續研究的機會。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "Your privacy"
-msgstr "隱私權政策："
+msgstr "您的隱私權"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
@@ -9518,12 +9513,12 @@ msgstr "您如何在網站上與這些外掛程式互動，包含您有沒有允
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla 會確保收集到的資訊的隱私安全，只會以集體加總或匿名的方式分享。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "您可以在<a href=\"%(url)s\">此處</a>了解資料收集的相關資訊。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
@@ -9533,11 +9528,11 @@ msgstr "感謝您幫助讓 Firefox 變得更好"
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
-msgstr ""
+msgstr "在 Mozilla 我們以為使用者（也就是您）打造更好的軟體為榮！這就是我們需要您幫忙的原因。您若參與此研究，就可以幫助我們以您的立場做出更好的決定，直接影響 Firefox 未來版本上的功能！"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr ""
+msgstr "為您提供:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
