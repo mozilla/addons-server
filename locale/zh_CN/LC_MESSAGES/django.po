@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 13:30+0000\n"
+"PO-Revision-Date: 2017-05-02 13:50+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -6269,20 +6269,19 @@ msgstr "使用自定义 CSP。"
 
 #: src/olympia/editors/models.py
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "使用 nativeMessaging 权限。"
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "为所有网址使用一个内容脚本。"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Has too many daily users."
-msgstr "什么是每日用户量？"
+msgstr "有很多日常用户。"
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "很少的连续人类审批更新。"
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -6760,14 +6759,12 @@ msgid "The developer has provided source code."
 msgstr "开发者已提供源代码。"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "上次批准时间"
+msgstr "自动批准摘要"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "No attempt recorded yet."
-msgstr "尚无奖励点数。"
+msgstr "没有尝试记录。"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
@@ -9388,111 +9385,109 @@ msgstr "一般来说，不能。但如果评论不符合上述评论准则，您
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Start Now"
-msgstr ""
+msgstr "立即开始"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
+msgstr "Mozilla 想要找出最佳的方式保障我们使用第三方软件（例如插件）的用户的安全。参与这项研究将有助于我们了解情况。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
-msgstr ""
+msgstr "接下来会发生什么"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>平均</strong> (%(total)s)"
+msgstr "<strong>如果您同意</strong>参加："
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "我们可能会向 Firefox 添加安全与插件控制功能，以帮助改善网上安全性和性能。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "像往常一样继续使用 Firefox。取决于您使用 Web 的方式，您有可能不会注意到任何更改。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "在几周之后，研究将自动结束。您的 Firefox 将恢复正常。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "我们会邀请您填写一份可选的快速调查报告，告诉我们您的体验。调查需要不到5分钟。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
-msgstr ""
+msgstr "离开调查"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "此研究将在几周后自动过期。您也可以提前离开调查，只需按下列步骤操作："
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "将 about:addons 输入到地址栏，然后按回车键。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "在附加组件列表中找到 Plugin Safety（插件安全）。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
-msgstr ""
+msgstr "点击移除按钮。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "如果您选择提前离开，我们也会邀请您填写一份调查。即使您没有参与整个研究，我们也有兴趣听取您的体验。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "退出研究并不妨碍您参与未来的研究。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "Your privacy"
-msgstr "隐私权政策："
+msgstr "您的隐私"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr ""
+msgstr "所有盾牌研究"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "每个盾牌研究都收集有关重要研究活动的数据，如安装、卸载、日常使用以及研究结束。研究还包括可选的调查。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "此数据与 <a href=\"%(url)s\">Firefox 遥测采集</a>相关。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
-msgstr ""
+msgstr "这个特定的研究"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "除了盾牌研究收集的数据外，Mozilla 也收集下列有关信息："
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "您访问的尝试使用插件的网站，网站上的什么内容需要插件；"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "您如何与这些网站上的插件内容交互，包括是否以及如何选择允许运行插件。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla 将保密这些信息；任何数据都只以聚合或匿名形式共享。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "您可以在<a href=\"%(url)s\">这里</a>.进一步了解此研究的数据收集。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "您的帮助使 Firefox 更好"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid ""
