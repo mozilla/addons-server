@@ -589,6 +589,7 @@ def _get_comments_for_hard_deleted_versions(addon):
         status = 'Deleted'
         deleted = True
         channel = amo.RELEASE_CHANNEL_LISTED
+        is_ready_for_auto_approval = False
 
         @property
         def created(self):
