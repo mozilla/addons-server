@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 17:47+0000\n"
+"PO-Revision-Date: 2017-05-02 18:42+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6439,20 +6439,19 @@ msgstr "WebExtension"
 
 #: src/olympia/editors/models.py
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Utilise une CSP personnalisée."
 
 #: src/olympia/editors/models.py
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Utilise la permission nativeMessaging."
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Utilise un script de contenu pour toutes les URL."
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Has too many daily users."
-msgstr "Que sont les utilisateurs journaliers ?"
+msgstr "Possède trop d’utilisateurs quotidiens."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
@@ -6945,14 +6944,12 @@ msgid "The developer has provided source code."
 msgstr "Le développeur a fourni le code source."
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "Dernière date d’approbation"
+msgstr "Résumé de l’approbation automatique"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "No attempt recorded yet."
-msgstr "Pas encore de point gagné."
+msgstr "Aucune tentative enregistrée pour l’instant."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
