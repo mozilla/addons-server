@@ -2771,6 +2771,18 @@ class TestReviewPending(ReviewBase):
         assert mock_sign.called
 
     def test_auto_approval_summary(self):
+        # Hard-delete a version, faking the right ActivityLog so that the view
+        # creates a PseudoVersion instance...
+        deleted_version = version_factory(addon=self.addon)
+        ActivityLog.create(
+            amo.LOG.REJECT_VERSION, self.addon,
+            version=deleted_version, details={
+                'comments': u'Eh, thîs is a deleted version'
+            }, user=user_factory(),
+        )
+        deleted_version.delete(hard=True)
+
+        # Now auto-approve the regular version left.
         AutoApprovalSummary.objects.create(
             version=self.version,
             verdict=amo.NOT_AUTO_APPROVED,
