@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 19:34+0000\n"
+"PO-Revision-Date: 2017-05-02 19:48+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -6487,24 +6487,23 @@ msgstr "WebExtension"
 
 #: src/olympia/editors/models.py
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Utiliza un CSP a medida."
 
 #: src/olympia/editors/models.py
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Utiliza permisos de nativeMessaging."
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Utiliza un script de contenido para todas los URLs."
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Has too many daily users."
-msgstr "¿Qué son los usuarios diarios?"
+msgstr "Hay demasiados usuarios diarios."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "No hay suficientes actualizaciones consecutivas aprobadas manualmente."
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -6997,14 +6996,12 @@ msgid "The developer has provided source code."
 msgstr "El desarrollador ha proporcionado el código fuente."
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "Última fecha de aprobación"
+msgstr "Sumario de autoaprobración"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "No attempt recorded yet."
-msgstr "No se otorgaron puntos todavía."
+msgstr "Aún no se ha registrado ningún intento."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
@@ -9911,24 +9908,24 @@ msgstr "Cómo interactúas con el contenido del plugin en esos sitios y si permi
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr "Mozilla mantendrá la confidencialidad de esta información, y cualquier dato que comparta lo hará de manera agregada o anonimizada."
+msgstr "Mozilla mantendrá la confidencialidad de esta información, y cualquier dato que comparta lo hará de manera global o anónima."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr "<a href=\"%(url)s\">Aquí</a> encontrarás más información sobre la recolección de datos para este estudio."
+msgstr "<a href=\"%(url)s\">Aquí</a> encontrarás más información sobre la recopilación de datos para este estudio."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
-msgstr "Tú contribuyes con la mejora de Firefox"
+msgstr "Tú ayudas a mejorar Firefox"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
-"¡En Mozilla nos enorgullecemos de crear productos para ti! Por eso necesitamos tu ayuda. Al participar en este estudio, nos ayudarás a tomar mejores decisiones para ti ¡y contribuirás directamente a"
-" definir el futuro de Firefox!"
+"¡En Mozilla, nos enorgullecemos de crear productos para ti! Por eso necesitamos tu ayuda. Al participar en este estudio, nos ayudas a tomar mejores decisiones ¡y contribuyes directamente a definir "
+"el futuro de Firefox!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
