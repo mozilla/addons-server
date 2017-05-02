@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 13:50+0000\n"
+"PO-Revision-Date: 2017-05-02 13:52+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -9493,11 +9493,11 @@ msgstr "您的帮助使 Firefox 更好"
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
-msgstr ""
+msgstr "Mozilla 的人们为自己为用户建立产品而感到自豪！这也是为什么我们需要你的帮助。参与这项研究的您将帮助我们在您的立场上做出更好的决策，直接塑造 Firefox 的未来！"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr ""
+msgstr "诚挚问候——"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
