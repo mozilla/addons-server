@@ -9396,119 +9396,121 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Start Now"
-msgstr ""
+msgstr "अब शुरू करें"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
+msgstr "Mozilla अपने उपयोगकर्ताओं को सुरक्षित रखने का सबसे अच्छा तरीका जानना चाहते हैं। आपके इस अध्ययन में भाग लेने से, हमें पता चल सकेगा यदि आप तृतीय-पक्ष सॉफ़्टवेयर जैसे कि प्लगिन का उपयोग करना चुनते हैं!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
-msgstr ""
+msgstr "आगे क्या होगा"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "<strong>If you agree</strong> to participate:"
-msgstr ""
+msgstr "यदि आप भाग लेने के लिए सहमत हैं:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "हम ऑनलाइन सुरक्षा और प्रदर्शन के साथ मदद करने के लिए Firefox में सुरक्षा और प्लगइन नियंत्रण सुविधाओं को जोड़ सकते हैं।"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "Firefox का इस्तेमाल करना जारी रखें जैसा आप सामान्य रूप से करेंगे । आप वेब का उपयोग कैसे करते हैं इस पर निर्भर करते हुए, आपको कोई भी बदलाव नहीं दिखाई देगा।"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "कुछ हफ्तों के बाद, अध्ययन अपने आप खत्म हो जाएगा | आपका फ़ायरफ़ॉक्स वापस सामान्य हो जाएगा।"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "हम आपको अपने अनुभव के बारे में बताने के लिए एक त्वरित वैकल्पिक सर्वेक्षण भरने के लिए कहेंगे | सर्वेक्षण को पूरा करने में 5 मिनट से भी कम समय लगना चाहिए"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
-msgstr ""
+msgstr "अध्ययन छोड़कर"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "अध्ययन कुछ हफ्तों में अपने आप ही समाप्त हो जाएगा। आप अध्ययन जल्दी छोड़ सकते हैं ऐसा करने के लिए, इन चरणों का पालन करें"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "स्थान बार में about:addons टाइप करें, और Enter दबाएं"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Addons सूची में Plugin Safety खोजें।"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
-msgstr ""
+msgstr "निकालें बटन क्लिक करें"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "यदि आप अध्ययन से बाहर निकलना चाहते हैं तो हम आपको एक सर्वेक्षण भरने के लिए कहेंगे। हम आपके अनुभव के बारे में सुनने में रुचि रखते हैं, भले ही आपने पूरे अध्ययन में भाग नहीं लिया हो।"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "एक अध्ययन का चयन करने से आपको भविष्य के अध्ययनों में भाग लेने से नहीं रोकता है।"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Your privacy"
-msgstr ""
+msgstr "आपकी गोपनीयता"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr ""
+msgstr "सभी Shield अध्ययन"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "हर Shield अध्ययन, महत्वपूर्ण अध्ययन घटनाओं के बारे में डेटा एकत्र करता है, जैसे कि स्थापना, स्थापना रद्द, दैनिक उपयोग और अध्ययन के अंत। अध्ययन में एक वैकल्पिक सर्वेक्षण भी शामिल है"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "यह डेटा <a href="%(url)s">Firefox Telemetry</a> संग्रह से जुड़ा हुआ है"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
-msgstr ""
+msgstr "यह विशेष अध्ययन"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "सभी Shield स्टडीज द्वारा एकत्रित आंकड़ों के अतिरिक्त, Mozilla के बारे में जानकारी एकत्रित करेगा:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "आपके द्वारा देखी जाने वाली वेबसाइटें प्लगइन्स का उपयोग करने की कोशिश करती हैं, और साइट पर कौन सी सामग्री को प्लगइन की आवश्यकता होती है;"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "आप उन साइटों पर प्लग इन सामग्री के साथ कैसे इंटरैक्ट करते हैं, जिसमें प्लग इन को चलाने के लिए अनुमति देने के लिए आप चाहे और कैसे करते हैं"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla इस जानकारी को निजी रखेगा; कोई डेटा केवल कुल या अनाम रूप में साझा किया जाएगा।"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "<a href="%(url)s">आप यहां इस अध्ययन के लिए डेटा संग्रहण के बारे में अधिक जान सकते हैं।</a>"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "आप Firefox को बेहतर बनाने में मदद करें"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"Mozilla पर, हम आपके लिए उत्पादों के निर्माण पर गर्व करते हैं, उपयोगकर्ता! यही कारण है कि हमें आपकी मदद की ज़रूरत है इस अध्ययन में भाग लेने से, आप हमारी तरफ से बेहतर निर्णय लेने और सीधे Firefox "
+"के भविष्य को आकार देने में हमारी मदद करेंगे!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr ""
+msgstr "द्वारा आपको पेश किया हुआ:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
