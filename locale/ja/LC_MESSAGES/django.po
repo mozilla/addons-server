@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 15:49+0000\n"
-"Last-Translator: ddurst <ddurst@mozilla.com>\n"
+"PO-Revision-Date: 2017-05-02 19:52+0000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -9407,7 +9407,7 @@ msgstr "早速始めよう"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr "Mozillaは、ユーザーの皆様がプラグインなどの第三者が製作したソフトウェアを使用することを選んだ時の安全性を確保する最善の方法を見つけ出したいと思っています。あなたがこの調査に参加していただければ、その発見の助けとなります！"
+msgstr "Mozilla は、ユーザーの皆さんがプラグインなど第三者が製作したソフトウェアを使用することを選んだ時の安全性を確保する最善の方法を見つけ出したいと思っています。あなたがこの調査に参加していただければ、その発見の助けとなります！"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
@@ -9419,19 +9419,19 @@ msgstr "参加することに同意していただける場合:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr "オンライン上のセキュリティとパフォーマンスを支援するセキュリティ&プラグイン管理機能をFirefoxに追加できるかもしれません。"
+msgstr "オンライン上のセキュリティとパフォーマンスを支援するセキュリティ＆プラグイン管理機能を Firefox に追加できるかもしれません。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr "通常通りにFirefoxを使用し続けてください。あなたのウェブの使用の仕方によっては、何の違いも感じられない可能性もあります。"
+msgstr "通常通りに Firefox を使用し続けてください。あなたのウェブの使用の仕方によっては、何の違いも感じられない可能性もあります。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr "数週間後、この調査は自動的に終了します。あなたのFirefoxは普通の状態に戻ります。"
+msgstr "数週間後、この調査は自動的に終了します。あなたの Firefox は普通の状態に戻ります。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr "私たちから、あなたの体験について教えていただくための手短な任意のアンケート記入のお願いが行われます。このアンケートは通常5分以内に終わるものです。"
+msgstr "あなたの体験について教えていただくための手短な任意のアンケートに回答をお願いします。このアンケートは通常 5 分以内に終わるものです。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
@@ -9439,15 +9439,15 @@ msgstr "調査への参加を終了するには"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr "この調査は数週間以内に自動的に終了しますが、それよりも早く調査への参加を終えることもできます。そのためには、以下のステップに従ってください。"
+msgstr "この調査は数週間以内に自動的に終了しますが、それよりも早く調査への参加を終えることもできます。そのためには、以下の手順に従ってください。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr "ロケーションバーにabout:addonsと入力し、エンターキーを押してください。"
+msgstr "ロケーションバーに about:addons と入力し、Enter キーを押してください。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
-msgstr "アドオンリストからPlugin Safetyを見つけてください。"
+msgstr "アドオンの一覧から Plugin Safety を見つけてください。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
@@ -9467,16 +9467,16 @@ msgstr "あなたのプライバシー"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr "すべてのShield調査に関して"
+msgstr "すべての Shield 調査に関して"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr "すべてのShield調査において、インストール、アンインストール、一日の使用量、そして調査の終了などの重要な調査上の出来事に関するデータが収集されます。また調査には、任意のアンケートも含まれます。"
+msgstr "すべての Shield 調査において、インストール、アンインストール、1 日の使用量、そして調査の終了などの重要な調査上の出来事に関するデータが収集されます。また調査には、任意のアンケートも含まれます。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr "このデータは、<a href=\"%(url)s\">Firefox Telemetry</a>収集に関連しています。"
+msgstr "このデータは <a href=\"%(url)s\">Firefox Telemetry 収集</a> に関連付けられます。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
@@ -9484,11 +9484,11 @@ msgstr "この調査のみに関して"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr "すべてのShield調査においてのデータ収集に加えて、Mozillaは以下についての情報を収集します。"
+msgstr "すべての Shield 調査におけるデータ収集に加えて、Mozilla は以下についての情報を収集します。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr "あなたが訪問したものの内、プラグインを使用しようとしたウェブサイトと、そのサイト上のどのコンテンツがプラグインを必要としたか。"
+msgstr "あなたが訪問したもののうち、プラグインを使用しようとしたウェブサイトと、そのサイト上のどのコンテンツがプラグインを必要としたか。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
@@ -9501,21 +9501,21 @@ msgstr "Mozillaはこの情報を非公開に保ちます。いかなるデー�
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr "<a href=\"%(url)s\">この調査のためのデータ収集について、こちらからさらによく知ることができます。</a>"
+msgstr "この調査のためのデータ収集について、<a href=\"%(url)s\">こちらから</a> さらによく知ることができます。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
-msgstr "あなたがFirefoxをよりよくする助けになります"
+msgstr "あなたが Firefox をより良くする助けになります"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
-msgstr "Mozillaは、あなた方ユーザーの皆様のための製品を作っていることに誇りを持っています！ ですから、あなたの助けが必要なのです。あなたがこの調査に参加していただければ、私たちがあなたの代役としてよりよい決定をし、あなたが直接Firefoxの未来を形作る助けになります！"
+msgstr "Mozilla は、ユーザーの皆さんのための製品を作っていることに誇りを持っています！ ですから、あなたの助けが必要なのです。あなたがこの調査に参加していただければ、私たちがあなたの代役としてよりよい決定をし、あなたが直接 Firefox の未来を形作る助けになります！"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr "執筆者:"
+msgstr "開発者:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
