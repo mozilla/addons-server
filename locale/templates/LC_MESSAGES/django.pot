@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-04-26 13:36+0000\n"
+"POT-Creation-Date: 2017-05-02 11:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -609,7 +609,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/side_nav.html:22
 #: src/olympia/browse/templates/browse/macros.html:14
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:86
-#: src/olympia/editors/templates/editors/review.html:286
+#: src/olympia/editors/templates/editors/review.html:302
 #: src/olympia/editors/templates/editors/themes/themes.html:34
 #: src/olympia/templates/categories.html:4
 msgid "Categories"
@@ -694,7 +694,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html:8
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:9
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:25
-#: src/olympia/editors/templates/editors/review.html:265
+#: src/olympia/editors/templates/editors/review.html:281
 msgid "Edit"
 msgstr ""
 
@@ -1162,7 +1162,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html:213
 #: src/olympia/addons/templates/addons/impala/details.html:218
-#: src/olympia/amo/helpers.py:300 src/olympia/devhub/forms.py:125
+#: src/olympia/amo/helpers.py:287 src/olympia/devhub/forms.py:125
 #: src/olympia/devhub/forms.py:154
 #: src/olympia/versions/templates/versions/version.html:40
 #: src/olympia/versions/templates/versions/version.html:45
@@ -1506,7 +1506,7 @@ msgid "Add-ons"
 msgstr ""
 
 #. L10n: relative time in the past, like '4 days ago'
-#: src/olympia/amo/helpers.py:330
+#: src/olympia/amo/helpers.py:317
 msgid "{0} ago"
 msgstr ""
 
@@ -4034,12 +4034,12 @@ msgstr ""
 msgid "Core"
 msgstr ""
 
-#: src/olympia/devhub/feeds.py:44
+#: src/olympia/devhub/feeds.py:45
 #, python-format
 msgid "Recent Changes for %s"
 msgstr ""
 
-#: src/olympia/devhub/feeds.py:46
+#: src/olympia/devhub/feeds.py:47
 msgid "Recent Changes for My Add-ons"
 msgstr ""
 
@@ -4844,7 +4844,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:28
 #: src/olympia/editors/helpers.py:238
-#: src/olympia/editors/templates/editors/review.html:279
+#: src/olympia/editors/templates/editors/review.html:295
 msgid "Authors"
 msgstr ""
 
@@ -4914,7 +4914,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:43
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:45
 #: src/olympia/devhub/templates/devhub/personas/edit.html:57
-#: src/olympia/editors/templates/editors/review.html:255
+#: src/olympia/editors/templates/editors/review.html:271
 #: src/olympia/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr ""
@@ -5346,7 +5346,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:1
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
-#: src/olympia/editors/templates/editors/review.html:252
+#: src/olympia/editors/templates/editors/review.html:268
 msgid "Actions"
 msgstr ""
 
@@ -5922,12 +5922,12 @@ msgid "View All"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:49
-#: src/olympia/editors/templates/editors/review.html:259
+#: src/olympia/editors/templates/editors/review.html:275
 msgid "Listed Review Page"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
-#: src/olympia/editors/templates/editors/review.html:262
+#: src/olympia/editors/templates/editors/review.html:278
 msgid "Unlisted Review Page"
 msgstr ""
 
@@ -7204,7 +7204,7 @@ msgid "Waiting Time"
 msgstr ""
 
 #: src/olympia/editors/helpers.py:179 src/olympia/editors/helpers.py:305
-#: src/olympia/editors/templates/editors/review.html:294
+#: src/olympia/editors/templates/editors/review.html:310
 msgid "Flags"
 msgstr ""
 
@@ -7315,6 +7315,26 @@ msgstr ""
 msgid "WebExtension"
 msgstr ""
 
+#: src/olympia/editors/models.py:732
+msgid "Uses a custom CSP."
+msgstr ""
+
+#: src/olympia/editors/models.py:734
+msgid "Uses nativeMessaging permission."
+msgstr ""
+
+#: src/olympia/editors/models.py:736
+msgid "Uses a content script for all URLs."
+msgstr ""
+
+#: src/olympia/editors/models.py:738
+msgid "Has too many daily users."
+msgstr ""
+
+#: src/olympia/editors/models.py:740
+msgid "Has too few consecutive human-approved updates."
+msgstr ""
+
 #: src/olympia/editors/tasks.py:68
 msgid "Duplicate Submission"
 msgstr ""
@@ -7359,36 +7379,36 @@ msgstr ""
 msgid "Review successfully processed."
 msgstr ""
 
-#: src/olympia/editors/views.py:789
+#: src/olympia/editors/views.py:815
 msgid "Review lock limit reached"
 msgstr ""
 
-#: src/olympia/editors/views.py:871
+#: src/olympia/editors/views.py:897
 msgid "was approved"
 msgstr ""
 
-#: src/olympia/editors/views.py:873
+#: src/olympia/editors/views.py:899
 msgid "given preliminary review"
 msgstr ""
 
-#: src/olympia/editors/views.py:874
+#: src/olympia/editors/views.py:900
 msgid "rejected"
 msgstr ""
 
-#: src/olympia/editors/views.py:875
+#: src/olympia/editors/views.py:901
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr ""
 
-#: src/olympia/editors/views.py:877
+#: src/olympia/editors/views.py:903
 msgid "needs more information"
 msgstr ""
 
-#: src/olympia/editors/views.py:878
+#: src/olympia/editors/views.py:904
 msgid "needs super review"
 msgstr ""
 
-#: src/olympia/editors/views.py:879
+#: src/olympia/editors/views.py:905
 msgid "commented"
 msgstr ""
 
@@ -7691,7 +7711,7 @@ msgid "Update message of the day"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/motd.html:11
-#: src/olympia/editors/templates/editors/review.html:222
+#: src/olympia/editors/templates/editors/review.html:238
 msgid "Save"
 msgstr ""
 
@@ -7811,7 +7831,7 @@ msgid "Add-on user change history"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html:50
-#: src/olympia/editors/templates/editors/review.html:275
+#: src/olympia/editors/templates/editors/review.html:291
 msgid "Add-on History"
 msgstr ""
 
@@ -7838,62 +7858,70 @@ msgstr ""
 msgid "The developer has provided source code."
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:122
+#: src/olympia/editors/templates/editors/review.html:121
+msgid "Auto Approval Summary"
+msgstr ""
+
+#: src/olympia/editors/templates/editors/review.html:130
+msgid "No attempt recorded yet."
+msgstr ""
+
+#: src/olympia/editors/templates/editors/review.html:138
 msgid "This version has not been reviewed."
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:152
+#: src/olympia/editors/templates/editors/review.html:168
 msgid ""
 "You can still submit this form, however only do so if you know it won't "
 "conflict."
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:159
+#: src/olympia/editors/templates/editors/review.html:175
 msgid "Insert canned response..."
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:165
+#: src/olympia/editors/templates/editors/review.html:181
 #: src/olympia/files/templates/files/viewer.html:61
 msgid "Files:"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:179
+#: src/olympia/editors/templates/editors/review.html:195
 msgid "Tested on:"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:218
+#: src/olympia/editors/templates/editors/review.html:234
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:235
+#: src/olympia/editors/templates/editors/review.html:251
 msgid ""
 "The whiteboard is the place to exchange information relevant to this addon "
 "(whatever the version), between the developer and the editor. This is visible"
 " and editable by both."
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:239
+#: src/olympia/editors/templates/editors/review.html:255
 msgid "Update the whiteboard"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:265
-#: src/olympia/editors/templates/editors/review.html:266
+#: src/olympia/editors/templates/editors/review.html:281
+#: src/olympia/editors/templates/editors/review.html:282
 msgid "(admin)"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:266
+#: src/olympia/editors/templates/editors/review.html:282
 msgid "Admin Page"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:272
+#: src/olympia/editors/templates/editors/review.html:288
 msgid "Review This Add-on"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:274
+#: src/olympia/editors/templates/editors/review.html:290
 msgid "More Information"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:276
+#: src/olympia/editors/templates/editors/review.html:292
 msgid "Resolution"
 msgstr ""
 
@@ -8195,75 +8223,75 @@ msgstr ""
 msgid "Access your data for all websites"
 msgstr ""
 
-#: src/olympia/files/utils.py:334
+#: src/olympia/files/utils.py:337
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:372
+#: src/olympia/files/utils.py:375
 msgid ""
 "Cannot find min/max version. Maybe \"strict_min_version\" or "
 "\"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
-#: src/olympia/files/utils.py:406
+#: src/olympia/files/utils.py:409
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
-#: src/olympia/files/utils.py:422
+#: src/olympia/files/utils.py:425
 msgid "Could not parse uploaded file."
 msgstr ""
 
-#: src/olympia/files/utils.py:460
+#: src/olympia/files/utils.py:463
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:468
+#: src/olympia/files/utils.py:471
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:519
+#: src/olympia/files/utils.py:522
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:655 src/olympia/files/utils.py:658
+#: src/olympia/files/utils.py:658 src/olympia/files/utils.py:661
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:681
+#: src/olympia/files/utils.py:684
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:696
+#: src/olympia/files/utils.py:699
 msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
-#: src/olympia/files/utils.py:698
+#: src/olympia/files/utils.py:701
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID"
 " of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:709
+#: src/olympia/files/utils.py:712
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:712
+#: src/olympia/files/utils.py:715
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:715
+#: src/olympia/files/utils.py:718
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:721
+#: src/olympia/files/utils.py:724
 msgid "WebExtension theme uploads are currently not supported."
 msgstr ""
 
-#: src/olympia/files/utils.py:738
+#: src/olympia/files/utils.py:741
 #, python-format
 msgid ""
 "<em:type> in your install.rdf (%s) does not match the type of your add-on on "
@@ -10794,6 +10822,157 @@ msgid ""
 "request to amo-editors@mozilla.org."
 msgstr ""
 
+#: src/olympia/pages/templates/pages/shield_study_11.html:19
+msgid "Start Now"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:27
+msgid ""
+"Mozilla wants to figure out the best way to keep our users safe if they "
+"choose to use third-party software such as plugins. Participating in this "
+"study will help us find out!"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:32
+msgid "What will happen next"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:37
+msgid "<strong>If you agree</strong> to participate:"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:43
+msgid ""
+"We may add security and plugin control features to Firefox to help with "
+"online security and performance."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:48
+msgid ""
+"Continue using Firefox as you normally would. Depending on how you use the "
+"Web, you may not notice any changes."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:53
+msgid ""
+"After a few weeks, the study will end on its own. Your Firefox will go back "
+"to normal."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:58
+msgid ""
+"We will ask you to fill out a quick optional survey to tell us about your "
+"experience. The survey should take less than 5 minutes to complete."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:64
+msgid "Leaving the study"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:69
+msgid ""
+"The study will expire on its own in a few weeks. You may leave the study "
+"early. To do so, follow these steps:"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:75
+msgid "Type about:addons into the location bar, and press enter."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:80
+msgid "Find Plugin Safety in the addons list."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:85
+msgid "Click the remove button."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:90
+msgid ""
+"If you opt out of the study early we will ask you to fill out a survey. We’re"
+" interested in hearing about your experience, even if you didn’t participate "
+"in the entire study."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:96
+msgid ""
+"Opting out of a study does not prevent you from participating in future "
+"studies."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:101
+msgid "Your privacy"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:106
+msgid "All Shield Studies"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:111
+msgid ""
+"Every Shield Study collects data about important study events, such as "
+"install, uninstall, daily usage, and end of study. Studies also include an "
+"optional survey."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:116
+#, python-format
+msgid ""
+"This data is associated with <a href=\"%(url)s\">Firefox Telemetry "
+"collection</a>."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:121
+msgid "This particular Study"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:126
+msgid ""
+"In addition to the data collected by all Shield Studies, Mozilla will collect"
+" information about:"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:132
+msgid ""
+"Websites you visit that try to use plugins, and what content on the site "
+"requires the plugin;"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:137
+msgid ""
+"How you interact with plugin content on those sites, including whether and "
+"how you choose to allow the plugin to run."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:143
+msgid ""
+"Mozilla will keep this information private; any data will only be shared in "
+"aggregate or anonymized form."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:148
+#, python-format
+msgid ""
+"You can learn more about the data collection for this study <a "
+"href=\"%(url)s\">here</a>."
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:153
+msgid "You Help Make Firefox Better"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:158
+msgid ""
+"At Mozilla, we pride ourselves on building products for you, the user! That’s"
+" why we need your help. By participating in this study, you will help us to "
+"make better decisions on your behalf and directly shape the future of "
+"Firefox!"
+msgstr ""
+
+#: src/olympia/pages/templates/pages/shield_study_11.html:163
+msgid "Brought to you by:"
+msgstr ""
+
 #: src/olympia/pages/templates/pages/sunbird.html:26
 msgid "Sunbird has retired"
 msgstr ""
@@ -12285,7 +12464,7 @@ msgstr ""
 msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
-#: src/olympia/versions/models.py:743
+#: src/olympia/versions/models.py:758
 msgid "{app} {min} and later"
 msgstr ""
 
