@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 14:36+0000\n"
+"PO-Revision-Date: 2017-05-02 15:33+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6417,15 +6417,15 @@ msgstr "WebExtension"
 
 #: src/olympia/editors/models.py
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Använder en anpassad CSP."
 
 #: src/olympia/editors/models.py
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Använder nativeMessaging rättigheter."
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Använder ett innehållsskript för alla URL:er."
 
 #: src/olympia/editors/models.py
 msgid "Has too many daily users."
@@ -6433,7 +6433,7 @@ msgstr "Har för många dagliga användare."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "Har för få i följd mänskliga godkända uppdateringar."
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -9707,15 +9707,16 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Start Now"
-msgstr ""
+msgstr "Börja nu"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
+"Mozilla vill hitta det bästa sättet att hålla våra användare säkra om de väljer att använda program från tredje part som insticksmoduler. Att delta i denna studie hjälper oss att ta reda på det!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
-msgstr ""
+msgstr "Vad kommer hända härnäst"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, fuzzy
@@ -9724,31 +9725,31 @@ msgstr "<strong>Genomsnitt</strong> (%(total)s)"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "Vi kan lägga till säkerhetsfunktioner och kontrollfunktioner för insticksmoduler till Firefox för att hjälpa till med säkerhet och prestanda på nätet."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "Fortsätt använda Firefox som du normalt skulle. Beroende på hur du använder webben kanske du inte märker några ändringar."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Efter några veckor avslutas studien på egen hand. Firefox går tillbaka till normalt."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Vi kommer att fråga dig att fylla i en snabb och valfri enkät för att berätta om din erfarenhet. Undersökningen ska ta mindre än 5 minuter att slutföra."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
-msgstr ""
+msgstr "Lämnar studien"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Studien kommer att upphöra på egen hand om några veckor. Du kan lämna studien tidigare. För att göra det, följ dessa steg:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Skriv in about:addons i adressfältet och tryck på enter."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
