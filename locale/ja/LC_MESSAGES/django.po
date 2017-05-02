@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 15:53+0000\n"
+"PO-Revision-Date: 2017-05-02 15:54+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -6771,14 +6771,12 @@ msgid "The developer has provided source code."
 msgstr "開発者がソースコードを提供しています。"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "最終承認日"
+msgstr "自動承認の概要"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "No attempt recorded yet."
-msgstr "まだポイントは与えられていません。"
+msgstr "まだ試行は記録されていません。"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
@@ -9416,9 +9414,8 @@ msgid "What will happen next"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>平均</strong> (%(total)s)"
+msgstr "参加することに同意していただける場合:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
@@ -9465,9 +9462,8 @@ msgid "Opting out of a study does not prevent you from participating in future s
 msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "Your privacy"
-msgstr "公開範囲:"
+msgstr "あなたのプライバシー"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
