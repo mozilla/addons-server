@@ -30,11 +30,12 @@ from olympia.amo.urlresolvers import reverse
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     AutoApprovalSummary, EditorSubscription, ReviewerScore)
-from olympia.files.models import File, FileValidation
+from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 from olympia.zadmin.models import get_config, set_config
+from waffle.testutils import override_switch
 
 
 class EditorTest(TestCase):
@@ -2698,6 +2699,17 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('.auto_approval')
+
+    @override_switch('webext-permissions', active=True)
+    def test_permissions_display(self):
+        permissions = ['bookmarks', 'high', 'voltage']
+        self.file.update(is_webextension=True)
+        WebextPermission.objects.create(
+            permissions=permissions,
+            file=self.file)
+        response = self.client.get(self.url)
+        info = pq(response.content)('#review-files .file-info div')
+        assert info.eq(1).text() == 'Permissions: ' + ', '.join(permissions)
 
 
 class TestReviewPending(ReviewBase):
