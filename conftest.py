@@ -13,7 +13,6 @@ from olympia.access.models import Group, GroupUser
 from olympia.translations.hold import clean_translations
 from olympia.users.models import UserProfile
 
-
 @pytest.fixture(autouse=True)
 def unpin_db(request):
     """Unpin the database from master in the current DB.
