@@ -10,7 +10,7 @@
             "homepage": "",
             "email": "regular@mozilla.com",
             "notifycompat": 1,
-            "bio": null,
+            "biography": null,
             "deleted": 0,
             "username": "regularuser",
             "display_name": "regularuser \u0627\u0644\u062a\u0637\u0628",
@@ -25,18 +25,6 @@
         "pk": 999
     },
     {
-        "pk": 418040,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "clever phrase here",
-            "created": "2009-05-11 22:06:47",
-            "modified": "2009-05-11 22:06:47",
-            "locale": "en-US",
-            "id": 379598,
-            "localized_string_clean": null
-        }
-    },
-    {
         "pk": 10482,
         "model": "users.userprofile",
         "fields": {
@@ -49,7 +37,7 @@
             "homepage": "http://micropipes.com/blog/",
             "email": "clouserw@gmail.com",
             "location": "Portland, OR",
-            "bio": 379598,
+            "biography": "clever phrase here",
             "deleted": 0,
             "username": "clouserw",
             "display_name": "clouserw \u0627\u0644\u062a\u0637\u0628",
@@ -72,7 +60,7 @@
             "homepage": "http://jeffbalogh.org",
             "email": "admin@mozilla.com",
             "notifycompat": 1,
-            "bio": null,
+            "biography": null,
             "deleted": 0,
             "username": "admin",
             "display_name": "admin \u0627\u0644\u062a\u0637\u0628",
@@ -97,7 +85,7 @@
             "homepage": "http://mozilla.org",
             "email": "taskuser@mozilla.com",
             "notifycompat": 1,
-            "bio": null,
+            "biography": null,
             "deleted": 0,
             "username": "mozilla",
             "display_name": "mozilla taskuser \u0627\u0644\u062a\u0637\u0628",
@@ -167,7 +155,7 @@
             "email": "partner@mozilla.com",
             "notifycompat": true,
             "username": "partner",
-            "bio": null,
+            "biography": null,
             "failed_login_attempts": 0,
             "deleted": false,
             "last_login_attempt_ip": "",
@@ -268,7 +256,7 @@
             "email": "support-staff@mozilla.com",
             "notifycompat": true,
             "username": "support_staff",
-            "bio": null,
+            "biography": null,
             "failed_login_attempts": 0,
             "deleted": false,
             "last_login_attempt_ip": "127.0.0.1",

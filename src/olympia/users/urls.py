@@ -14,7 +14,6 @@ detail_patterns = patterns(
     url('^themes(?:/(?P<category>[^ /]+))?$', views.themes,
         name='users.themes'),
     url('^abuse', views.report_abuse, name='users.abuse'),
-    url('^rmlocale$', views.remove_locale, name='users.remove-locale'),
 )
 
 users_patterns = patterns(

@@ -11,10 +11,9 @@ from olympia import amo
 from olympia.accounts.views import fxa_error_message
 from olympia.activity.models import ActivityLog
 from olympia.amo.fields import HttpHttpsOnlyURLField
-from olympia.users import notifications
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.lib import happyforms
-from olympia.translations import LOCALES
+from olympia.users import notifications
 
 from . import tasks
 from .models import (
@@ -71,15 +70,13 @@ class UserEditForm(happyforms.ModelForm):
               u'address.')),
         widget=forms.EmailInput(attrs={'readonly': 'readonly'}))
     photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
+    biography = forms.CharField(widget=forms.Textarea, required=False)
 
     notifications = forms.MultipleChoiceField(
         choices=[],
         widget=NotificationsSelectMultiple,
         initial=notifications.NOTIFICATIONS_DEFAULT,
         required=False)
-
-    lang = forms.TypedChoiceField(label=_lazy(u'Default locale'),
-                                  choices=LOCALES)
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -95,9 +92,6 @@ class UserEditForm(happyforms.ModelForm):
                                'Valid URLs look like '
                                'http://example.com/my_page.')}
         self.fields['homepage'].error_messages = errors
-
-        if not self.instance.lang and self.request:
-            self.initial['lang'] = self.request.LANG
 
         if self.instance:
             default = dict((i, n.default_checked) for i, n
@@ -127,7 +121,7 @@ class UserEditForm(happyforms.ModelForm):
         model = UserProfile
         fields = (
             'username', 'email', 'display_name', 'location', 'occupation',
-            'homepage', 'photo', 'lang', 'bio', 'display_collections',
+            'homepage', 'photo', 'biography', 'display_collections',
             'display_collections_fav', 'notifications',
         )
 
@@ -188,13 +182,13 @@ class UserEditForm(happyforms.ModelForm):
 
         return photo
 
-    def clean_bio(self):
-        bio = self.cleaned_data['bio']
-        normalized = clean_nl(unicode(bio))
+    def clean_biography(self):
+        biography = self.cleaned_data['biography']
+        normalized = clean_nl(unicode(biography))
         if has_links(normalized):
             # There's some links, we don't want them.
             raise forms.ValidationError(_('No links are allowed.'))
-        return bio
+        return biography
 
     def save(self, log_for_developer=True):
         u = super(UserEditForm, self).save(commit=False)

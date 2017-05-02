@@ -3,13 +3,10 @@ import datetime
 
 import django  # noqa
 from django import forms
-from django.conf import settings
 from django.db import models, migrations
 from django.db.migrations.writer import MigrationWriter
-from django.utils import translation
 
 import pytest
-from mock import patch
 
 import olympia  # noqa
 from olympia import amo
@@ -18,7 +15,6 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.reviews.models import Review
-from olympia.translations.models import Translation
 from olympia.users.models import (
     DeniedName, UserEmailField, UserProfile,
     UserForeignKey)
@@ -235,35 +231,6 @@ class TestUserProfile(TestCase):
             '/en-US/firefox/user/1/')
         assert UserProfile(username='<yolo>', id=1).get_url_path() == (
             '/en-US/firefox/user/1/')
-
-    @patch.object(settings, 'LANGUAGE_CODE', 'en-US')
-    def test_activate_locale(self):
-        assert translation.get_language() == 'en-us'
-        with UserProfile(username='yolo').activate_lang():
-            assert translation.get_language() == 'en-us'
-
-        with UserProfile(username='yolo', lang='fr').activate_lang():
-            assert translation.get_language() == 'fr'
-
-    def test_remove_locale(self):
-        u = UserProfile.objects.create()
-        u.bio = {'en-US': 'my bio', 'fr': 'ma bio'}
-        u.save()
-        u.remove_locale('fr')
-        qs = (Translation.objects.filter(localized_string__isnull=False)
-              .values_list('locale', flat=True))
-        assert sorted(qs.filter(id=u.bio_id)) == ['en-US']
-
-    def test_get_fallback(self):
-        """Return the translation for the locale fallback."""
-        user = UserProfile.objects.create(
-            lang='fr', bio={'en-US': 'my bio', 'fr': 'ma bio'})
-        self.trans_eq(user.bio, 'my bio', 'en-US')  # Uses current locale.
-
-        with self.activate(locale='de'):
-            user = UserProfile.objects.get(pk=user.pk)  # Reload.
-            # Uses the default fallback.
-            self.trans_eq(user.bio, 'ma bio', 'fr')
 
     def test_mobile_addons(self):
         user = UserProfile.objects.get(id='4043307')

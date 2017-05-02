@@ -99,9 +99,9 @@
           {{ author|user_vcard }}
         </div>
         <div class="prose">
-          {% if author.bio %}
+          {% if author.biography %}
             <h3>{{ _('Who is {0}?')|f(author.name) }}</h3>
-            <p class="bio">{{ author.bio|nl2br }}</p>
+            <p class="biography">{{ author.biography|nl2br|clean|no_links }}</p>
           {% endif %}
         </div>
       </section>
