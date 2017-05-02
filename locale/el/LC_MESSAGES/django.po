@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 17:08+0000\n"
+"PO-Revision-Date: 2017-05-02 17:51+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5009,7 +5009,7 @@ msgstr "Ανάκληση"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Ανάκληση και εκ νέου δημιουργία διαπιστευτηρίων"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Generate new credentials"
@@ -5903,7 +5903,7 @@ msgstr "0 αρχεία"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Εκ νέου ενεργοποίηση έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
