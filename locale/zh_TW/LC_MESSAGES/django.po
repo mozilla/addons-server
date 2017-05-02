@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 13:02+0000\n"
+"PO-Revision-Date: 2017-05-02 13:30+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -9427,11 +9427,11 @@ msgstr "現在開始"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
+msgstr "Mozilla 想找出能讓使用者使用外掛程式等第三方軟體，同時又能過確保安全的方法。請參加這個研究，幫助我們一起找出結果！"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
-msgstr ""
+msgstr "未來將發生"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, fuzzy
@@ -9440,39 +9440,39 @@ msgstr "<strong>平均</strong> (%(total)s)"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "我們可能會在 Firefox 加上安全性與外掛程式控制軟體，以幫助使用者控制上網安全與效能。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "您可繼續以一般日常方式使用 Firefox。視您上網的方式而定，您可能根本不會發現有什麼變動。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "研究會在幾週後自行結束，您的 Firefox 會回到原本的樣子。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "我們會請您填寫一份非必填的簡短問卷，向您詢問您的使用體驗。這份問卷只要花不到五分鐘即可完成。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
-msgstr ""
+msgstr "離開研究"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "研究將在幾週後結束，您也可以依照下列步驟自行提早結束:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "在網址列輸入 about:addons，按下 Enter。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "在附加元件清單中尋找「Plugin Safety」。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
-msgstr ""
+msgstr "點擊移除按鈕。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
@@ -9502,7 +9502,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
-msgstr ""
+msgstr "這份研究"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
@@ -9527,7 +9527,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "感謝您幫助讓 Firefox 變得更好"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid ""
