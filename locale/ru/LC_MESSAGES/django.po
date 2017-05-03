@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 16:04+0000\n"
-"Last-Translator: ddurst <ddurst@mozilla.com>\n"
+"PO-Revision-Date: 2017-05-03 16:10+0000\n"
+"Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -6362,12 +6362,11 @@ msgstr[1] "Модерируемые проверки ({0})"
 msgstr[2] "Модерируемых проверок ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Новое дополнение ({0})"
-msgstr[1] "Новые дополнения ({0})"
-msgstr[2] "Новые дополнения ({0})"
+msgstr[0] "Автоматически утверждённые дополнения ({0})"
+msgstr[1] "Автоматически утверждённые дополнения ({0})"
+msgstr[2] "Автоматически утверждённые дополнения ({0})"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
@@ -6434,14 +6433,12 @@ msgid "This will reject this version and remove it from the queue. The comments 
 msgstr "Это действие отклонит эту версию и удалит её из очереди. Разработчику будут отправлены комментарии."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Reviewer reply"
 msgstr "Ответ проверяющего"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Используйте эту форму, чтобы запросить у разработчика более подробную информацию. Вас ответят, когда он ответит."
+msgstr "Используйте эту форму, чтобы отправить разработчику сообщение. Вас оповестят, когда он ответит."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
@@ -6489,20 +6486,19 @@ msgstr "WebExtension"
 
 #: src/olympia/editors/models.py
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Использует свой CSP."
 
 #: src/olympia/editors/models.py
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Использует разрешение nativeMessaging."
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
 msgstr ""
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Has too many daily users."
-msgstr "Что такое ежедневные пользователи?"
+msgstr "Слишком много ежедневных пользователей."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
@@ -6644,13 +6640,12 @@ msgid "EULA"
 msgstr "Лицензионное соглашение с конечным пользователем (EULA)"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "Статус одобрения"
+msgstr "Дата последнего утверждения"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "Approvals Since Last Automatic Review"
-msgstr ""
+msgstr "Утверждения с момента последней автоматической проверки"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "More about this add-on"
@@ -6701,9 +6696,8 @@ msgid "Moderated Reviews"
 msgstr "Модерируемые проверки"
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Дополнения Android"
+msgstr "Автоматически утверждённые дополнения"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
@@ -7000,14 +6994,12 @@ msgid "The developer has provided source code."
 msgstr "Разработчик предоставил исходный код."
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "Статус одобрения"
+msgstr "Сводка автоматического утверждения"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "No attempt recorded yet."
-msgstr "Очков пока не начислено."
+msgstr "Попыток пока не зарегистрировано."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
@@ -7410,7 +7402,7 @@ msgstr "Номера версий могут состоять только из 
 
 #: src/olympia/files/utils.py
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "Загрузка тем WebExtension в настоящее время не поддерживается."
 
 #: src/olympia/files/utils.py
 #, python-format
@@ -9796,7 +9788,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Start Now"
-msgstr ""
+msgstr "Начать сейчас"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
@@ -9806,7 +9798,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
-msgstr ""
+msgstr "Что будет дальше"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "<strong>If you agree</strong> to participate:"
@@ -9846,7 +9838,7 @@ msgstr "Найти Plugin Safety в списке надстроек."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
-msgstr ""
+msgstr "Щёлкните по кнопке удаления."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
