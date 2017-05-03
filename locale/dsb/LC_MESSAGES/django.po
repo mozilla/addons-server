@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 12:29+0000\n"
+"PO-Revision-Date: 2017-05-03 12:36+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9767,23 +9767,23 @@ msgstr "<strong>Jolić swóju zwólniwosć wugronijośo</strong> se wobźěliś:
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "Móžomy Firefox funkcije za wěstotu a za wóźenje tykacow pśidaś, aby my pśi wěstośe online a wugbaśu pomagali."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "Wužywajśo Firefox dalej ako pśecej. Za tym, ako web wužywaśo, njezawupytnjośo žedne změny."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Pó mało tyźenjach se studija awtomatiski skóńcyjo. Waš Firefox se do normalnego stawa slědk stajijo."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Pšosymy was. krotki dobrowólny napšašnik wupołniś, aby wy nam wó swójich nazgónjenjach rozpšawjał. Měło mjenjej ako 5 minutow traś, napšašnik wupołniś."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
-msgstr ""
+msgstr "Studiju spušćiś"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
