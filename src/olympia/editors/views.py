@@ -7,6 +7,7 @@ from django import http
 from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import SortedDict
@@ -645,11 +646,31 @@ def review(request, addon, channel=None):
                                           amo.permissions.ADDONS_POST_REVIEW)
 
     approvals_info = None
-    if is_post_reviewer:
-        try:
-            approvals_info = addon.addonapprovalscounter
-        except AddonApprovalsCounter.DoesNotExist:
-            pass
+    reports = None
+    user_reviews = None
+    was_auto_approved = False
+    if channel == amo.RELEASE_CHANNEL_LISTED:
+        if addon.current_version:
+            try:
+                was_auto_approved = (
+                    addon.current_version.autoapprovalsummary.verdict ==
+                    amo.AUTO_APPROVED
+                )
+            except AutoApprovalSummary.DoesNotExist:
+                pass
+        if is_post_reviewer:
+            try:
+                approvals_info = addon.addonapprovalscounter
+            except AddonApprovalsCounter.DoesNotExist:
+                pass
+
+        reports = Paginator(
+            (AbuseReport.objects.filter(addon=addon)
+                        .order_by('-created')), 5).page(1)
+        user_reviews = Paginator(
+            (Review.without_replies
+                   .filter(addon=addon, rating__lte=3, body__isnull=False)
+                   .order_by('-created')), 5).page(1)
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
@@ -753,7 +774,9 @@ def review(request, addon, channel=None):
                   unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
                   approvals_info=approvals_info,
                   is_post_reviewer=is_post_reviewer,
-                  auto_approval_info=auto_approval_info)
+                  auto_approval_info=auto_approval_info,
+                  reports=reports, user_reviews=user_reviews,
+                  was_auto_approved=was_auto_approved)
 
     return render(request, 'editors/review.html', ctx)
 
@@ -915,9 +938,8 @@ def reviewlog(request):
 @addon_view
 def abuse_reports(request, addon):
     reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
-    total = reports.count()
     reports = amo.utils.paginate(request, reports)
-    data = context(request, addon=addon, reports=reports, total=total)
+    data = context(request, addon=addon, reports=reports)
     return render(request, 'editors/abuse_reports.html', data)
 
 

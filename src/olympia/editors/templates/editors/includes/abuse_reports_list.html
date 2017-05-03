@@ -1,0 +1,18 @@
+<ul class="abuse_reports">
+  {% for report in reports %}
+  <li>
+    {% with date=report.created|datetime, ip_address=report.ip_address %}
+      {% if report.reporter %}
+        {% trans user=report.reporter|user_link %}
+          {{ user }} on {{ date }} [{{ ip_address }}]
+        {% endtrans %}
+      {% else %}
+        {% trans %}
+          <i>anonymous</i> on {{ date }} [{{ ip_address }}]
+        {% endtrans %}
+      {% endif %}
+    {% endwith %}
+    <blockquote>{{ report.message }}</blockquote>
+  </li>
+  {% endfor %}
+</ul>

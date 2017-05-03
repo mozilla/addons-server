@@ -111,15 +111,16 @@
                   </td>
                 </tr>
               {% endif %}
+              {% if reports %}
               <tr class="meta-abuse">
                 <th>{{ _('Abuse Reports') }}</th>
                 <td>
-                  {% if addon.has_listed_versions() %}
-                    <a href="{{ url('editors.abuse_reports', addon.slug) }}">{% endif %}
-                    <strong>{{ addon.abuse_reports.count()|numberfmt }}</strong>
-                  {% if addon.has_listed_versions() %}</a>{% endif %}
+                    <a href="{{ url('editors.abuse_reports', addon.slug) }}">
+                      <strong>{{ reports.paginator.count|numberfmt }}</strong>
+                    </a>
                 </td>
               </tr>
+              {% endif %}
               {% if not show_actions %}
                 {# Show privacy policy / eula if the button isn't shown #}
                 {# (Basically, on the add-on review page) #}
@@ -182,8 +183,20 @@
     </div>{# /featured-inner #}
   </div>{# /featured #}
 
-   {% if addon.description or addon.all_previews|length > 1 or addon.developer_comments or
-         addon.show_beta  %}
+  {% if is_post_reviewer and was_auto_approved %}
+    {% if reports %}
+      <h3><a href="{{ url('editors.abuse_reports', addon.slug) }}">{{_('Abuse Reports ({num})')|fe(num=reports.paginator.count|numberfmt) }}</a></h3>
+      {% include "editors/includes/abuse_reports_list.html" %}
+    {% endif %}
+
+    {% if user_reviews %}
+      <h3><a href="{{ url('addons.reviews.list', addon.slug) }}">{{_('Bad User Reviews ({num})')|fe(num=user_reviews.paginator.count|numberfmt) }}</a></h3>
+      {% include "editors/includes/user_reviews_list.html" %}
+    {% endif %}
+  {% endif %}
+
+  {% if addon.description or addon.all_previews|length > 1 or addon.developer_comments or
+        addon.show_beta  %}
     <h3 id="more-about">{{ _('More about this add-on') }}</h3>
     <div class="article userinput">
       {% if addon.id == 4664 or addon.id == 144983 %}
@@ -243,14 +256,14 @@
       {% endif %}
       {# /beta #}
     </div>{# /article #}
-    {% elif not show_actions %}
-      <h3 id="more-about">{{ _('More about this add-on') }}</h3>
-      <div class="article">
-        <em>
-          {{ _('Nothing to see here!  The developer did not include any details.') }}
-        </em>
-      </div>
-    {% endif %}
+  {% elif not show_actions %}
+    <h3 id="more-about">{{ _('More about this add-on') }}</h3>
+    <div class="article">
+      <em>
+        {{ _('Nothing to see here!  The developer did not include any details.') }}
+      </em>
+    </div>
+  {% endif %}
 
   {% if reviews is defined %}
     {{ review_list_box(addon=addon, reviews=reviews) }}
