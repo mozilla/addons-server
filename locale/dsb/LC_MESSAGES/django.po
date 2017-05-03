@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 17:28+0000\n"
+"PO-Revision-Date: 2017-05-03 17:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9844,26 +9844,28 @@ msgstr "Kak z tykacowym wopśimjeśim na tych sedłach interagěrujośo, inkluzi
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla buźo z toś tymi datami dowěrliwje wobchadaś; daty se jano w zespominanej a anonymizěrowanej formje dalej daju."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Wěcej wó gromaźenju datow za toś tu studiju zgónijośo <a href=\"%(url)s\">how</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Pomagaśo, Firefox pólěpšyś"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"Pla Mozilla smy gjarde na to, produkty za was, wužywarje, wuwijaś! Togodla trjebamy wašu pomoc. Gaž se na toś tej studiji wobźělujuśo, buźośo nam pomagaś, lěpjej za was rozsuźiś a wugótujośo pśichod"
+" Firefox sobu!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Prezentěrowany wót:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
