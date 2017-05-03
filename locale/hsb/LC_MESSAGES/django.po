@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 09:51+0000\n"
+"PO-Revision-Date: 2017-05-03 10:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9833,28 +9833,28 @@ msgstr "Tuta specielna studija"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Nimo datow zhromadźenych wot studijow Shield, Mozilla daty wo tole hromadźi:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Websydła, kotrež wopytujeće, kotrež tykače wužiwaja a kotry wobsah sydła sej tykač wužaduje;"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Kak z tykačowym wobsahom na tych sydłach interagujeće, inkluziwnje hač a kak wo tym rozsudźeće, zo tykač smě so wuwjesć."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla budźe z tutymi datami dowěrliwje wobchadźeć; daty so jenož w zjatej a anonymizowanej formje dale dadźa."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Wjace wo hromadźenju datow za tutu studiju zhoniće <a href=\"%(url)s\">tu</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Pomhaće, Firefox polěpšić"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid ""
