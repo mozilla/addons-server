@@ -183,14 +183,14 @@
     </div>{# /featured-inner #}
   </div>{# /featured #}
 
-  {% if is_post_reviewer and addon.status == amo.STATUS_PUBLIC %}
+  {% if is_post_reviewer and was_auto_approved %}
     {% if reports %}
       <h3><a href="{{ url('editors.abuse_reports', addon.slug) }}">{{_('Abuse Reports ({num})')|fe(num=reports.paginator.count|numberfmt) }}</a></h3>
       {% include "editors/includes/abuse_reports_list.html" %}
     {% endif %}
 
     {% if user_reviews %}
-      <h3><a href="{{ url('addons.reviews.list', addon.slug) }}">{{_('User Reviews ({num})')|fe(num=addon.total_reviews|numberfmt) }}</a></h3>
+      <h3><a href="{{ url('addons.reviews.list', addon.slug) }}">{{_('Bad User Reviews ({num})')|fe(num=user_reviews.paginator.count|numberfmt) }}</a></h3>
       {% include "editors/includes/user_reviews_list.html" %}
     {% endif %}
   {% endif %}

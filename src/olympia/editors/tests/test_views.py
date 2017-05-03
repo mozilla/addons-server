@@ -2723,6 +2723,12 @@ class TestReview(ReviewBase):
         self.login_as_senior_editor()
         response = self.client.get(self.url)
         doc = pq(response.content)
+        assert not doc('.abuse_reports')
+
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('.abuse_reports')
         assert (
             doc('.abuse_reports').text() ==
@@ -2731,7 +2737,7 @@ class TestReview(ReviewBase):
     def test_user_reviews(self):
         user = user_factory()
         user_review = Review.objects.create(
-            body=u'Lôrem ipsum dolor', rating=5, ip_address='10.5.6.7',
+            body=u'Lôrem ipsum dolor', rating=3, ip_address='10.5.6.7',
             addon=self.addon, user=user)
         created_at = user_review.created.strftime('%B %e, %Y')
         Review.objects.create(  # Review with no body, ignored.
@@ -2739,6 +2745,9 @@ class TestReview(ReviewBase):
         Review.objects.create(  # Reply to a review, ignored.
             body='Replyyyyy', reply_to=user_review,
             addon=self.addon, user=user_factory())
+        Review.objects.create(  # Review with high rating,, ignored.
+            body=u'Qui platônem temporibus in', rating=5, addon=self.addon,
+            user=user_factory())
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('.user_reviews')
@@ -2746,10 +2755,16 @@ class TestReview(ReviewBase):
         self.login_as_senior_editor()
         response = self.client.get(self.url)
         doc = pq(response.content)
+        assert not doc('.user_reviews')
+
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         assert doc('.user_reviews')
         assert (
             doc('.user_reviews').text() ==
-            u'%s on %s [10.5.6.7] Rated 5 out of 5 stars Lôrem ipsum dolor' % (
+            u'%s on %s [10.5.6.7] Rated 3 out of 5 stars Lôrem ipsum dolor' % (
                 user.username, created_at
             )
         )

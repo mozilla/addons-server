@@ -646,19 +646,31 @@ def review(request, addon, channel=None):
                                           amo.permissions.ADDONS_POST_REVIEW)
 
     approvals_info = None
-    if is_post_reviewer:
-        try:
-            approvals_info = addon.addonapprovalscounter
-        except AddonApprovalsCounter.DoesNotExist:
-            pass
-
     reports = None
     user_reviews = None
-    if addon.has_listed_versions():
-        reports = Paginator(AbuseReport.objects.filter(
-            addon=addon).order_by('-created'), 5).page(1)
-        user_reviews = Paginator(Review.without_replies.filter(
-            addon=addon).exclude(body=None).order_by('-created'), 5).page(1)
+    was_auto_approved = False
+    if channel == amo.RELEASE_CHANNEL_LISTED:
+        if addon.current_version:
+            try:
+                was_auto_approved = (
+                    addon.current_version.autoapprovalsummary.verdict ==
+                    amo.AUTO_APPROVED
+                )
+            except AutoApprovalSummary.DoesNotExist:
+                pass
+        if is_post_reviewer:
+            try:
+                approvals_info = addon.addonapprovalscounter
+            except AddonApprovalsCounter.DoesNotExist:
+                pass
+
+        reports = Paginator(
+            (AbuseReport.objects.filter(addon=addon)
+                        .order_by('-created')), 5).page(1)
+        user_reviews = Paginator(
+            (Review.without_replies
+                   .filter(addon=addon, rating__lte=3, body__isnull=False)
+                   .order_by('-created')), 5).page(1)
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
@@ -763,7 +775,8 @@ def review(request, addon, channel=None):
                   approvals_info=approvals_info,
                   is_post_reviewer=is_post_reviewer,
                   auto_approval_info=auto_approval_info,
-                  reports=reports, user_reviews=user_reviews)
+                  reports=reports, user_reviews=user_reviews,
+                  was_auto_approved=was_auto_approved)
 
     return render(request, 'editors/review.html', ctx)
 
