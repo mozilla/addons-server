@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 10:23+0000\n"
+"PO-Revision-Date: 2017-05-03 11:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6456,15 +6456,15 @@ msgstr "WebExtension"
 
 #: src/olympia/editors/models.py
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Wužywa swójski CSP."
 
 #: src/olympia/editors/models.py
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Wužywa pšawo nativeMessaging."
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Wužywa wopśimjeśowy skript za wšykne URL."
 
 #: src/olympia/editors/models.py
 msgid "Has too many daily users."
@@ -6472,7 +6472,7 @@ msgstr "Ma pśewjele wšednych wužywarjow."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "Ma pśemało aktualizacijow pśizwólonych wót luźi, kótarež jadna na drugu slěduju."
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -9751,7 +9751,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Start Now"
-msgstr ""
+msgstr "Něnto zachopiś"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
