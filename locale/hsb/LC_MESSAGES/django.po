@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 19:22+0000\n"
+"PO-Revision-Date: 2017-05-03 09:30+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6467,9 +6467,8 @@ msgid "Uses a content script for all URLs."
 msgstr "Wužiwar wobsahowy skript za wšě URL."
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Has too many daily users."
-msgstr "Što su wšědni wužiwarjo?"
+msgstr "Ma přewjele wšědni wužiwarjo."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
@@ -6971,14 +6970,12 @@ msgid "The developer has provided source code."
 msgstr "Wuwiwar je žórłowy kod k dispoziciji stajił."
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "Datum poslednjeho schwalenja"
+msgstr "Zjimanje awtomatiskeho schwalenja"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "No attempt recorded yet."
-msgstr "Hišće žane dypki spožčene."
+msgstr "Hišće žadyn pospyt natočeny."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
@@ -9766,9 +9763,8 @@ msgid "What will happen next"
 msgstr "Što so jako přichodne stanje"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Přerězk</strong> (%(total)s)"
+msgstr "<strong>Jeli so zwólniwy wuprajiće</strong> so wobdźělić:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
@@ -9815,9 +9811,8 @@ msgid "Opting out of a study does not prevent you from participating in future s
 msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "Your privacy"
-msgstr "Priwatnosć:"
+msgstr "Waša priwatnosć"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
