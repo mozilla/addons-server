@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 00:40+0000\n"
+"PO-Revision-Date: 2017-05-03 01:03+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -49,7 +49,7 @@ msgstr "Versão {0}"
 
 #: src/olympia/activity/serializers.py
 msgid "Review note"
-msgstr "Nota de análise"
+msgstr "Nota de revisão"
 
 #: src/olympia/activity/views.py
 msgid "Only latest versions of addons can have notes added."
@@ -78,7 +78,7 @@ msgstr "Em destaque"
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "Não analisado"
+msgstr "Não revisado"
 
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
@@ -167,7 +167,7 @@ msgstr "Insira um endereço de e-mail do novo autor"
 
 #: src/olympia/addons/helpers.py
 msgid "Not Reviewed"
-msgstr "Não analisado"
+msgstr "Não revisado"
 
 #: src/olympia/addons/models.py
 msgid "Users have the option of contributing more or less than this amount."
@@ -224,7 +224,7 @@ msgstr "Ver contrato de licença de usuário final"
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Esta extensão não foi analisada pela Mozilla. <a href=\"%(url)s\">Saiba mais</a>"
+msgstr "Esta extensão não foi revisada pela Mozilla. <a href=\"%(url)s\">Saiba mais</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
@@ -545,7 +545,7 @@ msgstr "Licença"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/base.py
 msgid "Awaiting Review"
-msgstr "Esperando análise"
+msgstr "Aguardando análise"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/activity.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
@@ -568,7 +568,7 @@ msgstr[1] "<strong>{0}</strong> usuários"
 # reviewed)
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Hover to Preview"
-msgstr "Aponte para visualizar"
+msgstr "Passe para visualizar"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Add"
@@ -681,7 +681,7 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
-"<strong>Cuidado:</strong> Esta extensão não foi analisada pela Mozilla e não pode ser instalada em versões finais do Firefox 43 e superiores.  Seja cuidadoso ao instalar programas de terceiros que "
+"<strong>Cuidado:</strong> Esta extensão não foi revisada pela Mozilla e não pode ser instalada em versões finais do Firefox 43 e superiores.  Seja cuidadoso ao instalar software de terceiros que "
 "podem prejudicar o seu computador."
 
 # %1$s is an application name and version.  Example: Firefox 3.1
@@ -759,7 +759,7 @@ msgstr "O que você acha?"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "Por favor, <a href=\"%(login)s\">entre</a> para enviar uma análise"
+msgstr "Por favor, <a href=\"%(login)s\">identifique-se</a> para enviar uma análise"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Title:"
@@ -776,7 +776,7 @@ msgstr "Avaliação:"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/edit_review.html
 msgid "Submit review"
-msgstr "Submeter análise"
+msgstr "Enviar análise"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
@@ -6546,24 +6546,23 @@ msgstr "WebExtension"
 
 #: src/olympia/editors/models.py
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Usa um CSP personalizado."
 
 #: src/olympia/editors/models.py
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Usa a permissão nativeMessaging."
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Usa um script de conteúdo para todas as URLs."
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Has too many daily users."
-msgstr "O que são usuários diários?"
+msgstr "Tem também muitos usuários diariamente."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "Tem poucas atualizações consecutivas aprovadas por humanos."
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -7070,14 +7069,12 @@ msgid "The developer has provided source code."
 msgstr "O desenvolvedor forneceu o código fonte."
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "Auto Approval Summary"
-msgstr "Data da última aprovação"
+msgstr "Resumo de aprovação automática"
 
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "No attempt recorded yet."
-msgstr "Nenhum ponto recebido ainda."
+msgstr "Nenhuma tentativa registada ainda."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
