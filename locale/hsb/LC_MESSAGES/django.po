@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 10:24+0000\n"
+"PO-Revision-Date: 2017-05-03 12:27+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9755,7 +9755,7 @@ msgstr "Nětko započeć"
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
-"Mozilla chce najlěpše wašnje namakać, zo by našich wužiwarjow wěstych dźeržał, jeli rozsudźeja, softwaru třećich poskićowarjow kaž na pr. tykače wužiwać. Wobdźělće so na tym studiju, zo byšće při "
+"Mozilla chce najlěpše wašnje namakać, zo by našich wužiwarjow wěstych dźeržał, jeli rozsudźeja, softwaru třećich poskićowarjow kaž na př. tykače wužiwać. Wobdźělće so na tej studiji, zo byšće při "
 "tym pomhał!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
