@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 09:30+0000\n"
+"PO-Revision-Date: 2017-05-03 09:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9804,11 +9804,11 @@ msgstr "Klikńće na tłóčatko „Wotstronić”."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "Jeli studiju do toho wopušćiće, budźemy was prosyć, naprašnik wupjelnić. Bychmy rady waše nazhonjenja zhonili, samo hdyž njejsće so na cyłej studiji wobdźělił."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Jeli studiju do toho wopušćiće, to was wot wobdźělenja na přichodnych studijach njewuzamknjeće."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Your privacy"
@@ -9816,20 +9816,20 @@ msgstr "Waša priwatnosć"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Wšě studije Shield"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Kóžda studija Shield daty wo wažnych studijowych podawkach hromadźi, na přikład instalaciju, wotinstalaciju, wšědne wužiwanje a kónc studije. Studije tež opcionalne naprašowanje wobsahuja."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Tute daty so z <a href=\"%(url)s\">telemetrijowej zběrku Firefox</a> zwjazaja."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
-msgstr ""
+msgstr "Tuta specielna studija"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
