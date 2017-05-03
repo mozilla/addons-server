@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 15:32+0000\n"
+"PO-Revision-Date: 2017-05-03 23:28+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -9773,11 +9773,12 @@ msgstr "A sua privacidade"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Todos os estudos Shield"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
 msgstr ""
+"Todo o estudo Shield recolhe dados acerca de eventos importantes do estudo, como instalação, desinstalação, utilização diária, e fim do estudo. Os estudos incluem também uma pesquisa opcional."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
@@ -9790,7 +9791,7 @@ msgstr "Este estudo em particular"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Em adição aos dados recolhidos por todos os estudos Shield, a Mozilla irá recolher informação acerca:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
