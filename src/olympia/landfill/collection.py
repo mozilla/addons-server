@@ -10,7 +10,7 @@ from olympia.bandwagon.models import (
 from .translations import generate_translations
 
 
-def create_collection(application):
+def create_collection(application, **kwargs):
     """Create a Collection for the given `application`."""
     data = {
         'type': amo.COLLECTION_NORMAL,
@@ -24,6 +24,7 @@ def create_collection(application):
         'downvotes': random.randint(100, 500),
         'listed': True,
     }
+    data.update(kwargs)
     c = Collection(**data)
     c.slug = slugify(data['name'])
     c.rating = (c.upvotes - c.downvotes) * math.log(c.upvotes + c.downvotes)
@@ -33,18 +34,17 @@ def create_collection(application):
     return c
 
 
-def generate_collection(addon, app=None):
+def generate_collection(addon, app=None, **kwargs):
     """
     Generate a Collection, a CollectionAddon and a FeaturedCollection
     for the given `addon` related to the optional `app`.
-
     """
     if app is None:  # This is a theme.
         application = None
     else:
         application = app.id
 
-    c = create_collection(application=application)
+    c = create_collection(application=application, **kwargs)
     generate_translations(c)
     CollectionAddon.objects.create(addon=addon, collection=c)
     if app is not None:  # Useless for themes.
