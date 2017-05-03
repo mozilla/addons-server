@@ -27,6 +27,26 @@ from olympia.versions.models import Version, version_uploaded
 user_log = olympia.core.logger.getLogger('z.users')
 
 
+def get_reviewing_cache_key(addon_id):
+    return '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
+
+
+def clear_reviewing_cache(addon_id):
+    return cache.delete(get_reviewing_cache_key(addon_id))
+
+
+def get_reviewing_cache(addon_id):
+    return cache.get(get_reviewing_cache_key(addon_id))
+
+
+def set_reviewing_cache(addon_id, user_id):
+    # We want to save it for twice as long as the ping interval,
+    # just to account for latency and the like.
+    cache.set(get_reviewing_cache_key(addon_id),
+              user_id,
+              amo.EDITOR_VIEWING_INTERVAL * 2)
+
+
 class CannedResponse(ModelBase):
 
     name = models.CharField(max_length=255)
@@ -680,6 +700,9 @@ class AutoApprovalSummary(ModelBase):
     uses_content_script_for_all_urls = models.BooleanField(default=False)
     average_daily_users = models.PositiveIntegerField(default=0)
     approved_updates = models.PositiveIntegerField(default=0)
+    has_info_request = models.BooleanField(default=False)
+    is_under_admin_review = models.BooleanField(default=False)
+    is_locked = models.BooleanField(default=False)
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
@@ -713,6 +736,9 @@ class AutoApprovalSummary(ModelBase):
                 self.average_daily_users >= max_average_daily_users,
             'too_few_approved_updates':
                 self.approved_updates < min_approved_updates,
+            'has_info_request': self.has_info_request,
+            'is_under_admin_review': self.is_under_admin_review,
+            'is_locked': self.is_locked,
         }
         if any(verdict_info.values()):
             self.verdict = failure_verdict
@@ -738,6 +764,9 @@ class AutoApprovalSummary(ModelBase):
                 ugettext(u'Has too many daily users.'),
             'too_few_approved_updates':
                 ugettext(u'Has too few consecutive human-approved updates.'),
+            'has_info_request': ugettext(u'Has a pending info request.'),
+            'is_under_admin_review': ugettext(u'Is flagged for admin review.'),
+            'is_locked': ugettext('Is locked by a reviewer.'),
         }
         return (mapping[key] for key, value in sorted(verdict_info.items())
                 if value)
@@ -764,6 +793,19 @@ class AutoApprovalSummary(ModelBase):
     def check_uses_content_script_for_all_urls(cls, version):
         return any(p.name == 'all_urls' for file_ in version.all_files
                    for p in file_.webext_permissions)
+
+    @classmethod
+    def check_has_info_request(cls, version):
+        return version.has_info_request
+
+    @classmethod
+    def check_is_under_admin_review(cls, version):
+        return version.addon.admin_review
+
+    @classmethod
+    def check_is_locked(cls, version):
+        locked = get_reviewing_cache(version.addon.pk)
+        return bool(locked) and locked != settings.TASK_USER_ID
 
     @classmethod
     def create_summary_for_version(
@@ -798,6 +840,9 @@ class AutoApprovalSummary(ModelBase):
             'uses_native_messaging': cls.check_uses_native_messaging(version),
             'uses_content_script_for_all_urls':
                 cls.check_uses_content_script_for_all_urls(version),
+            'has_info_request': cls.check_has_info_request(version),
+            'is_under_admin_review': cls.check_is_under_admin_review(version),
+            'is_locked': cls.check_is_locked(version),
             'average_daily_users': addon.average_daily_users,
             'approved_updates': approved_updates,
         }

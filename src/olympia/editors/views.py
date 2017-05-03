@@ -29,9 +29,11 @@ from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.constants.editors import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.editors import forms
 from olympia.editors.models import (
-    AddonCannedResponse, AutoApprovalSummary, EditorSubscription, EventLog,
-    get_flags, PerformanceGraph, ReviewerScore, ViewFullReviewQueue,
-    ViewPendingQueue, ViewUnlistedAllList)
+    AddonCannedResponse, AutoApprovalSummary, clear_reviewing_cache,
+    EditorSubscription, EventLog, get_flags, get_reviewing_cache,
+    get_reviewing_cache_key, PerformanceGraph, ReviewerScore,
+    set_reviewing_cache, ViewFullReviewQueue, ViewPendingQueue,
+    ViewUnlistedAllList)
 from olympia.editors.helpers import (
     AutoApprovedTable, is_limited_reviewer, ReviewHelper,
     ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
@@ -779,26 +781,6 @@ def review(request, addon, channel=None):
                   was_auto_approved=was_auto_approved)
 
     return render(request, 'editors/review.html', ctx)
-
-
-def get_reviewing_cache_key(addon_id):
-    return '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
-
-
-def clear_reviewing_cache(addon_id):
-    return cache.delete(get_reviewing_cache_key(addon_id))
-
-
-def get_reviewing_cache(addon_id):
-    return cache.get(get_reviewing_cache_key(addon_id))
-
-
-def set_reviewing_cache(addon_id, user_id):
-    # We want to save it for twice as long as the ping interval,
-    # just to account for latency and the like.
-    cache.set(get_reviewing_cache_key(addon_id),
-              user_id,
-              amo.EDITOR_VIEWING_INTERVAL * 2)
 
 
 @never_cache
