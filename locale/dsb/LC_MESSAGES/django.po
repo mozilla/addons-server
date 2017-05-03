@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 15:02+0000\n"
+"PO-Revision-Date: 2017-05-03 17:28+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9832,15 +9832,15 @@ msgstr "Toś ta specielna studija"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Pśidatnje k datam zgromaźonym pśez studije Shield, Mozilla daty wó slědujuce gromaźi:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Websedła, kótarež se woglědujośo, kótarež tykace wužywaju a kótare wopśimjeśe se pomina;"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Kak z tykacowym wopśimjeśim na tych sedłach interagěrujośo, inkluziwnje lěc a kak wó tom rozsuźujośo, až tykac smějo se wuwjasć."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
