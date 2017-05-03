@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 18:42+0000\n"
+"PO-Revision-Date: 2017-05-03 12:49+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6455,7 +6455,7 @@ msgstr "Possède trop d’utilisateurs quotidiens."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "A été trop peu de fois approuvé par un être humain."
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
