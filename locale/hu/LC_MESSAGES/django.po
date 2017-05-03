@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 09:29+0000\n"
+"PO-Revision-Date: 2017-05-03 09:37+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9711,10 +9711,12 @@ msgstr "Indítás most"
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
+"A Mozilla szeretné megtalálni a legjobb módját a felhasználók biztonságban tartásának, ha olyan harmadik féltől származó szoftvereket használnak, mint a bővítmények. A tanulmányban részvétel segít "
+"ezt kideríteni."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
-msgstr ""
+msgstr "Mi fog történni ezután"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "<strong>If you agree</strong> to participate:"
@@ -9738,23 +9740,23 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
-msgstr ""
+msgstr "Tanulmány elhagyása"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "A tanulmány néhány héten belül magától lejár. Korábban is elhagyhatja a tanulmányt. Ahhoz hogy így tegyen, kövesse az alábbi lépéseket:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Írja a be címsorba, hogy about:addons, és nyomjon entert."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Keresse meg a Plugin Safety kiegészítőt a listában."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
-msgstr ""
+msgstr "Kattintson a letiltás gombra."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
@@ -9808,7 +9810,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Segít jobbá tenni a Firefoxot"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid ""
@@ -9818,7 +9820,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Nekik köszönhetően:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
