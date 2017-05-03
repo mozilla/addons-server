@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 10:06+0000\n"
+"PO-Revision-Date: 2017-05-03 10:24+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6468,7 +6468,7 @@ msgstr "Wužiwar wobsahowy skript za wšě URL."
 
 #: src/olympia/editors/models.py
 msgid "Has too many daily users."
-msgstr "Ma přewjele wšědni wužiwarjo."
+msgstr "Ma přewjele wšědnych wužiwarjow."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
@@ -9861,10 +9861,12 @@ msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"Pola Mozilla smy hordźi na to, produkty za was, wužiwarjow, wuwiwać! Tohodla trjebamy wašu pomoc. Hdyž so na tutej studiji wobdźělujeće, budźeće nam pomhać, lěpje za was rozsudźić a wuhotujeće "
+"přichod Firefox sobu!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Prezentowany wot:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
