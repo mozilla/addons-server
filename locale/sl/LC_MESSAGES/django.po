@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 16:10+0000\n"
+"PO-Revision-Date: 2017-05-03 16:30+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -9796,7 +9796,7 @@ msgstr "Začni zdaj"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr "Mozilla želi najti najboljši način, kako ohraniti uporabnike varne, če ti uporabljajo tujo programsko opremo, kot so vtičniki. S sodelovanjem v tem poskusu nam boste pomagali izvedeti!"
+msgstr "Mozilla želi najti najboljši način, kako ohraniti uporabnike varne, če ti uporabljajo tujo programsko opremo, kot so vtičniki. S sodelovanjem v tej raziskavi nam boste pomagali izvedeti!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
@@ -9808,27 +9808,27 @@ msgstr "<strong>Če se strinjate</strong> s sodelovanjem:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "Morda bomo v Firefox dodali možnosti za varnost in nadzor vtičnikov za večjo varnost in učinkovitost delovanja."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "Dalje uporabljajte Firefox kot običajno. Morda ne boste opazili nobenih sprememb; odvisno od vaše uporabe spleta."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Po nekaj tednih se bo raziskava končala sama od sebe. Vaš Firefox bo vrnjen v normalno stanje."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Prosili vas bomo, da izpolnite kratek neobvezen vprašalnik o vaši izkušnji. Izpolnitev vprašalnika bi vam morala vzeti največ 5 minut."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
-msgstr "Zapuščanje študije"
+msgstr "Zapuščanje raziskave"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Raziskava bo potekla sama od sebe v nekaj tednih, lahko pa jo tudi predčasno zapustite. Da to storite, sledite tem korakom:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
@@ -9844,11 +9844,11 @@ msgstr "Kliknite gumb Odstrani."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "Če boste predčasno zapustili raziskavo, vas bomo prosili, da izpolnite vprašalnik. Slišati želimo vašo izkušnjo, čeprav niste sodelovali v celotni raziskavi."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Predčasna zapustitev raziskave vam ne bo preprečila sodelovanja v prihodnjih raziskavah."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Your privacy"
@@ -9856,24 +9856,24 @@ msgstr "Vaša zasebnost"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Vse raziskave Shield"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Vse raziskave Shield zbirajo podatke o pomembnih dejanjih raziskave, kot so namestitev, odstranitev, dnevna uporaba in konec raziskave. Raziskave vključujejo tudi neobvezen vprašalnik."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Ti podatki so vezani na <a href=\"%(url)s\">Firefoxovo zbiranje telemetrije</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
-msgstr ""
+msgstr "Ta raziskava"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Poleg podatkov, ki jih zbirajo vse raziskave Shield, bo Mozilla zbirala informacije o:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
