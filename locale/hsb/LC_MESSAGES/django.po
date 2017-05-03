@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 12:27+0000\n"
+"PO-Revision-Date: 2017-05-03 15:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9808,7 +9808,7 @@ msgstr "Jeli studiju do toho wopušćiće, budźemy was prosyć, naprašnik wupj
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr "Jeli studiju do toho wopušćiće, to was wot wobdźělenja na přichodnych studijach njewuzamknjeće."
+msgstr "Jeli studiju do toho wopušćiće, to was wot wobdźělenja na přichodnych studijach njewuzamknje."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Your privacy"
