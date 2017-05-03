@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 12:36+0000\n"
+"PO-Revision-Date: 2017-05-03 15:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9787,27 +9787,27 @@ msgstr "Studiju spušćiś"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Studija se za někotare tyźenje awtomatiski skóńcyjo. Móžośo toś tu studiju do togo spušćiś. Aby to cynił, wuwjeźćo slědujuce kšace:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Zapišćo about:addons do adresowego póla a tłocćo zapódawańsku tastu."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Pytajśo zapisk Plugin Safety w lisćinje dodankow."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
-msgstr ""
+msgstr "Klikniśo na tłocašk „Wótwónoźeś”."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "Jolic studiju do togo spušćijośo, buźomy was pšosyś, napšašnik wupołniś. My by rady waše nazgónjenja zgónili, samo gaž njejsćo se na cełej studiji wobźělił."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Jolic studiju do togo spušćijośo, to was wót wobźělenja na pśiducych studijach njewuzamknjo."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Your privacy"
@@ -9815,20 +9815,20 @@ msgstr "Waša priwatnosć"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Wše studije Shield"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Kužda studija Shield daty wó wažnych studijowych tšojenjach gromaźi, na pśikład instalaciju, wótinstalaciju, wšedne wužywanje a kóńc studije. Studije teke opcionalne napšašowanje wopśimuju."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Toś te daty se z <a href=\"%(url)s\">telemetrijoweju zběrku Firefox</a> zwězaju."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
-msgstr ""
+msgstr "Toś ta specielna studija"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
