@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 16:30+0000\n"
+"PO-Revision-Date: 2017-05-03 16:40+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -9877,30 +9877,32 @@ msgstr "Poleg podatkov, ki jih zbirajo vse raziskave Shield, bo Mozilla zbirala 
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "spletnih straneh, ki poskušajo uporabiti vtičnike in katera vsebina na strani zahteva vtičnik;"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "tem, kako ravnate s takšno vsebino, na primer ali in kako dovolite zagon vtičnika."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla bo te informacije ohranila zasebne; podatki bodo vedno deljeni le v združeni ali anonimni obliki."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Več o zbiranju podatkov za to raziskavo lahko izveste <a href=\"%(url)s\">tukaj</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Vi pomagate izboljševati Firefox"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"Pri Mozilli s ponosom razvijamo izdelke za vas, uporabnika! Zato tudi potrebujemo vašo pomoč. S sodelovanjem v raziskavi nam boste pomagali sprejemati boljše odločitve za vas in neposredno "
+"oblikovali prihodnost Firefoxa!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
