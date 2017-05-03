@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 19:52+0000\n"
+"PO-Revision-Date: 2017-05-02 23:57+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -9415,11 +9415,11 @@ msgstr "これから何が起こるか"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "参加することに同意していただける場合:"
+msgstr "参加することに <strong>同意していただける場合</strong>:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr "オンライン上のセキュリティとパフォーマンスを支援するセキュリティ＆プラグイン管理機能を Firefox に追加できるかもしれません。"
+msgstr "オンライン上のセキュリティとパフォーマンスを支援するセキュリティ・プラグイン管理機能を Firefox に追加できるかもしれません。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
@@ -9496,7 +9496,7 @@ msgstr "それらのサイト上で、プラグインコンテンツに対して
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr "Mozillaはこの情報を非公開に保ちます。いかなるデータも、集約または匿名化された形でのみ共有されます。"
+msgstr "Mozilla はこの情報を非公開に保ちます。いかなるデータも、集約または匿名化された形でのみ共有されます。"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
