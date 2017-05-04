@@ -125,8 +125,9 @@ def log_configure():
         cfg['loggers']['z.timer'] = {'handlers': ['syslog2']}
     if settings.USE_MOZLOG:
         # MozLog Application Request Summary. This is the logger
-        # DockerflowMiddleware uses on every request - we only enable it when
-        # USE_MOZLOG is True.
+        # DockerflowMiddleware uses on every request. We don't currently use
+        # that middleware because it's too much logging, but it does not hurt
+        # to have the logger configured correctly when USE_MOZLOG is True.
         cfg['loggers']['request.summary'] = {
             'handlers': ['mozlog'],
             'level': 'DEBUG',
