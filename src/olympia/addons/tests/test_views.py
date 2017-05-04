@@ -1574,6 +1574,18 @@ class TestReportAbuse(TestCase):
         assert AbuseReport.objects.get(addon=15663)
 
 
+class TestFindReplacement(TestCase):
+    def test_basic(self):
+        self.url = reverse('addons.find_replacement') + '?guid=xxx'
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_no_guid_param_is_404(self):
+        self.url = reverse('addons.find_replacement')
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+
 class AddonAndVersionViewSetDetailMixin(object):
     """Tests that play with addon state and permissions. Shared between addon
     and version viewset detail tests since both need to react the same way."""
