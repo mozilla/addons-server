@@ -18,7 +18,6 @@ from django.views.decorators.cache import never_cache
 
 import olympia.core.logger
 import django_tables2 as tables
-import jinja2
 
 from olympia import amo, core
 from olympia.amo import search
@@ -91,12 +90,16 @@ def show_settings(request):
                                                  getattr(settings, i, {}))
 
     return render(request, 'zadmin/settings.html',
-                  {'settings_dict': settings_dict})
+                  {'settings_dict': settings_dict, 'title': 'Settings!'})
 
 
 @admin_required
 def env(request):
-    return http.HttpResponse(u'<pre>%s</pre>' % (jinja2.escape(request)))
+    env = {}
+    for k in request.META.keys():
+        env[k] = debug.cleanse_setting(k, request.META[k])
+    return render(request, 'zadmin/settings.html',
+                  {'settings_dict': env, 'title': 'Env!'})
 
 
 @admin.site.admin_view
