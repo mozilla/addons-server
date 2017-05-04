@@ -378,7 +378,6 @@ MIDDLEWARE_CLASSES = (
     'django_statsd.middleware.GraphiteRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'olympia.amo.middleware.SetRemoteAddrFromForwardedFor',
-    'olympia.amo.middleware.DockerflowMiddlewareWithoutViews',
 
     # AMO URL middleware is as high as possible to get locale/app aware URLs.
     'olympia.amo.middleware.LocaleAndAppURLMiddleware',
