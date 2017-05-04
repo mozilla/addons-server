@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from django.views.generic.base import RedirectView
 
 from . import views
 
@@ -12,7 +13,10 @@ urlpatterns = [
         name='accounts.login_start'),
     url(r'^session/$', views.SessionView.as_view(),
         name='accounts.session'),
-    url(r'^profile/(?:(?P<user_id>\d+)/)?$', views.ProfileView.as_view(),
+    url(r'^account/(?:(?P<user_id>\d+)/)?$', views.ProfileView.as_view(),
+        name='accounts.account'),
+    url(r'^profile/?$',
+        RedirectView.as_view(pattern_name='accounts.account', permanent=True),
         name='accounts.profile'),
     url(r'^register/$', views.RegisterView.as_view(),
         name='accounts.register'),

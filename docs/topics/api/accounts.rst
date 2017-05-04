@@ -14,7 +14,7 @@ Profile
 This endpoint returns information about a user's profile, by the profile id.
 Most of the information is optional and provided by the user so may be missing or inaccurate.
 
-.. http:get:: /api/v3/accounts/profile/(int:user_id)/
+.. http:get:: /api/v3/accounts/account/(int:user_id)/
 
     .. _profile-object:
 
@@ -53,7 +53,7 @@ Self Profile
 If you authenticate and access your own profile (either by specifing your own user_id, or omiting it) the following additional fields are returned.
 If you have `Users:Edit` permission you will see these extra fields for all user profiles.
 
-.. http:get:: /api/v3/accounts/profile/
+.. http:get:: /api/v3/accounts/account/
 
     .. _self-profile-object:
 

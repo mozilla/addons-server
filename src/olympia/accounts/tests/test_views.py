@@ -923,7 +923,7 @@ class TestProfileView(APIKeyAuthTestCase):
 
     def setUp(self):
         self.create_api_user()
-        self.url = reverse('accounts.profile')
+        self.url = reverse('accounts.account')
         self.cls = resolve(self.url).func.cls
         self.profile = self.user
         super(TestProfileView, self).setUp()
@@ -939,12 +939,12 @@ class TestProfileView(APIKeyAuthTestCase):
 
     def test_self_view_via_pk(self):
         """Test that self-profile view still works if you specify your pk."""
-        self.url = reverse('accounts.profile',
+        self.url = reverse('accounts.account',
                            kwargs={'user_id': self.user.pk})
         self.test_self_view()
 
     def test_no_private_data_without_auth(self):
-        self.url = reverse('accounts.profile',
+        self.url = reverse('accounts.account',
                            kwargs={'user_id': self.user.pk})
         response = self.client.get(self.url)  # No auth.
         assert response.status_code == 200
@@ -954,9 +954,15 @@ class TestProfileView(APIKeyAuthTestCase):
     def test_admin_view(self):
         self.profile = user_factory()
         self.grant_permission(self.user, 'Users:Edit')
-        self.url = reverse('accounts.profile',
+        self.url = reverse('accounts.account',
                            kwargs={'user_id': self.profile.pk})
         self.test_self_view()
+
+    def test_profile_url_redirect(self):
+        profile_api_url = reverse('accounts.profile')
+        response = self.get(profile_api_url)
+        self.assertRedirects(
+            response, self.url, target_status_code=301)
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):
