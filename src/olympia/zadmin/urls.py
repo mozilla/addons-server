@@ -31,7 +31,7 @@ urlpatterns = patterns(
         views.addon_manage, name='zadmin.addon_manage'),
     url('^addon/recalc-hash/(?P<file_id>\d+)/', views.recalc_hash,
         name='zadmin.recalc_hash'),
-    url('^env$', views.env, name='amo.env'),
+    url('^env$', views.env, name='zadmin.env'),
     url('^langpacks', views.langpacks, name='zadmin.langpacks'),
     url('^memcache$', views.memcache, name='zadmin.memcache'),
     url('^settings', views.show_settings, name='zadmin.settings'),

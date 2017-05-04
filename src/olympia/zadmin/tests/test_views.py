@@ -1923,6 +1923,7 @@ class TestPerms(TestCase):
         # Admin should see views with Django's perm decorator and our own.
         assert self.client.login(email='admin@mozilla.com')
         self.assert_status('zadmin.index', 200)
+        self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
@@ -1938,6 +1939,7 @@ class TestPerms(TestCase):
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 200)
+        self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
@@ -1957,12 +1959,14 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
+        self.assert_status('zadmin.env', 403)
         self.assert_status('zadmin.settings', 403)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 403)
+        self.assert_status('zadmin.env', 403)
         self.assert_status('zadmin.settings', 403)
         self.assert_status('zadmin.langpacks', 403)
         self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)

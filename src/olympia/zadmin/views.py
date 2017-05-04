@@ -91,12 +91,16 @@ def show_settings(request):
                                                  getattr(settings, i, {}))
 
     return render(request, 'zadmin/settings.html',
-                  {'settings_dict': settings_dict})
+                  {'settings_dict': settings_dict, 'title': 'Settings!'})
 
 
 @admin_required
 def env(request):
-    return http.HttpResponse(u'<pre>%s</pre>' % (jinja2.escape(request)))
+    env = {}
+    for k in request.META.keys():
+        env[k] = debug.cleanse_setting(k, request.META[k])
+    return render(request, 'zadmin/settings.html',
+                  {'settings_dict': env, 'title': 'Env!'})
 
 
 @admin.site.admin_view
