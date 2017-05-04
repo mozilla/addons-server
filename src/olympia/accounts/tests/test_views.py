@@ -923,7 +923,7 @@ class TestProfileView(APIKeyAuthTestCase):
 
     def setUp(self):
         self.create_api_user()
-        self.url = reverse('account-self')
+        self.url = reverse('account-detail')
         self.cls = resolve(self.url).func.cls
         self.profile = self.user
         super(TestProfileView, self).setUp()
