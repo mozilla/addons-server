@@ -6,20 +6,20 @@ The following API endpoints cover a users account.
 
 
 -------
-Profile
+Account
 -------
 
-.. _`profile`:
+.. _`account`:
 
-This endpoint returns information about a user's profile, by the profile id.
+This endpoint returns information about a user's account, by the account id.
 Most of the information is optional and provided by the user so may be missing or inaccurate.
 
 .. http:get:: /api/v3/accounts/account/(int:user_id)/
 
-    .. _profile-object:
+    .. _account-object:
 
     :>json int id: The numeric user id.
-    :>json string username: username chosen by the user, used in the profile url. If not set will be a randomly generated string.
+    :>json string username: username chosen by the user, used in the account url. If not set will be a randomly generated string.
     :>json string name: The name chosen by the user, or the username if not set.
     :>json float average_addon_rating: The average rating for addons the developer has listed on the website.
     :>json int num_addons_listed: The number of addons the developer has listed on the website.
@@ -33,9 +33,9 @@ Most of the information is optional and provided by the user so may be missing o
     :>json boolean is_artist: The user has developed and listed themes on this website.
 
 
-    :statuscode 200: profile found.
+    :statuscode 200: account found.
     :statuscode 400: an error occurred, check the `error` value in the JSON.
-    :statuscode 404: no profile with that user id.
+    :statuscode 404: no account with that user id.
 
 
 .. important::
@@ -45,23 +45,23 @@ Most of the information is optional and provided by the user so may be missing o
 
 
 ------------
-Self Profile
+Self Account
 ------------
 
-.. _`self-profile`:
+.. _`self-account`:
 
-If you authenticate and access your own profile (either by specifing your own user_id, or omiting it) the following additional fields are returned.
-If you have `Users:Edit` permission you will see these extra fields for all user profiles.
+If you authenticate and access your own account (either by specifing your own user_id, or omiting it) the following additional fields are returned.
+If you have `Users:Edit` permission you will see these extra fields for all user accounts.
 
 .. http:get:: /api/v3/accounts/account/
 
-    .. _self-profile-object:
+    .. _self-account-object:
 
     :>json string email: Email address used by the user to login and create this account.
     :>json string|null display_name: The name chosen by the user.
     :>json boolean is_verified: The user has been verified via FirefoxAccounts.
     :>json boolean read_dev_agreement: The user has read, and agreed to, the developer agreement that is required to submit addons.
-    :>json boolean deleted: Is the profile deleted.
+    :>json boolean deleted: Is the account deleted.
     :>json string last_login: The date of the last successful log in to the website.
     :>json string last_login_ip: The IP address of the last successfull log in to the website.
 
