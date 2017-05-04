@@ -923,28 +923,32 @@ class TestProfileView(APIKeyAuthTestCase):
 
     def setUp(self):
         self.create_api_user()
-        self.url = reverse('accounts.account')
+        self.url = reverse('account-self')
         self.cls = resolve(self.url).func.cls
         self.profile = self.user
         super(TestProfileView, self).setUp()
 
     def test_self_view(self):
-        res = self.get(self.url)
-        assert res.status_code == 200
-        assert res.data['name'] == self.profile.name
-        assert res.data['email'] == self.profile.email
+        response = self.get(self.url)
+        assert response.status_code == 200
+        assert response.data['name'] == self.profile.name
+        assert response.data['email'] == self.profile.email
+
+    def test_self_view_404(self):
+        response = self.client.get(self.url)  # No auth.
+        assert response.status_code == 404
 
     def test_verbs_allowed(self):
         self.verbs_allowed(self.cls, ['get'])
 
     def test_self_view_via_pk(self):
         """Test that self-profile view still works if you specify your pk."""
-        self.url = reverse('accounts.account',
+        self.url = reverse('account-detail',
                            kwargs={'user_id': self.user.pk})
         self.test_self_view()
 
     def test_no_private_data_without_auth(self):
-        self.url = reverse('accounts.account',
+        self.url = reverse('account-detail',
                            kwargs={'user_id': self.user.pk})
         response = self.client.get(self.url)  # No auth.
         assert response.status_code == 200
@@ -954,14 +958,18 @@ class TestProfileView(APIKeyAuthTestCase):
     def test_admin_view(self):
         self.profile = user_factory()
         self.grant_permission(self.user, 'Users:Edit')
-        self.url = reverse('accounts.account',
+        self.url = reverse('account-detail',
                            kwargs={'user_id': self.profile.pk})
         self.test_self_view()
 
     def test_profile_url_redirect(self):
         profile_api_url = reverse('accounts.profile')
-        response = self.get(profile_api_url)
-        self.assertRedirects(response, self.url, status_code=301)
+        # 404 because not logged in.
+        self.assert3xx(self.client.get(profile_api_url), self.url,
+                       status_code=301, target_status_code=404)
+        # And logged in.
+        self.assert3xx(self.get(profile_api_url), self.url,
+                       status_code=301, target_status_code=200)
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):

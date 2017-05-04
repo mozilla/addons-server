@@ -13,11 +13,12 @@ from django.utils.http import is_safe_url
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
-from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
+from rest_framework.mixins import RetrieveModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet
 from waffle.decorators import waffle_switch
 
 import olympia.core.logger
@@ -369,10 +370,11 @@ class SessionView(APIView):
         return response
 
 
-class ProfileView(generics.RetrieveAPIView):
+class AccountViewSet(RetrieveModelMixin, GenericViewSet):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [AllowAny]
     lookup_url_kwarg = 'user_id'
+    lookup_value_regex = r'\d+'
     queryset = UserProfile.objects.all()
     self_view = False
 
@@ -385,13 +387,15 @@ class ProfileView(generics.RetrieveAPIView):
             return PublicUserProfileSerializer
 
     def get_object(self):
+        lookup_value = self.kwargs.get(self.lookup_url_kwarg)
         if self.request.user.is_authenticated():
-            lookup_value = self.kwargs.get(self.lookup_url_kwarg)
             user_pk = str(self.request.user.pk)
             if not lookup_value or lookup_value == user_pk:
                 self.kwargs[self.lookup_url_kwarg] = user_pk
                 self.self_view = True
-        return super(ProfileView, self).get_object()
+        elif not lookup_value:
+            self.kwargs[self.lookup_url_kwarg] = None
+        return super(AccountViewSet, self).get_object()
 
 
 class AccountSuperCreate(APIView):
