@@ -961,8 +961,7 @@ class TestProfileView(APIKeyAuthTestCase):
     def test_profile_url_redirect(self):
         profile_api_url = reverse('accounts.profile')
         response = self.get(profile_api_url)
-        self.assertRedirects(
-            response, self.url, target_status_code=301)
+        self.assertRedirects(response, self.url, status_code=301)
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):
