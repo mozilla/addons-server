@@ -9,7 +9,6 @@ from django.utils import translation
 import pytest
 from mock import Mock, patch
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
@@ -278,7 +277,8 @@ class TestReviewHelper(TestCase):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
         # Need to clear self.version.all_files cache since we updated the file.
-        del self.version.all_files
+        if self.version:
+            del self.version.all_files
         return self.get_helper().actions
 
     def test_actions_full_nominated(self):
@@ -301,6 +301,15 @@ class TestReviewHelper(TestCase):
                 addon_status=amo.STATUS_PUBLIC,
                 file_status=file_status).keys() == expected
 
+    def test_actions_no_version(self):
+        """Deleted addons and addons with no versions in that channel have no
+        version set."""
+        expected = ['comment']
+        self.version = None
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_PUBLIC).keys() == expected
+
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.set_data({'addon_files': self.version.files.all()})
@@ -317,20 +326,6 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
     def test_notify_email(self):
-        self.helper.set_data(self.get_data())
-        base_fragment = 'reply to this email or join #addon-reviewers'
-        legacy_cta_fragment = 'add-ons are compatible past Firefox 57'
-        for template in ('nominated_to_public', 'nominated_to_sandbox',
-                         'pending_to_public', 'pending_to_sandbox',
-                         'author_super_review', 'unlisted_to_reviewed_auto'):
-            mail.outbox = []
-            self.helper.handler.notify_email(template, 'Sample subject %s, %s')
-            assert len(mail.outbox) == 1
-            assert base_fragment in mail.outbox[0].body
-            assert legacy_cta_fragment in mail.outbox[0].body
-
-    @override_switch('activity-email', active=True)
-    def test_notify_email_activity_email(self):
         self.helper.set_data(self.get_data())
         base_fragment = 'If you need to send file attachments'
         legacy_cta_fragment = 'add-ons are compatible past Firefox 57'

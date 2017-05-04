@@ -129,8 +129,7 @@
                     <pre>$comments</pre>
                 </div>
             </div>
-            {% if waffle.switch('activity-email') %}
-              {% if latest_version_in_channel == version %}
+            {% if latest_version_in_channel == version %}
               <div class="dev-review-reply">
                 <form class="dev-review-reply-form" action="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
                       data-token="{{ token }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
@@ -138,11 +137,10 @@
                     <button type="submit" class="submit" >{{ _('Reply') }}</button ty>
                 </form>
               </div>
-              {% else %}
+            {% else %}
               <div>
                 <a href="#" class="review-history-show" data-version="{{ latest_version_in_channel.id }}">{{ _('Leave a reply') }}</a>
               </div>
-              {% endif %}
             {% endif %}
         </td>
     </tr>

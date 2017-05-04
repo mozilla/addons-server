@@ -11,7 +11,6 @@ from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from waffle.decorators import waffle_switch
 
 import olympia.core.logger
 from olympia import amo
@@ -59,7 +58,6 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
             self.get_queryset())
         return ctx
 
-    @waffle_switch('activity-email')
     def create(self, request, *args, **kwargs):
         version = self.get_version_object()
         latest_version = version.addon.find_latest_version(
