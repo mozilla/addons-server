@@ -18,7 +18,6 @@ from django.views.decorators.cache import never_cache
 
 import olympia.core.logger
 import django_tables2 as tables
-import jinja2
 
 from olympia import amo, core
 from olympia.amo import search
