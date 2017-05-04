@@ -8,8 +8,7 @@ PREPARE stmt FROM @QUERY;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 
-/* Clear out the translations. */
-DELETE FROM `translations` WHERE `id` in (SELECT `bio` FROM `users`);
+/* Ignore the translations because our databases are a bag of crazy. */
 
 /* Drop the old columns. */
 ALTER TABLE `users`
