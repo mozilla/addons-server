@@ -21,15 +21,14 @@ Most of the information is optional and provided by the user so may be missing o
     :>json int id: The numeric user id.
     :>json string username: username chosen by the user, used in the profile url. If not set will be a randomly generated string.
     :>json string name: The name chosen by the user, or the username if not set.
-    :>json array addons_listed: Array holding the :ref:`addons <addon-detail-object>` the user has developed and are listed on this website.
-    :>json float averagerating: The average rating for the `addons_listed`.
+    :>json float average_addon_rating: The average rating for addons the developer has listed on the website.
+    :>json int num_addons_listed: The number of addons the developer has listed on the website.
     :>json string|null biography: More details about the user.
     :>json string|null homepage: The user's website.
     :>json string|null location: The location of the user.
     :>json string|null occupation: The occupation of the user.
     :>json string picture_url: URL to a photo of the user, or `/static/img/anon_user.png` if not set.
     :>json string|null picture_type: the image type (only 'image/png' is supported) if a user defined photo has been provided, or none if no photo has been provided.
-    :>json array reviews: Array holding the :ref:`reviews <review-detail-object>` the user has written.
     :>json boolean is_addon_developer: The user has developed and listed add-ons on this website.
     :>json boolean is_artist: The user has developed and listed themes on this website.
 
@@ -60,11 +59,6 @@ If you have `Users:Edit` permission you will see these extra fields for all user
 
     :>json string email: Email address used by the user to login and create this account.
     :>json string|null display_name: The name chosen by the user.
-    :>json array collections: Array holding the collections the user has created.
-    :>json int collections[].id: Numeric collection id.
-    :>json string collections[].name: Collection name.
-    :>json string collections[].url: URL to the collection page.
-    :>json int collections[].addon_count: Number of addons in the collection.
     :>json boolean is_verified: The user has been verified via FirefoxAccounts.
     :>json boolean read_dev_agreement: The user has read, and agreed to, the developer agreement that is required to submit addons.
     :>json boolean deleted: Is the profile deleted.

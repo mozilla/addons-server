@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 from olympia import amo
 from olympia.amo.tests import (
-    addon_factory, BaseTestCase, collection_factory, days_ago, user_factory)
+    addon_factory, BaseTestCase, days_ago, user_factory)
 from olympia.accounts.serializers import (
     PublicUserProfileSerializer, UserProfileSerializer)
-from olympia.reviews.models import Review
 
 
 class TestPublicUserProfileSerializer(BaseTestCase):
     serializer = PublicUserProfileSerializer
     user_kwargs = {
-        'username': 'amo', 'averagerating': 3.6,
+        'username': 'amo',
         'biography': 'stuff', 'homepage': 'http://mozilla.org/',
         'location': 'everywhere', 'occupation': 'job'}
 
@@ -32,26 +31,17 @@ class TestPublicUserProfileSerializer(BaseTestCase):
         return data
 
     def test_addons(self):
+        self.user.update(averagerating=3.6)
         del self.user.addons_listed
-        assert len(self.serialize()['addons']) == 0
+        assert self.serialize()['num_addons_listed'] == 0
 
         addon_factory(users=[self.user])
         addon_factory(users=[self.user])
         addon_factory(status=amo.STATUS_NULL, users=[self.user])
         del self.user.addons_listed
-        assert len(self.serialize()['addons']) == 2  # only public addons.
-
-    def test_reviews(self):
-        addon = addon_factory()
-        Review.objects.create(
-            addon=addon, user=self.user, rating=4,
-            version=addon.current_version, body=u'This is my rëview. Like ît?')
-        addon = addon_factory()
-        Review.objects.create(
-            addon=addon, user=self.user, rating=4,
-            version=addon.current_version, body=u'This is my rëview. Like ît?')
-        self.user = self.user.reload()
-        assert len(self.serialize()['reviews']) == 2
+        data = self.serialize()
+        assert data['num_addons_listed'] == 2  # only public addons.
+        assert data['average_addon_rating'] == '3.6'
 
 
 class TestUserProfileSerializer(TestPublicUserProfileSerializer):
@@ -65,11 +55,6 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer):
             'last_login_ip': '123.45.67.89',
         })
         super(TestUserProfileSerializer, self).setUp()
-
-    def test_collections(self):
-        collection_factory(author=self.user)
-        collection_factory(author=self.user)
-        assert len(self.serialize()['collections']) == 2
 
     def test_basic(self):
         # Have to update these separately as dates as tricky.  As are bools.

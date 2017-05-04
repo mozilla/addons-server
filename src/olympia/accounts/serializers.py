@@ -2,10 +2,6 @@ from rest_framework import serializers
 
 import olympia.core.logger
 from olympia.access.models import Group
-from olympia.addons.serializers import AddonSerializer
-from olympia.bandwagon.serializers import SimpleCollectionSerializer
-from olympia.reviews.models import Review
-from olympia.reviews.serializers import ReviewSerializer
 from olympia.users.models import UserProfile
 from olympia.users.serializers import BaseUserSerializer
 
@@ -15,28 +11,21 @@ log = olympia.core.logger.getLogger('accounts')
 
 class PublicUserProfileSerializer(BaseUserSerializer):
     picture_url = serializers.URLField(read_only=True)
-    addons = AddonSerializer(many=True, source='addons_listed')
-    reviews = serializers.SerializerMethodField()
+    average_addon_rating = serializers.CharField(source='averagerating')
 
     class Meta(BaseUserSerializer.Meta):
         fields = BaseUserSerializer.Meta.fields + (
-            'addons', 'averagerating', 'created', 'biography', 'homepage',
-            'is_addon_developer', 'is_artist', 'location', 'addons_listed',
-            'occupation', 'picture_type', 'picture_url', 'reviews',
-            'username',
+            'average_addon_rating', 'created', 'biography', 'homepage',
+            'is_addon_developer', 'is_artist', 'location', 'occupation',
+            'num_addons_listed', 'picture_type', 'picture_url', 'username',
         )
-
-    def get_reviews(self, obj):
-        q = Review.objects.filter(user=obj, reply_to=None)
-        return [ReviewSerializer(r) for r in q]
 
 
 class UserProfileSerializer(PublicUserProfileSerializer):
-    collections = SimpleCollectionSerializer(many=True)
 
     class Meta(PublicUserProfileSerializer.Meta):
         fields = PublicUserProfileSerializer.Meta.fields + (
-            'collections', 'display_name', 'email', 'deleted', 'last_login',
+            'display_name', 'email', 'deleted', 'last_login',
             'last_login_ip', 'read_dev_agreement', 'is_verified',
         )
 

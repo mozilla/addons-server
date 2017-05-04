@@ -35,10 +35,7 @@ class BaseReviewSerializer(serializers.ModelSerializer):
         # them directly to avoid instantiating a full serializer. Also avoid
         # database queries if possible by re-using the addon object from the
         # view if there is one.
-        if hasattr(self.context.get('view', object()), 'get_addon_object'):
-            addon = self.context['view'].get_addon_object() or obj.addon
-        else:
-            addon = obj.addon
+        addon = self.context['view'].get_addon_object() or obj.addon
 
         return {
             'id': addon.id,
