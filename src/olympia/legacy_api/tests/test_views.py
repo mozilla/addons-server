@@ -974,7 +974,7 @@ class SearchTest(ESTestCase):
             'delicious/1': 'Delicious Bookmarks',
             'grapple/all/10/Darwin': 'GrApple',
             'delicious/all/10/Darwin/3.5': 'Delicious Bookmarks',
-            '/en-US/mobile/api/1.2/search/twitter/all/10/Linux/1.0':
+            '/en-US/firefox/api/1.2/search/twitter/all/10/Linux/3.5':
                 'TwitterBar',
         }
 

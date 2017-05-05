@@ -104,10 +104,6 @@ class MiddlewareTest(BaseTestCase):
             assert response['Location'] == expected
 
         check('/en-US/', '/en-US/firefox/', 'Firefox')
-        check('/de/', '/de/mobile/', 'Fennec')
-
-        # Mobile gets priority because it has both strings in its UA...
-        check('/de/', '/de/mobile/', 'Firefox Fennec')
 
         # SeaMonkey gets priority because it has both strings in its UA...
         check('/en-US/', '/en-US/seamonkey/', 'Firefox SeaMonkey')
@@ -116,8 +112,6 @@ class MiddlewareTest(BaseTestCase):
         check('/en-US/', '/en-US/android/', 'Fennec/12.0.1')
         check('/en-US/', '/en-US/android/', 'Fennec/12')
         check('/en-US/', '/en-US/android/', 'Fennec/11.0')
-        check('/en-US/', '/en-US/mobile/', 'Fennec/10.9.1')
-        check('/en-US/', '/en-US/mobile/', 'Fennec/10.9')
 
         # And the user agent changed again.
         check('/en-US/', '/en-US/android/',
@@ -235,8 +229,8 @@ class TestPrefixerActivate(TestCase):
         assert urlresolvers.reverse('home') == '/en-US/firefox/'
 
     def test_activate_app(self):
-        with self.activate(app='mobile'):
-            assert urlresolvers.reverse('home') == '/en-US/mobile/'
+        with self.activate(app='android'):
+            assert urlresolvers.reverse('home') == '/en-US/android/'
         assert urlresolvers.reverse('home') == '/en-US/firefox/'
 
     def test_activate_app_locale(self):
