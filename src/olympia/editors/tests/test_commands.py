@@ -14,8 +14,7 @@ from olympia.amo.tests import (
 from olympia.editors.management.commands import auto_approve
 from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary)
-from olympia.editors.views import get_reviewing_cache, set_reviewing_cache
+    AutoApprovalSummary, get_reviewing_cache)
 from olympia.files.models import FileValidation
 from olympia.zadmin.models import Config, get_config, set_config
 
@@ -143,22 +142,6 @@ class TestAutoApproveCommand(TestCase):
         assert len(qs) == 1
         assert qs[0] == self.version
 
-    @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
-    def test_skip_if_admin_review(self, create_summary_for_version_mock):
-        self.addon.update(admin_review=True)
-        call_command('auto_approve')
-        assert create_summary_for_version_mock.call_count == 0
-        assert get_reviewing_cache(self.addon.pk) is None
-        self._check_stats({'total': 1, 'flagged': 1})
-
-    @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
-    def test_skip_if_has_info_request(self, create_summary_for_version_mock):
-        self.version.update(has_info_request=True)
-        call_command('auto_approve')
-        assert create_summary_for_version_mock.call_count == 0
-        assert get_reviewing_cache(self.addon.pk) is None
-        self._check_stats({'total': 1, 'flagged': 1})
-
     @mock.patch(
         'olympia.editors.management.commands.auto_approve.ReviewHelper')
     def test_approve(self, review_helper_mock):
@@ -202,16 +185,6 @@ class TestAutoApproveCommand(TestCase):
         assert msg.subject == 'Mozilla Add-ons: %s %s Approved' % (
             unicode(self.addon.name), self.version.version)
 
-    @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
-    def test_already_locked(self, create_summary_for_version_mock):
-        # Test that when an add-on is locked, we handle that gracefully, not
-        # touching it.
-        set_reviewing_cache(self.addon.pk, 666)
-        call_command('auto_approve')
-        assert get_reviewing_cache(self.addon.pk) == 666
-        assert create_summary_for_version_mock.call_count == 0
-        self._check_stats({'total': 1, 'locked': 1})
-
     @mock.patch.object(auto_approve, 'set_reviewing_cache')
     @mock.patch.object(auto_approve, 'clear_reviewing_cache')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
@@ -227,6 +200,21 @@ class TestAutoApproveCommand(TestCase):
             (self.addon.pk, settings.TASK_USER_ID), {})
         assert clear_reviewing_cache_mock.call_count == 1
         assert clear_reviewing_cache_mock.call_args == ((self.addon.pk,), {})
+
+    @mock.patch.object(auto_approve, 'set_reviewing_cache')
+    @mock.patch.object(auto_approve, 'clear_reviewing_cache')
+    @mock.patch.object(AutoApprovalSummary, 'check_is_locked')
+    @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
+    def test_no_locking_if_already_locked(
+            self, create_summary_for_version_mock, check_is_locked_mock,
+            clear_reviewing_cache_mock, set_reviewing_cache_mock):
+        check_is_locked_mock.return_value = True
+        create_summary_for_version_mock.return_value = (
+            AutoApprovalSummary(), {})
+        call_command('auto_approve')
+        assert create_summary_for_version_mock.call_count == 1
+        assert set_reviewing_cache_mock.call_count == 0
+        assert clear_reviewing_cache_mock.call_count == 0
 
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_not_enough_files_error(self, create_summary_for_version_mock):

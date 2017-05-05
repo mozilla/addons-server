@@ -20,8 +20,8 @@ from olympia.files.models import File, WebextPermission
 from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, EditorSubscription, RereviewQueueTheme, ReviewerScore,
-    send_notifications, ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedAllList)
+    send_notifications, set_reviewing_cache, ViewFullReviewQueue,
+    ViewPendingQueue, ViewUnlistedAllList)
 from olympia.users.models import UserProfile
 
 
@@ -732,6 +732,30 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_uses_content_script_for_all_urls(
             self.version) is True
 
+    def test_check_is_under_admin_review(self):
+        assert AutoApprovalSummary.check_is_under_admin_review(
+            self.version) is False
+
+        self.version.addon.update(admin_review=True)
+        assert AutoApprovalSummary.check_is_under_admin_review(
+            self.version) is True
+
+    def test_check_is_locked(self):
+        assert AutoApprovalSummary.check_is_locked(self.version) is False
+
+        set_reviewing_cache(self.version.addon.pk, settings.TASK_USER_ID)
+        assert AutoApprovalSummary.check_is_locked(self.version) is False
+
+        set_reviewing_cache(self.version.addon.pk, settings.TASK_USER_ID + 42)
+        assert AutoApprovalSummary.check_is_locked(self.version) is True
+
+    def test_check_has_info_request(self):
+        assert AutoApprovalSummary.check_has_info_request(
+            self.version) is False
+
+        self.version.update(has_info_request=True)
+        assert AutoApprovalSummary.check_has_info_request(self.version) is True
+
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
     def test_create_summary_for_version(self, calculate_verdict_mock):
         calculate_verdict_mock.return_value = {'dummy_verdict': True}
@@ -804,7 +828,10 @@ class TestAutoApprovalSummary(TestCase):
             'too_many_average_daily_users': False,
             'uses_content_script_for_all_urls': False,
             'uses_custom_csp': False,
-            'uses_native_messaging': False
+            'uses_native_messaging': False,
+            'has_info_request': False,
+            'is_locked': False,
+            'is_under_admin_review': False,
         }
 
     def test_create_summary_no_files(self):
@@ -824,7 +851,10 @@ class TestAutoApprovalSummary(TestCase):
             'too_many_average_daily_users': False,
             'uses_content_script_for_all_urls': False,
             'uses_custom_csp': False,
-            'uses_native_messaging': False
+            'uses_native_messaging': False,
+            'has_info_request': False,
+            'is_locked': False,
+            'is_under_admin_review': False,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
 
@@ -844,7 +874,10 @@ class TestAutoApprovalSummary(TestCase):
             'too_many_average_daily_users': True,
             'uses_content_script_for_all_urls': True,
             'uses_custom_csp': True,
-            'uses_native_messaging': True
+            'uses_native_messaging': True,
+            'has_info_request': False,
+            'is_locked': False,
+            'is_under_admin_review': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -864,7 +897,10 @@ class TestAutoApprovalSummary(TestCase):
             'too_many_average_daily_users': False,
             'uses_content_script_for_all_urls': False,
             'uses_custom_csp': False,
-            'uses_native_messaging': False
+            'uses_native_messaging': False,
+            'has_info_request': False,
+            'is_locked': False,
+            'is_under_admin_review': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
 
@@ -884,7 +920,10 @@ class TestAutoApprovalSummary(TestCase):
             'too_many_average_daily_users': False,
             'uses_content_script_for_all_urls': False,
             'uses_custom_csp': False,
-            'uses_native_messaging': False
+            'uses_native_messaging': False,
+            'has_info_request': False,
+            'is_locked': False,
+            'is_under_admin_review': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
@@ -894,11 +933,17 @@ class TestAutoApprovalSummary(TestCase):
             'too_many_average_daily_users': True,
             'uses_content_script_for_all_urls': True,
             'uses_custom_csp': True,
-            'uses_native_messaging': True
+            'uses_native_messaging': True,
+            'has_info_request': True,
+            'is_locked': True,
+            'is_under_admin_review': True,
         }
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
+            u'Has a pending info request.',
+            u'Is locked by a reviewer.',
+            u'Is flagged for admin review.',
             u'Has too few consecutive human-approved updates.',
             u'Has too many daily users.',
             u'Uses a content script for all URLs.',

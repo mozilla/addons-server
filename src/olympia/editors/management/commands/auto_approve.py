@@ -11,9 +11,7 @@ from olympia import amo
 from olympia.editors.helpers import ReviewHelper
 from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary)
-from olympia.editors.views import (
-    clear_reviewing_cache, get_reviewing_cache, set_reviewing_cache)
+    AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config
 
@@ -82,21 +80,14 @@ class Command(BaseCommand):
     def process(self, version):
         """Process a single version, figuring out if it should be auto-approved
         and calling the approval code if necessary."""
-
-        # Is the addon already locked by a reviewer ?
-        if get_reviewing_cache(version.addon.pk):
-            self.stats['locked'] += 1
-            return
-
-        # If admin review or more information was requested, skip this
-        # version, let a human handle it.
-        if version.addon.admin_review or version.has_info_request:
-            self.stats['flagged'] += 1
-            return
-
-        # Lock the addon for ourselves, no reviewer should touch it.
-        set_reviewing_cache(version.addon.pk, settings.TASK_USER_ID)
-
+        already_locked = AutoApprovalSummary.check_is_locked(version)
+        if not already_locked:
+            # Lock the addon for ourselves if possible. Even though
+            # AutoApprovalSummary.create_summary_for_version() will do
+            # call check_is_locked() again later when calculating the verdict,
+            # we have to do it now to prevent overwriting an existing lock with
+            # our own.
+            set_reviewing_cache(version.addon.pk, settings.TASK_USER_ID)
         try:
             log.info('Processing %s version %s...',
                      unicode(version.addon.name), unicode(version.version))
@@ -121,7 +112,9 @@ class Command(BaseCommand):
                 'file or because it had no validation attached.', version)
             self.stats['error'] += 1
         finally:
-            clear_reviewing_cache(version.addon.pk)
+            # Always clear our own lock no matter what happens (but only ours).
+            if not already_locked:
+                clear_reviewing_cache(version.addon.pk)
 
     def approve(self, version):
         """Do the approval itself, caling ReviewHelper to change the status,
@@ -140,13 +133,16 @@ class Command(BaseCommand):
         """Log a summary of what happened."""
         log.info('There were %d webextensions add-ons in the updates queue.',
                  stats['total'])
-        log.info('%d versions were skipped because they were already locked.',
-                 stats['locked'])
-        log.info('%d versions were skipped because they were flagged for '
-                 'admin review or had info requested flag set.',
-                 stats['flagged'])
-        log.info('%d versions were skipped because they had no files or had '
-                 'no validation attached to their files.', stats['error'])
+        if stats['error']:
+            log.info(
+                '%d versions were skipped because they had no files or had '
+                'no validation attached to their files.', stats['error'])
+        log.info('%d versions were already locked by a reviewer.',
+                 stats['is_locked'])
+        log.info('%d versions were flagged for admin review',
+                 stats['is_under_admin_review'])
+        log.info('%d versions had a pending info request',
+                 stats['has_info_request'])
         log.info('%d versions belonged to an add-on with too many daily '
                  'active users.', stats['too_many_average_daily_users'])
         log.info('%d versions did not have enough approved updates.',
