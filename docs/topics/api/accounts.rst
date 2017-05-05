@@ -33,6 +33,22 @@ Most of the information is optional and provided by the user so may be missing o
     :>json boolean is_artist: The user has developed and listed themes on this website.
 
 
+If you authenticate and access your own account by specifing your own `user_id` the following additional fields are returned.
+If you have `Users:Edit` permission you will see these extra fields for all user accounts.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id)/
+
+    .. _account-object-self:
+
+    :>json string email: Email address used by the user to login and create this account.
+    :>json string|null display_name: The name chosen by the user.
+    :>json boolean is_verified: The user has been verified via FirefoxAccounts.
+    :>json boolean read_dev_agreement: The user has read, and agreed to, the developer agreement that is required to submit addons.
+    :>json boolean deleted: Is the account deleted.
+    :>json string last_login: The date of the last successful log in to the website.
+    :>json string last_login_ip: The IP address of the last successfull log in to the website.
+
+
     :statuscode 200: account found.
     :statuscode 400: an error occurred, check the `error` value in the JSON.
     :statuscode 404: no account with that user id.
@@ -44,26 +60,20 @@ Most of the information is optional and provided by the user so may be missing o
       responsibiliy of the client to clean and escape it appropriately before display.
 
 
-------------
-Self Account
-------------
+-------
+Profile
+-------
 
-.. _`self-account`:
+.. _`profile`:
 
-If you authenticate and access your own account (either by specifing your own user_id, or omiting it) the following additional fields are returned.
-If you have `Users:Edit` permission you will see these extra fields for all user accounts.
+.. note:: This API requires :doc:`authentication <auth>`.
 
-.. http:get:: /api/v3/accounts/account/
+This endpoint is a shortcut to your own account. It returns an :ref:`account object <account-object-self>`
+
+.. http:get:: /api/v3/accounts/profile/
 
     .. _self-account-object:
 
-    :>json string email: Email address used by the user to login and create this account.
-    :>json string|null display_name: The name chosen by the user.
-    :>json boolean is_verified: The user has been verified via FirefoxAccounts.
-    :>json boolean read_dev_agreement: The user has read, and agreed to, the developer agreement that is required to submit addons.
-    :>json boolean deleted: Is the account deleted.
-    :>json string last_login: The date of the last successful log in to the website.
-    :>json string last_login_ip: The IP address of the last successfull log in to the website.
 
 
 --------------

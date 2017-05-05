@@ -1,12 +1,11 @@
 from django.conf.urls import include, url
-from django.views.generic.base import RedirectView
 
-from olympia.api.routers import OptionalLookupRouter
+from rest_framework.routers import SimpleRouter
 
 from . import views
 
 
-accounts = OptionalLookupRouter()
+accounts = SimpleRouter()
 accounts.register(r'account', views.AccountViewSet, base_name='account')
 
 urlpatterns = [
@@ -19,8 +18,7 @@ urlpatterns = [
     url(r'^session/$', views.SessionView.as_view(),
         name='accounts.session'),
     url(r'', include(accounts.urls)),
-    url(r'^profile/?$',
-        RedirectView.as_view(pattern_name='account-detail', permanent=True),
+    url(r'^profile/?$', views.AccountViewSet.as_view({'get': 'retrieve'}),
         name='accounts.profile'),
     url(r'^register/$', views.RegisterView.as_view(),
         name='accounts.register'),
