@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-05 11:36+0000\n"
+"PO-Revision-Date: 2016-07-28 12:40+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -3360,7 +3360,7 @@ msgstr "Contatti"
 
 #: src/olympia/constants/categories.py
 msgid "Folders and Filters"
-msgstr "Cartellle e filtri"
+msgstr "Cartelle e filtri"
 
 #: src/olympia/constants/categories.py
 msgid "Import/Export"
