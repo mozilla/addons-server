@@ -118,7 +118,7 @@
             {% endfor %}
             {% if version.pk in auto_approval_info %}
               <tr>
-                <th>{{ _('Auto Approval Summary') }} </th>
+                <th>{{ _('Not Auto Approved Because') }} </th>
                 <td class="auto_approval">
                   {% if auto_approval_info[version.pk] %}
                     <ul>
@@ -127,7 +127,7 @@
                     {% endfor %}
                     </ul>
                   {% else %}
-                    {{ _('No attempt recorded yet.') }}
+                    {{ _('Auto-Approval script has not run yet on this version.') }}
                   {% endif %}
                 </td>
               </tr>
