@@ -14,6 +14,7 @@ from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
 from rest_framework.authentication import SessionAuthentication
+from rest_framework.decorators import list_route
 from rest_framework.mixins import RetrieveModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -371,12 +372,20 @@ class SessionView(APIView):
 
 
 class AccountViewSet(RetrieveModelMixin, GenericViewSet):
-    authentication_classes = [JWTKeyAuthentication]
     permission_classes = [AllowAny]
-    lookup_url_kwarg = 'user_id'
-    lookup_value_regex = r'\d+'
     queryset = UserProfile.objects.all()
-    self_view = False
+
+    def get_object(self):
+        if hasattr(self, 'instance'):
+            return self.instance
+        self.instance = super(AccountViewSet, self).get_object()
+        return self.instance
+
+    @property
+    def self_view(self):
+        return (
+            self.request.user.is_authenticated() and
+            self.get_object() == self.request.user)
 
     def get_serializer_class(self):
         if (self.self_view or
@@ -386,16 +395,10 @@ class AccountViewSet(RetrieveModelMixin, GenericViewSet):
         else:
             return PublicUserProfileSerializer
 
-    def get_object(self):
-        lookup_value = self.kwargs.get(self.lookup_url_kwarg)
-        if self.request.user.is_authenticated():
-            user_pk = str(self.request.user.pk)
-            if not lookup_value or lookup_value == user_pk:
-                self.kwargs[self.lookup_url_kwarg] = user_pk
-                self.self_view = True
-        elif not lookup_value:
-            self.kwargs[self.lookup_url_kwarg] = None
-        return super(AccountViewSet, self).get_object()
+    @list_route(permission_classes=[IsAuthenticated])
+    def profile(self, request, *args, **kwargs):
+        self.kwargs['pk'] = self.request.user.pk
+        return self.retrieve(request, *args, **kwargs)
 
 
 class AccountSuperCreate(APIView):

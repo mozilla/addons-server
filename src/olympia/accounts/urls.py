@@ -18,8 +18,6 @@ urlpatterns = [
     url(r'^session/$', views.SessionView.as_view(),
         name='accounts.session'),
     url(r'', include(accounts.urls)),
-    url(r'^profile/?$', views.AccountViewSet.as_view({'get': 'retrieve'}),
-        name='accounts.profile'),
     url(r'^register/$', views.RegisterView.as_view(),
         name='accounts.register'),
     url(r'^super-create/$', views.AccountSuperCreate.as_view(),
