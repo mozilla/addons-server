@@ -19,13 +19,15 @@ pytestmark = pytest.mark.django_db
 class TestMiddleware(TestCase):
 
     def test_no_vary_cookie(self):
-        # We don't break good usage of Vary.
+        # Requesting / forces a Vary on Accept-Language on User-Agent, since
+        # we redirect to /<lang>/<app>/.
         response = test.Client().get('/')
-        assert response['Vary'] == 'Accept-Language, User-Agent, X-Mobile'
+        assert response['Vary'] == 'Accept-Language, User-Agent'
 
-        # But we do prevent Vary: Cookie.
+        # No Vary after that (we should Vary on Cookie but avoid it for perf
+        # reasons).
         response = test.Client().get('/', follow=True)
-        assert response['Vary'] == 'X-Mobile, User-Agent'
+        assert 'Vary' not in response
 
     @patch('django.contrib.auth.middleware.'
            'AuthenticationMiddleware.process_request')

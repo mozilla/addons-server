@@ -74,7 +74,7 @@ class ThemeFilter(AddonFilter):
 
 def addon_listing(request, addon_types, filter_=AddonFilter, default=None):
     if default is None:
-        default = 'rating' if request.MOBILE else 'featured'
+        default = 'featured'
     # Set up the queryset and filtering for themes & extension listing pages.
     if amo.ADDON_PERSONA in addon_types:
         qs = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
@@ -168,7 +168,7 @@ def extensions(request, category=None):
         category = get_object_or_404(q, slug=category)
 
     sort = request.GET.get('sort')
-    if not sort and not request.MOBILE and category and category.count > 4:
+    if not sort and category and category.count > 4:
         return category_landing(request, category)
 
     addons, filter = addon_listing(request, [TYPE])
@@ -319,9 +319,7 @@ def personas(request, category=None):
     addons = amo.utils.paginate(request, filter_.qs, PAGINATE_PERSONAS_BY,
                                 count=count)
 
-    if ('sort' not in request.GET and (
-            (request.MOBILE and not cat) or
-            (not request.MOBILE and count > MIN_COUNT_FOR_LANDING))):
+    if 'sort' not in request.GET and count > MIN_COUNT_FOR_LANDING:
         template = 'browse/personas/category_landing.html'
     else:
         template = 'browse/personas/grid.html'

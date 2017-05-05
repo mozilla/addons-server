@@ -85,7 +85,9 @@ def handler404(request):
     elif request.path_info.startswith('/api/'):
         # Pass over to handler404 view in api if api was targeted.
         return legacy_api.views.handler404(request)
-    if request.MOBILE:
+    # X_IS_MOBILE_AGENTS is set by nginx as an env variable when it detects
+    # a mobile User Agent or when the mamo cookie is present.
+    if request.META.get('X_IS_MOBILE_AGENTS') == '1':
         return render(request, 'amo/404-responsive.html', status=404)
     else:
         return render(request, 'amo/404.html', status=404)

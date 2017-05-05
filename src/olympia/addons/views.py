@@ -184,19 +184,17 @@ def persona_detail(request, addon):
         author = author.get_url_path(src='addon-detail')
     data['author_gallery'] = author
 
-    if not request.MOBILE:
-        # tags
-        dev_tags, user_tags = addon.tags_partitioned_by_developer
-        data.update({
-            'dev_tags': dev_tags,
-            'user_tags': user_tags,
-            'review_form': ReviewForm(),
-            'reviews': Review.without_replies.all().filter(
-                addon=addon, is_latest=True),
-            'get_replies': Review.get_replies,
-            'search_cat': 'themes',
-            'abuse_form': AbuseForm(request=request),
-        })
+    dev_tags, user_tags = addon.tags_partitioned_by_developer
+    data.update({
+        'dev_tags': dev_tags,
+        'user_tags': user_tags,
+        'review_form': ReviewForm(),
+        'reviews': Review.without_replies.all().filter(
+            addon=addon, is_latest=True),
+        'get_replies': Review.get_replies,
+        'search_cat': 'themes',
+        'abuse_form': AbuseForm(request=request),
+    })
 
     return render(request, 'addons/persona_detail.html', data)
 

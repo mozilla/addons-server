@@ -141,9 +141,6 @@ RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY')
 NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY')
 
-# Remove DetectMobileMiddleware from middleware in production.
-detect = 'mobility.middleware.DetectMobileMiddleware'
-
 RESPONSYS_ID = env('RESPONSYS_ID')
 
 ES_TIMEOUT = 60
