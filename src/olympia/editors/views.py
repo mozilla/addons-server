@@ -658,7 +658,7 @@ def review(request, addon, channel=None):
                 )
             except AutoApprovalSummary.DoesNotExist:
                 pass
-        if is_post_reviewer:
+        if is_post_reviewer and version and version.is_webextension:
             try:
                 approvals_info = addon.addonapprovalscounter
             except AddonApprovalsCounter.DoesNotExist:

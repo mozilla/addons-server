@@ -2674,6 +2674,7 @@ class TestReview(ReviewBase):
     def test_approvals_info(self):
         approval_info = AddonApprovalsCounter.objects.create(
             addon=self.addon, last_human_review=datetime.now(), counter=42)
+        self.file.update(is_webextension=True)
         response = self.client.get(self.url)
         doc = pq(response.content)
         # No permission: nothing displayed.
