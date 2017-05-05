@@ -3,22 +3,30 @@ from rest_framework import serializers
 import olympia.core.logger
 from olympia.access.models import Group
 from olympia.users.models import UserProfile
+from olympia.users.serializers import BaseUserSerializer
+
 
 log = olympia.core.logger.getLogger('accounts')
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class PublicUserProfileSerializer(BaseUserSerializer):
     picture_url = serializers.URLField(read_only=True)
+    average_addon_rating = serializers.CharField(source='averagerating')
 
-    class Meta:
-        model = UserProfile
-        fields = (
-            'username', 'display_name', 'email',
-            'biography', 'deleted', 'display_collections',
-            'display_collections_fav', 'homepage',
-            'location', 'notes', 'occupation', 'picture_type',
-            'read_dev_agreement', 'is_verified',
-            'picture_url'
+    class Meta(BaseUserSerializer.Meta):
+        fields = BaseUserSerializer.Meta.fields + (
+            'average_addon_rating', 'created', 'biography', 'homepage',
+            'is_addon_developer', 'is_artist', 'location', 'occupation',
+            'num_addons_listed', 'picture_type', 'picture_url', 'username',
+        )
+
+
+class UserProfileSerializer(PublicUserProfileSerializer):
+
+    class Meta(PublicUserProfileSerializer.Meta):
+        fields = PublicUserProfileSerializer.Meta.fields + (
+            'display_name', 'email', 'deleted', 'last_login',
+            'last_login_ip', 'read_dev_agreement', 'is_verified',
         )
 
 

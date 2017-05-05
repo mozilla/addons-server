@@ -1,7 +1,12 @@
-from django.conf.urls import url
+from django.conf.urls import include, url
+
+from rest_framework.routers import SimpleRouter
 
 from . import views
 
+
+accounts = SimpleRouter()
+accounts.register(r'account', views.AccountViewSet, base_name='account')
 
 urlpatterns = [
     url(r'^authenticate/$', views.AuthenticateView.as_view(),
@@ -12,7 +17,7 @@ urlpatterns = [
         name='accounts.login_start'),
     url(r'^session/$', views.SessionView.as_view(),
         name='accounts.session'),
-    url(r'^profile/$', views.ProfileView.as_view(), name='accounts.profile'),
+    url(r'', include(accounts.urls)),
     url(r'^register/$', views.RegisterView.as_view(),
         name='accounts.register'),
     url(r'^super-create/$', views.AccountSuperCreate.as_view(),

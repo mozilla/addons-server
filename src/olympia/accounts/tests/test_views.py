@@ -6,7 +6,7 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
-from django.core.urlresolvers import resolve, reverse
+from django.core.urlresolvers import reverse
 from django.test import RequestFactory
 from django.test.utils import override_settings
 
@@ -919,24 +919,62 @@ class TestAuthenticateView(BaseAuthenticationView):
         assert not self.register_user.called
 
 
-class TestProfileView(APIKeyAuthTestCase):
+class TestAccountViewSet(TestCase):
+    client_class = APITestClient
 
     def setUp(self):
-        self.create_api_user()
-        self.url = reverse('accounts.profile')
-        self.cls = resolve(self.url).func.cls
-        super(TestProfileView, self).setUp()
+        self.user = user_factory()
+        self.url = reverse('account-detail',
+                           kwargs={'pk': self.user.pk})
+        super(TestAccountViewSet, self).setUp()
 
-    def test_good(self):
-        res = self.get(self.url)
-        assert res.status_code == 200
-        assert res.data['email'] == 'a@m.o'
+    def test_profile_url(self):
+        self.client.login_api(self.user)
+        response = self.client.get(reverse('account-profile'))
+        assert response.status_code == 200
+        assert response.data['name'] == self.user.name
+        assert response.data['email'] == self.user.email
 
-    def test_auth_required(self):
-        self.auth_required(self.cls)
+    def test_profile_url_404(self):
+        response = self.client.get(reverse('account-profile'))  # No auth.
+        assert response.status_code == 401
 
-    def test_verbs_allowed(self):
-        self.verbs_allowed(self.cls, ['get'])
+    def test_disallowed_verbs(self):
+        self.client.login_api(self.user)
+        # We have no list URL to post to, try posting to accounts-profile
+        # instead...
+        response = self.client.post(reverse('account-profile'))
+        assert response.status_code == 405
+        # We can try put/patch on the detail URL though.
+        response = self.client.put(self.url)
+        assert response.status_code == 405
+        response = self.client.patch(self.url)
+        assert response.status_code == 405
+
+    def test_self_view(self):
+        """Test that self-profile view works if you specify your pk."""
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.data['name'] == self.user.name
+        assert response.data['email'] == self.user.email
+
+    def test_no_private_data_without_auth(self):
+        response = self.client.get(self.url)  # No auth.
+        assert response.status_code == 200
+        assert response.data['name'] == self.user.name
+        assert 'email' not in response.data
+
+    def test_admin_view(self):
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        self.random_user = user_factory()
+        random_user_profile_url = reverse(
+            'account-detail', kwargs={'pk': self.random_user.pk})
+        response = self.client.get(random_user_profile_url)
+        assert response.status_code == 200
+        assert response.data['name'] == self.random_user.name
+        assert response.data['email'] == self.random_user.email
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):

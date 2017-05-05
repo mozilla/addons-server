@@ -13,15 +13,18 @@ from django.utils.http import is_safe_url
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
-from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import list_route
+from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet
 from waffle.decorators import waffle_switch
 
 import olympia.core.logger
 from olympia import amo
+from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
@@ -31,7 +34,9 @@ from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
 
 from . import verify
-from .serializers import AccountSuperCreateSerializer, UserProfileSerializer
+from .serializers import (
+    AccountSuperCreateSerializer, PublicUserProfileSerializer,
+    UserProfileSerializer)
 from .utils import fxa_login_url, generate_fxa_state
 
 log = olympia.core.logger.getLogger('accounts')
@@ -366,13 +371,34 @@ class SessionView(APIView):
         return response
 
 
-class ProfileView(generics.RetrieveAPIView):
-    authentication_classes = [JWTKeyAuthentication]
-    permission_classes = [IsAuthenticated]
-    serializer_class = UserProfileSerializer
+class AccountViewSet(RetrieveModelMixin, GenericViewSet):
+    permission_classes = [AllowAny]
+    queryset = UserProfile.objects.all()
 
-    def retrieve(self, request, *args, **kw):
-        return Response(self.get_serializer(request.user).data)
+    def get_object(self):
+        if hasattr(self, 'instance'):
+            return self.instance
+        self.instance = super(AccountViewSet, self).get_object()
+        return self.instance
+
+    @property
+    def self_view(self):
+        return (
+            self.request.user.is_authenticated() and
+            self.get_object() == self.request.user)
+
+    def get_serializer_class(self):
+        if (self.self_view or
+                acl.action_allowed_user(self.request.user,
+                                        amo.permissions.USERS_EDIT)):
+            return UserProfileSerializer
+        else:
+            return PublicUserProfileSerializer
+
+    @list_route(permission_classes=[IsAuthenticated])
+    def profile(self, request, *args, **kwargs):
+        self.kwargs['pk'] = self.request.user.pk
+        return self.retrieve(request, *args, **kwargs)
 
 
 class AccountSuperCreate(APIView):
