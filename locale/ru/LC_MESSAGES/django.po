@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 16:10+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"PO-Revision-Date: 2017-05-06 15:20+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -6494,7 +6494,7 @@ msgstr "Использует разрешение nativeMessaging."
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Использует Content Scripts для всех URL."
 
 #: src/olympia/editors/models.py
 msgid "Has too many daily users."
@@ -6502,7 +6502,7 @@ msgstr "Слишком много ежедневных пользователе�
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "Слишком мало последовательных обновлений проверенных людьми."
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
