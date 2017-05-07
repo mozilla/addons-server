@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2015-11-07 13:06+0000\n"
-"Last-Translator: Mohamed Hafez <mohamed7afezz@gmail.com>\n"
+"PO-Revision-Date: 2016-02-15 10:49+0000\n"
+"Last-Translator: Abdalrahman Hwoij <howij1995@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
@@ -206,7 +206,7 @@ msgstr "أوقف المتابعة"
 
 #: static/js/impala/collections.js
 msgid "Following"
-msgstr ""
+msgstr "متابعة"
 
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js static/js/zamboni/themes.js
