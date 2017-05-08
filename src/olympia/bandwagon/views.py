@@ -14,7 +14,6 @@ from django.utils.translation import ugettext_lazy as _lazy, ugettext as _
 
 import caching.base as caching
 from django_statsd.clients import statsd
-from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin
 from rest_framework.permissions import AllowAny
 from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
@@ -27,6 +26,7 @@ from olympia.amo.decorators import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, urlparams, render
 from olympia.access import acl
+from olympia.accounts.views import AccountViewSet
 from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
@@ -646,19 +646,17 @@ def mine(request, username=None, slug=None):
 
 class CollectionViewSet(ReadOnlyModelViewSet):
     permission_classes = [AllowAny]
-    queryset = Collection.objects.all()
     serializer_class = SimpleCollectionSerializer
+    lookup_field = 'slug'
 
-    def filter_queryset(self, qs):
-        if hasattr(self, 'action') and self.action == 'list':
-            author_identifier = self.request.GET.get('author')
-            if author_identifier:
-                try:
-                    author_identifier = int(author_identifier)
-                except ValueError:
-                    raise ParseError('author parameter should be an integer.')
-                qs = qs.filter(author=author_identifier)
-        return qs
+    def get_queryset(self):
+        if not hasattr(self, 'user_object'):
+            self.user_object = AccountViewSet(
+                request=self.request,
+                kwargs={'pk': self.kwargs['user_pk']}).get_object()
+
+        return Collection.objects.filter(
+            author=self.user_object)
 
 
 class CollectionAddonViewSet(ListModelMixin, GenericViewSet):
@@ -669,7 +667,8 @@ class CollectionAddonViewSet(ListModelMixin, GenericViewSet):
         if not hasattr(self, 'collection_object'):
             self.collection_object = CollectionViewSet(
                 request=self.request,
-                kwargs={'pk': self.kwargs['collection_pk']}).get_object()
+                kwargs={'user_pk': self.kwargs['user_pk'],
+                        'slug': self.kwargs['collection_slug']}).get_object()
 
         return CollectionAddon.objects.filter(
             collection=self.collection_object)

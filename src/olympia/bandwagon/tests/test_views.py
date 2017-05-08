@@ -1297,34 +1297,27 @@ class TestCollectionViewSet(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        self.url = reverse('collection-list')
+        self.user = user_factory()
+        self.url = reverse('collection-list', kwargs={'user_pk': self.user.pk})
         super(TestCollectionViewSet, self).setUp()
 
     def test_list(self):
-        collection_factory()
-        collection_factory()
-        collection_factory()
-        Collection.objects.all().count() == 3
+        collection_factory(author=self.user)
+        collection_factory(author=self.user)
+        collection_factory(author=self.user)
+        collection_factory(author=user_factory())  # Not our collection.
+        Collection.objects.all().count() == 4
 
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data['results']) == 3
 
-    def test_user_filter(self):
-        user = user_factory()
-        collection = collection_factory(author=user)
-        collection_factory()  # create another one that isn't user's.
-
-        response = self.client.get(self.url + '?author=%s' % user.id)
-        assert response.status_code == 200
-        assert len(response.data['results']) == 1
-        assert response.data['results'][0]['id'] == collection.id
-
     def test_detail(self):
-        collection = collection_factory()
+        collection = collection_factory(author=self.user)
 
         response = self.client.get(
-            reverse('collection-detail', kwargs={'pk': collection.id}))
+            reverse('collection-detail',
+                    kwargs={'user_pk': self.user.pk, 'slug': collection.slug}))
         assert response.status_code == 200
         assert response.data['id'] == collection.id
 
@@ -1341,9 +1334,12 @@ class TestCollectionAddonViewSet(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        self.collection = collection_factory()
-        self.url = reverse('collection-addon-list',
-                           kwargs={'collection_pk': self.collection.pk})
+        self.user = user_factory()
+        self.collection = collection_factory(author=self.user)
+        self.url = reverse(
+            'collection-addon-list', kwargs={
+                'user_pk': self.user.pk,
+                'collection_slug': self.collection.slug})
         super(TestCollectionAddonViewSet, self).setUp()
 
     def test_list(self):
@@ -1352,7 +1348,7 @@ class TestCollectionAddonViewSet(TestCase):
         self.collection.add_addon(addon_factory())
 
         response = self.client.get(self.url)
-        assert response.status_code == 200
+        assert response.status_code == 200, self.url
         assert len(response.data['results']) == 3
 
     def test_disallowed_verbs(self):

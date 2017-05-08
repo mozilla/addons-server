@@ -72,7 +72,61 @@ This endpoint is a shortcut to your own account. It returns an :ref:`account obj
 
 .. http:get:: /api/v3/accounts/profile/
 
-    .. _self-account-object:
+
+----------------
+Collections List
+----------------
+
+.. _collection-list:
+
+This endpoint allows you to list all collections authored by this user
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collection/
+
+    :>json int count: The number of results for this query.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of :ref:`collections <collection-detail-object>`.
+
+
+-----------------
+Collection Detail
+-----------------
+
+.. _collection-detail:
+
+This endpoint allows you to fetch a single collection by its `slug`.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collection/(string:collection_slug)/
+
+    .. _collection-detail-object:
+
+    :>json int id: The id for the collection.
+    :>json int addon_count: The number of add-ons in this collection.
+    :>json int author.id: The id of the author (creator) of the collection.
+    :>json string author.name: The name of the author.
+    :>json string author.url: The link to the profile page for of the author.
+    :>json string description: The description the author added to the collection.
+    :>json string modified: The date the collection was last updated.
+    :>json string name: The of the collection.
+    :>json string url: The (absolute) collection detail URL.
+
+
+------------------
+Collection Add-ons
+------------------
+
+.. _collection-addon:
+
+This endpoint lists the add-ons in a collection, together with collector's notes.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collection/(string:collection_slug)/addons/
+
+    .. _collection-addon-object:
+
+    :>json object addon: The :ref:`add-on <addon-detail-object>` for this item.
+    :>json string notes: The collectors notes for this item.
+    :>json int downloads: The downloads that occured via this collection.
 
 
 

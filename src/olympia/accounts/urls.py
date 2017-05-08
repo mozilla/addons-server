@@ -1,12 +1,23 @@
 from django.conf.urls import include, url
 
 from rest_framework.routers import SimpleRouter
+from rest_framework_nested.routers import NestedSimpleRouter
+
+from olympia.bandwagon.views import CollectionViewSet, CollectionAddonViewSet
 
 from . import views
 
 
 accounts = SimpleRouter()
 accounts.register(r'account', views.AccountViewSet, base_name='account')
+
+collections = NestedSimpleRouter(accounts, r'account', lookup='user')
+collections.register(r'collection', CollectionViewSet,
+                     base_name='collection')
+sub_collections = NestedSimpleRouter(collections, r'collection',
+                                     lookup='collection')
+sub_collections.register('addons', CollectionAddonViewSet,
+                         base_name='collection-addon')
 
 urlpatterns = [
     url(r'^authenticate/$', views.AuthenticateView.as_view(),
@@ -22,4 +33,7 @@ urlpatterns = [
         name='accounts.register'),
     url(r'^super-create/$', views.AccountSuperCreate.as_view(),
         name='accounts.super-create'),
+
+    url(r'', include(collections.urls)),
+    url(r'', include(sub_collections.urls)),
 ]
