@@ -1293,31 +1293,101 @@ class TestCollectionForm(TestCase):
         mock_incr.assert_any_call('collections.honeypotted')
 
 
-class TestCollectionViewSet(TestCase):
+class TestCollectionViewSetList(TestCase):
     client_class = APITestClient
 
     def setUp(self):
         self.user = user_factory()
         self.url = reverse('collection-list', kwargs={'user_pk': self.user.pk})
-        super(TestCollectionViewSet, self).setUp()
+        super(TestCollectionViewSetList, self).setUp()
 
-    def test_list(self):
+    def test_basic(self):
         collection_factory(author=self.user)
         collection_factory(author=self.user)
         collection_factory(author=self.user)
         collection_factory(author=user_factory())  # Not our collection.
         Collection.objects.all().count() == 4
 
+        self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.data['results']) == 3
 
-    def test_detail(self):
-        collection = collection_factory(author=self.user)
+    def test_no_auth(self):
+        collection_factory(author=self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 401
 
+    def test_different_user(self):
+        random_user = user_factory()
+        other_url = reverse('collection-list',
+                            kwargs={'user_pk': random_user.pk})
+        collection_factory(author=random_user)
+
+        self.client.login_api(self.user)
+        response = self.client.get(other_url)
+        assert response.status_code == 403
+
+    def test_admin(self):
+        random_user = user_factory()
+        other_url = reverse('collection-list',
+                            kwargs={'user_pk': random_user.pk})
+        collection_factory(author=random_user)
+
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        response = self.client.get(other_url)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 1
+
+    def test_disallowed_verbs(self):
+        response = self.client.post(self.url)
+        assert response.status_code == 405
+        response = self.client.put(self.url)
+        assert response.status_code == 405
+        response = self.client.patch(self.url)
+        assert response.status_code == 405
+
+
+class TestCollectionViewSetDetail(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.collection = collection_factory(author=self.user)
+        self.url = reverse(
+            'collection-detail', kwargs={
+                'user_pk': self.user.pk, 'slug': self.collection.slug})
+        super(TestCollectionViewSetDetail, self).setUp()
+
+    def test_basic(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.data['id'] == self.collection.id
+
+    def test_not_listed(self):
+        self.collection.update(listed=False)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_not_listed_self(self):
+        self.collection.update(listed=False)
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.data['id'] == self.collection.id
+
+    def test_not_listed_admin(self):
+        random_user = user_factory()
+        collection = collection_factory(author=random_user, listed=False)
+
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
         response = self.client.get(
-            reverse('collection-detail',
-                    kwargs={'user_pk': self.user.pk, 'slug': collection.slug}))
+            reverse('collection-detail', kwargs={'user_pk': random_user.pk,
+                                                 'slug': collection.slug}))
         assert response.status_code == 200
         assert response.data['id'] == collection.id
 
@@ -1336,19 +1406,48 @@ class TestCollectionAddonViewSet(TestCase):
     def setUp(self):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
         self.url = reverse(
             'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug})
         super(TestCollectionAddonViewSet, self).setUp()
 
-    def test_list(self):
-        self.collection.add_addon(addon_factory())
-        self.collection.add_addon(addon_factory())
-        self.collection.add_addon(addon_factory())
-
+    def test_basic(self):
         response = self.client.get(self.url)
         assert response.status_code == 200, self.url
+        assert len(response.data['results']) == 3
+
+    def test_not_listed(self):
+        self.collection.update(listed=False)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_not_listed_self(self):
+        self.collection.update(listed=False)
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+
+    def test_not_listed_admin(self):
+        random_user = user_factory()
+        collection = collection_factory(author=random_user, listed=False)
+        collection.add_addon(addon_factory())
+        collection.add_addon(addon_factory())
+        collection.add_addon(addon_factory())
+
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        response = self.client.get(
+            reverse('collection-addon-list', kwargs={
+                'user_pk': random_user.pk,
+                'collection_slug': collection.slug}))
+        assert response.status_code == 200
         assert len(response.data['results']) == 3
 
     def test_disallowed_verbs(self):

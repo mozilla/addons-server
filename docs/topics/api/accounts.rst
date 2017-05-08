@@ -79,7 +79,10 @@ Collections List
 
 .. _collection-list:
 
-This endpoint allows you to list all collections authored by this user
+.. note:: This API requires :doc:`authentication <auth>`.
+
+This endpoint allows you to list all collections authored by this user.
+Access is limited to your own collections, or users with `Users:Edit` permission.
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collection/
 
@@ -96,6 +99,7 @@ Collection Detail
 .. _collection-detail:
 
 This endpoint allows you to fetch a single collection by its `slug`.
+Access to non-`listed` collections are limited to the author, or users with `Users:Edit` permission
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collection/(string:collection_slug)/
 

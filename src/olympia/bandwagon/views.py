@@ -15,7 +15,7 @@ from django.utils.translation import ugettext_lazy as _lazy, ugettext as _
 import caching.base as caching
 from django_statsd.clients import statsd
 from rest_framework.mixins import ListModelMixin
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
 
 import olympia.core.logger
@@ -30,6 +30,7 @@ from olympia.accounts.views import AccountViewSet
 from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
+from olympia.api.permissions import AnyOf, GroupPermission
 from olympia.legacy_api.utils import addon_to_dict
 from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
@@ -644,19 +645,34 @@ def mine(request, username=None, slug=None):
         return collection_detail(request, username, slug)
 
 
+class AllowCollectionAuthor(BasePermission):
+
+    def has_permission(self, request, view):
+        # Only authors can list their collections.
+        return (getattr(view, 'action', '') != 'list' or
+                view.get_account_viewset().self_view)
+
+    def has_object_permission(self, request, view, obj):
+        # Anyone can access a collection if they know the slug, if it's listed.
+        return obj.listed or view.get_account_viewset().self_view
+
+
 class CollectionViewSet(ReadOnlyModelViewSet):
-    permission_classes = [AllowAny]
+    permission_classes = [AnyOf(AllowCollectionAuthor,
+                                GroupPermission(amo.permissions.USERS_EDIT))]
     serializer_class = SimpleCollectionSerializer
     lookup_field = 'slug'
 
-    def get_queryset(self):
-        if not hasattr(self, 'user_object'):
-            self.user_object = AccountViewSet(
+    def get_account_viewset(self):
+        if not hasattr(self, 'account_viewset'):
+            self.account_viewset = AccountViewSet(
                 request=self.request,
-                kwargs={'pk': self.kwargs['user_pk']}).get_object()
+                kwargs={'pk': self.kwargs['user_pk']})
+        return self.account_viewset
 
+    def get_queryset(self):
         return Collection.objects.filter(
-            author=self.user_object)
+            author=self.get_account_viewset().get_object())
 
 
 class CollectionAddonViewSet(ListModelMixin, GenericViewSet):
