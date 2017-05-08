@@ -14,7 +14,7 @@ Account
 This endpoint returns information about a user's account, by the account id.
 Most of the information is optional and provided by the user so may be missing or inaccurate.
 
-.. http:get:: /api/v3/accounts/account/(int:user_id)/
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/
 
     .. _account-object:
 
@@ -36,7 +36,7 @@ Most of the information is optional and provided by the user so may be missing o
 If you authenticate and access your own account by specifing your own `user_id` the following additional fields are returned.
 If you have `Users:Edit` permission you will see these extra fields for all user accounts.
 
-.. http:get:: /api/v3/accounts/account/(int:user_id)/
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/
 
     .. _account-object-self:
 
