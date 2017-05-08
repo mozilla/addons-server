@@ -57,6 +57,32 @@ class AnyOf(BasePermission):
         return self
 
 
+class AllOf(BasePermission):
+    """
+    Takes multiple permission objects and succeeds if all of them do.
+    """
+
+    def __init__(self, *perms):
+        # DRF calls the items in permission_classes, might as well do
+        # it here too.
+        self.perms = [p() for p in perms]
+
+    def has_permission(self, request, view):
+        return all(perm.has_permission(request, view) for perm in self.perms)
+
+    def has_object_permission(self, request, view, obj):
+        # This method *must* call `has_permission` for each
+        # sub-permission since the default implementation of
+        # `has_object_permission` returns True unconditionally, and
+        # some permission objects might not override it.
+        return all((perm.has_permission(request, view) and
+                    perm.has_object_permission(request, view, obj))
+                   for perm in self.perms)
+
+    def __call__(self):
+        return self
+
+
 class AllowNone(BasePermission):
 
     def has_permission(self, request, view):

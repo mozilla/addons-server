@@ -30,7 +30,7 @@ from olympia.accounts.views import AccountViewSet
 from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
-from olympia.api.permissions import AnyOf, GroupPermission
+from olympia.api.permissions import AllOf, AnyOf, GroupPermission
 from olympia.legacy_api.utils import addon_to_dict
 from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
@@ -648,18 +648,37 @@ def mine(request, username=None, slug=None):
 class AllowCollectionAuthor(BasePermission):
 
     def has_permission(self, request, view):
-        # Only authors can list their collections.
-        return (getattr(view, 'action', '') != 'list' or
-                view.get_account_viewset().self_view)
+        return view.get_account_viewset().self_view
+
+    def has_object_permission(self, request, view, obj):
+        return self.has_permission(request, view)
+
+
+class AllowNonListActions(BasePermission):
+
+    def has_permission(self, request, view):
+        return getattr(view, 'action', '') != 'list'
+
+    def has_object_permission(self, request, view, obj):
+        return True
+
+
+class AllowListedCollectionOnly(BasePermission):
+
+    def has_permission(self, request, view):
+        return True
 
     def has_object_permission(self, request, view, obj):
         # Anyone can access a collection if they know the slug, if it's listed.
-        return obj.listed or view.get_account_viewset().self_view
+        return obj.listed
 
 
 class CollectionViewSet(ReadOnlyModelViewSet):
     permission_classes = [AnyOf(AllowCollectionAuthor,
-                                GroupPermission(amo.permissions.USERS_EDIT))]
+                                GroupPermission(amo.permissions.USERS_EDIT),
+                                AllOf(AllowListedCollectionOnly,
+                                      AllowNonListActions)),
+                          ]
     serializer_class = SimpleCollectionSerializer
     lookup_field = 'slug'
 
