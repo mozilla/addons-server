@@ -113,9 +113,9 @@ If your account has the `Users:Edit` permission then you can access any collecti
     :>json int author.id: The id of the author (creator) of the collection.
     :>json string author.name: The name of the author.
     :>json string author.url: The link to the profile page for of the author.
-    :>json string|object description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
     :>json string modified: The date the collection was last updated.
-    :>json string|object name: The of the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null name: The of the collection. (See :ref:`translated fields <api-overview-translations>`).
     :>json string url: The (absolute) collection detail URL.
 
 
@@ -134,7 +134,7 @@ This endpoint lists the add-ons in a collection, together with collector's notes
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of items in this collection.
     :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item.
-    :>json string|object results[].notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null results[].notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
     :>json int results[].downloads: The downloads that occured via this collection.
 
 
