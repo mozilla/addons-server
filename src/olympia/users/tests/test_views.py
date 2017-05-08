@@ -796,12 +796,21 @@ class TestProfileSections(TestCase):
         assert doc('#popup-staging #report-user-modal.modal').length == 0
         self.assertTemplateNotUsed(r, 'users/report_abuse.html')
 
-    def test_bio_xss(self):
-        self.user.update(biography='<script>alert("xss")</script>')
+    def test_biography_escaping(self):
+        self.user.update(
+            biography=u'<script>alert("xss")</script>'
+                      u'line\r\nbreak'
+                      u'<a href="http://spam.com/">linkylink</a>'
+                      u'<b>acceptably bold</b>')
         assert '<script>' in self.user.biography
-        r = self.client.get(self.url)
-        assert '<script>' not in r.content
-        assert '&lt;script&gt;alert("xss")&lt;/script&gt;' in r.content
+        response = self.client.get(self.url)
+        assert '<script>' not in response.content
+        assert 'http://spam.com/' not in response.content
+
+        assert 'alert("xss")' in response.content
+        assert 'line<br>break' in response.content
+        assert 'linkylink' in response.content
+        assert '<b>acceptably bold</b>' in response.content
 
 
 class TestThemesProfile(TestCase):
