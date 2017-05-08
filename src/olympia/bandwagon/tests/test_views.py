@@ -12,7 +12,8 @@ from mock import patch, Mock
 from pyquery import PyQuery as pq
 
 from olympia import amo, core
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import (
+    addon_factory, APITestClient, collection_factory, TestCase, user_factory)
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
@@ -1290,3 +1291,74 @@ class TestCollectionForm(TestCase):
         assert not form.is_valid()
 
         mock_incr.assert_any_call('collections.honeypotted')
+
+
+class TestCollectionViewSet(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.url = reverse('collection-list')
+        super(TestCollectionViewSet, self).setUp()
+
+    def test_list(self):
+        collection_factory()
+        collection_factory()
+        collection_factory()
+        Collection.objects.all().count() == 3
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+
+    def test_user_filter(self):
+        user = user_factory()
+        collection = collection_factory(author=user)
+        collection_factory()  # create another one that isn't user's.
+
+        response = self.client.get(self.url + '?author=%s' % user.id)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 1
+        assert response.data['results'][0]['id'] == collection.id
+
+    def test_detail(self):
+        collection = collection_factory()
+
+        response = self.client.get(
+            reverse('collection-detail', kwargs={'pk': collection.id}))
+        assert response.status_code == 200
+        assert response.data['id'] == collection.id
+
+    def test_disallowed_verbs(self):
+        response = self.client.post(self.url)
+        assert response.status_code == 405
+        response = self.client.put(self.url)
+        assert response.status_code == 405
+        response = self.client.patch(self.url)
+        assert response.status_code == 405
+
+
+class TestCollectionAddonViewSet(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.collection = collection_factory()
+        self.url = reverse('collection-addon-list',
+                           kwargs={'collection_pk': self.collection.pk})
+        super(TestCollectionAddonViewSet, self).setUp()
+
+    def test_list(self):
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 3
+
+    def test_disallowed_verbs(self):
+        response = self.client.post(self.url)
+        assert response.status_code == 405
+        response = self.client.put(self.url)
+        assert response.status_code == 405
+        response = self.client.patch(self.url)
+        assert response.status_code == 405

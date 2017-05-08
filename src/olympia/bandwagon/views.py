@@ -14,6 +14,10 @@ from django.utils.translation import ugettext_lazy as _lazy, ugettext as _
 
 import caching.base as caching
 from django_statsd.clients import statsd
+from rest_framework.exceptions import ParseError
+from rest_framework.mixins import ListModelMixin
+from rest_framework.permissions import AllowAny
+from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
 
 import olympia.core.logger
 from olympia import amo
@@ -34,6 +38,7 @@ from olympia.users.models import UserProfile
 from .models import (
     Collection, CollectionAddon, CollectionWatcher, CollectionVote,
     SPECIAL_SLUGS)
+from .serializers import CollectionAddonSerializer, SimpleCollectionSerializer
 from . import forms, tasks
 
 log = olympia.core.logger.getLogger('z.collections')
@@ -637,3 +642,34 @@ def mine(request, username=None, slug=None):
         return user_listing(request, username)
     else:
         return collection_detail(request, username, slug)
+
+
+class CollectionViewSet(ReadOnlyModelViewSet):
+    permission_classes = [AllowAny]
+    queryset = Collection.objects.all()
+    serializer_class = SimpleCollectionSerializer
+
+    def filter_queryset(self, qs):
+        if hasattr(self, 'action') and self.action == 'list':
+            author_identifier = self.request.GET.get('author')
+            if author_identifier:
+                try:
+                    author_identifier = int(author_identifier)
+                except ValueError:
+                    raise ParseError('author parameter should be an integer.')
+                qs = qs.filter(author=author_identifier)
+        return qs
+
+
+class CollectionAddonViewSet(ListModelMixin, GenericViewSet):
+    permission_classes = [AllowAny]
+    serializer_class = CollectionAddonSerializer
+
+    def get_queryset(self):
+        if not hasattr(self, 'collection_object'):
+            self.collection_object = CollectionViewSet(
+                request=self.request,
+                kwargs={'pk': self.kwargs['collection_pk']}).get_object()
+
+        return CollectionAddon.objects.filter(
+            collection=self.collection_object)
