@@ -1348,6 +1348,20 @@ class TestCollectionViewSetList(TestCase):
         response = self.client.patch(self.url)
         assert response.status_code == 405
 
+    def test_404(self):
+        # Invalid user.
+        url = reverse(
+            'collection-list', kwargs={'user_pk': self.user.pk + 66})
+
+        # Not logged in.
+        response = self.client.get(url)
+        assert response.status_code == 401
+
+        # Logged in
+        self.client.login_api(self.user)
+        response = self.client.get(url)
+        assert response.status_code == 404
+
 
 class TestCollectionViewSetDetail(TestCase):
     client_class = APITestClient
@@ -1398,6 +1412,18 @@ class TestCollectionViewSetDetail(TestCase):
         assert response.status_code == 405
         response = self.client.patch(self.url)
         assert response.status_code == 405
+
+    def test_404(self):
+        # Invalid user.
+        response = self.client.get(reverse(
+            'collection-detail', kwargs={
+                'user_pk': self.user.pk + 66, 'slug': self.collection.slug}))
+        assert response.status_code == 404
+        # Invalid collection.
+        response = self.client.get(reverse(
+            'collection-detail', kwargs={
+                'user_pk': self.user.pk, 'slug': 'hello'}))
+        assert response.status_code == 404
 
 
 class TestCollectionAddonViewSet(TestCase):
@@ -1457,3 +1483,17 @@ class TestCollectionAddonViewSet(TestCase):
         assert response.status_code == 405
         response = self.client.patch(self.url)
         assert response.status_code == 405
+
+    def test_404(self):
+        # Invalid user.
+        response = self.client.get(reverse(
+            'collection-addon-list', kwargs={
+                'user_pk': self.user.pk + 66,
+                'collection_slug': self.collection.slug}))
+        assert response.status_code == 404
+        # Invalid collection.
+        response = self.client.get(reverse(
+            'collection-addon-list', kwargs={
+                'user_pk': self.user.pk,
+                'collection_slug': 'hello'}))
+        assert response.status_code == 404
