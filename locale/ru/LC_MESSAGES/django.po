@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-06 15:20+0000\n"
+"PO-Revision-Date: 2017-05-08 01:07+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -9802,11 +9802,11 @@ msgstr "Что будет дальше"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "Если вы согласны принять участие:"
+msgstr "<strong>Если вы согласны</strong> принять участие:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr "Возможно, мы добавим в Firefox опции безопасности и контроля плагинов, которые повысят онлайн-безопасность и качество работы вашего устройства."
+msgstr "Возможно, мы добавим в Firefox опции безопасности и контроля плагинов, которые повысят безопасность и производительность при работе в Интернете."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
@@ -9826,15 +9826,15 @@ msgstr "Завершение участия в исследовании"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr "Срок проведения исследования истечет через несколько недель. Вы сможете покинуть исследование до наступления этого момента. Чтобы сделать это, вам нужно:"
+msgstr "Срок проведения исследования истечет через несколько недель. Вы можете покинуть исследование до наступления этого момента. Чтобы сделать это, вам нужно:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr "Ввести about:addons в строке размещения и нажать \"Enter\"."
+msgstr "Ввести about:addons в строке адреса и нажать \"Enter\"."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
-msgstr "Найти Plugin Safety в списке надстроек."
+msgstr "Найти Plugin Safety в списке дополнений."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
@@ -9867,7 +9867,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr "Эти данные связаны со сбором <a href=\"%(url)s\">Firefox Telemetry</a>."
+msgstr "Эти данные связаны со сбором <a href=\"%(url)s\">Телеметрии Firefox</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
