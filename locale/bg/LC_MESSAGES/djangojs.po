@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2016-12-06 11:51+0000\n"
+"PO-Revision-Date: 2017-05-09 13:26+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -799,7 +799,7 @@ msgstr "<b>{0}</b> средно за последните {1} дни"
 
 #: static/js/impala/stats/overview.js
 msgid "No data available."
-msgstr "Няма достъпни данни."
+msgstr "Няма данни"
 
 #: static/js/impala/stats/table.js
 msgid "Date"
