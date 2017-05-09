@@ -72,4 +72,7 @@ urlpatterns = patterns(
                                   addon_id, permanent=True)),
 
     ('^versions/license/(\d+)$', views.license_redirect),
+
+    url('^find-replacement/$', views.find_replacement_addon,
+        name='addons.find_replacement'),
 )

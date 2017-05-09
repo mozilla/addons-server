@@ -538,6 +538,13 @@ def icloud_bookmarks_redirect(request):
         return addon_detail(request, 'icloud-bookmarks')
 
 
+def find_replacement_addon(request):
+    guid = request.GET.get('guid')
+    if not guid:
+        raise http.Http404
+    return render(request, 'addons/replacement_addons.html')
+
+
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [
         AnyOf(AllowReadOnlyIfPublic, AllowAddonAuthor,
