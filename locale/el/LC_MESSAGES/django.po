@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-09 20:31+0000\n"
+"PO-Revision-Date: 2017-05-09 20:36+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5882,12 +5882,12 @@ msgstr "Αρχείο {file_id} ({platform})"
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Δημιουργήθηκε στις %(created)s και άλλαξε σε %(status)s στις %(status_date)s"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Δημιουργήθηκε στις %(created)s και άλλαξε σε %(status)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Status & Versions"
@@ -5960,7 +5960,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
-msgstr ""
+msgstr "Αναγραφόμενες εκδόσεις"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -6015,7 +6015,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Θέλετε σίγουρα να διαγράψετε αυτή την έκδοση;"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version"
@@ -6063,11 +6063,11 @@ msgstr "Φραγή διαφημίσεων {start_sub_heading}με {addon_name}{e
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Ένα ελαφρύ και αποτελεσματικό πρόσθετο φραγής διαφημίσεων. Το uBlock Origin εξαναγκάζει χιλιάδες φίλτρα περιεχομένου χωρίς να καταναλώνει υπερβολική μνήμη."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Λήψη στιγμιότυπων {start_sub_heading}με {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
@@ -6740,7 +6740,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
-msgstr ""
+msgstr "Προβολή στατιστικών χρήστη"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Range"
@@ -6814,7 +6814,7 @@ msgstr "από τον/την  %(user)s στις %(date)s %(stars)s (%(locale)s)"
 #: src/olympia/editors/templates/editors/queue.html
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Επισημάνθηκε από το χρήστη %(user)s στις %(date)s</span>"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "All reviews have been moderated. Good work!"
