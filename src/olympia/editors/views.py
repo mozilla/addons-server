@@ -666,8 +666,10 @@ def review(request, addon, channel=None):
             except AddonApprovalsCounter.DoesNotExist:
                 pass
 
+        developers = addon.listed_authors
         reports = Paginator(
-            (AbuseReport.objects.filter(addon=addon)
+            (AbuseReport.objects
+                        .filter(Q(addon=addon) | Q(user__in=developers))
                         .order_by('-created')), 5).page(1)
         user_reviews = Paginator(
             (Review.without_replies
@@ -919,7 +921,9 @@ def reviewlog(request):
 @addons_reviewer_required
 @addon_view
 def abuse_reports(request, addon):
-    reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
+    developers = addon.listed_authors
+    reports = AbuseReport.objects.filter(
+        Q(addon=addon) | Q(user__in=developers)).order_by('-created')
     reports = amo.utils.paginate(request, reports)
     data = context(request, addon=addon, reports=reports)
     return render(request, 'editors/abuse_reports.html', data)

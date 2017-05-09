@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <h2>{{_('Abuse Reports for {addon} ({num})')|fe(addon=addon.name, num=reports.paginator.count|numberfmt) }}</h2>
+  <h2>{{_('Abuse Reports for {addon} and its developers ({num})')|fe(addon=addon.name, num=reports.paginator.count|numberfmt) }}</h2>
   {% include "editors/includes/abuse_reports_list.html" %}
   {{ reports|paginator }}
 {% endblock %}

@@ -2733,7 +2733,24 @@ class TestReview(ReviewBase):
         assert doc('.abuse_reports')
         assert (
             doc('.abuse_reports').text() ==
-            u'anonymous on %s [10.1.2.3] Et mël mazim ludus.' % created_at)
+            u'anonymous [10.1.2.3] reported Public on %s Et mël mazim ludus.'
+            % created_at)
+
+    def test_abuse_reports_developers(self):
+        report = AbuseReport.objects.create(
+            user=self.addon.listed_authors[0], message=u'Foo, Bâr!',
+            ip_address='10.4.5.6')
+        created_at = report.created.strftime('%B %e, %Y')
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version)
+        self.login_as_senior_editor()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.abuse_reports')
+        assert (
+            doc('.abuse_reports').text() ==
+            u'anonymous [10.4.5.6] reported regularuser التطب on %s Foo, Bâr!'
+            % created_at)
 
     def test_user_reviews(self):
         user = user_factory()
@@ -2988,19 +3005,24 @@ class TestAbuseReports(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
-        user = UserProfile.objects.all()[0]
-        AbuseReport.objects.create(addon_id=3615, message='woo')
-        AbuseReport.objects.create(addon_id=3615, message='yeah',
-                                   reporter=user)
+        addon = Addon.objects.get(pk=3615)
+        addon_developer = addon.listed_authors[0]
+        someone = UserProfile.objects.exclude(pk=addon_developer.pk)[0]
+        AbuseReport.objects.create(addon=addon, message=u'wôo')
+        AbuseReport.objects.create(addon=addon, message=u'yéah',
+                                   reporter=someone)
         # Make a user abuse report to make sure it doesn't show up.
-        AbuseReport.objects.create(user=user, message='hey now')
+        AbuseReport.objects.create(user=someone, message=u'hey nöw')
+        # Make a user abuse report for one of the add-on developers: it should
+        # show up.
+        AbuseReport.objects.create(user=addon_developer, message='bü!')
 
     def test_abuse_reports_list(self):
         assert self.client.login(email='admin@mozilla.com')
         r = self.client.get(reverse('editors.abuse_reports', args=['a3615']))
         assert r.status_code == 200
         # We see the two abuse reports created in setUp.
-        assert len(r.context['reports']) == 2
+        assert len(r.context['reports']) == 3
 
     def test_no_abuse_reports_link_for_unlisted_addons(self):
         """Unlisted addons aren't public, and thus have no abuse reports."""
