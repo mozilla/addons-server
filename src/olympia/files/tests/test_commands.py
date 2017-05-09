@@ -22,11 +22,8 @@ from olympia.versions.models import Version
 class TestWebextExtractPermissions(UploadTest):
     def setUp(self):
         super(TestWebextExtractPermissions, self).setUp()
-        appver = {amo.FIREFOX: ['3.0', '3.6', '3.6.*', '4.0b6'],
-                  amo.MOBILE: ['0.1', '2.0a1pre']}
-        for app, versions in appver.items():
-            for version in versions:
-                AppVersion(application=app.id, version=version).save()
+        for version in ('3.0', '3.6', '3.6.*', '4.0b6'):
+            AppVersion(application=amo.FIREFOX.id, version=version).save()
         self.platform = amo.PLATFORM_MAC.id
         self.addon = Addon.objects.create(guid='guid@jetpack',
                                           type=amo.ADDON_EXTENSION,

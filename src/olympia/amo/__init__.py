@@ -89,7 +89,6 @@ FIREFOX.latest_version = product_details.firefox_versions[
     'LATEST_FIREFOX_VERSION']
 THUNDERBIRD.latest_version = product_details.thunderbird_versions[
     'LATEST_THUNDERBIRD_VERSION']
-MOBILE.latest_version = FIREFOX.latest_version
 
 
 # We need to import waffle here to avoid a circular import with jingo which

@@ -249,7 +249,6 @@ class TestOtherStuff(TestCase):
 
         title_eq('/firefox/', 'Firefox', 'Add-ons')
         title_eq('/thunderbird/', 'Thunderbird', 'Add-ons')
-        title_eq('/mobile/extensions/', 'Mobile', 'Mobile Add-ons')
         title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
     @patch('olympia.accounts.utils.default_fxa_login_url',
@@ -327,7 +326,7 @@ class TestOtherStuff(TestCase):
         assert doc('#site-nav #more .more-mobile a').length == 1
 
     def test_mobile_link_nonfirefox(self):
-        for app in ('thunderbird', 'mobile'):
+        for app in ('thunderbird', 'android'):
             doc = pq(test.Client().get('/' + app, follow=True).content)
             assert doc('#site-nav #more .more-mobile').length == 0
 

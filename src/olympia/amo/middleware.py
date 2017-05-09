@@ -50,7 +50,6 @@ class LocaleAndAppURLMiddleware(object):
 
         if (prefixer.app == amo.MOBILE.short and
                 request.path.rstrip('/').endswith('/' + amo.MOBILE.short)):
-            # TODO: Eventually put MOBILE in RETIRED_APPS, but not yet.
             return redirect_type(request.path.replace('/mobile', '/android'))
 
         if ('lang' in request.GET and not prefixer.shortened_path.startswith(

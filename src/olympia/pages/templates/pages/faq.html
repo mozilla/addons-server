@@ -95,7 +95,7 @@
         <a href="{{ troubleshooting_url }}">Troubleshooting Extensions and
         Themes</a>.{% endtrans %}</dd>
 
-    {% if APP == amo.FIREFOX or APP == amo.MOBILE %}
+    {% if APP == amo.FIREFOX or APP == amo.ANDROID %}
         <dt>{{ _('How do I install add-ons without restarting Firefox?') }}</dt>
         <dd>{% trans sdk_url="https://developer.mozilla.org/en-US/Add-ons/SDK",
                bootstrap_url="https://developer.mozilla.org/Extensions/Bootstrapped_extensions" %}

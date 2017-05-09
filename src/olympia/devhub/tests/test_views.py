@@ -354,11 +354,12 @@ class TestUpdateCompatibility(TestCase):
         assert self.client.login(email='del@icio.us')
         self.url = reverse('devhub.addons')
 
-        self._versions = amo.FIREFOX.latest_version, amo.MOBILE.latest_version
-        amo.FIREFOX.latest_version = amo.MOBILE.latest_version = '3.6.15'
+        self._versions = amo.FIREFOX.latest_version, amo.ANDROID.latest_version
+        amo.FIREFOX.latest_version = amo.ANDROID.latest_version = '3.6.15'
 
     def tearDown(self):
-        amo.FIREFOX.latest_version, amo.MOBILE.latest_version = self._versions
+        amo.FIREFOX.latest_version = amo.ANDROID.latest_version = (
+            self._versions)
         super(TestUpdateCompatibility, self).tearDown()
 
     def test_no_compat(self):
@@ -401,11 +402,11 @@ class TestUpdateCompatibility(TestCase):
         doc = pq(self.client.get(self.url).content)
         assert doc('.item[data-addonid="3615"] .tooltip.compat-error')
 
-    def test_incompat_mobile(self):
+    def test_incompat_android(self):
         appver = AppVersion.objects.get(version='2.0')
-        appver.update(application=amo.MOBILE.id)
+        appver.update(application=amo.ANDROID.id)
         av = ApplicationsVersions.objects.all()[0]
-        av.application = amo.MOBILE.id
+        av.application = amo.ANDROID.id
         av.max = appver
         av.save()
         doc = pq(self.client.get(self.url).content)
@@ -1589,12 +1590,7 @@ class TestUploadDetail(BaseUploadTest):
     def test_multi_app_addon_can_have_all_platforms(self):
         self.check_excluded_platforms('mobile-2.9.10-fx+fn.xpi', [])
 
-    def test_mobile_excludes_desktop_platforms(self):
-        self.check_excluded_platforms('mobile-0.1-fn.xpi', [
-            str(p) for p in amo.DESKTOP_PLATFORMS])
-
     def test_android_excludes_desktop_platforms(self):
-        # Test native Fennec.
         self.check_excluded_platforms('android-phone.xpi', [
             str(p) for p in amo.DESKTOP_PLATFORMS])
 

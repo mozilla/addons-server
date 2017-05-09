@@ -53,7 +53,6 @@ SEND_REAL_EMAIL = True
 PAYPAL_PERMISSIONS_URL = ''
 
 SITE_URL = 'http://testserver'
-MOBILE_SITE_URL = ''
 
 # COUNT() caching can't be invalidated, it just expires after x seconds. This
 # is just too annoying for tests, so disable it.

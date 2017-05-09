@@ -793,15 +793,14 @@ def json_upload_detail(request, upload, addon_slug=None):
         else:
             app_ids = set([a.id for a in pkg.get('apps', [])])
             supported_platforms = []
-            for app in (amo.MOBILE, amo.ANDROID):
-                if app.id in app_ids:
-                    supported_platforms.extend((amo.PLATFORM_ANDROID.id,))
-                    app_ids.remove(app.id)
+            if amo.ANDROID.id in app_ids:
+                supported_platforms.extend((amo.PLATFORM_ANDROID.id,))
+                app_ids.remove(amo.ANDROID.id)
             if len(app_ids):
                 # Targets any other non-mobile app:
                 supported_platforms.extend(amo.DESKTOP_PLATFORMS.keys())
-            s = amo.SUPPORTED_PLATFORMS.keys()
-            plat_exclude = set(s) - set(supported_platforms)
+            plat_exclude = (
+                set(amo.SUPPORTED_PLATFORMS.keys()) - set(supported_platforms))
             plat_exclude = [str(p) for p in plat_exclude]
 
             # Does the version number look like it's beta?

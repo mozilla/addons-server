@@ -83,12 +83,7 @@ class SearchBase(ESTestCaseWithAddons):
         assert response.status_code == 200
         doc = pq(response.content)
         if title:
-            if hasattr(self, 'MOBILE'):
-                menu = doc('#sort-menu')
-                assert menu.find('span').text() == title
-                assert menu.find('.selected').text() == title
-            else:
-                assert doc('#sorter .selected').text() == title
+            assert doc('#sorter .selected').text() == title
         if sort_by:
             results = response.context['pager'].object_list
             if sort_by == 'name':
@@ -1210,5 +1205,4 @@ class TestSearchSuggestions(TestAjaxSearch):
         self.search_applications('q=FIREFOX', [amo.FIREFOX, amo.ANDROID])
         self.search_applications('q=firefox', [amo.FIREFOX, amo.ANDROID])
         self.search_applications('q=bird', [amo.THUNDERBIRD])
-        self.search_applications('q=mobile', [amo.MOBILE])
         self.search_applications('q=mozilla', [])
