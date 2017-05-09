@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 18:09+0000\n"
+"PO-Revision-Date: 2017-05-09 20:31+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -6368,11 +6368,11 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Χρησιμοποιεί προσαρμοσμένο CSP."
 
 #: src/olympia/editors/models.py
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Χρησιμοποιεί το δικαίωμα nativeMessaging."
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
@@ -7194,7 +7194,7 @@ msgstr ""
 
 #: src/olympia/files/helpers.py
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Προβλήματα με την αποκωδικοποίηση του {0}."
 
 #: src/olympia/files/helpers.py
 msgid "This file is not viewable online. Please download the file to view the contents."
@@ -7483,11 +7483,11 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get up and move!"
-msgstr ""
+msgstr "Σηκωθείτε και κινηθείτε!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Εγκαταστήστε αυτά τα πρόσθετα φυσικής κατάστασης για να παραμείνετε δραστήριοι και υγιείς."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "New &amp; Now"
@@ -7495,7 +7495,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Αποκτήστε τα πιο πρόσφατα, απαραίτητα πρόσθετα αυτής της περιόδου."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Worry-free browsing"
@@ -8273,7 +8273,7 @@ msgstr "Δολάριο Ζιμπάμπουε"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Σχετικά με τα Πρόσθετα Mozilla"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "What is this website?"
@@ -8287,7 +8287,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Ποιος δημιουργεί αυτά τα πρόσθετα;"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
@@ -8297,7 +8297,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Πώς μπορώ να ενημερώνομαι για ό,τι συμβαίνει στο AMO;"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are several ways to find out the latest news from the world of add-ons:"
@@ -8320,7 +8320,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Ακούγεται τέλειο! Πώς μπορώ να συνεισφέρω;"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
@@ -8349,12 +8349,12 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Πείτε το στους φίλους σας! Ενημερώστε τον κόσμο για το ποια πρόσθετα χρησιμοποιείτε."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Συμμετέχετε στο <a href=\"%(url)s\">φόρουμ</a> μας."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
@@ -8362,7 +8362,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "I have a question"
-msgstr ""
+msgstr "Έχω μια απορία"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -8376,7 +8376,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Ποιος εργάζεται σε αυτή την ιστοσελίδα;"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -8453,7 +8453,7 @@ msgstr ""
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "Περισσότερες από {0} κριτικές προσθέτων"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Other Contributors"
@@ -8461,7 +8461,7 @@ msgstr "Άλλοι συνεισφέροντες"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Προηγούμενοι προγραμματιστές &amp; διαχειριστές"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Software and Images"
@@ -8509,11 +8509,11 @@ msgstr "Πόροι υποστήριξης"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "Συνεισφορά του προσθέτου σας"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "Διαδικασία αξιολόγησης προσθέτου"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Managing Your Add-on"
@@ -8521,11 +8521,11 @@ msgstr "Διαχείριση του προσθέτου σας"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Αναφορές για άδεις ανοικτού κώδικα"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "Συχνές ερωτήσεις προγραμματιστών προσθέτων"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9546,7 +9546,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
-msgstr ""
+msgstr "Τι θα συμβεί μετά"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "<strong>If you agree</strong> to participate:"
@@ -9574,11 +9574,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Η μελέτη θα λήξει από μόνη της σε λίγες εβδομάδες. Μπορείτε να αποχωρήσετε από τη μελέτη νωρίτερα. Για να το κάνετε, ακολουθήστε αυτά τα βήματα:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Πληκτρολογήστε about:addons στη γραμμή διευθύνσεων και πατήστε enter."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
@@ -9586,7 +9586,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
-msgstr ""
+msgstr "Κάντε κλικ στο κουμπί αφαίρεσης."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
@@ -9650,7 +9650,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Παρέχεται σε εσάς από:"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
@@ -10424,7 +10424,7 @@ msgstr "Για να δημιουργήσετε τις δικές σας συλλ
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Footer logo"
-msgstr ""
+msgstr "Λογότυπο υποσέλιδου"
 
 #: src/olympia/templates/categories.html
 msgid "Choose a category"
@@ -10864,7 +10864,7 @@ msgstr "Η Mozilla διατηρεί το δικαίωμα να επικοινω�
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Admin"
-msgstr ""
+msgstr "Διαχειριστής"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete Account"
