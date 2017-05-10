@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 09:37+0000\n"
+"PO-Revision-Date: 2017-05-10 13:47+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9724,19 +9724,19 @@ msgstr "<strong>Ha egyetért</strong> azzal, hogy részt vegyen:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "Lehet hogy biztonsági és bővítményvezérlési funkciókat adunk a Firefoxhoz, hogy segítsünk az online biztonságban, és a teljesítményben."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "Folytassa a Firefox használatát a megszokottak szerint. Attól függően, hogy hogyan használja a webet, lehet hogy semmi változást nem fog észlelni."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Néhány hét múlva, a tanulmány magától befejeződik. A Firefoxa ismét normális lesz."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Meg fogjuk kérni, hogy töltsön ki egy gyors, nem kötelező kérdőívet, hogy beszámoljon a tapasztalatairól. A kérdőív kevesebb mint 5 perc alatt kitölthető."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
@@ -9760,11 +9760,11 @@ msgstr "Kattintson a letiltás gombra."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "Ha hamarabb kiszáll a tanulmányból, akkor meg fogjuk kérni, hogy töltsön ki egy kérdőívet. Érdekelnek minket a tapasztalatai, még akkor is, ha nem vesz részt a teljes tanulmányban."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "A tanulmányból kiszállás nem akadályozza, hogy a jövőben más tanulmányokban vegyen részt."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Your privacy"
@@ -9772,7 +9772,7 @@ msgstr "Magánszféra"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Az összes Pajzs tanulmány"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
