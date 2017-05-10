@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-08 13:02+0000\n"
+"PO-Revision-Date: 2017-05-10 15:30+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -9726,11 +9726,11 @@ msgstr "Het onderzoek loopt na enkele weken vanzelf af. U kunt het onderzoek vro
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
-msgstr "Typ about:addons in de locatiebalk, en druk op enter."
+msgstr "Typ about:addons in de locatiebalk, en druk op Enter."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Find Plugin Safety in the addons list."
-msgstr "Zoek naar Plug-in-veiligheid in de lijst met add-ons."
+msgstr "Zoek naar Plugin Safety in de lijst met add-ons."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Click the remove button."
