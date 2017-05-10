@@ -56,7 +56,9 @@ RUN yum install -y python-pip
 RUN pip install pyOpenSSL ndg-httpsclient pyasn1 certifi urllib3
 
 # ipython / ipdb for easier debugging, supervisor to run services
-RUN pip install ipython ipdb supervisor
+# Remove ipython version restriction when we move to python 3, see
+# https://github.com/mozilla/addons-server/issues/5380
+RUN pip install 'ipython<6' ipdb supervisor
 
 COPY . /code
 WORKDIR /code
