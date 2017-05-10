@@ -14,8 +14,12 @@ class Command(BaseCommand):
         doc = PyQuery(
             url='https://addons.mozilla.org/en-US/firefox/pages/appversions/')
         codes = doc('.prose ul li code')
-        for i in range(0, codes.length, 2):
-            app = APP_GUIDS[codes[i].text]
+        for i in range(0, len(codes), 2):
+            try:
+                app = APP_GUIDS[codes[i].text]
+            except KeyError:
+                # Unknown app, ignore.
+                continue
             log('Import versions for {0}'.format(app.short))
             versions = codes[i + 1].text.split(', ')
             for version in versions:
