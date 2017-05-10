@@ -31,8 +31,6 @@ RUN yum install -y \
         python-devel \
         # Git, because we're using git-checkout dependencies
         git \
-        # Nodejs for less, stylus, uglifyjs and others
-        nodejs \
         # Dependencies for mysql-python
         mysql-community-devel \
         mysql-community-client \
@@ -40,6 +38,10 @@ RUN yum install -y \
         epel-release \
         swig \
     && yum clean all
+
+# Install Nodejs (for less, stylus, uglifyjs and others) separately, because
+# it's part of epel which we just installed above.
+RUN yum install -y nodejs
 
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
