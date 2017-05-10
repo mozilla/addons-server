@@ -12,9 +12,9 @@ accounts = SimpleRouter()
 accounts.register(r'account', views.AccountViewSet, base_name='account')
 
 collections = NestedSimpleRouter(accounts, r'account', lookup='user')
-collections.register(r'collection', CollectionViewSet,
+collections.register(r'collections', CollectionViewSet,
                      base_name='collection')
-sub_collections = NestedSimpleRouter(collections, r'collection',
+sub_collections = NestedSimpleRouter(collections, r'collections',
                                      lookup='collection')
 sub_collections.register('addons', CollectionAddonViewSet,
                          base_name='collection-addon')
