@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-10 14:11+0000\n"
+"PO-Revision-Date: 2017-05-10 14:15+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9797,16 +9797,16 @@ msgstr "A meglátogatott webhelyek közül melyik próbál meg bővítményeket 
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Hogyan kezeli a bővítménytartalmat azokon az oldalakon, beleértve azt is, hogy engedélyezi-e a bővítmény futását."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "A Mozilla az információkat bizalmasan kezeli; az adatok csak összesített vagy anonimizált formában kerülnek megosztásra."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Az ezzel a tanulmánnyal kapcsolatos adatgyűjtésről <a href=\"%(url)s\">itt</a> tudhat meg többet."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
@@ -9817,6 +9817,8 @@ msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"A Mozillánál büszkék vagyunk rá, hogy Önnek készítjük a termékeinket, a felhasználónak! Ezért van szükségünk a segítségére. A tanulmányban részvétellel segít nekünk jobb döntéseket hozni az Ön "
+"érdekében, és segít a Firefox jövőjének alakításában."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Brought to you by:"
