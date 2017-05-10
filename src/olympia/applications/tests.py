@@ -1,4 +1,5 @@
 import json
+import mock
 import tempfile
 
 from django.core.management import call_command
@@ -83,3 +84,32 @@ class TestCommands(TestCase):
 
         assert len(AppVersion.objects.filter(
             application=amo.FIREFOX.id, version=new_version)) == 1
+
+    @mock.patch('olympia.applications.management.commands.import_prod_versions'
+                '.PyQuery', spec=True)
+    def test_import_prod_versions(self, pyquery_mock):
+        assert not AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='53.0').no_cache().exists()
+        assert not AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='53.*').no_cache().exists()
+
+        # Result of PyQuery()
+        MockedDoc = mock.Mock()
+        pyquery_mock.return_value = MockedDoc
+
+        # Result of PyQuery()('selector'). Return 2 applications, one with a
+        # valid guid and one that is garbage and should be ignored.
+        MockedDocResult = [
+            mock.Mock(spec=[], text='lol'),
+            mock.Mock(spec=[], text='some versions...'),
+            mock.Mock(spec=[], text='{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'),
+            mock.Mock(spec=[], text='53.0, 53.*'),
+        ]
+        MockedDoc.return_value = MockedDocResult
+
+        call_command('import_prod_versions')
+
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='53.0').no_cache().exists()
+        assert AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='53.*').no_cache().exists()
