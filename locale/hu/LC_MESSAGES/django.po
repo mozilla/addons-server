@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-10 13:47+0000\n"
+"PO-Revision-Date: 2017-05-10 14:11+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9776,24 +9776,24 @@ msgstr "Az összes Pajzs tanulmány"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Minden Pajzs tanulmány adatokat gyűjt a fontos tanulmány eseményekről, mint a telepítés, törlés, napi használat, és a tanulmány vége. A tanulmányoknak egy nem kötelező kérdőív is a része."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Ezek az adatok össze vannak kapcsolva a <a href=\"%(url)s\">Firefox telemetria adatokkal</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
-msgstr ""
+msgstr "Ez a konkrét tanulmány"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Az összes Pajzs tanulmány által összegyűjtött adat mellett, a Mozilla a következőkről gyűjt információt:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "A meglátogatott webhelyek közül melyik próbál meg bővítményeket használni, és hogy milyen tartalomhoz szükséges a bővítmény;"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
