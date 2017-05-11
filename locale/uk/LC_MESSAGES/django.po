@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-11 18:12+0000\n"
-"Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
+"PO-Revision-Date: 2017-05-11 18:50+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -9762,7 +9762,7 @@ msgstr "За кілька тижнів дослідження закінчить
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Ми попросимо вас заповнити швидке необов'язкове опитування, щоб розповісти нам про свої враження. Це повинно зайняти не більше 5 хвилин."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
@@ -9770,7 +9770,7 @@ msgstr "Завершення участі в дослідженні"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Термін дії дослідження завершиться через кілька тижнів без вашої участі. Ви можете покинути це дослідження раніше. Щоб зробити це, виконайте наступні дії:"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Type about:addons into the location bar, and press enter."
@@ -9786,7 +9786,7 @@ msgstr "Натисніть кнопку Вилучити."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "Якщо ви покинете дослідження раніше його завершення, ми попросимо вас заповнити анкету. Нам цікаво дізнатися вашу думку, навіть якщо ви не брали участі у повному дослідженні."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Opting out of a study does not prevent you from participating in future studies."
