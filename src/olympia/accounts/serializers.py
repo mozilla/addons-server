@@ -19,6 +19,8 @@ class PublicUserProfileSerializer(BaseUserSerializer):
             'is_addon_developer', 'is_artist', 'location', 'occupation',
             'num_addons_listed', 'picture_type', 'picture_url', 'username',
         )
+        # This serializer should never be used for updates but just to be sure.
+        read_only_fields = fields
 
 
 class UserProfileSerializer(PublicUserProfileSerializer):
@@ -28,6 +30,11 @@ class UserProfileSerializer(PublicUserProfileSerializer):
             'display_name', 'email', 'deleted', 'last_login',
             'last_login_ip', 'read_dev_agreement', 'is_verified',
         )
+        writeable_fields = (
+            'biography', 'display_name', 'homepage', 'location', 'occupation',
+            'username',
+        )
+        read_only_fields = tuple(set(fields) - set(writeable_fields))
 
 
 group_rules = {
