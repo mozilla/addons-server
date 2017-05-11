@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-11 19:01+0000\n"
+"PO-Revision-Date: 2017-05-11 19:40+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -9758,7 +9758,7 @@ msgstr "Продовжуйте використовувати Firefox як за�
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr "За кілька тижнів дослідження закінчиться. Ваша Firefox повернеться до звичайного стану."
+msgstr "За кілька тижнів дослідження завершиться. Ваш Firefox повернеться до звичайного стану."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
@@ -9798,7 +9798,7 @@ msgstr "Ваша приватність"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr "Всі досліди Shield"
+msgstr "Всі дослідження Shield Studies"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
