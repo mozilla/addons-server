@@ -23,6 +23,7 @@ from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
     assert_url_equal, create_switch, user_factory, APITestClient,
     InitializeSessionMixin, PatchMixin, TestCase, WithDynamicEndpoints)
+from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.users.models import UserProfile
@@ -1005,7 +1006,7 @@ class TestAccountViewSetUpdate(TestCase):
     update_data = {
         'display_name': 'Bob Loblaw',
         'biography': 'You don`t need double talk; you need Bob Loblaw',
-        'homepage': 'http://bob-loblaw-law.blog',
+        'homepage': 'http://bob-loblaw-law-web.blog',
         'location': 'law office',
         'occupation': 'lawyer',
         'username': 'bob',
@@ -1068,6 +1069,18 @@ class TestAccountViewSetUpdate(TestCase):
         # Confirm field hasn't been updated.
         assert json.loads(response.content)['last_login_ip'] == ''
         assert self.user.last_login_ip == ''
+
+    def test_picture_upload(self):
+        self.client.login_api(self.user)
+        photo = get_uploaded_file('transparent.png')
+        data = {'picture_upload': photo}
+        response = self.client.patch(
+            self.url, data, format='multipart')
+        assert response.status_code == 200
+        json_content = json.loads(response.content)
+        self.user = self.user.reload()
+        assert 'anon_user.png' not in json_content['picture_url']
+        assert '%s.png' % self.user.id in json_content['picture_url']
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):

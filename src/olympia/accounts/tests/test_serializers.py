@@ -19,10 +19,16 @@ class TestPublicUserProfileSerializer(BaseTestCase):
     def serialize(self):
         return self.serializer(self.user).data
 
-    def test_picture_url(self):
+    def test_picture(self):
         serial = self.serialize()
         assert ('anon_user.png' in serial['picture_url'])
         assert serial['picture_type'] == ''
+        assert 'picture_upload' not in serial  # its a write only field.
+
+        self.user.update(picture_type='image/jpeg')
+        serial = self.serialize()
+        assert serial['picture_url'] == self.user.picture_url
+        assert '%s.png' % self.user.id in serial['picture_url']
 
     def test_basic(self):
         data = self.serialize()

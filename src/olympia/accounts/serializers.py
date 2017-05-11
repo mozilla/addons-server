@@ -1,9 +1,12 @@
+from django.core.files.storage import default_storage
+
 from rest_framework import serializers
 
 import olympia.core.logger
 from olympia.access.models import Group
 from olympia.users.models import UserProfile
 from olympia.users.serializers import BaseUserSerializer
+from olympia.users.tasks import resize_photo
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -24,17 +27,34 @@ class PublicUserProfileSerializer(BaseUserSerializer):
 
 
 class UserProfileSerializer(PublicUserProfileSerializer):
+    picture_upload = serializers.ImageField(use_url=True, write_only=True)
 
     class Meta(PublicUserProfileSerializer.Meta):
         fields = PublicUserProfileSerializer.Meta.fields + (
-            'display_name', 'email', 'deleted', 'last_login',
+            'display_name', 'email', 'deleted', 'last_login', 'picture_upload',
             'last_login_ip', 'read_dev_agreement', 'is_verified',
         )
         writeable_fields = (
             'biography', 'display_name', 'homepage', 'location', 'occupation',
-            'username',
+            'picture_upload', 'username',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
+
+    def update(self, instance, validated_data):
+        instance = super(UserProfileSerializer, self).update(
+            instance, validated_data)
+
+        photo = validated_data.get('picture_upload')
+        if photo:
+            tmp_destination = instance.picture_path + '__unconverted'
+
+            with default_storage.open(tmp_destination, 'wb') as fh:
+                for chunk in photo.chunks():
+                    fh.write(chunk)
+            instance.update(picture_type='image/png')
+            resize_photo.delay(tmp_destination, instance.picture_path,
+                               set_modified_on=[instance])
+        return instance
 
 
 group_rules = {
