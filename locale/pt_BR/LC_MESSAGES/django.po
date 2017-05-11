@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-11 04:53+0000\n"
+"PO-Revision-Date: 2017-05-11 15:24+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2108,7 +2108,7 @@ msgstr "Para incluir um complemento nesta coleção, digite seu nome na caixa ab
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/editors/helpers.py
 msgid "Add-on"
-msgstr "Complemento"
+msgstr "Extensão"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/activity.py src/olympia/editors/helpers.py
 #: src/olympia/editors/templates/editors/themes/history_table.html
@@ -2117,7 +2117,7 @@ msgstr "Comentário"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
-msgstr "Digite o nome do complemento para incluí-lo"
+msgstr "Insira o nome da extensão a incluir"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add to Collection"
@@ -2133,7 +2133,7 @@ msgstr "Adicionar um comentário"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Remove this add-on from the collection"
-msgstr "Remover esse complemento da coleção"
+msgstr "Remover esta extensão da coleção"
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -11414,7 +11414,7 @@ msgstr "Número de complementos desenvolvidos"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "{0} add-ons"
-msgstr "{0} complementos"
+msgstr "{0} extensões"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
@@ -11427,8 +11427,8 @@ msgstr[1] "%(num)s temas"
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s complemento"
-msgstr[1] "%(num)s complementos"
+msgstr[0] "%(num)s extensão"
+msgstr[1] "%(num)s extensões"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
@@ -11542,7 +11542,7 @@ msgstr "Complementos Afetados"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr "Complemento"
+msgstr "Extensão"
 
 #: src/olympia/zadmin/views.py
 msgid "Validation Result"
