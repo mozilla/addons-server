@@ -17,7 +17,7 @@ from olympia.amo.tests import TestCase, version_factory
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.urlresolvers import reverse
 from olympia.editors import helpers
-from olympia.editors.models import ReviewerScore
+from olympia.editors.models import AutoApprovalSummary, ReviewerScore
 from olympia.files.models import File
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
@@ -831,6 +831,19 @@ class TestReviewHelper(TestCase):
         assert mail.outbox[0].subject == (
             ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
              'Admin Review'))
+        assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
+
+    def test_auto_approved_super_review(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.helper.handler.process_super_review()
+
+        assert self.addon.admin_review
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            'Super review requested: Delicious Bookmarks')
         assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
 
     def test_nomination_to_super_review_and_escalate(self):

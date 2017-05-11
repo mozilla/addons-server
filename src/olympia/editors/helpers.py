@@ -675,9 +675,13 @@ class ReviewBase(object):
         """Give an addon super review."""
         self.addon.update(admin_review=True)
 
-        self.notify_email('author_super_review',
-                          u'Mozilla Add-ons: %s %s flagged for Admin Review')
+        if not self.version.was_auto_approved:
+            # Notify the developer unless the version has been auto-approved.
+            self.notify_email(
+                'author_super_review',
+                u'Mozilla Add-ons: %s %s flagged for Admin Review')
 
+        # Always notify senior editors.
         self.send_super_mail()
 
 

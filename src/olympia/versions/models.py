@@ -596,6 +596,17 @@ class Version(OnChangeMixin, ModelBase):
             self.is_unreviewed and
             self.channel == amo.RELEASE_CHANNEL_LISTED)
 
+    @property
+    def was_auto_approved(self):
+        """Return whether or not this version was auto-approved."""
+        from olympia.editors.models import AutoApprovalSummary
+        try:
+            return (self.is_public() and
+                    self.autoapprovalsummary.verdict == amo.AUTO_APPROVED)
+        except AutoApprovalSummary.DoesNotExist:
+            pass
+        return False
+
 
 @use_master
 def update_status(sender, instance, **kw):

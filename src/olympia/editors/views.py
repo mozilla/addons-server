@@ -653,13 +653,7 @@ def review(request, addon, channel=None):
     was_auto_approved = False
     if channel == amo.RELEASE_CHANNEL_LISTED:
         if addon.current_version:
-            try:
-                was_auto_approved = (
-                    addon.current_version.autoapprovalsummary.verdict ==
-                    amo.AUTO_APPROVED
-                )
-            except AutoApprovalSummary.DoesNotExist:
-                pass
+            was_auto_approved = addon.current_version.was_auto_approved
         if is_post_reviewer and version and version.is_webextension:
             try:
                 approvals_info = addon.addonapprovalscounter
