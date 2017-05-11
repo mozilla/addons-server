@@ -315,7 +315,7 @@ class AutoApprovedTable(EditorQueueTable):
         url = reverse('editors.review', args=[record.addon.slug])
         return u'<a href="%s">%s <em>%s</em></a>' % (
             url, jinja2.escape(record.addon.name),
-            jinja2.escape(record.version))
+            jinja2.escape(record.addon.current_version))
 
     def render_last_human_review(self, value):
         return naturaltime(value) if value else ''
