@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-09 10:54+0000\n"
+"PO-Revision-Date: 2017-05-11 18:10+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6445,7 +6445,7 @@ msgstr "Використовує власний CSP."
 
 #: src/olympia/editors/models.py
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Використовує дозвіл nativeMessaging."
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
@@ -6457,7 +6457,7 @@ msgstr "Забагато щоденних користувачів."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "Має замало послідовних оновлень, перевірених людьми."
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -9732,11 +9732,13 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Start Now"
-msgstr ""
+msgstr "Розпочати зараз"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
+"Mozilla хоче визначити найкращий спосіб захисту своїх користувачів, у випадку використання стороннього програмного забезпечення, наприклад, плагінів. Ваша участь у цьому дослідженні допоможе нам це "
+"з'ясувати!"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "What will happen next"
@@ -9752,11 +9754,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "Продовжуйте використовувати Firefox як завжди. Ви може й не помітите жодних змін - це залежить від особливостей вашої поведінки в Інтернеті."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "За кілька тижнів дослідження закінчиться. Ваша Firefox повернеться до звичайного стану."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
@@ -9764,7 +9766,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Leaving the study"
-msgstr ""
+msgstr "Завершення участі в дослідженні"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
@@ -9796,7 +9798,7 @@ msgstr "Ваша приватність"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Всі досліди Shield"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
@@ -9809,7 +9811,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
-msgstr ""
+msgstr "Це конкретне дослідження"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
