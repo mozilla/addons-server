@@ -1251,10 +1251,10 @@ class TestAutoApprovedQueue(QueueTest):
     def get_addon_latest_version(self, addon):
         """Method used by _test_results() to fetch the version that the queue
         is supposed to display. Overridden here because in our case, it's not
-        necessarily the latest available version - we want the latest one to
-        have been auto approved."""
-        return AutoApprovalSummary.objects.filter(
-            version__in=list(addon.versions.all())).latest('pk').version
+        necessarily the latest available version - we display the current
+        public version instead (which is not guaranteed to be the latest
+        auto-approved one, but good enough) for this page."""
+        return addon.current_version
 
     def generate_files(self):
         """Generate add-ons needed for these tests."""
