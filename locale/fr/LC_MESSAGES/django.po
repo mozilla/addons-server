@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 12:49+0000\n"
+"PO-Revision-Date: 2017-05-11 15:34+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -7284,7 +7284,7 @@ msgstr "Accéder à vos données pour {name}"
 
 #: src/olympia/files/models.py
 msgid "Access your data on the following websites:"
-msgstr "Accédez à vos données sur les sites web suivants :"
+msgstr "Accéder à vos données sur les sites web suivants :"
 
 #: src/olympia/files/models.py
 msgid "Access your data for all websites"
