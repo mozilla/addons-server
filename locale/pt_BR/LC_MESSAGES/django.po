@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-03 01:03+0000\n"
+"PO-Revision-Date: 2017-05-11 04:53+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5494,7 +5494,7 @@ msgstr "Gerenciar sua Extensão"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr "Identifique-se para editar e atualizar sua extensão"
+msgstr "Inicie a sessão para editar e atualizar sua extensão"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Evolution in Add-on Development"
@@ -5561,7 +5561,7 @@ msgstr "Foto do usuário"
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Crie uma conta</a> ou <a href=\"%(login)s\">Identifique-se</a>"
+msgstr "<a href=\"%(register)s\">Registre-se</a> ou <a href=\"%(login)s\">Inicie a sessão</a>"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html
 msgid "Customize Firefox"
