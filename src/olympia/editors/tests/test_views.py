@@ -35,7 +35,6 @@ from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 from olympia.zadmin.models import get_config, set_config
-from waffle.testutils import override_switch
 
 
 class EditorTest(TestCase):
@@ -2701,7 +2700,6 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('.auto_approval')
 
-    @override_switch('webext-permissions', active=True)
     def test_permissions_display(self):
         permissions = ['bookmarks', 'high', 'voltage']
         self.file.update(is_webextension=True)
