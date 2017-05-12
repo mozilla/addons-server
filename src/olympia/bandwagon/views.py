@@ -14,6 +14,9 @@ from django.utils.translation import ugettext_lazy as _lazy, ugettext as _
 
 import caching.base as caching
 from django_statsd.clients import statsd
+from rest_framework.mixins import ListModelMixin
+from rest_framework.permissions import AllowAny, BasePermission
+from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
 
 import olympia.core.logger
 from olympia import amo
@@ -23,9 +26,11 @@ from olympia.amo.decorators import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, urlparams, render
 from olympia.access import acl
+from olympia.accounts.views import AccountViewSet
 from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
+from olympia.api.permissions import AllOf, AnyOf, GroupPermission
 from olympia.legacy_api.utils import addon_to_dict
 from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
@@ -34,6 +39,7 @@ from olympia.users.models import UserProfile
 from .models import (
     Collection, CollectionAddon, CollectionWatcher, CollectionVote,
     SPECIAL_SLUGS)
+from .serializers import CollectionAddonSerializer, SimpleCollectionSerializer
 from . import forms, tasks
 
 log = olympia.core.logger.getLogger('z.collections')
@@ -637,3 +643,67 @@ def mine(request, username=None, slug=None):
         return user_listing(request, username)
     else:
         return collection_detail(request, username, slug)
+
+
+class AllowCollectionAuthor(BasePermission):
+
+    def has_permission(self, request, view):
+        return view.get_account_viewset().self_view
+
+    def has_object_permission(self, request, view, obj):
+        return self.has_permission(request, view)
+
+
+class AllowNonListActions(BasePermission):
+
+    def has_permission(self, request, view):
+        return getattr(view, 'action', '') != 'list'
+
+    def has_object_permission(self, request, view, obj):
+        return True
+
+
+class AllowListedCollectionOnly(BasePermission):
+
+    def has_permission(self, request, view):
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        # Anyone can access a collection if they know the slug, if it's listed.
+        return obj.listed
+
+
+class CollectionViewSet(ReadOnlyModelViewSet):
+    permission_classes = [AnyOf(AllowCollectionAuthor,
+                                GroupPermission(amo.permissions.USERS_EDIT),
+                                AllOf(AllowListedCollectionOnly,
+                                      AllowNonListActions)),
+                          ]
+    serializer_class = SimpleCollectionSerializer
+    lookup_field = 'slug'
+
+    def get_account_viewset(self):
+        if not hasattr(self, 'account_viewset'):
+            self.account_viewset = AccountViewSet(
+                request=self.request,
+                kwargs={'pk': self.kwargs['user_pk']})
+        return self.account_viewset
+
+    def get_queryset(self):
+        return Collection.objects.filter(
+            author=self.get_account_viewset().get_object())
+
+
+class CollectionAddonViewSet(ListModelMixin, GenericViewSet):
+    permission_classes = [AllowAny]
+    serializer_class = CollectionAddonSerializer
+
+    def get_queryset(self):
+        if not hasattr(self, 'collection_object'):
+            self.collection_object = CollectionViewSet(
+                request=self.request,
+                kwargs={'user_pk': self.kwargs['user_pk'],
+                        'slug': self.kwargs['collection_slug']}).get_object()
+
+        return CollectionAddon.objects.filter(
+            collection=self.collection_object)

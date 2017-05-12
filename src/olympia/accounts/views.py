@@ -378,8 +378,19 @@ class AccountViewSet(RetrieveModelMixin, GenericViewSet):
     def get_object(self):
         if hasattr(self, 'instance'):
             return self.instance
+        identifier = self.kwargs.get('pk')
+        self.lookup_field = self.get_lookup_field(identifier)
+        self.kwargs[self.lookup_field] = identifier
         self.instance = super(AccountViewSet, self).get_object()
         return self.instance
+
+    def get_lookup_field(self, identifier):
+        lookup_field = 'pk'
+        if identifier and not identifier.isdigit():
+            # If the identifier contains anything other than a digit, it's
+            # the username.
+            lookup_field = 'username'
+        return lookup_field
 
     @property
     def self_view(self):
@@ -397,7 +408,7 @@ class AccountViewSet(RetrieveModelMixin, GenericViewSet):
 
     @list_route(permission_classes=[IsAuthenticated])
     def profile(self, request, *args, **kwargs):
-        self.kwargs['pk'] = self.request.user.pk
+        self.kwargs['pk'] = unicode(self.request.user.pk)
         return self.retrieve(request, *args, **kwargs)
 
 

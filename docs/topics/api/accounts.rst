@@ -14,7 +14,7 @@ Account
 This endpoint returns information about a user's account, by the account id.
 Most of the information is optional and provided by the user so may be missing or inaccurate.
 
-.. http:get:: /api/v3/accounts/account/(int:user_id)/
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/
 
     .. _account-object:
 
@@ -33,10 +33,10 @@ Most of the information is optional and provided by the user so may be missing o
     :>json boolean is_artist: The user has developed and listed themes on this website.
 
 
-If you authenticate and access your own account by specifing your own `user_id` the following additional fields are returned.
+If you authenticate and access your own account by specifing your own ``user_id`` the following additional fields are returned.
 If you have `Users:Edit` permission you will see these extra fields for all user accounts.
 
-.. http:get:: /api/v3/accounts/account/(int:user_id)/
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/
 
     .. _account-object-self:
 
@@ -50,13 +50,13 @@ If you have `Users:Edit` permission you will see these extra fields for all user
 
 
     :statuscode 200: account found.
-    :statuscode 400: an error occurred, check the `error` value in the JSON.
+    :statuscode 400: an error occurred, check the ``error`` value in the JSON.
     :statuscode 404: no account with that user id.
 
 
 .. important::
 
-    * `Biography` can contain HTML, or other unsanitized content, and it is the
+    * ``Biography`` can contain HTML, or other unsanitized content, and it is the
       responsibiliy of the client to clean and escape it appropriately before display.
 
 
@@ -72,7 +72,70 @@ This endpoint is a shortcut to your own account. It returns an :ref:`account obj
 
 .. http:get:: /api/v3/accounts/profile/
 
-    .. _self-account-object:
+
+----------------
+Collections List
+----------------
+
+.. _collection-list:
+
+.. note:: This API requires :doc:`authentication <auth>`.
+
+This endpoint allows you to list all collections authored by the specified user.
+You can only list your own collections. To list collections for other users,
+your account must have the `Users:Edit` permission.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/
+
+    :>json int count: The number of results for this query.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of :ref:`collections <collection-detail-object>`.
+
+
+-----------------
+Collection Detail
+-----------------
+
+.. _collection-detail:
+
+This endpoint allows you to fetch a single collection by its ``slug``.
+It returns any ``listed`` collection by the specified user. You can access
+a non-``listed`` collection only if it was authored by you, the authenticated user.
+If your account has the `Users:Edit` permission then you can access any collection.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
+
+    .. _collection-detail-object:
+
+    :>json int id: The id for the collection.
+    :>json int addon_count: The number of add-ons in this collection.
+    :>json int author.id: The id of the author (creator) of the collection.
+    :>json string author.name: The name of the author.
+    :>json string author.url: The link to the profile page for of the author.
+    :>json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :>json string modified: The date the collection was last updated.
+    :>json string|object|null name: The of the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :>json string url: The (absolute) collection detail URL.
+
+
+------------------
+Collection Add-ons
+------------------
+
+.. _collection-addon:
+
+This endpoint lists the add-ons in a collection, together with collector's notes.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/
+
+    :>json int count: The number of results for this query.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of items in this collection.
+    :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item.
+    :>json string|object|null results[].notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
+    :>json int results[].downloads: The downloads that occured via this collection.
 
 
 

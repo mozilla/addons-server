@@ -976,6 +976,30 @@ class TestAccountViewSet(TestCase):
         assert response.data['name'] == self.random_user.name
         assert response.data['email'] == self.random_user.email
 
+    def test_self_view_slug(self):
+        # Check it works the same with an account slug rather than pk.
+        self.url = reverse('account-detail',
+                           kwargs={'pk': self.user.username})
+        self.test_self_view()
+
+    def test_no_private_data_without_auth_slug(self):
+        # Check it works the same with an account slug rather than pk.
+        self.url = reverse('account-detail',
+                           kwargs={'pk': self.user.username})
+        self.test_no_private_data_without_auth()
+
+    def test_admin_view_slug(self):
+        # Check it works the same with an account slug rather than pk.
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        self.random_user = user_factory()
+        random_user_profile_url = reverse(
+            'account-detail', kwargs={'pk': self.random_user.username})
+        response = self.client.get(random_user_profile_url)
+        assert response.status_code == 200
+        assert response.data['name'] == self.random_user.name
+        assert response.data['email'] == self.random_user.email
+
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):
 
