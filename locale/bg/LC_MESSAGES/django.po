@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-12 14:50+0000\n"
+"PO-Revision-Date: 2017-05-12 15:05+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1787,8 +1787,6 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"Добавките, които маркирате като любими, използвайки функцията <b>Доабви в Любими</b>, се показват отдолу. В момента тази колекция е <b>публична</b>, което означава, че всеки може да я вижда. Ако "
-"искате да я скриете, кликнете бутона отдолу, за да я направите лична."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, fuzzy
@@ -2046,7 +2044,7 @@ msgstr "Добавки в колекцията Ви"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "За да включите добавка в тази колекция, въведете името ѝ в полето по-долу и натиснете Enter."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/editors/helpers.py
 msgid "Add-on"
@@ -2241,7 +2239,7 @@ msgstr "Научете повече за <a href=\"http://support.mozilla.com/kb
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Разгледайте още повече търсещи машини на <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
@@ -2360,7 +2358,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Искате ли повече персонализация?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -2379,7 +2377,7 @@ msgstr "Вижте всички Обещаващи"
 
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
-msgstr ""
+msgstr "Не са намерени теми"
 
 #: src/olympia/compat/forms.py
 msgid "All"
@@ -2438,7 +2436,7 @@ msgstr "Версия"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Version"
-msgstr ""
+msgstr "Версия на приложението"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -2450,7 +2448,7 @@ msgstr "Платформа"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "e10s Enabled"
-msgstr ""
+msgstr "e10s включен"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "e10s Compatible"
@@ -3340,7 +3338,7 @@ msgstr "Поверителност и сигурност"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "Изтегляне и управление на файлове"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
@@ -3374,11 +3372,11 @@ msgstr "Искане на повече информация"
 # 100%
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flag"
-msgstr ""
+msgstr "Отбелязване"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Duplicate"
-msgstr ""
+msgstr "Дубликат"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Reject"
@@ -3388,7 +3386,7 @@ msgstr "Отказване"
 # 100%
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
-msgstr ""
+msgstr "Одобряване"
 
 #: src/olympia/constants/editors.py
 msgid "Sexual or pornographic content"
@@ -3529,11 +3527,11 @@ msgstr "Лицензия текст е задължителен, когато и
 
 #: src/olympia/devhub/forms.py
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Тази добавка има декларация на крайния потребител"
 
 #: src/olympia/devhub/forms.py
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Моля, задайте декларацията на крайния потребител:"
 
 #: src/olympia/devhub/forms.py
 msgid "This add-on has a Privacy Policy"
