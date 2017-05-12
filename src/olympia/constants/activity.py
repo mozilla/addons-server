@@ -545,6 +545,14 @@ class SOURCE_CODE_UPLOADED(_LOG):
     review_queue = True
 
 
+class CONFIRM_AUTO_APPROVED(_LOG):
+    id = 144
+    format = _(u'Auto-Approval confirmed for {addon} {version}.')
+    short = _(u'Auto-Approval confirmed')
+    keep = True
+    editor_review_action = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.

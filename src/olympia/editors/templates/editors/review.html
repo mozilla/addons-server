@@ -168,12 +168,15 @@
         {{ _("You can still submit this form, however only do so if you know it won't conflict.") }}
       </div>
 
-      <label for="id_comments">{{ form.comments.label }}</label>
-      {{ form.comments }}
-      {{ form.comments.errors }}
-      <div class="review-actions-canned">
-        {{ _('Insert canned response...') }}
-        {{ form.canned_response }}
+      <div class="review-actions-section data-toggle"
+           data-value="{{ actions_comments|join("|") }}">
+        <label for="id_comments">{{ form.comments.label }}</label>
+        {{ form.comments }}
+        {{ form.comments.errors }}
+        <div class="review-actions-canned">
+          {{ _('Insert canned response...') }}
+          {{ form.canned_response }}
+        </div>
       </div>
 
       <div class="review-actions-section review-actions-files data-toggle"

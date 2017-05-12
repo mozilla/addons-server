@@ -2583,6 +2583,27 @@ class TestReview(ReviewBase):
             [u'Select a valid choice. public is not one of the available '
              u'choices.'])
 
+    def test_confirm_auto_approval_no_permission(self):
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.login_as_editor()
+        response = self.client.post(
+            self.url, {'action': 'confirm_auto_approved'})
+        assert response.status_code == 200
+        # Nothing happened: the user did not have the permission to do that.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
+
+    def test_confirm_auto_approval_with_permission(self):
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.login_as_senior_editor()
+        response = self.client.post(
+            self.url, {'action': 'confirm_auto_approved'})
+        assert response.status_code == 302
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 1
+
     def test_user_changes_log(self):
         # Activity logs related to user changes should be displayed.
         # Create an activy log for each of the following: user addition, role

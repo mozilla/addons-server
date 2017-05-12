@@ -302,6 +302,10 @@ class ReviewForm(happyforms.Form):
         required=False, label=_lazy(u'Clear more info requested flag'))
 
     def is_valid(self):
+        # Some actions do not require comments.
+        action = self.helper.actions.get(self.data.get('action'))
+        if action and not action.get('comments', True):
+            self.fields['comments'].required = False
         result = super(ReviewForm, self).is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)
