@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-12 14:30+0000\n"
+"PO-Revision-Date: 2017-05-12 14:50+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -593,7 +593,7 @@ msgstr "{0} потребителя дневно"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "За да инсталирате тази добавка и още хиляди, <b>вземете Firefox</b>, безплатен и отворен уеб браузър от Mozilla."
+msgstr "За да инсталирате тази и още хиляди добавки, <b>вземете Firefox</b>, безплатен и отворен уеб браузър от Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
@@ -601,7 +601,7 @@ msgstr "Научете повече за Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "или <b><a class=\"button installer\" href=\"{url}\">изтеглете така или иначе</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
@@ -619,7 +619,7 @@ msgstr "Научете повече за Thunderbird"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "За да инсталирате тази и още хиляди теми, <b>вземете Firefox</b>, безплатен и отворен уеб браузър от Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -700,7 +700,7 @@ msgstr "QR за добавка"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
+msgstr "Искате {0} на вашия мобилен Firefox? Сканирайте този QR код, за да я инсталирате директно на телефона. (Ще ви трябва четец за QR кодове. Потърсете в магазина на телефона си, ако нямате.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 msgid "Report Abuse"
@@ -837,12 +837,12 @@ msgstr "<a href=\"%(meet_url)s\">Разработчикът на добавка�
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Разработчикът на тази добавка</a> моли да покажете подкрепата си като направите дарение на <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Разработчикът на тази добавка</a> моли да покажете подкрепата си като направите дарение на <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/impala/dependencies_note.html
 msgid "This add-on requires the following add-ons to work properly:"
@@ -974,7 +974,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr ""
+msgstr "<strong>Внимание:</strong> Развойните версии на добавката не са прегледани от Mozilla."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete development channel history"
@@ -983,7 +983,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/files/templates/files/viewer.html
 #: src/olympia/stats/templates/stats/popup.html src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
 msgid "close"
-msgstr "затвори"
+msgstr "затваряне"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
@@ -997,9 +997,8 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy
 msgid "This add-on can:"
-msgstr "Тази добавка е изпитателна"
+msgstr "Тази добавка може:"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1117,7 +1116,7 @@ msgstr "Одобрение / отхвърляне"
 
 #: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
-msgstr ""
+msgstr "История на рецензиите"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "Sorry, this theme is pending. Please come back later."
@@ -1228,25 +1227,23 @@ msgstr "преди {0}"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
-msgstr ""
+msgstr "Забранено"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<h1>Оле! Не е разрешено.</h1> <p>Опитахте да направите нещо, което не ви е разрешено.</p>"
+msgstr "<h1>Оле! Забранено.</h1> <p>Опитахте да направите нещо, което не ви е разрешено.</p>"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr "<p>Опитайте се да се върнете на предишната страница, да я обновите и да опитате отново.</p>"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Page Not Found"
-msgstr "Не е намерен"
+msgstr "Страницата не е намерена"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "Още добавки"
+msgstr "Добавки за Firefox"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
@@ -1254,20 +1251,17 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/404-responsive.html
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Предложени страници"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "Разглеждане на всички добавки"
+msgstr "Преглед на всички разширения"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Browse all themes"
-msgstr "Разглеждане на всички добавки"
+msgstr "Преглед на всички теми"
 
 #: src/olympia/amo/templates/amo/404-responsive.html
-#, fuzzy
 msgid "Add-ons Home Page"
 msgstr "Сайт на добавката"
 
@@ -1292,12 +1286,13 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
-msgstr "Опаа"
+msgstr "Ооох"
 
 #: src/olympia/amo/templates/amo/500.html
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
+"<h1>Ооох! Стана грешка.</h1> <p>Ще се заемем с оправянето ѝ скоро.</p> <p> Може да опитате да обновите страницата или да се върнете към <a href=\"%(home)s\">началната страница на Добавки</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
@@ -1305,7 +1300,7 @@ msgstr "Някои права запазени"
 
 #: src/olympia/amo/templates/amo/no_results.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 msgid "No results found"
-msgstr ""
+msgstr "Няма резултати"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
@@ -1455,7 +1450,7 @@ msgstr ""
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr ""
+msgstr "Подписът е изтекъл."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
@@ -1513,7 +1508,7 @@ msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
 msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Ако поддържаното приложение не изисква файл-манифест, все пак трябва да включите такъв с нужните свойства, както е <a href=\"%(url)s\">указано тук</a>."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py
@@ -1548,7 +1543,7 @@ msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Опишете колекцията си (без външни препратки)."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Privacy:"
@@ -1560,15 +1555,15 @@ msgstr "Иконка"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Моля не попълвайте това поле, то се използва за улов на роботи"
 
 #: src/olympia/bandwagon/forms.py
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Това име не може да бъде използвано."
 
 #: src/olympia/bandwagon/forms.py src/olympia/users/forms.py
 msgid "No links are allowed."
-msgstr ""
+msgstr "Препратките са забранени."
 
 #: src/olympia/bandwagon/forms.py
 msgid "This url is already in use by another collection"
@@ -1639,7 +1634,7 @@ msgstr "Колекцията създадена!"
 #: src/olympia/bandwagon/views.py
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "Новата ви колекция е показана по-долу. Ако желаете може да <a href=\"%(url)s\">редактирате допълнителните настройки</a>."
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection updated!"
@@ -1665,7 +1660,7 @@ msgstr "Както е отбелязано в <a href=\"%(legal)s\">правни
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Create Collection"
-msgstr ""
+msgstr "Създаване на колекция"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html
 msgid "View this collection"
