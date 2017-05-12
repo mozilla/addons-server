@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-12 13:49+0000\n"
+"PO-Revision-Date: 2017-05-12 14:30+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -174,7 +174,7 @@ msgstr "Потребителите имат възможност да даряв
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr ""
+msgstr "Потребителите ще бъдат питани в Управление на добавки (Firefox 4 и нагоре). Отнася се само за настолни компютри."
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/constants/base.py
@@ -449,7 +449,7 @@ msgstr "Изисква рестартиране"
 
 #: src/olympia/addons/templates/addons/macros.html
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Тази добавка е разработена с нова технология, съвместима с Firefox 57 и по-нови."
 
 #: src/olympia/addons/templates/addons/macros.html
 msgid "Compatible with Firefox 57+"
