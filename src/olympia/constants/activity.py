@@ -551,6 +551,7 @@ class CONFIRM_AUTO_APPROVED(_LOG):
     short = _(u'Auto-Approval confirmed')
     keep = True
     editor_review_action = True
+    review_queue = True
 
 
 LOGS = [x for x in vars().values()
