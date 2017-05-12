@@ -26,8 +26,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail as amo_send_mail, to_language
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
-    AutoApprovalSummary, get_flags, ReviewerScore, ViewFullReviewQueue,
-    ViewPendingQueue, ViewUnlistedAllList)
+    get_flags, ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
+    ViewUnlistedAllList)
 from olympia.lib.crypto.packaged import sign_file
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
