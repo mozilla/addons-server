@@ -3,6 +3,7 @@ import base64
 import json
 import urlparse
 from datetime import datetime
+from os import path
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -1070,10 +1071,36 @@ class TestAccountViewSetUpdate(TestCase):
         assert json.loads(response.content)['last_login_ip'] == ''
         assert self.user.last_login_ip == ''
 
+    def test_biography_no_links(self):
+        self.client.login_api(self.user)
+        response = self.patch(
+            data={'biography': '<a href="https://google.com">google</a>'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'biography': ['No links are allowed.']}
+
+    def test_username_valid(self):
+        self.client.login_api(self.user)
+        response = self.patch(
+            data={'username': '123456'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'username': ['Usernames cannot contain only digits.']}
+
+        response = self.patch(
+            data={'username': u'£^@'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'username': [u'Enter a valid username consisting of letters, '
+                         u'numbers, underscores or hyphens.']}
+
     def test_picture_upload(self):
+        # Make sure the picture doesn't exist already or we get a false-postive
+        assert not path.exists(self.user.picture_path)
+
         self.client.login_api(self.user)
         photo = get_uploaded_file('transparent.png')
-        data = {'picture_upload': photo}
+        data = {'picture_upload': photo, 'biography': 'not just setting photo'}
         response = self.client.patch(
             self.url, data, format='multipart')
         assert response.status_code == 200
@@ -1081,6 +1108,19 @@ class TestAccountViewSetUpdate(TestCase):
         self.user = self.user.reload()
         assert 'anon_user.png' not in json_content['picture_url']
         assert '%s.png' % self.user.id in json_content['picture_url']
+        assert self.user.biography == 'not just setting photo'
+
+        assert path.exists(self.user.picture_path)
+
+    def test_picture_upload_valid(self):
+        self.client.login_api(self.user)
+        gif = get_uploaded_file('animated.gif')
+        data = {'picture_upload': gif}
+        response = self.client.patch(
+            self.url, data, format='multipart')
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'picture_upload': [u'Images must be either PNG or JPG.']}
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):
