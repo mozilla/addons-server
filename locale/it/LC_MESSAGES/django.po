@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-13 19:49+0000\n"
+"PO-Revision-Date: 2017-05-13 20:09+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -8381,8 +8381,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org, noto anche come \"AMO\", è il sito ufficiale che ospita i componenti aggiuntivi per i software Mozilla come Firefox, Thunderbird e SeaMonkey. I componenti aggiuntivi permettono "
-"di arricchire il browser e le altre applicazioni con nuove caratteristiche e modificarne il funzionamento. Esplora il sito e scopri migliaia di modi per personalizzare la tua esperienza online."
+"addons.mozilla.org, noto anche come “AMO”, è il sito ufficiale che ospita i componenti aggiuntivi per i software Mozilla come Firefox, Thunderbird e SeaMonkey. I componenti aggiuntivi permettono di "
+"arricchire il browser e le altre applicazioni con nuove caratteristiche e modificarne il funzionamento. Esplora il sito e scopri migliaia di modi per personalizzare la tua esperienza online."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
@@ -8394,8 +8394,8 @@ msgid ""
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
 "I componenti aggiuntivi ospitati su questo sito sono stati realizzati da migliaia di sviluppatori della nostra comunità, che include sia sviluppatori occasionali che programmatori professionisti di "
-"grandi società. Tutti i componenti aggiuntivi pubblicati vengono preventivamente revisionati da un apposito team di revisori. Se un componente è stato etichettato come \"sperimentale\" significa che"
-" non è ancora stato sottoposto a revisione, pertanto si consiglia di installarlo con cautela."
+"grandi società. Tutti i componenti aggiuntivi pubblicati vengono preventivamente revisionati da un apposito team di revisori. Se un componente è stato etichettato come “sperimentale” significa che "
+"non è ancora stato sottoposto a revisione, pertanto si consiglia di installarlo con cautela."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
@@ -8710,7 +8710,7 @@ msgstr "Che cos’è un file XPI?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr "Le estensioni vengono impacchettate in file ZIP o Bundle con estensione XPI (leggi \"zippy\")."
+msgstr "Le estensioni vengono impacchettate in file ZIP o Bundle con estensione XPI (leggi “zippy”)."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is XUL?"
@@ -8726,7 +8726,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
-msgstr "A cosa serve il file \"install.rdf\"?"
+msgstr "A cosa serve il file “install.rdf”?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8741,7 +8741,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
-msgstr "Che cosa significa \"maxVersion\"?"
+msgstr "Che cosa significa “maxVersion”?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "This determines the maximum version of Firefox you're saying this extension will work with. Set this to be no newer than the newest currently available version!"
@@ -8934,14 +8934,14 @@ msgstr "Si. La nostra <a href=\"%(url)s\">informativa sulla privacy</a> spiega i
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr "Cosa sono questi \"strumenti per lo sviluppatore\" elencati su AMO?"
+msgstr "Che cosa sono questi “strumenti per lo sviluppatore” presenti su AMO?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
 msgstr ""
-"La dashboard \"Strumenti di sviluppo\" è l’area in cui si trovano gli strumenti che ti servono per gestire con successo le tue applicazioni. Comprende le funzionalità necessarie per inviare i tuoi "
+"La dashboard “Strumenti di sviluppo” è l’area in cui si trovano gli strumenti che ti servono per gestire con successo le tue applicazioni. Comprende le funzionalità necessarie per inviare i tuoi "
 "componenti aggiuntivi ad AMO, gestire le informazioni del componente e analizzare le statistiche."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8969,7 +8969,7 @@ msgid ""
 "have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
 msgstr ""
 "La dashboard Strumenti di sviluppo consente di caricare i componenti aggiuntivi e proporli ad AMO. Per caricare un componente aggiuntivo devi essere un utente registrato. Prima di caricare un "
-"componente aggiuntivo leggi la <a href=\"%(url)s\">Guida per revisori</a> per assicurarti che il tuo componente segua le linee guida adottate dai revisori."
+"componente aggiuntivo leggi la <a href=“%(url)s”>Guida per revisori</a> per assicurarti che il tuo componente segua le linee guida adottate dai revisori."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -8989,7 +8989,7 @@ msgid ""
 "\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 "La scelta della categoria dipende dal tipo di utenza a cui stai mirando e dalle funzionalità del tuo componente aggiuntivo. Se non sei sicuro a quale categoria appartenga il tuo componente "
-"aggiuntivo scegli \"Altro\". Il team di AMO potrà spostarlo sotto un’altra categoria qualora ritenga che sia ad essa più indicato."
+"aggiuntivo scegli “Altro”. Il team di AMO potrà spostarlo sotto un’altra categoria qualora ritenga che sia ad essa più indicato."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
@@ -9124,8 +9124,8 @@ msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
 msgstr ""
-"Dipende. Se hai semplicemente cambiato la descrizione del tuo componente aggiuntivo o aggiornato la \"maxVersion\" per la compatibilità con un nuovo aggiornamento del programma Mozilla, allora il "
-"tuo componente non ha bisogno di essere nuovamente verificato. Se invece carichi un nuovo file con codice modificato, il tuo componente dovrà essere verificato da un revisore."
+"Dipende. Se hai semplicemente cambiato la descrizione del tuo componente aggiuntivo o aggiornato la “maxVersion” per la compatibilità con un nuovo aggiornamento del programma Mozilla, allora il tuo "
+"componente non ha bisogno di essere nuovamente verificato. Se invece carichi un nuovo file con codice modificato, il tuo componente dovrà essere verificato da un revisore."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -9193,8 +9193,8 @@ msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
 "you want to use or distribute code licensed under it."
 msgstr ""
-"In aggiunta al testo completo della Mozilla Public License(\"MPL\") hai a tua disposizione anche una versione commentata della MPL e un <abbr title=\"Domande più frequenti\">FAQ</abbr> per aiutarti "
-"nel caso in cui volessi usare o distribuire un codice registrato sotto questa licenza."
+"In aggiunta al testo completo della Mozilla Public License(“MPL”) hai a tua disposizione anche una versione commentata della MPL e un <abbr title=“Domande più frequenti”>FAQ</abbr> per aiutarti nel "
+"caso in cui volessi usare o distribuire un codice registrato sotto questa licenza."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
@@ -9332,7 +9332,7 @@ msgid ""
 "In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
 "href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
-"In Firefox, i componenti aggiuntivi contrassegnati con \"Riavvio non necessario\" possono essere installati senza riavviare il browser. Questi componenti aggiuntivi sono stati creati utilizzando <a "
+"In Firefox, i componenti aggiuntivi contrassegnati con “Riavvio non necessario” possono essere installati senza riavviare il browser. Questi componenti aggiuntivi sono stati creati utilizzando <a "
 "href=\"%(sdk_url)s\">l’Add-on SDK</a> o <a href=\"%(bootstrap_url)s\">tramite il processo di bootstrapping</a>. Gli altri componenti aggiuntivi necessitano ancora il riavvio del browser prima di "
 "poter essere utilizzati."
 
@@ -9444,7 +9444,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "Che cosa significa che un componente aggiuntivo è \"sperimentale\"?"
+msgstr "Che cosa significa che un componente aggiuntivo è “sperimentale”?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9453,13 +9453,13 @@ msgid ""
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
-"\"Sperimentale\" è un'etichetta usata dagli sviluppatori per segnalare i componenti non ancora pronti per la distribuzione al pubblico. I componenti aggiuntivi sono stati verificati dai nostri "
+"“Sperimentale” è un'etichetta usata dagli sviluppatori per segnalare i componenti non ancora pronti per la distribuzione al pubblico. I componenti aggiuntivi sono stati verificati dai nostri "
 "revisori per escludere problemi di sicurezza ma potrebbero comunque presentare bug o non funzionare correttamente. Utilizza questi componenti aggiuntivi con cautela e disinstallali se riscontri "
 "problemi. <a href=\"%(url)s\">Ulteriori informazioni sul processo di revisione</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr "Che cosa significa se un componente aggiuntivo è \"non revisionato\"?"
+msgstr "Che cosa significa se un componente aggiuntivo è “non revisionato”?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9500,7 +9500,7 @@ msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
 " are less stable than the general add-on releases."
 msgstr ""
-"I componenti aggiuntivi \"beta\" sono versioni non verificate e rappresentano il lavoro più aggiornato di uno sviluppatore. Ogni autore utilizza criteri diversi per quanto riguarda la qualità del "
+"I componenti aggiuntivi “beta” sono versioni non verificate e rappresentano il lavoro più aggiornato di uno sviluppatore. Ogni autore utilizza criteri diversi per quanto riguarda la qualità del "
 "codice di una versione beta, in ogni caso è opportuno ipotizzare che queste estensioni siano meno stabili rispetto alle versioni definitive."
 
 #: src/olympia/pages/templates/pages/faq.html
