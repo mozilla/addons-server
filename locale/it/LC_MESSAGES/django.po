@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2016-07-28 12:40+0000\n"
+"PO-Revision-Date: 2017-05-13 19:49+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -614,7 +614,7 @@ msgid ""
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
 "<strong>Come installare in Thunderbird</strong> <ol> <li>Scarica e salva il file sul tuo disco fisso.</li> <li>In Mozilla Thunderbird seleziona Componenti aggiuntivi nel menu Strumenti.</li> "
-"<li>Seleziona \"Installa componente aggiuntivo da file…\" dal pulsante Opzioni accanto al campo di ricerca e individua il file scaricato.</li> </ol>"
+"<li>Seleziona “Installa componente aggiuntivo da file…” dal pulsante Opzioni accanto al campo di ricerca e individua il file scaricato.</li> </ol>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -3844,7 +3844,7 @@ msgstr "Non è possibile caricare questo tipo di componente aggiuntivo."
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr "Non è consentito caricare un componente il cui GUID termini in \"@mozilla.org\""
+msgstr "Non è consentito caricare un componente il cui GUID termini in “@mozilla.org”"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -3950,7 +3950,7 @@ msgstr "Cerca"
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "Search Results for \"{0}\""
-msgstr "Risultati di ricerca per \"{0}\""
+msgstr "Risultati di ricerca per “{0}”"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
 msgid "Search Results"
