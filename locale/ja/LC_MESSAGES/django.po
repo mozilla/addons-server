@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-02 23:57+0000\n"
+"PO-Revision-Date: 2017-05-14 03:28+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1479,7 +1479,7 @@ msgstr "https://developer.mozilla.org/ja/Add-ons/WebExtensions/manifest.json/app
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr ""
+msgstr "WebExtensions では <a href=\"%(version_url)s\">strict_min_version</a> に「*」を設定できないことに注意してください。"
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
@@ -2560,7 +2560,7 @@ msgstr "{addon} {version} の上級審査が申請されました。"
 
 #: src/olympia/constants/activity.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "このアドオンは管理者審査に回されました。引き続き審査待ちの状態にありますが、管理者権限を持った審査担当者による確認が必要となります。この審査は通常より時間が掛かる場合があります。"
 
 #: src/olympia/constants/activity.py
 msgid "Comment on {addon} {version}."
@@ -3599,7 +3599,7 @@ msgstr "バージョン {version} は既に存在します。"
 
 #: src/olympia/devhub/forms.py
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "代わりに既存のアップロードで続けますか？"
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -3651,15 +3651,15 @@ msgstr[0] "{0} 個の警告"
 
 #: src/olympia/devhub/tasks.py
 msgid "Starting with Firefox 53, new extensions on this site can only be WebExtensions."
-msgstr ""
+msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は WebExtensions のみとなります。"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "私たちはアップグレードを許容し推奨していますが、この手続きは取り消せません。一度ユーザーが WebExtension をインストールしたら、旧式のアドオンはインストールできなくなります。"
 
 #: src/olympia/devhub/tasks.py
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "WebExtensions を旧式のアドオンへ更新することはできません。Firefox はそうした形での更新に対応していないため、ユーザーは新バージョンを使用できなくなります。"
 
 #: src/olympia/devhub/tasks.py
 #, python-format
