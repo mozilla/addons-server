@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-14 11:10+0000\n"
+"PO-Revision-Date: 2017-05-14 11:30+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -4806,7 +4806,7 @@ msgstr "登録完了！ このバージョンは審査に出されました。�
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "あなたのアドオン情報は、詳しい説明やスクリーンショットを追加することでより良いものとなります。詳細ページを公開する準備をしましょう。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Manage Listing"
@@ -4967,7 +4967,7 @@ msgstr "このアドオンはサイト管理者によって無効化されてお
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "あなたのアドオンは検索結果に含まれず、詳細ページにはあなたがそれを無効化していることが記載されます。この状態では、新バージョンの登録は受け付けられません。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Created:"
@@ -5535,7 +5535,7 @@ msgstr "このテーマを説明するタグをいくつか追加してくださ
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
+msgstr "検索結果やカテゴリーなどのリスト、そしてテーマの詳細ページ最上部に表示される、このテーマの基本機能についての短い説明文。"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme License"
@@ -5697,7 +5697,7 @@ msgstr "次のステップ:"
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "<a href=\"%(edit_url)s\">詳細ページを編集して</a> このテーマに関する詳しい情報を追加してください。"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -5878,7 +5878,7 @@ msgstr "{label_open}公開:{label_close} {site_url} 上ですべての人に公�
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "{label_open}非公開:{label_close} 検索結果に含まれず、詳細ページにはあなたがそれを無効化していることが記載されます。この状態では、新バージョンの登録は受け付けられません。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed versions"
@@ -5925,7 +5925,7 @@ msgstr "バージョン {version} を削除"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr ""
+msgstr "あなたはアドオンの現行バージョンを削除しようとしています。これがあなたのアドオンで唯一の公開バージョンである場合、この操作によってアドオンの状態が変わったり、詳細ページの一般公開が取り消されたりする可能性があります。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Deleting this version will permanently delete:"
@@ -9175,7 +9175,7 @@ msgstr ""
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are unreviewed by Mozilla and may harm your computer."
-msgstr ""
+msgstr "アドオン詳細ページの「ベータ版」セクションからアドオンをインストールした場合、そのアドオンの更新が登録されると同時にそれを受け取ることとなります。最初にインストールしたバージョンと同様に、すべてのベータ版は Mozilla による審査を経ておらず、コンピューターに悪影響を及ぼす可能性があります。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
