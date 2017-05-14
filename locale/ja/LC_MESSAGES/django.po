@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-14 12:10+0000\n"
+"PO-Revision-Date: 2017-05-14 12:28+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5233,7 +5233,7 @@ msgstr "アドオンを審査"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "ボランティアの審査担当者がアドオンを安全で期待通りに使えるよう協力してくれています。彼らには素晴らしい役得もあります！"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
@@ -5257,11 +5257,11 @@ msgstr "その他の参加方法"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Firefox を最もカスタマイズ自在なブラウザとして保つための協力にコーディングスキルは不要です！"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "See how"
-msgstr ""
+msgstr "詳しくはこちら"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html
 msgid "Manage Your Add-on"
@@ -5365,7 +5365,7 @@ msgstr "アドオンを公開"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "アドオンの準備ができていますか？ あなたの拡張機能やテーマを addons.mozilla.org に掲載するために登録するか、拡張機能を自分自身で配布するために署名を付与しましょう。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Sign In"
@@ -5543,7 +5543,7 @@ msgstr "テーマのライセンス"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "このテーマを、あなたのクレジットを表示する限り、他の人が共有できるようにしますか？"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
@@ -5555,11 +5555,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "このテーマを他の人が商用にも利用できるようにしますか？"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "他の人がこのテーマを元にした派生作品を作れるようにしますか？"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
@@ -5707,7 +5707,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "私達の <a href=\"%(forum_url)s\">フォーラム</a> での議論に参加してください。"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a header image for your Theme."
@@ -5853,7 +5853,7 @@ msgstr "審査履歴を読み込み中..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "審査ノートの取得中に問題が発生しました"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
@@ -5965,31 +5965,31 @@ msgstr "アドオンを非公開にしてもよろしいですか？"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "審査リクエストをキャンセルすることで、このアドオンは不完全とされ、審査待ちのバージョンがある場合それらはすべて無効化されます。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "本当にこの審査リクエストをキャンセルしますか？"
 
 #: src/olympia/discovery/data.py
 msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} メディアをダウンロード"
 
 #: src/olympia/discovery/data.py
 msgid "Manage massive audio, video, and image downloads with this lightweight tool."
-msgstr ""
+msgstr "この軽量ツールで、大量の音声、動画、画像ダウンロードを管理しましょう。"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック"
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "軽量で効果的な広告ブロッカー。uBlock Origin は、大量のメモリを消費することなく、数千ものコンテンツフィルターを適用します。"
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンショットを撮影"
 
 #: src/olympia/discovery/data.py
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
