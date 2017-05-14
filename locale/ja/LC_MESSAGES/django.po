@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-14 03:53+0000\n"
+"PO-Revision-Date: 2017-05-14 11:10+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -4722,7 +4722,7 @@ msgstr "このアドオンは実験的です"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
-msgstr ""
+msgstr "アドオンが実験的あるいはその他の理由で一般利用には時期尚早である場合、このオプションにチェックを入れてください。アドオンは掲載されますが、視認性は下げられます。この設定は後から変更できます。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Support email:"
@@ -4802,7 +4802,7 @@ msgstr "審査が申請されているバージョン"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "登録完了！ このバージョンは審査に出されました。審査完了時、あるいは審査担当者がこのアドオンに関して何か質問がある場合は、メールでご連絡します。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
