@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-14 11:50+0000\n"
+"PO-Revision-Date: 2017-05-14 12:10+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5048,11 +5048,11 @@ msgstr "<a href=\"%(url)s\"><strong>ユーザープロフィールを更新す�
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr ""
+msgstr "スーパーマーケットで列に並んでいる間に思いついたアイデア、あるいは生活上の何か重大な問題への解決策かもしれませんが、あなたのストーリーを共有してください。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr ""
+msgstr "次に何が来るかをユーザーに伝えることで、彼らに何らかの期待を与えることができます。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
@@ -5130,7 +5130,7 @@ msgstr "アドオンに既知のライブラリ以外のバイナリコードや
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "最終的なアドオンのファイルを再現するための手順を、README ファイルもしくはこのバージョンの「審査担当者へのメモ」に記述してください。"
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
@@ -5382,11 +5382,11 @@ msgstr "このアドオンの自動コードテストです。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "See if your add-on is likely to be affected by changes in Firefox."
-msgstr ""
+msgstr "あなたのアドオンが Firefox の変更による影響を受ける可能性があるかどうか見てみましょう。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/tools.html
 msgid "Tell us if an add-on works in a particular version of Firefox."
-msgstr ""
+msgstr "アドオンが Firefox の特定のバージョンで動作するかどうか教えてください。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -5411,11 +5411,11 @@ msgstr "私たちの寄付プログラムに登録されたアドオンは、ユ
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr ""
+msgstr "開発者プロフィールを通じてあなたのアドオンへの支持をユーザーへ訴えましょう"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "ユーザーに寄付を尋ねるタイミングや方法を選択"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
@@ -5440,7 +5440,7 @@ msgstr "寄付を設定"
 
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 msgid "Step 2. Pricing and Availability"
-msgstr ""
+msgstr "手順 2: 価格と公開対象"
 
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 #, python-format
@@ -6616,7 +6616,7 @@ msgstr "審査担当者用ダッシュボード"
 
 #: src/olympia/editors/templates/editors/leaderboard.html src/olympia/editors/templates/editors/performance.html
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "レビューポイントはまだ付与されていません。"
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Rank"
@@ -7073,7 +7073,7 @@ msgstr "同じバージョンの差分を取ることはできません"
 #: src/olympia/files/helpers.py
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "ファイルビューアーはロックされており、%s の抽出が行われている可能性があります。約 5 分後に再度試してください。"
 
 #: src/olympia/files/helpers.py
 #, python-format
@@ -7157,7 +7157,7 @@ msgstr "アドオンの ID は 64 文字以下でなければなりません。"
 #: src/olympia/files/utils.py
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "manifest.json あるいは install.rdf 内のアドオン ID (%s) が AMO 上のあなたのアドオンの ID (%s) と一致しません。"
+msgstr "manifest.json あるいは install.rdf 内のアドオン ID (%s) が AMO 上のあなたのアドオンの ID (%s) と一致しません"
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
@@ -7173,12 +7173,12 @@ msgstr "バージョン番号に英数字もしくは記号「+*.-_.」以外の
 
 #: src/olympia/files/utils.py
 msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
+msgstr "WebExtension テーマのアップロードには現時点では対応していません。"
 
 #: src/olympia/files/utils.py
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "install.rdf 内の <em:type> (%s) が AMO 上のあなたのアドオンのタイプ (%s) と一致しません"
 
 #: src/olympia/files/views.py
 msgid "Back to review"
@@ -7207,7 +7207,7 @@ msgstr "検証失敗:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "ファイルの内容が構文の強調表示に対応していません"
 
 #: src/olympia/files/templates/files/viewer.html
 #, python-format
@@ -7408,7 +7408,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
-msgstr ""
+msgstr "ゲーム！"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
@@ -8251,7 +8251,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "私達の <a href=\"%(url)s\">フォーラム</a> へ参加してください。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
