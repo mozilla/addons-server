@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-14 03:28+0000\n"
+"PO-Revision-Date: 2017-05-14 03:49+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -3625,11 +3625,11 @@ msgstr "依存アドオンを 3 つ以上指定することはできません。
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
-msgstr ""
+msgstr "当サイト上で。<span class=\"helptext\">あなたのアドオンは、コード審査を通った後、当サイトや大勢のユーザーが利用する Firefox のアドオンマネージャーに掲載されます。自動更新は当サイトによって処理されます。このアドオンは Mozilla によるプロモーションやコンテストの対象となる可能性もあります。審査済みファイルの自主配布も可能です。</span>"
 
 #: src/olympia/devhub/forms.py
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr ""
+msgstr "自分自身で。<span class=\"helptext\">あなたのアドオンは即座に署名され自主配布可能となります。更新は、updateURL もしくは外部アプリケーションの更新を通じて、あなた自身で処理する必要があります。</span>"
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -4235,7 +4235,7 @@ msgstr "実験的？"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "このアドオンが実験的あるいはその他の理由で一般利用には時期尚早である場合。アドオンは掲載されますが、視認性は下げられます。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
@@ -4671,7 +4671,7 @@ msgstr "このアドオンには一切バージョンがありません。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
-msgstr ""
+msgstr "このアドオンには承認済みのバージョンが一切ないため、(ベータ版を含む) 公開ページは非表示となっています。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -5013,7 +5013,7 @@ msgstr "審査は待ち順にレビューされるとは限りません"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "署名され自主配布可能となりました。更新はあなた自身で処理する必要があります。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded unlisted version."
@@ -5237,15 +5237,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Join us!"
-msgstr ""
+msgstr "参加しよう！"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Write Some Code"
-msgstr ""
+msgstr "何かコードを書く"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "コーディングスキルを提供することで、アドオンの改善に協力してください。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html
 msgid "Get started"
@@ -5277,7 +5277,7 @@ msgstr "アドオン開発の進化"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
-msgstr ""
+msgstr "WebExtensions は Firefox におけるアドオン開発の標準となりました。互換性を保つため、旧式のアドオンは更新する必要があります。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
@@ -6241,7 +6241,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "このバージョンに関するコメントを残してください。開発者がこれを見ることはありません。"
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -6277,15 +6277,15 @@ msgstr "WebExtension"
 
 #: src/olympia/editors/models.py
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "独自の CSP を使用している。"
 
 #: src/olympia/editors/models.py
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "nativeMessaging 許可設定を使用している。"
 
 #: src/olympia/editors/models.py
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "すべての URL に対するコンテンツスクリプトを使用している。"
 
 #: src/olympia/editors/models.py
 msgid "Has too many daily users."
