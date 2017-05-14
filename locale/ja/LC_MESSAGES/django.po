@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-14 03:49+0000\n"
+"PO-Revision-Date: 2017-05-14 03:53+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -4560,7 +4560,7 @@ msgstr "テーマの削除を実行すると、このテーマはサイトから
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
-msgstr ""
+msgstr "アドオンを削除すると、このアドオンのために登録されたすべてのバージョンとファイルが、公開かどうかに関わらず永久に削除されます。アドオンの ID は、第三者が同じ ID を使って登録できないよう、引き続きあなたのアカウントに紐付けられます。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text to confirm your decision: {slug}"
