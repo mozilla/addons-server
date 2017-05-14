@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-14 11:30+0000\n"
+"PO-Revision-Date: 2017-05-14 11:50+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -4814,7 +4814,7 @@ msgstr "掲載ページを管理"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "このバージョンを編集して、バージョンノートを追加したり、もし最小化、難読化あるいはコンパイルされたコードが含まれている場合は、元のソースコードを提供したりすることもできます。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -4842,7 +4842,7 @@ msgstr "{0} をダウンロード"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission. You can upload more files that target other platforms:"
-msgstr ""
+msgstr "このアドオンでは提供可能なプラットフォームの一部しか選択されていません。他のプラットフォームを対象としたファイルを追加でアップロードすることもできます。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload File"
@@ -4911,7 +4911,7 @@ msgstr "詳しい手順は <a href=\"%(docs_url)s\"><a href=\"%(docs_url)s\">API
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "API キーはあなただけの秘密にしておき、Mozilla の貢献者を含め <strong>誰とも共有してはいけません</strong>。"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -4989,7 +4989,7 @@ msgstr "あなたのアドオンは、マルチプロセスで動作する Firef
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "コード審査を通った後、当サイトに掲載されます。自動更新は当サイトによって処理されます。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Listed Version:"
@@ -5290,7 +5290,7 @@ msgstr "最新ニュース"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
-msgstr ""
+msgstr "従来型のアドオンを WebExtensions へ移行中ですか？ オフィスアワー中に、あるいは <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a> へメールを送ることで、より具体的なサポートを受けられます。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "See Schedule"
@@ -5302,7 +5302,7 @@ msgstr "すべての登録アイテムを表示"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "ここがあなたのアドオンやテーマを表示し管理する場所です。初めてのアドオンを公開するには「初めてのアドオンを登録」あるいは「初めてのテーマを登録」をクリックしてください。"
 
 # ボタン
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html
@@ -5357,7 +5357,7 @@ msgstr "Chrome 拡張機能を移植"
 #: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
-msgstr ""
+msgstr "Firefox は、Chrome や Opera、Edge が提供している拡張機能 API と多くの場合互換性がある WebExtension API に対応していますので、あなたの拡張機能は少し変更を加えるだけで Firefox でも動作します。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html
 msgid "Publish Your Add-on"
@@ -6321,11 +6321,11 @@ msgstr "新着アドオン (5 日以内)"
 
 #: src/olympia/editors/views.py
 msgid "Passable (5 to 10 days)"
-msgstr ""
+msgstr "許容範囲内 (5 〜 10 日)"
 
 #: src/olympia/editors/views.py
 msgid "Overdue (Over 10 days)"
-msgstr ""
+msgstr "延滞 (10 日以上)"
 
 #: src/olympia/editors/views.py
 msgid "An unknown error occurred"
@@ -7103,7 +7103,7 @@ msgstr "このファイルはディレクトです。"
 
 #: src/olympia/files/models.py
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "{name} のデータを取得"
 
 #: src/olympia/files/models.py
 msgid "Access your data on the following websites:"
@@ -7157,7 +7157,7 @@ msgstr "アドオンの ID は 64 文字以下でなければなりません。"
 #: src/olympia/files/utils.py
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "manifest.json あるいは install.rdf 内のアドオン ID (%s) が AMO 上のあなたのアドオンの ID (%s) と一致しません。"
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
