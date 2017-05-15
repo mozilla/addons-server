@@ -54,7 +54,7 @@ for debugLocale in $DEBUG_LOCALES; do
             rewrite="flipped"
         fi
 
-        echo "generating debug locale $debugLocale for $domain using $rewrite"
+        echo "generating debug locale '$debugLocale' for '$domain' using '$rewrite'"
 
         podebug -i "templates/LC_MESSAGES/$domain.pot" -o "$debugLocale/LC_MESSAGES/$domain.po" --rewrite "$rewrite"
     done
