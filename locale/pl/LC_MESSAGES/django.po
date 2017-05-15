@@ -9894,7 +9894,7 @@ msgstr "W każdym badaniu Shield zbierane są dane o związanych z nim ważnych 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr "Dane te są zbierane w powiązaniu z funkcją <a href="%(url)s">Firefox Telemetry</a>."
+msgstr "Dane te są zbierane w powiązaniu z funkcją <a href=\"%(url)s\">Firefox Telemetry</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "This particular Study"
@@ -9919,7 +9919,7 @@ msgstr "Mozilla zobowiązuje się zachować poufność tych informacji. Wszelkie
 #: src/olympia/pages/templates/pages/shield_study_11.html
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr "<a href="%(url)s">Tutaj znajdziesz więcej informacji o danych zbieranych na potrzeby tego badania</a>."
+msgstr "<a href=\"%(url)s\">Tutaj znajdziesz więcej informacji o danych zbieranych na potrzeby tego badania</a>."
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "You Help Make Firefox Better"
