@@ -135,7 +135,10 @@ class NotifyForm(happyforms.Form):
 
 
 class FeaturedCollectionForm(happyforms.ModelForm):
-    LOCALES = (('', u'(Default Locale)'),) + tuple(settings.LANGUAGES.items())
+    LOCALES = (('', u'(Default Locale)'),) + tuple(
+        (lang, product_details.languages[lang]['native'])
+        for lang in settings.AMO_LANGUAGES)
+
     application = forms.ChoiceField(amo.APPS_CHOICES)
     collection = forms.CharField(widget=forms.HiddenInput)
     locale = forms.ChoiceField(choices=LOCALES, required=False)
