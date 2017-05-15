@@ -48,7 +48,7 @@ pushd locale > /dev/null
 
 for debugLocale in $DEBUG_LOCALES; do
     for domain in django djangojs; do
-        if [ "$locale" == "dbl" ]; then
+        if [ "$debugLocale" == "dbl" ]; then
             rewrite="unicode"
         else
             rewrite="flipped"
