@@ -636,7 +636,8 @@ def review(request, addon, channel=None):
         return redirect(reverse('editors.queue'))
 
     form_helper = ReviewHelper(request=request, addon=addon, version=version)
-    form = forms.ReviewForm(request.POST or None, helper=form_helper)
+    form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
+                            helper=form_helper)
     if channel == amo.RELEASE_CHANNEL_LISTED:
         queue_type = form.helper.handler.review_type
         redirect_url = reverse('editors.queue_%s' % queue_type)
@@ -703,8 +704,13 @@ def review(request, addon, channel=None):
     except Version.DoesNotExist:
         show_diff = None
 
-    # The actions we should show a minimal form from.
+    # The actions we should show a minimal form for.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
+
+    # The actions we should show the comments form for (contrary to minimal
+    # form above, it defaults to True, because most actions do need to have
+    # the comments form).
+    actions_comments = [k for (k, a) in actions if a.get('comments', True)]
 
     versions = (Version.unfiltered.filter(addon=addon, channel=channel)
                                   .select_related('autoapprovalsummary')
@@ -767,6 +773,7 @@ def review(request, addon, channel=None):
                   form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
                   actions=actions, actions_minimal=actions_minimal,
+                  actions_comments=actions_comments,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
                   user_changes=user_changes_log,
                   unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
@@ -895,7 +902,7 @@ def reviewlog(request):
                 Q(user__username__icontains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
-    ad = {
+    action_dict = {
         amo.LOG.APPROVE_VERSION.id: _('was approved'),
         # The log will still show preliminary, even after the migration.
         amo.LOG.PRELIMINARY_VERSION.id: _('given preliminary review'),
@@ -905,9 +912,10 @@ def reviewlog(request):
         amo.LOG.REQUEST_INFORMATION.id: _('needs more information'),
         amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
         amo.LOG.COMMENT_VERSION.id: _('commented'),
+        amo.LOG.CONFIRM_AUTO_APPROVED.id: _('confirmed as approved'),
     }
 
-    data = context(request, form=form, pager=pager, ACTION_DICT=ad,
+    data = context(request, form=form, pager=pager, ACTION_DICT=action_dict,
                    motd_editable=motd_editable)
     return render(request, 'editors/reviewlog.html', data)
 

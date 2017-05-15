@@ -430,6 +430,32 @@ class ReviewHelper(object):
                                  'from the queue. The comments will be sent '
                                  'to the developer.'),
                 'minimal': False}
+        # If the addon current version was auto-approved, extra actions are
+        # available to users with post-review permission, allowing them to
+        # confirm the approval or reject versions.
+        if (self.addon.current_version and
+                self.addon.current_version.was_auto_approved and
+                acl.action_allowed(
+                    request, amo.permissions.ADDONS_POST_REVIEW)):
+            actions['confirm_auto_approved'] = {
+                'method': self.handler.confirm_auto_approved,
+                'label': _lazy('Confirm Approval'),
+                'details': _lazy('The latest public version of this add-on '
+                                 'was automatically approved. This records '
+                                 'your confirmation of the approval, '
+                                 'without notifying the developer.'),
+                'minimal': True,
+                'comments': False,
+            }
+            # Not implemented yet, will be in #5275.
+            # actions['reject_auto_approved'] = {
+            #     'method': self.handler.reject_auto_approved,
+            #     'label': _lazy('Reject'),
+            #     'details': _lazy('This will reject the specified '
+            #                      'auto-approved versions. The comments will '
+            #                      'be sent to the developer.'),
+            #     'minimal': True,
+            # }
         if self.version:
             actions['info'] = {
                 'method': self.handler.request_information,
@@ -683,6 +709,16 @@ class ReviewBase(object):
 
         # Always notify senior editors.
         self.send_super_mail()
+
+    def confirm_auto_approved(self):
+        """Confirm an auto-approval decision.
+
+        We don't need to really store that information, what we care about
+        is incrementing AddonApprovalsCounter, which also resets the last
+        human review date to now, and log it so that it's displayed later
+        in the review page."""
+        AddonApprovalsCounter.increment_for_addon(addon=self.addon)
+        self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED)
 
 
 class ReviewAddon(ReviewBase):

@@ -301,6 +301,21 @@ class TestReviewHelper(TestCase):
                 addon_status=amo.STATUS_PUBLIC,
                 file_status=file_status).keys() == expected
 
+    def test_actions_public_post_reviewer(self):
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        expected = ['info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_PUBLIC).keys() == expected
+
+        # Now make current version auto-approved...
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        expected = ['confirm_auto_approved', 'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_PUBLIC).keys() == expected
+
     def test_actions_no_version(self):
         """Deleted addons and addons with no versions in that channel have no
         version set."""
@@ -698,6 +713,24 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
         self._check_score(amo.REVIEWED_ADDON_UPDATE)
+
+    def test_public_addon_confirm_auto_approval(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED)
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.current_version.files.all()[0].status == (
+            amo.STATUS_PUBLIC)
+
+        self.helper.handler.confirm_auto_approved()
+
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
 
     @patch('olympia.editors.helpers.sign_file')
     def test_null_to_public_unlisted(self, sign_mock):
