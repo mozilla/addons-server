@@ -176,10 +176,23 @@ HIDDEN_LANGUAGES = ('cy', 'hr', 'sr', 'sr-Latn', 'tr')
 
 def lazy_langs(languages):
     from product_details import product_details
+
     if not product_details.languages:
         return {}
-    return dict([(i.lower(), product_details.languages[i]['native'])
-                 for i in languages])
+
+    language_mapping = {}
+
+    for lang in languages:
+        if lang == 'dbl':
+            lang_name = product_details.languages['dbg']['native']
+        elif lang == 'dbr':
+            lang_name = product_details.languages['dbg']['native'] + ' (RTL)'
+        else:
+            lang_name = product_details.languages[lang]['native']
+
+        language_mapping[lang.lower()] = lang_name
+
+    return language_mapping
 
 
 # Where product details are stored see django-mozilla-product-details
@@ -188,7 +201,7 @@ PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
-RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
+LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 

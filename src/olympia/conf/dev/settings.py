@@ -223,7 +223,8 @@ PAYPAL_CHAINS = (
 
 SENTRY_DSN = env('SENTRY_DSN')
 
-AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
+AMO_LANGUAGES = AMO_LANGUAGES + ('dbr', 'dbl')
+
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
