@@ -42,7 +42,7 @@ fi
 
 echo "Alright, here we go..."
 
-# ./manage.py extract
+./manage.py extract
 
 pushd locale > /dev/null
 
