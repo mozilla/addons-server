@@ -90,7 +90,8 @@ def urlparams(url_, hash=None, **query):
     New query params will be appended to existing parameters, except duplicate
     names, which will be replaced.
     """
-    url = django_urlparse(url_)
+    url = django_urlparse(force_text(url_))
+
     fragment = hash if hash is not None else url.fragment
 
     # Use dict(parse_qsl) so we don't get lists of values.
