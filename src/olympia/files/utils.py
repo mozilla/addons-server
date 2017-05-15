@@ -923,10 +923,11 @@ def extract_translations(file_obj):
                 try:
                     data = source.read(fname)
                     messages[corrected_locale] = decode_json(data)
-
-                except KeyError:
-                    # thrown by `source.read` usually means the file doesn't
-                    # exist for some reason, we fail silently
+                except (ValueError, KeyError):
+                    # `ValueError` thrown by `decode_json` if the json is
+                    # invalid and `KeyError` thrown by `source.read`
+                    # usually means the file doesn't exist for some reason,
+                    # we fail silently
                     continue
     except IOError:
         pass

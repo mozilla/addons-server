@@ -474,7 +474,7 @@ def test_extract_translations_simple(file_obj):
 
 
 @mock.patch('olympia.files.utils.zipfile.ZipFile.read')
-def test_extract_translations_fail_silent_missing_file(read_mock, file_obj):
+def test_extract_translations_fail_silent_invalid_file(read_mock, file_obj):
     extension = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
     with amo.tests.copy_file(extension, file_obj.file_path):
@@ -488,10 +488,15 @@ def test_extract_translations_fail_silent_missing_file(read_mock, file_obj):
         # Does not raise an exception too
         utils.extract_translations(file_obj)
 
-        # We only catch KeyError and IOError though
+        # We don't fail on invalid JSON too, this is addons-linter domain
         read_mock.side_effect = ValueError
 
-        with pytest.raises(ValueError):
+        utils.extract_translations(file_obj)
+
+        # But everything else...
+        read_mock.side_effect = TypeError
+
+        with pytest.raises(TypeError):
             utils.extract_translations(file_obj)
 
 
