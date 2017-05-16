@@ -15,8 +15,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import list_route
-from rest_framework.mixins import RetrieveModelMixin
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin
+from rest_framework.permissions import (
+    AllowAny, BasePermission, IsAuthenticated)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
@@ -30,7 +31,7 @@ from olympia.amo import messages
 from olympia.amo.decorators import write
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
-from olympia.api.permissions import GroupPermission
+from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users.models import UserProfile
 
 from . import verify
@@ -371,8 +372,25 @@ class SessionView(APIView):
         return response
 
 
-class AccountViewSet(RetrieveModelMixin, GenericViewSet):
-    permission_classes = [AllowAny]
+class AllowSelf(BasePermission):
+    def has_permission(self, request, view):
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        return request.user.is_authenticated() and obj == request.user
+
+
+class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
+    permission_classes = [
+        ByHttpMethod({
+            'get': AllowAny,
+            'head': AllowAny,
+            'options': AllowAny,  # Needed for CORS.
+            # To edit a profile it has to yours, or be an admin.
+            'patch': AnyOf(AllowSelf, GroupPermission(
+                amo.permissions.USERS_EDIT)),
+        }),
+    ]
     queryset = UserProfile.objects.all()
 
     def get_object(self):

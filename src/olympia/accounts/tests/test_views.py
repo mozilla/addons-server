@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import base64
+import json
 import urlparse
 from datetime import datetime
+from os import path
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -22,6 +24,7 @@ from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
     assert_url_equal, create_switch, user_factory, APITestClient,
     InitializeSessionMixin, PatchMixin, TestCase, WithDynamicEndpoints)
+from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.users.models import UserProfile
@@ -945,10 +948,8 @@ class TestAccountViewSet(TestCase):
         # instead...
         response = self.client.post(reverse('account-profile'))
         assert response.status_code == 405
-        # We can try put/patch on the detail URL though.
+        # We can try put on the detail URL though.
         response = self.client.put(self.url)
-        assert response.status_code == 405
-        response = self.client.patch(self.url)
         assert response.status_code == 405
 
     def test_self_view(self):
@@ -999,6 +1000,127 @@ class TestAccountViewSet(TestCase):
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
         assert response.data['email'] == self.random_user.email
+
+
+class TestAccountViewSetUpdate(TestCase):
+    client_class = APITestClient
+    update_data = {
+        'display_name': 'Bob Loblaw',
+        'biography': 'You don`t need double talk; you need Bob Loblaw',
+        'homepage': 'http://bob-loblaw-law-web.blog',
+        'location': 'law office',
+        'occupation': 'lawyer',
+        'username': 'bob',
+    }
+
+    def setUp(self):
+        self.user = user_factory()
+        self.url = reverse('account-detail',
+                           kwargs={'pk': self.user.pk})
+        super(TestAccountViewSetUpdate, self).setUp()
+
+    def patch(self, url=None, data=None):
+        return self.client.patch(url or self.url, data or self.update_data)
+
+    def test_basic_patch(self):
+        self.client.login_api(self.user)
+        original = self.client.get(self.url).content
+        response = self.patch()
+        assert response.status_code == 200
+        assert response.content != original
+        modified_json = json.loads(response.content)
+        self.user = self.user.reload()
+        for prop, value in self.update_data.iteritems():
+            assert modified_json[prop] == value
+            assert getattr(self.user, prop) == value
+
+    def test_no_auth(self):
+        response = self.patch()
+        assert response.status_code == 401
+
+    def test_different_account(self):
+        self.client.login_api(self.user)
+        url = reverse('account-detail', kwargs={'pk': user_factory().pk})
+        response = self.patch(url=url)
+        assert response.status_code == 403
+
+    def test_admin_patch(self):
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        random_user = user_factory()
+        url = reverse('account-detail', kwargs={'pk': random_user.pk})
+        original = self.client.get(url).content
+        response = self.patch(url=url)
+        assert response.status_code == 200
+        assert response.content != original
+        modified_json = json.loads(response.content)
+        random_user = random_user.reload()
+        for prop, value in self.update_data.iteritems():
+            assert modified_json[prop] == value
+            assert getattr(random_user, prop) == value
+
+    def test_read_only_fields(self):
+        self.client.login_api(self.user)
+        original = self.client.get(self.url).content
+        # Try to patch a field that can't be patched.
+        response = self.patch(data={'last_login_ip': '666.666.666.666'})
+        assert response.status_code == 200
+        assert response.content == original
+        self.user = self.user.reload()
+        # Confirm field hasn't been updated.
+        assert json.loads(response.content)['last_login_ip'] == ''
+        assert self.user.last_login_ip == ''
+
+    def test_biography_no_links(self):
+        self.client.login_api(self.user)
+        response = self.patch(
+            data={'biography': '<a href="https://google.com">google</a>'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'biography': ['No links are allowed.']}
+
+    def test_username_valid(self):
+        self.client.login_api(self.user)
+        response = self.patch(
+            data={'username': '123456'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'username': ['Usernames cannot contain only digits.']}
+
+        response = self.patch(
+            data={'username': u'£^@'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'username': [u'Enter a valid username consisting of letters, '
+                         u'numbers, underscores or hyphens.']}
+
+    def test_picture_upload(self):
+        # Make sure the picture doesn't exist already or we get a false-postive
+        assert not path.exists(self.user.picture_path)
+
+        self.client.login_api(self.user)
+        photo = get_uploaded_file('transparent.png')
+        data = {'picture_upload': photo, 'biography': 'not just setting photo'}
+        response = self.client.patch(
+            self.url, data, format='multipart')
+        assert response.status_code == 200
+        json_content = json.loads(response.content)
+        self.user = self.user.reload()
+        assert 'anon_user.png' not in json_content['picture_url']
+        assert '%s.png' % self.user.id in json_content['picture_url']
+        assert self.user.biography == 'not just setting photo'
+
+        assert path.exists(self.user.picture_path)
+
+    def test_picture_upload_valid(self):
+        self.client.login_api(self.user)
+        gif = get_uploaded_file('animated.gif')
+        data = {'picture_upload': gif}
+        response = self.client.patch(
+            self.url, data, format='multipart')
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'picture_upload': [u'Images must be either PNG or JPG.']}
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):

@@ -73,6 +73,55 @@ This endpoint is a shortcut to your own account. It returns an :ref:`account obj
 .. http:get:: /api/v3/accounts/profile/
 
 
+----
+Edit
+----
+
+.. _`account-edit`:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Users:Edit`
+    permission to edit accounts other than your own.
+
+This endpoint allows some of the details for an account to be updated.  Any fields
+in the :ref:`account <account-object>` (or :ref:`self <account-object-self>`)
+but not listed below are not editable and will be ignored in the patch request.
+
+.. http:patch:: /api/v3/accounts/account/(int:user_id)/
+
+    .. _account-edit-request:
+
+    :<json string|null biography: More details about the user.  No links are allowed.
+    :<json string|null display_name: The name chosen by the user.
+    :<json string|null homepage: The user's website.
+    :<json string|null location: The location of the user.
+    :<json string|null occupation: The occupation of the user.
+    :<json string|null username: username to be used in the account url.  The username can only contain letters, numbers, underscores or hyphens. All-number usernames are prohibited as they conflict with user-ids.
+
+
+-------------------
+Uploading a picture
+-------------------
+
+To upload a picture for the profile the request must be sent as content-type `multipart/form-data` instead of JSON.
+Images must be either PNG or JPG; the maximum file size is 4MB.
+Other :ref:`editable values <account-edit-request>` can be set at the same time.
+
+.. http:patch:: /api/v3/accounts/account/(int:user_id)/
+
+    **Request:**
+
+    .. sourcecode:: bash
+
+        curl "https://addons.mozilla.org/api/v3/accounts/account/12345/"
+            -g -XPATCH --form "picture_upload=@photo.png"
+            -H "Authorization: Bearer <token>"
+
+    :param user-id: The numeric user id.
+    :form picture_upload: The user's picture to upload.
+    :reqheader Content-Type: multipart/form-data
+
+
 ----------------
 Collections List
 ----------------
@@ -136,7 +185,6 @@ This endpoint lists the add-ons in a collection, together with collector's notes
     :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item.
     :>json string|object|null results[].notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
     :>json int results[].downloads: The downloads that occured via this collection.
-
 
 
 --------------
