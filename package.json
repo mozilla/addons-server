@@ -12,6 +12,6 @@
     "clean-css-cli": "4.1.0",
     "less": "2.7.2",
     "stylus": "0.54.5",
-    "uglify-js": "3.0.5"
+    "uglify-js": "3.0.6"
   }
 }
