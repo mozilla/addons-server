@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-15 02:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,14 +191,6 @@ msgstr "Ḿẏ ȧḓḓ-ǿƞ ḓǿḗşƞ'ŧ ƒīŧ īƞŧǿ ȧƞẏ ǿƒ ŧħ�
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "No compatible versions"
 msgstr "Ƞǿ ƈǿḿƥȧŧīƀŀḗ ṽḗřşīǿƞş"
-
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
-msgid "Added to Mobile"
-msgstr "Ȧḓḓḗḓ ŧǿ Ḿǿƀīŀḗ"
-
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
-msgid "Add to Mobile"
-msgstr "Ȧḓḓ ŧǿ Ḿǿƀīŀḗ"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/includes/install_button.html
@@ -700,6 +692,10 @@ msgstr "ɊŘ ƈǿḓḗ ƒǿř ȧḓḓ-ǿƞ"
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr "Ẇȧƞŧ {0} ǿƞ ẏǿŭř ḿǿƀīŀḗ Ƒīřḗƒǿẋ?  Şƈȧƞ ŧħīş ɊŘ ƈǿḓḗ ŧǿ īƞşŧȧŀŀ ḓīřḗƈŧŀẏ ŧǿ ẏǿŭř ƥħǿƞḗ.  (Ẏǿŭ'ŀŀ ƞḗḗḓ ȧ ɊŘ řḗȧḓḗř.  Şḗȧřƈħ ẏǿŭř ƥħǿƞḗ'ş ḿȧřķḗŧƥŀȧƈḗ īƒ ḓǿƞ'ŧ ħȧṽḗ ǿƞḗ.)"
 
+#: src/olympia/addons/templates/addons/replacement_addons.html
+msgid "Replacement Add-ons for {0}"
+msgstr "Řḗƥŀȧƈḗḿḗƞŧ Ȧḓḓ-ǿƞş ƒǿř {0}"
+
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 msgid "Report Abuse"
 msgstr "Řḗƥǿřŧ Ȧƀŭşḗ"
@@ -1094,10 +1090,6 @@ msgstr "Ḿẏ Ȧḓḓ-ǿƞş"
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/amo/context_processors.py
 msgid "My Themes"
 msgstr "Ḿẏ Ŧħḗḿḗş"
-
-#: src/olympia/addons/templates/addons/includes/install_button.html
-msgid "Add to Firefox"
-msgstr "Ȧḓḓ ŧǿ Ƒīřḗƒǿẋ"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/includes/persona.html src/olympia/editors/templates/editors/addon_details_box.html
@@ -4187,7 +4179,8 @@ msgstr[1] "<b>{0}</b> ŧħḗḿḗş"
 msgid "Edit Information"
 msgstr "Ḗḓīŧ Īƞƒǿřḿȧŧīǿƞ"
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
+#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/editors/templates/editors/includes/files_view.html
+#: src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
 msgstr "Ƞǿƞḗ"
 
@@ -6376,6 +6369,18 @@ msgstr "Ħȧş ŧǿǿ ḿȧƞẏ ḓȧīŀẏ ŭşḗřş."
 msgid "Has too few consecutive human-approved updates."
 msgstr "Ħȧş ŧǿǿ ƒḗẇ ƈǿƞşḗƈŭŧīṽḗ ħŭḿȧƞ-ȧƥƥřǿṽḗḓ ŭƥḓȧŧḗş."
 
+#: src/olympia/editors/models.py
+msgid "Has a pending info request."
+msgstr "Ħȧş ȧ ƥḗƞḓīƞɠ īƞƒǿ řḗɋŭḗşŧ."
+
+#: src/olympia/editors/models.py
+msgid "Is flagged for admin review."
+msgstr "Īş ƒŀȧɠɠḗḓ ƒǿř ȧḓḿīƞ řḗṽīḗẇ."
+
+#: src/olympia/editors/models.py
+msgid "Is locked by a reviewer."
+msgstr "Īş ŀǿƈķḗḓ ƀẏ ȧ řḗṽīḗẇḗř."
+
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
 msgstr "Ḓŭƥŀīƈȧŧḗ Şŭƀḿīşşīǿƞ"
@@ -6468,18 +6473,8 @@ msgid "{addon} :: Abuse Reports"
 msgstr "{ȧḓḓǿƞ} :: Ȧƀŭşḗ Řḗƥǿřŧş"
 
 #: src/olympia/editors/templates/editors/abuse_reports.html
-msgid "Abuse Reports for {addon} ({num})"
-msgstr "Ȧƀŭşḗ Řḗƥǿřŧş ƒǿř {ȧḓḓǿƞ} ({ƞŭḿ})"
-
-#: src/olympia/editors/templates/editors/abuse_reports.html
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s ǿƞ %(date)s [%(ip_address)s]"
-
-#: src/olympia/editors/templates/editors/abuse_reports.html
-#, python-format
-msgid "<i>anonymous</i> on %(date)s [%(ip_address)s]"
-msgstr "<i>ȧƞǿƞẏḿǿŭş</i> ǿƞ %(date)s [%(ip_address)s]"
+msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr "Ȧƀŭşḗ Řḗƥǿřŧş ƒǿř {ȧḓḓǿƞ} ȧƞḓ īŧş ḓḗṽḗŀǿƥḗřş ({ƞŭḿ})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: src/olympia/editors/templates/editors/addon_details_box.html src/olympia/search/templates/search/results.html src/olympia/versions/templates/versions/version.html
@@ -6517,6 +6512,14 @@ msgstr "Ŀȧşŧ Ȧƥƥřǿṽȧŀ Ḓȧŧḗ"
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "Approvals Since Last Automatic Review"
 msgstr "Ȧƥƥřǿṽȧŀş Şīƞƈḗ Ŀȧşŧ Ȧŭŧǿḿȧŧīƈ Řḗṽīḗẇ"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Abuse Reports ({num})"
+msgstr "Ȧƀŭşḗ Řḗƥǿřŧş ({ƞŭḿ})"
+
+#: src/olympia/editors/templates/editors/addon_details_box.html
+msgid "Bad User Reviews ({num})"
+msgstr "Ɓȧḓ Ŭşḗř Řḗṽīḗẇş ({ƞŭḿ})"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "More about this add-on"
@@ -6861,12 +6864,12 @@ msgid "The developer has provided source code."
 msgstr "Ŧħḗ ḓḗṽḗŀǿƥḗř ħȧş ƥřǿṽīḓḗḓ şǿŭřƈḗ ƈǿḓḗ."
 
 #: src/olympia/editors/templates/editors/review.html
-msgid "Auto Approval Summary"
-msgstr "Ȧŭŧǿ Ȧƥƥřǿṽȧŀ Şŭḿḿȧřẏ"
+msgid "Not Auto Approved Because"
+msgstr "Ƞǿŧ Ȧŭŧǿ Ȧƥƥřǿṽḗḓ Ɓḗƈȧŭşḗ"
 
 #: src/olympia/editors/templates/editors/review.html
-msgid "No attempt recorded yet."
-msgstr "Ƞǿ ȧŧŧḗḿƥŧ řḗƈǿřḓḗḓ ẏḗŧ."
+msgid "Auto-Approval script has not run yet on this version."
+msgstr "Ȧŭŧǿ-Ȧƥƥřǿṽȧŀ şƈřīƥŧ ħȧş ƞǿŧ řŭƞ ẏḗŧ ǿƞ ŧħīş ṽḗřşīǿƞ."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
@@ -6942,6 +6945,11 @@ msgstr "Ħīḓḗ Ƈǿḿḿḗƞŧş"
 msgid "No reviews found for this period."
 msgstr "Ƞǿ řḗṽīḗẇş ƒǿŭƞḓ ƒǿř ŧħīş ƥḗřīǿḓ."
 
+#: src/olympia/editors/templates/editors/includes/abuse_reports_list.html
+#, python-format
+msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(ip_address)s] řḗƥǿřŧḗḓ %(object)s ǿƞ %(date)s"
+
 #: src/olympia/editors/templates/editors/includes/daily-message.html
 msgid "Dismiss this announcement"
 msgstr "Ḓīşḿīşş ŧħīş ȧƞƞǿŭƞƈḗḿḗƞŧ"
@@ -6957,6 +6965,10 @@ msgstr "Ƈǿƞŧḗƞŧş"
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Compare"
 msgstr "Ƈǿḿƥȧřḗ"
+
+#: src/olympia/editors/templates/editors/includes/files_view.html
+msgid "Permissions:"
+msgstr "Ƥḗřḿīşşīǿƞş:"
 
 #: src/olympia/editors/templates/editors/includes/history.html
 #, python-format
@@ -6995,6 +7007,11 @@ msgstr "Ȧŀŀ Ŧīḿḗ"
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "You have <span>{0}</span> points."
 msgstr "Ẏǿŭ ħȧṽḗ <span>{0}</span> ƥǿīƞŧş."
+
+#: src/olympia/editors/templates/editors/includes/user_reviews_list.html
+#, python-format
+msgid "%(user)s on %(date)s [%(ip_address)s]"
+msgstr "%(user)s ǿƞ %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
@@ -9442,7 +9459,7 @@ msgstr "Ẇħȧŧ īş ŧħḗ Ḿẏ Ƒȧṽǿřīŧḗş ƈǿŀŀḗƈŧīǿƞ
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr "Ƒȧṽǿřīŧḗ ȧḓḓ-ǿƞş ȧřḗ ȧḓḓ-ǿƞş ŧħȧŧ ẏǿŭ ħȧṽḗ ƀǿǿķḿȧřķḗḓ ŧǿ ḗȧşīŀẏ ɠḗŧ ƀȧƈķ ŧǿ ŀȧŧḗř. Ẏǿŭ ƈȧƞ ȧḓḓ ȧƞ ȧḓḓ-ǿƞ ŧǿ ẏǿŭř ƒȧṽǿřīŧḗş ƈǿŀŀḗƈŧīǿƞ ƀẏ ƈŀīƈķīƞɠ \"Ȧḓḓ ŧǿ ƒȧṽǿřīŧḗş\" ǿƞ īŧş ḓḗŧȧīŀş ƥȧɠḗ."
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
+#: src/olympia/pages/templates/pages/faq.html
 msgid "Mobile Add-ons"
 msgstr "Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş"
 
@@ -10559,10 +10576,6 @@ msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Ȧḓḓ-ǿƞş"
 
 #: src/olympia/templates/header_title.html
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Mobile Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Ḿǿƀīŀḗ Ȧḓḓ-ǿƞş"
-
-#: src/olympia/templates/header_title.html
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Ȧḓḓ-ǿƞş"
 
@@ -10682,10 +10695,6 @@ msgstr "Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş ŭşḗřş ƈȧƞƞǿŧ ƈŭřřḗƞ
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
 msgstr "Ƥřǿƒīŀḗ Ƥħǿŧǿ"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Default locale"
-msgstr "Ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ"
 
 #: src/olympia/users/forms.py
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -10911,10 +10920,6 @@ msgstr "Ƈħǿǿşḗ Ƥħǿŧǿ&hellip;"
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete current photo"
 msgstr "Ḓḗŀḗŧḗ ƈŭřřḗƞŧ ƥħǿŧǿ"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "This is the default locale used to display information about you (like your description)."
-msgstr "Ŧħīş īş ŧħḗ ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ ŭşḗḓ ŧǿ ḓīşƥŀȧẏ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ẏǿŭ (ŀīķḗ ẏǿŭř ḓḗşƈřīƥŧīǿƞ)."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."

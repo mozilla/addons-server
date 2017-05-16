@@ -36,7 +36,7 @@ def test_locale_html():
     assert s == ' lang="de" dir="ltr"'
 
     # rtl language
-    for lang in settings.RTL_LANGUAGES:
+    for lang in settings.LANGUAGES_BIDI:
         testfield.locale = lang
         s = helpers.locale_html(testfield)
         assert s == ' lang="%s" dir="rtl"' % testfield.locale
