@@ -173,31 +173,13 @@ SHORTER_LANGUAGES = {
 # L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
 HIDDEN_LANGUAGES = ('cy', 'hr', 'sr', 'sr-Latn', 'tr')
 
-# We don't do `dbr` for now, see
-# https://github.com/mozilla/addons-server/pull/5402#discussion_r116455162
-# for a few more details
-DEBUG_LANGUAGES = ('dbl',)
-
 
 def lazy_langs(languages):
     from product_details import product_details
-
     if not product_details.languages:
         return {}
-
-    language_mapping = {}
-
-    for lang in languages:
-        if lang == 'dbl':
-            lang_name = product_details.languages['dbg']['native']
-        elif lang == 'dbr':
-            lang_name = product_details.languages['dbg']['native'] + ' (RTL)'
-        else:
-            lang_name = product_details.languages[lang]['native']
-
-        language_mapping[lang.lower()] = lang_name
-
-    return language_mapping
+    return dict([(i.lower(), product_details.languages[i]['native'])
+                 for i in languages])
 
 
 # Where product details are stored see django-mozilla-product-details
@@ -206,7 +188,7 @@ PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
-LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr')
+RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
