@@ -212,8 +212,9 @@ class UserEditForm(happyforms.ModelForm):
 
         for (i, n) in notifications.NOTIFICATIONS_BY_ID.items():
             enabled = n.mandatory or (str(i) in data['notifications'])
-            UserNotification.update_or_create(
-                user=u, notification_id=i, update={'enabled': enabled})
+            UserNotification.objects.update_or_create(
+                user=self.instance, notification_id=i,
+                defaults={'enabled': enabled})
 
         log.debug(u'User (%s) updated their profile' % u)
 

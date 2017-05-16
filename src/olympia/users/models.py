@@ -426,15 +426,6 @@ class UserNotification(ModelBase):
     class Meta:
         db_table = 'users_notifications'
 
-    @staticmethod
-    def update_or_create(update=None, **kwargs):
-        if update is None:
-            update = {}
-        rows = UserNotification.objects.filter(**kwargs).update(**update)
-        if not rows:
-            update.update(dict(**kwargs))
-            UserNotification.objects.create(**update)
-
 
 class DeniedName(ModelBase):
     """Denied User usernames and display_names + Collections' names."""
