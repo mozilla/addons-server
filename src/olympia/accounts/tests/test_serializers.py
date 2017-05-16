@@ -86,5 +86,6 @@ class TestUserNotificationSerializer(BaseTestCase):
         user_notification = UserNotification.objects.create(
             user=self.user, notification_id=notification.id, enabled=True)
         data = UserNotificationSerializer(user_notification).data
-        assert data
-        print data
+        assert data['name'] == user_notification.notification.short
+        assert data['enabled'] == user_notification.enabled
+        assert data['mandatory'] == user_notification.notification.mandatory

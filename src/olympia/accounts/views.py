@@ -7,7 +7,7 @@ from django.contrib.auth import login, logout
 from django.core import signing
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.http import Http404, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.utils.encoding import force_bytes
 from django.utils.http import is_safe_url
 from django.utils.html import format_html
@@ -34,7 +34,7 @@ from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users.models import UserProfile, UserNotification
-from olympia.users.notifications import NOTIFICATIONS, NOTIFICATIONS_BY_SHORT
+from olympia.users.notifications import NOTIFICATIONS
 
 
 from . import verify
@@ -492,45 +492,24 @@ class AccountSuperCreate(APIView):
         }, status=201)
 
 
-class AccountNotificationRawViewSet(ListModelMixin, RetrieveModelMixin,
-                                    GenericViewSet):
-    """This just returns account notifications when they've been set by the
-    user.  You want AccountNotificationViewSet below"""
+class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
+    """Returns account notifications.  If not already set by the user defaults
+    will be returned."""
 
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
+    # We're pushing the primary permission checking to AccountViewSet for ease.
+    account_permission_classes = [
+        AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))]
     serializer_class = UserNotificationSerializer
-    lookup_field = 'permission_id'
-    lookup_url_kwarg = 'permission'
+    paginator = None
 
     def get_account_viewset(self):
         if not hasattr(self, 'account_viewset'):
             self.account_viewset = AccountViewSet(
                 request=self.request,
+                permission_classes=self.account_permission_classes,
                 kwargs={'pk': self.kwargs['user_pk']})
         return self.account_viewset
-
-    def get_queryset(self):
-        return UserNotification.objects.filter(
-            user=self.get_account_viewset().get_object())
-
-    @property
-    def notification(self):
-        notification = NOTIFICATIONS_BY_SHORT.get(
-            self.kwargs[self.lookup_url_kwarg])
-        if not notification:
-            raise Http404('No permission named %s exists' %
-                          self.kwargs[self.lookup_url_kwarg])
-        return notification
-
-    def get_object(self):
-        self.kwargs[self.lookup_field] = self.notification.id
-        return super(AccountNotificationRawViewSet, self).get_object()
-
-
-class AccountNotificationViewSet(AccountNotificationRawViewSet,
-                                 UpdateModelMixin):
-    """Wraps AccountNotificationRawViewSet to provide defaults for account
-    notifications when they don't already exist."""
 
     def _get_default_object(self, notification):
         return UserNotification(
@@ -539,7 +518,8 @@ class AccountNotificationViewSet(AccountNotificationRawViewSet,
             enabled=notification.default_checked)
 
     def get_queryset(self):
-        queryset = super(AccountNotificationViewSet, self).get_queryset()
+        queryset = UserNotification.objects.filter(
+            user=self.get_account_viewset().get_object())
         # Put it into a dict so we can easily check for existence.
         set_notifications = {
             user_nfn.notification.short: user_nfn for user_nfn in queryset}
@@ -550,11 +530,16 @@ class AccountNotificationViewSet(AccountNotificationRawViewSet,
                 self._get_default_object(notification)))  # Otherwise, default.
         return out
 
-    def get_object(self):
-        try:
-            obj = super(AccountNotificationViewSet, self).get_object()
-        except Http404:
-            # We have to catch this because we don't know if it's a 404 because
-            # the permission.short doesn't exist or it's not set yet.
-            obj = self._get_default_object(self.notification)
-        return obj
+    @list_route(methods=['patch'])
+    def set(self, request, *args, **kwargs):
+        # Loop through possible notifications.
+        queryset = self.get_queryset()
+        for notification in queryset:
+            # Careful with ifs.  Enabled will be None|True|False.
+            enabled = request.data.get(notification.notification.short)
+            if enabled is not None:
+                serializer = self.get_serializer(
+                    notification, partial=True, data={'enabled': enabled})
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
+        return Response(self.get_serializer(queryset, many=True).data)

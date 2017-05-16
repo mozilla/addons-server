@@ -162,5 +162,6 @@ class UserNotificationSerializer(serializers.Serializer):
             # Only save if non-mandatory and 'enabled' is set.
             # Ignore other fields.
             instance.enabled = validated_data['enabled']
+            # Not .update because some of the instances are new.
             instance.save()
         return instance
