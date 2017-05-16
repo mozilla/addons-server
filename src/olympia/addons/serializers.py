@@ -265,6 +265,7 @@ class AddonSerializer(serializers.ModelSerializer):
     def get_ratings(self, obj):
         return {
             'average': obj.average_rating,
+            'bayesian_average': obj.bayesian_rating,
             'count': obj.total_reviews,
         }
 
