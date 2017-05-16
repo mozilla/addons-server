@@ -22,7 +22,7 @@ from olympia.addons.helpers import new_context
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.helpers import absolutify, page_title
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import send_mail as amo_send_mail, to_language
+from olympia.amo.utils import to_language
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     get_flags, ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
@@ -605,18 +605,6 @@ class ReviewBase(object):
                        perm_setting='individual_contact',
                        detail_kwargs={'reviewtype': self.review_type})
 
-    def send_super_mail(self):
-        self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
-        log.info(u'Super review requested for %s' % (self.addon))
-        data = self.get_context_data()
-        message = (loader
-                   .get_template('editors/emails/super_review.ltxt')
-                   .render(Context(data, autoescape=False)))
-        amo_send_mail(u'Super review requested: %s' % (data['name']), message,
-                      recipient_list=[settings.SENIOR_EDITORS_EMAIL],
-                      from_email=settings.EDITORS_EMAIL,
-                      use_deny_list=False)
-
     def process_comment(self):
         if self.version:
             kw = {'has_editor_comment': True}
@@ -709,8 +697,8 @@ class ReviewBase(object):
                 'author_super_review',
                 u'Mozilla Add-ons: %s %s flagged for Admin Review')
 
-        # Always notify senior editors.
-        self.send_super_mail()
+        self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
+        log.info(u'Super review requested for %s' % (self.addon))
 
     def confirm_auto_approved(self):
         """Confirm an auto-approval decision.

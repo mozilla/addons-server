@@ -12,8 +12,8 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
-from olympia.amo.helpers import absolutify
 from olympia.amo.tests import TestCase, version_factory
+from olympia.amo.utils import send_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.urlresolvers import reverse
 from olympia.editors import helpers
@@ -381,8 +381,6 @@ class TestReviewHelper(TestCase):
             'pending_to_sandbox': 'dev_versions_url',
 
             'unlisted_to_reviewed_auto': 'dev_versions_url',
-
-            'super_review': 'review_url',
         }
 
         self.helper.set_data(self.get_data())
@@ -393,29 +391,6 @@ class TestReviewHelper(TestCase):
             assert len(mail.outbox) == 1
             assert context_key in context_data
             assert context_data.get(context_key) in mail.outbox[0].body
-
-    def test_review_url_correct_channel(self):
-        # Listed email
-        self.helper.set_data(self.get_data())
-        self.helper.handler.notify_email('super_review',
-                                         'Sample subject %s, %s')
-        assert len(mail.outbox) == 1
-        listed_review_url = absolutify(
-            reverse('editors.review', args=[self.addon.pk], add_prefix=False))
-        assert listed_review_url in mail.outbox[0].body
-        mail.outbox = []
-
-        # Unlisted email
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.helper.set_data(self.get_data())
-        self.helper.handler.notify_email('super_review',
-                                         'Sample subject %s, %s')
-        assert len(mail.outbox) == 1
-        unlisted_review_url = absolutify(
-            reverse('editors.review',
-                    kwargs={'addon_id': self.addon.pk, 'channel': 'unlisted'},
-                    add_prefix=False))
-        assert unlisted_review_url in mail.outbox[0].body
 
     def setup_data(self, status, delete=None,
                    file_status=amo.STATUS_AWAITING_REVIEW,
@@ -846,21 +821,13 @@ class TestReviewHelper(TestCase):
         self.helper.handler.process_sandbox()
         assert u'TaobaoShopping淘宝网导航按钮' in mail.outbox[0].subject
 
-    def test_super_review_email(self):
-        self.setup_data(amo.STATUS_NULL)
-        self.helper.handler.process_super_review()
-        url = reverse('editors.review', args=[self.addon.pk], add_prefix=False)
-        assert url in mail.outbox[1].body
-
     def test_nomination_to_super_review(self):
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.process_super_review()
 
         assert self.addon.admin_review
 
-        assert len(mail.outbox) == 2
-        assert mail.outbox[1].subject == (
-            'Super review requested: Delicious Bookmarks')
+        assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
             ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
              'Admin Review'))
@@ -873,10 +840,6 @@ class TestReviewHelper(TestCase):
         self.helper.handler.process_super_review()
 
         assert self.addon.admin_review
-
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == (
-            'Super review requested: Delicious Bookmarks')
         assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
 
     def test_nomination_to_super_review_and_escalate(self):
@@ -886,9 +849,7 @@ class TestReviewHelper(TestCase):
 
         assert self.addon.admin_review
 
-        assert len(mail.outbox) == 2
-        assert mail.outbox[1].subject == (
-            'Super review requested: Delicious Bookmarks')
+        assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
             ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
              'Admin Review'))
@@ -936,9 +897,7 @@ class TestReviewHelper(TestCase):
 
             assert self.addon.admin_review
 
-            assert len(mail.outbox) == 2
-            assert mail.outbox[1].subject == (
-                'Super review requested: Delicious Bookmarks')
+            assert len(mail.outbox) == 1
             assert mail.outbox[0].subject == (
                 ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
                  'Admin Review'))
@@ -975,18 +934,15 @@ def test_page_title_unicode():
 
 
 def test_send_email_autoescape():
-    mock_request = Mock()
-    mock_request.user = None
-    base = helpers.ReviewBase(mock_request, None, None, '')
     s = 'woo&&<>\'""'
-    ctx = dict(name=s, review_url=s, reviewer=s, comments=s, SITE_URL=s)
-    base.get_context_data = Mock(name='get_context_data', return_value=ctx)
-    base.data = {'comments': ''}
 
     # Make sure HTML is not auto-escaped.
-    base.send_super_mail()
+    send_mail(u'Random subject with %s', s,
+              recipient_list=['nobody@mozilla.org'],
+              from_email='nobody@mozilla.org',
+              use_deny_list=False)
     assert len(mail.outbox) == 1
-    assert mail.outbox[0].body.count(s) == len(ctx)
+    assert mail.outbox[0].body == s
 
 
 class TestCompareLink(TestCase):

@@ -1853,10 +1853,9 @@ class TestReview(ReviewBase):
         response = self.client.post(self.url, {'action': 'super',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
-        assert len(mail.outbox) == 2
+        assert len(mail.outbox) == 1
         self.assertTemplateUsed(response,
                                 'editors/emails/author_super_review.ltxt')
-        self.assertTemplateUsed(response, 'editors/emails/super_review.ltxt')
 
     def test_info_requested_canned_response(self):
         response = self.client.post(self.url, {'action': 'info',
