@@ -2,7 +2,7 @@ import re
 from urllib2 import unquote
 
 from django import forms
-from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from bleach import TLDS
 
@@ -12,11 +12,11 @@ from .models import ReviewFlag
 
 
 class ReviewReplyForm(forms.Form):
-    form_id = "review-reply-edit"
+    form_id = 'review-reply-edit'
 
     title = forms.CharField(
         required=False,
-        label=_lazy(u"Title"),
+        label=_(u'Title'),
         widget=forms.TextInput(
             attrs={'id': 'id_review_reply_title', },
         ),
@@ -25,7 +25,7 @@ class ReviewReplyForm(forms.Form):
         widget=forms.Textarea(
             attrs={'rows': 3, 'id': 'id_review_reply_body', },
         ),
-        label="Review",
+        label='Review',
     )
 
     def clean_body(self):
@@ -37,11 +37,11 @@ class ReviewReplyForm(forms.Form):
 
 
 class ReviewForm(ReviewReplyForm):
-    form_id = "review-edit"
+    form_id = 'review-edit'
 
     title = forms.CharField(
         required=False,
-        label=_lazy(u"Title"),
+        label=_(u'Title'),
         widget=forms.TextInput(
             attrs={'id': 'id_review_title', },
         ),
@@ -50,20 +50,21 @@ class ReviewForm(ReviewReplyForm):
         widget=forms.Textarea(
             attrs={'rows': 3, 'id': 'id_review_body', },
         ),
-        label="Review",
+        label='Review',
     )
     rating = forms.ChoiceField(
-        zip(range(1, 6), range(1, 6)), label=_lazy(u"Rating")
+        zip(range(1, 6), range(1, 6)), label=_(u'Rating')
     )
     flags = re.I | re.L | re.U | re.M
     # This matches the following three types of patterns:
     # http://... or https://..., generic domain names, and IPv4
     # octets. It does not match IPv6 addresses or long strings such as
     # "example dot com".
-    link_pattern = re.compile('((://)|'  # Protocols (e.g.: http://)
-                              '((\d{1,3}\.){3}(\d{1,3}))|'
-                              '([0-9a-z\-%%]+\.(%s)))' % '|'.join(TLDS),
-                              flags)
+    link_pattern = re.compile(
+        '((://)|'  # Protocols (e.g.: http://)
+        '((\d{1,3}\.){3}(\d{1,3}))|'
+        '([0-9a-z\-%%]+\.(%s)))' % '|'.join(TLDS),
+        flags)
 
     def _post_clean(self):
         # Unquote the body in case someone tries 'example%2ecom'.
@@ -88,6 +89,6 @@ class ReviewFlagForm(forms.ModelForm):
         elif data.get('flag') == ReviewFlag.OTHER:
             self.add_error(
                 'note',
-                _(u'A short explanation must be provided when selecting '
-                  u'"Other" as a flag reason.'))
+                ugettext(u'A short explanation must be provided when '
+                         u'selecting "Other" as a flag reason.'))
         return data

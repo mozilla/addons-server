@@ -2,7 +2,7 @@ from collections import defaultdict
 
 from django import forms
 from django.forms import widgets
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 import jinja2
 
@@ -110,5 +110,5 @@ class FileCompareForm(happyforms.Form):
         if (not self.errors and
                 self.cleaned_data.get('right') == self.cleaned_data['left']):
             raise forms.ValidationError(
-                _('Cannot diff a version against itself'))
+                ugettext('Cannot diff a version against itself'))
         return self.cleaned_data

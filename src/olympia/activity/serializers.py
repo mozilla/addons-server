@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext
 
 from rest_framework import serializers
 
@@ -29,7 +29,8 @@ class ActivityLogSerializer(serializers.ModelSerializer):
 
     def get_action_label(self, obj):
         log = obj.log()
-        return _(u'Review note') if not hasattr(log, 'short') else log.short
+        default = ugettext(u'Review note')
+        return default if not hasattr(log, 'short') else log.short
 
     def get_action(self, obj):
         return self.get_action_label(obj).replace(' ', '-').lower()

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.util import ErrorDict
-from django.utils.translation import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _
 
 from olympia import amo
 from olympia.lib import happyforms
@@ -8,22 +8,22 @@ from olympia.search.utils import floor_version
 
 
 collection_sort_by = (
-    ('weekly', _lazy(u'Most popular this week')),
-    ('monthly', _lazy(u'Most popular this month')),
-    ('all', _lazy(u'Most popular all time')),
-    ('rating', _lazy(u'Highest Rated')),
-    ('created', _lazy(u'Newest')),
-    ('updated', _lazy(u'Recently Updated')),
-    ('name', _lazy(u'Name')),
+    ('weekly', _(u'Most popular this week')),
+    ('monthly', _(u'Most popular this month')),
+    ('all', _(u'Most popular all time')),
+    ('rating', _(u'Highest Rated')),
+    ('created', _(u'Newest')),
+    ('updated', _(u'Recently Updated')),
+    ('name', _(u'Name')),
 )
 
 PER_PAGE = 20
 
 SEARCH_CHOICES = (
-    ('all', _lazy(u'search for add-ons')),
-    ('collections', _lazy(u'search for collections')),
-    ('themes', _lazy(u'search for themes')),
-    ('apps', _lazy(u'search for apps'))
+    ('all', _(u'search for add-ons')),
+    ('collections', _(u'search for collections')),
+    ('themes', _(u'search for themes')),
+    ('apps', _(u'search for apps'))
 )
 
 
@@ -46,7 +46,7 @@ class SecondarySearchForm(forms.Form):
     q = forms.CharField(widget=forms.HiddenInput, required=False)
     cat = forms.CharField(widget=forms.HiddenInput)
     pp = forms.CharField(widget=forms.HiddenInput, required=False)
-    sort = forms.ChoiceField(label=_lazy(u'Sort By'), required=False,
+    sort = forms.ChoiceField(label=_(u'Sort By'), required=False,
                              choices=collection_sort_by, initial='weekly')
     page = forms.IntegerField(widget=forms.HiddenInput, required=False)
 
@@ -81,15 +81,15 @@ class SecondarySearchForm(forms.Form):
 
 
 SORT_CHOICES = (
-    (None, _lazy(u'Relevance')),
-    ('users', _lazy(u'Most Users')),
-    ('rating', _lazy(u'Top Rated')),
-    ('created', _lazy(u'Newest')),
+    (None, _(u'Relevance')),
+    ('users', _(u'Most Users')),
+    ('rating', _(u'Top Rated')),
+    ('created', _(u'Newest')),
     # --
-    ('name', _lazy(u'Name')),
-    ('downloads', _lazy(u'Weekly Downloads')),
-    ('updated', _lazy(u'Recently Updated')),
-    ('hotness', _lazy(u'Up & Coming')),
+    ('name', _(u'Name')),
+    ('downloads', _(u'Weekly Downloads')),
+    ('updated', _(u'Recently Updated')),
+    ('hotness', _(u'Up & Coming')),
 )
 
 

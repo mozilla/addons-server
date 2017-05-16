@@ -6,7 +6,7 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 import caching.base
 import jinja2
@@ -358,14 +358,14 @@ class Version(OnChangeMixin, ModelBase):
         if self.addon.type != amo.ADDON_EXTENSION:
             compat = False
             # TODO: We may want this. For now we think it may be confusing.
-            # reasons.append(_('Add-on is not an extension.'))
+            # reasons.append(ugettext('Add-on is not an extension.'))
         if self.files.filter(binary_components=True).exists():
             compat = False
-            reasons.append(_('Add-on uses binary components.'))
+            reasons.append(ugettext('Add-on uses binary components.'))
         if self.files.filter(strict_compatibility=True).exists():
             compat = False
-            reasons.append(_('Add-on has opted into strict compatibility '
-                             'checking.'))
+            reasons.append(ugettext(
+                'Add-on has opted into strict compatibility checking.'))
         return (compat, reasons)
 
     def is_compatible_app(self, app):
@@ -407,8 +407,9 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def status(self):
-        return [f.STATUS_CHOICES.get(f.status, _('[status:%s]') % f.status)
-                for f in self.all_files]
+        return [
+            f.STATUS_CHOICES.get(f.status, ugettext('[status:%s]') % f.status)
+            for f in self.all_files]
 
     @property
     def statuses(self):
@@ -766,7 +767,7 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
     def __unicode__(self):
         if (self.version.is_compatible[0] and
                 self.version.is_compatible_app(amo.APP_IDS[self.application])):
-            return _(u'{app} {min} and later').format(
+            return ugettext(u'{app} {min} and later').format(
                 app=self.get_application_display(),
                 min=self.min
             )

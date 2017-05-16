@@ -12,7 +12,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
-from django.utils.translation import ugettext as _, pgettext
+from django.utils.translation import ugettext, pgettext
 
 from olympia import amo
 from olympia.devhub import tasks as devhub_tasks
@@ -146,9 +146,9 @@ def home(request):
 
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
-    durations = (('new', _('New Add-ons (Under 5 days)')),
-                 ('med', _('Passable (5 to 10 days)')),
-                 ('old', _('Overdue (Over 10 days)')))
+    durations = (('new', ugettext('New Add-ons (Under 5 days)')),
+                 ('med', ugettext('Passable (5 to 10 days)')),
+                 ('old', ugettext('Overdue (Over 10 days)')))
 
     limited_reviewer = is_limited_reviewer(request)
     progress, percentage = _editor_progress(limited_reviewer=limited_reviewer)
@@ -525,8 +525,10 @@ def queue_moderated(request):
             reviews_formset.save()
         else:
             amo.messages.error(
-                request, ' '.join(e.as_text() or _('An unknown error occurred')
-                                  for e in reviews_formset.errors))
+                request,
+                ' '.join(
+                    e.as_text() or ugettext('An unknown error occurred')
+                    for e in reviews_formset.errors))
         return redirect(reverse('editors.queue_moderated'))
 
     return render(request, 'editors/queue.html',
@@ -632,7 +634,8 @@ def review(request, addon, channel=None):
         channel=channel, exclude=(amo.STATUS_BETA,))
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
-        amo.messages.warning(request, _('Self-reviews are not allowed.'))
+        amo.messages.warning(
+            request, ugettext('Self-reviews are not allowed.'))
         return redirect(reverse('editors.queue'))
 
     form_helper = ReviewHelper(request=request, addon=addon, version=version)
@@ -678,7 +681,8 @@ def review(request, addon, channel=None):
                                                      addon=addon)
         if form.cleaned_data.get('adminflag') and is_admin:
             addon.update(admin_review=False)
-        amo.messages.success(request, _('Review successfully processed.'))
+        amo.messages.success(
+            request, ugettext('Review successfully processed.'))
         clear_reviewing_cache(addon.id)
         return redirect(redirect_url)
 
@@ -821,7 +825,7 @@ def review_viewing(request):
             is_user = 1
         else:
             currently_viewing = settings.TASK_USER_ID
-            current_name = _('Review lock limit reached')
+            current_name = ugettext('Review lock limit reached')
             is_user = 2
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
@@ -903,16 +907,16 @@ def reviewlog(request):
 
     pager = amo.utils.paginate(request, approvals, 50)
     action_dict = {
-        amo.LOG.APPROVE_VERSION.id: _('was approved'),
+        amo.LOG.APPROVE_VERSION.id: ugettext('was approved'),
         # The log will still show preliminary, even after the migration.
-        amo.LOG.PRELIMINARY_VERSION.id: _('given preliminary review'),
-        amo.LOG.REJECT_VERSION.id: _('rejected'),
+        amo.LOG.PRELIMINARY_VERSION.id: ugettext('given preliminary review'),
+        amo.LOG.REJECT_VERSION.id: ugettext('rejected'),
         amo.LOG.ESCALATE_VERSION.id: pgettext(
             'editors_review_history_nominated_adminreview', 'escalated'),
-        amo.LOG.REQUEST_INFORMATION.id: _('needs more information'),
-        amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
-        amo.LOG.COMMENT_VERSION.id: _('commented'),
-        amo.LOG.CONFIRM_AUTO_APPROVED.id: _('confirmed as approved'),
+        amo.LOG.REQUEST_INFORMATION.id: ugettext('needs more information'),
+        amo.LOG.REQUEST_SUPER_REVIEW.id: ugettext('needs super review'),
+        amo.LOG.COMMENT_VERSION.id: ugettext('commented'),
+        amo.LOG.CONFIRM_AUTO_APPROVED.id: ugettext('confirmed as approved'),
     }
 
     data = context(request, form=form, pager=pager, ACTION_DICT=action_dict,

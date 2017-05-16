@@ -4,7 +4,7 @@ import urlparse
 
 from django.conf import settings
 from django.utils.http import urlquote
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 import requests
 from django_statsd.clients import statsd
@@ -21,13 +21,14 @@ class PaypalError(Exception):
         super(PaypalError, self).__init__(message)
         self.id = id
         self.paypal_data = paypal_data
-        self.default = _('There was an error communicating with PayPal. '
-                         'Please try again later.')
+        self.default = ugettext(
+            u'There was an error communicating with PayPal. '
+            u'Please try again later.')
 
     def __str__(self):
         msg = self.message
         if not msg:
-            msg = messages.get(self.id, self.default)
+            msg = unicode(messages.get(self.id, self.default))
         return msg.encode('utf8') if isinstance(msg, unicode) else msg
 
 
@@ -46,7 +47,7 @@ class CurrencyError(PaypalError):
     # This currency was bad.
 
     def __str__(self):
-        default = _('There was an error with this currency.')
+        default = ugettext(u'There was an error with this currency.')
         if self.paypal_data and 'currencyCode' in self.paypal_data:
             try:
                 return (
@@ -64,9 +65,9 @@ for number in ['559044', '580027', '580022']:
 
 # Here you can map PayPal error messages into hopefully more useful
 # error messages.
-messages = {'589023': _("The amount is too small for conversion "
-                        "into the receiver's currency."),
-            '579033': _('The buyer and seller must have different '
+messages = {'589023': _(u'The amount is too small for conversion '
+                        u'into the receiver\'s currency.'),
+            '579033': _(u'The buyer and seller must have different '
                         'PayPal accounts.'),
             # L10n: {0} is the currency.
             '559044': _(u'The seller does not accept payments in %s.')}

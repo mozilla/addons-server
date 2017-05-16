@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.forms.formsets import formset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import MultiValueDictKeyError
-from django.utils.translation import ugettext as _, ungettext as ngettext
+from django.utils.translation import ugettext, ungettext
 
 from olympia import amo
 from olympia.constants import editors as rvw
@@ -318,7 +318,7 @@ def themes_commit(request):
 
     # Success message.
     points = sum(scores)
-    success = ngettext(
+    success = ungettext(
         # L10n: {0} is the number of reviews. {1} is the points just earned.
         # L10n: {2} is the total number of points the reviewer has overall.
         '{0} theme review successfully processed (+{1} points, {2} total).',
@@ -338,10 +338,11 @@ def release_locks(request):
     ThemeLock.objects.filter(reviewer=request.user).delete()
     amo.messages.success(
         request,
-        _('Your theme locks have successfully been released. '
-          'Other reviewers may now review those released themes. '
-          'You may have to refresh the page to see the changes reflected in '
-          'the table below.'))
+        ugettext(
+            'Your theme locks have successfully been released. '
+            'Other reviewers may now review those released themes. '
+            'You may have to refresh the page to see the changes reflected in '
+            'the table below.'))
     return redirect(reverse('editors.themes.list'))
 
 

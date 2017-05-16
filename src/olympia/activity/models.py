@@ -8,7 +8,7 @@ from django.apps import apps
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 import jinja2
 
@@ -371,10 +371,10 @@ class ActivityLog(ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, Review) and not review:
                 review = self.f(u'<a href="{0}">{1}</a>',
-                                arg.get_url_path(), _('Review'))
+                                arg.get_url_path(), ugettext('Review'))
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
-                text = _('Version {0}')
+                text = ugettext('Version {0}')
                 if arg.channel == amo.RELEASE_CHANNEL_LISTED:
                     version = self.f(u'<a href="{1}">%s</a>' % text,
                                      arg.version, arg.get_url_path())

@@ -1,7 +1,7 @@
 import jinja2
 
 import jingo
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.access import acl
@@ -15,7 +15,7 @@ def stars(num, large=False):
     # check for 0.0 incase None was cast to a float. Should
     # be safe since lowest rating you can give is 1.0
     if num is None or num == 0.0:
-        return _('Not yet rated')
+        return ugettext('Not yet rated')
     else:
         num = min(5, int(round(num)))
         t = jingo.get_env().get_template('reviews/impala/reviews_rating.html')

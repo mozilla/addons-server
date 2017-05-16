@@ -2,7 +2,7 @@ import math
 
 import jinja2
 from jingo import register, get_env
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia.addons.helpers import new_context
 from olympia.accounts.helpers import login_link
@@ -50,9 +50,9 @@ def barometer(context, collection):
         # TODO: Use reverse when bandwagon is on Zamboni.
         up_action = collection.upvote_url()
         down_action = collection.downvote_url()
-        up_title = _('Add a positive vote for this collection')
-        down_title = _('Add a negative vote for this collection')
-        cancel_title = _('Remove my vote for this collection')
+        up_title = ugettext('Add a positive vote for this collection')
+        down_title = ugettext('Add a negative vote for this collection')
+        cancel_title = ugettext('Remove my vote for this collection')
 
         if 'collection_votes' in context:
             user_vote = context['collection_votes'].get(collection.id)
@@ -63,7 +63,7 @@ def barometer(context, collection):
 
     else:
         up_action = down_action = login_link(c)
-        login_title = _('Log in to vote for this collection')
+        login_title = ugettext('Log in to vote for this collection')
         up_title = down_title = cancel_title = login_title
 
     up_class = 'upvotes'
@@ -122,8 +122,10 @@ def favorites_widget(context, addon, condensed=False):
         is_favorite = addon.id in request.user.favorite_addons
         faved_class = 'faved' if is_favorite else ''
 
-        unfaved_text = '' if condensed else _('Add to favorites')
-        faved_text = _('Favorite') if condensed else _('Remove from favorites')
+        unfaved_text = '' if condensed else ugettext('Add to favorites')
+        faved_text = (
+            ugettext('Favorite') if condensed else
+            ugettext('Remove from favorites'))
 
         add_url = reverse('collections.alter',
                           args=[request.user.username, 'favorites', 'add'])

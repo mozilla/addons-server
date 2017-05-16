@@ -4,7 +4,7 @@ from django.db.models import Q, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import force_text
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from rest_framework import serializers
 from rest_framework.decorators import detail_route
@@ -111,8 +111,8 @@ def flag(request, addon, review_id):
     if form.is_valid():
         form.save()
         Review.objects.filter(id=review_id).update(editorreview=True)
-        return {'msg': _('Thanks; this review has been flagged '
-                         'for editor approval.')}
+        return {'msg': ugettext('Thanks; this review has been flagged '
+                                'for editor approval.')}
     else:
         return json_view.error(form.errors)
 

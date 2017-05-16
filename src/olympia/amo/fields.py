@@ -3,7 +3,7 @@ import re
 from django.core import exceptions
 from django.core.validators import URLValidator
 from django.forms import fields
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from nobot.fields import HumanCaptchaField
 
@@ -42,6 +42,6 @@ class ColorField(fields.CharField):
     def clean(self, value):
         super(ColorField, self).clean(value)
         if value and not re.match('^\#([0-9a-fA-F]{6})$', value):
-            raise exceptions.ValidationError(
-                _(u'This must be a valid hex color code, such as #000000.'))
+            raise exceptions.ValidationError(ugettext(
+                u'This must be a valid hex color code, such as #000000.'))
         return value

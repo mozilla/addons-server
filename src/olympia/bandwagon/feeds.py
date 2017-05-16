@@ -1,5 +1,5 @@
 from django import http
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia.amo.helpers import absolutify, page_name
 from olympia.amo.urlresolvers import reverse
@@ -41,14 +41,15 @@ class CollectionFeed(CollectionFeedMixin, NonAtomicFeed):
     def title(self, c):
         app = page_name(self.request.APP)
         # L10n: {0} is 'Add-ons for <app>'.
-        return _(u'Collections :: %s') % app
+        return ugettext(u'Collections :: %s') % app
 
     def link(self):
         return absolutify(reverse('collections.list'))
 
     def description(self):
-        return _('Collections are groups of related add-ons that anyone can '
-                 'create and share.')
+        return ugettext(
+            'Collections are groups of related add-ons that anyone can '
+            'create and share.')
 
     def items(self):
         return views.get_filter(self.request).qs[:20]
@@ -67,7 +68,7 @@ class CollectionDetailFeed(AddonFeedMixin, NonAtomicFeed):
     def title(self, c):
         app = page_name(self.request.APP)
         # L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
-        return _(u'{0} :: Collections :: {1}').format(c.name, app)
+        return ugettext(u'{0} :: Collections :: {1}').format(c.name, app)
 
     def link(self, c):
         return absolutify(c.feed_url())
