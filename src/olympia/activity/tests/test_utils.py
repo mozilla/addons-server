@@ -47,9 +47,7 @@ class TestEmailBouncing(TestCase):
     BOUNCE_REPLY = (
         'Hello,\n\nAn email was received, apparently from you. Unfortunately '
         'we couldn\'t process it because of:\n%s\n\nPlease visit %s to leave '
-        'a reply instead; alternatively if you need to send file attachments, '
-        'please reply by email to amo-editors@mozilla.org.\n'
-        '--\nMozilla Add-ons\n%s')
+        'a reply instead.\n--\nMozilla Add-ons\n%s')
 
     def setUp(self):
         self.bounce_reply = (
