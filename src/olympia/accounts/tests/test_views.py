@@ -27,7 +27,9 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase
-from olympia.users.models import UserProfile
+from olympia.users.models import UserNotification, UserProfile
+from olympia.users.notifications import NOTIFICATIONS_BY_ID
+
 
 FXA_CONFIG = {
     'oauth_host': 'https://accounts.firefox.com/v1',
@@ -1298,3 +1300,61 @@ class TestSessionView(TestCase):
     def test_delete_when_unauthenticated(self):
         response = self.client.delete(reverse('accounts.session'))
         assert response.status_code == 401
+
+
+class TestAccountNotificationViewSetList(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.url = reverse('notification-list',
+                           kwargs={'user_pk': self.user.pk})
+        super(TestAccountNotificationViewSetList, self).setUp()
+
+    def test_defaults_only(self):
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data['results']) == 11
+
+
+class TestAccountNotificationViewSetDetail(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.notification = NOTIFICATIONS_BY_ID[2]
+        self.url = reverse('notification-detail',
+                           kwargs={'user_pk': self.user.pk,
+                                   'permission': self.notification.short})
+        super(TestAccountNotificationViewSetDetail, self).setUp()
+
+    def test_basic(self):
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.data['name'] == self.notification.short == 'dev_thanks'
+
+
+class TestAccountNotificationViewSetUpdate(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.notification = NOTIFICATIONS_BY_ID[2]
+        self.url = reverse('notification-detail',
+                           kwargs={'user_pk': self.user.pk,
+                                   'permission': self.notification.short})
+        super(TestAccountNotificationViewSetUpdate, self).setUp()
+
+    def test_new_notification(self):
+        assert not UserNotification.objects.filter(
+            user=self.user, notification_id=self.notification.id).exists()
+        self.client.login_api(self.user)
+        assert self.client.get(self.url).data['enabled']  # enabled by default.
+        response = self.client.patch(self.url, data={'enabled': False})
+        assert response.status_code == 200
+        assert not response.data['enabled']  # now we disabled it.
+        un_obj = UserNotification.objects.get(
+            user=self.user, notification_id=self.notification.id)
+        assert not un_obj.enabled
