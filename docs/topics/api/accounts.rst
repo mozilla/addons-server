@@ -104,7 +104,7 @@ Uploading a picture
 -------------------
 
 To upload a picture for the profile the request must be sent as content-type `multipart/form-data` instead of JSON.
-Images must be either PNG or JPG and the maximum file size is 4MB.
+Images must be either PNG or JPG; the maximum file size is 4MB.
 Other :ref:`editable values <account-edit-request>` can be set at the same time.
 
 .. http:patch:: /api/v3/accounts/account/(int:user_id)/
@@ -114,7 +114,7 @@ Other :ref:`editable values <account-edit-request>` can be set at the same time.
     .. sourcecode:: bash
 
         curl "https://addons.mozilla.org/api/v3/accounts/account/12345/"
-            -g -XPUT --form "picture_upload=@photo.png"
+            -g -XPATCH --form "picture_upload=@photo.png"
             -H "Authorization: Bearer <token>"
 
     :param user-id: The numeric user id.
