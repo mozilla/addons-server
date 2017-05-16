@@ -25,7 +25,10 @@ CLEAN_FLAGS="--no-obsolete --width=200 --add-location=file"
 MERGE_FLAGS="--update --width=200 --backup=none"
 UNIQ_FLAGS="--width=200"
 
-DEBUG_LOCALES="dbl dbr"
+# We don't do `dbr` for now, see
+# https://github.com/mozilla/addons-server/pull/5402#discussion_r116455162
+# for a few more details
+DEBUG_LOCALES="dbl"
 
 # -------------------------------------------------------------------
 
@@ -42,10 +45,10 @@ pushd locale > /dev/null
 
 for debugLocale in $DEBUG_LOCALES; do
     for domain in django djangojs; do
-        if [ "$debugLocale" == "dbl" ]; then
-            rewrite="unicode"
-        else
+        if [ "$debugLocale" == "dbr" ]; then
             rewrite="flipped"
+        else
+            rewrite="unicode"
         fi
 
         echo "generating debug locale '$debugLocale' for '$domain' using '$rewrite'"

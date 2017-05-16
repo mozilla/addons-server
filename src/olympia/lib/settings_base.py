@@ -173,6 +173,11 @@ SHORTER_LANGUAGES = {
 # L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
 HIDDEN_LANGUAGES = ('cy', 'hr', 'sr', 'sr-Latn', 'tr')
 
+# We don't do `dbr` for now, see
+# https://github.com/mozilla/addons-server/pull/5402#discussion_r116455162
+# for a few more details
+DEBUG_LANGUAGES = ('dbl',)
+
 
 def lazy_langs(languages):
     from product_details import product_details
