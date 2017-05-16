@@ -342,7 +342,7 @@ class TestReviewHelper(TestCase):
 
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
-        base_fragment = 'If you need to send file attachments'
+        base_fragment = 'If you want to respond please reply'
         legacy_cta_fragment = 'add-ons are compatible past Firefox 57'
         user = self.addon.listed_authors[0]
         ActivityLogToken.objects.create(version=self.version, user=user)

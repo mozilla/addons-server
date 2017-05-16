@@ -5,7 +5,7 @@ Your add-on, {{ name }} {{ number }}, has been flagged for Admin Review.
 
 Your add-on is still in our review queue, but it will need to be checked by one of our admin reviewers. This means that your review will probably take longer than usual.
 
-If you want to respond to this email please reply to this email or visit {{ dev_versions_url }} . If you need to send file attachments, please include the address amo-editors@mozilla.org and mention it in your reply.
+If you want to respond please reply to this email or visit {{ dev_versions_url }} .
 
 You can also join us in #addon-reviewers on irc.mozilla.org.
 
