@@ -12,6 +12,11 @@ class Base(Page):
         super(Base, self).__init__(
             selenium, base_url, locale=locale, timeout=30, **kwargs)
 
+    def wait_for_page_to_load(self):
+        self.wait.until(
+            lambda _: self.find_element(*self._amo_header).is_displayed())
+        return self
+
     @property
     def header(self):
         return self.Header(self)
@@ -21,6 +26,9 @@ class Base(Page):
         """Returns True if a user is logged in"""
         return self.is_element_displayed(*self.header._user_locator)
 
+    def search_for(self, term):
+        return self.header.search_for(term)
+
     def login(self, email, password):
         login_page = self.header.click_login()
         login_page.login(email, password)
@@ -28,17 +36,14 @@ class Base(Page):
     def logout(self):
         self.header.click_logout()
 
-    def wait_for_page_to_load(self):
-        self.wait.until(
-            lambda _: self.find_element(*self._amo_header).is_displayed())
-        return self
-
     class Header(Region):
 
         _root_locator = (By.CLASS_NAME, 'amo-header')
         _login_locator = (By.CSS_SELECTOR, '#aux-nav .account a:nth-child(2)')
         _logout_locator = (By.CSS_SELECTOR, '.logout > a')
         _user_locator = (By.CSS_SELECTOR, '#aux-nav .account .user')
+        _search_button_locator = (By.CSS_SELECTOR, '.search-button')
+        _search_textbox_locator = (By.ID, 'search-q')
 
         def click_login(self):
             self.find_element(*self._login_locator).click()
@@ -55,3 +60,9 @@ class Base(Page):
             action.perform()
             self.wait.until(lambda s: self.is_element_displayed(
                 *self._login_locator))
+
+        def search_for(self, term):
+            self.find_element(*self._search_textbox_locator).send_keys(term)
+            self.find_element(*self._search_button_locator).click()
+            from pages.desktop.search import SearchResultList
+            return SearchResultList(self.selenium, self.page.base_url)
