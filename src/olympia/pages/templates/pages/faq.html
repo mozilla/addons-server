@@ -97,11 +97,11 @@
 
     <dt>{{ _('Are add-ons safe to install?') }}</dt>
     <dd>{% trans learnmore_url="https://developer.mozilla.org/Add-ons/AMO/Policy/Reviews" %}
-        Add-ons available from this gallery are regularly reviewed by Mozilla's
-        team of reviewers and should be safe to install. If you wish to install
-        add-ons from third-party websites, use caution as these add-ons may harm
-        your computer or violate your privacy.
-        <a href="{{ learnmore_url }}">Learn more about our approval
+        Use caution when installing add-ons, as they may harm your computer or
+        violate your privacy. Add-ons available from this site may be subject to
+        review by Mozilla's team of reviewers, and user feedback is closely
+        monitored, so they should generally be safe to install.
+        <a href="{{ learnmore_url }}">Learn more about our review
         process</a>{% endtrans %}</dd>
 
 
@@ -170,10 +170,10 @@
 
     <dt id="unreviewed">{{ _('What does it mean if an add-on is "not reviewed"?') }}</dt>
     <dd>{% trans url="https://developer.mozilla.org/Add-ons/AMO/Policy/Reviews" %}
-         While add-ons publicly available in our gallery are reviewed, you may
-         receive a direct link to an add-on that hasn't yet been reviewed. Use
+         If you receive a direct link to an add-on that says it hasn't yet been
+         reviewed, it means it's currently awaiting review by Mozilla. Use
          caution when installing these add-ons, as they could harm your computer
-        or violate your privacy.
+         or violate your privacy.
          <a href="{{ url }}">Learn more about our review process</a></dd>
          {% endtrans %}
 
