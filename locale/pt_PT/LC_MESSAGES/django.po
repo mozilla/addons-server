@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-09 03:30+0000\n"
+"PO-Revision-Date: 2017-05-17 02:22+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -10094,7 +10094,7 @@ msgstr "Avaliação mais alta"
 
 #: src/olympia/search/forms.py
 msgid "search for add-ons"
-msgstr "Pesquise extras"
+msgstr "pesquise por extras"
 
 #: src/olympia/search/forms.py
 msgid "search for collections"
@@ -10694,7 +10694,7 @@ msgstr "Bem-vindo, {0}"
 #: src/olympia/templates/impala/user_login.html src/olympia/templates/user_login.html
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Crie uma conta</a> ou <a href=\"%(login)s\">Inicie sessão</a>"
+msgstr "<a href=\"%(reg)s\">Registar</a> ou <a href=\"%(login)s\">Iniciar sessão</a>"
 
 #: src/olympia/templates/impala/base.html
 #, python-format
