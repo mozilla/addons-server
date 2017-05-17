@@ -4,7 +4,8 @@ from datetime import timedelta
 from django import forms
 from django.db.models import Q
 from django.forms import widgets
-from django.forms.models import BaseModelFormSet, modelformset_factory
+from django.forms.models import (
+    BaseModelFormSet, modelformset_factory, ModelMultipleChoiceField)
 from django.utils.translation import ugettext, ugettext_lazy as _, get_language
 
 import olympia.core.logger
@@ -287,6 +288,8 @@ class ReviewForm(happyforms.Form):
                                label=_(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
+    versions = ModelMultipleChoiceField(
+        required=False, queryset=None)  # queryset is set later in __init__.
     operating_systems = forms.CharField(required=False,
                                         label=_(u'Operating systems:'))
     applications = forms.CharField(required=False,
@@ -304,8 +307,11 @@ class ReviewForm(happyforms.Form):
     def is_valid(self):
         # Some actions do not require comments.
         action = self.helper.actions.get(self.data.get('action'))
-        if action and not action.get('comments', True):
-            self.fields['comments'].required = False
+        if action:
+            if not action.get('comments', True):
+                self.fields['comments'].required = False
+            if action.get('versions', False):
+                self.fields['versions'].required = True
         result = super(ReviewForm, self).is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)
@@ -315,6 +321,11 @@ class ReviewForm(happyforms.Form):
         self.helper = kw.pop('helper')
         self.type = kw.pop('type', amo.CANNED_RESPONSE_ADDON)
         super(ReviewForm, self).__init__(*args, **kw)
+
+        # With the helper, we now have the add-on and can set queryset on the
+        # versions field correctly.
+        self.fields['versions'].queryset = self.helper.addon.versions.filter(
+            channel=amo.RELEASE_CHANNEL_LISTED)
 
         # We're starting with an empty one, which will be hidden via CSS.
         canned_choices = [
@@ -335,7 +346,6 @@ class ReviewForm(happyforms.Form):
         for r in responses:
             if not r.sort_group:
                 canned_choices.append([r.response, r.name])
-
         self.fields['canned_response'].choices = canned_choices
         self.fields['action'].choices = [
             (k, v['label']) for k, v in self.helper.actions.items()]

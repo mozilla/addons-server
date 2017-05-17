@@ -311,7 +311,8 @@ class TestReviewHelper(TestCase):
         # Now make current version auto-approved...
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
-        expected = ['confirm_auto_approved', 'info', 'super', 'comment']
+        expected = ['confirm_auto_approved', 'reject_multiple_versions',
+                    'info', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC).keys() == expected
@@ -924,6 +925,41 @@ class TestReviewHelper(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         self.addon.update(status=amo.STATUS_NOMINATED)
         assert self.get_helper()
+
+    def test_reject_multiple_versions(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        version2 = version_factory(addon=self.addon, version='3.0')
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, helpers.ReviewFiles)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.current_version.files.all()[0].status == (
+            amo.STATUS_PUBLIC)
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.current_version is None
+        assert list(self.addon.versions.all()) == [version2, self.version]
+        assert self.file.status == amo.STATUS_DISABLED
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
+        assert mail.outbox[0].subject == (
+            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
+            u"didn't pass review")
+        assert ('Version(s) affected and disabled:\n3.0, 2.1.072'
+                in mail.outbox[0].body)
+        log_token = ActivityLogToken.objects.filter(version=version2).get()
+        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
 
 
 def test_page_title_unicode():
