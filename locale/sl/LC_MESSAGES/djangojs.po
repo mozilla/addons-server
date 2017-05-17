@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-17 11:23+0000\n"
 "PO-Revision-Date: 2016-11-04 10:22+0000\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -15,7 +15,6 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} zvezdica"
@@ -23,46 +22,36 @@ msgstr[1] "{0} zvezdici"
 msgstr[2] "{0} zvezdice"
 msgstr[3] "{0} zvezdic"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "Pri vzpostavljanju stika s strežnikom je prišlo do napake."
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "Izberite datoteko ..."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Končnica vašega dodatka mora biti .zip, .xpi, .crx, .jar ali .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
 msgstr "{0} % dokončano"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} od {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "Nalaganje {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "Napaka z {0}"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "Za obdelavo vašega dodatka smo omogočili nov pregledovalnik kode. Vse težave prijavite na GitHubu"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Vaš dodatek ni prestal preverjanja veljavnosti z {0} napako."
@@ -70,7 +59,6 @@ msgstr[1] "Vaš dodatek ni prestal preverjanja veljavnosti z {0} napakama."
 msgstr[2] "Vaš dodatek ni prestal preverjanja veljavnosti s {0} napakami."
 msgstr[3] "Vaš dodatek ni prestal preverjanja veljavnosti z {0} napakami."
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; in še {0}"
@@ -78,32 +66,25 @@ msgstr[1] "&hellip; in še {0}"
 msgstr[2] "&hellip; in še {0}"
 msgstr[3] "&hellip; in še {0}"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "Oglejte si popolno poročilo o preverjanju veljavnosti"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "Preverjanje veljavnosti {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prejet prazen odziv s strežnika; stanje: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "Nepričakovana napaka strežnika med preverjanjem veljavnosti."
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "Preverjanje veljavnosti {0} končano"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Preverjanje veljavnosti vašega dodatka je poteklo, pregledan bo ročno."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorilom."
@@ -111,7 +92,6 @@ msgstr[1] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozoriloma."
 msgstr[2] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorili."
 msgstr[3] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorili."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Veljavnost vašega dodatka je bila preverjena brez napak in z {0} sporočilom."
@@ -119,43 +99,33 @@ msgstr[1] "Veljavnost vašega dodatka je bila preverjena brez napak in z {0} spo
 msgstr[2] "Veljavnost vašega dodatka je bila preverjena brez napak in z {0} sporočili."
 msgstr[3] "Veljavnost vašega dodatka je bila preverjena brez napak in z {0} sporočili."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Veljavnost vašega dodatka je bila preverjena brez napak ali opozoril."
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "Vaša oddaja bo samodejno podpisana."
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "Nadgradnja na WebExtension"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Nadgradnjo omogočamo in spodbujamo, vendar procesa ne morete povrniti. Ko bodo ljudje namestili razširitev WebExtension, ne bodo več mogli namestiti stare različice."
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Nadgradnja starega dodatka za Firefox na MDN"
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Vključite podrobne opombe o različici (to lahko storite v naslednjem koraku)."
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Če je za popoln pregled dodatka potreben račun na spletnem mestu, v opombe za recenzenta vključite uporabniško ime in geslo testnega računa (to lahko storite v naslednjem koraku)."
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Nadzorni seznam oddaje dodatka"
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Pred dokončanjem svoje oddaje preverite naslednje točke. To bo zmanjšalo zakasnitve ali napačne razlage med postopkom pregleda:"
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -163,666 +133,513 @@ msgstr ""
 "Izvorna koda kodno prevedenih dvojiških datotek, kot tudi pomanjšanih ali zamaskiranih skriptov (razen znanih dvojiških datotek), mora biti za pregled poslana ločeno. Prepričajte se, da uporabite "
 "polje za prenos izvorne kode, da se izognete zavrnitvi svoje oddaje."
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Postopek preverjanja veljavnosti je odkril te težave, ki lahko vodi do zavrnitev:"
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr "Podprtega okolja ni bilo mogoče najti."
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Vrsta datoteke, ki ste jo naložili, ni prepoznana."
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "Preklicali ste nalaganje."
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "Slike morajo biti PNG ali JPG."
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "Videoposnetki morajo biti WebM."
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "Sledi tej zbirki"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "Nehaj slediti"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "Sledeno"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ta tema ni združljiva z vašo različico {0}a"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "Vse pravice pridržane"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "Ime vaše teme"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "Označeno za pregled"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "Zahtevan je vaš vnos"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "Označeno za izbris"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "Posodabljanje rezultatov&hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "Kategorija"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "Iščite med temami za <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "Iščite med aplikacijami za <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Iskanje po dodatkih za <b>{0}</b>"
 
-#: static/js/impala/users.js
 msgid "Use original"
 msgstr "Uporabi izvirnik"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "Teden {0}"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " prenosov"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "{0} uporabnikov"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "{0} dodatkov"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "{0} zbirk"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "{0} pregledov"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "{0} prodaj"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "{0} vračil denarja"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "{0} namestitev"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "Prenosi"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "Dnevni uporabniki"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
 msgstr "Znesek v ameriških dolarjih"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "Število prispevkov"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "Več informacij ..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "Podrobnosti za {0}"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "Ustvarjene zbirke"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
 msgstr "Dodatki v uporabi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
 msgstr "Ustvarjeni dodatki"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
 msgstr "Preneseni dodatki"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
 msgstr "Posodobljeni dodatki"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "Napisane ocene"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "Uporabniške registracije"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "Naročniki"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "Ocene"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "Prodaje"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "Namestitve"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "Neznano"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
 msgstr "Upravitelj dodatkov"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
 msgstr "Oglas Upravitelja dodatkov"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
 msgstr "Predstavljeni Upravitelja dodatkov"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
 msgstr "Več o Upravitelju dodatkov"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "Predlogi iskanja"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "Rezultati iskanja"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr "Oglas domače strani"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr "Predstavljena domača stran"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr "Prihajajoča domača stran"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr "Najbolj priljubljena domača stran"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "Stran s podrobnostmi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "Stran s podrobnostmi (spodaj)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "Stran s podrobnostmi (Razvojni kanal)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "Se pogosto uporablja z"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
 msgstr "Ostali dodatki tega avtorja"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr "Odvisnosti"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr "Dodatna ponudba"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "Spoznajte razvijalca"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "Uporabniški profil"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "Zgodovina različice"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "Deljenje"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "Strani s kategorijami"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "Zbirke"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr "Ciljna kat. Vrtiljak Izbrane"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr "Ciljna kat. Najbolje ocenjeni"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr "Ciljna kat. Najbolj priljubljeni"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
 msgstr "Ciljna kat. Najnovejše"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr "Brsk. sez. - razv. po Izbrani"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr "Brsk. sez. - razv. po Največ uporabnikov"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr "Brsk. sez. - razv. po Najbolje ocenjeni"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr "Brsk. sez. - razv. po Ustvarjeno"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr "Brsk. sez. - razv. po Ime"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr "Brsk. sez. - razv. po Najbolj priljubljeni"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr "Brsk. sez. - razv. po Pred kratkim posod."
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Brsk. sez. - razv. po Kmalu"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
 msgstr "Skupaj prispevano"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
 msgstr "Povprečni prispevek"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "Uporaba"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Prenosi in dnevni uporabniki zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Prenosi in dnevni uporabniki od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Namestitve in dnevni uporabniki zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Prenosi in dnevni uporabniki od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "Prenosi zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "Prenosi od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "Dnevni uporabniki zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "Dnevni uporabniki od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
 msgstr "Programi zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
 msgstr "Programi od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "Podlage zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "Podlage od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "Jeziki zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "Jeziki od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
 msgstr "Različice dodatka zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Različice dodatka od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
 msgstr "Stanje dodatka zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "Stanje dodatka od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "Viri prenosa zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "Viri prenosa od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "Prispevki zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "Prispevki od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr "Metrika strani, zadnjih {0} strani"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Metrika strani od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "Dodatki v uporabi zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Dodatki v uporabi od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Preneseni dodatki zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Preneseni dodatki od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
 msgstr "Ustvarjeni dodatki zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Ustvarjeni dodatki od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "Posodobljeni dodatki zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Posodobljeni dodatki od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "Napisane ocene zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "Napisane ocene od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "Uporabniške registracije zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "Uporabniške registracije od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "Ustvarjene zbirke zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "Ustvarjene zbirke od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "Naročniki zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "Naročniki od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "Ocene zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "Ocene od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "Prodaje zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "Prodaje od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "Namestitve zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "Namestitve od {0} do {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> v zadnjih {1} dneh"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> od {1} do {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> povprečno zadnjih {1} dni"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "Ni podatkov na voljo."
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "Datum"
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "Ostalo"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "Najprej izberite program"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Nastavi dodatek na največjo različico {1} in obvesti avtorja."
@@ -830,7 +647,6 @@ msgstr[1] "Nastavi {0} dodatka na največjo različico {1} in obvesti avtorja."
 msgstr[2] "Nastavi {0} dodatke na največjo različico {1} in obvesti avtorja."
 msgstr[3] "Nastavi {0} dodatkov na največjo različico {1} in obvesti avtorja."
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Obvesti avtorja o {2} dodatku, katerega preverjanje veljavnosti je spodletelo."
@@ -839,157 +655,119 @@ msgstr[2] "Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je sp
 msgstr[3] "Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je spodletelo."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
 msgstr "Sprejmi in namesti"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
 msgstr "Dodaj v {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "Prenesi zdaj"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Dodatek ni bil posodobljen, da bi podpiral privzeto-na-združljivo."
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Uporabljati morate Firefox 10.0 ali novejšega."
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla je označila to različico kot nezdružljivo z vašo različico Firefoxa."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "Vseeno namesti za {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "Vseeno prenesi za {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "Ni na voljo za vašo podlago"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "Ni na voljo za {0} {1}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
 msgstr "Deluje s {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app}"
 msgstr "Deluje s {app}"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "Ogled drugih različic"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Samo pri Firefoxu – namestite ga!"
 
-#: static/js/zamboni/buttons.js
 msgid "Download now"
 msgstr "Prenesi zdaj"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr "Na voljo samo za namizni Firefox"
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Oprostite, za namestitev vtičnika za iskanje potrebujete brskalnik na osnovi Mozille (kot je Firefox)."
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "Dodajanje med priljubljene &hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "Odstranjevanje priljubljene &hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "Dodaj med priljubljene"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "Odstrani iz priljubljenih"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "V čakanju"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "Dodaj komentar"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "Komentar"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "Odstrani ta dodatek iz zbirke"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "Odstrani"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "Odstrani tega uporabnika kot sodelavca"
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "Potreben je elektronski naslov."
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "Samega sebe ne morete dodati kot sodelavca."
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "Tega uporabnika ste že dodali."
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "Dodaj med priljubljene"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "Odstrani iz priljubljenih"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "Nehaj slediti"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "Vaš brskalnik ne podpira oznake video"
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "Spremembe shranjene"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr "Vnesite elektronski naslov novega avtorja"
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "Pri nalaganju vaše datoteke je prišlo do napake."
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} datoteka"
@@ -997,7 +775,6 @@ msgstr[1] "{files} datoteki"
 msgstr[2] "{files} datoteke"
 msgstr[3] "{files} datotek"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} uporabniška ocena"
@@ -1005,76 +782,58 @@ msgstr[1] "{reviews} uporabniški oceni"
 msgstr[2] "{reviews} uporabniške ocene"
 msgstr[3] "{reviews} uporabniških ocen"
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "Več o tem"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "Obdelovanje sprememb slike"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "Mora biti veljaven elektronski naslov."
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "Ni najdenih rezultatov."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "{name} si je prvi ogledoval to stran."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "Program je preveril prejem."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "Program ni preveril prejema."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "Prvi si je ogledal ta dodatek {name}."
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "Nalaganje &hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "Opombe ob različici"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "Opombe za pregledovalce"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "Opomb ob različici ni bilo mogoče najti"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr "Besedilo pregleda"
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "Najdene opombe pregleda"
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr "Povprečno število ocen"
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Število ocen"
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Nalaganje..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> znak preostane."
@@ -1082,19 +841,15 @@ msgstr[1] "<b>{0}</b> znaka preostaneta."
 msgstr[2] "<b>{0}</b> znaki preostanejo."
 msgstr[3] "<b>{0}</b> znakov preostane."
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Ta funkcija je začasno onemogočena, medtem ko na strani izvajamo vzdrževalna dela. Prosimo, poskusite znova malo kasneje."
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
 msgstr "Odstrani to lokalizacijo"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "Moč gesla:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Najmanj {0} znak še preostane."
@@ -1102,83 +857,63 @@ msgstr[1] "Najmanj {0} znaka še preostaneta."
 msgstr[2] "Najmanj {0} znaki še preostanejo."
 msgstr[3] "Najmanj {0} znakov še preostane."
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "Zahtevani podatki"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "Označeno"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "Dvojnik"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "Zavrnjeno"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
 msgstr "Odobreno"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "Ni zadetkov"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "Tema"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "Pregledovalec"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "Stanje"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "Vsi preskusi so bili uspešno opravljeni."
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "Ti preskusi niso bili zagnani."
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "Preskusi"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "Napaka"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Opozorilo"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr "{0} vrstica {1} stolpec {2}"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1}"
 msgstr "{0} vrstica {1}"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "Preskusi združljivosti"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "Preverjanje veljavnosti dodatka je spodletelo."
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "Preverjanje veljavnosti dodatka je bilo uspešno."
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} napaka"
@@ -1186,7 +921,6 @@ msgstr[1] "{0} napaki"
 msgstr[2] "{0} napake"
 msgstr[3] "{0} napak"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} opozorilo"
@@ -1194,7 +928,6 @@ msgstr[1] "{0} opozorili"
 msgstr[2] "{0} opozorila"
 msgstr[3] "{0} opozoril"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} obvestilo"
@@ -1202,10 +935,8 @@ msgstr[1] "{0} obvestili"
 msgstr[2] "{0} obvestila"
 msgstr[3] "{0} obvestil"
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "Opravilo preverjanja veljavnosti se ni moglo dokončati ali se je končalo z napakami"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Notranja napaka strežnika"
