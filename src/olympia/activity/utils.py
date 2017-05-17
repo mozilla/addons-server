@@ -217,7 +217,10 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
     }
     reviewer_context_dict = author_context_dict.copy()
     reviewer_context_dict['url'] = absolutify(
-        reverse('editors.review', args=[version.addon.pk], add_prefix=False))
+        reverse('editors.review',
+                kwargs={'addon_id': version.addon.pk,
+                        'channel': amo.CHANNEL_CHOICES_API[version.channel]},
+                add_prefix=False))
 
     # Not being localised because we don't know the recipients locale.
     with translation.override('en-US'):

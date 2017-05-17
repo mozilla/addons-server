@@ -260,7 +260,10 @@ class TestLogAndNotify(TestCase):
                           absolutify(self.addon.get_dev_url('versions')),
                           'Developer Reply')
         review_url = absolutify(
-            reverse('editors.review', args=[self.addon.pk], add_prefix=False))
+            reverse('editors.review',
+                    kwargs={'addon_id': self.version.addon.pk,
+                            'channel': 'listed'},
+                    add_prefix=False))
         self._check_email(send_mail_mock.call_args_list[1],
                           review_url, 'Developer Reply')
 
@@ -375,6 +378,73 @@ class TestLogAndNotify(TestCase):
         assert len(recipients) == 1
         assert self.developer2.email in recipients
         assert self.reviewer.email not in recipients
+
+    @mock.patch('olympia.activity.utils.send_mail')
+    def test_review_url_listed(self, send_mail_mock):
+        # One from the reviewer.
+        self._create(amo.LOG.REJECT_VERSION, self.reviewer)
+        # One from the developer.  So the developer is on the 'thread'
+        self._create(amo.LOG.DEVELOPER_REPLY_VERSION, self.developer)
+        action = amo.LOG.DEVELOPER_REPLY_VERSION
+        comments = u'Thïs is á reply'
+        log_and_notify(action, comments, self.developer, self.version)
+
+        logs = ActivityLog.objects.filter(action=action.id)
+        assert len(logs) == 2  # We added one above.
+        assert logs[0].details['comments'] == u'Thïs is á reply'
+
+        assert send_mail_mock.call_count == 2  # One author, one reviewer.
+        recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 2
+        assert self.reviewer.email in recipients
+        assert self.developer2.email in recipients
+        # The developer who sent it doesn't get their email back.
+        assert self.developer.email not in recipients
+
+        self._check_email(send_mail_mock.call_args_list[0],
+                          absolutify(self.addon.get_dev_url('versions')),
+                          'Developer Reply')
+        review_url = absolutify(
+            reverse('editors.review', add_prefix=False,
+                    kwargs={'channel': 'listed', 'addon_id': self.addon.pk}))
+        self._check_email(send_mail_mock.call_args_list[1],
+                          review_url, 'Developer Reply')
+
+    @mock.patch('olympia.activity.utils.send_mail')
+    def test_review_url_unlisted(self, send_mail_mock):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted',
+                              'Addon Reviewers')
+
+        # One from the reviewer.
+        self._create(amo.LOG.COMMENT_VERSION, self.reviewer)
+        # One from the developer.  So the developer is on the 'thread'
+        self._create(amo.LOG.DEVELOPER_REPLY_VERSION, self.developer)
+        action = amo.LOG.DEVELOPER_REPLY_VERSION
+        comments = u'Thïs is á reply'
+        log_and_notify(action, comments, self.developer, self.version)
+
+        logs = ActivityLog.objects.filter(action=action.id)
+        assert len(logs) == 2  # We added one above.
+        assert logs[0].details['comments'] == u'Thïs is á reply'
+
+        assert send_mail_mock.call_count == 2  # One author, one reviewer.
+        recipients = self._recipients(send_mail_mock)
+
+        assert len(recipients) == 2
+        assert self.reviewer.email in recipients
+        assert self.developer2.email in recipients
+        # The developer who sent it doesn't get their email back.
+        assert self.developer.email not in recipients
+
+        self._check_email(send_mail_mock.call_args_list[0],
+                          absolutify(self.addon.get_dev_url('versions')),
+                          'Developer Reply')
+        review_url = absolutify(
+            reverse('editors.review', add_prefix=False,
+                    kwargs={'channel': 'unlisted', 'addon_id': self.addon.pk}))
+        self._check_email(send_mail_mock.call_args_list[1],
+                          review_url, 'Developer Reply')
 
 
 @pytest.mark.django_db
