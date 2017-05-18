@@ -18,6 +18,7 @@ from .images import generate_addon_preview, generate_theme_images
 from .names import generate_names
 from .translations import generate_translations
 from .ratings import generate_ratings
+from .stats import generate_stats
 from .user import generate_addon_user_and_category, generate_user
 from .version import generate_version
 
@@ -87,6 +88,7 @@ def generate_addons(num, owner, app_name):
             generate_collection(addon, app)
             featured_categories[category] += 1
         generate_ratings(addon, 5)
+        generate_addon_stats(addon, 10)
 
 
 def create_theme(name, **extra_kwargs):
