@@ -9,6 +9,7 @@ from django.core import mail
 from django.core.cache import cache
 from django.test.client import Client
 
+import waffle
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -2247,6 +2248,9 @@ class TestAddonSearchView(ESTestCase):
         self.refresh()
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
+        # Just so that the waffle switch db query is bypassed (it's cached).
+        waffle.switch_is_active('boost-webextensions-in-search')
+
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status

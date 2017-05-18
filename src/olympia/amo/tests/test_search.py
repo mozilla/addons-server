@@ -339,6 +339,15 @@ class TestESWithoutMakingQueries(TestCase):
         qs = Addon.search().source('versions')
         assert qs._build_query()['_source'] == ['versions']
 
+    def test_score(self):
+        qs = Addon.search().score({'foo': 'bar'})
+        query = qs._build_query()['query']
+        assert 'function_score' in query
+        assert len(query['function_score']['functions']) == 2
+        assert query['function_score']['functions'][0] == {
+            'field_value_factor': {'field': 'boost', 'missing': 1.0}}
+        assert query['function_score']['functions'][1] == {'foo': 'bar'}
+
 
 class TestES(ESTestCaseWithAddons):
     def test_getitem(self):
