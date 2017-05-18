@@ -2100,9 +2100,8 @@ msgstr "已上傳 {addon} {version} 的原始碼。"
 msgid "Source code uploaded"
 msgstr "已上傳原始碼"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "已變更 {addon} {version} 的審核註記。"
+msgstr "已確認自動批准 {addon} {version}。"
 
 msgid "Auto-Approval confirmed"
 msgstr "已確認自動批准"
