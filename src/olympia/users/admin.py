@@ -31,6 +31,9 @@ class UserAdmin(admin.ModelAdmin):
         }),
     )
 
+    def delete_model(self, request, obj):
+        obj.delete(hard=True)
+
 
 class DeniedModelAdmin(admin.ModelAdmin):
     def add_view(self, request, form_url='', extra_context=None):
