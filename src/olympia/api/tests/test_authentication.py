@@ -291,7 +291,7 @@ class TestWebTokenAuthentication(TestCase):
             self._authenticate(token)
 
     def test_user_deleted(self):
-        self.user.anonymize()
+        self.user.delete()
         token = self.client.generate_api_token(self.user)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)

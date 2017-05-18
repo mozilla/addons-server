@@ -177,9 +177,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     backend = 'django.contrib.auth.backends.ModelBackend'
 
-    def is_anonymous(self):
-        return False
-
     def get_session_auth_hash(self):
         """Return a hash used to invalidate sessions of users when necessary.
 
@@ -323,16 +320,20 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # reviews-related tests hang if this isn't done.
         return qs
 
-    def anonymize(self):
-        log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
-        self.email = None
-        self.fxa_id = None
-        self.username = "Anonymous-%s" % self.id  # Can't be null
-        self.display_name = None
-        self.homepage = ""
-        self.deleted = True
-        self.picture_type = ""
-        self.save()
+    def delete(self, hard=False):
+        if hard:
+            super(UserProfile, self).delete()
+        else:
+            log.info(
+                u'User (%s: <%s>) is being anonymized.' % (self, self.email))
+            self.email = None
+            self.fxa_id = None
+            self.username = "Anonymous-%s" % self.id  # Can't be null
+            self.display_name = None
+            self.homepage = ""
+            self.deleted = True
+            self.picture_type = ""
+            self.save()
 
     def set_unusable_password(self):
         raise NotImplementedError('cannot set unusable password')

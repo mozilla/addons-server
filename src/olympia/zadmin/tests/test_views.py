@@ -16,7 +16,7 @@ from lxml.html import HTMLParser, fromstring
 import olympia
 from olympia import amo
 from olympia.amo.tests import (
-    TestCase, formset, initial, file_factory, version_factory)
+    TestCase, formset, initial, file_factory, user_factory, version_factory)
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
@@ -1978,3 +1978,21 @@ class TestPerms(TestCase):
         self.client.logout()
         self.assertLoginRedirects(
             self.client.get(reverse('zadmin.index')), to='/en-US/admin/')
+
+
+class TestUserProfileAdmin(TestCase):
+
+    def setUp(self):
+        super(TestUserProfileAdmin, self).setUp()
+        self.user = user_factory(email='admin@mozilla.com')
+        self.grant_permission(self.user, '*:*')
+        self.login(self.user)
+
+    def test_delete_does_hard_delete(self):
+        user_to_delete = user_factory()
+        user_to_delete_pk = user_to_delete.pk
+        url = reverse('admin:users_userprofile_delete',
+                      args=[user_to_delete.pk])
+        response = self.client.post(url, data={'post': 'yes'}, follow=True)
+        assert response.status_code == 200
+        assert not UserProfile.objects.filter(id=user_to_delete_pk).exists()

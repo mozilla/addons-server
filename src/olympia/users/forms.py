@@ -257,7 +257,7 @@ class AdminUserEditForm(UserEditForm):
         if self.cleaned_data['anonymize']:
             ActivityLog.create(amo.LOG.ADMIN_USER_ANONYMIZED, self.instance,
                                self.cleaned_data['admin_log'])
-            profile.anonymize()  # This also logs
+            profile.delete()  # This also logs
         else:
             ActivityLog.create(amo.LOG.ADMIN_USER_EDITED, self.instance,
                                self.cleaned_data['admin_log'],
