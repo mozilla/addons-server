@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 16:12+0000\n"
+"PO-Revision-Date: 2017-05-18 16:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5029,9 +5029,8 @@ msgstr "trjeba superpśeglědanje"
 msgid "commented"
 msgstr "komentěrowany"
 
-#, fuzzy
 msgid "confirmed as approved"
-msgstr "jo se pśizwólił"
+msgstr "jo ako pśizwólony wobkšuśony"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5046,9 +5045,8 @@ msgstr "Waše drastwowe zawěry su se wuspěšnje wótwónoźeli. Druge pśeglě
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Znjewužywańske rozpšawy"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Znjewužywańske rozpšawy za {addon} ({num})"
+msgstr "Znjewužywańske rozpšawy za {addon} a jogo wuwijarje ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -5078,13 +5076,11 @@ msgstr "Datum slědnego pśizwólenja"
 msgid "Approvals Since Last Automatic Review"
 msgstr "Pśizwólenja wót slědnego awtomatiskego pśeglědanja"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Znjewužywańske rozpšawy za {addon} ({num})"
+msgstr "Znjewužywańske rozpšawy ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Moderěrowane pśeglědanje ({num})"
+msgstr "Špatne wužywarske pógódnośenja ({num})"
 
 msgid "More about this add-on"
 msgstr "Wěcej wó toś tom dodanku"
@@ -5355,9 +5351,8 @@ msgstr "Dataje ześěgnuś"
 msgid "The developer has provided source code."
 msgstr "Wuwijaŕ jo žrědłowy kod k dispoziciji stajił."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Awtomatiski pśizwólone dodanki"
+msgstr "Njejo awtomatiski pśizwólony, dokulaž"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr "Skript za awtomatiske pśizwólenje njejo se hyšći w toś tej wersiji wuwjadł."
@@ -5432,9 +5427,8 @@ msgstr "Wopśimjeśe"
 msgid "Compare"
 msgstr "Pśirownaś"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Pšawa"
+msgstr "Pšawa:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7545,13 +7539,12 @@ msgstr ""
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Som awtor dodanka, mógu njepśijazne pógódnośenja lašowaś?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 "Powšyknje nic. Ale jolic pógódnośenje njewótpowědujo górjejce pomjenjonym pógódnośeńskim směrnicam, móžośo na „Toś to pógódnośenje k wěsći daś“ kliknuś, aby se moderěrowało. Jolic pógódnośenje jo "
-"wobśěžkanje wopśimjeło, kótarež njejo wěcej płaśiwe noweje wersije wašogo dodanka dla, wulašujomy snaź pógódnośenje. Pósćelśo swóje nadrobne napšašowanje na amo-editors@mozilla.org."
+"wobśěžkanje wopśimjeło, kótarež njejo wěcej płaśiwe noweje wersije wašogo dodanka dla, wulašujomy snaź pógódnośenje."
 
 msgid "Start Now"
 msgstr "Něnto zachopiś"
