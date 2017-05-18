@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-17 11:23+0000\n"
 "PO-Revision-Date: 2017-01-27 12:24+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,137 +16,107 @@ msgstr ""
 "Generated-By: Babel 2.3.4\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} itri"
 msgstr[1] "{0} itran"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "Teḍra-d tuccḍa deg unermes n uqeddac."
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "Fren afaylu..."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Ur issefk ara izegrar inek ad bdun s .zip, .xpi, .crx, .jar neɣ .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
 msgstr "{0} % immed"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} si {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "Sefsex"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "Asali {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "Tuccḍa s {0}"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "Tremdeḍ amaswaḍ amaynut n tengalt i usesfer n uzegrir inek. Tanemmirt ɣef tuzna n yal ugur di GitHub"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Asentem n uzegrir inek ur yeddi ara s tuccḍa {0}."
 msgstr[1] "Asentem n uzegrir inek ur yeddi ara s tuccḍiwin {0}."
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; akked {0} ugar"
 msgstr[1] "&hellip; akked {0} nniḍen"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "Wali akk aneqqis n usentem"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "Asentem {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Irmes-d tiririt tilemnt seg uqeddac; addad: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "Tuccḍa n uqeddac ur nettwaṛǧi ara deg usentem."
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "Asentem yemmed {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Asentem n uzegrir inek ur ifuk ara deg akud, ad yettwasenqed s ufus."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Azegrir yettwasentem s war tuccḍa akked ulɣu {0}."
 msgstr[1] "Azegrir yettwasentem s war tuccḍiwin akked ilɣa {0}."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Azegrir yettwasentem s war tuccḍa akked yizen {0}."
 msgstr[1] "Azegrir yettwasentem s war tuccḍiwin akked yeznan {0}."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Azegrir yettwasentem s war tuccḍiwin neɣ ilɣa."
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "Tuzna yinek ad tettwazmel s wudem awurman."
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "Aleqqem n WebExtension"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Nessirig udiɣ nettmuddu tabɣest n lqem agi, acukan akal ticki yemmed, ulac tuɣalin ɣer deffir. Ticki iseqdacen inek sbedden WebExtension, ur ttizmiren ara ad sbedden izegrar iqbuṛen."
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Awi-d izegrar iqbuṛen n Firefox ɣer MDN"
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Seddu tizmilin n lqem leqqayen (ayagi yezmer ad yettwag deg umecwaṛ i d-iteddun)."
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Ma yella yessefk ad yili umiḍan deg usmel web, rnu isem n useqdac akked wawal uffir n umiḍansi tezmilin i win ara yeɛiwden taɣuṛi (ayagi yezmer ad yettwag deg umecwaṛ d-iteddun)."
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Ayen ara yeyttwasneqden di tuzna n uzegrir"
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Ma ulac aɣilif senqed tineqqiḍin agi send ad tazneḍ. Ayagi ad isenɣeṣ akud neɣ asmuckel dek ukala n uɛiwed n tɣuṛi:"
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -154,1031 +124,792 @@ msgstr ""
 "Ifuyla iɣbula imsinen yettwasefsan, akked iskripten n usxiclew d usmibrek  (wid n temkeṛḍiyin yettwasnen ur ttekkan ara) yessefk ad ttwaznen akken ad ttwaɣṛen tikelt nniḍen i yiman-nsen. Wali ma "
 "yella tesseqdaceḍ urti anda tzemreḍ ad tazneḍ tangalt aɣbalu akken tuzna yinek ad tettwaqbel."
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Akala n usentem yufa-d uguren izemren ad yawi ɣer tugin:"
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr "Suref-aɣ, ul d yiwet n twannaṭ yettusefraken ur tettwaf."
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Anaw n ufaylu i tuzned ur yettwassen ara."
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "Tesfesxeḍ tuzna."
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "Tugniwin zemrent ad ilint PNG neɣ JPG."
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "Yessefk tividyutin ad ilint s WebM."
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "Dfeṛ tagrumma agi"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "Seḥbes aḍfaṛ"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "Aḍfaṛ"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Asentel agi ur imṣada ara kked lqem inek n {0}"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "Akk izerfan ttwaḥerzen"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "Isem n usentel inek"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "Yettwacreḍ i uɛawed n tmuɣli"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "Asekcem inek yettwasra"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "Yettwacreḍ i tukksa"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "Aleqqem n igmaḍ &hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "Taggayt"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "Anadi n isental i <b> {0} </b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "Anadi n yesnasen i <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Anadi n izegrar i <b>{0}</b>"
 
-#: static/js/impala/users.js
 msgid "Use original"
 msgstr "seqdec aneẓli"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "Ḍduṛt n {0}"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " isidar"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "{0} iseqdacen"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "{0} izegrar"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "{0} tigrummiwin"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "{0} aɛiwed n tɣuṛi"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "{0} n uznuzu"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "{0} n uɣram"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "{0} n usebded"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "Isidar"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "Iseqdacen n yal ass"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
 msgstr "Tallayt, s USD"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "Amḍan n uttekki"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "Ugar n telɣut..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "Talqayt i {0}"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "Tigrummiwin ttwarnant"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
 msgstr "Izegrar yettuseqdacen"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
 msgstr "Azegrir yettwarna"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
 msgstr "Izegrar ttwasidren"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
 msgstr "Izegrar ttwasniflen"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "Aɛiwed n tɣuri yuran"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "Tuqqniwin n useqdac"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "Imeltaɣen"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "Tizmilin"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "Aznuzu"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "Asebded"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "Arussin"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
 msgstr "Amsefrak n izegrar"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
 msgstr "Asnerni s umsefrak n izegrar"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
 msgstr "Asezwer s umsefrak n izegrar"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
 msgstr "Issin ugar ɣef umsefrak n izegrar"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "Nadi isumar"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "Nadi igmaḍ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr "Asnerni s usebter agejdan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr "Asezwer s usebter agejdan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr "Amaynut deg usebter agejdan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr "Asebtar agejdan yettwasnen aṭas"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "Asebter n telqyat"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "Asebter n telqayt (akesser)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "Asebter n telqayt (Abadu n tneflit)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "Yettuseqdac s waṭas s"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
 msgstr "Ayen nniḍen sɣuṛ ameskar"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr "Iḍaraɛen"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr "Alluy di tseddaṛt"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "Mlal akken uneflay"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "Amaɣnu n useqdac"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "Amazray n useqdac"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "Beṭṭu"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "Isebtar n taggayin"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "Tigrummiwin"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr "Taggayt tagejdant n umray ifazen"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr "Taggayt tagejdant yettaszemlen seg imezwura"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr "Taggayt tagekdant yettwasnen aṭas"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
 msgstr "Taggayt tagejdant yettwarnan melmi kan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr "Snirem tabdart n usmizzwer n yetran"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr "Snirem tabdart n usmizzwer n iseqdacen"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr "Snirem tabdart n usmizzwer n tezmilin"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr "Snirem tabdart n usmizzwer n tmerna"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr "Snirem tabdart n usmizzwer n yesmawen"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr "Snirem tabdart n usmizzwer n yettwasnen aṭas"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr "Snirem tabdart n usmizzwer n usnifel"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Snirem tabdart n usmizzwer n umaynut d-iteddun"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
 msgstr "Amḍan asemday n uttekki"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
 msgstr "Attekki alemmas"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "Asemres"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Isidar akked iseqdacen n yal ass, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Isidar akked iseqdacen n yal ass si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Asebded akken iseqdacen n yal ass, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Asebded akked iseqdacen n yal ass si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "Isidar, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "Isidar si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "Iseqdacen n yal ass, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "Iseqdacen n yal ass si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
 msgstr "Isnasen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
 msgstr "Isnasen si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "Tilɣubliḍin, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "Tilɣibliḍin si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "Tutlayin, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "Tutlayin si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
 msgstr "Ileqman n izegrar, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Ileqman n izegrar si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
 msgstr "Addad n uzegrir, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "Addad n uzegrir si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "Iɣbula n usider, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "Iɣbula n usider si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "Atteki, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "Attekki si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr "Asmel imizrir,{0} n ussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Asmel imizrir seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "Izegrar yettuseqdacen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Izegrar yettuseqdacen si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Izegrar i d-yettwasidren, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Izegrar i d-yettwasidren si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
 msgstr "Izegrar yettwarnan, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Izegrar yettwarnan si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "Izegrar yettwaleqmen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Izegrar yettwaleqqmen si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "Izaɣanen yuran, ineggura {0} n wussan"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "Iceggiren yuran si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "Tuqqniwin n useqdac , {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "Tuqqniwin n useqdac seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "Tigrummiwin yettwarnan, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "Tigrumminwin yettwarnan si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "Imeltaɣen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "Imeltaɣen si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "Tizmilin, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "Tizmilin si {0} ar {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "Izenza,{0} n wussan izrin"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "izenza seg{0} ɣer {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "Asebded, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "Asebded si {0} ar {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> di {1} n wussan ineggura"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> si {1} ar {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> di tlemmast ineggura {1} n wussan"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "Ulac isefka."
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "Azemz"
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "Ayen niḍen"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "Fren di tazwara asnas"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Sbadu {0} n uzegrir ar lqem afellay n {1} sakin azen imayl i umeskar."
 msgstr[1] "Sbadu {0} n izegrar ar lqem afellay n {1} sakin azen imayl i umeskar."
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Azen imayl i umeskar ɣef {2} n uzegrir yeccḍen deg usentem."
 msgstr[1] "Azen imayl i umeskar ɣef {2} n izegrar yeccḍen deg usentem."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
 msgstr "Qbel udiɣ sebded"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
 msgstr "Rnu ɣer {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "Sider tura"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Azegrir ur yettwalqem ara akken ad imṣada akked default-to-compatible."
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Tesriḍ aseqdec n Firefox 10.0 neɣ ugar."
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla yecreḍ lqem agi d akken ur imṣada ara akked lqem n Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "Sebded i {0} akken yebɣu yili"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "Sideri {0} akken yebɣu yili"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "Ulac i twennaṭ inek"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "Ulac i {0} {1}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
 msgstr "Iteddu s {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app}"
 msgstr "Iteddu s {app}"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "Wali ileqman nniḍen"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Ala s Firefox — Awi-d Firefox tura!"
 
-#: static/js/zamboni/buttons.js
 msgid "Download now"
 msgstr "Sider tura"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr "Yella kan di Firefox i uselkim"
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Suref-aɣ, tesriḍ iminig yebnan ɣef Mozilla (am Firfefox) akken ad tesbeddeḍ azegrir n unadi."
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "Timerna ɣer inurifen &hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "Tukksa n unirif &hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "Rnu ɣer inurifen"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "Kkes seg inurifen"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "Yettṛaǧu"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "Rnu awennit"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "Awennit"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "Kkes azegrir agi si tagrumma"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "Kkes"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "Kkes aseqdac agi seg imttekkiyen"
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "Tansa imayl tettwasra."
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "Ur tezmireḍ ara ad ternuḍ iman-ik d imttekki."
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "Ternid yakan aseqdac agi."
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "Rnu ɣer inurifen"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "Kkes seg inurifen"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "Seḥbes aḍfaṛ"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "Iminig agi ur issefrak ara terekkizt n tvidyut"
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "Isnifal ttwakelsen"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr "Sekcem tansa imayl n umeskar amaynut"
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "Teḍra-d tuccḍa deg usali n ufaylu inek."
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ufaylu"
 msgstr[1] "{files} ifuyla"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} acegger n useqdac"
 msgstr[1] "{reviews} iceggiren n useqdac"
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "Issin ugar"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "Asnifel n tugniwin iteddu"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "Yessefk ad yili d imayl ameɣtu."
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "Ulac igmad yettwafen."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "{name} yettwali di tazwara asebter-agi."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "Tanfult yesneqd-itt usnas."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "Tanfult ur tt-isenqed ara usanas."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "{name} yettwali di tazwara azegrir-agi."
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "Asali n &hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "Tizmilin n lqem"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "Tizmilin i yemceggiren"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "Ulac tizmilin n lqem yettwafen"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr "Wali tikelt nniḍen aḍris"
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "Tizmilin n ucegger ttwafent"
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr "Icegggiren ilemmasen"
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Amḍan n iceggiren"
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Asali..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> n usekkil yettwattu."
 msgstr[1] "<b>{0}</b> n isekkilen ttwattun."
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Tamahilt-agi tensa akka tura makken nettseggim asmel web. Uɣal-d ticki. Tanemmirt-ik."
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
 msgstr "Kkes asideg agi"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "Tazmert n wawal uffir:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Ɣarṣum {0} n usekkil yettwattu."
 msgstr[1] "Ɛarṣum {0} n isekkiel ttwattun."
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "Talɣut n usuter"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "Yettwacreḍ"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "Uslig"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "Yettwagwi"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
 msgstr "Yettwaqbel"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "Ulac igmad yettwafen"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "Asentel"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "Amcegger"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "Addad"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "Akk ikayaden ddan akken iwata."
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "Ikayaden agi ur ttwasselkem ara."
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "Ikayaden"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "Tuccḍa"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Ɣur-k"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr "{0} izirig {1} tigejdit {2}"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1}"
 msgstr "{0} izirig{1}"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "Ikayaden n umṣada"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "Asentem n uzegrir ur yeddi ara."
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "Asentem n uzegrir yedda."
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} tuccḍa"
 msgstr[1] "{0} tuccḍiwin"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} alɣu"
 msgstr[1] "{0} ilɣa"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} tamawt"
 msgstr[1] "{0} timawin"
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "Asentem ur yezmir ara ad yemmed neɣ yemmed s tuccḍiwin"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Tuccḍa n uqeddac tagensant"
