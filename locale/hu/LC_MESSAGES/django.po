@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 14:31+0000\n"
+"PO-Revision-Date: 2017-05-18 14:37+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4868,7 +4868,7 @@ msgid "Confirm Approval"
 msgstr "Jóváhagyás megerősítése"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
+msgstr "A kiegészítő legutóbbi nyilvános verziója automatikus lett jóváhagyva. Ez rögzíti a jóváhagyás megerősítését, a fejlesztő értesítése nélkül."
 
 msgid "Reviewer reply"
 msgstr "Értékelői válasz"
@@ -4925,7 +4925,7 @@ msgid "Has too few consecutive human-approved updates."
 msgstr "Túl kevés egymást követő, ember által jóváhagyott frissítése van."
 
 msgid "Has a pending info request."
-msgstr ""
+msgstr "Egy információs kérés várakozik."
 
 msgid "Is flagged for admin review."
 msgstr "Adminisztrátori értékelésre jelölve."
@@ -5036,15 +5036,13 @@ msgstr "Legutóbbi jóváhagyás dátuma"
 msgid "Approvals Since Last Automatic Review"
 msgstr "Jóváhagyások a legutóbbi automatikus értékelés óta"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Visszaélési jelentések a(z) {addon} kiegészítőhöz ({num})"
+msgstr "Visszaélési jelentések ({num})"
 
 # 87%
 # 100%
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "({num}) moderált értékelés"
+msgstr "Rossz felhasználói értékelések ({num})"
 
 msgid "More about this add-on"
 msgstr "További tudnivalók a kiegészítőről"
@@ -5317,12 +5315,11 @@ msgstr "Fájlok letöltése"
 msgid "The developer has provided source code."
 msgstr "A fejlesztő biztosított forráskódot."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Automatikusan jóváhagyott kiegészítők"
+msgstr "Nem automatikus jóváhagyás oka"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Az automatikus jóváhagyási parancsfájl még nem futott ezen a verzión."
 
 msgid "This version has not been reviewed."
 msgstr "Ezt a verziót még nem értékelte senki."
@@ -5380,7 +5377,7 @@ msgstr "Nincsenek értékelések ebben az időszakban."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] jelentette: %(object)s, ekkor: %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Bejelentés elvetése"
@@ -5394,9 +5391,8 @@ msgstr "Tartalom"
 msgid "Compare"
 msgstr "Összehasonlítás"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Engedélyek"
+msgstr "Engedélyek:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7503,13 +7499,12 @@ msgstr "Igen, a kiegészítő szerzője adhat egy választ egy értékelésre. A
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Én vagyok a kiegészítő szerzője, tudom törölni a kedvezőtlen értékeléseket vagy minősítéseket?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"Általánosságban nem. De ha az értékelés nem követi a fent vázolt értékelési irányelveket, akkor rákattinthat az „Értékelés jelentése” gombra, és moderáltathatja. Ha egy értékelés egy panaszt "
-"tartalmazott, amely már nem érvényes a kiegészítő új kiadása miatt, akkor megfontolhatjuk az értékelés törlését. Küldje el a részletes kérését az amo-editors@mozilla.org címre."
+"Általánosságban nem. De ha az értékelés nem követi a fent vázolt értékelési irányelveket, akkor rákattinthat az „Értékelés jelentése” gombra, és moderáltathatja. Ha egy értékelés olyan panaszt "
+"tartalmaz, amely már nem érvényes a kiegészítő új kiadása miatt, akkor megfontolhatjuk az értékelés törlését."
 
 msgid "Start Now"
 msgstr "Indítás most"
