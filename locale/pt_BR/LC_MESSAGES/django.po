@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 16:55+0000\n"
+"PO-Revision-Date: 2017-05-18 18:53+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -577,9 +577,8 @@ msgstr ""
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Replacement Add-ons for {0}"
-msgstr "Extensões para o {0}"
+msgstr "Extensões de substituição para {0}"
 
 msgid "Report Abuse"
 msgstr "Denunciar abuso"
@@ -7671,13 +7670,12 @@ msgstr "Sim, os autores de um extra podem fornecer uma única reposta a uma aná
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Eu sou um autor de complemento, eu posso excluir análises ou avaliações desfavoráveis?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"No geral, não. Mas se a análise não cumprir com as orientações descritas acima, você pode clicar em \"reportar esta análise\" para que a mesma seja moderada. Se uma análise tiver uma reclamação que "
-"já não seja válida devido ao lançamento de uma nova versão do complemento, podemos considerar apagar a análise. Submeta o seu pedido detalhado para amo-editors@mozilla.org."
+"No geral, não. Mas se a análise não cumprir com as diretrizes de análises descritas acima, pode clicar em \"Reportar esta análise\" para que a mesma seja moderada. Se uma análise tiver uma "
+"reclamação que já não seja válida devido ao lançamento de uma nova versão da extensão, podemos considerar excluir a análise."
 
 msgid "Start Now"
 msgstr "Começar agora"
