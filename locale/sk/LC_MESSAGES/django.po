@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 18:50+0000\n"
+"PO-Revision-Date: 2017-05-18 18:55+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -373,7 +373,7 @@ msgid "Requires Restart"
 msgstr "Vyžaduje reštart"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
+msgstr "Tento doplnok je vytvorený pomocou novej technológie, ktorá je kompatibilná s Firefoxom 57 a novším."
 
 msgid "Compatible with Firefox 57+"
 msgstr "Kompatibilita s Firefoxom 57+"
@@ -4115,7 +4115,7 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Legal"
-msgstr ""
+msgstr "Právne informácie"
 
 msgid "Report Trademark Abuse"
 msgstr "Nahlásiť zneužitie ochrannej známky"
@@ -5215,7 +5215,7 @@ msgstr "História kontrol"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Názov doplnku"
