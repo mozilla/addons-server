@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 13:50+0000\n"
+"PO-Revision-Date: 2017-05-18 13:56+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4948,7 +4948,7 @@ msgid "Has too few consecutive human-approved updates."
 msgstr "Має замало послідовних оновлень, перевірених людьми."
 
 msgid "Has a pending info request."
-msgstr ""
+msgstr "Має в очікуванні інформаційний запит."
 
 msgid "Is flagged for admin review."
 msgstr "Позначений для розгляду адміністратором."
@@ -5335,7 +5335,7 @@ msgid "Not Auto Approved Because"
 msgstr "Не схвалені автоматично через"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Скрипт Автосхвалення ще не перевіряв цю версію."
 
 msgid "This version has not been reviewed."
 msgstr "Ця версія не була розглянута."
@@ -5393,7 +5393,7 @@ msgstr "Не знайдено відгуків для цього періоду.
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] %(date)s повідомив %(object)s"
 
 msgid "Dismiss this announcement"
 msgstr "Ігнорувати це оголошення"
