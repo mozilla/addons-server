@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-02 11:20+0000\n"
-"PO-Revision-Date: 2017-05-18 08:31+0000\n"
+"PO-Revision-Date: 2017-05-18 08:35+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -6266,7 +6266,6 @@ msgid "This will reject this version and remove it from the queue. The comments 
 msgstr ""
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Reviewer reply"
 msgstr "Tiririt n umcegger"
 
@@ -6331,9 +6330,8 @@ msgid "Uses a content script for all URLs."
 msgstr ""
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Has too many daily users."
-msgstr "D acu d iseqdacen n yal ass?"
+msgstr "Isεa aṭas n iseqdacen n yal ass."
 
 #: src/olympia/editors/models.py
 msgid "Has too few consecutive human-approved updates."
@@ -6474,9 +6472,8 @@ msgid "EULA"
 msgstr "EULA"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "Addad n usentem"
+msgstr "Azemz aneggaru n waqbal"
 
 #: src/olympia/editors/templates/editors/addon_details_box.html
 msgid "Approvals Since Last Automatic Review"
@@ -6529,9 +6526,8 @@ msgid "Moderated Reviews"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Izegrar Android"
+msgstr "Qbel s wudem awurman izegrar"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
@@ -6585,7 +6581,6 @@ msgid "Log details"
 msgstr "Talqayt n uɣmis"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
-#, fuzzy
 msgid "Review Author"
 msgstr "Cegger amazray"
 
@@ -7164,9 +7159,8 @@ msgid "Access your data for {name}"
 msgstr "Kcem ar isefka-ik i {name}"
 
 #: src/olympia/files/models.py
-#, fuzzy
 msgid "Access your data on the following websites:"
-msgstr "Kcem ar yesmal-ik deg ismal web meṛṛa"
+msgstr "Kcem ar yesmal-ik deg ismal-agi web:"
 
 #: src/olympia/files/models.py
 msgid "Access your data for all websites"
@@ -9569,9 +9563,8 @@ msgid "Opting out of a study does not prevent you from participating in future s
 msgstr ""
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
-#, fuzzy
 msgid "Your privacy"
-msgstr "Tabaḍnit:"
+msgstr "Tabaḍnit inek"
 
 #: src/olympia/pages/templates/pages/shield_study_11.html
 msgid "All Shield Studies"
