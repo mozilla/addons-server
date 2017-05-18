@@ -41,10 +41,10 @@ class TestUserProfile(TestCase):
         del user.is_developer
         assert not user.is_developer
 
-    def test_anonymize(self):
+    def test_delete(self):
         u = UserProfile.objects.get(id='4043307')
         assert u.email == 'jbalogh@mozilla.com'
-        u.anonymize()
+        u.delete()
         x = UserProfile.objects.get(id='4043307')
         assert x.email is None
 

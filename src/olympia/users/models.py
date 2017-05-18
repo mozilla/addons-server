@@ -177,9 +177,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     backend = 'django.contrib.auth.backends.ModelBackend'
 
-    def is_anonymous(self):
-        return False
-
     def get_session_auth_hash(self):
         """Return a hash used to invalidate sessions of users when necessary.
 
@@ -323,7 +320,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # reviews-related tests hang if this isn't done.
         return qs
 
-    def anonymize(self):
+    def delete(self):
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
         self.email = None
         self.fxa_id = None

@@ -95,7 +95,7 @@ def delete(request):
         form = forms.UserDeleteForm(request.POST, request=request)
         if form.is_valid():
             messages.success(request, ugettext('Profile Deleted'))
-            amouser.anonymize()
+            amouser.delete()
             response = http.HttpResponseRedirect(reverse('home'))
             logout_user(request, response)
             return response
