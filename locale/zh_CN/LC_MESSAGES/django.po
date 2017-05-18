@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 14:44+0000\n"
+"PO-Revision-Date: 2017-05-18 14:56+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4855,7 +4855,7 @@ msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: 滥用报告"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "{addon} 的滥用报告及其开发者（{num} 条）"
+msgstr "对 {addon} 及其开发者的滥用报告（{num} 条）"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -4886,11 +4886,10 @@ msgid "Approvals Since Last Automatic Review"
 msgstr "连续自动批准次数"
 
 msgid "Abuse Reports ({num})"
-msgstr "{addon} 的滥用报告（{num} 条）"
+msgstr "滥用报告（{num} 条）"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "提请仲裁的评论（{num} 项）"
+msgstr "不良用户评论（{num} 项）"
 
 msgid "More about this add-on"
 msgstr "关于此附加组件的更多信息"
@@ -7179,11 +7178,10 @@ msgstr "可以，附加组件作者可以对每个评论提供一次回应。您
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "我是一个附加组件的作者，我可以删除负面的评论或评分吗？"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
-msgstr "一般来说，不能。但如果评论不符合上述评论准则，您可以点击“报告此评论”，之后会有管理人员进行审核。如果一条抱怨评论因为您的附加组件已经发布了新版本而不再有效，我们可以考虑删除该评论。请提交您的详细请求至 amo-editors@mozilla.org。"
+msgstr "一般来说，不能。但如果评论不符合上述评论准则，您可以点击“报告此评论”，之后会有管理人员进行审核。如果一条抱怨评论因为您的附加组件发布了新版本而不再有效，我们可以考虑删除该评论。"
 
 msgid "Start Now"
 msgstr "立即开始"
