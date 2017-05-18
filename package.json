@@ -15,6 +15,7 @@
     "clean-css-cli": "4.1.0",
     "less": "2.7.2",
     "jquery": "1.12.4",
+    "jquery.browser": "0.1.0",
     "jquery.cookie": "1.4.1",
     "stylus": "0.54.5",
     "uglify-js": "3.0.8"

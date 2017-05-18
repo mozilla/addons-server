@@ -24,7 +24,7 @@ endif
 
 NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
 STATIC_JS := static/js/node_lib/
-NODE_LIBS := jquery/dist/* jquery.cookie/jquery.cookie.js
+NODE_LIBS := jquery/dist/jquery.js jquery.cookie/jquery.cookie.js jquery.browser/dist/jquery.browser.js
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of the following commands."
