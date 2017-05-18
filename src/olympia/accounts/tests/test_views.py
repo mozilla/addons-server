@@ -1125,6 +1125,41 @@ class TestAccountViewSetUpdate(TestCase):
             'picture_upload': [u'Images must be either PNG or JPG.']}
 
 
+class TestAccountViewSetDelete(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.url = reverse('account-detail',
+                           kwargs={'pk': self.user.pk})
+        super(TestAccountViewSetDelete, self).setUp()
+
+    def test_delete(self):
+        self.client.login_api(self.user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.user.reload().deleted
+
+    def test_no_auth(self):
+        response = self.client.delete(self.url)
+        assert response.status_code == 401
+
+    def test_different_account(self):
+        self.client.login_api(self.user)
+        url = reverse('account-detail', kwargs={'pk': user_factory().pk})
+        response = self.client.delete(url)
+        assert response.status_code == 403
+
+    def test_admin_patch(self):
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        random_user = user_factory()
+        url = reverse('account-detail', kwargs={'pk': random_user.pk})
+        response = self.client.delete(url)
+        assert response.status_code == 204
+        assert random_user.reload().deleted
+
+
 class TestAccountSuperCreate(APIKeyAuthTestCase):
 
     def setUp(self):

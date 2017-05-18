@@ -16,7 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import list_route
 from rest_framework.mixins import (
-    ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
+    DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.permissions import (
     AllowAny, BasePermission, IsAuthenticated)
 from rest_framework.response import Response
@@ -383,7 +383,8 @@ class AllowSelf(BasePermission):
         return request.user.is_authenticated() and obj == request.user
 
 
-class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
+class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
+                     GenericViewSet):
     permission_classes = [
         ByHttpMethod({
             'get': AllowAny,
@@ -391,6 +392,8 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
             'options': AllowAny,  # Needed for CORS.
             # To edit a profile it has to yours, or be an admin.
             'patch': AnyOf(AllowSelf, GroupPermission(
+                amo.permissions.USERS_EDIT)),
+            'delete': AnyOf(AllowSelf, GroupPermission(
                 amo.permissions.USERS_EDIT)),
         }),
     ]
