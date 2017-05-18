@@ -11,8 +11,9 @@ from django.http import HttpResponseRedirect
 from django.utils.encoding import force_bytes
 from django.utils.http import is_safe_url
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
+from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import list_route
 from rest_framework.mixins import (
@@ -434,6 +435,14 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
     def profile(self, request, *args, **kwargs):
         self.kwargs['pk'] = unicode(self.request.user.pk)
         return self.retrieve(request, *args, **kwargs)
+
+    def perform_destroy(self, instance):
+        if instance.is_developer:
+            raise serializers.ValidationError(ugettext(
+                u'Developers of add-ons or themes cannot delete their '
+                u'account.  You must delete, or transfer to other users, all '
+                u'add-ons and themes linked to this account first.'))
+        return super(AccountViewSet, self).perform_destroy(instance)
 
 
 class AccountSuperCreate(APIView):

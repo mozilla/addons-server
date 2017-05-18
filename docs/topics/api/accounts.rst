@@ -132,6 +132,10 @@ Delete
     This API requires :doc:`authentication <auth>` and `Users:Edit`
     permission to delete accounts other than your own.
 
+.. note::
+    Accounts of users who are authors of Add-ons can't be deleted.
+    All Add-ons (and Themes) must be deleted or transfered to other users first.
+
 This endpoint allows the account to be deleted.  The reviews and ratings
 created by the user will not be deleted; but all the user's details are
 cleared.

@@ -22,8 +22,9 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
-    assert_url_equal, create_switch, user_factory, APITestClient,
-    InitializeSessionMixin, PatchMixin, TestCase, WithDynamicEndpoints)
+    addon_factory, assert_url_equal, create_switch, user_factory,
+    APITestClient, InitializeSessionMixin, PatchMixin, TestCase,
+    WithDynamicEndpoints)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase
@@ -1158,6 +1159,14 @@ class TestAccountViewSetDelete(TestCase):
         response = self.client.delete(url)
         assert response.status_code == 204
         assert random_user.reload().deleted
+
+    def test_developers_cant_delete(self):
+        self.client.login_api(self.user)
+        addon_factory(users=[self.user])
+        response = self.client.delete(self.url)
+        assert response.status_code == 400
+        assert 'You must delete, or transfer' in response.content
+        assert not self.user.reload().deleted
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):
