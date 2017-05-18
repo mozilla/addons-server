@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 15:51+0000\n"
+"PO-Revision-Date: 2017-05-18 16:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2195,13 +2195,11 @@ msgstr "Žórłowy kod nahraty za {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Žórłowy kod nahraty"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Schwalenske pokazy za přidatk {addon} {version} změnjene."
+msgstr "Awtomatiske schwalenje je za přidatk {addon} {version} wobkrućene."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "Zjimanje awtomatiskeho schwalenja"
+msgstr "Awtomatiske schwalenje je wokrućene"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4904,9 +4902,8 @@ msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "To wotpokaza tutu wersiju a wotstroni jón z čakanskeho rynka. Komentary so wuwiwarjej pósćelu."
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "Čaka na schwalenje"
+msgstr "Schwalenje wobkrućić"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr "Najnowša zjawna wersija tutoho přidatka je so awtomatisce schwaliła. To registruje waše wobkrućenje schwalenja bjez toho, zo by so to wuwiwarjej zdźěliło."
@@ -4968,13 +4965,11 @@ msgstr "Ma přemało na so slědowacych aktualizacijow schwalenych přez ludźi.
 msgid "Has a pending info request."
 msgstr "Ma wustejace informaciske naprašowanje."
 
-#, fuzzy
 msgid "Is flagged for admin review."
-msgstr "Za přepruwowanje markěrowany"
+msgstr "Je za přepruwowanje přez administratora markěrowany."
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "mój přidatk je so wot přepruwowarja přepruwował"
+msgstr "Je wot přepruwowarja zawrjeny."
 
 msgid "Duplicate Submission"
 msgstr "Dwójne zapodaće"
@@ -5034,9 +5029,8 @@ msgstr "trjeba superpřepruwowanje"
 msgid "commented"
 msgstr "komentowany"
 
-#, fuzzy
 msgid "confirmed as approved"
-msgstr "je so schwalił"
+msgstr "je jako schwaleny wobkrućeny"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5052,9 +5046,8 @@ msgstr ""
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Znjewužiwanske rozprawy"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Znjewužiwanske rozprawy za {addon} ({num})"
+msgstr "Znjewužiwanske rozprawy za {addon} a jeho wuwiwarjow ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -5084,13 +5077,11 @@ msgstr "Datum poslednjeho schwalenja"
 msgid "Approvals Since Last Automatic Review"
 msgstr "Schwalenja wot poslednjeho awtomatiskeho přepruwowanja"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Znjewužiwanske rozprawy za {addon} ({num})"
+msgstr "Znjewužiwanske rozprawy ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Moderěrowane přepruwowanje ({num})"
+msgstr "Špatne wužiwarske pohódnoćenja ({num})"
 
 msgid "More about this add-on"
 msgstr "Wjace wo tutym přidatku"
@@ -5361,9 +5352,8 @@ msgstr "Dataje sćahnyć"
 msgid "The developer has provided source code."
 msgstr "Wuwiwar je žórłowy kod k dispoziciji stajił."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Awtomatisce schwalene přidatki"
+msgstr "NJeje awtomatisce schwaleny, dokelž"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr "Skript za awtomatiske schwalenje njeje so hišće w tutej wersiji wuwjedł."
@@ -5438,9 +5428,8 @@ msgstr "Wobsah"
 msgid "Compare"
 msgstr "Přirunać"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Prawa"
+msgstr "Prawa:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7549,13 +7538,12 @@ msgstr ""
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Sym awtor přidatka, móžu njepřijomne pohódnoćenja zhašeć?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 "Powšitkownje nic. Ale jeli pohódnoćenje horjeka mjenowanym pohódnoćenskim směrnicam njewotpowěduje, móžeće na „Tute pohódnoćenje zdźělić“ kliknyć, zo by so moderěrowało. Jeli pohódnoćenje hóršenje "
-"wobsahowaše, kotrež noweje wersije wašeho přidatka dla hižo płaćiwe njeje, zhašamy snano pohódnoćenje. Pósćelće swoje podrobne naprašowanje na amo-editors@mozilla.org."
+"wobsahowaše, kotrež noweje wersije wašeho přidatka dla hižo płaćiwe njeje, zhašamy snano pohódnoćenje."
 
 msgid "Start Now"
 msgstr "Nětko započeć"
