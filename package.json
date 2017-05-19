@@ -6,6 +6,9 @@
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
+  "scripts": {
+    "potools": "potools"
+  },
   "dependencies": {
     "addons-linter": "0.19.2",
     "clean-css": "4.1.1",

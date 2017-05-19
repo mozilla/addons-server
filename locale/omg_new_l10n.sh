@@ -37,7 +37,7 @@ for debugLocale in $DEBUG_LOCALES; do
 
         echo "generating debug locale '$debugLocale' for '$domain' using '$rewrite'"
 
-        potools debug --format "$rewrite" "templates/LC_MESSAGES/$domain.pot" --output "$debugLocale/LC_MESSAGES/$domain.po"
+        npm run potools debug -- --format "$rewrite" "locale/templates/LC_MESSAGES/$domain.pot" --output "locale/$debugLocale/LC_MESSAGES/$domain.po"
     done
 done
 
