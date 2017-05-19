@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-01-15 16:08+0000\n"
-"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
+"PO-Revision-Date: 2017-05-19 09:14+0000\n"
+"Last-Translator: Bente <fox@frkolsen.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgid "Uploading {0}"
 msgstr "Uploader {0}"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "Fejl med {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr ""
@@ -61,7 +61,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "See full validation report"
-msgstr ""
+msgstr "Se den fulde valideringsrapport"
 
 msgid "Validating {0}"
 msgstr ""
@@ -71,13 +71,13 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Uventet serverfejl under valideringen."
 
 msgid "Finished validating {0}"
 msgstr ""
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Valideringen af din tilføjelse udløb, den vil blive manuelt bedømt."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
