@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-19 07:16+0000\n"
+"PO-Revision-Date: 2017-05-19 10:17+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -103,9 +103,9 @@ msgstr "Agregar a {0}"
 msgid "This slug is already in use. Please choose another."
 msgstr "Este slug se utiliza. Por favor, elige otro."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Este slug no puede ser \"%s\". Por favor, elige otro."
+msgstr "Este slug no puede ser \"%(slug)s\". Por favor, elige otro."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -566,9 +566,8 @@ msgstr "¿Quieres tener {0} en tu móvil Firefox?  Escanea este código QR par
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Replacement Add-ons for {0}"
-msgstr "Complementos para {0}"
+msgstr "Complementos de reemplazo para {0}"
 
 msgid "Report Abuse"
 msgstr "Informar de uso indebido"
@@ -2172,13 +2171,11 @@ msgstr "Se ha actualizado el código fuente para {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Se ha actualizado el código fuente"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Se han cambiado las notas de aprobación para {addon} {version}."
+msgstr "Autoaprobación confirmada para {addon} {version}."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "Sumario de autoaprobración"
+msgstr "Autoaprobración confirmada"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4937,9 +4934,8 @@ msgstr "Esto aprobará, firmará y publicará esta versión. El desarrollador re
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Esto eliminará esta versión y la eliminará de la cola de revisiones. Se enviarán los comentarios al desarrollador."
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "Pendiente de aprobación"
+msgstr "Confirmar aprobación"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr "La última versión publicada de este complemento se aprobó automáticamente. Esto es un registro de la confirmación de tu aprobación sin enviarle ninguna notificación al desarrollador."
@@ -5003,13 +4999,11 @@ msgstr "No hay suficientes actualizaciones consecutivas aprobadas manualmente."
 msgid "Has a pending info request."
 msgstr "Tiene una solicitud de información pendiente."
 
-#, fuzzy
 msgid "Is flagged for admin review."
-msgstr "Marcado para revisión"
+msgstr "Marcado para revisión del administrador."
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "mi compelemento es revisado por un editor"
+msgstr "Bloqueado por un revisor."
 
 msgid "Duplicate Submission"
 msgstr "Envío repetido"
@@ -5069,9 +5063,8 @@ msgstr "necesita una super revisión"
 msgid "commented"
 msgstr "comentado"
 
-#, fuzzy
 msgid "confirmed as approved"
-msgstr "ha sido aprobado"
+msgstr "confirmado como aprobado"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5086,9 +5079,8 @@ msgstr ""
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Informes de uso indebido"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Informes de uso indebido sobre {addon} ({num})"
+msgstr "Informes de uso indebido sobre {addon} y sus desarrolladores ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -5118,13 +5110,11 @@ msgstr "Última fecha de aprobación"
 msgid "Approvals Since Last Automatic Review"
 msgstr "Aprobaciones desde la última revisión automática"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Informes de uso indebido sobre {addon} ({num})"
+msgstr "Informes de uso indebido ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Revisión moderada ({num})"
+msgstr "Revisión de usuario con mala conducta ({num})"
 
 msgid "More about this add-on"
 msgstr "Más sobre este complemento"
@@ -5391,9 +5381,8 @@ msgstr "Descargar archivos"
 msgid "The developer has provided source code."
 msgstr "El desarrollador ha proporcionado el código fuente."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Complementos autoaprobados"
+msgstr "No autoaprobado porque"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr "El comando de autoaprobación aún no se ha ejecutado en esta versión."
@@ -5471,9 +5460,8 @@ msgstr "Contenidos"
 msgid "Compare"
 msgstr "Comparar"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Permisos"
+msgstr "Permisos:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7616,13 +7604,12 @@ msgstr ""
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Soy autor de un complemento, ¿puedo eliminar las valoraciones o las calificaciones desfavorables?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 "En general, no. Pero si la valoración no cumple con las pautas de revisión definidas anteriormente, puedes hacer clic en \"Informar de esta valoración\" y será moderada. Si una valoración incluye "
-"una queja que ya no es válida por una nueva versión de tu complemento, podemos considerar borrarla. Envía tus peticiones detalladas a amo-editors@mozilla.org."
+"una queja que ya no es válida por una nueva versión de tu complemento, podemos considerar borrarla."
 
 msgid "Start Now"
 msgstr "Comenzar ahora"
