@@ -183,7 +183,7 @@ def test_get_locale_from_lang(lang):
     locale = get_locale_from_lang(lang)
 
     debug_languages = ('dbg', 'dbr', 'dbl')
-    expected_language = lang[:2] if not lang in debug_languages else 'en'
+    expected_language = lang[:2] if lang not in debug_languages else 'en'
 
     assert isinstance(locale, Locale)
     assert locale.language == expected_language
