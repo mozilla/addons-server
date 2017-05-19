@@ -12,7 +12,7 @@ from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import ESTestCaseWithAddons
+from olympia.amo.tests import create_switch, ESTestCaseWithAddons
 from olympia.amo.helpers import locale_url, numberfmt, urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import (
@@ -491,10 +491,13 @@ class TestESSearch(SearchBase):
         assert r.status_code == 200
         assert pq(r.content)('#tag-facets').length == 0
 
-    def get_results(self, response):
+    def get_results(self, response, sort=True):
         """Return pks of add-ons shown on search results page."""
-        pks = pq(response.content)('#pjax-results div[data-addon]')
-        return sorted(int(pq(a).attr('data-addon')) for a in pks)
+        addons = pq(response.content)('#pjax-results div[data-addon]')
+        pks = [int(pq(a).attr('data-addon')) for a in addons]
+        if sort:
+            return sorted(pks)
+        return pks
 
     def test_results_filtered_atype(self):
         theme = self.addons[0]
@@ -606,6 +609,22 @@ class TestESSearch(SearchBase):
         self.refresh()
         response = self.client.get(self.url, {'q': 'Addon'})
         assert addon.pk not in self.get_results(response)
+
+    def test_webextension_boost(self):
+        web_extension = self.addons[2]
+        web_extension.current_version.files.update(is_webextension=True)
+        web_extension.save()
+        self.refresh()
+
+        response = self.client.get(self.url, {'q': 'addon'})
+        result = self.get_results(response, sort=False)
+        assert result[0] != web_extension.pk
+
+        create_switch('boost-webextensions-in-search')
+        # The boost chosen should have made that addon the first one.
+        response = self.client.get(self.url, {'q': 'addon'})
+        result = self.get_results(response, sort=False)
+        assert result[0] == web_extension.pk
 
 
 class TestPersonaSearch(SearchBase):
@@ -1057,15 +1076,14 @@ class TestAjaxSearch(ESTestCaseWithAddons):
                       src=None):
         if addons is None:
             addons = []
-        r = self.client.get(url + '?' + params)
-        assert r.status_code == 200
-        data = json.loads(r.content)
-
-        data = sorted(data, key=lambda x: x['id'])
-        addons = sorted(addons, key=lambda x: x.id)
+        response = self.client.get(url + '?' + params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
 
         assert len(data) == len(addons)
-        for got, expected in zip(data, addons):
+        for got, expected in zip(
+                sorted(data, key=lambda x: x['id']),
+                sorted(addons, key=lambda x: x.id)):
             expected.reload()
             assert int(got['id']) == expected.id
             assert got['name'] == unicode(expected.name)
@@ -1081,6 +1099,7 @@ class TestAjaxSearch(ESTestCaseWithAddons):
             assert not expected.is_disabled
             assert expected.type in types, (
                 'Add-on type %s should not be searchable.' % expected.type)
+        return data
 
 
 class TestGenericAjaxSearch(TestAjaxSearch):
@@ -1090,7 +1109,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
             addons = []
         [a.save() for a in Addon.objects.all()]
         self.refresh()
-        super(TestGenericAjaxSearch, self).search_addons(
+        return super(TestGenericAjaxSearch, self).search_addons(
             reverse('search.ajax'), params, addons)
 
     def test_ajax_search_by_id(self):
@@ -1139,6 +1158,25 @@ class TestGenericAjaxSearch(TestAjaxSearch):
     def test_ajax_search_by_bad_name(self):
         self.search_addons('q=some+filthy+bad+word', [])
 
+    def test_basic_search(self):
+        public_addons = Addon.objects.public().all()
+        self.search_addons('q=addon', public_addons)
+
+    def test_webextension_boost(self):
+        public_addons = Addon.objects.public().all()
+        web_extension = public_addons[2]
+        web_extension.current_version.files.update(is_webextension=True)
+        web_extension.save()
+        self.refresh()
+
+        data = self.search_addons('q=addon', public_addons)
+        assert int(data[0]['id']) != web_extension.id
+
+        create_switch('boost-webextensions-in-search')
+        # The boost chosen should have made that addon the first one.
+        data = self.search_addons('q=addon', public_addons)
+        assert int(data[0]['id']) == web_extension.id
+
 
 class TestSearchSuggestions(TestAjaxSearch):
 
@@ -1157,7 +1195,7 @@ class TestSearchSuggestions(TestAjaxSearch):
 
     def search_addons(self, params, addons=None,
                       types=views.AddonSuggestionsAjax.types):
-        super(TestSearchSuggestions, self).search_addons(
+        return super(TestSearchSuggestions, self).search_addons(
             self.url, params, addons, types, src='ss')
 
     def search_applications(self, params, apps=None):

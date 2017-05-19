@@ -8,7 +8,7 @@ from mock import Mock
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import create_switch, TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
     InternalSearchParameterFilter, ReviewedContentFilter,
@@ -37,10 +37,10 @@ class TestQueryFilter(FilterTestsBase):
 
     filter_classes = [SearchQueryFilter]
 
-    def test_q(self):
+    def _test_q(self):
         qs = self._filter(data={'q': 'tea pot'})
         # Spot check a few queries.
-        should = (qs['query']['function_score']['query']['bool']['should'])
+        should = qs['query']['function_score']['query']['bool']['should']
 
         expected = {
             'match': {
@@ -76,9 +76,18 @@ class TestQueryFilter(FilterTestsBase):
         }
         assert expected in should
 
+        functions = qs['query']['function_score']['functions']
+        assert functions[0] == {'field_value_factor': {'field': 'boost'}}
+        return qs
+
+    def test_q(self):
+        qs = self._test_q()
+        functions = qs['query']['function_score']['functions']
+        assert len(functions) == 1
+
     def test_fuzzy_single_word(self):
         qs = self._filter(data={'q': 'blah'})
-        should = (qs['query']['function_score']['query']['bool']['should'])
+        should = qs['query']['function_score']['query']['bool']['should']
         expected = {
             'fuzzy': {
                 'name': {
@@ -92,6 +101,19 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'search terms'})
         qs_str = json.dumps(qs)
         assert 'fuzzy' not in qs_str
+
+    def test_webextension_boost(self):
+        create_switch('boost-webextensions-in-search')
+
+        # Repeat base test with the switch enabled.
+        qs = self._test_q()
+        functions = qs['query']['function_score']['functions']
+
+        assert len(functions) == 2
+        assert functions[1] == {
+            'weight': 2.0,  # WEBEXTENSIONS_WEIGHT,
+            'filter': {'term': {'current_version.files.is_webextension': True}}
+        }
 
 
 class TestReviewedContentFilter(FilterTestsBase):

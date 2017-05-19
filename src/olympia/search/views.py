@@ -6,10 +6,13 @@ from django.utils.encoding import force_bytes
 from django.utils.translation import ugettext
 from django.views.decorators.vary import vary_on_headers
 
+import waffle
+
 import olympia.core.logger
 from olympia import amo
 from olympia.bandwagon.views import get_filter as get_filter_view
 from olympia.browse.views import personas_listing as personas_listing_view
+from olympia.addons.indexers import WEBEXTENSIONS_WEIGHT
 from olympia.addons.models import Addon, Category
 from olympia.amo.decorators import json_view
 from olympia.amo.helpers import locale_url, urlparams
@@ -165,6 +168,16 @@ class BaseAjaxSearch(object):
             elif len(q) > 2:
                 qs = (Addon.search_public()
                       .query(or_=name_only_query(q.lower())))
+                if waffle.switch_is_active('boost-webextensions-in-search'):
+                    qs = qs.score({
+                        # Boost webextensions if the waffle switch is enabled.
+                        'weight': WEBEXTENSIONS_WEIGHT,
+                        'filter': {
+                            'term': {
+                                'current_version.files.is_webextension': True
+                            }
+                        }
+                    })
             if qs:
                 results = qs.filter(type__in=self.types)
         return results
@@ -319,10 +332,11 @@ def name_query(q):
     # * Look for phrase matches inside the description using language
     #   specific analyzer (boost=0.1).
     # * Look for matches inside tags (boost=0.1).
-    more = dict(summary__match={'query': q, 'boost': 0.8, 'type': 'phrase'},
-                description__match={'query': q, 'boost': 0.3,
-                                    'type': 'phrase'},
-                tags__match={'query': q.split(), 'boost': 0.1})
+    more = {
+        'summary__match': {'query': q, 'boost': 0.8, 'type': 'phrase'},
+        'description__match': {'query': q, 'boost': 0.3, 'type': 'phrase'},
+        'tags__match': {'query': q.split(), 'boost': 0.1}
+    }
 
     analyzer = get_locale_analyzer(translation.get_language())
     if analyzer:
@@ -443,6 +457,12 @@ def search(request, tag_name=None):
                      appversions={'terms': {'field': appversion_field}},
                      categories={'terms': {'field': 'category', 'size': 200}})
           )
+    if waffle.switch_is_active('boost-webextensions-in-search'):
+        qs = qs.score({
+            # Boost webextensions if the waffle switch is enabled.
+            'weight': WEBEXTENSIONS_WEIGHT,
+            'filter': {'term': {'current_version.files.is_webextension': True}}
+        })
 
     filters = ['atype', 'appver', 'cat', 'sort', 'tag', 'platform']
     mapping = {'users': '-average_daily_users',

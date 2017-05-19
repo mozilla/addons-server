@@ -10,6 +10,14 @@ from olympia.versions.compare import version_int
 log = olympia.core.logger.getLogger('z.es')
 
 
+# When the 'boost-webextensions-in-search' waffle switch is enabled, queries
+# against the addon index should be scored to assign this weight to
+# webextensions.
+# The value is used to multiply matching documents score.A value of 1 is
+# neutral.
+WEBEXTENSIONS_WEIGHT = 2.0
+
+
 class AddonIndexer(BaseSearchIndexer):
     @classmethod
     def get_model(cls):

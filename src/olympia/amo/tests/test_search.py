@@ -44,7 +44,9 @@ class TestNoESIndexing(TestCase):
         assert issubclass(es.__class__, mock.Mock)
 
 
-class TestES(ESTestCaseWithAddons):
+class TestESWithoutMakingQueries(TestCase):
+    # These tests test methods that don't directly call ES, so they work using
+    # the faster TestCase class where ES is mocked.
 
     def test_clone(self):
         # Doing a filter creates a new ES object.
@@ -188,28 +190,6 @@ class TestES(ESTestCaseWithAddons):
         qs = Addon.search()[:0]
         assert qs._build_query()['size'] == 0
 
-    def test_getitem(self):
-        addons = list(Addon.search())
-        assert addons[0] == Addon.search()[0]
-
-    def test_iter(self):
-        qs = Addon.search().filter(type=1, is_disabled=False)
-        assert len(qs) == len(list(qs))
-
-    def test_count(self):
-        assert Addon.search().count() == 6
-
-    def test_count_uses_cached_results(self):
-        qs = Addon.search()
-        qs._results_cache = mock.Mock()
-        qs._results_cache.count = mock.sentinel.count
-        assert qs.count() == mock.sentinel.count
-
-    def test_len(self):
-        qs = Addon.search()
-        qs._results_cache = [1]
-        assert len(qs) == 1
-
     def test_gte(self):
         qs = Addon.search().filter(type__in=[1, 2], status__gte=4)
         filters = qs._build_query()['query']['filtered']['filter']
@@ -277,11 +257,6 @@ class TestES(ESTestCaseWithAddons):
         qs = Addon.search().values('name')
         assert qs._build_query()['fields'] == ['id', 'name']
 
-    def test_values_result(self):
-        addons = [{'id': [a.id], 'slug': [a.slug]} for a in self._addons]
-        qs = Addon.search().values_dict('slug').order_by('id')
-        assert list(qs) == addons
-
     def test_values_dict(self):
         qs = Addon.search().values_dict('name')
         assert qs._build_query()['fields'] == ['id', 'name']
@@ -289,30 +264,6 @@ class TestES(ESTestCaseWithAddons):
     def test_empty_values_dict(self):
         qs = Addon.search().values_dict()
         assert 'fields' not in qs._build_query()
-
-    def test_values_dict_result(self):
-        addons = [{'id': [a.id], 'slug': [a.slug]} for a in self._addons]
-        qs = Addon.search().values_dict('slug').order_by('id')
-        assert list(qs) == list(addons)
-
-    def test_empty_values_dict_result(self):
-        qs = Addon.search().values_dict()
-        # Look for some of the keys we expect.
-        for key in ('id', 'name', 'status', 'app'):
-            assert key in qs[0].keys(), qs[0].keys()
-
-    def test_object_result(self):
-        qs = Addon.search().filter(id=self._addons[0].id)[:1]
-        assert self._addons[:1] == list(qs)
-
-    def test_object_result_slice(self):
-        addon = self._addons[0]
-        qs = Addon.search().filter(id=addon.id)
-        assert addon == qs[0]
-
-    def test_extra_bad_key(self):
-        with self.assertRaises(AssertionError):
-            Addon.search().extra(x=1)
 
     def test_extra_values(self):
         qs = Addon.search().extra(values=['name'])
@@ -387,6 +338,68 @@ class TestES(ESTestCaseWithAddons):
     def test_source(self):
         qs = Addon.search().source('versions')
         assert qs._build_query()['_source'] == ['versions']
+
+    def test_score(self):
+        qs = Addon.search().score({'foo': 'bar'})
+        query = qs._build_query()['query']
+        assert 'function_score' in query
+        assert len(query['function_score']['functions']) == 2
+        assert query['function_score']['functions'][0] == {
+            'field_value_factor': {'field': 'boost', 'missing': 1.0}}
+        assert query['function_score']['functions'][1] == {'foo': 'bar'}
+
+
+class TestES(ESTestCaseWithAddons):
+    def test_getitem(self):
+        addons = list(Addon.search())
+        assert addons[0] == Addon.search()[0]
+
+    def test_iter(self):
+        qs = Addon.search().filter(type=1, is_disabled=False)
+        assert len(qs) == len(list(qs))
+
+    def test_count(self):
+        assert Addon.search().count() == 6
+
+    def test_count_uses_cached_results(self):
+        qs = Addon.search()
+        qs._results_cache = mock.Mock()
+        qs._results_cache.count = mock.sentinel.count
+        assert qs.count() == mock.sentinel.count
+
+    def test_len(self):
+        qs = Addon.search()
+        qs._results_cache = [1]
+        assert len(qs) == 1
+
+    def test_values_result(self):
+        addons = [{'id': [a.id], 'slug': [a.slug]} for a in self._addons]
+        qs = Addon.search().values_dict('slug').order_by('id')
+        assert list(qs) == addons
+
+    def test_values_dict_result(self):
+        addons = [{'id': [a.id], 'slug': [a.slug]} for a in self._addons]
+        qs = Addon.search().values_dict('slug').order_by('id')
+        assert list(qs) == list(addons)
+
+    def test_empty_values_dict_result(self):
+        qs = Addon.search().values_dict()
+        # Look for some of the keys we expect.
+        for key in ('id', 'name', 'status', 'app'):
+            assert key in qs[0].keys(), qs[0].keys()
+
+    def test_object_result(self):
+        qs = Addon.search().filter(id=self._addons[0].id)[:1]
+        assert self._addons[:1] == list(qs)
+
+    def test_object_result_slice(self):
+        addon = self._addons[0]
+        qs = Addon.search().filter(id=addon.id)
+        assert addon == qs[0]
+
+    def test_extra_bad_key(self):
+        with self.assertRaises(AssertionError):
+            Addon.search().extra(x=1)
 
     def test_aggregations(self):
         Tag(tag_text='sky').save_tag(self._addons[0])
