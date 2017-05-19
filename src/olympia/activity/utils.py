@@ -205,8 +205,8 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
         task_user = set()
     # Collect reviewers on the thread (excl. the email sender and task user for
     # automated messages).
-    reviewers = (log_users - addon_authors - task_user - {note_creator})
-    staff_cc = (staff - reviewers)
+    reviewers = log_users - addon_authors - task_user - {note_creator}
+    staff_cc = staff - reviewers - addon_authors - task_user - {note_creator}
     author_context_dict = {
         'name': version.addon.name,
         'number': version.version,
@@ -228,7 +228,6 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
     staff_cc_context_dict = reviewer_context_dict.copy()
     staff_cc_context_dict['email_reason'] = (
         'you are member of the activity email cc group')
-
 
     # Not being localised because we don't know the recipients locale.
     with translation.override('en-US'):
