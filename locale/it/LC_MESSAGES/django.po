@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-19 10:13+0000\n"
-"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2017-05-19 15:41+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -2174,9 +2174,8 @@ msgstr "Il codice sorgente di {addon} {version} è stato caricato."
 msgid "Source code uploaded"
 msgstr "Il codice sorgente è stato caricato"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Le note per l’approvazione di {addon} {version} sono state modificate."
+msgstr "L’approvazione automatica per {version} è stata confermata."
 
 msgid "Auto-Approval confirmed"
 msgstr "Approvazione automatica confermata"
@@ -4975,9 +4974,8 @@ msgstr "Richiesta di ulteriori informazioni in sospeso."
 msgid "Is flagged for admin review."
 msgstr "Richiesta la revisione di un amministratore."
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "il mio componente aggiuntivo è stato verificato da un revisore"
+msgstr "Sotto l’osservazione di un revisore."
 
 msgid "Duplicate Submission"
 msgstr "Invio duplicato"
@@ -5053,9 +5051,8 @@ msgstr ""
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Segnalazioni abusi"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Segnalazione abusi per {addon} ({num})"
+msgstr "Segnalazioni abusi per {addon} e i suoi sviluppatori ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
