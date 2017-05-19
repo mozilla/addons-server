@@ -8,7 +8,6 @@ from mock import Mock
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.addons.indexers import WEBEXTENSIONS_WEIGHT
 from olympia.amo.tests import create_switch, TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
@@ -112,7 +111,7 @@ class TestQueryFilter(FilterTestsBase):
 
         assert len(functions) == 2
         assert functions[1] == {
-            'weight': WEBEXTENSIONS_WEIGHT,
+            'weight': 2.0,  # WEBEXTENSIONS_WEIGHT,
             'filter': {'term': {'current_version.files.is_webextension': True}}
         }
 
