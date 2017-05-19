@@ -146,6 +146,11 @@ INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 GITHUB_API_USER = ''
 GITHUB_API_TOKEN = ''
 
+AMO_LANGUAGES = AMO_LANGUAGES + DEBUG_LANGUAGES
+
+LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
+LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
+
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
     from local_settings import *  # noqa

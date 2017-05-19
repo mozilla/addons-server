@@ -13,5 +13,8 @@
     "less": "2.7.2",
     "stylus": "0.54.5",
     "uglify-js": "3.0.8"
+  },
+  "devDependencies": {
+    "potools": "0.0.3"
   }
 }

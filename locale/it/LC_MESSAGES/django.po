@@ -7582,7 +7582,7 @@ msgid "Continue using Firefox as you normally would. Depending on how you use th
 msgstr "Potrai continuare a utilizzare Firefox come al solito. A seconda delle tue abitudini di navigazione, potresti addirittura non notare differenze."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr "Dopo alcune settimane l’indagine terminerà automaticamente e Firefox riprenderà ad essere quello di sempre.\n"
+msgstr "Dopo alcune settimane l’indagine terminerà automaticamente e Firefox riprenderà ad essere quello di sempre."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
 msgstr "Ti chiederemo anche di partecipare, a tua discrezione, a un rapido sondaggio per conoscere qualcosa in più sulla tua esperienza. Non ti ruberemo più di cinque minuti, promesso."

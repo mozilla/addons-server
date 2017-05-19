@@ -11,28 +11,10 @@
 CLEAN_FLAGS="--no-obsolete --width=200 --no-location"
 MERGE_FLAGS="--update --width=200 --backup=none"
 UNIQ_FLAGS="--width=200"
-unset DOALLTHETHINGS
+DEBUG_LOCALES="dbl dbr"
 
 # -------------------------------------------------------------------
 
-function confirm {
-    if [ ! -z $DOALLTHETHINGS ]; then
-        return 0
-    fi
-
-    PROMPT=$1
-    read -p "$PROMPT [y/n]: " YESNO
-    if [[ $YESNO == 'y' ]]
-    then
-        return 0
-    else
-        return 1
-    fi
-}
-
-if [[ "$1" == "--do-all-the-things" ]]; then
-    DOALLTHETHINGS=1
-fi
 
 if [ ! -d "locale" ]; then
     echo "Sorry, please run from the root of the project, eg.  ./locale/omg_new_l10n.sh"
@@ -41,12 +23,23 @@ fi
 
 echo "Alright, here we go..."
 
-./manage.py extract
+# ./manage.py extract
 
 pushd locale > /dev/null
 
-podebug --rewrite=unicode templates/LC_MESSAGES/django.pot dbg/LC_MESSAGES/django.po
-podebug --rewrite=unicode templates/LC_MESSAGES/djangojs.pot dbg/LC_MESSAGES/djangojs.po
+for debugLocale in $DEBUG_LOCALES; do
+    for domain in django djangojs; do
+        if [ "$debugLocale" == "dbr" ]; then
+            rewrite="mirror"
+        else
+            rewrite="unicode"
+        fi
+
+        echo "generating debug locale '$debugLocale' for '$domain' using '$rewrite'"
+
+        potools debug --format "$rewrite" "templates/LC_MESSAGES/$domain.pot" --output "$debugLocale/LC_MESSAGES/$domain.po"
+    done
+done
 
 echo "Merging any new keys..."
 for i in `find . -name "django.po" | grep -v "en_US"`; do
@@ -70,11 +63,8 @@ for i in `find . -name "djangojs.po"`; do
     msgattrib $CLEAN_FLAGS --output-file=$i $i
 done
 
-msgattrib $CLEAN_FLAGS --output-file=dbg/LC_MESSAGES/django.po dbg/LC_MESSAGES/django.po
-msgattrib $CLEAN_FLAGS --output-file=dbg/LC_MESSAGES/djangojs.po dbg/LC_MESSAGES/djangojs.po
 msgfilter -i sr/LC_MESSAGES/django.po -o sr_Latn/LC_MESSAGES/django.po recode-sr-latin
 
 popd > /dev/null
 
-unset DOALLTHETHINGS
 echo "done."

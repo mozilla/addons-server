@@ -1,4 +1,4 @@
-#, fuzzy
+# , fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
@@ -11,6 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
 "Generated-By: Babel 2.4.0\n"
 
 msgid "{0} star"
@@ -25,12 +26,12 @@ msgid "Select a file..."
 msgstr "Şḗŀḗƈŧ ȧ ƒīŀḗ..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Ẏǿŭř ȧḓḓ-ǿƞ şħǿŭŀḓ ḗƞḓ ẇīŧħ .zīƥ, .ẋƥī, .ƈřẋ, .ĵȧř ǿř .ẋḿŀ"
+msgstr "Ẏǿŭř ȧḓḓ-ǿƞ şħǿŭŀḓ ḗƞḓ ẇīŧħ .ẑīƥ, .ẋƥī, .ƈřẋ, .ĵȧř ǿř .ẋḿŀ"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr "{0}% cǿḿƥŀḗŧḗ"
+msgstr "{0}% ƈǿḿƥŀḗŧḗ"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
@@ -46,7 +47,7 @@ msgid "Error with {0}"
 msgstr "Ḗřřǿř ẇīŧħ {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Ẇḗ ħȧṽḗ ḗƞȧƀŀḗḓ ȧ ƞḗẇ ŀīƞŧḗř ŧǿ ƥřǿƈḗşş ẏǿŭř Ȧḓḓ-ǿƞ. Ƥŀḗȧşḗ ḿȧķḗ şŭřḗ ŧǿ řḗƥǿřŧ ȧƞẏ īşşŭḗş ǿƞ ƓīŧĦŭƀ"
+msgstr "Ẇḗ ħȧṽḗ ḗƞȧƀŀḗḓ ȧ ƞḗẇ ŀīƞŧḗř ŧǿ ƥřǿƈḗşş ẏǿŭř Aḓḓ-ǿƞ. Ƥŀḗȧşḗ ḿȧķḗ şŭřḗ ŧǿ řḗƥǿřŧ ȧƞẏ īşşŭḗş ǿƞ ƓīŧĦŭƀ"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -55,8 +56,8 @@ msgstr[1] "Ẏǿŭř ȧḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧ
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;ȧƞḓ {0} ḿǿřḗ"
-msgstr[1] "&hellip;ȧƞḓ {0} ḿǿřḗ"
+msgstr[0] "&ħḗŀŀīƥ;ȧƞḓ {0} ḿǿřḗ"
+msgstr[1] "&ħḗŀŀīƥ;ȧƞḓ {0} ḿǿřḗ"
 
 msgid "See full validation report"
 msgstr "Şḗḗ ƒŭŀŀ ṽȧŀīḓȧŧīǿƞ řḗƥǿřŧ"
@@ -109,10 +110,10 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr "Īƒ ẏǿŭř ȧḓḓ-ǿƞ řḗɋŭīřḗş ȧƞ ȧƈƈǿŭƞŧ ŧǿ ȧ ẇḗƀşīŧḗ īƞ ǿřḓḗř ŧǿ ƀḗ ƒŭŀŀẏ ŧḗşŧḗḓ, īƞƈŀŭḓḗ ȧ ŧḗşŧ ŭşḗřƞȧḿḗ ȧƞḓ ƥȧşşẇǿřḓ īƞ ŧħḗ Ƞǿŧḗş ŧǿ Řḗṽīḗẇḗř (ŧħīş ƈȧƞ ƀḗ ḓǿƞḗ īƞ ŧħḗ ƞḗẋŧ şŧḗƥ)."
 
 msgid "Add-on submission checklist"
-msgstr "Ȧḓḓ-ǿƞ şŭƀḿīşşīǿƞ ƈħḗƈķŀīşŧ"
+msgstr "Aḓḓ-ǿƞ şŭƀḿīşşīǿƞ ƈħḗƈķŀīşŧ"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Ƥŀḗȧşḗ ṽḗřīƒẏ ŧħḗ ƒǿŀŀǿẇīƞɠ ƥǿīƞŧş ƀḗƒǿřḗ ƒīƞȧŀīzīƞɠ ẏǿŭř şŭƀḿīşşīǿƞ. Ŧħīş ẇīŀŀ ḿīƞīḿīzḗ ḓḗŀȧẏş ǿř ḿīşŭƞḓḗřşŧȧƞḓīƞɠ ḓŭřīƞɠ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş:"
+msgstr "Ƥŀḗȧşḗ ṽḗřīƒẏ ŧħḗ ƒǿŀŀǿẇīƞɠ ƥǿīƞŧş ƀḗƒǿřḗ ƒīƞȧŀīẑīƞɠ ẏǿŭř şŭƀḿīşşīǿƞ. Ŧħīş ẇīŀŀ ḿīƞīḿīẑḗ ḓḗŀȧẏş ǿř ḿīşŭƞḓḗřşŧȧƞḓīƞɠ ḓŭřīƞɠ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -128,7 +129,7 @@ msgid "Sorry, no supported platform has been found."
 msgstr "Şǿřřẏ, ƞǿ şŭƥƥǿřŧḗḓ ƥŀȧŧƒǿřḿ ħȧş ƀḗḗƞ ƒǿŭƞḓ."
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Ŧħḗ ƒīŀḗŧẏƥḗ ẏǿŭ ŭƥŀǿȧḓḗḓ īşƞ'ŧ řḗƈǿɠƞīzḗḓ."
+msgstr "Ŧħḗ ƒīŀḗŧẏƥḗ ẏǿŭ ŭƥŀǿȧḓḗḓ īşƞ'ŧ řḗƈǿɠƞīẑḗḓ."
 
 msgid "You cancelled the upload."
 msgstr "Ẏǿŭ ƈȧƞƈḗŀŀḗḓ ŧħḗ ŭƥŀǿȧḓ."
@@ -153,25 +154,25 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "Ŧħīş ŧħḗḿḗ īş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ {0}"
 
 msgid "All Rights Reserved"
-msgstr "Ȧŀŀ Řīɠħŧş Řḗşḗřṽḗḓ"
+msgstr "Aŀŀ Řīɠħŧş Řḗşḗřṽḗḓ"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ-ȠǿḒḗřīṽş 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ-ȠǿḒḗřīṽş 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ-Şħȧřḗ Ȧŀīķḗ 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ-Şħȧřḗ Aŀīķḗ 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ȠǿḒḗřīṽş 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ-ȠǿḒḗřīṽş 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ŞħȧřḗȦŀīķḗ 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ-ŞħȧřḗAŀīķḗ 3.0"
 
 msgid "Your Theme's Name"
 msgstr "Ẏǿŭř Ŧħḗḿḗ'ş Ƞȧḿḗ"
@@ -186,7 +187,7 @@ msgid "Marked for deletion"
 msgstr "Ḿȧřķḗḓ ƒǿř ḓḗŀḗŧīǿƞ"
 
 msgid "Updating results&hellip;"
-msgstr "Ŭƥḓȧŧīƞɠ řḗşŭŀŧş&hellip;"
+msgstr "Ŭƥḓȧŧīƞɠ řḗşŭŀŧş&ħḗŀŀīƥ;"
 
 msgid "Category"
 msgstr "Ƈȧŧḗɠǿřẏ"
@@ -237,7 +238,7 @@ msgid "Daily Users"
 msgstr "Ḓȧīŀẏ Ŭşḗřş"
 
 msgid "Amount, in USD"
-msgstr "Ȧḿǿŭƞŧ, īƞ ŬŞḒ"
+msgstr "Aḿǿŭƞŧ, īƞ ŬŞḒ"
 
 msgid "Number of Contributions"
 msgstr "Ƞŭḿƀḗř ǿƒ Ƈǿƞŧřīƀŭŧīǿƞş"
@@ -253,16 +254,16 @@ msgid "Collections Created"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş Ƈřḗȧŧḗḓ"
 
 msgid "Add-ons in Use"
-msgstr "Ȧḓḓ-ǿƞş īƞ Ŭşḗ"
+msgstr "Aḓḓ-ǿƞş īƞ Ŭşḗ"
 
 msgid "Add-ons Created"
-msgstr "Ȧḓḓ-ǿƞş Ƈřḗȧŧḗḓ"
+msgstr "Aḓḓ-ǿƞş Ƈřḗȧŧḗḓ"
 
 msgid "Add-ons Downloaded"
-msgstr "Ȧḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ"
+msgstr "Aḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ"
 
 msgid "Add-ons Updated"
-msgstr "Ȧḓḓ-ǿƞş Ŭƥḓȧŧḗḓ"
+msgstr "Aḓḓ-ǿƞş Ŭƥḓȧŧḗḓ"
 
 msgid "Reviews Written"
 msgstr "Řḗṽīḗẇş Ẇřīŧŧḗƞ"
@@ -286,16 +287,16 @@ msgid "Unknown"
 msgstr "Ŭƞķƞǿẇƞ"
 
 msgid "Add-ons Manager"
-msgstr "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř"
+msgstr "Aḓḓ-ǿƞş Ḿȧƞȧɠḗř"
 
 msgid "Add-ons Manager Promo"
-msgstr "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř Ƥřǿḿǿ"
+msgstr "Aḓḓ-ǿƞş Ḿȧƞȧɠḗř Ƥřǿḿǿ"
 
 msgid "Add-ons Manager Featured"
-msgstr "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř Ƒḗȧŧŭřḗḓ"
+msgstr "Aḓḓ-ǿƞş Ḿȧƞȧɠḗř Ƒḗȧŧŭřḗḓ"
 
 msgid "Add-ons Manager Learn More"
-msgstr "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř Ŀḗȧřƞ Ḿǿřḗ"
+msgstr "Aḓḓ-ǿƞş Ḿȧƞȧɠḗř Ŀḗȧřƞ Ḿǿřḗ"
 
 msgid "Search Suggestions"
 msgstr "Şḗȧřƈħ Şŭɠɠḗşŧīǿƞş"
@@ -328,7 +329,7 @@ msgid "Often Used With"
 msgstr "Ǿƒŧḗƞ Ŭşḗḓ Ẇīŧħ"
 
 msgid "Others By Author"
-msgstr "Ǿŧħḗřş Ɓẏ Ȧŭŧħǿř"
+msgstr "Ǿŧħḗřş Ɓẏ Aŭŧħǿř"
 
 msgid "Dependencies"
 msgstr "Ḓḗƥḗƞḓḗƞƈīḗş"
@@ -364,7 +365,7 @@ msgid "Category Landing Most Popular"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ḿǿşŧ Ƥǿƥŭŀȧř"
 
 msgid "Category Landing Recently Added"
-msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
+msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Řḗƈḗƞŧŀẏ Aḓḓḗḓ"
 
 msgid "Browse Listing Featured Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƒḗȧŧŭřḗḓ Şǿřŧ"
@@ -391,10 +392,10 @@ msgid "Browse Listing Up and Coming Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭƥ ȧƞḓ Ƈǿḿīƞɠ Şǿřŧ"
 
 msgid "Total Amount Contributed"
-msgstr "Ŧǿŧȧŀ Ȧḿǿŭƞŧ Ƈǿƞŧřīƀŭŧḗḓ"
+msgstr "Ŧǿŧȧŀ Aḿǿŭƞŧ Ƈǿƞŧřīƀŭŧḗḓ"
 
 msgid "Average Contribution"
-msgstr "Ȧṽḗřȧɠḗ Ƈǿƞŧřīƀŭŧīǿƞ"
+msgstr "Aṽḗřȧɠḗ Ƈǿƞŧřīƀŭŧīǿƞ"
 
 msgid "Usage"
 msgstr "Ŭşȧɠḗ"
@@ -403,7 +404,7 @@ msgid "Firefox"
 msgstr "Ƒīřḗƒǿẋ"
 
 msgid "Mozilla"
-msgstr "Ḿǿzīŀŀȧ"
+msgstr "Ḿǿẑīŀŀȧ"
 
 msgid "Thunderbird"
 msgstr "Ŧħŭƞḓḗřƀīřḓ"
@@ -418,7 +419,7 @@ msgid "Fennec"
 msgstr "Ƒḗƞƞḗƈ"
 
 msgid "Android"
-msgstr "Ȧƞḓřǿīḓ"
+msgstr "Aƞḓřǿīḓ"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
@@ -454,11 +455,11 @@ msgstr "Ḓȧīŀẏ Ŭşḗřş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr "Ȧƥƥŀīƈȧŧīǿƞş, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aƥƥŀīƈȧŧīǿƞş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr "Ȧƥƥŀīƈȧŧīǿƞş ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aƥƥŀīƈȧŧīǿƞş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -478,19 +479,19 @@ msgstr "Ŀȧƞɠŭȧɠḗş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "Ȧḓḓ-ǿƞ Ṽḗřşīǿƞş, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞ Ṽḗřşīǿƞş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞ Ṽḗřşīǿƞş ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞ Ṽḗřşīǿƞş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr "Ȧḓḓ-ǿƞ Şŧȧŧŭş, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞ Şŧȧŧŭş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞ Şŧȧŧŭş ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞ Şŧȧŧŭş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -518,35 +519,35 @@ msgstr "Şīŧḗ Ḿḗŧřīƈş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş īƞ Ŭşḗ, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞş īƞ Ŭşḗ, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş īƞ Ŭşḗ ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞş īƞ Ŭşḗ ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş Ƈřḗȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞş Ƈřḗȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş Ƈřḗȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞş Ƈřḗȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş Ŭƥḓȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞş Ŭƥḓȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş Ŭƥḓȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞş Ŭƥḓȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
@@ -640,22 +641,22 @@ msgstr[1] "Ḗḿȧīŀ ȧŭŧħǿřş ǿƒ {2} ȧḓḓ-ǿƞş ẇħīƈħ ƒȧ
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr "Ȧƈƈḗƥŧ ȧƞḓ Īƞşŧȧŀŀ"
+msgstr "Aƈƈḗƥŧ ȧƞḓ Īƞşŧȧŀŀ"
 
 msgid "Add to {0}"
-msgstr "Ȧḓḓ ŧǿ {0}"
+msgstr "Aḓḓ ŧǿ {0}"
 
 msgid "Download Now"
 msgstr "Ḓǿẇƞŀǿȧḓ Ƞǿẇ"
 
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Ȧḓḓ-ǿƞ ħȧş ƞǿŧ ƀḗḗƞ ŭƥḓȧŧḗḓ ŧǿ şŭƥƥǿřŧ ḓḗƒȧŭŀŧ-ŧǿ-ƈǿḿƥȧŧīƀŀḗ."
+msgstr "Aḓḓ-ǿƞ ħȧş ƞǿŧ ƀḗḗƞ ŭƥḓȧŧḗḓ ŧǿ şŭƥƥǿřŧ ḓḗƒȧŭŀŧ-ŧǿ-ƈǿḿƥȧŧīƀŀḗ."
 
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Ẏǿŭ ƞḗḗḓ ŧǿ ƀḗ ŭşīƞɠ Ƒīřḗƒǿẋ 10.0 ǿř ħīɠħḗř."
 
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Ḿǿzīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
+msgstr "Ḿǿẑīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
@@ -672,10 +673,10 @@ msgid "Not available for {0} {1}"
 msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř {0} {1}"
 
 msgid "Works with {app} {min} - {max}"
-msgstr "Ẇǿřķş ẇīŧħ {ȧƥƥ} {ḿīƞ} - {ḿȧẋ}"
+msgstr "Ẇǿřķş ẇīŧħ {app} {min} - {max}"
 
 msgid "Works with {app}"
-msgstr "Ẇǿřķş ẇīŧħ {ȧƥƥ}"
+msgstr "Ẇǿřķş ẇīŧħ {app}"
 
 msgid "View other versions"
 msgstr "Ṽīḗẇ ǿŧħḗř ṽḗřşīǿƞş"
@@ -690,16 +691,16 @@ msgid "Only available on Firefox Desktop"
 msgstr "Ǿƞŀẏ ȧṽȧīŀȧƀŀḗ ǿƞ Ƒīřḗƒǿẋ Ḓḗşķŧǿƥ"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿzīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ şḗȧřƈħ ƥŀŭɠīƞ."
+msgstr "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿẑīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ şḗȧřƈħ ƥŀŭɠīƞ."
 
 msgid "Adding to Favorites&hellip;"
-msgstr "Ȧḓḓīƞɠ ŧǿ Ƒȧṽǿřīŧḗş&hellip;"
+msgstr "Aḓḓīƞɠ ŧǿ Ƒȧṽǿřīŧḗş&ħḗŀŀīƥ;"
 
 msgid "Removing Favorite&hellip;"
-msgstr "Řḗḿǿṽīƞɠ Ƒȧṽǿřīŧḗ&hellip;"
+msgstr "Řḗḿǿṽīƞɠ Ƒȧṽǿřīŧḗ&ħḗŀŀīƥ;"
 
 msgid "Add to Favorites"
-msgstr "Ȧḓḓ ŧǿ Ƒȧṽǿřīŧḗş"
+msgstr "Aḓḓ ŧǿ Ƒȧṽǿřīŧḗş"
 
 msgid "Remove from Favorites"
 msgstr "Řḗḿǿṽḗ ƒřǿḿ Ƒȧṽǿřīŧḗş"
@@ -708,7 +709,7 @@ msgid "Pending"
 msgstr "Ƥḗƞḓīƞɠ"
 
 msgid "Add a comment"
-msgstr "Ȧḓḓ ȧ ƈǿḿḿḗƞŧ"
+msgstr "Aḓḓ ȧ ƈǿḿḿḗƞŧ"
 
 msgid "Comment"
 msgstr "Ƈǿḿḿḗƞŧ"
@@ -723,7 +724,7 @@ msgid "Remove this user as a contributor"
 msgstr "Řḗḿǿṽḗ ŧħīş ŭşḗř ȧş ȧ ƈǿƞŧřīƀŭŧǿř"
 
 msgid "An email address is required."
-msgstr "Ȧƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
+msgstr "Aƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
 
 msgid "You cannot add yourself as a contributor."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ȧḓḓ ẏǿŭřşḗŀƒ ȧş ȧ ƈǿƞŧřīƀŭŧǿř."
@@ -732,7 +733,7 @@ msgid "You have already added that user."
 msgstr "Ẏǿŭ ħȧṽḗ ȧŀřḗȧḓẏ ȧḓḓḗḓ ŧħȧŧ ŭşḗř."
 
 msgid "Add to favorites"
-msgstr "Ȧḓḓ ŧǿ ƒȧṽǿřīŧḗş"
+msgstr "Aḓḓ ŧǿ ƒȧṽǿřīŧḗş"
 
 msgid "Remove from favorites"
 msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
@@ -754,13 +755,13 @@ msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒī
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] "{ƒīŀḗş} ƒīŀḗ"
-msgstr[1] "{ƒīŀḗş} ƒīŀḗş"
+msgstr[0] "{files} ƒīŀḗ"
+msgstr[1] "{files} ƒīŀḗş"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇ"
-msgstr[1] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇş"
+msgstr[0] "{reviews} ŭşḗř řḗṽīḗẇ"
+msgstr[1] "{reviews} ŭşḗř řḗṽīḗẇş"
 
 msgid "Learn more"
 msgstr "Ŀḗȧřƞ ḿǿřḗ"
@@ -775,7 +776,7 @@ msgid "No results found."
 msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ."
 
 msgid "{name} was viewing this page first."
-msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
+msgstr "{name} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
 
 msgid "Receipt checked by app."
 msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
@@ -784,10 +785,10 @@ msgid "Receipt was not checked by app."
 msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
 msgid "{name} was viewing this add-on first."
-msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
+msgstr "{name} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
 
 msgid "Loading&hellip;"
-msgstr "Ŀǿȧḓīƞɠ&hellip;"
+msgstr "Ŀǿȧḓīƞɠ&ħḗŀŀīƥ;"
 
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
@@ -805,7 +806,7 @@ msgid "Review notes found"
 msgstr "Řḗṽīḗẇ ƞǿŧḗş ƒǿŭƞḓ"
 
 msgid "Average Reviews"
-msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
+msgstr "Aṽḗřȧɠḗ Řḗṽīḗẇş"
 
 msgid "Number of Reviews"
 msgstr "Ƞŭḿƀḗř ǿƒ Řḗṽīḗẇş"
@@ -823,15 +824,15 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "Ŧħīş ƒḗȧŧŭřḗ īş ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. Ƥŀḗȧşḗ ƈħḗƈķ ƀȧƈķ ȧ ŀīŧŧŀḗ ŀȧŧḗř."
 
 msgid "Remove this localization"
-msgstr "Řḗḿǿṽḗ ŧħīş ŀǿƈȧŀīzȧŧīǿƞ"
+msgstr "Řḗḿǿṽḗ ŧħīş ŀǿƈȧŀīẑȧŧīǿƞ"
 
 msgid "Password strength:"
 msgstr "Ƥȧşşẇǿřḓ şŧřḗƞɠŧħ:"
 
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] "Ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř ŀḗƒŧ."
-msgstr[1] "Ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
+msgstr[0] "Aŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř ŀḗƒŧ."
+msgstr[1] "Aŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
 
 msgid "Requested Info"
 msgstr "Řḗɋŭḗşŧḗḓ Īƞƒǿ"
@@ -846,7 +847,7 @@ msgid "Rejected"
 msgstr "Řḗĵḗƈŧḗḓ"
 
 msgid "Approved"
-msgstr "Ȧƥƥřǿṽḗḓ"
+msgstr "Aƥƥřǿṽḗḓ"
 
 msgid "No results found"
 msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ"
@@ -861,7 +862,7 @@ msgid "Status"
 msgstr "Şŧȧŧŭş"
 
 msgid "All tests passed successfully."
-msgstr "Ȧŀŀ ŧḗşŧş ƥȧşşḗḓ şŭƈƈḗşşƒŭŀŀẏ."
+msgstr "Aŀŀ ŧḗşŧş ƥȧşşḗḓ şŭƈƈḗşşƒŭŀŀẏ."
 
 msgid "These tests were not run."
 msgstr "Ŧħḗşḗ ŧḗşŧş ẇḗřḗ ƞǿŧ řŭƞ."
@@ -885,10 +886,10 @@ msgid "Compatibility Tests"
 msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ Ŧḗşŧş"
 
 msgid "Add-on failed validation."
-msgstr "Ȧḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
+msgstr "Aḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
 
 msgid "Add-on passed validation."
-msgstr "Ȧḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ."
+msgstr "Aḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
