@@ -88,6 +88,9 @@ AMO_LANGUAGES = (
     'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
     'zh-CN', 'zh-TW',
 )
+
+AMO_LANGUAGES = AMO_LANGUAGES + DEBUG_LANGUAGES
+
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 TASK_USER_ID = 1337
