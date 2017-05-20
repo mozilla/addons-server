@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-11 15:15+0000\n"
+"PO-Revision-Date: 2017-05-20 23:47+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -48,7 +48,7 @@ msgid "Error with {0}"
 msgstr "Erro com {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Habilitamos um novo linter para processar a sua extensão. Por favor, reporte quaisquer problemas no GitHub"
+msgstr "Habilitamos um novo linter para processar sua extensão. Por favor, reporte quaisquer problemas no GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -61,7 +61,7 @@ msgstr[0] "&hellip;e mais {0}"
 msgstr[1] "&hellip;e mais {0}"
 
 msgid "See full validation report"
-msgstr "Ver o relatório de validação completo"
+msgstr "Ver relatório de validação completo"
 
 msgid "Validating {0}"
 msgstr "Validando {0}"
