@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-20 23:47+0000\n"
+"PO-Revision-Date: 2017-05-21 00:03+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -240,7 +240,7 @@ msgid "Daily Users"
 msgstr "Usuários diários"
 
 msgid "Amount, in USD"
-msgstr "Quantia, em Dólares Estadunidenses"
+msgstr "Quantia, em USD"
 
 msgid "Number of Contributions"
 msgstr "Número de contribuições"
@@ -250,7 +250,7 @@ msgstr "Mais informações..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr "Detalhes em {0}"
+msgstr "Detalhes para {0}"
 
 msgid "Collections Created"
 msgstr "Coleções criadas"
@@ -325,7 +325,7 @@ msgid "Detail Page (bottom)"
 msgstr "Página de detalhes (fim)"
 
 msgid "Detail Page (Development Channel)"
-msgstr "Página de detalhes (Canal de Desenvolvimento)"
+msgstr "Página de detalhes (canal de desenvolvimento)"
 
 msgid "Often Used With"
 msgstr "Usado frequentemente com"
@@ -340,7 +340,7 @@ msgid "Upsell"
 msgstr "Divulgação"
 
 msgid "Meet the Developer"
-msgstr "Encontre o desenvolvedor"
+msgstr "Conheça o desenvolvedor"
 
 msgid "User Profile"
 msgstr "Perfil de usuário"
@@ -352,7 +352,7 @@ msgid "Sharing"
 msgstr "Compartilhamento"
 
 msgid "Category Pages"
-msgstr "Páginas de Categorias"
+msgstr "Páginas de categorias"
 
 msgid "Collections"
 msgstr "Coleções"
@@ -457,7 +457,7 @@ msgstr "Usuários diários de {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr "Aplicativos nos últimos {0}"
+msgstr "Aplicativos, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
@@ -465,7 +465,7 @@ msgstr "Aplicativos de {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr "Plataformas nos últimos {0} dias"
+msgstr "Plataformas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
@@ -473,7 +473,7 @@ msgstr "Plataformas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr "Idiomas nos últimos {0} dias"
+msgstr "Idiomas, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
@@ -489,7 +489,7 @@ msgstr "Versões da extensões de {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr "Status da extensão nos últimos {0} dias"
+msgstr "Status da extensão, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
@@ -497,7 +497,7 @@ msgstr "Status da extensão de {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Origem dos downloads nos últimos {0} dias"
+msgstr "Origem dos downloads, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
@@ -505,7 +505,7 @@ msgstr "Origem dos downloads de {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "Contribuições nos últimos {0} dias"
+msgstr "Contribuições, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
@@ -513,15 +513,15 @@ msgstr "Contribuições de {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "Estatísticas do site nos últimos {0} dias"
+msgstr "Medições do site, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "Estatísticas do site de {0} a {1}"
+msgstr "Medições do site de {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr "Extensões em uso nos últimos {0} dias"
+msgstr "Extensões em uso, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
@@ -675,10 +675,10 @@ msgid "Not available for {0} {1}"
 msgstr "Indisponível para o {0} {1}"
 
 msgid "Works with {app} {min} - {max}"
-msgstr "Funciona com o {app} {min} - {max}"
+msgstr "Funciona com {app} {min} - {max}"
 
 msgid "Works with {app}"
-msgstr "Trabalha com {app}"
+msgstr "Funciona com {app}"
 
 msgid "View other versions"
 msgstr "Ver outras versões"
