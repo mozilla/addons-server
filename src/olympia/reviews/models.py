@@ -85,7 +85,6 @@ class Review(ModelBase):
 
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
-    sandbox = models.BooleanField(default=False)
 
     deleted = models.BooleanField(default=False)
 
