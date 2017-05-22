@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-17 11:23+0000\n"
+"POT-Creation-Date: 2017-05-22 03:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,7 +74,7 @@ msgstr "Ḓǿẇƞŀǿȧḓ"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Ƈǿƞŧīƞŭḗ ŧǿ Ḓǿẇƞŀǿȧḓ&ƞƀşƥ;&řȧřř;"
+msgstr "Ƈǿƞŧīƞŭḗ ŧǿ Ḓǿẇƞŀǿȧḓ&nbsp;&rarr;"
 
 msgid "Featured"
 msgstr "Ƒḗȧŧŭřḗḓ"
@@ -322,7 +322,7 @@ msgid "See all »"
 msgstr "Şḗḗ ȧŀŀ »"
 
 msgid "Up &amp; Coming Extensions"
-msgstr "Ŭƥ &ȧḿƥ; Ƈǿḿīƞɠ Ḗẋŧḗƞşīǿƞş"
+msgstr "Ŭƥ &amp; Ƈǿḿīƞɠ Ḗẋŧḗƞşīǿƞş"
 
 msgid "Featured Themes"
 msgstr "Ƒḗȧŧŭřḗḓ Ŧħḗḿḗş"
@@ -1016,7 +1016,7 @@ msgstr "Ƞḗẋŧ"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr "Řḗşŭŀŧş <strong>%(begin)s</strong>&ƞḓȧşħ;<strong>%(end)s</strong> ǿƒ <strong>%(count)s</strong>"
+msgstr "Řḗşŭŀŧş <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> ǿƒ <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
 msgstr "Ḿȧīƞŧḗƞȧƞƈḗ īƞ ƥřǿɠřḗşş"
@@ -1069,7 +1069,7 @@ msgid "My Favorite Add-ons"
 msgstr "Ḿẏ Ƒȧṽǿřīŧḗ Aḓḓ-ǿƞş"
 
 msgid "More&hellip;"
-msgstr "Ḿǿřḗ&ħḗŀŀīƥ;"
+msgstr "Ḿǿřḗ&hellip;"
 
 msgid "Add-ons for Mobile"
 msgstr "Aḓḓ-ǿƞş ƒǿř Ḿǿƀīŀḗ"
@@ -1095,7 +1095,7 @@ msgstr "Ĵŭḿƥ ŧǿ ŀȧşŧ ƥȧɠḗ"
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Şħǿẇīƞɠ <b>%(begin)s</b>&ƞḓȧşħ;<b>%(end)s</b> ǿƒ <b>%(count)s</b>"
+msgstr "Şħǿẇīƞɠ <b>%(begin)s</b>&ndash;<b>%(end)s</b> ǿƒ <b>%(count)s</b>"
 
 msgid "Title"
 msgstr "Ŧīŧŀḗ"
@@ -1767,8 +1767,8 @@ msgstr "Ŭƥ & Ƈǿḿīƞɠ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗş"
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "Şḗḗ ŧħḗ %(cnt)s ḗẋŧḗƞşīǿƞ īƞ %(name)s &řȧɋŭǿ;"
-msgstr[1] "Şḗḗ ȧŀŀ %(cnt)s ḗẋŧḗƞşīǿƞş īƞ %(name)s &řȧɋŭǿ;"
+msgstr[0] "Şḗḗ ŧħḗ %(cnt)s ḗẋŧḗƞşīǿƞ īƞ %(name)s &raquo;"
+msgstr[1] "Şḗḗ ȧŀŀ %(cnt)s ḗẋŧḗƞşīǿƞş īƞ %(name)s &raquo;"
 
 msgid "{0} Themes"
 msgstr "{0} Ŧħḗḿḗş"
@@ -2979,7 +2979,7 @@ msgid "Please enter some search terms."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř şǿḿḗ şḗȧřƈħ ŧḗřḿş."
 
 msgid "Loading results&hellip;"
-msgstr "Ŀǿȧḓīƞɠ řḗşŭŀŧş&ħḗŀŀīƥ;"
+msgstr "Ŀǿȧḓīƞɠ řḗşŭŀŧş&hellip;"
 
 msgid "No results found."
 msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ."
@@ -3166,7 +3166,7 @@ msgid "Supported Versions"
 msgstr "Şŭƥƥǿřŧḗḓ Ṽḗřşīǿƞş"
 
 msgid "Add Another Application&hellip;"
-msgstr "Aḓḓ Aƞǿŧħḗř Aƥƥŀīƈȧŧīǿƞ&ħḗŀŀīƥ;"
+msgstr "Aḓḓ Aƞǿŧħḗř Aƥƥŀīƈȧŧīǿƞ&hellip;"
 
 msgid "Close"
 msgstr "Ƈŀǿşḗ"
@@ -4411,7 +4411,7 @@ msgid "Select a header image for your Theme."
 msgstr "Şḗŀḗƈŧ ȧ ħḗȧḓḗř īḿȧɠḗ ƒǿř ẏǿŭř Ŧħḗḿḗ."
 
 msgid "3000 &times; 200 pixels"
-msgstr "3000 &ŧīḿḗş; 200 ƥīẋḗŀş"
+msgstr "3000 &times; 200 ƥīẋḗŀş"
 
 msgid "300 KB max"
 msgstr "300 ĶƁ ḿȧẋ"
@@ -4429,7 +4429,7 @@ msgid "Select a footer image for your Theme."
 msgstr "Şḗŀḗƈŧ ȧ ƒǿǿŧḗř īḿȧɠḗ ƒǿř ẏǿŭř Ŧħḗḿḗ."
 
 msgid "3000 &times; 100 pixels"
-msgstr "3000 &ŧīḿḗş; 100 ƥīẋḗŀş"
+msgstr "3000 &times; 100 ƥīẋḗŀş"
 
 msgid "Aligned to bottom-left"
 msgstr "Aŀīɠƞḗḓ ŧǿ ƀǿŧŧǿḿ-ŀḗƒŧ"
@@ -5230,7 +5230,7 @@ msgstr "Aḓḓ-ǿƞ Ħīşŧǿřẏ"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Ṽḗřşīǿƞ %(version)s &ḿīḓḓǿŧ; %(created)s <span class=\"light\">&ḿīḓḓǿŧ; %(version_status)s</span>"
+msgstr "Ṽḗřşīǿƞ %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "Compatibility:"
 msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ:"
@@ -5576,7 +5576,7 @@ msgstr "Ɓȧƈķ ŧǿ ȧḓḓ-ǿƞ"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "Ṽḗřşīǿƞ: %(version)s &ƀŭŀŀ; Şīẑḗ: %(size)s &ƀŭŀŀ; ŞĦA256 ħȧşħ: %(sha256)s &ƀŭŀŀ; Ḿīḿḗŧẏƥḗ: %(mimetype)s"
+msgstr "Ṽḗřşīǿƞ: %(version)s &bull; Şīẑḗ: %(size)s &bull; ŞĦA256 ħȧşħ: %(sha256)s &bull; Ḿīḿḗŧẏƥḗ: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
 msgstr "Ƒīŀḗ Ƈǿḿƥȧřḗ :: Řḗṽīḗẇḗř ŧǿǿŀş"
@@ -5676,10 +5676,10 @@ msgid "A quick view to compare prices when you shop online or search for flights
 msgstr "A ɋŭīƈķ ṽīḗẇ ŧǿ ƈǿḿƥȧřḗ ƥřīƈḗş ẇħḗƞ ẏǿŭ şħǿƥ ǿƞŀīƞḗ ǿř şḗȧřƈħ ƒǿř ƒŀīɠħŧş."
 
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr "Şŧ. Ƥȧŧřīƈķ&řşɋŭǿ;ş Ḓȧẏ Ŧħḗḿḗş"
+msgstr "Şŧ. Ƥȧŧřīƈķ&rsquo;ş Ḓȧẏ Ŧħḗḿḗş"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "Ḓḗƈǿřȧŧḗ ẏǿŭř ƀřǿẇşḗř ŧǿ ƈḗŀḗƀřȧŧḗ Şŧ. Ƥȧŧřīƈķ&řşɋŭǿ;ş Ḓȧẏ."
+msgstr "Ḓḗƈǿřȧŧḗ ẏǿŭř ƀřǿẇşḗř ŧǿ ƈḗŀḗƀřȧŧḗ Şŧ. Ƥȧŧřīƈķ&rsquo;ş Ḓȧẏ."
 
 msgid "Sit Back and Relax"
 msgstr "Şīŧ Ɓȧƈķ ȧƞḓ Řḗŀȧẋ"
@@ -5724,7 +5724,7 @@ msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr "Īƞşŧȧŀŀ ŧħḗşḗ ƒīŧƞḗşş ȧḓḓ-ǿƞş ŧǿ ķḗḗƥ ẏǿŭ ȧƈŧīṽḗ ȧƞḓ ħḗȧŀŧħẏ."
 
 msgid "New &amp; Now"
-msgstr "Ƞḗẇ &ȧḿƥ; Ƞǿẇ"
+msgstr "Ƞḗẇ &amp; Ƞǿẇ"
 
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr "Ɠḗŧ ŧħḗ ŀȧŧḗşŧ, ḿŭşŧ-ħȧṽḗ ȧḓḓ-ǿƞş ǿƒ ŧħḗ ḿǿḿḗƞŧ."
@@ -5736,7 +5736,7 @@ msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "Ƥřǿŧḗƈŧ ẏǿŭř ƥřīṽȧƈẏ ǿƞŀīƞḗ ẇīŧħ ŧħḗ ȧḓḓ-ǿƞş īƞ ŧħīş ƈǿŀŀḗƈŧīǿƞ."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr "Ɠřḗȧŧ ȧḓḓ-ǿƞş ƒǿř ẇǿřķ, ƒŭƞ, ƥřīṽȧƈẏ, ƥřǿḓŭƈŧīṽīŧẏ&ħḗŀŀīƥ; ĵŭşŧ ȧƀǿŭŧ ȧƞẏŧħīƞɠ!"
+msgstr "Ɠřḗȧŧ ȧḓḓ-ǿƞş ƒǿř ẇǿřķ, ƒŭƞ, ƥřīṽȧƈẏ, ƥřǿḓŭƈŧīṽīŧẏ&hellip; ĵŭşŧ ȧƀǿŭŧ ȧƞẏŧħīƞɠ!"
 
 msgid "Games!"
 msgstr "Ɠȧḿḗş!"
@@ -5805,7 +5805,7 @@ msgid "Cancel Installation"
 msgstr "Ƈȧƞƈḗŀ Īƞşŧȧŀŀȧŧīǿƞ"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Ḿǿẑīŀŀȧ&řşɋŭǿ;ş Ƥīƈķ ǿƒ ŧħḗ Ḿǿƞŧħ!"
+msgstr "Ḿǿẑīŀŀȧ&rsquo;ş Ƥīƈķ ǿƒ ŧħḗ Ḿǿƞŧħ!"
 
 msgid "Become a Test Pilot"
 msgstr "Ɓḗƈǿḿḗ ȧ Ŧḗşŧ Ƥīŀǿŧ"
@@ -6463,7 +6463,7 @@ msgid "Mozilla would like to thank the following people for their contributions 
 msgstr "Ḿǿẑīŀŀȧ ẇǿŭŀḓ ŀīķḗ ŧǿ ŧħȧƞķ ŧħḗ ƒǿŀŀǿẇīƞɠ ƥḗǿƥŀḗ ƒǿř ŧħḗīř ƈǿƞŧřīƀŭŧīǿƞş ŧǿ ŧħḗ ȧḓḓǿƞş.ḿǿẑīŀŀȧ.ǿřɠ ƥřǿĵḗƈŧ ǿṽḗř ŧħḗ ẏḗȧřş:"
 
 msgid "Developers &amp; Administrators"
-msgstr "Ḓḗṽḗŀǿƥḗřş &ȧḿƥ; Aḓḿīƞīşŧřȧŧǿřş"
+msgstr "Ḓḗṽḗŀǿƥḗřş &amp; Aḓḿīƞīşŧřȧŧǿřş"
 
 msgid "Localizers"
 msgstr "Ŀǿƈȧŀīẑḗřş"
@@ -6479,7 +6479,7 @@ msgid "Other Contributors"
 msgstr "Ǿŧħḗř Ƈǿƞŧřīƀŭŧǿřş"
 
 msgid "Past Developers &amp; Administrators"
-msgstr "Ƥȧşŧ Ḓḗṽḗŀǿƥḗřş &ȧḿƥ; Aḓḿīƞīşŧřȧŧǿřş"
+msgstr "Ƥȧşŧ Ḓḗṽḗŀǿƥḗřş &amp; Aḓḿīƞīşŧřȧŧǿřş"
 
 msgid "Software and Images"
 msgstr "Şǿƒŧẇȧřḗ ȧƞḓ Īḿȧɠḗş"
@@ -7952,7 +7952,7 @@ msgid "Statistics processing is currently disabled, so recent data is unavailabl
 msgstr "Şŧȧŧīşŧīƈş ƥřǿƈḗşşīƞɠ īş ƈŭřřḗƞŧŀẏ ḓīşȧƀŀḗḓ, şǿ řḗƈḗƞŧ ḓȧŧȧ īş ŭƞȧṽȧīŀȧƀŀḗ. Ŧħḗ şŧȧŧīşŧīƈş ȧřḗ şŧīŀŀ ƀḗīƞɠ ƈǿŀŀḗƈŧḗḓ ȧƞḓ ŧħīş ƥȧɠḗ ẇīŀŀ ƀḗ ŭƥḓȧŧḗḓ şǿǿƞ ẇīŧħ ŧħḗ ḿīşşīƞɠ ḓȧŧȧ."
 
 msgid "Loading the latest data&hellip;"
-msgstr "Ŀǿȧḓīƞɠ ŧħḗ ŀȧŧḗşŧ ḓȧŧȧ&ħḗŀŀīƥ;"
+msgstr "Ŀǿȧḓīƞɠ ŧħḗ ŀȧŧḗşŧ ḓȧŧȧ&hellip;"
 
 msgid "No data available."
 msgstr "Ƞǿ ḓȧŧȧ ȧṽȧīŀȧƀŀḗ."
@@ -8022,19 +8022,19 @@ msgid "Top Applications"
 msgstr "Ŧǿƥ Aƥƥŀīƈȧŧīǿƞş"
 
 msgid "See more applications&hellip;"
-msgstr "Şḗḗ ḿǿřḗ ȧƥƥŀīƈȧŧīǿƞş&ħḗŀŀīƥ;"
+msgstr "Şḗḗ ḿǿřḗ ȧƥƥŀīƈȧŧīǿƞş&hellip;"
 
 msgid "Top Languages"
 msgstr "Ŧǿƥ Ŀȧƞɠŭȧɠḗş"
 
 msgid "See more languages&hellip;"
-msgstr "Şḗḗ ḿǿřḗ ŀȧƞɠŭȧɠḗş&ħḗŀŀīƥ;"
+msgstr "Şḗḗ ḿǿřḗ ŀȧƞɠŭȧɠḗş&hellip;"
 
 msgid "Top Platforms"
 msgstr "Ŧǿƥ Ƥŀȧŧƒǿřḿş"
 
 msgid "See more platforms&hellip;"
-msgstr "Şḗḗ ḿǿřḗ ƥŀȧŧƒǿřḿş&ħḗŀŀīƥ;"
+msgstr "Şḗḗ ḿǿřḗ ƥŀȧŧƒǿřḿş&hellip;"
 
 msgid "Ratings by Date"
 msgstr "Řȧŧīƞɠş ƀẏ Ḓȧŧḗ"
@@ -8193,7 +8193,7 @@ msgstr "Ŀǿƈȧŀīẑḗ ƒǿř: <a id=\"change-locale\" href=\"#\">%(dl)s</a>
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr "%(title)s <em>&ḿīḓḓǿŧ; %(lang)s</em>"
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
 msgstr "Ḗẋīşŧīƞɠ Ŀǿƈȧŀḗş"
@@ -8384,7 +8384,7 @@ msgid "This URL will only be visible if you are a developer."
 msgstr "Ŧħīş ŬŘĿ ẇīŀŀ ǿƞŀẏ ƀḗ ṽīşīƀŀḗ īƒ ẏǿŭ ȧřḗ ȧ ḓḗṽḗŀǿƥḗř."
 
 msgid "Choose Photo&hellip;"
-msgstr "Ƈħǿǿşḗ Ƥħǿŧǿ&ħḗŀŀīƥ;"
+msgstr "Ƈħǿǿşḗ Ƥħǿŧǿ&hellip;"
 
 msgid "Delete current photo"
 msgstr "Ḓḗŀḗŧḗ ƈŭřřḗƞŧ ƥħǿŧǿ"

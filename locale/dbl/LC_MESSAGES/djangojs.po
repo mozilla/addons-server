@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-17 11:23+0000\n"
+"POT-Creation-Date: 2017-05-22 03:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,8 +56,8 @@ msgstr[1] "Ẏǿŭř ȧḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧ
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&ħḗŀŀīƥ;ȧƞḓ {0} ḿǿřḗ"
-msgstr[1] "&ħḗŀŀīƥ;ȧƞḓ {0} ḿǿřḗ"
+msgstr[0] "&hellip;ȧƞḓ {0} ḿǿřḗ"
+msgstr[1] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 
 msgid "See full validation report"
 msgstr "Şḗḗ ƒŭŀŀ ṽȧŀīḓȧŧīǿƞ řḗƥǿřŧ"
@@ -187,7 +187,7 @@ msgid "Marked for deletion"
 msgstr "Ḿȧřķḗḓ ƒǿř ḓḗŀḗŧīǿƞ"
 
 msgid "Updating results&hellip;"
-msgstr "Ŭƥḓȧŧīƞɠ řḗşŭŀŧş&ħḗŀŀīƥ;"
+msgstr "Ŭƥḓȧŧīƞɠ řḗşŭŀŧş&hellip;"
 
 msgid "Category"
 msgstr "Ƈȧŧḗɠǿřẏ"
@@ -694,10 +694,10 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿẑīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ şḗȧřƈħ ƥŀŭɠīƞ."
 
 msgid "Adding to Favorites&hellip;"
-msgstr "Aḓḓīƞɠ ŧǿ Ƒȧṽǿřīŧḗş&ħḗŀŀīƥ;"
+msgstr "Aḓḓīƞɠ ŧǿ Ƒȧṽǿřīŧḗş&hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr "Řḗḿǿṽīƞɠ Ƒȧṽǿřīŧḗ&ħḗŀŀīƥ;"
+msgstr "Řḗḿǿṽīƞɠ Ƒȧṽǿřīŧḗ&hellip;"
 
 msgid "Add to Favorites"
 msgstr "Aḓḓ ŧǿ Ƒȧṽǿřīŧḗş"
@@ -788,7 +788,7 @@ msgid "{name} was viewing this add-on first."
 msgstr "{name} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
 
 msgid "Loading&hellip;"
-msgstr "Ŀǿȧḓīƞɠ&ħḗŀŀīƥ;"
+msgstr "Ŀǿȧḓīƞɠ&hellip;"
 
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"

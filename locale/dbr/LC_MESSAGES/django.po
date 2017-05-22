@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-17 11:23+0000\n"
+"POT-Creation-Date: 2017-05-22 03:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,7 +74,7 @@ msgstr "pɐoʅuʍoᗡ"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr ";ɹɹɐɹ⅋;dsqu⅋pɐoʅuʍoᗡ oʇ ǝnuıʇuoↃ"
+msgstr "&rarr;&nbsp;pɐoʅuʍoᗡ oʇ ǝnuıʇuoↃ"
 
 msgid "Featured"
 msgstr "pǝɹnʇɐǝℲ"
@@ -322,7 +322,7 @@ msgid "See all »"
 msgstr "» ʅʅɐ ǝǝS"
 
 msgid "Up &amp; Coming Extensions"
-msgstr "suoısuǝʇxƎ ƃuıɯoↃ ;dɯɐ⅋ d∩"
+msgstr "suoısuǝʇxƎ ƃuıɯoↃ &amp; d∩"
 
 msgid "Featured Themes"
 msgstr "sǝɯǝɥ⊥ pǝɹnʇɐǝℲ"
@@ -474,8 +474,8 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<ol> <li>.uo-ppɐ pǝpɐoʅuʍop ǝɥʇ ǝʇɐɔoʅ puɐ „...ǝʅıℲ ɯoɹℲ uo-pp∀ ʅʅɐʇsuI„ ʇɔǝʅǝs ´pʅǝıɟ ɥɔɹɐǝs uo-ppɐ ǝɥʇ oʇ ʇxǝu uoʇʇnq suoıʇdo ǝɥʇ ɯoɹℲ</li> <li>.nuǝɯ sʅoo⊥ ǝɥʇ ɯoɹɟ suo-pp∀ uǝdo ´pɹıqɹǝpunɥ⊥ "
-"ɐʅʅızoW uI</li> <li>.ʞsıp pɹɐɥ ɹnoʎ oʇ ǝʅıɟ ǝɥʇ ǝʌɐs puɐ pɐoʅuʍoᗡ</li> </ol> <strong>pɹıqɹǝpunɥ⊥ uı ʅʅɐʇsuI oʇ ʍoH</strong>"
+"<strong>pɹıqɹǝpunɥ⊥ uı ʅʅɐʇsuI oʇ ʍoH</strong> <ol> <li>.ʞsıp pɹɐɥ ɹnoʎ oʇ ǝʅıɟ ǝɥʇ ǝʌɐs puɐ pɐoʅuʍoᗡ</li> <li>.nuǝɯ sʅoo⊥ ǝɥʇ ɯoɹɟ suo-pp∀ uǝdo ´pɹıqɹǝpunɥ⊥ ɐʅʅızoW uI</li> <li>.uo-ppɐ pǝpɐoʅuʍop "
+"ǝɥʇ ǝʇɐɔoʅ puɐ „...ǝʅıℲ ɯoɹℲ uo-pp∀ ʅʅɐʇsuI„ ʇɔǝʅǝs ´pʅǝıɟ ɥɔɹɐǝs uo-ppɐ ǝɥʇ oʇ ʇxǝu uoʇʇnq suoıʇdo ǝɥʇ ɯoɹℲ</li> </ol>"
 
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ".uo-ppɐ snʅԀ sɐuosɹǝԀ ǝɥʇ ʅʅɐʇsuı puɐ ƃuıƃɐssǝW ɐʅʅızoW ɯoɹɟ ʇuǝıʅɔ ʅıɐɯǝ ǝɔɹnos uǝdo puɐ ǝǝɹɟ ɐ ´<b>pɹıqɹǝpunɥ⊥ ʇǝƃ</b> ´ǝɯǝɥ⊥ sıɥʇ ʅʅɐʇsuı o⊥"
@@ -947,7 +947,7 @@ msgid "Not allowed"
 msgstr "pǝʍoʅʅɐ ʇoN"
 
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<p>.oʇ pǝʍoʅʅɐ ʇ,uǝɹǝʍ noʎ ʇɐɥʇ ƃuıɥʇǝɯos op oʇ pǝıɹʇ no⅄</p> <h1>.pǝʍoʅʅɐ ʇoN ¡sdoO</h1>"
+msgstr "<h1>.pǝʍoʅʅɐ ʇoN ¡sdoO</h1> <p>.oʇ pǝʍoʅʅɐ ʇ,uǝɹǝʍ noʎ ʇɐɥʇ ƃuıɥʇǝɯos op oʇ pǝıɹʇ no⅄</p>"
 
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr "<p>.uıɐƃɐ ƃuıʎɹʇ uǝɥʇ puɐ ƃuıɥsǝɹɟǝɹ ´ǝƃɐd snoıʌǝɹd ǝɥʇ oʇ ʞɔɐq ƃuıoƃ ʎɹ⊥</p>"
@@ -988,18 +988,19 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<ul> <li> .<a href=\"%(home)s\">ǝƃɐd ʇuoɹɟ suo-ppɐ</a> ǝɥʇ oʇ oƃ ʇsnɾ ´ɹǝʌo ʇɹɐʇs oʇ ɹǝɟǝɹd noʎ ɟI </li> <li> .ǝʌoqɐ pʅǝıɟ ɥɔɹɐǝs ǝɥʇ ǝsn ʇsnɾ ɹo <a href=\"%(search)s\">ǝƃɐd ɥɔɹɐǝs</a> ǝɥʇ oʇ oƃ "
-"ʎɐɯ no⅄ ¿<a href=\"%(search)s\">suo-ppɐ ɹoɟ ɥɔɹɐǝs</a> oʇ ʇuɐʍ noʎ oᗡ </li> <li>¿<a href=\"%(rec)s\">suo-ppɐ pǝɹnʇɐǝɟ ɟo ʇsıʅ</a> ɐ uı pǝʇsǝɹǝʇuı noʎ ǝɹ∀</li> </ul> <p>.ǝʇısqǝʍ ɹno uo sǝƃɐd ɹɐʅndod "
-"ǝɥʇ ɟo ǝɯos oʇ ɹǝʌo dɯnɾ ʇsnɾ uɐɔ noʎ ɹO</p> <ul> <li> .ʇı xıɟ oʇ ʇsǝq ɹno op ʅʅ,ǝʍ puɐ ´ɹoɟ ƃuıʞooʅ ǝɹǝʍ noʎ ʇɐɥʍ puɐ ɯoɹɟ ǝɯɐɔ noʎ ǝɹǝɥʍ sn ʅʅǝ⊥ .<a href=\"https://github.com/mozilla/addons-"
-"server/issues/new/\">ǝnssı uɐ ǝʅıɟ</a> ǝsɐǝʅd ´ǝɹǝɥʍǝɯos ɯoɹɟ ʞuıʅ ɐ pǝʍoʅʅoɟ noʎ ɟI </li> <li>.ƃuıʅʅǝds ǝɥʇ ʞɔǝɥɔ ǝʅqnop ǝsɐǝʅd ´ssǝɹppɐ ǝɥʇ uı pǝdʎʇ noʎ ɟI</li> </ul> <p> .ʎʅʇɔǝɹɹoɔuı ssǝɹppɐ ǝɥʇ "
-"uı pǝdʎʇ ɹo ´ǝʇɐp ɟo ʇno s,ʇɐɥʇ ʞuıʅ ɐ pǝʞɔıʅɔ noʎ ʇɐɥʇ ǝʅqıssod s,ʇI .ǝʇıs ɹno uo punoɟ ʇ,usɐʍ pǝʇsǝnbǝɹ noʎ ǝʅıɟ ɹo ǝƃɐd ǝɥ⊥ </p> <h1>.ɹoɟ ƃuıʞooʅ ǝɹ,noʎ ʇɐɥʍ puıɟ ʇ,uɐɔ ǝʍ ʇnq ´ʎɹɹos ǝɹ,ǝＭ</h1>"
+"<h1>.ɹoɟ ƃuıʞooʅ ǝɹ,noʎ ʇɐɥʍ puıɟ ʇ,uɐɔ ǝʍ ʇnq ´ʎɹɹos ǝɹ,ǝＭ</h1> <p> .ʎʅʇɔǝɹɹoɔuı ssǝɹppɐ ǝɥʇ uı pǝdʎʇ ɹo ´ǝʇɐp ɟo ʇno s,ʇɐɥʇ ʞuıʅ ɐ pǝʞɔıʅɔ noʎ ʇɐɥʇ ǝʅqıssod s,ʇI .ǝʇıs ɹno uo punoɟ ʇ,usɐʍ "
+"pǝʇsǝnbǝɹ noʎ ǝʅıɟ ɹo ǝƃɐd ǝɥ⊥ </p> <ul> <li>.ƃuıʅʅǝds ǝɥʇ ʞɔǝɥɔ ǝʅqnop ǝsɐǝʅd ´ssǝɹppɐ ǝɥʇ uı pǝdʎʇ noʎ ɟI</li> <li> .ʇı xıɟ oʇ ʇsǝq ɹno op ʅʅ,ǝʍ puɐ ´ɹoɟ ƃuıʞooʅ ǝɹǝʍ noʎ ʇɐɥʍ puɐ ɯoɹɟ ǝɯɐɔ noʎ "
+"ǝɹǝɥʍ sn ʅʅǝ⊥ .<a href=\"https://github.com/mozilla/addons-server/issues/new/\">ǝnssı uɐ ǝʅıɟ</a> ǝsɐǝʅd ´ǝɹǝɥʍǝɯos ɯoɹɟ ʞuıʅ ɐ pǝʍoʅʅoɟ noʎ ɟI </li> </ul> <p>.ǝʇısqǝʍ ɹno uo sǝƃɐd ɹɐʅndod ǝɥʇ ɟo "
+"ǝɯos oʇ ɹǝʌo dɯnɾ ʇsnɾ uɐɔ noʎ ɹO</p> <ul> <li>¿<a href=\"%(rec)s\">suo-ppɐ pǝɹnʇɐǝɟ ɟo ʇsıʅ</a> ɐ uı pǝʇsǝɹǝʇuı noʎ ǝɹ∀</li> <li> .ǝʌoqɐ pʅǝıɟ ɥɔɹɐǝs ǝɥʇ ǝsn ʇsnɾ ɹo <a href=\"%(search)s\">ǝƃɐd "
+"ɥɔɹɐǝs</a> ǝɥʇ oʇ oƃ ʎɐɯ no⅄ ¿<a href=\"%(search)s\">suo-ppɐ ɹoɟ ɥɔɹɐǝs</a> oʇ ʇuɐʍ noʎ oᗡ </li> <li> .<a href=\"%(home)s\">ǝƃɐd ʇuoɹɟ suo-ppɐ</a> ǝɥʇ oʇ oƃ ʇsnɾ ´ɹǝʌo ʇɹɐʇs oʇ ɹǝɟǝɹd noʎ ɟI </li> "
+"</ul>"
 
 msgid "Oops"
 msgstr "sdoO"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<p> .<a href=\"%(home)s\">ǝƃɐdǝɯoɥ suo-pp∀</a> ǝɥʇ oʇ ʞɔɐq pɐǝɥ ɹo ´ǝƃɐd ǝɥʇ ƃuıɥsǝɹɟǝɹ ʎɹʇ uɐɔ no⅄ </p> <p>.uoos ʇɐɥʇ ƃuıxıɟ oʇ ʇǝƃ ʅʅ,ǝＭ</p> <h1>.ɹoɹɹǝ uɐ pɐɥ ǝＭ  ¡sdoO</h1>"
+msgstr "<h1>.ɹoɹɹǝ uɐ pɐɥ ǝＭ  ¡sdoO</h1> <p>.uoos ʇɐɥʇ ƃuıxıɟ oʇ ʇǝƃ ʅʅ,ǝＭ</p> <p> .<a href=\"%(home)s\">ǝƃɐdǝɯoɥ suo-pp∀</a> ǝɥʇ oʇ ʞɔɐq pɐǝɥ ɹo ´ǝƃɐd ǝɥʇ ƃuıɥsǝɹɟǝɹ ʎɹʇ uɐɔ no⅄ </p>"
 
 msgid "Some rights reserved"
 msgstr "pǝʌɹǝsǝɹ sʇɥƃıɹ ǝɯoS"
@@ -1016,7 +1017,7 @@ msgstr "ʇxǝN"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr "<strong>%(count)s</strong> ɟo <strong>%(end)s</strong>;ɥsɐpu⅋<strong>%(begin)s</strong> sʇʅnsǝᴚ"
+msgstr "<strong>%(count)s</strong> ɟo <strong>%(end)s</strong>&ndash;<strong>%(begin)s</strong> sʇʅnsǝᴚ"
 
 msgid "Maintenance in progress"
 msgstr "ssǝɹƃoɹd uı ǝɔuɐuǝʇuıɐW"
@@ -1034,8 +1035,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> .pɐǝʇsuı <a href=\"#\" id=\"recaptcha_audio\">ǝƃuǝʅʅɐɥɔ ɟo ǝdʎʇ ʇuǝɹǝɟɟıp ɐ ʎɹʇ</a> ɹo <a href=\"#\" id=\"recaptcha_different\">spɹoʍ ʇuǝɹǝɟɟıp ʎɹʇ</a> uɐɔ noʎ ´pɐǝɹ oʇ pɹɐɥ sı sıɥʇ ɟI </p> "
-"<p> .<strong>ʎɹɐssǝɔǝu ɟı ǝɔɐds ɐ ʎq pǝʇɐɹɐdǝs</strong> ´ʍoʅǝq <strong>spɹoʍ ǝɥʇ ʅʅɐ</strong> ɹǝʇuǝ ǝsɐǝʅԀ </p>"
+"<p> .<strong>ʎɹɐssǝɔǝu ɟı ǝɔɐds ɐ ʎq pǝʇɐɹɐdǝs</strong> ´ʍoʅǝq <strong>spɹoʍ ǝɥʇ ʅʅɐ</strong> ɹǝʇuǝ ǝsɐǝʅԀ </p> <p> .pɐǝʇsuı <a href=\"#\" id=\"recaptcha_audio\">ǝƃuǝʅʅɐɥɔ ɟo ǝdʎʇ ʇuǝɹǝɟɟıp ɐ ʎɹʇ</"
+"a> ɹo <a href=\"#\" id=\"recaptcha_different\">spɹoʍ ʇuǝɹǝɟɟıp ʎɹʇ</a> uɐɔ noʎ ´pɐǝɹ oʇ pɹɐɥ sı sıɥʇ ɟI </p>"
 
 msgid "Top Rated"
 msgstr "pǝʇɐᴚ do⊥"
@@ -1069,7 +1070,7 @@ msgid "My Favorite Add-ons"
 msgstr "suo-pp∀ ǝʇıɹoʌɐℲ ʎW"
 
 msgid "More&hellip;"
-msgstr ";dıʅʅǝɥ⅋ǝɹoW"
+msgstr "&hellip;ǝɹoW"
 
 msgid "Add-ons for Mobile"
 msgstr "ǝʅıqoW ɹoɟ suo-pp∀"
@@ -1095,7 +1096,7 @@ msgstr "ǝƃɐd ʇsɐʅ oʇ dɯnſ"
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "<b>%(count)s</b> ɟo <b>%(end)s</b>;ɥsɐpu⅋<b>%(begin)s</b> ƃuıʍoɥS"
+msgstr "<b>%(count)s</b> ɟo <b>%(end)s</b>&ndash;<b>%(begin)s</b> ƃuıʍoɥS"
 
 msgid "Title"
 msgstr "ǝʅʇı⊥"
@@ -1767,8 +1768,8 @@ msgstr "sǝɯǝɥ⊥ ǝʇǝʅdɯoↃ ƃuıɯoↃ ⅋ d∩"
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ";onbɐɹ⅋ %(name)s uı uoısuǝʇxǝ %(cnt)s ǝɥʇ ǝǝS"
-msgstr[1] ";onbɐɹ⅋ %(name)s uı suoısuǝʇxǝ %(cnt)s ʅʅɐ ǝǝS"
+msgstr[0] "&raquo; %(name)s uı uoısuǝʇxǝ %(cnt)s ǝɥʇ ǝǝS"
+msgstr[1] "&raquo; %(name)s uı suoısuǝʇxǝ %(cnt)s ʅʅɐ ǝǝS"
 
 msgid "{0} Themes"
 msgstr "sǝɯǝɥ⊥ {0}"
@@ -2979,7 +2980,7 @@ msgid "Please enter some search terms."
 msgstr ".sɯɹǝʇ ɥɔɹɐǝs ǝɯos ɹǝʇuǝ ǝsɐǝʅԀ"
 
 msgid "Loading results&hellip;"
-msgstr ";dıʅʅǝɥ⅋sʇʅnsǝɹ ƃuıpɐo⅂"
+msgstr "&hellip;sʇʅnsǝɹ ƃuıpɐo⅂"
 
 msgid "No results found."
 msgstr ".punoɟ sʇʅnsǝɹ oN"
@@ -3166,7 +3167,7 @@ msgid "Supported Versions"
 msgstr "suoısɹǝɅ pǝʇɹoddnS"
 
 msgid "Add Another Application&hellip;"
-msgstr ";dıʅʅǝɥ⅋uoıʇɐɔıʅdd∀ ɹǝɥʇou∀ pp∀"
+msgstr "&hellip;uoıʇɐɔıʅdd∀ ɹǝɥʇou∀ pp∀"
 
 msgid "Close"
 msgstr "ǝsoʅↃ"
@@ -3207,9 +3208,9 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
-"<ul> <li>sǝƃuɐɥɔ ʎuɐ ǝʞɐɯ ʇouuɐɔ ʇnq ´sɔıʇsıʇɐʇs puɐ sƃuıʇʇǝs s,uo-ppɐ ǝɥʇ ʍǝıʌ uɐↃ <b>:ɹǝʍǝıɅ</b></li> <li>sʇuǝɯʎɐd ƃuıƃɐuɐɯ puɐ sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ɹoɟ ʇdǝɔxǝ ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ "
-"ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝdoʅǝʌǝᗡ</b></li> <li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ƃuıpnʅɔuı ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝuʍO</b></li> </ul> <p>:sǝʅoɹ ǝʅqıssod 3 ɥʇıʍ "
-"sɹoɥʇnɐ ɟo ɹǝqɯnu ʎuɐ ǝʌɐɥ uɐɔ suo-pp∀</p>"
+"<p>:sǝʅoɹ ǝʅqıssod 3 ɥʇıʍ sɹoɥʇnɐ ɟo ɹǝqɯnu ʎuɐ ǝʌɐɥ uɐɔ suo-pp∀</p> <ul> <li>sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ƃuıpnʅɔuı ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝuʍO</b></li> "
+"<li>sʇuǝɯʎɐd ƃuıƃɐuɐɯ puɐ sɹoɥʇnɐ ɹǝɥʇo ƃuıʌoɯǝɹ puɐ ƃuıppɐ ɹoɟ ʇdǝɔxǝ ´ƃuıʇsıʅ s,uo-ppɐ ǝɥʇ ɟo sʇɔǝdsɐ ʅʅɐ ǝƃɐuɐɯ uɐↃ <b>:ɹǝdoʅǝʌǝᗡ</b></li> <li>sǝƃuɐɥɔ ʎuɐ ǝʞɐɯ ʇouuɐɔ ʇnq ´sɔıʇsıʇɐʇs puɐ "
+"sƃuıʇʇǝs s,uo-ppɐ ǝɥʇ ʍǝıʌ uɐↃ <b>:ɹǝʍǝıɅ</b></li> </ul>"
 
 msgid "Manage Developer Profile"
 msgstr "ǝʅıɟoɹԀ ɹǝdoʅǝʌǝᗡ ǝƃɐuɐW"
@@ -3927,7 +3928,7 @@ msgid "Developer News"
 msgstr "sʍǝN ɹǝdoʅǝʌǝᗡ"
 
 msgid "View the blog &#9658;"
-msgstr ";8569#⅋ ƃoʅq ǝɥʇ ʍǝıɅ"
+msgstr "&#9658; ƃoʅq ǝɥʇ ʍǝıɅ"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ".suo-ppɐ pǝʇsıʅ ɹoɟ ʇuɐʌǝʅǝɹ ʎʅuo sı ʇI .ǝpoɔ ǝɔɹnos ɹnoʎ uo ʇuɐɹƃ noʎ sʇɥƃıɹ ǝɥʇ ɹoɟ ǝʇɐıɹdoɹddɐ ǝsuǝɔıʅ ɐ ǝsooɥɔ ǝsɐǝʅԀ"
@@ -4411,7 +4412,7 @@ msgid "Select a header image for your Theme."
 msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ ǝƃɐɯı ɹǝpɐǝɥ ɐ ʇɔǝʅǝS"
 
 msgid "3000 &times; 200 pixels"
-msgstr "sʅǝxıd 002 ;sǝɯıʇ⅋ 0003"
+msgstr "sʅǝxıd 002 &times; 0003"
 
 msgid "300 KB max"
 msgstr "xɐɯ ԐӼ 003"
@@ -4429,7 +4430,7 @@ msgid "Select a footer image for your Theme."
 msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ ǝƃɐɯı ɹǝʇooɟ ɐ ʇɔǝʅǝS"
 
 msgid "3000 &times; 100 pixels"
-msgstr "sʅǝxıd 001 ;sǝɯıʇ⅋ 0003"
+msgstr "sʅǝxıd 001 &times; 0003"
 
 msgid "Aligned to bottom-left"
 msgstr "ʇɟǝʅ-ɯoʇʇoq oʇ pǝuƃıʅ∀"
@@ -5201,7 +5202,7 @@ msgstr "(%(locale)s) %(stars)s %(date)s uo %(user)s ʎq"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<span class=\"light\">%(date)s uo %(user)s ʎq pǝƃƃɐʅℲ</span> <strong>%(reason)s</strong>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(date)s uo %(user)s ʎq pǝƃƃɐʅℲ</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "¡ʞɹoʍ poo⅁ .pǝʇɐɹǝpoɯ uǝǝq ǝʌɐɥ sʍǝıʌǝɹ ʅʅ∀"
@@ -5230,7 +5231,7 @@ msgstr "ʎɹoʇsıH uo-pp∀"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "<span class=\"light\">%(version_status)s ;ʇoppıɯ⅋</span> %(created)s ;ʇoppıɯ⅋ %(version)s uoısɹǝɅ"
+msgstr "<span class=\"light\">%(version_status)s &middot;</span> %(created)s &middot; %(version)s uoısɹǝɅ"
 
 msgid "Compatibility:"
 msgstr ":ʎʇıʅıqıʇɐdɯoↃ"
@@ -5576,7 +5577,7 @@ msgstr "uo-ppɐ oʇ ʞɔɐԐ"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr "%(mimetype)s :ǝdʎʇǝɯıW ;ʅʅnq⅋ %(sha256)s :ɥsɐɥ 652∀HS ;ʅʅnq⅋ %(size)s :ǝzıS ;ʅʅnq⅋ %(version)s :uoısɹǝɅ"
+msgstr "%(mimetype)s :ǝdʎʇǝɯıW &bull; %(sha256)s :ɥsɐɥ 652∀HS &bull; %(size)s :ǝzıS &bull; %(version)s :uoısɹǝɅ"
 
 msgid "File Compare :: Reviewer tools"
 msgstr "sʅooʇ ɹǝʍǝıʌǝᴚ :: ǝɹɐdɯoↃ ǝʅıℲ"
@@ -5676,10 +5677,10 @@ msgid "A quick view to compare prices when you shop online or search for flights
 msgstr ".sʇɥƃıʅɟ ɹoɟ ɥɔɹɐǝs ɹo ǝuıʅuo doɥs noʎ uǝɥʍ sǝɔıɹd ǝɹɐdɯoɔ oʇ ʍǝıʌ ʞɔınb ∀"
 
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr "sǝɯǝɥ⊥ ʎɐᗡ s;onbsɹ⅋ʞɔıɹʇɐԀ .ʇS"
+msgstr "sǝɯǝɥ⊥ ʎɐᗡ s&rsquo;ʞɔıɹʇɐԀ .ʇS"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ".ʎɐᗡ s;onbsɹ⅋ʞɔıɹʇɐԀ .ʇS ǝʇɐɹqǝʅǝɔ oʇ ɹǝsʍoɹq ɹnoʎ ǝʇɐɹoɔǝᗡ"
+msgstr ".ʎɐᗡ s&rsquo;ʞɔıɹʇɐԀ .ʇS ǝʇɐɹqǝʅǝɔ oʇ ɹǝsʍoɹq ɹnoʎ ǝʇɐɹoɔǝᗡ"
 
 msgid "Sit Back and Relax"
 msgstr "xɐʅǝᴚ puɐ ʞɔɐԐ ʇıS"
@@ -5724,7 +5725,7 @@ msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ".ʎɥʇʅɐǝɥ puɐ ǝʌıʇɔɐ noʎ dǝǝʞ oʇ suo-ppɐ ssǝuʇıɟ ǝsǝɥʇ ʅʅɐʇsuI"
 
 msgid "New &amp; Now"
-msgstr "ʍoN ;dɯɐ⅋ ʍǝN"
+msgstr "ʍoN &amp; ʍǝN"
 
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr ".ʇuǝɯoɯ ǝɥʇ ɟo suo-ppɐ ǝʌɐɥ-ʇsnɯ ´ʇsǝʇɐʅ ǝɥʇ ʇǝ⅁"
@@ -5736,7 +5737,7 @@ msgid "Protect your privacy online with the add-ons in this collection."
 msgstr ".uoıʇɔǝʅʅoɔ sıɥʇ uı suo-ppɐ ǝɥʇ ɥʇıʍ ǝuıʅuo ʎɔɐʌıɹd ɹnoʎ ʇɔǝʇoɹԀ"
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr "¡ƃuıɥʇʎuɐ ʇnoqɐ ʇsnɾ ;dıʅʅǝɥ⅋ʎʇıʌıʇɔnpoɹd ´ʎɔɐʌıɹd ´unɟ ´ʞɹoʍ ɹoɟ suo-ppɐ ʇɐǝɹ⅁"
+msgstr "¡ƃuıɥʇʎuɐ ʇnoqɐ ʇsnɾ &hellip;ʎʇıʌıʇɔnpoɹd ´ʎɔɐʌıɹd ´unɟ ´ʞɹoʍ ɹoɟ suo-ppɐ ʇɐǝɹ⅁"
 
 msgid "Games!"
 msgstr "¡sǝɯɐ⅁"
@@ -5805,7 +5806,7 @@ msgid "Cancel Installation"
 msgstr "uoıʇɐʅʅɐʇsuI ʅǝɔuɐↃ"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "¡ɥʇuoW ǝɥʇ ɟo ʞɔıԀ s;onbsɹ⅋ɐʅʅızoW"
+msgstr "¡ɥʇuoW ǝɥʇ ɟo ʞɔıԀ s&rsquo;ɐʅʅızoW"
 
 msgid "Become a Test Pilot"
 msgstr "ʇoʅıԀ ʇsǝ⊥ ɐ ǝɯoɔǝԐ"
@@ -6463,7 +6464,7 @@ msgid "Mozilla would like to thank the following people for their contributions 
 msgstr ":sɹɐǝʎ ǝɥʇ ɹǝʌo ʇɔǝɾoɹd ƃɹo.ɐʅʅızoɯ.suoppɐ ǝɥʇ oʇ suoıʇnqıɹʇuoɔ ɹıǝɥʇ ɹoɟ ǝʅdoǝd ƃuıʍoʅʅoɟ ǝɥʇ ʞuɐɥʇ oʇ ǝʞıʅ pʅnoʍ ɐʅʅızoW"
 
 msgid "Developers &amp; Administrators"
-msgstr "sɹoʇɐɹʇsıuıɯp∀ ;dɯɐ⅋ sɹǝdoʅǝʌǝᗡ"
+msgstr "sɹoʇɐɹʇsıuıɯp∀ &amp; sɹǝdoʅǝʌǝᗡ"
 
 msgid "Localizers"
 msgstr "sɹǝzıʅɐɔo⅂"
@@ -6479,7 +6480,7 @@ msgid "Other Contributors"
 msgstr "sɹoʇnqıɹʇuoↃ ɹǝɥʇO"
 
 msgid "Past Developers &amp; Administrators"
-msgstr "sɹoʇɐɹʇsıuıɯp∀ ;dɯɐ⅋ sɹǝdoʅǝʌǝᗡ ʇsɐԀ"
+msgstr "sɹoʇɐɹʇsıuıɯp∀ &amp; sɹǝdoʅǝʌǝᗡ ʇsɐԀ"
 
 msgid "Software and Images"
 msgstr "sǝƃɐɯI puɐ ǝɹɐʍʇɟoS"
@@ -6539,7 +6540,7 @@ msgstr "Ò∀Ⅎ ɹǝdoʅǝʌǝᗡ uo-pp∀"
 
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-msgstr "<p> .<a href=\"%(url)s\">ʞɹoʍʇǝN ɹǝdoʅǝʌǝᗡ ɐʅʅızoW</a> ǝɥʇ ɐıʌ uo-ppɐ uɐ pʅınq oʇ ʍoɥ uo uoıʇɐʇuǝɯnɔop sǝpıʌoɹd ɐʅʅızoW </p> <h3>¿uo-pp∀ uɐ pʅınq I op ʍoH</h3>"
+msgstr "<h3>¿uo-pp∀ uɐ pʅınq I op ʍoH</h3> <p> .<a href=\"%(url)s\">ʞɹoʍʇǝN ɹǝdoʅǝʌǝᗡ ɐʅʅızoW</a> ǝɥʇ ɐıʌ uo-ppɐ uɐ pʅınq oʇ ʍoɥ uo uoıʇɐʇuǝɯnɔop sǝpıʌoɹd ɐʅʅızoW </p>"
 
 msgid "Other resources include:"
 msgstr ":ǝpnʅɔuı sǝɔɹnosǝɹ ɹǝɥʇO"
@@ -6568,8 +6569,8 @@ msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
 "<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
-"<li><a href=\"http://www.eclipse.org/\">ƎᗡI ǝsdıʅɔƎ</a></li> <li><a href=\"http://notepad-plus-plus.org/\">++pɐdǝʇoN</a></li> <li><a href=\"http://macromates.com/\">ǝʇɐWʇxǝ⊥</a></li> <li><a href="
-"\"http://komodoide.com/komodo-edit/\">ʇıpƎ opoɯoӼ</a></li>"
+"<li><a href=\"http://komodoide.com/komodo-edit/\">ʇıpƎ opoɯoӼ</a></li> <li><a href=\"http://macromates.com/\">ǝʇɐWʇxǝ⊥</a></li> <li><a href=\"http://notepad-plus-plus.org/\">++pɐdǝʇoN</a></li> "
+"<li><a href=\"http://www.eclipse.org/\">ƎᗡI ǝsdıʅɔƎ</a></li>"
 
 #, python-format
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
@@ -7041,7 +7042,7 @@ msgstr ".sɹɐqʅooʇ %(app_name)s ɹnoʎ ǝzıɯoʇsnɔ oʇ sǝƃɐɯı punoɹ�
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr ".ǝʇısqǝʍ ʎuɐ ɥɔɹɐǝs ʎʅʞɔınb oʇ noʎ ʍoʅʅɐ sɹǝpıʌoɹd ǝsǝɥ⊥ .uʍopdoɹp xoq ɥɔɹɐǝs ǝɥʇ oʇ sǝɔıoɥɔ ʅɐuoıʇıppɐ ppɐ <strong> <a href=\"%(browse_url)s\">sɹǝpıʌoɹԀ ɥɔɹɐǝS</a></strong>"
+msgstr ".ǝʇısqǝʍ ʎuɐ ɥɔɹɐǝs ʎʅʞɔınb oʇ noʎ ʍoʅʅɐ sɹǝpıʌoɹd ǝsǝɥ⊥ .uʍopdoɹp xoq ɥɔɹɐǝs ǝɥʇ oʇ sǝɔıoɥɔ ʅɐuoıʇıppɐ ppɐ <strong><a href=\"%(browse_url)s\">sɹǝpıʌoɹԀ ɥɔɹɐǝS</a> </strong>"
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
@@ -7589,12 +7590,12 @@ msgid ""
 "help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
 "for more detail about user add-on reviews.</p>"
 msgstr ""
-"<p>.sʍǝıʌǝɹ uo-ppɐ ɹǝsn ʇnoqɐ ʅıɐʇǝp ǝɹoɯ ɹoɟ <a href=\"%(guide)s\">sǝuıʅǝpın⅁ ʍǝıʌǝᴚ</a> ǝɥʇ pɐǝɹ ǝsɐǝʅԀ</p> <ul> <li> .uoıʇɐɯɹoɟuı ʅɐuosɹǝd ʎuɐ ʇsod ʇou op puɐ ǝƃɐnƃuɐʅ ɹǝdoɹdɯı ɟo ǝsn ǝɥʇ pıoʌɐ "
-"´uɐǝʅɔ sʍǝıʌǝɹ dǝǝʞ ǝsɐǝʅԀ</li> <li> .dʅǝɥ ɹoɟ <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">ʎʇıunɯɯoɔ uo-ppɐ</a> ǝɥʇ ƃuıʞsɐ ʎɹʇ osʅɐ uɐɔ no⅄ .ǝʅqɐʅıɐʌɐ sı ǝɔuɐʇsıssɐ "
-"ɟı ʇno puıɟ oʇ <a href=\"%(support)s\">uoıʇɔǝs ʇɹoddns</a> s,uo-ppɐ sıɥʇ ǝǝS .ǝnssı ɹnoʎ ǝʌʅosǝɹ oʇ noʎ ʇɔɐʇuoɔ ʇ,uɐɔ ʎǝɥʇ os ´sɹǝdoʅǝʌǝp uo-ppɐ oʇ ǝʅqɐʅıɐʌɐ ssǝɹppɐ ʅıɐɯǝ ɹnoʎ ǝʞɐɯ ʇou op ǝＭ ."
-"ǝɹǝɥ sʇɹodǝɹ ƃnq ʇsod ʇou op ǝsɐǝʅԀ </li> <li> .os sı sıɥʇ ǝʌǝıʅǝq noʎ ʎɥʍ suosɐǝɹ ǝʌıƃ uɐɔ noʎ ssǝʅun „pɐԐ„ ɹo „ʇɐǝɹ⅁„ ʇı ƃuıʅʅɐɔ sɐ ɥɔns ǝƃɐnƃuɐʅ ɔıɹǝuǝƃ pıoʌ∀ .sɐɥ ʇı sǝƃɐʇuɐʌpɐsıp ʎuɐ puɐ ´sı "
-"ʇı ǝsn oʇ ʎsɐǝ ʍoɥ ´pǝʞıʅsıp ɹo/puɐ pǝʞıʅ noʎ sǝɹnʇɐǝɟ ʇɐɥʍ sɐ ɥɔns ´sʅıɐʇǝp ʅnɟdʅǝɥ puɐ sɔıɟıɔǝds ǝʌı⅁ .uo-ppɐ ǝɥʇ ɥʇıʍ ǝɔuǝıɹǝdxǝ ɹnoʎ ʇnoqɐ puǝıɹɟ ɐ ƃuıʅʅǝʇ ǝɹ,noʎ ǝʞıʅ ǝʇıɹＭ </li> </ul> <h2>:"
-"puıɯ uı sdıʇ ǝsǝɥʇ dǝǝӼ</h2>"
+"<h2>:puıɯ uı sdıʇ ǝsǝɥʇ dǝǝӼ</h2> <ul> <li> .os sı sıɥʇ ǝʌǝıʅǝq noʎ ʎɥʍ suosɐǝɹ ǝʌıƃ uɐɔ noʎ ssǝʅun „pɐԐ„ ɹo „ʇɐǝɹ⅁„ ʇı ƃuıʅʅɐɔ sɐ ɥɔns ǝƃɐnƃuɐʅ ɔıɹǝuǝƃ pıoʌ∀ .sɐɥ ʇı sǝƃɐʇuɐʌpɐsıp ʎuɐ puɐ ´sı ʇı "
+"ǝsn oʇ ʎsɐǝ ʍoɥ ´pǝʞıʅsıp ɹo/puɐ pǝʞıʅ noʎ sǝɹnʇɐǝɟ ʇɐɥʍ sɐ ɥɔns ´sʅıɐʇǝp ʅnɟdʅǝɥ puɐ sɔıɟıɔǝds ǝʌı⅁ .uo-ppɐ ǝɥʇ ɥʇıʍ ǝɔuǝıɹǝdxǝ ɹnoʎ ʇnoqɐ puǝıɹɟ ɐ ƃuıʅʅǝʇ ǝɹ,noʎ ǝʞıʅ ǝʇıɹＭ </li> <li> .dʅǝɥ ɹoɟ "
+"<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">ʎʇıunɯɯoɔ uo-ppɐ</a> ǝɥʇ ƃuıʞsɐ ʎɹʇ osʅɐ uɐɔ no⅄ .ǝʅqɐʅıɐʌɐ sı ǝɔuɐʇsıssɐ ɟı ʇno puıɟ oʇ <a href=\"%(support)s\">uoıʇɔǝs "
+"ʇɹoddns</a> s,uo-ppɐ sıɥʇ ǝǝS .ǝnssı ɹnoʎ ǝʌʅosǝɹ oʇ noʎ ʇɔɐʇuoɔ ʇ,uɐɔ ʎǝɥʇ os ´sɹǝdoʅǝʌǝp uo-ppɐ oʇ ǝʅqɐʅıɐʌɐ ssǝɹppɐ ʅıɐɯǝ ɹnoʎ ǝʞɐɯ ʇou op ǝＭ .ǝɹǝɥ sʇɹodǝɹ ƃnq ʇsod ʇou op ǝsɐǝʅԀ </li> <li> ."
+"uoıʇɐɯɹoɟuı ʅɐuosɹǝd ʎuɐ ʇsod ʇou op puɐ ǝƃɐnƃuɐʅ ɹǝdoɹdɯı ɟo ǝsn ǝɥʇ pıoʌɐ ´uɐǝʅɔ sʍǝıʌǝɹ dǝǝʞ ǝsɐǝʅԀ</li> </ul> <p>.sʍǝıʌǝɹ uo-ppɐ ɹǝsn ʇnoqɐ ʅıɐʇǝp ǝɹoɯ ɹoɟ <a href=\"%(guide)s\">sǝuıʅǝpın⅁ "
+"ʍǝıʌǝᴚ</a> ǝɥʇ pɐǝɹ ǝsɐǝʅԀ</p>"
 
 msgid "Reply to review by {0}"
 msgstr "{0} ʎq ʍǝıʌǝɹ oʇ ʎʅdǝᴚ"
@@ -7951,7 +7952,7 @@ msgid "Statistics processing is currently disabled, so recent data is unavailabl
 msgstr ".ɐʇɐp ƃuıssıɯ ǝɥʇ ɥʇıʍ uoos pǝʇɐpdn ǝq ʅʅıʍ ǝƃɐd sıɥʇ puɐ pǝʇɔǝʅʅoɔ ƃuıǝq ʅʅıʇs ǝɹɐ sɔıʇsıʇɐʇs ǝɥ⊥ .ǝʅqɐʅıɐʌɐun sı ɐʇɐp ʇuǝɔǝɹ os ´pǝʅqɐsıp ʎʅʇuǝɹɹnɔ sı ƃuıssǝɔoɹd sɔıʇsıʇɐʇS"
 
 msgid "Loading the latest data&hellip;"
-msgstr ";dıʅʅǝɥ⅋ɐʇɐp ʇsǝʇɐʅ ǝɥʇ ƃuıpɐo⅂"
+msgstr "&hellip;ɐʇɐp ʇsǝʇɐʅ ǝɥʇ ƃuıpɐo⅂"
 
 msgid "No data available."
 msgstr ".ǝʅqɐʅıɐʌɐ ɐʇɐp oN"
@@ -7999,8 +8000,8 @@ msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
-"<p> .pɐoʅuʍop ǝɥʇ ƃuıɹɹǝɟǝɹ ǝɔɹnos ɔıɟıɔǝds ǝɥʇ ʎq uʍop uǝʞoɹq ǝq uɐɔ spɐoʅuʍoᗡ .sǝʇɐpdn ʇou ´spɐoʅuʍop uo-ppɐ ʅɐuıƃıɹo ǝpnʅɔuı ʎʅuo puɐ ƃuıuǝʌǝ ʎɹǝʌǝ pǝʇɐpdn ǝɹɐ sʇunoɔ pɐoʅuʍoᗡ </p> <h2>¿pǝʇunoɔ "
-"spɐoʅuʍop ǝɹɐ ʍoH</h2>"
+"<h2>¿pǝʇunoɔ spɐoʅuʍop ǝɹɐ ʍoH</h2> <p> .pɐoʅuʍop ǝɥʇ ƃuıɹɹǝɟǝɹ ǝɔɹnos ɔıɟıɔǝds ǝɥʇ ʎq uʍop uǝʞoɹq ǝq uɐɔ spɐoʅuʍoᗡ .sǝʇɐpdn ʇou ´spɐoʅuʍop uo-ppɐ ʅɐuıƃıɹo ǝpnʅɔuı ʎʅuo puɐ ƃuıuǝʌǝ ʎɹǝʌǝ pǝʇɐpdn "
+"ǝɹɐ sʇunoɔ pɐoʅuʍoᗡ </p>"
 
 msgid "User languages by Date"
 msgstr "ǝʇɐᗡ ʎq sǝƃɐnƃuɐʅ ɹǝs∩"
@@ -8021,19 +8022,19 @@ msgid "Top Applications"
 msgstr "suoıʇɐɔıʅdd∀ do⊥"
 
 msgid "See more applications&hellip;"
-msgstr ";dıʅʅǝɥ⅋suoıʇɐɔıʅddɐ ǝɹoɯ ǝǝS"
+msgstr "&hellip;suoıʇɐɔıʅddɐ ǝɹoɯ ǝǝS"
 
 msgid "Top Languages"
 msgstr "sǝƃɐnƃuɐ⅂ do⊥"
 
 msgid "See more languages&hellip;"
-msgstr ";dıʅʅǝɥ⅋sǝƃɐnƃuɐʅ ǝɹoɯ ǝǝS"
+msgstr "&hellip;sǝƃɐnƃuɐʅ ǝɹoɯ ǝǝS"
 
 msgid "Top Platforms"
 msgstr "sɯɹoɟʇɐʅԀ do⊥"
 
 msgid "See more platforms&hellip;"
-msgstr ";dıʅʅǝɥ⅋sɯɹoɟʇɐʅd ǝɹoɯ ǝǝS"
+msgstr "&hellip;sɯɹoɟʇɐʅd ǝɹoɯ ǝǝS"
 
 msgid "Ratings by Date"
 msgstr "ǝʇɐᗡ ʎq sƃuıʇɐᴚ"
@@ -8055,11 +8056,11 @@ msgid ""
 "parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
 "sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<p><code>+ %% ~ _ . - Z-∀ z-ɐ</code> :pǝʍoʅʅɐ ǝɹɐ sɹǝʇɔɐɹɐɥɔ ǝɟɐs-⅂ᴚ∩ ƃuıʍoʅʅoɟ ǝɥ⊥ .ɔʇǝ ´„522uƃıɐdɯɐɔ-ʅɐuɹǝʇxǝ„ ´„ɹɐqǝpıs-ʅɐuɹǝʇxǝ„ ´„ƃoʅq-ʅɐuɹǝʇxǝ„ sɐ ɥɔns ´ǝɔɹnos ǝɥʇ ǝqıɹɔsǝp oʇ pǝsn ǝq uɐɔ „-"
-"ʅɐuɹǝʇxǝ„ ɹǝʇɟɐ ʇxǝʇ ʎu∀ .sɹǝʇɔɐɹɐɥɔ ʅɐuoıʇıppɐ 16 oʇ dn ´pǝʞɔɐɹʇ ǝq ʅʅıʍ „-ʅɐuɹǝʇxǝ„ ɥʇıʍ uıƃǝq ʇɐɥʇ sɹǝʇǝɯɐɹɐd ɔɹs ʎʅuO </p><p> <dl> <dd><b>ƃoʅq-ʅɐuɹǝʇxǝ</b>=ɔɹs¿ıdx.ʇsǝʇɐʅ-%(id)s-uoppɐ/%(id)s/"
-"ʇsǝʇɐʅ/spɐoʅuʍop/ƃɹo.ɐʅʅızoɯ.suoppɐ//:sdʇʇɥ</dd> <dt>ʞuı⅂ ǝʅıℲ ʇɔǝɹıᗡ</dt> <dd><b>ƃoʅq-ʅɐuɹǝʇxǝ</b>=ɔɹs¿%(slug)s/uoppɐ/ƃɹo.ɐʅʅızoɯ.suoppɐ//:sdʇʇɥ</dd> <dt>ǝƃɐԀ sʅıɐʇǝᗡ uo-pp∀</dt> </dl> :ƃoʅq ɹnoʎ "
-"ʎq pǝɔɹnos sɐ ɹɐǝddɐ pʅnoʍ sʞuıʅ ƃuıʍoʅʅoɟ ǝɥʇ ´ǝʅdɯɐxǝ ɹoℲ .ǝƃɐd sıɥʇ uo ǝɔɹnos pɐoʅuʍop ʅɐuoıʇıppɐ uɐ sɐ pǝʞɔɐɹʇ ǝq oʇ ɹǝʇǝɯɐɹɐd ɐ puǝddɐ uɐɔ noʎ ´ǝʇısqǝʍ ɹo ƃoʅq ɹnoʎ sɐ ɥɔns ´ǝʇıs ʅɐuɹǝʇxǝ uɐ "
-"ɯoɹɟ ǝʅıɟ sʇı oʇ ʎʅʇɔǝɹıp ɹo ǝƃɐd sʅıɐʇǝp s,uo-ppɐ ɹnoʎ oʇ ʞuıʅ noʎ ɟI </p> <h2>sǝɔɹnos ʅɐuɹǝʇxǝ ƃuıʞɔɐɹ⊥</h2>"
+"<h2>sǝɔɹnos ʅɐuɹǝʇxǝ ƃuıʞɔɐɹ⊥</h2> <p> <dl> <dt>ǝƃɐԀ sʅıɐʇǝᗡ uo-pp∀</dt> <dd><b>ƃoʅq-ʅɐuɹǝʇxǝ</b>=ɔɹs¿%(slug)s/uoppɐ/ƃɹo.ɐʅʅızoɯ.suoppɐ//:sdʇʇɥ</dd> <dt>ʞuı⅂ ǝʅıℲ ʇɔǝɹıᗡ</dt> <dd><b>ƃoʅq-ʅɐuɹǝʇxǝ</"
+"b>=ɔɹs¿ıdx.ʇsǝʇɐʅ-%(id)s-uoppɐ/%(id)s/ʇsǝʇɐʅ/spɐoʅuʍop/ƃɹo.ɐʅʅızoɯ.suoppɐ//:sdʇʇɥ</dd> </dl> :ƃoʅq ɹnoʎ ʎq pǝɔɹnos sɐ ɹɐǝddɐ pʅnoʍ sʞuıʅ ƃuıʍoʅʅoɟ ǝɥʇ ´ǝʅdɯɐxǝ ɹoℲ .ǝƃɐd sıɥʇ uo ǝɔɹnos pɐoʅuʍop "
+"ʅɐuoıʇıppɐ uɐ sɐ pǝʞɔɐɹʇ ǝq oʇ ɹǝʇǝɯɐɹɐd ɐ puǝddɐ uɐɔ noʎ ´ǝʇısqǝʍ ɹo ƃoʅq ɹnoʎ sɐ ɥɔns ´ǝʇıs ʅɐuɹǝʇxǝ uɐ ɯoɹɟ ǝʅıɟ sʇı oʇ ʎʅʇɔǝɹıp ɹo ǝƃɐd sʅıɐʇǝp s,uo-ppɐ ɹnoʎ oʇ ʞuıʅ noʎ ɟI </p><p><code>+ %% ~ "
+"_ . - Z-∀ z-ɐ</code> :pǝʍoʅʅɐ ǝɹɐ sɹǝʇɔɐɹɐɥɔ ǝɟɐs-⅂ᴚ∩ ƃuıʍoʅʅoɟ ǝɥ⊥ .ɔʇǝ ´„522uƃıɐdɯɐɔ-ʅɐuɹǝʇxǝ„ ´„ɹɐqǝpıs-ʅɐuɹǝʇxǝ„ ´„ƃoʅq-ʅɐuɹǝʇxǝ„ sɐ ɥɔns ´ǝɔɹnos ǝɥʇ ǝqıɹɔsǝp oʇ pǝsn ǝq uɐɔ „-ʅɐuɹǝʇxǝ„ ɹǝʇɟɐ "
+"ʇxǝʇ ʎu∀ .sɹǝʇɔɐɹɐɥɔ ʅɐuoıʇıppɐ 16 oʇ dn ´pǝʞɔɐɹʇ ǝq ʅʅıʍ „-ʅɐuɹǝʇxǝ„ ɥʇıʍ uıƃǝq ʇɐɥʇ sɹǝʇǝɯɐɹɐd ɔɹs ʎʅuO </p>"
 
 msgid "Add-on Status by Date"
 msgstr "ǝʇɐᗡ ʎq snʇɐʇS uo-pp∀"
@@ -8077,15 +8078,15 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
-"<p> .ʎɐp ʎq ǝɯǝɥʇ ɹnoʎ ƃuısn ǝʅdoǝd ɟo ɹǝqɯnu ʅɐʇoʇ ǝɥʇ ɹo ´sɹǝs∩ ʎʅıɐᗡ ǝʌıʇɔ∀ sɐ uʍouʞ sı sƃuıd ǝʇɐpdn ǝsǝɥʇ ɟo ɹǝqɯnu ʅɐʇoʇ ǝɥ⊥ .ʎɐp ɹǝd ǝɔuo sǝʇɐpdn ɹoɟ ʞɔǝɥɔ ǝʇıs sıɥʇ ɯoɹɟ pǝʅʅɐʇsuı sǝɯǝɥ⊥ </"
-"p> <h2>¿sɹǝsn ʎʅıɐp ǝɹɐ ʇɐɥＭ</h2>"
+"<h2>¿sɹǝsn ʎʅıɐp ǝɹɐ ʇɐɥＭ</h2> <p> .ʎɐp ʎq ǝɯǝɥʇ ɹnoʎ ƃuısn ǝʅdoǝd ɟo ɹǝqɯnu ʅɐʇoʇ ǝɥʇ ɹo ´sɹǝs∩ ʎʅıɐᗡ ǝʌıʇɔ∀ sɐ uʍouʞ sı sƃuıd ǝʇɐpdn ǝsǝɥʇ ɟo ɹǝqɯnu ʅɐʇoʇ ǝɥ⊥ .ʎɐp ɹǝd ǝɔuo sǝʇɐpdn ɹoɟ ʞɔǝɥɔ "
+"ǝʇıs sıɥʇ ɯoɹɟ pǝʅʅɐʇsuı sǝɯǝɥ⊥ </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<p> .ǝʅɐɔoʅ puɐ ´uoıʇɐɔıʅddɐ ´snʇɐʇs uo-ppɐ ´ɯǝʇsʎs ƃuıʇɐɹǝdo ´uoısɹǝʌ uo-ppɐ ʎq uʍop uǝʞoɹq ǝq uɐɔ sɹǝsn ʎʅıɐᗡ .sɹǝs∩ ʎʅıɐᗡ ǝʌıʇɔ∀ sɐ uʍouʞ sı sƃuıd ǝʇɐpdn ǝsǝɥʇ ɟo ɹǝqɯnu ʅɐʇoʇ ǝɥ⊥ .ʎɐp ɹǝd ǝɔuo "
-"sǝʇɐpdn ɹoɟ ʞɔǝɥɔ ǝʇıs sıɥʇ ɯoɹɟ pǝpɐoʅuʍop suo-pp∀ </p> <h2>¿sɹǝsn ʎʅıɐp ǝɹɐ ʇɐɥＭ</h2>"
+"<h2>¿sɹǝsn ʎʅıɐp ǝɹɐ ʇɐɥＭ</h2> <p> .ǝʅɐɔoʅ puɐ ´uoıʇɐɔıʅddɐ ´snʇɐʇs uo-ppɐ ´ɯǝʇsʎs ƃuıʇɐɹǝdo ´uoısɹǝʌ uo-ppɐ ʎq uʍop uǝʞoɹq ǝq uɐɔ sɹǝsn ʎʅıɐᗡ .sɹǝs∩ ʎʅıɐᗡ ǝʌıʇɔ∀ sɐ uʍouʞ sı sƃuıd ǝʇɐpdn ǝsǝɥʇ ɟo "
+"ɹǝqɯnu ʅɐʇoʇ ǝɥ⊥ .ʎɐp ɹǝd ǝɔuo sǝʇɐpdn ɹoɟ ʞɔǝɥɔ ǝʇıs sıɥʇ ɯoɹɟ pǝpɐoʅuʍop suo-pp∀ </p>"
 
 msgid "User Signups by Date"
 msgstr "ǝʇɐᗡ ʎq sdnuƃıS ɹǝs∩"
@@ -8192,7 +8193,7 @@ msgstr "<a id=\"change-locale\" href=\"#\">%(dl)s</a> :ɹoɟ ǝzıʅɐɔo⅂"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr "<em>%(lang)s ;ʇoppıɯ⅋</em> %(title)s"
+msgstr "<em>%(lang)s &middot;</em> %(title)s"
 
 msgid "Existing Locales"
 msgstr "sǝʅɐɔo⅂ ƃuıʇsıxƎ"
@@ -8383,7 +8384,7 @@ msgid "This URL will only be visible if you are a developer."
 msgstr ".ɹǝdoʅǝʌǝp ɐ ǝɹɐ noʎ ɟı ǝʅqısıʌ ǝq ʎʅuo ʅʅıʍ ⅂ᴚ∩ sıɥ⊥"
 
 msgid "Choose Photo&hellip;"
-msgstr ";dıʅʅǝɥ⅋oʇoɥԀ ǝsooɥↃ"
+msgstr "&hellip;oʇoɥԀ ǝsooɥↃ"
 
 msgid "Delete current photo"
 msgstr "oʇoɥd ʇuǝɹɹnɔ ǝʇǝʅǝᗡ"
