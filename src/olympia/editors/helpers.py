@@ -563,7 +563,6 @@ class ReviewBase(object):
 
     def get_context_data(self):
         addon_url = self.addon.get_url_path(add_prefix=False)
-        dev_ver_url = self.addon.get_dev_url('versions')
         # We need to display the name in some language that is relevant to the
         # recipient(s) instead of using the reviewer's. addon.default_locale
         # should work.
@@ -577,6 +576,11 @@ class ReviewBase(object):
         if (self.version and
                 self.version.channel == amo.RELEASE_CHANNEL_UNLISTED):
             review_url_kw['channel'] = 'unlisted'
+            dev_ver_url = reverse(
+                'devhub.addons.versions',
+                args=[self.version.id])
+        else:
+            dev_ver_url = self.addon.get_dev_url('versions')
         return {'name': addon.name,
                 'number': self.version.version if self.version else '',
                 'reviewer': self.user.display_name,
