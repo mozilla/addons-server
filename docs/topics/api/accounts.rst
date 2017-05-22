@@ -198,33 +198,33 @@ Notifications List
     permission to list notifications on accounts other than your own.
 
 This endpoint allows you to list the account notifications set for the specified user.
-The result is an unpaginated list of the fields below.  There are currently 11 notifications.
+The result is an unpaginated list of the fields below. There are currently 11 notification types.
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/notifications/
 
-    :>json string name: notification short name
-    :>json boolean enabled: if the notification is enabled (defaults to True)
-    :>json boolean mandatory: if the notification can be set by the user.
+    :>json string name: The notification short name.
+    :>json boolean enabled: If the notification is enabled (defaults to True).
+    :>json boolean mandatory: If the notification can be set by the user.
 
 
------------------
-Notifications Set
------------------
+--------------------
+Notifications Update
+--------------------
 
-.. _`notification-set`:
+.. _`notification-update`:
 
 .. note::
     This API requires :doc:`authentication <auth>` and `Users:Edit`
     permission to set notification preferences on accounts other than your own.
 
-This endpoint allows account notifications to be set. The request should be a dict of `name`:True|False pairs.
-Any number of notifications can be set; only non-mandatory notifications can be changed - attempting to set a mandatory notification will be ignored.
+This endpoint allows account notifications to be set or updated. The request should be a dict of `name`:True|False pairs.
+Any number of notifications can be changed; only non-mandatory notifications can be changed - attempting to set a mandatory notification will be ignored.
 
-.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/notifications/set
+.. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/notifications/
 
-    .. _notification-set-request:
+    .. _notification-update-request:
 
-    :<json boolean <name>: is the notification enabled
+    :<json boolean <name>: Is the notification enabled?
 
 
 --------------

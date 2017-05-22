@@ -1353,9 +1353,11 @@ class TestAccountNotificationViewSetList(TestCase):
 
     def test_disallowed_verbs(self):
         self.client.login_api(self.user)
-        response = self.client.post(self.url)
-        assert response.status_code == 405
         response = self.client.put(self.url)
+        assert response.status_code == 405
+        response = self.client.patch(self.url)
+        assert response.status_code == 405
+        response = self.client.delete(self.url)
         assert response.status_code == 405
 
 
@@ -1364,7 +1366,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
 
     def setUp(self):
         self.user = user_factory()
-        self.url = reverse('notification-set',
+        self.url = reverse('notification-list',
                            kwargs={'user_pk': self.user.pk})
         self.list_url = reverse('notification-list',
                                 kwargs={'user_pk': self.user.pk})
@@ -1380,7 +1382,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
             {'name': u'dev_thanks', 'enabled': True, 'mandatory': False} in
             self.client.get(self.list_url).data)
 
-        response = self.client.patch(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'dev_thanks': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
         assert (
@@ -1399,7 +1401,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
             enabled=True)
         self.client.login_api(self.user)
 
-        response = self.client.patch(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'dev_thanks': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
         assert (
@@ -1413,8 +1415,8 @@ class TestAccountNotificationViewSetUpdate(TestCase):
     def test_set_mandatory_ignored(self):
         contact_notification = NOTIFICATIONS_BY_ID[12]
         self.client.login_api(self.user)
-        response = self.client.patch(self.url,
-                                     data={'individual_contact': False})
+        response = self.client.post(self.url,
+                                    data={'individual_contact': False})
         assert response.status_code == 200, response.content
         # It's not been set to False though.
         assert (
@@ -1426,13 +1428,13 @@ class TestAccountNotificationViewSetUpdate(TestCase):
             user=self.user, notification_id=contact_notification.id).exists()
 
     def test_no_auth_fails(self):
-        response = self.client.patch(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'dev_thanks': False})
         assert response.status_code == 401
 
     def test_different_account_fails(self):
         self.user = user_factory()  # different user now
         self.client.login_api(self.user)
-        response = self.client.patch(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'dev_thanks': False})
         assert response.status_code == 403
 
     def test_admin_update(self):
@@ -1441,7 +1443,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         self.grant_permission(self.user, 'Users:Edit')
         self.client.login_api(self.user)
 
-        response = self.client.patch(self.url, data={'dev_thanks': False})
+        response = self.client.post(self.url, data={'dev_thanks': False})
         assert response.status_code == 200, response.content
         # Now we've set it to False.
         assert (

@@ -493,8 +493,10 @@ class AccountSuperCreate(APIView):
 
 
 class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
-    """Returns account notifications.  If not already set by the user defaults
-    will be returned."""
+    """Returns account notifications.
+
+    If not already set by the user, defaults will be returned.
+    """
 
     permission_classes = [IsAuthenticated]
     # We're pushing the primary permission checking to AccountViewSet for ease.
@@ -530,8 +532,7 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
                 self._get_default_object(notification)))  # Otherwise, default.
         return out
 
-    @list_route(methods=['patch'])
-    def set(self, request, *args, **kwargs):
+    def create(self, request, *args, **kwargs):
         # Loop through possible notifications.
         queryset = self.get_queryset()
         for notification in queryset:
