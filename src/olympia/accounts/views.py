@@ -440,8 +440,8 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
         if instance.is_developer:
             raise serializers.ValidationError(ugettext(
                 u'Developers of add-ons or themes cannot delete their '
-                u'account.  You must delete, or transfer to other users, all '
-                u'add-ons and themes linked to this account first.'))
+                u'account. You must delete all add-ons and themes linked to '
+                u'this account, or transfer them to other users.'))
         return super(AccountViewSet, self).perform_destroy(instance)
 
 
