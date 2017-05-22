@@ -87,7 +87,7 @@ This endpoint allows some of the details for an account to be updated.  Any fiel
 in the :ref:`account <account-object>` (or :ref:`self <account-object-self>`)
 but not listed below are not editable and will be ignored in the patch request.
 
-.. http:patch:: /api/v3/accounts/account/(int:user_id)/
+.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/
 
     .. _account-edit-request:
 
@@ -185,6 +185,46 @@ This endpoint lists the add-ons in a collection, together with collector's notes
     :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item.
     :>json string|object|null results[].notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
     :>json int results[].downloads: The downloads that occured via this collection.
+
+
+------------------
+Notifications List
+------------------
+
+.. _notification-list:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Users:Edit`
+    permission to list notifications on accounts other than your own.
+
+This endpoint allows you to list the account notifications set for the specified user.
+The result is an unpaginated list of the fields below. There are currently 11 notification types.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/notifications/
+
+    :>json string name: The notification short name.
+    :>json boolean enabled: If the notification is enabled (defaults to True).
+    :>json boolean mandatory: If the notification can be set by the user.
+
+
+--------------------
+Notifications Update
+--------------------
+
+.. _`notification-update`:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Users:Edit`
+    permission to set notification preferences on accounts other than your own.
+
+This endpoint allows account notifications to be set or updated. The request should be a dict of `name`:True|False pairs.
+Any number of notifications can be changed; only non-mandatory notifications can be changed - attempting to set a mandatory notification will return an error.
+
+.. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/notifications/
+
+    .. _notification-update-request:
+
+    :<json boolean <name>: Is the notification enabled?
 
 
 --------------
