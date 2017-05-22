@@ -616,7 +616,7 @@ def fetch_langpack(url, xpi, **kw):
 
         # Finally, set the addon summary if one wasn't provided in the xpi.
         addon.status = amo.STATUS_PUBLIC
-        addon.summary = addon.summary if addon.summary else str(addon.name)
+        addon.summary = addon.summary if addon.summary else unicode(addon.name)
         addon.save(update_fields=('status', 'summary'))
         addon.update_status()
 
