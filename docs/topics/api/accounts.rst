@@ -107,7 +107,7 @@ To upload a picture for the profile the request must be sent as content-type `mu
 Images must be either PNG or JPG; the maximum file size is 4MB.
 Other :ref:`editable values <account-edit-request>` can be set at the same time.
 
-.. http:patch:: /api/v3/accounts/account/(int:user_id)/
+.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/
 
     **Request:**
 
@@ -120,6 +120,27 @@ Other :ref:`editable values <account-edit-request>` can be set at the same time.
     :param user-id: The numeric user id.
     :form picture_upload: The user's picture to upload.
     :reqheader Content-Type: multipart/form-data
+
+
+------
+Delete
+------
+
+.. _`account-delete`:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Users:Edit`
+    permission to delete accounts other than your own.
+
+.. note::
+    Accounts of users who are authors of Add-ons can't be deleted.
+    All Add-ons (and Themes) must be deleted or transfered to other users first.
+
+This endpoint allows the account to be deleted. The reviews and ratings
+created by the user will not be deleted; but all the user's details are
+cleared.
+
+.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/
 
 
 ----------------

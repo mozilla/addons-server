@@ -22,8 +22,9 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
-    assert_url_equal, create_switch, user_factory, APITestClient,
-    InitializeSessionMixin, PatchMixin, TestCase, WithDynamicEndpoints)
+    addon_factory, assert_url_equal, create_switch, user_factory,
+    APITestClient, InitializeSessionMixin, PatchMixin, TestCase,
+    WithDynamicEndpoints)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase
@@ -1123,6 +1124,71 @@ class TestAccountViewSetUpdate(TestCase):
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'picture_upload': [u'Images must be either PNG or JPG.']}
+
+
+class TestAccountViewSetDelete(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.url = reverse('account-detail',
+                           kwargs={'pk': self.user.pk})
+        super(TestAccountViewSetDelete, self).setUp()
+
+    def test_delete(self):
+        self.client.login_api(self.user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.user.reload().deleted
+
+    def test_no_auth(self):
+        response = self.client.delete(self.url)
+        assert response.status_code == 401
+
+    def test_different_account(self):
+        self.client.login_api(self.user)
+        url = reverse('account-detail', kwargs={'pk': user_factory().pk})
+        response = self.client.delete(url)
+        assert response.status_code == 403
+
+    def test_admin_patch(self):
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        random_user = user_factory()
+        url = reverse('account-detail', kwargs={'pk': random_user.pk})
+        response = self.client.delete(url)
+        assert response.status_code == 204
+        assert random_user.reload().deleted
+
+    def test_developers_cant_delete(self):
+        self.client.login_api(self.user)
+        addon = addon_factory(users=[self.user])
+        assert self.user.is_developer and self.user.is_addon_developer
+
+        response = self.client.delete(self.url)
+        assert response.status_code == 400
+        assert 'You must delete all add-ons and themes' in response.content
+        assert not self.user.reload().deleted
+
+        addon.delete()
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.user.reload().deleted
+
+    def test_theme_developers_cant_delete(self):
+        self.client.login_api(self.user)
+        addon = addon_factory(users=[self.user], type=amo.ADDON_PERSONA)
+        assert self.user.is_developer and self.user.is_artist
+
+        response = self.client.delete(self.url)
+        assert response.status_code == 400
+        assert 'You must delete all add-ons and themes' in response.content
+        assert not self.user.reload().deleted
+
+        addon.delete()
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.user.reload().deleted
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):

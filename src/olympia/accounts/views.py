@@ -11,12 +11,13 @@ from django.http import HttpResponseRedirect
 from django.utils.encoding import force_bytes
 from django.utils.http import is_safe_url
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
+from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import list_route
 from rest_framework.mixins import (
-    ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
+    DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.permissions import (
     AllowAny, BasePermission, IsAuthenticated)
 from rest_framework.response import Response
@@ -383,7 +384,8 @@ class AllowSelf(BasePermission):
         return request.user.is_authenticated() and obj == request.user
 
 
-class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
+class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
+                     GenericViewSet):
     permission_classes = [
         ByHttpMethod({
             'get': AllowAny,
@@ -391,6 +393,8 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
             'options': AllowAny,  # Needed for CORS.
             # To edit a profile it has to yours, or be an admin.
             'patch': AnyOf(AllowSelf, GroupPermission(
+                amo.permissions.USERS_EDIT)),
+            'delete': AnyOf(AllowSelf, GroupPermission(
                 amo.permissions.USERS_EDIT)),
         }),
     ]
@@ -431,6 +435,14 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     def profile(self, request, *args, **kwargs):
         self.kwargs['pk'] = unicode(self.request.user.pk)
         return self.retrieve(request, *args, **kwargs)
+
+    def perform_destroy(self, instance):
+        if instance.is_developer:
+            raise serializers.ValidationError(ugettext(
+                u'Developers of add-ons or themes cannot delete their '
+                u'account. You must delete all add-ons and themes linked to '
+                u'this account, or transfer them to other users.'))
+        return super(AccountViewSet, self).perform_destroy(instance)
 
 
 class AccountSuperCreate(APIView):
