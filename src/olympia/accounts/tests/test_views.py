@@ -1412,17 +1412,15 @@ class TestAccountNotificationViewSetUpdate(TestCase):
             user=self.user, notification_id=thanks_notification.id)
         assert not un_obj.enabled
 
-    def test_set_mandatory_ignored(self):
+    def test_set_mandatory_fail(self):
         contact_notification = NOTIFICATIONS_BY_ID[12]
         self.client.login_api(self.user)
         response = self.client.post(self.url,
                                     data={'individual_contact': False})
-        assert response.status_code == 200, response.content
-        # It's not been set to False though.
-        assert (
-            {'name': 'individual_contact', 'enabled': True,
-             'mandatory': True} in
-            response.data)
+        assert response.status_code == 400
+        # Attempt fails.
+        assert 'Attempting to set [individual_contact] to False.' in (
+            response.content)
         # And the notification hasn't been saved.
         assert not UserNotification.objects.filter(
             user=self.user, notification_id=contact_notification.id).exists()

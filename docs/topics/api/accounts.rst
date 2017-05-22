@@ -218,7 +218,7 @@ Notifications Update
     permission to set notification preferences on accounts other than your own.
 
 This endpoint allows account notifications to be set or updated. The request should be a dict of `name`:True|False pairs.
-Any number of notifications can be changed; only non-mandatory notifications can be changed - attempting to set a mandatory notification will be ignored.
+Any number of notifications can be changed; only non-mandatory notifications can be changed - attempting to set a mandatory notification will return an error.
 
 .. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/notifications/
 
