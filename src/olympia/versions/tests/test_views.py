@@ -8,6 +8,7 @@ from django.utils.http import urlquote
 from django.test.utils import override_settings
 
 import mock
+import pytest
 from pyquery import PyQuery
 
 from olympia import amo
@@ -83,6 +84,7 @@ class TestViews(TestCase):
         assert response.status_code == 200
         return PyQuery(response.content)
 
+    @pytest.mark.xfail(reason='Temporarily hidden, #5431')
     def test_version_source(self):
         self.addon.update(view_source=True)
         assert len(self.get_content()('a.source-code')) == 1
