@@ -52,14 +52,6 @@
             {{ _("What's this?") }}</a>
         </li>
     {% endif %}
-    {% if addon.view_source and version.has_files and
-          addon.status in amo.REVIEWED_STATUSES %}
-      <li>
-        <a class="source-code"
-           href="{{ url('files.list', version.all_files[0].pk) }}">
-          {{ _('View the source') }}</a>
-      </li>
-    {% endif %}
     </ul>
 
   </div>
