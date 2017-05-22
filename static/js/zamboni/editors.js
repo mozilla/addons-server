@@ -138,11 +138,6 @@ function initReviewActions() {
     }
 
     /* Item History */
-    $('#review-files tr.listing-header input[type=checkbox]').click(function(e) {
-        /* clicking on the checkbox in the header should not toggle that item */
-        e.stopPropagation();
-    });
-
     $('#review-files tr.listing-header').click(function() {
         $(this).next('tr.listing-body').toggle();
     });

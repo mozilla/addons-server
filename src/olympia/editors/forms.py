@@ -22,6 +22,7 @@ from olympia.editors.tasks import approve_rereview, reject_rereview, send_mail
 from olympia.lib import happyforms
 from olympia.reviews.helpers import user_can_delete_review
 from olympia.reviews.models import Review
+from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.reviewers.forms')
@@ -289,7 +290,11 @@ class ReviewForm(happyforms.Form):
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
     versions = ModelMultipleChoiceField(
-        required=False, queryset=None)  # queryset is set later in __init__.
+        widget=forms.SelectMultiple(attrs={
+            'class': 'data-toggle', 'data-value': 'reject_multiple_versions'}),
+        required=False,
+        queryset=Version.objects.none())  # queryset is set later in __init__.
+
     operating_systems = forms.CharField(required=False,
                                         label=_(u'Operating systems:'))
     applications = forms.CharField(required=False,
@@ -323,11 +328,17 @@ class ReviewForm(happyforms.Form):
         super(ReviewForm, self).__init__(*args, **kw)
 
         # With the helper, we now have the add-on and can set queryset on the
-        # versions field correctly.
-        self.fields['versions'].queryset = self.helper.addon.versions.filter(
-            channel=amo.RELEASE_CHANNEL_LISTED)
+        # versions field correctly. Small optimization: we only need to do this
+        # if the reject_multiple_versions action is available, otherwise we
+        # don't really care about this field.
+        if 'reject_multiple_versions' in self.helper.actions:
+            self.fields['versions'].queryset = (
+                self.helper.addon.versions.filter(
+                    channel=amo.RELEASE_CHANNEL_LISTED,
+                    files__status=amo.STATUS_PUBLIC).order_by('created'))
 
-        # We're starting with an empty one, which will be hidden via CSS.
+        # For the canned responses, we're starting with an empty one, which
+        # will be hidden via CSS.
         canned_choices = [
             ['', [('', ugettext('Choose a canned response...'))]]]
 

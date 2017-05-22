@@ -61,7 +61,6 @@
         {% for version in pager.object_list|reverse %}
         <tr class="listing-header">
           <th colspan="2">
-            <input type="checkbox" name="versions" value="{{ version.pk }}" autocomplete="off" class="data-toggle" data-value="reject_multiple_versions" />
             {% trans version = version.version, created = version.created|datetime, version_status = version_status(addon, version) %}
             Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
             {% endtrans %}
@@ -173,6 +172,9 @@
       <div class="currently_viewing_warning">
         {{ _("You can still submit this form, however only do so if you know it won't conflict.") }}
       </div>
+
+      {{ form.versions }}
+      {{ form.versions.errors }}
 
       <div class="review-actions-section data-toggle"
            data-value="{{ actions_comments|join("|") }}">

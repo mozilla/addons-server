@@ -12,7 +12,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
-from olympia.amo.tests import TestCase, version_factory
+from olympia.amo.tests import file_factory, TestCase, version_factory
 from olympia.amo.utils import send_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.urlresolvers import reverse
@@ -303,7 +303,7 @@ class TestReviewHelper(TestCase):
 
     def test_actions_public_post_reviewer(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
-        expected = ['info', 'super', 'comment']
+        expected = ['reject_multiple_versions', 'info', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC).keys() == expected
@@ -927,15 +927,17 @@ class TestReviewHelper(TestCase):
         assert self.get_helper()
 
     def test_reject_multiple_versions(self):
+        old_version = self.version
+        self.version = version_factory(addon=self.addon, version='3.0')
+        # An extra file should not change anything.
+        file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
-        version2 = version_factory(addon=self.addon, version='3.0')
 
         # Safeguards.
         assert isinstance(self.helper.handler, helpers.ReviewFiles)
         assert self.addon.status == amo.STATUS_PUBLIC
         assert self.file.status == amo.STATUS_PUBLIC
-        assert self.addon.current_version.files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+        assert self.addon.current_version.is_public()
 
         data = self.get_data().copy()
         data['versions'] = self.addon.versions.all()
@@ -946,7 +948,7 @@ class TestReviewHelper(TestCase):
         self.file.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.current_version is None
-        assert list(self.addon.versions.all()) == [version2, self.version]
+        assert list(self.addon.versions.all()) == [self.version, old_version]
         assert self.file.status == amo.STATUS_DISABLED
 
         assert len(mail.outbox) == 1
@@ -956,7 +958,48 @@ class TestReviewHelper(TestCase):
             u"didn't pass review")
         assert ('Version(s) affected and disabled:\n3.0, 2.1.072'
                 in mail.outbox[0].body)
-        log_token = ActivityLogToken.objects.filter(version=version2).get()
+        log_token = ActivityLogToken.objects.get()
+        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+
+    def test_reject_multiple_versions_except_latest(self):
+        old_version = self.version
+        extra_version = version_factory(addon=self.addon, version='3.1')
+        # Add yet another version we don't want to reject.
+        self.version = version_factory(addon=self.addon, version='42.0')
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, helpers.ReviewFiles)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.current_version.is_public()
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all().exclude(
+            pk=self.version.pk)
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        # latest_version is still public so the add-on is still public.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.current_version == self.version
+        assert list(self.addon.versions.all().order_by('-pk')) == [
+            self.version, extra_version, old_version]
+        assert self.file.status == amo.STATUS_DISABLED
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
+        assert mail.outbox[0].subject == (
+            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
+            u"didn't pass review")
+        assert ('Version(s) affected and disabled:\n3.1, 2.1.072'
+                in mail.outbox[0].body)
+        log_token = ActivityLogToken.objects.filter(
+            version=self.version).get()
         assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2

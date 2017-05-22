@@ -106,27 +106,37 @@ class TestReviewForm(TestCase):
             'comments': [u'This field is required.']
         }
 
-        # Alter the action to make it require versions regardless of what it
-        # actually is, what we want to test is the form behaviour.
+        # Alter the action to make it not require comments to be sent
+        # regardless of what the action actually is, what we want to test is
+        # the form behaviour.
         form = self.get_form(data={'action': 'info'})
         form.helper.actions['info']['comments'] = False
         assert form.is_bound
         assert form.is_valid()
         assert not form.errors
 
-    def test_versions_required_and_queryset(self):
+    def test_versions_queryset(self):
         addon_factory()
         version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        form = self.get_form()
+        assert not form.is_bound
+        assert form.fields['versions'].required is False
+        assert list(form.fields['versions'].queryset) == []
+
+        # With post-review permission, the reject_multiple_versions action will
+        # be available, resetting the queryset of allowed choices.
+        self.grant_permission(self.request.user, 'Addons:PostReview')
         form = self.get_form()
         assert not form.is_bound
         assert form.fields['versions'].required is False
         assert list(form.fields['versions'].queryset) == [
             self.addon.current_version]
 
-        # Alter the action to make it require versions regardless of what it
-        # actually is, what we want to test is the form behaviour.
-        form = self.get_form(data={'action': 'info', 'comments': 'lol'})
-        form.helper.actions['info']['versions'] = True
+    def test_versions_required(self):
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        form = self.get_form(data={
+            'action': 'reject_multiple_versions', 'comments': 'lol'})
+        form.helper.actions['reject_multiple_versions']['versions'] = True
         assert form.is_bound
         assert not form.is_valid()
         assert form.errors == {
