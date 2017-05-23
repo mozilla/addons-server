@@ -4,7 +4,8 @@ from datetime import timedelta
 from django import forms
 from django.db.models import Q
 from django.forms import widgets
-from django.forms.models import BaseModelFormSet, modelformset_factory
+from django.forms.models import (
+    BaseModelFormSet, modelformset_factory, ModelMultipleChoiceField)
 from django.utils.translation import ugettext, ugettext_lazy as _, get_language
 
 import olympia.core.logger
@@ -21,6 +22,7 @@ from olympia.editors.tasks import approve_rereview, reject_rereview, send_mail
 from olympia.lib import happyforms
 from olympia.reviews.helpers import user_can_delete_review
 from olympia.reviews.models import Review
+from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.reviewers.forms')
@@ -287,6 +289,12 @@ class ReviewForm(happyforms.Form):
                                label=_(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
+    versions = ModelMultipleChoiceField(
+        widget=forms.SelectMultiple(attrs={
+            'class': 'data-toggle', 'data-value': 'reject_multiple_versions'}),
+        required=False,
+        queryset=Version.objects.none())  # queryset is set later in __init__.
+
     operating_systems = forms.CharField(required=False,
                                         label=_(u'Operating systems:'))
     applications = forms.CharField(required=False,
@@ -304,8 +312,11 @@ class ReviewForm(happyforms.Form):
     def is_valid(self):
         # Some actions do not require comments.
         action = self.helper.actions.get(self.data.get('action'))
-        if action and not action.get('comments', True):
-            self.fields['comments'].required = False
+        if action:
+            if not action.get('comments', True):
+                self.fields['comments'].required = False
+            if action.get('versions', False):
+                self.fields['versions'].required = True
         result = super(ReviewForm, self).is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)
@@ -316,7 +327,18 @@ class ReviewForm(happyforms.Form):
         self.type = kw.pop('type', amo.CANNED_RESPONSE_ADDON)
         super(ReviewForm, self).__init__(*args, **kw)
 
-        # We're starting with an empty one, which will be hidden via CSS.
+        # With the helper, we now have the add-on and can set queryset on the
+        # versions field correctly. Small optimization: we only need to do this
+        # if the reject_multiple_versions action is available, otherwise we
+        # don't really care about this field.
+        if 'reject_multiple_versions' in self.helper.actions:
+            self.fields['versions'].queryset = (
+                self.helper.addon.versions.filter(
+                    channel=amo.RELEASE_CHANNEL_LISTED,
+                    files__status=amo.STATUS_PUBLIC).order_by('created'))
+
+        # For the canned responses, we're starting with an empty one, which
+        # will be hidden via CSS.
         canned_choices = [
             ['', [('', ugettext('Choose a canned response...'))]]]
 
@@ -335,7 +357,6 @@ class ReviewForm(happyforms.Form):
         for r in responses:
             if not r.sort_group:
                 canned_choices.append([r.response, r.name])
-
         self.fields['canned_response'].choices = canned_choices
         self.fields['action'].choices = [
             (k, v['label']) for k, v in self.helper.actions.items()]
