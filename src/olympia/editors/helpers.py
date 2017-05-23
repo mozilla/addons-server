@@ -578,7 +578,7 @@ class ReviewBase(object):
             review_url_kw['channel'] = 'unlisted'
             dev_ver_url = reverse(
                 'devhub.addons.versions',
-                args=[self.version.id])
+                args=[self.addon.id])
         else:
             dev_ver_url = self.addon.get_dev_url('versions')
         return {'name': addon.name,
