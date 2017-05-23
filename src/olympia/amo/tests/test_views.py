@@ -10,6 +10,7 @@ from django.test.utils import override_settings
 
 from lxml import etree
 import mock
+import pytest
 from mock import patch
 from pyquery import PyQuery as pq
 
@@ -21,6 +22,13 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import check_links, WithDynamicEndpoints
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize('locale', list(settings.LANGUAGES))
+def test_locale_switcher(client, locale):
+    response = client.get('/{}/firefox/'.format(locale))
+    assert response.status_code == 200
 
 
 class Test403(TestCase):

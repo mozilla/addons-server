@@ -2099,7 +2099,7 @@ msgid "User {user} restricted."
 msgstr "ਉਪਭੋਗੀ {user} ਸੀਮਿਤ ਹੋਇਆ।"
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr "ਐਡਮਿਨ {0} ਨੇ { user} ਲਈ ਸਰਗਰਮੀ ਲਾਗ ਸਮਝਿਆ।"
+msgstr "ਐਡਮਿਨ {0} ਨੇ {user} ਲਈ ਸਰਗਰਮੀ ਲਾਗ ਸਮਝਿਆ।"
 
 msgid "{review} for {addon} updated."
 msgstr "{addon} ਲਈ {review} ਅੱਪਡੇਟ ਹੋਇਆ।"

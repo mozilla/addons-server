@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
@@ -96,7 +96,7 @@ msgstr "这个短网址已经被使用，请另选一个。"
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "短网址不能是“%s”。请另选一个。"
+msgstr "短网址不能是“%(slug)s”。请另选一个。"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
