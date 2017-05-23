@@ -1005,6 +1005,20 @@ class TestAccountViewSet(TestCase):
         assert response.data['email'] == self.random_user.email
 
 
+class TestProfileViewWithJWT(APIKeyAuthTestCase):
+    """This just tests JWT Auth (external) on the profile endpoint.
+
+    See TestAccountViewSet for internal auth test.
+    """
+
+    def test_profile_url(self):
+        self.create_api_user()
+        response = self.get(reverse('account-profile'))
+        assert response.status_code == 200
+        assert response.data['name'] == self.user.name
+        assert response.data['email'] == self.user.email
+
+
 class TestAccountViewSetUpdate(TestCase):
     client_class = APITestClient
     update_data = {
