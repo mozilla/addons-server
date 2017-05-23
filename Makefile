@@ -30,9 +30,10 @@ jquery/dist/jquery.js \
 jquery.cookie/jquery.cookie.js \
 jquery.browser/dist/jquery.browser.js \
 jquery-hoverintent/jquery.hoverIntent.js \
+@claviska/jquery-minicolors/jquery.minicolors.js \
 jquery-pjax/jquery.pjax.js \
 timeago/jquery.timeago.js \
-@claviska/jquery-minicolors/jquery.minicolors.js
+underscore/underscore.js
 NODE_LIBS_CSS := \
 @claviska/jquery-minicolors/jquery.minicolors.css \
 @claviska/jquery-minicolors/jquery.minicolors.png
