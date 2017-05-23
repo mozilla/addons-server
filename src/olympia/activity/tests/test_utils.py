@@ -128,6 +128,19 @@ class TestEmailBouncing(TestCase):
         self._test_exception_in_parser_but_can_send_email(
             {'ReplyTo': {'EmailAddress': 'bob@dole.org'}})
 
+    def test_exception_to_notifications_alias(self):
+        email_text = copy.deepcopy(self.email_text)
+        email_text['To'] = [{
+            'EmailAddress': 'notifications@%s' % settings.INBOUND_EMAIL_DOMAIN,
+            'FriendlyName': 'not a valid activity mail reply'}]
+        assert not add_email_to_activity_log_wrapper(email_text)
+        assert len(mail.outbox) == 1
+        out = mail.outbox[0]
+        assert ('This email address is not meant to receive emails '
+                'directly.') in out.body
+        assert out.subject == 'Re: This is the subject of a test message.'
+        assert out.to == ['sender@example.com']
+
     @override_switch('activity-email-bouncing', active=False)
     def test_exception_but_bouncing_waffle_off(self):
         # Fails because the token doesn't exist in ActivityToken.objects
@@ -250,6 +263,9 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == u'Thïs is á reply'
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
+        sender = '%s <notifications@%s>' % (
+            self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
+        assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 2
         assert self.reviewer.email in recipients
@@ -285,6 +301,9 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == u'Thîs ïs a revïewer replyîng'
 
         assert send_mail_mock.call_count == 2  # Both authors.
+        sender = '%s <notifications@%s>' % (
+            self.reviewer.name, settings.INBOUND_EMAIL_DOMAIN)
+        assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 2
         assert self.developer.email in recipients
@@ -315,6 +334,9 @@ class TestLogAndNotify(TestCase):
         assert not logs[0].details  # No details json because no comment.
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
+        sender = '%s <notifications@%s>' % (
+            self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
+        assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 2
         assert self.reviewer.email in recipients
@@ -341,6 +363,9 @@ class TestLogAndNotify(TestCase):
         assert len(logs) == 1
 
         recipients = self._recipients(send_mail_mock)
+        sender = '%s <notifications@%s>' % (
+            self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
+        assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         assert len(recipients) == 2
         # self.reviewers wasn't on the thread, but gets an email anyway.
         assert self.reviewer.email in recipients
