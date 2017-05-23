@@ -597,7 +597,7 @@ MINIFY_BUNDLES = {
             'css/impala/tooltips.less',
             'css/impala/search.less',
             'css/impala/suggestions.less',
-            'css/impala/jquery.minicolors.css',
+            'css/node_lib/jquery.minicolors.css',
             'css/impala/personas.less',
             'css/impala/login.less',
             'css/impala/dictionaries.less',
@@ -712,7 +712,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/reviews.js',
 
             # Personas
-            'js/lib/jquery.hoverIntent.js',
+            'js/node_lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
@@ -758,7 +758,7 @@ MINIFY_BUNDLES = {
             'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
-            'js/lib/jquery.pjax.js',
+            'js/node_lib/jquery.pjax.js',
             'js/impala/footer.js',
             'js/common/keys.js',
 
@@ -798,13 +798,13 @@ MINIFY_BUNDLES = {
             'js/impala/listing.js',
 
             # Personas
-            'js/lib/jquery.hoverIntent.js',
+            'js/node_lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
             # Persona creation
             'js/common/upload-image.js',
-            'js/lib/jquery.minicolors.js',
+            'js/node_lib/jquery.minicolors.js',
             'js/impala/persona_creation.js',
 
             # Unicode: needs to be loaded after collections.js which listens to
@@ -846,7 +846,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/ui.lightbox.js',
 
             # Personas
-            'js/lib/jquery.hoverIntent.js',
+            'js/node_lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
@@ -871,12 +871,12 @@ MINIFY_BUNDLES = {
             'js/impala/formset.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
-            'js/lib/jquery.timeago.js',
+            'js/node_lib/jquery.timeago.js',
         ),
         'zamboni/editors': (
             'js/lib/highcharts.src.js',
             'js/zamboni/editors.js',
-            'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
+            'js/node_lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
             'js/zamboni/themes_review_templates.js',
             'js/zamboni/themes_review.js',

@@ -24,7 +24,19 @@ endif
 
 NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
 STATIC_JS := static/js/node_lib/
-NODE_LIBS := jquery/dist/jquery.js jquery.cookie/jquery.cookie.js jquery.browser/dist/jquery.browser.js
+STATIC_CSS := static/css/node_lib/
+NODE_LIBS_JS := \
+jquery/dist/jquery.js \
+jquery.cookie/jquery.cookie.js \
+jquery.browser/dist/jquery.browser.js \
+jquery-hoverintent/jquery.hoverIntent.js \
+jquery-pjax/jquery.pjax.js \
+timeago/jquery.timeago.js \
+@claviska/jquery-minicolors/jquery.minicolors.js
+NODE_LIBS_CSS := \
+@claviska/jquery-minicolors/jquery.minicolors.css \
+@claviska/jquery-minicolors/jquery.minicolors.png
+
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of the following commands."
@@ -151,7 +163,8 @@ copy_node_js:
 ifeq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the container)
 endif
-	for dest in $(NODE_LIBS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
+	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
+	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
 
 update_deps:
 ifeq ($(IN_DOCKER),)
