@@ -23,6 +23,7 @@ from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
 from olympia.access.models import Group, GroupUser
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
+from olympia.users.notifications import NOTIFICATIONS_BY_ID
 
 log = olympia.core.logger.getLogger('z.users')
 
@@ -427,14 +428,9 @@ class UserNotification(ModelBase):
     class Meta:
         db_table = 'users_notifications'
 
-    @staticmethod
-    def update_or_create(update=None, **kwargs):
-        if update is None:
-            update = {}
-        rows = UserNotification.objects.filter(**kwargs).update(**update)
-        if not rows:
-            update.update(dict(**kwargs))
-            UserNotification.objects.create(**update)
+    @property
+    def notification(self):
+        return NOTIFICATIONS_BY_ID[self.notification_id]
 
 
 class DeniedName(ModelBase):

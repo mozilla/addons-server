@@ -334,18 +334,13 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
         pass
 
     perm_settings = []
-    if user is not None:
+    if user is not None and perm_setting is not None:
         unsubscribed = True
-        if not perm_setting:
-            # TODO: make this work. nothing currently links to it, though.
-            perm_settings = [l for l in notifications.NOTIFICATIONS
-                             if not l.mandatory]
-        else:
-            perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
-            UserNotification.update_or_create(
-                update={'enabled': False},
-                user=user, notification_id=perm_setting.id)
-            perm_settings = [perm_setting]
+        perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
+        UserNotification.objects.update_or_create(
+            user=user, notification_id=perm_setting.id,
+            defaults={'enabled': False})
+        perm_settings = [perm_setting]
     else:
         unsubscribed = False
         email = ''

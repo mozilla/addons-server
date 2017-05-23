@@ -432,32 +432,32 @@ class ReviewHelper(object):
                              'from the queue. The comments will be sent '
                              'to the developer.'),
                 'minimal': False}
-        # If the addon current version was auto-approved, extra actions are
-        # available to users with post-review permission, allowing them to
-        # confirm the approval or reject versions.
-        if (self.addon.current_version and
-                self.addon.current_version.was_auto_approved and
-                acl.action_allowed(
-                    request, amo.permissions.ADDONS_POST_REVIEW)):
-            actions['confirm_auto_approved'] = {
-                'method': self.handler.confirm_auto_approved,
-                'label': _('Confirm Approval'),
-                'details': _('The latest public version of this add-on '
-                             'was automatically approved. This records '
-                             'your confirmation of the approval, '
-                             'without notifying the developer.'),
+        if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
+            # Post-reviewers have 2 extra actions depending on the state of
+            # the add-on:
+            # If the addon current version was auto-approved, they can confirm
+            # the approval.
+            if (self.addon.current_version and
+                    self.addon.current_version.was_auto_approved):
+                actions['confirm_auto_approved'] = {
+                    'method': self.handler.confirm_auto_approved,
+                    'label': _('Confirm Approval'),
+                    'details': _('The latest public version of this add-on '
+                                 'was automatically approved. This records '
+                                 'your confirmation of the approval, '
+                                 'without notifying the developer.'),
+                    'minimal': True,
+                    'comments': False,
+                }
+            # In any case, they can reject multiple versions in one action.
+            actions['reject_multiple_versions'] = {
+                'method': self.handler.reject_multiple_versions,
+                'label': _('Reject Multiple Versions'),
                 'minimal': True,
-                'comments': False,
+                'versions': True,
+                'details': _('This will reject the selected versions. '
+                             'The comments will be sent to the developer.'),
             }
-            # Not implemented yet, will be in #5275.
-            # actions['reject_auto_approved'] = {
-            #     'method': self.handler.reject_auto_approved,
-            #     'label': _('Reject'),
-            #     'details': _('This will reject the specified '
-            #                  'auto-approved versions. The comments will '
-            #                  'be sent to the developer.'),
-            #     'minimal': True,
-            # }
         if self.version:
             actions['info'] = {
                 'method': self.handler.request_information,
@@ -524,14 +524,18 @@ class ReviewBase(object):
             file.status = status
             file.save()
 
-    def log_action(self, action):
+    def log_action(self, action, version=None, files=None):
         details = {'comments': self.data['comments'],
                    'reviewtype': self.review_type}
-        if self.files:
-            details['files'] = [f.id for f in self.files]
-        if self.version:
-            details['version'] = self.version.version
-            args = (self.addon, self.version)
+        if files is None and self.files:
+            files = self.files
+        if files is not None:
+            details['files'] = [f.id for f in files]
+        if version is None and self.version:
+            version = self.version
+        if version is not None:
+            details['version'] = version.version
+            args = (self.addon, version)
         else:
             args = (self.addon,)
 
@@ -539,8 +543,11 @@ class ReviewBase(object):
                   'details': details}
         ActivityLog.create(action, *args, **kwargs)
 
-    def notify_email(self, template, subject, perm_setting='editor_reviewed'):
+    def notify_email(self, template, subject,
+                     perm_setting='editor_reviewed', version=None):
         """Notify the authors that their addon has been reviewed."""
+        if version is None:
+            version = self.version
         data = self.data.copy() if self.data else {}
         data.update(self.get_context_data())
         data['tested'] = ''
@@ -558,8 +565,8 @@ class ReviewBase(object):
             'editors/emails/%s.ltxt' % template).render(
             Context(data, autoescape=False))
         send_activity_mail(
-            subject, message, self.version, self.addon.authors.all(),
-            settings.EDITORS_EMAIL, perm_setting)
+            subject, message, version, self.addon.authors.all(),
+            settings.EDITORS_EMAIL, perm_setting=perm_setting)
 
     def get_context_data(self):
         addon_url = self.addon.get_url_path(add_prefix=False)
@@ -713,6 +720,38 @@ class ReviewBase(object):
         in the review page."""
         AddonApprovalsCounter.increment_for_addon(addon=self.addon)
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED)
+
+    def reject_multiple_versions(self):
+        """Reject a list of versions."""
+        # self.version and self.files won't point to the versions we want to
+        # modify in this action, so set them to None before finding the right
+        # versions.
+        latest_version = self.version
+        self.version = None
+        self.files = None
+        for version in self.data['versions']:
+            files = version.files.all()
+            self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
+            self.log_action(amo.LOG.REJECT_VERSION,
+                            version=version, files=files)
+        self.addon.update_status()
+        self.data['version_numbers'] = u', '.join(
+            unicode(v.version) for v in self.data['versions'])
+
+        # Send the email to the developer. We need to pass the latest version
+        # of the add-on instead of one of the versions we rejected, it will be
+        # used to generate a token allowing the developer to reply, and that
+        # only works with the latest version.
+        template = u'reject_multiple_versions'
+        subject = (u"Mozilla Add-ons: One or more versions of %s%s didn't "
+                   u"pass review")
+        self.notify_email(template, subject, version=latest_version)
+
+        log.info(
+            u'Making %s versions %s disabled' % (
+                self.addon,
+                u', '.join(unicode(v.pk) for v in self.data['versions'])))
+        log.info(u'Sending email for %s' % (self.addon))
 
 
 class ReviewAddon(ReviewBase):

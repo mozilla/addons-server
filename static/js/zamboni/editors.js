@@ -59,7 +59,7 @@ function initReviewActions() {
     function showForm(element, pageload) {
         var $element = $(element),
             value = $element.find('input').val(),
-            $data_toggle = $('#review-actions-form').find('.data-toggle');
+            $data_toggle = $('form.review-form').find('.data-toggle');
 
         pageload = pageload || false;
         $element.closest('.review-actions').addClass('on');

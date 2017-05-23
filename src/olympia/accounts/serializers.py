@@ -150,3 +150,23 @@ class AccountSuperCreateSerializer(serializers.Serializer):
                     'rules needed.')
             group = qs.get()
         return group
+
+
+class UserNotificationSerializer(serializers.Serializer):
+    name = serializers.CharField(source='notification.short')
+    enabled = serializers.BooleanField()
+    mandatory = serializers.BooleanField(source='notification.mandatory')
+
+    def update(self, instance, validated_data):
+        if instance.notification.mandatory:
+            raise serializers.ValidationError(
+                'Attempting to set [%s] to %s. Mandatory notifications can\'t '
+                'be modified' %
+                (instance.notification.short, validated_data.get('enabled')))
+        if 'enabled' in validated_data:
+            # Only save if non-mandatory and 'enabled' is set.
+            # Ignore other fields.
+            instance.enabled = validated_data['enabled']
+            # Not .update because some of the instances are new.
+            instance.save()
+        return instance
