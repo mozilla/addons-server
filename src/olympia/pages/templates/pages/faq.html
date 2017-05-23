@@ -23,13 +23,13 @@
         {% endtrans %}</dd>
 
     <dt>{{ _('Will add-ons work with my web browser or application?') }}</dt>
-    <dd>{% trans getfirefox_url="http://getfirefox.com",
+    <dd>{% trans getfirefox_url="https://www.mozilla.org/firefox/",
            getthunderbird_url="http://getthunderbird.com",
-           getmobile_url="http://firefox.com/mobile",
+           getmobile_url="https://www.mozilla.org/firefox/android/",
            getseamonkey_url="http://getseamonkey.com" %}
         Add-ons listed in this gallery only work with Mozilla-based
         applications, such as <a href="{{ getfirefox_url }}">Firefox</a>,
-        <a href="{{ getmobile_url }}">Firefox Mobile</a>,
+        <a href="{{ getmobile_url }}">Firefox for Android</a>,
         <a href="{{ getseamonkey_url }}">SeaMonkey</a>, and
         <a href="{{ getthunderbird_url }}">Thunderbird</a>. However, not all
         add-ons work with each of those applications or every version of those
@@ -246,7 +246,7 @@
            gallery_url=locale_url('mobile') %}
         Mobile add-ons work with <a href="{{ mobile_url }}">Firefox for
         Android</a> and add or modify functionality just like desktop add-ons.
-        You can find add-ons that work with Firefox for Mobile in our
+        You can find add-ons that work with Firefox for Android in our
         <a href="{{ gallery_url }}">gallery</a>.{% endtrans %}</dd>
 
 </dl>
