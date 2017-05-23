@@ -116,11 +116,11 @@ into an HTTP Authorization header prefixed with ``JWT``, like this::
 Example request
 ===============
 
-Using the :ref:`account <account>` as an example endpoint,
+Using the :ref:`profile <profile>` as an example endpoint,
 here's what a JWT authenticated HTTP request would look like in
 `curl <http://curl.haxx.se/>`_::
 
-    curl "https://addons.mozilla.org/api/v3/accounts/account/" \
+    curl "https://addons.mozilla.org/api/v3/accounts/profile/" \
          -H "Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE0NDcyNzMwOTZ9.MG9LJiEK5_Db8WpF5cWWRebXCtUB48EJzxKIBqQhSOo"
 
 
