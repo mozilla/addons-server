@@ -15,7 +15,6 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.decorators import list_route
 from rest_framework.mixins import (
     DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.permissions import (
@@ -431,11 +430,6 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
         else:
             return PublicUserProfileSerializer
 
-    @list_route(permission_classes=[IsAuthenticated])
-    def profile(self, request, *args, **kwargs):
-        self.kwargs['pk'] = unicode(self.request.user.pk)
-        return self.retrieve(request, *args, **kwargs)
-
     def perform_destroy(self, instance):
         if instance.is_developer:
             raise serializers.ValidationError(ugettext(
@@ -443,6 +437,19 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
                 u'account. You must delete all add-ons and themes linked to '
                 u'this account, or transfer them to other users.'))
         return super(AccountViewSet, self).perform_destroy(instance)
+
+
+class ProfileView(APIView):
+    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        account_viewset = AccountViewSet(
+            request=request,
+            permission_classes=self.permission_classes,
+            kwargs={'pk': unicode(self.request.user.pk)})
+        account_viewset.format_kwarg = self.format_kwarg
+        return account_viewset.retrieve(request)
 
 
 class AccountSuperCreate(APIView):
