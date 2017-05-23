@@ -89,6 +89,7 @@ AMO_LANGUAGES = (
     'zh-CN', 'zh-TW',
 )
 
+# Make sure we run our tests with debug languages.
 AMO_LANGUAGES = AMO_LANGUAGES + DEBUG_LANGUAGES
 
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)

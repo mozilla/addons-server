@@ -173,7 +173,7 @@ SHORTER_LANGUAGES = {
 # L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
 HIDDEN_LANGUAGES = ('cy', 'hr', 'sr', 'sr-Latn', 'tr')
 
-DEBUG_LANGUAGES = ('dbr', 'dbg')
+DEBUG_LANGUAGES = ('dbr', 'dbl')
 
 
 def lazy_langs(languages):
