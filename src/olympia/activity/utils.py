@@ -24,6 +24,7 @@ log = olympia.core.logger.getLogger('z.amo.activity')
 REPLY_TO_PREFIX = 'reviewreply+'
 # Group for users that want a copy of all Activity Emails.
 ACTIVITY_MAIL_GROUP = 'Activity Mail CC'
+NOTIFICATIONS_FROM_EMAIL = 'notifications@%s' % settings.INBOUND_EMAIL_DOMAIN
 
 
 class ActivityEmailError(ValueError):
@@ -39,6 +40,10 @@ class ActivityEmailUUIDError(ActivityEmailError):
 
 
 class ActivityEmailTokenError(ActivityEmailError):
+    pass
+
+
+class ActivityEmailToNotificationsError(ActivityEmailError):
     pass
 
 
@@ -74,10 +79,22 @@ class ActivityEmailParser(object):
     def get_uuid(self):
         addresses = [to.get('EmailAddress', '')
                      for to in self.email.get('To', [])]
+        to_notifications_alias = False
         for address in addresses:
             if address.startswith(self.address_prefix):
                 # Strip everything between "reviewreply+" and the "@" sign.
                 return address[len(self.address_prefix):].split('@')[0]
+            elif address == NOTIFICATIONS_FROM_EMAIL:
+                # Someone sent an email to notifications@
+                to_notifications_alias = True
+        if to_notifications_alias:
+            log.exception('TO: notifications email used (%s)'
+                          % ', '.join(addresses))
+            raise ActivityEmailToNotificationsError(
+                'This email address is not meant to receive emails directly. '
+                'If you want to get in contact with add-on reviewers, please '
+                'reply to the original email or join us in IRC on '
+                'irc.mozilla.org/#addon-reviewers. Thank you.')
         log.exception(
             'TO: address missing or not related to activity emails. (%s)'
             % ', '.join(addresses))
@@ -238,17 +255,23 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
     send_activity_mail(
         subject, template.render(Context(
             author_context_dict, autoescape=False)),
-        version, addon_authors, settings.EDITORS_EMAIL, perm_setting)
+        version, addon_authors,
+        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
+        perm_setting)
 
     send_activity_mail(
         subject, template.render(Context(
             reviewer_context_dict, autoescape=False)),
-        version, reviewers, settings.EDITORS_EMAIL, perm_setting)
+        version, reviewers,
+        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
+        perm_setting)
 
     send_activity_mail(
         subject, template.render(Context(
             staff_cc_context_dict, autoescape=False)),
-        version, staff_cc, settings.EDITORS_EMAIL, perm_setting)
+        version, staff_cc,
+        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
+        perm_setting)
 
     return note
 
