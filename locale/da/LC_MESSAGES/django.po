@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-19 18:06+0000\n"
+"PO-Revision-Date: 2017-05-24 11:27+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -64,9 +64,8 @@ msgstr "Anmeldelse"
 msgid "Version {0}"
 msgstr "Version {0}"
 
-#, fuzzy
 msgid "Review note"
-msgstr "Anmeldelse"
+msgstr ""
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
@@ -86,7 +85,7 @@ msgstr "Udvalgte"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "Ikke anmeldt"
+msgstr "Ikke godkendt"
 
 msgctxt "install_button"
 msgid "Experimental"
@@ -98,9 +97,9 @@ msgstr "Føj til {0}"
 msgid "This slug is already in use. Please choose another."
 msgstr "Denne slug bruges allerede. Vælg en anden."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Denne slug kan ikke være \"%s\". Vælg en anden."
+msgstr "Denne slug kan ikke være \"%(slug)s\". Vælg en anden."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -157,7 +156,7 @@ msgid "Enter a new author's email address"
 msgstr ""
 
 msgid "Not Reviewed"
-msgstr "Ikke anmeldt"
+msgstr ""
 
 msgid "Users have the option of contributing more or less than this amount."
 msgstr "Det er muligt at bidrage med beløb større eller mindre end dette."
@@ -250,7 +249,7 @@ msgstr "For at vise din støtte til <b>%(addon_name)s</b>, beder udvikleren dig 
 
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "For at vise din støtte til <b>%(addon_name)s</b>, beder udvikleren dig give et mindre bidrag til <a href=\"%(charity_url)s\">%(charity_name)s</a> gennem <a href=\"%(paypal_url)s\">Paypal</a>"
+msgstr "For at vise din støtte til <b>%(addon_name)s</b>, beder udvikleren dig give et mindre bidrag til <a href=\"%(charity_url)s\">%(charity_name)s</a> gennem <a href=\"%(paypal_url)s\">Paypal</a>."
 
 msgid "How much would you like to contribute?"
 msgstr "Hvor meget vil du gerne bidrage med?"
@@ -706,9 +705,8 @@ msgstr "Administrer"
 msgid "Add-on Review"
 msgstr "Anmeldelse af tilføjelse"
 
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Administrer"
+msgstr ""
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
@@ -930,9 +928,8 @@ msgstr "Udviklercentral"
 msgid "Manage API Keys"
 msgstr "Håndter API Keys"
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Godkendere"
+msgstr ""
 
 msgid "Admin Tools"
 msgstr "Admin-værktøjer"
@@ -2127,9 +2124,8 @@ msgstr ""
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} fjernet fra {collection}."
+msgstr ""
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Svar af udvikler på {addon} {version}."
@@ -2140,13 +2136,11 @@ msgstr "Svar fra udvikler"
 msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Nyt for udviklere"
+msgstr ""
 
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "Svar af udvikler på {addon} {version}."
+msgstr ""
 
 msgid "Approval notes changed"
 msgstr ""
@@ -2157,13 +2151,11 @@ msgstr "Kildekode til {addon} {version} uploaded."
 msgid "Source code uploaded"
 msgstr "Kildekode uploaded"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Svar af udvikler på {addon} {version}."
+msgstr ""
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "blev godkendt"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2292,9 +2284,8 @@ msgstr "Persona"
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Tilføj en anmeldelse"
+msgstr "ilføj en anmeldelse"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
@@ -2303,9 +2294,8 @@ msgid "Updated Add-on Review"
 msgstr ""
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Ordbøger"
+msgstr ""
 
 msgid "Preliminary Dictionary Review"
 msgstr ""
@@ -2313,9 +2303,8 @@ msgstr ""
 msgid "Updated Dictionary Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Sprogpakke"
+msgstr ""
 
 msgid "Preliminary Language Pack Review"
 msgstr ""
@@ -2332,9 +2321,8 @@ msgstr ""
 msgid "Theme Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Søgeudbydere"
+msgstr ""
 
 msgid "Preliminary Search Provider Review"
 msgstr ""
@@ -2342,9 +2330,8 @@ msgstr ""
 msgid "Updated Search Provider Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Nyeste udvidede temaer"
+msgstr ""
 
 msgid "Preliminary Complete Theme Review"
 msgstr ""
@@ -2794,9 +2781,8 @@ msgstr ""
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "{addon} {version} godkendt."
+msgstr ""
 
 msgid "Continue with existing upload instead?"
 msgstr ""
@@ -2961,9 +2947,8 @@ msgstr ""
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#, fuzzy
 msgid "Review requested."
-msgstr "Anmeldelse"
+msgstr ""
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -3557,9 +3542,8 @@ msgstr ""
 msgid "Delete"
 msgstr "Slet"
 
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "Mere om denne tilføjelse"
+msgstr ""
 
 msgid "Upload a new version of this add-on."
 msgstr ""
@@ -3609,9 +3593,8 @@ msgstr ""
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Denne tilføjelse er ikke kompatibel med din version af %(app)s."
+msgstr ""
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
@@ -3629,20 +3612,17 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiv bruger"
 msgstr[1] "<strong>{0}</strong> aktive brugere"
 
-#, fuzzy
 msgid "Submit a New File"
-msgstr "Indsend et nyt tema"
+msgstr ""
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Indsend en ny tilføjelse"
+msgstr ""
 
 msgid "Describe Add-on"
 msgstr "Beskriv tilføjelse"
 
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "Tilføjelse"
+msgstr ""
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
@@ -3674,31 +3654,26 @@ msgstr ""
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
 
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Ikke anmeldt"
+msgstr ""
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Denne URL vil kun være synlig, hvis du er en udvikler."
+msgstr ""
 
 msgid "Cancel Review and Disable Version"
 msgstr ""
 
-#, fuzzy
 msgid "Submit Version for Review"
-msgstr "Indsend tilføjelse"
+msgstr ""
 
-#, fuzzy
 msgid "Describe Version"
-msgstr "Beskriv tilføjelse"
+msgstr ""
 
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Udgivet {0}"
+msgstr ""
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
@@ -3718,9 +3693,8 @@ msgstr ""
 msgid "You’re done!"
 msgstr ""
 
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Indsend anmeldelse"
+msgstr ""
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
@@ -3728,27 +3702,23 @@ msgstr ""
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
 
-#, fuzzy
 msgid "Manage Listing"
-msgstr "View Listing"
+msgstr ""
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Beta-version {0}"
+msgstr ""
 
-#, fuzzy
 msgid "File Signed"
-msgstr "Versionsbemærkninger"
+msgstr ""
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
 
-#, fuzzy
 msgid "Version Signed"
-msgstr "Versionsbemærkninger"
+msgstr ""
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
@@ -3762,9 +3732,8 @@ msgstr ""
 msgid "Upload File"
 msgstr "Upload fil"
 
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "Mine bidrag"
+msgstr ""
 
 msgid "Add-on Distribution Agreement"
 msgstr ""
@@ -3772,13 +3741,11 @@ msgstr ""
 msgid "Upload Add-on"
 msgstr "Upload tilføjelse"
 
-#, fuzzy
 msgid "Where to Host File"
-msgstr "Seneste version:"
+msgstr ""
 
-#, fuzzy
 msgid "Where to Host Version"
-msgstr "Seneste version:"
+msgstr ""
 
 msgid "Upload Version"
 msgstr "Upload version"
@@ -3795,13 +3762,11 @@ msgstr ""
 msgid "Administrative overrides"
 msgstr ""
 
-#, fuzzy
 msgid "Submit File"
-msgstr "Indsend et nyt tema"
+msgstr ""
 
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "Indsend tilføjelse"
+msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
@@ -3875,16 +3840,14 @@ msgstr ""
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
 
-#, fuzzy
 msgid "Listed Version:"
-msgstr "Seneste version:"
+msgstr ""
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
 
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Seneste version:"
+msgstr ""
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr ""
@@ -3928,13 +3891,11 @@ msgstr ""
 msgid "View All"
 msgstr ""
 
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "Ikke anmeldt"
+msgstr ""
 
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "Brugeranmeldelser"
+msgstr ""
 
 msgid "View Statistics Dashboard"
 msgstr "Vis statistikpanel"
@@ -4024,9 +3985,8 @@ msgstr "Blog"
 msgid "Contact Us"
 msgstr "Kontakt os"
 
-#, fuzzy
 msgid "Review Policies"
-msgstr "Anmeldelse"
+msgstr ""
 
 # Link text to the Frequently Asked Questions page.
 msgid "FAQ"
@@ -4038,9 +3998,8 @@ msgstr "Rapportér fejl"
 msgid "Site Status"
 msgstr "Webstedsstatus"
 
-#, fuzzy
 msgid "Compatibility Checker"
-msgstr "Kompatibilitet"
+msgstr ""
 
 msgid "Compatibility Reporter"
 msgstr "Compatibility Reporter"
@@ -4048,9 +4007,8 @@ msgstr "Compatibility Reporter"
 msgid "Promote"
 msgstr ""
 
-#, fuzzy
 msgid "Get Your Add-on Featured"
-msgstr "Flere tilføjelser"
+msgstr ""
 
 msgid "\"Get The Add-on\" button"
 msgstr ""
@@ -4064,9 +4022,8 @@ msgstr "Rapportér misbrug af varemærke"
 msgid "Legal Notices"
 msgstr "Juridiske betingelser"
 
-#, fuzzy
 msgid "Review Add-ons"
-msgstr "Nye tilføjelser"
+msgstr ""
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr ""
@@ -4092,27 +4049,24 @@ msgstr ""
 msgid "See how"
 msgstr "Læs hvordan"
 
-#, fuzzy
 msgid "Manage Your Add-on"
-msgstr "Flere tilføjelser"
+msgstr "Håndter din tilføjelse"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Log ind for at redigere og opdatere din tilføjelse"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Evolution in Add-on Development"
-msgstr "Udvikler af tilføjelser"
+msgstr ""
 
 msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
 msgstr ""
 
 msgid "Learn How"
-msgstr "Lær hvordan"
+msgstr "Læs hvordan"
 
-#, fuzzy
 msgid "What's New"
-msgstr "Seneste version:"
+msgstr ""
 
 msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
@@ -4120,25 +4074,21 @@ msgstr ""
 msgid "See Schedule"
 msgstr ""
 
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Vis alle versioner"
+msgstr ""
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
 
-#, fuzzy
 msgid "Submit Your First Add-on"
-msgstr "Indsend en tilføjelse"
+msgstr ""
 
-#, fuzzy
 msgid "Submit Your First Theme"
-msgstr "Indsend et nyt tema"
+msgstr ""
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Udvikler af tilføjelser"
+msgstr ""
 
 msgid "Docs"
 msgstr ""
@@ -4146,9 +4096,8 @@ msgstr ""
 msgid "Sign Out"
 msgstr "Log ud"
 
-#, fuzzy
 msgid "User Photo"
-msgstr "Slet brugerfoto"
+msgstr "Brugerfoto"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -4166,17 +4115,15 @@ msgstr ""
 msgid "Learn How to Make an Add-on"
 msgstr "Læs hvordan man laver en tilføjelse"
 
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "Populære udvidelser"
+msgstr ""
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
 
-#, fuzzy
 msgid "Publish Your Add-on"
-msgstr "Find tilføjelser"
+msgstr "Udgiv din tilføjelse"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
@@ -4184,13 +4131,11 @@ msgstr ""
 msgid "Sign In"
 msgstr "Log ind"
 
-#, fuzzy
 msgid "Validator"
-msgstr "Add-on Validator"
+msgstr ""
 
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Rapporter for dine tilføjelser"
+msgstr ""
 
 msgid "See if your add-on is likely to be affected by changes in Firefox."
 msgstr ""
@@ -4532,9 +4477,8 @@ msgstr ""
 msgid "Re-enable Version"
 msgstr ""
 
-#, fuzzy
 msgid "Close Review History"
-msgstr "Anmeldelseshistorik"
+msgstr ""
 
 msgid "Not validated."
 msgstr ""
@@ -4542,34 +4486,29 @@ msgstr ""
 msgid "Validate now."
 msgstr ""
 
-#, fuzzy
 msgid "Request Review"
-msgstr "Slet anmeldelse"
+msgstr ""
 
 msgid "Cancel Review Request"
 msgstr ""
 
-#, fuzzy
 msgid "Loading Review History..."
-msgstr "Anmeldelseshistorik"
+msgstr ""
 
 msgid "We had a problem retrieving review notes"
 msgstr ""
 
-#, fuzzy
 msgid "Load older..."
-msgstr "Indlæser..."
+msgstr ""
 
-#, fuzzy
 msgid "Leave a reply"
-msgstr "Slet svar"
+msgstr ""
 
 msgid "Reply"
 msgstr "Svar"
 
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Tilføjelse kompatibilitetscenter"
+msgstr ""
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
 msgstr ""
@@ -4578,9 +4517,8 @@ msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
-#, fuzzy
 msgid "Listed versions"
-msgstr "Vis andre versioner"
+msgstr ""
 
 msgid "Currently on AMO"
 msgstr ""
@@ -4598,9 +4536,8 @@ msgstr ""
 msgid "Next version of this add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Other versions"
-msgstr "Vis andre versioner"
+msgstr ""
 
 msgid "All versions"
 msgstr "Alle versioner"
@@ -4799,11 +4736,10 @@ msgstr[1] ""
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "Ny tilføjelse ({0})"
-msgstr[1] "Nye tilføjelser ({0})"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "All Unlisted Add-ons"
 msgstr ""
@@ -4859,9 +4795,8 @@ msgstr ""
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "Nyt for udviklere"
+msgstr ""
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
@@ -4890,9 +4825,8 @@ msgstr ""
 msgid "More Information Requested"
 msgstr ""
 
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "tema, anmelder eller kommentar"
+msgstr ""
 
 msgid "Sources provided"
 msgstr ""
@@ -4982,9 +4916,8 @@ msgstr ""
 msgid "commented"
 msgstr ""
 
-#, fuzzy
 msgid "confirmed as approved"
-msgstr "blev godkendt"
+msgstr ""
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -4997,9 +4930,8 @@ msgstr ""
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Rapporter om misbrug"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Rapporter om misbrug af {addon} ({num})"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -5023,20 +4955,17 @@ msgstr "Vis privatlivspolitik"
 msgid "EULA"
 msgstr "EULA"
 
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "blev godkendt"
+msgstr ""
 
 msgid "Approvals Since Last Automatic Review"
 msgstr ""
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Rapporter om misbrug af {addon} ({num})"
+msgstr ""
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Brugeranmeldelser"
+msgstr ""
 
 msgid "More about this add-on"
 msgstr "Mere om denne tilføjelse"
@@ -5064,9 +4993,8 @@ msgstr ""
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Intet at se her! Udvikleren har ikke inkluderet nogle detaljer."
 
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "Tilbage til udviklercentralens hjemmeside"
+msgstr ""
 
 msgid "Queues"
 msgstr ""
@@ -5077,9 +5005,8 @@ msgstr "Nye tilføjelser"
 msgid "Moderated Reviews"
 msgstr ""
 
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Tilføjelser til Android"
+msgstr ""
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5118,9 +5045,8 @@ msgstr ""
 msgid "Log details"
 msgstr ""
 
-#, fuzzy
 msgid "Review Author"
-msgstr "Anmeldelseshistorik"
+msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -5169,9 +5095,8 @@ msgstr "Anmeldelser i alt"
 msgid "Reviews This Month"
 msgstr "Anmeldelser denne måned"
 
-#, fuzzy
 msgid "New Reviewers"
-msgstr "Godkendere"
+msgstr ""
 
 msgid "You're #{0} with {1} reviews"
 msgstr ""
@@ -5303,9 +5228,8 @@ msgstr ""
 msgid "The developer has provided source code."
 msgstr ""
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Tilføjelser til Android"
+msgstr ""
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
@@ -5380,9 +5304,8 @@ msgstr ""
 msgid "Compare"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Tilladelser"
+msgstr "Tilladelser:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7434,9 +7357,8 @@ msgstr ""
 msgid "What will happen next"
 msgstr ""
 
-#, fuzzy
 msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Gennemsnit</strong> (%(total)s)"
+msgstr ""
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr ""
@@ -7471,9 +7393,8 @@ msgstr ""
 msgid "Opting out of a study does not prevent you from participating in future studies."
 msgstr ""
 
-#, fuzzy
 msgid "Your privacy"
-msgstr "Beskyttelse af personlige oplysninger:"
+msgstr "Dit privatliv"
 
 msgid "All Shield Studies"
 msgstr ""
@@ -8640,17 +8561,14 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#, fuzzy
 msgid "Compat Type"
-msgstr "Kompatibel"
+msgstr ""
 
-#, fuzzy
 msgid "Addons Affected"
-msgstr "Tilføjelser jeg har lavet"
+msgstr ""
 
 msgid "Addon"
 msgstr ""
 
-#, fuzzy
 msgid "Validation Result"
-msgstr "Gyldige programversioner"
+msgstr ""
