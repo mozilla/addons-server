@@ -915,7 +915,7 @@ MINIFY_BUNDLES = {
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
             'js/debug/less_setup.js',
-            'js/lib/less.js',
+            'js/node_lib/less.js',
             'js/debug/less_live.js',
         ),
     }
