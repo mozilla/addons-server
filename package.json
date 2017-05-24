@@ -14,6 +14,7 @@
     "clean-css": "4.1.1",
     "clean-css-cli": "4.1.0",
     "less": "2.7.2",
+    "highcharts": "4.1.10",
     "jquery": "1.12.0",
     "jquery.browser": "0.1.0",
     "jquery.cookie": "1.4.1",

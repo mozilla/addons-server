@@ -874,7 +874,7 @@ MINIFY_BUNDLES = {
             'js/node_lib/jquery.timeago.js',
         ),
         'zamboni/editors': (
-            'js/lib/highcharts.src.js',
+            'js/node_lib/highcharts.src.js',
             'js/zamboni/editors.js',
             'js/node_lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
@@ -895,7 +895,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/files.js',
         ),
         'zamboni/stats': (
-            'js/lib/highcharts.src.js',
+            'js/node_lib/highcharts.src.js',
             'js/impala/stats/csv_keys.js',
             'js/impala/stats/helpers.js',
             'js/impala/stats/dateutils.js',

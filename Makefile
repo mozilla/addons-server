@@ -27,6 +27,7 @@ STATIC_JS := static/js/node_lib/
 STATIC_CSS := static/css/node_lib/
 NODE_LIBS_JS := \
 less/dist/less.js \
+highcharts/js/highcharts.src.js \
 jquery/dist/jquery.js \
 jquery.cookie/jquery.cookie.js \
 jquery.browser/dist/jquery.browser.js \
