@@ -71,10 +71,10 @@
       {% endtrans %}
     </p>
     <p>
-      {% trans h_url="https://developer.mozilla.org/Add-ons/WebExtensions",
-      i_url="https://developer.mozilla.org/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on"%}
-      XUL will be deprecated. Use <a href="{{h_url}}">WebExtensions</a> instead. 
-      If you have a legacy add-on, visit <a href="{{i_url}}">Porting a legacy Firefox add-on</a>. 
+      {% trans webext_url="https://developer.mozilla.org/Add-ons/WebExtensions",
+               portlegacy_url="https://developer.mozilla.org/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on"%}
+      XUL will be deprecated. Use <a href="{{ webext_url }}">WebExtensions</a> instead. 
+      If you have a legacy add-on, visit <a href="{{ portlegacy_url }}">Porting a legacy Firefox add-on</a>. 
       {% endtrans %}
     </p>
 
