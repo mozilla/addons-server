@@ -1016,6 +1016,7 @@ class TestReviewHelper(TestCase):
         assert context_data['dev_versions_url'] == absolutify(
             reverse('devhub.addons.versions', args=[self.addon.id]))
 
+
 def test_page_title_unicode():
     t = Translation(localized_string=u'\u30de\u30eb\u30c1\u30d712\u30eb')
     request = Mock()
