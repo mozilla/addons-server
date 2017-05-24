@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-24 10:55+0000\n"
+"PO-Revision-Date: 2017-05-24 11:32+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -64,7 +64,7 @@ msgid "See full validation report"
 msgstr "Se den fulde valideringsrapport"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Validerer {0}"
 
 #. L10n: first argument is an HTTP status code
 msgid "Received an empty response from the server; status: {0}"
