@@ -15,6 +15,7 @@ from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.amo.tests import file_factory, TestCase, version_factory
 from olympia.amo.utils import send_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter
+from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.editors import helpers
 from olympia.editors.models import AutoApprovalSummary, ReviewerScore
@@ -1003,6 +1004,17 @@ class TestReviewHelper(TestCase):
         assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+
+    def test_dev_versions_url_in_context(self):
+        self.helper.set_data(self.get_data())
+        context_data = self.helper.handler.get_context_data()
+        assert context_data['dev_versions_url'] == absolutify(
+            self.addon.get_dev_url('versions'))
+
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        context_data = self.helper.handler.get_context_data()
+        assert context_data['dev_versions_url'] == absolutify(
+            reverse('devhub.addons.versions', args=[self.addon.id]))
 
 
 def test_page_title_unicode():
