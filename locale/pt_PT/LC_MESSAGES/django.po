@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 17:04+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"PO-Revision-Date: 2017-05-25 01:01+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -2786,7 +2786,7 @@ msgid "Version doesn't match"
 msgstr "A versão não corresponde."
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr "A versão {version} foi carregada anteriormente e eliminada."
+msgstr "A versão {version} foi anteriormente carregada e eliminada."
 
 msgid "Version {version} already exists."
 msgstr "A versão {version} já existe."
@@ -6982,7 +6982,7 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "Pode enviar uma atualização do seu extra através do painel de ferramentas de programador escolhendo a opção \"Enviar uma nova versão\" e carregando um novo ficheiro .xpi para o seu extra."
 
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "A minha atualização precisa de ser revista por editores?"
+msgstr "A minha atualização precisa de ser revista por revisores?"
 
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
