@@ -27,6 +27,8 @@ class TestSimpleCollectionSerializer(BaseTestCase):
         assert data['modified'] == (
             self.collection.modified.replace(microsecond=0).isoformat() + 'Z')
         assert data['author']['id'] == self.user.id
+        assert data['slug'] == self.collection.slug
+        assert data['public'] == self.collection.listed
 
 
 class TestCollectionAddonSerializer(BaseTestCase):
