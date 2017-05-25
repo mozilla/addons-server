@@ -198,8 +198,9 @@ def signer():
             response = requests.get('%s/status' % settings.SIGNING_SERVER,
                                     timeout=settings.SIGNING_SERVER_TIMEOUT)
             if response.status_code != 200:
-                status = 'Failed to chat with signing service.' \
-                         ' Invalid HTTP response code.'
+                status = (
+                    'Failed to chat with signing service. '
+                    'Invalid HTTP response code.')
                 monitor_log.critical(status)
                 signer_results = False
             else:
