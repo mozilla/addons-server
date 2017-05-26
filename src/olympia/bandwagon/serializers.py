@@ -11,7 +11,7 @@ from olympia.users.models import DeniedName
 from olympia.users.serializers import BaseUserSerializer
 
 
-class SimpleCollectionSerializer(serializers.ModelSerializer):
+class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     description = TranslationSerializerField()
     url = serializers.SerializerMethodField()

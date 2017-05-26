@@ -42,7 +42,7 @@ from .models import (
     Collection, CollectionAddon, CollectionWatcher, CollectionVote,
     SPECIAL_SLUGS)
 from .permissions import AllowCollectionAuthor
-from .serializers import CollectionAddonSerializer, SimpleCollectionSerializer
+from .serializers import CollectionAddonSerializer, CollectionSerializer
 from . import forms, tasks
 
 log = olympia.core.logger.getLogger('z.collections')
@@ -660,7 +660,7 @@ class CollectionViewSet(ModelViewSet):
             AllOf(AllowReadOnlyIfPublic,
                   PreventActionPermission('list'))),
     ]
-    serializer_class = SimpleCollectionSerializer
+    serializer_class = CollectionSerializer
     lookup_field = 'slug'
 
     def get_account_viewset(self):

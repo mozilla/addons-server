@@ -3,11 +3,11 @@ from olympia.amo.tests import (
     addon_factory, BaseTestCase, collection_factory, user_factory)
 from olympia.bandwagon.models import CollectionAddon
 from olympia.bandwagon.serializers import (
-    CollectionAddonSerializer, SimpleCollectionSerializer)
+    CollectionAddonSerializer, CollectionSerializer)
 
 
-class TestSimpleCollectionSerializer(BaseTestCase):
-    serializer = SimpleCollectionSerializer
+class TestCollectionSerializer(BaseTestCase):
+    serializer = CollectionSerializer
 
     def setUp(self):
         self.user = user_factory()
