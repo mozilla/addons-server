@@ -143,7 +143,6 @@
             "default_locale": "en-US",
             "target_locale": null,
             "suggested_amount": null,
-            "prerelease": false,
             "thankyou_note": null,
             "admin_review": false,
             "auto_repackage": true,

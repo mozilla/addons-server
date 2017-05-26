@@ -59,7 +59,6 @@
             "description": 83414,
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": 0,
             "thankyou_note": null,
             "admin_review": 0,
             "external_software": 0,

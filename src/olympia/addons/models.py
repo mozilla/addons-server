@@ -299,7 +299,6 @@ class Addon(OnChangeMixin, ModelBase):
                                            db_column='inactive')
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
-    prerelease = models.BooleanField(default=False)
     admin_review = models.BooleanField(default=False, db_column='adminreview')
     external_software = models.BooleanField(default=False,
                                             db_column='externalsoftware')
