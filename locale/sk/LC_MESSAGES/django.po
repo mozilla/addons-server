@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 18:55+0000\n"
+"PO-Revision-Date: 2017-05-26 21:50+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -575,9 +575,8 @@ msgstr ""
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Replacement Add-ons for {0}"
-msgstr "Doplnky pre {0}"
+msgstr "Náhrady za doplnok {0}"
 
 msgid "Report Abuse"
 msgstr "Nahlásiť zneužitie"
@@ -2993,9 +2992,9 @@ msgstr "Verzia %s je zakázaná."
 msgid "Version %s deleted."
 msgstr "Verzia %s bola odstránená."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version %s re-enabled."
-msgstr "Verzia %s je zakázaná."
+msgstr "Verzia %s bola opätovne povolená."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Pri nahrávaní kontrola zlyhala a preto jej výsledky nemusia byť kompletné. Venujte tomu preto pri kontrole zvláštnu pozornosť."
@@ -3665,9 +3664,8 @@ msgstr "Odstrániť túto tému vzhľadu."
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Tento doplnok nie je kompatibilný s vašou verziou aplikácie %(app)s."
+msgstr "Tento doplnok nemá žiadne verzie."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
@@ -4095,7 +4093,6 @@ msgid "Site Status"
 msgstr "Stav stránky"
 
 # 89%
-#, fuzzy
 msgid "Compatibility Checker"
 msgstr "Kontrola kompatibility doplnku"
 
@@ -4663,9 +4660,8 @@ msgstr "Odstránené/Deaktivované"
 msgid "Next version of this add-on"
 msgstr "Ďalšia verzia tohto doplnku"
 
-#, fuzzy
 msgid "Other versions"
-msgstr "Staršie verzie"
+msgstr "Iné verzie"
 
 msgid "All versions"
 msgstr "Všetky verzie"
