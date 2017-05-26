@@ -40,7 +40,6 @@
             "description": null,
             "default_locale": "ja",
             "target_locale": null,
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "name": null,
