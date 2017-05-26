@@ -29,6 +29,7 @@ class TestCollectionSerializer(BaseTestCase):
         assert data['author']['id'] == self.user.id
         assert data['slug'] == self.collection.slug
         assert data['public'] == self.collection.listed
+        assert data['default_locale'] == self.collection.default_locale
 
 
 class TestCollectionAddonSerializer(BaseTestCase):

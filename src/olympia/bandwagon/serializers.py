@@ -21,9 +21,9 @@ class CollectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Collection
         fields = ('id', 'url', 'addon_count', 'author', 'description',
-                  'modified', 'name', 'slug', 'public')
+                  'modified', 'name', 'slug', 'public', 'default_locale')
         writeable_fields = (
-            'description', 'name', 'slug', 'public'
+            'description', 'name', 'slug', 'public', 'default_locale'
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
         validators = [

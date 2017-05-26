@@ -1413,10 +1413,11 @@ class TestCollectionViewSetDetail(TestCase):
 class CollectionViewSetDataMixin(object):
     client_class = APITestClient
     data = {
-        'name': {u'en-US': u'$túff'},
-        'description': {u'en-US': u'Dis n dát'},
+        'name': {'fr': u'lé $túff', 'en-US': u'$tuff'},
+        'description': {'fr': u'Un dis une dát', 'en-US': u'dis n dat'},
         'slug': u'stuff',
         'public': True,
+        'default_locale': 'fr',
     }
 
     def setUp(self):
@@ -1439,10 +1440,13 @@ class CollectionViewSetDataMixin(object):
         for prop, value in data.iteritems():
             assert json[prop] == value
 
-        assert collection.name == data['name']['en-US']
-        assert collection.description == data['description']['en-US']
-        assert collection.slug == data['slug']
-        assert collection.listed == data['public']
+        with self.activate('fr'):
+            collection = collection.reload()
+            assert collection.name == data['name']['fr']
+            assert collection.description == data['description']['fr']
+            assert collection.slug == data['slug']
+            assert collection.listed == data['public']
+            assert collection.default_locale == data['default_locale']
 
     def test_no_auth(self):
         response = self.send()
