@@ -391,12 +391,13 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
             'head': AllowAny,
             'options': AllowAny,  # Needed for CORS.
             # To edit a profile it has to yours, or be an admin.
-            'patch': AnyOf(AllowSelf, GroupPermission(None)),
-            'delete': AnyOf(AllowSelf, GroupPermission(None)),
+            'patch': AnyOf(AllowSelf, GroupPermission(
+                amo.permissions.USERS_EDIT)),
+            'delete': AnyOf(AllowSelf, GroupPermission(
+                amo.permissions.USERS_EDIT)),
         }),
     ]
     queryset = UserProfile.objects.all()
-    group_permission = amo.permissions.USERS_EDIT
 
     def get_object(self):
         if hasattr(self, 'instance'):

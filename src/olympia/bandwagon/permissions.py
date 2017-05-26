@@ -17,13 +17,3 @@ class AllowNonListActions(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return True
-
-
-class AllowListedCollectionOnly(BasePermission):
-
-    def has_permission(self, request, view):
-        return True
-
-    def has_object_permission(self, request, view, obj):
-        # Anyone can access a collection if they know the slug, if it's listed.
-        return obj.listed

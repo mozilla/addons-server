@@ -1340,12 +1340,6 @@ class TestCollectionViewSetList(TestCase):
         assert response.status_code == 200
         assert len(response.data['results']) == 1
 
-    def test_disallowed_verbs(self):
-        response = self.client.put(self.url)
-        assert response.status_code == 405
-        response = self.client.patch(self.url)
-        assert response.status_code == 405
-
     def test_404(self):
         # Invalid user.
         url = reverse(
@@ -1403,12 +1397,6 @@ class TestCollectionViewSetDetail(TestCase):
         assert response.status_code == 200
         assert response.data['id'] == collection.id
 
-    def test_disallowed_verbs(self):
-        response = self.client.post(self.url)
-        assert response.status_code == 405
-        response = self.client.put(self.url)
-        assert response.status_code == 405
-
     def test_404(self):
         # Invalid user.
         response = self.client.get(reverse(
@@ -1422,7 +1410,7 @@ class TestCollectionViewSetDetail(TestCase):
         assert response.status_code == 404
 
 
-class CollectionViewSetMixin(object):
+class CollectionViewSetDataMixin(object):
     client_class = APITestClient
     data = {
         'name': {u'en-US': u'$túff'},
@@ -1431,37 +1419,95 @@ class CollectionViewSetMixin(object):
         'public': True,
     }
 
-
-class TestCollectionViewSetCreate(CollectionViewSetMixin, TestCase):
-
     def setUp(self):
-        self.user = user_factory()
-        self.url = reverse('collection-list', kwargs={'user_pk': self.user.pk})
-        super(TestCollectionViewSetCreate, self).setUp()
+        self.url = self.get_url(self.user)
+        super(CollectionViewSetDataMixin, self).setUp()
+
+    def send(self, url=None, data=None):
+        pass
+
+    def get_url(self, user):
+        pass
+
+    @property
+    def user(self):
+        if not hasattr(self, '_user'):
+            self._user = user_factory()
+        return self._user
+
+    def test_no_auth(self):
+        response = self.send()
+        assert response.status_code == 401
+
+    def test_biography_no_links(self):
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(description='<a href="https://google.com">google</a>')
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'description': ['No links are allowed.']}
+
+        data.update(description={
+            'en-US': '<a href="https://google.com">google</a>'})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'description': ['No links are allowed.']}
+
+    def test_slug_valid(self):
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(slug=u'£^@')
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'slug': [u'Enter a valid slug consisting of letters, '
+                     u'numbers, underscores or hyphens.']}
+
+    def test_slug_unique(self):
+        collection_factory(author=self.user, slug='edam')
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(slug=u'edam')
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert u'This slug is already in use' in (
+            ','.join(json.loads(response.content)['non_field_errors']))
+
+
+class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
+
+    def send(self, url=None, data=None):
+        return self.client.post(url or self.url, data or self.data)
+
+    def get_url(self, user):
+        return reverse('collection-list', kwargs={'user_pk': user.pk})
 
     def test_basic_create(self):
         self.client.login_api(self.user)
         response = self.client.post(self.url, self.data)
-        assert response.status_code == 200
+        assert response.status_code == 200, response.content
 
 
-class TestCollectionViewSetUpdate(CollectionViewSetMixin, TestCase):
+class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
 
     def setUp(self):
-        self.user = user_factory()
         self.collection = collection_factory(author=self.user)
-        self.url = reverse(
-            'collection-detail', kwargs={
-                'user_pk': self.user.pk, 'slug': self.collection.slug})
-        super(TestCollectionViewSetUpdate, self).setUp()
+        super(TestCollectionViewSetPatch, self).setUp()
 
-    def patch(self, url=None, data=None):
+    def send(self, url=None, data=None):
         return self.client.patch(url or self.url, data or self.data)
+
+    def get_url(self, user):
+        return reverse(
+            'collection-detail', kwargs={
+                'user_pk': user.pk, 'slug': self.collection.slug})
 
     def test_basic_patch(self):
         self.client.login_api(self.user)
         original = self.client.get(self.url).content
-        response = self.patch()
+        response = self.send()
         assert response.status_code == 200
         assert response.content != original
         modified_json = json.loads(response.content)
@@ -1476,18 +1522,12 @@ class TestCollectionViewSetUpdate(CollectionViewSetMixin, TestCase):
         assert self.collection.slug == self.data['slug']
         assert self.collection.listed == self.data['public']
 
-    def test_no_auth(self):
-        response = self.patch()
-        assert response.status_code == 401
-
     def test_different_account(self):
         self.client.login_api(self.user)
         different_user = user_factory()
         self.collection.update(author=different_user)
-        url = reverse(
-            'collection-detail', kwargs={
-                'user_pk': different_user.pk, 'slug': self.collection.slug})
-        response = self.patch(url=url)
+        url = self.get_url(different_user)
+        response = self.send(url=url)
         assert response.status_code == 403
 
     def test_admin_patch(self):
@@ -1495,11 +1535,9 @@ class TestCollectionViewSetUpdate(CollectionViewSetMixin, TestCase):
         self.client.login_api(self.user)
         random_user = user_factory()
         self.collection.update(author=random_user)
-        url = reverse(
-            'collection-detail', kwargs={
-                'user_pk': random_user.pk, 'slug': self.collection.slug})
+        url = self.get_url(random_user)
         original = self.client.get(url).content
-        response = self.patch(url=url)
+        response = self.send(url=url)
         assert response.status_code == 200
         assert response.content != original
         modified_json = json.loads(response.content)
@@ -1514,38 +1552,6 @@ class TestCollectionViewSetUpdate(CollectionViewSetMixin, TestCase):
             self.data['description']['en-US'])
         assert self.collection.slug == self.data['slug']
         assert self.collection.listed == self.data['public']
-
-    def test_biography_no_links(self):
-        self.client.login_api(self.user)
-        response = self.patch(
-            data={'description': '<a href="https://google.com">google</a>'})
-        assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'description': ['No links are allowed.']}
-        response = self.patch(
-            data={'description': {
-                'en-US': '<a href="https://google.com">google</a>'}})
-        assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'description': ['No links are allowed.']}
-
-    def test_slug_valid(self):
-        self.client.login_api(self.user)
-        response = self.patch(
-            data={'slug': u'£^@'})
-        assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'slug': [u'Enter a valid slug consisting of letters, '
-                     u'numbers, underscores or hyphens.']}
-
-    def test_slug_unique(self):
-        self.collection = collection_factory(author=self.user, slug='edam')
-        self.client.login_api(self.user)
-        response = self.patch(
-            data={'slug': u'edam'})
-        assert response.status_code == 400
-        assert u'This slug is already in use' in (
-            ','.join(json.loads(response.content)['non_field_errors']))
 
 
 class TestCollectionViewSetDelete(TestCase):

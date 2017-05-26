@@ -17,11 +17,9 @@ class GroupPermission(BasePermission):
         self.permission = permission
 
     def has_permission(self, request, view):
-        # Allow the view to override the permission dynamically.
         if not request.user.is_authenticated():
             return False
-        permission = getattr(view, 'group_permission', self.permission)
-        return acl.action_allowed_user(request.user, permission)
+        return acl.action_allowed_user(request.user, self.permission)
 
     def has_object_permission(self, request, view, obj):
         return self.has_permission(request, view)

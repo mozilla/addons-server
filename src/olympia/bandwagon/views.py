@@ -30,7 +30,8 @@ from olympia.accounts.views import AccountViewSet
 from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
-from olympia.api.permissions import AllOf, AnyOf, GroupPermission
+from olympia.api.permissions import (
+    AllOf, AllowReadOnlyIfPublic, AnyOf, GroupPermission)
 from olympia.legacy_api.utils import addon_to_dict
 from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
@@ -39,8 +40,7 @@ from olympia.users.models import UserProfile
 from .models import (
     Collection, CollectionAddon, CollectionWatcher, CollectionVote,
     SPECIAL_SLUGS)
-from .permissions import (
-    AllowCollectionAuthor, AllowListedCollectionOnly, AllowNonListActions)
+from .permissions import AllowCollectionAuthor, AllowNonListActions
 from .serializers import CollectionAddonSerializer, SimpleCollectionSerializer
 from . import forms, tasks
 
@@ -651,7 +651,7 @@ class CollectionViewSet(ModelViewSet):
     permission_classes = [
         AnyOf(AllowCollectionAuthor,
               GroupPermission(amo.permissions.COLLECTIONS_EDIT),
-              AllOf(AllowListedCollectionOnly,
+              AllOf(AllowReadOnlyIfPublic,
                     AllowNonListActions)),
     ]
     serializer_class = SimpleCollectionSerializer
@@ -661,9 +661,8 @@ class CollectionViewSet(ModelViewSet):
         if not hasattr(self, 'account_viewset'):
             self.account_viewset = AccountViewSet(
                 request=self.request,
+                permission_classes=[],  # We handled permissions already.
                 kwargs={'pk': self.kwargs['user_pk']})
-            self.account_viewset.group_permission = (
-                amo.permissions.COLLECTIONS_EDIT)
         return self.account_viewset
 
     def get_queryset(self):
