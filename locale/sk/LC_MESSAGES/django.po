@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-26 21:50+0000\n"
+"PO-Revision-Date: 2017-05-26 21:54+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4982,9 +4982,8 @@ msgstr ""
 msgid "Uses a content script for all URLs."
 msgstr ""
 
-#, fuzzy
 msgid "Has too many daily users."
-msgstr "Čo sú to denný používatelia?"
+msgstr "Má príliš mnoho denných používateľov."
 
 msgid "Has too few consecutive human-approved updates."
 msgstr ""
@@ -5161,9 +5160,8 @@ msgstr "Nové doplnky"
 msgid "Moderated Reviews"
 msgstr "Moderované recenzie"
 
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Doplnky pre Android"
+msgstr "Automaticky schválené doplnky"
 
 msgid "Unlisted Queues"
 msgstr ""
