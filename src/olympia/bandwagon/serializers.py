@@ -15,7 +15,7 @@ class SimpleCollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     description = TranslationSerializerField()
     url = serializers.SerializerMethodField()
-    author = BaseUserSerializer()
+    author = BaseUserSerializer(required=False, default=None)
     public = serializers.BooleanField(source='listed')
 
     class Meta:
@@ -64,6 +64,11 @@ class SimpleCollectionSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 ugettext(u'This slug cannot be used.'))
 
+        return value
+
+    def validate_author(self, value):
+        if not self.partial:
+            value = self.context['request'].user
         return value
 
 

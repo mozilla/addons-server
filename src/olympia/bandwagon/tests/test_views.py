@@ -1435,6 +1435,15 @@ class CollectionViewSetDataMixin(object):
             self._user = user_factory()
         return self._user
 
+    def check_data(self, collection, data, json):
+        for prop, value in data.iteritems():
+            assert json[prop] == value
+
+        assert collection.name == data['name']['en-US']
+        assert collection.description == data['description']['en-US']
+        assert collection.slug == data['slug']
+        assert collection.listed == data['public']
+
     def test_no_auth(self):
         response = self.send()
         assert response.status_code == 401
@@ -1486,8 +1495,11 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
 
     def test_basic_create(self):
         self.client.login_api(self.user)
-        response = self.client.post(self.url, self.data)
-        assert response.status_code == 200, response.content
+        response = self.send()
+        assert response.status_code == 201, response.content
+        collection = Collection.objects.get()
+        self.check_data(collection, self.data, json.loads(response.content))
+        assert collection.author.id == self.user
 
 
 class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
@@ -1510,17 +1522,9 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         response = self.send()
         assert response.status_code == 200
         assert response.content != original
-        modified_json = json.loads(response.content)
         self.collection = self.collection.reload()
-
-        for prop, value in self.data.iteritems():
-            assert modified_json[prop] == value
-
-        assert self.collection.name == self.data['name']['en-US']
-        assert self.collection.description == (
-            self.data['description']['en-US'])
-        assert self.collection.slug == self.data['slug']
-        assert self.collection.listed == self.data['public']
+        self.check_data(self.collection, self.data,
+                        json.loads(response.content))
 
     def test_different_account(self):
         self.client.login_api(self.user)
@@ -1540,18 +1544,9 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         response = self.send(url=url)
         assert response.status_code == 200
         assert response.content != original
-        modified_json = json.loads(response.content)
-
         self.collection = self.collection.reload()
-
-        for prop, value in self.data.iteritems():
-            assert modified_json[prop] == value
-
-        assert self.collection.name == self.data['name']['en-US']
-        assert self.collection.description == (
-            self.data['description']['en-US'])
-        assert self.collection.slug == self.data['slug']
-        assert self.collection.listed == self.data['public']
+        self.check_data(self.collection, self.data,
+                        json.loads(response.content))
 
 
 class TestCollectionViewSetDelete(TestCase):
