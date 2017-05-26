@@ -31,7 +31,8 @@ from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
 from olympia.api.permissions import (
-    AllOf, AllowReadOnlyIfPublic, AnyOf, GroupPermission)
+    AllOf, AllowReadOnlyIfPublic, AnyOf, GroupPermission,
+    PreventActionPermission)
 from olympia.legacy_api.utils import addon_to_dict
 from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
@@ -40,7 +41,7 @@ from olympia.users.models import UserProfile
 from .models import (
     Collection, CollectionAddon, CollectionWatcher, CollectionVote,
     SPECIAL_SLUGS)
-from .permissions import AllowCollectionAuthor, AllowNonListActions
+from .permissions import AllowCollectionAuthor
 from .serializers import CollectionAddonSerializer, SimpleCollectionSerializer
 from . import forms, tasks
 
@@ -649,10 +650,15 @@ def mine(request, username=None, slug=None):
 
 class CollectionViewSet(ModelViewSet):
     permission_classes = [
-        AnyOf(AllowCollectionAuthor,
-              GroupPermission(amo.permissions.COLLECTIONS_EDIT),
-              AllOf(AllowReadOnlyIfPublic,
-                    AllowNonListActions)),
+        AnyOf(
+            # Collection authors can do everything.
+            AllowCollectionAuthor,
+            # Admins can do everything except create.
+            AllOf(GroupPermission(amo.permissions.COLLECTIONS_EDIT),
+                  PreventActionPermission('create')),
+            # Everyone else can do read-only stuff, except list.
+            AllOf(AllowReadOnlyIfPublic,
+                  PreventActionPermission('list'))),
     ]
     serializer_class = SimpleCollectionSerializer
     lookup_field = 'slug'

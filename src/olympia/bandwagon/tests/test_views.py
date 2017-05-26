@@ -1499,7 +1499,22 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         assert response.status_code == 201, response.content
         collection = Collection.objects.get()
         self.check_data(collection, self.data, json.loads(response.content))
-        assert collection.author.id == self.user
+        assert collection.author.id == self.user.id
+
+    def test_different_account(self):
+        self.client.login_api(self.user)
+        different_user = user_factory()
+        url = self.get_url(different_user)
+        response = self.send(url=url)
+        assert response.status_code == 403
+
+    def test_admin_create_fails(self):
+        self.grant_permission(self.user, 'Collections:Edit')
+        self.client.login_api(self.user)
+        random_user = user_factory()
+        url = self.get_url(random_user)
+        response = self.send(url=url)
+        assert response.status_code == 403
 
 
 class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
