@@ -1218,7 +1218,7 @@ msgid "Privacy:"
 msgstr ""
 
 msgid "Icon"
-msgstr "Iצלמית"
+msgstr ""
 
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
@@ -1310,7 +1310,7 @@ msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual colle
 msgstr ""
 
 msgid "Create Collection"
-msgstr "צור אוספים"
+msgstr ""
 
 # 76%
 # 75%
@@ -1725,16 +1725,16 @@ msgid "Here's a few of our favorite add-ons to help you get started customizing 
 msgstr "הנה כמה מהתוספות האהובות עלינו שיעזרו לך להתחיל לשנות את %(app)s."
 
 msgid "Install Dictionary"
-msgstr "התקן מילון"
+msgstr ""
 
 msgid "Install Language Pack"
-msgstr "התקן חבילת שפה"
+msgstr ""
 
 msgid "Download Dictionary"
 msgstr "הורדת מילון"
 
 msgid "Download Language Pack"
-msgstr "הורד חבילת שפה"
+msgstr ""
 
 msgid "Available in your locale"
 msgstr ""
@@ -1866,7 +1866,7 @@ msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
 
 msgid "Learn more"
-msgstr "למד עוד"
+msgstr ""
 
 msgid "View All Recently Added"
 msgstr ""
@@ -2238,7 +2238,7 @@ msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
 msgid "Sunbird"
-msgstr "סאנבירד"
+msgstr ""
 
 msgid "Mobile"
 msgstr ""
