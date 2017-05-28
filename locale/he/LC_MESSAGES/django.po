@@ -662,7 +662,7 @@ msgid "<b>%(amt)s</b> suggested"
 msgstr ""
 
 msgid "Enjoy this add-on?"
-msgstr "אוהב את התוספת הזאת?"
+msgstr ""
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
@@ -1034,7 +1034,7 @@ msgstr ""
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr "קודם"
+msgstr ""
 
 msgid "Next"
 msgstr "הבא"
