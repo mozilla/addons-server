@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2015-12-01 12:33+0000\n"
-"Last-Translator: Tomer Cohen <tomer.mozilla@tomercohen.com>\n"
+"PO-Revision-Date: 2017-05-28 20:36+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -85,7 +85,7 @@ msgid "Continue to Download&nbsp;&rarr;"
 msgstr "מעבר להורדה&nbsp;&larr;"
 
 msgid "Featured"
-msgstr ""
+msgstr "מומלצים"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
@@ -215,7 +215,7 @@ msgid "The developer of this add-on asks that you show your support by making a 
 msgstr ""
 
 msgid "Contribute"
-msgstr "לתרום"
+msgstr "תרומה"
 
 #. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
@@ -224,7 +224,7 @@ msgid "or"
 msgstr "או"
 
 msgid "Suggested Contribution: {0}"
-msgstr ""
+msgstr "תרומה מוצעת: {0}"
 
 # 100%
 msgid "What's this?"
@@ -239,7 +239,7 @@ msgid "The developer of this add-on would like you to consider making a small co
 msgstr ""
 
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "מוזילה נאמנה לתמיכה בקהילת מפתחים חיה ומגוונת. אם תבחר לתרום, תעזור לקיים את המשך הפיתוח של התוספת הזאת."
+msgstr "מוזילה נאמנה לתמיכה בקהילת מפתחים חיה ומגוונת. אם תבחרו לתרום, תעזורו לקיים את המשך הפיתוח של התוספת הזאת."
 
 msgid "Make a Contribution"
 msgstr ""
@@ -324,13 +324,13 @@ msgid "Popular Extensions"
 msgstr ""
 
 msgid "Most Popular"
-msgstr ""
+msgstr "הפופולריים ביותר"
 
 msgid "All »"
-msgstr ""
+msgstr "הכל »"
 
 msgid "See all »"
-msgstr ""
+msgstr "צפייה בהכל »"
 
 msgid "Up &amp; Coming Extensions"
 msgstr ""
@@ -369,13 +369,13 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Requires Restart"
-msgstr ""
+msgstr "נדרשת הפעלה מחדש"
 
 msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
 msgstr ""
 
 msgid "Compatible with Firefox 57+"
-msgstr ""
+msgstr "תומך ב־Firefox 57 ומעלה"
 
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
@@ -416,7 +416,7 @@ msgid "See all Themes by this Artist"
 msgstr ""
 
 msgid "Categories"
-msgstr ""
+msgstr "קטגוריות"
 
 msgid "Updated"
 msgstr "התעדכן"
@@ -481,7 +481,7 @@ msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and
 msgstr ""
 
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "מידע נוסף על Firefox"
 
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
 msgstr ""
@@ -495,7 +495,7 @@ msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source ema
 msgstr ""
 
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "מידע נוסף על Thunderbird"
 
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
 msgstr ""
@@ -569,7 +569,7 @@ msgid "Replacement Add-ons for {0}"
 msgstr "תוספות עבור {0}"
 
 msgid "Report Abuse"
-msgstr ""
+msgstr "דיווח על שימוש לרעה"
 
 #, python-format
 msgid ""
@@ -640,7 +640,7 @@ msgstr ""
 
 #, python-format
 msgid "by %(users)s"
-msgstr ""
+msgstr "מאת %(users)s"
 
 # {0} is a number
 #, fuzzy
@@ -662,7 +662,7 @@ msgid "<b>%(amt)s</b> suggested"
 msgstr ""
 
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "נהנית מתוספת זו?"
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
@@ -683,10 +683,10 @@ msgid "Average"
 msgstr "ממוצע"
 
 msgid "Write a review"
-msgstr ""
+msgstr "כתיבת סקירה"
 
 msgid "Related Categories"
-msgstr ""
+msgstr "קטגוריות קשורות"
 
 msgid "Part of these Collections"
 msgstr ""
@@ -736,7 +736,7 @@ msgid "Add-on screenshot #{0}"
 msgstr ""
 
 msgid "Add-on home page"
-msgstr ""
+msgstr "דף הבית של התוספת"
 
 msgid "Support site"
 msgstr "אתר תמיכה"
@@ -745,7 +745,7 @@ msgid "Support E-mail"
 msgstr "כתוב דוא״ל לתמיכה"
 
 msgid "Info"
-msgstr ""
+msgstr "מידע"
 
 msgid "Last Updated:"
 msgstr ""
@@ -758,13 +758,13 @@ msgid "Custom License"
 msgstr "רישיון מותאם אישית"
 
 msgid "About this Add-on"
-msgstr ""
+msgstr "על אודות תוספת זו"
 
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "הערות המפתח"
 
 msgid "Version Information"
-msgstr ""
+msgstr "מידע גרסה"
 
 msgid "See complete version history"
 msgstr ""
@@ -805,7 +805,7 @@ msgstr ""
 #. {0} is an add-on name.
 # %1 is an add-on name.
 msgid "Meet the {0} Developer"
-msgstr ""
+msgstr "הכירו את המפתח של {0}"
 
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
 msgstr "לפני הורדת התוספת הזאת, אנא שקול לתמוך בהמשך פיתוחה על־ידי תרומה קטנה."
@@ -820,8 +820,8 @@ msgstr "העתיד של {0}"
 
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "על אודות המפתח"
+msgstr[1] "על אודות המפתחים"
 
 msgid "No Photo"
 msgstr ""
@@ -858,7 +858,7 @@ msgid "Be the first!"
 msgstr "בוא להיות הראשון!"
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} משתמשים"
 
 msgid "More"
 msgstr "עוד"
@@ -988,14 +988,14 @@ msgid "Sorry, but we can't find anything at the address you entered. If you foll
 msgstr ""
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "דפים מוצעים"
 
 #, fuzzy
 msgid "Browse all extensions"
 msgstr "תוספות מומלצות"
 
 msgid "Browse all themes"
-msgstr ""
+msgstr "עיון בכל ערכות הנושא"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -1034,7 +1034,7 @@ msgstr ""
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr ""
+msgstr "הקודם"
 
 msgid "Next"
 msgstr "הבא"
@@ -1068,7 +1068,7 @@ msgid "Newest"
 msgstr "החדשות ביותר"
 
 msgid "Explore"
-msgstr ""
+msgstr "חקירה"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -1076,7 +1076,7 @@ msgstr "הרחבות"
 
 #. {0} is a category name. Ex: "Sports"
 msgid "Themes"
-msgstr ""
+msgstr "ערכות נושא"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr ""
@@ -1085,7 +1085,7 @@ msgid "Most Followers"
 msgstr ""
 
 msgid "Collections I've Made"
-msgstr ""
+msgstr "האוספים שאני יצרתי"
 
 msgid "Collections I'm Following"
 msgstr ""
@@ -1094,10 +1094,10 @@ msgid "My Favorite Add-ons"
 msgstr ""
 
 msgid "More&hellip;"
-msgstr ""
+msgstr "עוד&hellip;"
 
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "תוספות לנייד"
 
 msgid "Search Tools"
 msgstr "כלי חיפוש"
@@ -1108,13 +1108,13 @@ msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(las
 msgstr ""
 
 msgid "Jump to first page"
-msgstr ""
+msgstr "קפיצה לדף ראשון"
 
 msgid "Previous"
-msgstr ""
+msgstr "הקודם"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "קפיצה לדף אחרון"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -1380,7 +1380,7 @@ msgid "Make this Collection Public"
 msgstr ""
 
 msgid "Learn about collections"
-msgstr ""
+msgstr "מידע נוסף על אוספים"
 
 msgid "More Options:"
 msgstr ""
@@ -1417,7 +1417,7 @@ msgid "What are Collections?"
 msgstr "מהם אוספים?"
 
 msgid "Explore Collections"
-msgstr ""
+msgstr "חקירת אוספים"
 
 msgid "Common Tags"
 msgstr ""
@@ -1694,7 +1694,7 @@ msgid "Most Users"
 msgstr ""
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "הורדות שבועיות"
 
 msgid "Up & Coming"
 msgstr ""
@@ -1797,7 +1797,7 @@ msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_fo
 msgstr ""
 
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "ההרחבות הפופולריות ביותר"
 
 msgid "Top-Rated Extensions"
 msgstr ""
@@ -1960,7 +1960,7 @@ msgid "e10s Enabled"
 msgstr "מנוטרל"
 
 msgid "e10s Compatible"
-msgstr ""
+msgstr "תומך בריבוי תהליכים"
 
 msgid "Submitted"
 msgstr ""
@@ -2232,10 +2232,10 @@ msgid "Firefox"
 msgstr "Firefox"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Sunbird"
 msgstr "סאנבירד"
@@ -2244,7 +2244,7 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox עבור Android"
 
 msgid "Mozilla"
 msgstr "מוזילה"
@@ -2450,10 +2450,10 @@ msgid "Level 9"
 msgstr ""
 
 msgid "Compatible"
-msgstr ""
+msgstr "נתמך"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "לא נתמך"
 
 msgid "Alerts & Updates"
 msgstr "התראות ועדכונים"
@@ -2471,7 +2471,7 @@ msgid "Feeds, News & Blogging"
 msgstr "חדשות, בלוגים ו־RSS"
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "משחקים ובידור"
 
 msgid "Language Support"
 msgstr "תמיכת שפות ותרגום"
@@ -2483,7 +2483,7 @@ msgid "Privacy & Security"
 msgstr "פרטיות ואבטחה"
 
 msgid "Shopping"
-msgstr ""
+msgstr "קניות"
 
 msgid "Social & Communication"
 msgstr "חברתי ותקשורתי"
@@ -2673,7 +2673,7 @@ msgid "Web and Developer Tools"
 msgstr "כלי פיתוח"
 
 msgid "Request More Info"
-msgstr ""
+msgstr "בקשת מידע נוסף"
 
 msgid "Flag"
 msgstr ""
@@ -3076,11 +3076,11 @@ msgid "{0} :: Search"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "חיפוש"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "תוצאות חיפוש עבור ״{0}״"
 
 msgid "Search Results"
 msgstr "תוצאות חיפוש"
@@ -3138,7 +3138,7 @@ msgid "Upload New Version"
 msgstr ""
 
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "צפייה בכל התוספות ◄"
 
 msgid "Publish your add-ons!"
 msgstr ""
@@ -3288,9 +3288,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "Edit Information"
-msgstr "מידע על המפתח"
+msgstr "עריכת מידע"
 
 msgid "None"
 msgstr ""
@@ -3331,11 +3330,11 @@ msgid "Create Profile"
 msgstr ""
 
 msgid "Basic Information"
-msgstr ""
+msgstr "מידע בסיסי"
 
 #. {0} is the addon name
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "מידע בסיסי עבור {0}"
 
 msgid "Add-on URL"
 msgstr ""
@@ -3404,7 +3403,7 @@ msgid "Information about your add-on is displayed in this locale unless you over
 msgstr ""
 
 msgid "Homepage"
-msgstr ""
+msgstr "דף הבית"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
@@ -4111,7 +4110,7 @@ msgid "Community"
 msgstr ""
 
 msgid "About"
-msgstr ""
+msgstr "על אודות"
 
 msgid "Forum"
 msgstr ""
@@ -4137,7 +4136,7 @@ msgid "Report Bug"
 msgstr ""
 
 msgid "Site Status"
-msgstr ""
+msgstr "מצב האתר"
 
 msgid "Compatibility Checker"
 msgstr ""
@@ -5130,7 +5129,7 @@ msgid "Average Daily Users"
 msgstr ""
 
 msgid "Abuse Reports"
-msgstr ""
+msgstr "דיווחים על שימוש לרעה"
 
 # 89%
 # 100%
@@ -5167,7 +5166,7 @@ msgid ""
 msgstr ""
 
 msgid "Install development version"
-msgstr ""
+msgstr "התקנת גרסת פיתוח"
 
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
@@ -5470,7 +5469,7 @@ msgid "Review This Add-on"
 msgstr ""
 
 msgid "More Information"
-msgstr ""
+msgstr "מידע נוסף"
 
 msgid "Resolution"
 msgstr ""
@@ -5601,7 +5600,7 @@ msgid "Next Theme"
 msgstr ""
 
 msgid "Previous Theme"
-msgstr ""
+msgstr "ערכת נושא הקודמת"
 
 msgid "Your Review History"
 msgstr ""
@@ -5961,7 +5960,7 @@ msgid "More ways to customize"
 msgstr ""
 
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "עיון בכל התוספות"
 
 msgid "See all complete themes"
 msgstr ""
@@ -5987,13 +5986,13 @@ msgid "Active Users"
 msgstr ""
 
 msgid "Last Updated"
-msgstr "עודכן לאחרונה"
+msgstr "עודכנה לאחרונה"
 
 msgid "Cancel Installation"
 msgstr "בטל התקנה"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "בחירת החודש של Mozilla!"
 
 msgid "Become a Test Pilot"
 msgstr ""
@@ -7643,7 +7642,7 @@ msgid "Reply to review by {0}"
 msgstr ""
 
 msgid "Write a Reply"
-msgstr ""
+msgstr "כתיבת תגובה"
 
 msgid "Submit"
 msgstr ""
@@ -7729,7 +7728,7 @@ msgid "Write a New Review"
 msgstr ""
 
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "היו הראשונים לכתוב סקירה."
 
 # {0} is a number
 # 75%
@@ -7790,7 +7789,7 @@ msgid "Showing {0} - {1} of {2} results"
 msgstr "הצגת {0}–{1} מתוך {2} תוצאות"
 
 msgid "All Add-ons"
-msgstr ""
+msgstr "כל התוספות"
 
 msgid "Any {0}"
 msgstr ""
@@ -7800,7 +7799,7 @@ msgid "All Systems"
 msgstr ""
 
 msgid "All Tags"
-msgstr ""
+msgstr "כל התגים"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
@@ -7824,16 +7823,16 @@ msgstr ""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: תג"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "תוצאות חיפוש עבור התג ״{0}״"
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "תוצאה תואמת <b>{0}</b>"
+msgstr[1] "<b>{0}</b> תוצאות תואמות"
 
 msgid "Filter Results"
 msgstr ""
@@ -7842,7 +7841,7 @@ msgid "Category"
 msgstr "קטגוריה"
 
 msgid "Tag"
-msgstr ""
+msgstr "תג"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -8179,7 +8178,7 @@ msgid "get to know <b>add-ons</b>"
 msgstr ""
 
 msgid "Other languages"
-msgstr ""
+msgstr "שפות אחרות"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
@@ -8390,7 +8389,7 @@ msgstr ""
 
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "לא תהיה לך אפשרות להתחבר יותר אל %(site)s."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr ""
@@ -8492,7 +8491,7 @@ msgid "User Login"
 msgstr ""
 
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "התחברות באמצעות Firefox Accounts"
 
 msgid "Password Reset"
 msgstr "איפוס ססמה"
