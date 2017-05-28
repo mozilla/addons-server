@@ -882,7 +882,7 @@ msgid "{0} line {1} column {2}"
 msgstr ""
 
 msgid "{0} line {1}"
-msgstr "{0} מתוך {1}"
+msgstr ""
 
 msgid "Compatibility Tests"
 msgstr "בדיקות תאימות"
