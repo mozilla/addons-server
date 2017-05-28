@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 13:34+0000\n"
+"PO-Revision-Date: 2017-05-28 10:11+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -567,9 +567,8 @@ msgstr ""
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Replacement Add-ons for {0}"
-msgstr "Modules pour {0}"
+msgstr "Modules de remplacement pour {0}"
 
 msgid "Report Abuse"
 msgstr "Signaler un abus"
@@ -5073,9 +5072,8 @@ msgstr "Approbations depuis la dernière révision automatique"
 msgid "Abuse Reports ({num})"
 msgstr "Rapports d’abus pour {addon} ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Revue modérée ({num})"
+msgstr "Avis négatifs d’utilisateurs ({num})"
 
 msgid "More about this add-on"
 msgstr "En savoir plus sur ce module"
@@ -5343,7 +5341,7 @@ msgid "Not Auto Approved Because"
 msgstr "Modules complémentaires approuvés automatiquement"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Le script d’approbation automatique n’a pas encore été exécuté pour cette version."
 
 msgid "This version has not been reviewed."
 msgstr "Cette version n’a pas été revue."
@@ -5402,7 +5400,7 @@ msgstr "Pas de revue trouvée pour cette période."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] a signalé %(object)s le %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Rejeter cette annonce"
@@ -5416,9 +5414,8 @@ msgstr "Contenu"
 msgid "Compare"
 msgstr "Comparer"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Permissions"
+msgstr "Permissions :"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
