@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2016-12-27 21:26+0000\n"
-"Last-Translator: Tomer Cohen <tomer.mozilla@tomercohen.com>\n"
+"PO-Revision-Date: 2017-05-28 19:05+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -645,10 +645,10 @@ msgid "Accept and Install"
 msgstr "לקבל ולהתקין"
 
 msgid "Add to {0}"
-msgstr "להוסיף אל {0}"
+msgstr ""
 
 msgid "Download Now"
-msgstr "להוריד עכשיו"
+msgstr ""
 
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
@@ -661,17 +661,17 @@ msgstr ""
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr "להתקין עבור {0} בכל זאת"
+msgstr ""
 
 msgid "Download for {0} anyway"
-msgstr "להוריד עבור {0} בכל זאת"
+msgstr ""
 
 msgid "Not available for your platform"
 msgstr "לא זמין לפלטפורמה שלך"
 
 #. L10n: {0} is an app name, {1} is the app version.
 msgid "Not available for {0} {1}"
-msgstr "לא זמין עובר {0} גרסה {1}"
+msgstr ""
 
 msgid "Works with {app} {min} - {max}"
 msgstr ""
@@ -705,7 +705,7 @@ msgid "Add to Favorites"
 msgstr "הוספה למועדפים"
 
 msgid "Remove from Favorites"
-msgstr "הסרה ממועדפים"
+msgstr ""
 
 msgid "Pending"
 msgstr "בהמתנה"
@@ -717,13 +717,13 @@ msgid "Comment"
 msgstr "תגובה"
 
 msgid "Remove this add-on from the collection"
-msgstr "הסרת התוספת הזאת מהאוסף"
+msgstr ""
 
 msgid "Remove"
 msgstr "הסרה"
 
 msgid "Remove this user as a contributor"
-msgstr "להסיר את המשתמש הזה מתורמים"
+msgstr ""
 
 msgid "An email address is required."
 msgstr ""
@@ -738,7 +738,7 @@ msgid "Add to favorites"
 msgstr "הוספה למועדפים"
 
 msgid "Remove from favorites"
-msgstr "הסרה ממועדפים"
+msgstr ""
 
 msgid "Stop following"
 msgstr "הפסקת מעקב"
@@ -757,7 +757,7 @@ msgstr "אירעה שגיאה בהעלאת הקובץ שלך."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] "קובץ אחד"
+msgstr[0] "קובץ {files}"
 msgstr[1] "{files} קבצים"
 
 msgid "{reviews} user review"
@@ -819,14 +819,14 @@ msgstr ""
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "נותר תו <b>אחד</b>."
+msgstr[0] "נותר תו <b>{0}</b>."
 msgstr[1] "נותרו <b>{0}</b> תווים."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "האפשרות הזאת כבויה זמנית בזמן שאנחנו עושים עבודות תחזוקה באתר. נא לבדוק מאוחר יותר."
 
 msgid "Remove this localization"
-msgstr "להסיר את התרגום הזה"
+msgstr ""
 
 msgid "Password strength:"
 msgstr "חוזק ססמה:"
