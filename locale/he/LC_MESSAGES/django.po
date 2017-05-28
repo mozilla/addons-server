@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-28 20:36+0000\n"
+"PO-Revision-Date: 2017-05-28 21:02+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -848,8 +848,8 @@ msgstr ""
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "הצגת כל ביקורות המשתמשים"
-msgstr[1] "הצגת כל %(cnt)s ביקורות המשתמשים"
+msgstr[0] "הצגת כל סקירות המשתמשים"
+msgstr[1] "הצגת כל %(cnt)s סקירות המשתמשים"
 
 msgid "This add-on has not yet been reviewed."
 msgstr ""
@@ -1607,7 +1607,7 @@ msgstr ""
 
 # 100%
 msgid "Subscribe"
-msgstr "הירשם"
+msgstr "הרשמה כמנוי"
 
 msgid "Following"
 msgstr ""
@@ -2604,7 +2604,6 @@ msgstr "חדשות, בלוגים ו־RSS"
 msgid "Performance"
 msgstr "ביצועים"
 
-#, fuzzy
 msgid "Photos & Media"
 msgstr "תמונות ומדיה"
 
@@ -2958,7 +2957,7 @@ msgid "User Collections"
 msgstr "האוספים שלי"
 
 msgid "User Reviews"
-msgstr "ביקורות משתמשים"
+msgstr "סקירות משתמשים"
 
 msgid "Changes successfully saved."
 msgstr ""
@@ -5292,9 +5291,8 @@ msgstr ""
 msgid "Reviews This Month"
 msgstr ""
 
-#, fuzzy
 msgid "New Reviewers"
-msgstr "ביקורות משתמשים"
+msgstr "סוקרים חדשים"
 
 msgid "You're #{0} with {1} reviews"
 msgstr ""
@@ -8535,7 +8533,7 @@ msgstr ""
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"
-msgstr "נוצר עלי־ידיי"
+msgstr ""
 
 # "My" in this context is the logged in user who is reading the page
 msgid "My Reviews"
