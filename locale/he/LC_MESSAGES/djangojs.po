@@ -711,10 +711,10 @@ msgid "Pending"
 msgstr "בהמתנה"
 
 msgid "Add a comment"
-msgstr "הוספת תגובה"
+msgstr ""
 
 msgid "Comment"
-msgstr "תגובה"
+msgstr ""
 
 msgid "Remove this add-on from the collection"
 msgstr "הסרת תוספת זו מהאוסף"

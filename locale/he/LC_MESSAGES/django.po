@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-28 21:39+0000\n"
+"PO-Revision-Date: 2017-05-28 22:26+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -114,8 +114,8 @@ msgstr[1] "תגים לא תקינים: {0}"
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "„{0}” הוא תג שמור ואי־אפשר להשתמש בו."
-msgstr[1] "„{0}” הם תגים שמורים ואי־אפשר להשתמש בהם."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1663,12 +1663,12 @@ msgstr ""
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr "%s תוספות"
+msgstr ""
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "ערכות נושא של %s"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
