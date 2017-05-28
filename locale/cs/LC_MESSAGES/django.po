@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-21 17:03+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2017-05-26 18:18+0000\n"
+"Last-Translator: sindriava <sindriava@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -4927,13 +4927,13 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Používá vlastní CSP."
 
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Používá oprávnění nativeMessaging."
 
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Pro všechny URL adresy přidává do obsahu vlastní skript."
 
 msgid "Has too many daily users."
 msgstr "Má příliš mnoho denních uživatelů."
@@ -5337,7 +5337,7 @@ msgid "Not Auto Approved Because"
 msgstr "Doplňky pro Android"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Skript pro automatické schválení ještě pro tuto verzi neproběhl."
 
 msgid "This version has not been reviewed."
 msgstr "Tato verze nebyla zkontrolována."
@@ -7502,13 +7502,13 @@ msgstr ""
 "relevantní s ohledem na vydání nové verze doplňku, můžeme zvážit její smazání. Podrobnější požadavek nám zašlete na amo-editors@mozilla.org."
 
 msgid "Start Now"
-msgstr ""
+msgstr "Začít"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
 
 msgid "What will happen next"
-msgstr ""
+msgstr "Co se bude dít dál"
 
 msgid "<strong>If you agree</strong> to participate:"
 msgstr "<strong>Pokud souhlasíte</strong> s účastí:"
@@ -7579,7 +7579,7 @@ msgid "You can learn more about the data collection for this study <a href=\"%(u
 msgstr ""
 
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Pomáháte vylepšit Firefox"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
