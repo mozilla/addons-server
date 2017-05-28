@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-28 19:05+0000\n"
+"PO-Revision-Date: 2017-05-28 17:48+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -17,14 +17,14 @@ msgstr ""
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
+msgstr[0] "כוכב {0}"
 msgstr[1] "{0} כוכבים"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "אירעה שגיאה בהתקשרות עם השרת."
 
 msgid "Select a file..."
-msgstr ""
+msgstr "בחירת קובץ..."
 
 #, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
