@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-26 18:18+0000\n"
-"Last-Translator: sindriava <sindriava@gmail.com>\n"
+"PO-Revision-Date: 2017-05-21 17:05+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -4889,9 +4889,8 @@ msgstr ""
 msgid "Reviewer reply"
 msgstr "Odpověď redaktora"
 
-#, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Vývojáři bude odeslán požadavek o více informací. Jakmile odpoví, budete upozorněni."
+msgstr "Tímto pošlete vývojáři zprávu. Jakmile odpoví, budete upozorněni."
 
 msgid "Request super-review"
 msgstr "Vyžádat kontrolu administrátorem"
@@ -4947,9 +4946,8 @@ msgstr ""
 msgid "Is flagged for admin review."
 msgstr "Označeno pro kontrolu správcem."
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "můj doplněk je zkontrolován redaktorem"
+msgstr "Uzamčeno redaktorem."
 
 msgid "Duplicate Submission"
 msgstr "Duplicitní odeslání"
@@ -5009,9 +5007,8 @@ msgstr "potřebuje kontrolu administrátory"
 msgid "commented"
 msgstr "okomentováno"
 
-#, fuzzy
 msgid "confirmed as approved"
-msgstr "byl schválen"
+msgstr "byl potvrzen a schválen"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5025,9 +5022,8 @@ msgstr "Vaše zámky u motivů byly úspěšně odstraněny. Jiní redaktoři ny
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Nahlášená zneužití"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Nahlášená zneužití pro doplněk {addon} ({num})"
+msgstr "Nahlášená zneužití doplňku {addon} ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -5057,13 +5053,11 @@ msgstr "Datum posledního schválení"
 msgid "Approvals Since Last Automatic Review"
 msgstr "Schválení od poslední automatické kontroly"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Nahlášená zneužití pro doplněk {addon} ({num})"
+msgstr "Nahlášená zneužití ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Moderování recenzí ({num})"
+msgstr "Záporné recenze ({num})"
 
 msgid "More about this add-on"
 msgstr "Více o doplňku"
@@ -5332,9 +5326,8 @@ msgstr "Stáhnout soubory"
 msgid "The developer has provided source code."
 msgstr "Vývojář poskytl zdrojový kód."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Doplňky pro Android"
+msgstr "Nebylo automaticky schváleno"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr "Skript pro automatické schválení ještě pro tuto verzi neproběhl."
@@ -7493,13 +7486,12 @@ msgstr "Ano, autor doplňku může odeslat k recenzi odpověď. Pro delší disk
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Jsem autor doplňku, mohu smazat nepravdivé recenze či hodnocení?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"V obecném případě ne. Ale pokud recenze nesplňuje podmínky pro kontrolu uvedené výše, můžete klepnout na \"Nahlásit recenze\" pro její moderování. Pokud recenze obsahuje stížnost, která již není "
-"relevantní s ohledem na vydání nové verze doplňku, můžeme zvážit její smazání. Podrobnější požadavek nám zašlete na amo-editors@mozilla.org."
+"V obecném případě ne. Ale pokud recenze nesplňuje pravidla uvedená výše, můžete klepnout na \"Nahlásit recenzi\" pro její moderování. Pokud recenze obsahuje stížnost, která již není relevantní s "
+"ohledem na vydání nové verze doplňku, můžeme zvážit její smazání."
 
 msgid "Start Now"
 msgstr "Začít"
