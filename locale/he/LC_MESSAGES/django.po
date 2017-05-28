@@ -310,7 +310,7 @@ msgid "%(addon_name)s requires that you accept the following End-User License Ag
 msgstr ""
 
 msgid "Back to {0}…"
-msgstr "חזרה אל {0}"
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -345,7 +345,7 @@ msgid "Featured Collections"
 msgstr "אוספים קשורים"
 
 msgid "Sort by:"
-msgstr "מיין לפי:"
+msgstr ""
 
 #. {0} is a date.
 #. {0} is a date
@@ -481,7 +481,7 @@ msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and
 msgstr ""
 
 msgid "Learn more about Firefox"
-msgstr "מידע נוסף על Firefox"
+msgstr ""
 
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
 msgstr ""
