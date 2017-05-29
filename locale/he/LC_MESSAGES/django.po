@@ -2459,13 +2459,13 @@ msgid "Alerts & Updates"
 msgstr "התראות ועדכונים"
 
 msgid "Appearance"
-msgstr "התאמה אישית של הממשק"
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "סימניות"
 
 msgid "Download Management"
-msgstr "הורדות וניהול קבצים"
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "חדשות, בלוגים ו־RSS"
@@ -2477,7 +2477,7 @@ msgid "Language Support"
 msgstr "תמיכת שפות ותרגום"
 
 msgid "Photos, Music & Videos"
-msgstr "תמונות ומדיה"
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "פרטיות ואבטחה"
@@ -2492,7 +2492,7 @@ msgid "Tabs"
 msgstr "לשוניות"
 
 msgid "Web Development"
-msgstr "כלי רשת ומפתחים"
+msgstr ""
 
 msgid "Animals"
 msgstr "חיות"
@@ -2654,7 +2654,7 @@ msgid "Downloading and File Management"
 msgstr "כלי הורדה"
 
 msgid "Interface Customizations"
-msgstr "גלישה בלשוניות"
+msgstr ""
 
 msgid "Language Support and Translation"
 msgstr "שפות"
