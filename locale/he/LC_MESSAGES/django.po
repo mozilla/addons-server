@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-29 21:09+0000\n"
+"PO-Revision-Date: 2017-05-29 21:28+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -418,7 +418,7 @@ msgid "Categories"
 msgstr "קטגוריות"
 
 msgid "Updated"
-msgstr "התעדכן"
+msgstr "עודכנה בתאריך"
 
 msgid "Artist"
 msgstr "אמן"
@@ -1028,7 +1028,7 @@ msgstr "הבא"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "<strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> תוצאות מתוך <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
 msgstr ""
