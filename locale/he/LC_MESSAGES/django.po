@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-29 20:46+0000\n"
+"PO-Revision-Date: 2017-05-29 21:09+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2437,7 +2437,7 @@ msgid "Games & Entertainment"
 msgstr "משחקים ובידור"
 
 msgid "Language Support"
-msgstr "תמיכת שפות ותרגום"
+msgstr ""
 
 msgid "Photos, Music & Videos"
 msgstr "תמונות, מוסיקה ווידאו"
@@ -2612,19 +2612,19 @@ msgid "Privacy and Security"
 msgstr "פרטיות ואבטחה"
 
 msgid "Downloading and File Management"
-msgstr "כלי הורדה"
+msgstr ""
 
 msgid "Interface Customizations"
-msgstr "התאמות אישית לממשק"
+msgstr "התאמות אישיות לממשק"
 
 msgid "Language Support and Translation"
-msgstr "שפות"
+msgstr ""
 
 msgid "Photos and Media"
 msgstr "תמונות ומדיה"
 
 msgid "RSS, News and Blogging"
-msgstr "ניהול בלוגים"
+msgstr "RSS, חדשות ובלוגים"
 
 msgid "Site-specific"
 msgstr "ייעודי לאתר"
@@ -8084,7 +8084,7 @@ msgid "Mozilla Add-ons"
 msgstr "Mozilla Add-ons"
 
 msgid "Find add-ons for other applications"
-msgstr "מצא תוספות ליישומים אחרים"
+msgstr "מצאו תוספות ליישומים אחרים"
 
 msgid "Other Applications"
 msgstr "יישומים אחרים"
@@ -8117,7 +8117,7 @@ msgstr "שפות אחרות"
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
-msgstr "חזור לדף הבית של תוספות עבור {0}"
+msgstr "חזרה לדף הבית של תוספות עבור {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr ""
