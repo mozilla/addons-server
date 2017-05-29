@@ -696,7 +696,7 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr "סליחה, אבל נדרש דפדפן ממשפחת Mozilla (כגון Firefox) כדי להתקין תוספת חיפוש."
 
 msgid "Adding to Favorites&hellip;"
-msgstr "להוסיף למועדפים&hellip;"
+msgstr ""
 
 msgid "Removing Favorite&hellip;"
 msgstr "הסרת מועדף&hellip;"
