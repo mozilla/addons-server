@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-29 20:26+0000\n"
+"PO-Revision-Date: 2017-05-29 20:46+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -78,7 +78,7 @@ msgstr "הורדה כעת"
 # 88%
 # 100%
 msgid "Download"
-msgstr "להוריד"
+msgstr "הורדה"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 msgid "Continue to Download&nbsp;&rarr;"
@@ -1669,7 +1669,7 @@ msgid "Up & Coming"
 msgstr ""
 
 msgid "Recently Added"
-msgstr "התווסף לאחרונה"
+msgstr ""
 
 msgid "Created"
 msgstr "נוצרה"
@@ -2575,9 +2575,8 @@ msgstr "אבטחה ופרטיות"
 msgid "Social Networking"
 msgstr ""
 
-#, fuzzy
 msgid "Sports & Games"
-msgstr "צילום ותמונות"
+msgstr "ספורט ומשחקים"
 
 #, fuzzy
 msgid "User Interface"
@@ -4658,9 +4657,8 @@ msgstr ""
 msgid "Next version of this add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Other versions"
-msgstr "גרסה {0}:"
+msgstr "גרסאות אחרות"
 
 #, fuzzy
 msgid "All versions"
