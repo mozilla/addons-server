@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-29 19:34+0000\n"
+"PO-Revision-Date: 2017-05-29 20:26+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -73,7 +73,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
 msgid "Download Now"
-msgstr "להוריד עכשיו"
+msgstr "הורדה כעת"
 
 # 88%
 # 100%
@@ -2207,7 +2207,7 @@ msgid "Mobile"
 msgstr ""
 
 msgid "Firefox for Android"
-msgstr "Firefox עבור Android"
+msgstr "Firefox for Android"
 
 msgid "Mozilla"
 msgstr "מוזילה"
