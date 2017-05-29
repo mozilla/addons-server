@@ -277,7 +277,7 @@ class SearchQueryFilter(BaseFilterBackend):
             functions.append(
                 query.SF({
                     'weight': WEBEXTENSIONS_WEIGHT,
-                    'filter': F(
+                    'filter': Q(
                         'term',
                         **{'current_version.files.is_webextension': True})
                 })
