@@ -290,8 +290,11 @@ class ReviewForm(happyforms.Form):
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
     versions = ModelMultipleChoiceField(
-        widget=forms.SelectMultiple(attrs={
-            'class': 'data-toggle', 'data-value': 'reject_multiple_versions'}),
+        widget=forms.SelectMultiple(
+            attrs={
+                'class': 'data-toggle',
+                'data-value': 'reject_multiple_versions|'
+            }),
         required=False,
         queryset=Version.objects.none())  # queryset is set later in __init__.
 
@@ -333,7 +336,7 @@ class ReviewForm(happyforms.Form):
         # don't really care about this field.
         if 'reject_multiple_versions' in self.helper.actions:
             self.fields['versions'].queryset = (
-                self.helper.addon.versions.filter(
+                self.helper.addon.versions.distinct().filter(
                     channel=amo.RELEASE_CHANNEL_LISTED,
                     files__status=amo.STATUS_PUBLIC).order_by('created'))
 

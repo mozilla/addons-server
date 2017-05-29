@@ -449,15 +449,21 @@ class ReviewHelper(object):
                     'minimal': True,
                     'comments': False,
                 }
-            # In any case, they can reject multiple versions in one action.
-            actions['reject_multiple_versions'] = {
-                'method': self.handler.reject_multiple_versions,
-                'label': _('Reject Multiple Versions'),
-                'minimal': True,
-                'versions': True,
-                'details': _('This will reject the selected versions. '
-                             'The comments will be sent to the developer.'),
-            }
+            if (self.version and self.addon.status == amo.STATUS_PUBLIC and
+                    self.version.channel == amo.RELEASE_CHANNEL_LISTED):
+                # They can reject multiple versions in one action on the listed
+                # review page, if the add-on is public (it's useless if the
+                # add-on is not public: that means there should only be one
+                # version to reject at most).
+                actions['reject_multiple_versions'] = {
+                    'method': self.handler.reject_multiple_versions,
+                    'label': _('Reject Multiple Versions'),
+                    'minimal': True,
+                    'versions': True,
+                    'details': _('This will reject the selected public '
+                                 'versions. The comments will be sent to the '
+                                 'developer.'),
+                }
         if self.version:
             actions['info'] = {
                 'method': self.handler.request_information,

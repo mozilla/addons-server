@@ -157,7 +157,7 @@
     <div id="review-actions-form">
 
       {% for (setting, action) in actions %}
-      <div class="data-toggle review-actions-desc" data-value="{{ setting }}">
+      <div class="data-toggle review-actions-desc" data-value="{{ setting }}|">
         {{ action['details'] }}
 
         {# We don't have a better place to display versions error messages, so let's do it here.
@@ -176,8 +176,8 @@
       {{ form.versions }}
       {{ form.versions.errors }}
 
-      <div class="review-actions-section data-toggle"
-           data-value="{{ actions_comments|join("|") }}">
+      <div class="review-actions-section data-toggle review-comments"
+           data-value="{{ actions_comments|join("|") }}|">
         <label for="id_comments">{{ form.comments.label }}</label>
         {{ form.comments }}
         {{ form.comments.errors }}
@@ -187,8 +187,8 @@
         </div>
       </div>
 
-      <div class="review-actions-section review-actions-files data-toggle"
-           data-value="{{ actions_minimal|join("|") }}">
+      <div class="review-actions-section review-actions-files data-toggle review-files"
+           data-value="{{ actions_minimal|join("|") }}|">
         <label><strong>{{ _('Files:') }}</strong></label>
         <ul>
           {% for file in form.unreviewed_files %}
@@ -201,8 +201,8 @@
         </ul>
       </div>
 
-      <div class="review-actions-section review-actions-tested data-toggle"
-           data-value="{{ actions_minimal|join("|") }}">
+      <div class="review-actions-section review-actions-tested data-toggle review-tested"
+           data-value="{{ actions_minimal|join("|") }}|">
         <strong>{{ _('Tested on:') }}</strong>
         <label>
           {{ form.operating_systems.label }}
