@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-29 12:48+0000\n"
+"PO-Revision-Date: 2017-05-29 11:08+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3701,17 +3701,14 @@ msgstr ""
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Support email:"
-msgstr "כתוב דוא״ל לתמיכה"
+msgstr "כתובת דוא״ל לתמיכה:"
 
-#, fuzzy
 msgid "Support website:"
-msgstr "אתר תמיכה"
+msgstr "אתר תמיכה:"
 
-#, fuzzy
 msgid "License:"
-msgstr "רישיון"
+msgstr "רישיון:"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code."
 msgstr ""
@@ -3719,9 +3716,8 @@ msgstr ""
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
 
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "סקירה"
+msgstr "הערות לסוקר:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
@@ -3732,9 +3728,8 @@ msgstr ""
 msgid "Cancel Review and Disable Version"
 msgstr ""
 
-#, fuzzy
 msgid "Submit Version for Review"
-msgstr "סקירה"
+msgstr "שליחת גרסה לסקירה"
 
 # 75%
 # 100%
@@ -3828,9 +3823,8 @@ msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Upload Version"
-msgstr "All Versions"
+msgstr "העלאת גרסה"
 
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
