@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-01-24 10:34+0000\n"
+"PO-Revision-Date: 2017-05-29 12:48+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -340,9 +340,8 @@ msgstr "ערכות נושא מומלצות"
 
 # 80%
 # 100%
-#, fuzzy
 msgid "Featured Collections"
-msgstr "אוספים קשורים"
+msgstr "אוספים מומלצים"
 
 msgid "Sort by:"
 msgstr "מיון לפי:"
@@ -473,9 +472,8 @@ msgstr "טרם דורג"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> משתמשים"
 
-#, fuzzy
 msgid "{0} Daily Users"
-msgstr "משתמש אחד"
+msgstr "{0} משתמשים יומיים"
 
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
 msgstr ""
@@ -564,9 +562,8 @@ msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#, fuzzy
 msgid "Replacement Add-ons for {0}"
-msgstr "תוספות עבור {0}"
+msgstr "תוספות חלופיות עבור {0}"
 
 msgid "Report Abuse"
 msgstr "דיווח על שימוש לרעה"
@@ -642,13 +639,11 @@ msgid "by %(users)s"
 msgstr "מאת %(users)s"
 
 # {0} is a number
-#, fuzzy
 msgid "[Warning]"
-msgstr "אזהרה אחת"
+msgstr "[אזהרה]"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "גירסאות"
+msgstr "הרשאות"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr ""
@@ -708,9 +703,8 @@ msgstr ""
 msgid "Manage"
 msgstr "ניהול"
 
-#, fuzzy
 msgid "Add-on Review"
-msgstr "סקירה"
+msgstr "סקירת תוספת"
 
 #, fuzzy
 msgid "Admin Manage"
@@ -864,9 +858,8 @@ msgstr "עוד"
 
 # 94%
 # 100%
-#, fuzzy
 msgid "Add to collection"
-msgstr "הוסף לאוסף"
+msgstr "הוספה לאוסף"
 
 msgid "My Add-ons"
 msgstr "התוספות שלי"
@@ -935,9 +928,8 @@ msgstr "מקום מפגש למפתחים"
 msgid "Manage API Keys"
 msgstr "ניהול מפתחות API"
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "מפתח"
+msgstr "כלי סקירה"
 
 msgid "Admin Tools"
 msgstr "כלי מנהל"
@@ -973,15 +965,13 @@ msgstr ""
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
 msgstr ""
 
-#, fuzzy
 msgid "Page Not Found"
-msgstr "לא נמצא"
+msgstr "העמוד לא נמצא"
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Firefox Add-ons"
-msgstr "עוד תוספות"
+msgstr "תוספות של Firefox"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
 msgstr ""
@@ -989,18 +979,16 @@ msgstr ""
 msgid "Suggested Pages"
 msgstr "דפים מוצעים"
 
-#, fuzzy
 msgid "Browse all extensions"
-msgstr "תוספות מומלצות"
+msgstr "עיון בכל ההרחבות"
 
 msgid "Browse all themes"
 msgstr "עיון בכל ערכות הנושא"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#, fuzzy
 msgid "Add-ons Home Page"
-msgstr "תוספות עבור {0}"
+msgstr "דף הבית של התוספות"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
@@ -1231,36 +1219,30 @@ msgstr ""
 msgid "Icons must be either PNG or JPG."
 msgstr ""
 
-#, fuzzy
 msgid "Add a positive vote for this collection"
-msgstr "הוסף לאוסף:"
+msgstr "הוספת הצבעה חיובית לאוסף זה"
 
-#, fuzzy
 msgid "Add a negative vote for this collection"
-msgstr "הוסף לאוסף:"
+msgstr "הוספת הצבעה שלילית לאוסף זה"
 
-#, fuzzy
 msgid "Remove my vote for this collection"
-msgstr "לא נמצאו סקירות בפרק הזמן."
+msgstr "הסרת ההצבעה שלי מאוסף זה"
 
-#, fuzzy
 msgid "Log in to vote for this collection"
-msgstr "לא נמצאו סקירות בפרק הזמן."
+msgstr "יש להתחבר כדי להצביע לאוסף זה"
 
 # 93%
 # 100%
-#, fuzzy
 msgid "Add to favorites"
-msgstr "הוסף למועדפים"
+msgstr "הוספה למועדפים"
 
 msgid "Favorite"
 msgstr "מועדף"
 
 # 95%
 # 100%
-#, fuzzy
 msgid "Remove from favorites"
-msgstr "הסר ממועדפים"
+msgstr "הסרה מהמועדפים"
 
 msgid "Name"
 msgstr "שם"
@@ -1300,9 +1282,8 @@ msgstr ""
 # 89%
 # 82%
 # 100%
-#, fuzzy
 msgid "Create a New Collection"
-msgstr "צור אוספים"
+msgstr "יצירת אוסף חדש"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
@@ -1314,25 +1295,22 @@ msgstr "יצירת אוסף"
 # 76%
 # 75%
 # 100%
-#, fuzzy
 msgid "View this collection"
-msgstr "צור אוספים"
+msgstr "הצגת אוסף זה"
 
 # 89%
 # 82%
 # 78%
 # 80%
-#, fuzzy
 msgid "Start a new collection..."
-msgstr "צור אוספים"
+msgstr "התחלת אוסף חדש..."
 
 # 89%
 # 82%
 # 78%
 # 100%
-#, fuzzy
 msgid "Start a New Collection"
-msgstr "צור אוספים"
+msgstr "התחלת אוסף חדש"
 
 msgid "Name:"
 msgstr "שם:"
@@ -1365,9 +1343,8 @@ msgstr[1] ""
 
 # 76%
 # 100%
-#, fuzzy
 msgid "About this Collection"
-msgstr "צור אוספים"
+msgstr "על אודות אוסף זה"
 
 msgid "Add-ons synced to my Mobile Firefox"
 msgstr ""
@@ -1386,15 +1363,13 @@ msgstr "אפשרויות נוספות:"
 
 # 76%
 # 100%
-#, fuzzy
 msgid "Edit Collection"
-msgstr "הוסף לאוסף"
+msgstr "עריכת אוסף"
 
 # 78%
 # 100%
-#, fuzzy
 msgid "Delete Collection"
-msgstr "אוספים קשורים"
+msgstr "מחיקת אוסף"
 
 #, python-format
 msgid "%(num)s Theme in this Collection"
@@ -1491,9 +1466,8 @@ msgstr ""
 
 # 76%
 # 100%
-#, fuzzy
 msgid "Edit this Collection"
-msgstr "צור אוספים"
+msgstr "עריכת אוסף זה"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
@@ -1560,9 +1534,8 @@ msgstr "הוספת תורם"
 
 # 81%
 # 100%
-#, fuzzy
 msgid "Contributor"
-msgstr "Contribute"
+msgstr "תורם"
 
 msgid "Admin Settings"
 msgstr "הגדרות ניהול"
@@ -1570,9 +1543,8 @@ msgstr "הגדרות ניהול"
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr ""
 
-#, fuzzy
 msgid "Continue"
-msgstr "Contribute"
+msgstr "המשך"
 
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
 msgstr ""
@@ -1581,9 +1553,8 @@ msgstr ""
 msgid "Collections by {0}"
 msgstr "אוספים מאת {0}"
 
-#, fuzzy
 msgid "No collections found."
-msgstr "No files found."
+msgstr "לא נמצאו אוספים."
 
 msgid "Most-Followed Collections"
 msgstr ""
@@ -1613,9 +1584,8 @@ msgstr "במעקב"
 
 # 89%
 # 100%
-#, fuzzy
 msgid "Create a Collection"
-msgstr "צור אוספים"
+msgstr "יצירת אוסף"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr ""
@@ -1747,9 +1717,8 @@ msgstr "שפה"
 # Plural in this context means many of the add-on type
 # 75%
 # 100%
-#, fuzzy
 msgid "Dictionary"
-msgstr "מילונים"
+msgstr "מילון"
 
 msgid "Language Pack"
 msgstr "חבילת שפה"
@@ -1941,22 +1910,19 @@ msgstr "סוג דיווח"
 msgid "Version"
 msgstr "גרסה"
 
-#, fuzzy
 msgid "Application Version"
-msgstr "גרסאות יישום"
+msgstr "גרסת יישום"
 
 msgid "Application Build"
 msgstr "בניית יישום"
 
 # 88%
 # 100%
-#, fuzzy
 msgid "Platform"
-msgstr "Platforms"
+msgstr "סביבה"
 
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "מנוטרל"
+msgstr "ריבוי תהליכים מופעל"
 
 msgid "e10s Compatible"
 msgstr "תומך בריבוי תהליכים"
@@ -2194,16 +2160,14 @@ msgstr ""
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
-#, fuzzy
 msgid "Developer Reply"
-msgstr "מפתח"
+msgstr "תגובת המפתח"
 
 msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "מפתח"
+msgstr "תגובת הסוקר"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
@@ -2467,7 +2431,7 @@ msgid "Download Management"
 msgstr "ניהול הורדות"
 
 msgid "Feeds, News & Blogging"
-msgstr "חדשות, בלוגים ו־RSS"
+msgstr "הזנות, חדשות ובלוגים"
 
 msgid "Games & Entertainment"
 msgstr "משחקים ובידור"
@@ -2597,7 +2561,7 @@ msgid "Experimental"
 msgstr ""
 
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "הזנות, חדשות ובלוגים"
 
 msgid "Performance"
 msgstr "ביצועים"
@@ -4210,7 +4174,7 @@ msgid "WebExtensions are now the standard for add-on development in Firefox. You
 msgstr ""
 
 msgid "Learn How"
-msgstr ""
+msgstr "למדו כיצד"
 
 # 100%
 #, fuzzy
@@ -4896,11 +4860,10 @@ msgstr[1] "תוספות עבור {0}"
 
 # 85%
 # 100%
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "התעדכן"
-msgstr[1] "התעדכן"
+msgstr[0] "עדכון ({0})"
+msgstr[1] "עדכונים ({0})"
 
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
@@ -4969,9 +4932,8 @@ msgstr ""
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "מפתח"
+msgstr "תגובת הסוקר"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
@@ -5001,9 +4963,8 @@ msgid "More Information Requested"
 msgstr ""
 
 # 100%
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "הערות מפתח"
+msgstr "מכיל הערת סוקר"
 
 msgid "Sources provided"
 msgstr ""
@@ -5141,9 +5102,8 @@ msgstr "עודכן לאחרונה"
 msgid "Approvals Since Last Automatic Review"
 msgstr ""
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "השימוש לרעה דווח."
+msgstr "דיווחים על שימוש לרעה ({num})"
 
 #, fuzzy
 msgid "Bad User Reviews ({num})"
@@ -5181,18 +5141,16 @@ msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "New Add-ons"
-msgstr "עוד תוספות"
+msgstr "תוספות חדשות"
 
 msgid "Moderated Reviews"
 msgstr ""
 
 # 75%
 # 100%
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "עוד תוספות"
+msgstr "תוספות שאושרו אוטומטית"
 
 msgid "Unlisted Queues"
 msgstr ""
@@ -5263,11 +5221,10 @@ msgstr[1] ""
 
 # 85%
 # 100%
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "התעדכן"
-msgstr[1] "התעדכן"
+msgstr[0] "עדכון ({num})"
+msgstr[1] "עדכונים ({num})"
 
 msgid "Current waiting times:"
 msgstr ""
@@ -5499,9 +5456,8 @@ msgstr ""
 msgid "Compare"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "גירסאות"
+msgstr "הרשאות:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5751,9 +5707,8 @@ msgstr ""
 msgid "Back to review"
 msgstr ""
 
-#, fuzzy
 msgid "Back to add-on"
-msgstr "חיפוש תוספות"
+msgstr "חזרה לתוספת"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -5994,7 +5949,6 @@ msgstr ""
 msgid "Unlock early access to experimental browser features."
 msgstr ""
 
-#, fuzzy
 msgid "Get Started"
 msgstr "תחילת עבודה"
 
@@ -7710,9 +7664,8 @@ msgstr[1] "סקירות עבור %(addon)s מאת %(user)s"
 
 # 76%
 # 100%
-#, fuzzy
 msgid "No reviews found."
-msgstr "לא נמצאו תוצאות."
+msgstr "לא נמצאו סקירות."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
@@ -7939,9 +7892,8 @@ msgstr ""
 
 # 85%
 # 100%
-#, fuzzy
 msgid "Update"
-msgstr "התעדכן"
+msgstr "עדכון"
 
 msgid "Export"
 msgstr ""
@@ -8138,9 +8090,8 @@ msgstr ""
 # 78%
 # 80%
 # 100%
-#, fuzzy
 msgid "Mozilla Add-ons"
-msgstr "התוספות שלי"
+msgstr "Mozilla Add-ons"
 
 msgid "Find add-ons for other applications"
 msgstr "מצא תוספות ליישומים אחרים"
@@ -8302,9 +8253,8 @@ msgstr "משתמש {id} אנונימי"
 # 78%
 # 82%
 # 100%
-#, fuzzy
 msgid "My Mobile Add-ons"
-msgstr "התוספות שלי"
+msgstr "התוספות לנייד שלי"
 
 msgid "an add-on developer thanks me for a contribution"
 msgstr ""
@@ -8402,9 +8352,8 @@ msgstr ""
 
 # 80%
 # 100%
-#, fuzzy
 msgid "Delete my user picture now"
-msgstr "Delete my user account now"
+msgstr "מחיקת תמונת המשתמש שלי"
 
 msgid "Please set your display name"
 msgstr ""
