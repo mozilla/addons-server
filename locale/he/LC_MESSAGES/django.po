@@ -848,7 +848,7 @@ msgid "This add-on has not yet been reviewed."
 msgstr ""
 
 msgid "Be the first!"
-msgstr "בוא להיות הראשון!"
+msgstr ""
 
 msgid "{0} users"
 msgstr "{0} משתמשים"
@@ -1075,7 +1075,7 @@ msgid "Collections I've Made"
 msgstr "האוספים שיצרתי"
 
 msgid "Collections I'm Following"
-msgstr "האוספים אחריהם אני עוקב"
+msgstr ""
 
 msgid "My Favorite Add-ons"
 msgstr "התוספות המועדפות עליי"
