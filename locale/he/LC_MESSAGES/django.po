@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-29 11:54+0000\n"
+"PO-Revision-Date: 2017-01-24 10:34+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -602,7 +602,6 @@ msgstr "דירוג:"
 msgid "Submit review"
 msgstr "שליחת סקירה"
 
-#, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr "בבקשה אל תפרסם דיווחי באגים בסקירות. אנחנו לא מעבירים את כתובת הדוא״ל שלך למפתחי התוספות והם אולי יצטרכו ליצור אתך קשר כדי לפתור את הבעיה."
 
@@ -2597,9 +2596,8 @@ msgstr "אוספים קשורים"
 msgid "Experimental"
 msgstr ""
 
-#, fuzzy
 msgid "Feeds, News, & Blogging"
-msgstr "חדשות, בלוגים ו־RSS"
+msgstr ""
 
 msgid "Performance"
 msgstr "ביצועים"
@@ -4211,9 +4209,8 @@ msgstr "מפתח תוספות"
 msgid "WebExtensions are now the standard for add-on development in Firefox. You'll need to update your legacy add-ons to stay compatible."
 msgstr ""
 
-#, fuzzy
 msgid "Learn How"
-msgstr "מידע נוסף"
+msgstr ""
 
 # 100%
 #, fuzzy
