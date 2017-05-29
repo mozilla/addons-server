@@ -4182,9 +4182,8 @@ msgstr ""
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#, fuzzy
 msgid "Get started"
-msgstr "תחילת עבודה"
+msgstr ""
 
 msgid "More Ways to Participate"
 msgstr ""
