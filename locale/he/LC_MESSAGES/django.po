@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-29 11:43+0000\n"
+"PO-Revision-Date: 2017-05-29 11:54+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -32,17 +32,17 @@ msgid "Enter a valid username consisting of letters, numbers, underscores or hyp
 msgstr ""
 
 msgid "This username cannot be used."
-msgstr ""
+msgstr "לא ניתן להשתמש בשם משתמש זה."
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "כבר נעשה שימוש בשם משתמש זה."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "תמונות חייבות להיות בתבנית PNG או JPG."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "נא להשתמש בתמונות הקטנות מ־%d מ״ב."
 
 msgid "You are already logged in."
 msgstr ""
@@ -58,13 +58,13 @@ msgid "You could not be logged in. Please try again."
 msgstr ""
 
 msgid "Need help?"
-msgstr ""
+msgstr "צריכים עזרה?"
 
 msgid "Review"
 msgstr "סקירה"
 
 msgid "Version {0}"
-msgstr ""
+msgstr "גרסה {0}"
 
 msgid "Review note"
 msgstr "סקירה"
@@ -114,8 +114,8 @@ msgstr[1] "תגים לא תקינים: {0}"
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "״{0}״ הוא תג שמור ואי־אפשר להשתמש בו."
+msgstr[1] "״{0}״ הם תגים שמורים ואי־אפשר להשתמש בהם."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -290,7 +290,7 @@ msgid "Contacting PayPal"
 msgstr ""
 
 msgid "No Thanks"
-msgstr ""
+msgstr "לא תודה"
 
 msgid "Contribution made, thank you."
 msgstr ""
@@ -310,7 +310,7 @@ msgid "%(addon_name)s requires that you accept the following End-User License Ag
 msgstr ""
 
 msgid "Back to {0}…"
-msgstr ""
+msgstr "חזרה אל {0}…"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -321,7 +321,7 @@ msgid "Featured Extensions"
 msgstr "תוספות מומלצות"
 
 msgid "Popular Extensions"
-msgstr ""
+msgstr "הרחבות פופולריות"
 
 msgid "Most Popular"
 msgstr "הפופולריים ביותר"
@@ -336,7 +336,7 @@ msgid "Up &amp; Coming Extensions"
 msgstr ""
 
 msgid "Featured Themes"
-msgstr ""
+msgstr "ערכות נושא מומלצות"
 
 # 80%
 # 100%
@@ -345,16 +345,16 @@ msgid "Featured Collections"
 msgstr "אוספים קשורים"
 
 msgid "Sort by:"
-msgstr ""
+msgstr "מיון לפי:"
 
 #. {0} is a date.
 #. {0} is a date
 msgid "Updated {0}"
-msgstr ""
+msgstr "עודכנה בתאריך {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
-msgstr ""
+msgstr "נוספה בתאריך {0}"
 
 #, python-format
 msgid "%(num)s weekly download"
@@ -390,30 +390,30 @@ msgstr[0] "משתמש {0}"
 msgstr[1] "{0} משתמשים"
 
 msgid "Payment cancelled"
-msgstr ""
+msgstr "התשלום בוטל"
 
 msgid "Payment completed"
-msgstr ""
+msgstr "התשלום הושלם"
 
 msgid "Return to the addon."
-msgstr ""
+msgstr "חזרה לתוספת"
 
 msgid "by"
 msgstr "מאת"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr ""
+msgstr "ערכות נושא של {0} נוספות"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "צפייה בכל ערכות הנושא של {0}"
 
 msgid "More by this Artist"
-msgstr ""
+msgstr "עוד מאת אמן זה"
 
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "צפייה בכל ערכות הנושא מאת אמן זה"
 
 msgid "Categories"
 msgstr "קטגוריות"
@@ -422,14 +422,14 @@ msgid "Updated"
 msgstr "התעדכן"
 
 msgid "Artist"
-msgstr ""
+msgstr "אמן"
 
 # 100%
 msgid "Rating"
 msgstr "דירוג"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "משתמשים יומיים"
 
 msgid "License"
 msgstr "רישיון"
@@ -446,17 +446,17 @@ msgstr ""
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "משתמש <strong>{0}</strong>"
+msgstr[1] "<strong>{0}</strong> משתמשים"
 
 msgid "Hover to Preview"
-msgstr ""
+msgstr "רחפו כדי לצפות בתצוגה מקדימה"
 
 msgid "Add"
-msgstr ""
+msgstr "הוספה"
 
 msgid "Edit"
-msgstr ""
+msgstr "עריכה"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
@@ -471,7 +471,7 @@ msgid "Not yet rated"
 msgstr "טרם דורג"
 
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> משתמשים"
 
 #, fuzzy
 msgid "{0} Daily Users"
@@ -519,7 +519,7 @@ msgstr ""
 
 #. {0} is an app name, like Firefox.
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "שדרוג {0}"
 
 #, python-format
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
@@ -542,7 +542,7 @@ msgid "This add-on is not compatible with your version of %(app)s because of the
 msgstr ""
 
 msgid "View other versions"
-msgstr ""
+msgstr "צפייה בגרסאות אחרות"
 
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s."
@@ -550,7 +550,7 @@ msgstr ""
 
 #. {0} is the name of the add-on.
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "מדיניות פרטיות עבור {0}"
 
 #. The Privacy Policy for this add-on.
 msgid "Privacy Policy"
@@ -578,7 +578,7 @@ msgid ""
 msgstr ""
 
 msgid "Send Report"
-msgstr ""
+msgstr "שליחת תלונה"
 
 msgid "Cancel"
 msgstr "ביטול"
@@ -588,10 +588,10 @@ msgstr "מה אתה חושב?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "<a href=\"%(login)s\">יש להתחבר</a> כדי להגיש סקירה"
 
 msgid "Title:"
-msgstr ""
+msgstr "כותרת:"
 
 msgid "Review:"
 msgstr "סקירה:"
@@ -600,7 +600,7 @@ msgid "Rating:"
 msgstr "דירוג:"
 
 msgid "Submit review"
-msgstr ""
+msgstr "שליחת סקירה"
 
 #, fuzzy
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
@@ -620,7 +620,7 @@ msgstr "סקירות"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "מאת %(user)s בתאריך %(date)s"
 
 msgid "Show the developer's reply to this review"
 msgstr ""
@@ -666,7 +666,7 @@ msgstr "נהנית מתוספת זו?"
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">מפתח התוספת הזאת</a> מבקש תמיכה בהמשך קיומה על־ידי תרומה קטנה."
 
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
@@ -689,13 +689,13 @@ msgid "Related Categories"
 msgstr "קטגוריות קשורות"
 
 msgid "Part of these Collections"
-msgstr ""
+msgstr "חלק מהאוספים האלו"
 
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "תוספות אחרות מאת %(author)s"
+msgstr[1] "תוספות אחרות מאת המחברים האלו"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -707,7 +707,7 @@ msgid "View statistics"
 msgstr ""
 
 msgid "Manage"
-msgstr ""
+msgstr "ניהול"
 
 #, fuzzy
 msgid "Add-on Review"
@@ -724,8 +724,8 @@ msgstr ""
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "הכירו את המפתח: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">הכירו את המפתחים</a>"
 
 # {0} is an add-on name.
 msgid "Learn why {0} was created and find out what's next for this add-on."
@@ -748,7 +748,7 @@ msgid "Info"
 msgstr "מידע"
 
 msgid "Last Updated:"
-msgstr ""
+msgstr "עודכנה לאחרונה:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
@@ -767,7 +767,7 @@ msgid "Version Information"
 msgstr "מידע גרסה"
 
 msgid "See complete version history"
-msgstr ""
+msgstr "צפו בהיסטורית הגרסאות המלאה"
 
 msgid "Development Channel"
 msgstr "ערוץ פיתוח"
@@ -787,7 +787,7 @@ msgid "close"
 msgstr ""
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "ישנן תוספות המבקשות הרשאה לביצוע פונקציות מסוימות (לדוגמה: תוספת לניהול לשוניות תבקש הרשאה לגישה למערכת הלשוניות של הדפדפן שלך)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
@@ -796,11 +796,11 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
-msgstr ""
+msgstr "תוספת זו יכולה:"
 
 #. {0} is an add-on name.
 msgid "Thank you for installing {0}"
-msgstr ""
+msgstr "תודה שהתקנת את {0}"
 
 #. {0} is an add-on name.
 # %1 is an add-on name.
@@ -824,10 +824,10 @@ msgstr[0] "על אודות המפתח"
 msgstr[1] "על אודות המפתחים"
 
 msgid "No Photo"
-msgstr ""
+msgstr "אין תמונה"
 
 msgid "Who is {0}?"
-msgstr ""
+msgstr "מי זה {0}?"
 
 msgid "This add-on has been removed by its author."
 msgstr ""
@@ -843,7 +843,7 @@ msgid "Source Code License"
 msgstr "רישיון קוד מקור"
 
 msgid "permalink"
-msgstr ""
+msgstr "קישור קבוע"
 
 #, python-format
 msgid "See all user reviews"
@@ -873,20 +873,20 @@ msgid "My Add-ons"
 msgstr "התוספות שלי"
 
 msgid "My Themes"
-msgstr ""
+msgstr "ערכות הנושא שלי"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
 msgstr "מידע על בתוספת עבור {0}"
 
 msgid "Edit Theme"
-msgstr ""
+msgstr "עריכת ערכת נושא"
 
 msgid "Approve / Reject"
 msgstr ""
 
 msgid "Review History"
-msgstr ""
+msgstr "היסטורית סקירה"
 
 msgid "Sorry, this theme is pending. Please come back later."
 msgstr ""
@@ -907,10 +907,10 @@ msgid "Tools"
 msgstr "כלים"
 
 msgid "My Profile"
-msgstr ""
+msgstr "הפרופיל שלי"
 
 msgid "Account Settings"
-msgstr ""
+msgstr "הגדרות חשבון"
 
 msgid "My Collections"
 msgstr "האוספים שלי"
@@ -928,13 +928,13 @@ msgid "Submit a New Add-on"
 msgstr "שליחת תוספת חדשה"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "שליחת ערכת נושא חדשה"
 
 msgid "Developer Hub"
 msgstr "מקום מפגש למפתחים"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "ניהול מפתחות API"
 
 #, fuzzy
 msgid "Reviewer Tools"
@@ -966,7 +966,7 @@ msgid "{0} ago"
 msgstr "לפני {0}"
 
 msgid "Not allowed"
-msgstr ""
+msgstr "לא מורשה"
 
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
 msgstr ""
@@ -1030,7 +1030,7 @@ msgid "Some rights reserved"
 msgstr ""
 
 msgid "No results found"
-msgstr ""
+msgstr "לא נמצאו תוצאות"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1061,7 +1061,7 @@ msgid ""
 msgstr ""
 
 msgid "Top Rated"
-msgstr ""
+msgstr "בדירוג הכי גבוה"
 
 # 100%
 msgid "Newest"
@@ -1085,13 +1085,13 @@ msgid "Most Followers"
 msgstr ""
 
 msgid "Collections I've Made"
-msgstr ""
+msgstr "האוספים שיצרתי"
 
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "האוספים אחריהם אני עוקב"
 
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "התוספות המועדפות עליי"
 
 msgid "More&hellip;"
 msgstr "עוד&hellip;"
@@ -1105,7 +1105,7 @@ msgstr "כלי חיפוש"
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "עמוד <a href=\"%(current_pg_url)s\">%(current_pg)s</a> מתוך <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 msgid "Jump to first page"
 msgstr "קפיצה לדף ראשון"
@@ -1120,19 +1120,19 @@ msgstr "קפיצה לדף אחרון"
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "מוצגים <b>%(begin)s</b>&ndash;<b>%(end)s</b> מתוך <b>%(count)s</b>"
 
 msgid "Title"
-msgstr ""
+msgstr "כותרת"
 
 msgid "Body"
-msgstr ""
+msgstr "גוף"
 
 msgid "Another Title"
-msgstr ""
+msgstr "כותרת נוספת"
 
 msgid "Another Body"
-msgstr ""
+msgstr "גוף נוסף"
 
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
@@ -1190,14 +1190,14 @@ msgstr ""
 #. L10n: {0} is 'Add-ons for <app>'.
 #, python-format
 msgid "Collections :: %s"
-msgstr ""
+msgstr "אוספים :: %s"
 
 msgid "Collections are groups of related add-ons that anyone can create and share."
 msgstr ""
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: אוספים :: {1}"
 
 msgid "Only I can view this collection."
 msgstr ""
@@ -1209,22 +1209,22 @@ msgid "Give your collection a name."
 msgstr ""
 
 msgid "URL:"
-msgstr ""
+msgstr "כתובת:"
 
 msgid "Describe your collection (no links allowed)."
 msgstr ""
 
 msgid "Privacy:"
-msgstr ""
+msgstr "פרטיות:"
 
 msgid "Icon"
-msgstr ""
+msgstr "צלמית"
 
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "לא ניתן להשתמש בשם זה."
 
 msgid "This url is already in use by another collection"
 msgstr ""
@@ -1255,7 +1255,7 @@ msgid "Add to favorites"
 msgstr "הוסף למועדפים"
 
 msgid "Favorite"
-msgstr ""
+msgstr "מועדף"
 
 # 95%
 # 100%
@@ -1264,7 +1264,7 @@ msgid "Remove from favorites"
 msgstr "הסר ממועדפים"
 
 msgid "Name"
-msgstr ""
+msgstr "שם"
 
 # 75%
 # 100%
@@ -1310,7 +1310,7 @@ msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual colle
 msgstr ""
 
 msgid "Create Collection"
-msgstr ""
+msgstr "יצירת אוסף"
 
 # 76%
 # 75%
@@ -1336,7 +1336,7 @@ msgid "Start a New Collection"
 msgstr "צור אוספים"
 
 msgid "Name:"
-msgstr ""
+msgstr "שם:"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr ""
@@ -1353,7 +1353,7 @@ msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr ""
 
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: אוספים"
 
 msgid "private"
 msgstr ""
@@ -1383,7 +1383,7 @@ msgid "Learn about collections"
 msgstr "מידע נוסף על אוספים"
 
 msgid "More Options:"
-msgstr ""
+msgstr "אפשרויות נוספות:"
 
 # 76%
 # 100%
@@ -1400,14 +1400,14 @@ msgstr "אוספים קשורים"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ערכת נושא %(num)s באוסף זה"
+msgstr[1] "%(num)s ערכות נושא באוסף זה"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "תוספת %(num)s באוסף זה"
+msgstr[1] "%(num)s תוספות באוסף זה"
 
 # 100%
 msgid "Go"
@@ -1420,7 +1420,7 @@ msgid "Explore Collections"
 msgstr "חקירת אוספים"
 
 msgid "Common Tags"
-msgstr ""
+msgstr "תגים נפוצים"
 
 msgid "More by this User"
 msgstr ""
@@ -1439,19 +1439,19 @@ msgid ""
 msgstr ""
 
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "התוספות המועדפות עליי"
 
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "תוספת <span>%(addons)s</span>"
+msgstr[1] "<span>%(addons)s</span> תוספות"
 
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "עוקב <span>%(followers)s</span>"
+msgstr[1] "<span>%(followers)s</span> עוקבים"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -1485,7 +1485,7 @@ msgid "by {0}"
 msgstr ""
 
 msgid "Stop Following"
-msgstr ""
+msgstr "הפסקת מעקב"
 
 msgid "Follow this Collection"
 msgstr ""
@@ -1498,29 +1498,29 @@ msgstr "צור אוספים"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
-msgstr ""
+msgstr "מחיקת {0}"
 
 msgid "Are you sure?"
 msgstr "האם אתה בטוח?"
 
 msgid "Yes"
-msgstr ""
+msgstr "כן"
 
 msgid "No"
-msgstr ""
+msgstr "לא"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr ""
+msgstr "עריכת {0}"
 
 msgid "Description"
 msgstr "תיאור"
 
 msgid "Contributors & More"
-msgstr ""
+msgstr "תורמים ועוד"
 
 msgid "Save Changes"
-msgstr ""
+msgstr "שמירת שינויים"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1533,7 +1533,7 @@ msgid "Remove this user as a contributor"
 msgstr ""
 
 msgid "Remove"
-msgstr ""
+msgstr "הסרה"
 
 msgid "Collection Contributors"
 msgstr ""
@@ -1544,10 +1544,10 @@ msgid ""
 msgstr ""
 
 msgid "User"
-msgstr ""
+msgstr "משתמש"
 
 msgid "Email"
-msgstr ""
+msgstr "דוא״ל"
 
 # Column name in a table.
 msgid "Role"
@@ -1557,7 +1557,7 @@ msgid "Enter the email address of the contributor to add"
 msgstr ""
 
 msgid "Add Contributor"
-msgstr ""
+msgstr "הוספת תורם"
 
 # 81%
 # 100%
@@ -1580,7 +1580,7 @@ msgstr ""
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr ""
+msgstr "אוספים מאת {0}"
 
 #, fuzzy
 msgid "No collections found."
@@ -1610,7 +1610,7 @@ msgid "Subscribe"
 msgstr "הרשמה כמנוי"
 
 msgid "Following"
-msgstr ""
+msgstr "במעקב"
 
 # 89%
 # 100%
@@ -1625,7 +1625,7 @@ msgid "Collection Icon"
 msgstr ""
 
 msgid "Reset"
-msgstr ""
+msgstr "איפוס"
 
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr ""
@@ -1640,10 +1640,10 @@ msgid "To include an add-on in this collection, enter its name in the box below 
 msgstr ""
 
 msgid "Add-on"
-msgstr ""
+msgstr "תוספת"
 
 msgid "Comment"
-msgstr ""
+msgstr "הערה"
 
 msgid "Enter the name of the add-on to include"
 msgstr ""
@@ -1655,15 +1655,15 @@ msgid "Pending"
 msgstr ""
 
 msgid "Add a comment"
-msgstr ""
+msgstr "הוספת הערה"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "הסרת תוספת זו מהאוסף"
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "תוספות של %s"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1672,7 +1672,7 @@ msgstr "ערכות נושא של %s"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "תוספות מומלצות :: %s"
 
 #. L10n: %s is an app name.
 #, python-format
@@ -1682,16 +1682,16 @@ msgstr "הנה כמה מהתוספות האהובות עלינו שיעזרו ל
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "כלי חיפוש הקשורים לקטגוריה %s"
 
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "כלי חיפוש והרחבות הקשורות לחיפוש"
 
 msgid "Search tools"
-msgstr ""
+msgstr "כלי חיפוש"
 
 msgid "Most Users"
-msgstr ""
+msgstr "כמות משתמשים"
 
 msgid "Weekly Downloads"
 msgstr "הורדות שבועיות"
@@ -1711,30 +1711,30 @@ msgstr "הורדות"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: תוספות מומלצות"
 
 #. {0} is a category name. Ex: Sports
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "אין תוספות מומלצות בקטגוריה {0}."
 
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "תוספות מומלצות"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
 msgstr "הנה כמה מהתוספות האהובות עלינו שיעזרו לך להתחיל לשנות את %(app)s."
 
 msgid "Install Dictionary"
-msgstr ""
+msgstr "התקנת מילון"
 
 msgid "Install Language Pack"
-msgstr ""
+msgstr "התקנת חבילת שפה"
 
 msgid "Download Dictionary"
 msgstr "הורדת מילון"
 
 msgid "Download Language Pack"
-msgstr ""
+msgstr "הורדת חבילת שפה"
 
 msgid "Available in your locale"
 msgstr ""
@@ -1763,13 +1763,13 @@ msgstr "רשימת חבילות שפה ומילונים"
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: כלי חיפוש"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "תוספת <b>{0}</b>"
+msgstr[1] "<b>{0}</b> תוספות"
 
 msgid "Search Extensions"
 msgstr ""
@@ -1794,7 +1794,7 @@ msgid "Browse through even more search providers at <a href=\"http://mycroftproj
 msgstr ""
 
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">יצירת כלי חיפוש משלך</a>"
 
 msgid "Most Popular Extensions"
 msgstr "ההרחבות הפופולריות ביותר"
@@ -1854,10 +1854,10 @@ msgstr ""
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "ערכות הנושא של {0}"
 
 msgid "View Profile"
-msgstr ""
+msgstr "צפייה בפרופיל"
 
 msgid "Create Your Own Theme"
 msgstr ""
@@ -1866,7 +1866,7 @@ msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
 
 msgid "Learn more"
-msgstr ""
+msgstr "מידע נוסף"
 
 msgid "View All Recently Added"
 msgstr ""
@@ -1897,10 +1897,10 @@ msgid "View All Up & Coming"
 msgstr ""
 
 msgid "No themes found"
-msgstr ""
+msgstr "לא נמצאו ערכות נושא"
 
 msgid "All"
-msgstr ""
+msgstr "הכל"
 
 msgid "Add-on Compatibility Reports"
 msgstr ""
@@ -1931,13 +1931,13 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "View all"
-msgstr ""
+msgstr "הצגת הכל"
 
 msgid "Filter by Application"
-msgstr ""
+msgstr "סינון לפי יישום"
 
 msgid "Report Type"
-msgstr ""
+msgstr "סוג דיווח"
 
 msgid "Version"
 msgstr "גרסה"
@@ -1947,7 +1947,7 @@ msgid "Application Version"
 msgstr "גרסאות יישום"
 
 msgid "Application Build"
-msgstr ""
+msgstr "בניית יישום"
 
 # 88%
 # 100%
@@ -1966,13 +1966,13 @@ msgid "Submitted"
 msgstr ""
 
 msgid "Success"
-msgstr ""
+msgstr "הצלחה"
 
 msgid "Problem"
-msgstr ""
+msgstr "בעיה"
 
 msgid "No reports found."
-msgstr ""
+msgstr "לא נמצאו דיווחים."
 
 msgid "{addon} was created."
 msgstr "התוספת {addon} נוצרה"
@@ -2144,16 +2144,16 @@ msgid "Approved but waiting"
 msgstr ""
 
 msgid "Account updated."
-msgstr ""
+msgstr "החשבון עודכן."
 
 msgid "Created: {0}."
-msgstr ""
+msgstr "נוצר: {0}."
 
 msgid "Edited field: {2} set to: {0}."
 msgstr ""
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "נמחק: {1}."
 
 msgid "User {user} edited, reason: {1}"
 msgstr ""
@@ -2238,7 +2238,7 @@ msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "Mobile"
 msgstr ""
@@ -2250,16 +2250,16 @@ msgid "Mozilla"
 msgstr "מוזילה"
 
 msgid "Unknown"
-msgstr ""
+msgstr "לא ידוע"
 
 msgid "Incomplete"
-msgstr ""
+msgstr "לא שלם"
 
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "נוטרל ע״י Mozilla"
 
 msgid "Deleted"
-msgstr ""
+msgstr "נמחק"
 
 msgid "Pending approval"
 msgstr ""
@@ -2268,7 +2268,7 @@ msgid "Flagged for further review"
 msgstr ""
 
 msgid "Beta"
-msgstr ""
+msgstr "בטא"
 
 msgid "Unlisted"
 msgstr ""
@@ -2305,7 +2305,7 @@ msgid "Plugin"
 msgstr "תוסף"
 
 msgid "Theme"
-msgstr ""
+msgstr "ערכת נושא"
 
 msgid "Complete Themes"
 msgstr ""
@@ -2459,13 +2459,13 @@ msgid "Alerts & Updates"
 msgstr "התראות ועדכונים"
 
 msgid "Appearance"
-msgstr ""
+msgstr "תצוגה"
 
 msgid "Bookmarks"
 msgstr "סימניות"
 
 msgid "Download Management"
-msgstr ""
+msgstr "ניהול הורדות"
 
 msgid "Feeds, News & Blogging"
 msgstr "חדשות, בלוגים ו־RSS"
@@ -2477,7 +2477,7 @@ msgid "Language Support"
 msgstr "תמיכת שפות ותרגום"
 
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "תמונות, מוסיקה ווידאו"
 
 msgid "Privacy & Security"
 msgstr "פרטיות ואבטחה"
@@ -2492,7 +2492,7 @@ msgid "Tabs"
 msgstr "לשוניות"
 
 msgid "Web Development"
-msgstr ""
+msgstr "פיתוח הרשת"
 
 msgid "Animals"
 msgstr "חיות"
@@ -2564,7 +2564,7 @@ msgid "Causes"
 msgstr ""
 
 msgid "Fashion"
-msgstr ""
+msgstr "אופנה"
 
 msgid "Film and TV"
 msgstr ""
@@ -2573,7 +2573,7 @@ msgid "Foxkeh"
 msgstr ""
 
 msgid "Holiday"
-msgstr ""
+msgstr "חופשה"
 
 msgid "Scenery"
 msgstr ""
@@ -2608,7 +2608,7 @@ msgid "Photos & Media"
 msgstr "תמונות ומדיה"
 
 msgid "Security & Privacy"
-msgstr ""
+msgstr "אבטחה ופרטיות"
 
 msgid "Social Networking"
 msgstr ""
@@ -2639,13 +2639,13 @@ msgid "Contacts"
 msgstr "אנשי קשר"
 
 msgid "Folders and Filters"
-msgstr ""
+msgstr "תיקיות ומסננים"
 
 msgid "Import/Export"
-msgstr ""
+msgstr "ייבוא/ייצוא"
 
 msgid "Message and News Reading"
-msgstr ""
+msgstr "קריאת הודעות וחדשות"
 
 msgid "Privacy and Security"
 msgstr "פרטיות ואבטחה"
@@ -2654,7 +2654,7 @@ msgid "Downloading and File Management"
 msgstr "כלי הורדה"
 
 msgid "Interface Customizations"
-msgstr ""
+msgstr "התאמות אישית לממשק"
 
 msgid "Language Support and Translation"
 msgstr "שפות"
@@ -2714,46 +2714,46 @@ msgid "Header image alignment problem"
 msgstr ""
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "כל הזכויות שמורות"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "All Platforms"
 msgstr ""
 
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "Core"
 msgstr ""
@@ -2939,16 +2939,16 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr ""
 
 msgid "All My Add-ons"
-msgstr ""
+msgstr "כל התוספות שלי"
 
 msgid "All Activity"
-msgstr ""
+msgstr "כל הפעילויות"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "עדכוני תוספות"
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "מצב תוספות"
 
 # 75%
 # 100%
@@ -2960,7 +2960,7 @@ msgid "User Reviews"
 msgstr "סקירות משתמשים"
 
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "השינויים נשמרו בהצלחה."
 
 msgid "Please check the form for errors."
 msgstr ""
@@ -3068,11 +3068,11 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr ""
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "חזרה לתוספות"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: חיפוש"
 
 msgid "Search"
 msgstr "חיפוש"
@@ -3094,7 +3094,7 @@ msgid "No results found."
 msgstr "לא נמצאו תוצאות."
 
 msgid "Submit an Add-on"
-msgstr ""
+msgstr "שליחת תוספת"
 
 msgid "AMO Reviewers"
 msgstr ""
@@ -3121,7 +3121,7 @@ msgid "Start Making Add-ons"
 msgstr ""
 
 msgid "Status:"
-msgstr ""
+msgstr "מצב:"
 
 msgid "Latest Version:"
 msgstr ""
@@ -3134,7 +3134,7 @@ msgid "%(position)s of %(total)s"
 msgstr ""
 
 msgid "Upload New Version"
-msgstr ""
+msgstr "העלאת גרסה חדשה"
 
 msgid "View all add-ons ►"
 msgstr "צפייה בכל התוספות ◄"
@@ -3703,8 +3703,8 @@ msgstr ""
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "משתמש פעיל <strong>{0}</strong>"
+msgstr[1] "<strong>{0}</strong> משתמשים פעילים"
 
 #, fuzzy
 msgid "Submit a New File"
@@ -4183,7 +4183,7 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 msgid "Get started"
-msgstr ""
+msgstr "תחילת עבודה"
 
 msgid "More Ways to Participate"
 msgstr ""
@@ -4237,7 +4237,7 @@ msgid "Submit Your First Add-on"
 msgstr "שליחת תוספת חדשה"
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "שליחת ערכת הנושא הראשונה שלך"
 
 # The title for a user if they are a developer
 #, fuzzy
@@ -4527,7 +4527,7 @@ msgid ""
 msgstr ""
 
 msgid "Submit Theme"
-msgstr ""
+msgstr "שליחת ערכת נושא"
 
 msgid "You're done!"
 msgstr ""
@@ -5108,7 +5108,7 @@ msgid "Your theme locks have successfully been released. Other reviewers may now
 msgstr ""
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: דיווחים על שימוש לרעה"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
@@ -5478,10 +5478,10 @@ msgid "Add-on has been deleted."
 msgstr ""
 
 msgid "Show Comments"
-msgstr ""
+msgstr "הצגת הערות"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "הסתרת הערות"
 
 msgid "No reviews found for this period."
 msgstr ""
@@ -5508,7 +5508,7 @@ msgstr "גירסאות"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>מאת %(user)s בתאריך %(date)s</div>"
 
 msgid "Older"
 msgstr ""
@@ -5908,16 +5908,16 @@ msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
 
 msgid "New &amp; Now"
-msgstr ""
+msgstr "חדש ועכשווי"
 
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr ""
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "גלישה ללא דאגות"
 
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "הגנו על הפרטיות שלכם ברשת בעזרת התוספות שבאוסף זה."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr ""
@@ -5970,7 +5970,7 @@ msgstr ""
 
 #. {0} is the user's login name.
 msgid "Hi, {0}"
-msgstr ""
+msgstr "שלום, {0}"
 
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
@@ -5980,7 +5980,7 @@ msgid "Add-ons downloaded:"
 msgstr ""
 
 msgid "Active Users"
-msgstr ""
+msgstr "משתמשים פעילים"
 
 msgid "Last Updated"
 msgstr "עודכנה לאחרונה"
@@ -7267,7 +7267,7 @@ msgstr ""
 msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
-msgstr ""
+msgstr "ישנם מחברי תוספות המבקשים ממשתמשים שנהנים מתוספת לתרום להמשך פיתוחה ע״י תרומה כספית. תרומות אלו הולכות ישירות למפתח אלא אם כן צויין גורם צד שלישי, כמו Mozilla Foundation שהיא ללא מטרות רווח."
 
 msgid "What are beta add-ons?"
 msgstr ""
@@ -7318,7 +7318,7 @@ msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a
 msgstr ""
 
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "אוספים ומועדפים"
 
 msgid "What is a collection?"
 msgstr ""
@@ -7581,7 +7581,7 @@ msgstr ""
 
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "סקירות עבור %s"
 
 msgid "Review History for this Addon"
 msgstr ""
@@ -7642,7 +7642,7 @@ msgid "Write a Reply"
 msgstr "כתיבת תגובה"
 
 msgid "Submit"
-msgstr ""
+msgstr "שליחה"
 
 #. this string is following a <button>.
 #, python-format
@@ -7658,17 +7658,17 @@ msgstr ""
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "סקירה זו מתייחסת לגרסה קודמת של התוספת ({0})."
 
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "למשתמש זה יש <a href=\"%(user_review_url)s\">סקירה קודמת</a> של תוספת זו."
+msgstr[1] "למשתמש זה יש <a href=\"%(user_review_url)s\">%(cnt)sסקירות קודמות</a> של תוספת זו."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "למשתמש זה יש <a href=\"%(user_review_url)s\">סקירות אחרות</a> של תוספת זו."
 
 msgid "Flagged for review"
 msgstr ""
@@ -7690,16 +7690,16 @@ msgstr ""
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: סקירות"
 
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "סקירות עבור {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "סקירה <b>{0}</b> עבור תוספת זו"
+msgstr[1] "<b>{0}</b> סקירות עבור תוספת זו"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
@@ -7708,8 +7708,8 @@ msgstr ""
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "סקירה עבור %(addon)s מאת %(user)s"
+msgstr[1] "סקירות עבור %(addon)s מאת %(user)s"
 
 # 76%
 # 100%
@@ -7719,7 +7719,7 @@ msgstr "לא נמצאו תוצאות."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>ממוצע</strong> (%(total)s)"
 
 msgid "Write a New Review"
 msgstr ""
@@ -7767,7 +7767,7 @@ msgid "search for apps"
 msgstr ""
 
 msgid "Sort By"
-msgstr ""
+msgstr "מיון לפי"
 
 msgid "Relevance"
 msgstr ""
@@ -7875,7 +7875,7 @@ msgid "No uploaded file for that addon and version."
 msgstr ""
 
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "תודה על תרומתך לתוספת {addon_name}"
 
 msgid "Overview"
 msgstr ""
@@ -8201,7 +8201,7 @@ msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">הרשמה</a> או <a href=\"%(login)s\">התחברות</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
@@ -8266,7 +8266,7 @@ msgid "Email must be {email}."
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "שם תצוגה"
 
 msgid "Location"
 msgstr ""
@@ -8299,7 +8299,7 @@ msgstr ""
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "משתמש {id} אנונימי"
 
 # 75%
 # 78%
@@ -8419,7 +8419,7 @@ msgid "Manage basic account information, such as your username and Firefox Accou
 msgstr ""
 
 msgid "Username"
-msgstr ""
+msgstr "שם משתמש"
 
 msgid "Email Address"
 msgstr ""
@@ -8503,7 +8503,7 @@ msgid "Manage user"
 msgstr ""
 
 msgid "Report user"
-msgstr ""
+msgstr "דיווח על משתמש"
 
 # The title for a user if they are a developer
 msgid "Add-ons Developer"
@@ -8519,20 +8519,20 @@ msgid "In a little more detail..."
 msgstr ""
 
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "תוספות שיצרתי"
 
 msgid "My Most Popular Themes"
 msgstr ""
 
 msgid "Themes I've created"
-msgstr ""
+msgstr "ערכות נושא שיצרתי"
 
 msgid "Followed by Me"
 msgstr ""
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"
-msgstr ""
+msgstr "היצירות שלי"
 
 # "My" in this context is the logged in user who is reading the page
 msgid "My Reviews"
@@ -8542,13 +8542,13 @@ msgid "No add-on reviews yet."
 msgstr ""
 
 msgid "Report User"
-msgstr ""
+msgstr "דיווח על משתמש"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr ""
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "דיווח על משתמש {0}"
 
 msgid "Unsubscribe"
 msgstr ""
@@ -8589,7 +8589,7 @@ msgid "IP address of last login"
 msgstr ""
 
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "מספר התוספות שנוצרו"
 
 msgid "{0} add-ons"
 msgstr ""
@@ -8607,7 +8607,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "דירוג ממוצע של התוספות של המפתח"
 
 # {0} is the add-on name
 # 84%
@@ -8626,14 +8626,14 @@ msgid "Add-on has opted into strict compatibility checking."
 msgstr ""
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} ומעלה"
 
 msgid "Permanent link to this version"
 msgstr "קישור קבוע לגירסה זו"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr ""
+msgstr "שוחררה בתאריך {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
