@@ -248,12 +248,6 @@
                   <h3>{{ _('Pending Header') }}</h3>
                   <img class="preview loaded" src="{{ rereview[0].header_url }}" alt="">
                 </li>
-                {% if rereview[0].footer_url %}
-                  <li id="persona-footer" class="row">
-                    <h3>{{ _('Pending Footer') }}</h3>
-                    <img class="preview loaded" src="{{ rereview[0].footer_url }}" alt="">
-                  </li>
-                {% endif %}
               </ul>
             {% endif %}
           </div>
@@ -267,12 +261,6 @@
             <h3>{{ _('Header') }}</h3>
             <img class="preview loaded" src="{{ persona.header_url }}" alt="">
           </li>
-          {% if persona.footer_url %}
-            <li id="persona-footer" class="row">
-              <h3>{{ _('Footer') }}</h3>
-              <img class="preview loaded" src="{{ persona.footer_url }}" alt="">
-            </li>
-          {% endif %}
         </ul>
         <h3 class="colors">{{ _('Select colors for your Theme.') }}</h3>
         <ul class="colors">
