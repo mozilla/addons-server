@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-29 11:08+0000\n"
+"PO-Revision-Date: 2017-05-29 14:03+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1048,7 +1048,7 @@ msgid ""
 msgstr ""
 
 msgid "Top Rated"
-msgstr "בדירוג הכי גבוה"
+msgstr "בדירוג הגבוה ביותר"
 
 # 100%
 msgid "Newest"
@@ -4057,9 +4057,8 @@ msgid "Resources"
 msgstr "משאבים נוספים"
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "WebExtensions"
-msgstr "הרחבות"
+msgstr "WebExtensions"
 
 msgid "Community"
 msgstr ""
@@ -4208,9 +4207,8 @@ msgstr "התוספות שלי"
 
 # 75%
 # 100%
-#, fuzzy
 msgid "User Photo"
-msgstr "האוספים שלי"
+msgstr "תמונת משתמש"
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
