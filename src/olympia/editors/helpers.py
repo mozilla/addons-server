@@ -718,6 +718,7 @@ class ReviewBase(object):
         is incrementing AddonApprovalsCounter, which also resets the last
         human review date to now, and log it so that it's displayed later
         in the review page."""
+        self.version = self.addon.current_version
         AddonApprovalsCounter.increment_for_addon(addon=self.addon)
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED)
 
