@@ -13,18 +13,9 @@
     "addons-linter": "0.20.0",
     "clean-css": "4.1.1",
     "clean-css-cli": "4.1.0",
-    "highcharts": "4.1.10",
-    "jquery": "1.12.0",
-    "jquery.browser": "0.1.0",
-    "jquery.cookie": "1.4.1",
-    "jquery-hoverintent": "1.8.1",
-    "@claviska/jquery-minicolors": "2.2.4",
-    "jquery-pjax": "2.0.1",
     "less": "2.7.2",
     "stylus": "0.54.5",
-    "timeago": "1.5.3",
-    "uglify-js": "3.0.11",
-    "underscore": "1.4.0"
+    "uglify-js": "3.0.11"
   },
   "devDependencies": {
     "potools": "0.0.5"
