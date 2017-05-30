@@ -51,8 +51,8 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-
 RUN yum install -y python-pip
+RUN pip install --upgrade pip setuptools
 
 # Until https://github.com/shazow/urllib3/commit/959d47d926e1331ad571dbfc150c9a3acb7a1eb9 lands
 RUN pip install pyOpenSSL ndg-httpsclient pyasn1 certifi urllib3
@@ -74,7 +74,6 @@ ENV SWIG_FEATURES="-D__x86_64__"
 # Install all python requires
 RUN mkdir -p /deps/{build,cache,src}/ && \
     ln -s /code/package.json /deps/package.json && \
-    pip install --upgrade pip && \
     make update_deps && \
     rm -r /deps/build/ /deps/cache/
 
