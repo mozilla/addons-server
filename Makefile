@@ -34,7 +34,6 @@ jquery.browser/dist/jquery.browser.js \
 jquery-hoverintent/jquery.hoverIntent.js \
 @claviska/jquery-minicolors/jquery.minicolors.js \
 jquery-pjax/jquery.pjax.js \
-raven-js/dist/raven.js \
 timeago/jquery.timeago.js \
 underscore/underscore.js
 NODE_LIBS_CSS := \
