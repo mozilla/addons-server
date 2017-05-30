@@ -140,7 +140,7 @@ msgid "Videos must be in WebM."
 msgstr "וידאו חייב להיות בתבנית WebM."
 
 msgid "Follow this Collection"
-msgstr "מעקב אחרי האוסף הזה"
+msgstr ""
 
 msgid "Stop Following"
 msgstr "הפסקת מעקב"
