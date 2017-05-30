@@ -1,0 +1,55 @@
+-- Delete orphaned validation jobs (since we removed the 'Mobile' app).
+DELETE FROM validation_job WHERE curr_max_version_id NOT IN (SELECT id FROM appversions);
+DELETE FROM validation_job WHERE target_version_id NOT IN (SELECT id FROM appversions);
+
+
+-- Delete existing foreign key constraints so we can delete the keys afterwards.
+SET @FK_CURR_MAX_VERSION_ID := (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = 'olympia' AND TABLE_NAME = 'validation_job' AND COLUMN_NAME = 'curr_max_version_id');
+
+SET @QUERY_DROP_FK_CURR_MAX_VERSION_ID = IF(@FK_CURR_MAX_VERSION_ID, CONCAT('ALTER TABLE validation_job DROP FOREIGN KEY ', @FK_CURR_MAX_VERSION_ID, ';'), 'SELECT 0;');
+PREPARE stmt FROM @QUERY_DROP_FK_CURR_MAX_VERSION_ID;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @FK_TARGET_VERSION_ID := (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = 'olympia' AND TABLE_NAME = 'validation_job' AND COLUMN_NAME = 'target_version_id');
+
+SET @QUERY_DROP_FK_TARGET_VERSION_ID = IF(@FK_TARGET_VERSION_ID, CONCAT('ALTER TABLE validation_job DROP FOREIGN KEY ', @FK_TARGET_VERSION_ID, ';'), 'SELECT 0;');
+PREPARE stmt FROM @QUERY_DROP_FK_TARGET_VERSION_ID;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @FK_CREATOR_ID := (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_SCHEMA = 'olympia' AND TABLE_NAME = 'validation_job' AND COLUMN_NAME = 'creator_id');
+
+SET @QUERY_DROP_FK_CREATOR_ID = IF(@FK_CREATOR_ID, CONCAT('ALTER TABLE validation_job DROP FOREIGN KEY ', @FK_CREATOR_ID, ';'), 'SELECT 0;');
+PREPARE stmt FROM @QUERY_DROP_FK_CREATOR_ID;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+
+-- Delete existing keys because they're dynamically named.
+SET @KEY_CURR_MAX_VERSION_ID := (SELECT INDEX_NAME FROM information_schema.STATISTICS WHERE TABLE_SCHEMA = (SELECT DATABASE()) AND TABLE_NAME = 'validation_job' AND COLUMN_NAME = 'curr_max_version_id');
+
+SET @QUERY_DROP_KEY_CURR_MAX_VERSION_ID = IF(@KEY_CURR_MAX_VERSION_ID, CONCAT('ALTER TABLE validation_job DROP KEY ', @KEY_CURR_MAX_VERSION_ID, ';'), 'SELECT 0;');
+PREPARE stmt FROM @QUERY_DROP_KEY_CURR_MAX_VERSION_ID;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @KEY_TARGET_VERSION_ID := (SELECT INDEX_NAME FROM information_schema.STATISTICS WHERE TABLE_SCHEMA = (SELECT DATABASE()) AND TABLE_NAME = 'validation_job' AND COLUMN_NAME = 'target_version_id');
+
+SET @QUERY_DROP_KEY_TARGET_VERSION_ID = IF(@KEY_TARGET_VERSION_ID, CONCAT('ALTER TABLE validation_job DROP KEY ', @KEY_TARGET_VERSION_ID, ';'), 'SELECT 0;');
+PREPARE stmt FROM @QUERY_DROP_KEY_TARGET_VERSION_ID;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+SET @KEY_CREATOR_ID := (SELECT INDEX_NAME FROM information_schema.STATISTICS WHERE TABLE_SCHEMA = (SELECT DATABASE()) AND TABLE_NAME = 'validation_job' AND COLUMN_NAME = 'creator_id');
+
+SET @QUERY_DROP_KEY_CREATOR_ID = IF(@KEY_CREATOR_ID, CONCAT('ALTER TABLE validation_job DROP KEY ', @KEY_CREATOR_ID, ';'), 'SELECT 0;');
+PREPARE stmt FROM @QUERY_DROP_KEY_CREATOR_ID;
+EXECUTE stmt;
+DEALLOCATE PREPARE stmt;
+
+
+-- Add foreign key constraints (with proper names) to avoid future orphanes.
+ALTER TABLE `validation_job` ADD CONSTRAINT `curr_max_version_id_refs_id_535fc21b` FOREIGN KEY (`curr_max_version_id`) REFERENCES `appversions` (`id`);
+ALTER TABLE `validation_job` ADD CONSTRAINT `target_version_id_refs_id_535fc21b` FOREIGN KEY (`target_version_id`) REFERENCES `appversions` (`id`);
+ALTER TABLE `validation_job` ADD CONSTRAINT `creator_id_refs_id_db67caad` FOREIGN KEY (`creator_id`) REFERENCES `users` (`id`);
