@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-28 21:04+0000\n"
+"PO-Revision-Date: 2017-05-28 21:03+0000\n"
 "Last-Translator: Tomer Cohen <tomer.mozilla@tomercohen.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4051,9 +4051,8 @@ msgstr ""
 msgid "Read more in our Blog"
 msgstr ""
 
-#, fuzzy
 msgid "Resources"
-msgstr "משאבים נוספים"
+msgstr "משאבים"
 
 # Plural in this context means many of the add-on type
 msgid "WebExtensions"
