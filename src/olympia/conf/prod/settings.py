@@ -203,7 +203,7 @@ FXA_CONFIG = {
         'oauth_host': 'https://oauth.accounts.firefox.com/v1',
         'profile_host': 'https://profile.accounts.firefox.com/v1',
         'redirect_url':
-            'https://addons.mozilla.org/api/v3/accounts/authenticate/',
+            'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
         'scope': 'profile',
     },
     'internal': {

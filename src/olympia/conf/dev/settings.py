@@ -242,7 +242,7 @@ FXA_CONFIG = {
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
         'redirect_url':
-            'https://addons-dev.allizom.org/api/v3/accounts/authenticate/',
+            'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
         'scope': 'profile',
     },
     'internal': {
