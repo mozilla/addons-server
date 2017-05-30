@@ -2805,6 +2805,60 @@ class TestReview(ReviewBase):
             )
         )
 
+    def test_data_value_attributes(self):
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version)
+        self.login_as_senior_editor()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        expected_actions_values = [
+            'confirm_auto_approved|', 'reject_multiple_versions|', 'info|',
+            'super|', 'comment|']
+        assert [
+            act.attrib['data-value'] for act in
+            doc('.data-toggle.review-actions-desc')] == expected_actions_values
+
+        assert (
+            doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
+            'reject_multiple_versions|')
+
+        assert (
+            doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
+            'reject_multiple_versions|info|super|comment|')
+        # We don't have approve/reject actions so these have an empty
+        # data-value.
+        assert (
+            doc('.data-toggle.review-files')[0].attrib['data-value'] == '|')
+        assert (
+            doc('.data-toggle.review-tested')[0].attrib['data-value'] == '|')
+
+    def test_data_value_attributes_unreviewed(self):
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.login_as_senior_editor()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        expected_actions_values = [
+            'public|', 'reject|', 'info|', 'super|', 'comment|']
+        assert [
+            act.attrib['data-value'] for act in
+            doc('.data-toggle.review-actions-desc')] == expected_actions_values
+
+        assert (
+            doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
+            'reject_multiple_versions|')
+
+        assert (
+            doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
+            'public|reject|info|super|comment|')
+        assert (
+            doc('.data-toggle.review-files')[0].attrib['data-value'] ==
+            'public|reject|')
+        assert (
+            doc('.data-toggle.review-tested')[0].attrib['data-value'] ==
+            'public|reject|')
+
 
 class TestReviewPending(ReviewBase):
 

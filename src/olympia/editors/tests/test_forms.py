@@ -3,7 +3,8 @@ import mock
 from django.utils.encoding import force_text
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.amo.tests import (
+    addon_factory, file_factory, TestCase, version_factory)
 from olympia.addons.models import Addon
 from olympia.editors.forms import ReviewForm
 from olympia.editors.helpers import ReviewHelper
@@ -117,6 +118,7 @@ class TestReviewForm(TestCase):
 
     def test_versions_queryset(self):
         addon_factory()
+        file_factory(version=self.addon.current_version)
         version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         form = self.get_form()
         assert not form.is_bound
