@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-23 10:49+0000\n"
+"PO-Revision-Date: 2017-05-30 12:11+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -22,13 +22,13 @@ msgid "This display name cannot be used."
 msgstr "Αυτό το όνομα προβολής δεν μπορεί να χρησιμοποιηθεί."
 
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Τα ονόματα χρήστη δεν μπορούν να περιέχουν μόνο ψηφία."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Εισάγετε ένα έγκυρο όνομα χρήστη, αποτελούμενο από γράμματα, αριθμούς, κάτω παύλες ή παύλες."
 
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Αυτό το όνομα χρήστη δεν μπορεί να χρησιμοποιηθεί."
 
 msgid "This username is already in use."
 msgstr "Αυτό το όνομα χρήστη χρησιμοποιείται ήδη."
@@ -94,9 +94,9 @@ msgstr "Προσθήκη στο {0}"
 msgid "This slug is already in use. Please choose another."
 msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλώ διαλέξτε κάποιο άλλο."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Το slug δε μπορεί να είναι \"%s\". Παρακαλώ διαλέξτε κάποιο άλλο."
+msgstr "Το slug δεν μπορεί να είναι \"%(slug)s\". Παρακαλώ επιλέξτε κάποιο άλλο."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -782,11 +782,15 @@ msgstr "κλείσιμο"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
 msgstr ""
+"Μερικά πρόσθετα ζητούν το δικαίωμα για την εκτέλεση ορισμένων λειτουργιών (παράδειγμα: ένα πρόσθετο διαχείρισης καρτελών θα ζητήσει το δικαίωμα για πρόσβαση στο σύστημα καρτελών του προγράμματος "
+"περιήγησής σας)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
+"Επειδή έχετε τον απόλυτο έλεγχο του Firefox σας, η επιλογή για αποδοχή ή άρνηση αυτών των αιτημάτων είναι δική σας. Η παραχώρηση δικαιωμάτων δεν επηρεάζει εγγενώς τις επιδόσεις ή την ασφάλεια του "
+"προγράμματος περιήγησης, αλλά σε μερικές, σπάνιες περιπτώσεις υπάρχει κίνδυνος."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
@@ -1131,10 +1135,10 @@ msgid "Another Body"
 msgstr "Άλλο σώμα"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Μη έγκυρη επικεφαλίδα πιστοποίησης. Δεν παρέχονται διαπιστευτήρια."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Μη έγκυρη επικεφαλίδα πιστοποίησης. Το νήμα διαπιστευτηρίων δεν πρέπει να περιέχει κενά."
 
 msgid "Signature has expired."
 msgstr "Η υπογραφή έχει λήξει."
