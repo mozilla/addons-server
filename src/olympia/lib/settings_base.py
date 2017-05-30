@@ -668,7 +668,7 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site (pre-impala).
         'common': (
-            'js/node_lib/raven.js',
+            'js/lib/raven.min.js',
             'js/common/raven-config.js',
             'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
@@ -746,7 +746,7 @@ MINIFY_BUNDLES = {
         # Impala: Things to be loaded at the bottom
         'impala': (
             'js/lib/ngettext-overload.js',
-            'js/node_lib/raven.js',
+            'js/lib/raven.min.js',
             'js/common/raven-config.js',
             'js/node_lib/underscore.js',
             'js/impala/carousel.js',
