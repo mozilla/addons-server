@@ -613,7 +613,7 @@ class TestESSearch(SearchBase):
         assert addon.pk not in self.get_results(response)
 
     def test_webextension_boost(self):
-        web_extension = self.addons[2]
+        web_extension = self.addons[1]
         web_extension.current_version.files.update(is_webextension=True)
         web_extension.save()
         self.refresh()
@@ -1168,7 +1168,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
 
     def test_webextension_boost(self):
         public_addons = Addon.objects.public().all()
-        web_extension = public_addons[2]
+        web_extension = public_addons[1]
         web_extension.current_version.files.update(is_webextension=True)
         web_extension.save()
         self.refresh()
