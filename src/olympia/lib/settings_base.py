@@ -597,7 +597,7 @@ MINIFY_BUNDLES = {
             'css/impala/tooltips.less',
             'css/impala/search.less',
             'css/impala/suggestions.less',
-            'css/impala/jquery.minicolors.css',
+            'css/node_lib/jquery.minicolors.css',
             'css/impala/personas.less',
             'css/impala/login.less',
             'css/impala/dictionaries.less',
@@ -668,15 +668,15 @@ MINIFY_BUNDLES = {
     'js': {
         # JS files common to the entire site (pre-impala).
         'common': (
-            'js/lib/raven.min.js',
+            'js/node_lib/raven.js',
             'js/common/raven-config.js',
-            'js/lib/underscore.js',
+            'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
             'js/lib/format.js',
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
@@ -712,7 +712,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/reviews.js',
 
             # Personas
-            'js/lib/jquery.hoverIntent.js',
+            'js/node_lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
@@ -738,27 +738,27 @@ MINIFY_BUNDLES = {
 
         # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
-            'js/lib/jquery-1.12.0.js',
-            'js/lib/jquery.browser.js',
+            'js/node_lib/jquery.js',
+            'js/node_lib/jquery.browser.js',
             'js/impala/preloaded.js',
             'js/zamboni/analytics.js',
         ),
         # Impala: Things to be loaded at the bottom
         'impala': (
             'js/lib/ngettext-overload.js',
-            'js/lib/raven.min.js',
+            'js/node_lib/raven.js',
             'js/common/raven-config.js',
-            'js/lib/underscore.js',
+            'js/node_lib/underscore.js',
             'js/impala/carousel.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
             'js/lib/format.js',
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
-            'js/lib/jquery.pjax.js',
+            'js/node_lib/jquery.pjax.js',
             'js/impala/footer.js',
             'js/common/keys.js',
 
@@ -798,13 +798,13 @@ MINIFY_BUNDLES = {
             'js/impala/listing.js',
 
             # Personas
-            'js/lib/jquery.hoverIntent.js',
+            'js/node_lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
             # Persona creation
             'js/common/upload-image.js',
-            'js/lib/jquery.minicolors.js',
+            'js/node_lib/jquery.minicolors.js',
             'js/impala/persona_creation.js',
 
             # Unicode: needs to be loaded after collections.js which listens to
@@ -829,9 +829,9 @@ MINIFY_BUNDLES = {
             'js/impala/login.js',
         ),
         'zamboni/discovery': (
-            'js/lib/jquery-1.12.0.js',
-            'js/lib/jquery.browser.js',
-            'js/lib/underscore.js',
+            'js/node_lib/jquery.js',
+            'js/node_lib/jquery.browser.js',
+            'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
@@ -840,13 +840,13 @@ MINIFY_BUNDLES = {
             'js/zamboni/analytics.js',
 
             # Add-ons details
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/lib/jquery-ui/ui.lightbox.js',
 
             # Personas
-            'js/lib/jquery.hoverIntent.js',
+            'js/node_lib/jquery.hoverIntent.js',
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
@@ -871,12 +871,12 @@ MINIFY_BUNDLES = {
             'js/impala/formset.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
-            'js/lib/jquery.timeago.js',
+            'js/node_lib/jquery.timeago.js',
         ),
         'zamboni/editors': (
-            'js/lib/highcharts.src.js',
+            'js/node_lib/highcharts.src.js',
             'js/zamboni/editors.js',
-            'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
+            'js/node_lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
             'js/lib/jquery.zoomBox.js',  # Used by themes_review.
             'js/zamboni/themes_review_templates.js',
             'js/zamboni/themes_review.js',
@@ -895,7 +895,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/files.js',
         ),
         'zamboni/stats': (
-            'js/lib/highcharts.src.js',
+            'js/node_lib/highcharts.src.js',
             'js/impala/stats/csv_keys.js',
             'js/impala/stats/helpers.js',
             'js/impala/stats/dateutils.js',
@@ -915,7 +915,7 @@ MINIFY_BUNDLES = {
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
             'js/debug/less_setup.js',
-            'js/lib/less.js',
+            'js/node_lib/less.js',
             'js/debug/less_live.js',
         ),
     }

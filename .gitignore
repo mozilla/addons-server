@@ -43,6 +43,8 @@ vagrantconfig_local.yaml
 vagrant/manifests/classes/custom.pp
 node_modules
 .npm/
+static/css/node_lib/*
+static/js/node_lib/*
 commonplace_projects
 web/media/fireplace
 web/media/rocketfuel
