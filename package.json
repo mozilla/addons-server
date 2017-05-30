@@ -10,7 +10,7 @@
     "potools": "potools"
   },
   "dependencies": {
-    "addons-linter": "0.19.2",
+    "addons-linter": "0.20.0",
     "clean-css": "4.1.1",
     "clean-css-cli": "4.1.0",
     "less": "2.7.2",
