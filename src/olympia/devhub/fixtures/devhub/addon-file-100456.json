@@ -95,7 +95,6 @@
             "description": null,
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": false,
             "thankyou_note": null,
             "admin_review": false,
             "slug": "invalid-id-20101206",

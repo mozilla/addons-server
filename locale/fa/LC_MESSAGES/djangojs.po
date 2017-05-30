@@ -1,22 +1,23 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2013-12-04 18:56+0000\n"
-"Last-Translator: Amir <amir_farsi@ymail.com>\n"
+"PO-Revision-Date: 2017-05-25 11:21+0000\n"
+"Last-Translator: Amin Mahmudian <amin.mahmudian@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} ستاره"
-msgstr[1] ""
 
 msgid "There was a problem contacting the server."
 msgstr "اشکالی در تماس با سرویس دهنده به وجود آمده است."
@@ -51,13 +52,11 @@ msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "افزونه شما با {0} خطا، نتوانست اعتبارسنجی شود."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "See full validation report"
 msgstr ""
@@ -80,16 +79,14 @@ msgstr ""
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "افزونه شما بدون خطا و با {0} اخطار، اعتبار سنجی شد."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "افزونه شما بدون خطا و با {0} پیام، اعتبار سنجی شد."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "افزونه شما بدون خطا یا اخطار، اعتبار سنجی شد."
 
 msgid "Your submission will be automatically signed."
 msgstr ""
@@ -110,10 +107,10 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr ""
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "چک‌لیست ارسال افزونه"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "لطفا نکته‌های زیر را قبل از نهایی کردن ارسال خود تایید کنید. این کار تاخیر یا سوتفاهم در طول فرایند بررسی را به حداقل می‌رساند:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -173,7 +170,7 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "نام پوسته شما"
 
 msgid "Flagged for review"
 msgstr "برای بازبینی پرچم گذاری شد"
@@ -185,7 +182,7 @@ msgid "Marked for deletion"
 msgstr "علامت گذاری شده برای حذف"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "نتایج به روز رسانی&hellip;"
 
 msgid "Category"
 msgstr ""
@@ -209,37 +206,37 @@ msgid " downloads"
 msgstr ""
 
 msgid "{0} users"
-msgstr ""
+msgstr "{0} کاربر"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} افزونه"
 
 msgid "{0} collections"
 msgstr "{0} مجموعه"
 
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} بررسی"
 
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} فروش"
 
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} بازپرداخت"
 
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} نصب"
 
 msgid "Downloads"
 msgstr ""
 
 msgid "Daily Users"
-msgstr ""
+msgstr "کاربر روزانه"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "مبلغ، به USD"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "تعداد مشارکت"
 
 msgid "More Info..."
 msgstr "اطّلاعات بیشتر..."
@@ -252,25 +249,25 @@ msgid "Collections Created"
 msgstr "مجوعه‌ها ایجاد شدند"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "افزونه‌های مورد استفاده"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "افزودنه‌های ایجاد شده"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "افزودنه‌های دریافت شده"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "افزودنه‌های به‌روز"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "بررسی‌های نوشته شده"
 
 msgid "User Signups"
-msgstr ""
+msgstr "ثبت‌نام‌های کاربران"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "مشترکان"
 
 msgid "Ratings"
 msgstr ""
@@ -297,10 +294,10 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "پیشنهادهای جستجو"
 
 msgid "Search Results"
-msgstr ""
+msgstr "نتایج جستجو"
 
 msgid "Homepage Promo"
 msgstr ""
@@ -630,12 +627,10 @@ msgstr ""
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
-msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -756,12 +751,10 @@ msgstr "هنگام آپلود فایل شما خطایی رخ داد."
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} فایل"
-msgstr[1] ""
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Learn more"
 msgstr "بیشتر بدانید"
@@ -818,7 +811,6 @@ msgstr ""
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
@@ -832,7 +824,6 @@ msgstr ""
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Requested Info"
 msgstr ""
@@ -895,17 +886,14 @@ msgstr ""
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
-msgstr[1] ""
 
 msgid "Validation task could not complete or completed with errors"
 msgstr ""

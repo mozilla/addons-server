@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2016-12-27 21:26+0000\n"
-"Last-Translator: Tomer Cohen <tomer.mozilla@tomercohen.com>\n"
+"PO-Revision-Date: 2017-05-29 20:48+0000\n"
+"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -17,18 +17,17 @@ msgstr ""
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
+msgstr[0] "כוכב {0}"
 msgstr[1] "{0} כוכבים"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "אירעה שגיאה בהתקשרות עם השרת."
 
 msgid "Select a file..."
-msgstr ""
+msgstr "בחירת קובץ..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "התוספת שלך צריכה להסתיים ב־‎.xpi‏, ‎.jar או ‎.xml"
+msgstr "התוספת שלך צריכה להסתיים ב־zip‏, xpi‏, crx‏, jar או xml."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -135,47 +134,47 @@ msgid "You cancelled the upload."
 msgstr "העלאה בוטלה."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "תמונות יכולות להיות בתבנית PNG או JPG."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "וידאו חייב להיות בתבנית WebM."
 
 msgid "Follow this Collection"
 msgstr "מעקב אחרי האוסף הזה"
 
 msgid "Stop Following"
-msgstr ""
+msgstr "הפסקת מעקב"
 
 msgid "Following"
-msgstr ""
+msgstr "במעקב"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ערכת הנושא הזאת אינה תואמת לגרסתך שמספרה {0}"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "כל הזכויות שמורות"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "שם ערכת הנושא שלך"
 
 msgid "Flagged for review"
 msgstr "מסומן לסקירה"
@@ -187,19 +186,19 @@ msgid "Marked for deletion"
 msgstr "מסומן למחיקה"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "עדכון תוצאות&hellip;"
 
 msgid "Category"
-msgstr ""
+msgstr "קטגוריה"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "חיפוש ערכות נושא עבור <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "חיפוש יישומים עבור <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "חיפוש תוספות עבור <b>{0}</b>"
 
 msgid "Use original"
 msgstr ""
@@ -241,7 +240,7 @@ msgid "Amount, in USD"
 msgstr ""
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "מספר התרומות"
 
 msgid "More Info..."
 msgstr "מידע נוסף..."
@@ -299,10 +298,10 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "הצעות חיפוש"
 
 msgid "Search Results"
-msgstr ""
+msgstr "תוצאות חיפוש"
 
 msgid "Homepage Promo"
 msgstr ""
@@ -338,13 +337,13 @@ msgid "Upsell"
 msgstr ""
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "הכירו את המפתח"
 
 msgid "User Profile"
 msgstr ""
 
 msgid "Version History"
-msgstr ""
+msgstr "היסטוריית גרסאות"
 
 msgid "Sharing"
 msgstr ""
@@ -395,7 +394,7 @@ msgid "Total Amount Contributed"
 msgstr ""
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "תרומה ממוצעת"
 
 msgid "Usage"
 msgstr ""
@@ -419,7 +418,7 @@ msgid "Fennec"
 msgstr "Fennec"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
@@ -621,7 +620,7 @@ msgid "No data available."
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "תאריך"
 
 msgid "Other"
 msgstr "אחר"
@@ -645,43 +644,42 @@ msgid "Accept and Install"
 msgstr "לקבל ולהתקין"
 
 msgid "Add to {0}"
-msgstr "להוסיף אל {0}"
+msgstr "הוספה אל {0}"
 
 msgid "Download Now"
-msgstr "להוריד עכשיו"
+msgstr "הורדה כעת"
 
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
 
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "עליך להשתמש ב־Firefox 10.0 ומעלה."
 
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr ""
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr "להתקין עבור {0} בכל זאת"
+msgstr "התקנה עבור {0} בכל זאת"
 
 msgid "Download for {0} anyway"
-msgstr "להוריד עבור {0} בכל זאת"
+msgstr "הורדה עבור {0} בכל זאת"
 
 msgid "Not available for your platform"
 msgstr "לא זמין לפלטפורמה שלך"
 
 #. L10n: {0} is an app name, {1} is the app version.
 msgid "Not available for {0} {1}"
-msgstr "לא זמין עובר {0} גרסה {1}"
+msgstr "לא זמין עבור {0} גרסה {1}"
 
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "עובד עם {app} {min} - {max}"
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "שגיאה עם {0}"
+msgstr "עובד עם {app}"
 
 msgid "View other versions"
-msgstr ""
+msgstr "צפייה בגרסאות אחרות"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
@@ -696,7 +694,7 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr "סליחה, אבל נדרש דפדפן ממשפחת Mozilla (כגון Firefox) כדי להתקין תוספת חיפוש."
 
 msgid "Adding to Favorites&hellip;"
-msgstr "להוסיף למועדפים&hellip;"
+msgstr "הוספה למועדפים&hellip;"
 
 msgid "Removing Favorite&hellip;"
 msgstr "הסרת מועדף&hellip;"
@@ -705,40 +703,40 @@ msgid "Add to Favorites"
 msgstr "הוספה למועדפים"
 
 msgid "Remove from Favorites"
-msgstr "הסרה ממועדפים"
+msgstr "הסרה מהמועדפים"
 
 msgid "Pending"
 msgstr "בהמתנה"
 
 msgid "Add a comment"
-msgstr "הוספת תגובה"
+msgstr "הוספת הערה"
 
 msgid "Comment"
-msgstr "תגובה"
+msgstr "הערה"
 
 msgid "Remove this add-on from the collection"
-msgstr "הסרת התוספת הזאת מהאוסף"
+msgstr "הסרת תוספת זו מהאוסף"
 
 msgid "Remove"
 msgstr "הסרה"
 
 msgid "Remove this user as a contributor"
-msgstr "להסיר את המשתמש הזה מתורמים"
+msgstr "הסרת משתמש זה כתורם"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "נדרשת כתובת דוא״ל."
 
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "אין אפשרות להוסיף את עצמך כתורם."
 
 msgid "You have already added that user."
-msgstr ""
+msgstr "כבר הוספת משתמש זה."
 
 msgid "Add to favorites"
 msgstr "הוספה למועדפים"
 
 msgid "Remove from favorites"
-msgstr "הסרה ממועדפים"
+msgstr "הסרה מהמועדפים"
 
 msgid "Stop following"
 msgstr "הפסקת מעקב"
@@ -757,13 +755,13 @@ msgstr "אירעה שגיאה בהעלאת הקובץ שלך."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] "קובץ אחד"
+msgstr[0] "קובץ {files}"
 msgstr[1] "{files} קבצים"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "סקירת משתמש {reviews}"
+msgstr[1] "{reviews} סקירות משתמשים"
 
 msgid "Learn more"
 msgstr "מידע נוסף"
@@ -775,7 +773,7 @@ msgid "Must be a valid e-mail address."
 msgstr ""
 
 msgid "No results found."
-msgstr ""
+msgstr "לא נמצאו תוצאות."
 
 msgid "{name} was viewing this page first."
 msgstr "{name} צפה בדף הזה ראשון."
@@ -793,33 +791,33 @@ msgid "Loading&hellip;"
 msgstr "טעינה&hellip;"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "הערות גרסה"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "הערות לסוקרים"
 
 msgid "No version notes found"
 msgstr "לא נמצאו הערות גרסה"
 
 msgid "Review Text"
-msgstr ""
+msgstr "מלל סקירה"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "נמצאו הערות לסוקר"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "ממוצע הסקירות"
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "מספר הסקירות"
 
 msgid "Loading..."
-msgstr ""
+msgstr "בטעינה..."
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "נותר תו <b>אחד</b>."
+msgstr[0] "נותר תו <b>{0}</b>."
 msgstr[1] "נותרו <b>{0}</b> תווים."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -852,16 +850,16 @@ msgid "Approved"
 msgstr ""
 
 msgid "No results found"
-msgstr ""
+msgstr "לא נמצאו תוצאות"
 
 msgid "Theme"
-msgstr ""
+msgstr "ערכת נושא"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "סוקר"
 
 msgid "Status"
-msgstr ""
+msgstr "מצב"
 
 msgid "All tests passed successfully."
 msgstr "כל הבדיקות עברו בהצלחה."
@@ -882,7 +880,7 @@ msgid "{0} line {1} column {2}"
 msgstr ""
 
 msgid "{0} line {1}"
-msgstr "{0} מתוך {1}"
+msgstr ""
 
 msgid "Compatibility Tests"
 msgstr "בדיקות תאימות"

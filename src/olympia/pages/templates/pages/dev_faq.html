@@ -70,6 +70,15 @@
         of the browser UI.
       {% endtrans %}
     </p>
+    <p>
+      {% trans webext_url="https://developer.mozilla.org/en-US/Add-ons/WebExtensions",
+               portlegacy_url="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on"%}
+      <strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from 
+      Firefox 57. Please use <a href="{{ webext_url }}">WebExtensions</a> APIs to develop new add-ons. If you have a legacy add-on, 
+      consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit
+      <a href="{{ portlegacy_url }}">Porting a legacy Firefox add-on</a>. 
+      {% endtrans %}
+    </p>
 
     <h3>{{ _('How do I test for compatibility with the latest version of Mozilla software?') }}</h3>
     <p>
@@ -95,8 +104,8 @@
           <li>{{ _('#extdev (for add-on development discussions)') }}</li>
           {# L10n: #amo is the name of the IRC channel.  do not change. #}
           <li>{{ _('#amo (for support relating to hosting your add-on on AMO)') }}</li>
-          {# L10n: #jetpack is the name of the IRC channel.  do not change. #}
-          <li>{{ _('#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)') }}</li>
+          {# L10n: #webextensions is the name of the IRC channel.  do not change. #}
+          <li>{{ _('#webextensions (for discussions about developing and porting to WebExtensions)') }}</li>
           </ul>
       </li>
       <li><a href="https://discourse.mozilla-community.org/c/add-ons">

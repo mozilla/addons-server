@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-21 17:03+0000\n"
+"PO-Revision-Date: 2017-05-29 10:14+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4884,14 +4884,13 @@ msgid "Confirm Approval"
 msgstr "Potvrdit schválení"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
+msgstr "Poslední veřejná verze tohoto doplňku byla schválena automaticky. Vaše schválení bude uloženo bez zasílání upozornění vývojáři."
 
 msgid "Reviewer reply"
 msgstr "Odpověď redaktora"
 
-#, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Vývojáři bude odeslán požadavek o více informací. Jakmile odpoví, budete upozorněni."
+msgstr "Tímto pošlete vývojáři zprávu. Jakmile odpoví, budete upozorněni."
 
 msgid "Request super-review"
 msgstr "Vyžádat kontrolu administrátorem"
@@ -4927,29 +4926,28 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Uses a custom CSP."
-msgstr ""
+msgstr "Používá vlastní CSP."
 
 msgid "Uses nativeMessaging permission."
-msgstr ""
+msgstr "Používá oprávnění nativeMessaging."
 
 msgid "Uses a content script for all URLs."
-msgstr ""
+msgstr "Pro všechny URL adresy přidává do obsahu vlastní skript."
 
 msgid "Has too many daily users."
 msgstr "Má příliš mnoho denních uživatelů."
 
 msgid "Has too few consecutive human-approved updates."
-msgstr ""
+msgstr "Má příliš málo po sobě jdoucích lidmi schválených aktualizací."
 
 msgid "Has a pending info request."
-msgstr ""
+msgstr "Čeká na doplnění informací."
 
 msgid "Is flagged for admin review."
 msgstr "Označeno pro kontrolu správcem."
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "můj doplněk je zkontrolován redaktorem"
+msgstr "Uzamčeno redaktorem."
 
 msgid "Duplicate Submission"
 msgstr "Duplicitní odeslání"
@@ -5009,9 +5007,8 @@ msgstr "potřebuje kontrolu administrátory"
 msgid "commented"
 msgstr "okomentováno"
 
-#, fuzzy
 msgid "confirmed as approved"
-msgstr "byl schválen"
+msgstr "byl potvrzen a schválen"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5025,9 +5022,8 @@ msgstr "Vaše zámky u motivů byly úspěšně odstraněny. Jiní redaktoři ny
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Nahlášená zneužití"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Nahlášená zneužití pro doplněk {addon} ({num})"
+msgstr "Nahlášená zneužití doplňku {addon} ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -5057,13 +5053,11 @@ msgstr "Datum posledního schválení"
 msgid "Approvals Since Last Automatic Review"
 msgstr "Schválení od poslední automatické kontroly"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Nahlášená zneužití pro doplněk {addon} ({num})"
+msgstr "Nahlášená zneužití ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Moderování recenzí ({num})"
+msgstr "Záporné recenze ({num})"
 
 msgid "More about this add-on"
 msgstr "Více o doplňku"
@@ -5332,12 +5326,11 @@ msgstr "Stáhnout soubory"
 msgid "The developer has provided source code."
 msgstr "Vývojář poskytl zdrojový kód."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Doplňky pro Android"
+msgstr "Nebylo automaticky schváleno"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Skript pro automatické schválení ještě pro tuto verzi neproběhl."
 
 msgid "This version has not been reviewed."
 msgstr "Tato verze nebyla zkontrolována."
@@ -5395,7 +5388,7 @@ msgstr "Za zvolenou dobu nebyly nalezeny žádné kontroly."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "Uživatel %(user)s [%(ip_address)s] %(object)s nahlásil dne %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Skrýt toto oznámení"
@@ -7493,101 +7486,100 @@ msgstr "Ano, autor doplňku může odeslat k recenzi odpověď. Pro delší disk
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Jsem autor doplňku, mohu smazat nepravdivé recenze či hodnocení?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
-"V obecném případě ne. Ale pokud recenze nesplňuje podmínky pro kontrolu uvedené výše, můžete klepnout na \"Nahlásit recenze\" pro její moderování. Pokud recenze obsahuje stížnost, která již není "
-"relevantní s ohledem na vydání nové verze doplňku, můžeme zvážit její smazání. Podrobnější požadavek nám zašlete na amo-editors@mozilla.org."
+"V obecném případě ne. Ale pokud recenze nesplňuje pravidla uvedená výše, můžete klepnout na \"Nahlásit recenzi\" pro její moderování. Pokud recenze obsahuje stížnost, která již není relevantní s "
+"ohledem na vydání nové verze doplňku, můžeme zvážit její smazání."
 
 msgid "Start Now"
-msgstr ""
+msgstr "Začít"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
+msgstr "Mozilla chce najít nejlepší způsob jak zajistit bezpečí uživatelů při používání softwaru třetích stran, jakým jsou zásuvné moduly. Pomoci nám můžete zapojením do této studie."
 
 msgid "What will happen next"
-msgstr ""
+msgstr "Co se bude dít dál"
 
 msgid "<strong>If you agree</strong> to participate:"
 msgstr "<strong>Pokud souhlasíte</strong> s účastí:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "V budoucnu můžeme do Firefoxu přidat funkce pro ovládání zásuvných modulů, jejich online zabezpečení a výkon."
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
+msgstr "Používejte Firefox běžným způsobem jakoby se nic nedělo. Neměli byste zaznamenat žádnou změnu."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Po několika týdnech se studie sama ukončí a váš Firefox se vrátí do běžného stavu."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Požádáme vás o vyplnění krátkého dobrovolného dotazníku o vašich zkušenostech se studií. Vyplnění bude trvat méně než 5 minut."
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "Opuštění studie"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Studie skončí sama po několika týdnech. Můžete ji ale opustit i dříve. Zde je postup:"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Do adresního řádku napište about:addons a stiskněte Enter."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "V seznamu doplňků nejděte Plugin Safety."
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "Klepněte na tlačítko pro odebrání."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "Pokud se rozhodnete studii opustit dříve, požádáme vás o vyplnění dotazníku. Rádi bychom se dozvěděli vaše zkušenosti i pokud se nezúčastníte celé studie."
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Opuštění studie nemá žádný vliv na vaše případné zapojení v dalších studií."
 
 msgid "Your privacy"
 msgstr "Vaše soukromí"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Všechny studie"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Při každé studii dochází ke sběru dat o důležitých událostech, jakými jsou instalace, odinstalace, denní používání a také o konci studie. Studie také obsahují nepovinný dotazník."
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Tato data jsou spojena se <a href=\"%(url)s\">sběrem telemetrie Firefoxu</a>."
 
 msgid "This particular Study"
-msgstr ""
+msgstr "Tato konkrétní studie"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Kromě dat sbíraných samotnou studií sbírá Mozilla také informace o:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Stránkách, které navštívíte, které chtějí používat zásuvné moduly pro svůj obsah;"
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Jak na stránkách obsah modulu používáte, včetně jakým způsobem jste se rozhodli jeho spuštění povolit."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla udržuje tato data v soukromí - sdíleny budou pouze anonymizovaná a agregovaná shrnutí."
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Další informace a shromažďování dat pro tuto studii můžete najít <a href=\"%(url)s\">zde</a>."
 
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Pomáháte vylepšit Firefox"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
-msgstr ""
+msgstr "V Mozille si zakládáme na produktech vytvářených na míru vám, uživatelům. Proto potřebujeme vaši pomoc. Účastí v této studii nám pomůžete lépe rozhodnout o budoucím vývoji Firefoxu."
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Od:"
 
 msgid "Sunbird has retired"
 msgstr "Vývoj Sunbirdu byl ukončen"
