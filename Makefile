@@ -22,25 +22,6 @@ ifneq ($(NPM_CONFIG_PREFIX),)
 	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
 endif
 
-NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
-STATIC_JS := static/js/node_lib/
-STATIC_CSS := static/css/node_lib/
-NODE_LIBS_JS := \
-less/dist/less.js \
-highcharts/js/highcharts.src.js \
-jquery/dist/jquery.js \
-jquery.cookie/jquery.cookie.js \
-jquery.browser/dist/jquery.browser.js \
-jquery-hoverintent/jquery.hoverIntent.js \
-@claviska/jquery-minicolors/jquery.minicolors.js \
-jquery-pjax/jquery.pjax.js \
-timeago/jquery.timeago.js \
-underscore/underscore.js
-NODE_LIBS_CSS := \
-@claviska/jquery-minicolors/jquery.minicolors.css \
-@claviska/jquery-minicolors/jquery.minicolors.png
-
-
 help:
 	@echo "Please use 'make <target>' where <target> is one of the following commands."
 	@echo "Commands that are designed be run in the container:"
@@ -160,14 +141,6 @@ ifeq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the container)
 endif
 	npm install $(NPM_ARGS)
-	$(MAKE) copy_node_js
-
-copy_node_js:
-ifeq ($(IN_DOCKER),)
-	$(warning Command is designed to be run in the container)
-endif
-	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
-	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
 
 update_deps:
 ifeq ($(IN_DOCKER),)

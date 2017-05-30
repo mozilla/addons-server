@@ -22,7 +22,6 @@ RUN yum install -y                                          \
         libffi-devel                                        \
         libxml2-devel                                       \
         libxslt-devel                                       \
-        make                                                \
         mariadb                                             \
         mariadb-devel                                       \
         nodejs                                              \
@@ -63,9 +62,7 @@ FXA_CONFIG = {'default': {}, 'internal': {}}\n"\
 RUN DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale
 
 # compile asssets
-
 RUN npm install \
-    && make copy_node_js \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets --use-uuid -t \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput
 
