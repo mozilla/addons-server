@@ -718,9 +718,11 @@ class ReviewBase(object):
         is incrementing AddonApprovalsCounter, which also resets the last
         human review date to now, and log it so that it's displayed later
         in the review page."""
-        self.version = self.addon.current_version
         AddonApprovalsCounter.increment_for_addon(addon=self.addon)
-        self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED)
+        # Log using the latest public version, not self.version, which could
+        # be awaiting review still.
+        self.log_action(
+            amo.LOG.CONFIRM_AUTO_APPROVED, version=self.addon.current_version)
 
     def reject_multiple_versions(self):
         """Reject a list of versions."""
