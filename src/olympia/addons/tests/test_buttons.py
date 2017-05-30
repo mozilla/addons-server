@@ -335,6 +335,26 @@ class TestButton(ButtonTest):
         self.addon.current_version = None
         assert self.get_button().links() == []
 
+    def test_experimental_addon_button_class(self):
+        b = self.get_button()
+        assert not b.show_contrib
+
+        self.addon.takes_contributions = True
+        b = self.get_button()
+        assert not b.show_contrib
+
+        self.addon.annoying = amo.CONTRIB_ROADBLOCK
+        b = self.get_button()
+        assert b.show_contrib
+        assert b.button_class == ['contrib', 'go']
+        assert b.install_class == ['contrib']
+
+        self.addon.is_experimental = True
+        b = self.get_button()
+        assert b.experimental
+        assert b.button_class == ['caution']
+        assert b.install_class == ['lite']
+        assert b.install_text == 'Experimental'
 
 class TestButtonHtml(ButtonTest):
 
