@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-31 19:49+0000\n"
+"PO-Revision-Date: 2017-05-31 22:29+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -379,8 +379,8 @@ msgstr "תומך ב־Firefox 57 ומעלה"
 #. {0} is the number of downloads.
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "הורדה אחת בשבוע"
-msgstr[1] "{0} הורדות בשבוע"
+msgstr[0] ""
+msgstr[1] ""
 
 #. {0} is the number of users.
 msgid "{0} user"
@@ -1663,7 +1663,7 @@ msgid "Most Users"
 msgstr "כמות משתמשים"
 
 msgid "Weekly Downloads"
-msgstr "הורדות שבועיות"
+msgstr ""
 
 msgid "Up & Coming"
 msgstr ""
@@ -8097,7 +8097,7 @@ msgid "Choose a category"
 msgstr "בחר קטגוריה"
 
 msgid "View Mobile Site"
-msgstr "הצגת אתר בגרסה הניידת"
+msgstr "הצגת אתר בגרסה לנייד"
 
 msgid "Report a bug"
 msgstr "דיווח על תקלה"
@@ -8356,7 +8356,7 @@ msgid "Username"
 msgstr "שם משתמש"
 
 msgid "Email Address"
-msgstr ""
+msgstr "כתובת דוא״ל"
 
 msgid "Manage Firefox Account..."
 msgstr "ניהול חשבון Firefox..."
