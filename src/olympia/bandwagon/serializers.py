@@ -81,3 +81,11 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
     class Meta:
         model = CollectionAddon
         fields = ('addon', 'downloads', 'notes')
+        writeable_fields = (
+            'notes'
+        )
+        read_only_fields = tuple(set(fields) - set(writeable_fields))
+
+    def validate_addon(self, value):
+        # check the addon is public, etc.
+        return value

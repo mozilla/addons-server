@@ -1664,14 +1664,6 @@ class TestCollectionAddonViewSet(TestCase):
         assert response.status_code == 200
         assert len(response.data['results']) == 3
 
-    def test_disallowed_verbs(self):
-        response = self.client.post(self.url)
-        assert response.status_code == 405
-        response = self.client.put(self.url)
-        assert response.status_code == 405
-        response = self.client.patch(self.url)
-        assert response.status_code == 405
-
     def test_404(self):
         # Invalid user.
         response = self.client.get(reverse(
