@@ -358,7 +358,8 @@ class TestReviewLog(EditorTest):
 
         ActivityLog.create(
             amo.LOG.APPROVE_VERSION, addon, addon.current_version,
-            user=self.get_user(), details={'comments': 'foo'})
+            user=self.get_user(), details={'comments': 'foo'},
+            created=self.days_ago(1))
 
         r = self.client.get(self.url)
         url = reverse('editors.review', args=[addon.slug])
