@@ -43,9 +43,15 @@
                   {% if item.arguments|count >= 2 %}
                     {{ item.arguments[1] }}
                   {% endif %}
+                  {% if item.arguments[1].channel == amo.RELEASE_CHANNEL_LISTED %}
                   <a href="{{ url('editors.review', item.arguments[0].slug) }}">
                     {{ ACTION_DICT.get(item.action) }}
                   </a>
+                  {% else %}
+                  <a href="{{ url('editors.review', 'unlisted', item.arguments[0].slug) }}">
+                    {{ ACTION_DICT.get(item.action) }}
+                  </a>
+                  {% endif %}
                 {% else %}
                     {{ _('Add-on has been deleted.') }}
                 {% endif %}
