@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
@@ -43,8 +43,7 @@ detail_patterns = [
 ]
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     # Promo modules for the homepage
     url('^i/promos$', views.homepage_promos, name='addons.homepage_promos'),
 
@@ -75,4 +74,4 @@ urlpatterns = patterns(
 
     url('^find-replacement/$', views.find_replacement_addon,
         name='addons.find_replacement'),
-)
+]

@@ -1,11 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from . import views
 
 
-urlpatterns = patterns(
-    '',
-
+urlpatterns = [
     # Archived stats
     url('^archive/(?P<slug>[^/]+)/(?P<year>\d{4})/(?P<month>\d{2})/$',
         views.ArchiveListView.as_view(),
@@ -15,5 +13,4 @@ urlpatterns = patterns(
         '(?P<model_name>\w+)/$',
         views.ArchiveView.as_view(),
         name='stats.archive'),
-
-)
+]

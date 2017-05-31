@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from olympia.addons.urls import ADDON_ID
 from olympia.versions.feeds import VersionsRss
@@ -6,8 +6,7 @@ from olympia.versions.feeds import VersionsRss
 from . import views
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url('^$',
         views.version_list, name='addons.versions'),
     url('^beta$',
@@ -21,10 +20,9 @@ urlpatterns = patterns(
         name='addons.versions'),
     url('^(?P<version_num>[^/]+)/updateinfo/$', views.update_info,
         name='addons.versions.update_info'),
-)
+]
 
-download_patterns = patterns(
-    '',
+download_patterns = [
     # .* at the end to match filenames.
     # /file/:id/type:attachment
     url('^file/(?P<file_id>\d+)(?:/type:(?P<type>\w+))?(?:/.*)?',
@@ -38,4 +36,4 @@ download_patterns = patterns(
     url('^latest(?P<beta>-beta)?/%s/(?:type:(?P<type>\w+)/)?'
         '(?:platform:(?P<platform>\d+)/)?.*' % ADDON_ID,
         views.download_latest, name='downloads.latest'),
-)
+]
