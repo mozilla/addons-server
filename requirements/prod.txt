@@ -148,6 +148,9 @@ cffi==1.10.0 \
     --hash=sha256:285ab352552f52f1398c912556d4d36d4ea9b8450e5c65d03809bf9886755533 \
     --hash=sha256:5576644b859197da7bbd8f8c7c2fb5dcc6cd505cadb42992d5f104c013f8a214 \
     --hash=sha256:b3b02911eb1f6ada203b0763ba924234629b51586f72a21faacc638269f4ced5
+# chardet is required by requests
+chardet==3.0.3 \
+    --hash=sha256:8da3f329e2c5779247f4cff7081512c531731ef6a9c6ef78084e8ed8d18226c7
 # click is required by dennis, pyupio
 click==6.7 \
     --hash=sha256:29f99fc6125fbc931b758dc053b3114e55c77a6e4c6c3a2674a2dc986016381d \
@@ -398,9 +401,9 @@ redis==2.10.5 \
     --hash=sha256:97156b37d7cda4e7d8658be1148c983984e1a975090ba458cc7e244025191dbd \
     --hash=sha256:5dfbae6acfc54edf0a7a415b99e0b21c0a3c27a7f787b292eea727b1facc5533
 # requests is required by PyBrowserID, amo-validator, django-mozilla-product-details, docker-compose, docker-py, nobot, pytest-base-url, pytest-selenium, pyupio, safety
-requests==2.14.2 \
-    --hash=sha256:3b39cde35be51762885631cf586f4dc2284951b44d479a4454020758d767cc2f \
-    --hash=sha256:a274abba399a23e8713ffd2b5706535ae280ebe2b8069ee6a941cb089440d153
+requests==2.17.3 \
+    --hash=sha256:baf701b4a9d4cbe40169e8ab77816f7abadbad502ba459c30f7a2bc138e4d612 \
+    --hash=sha256:8d29f97ed1541709b57caddb77bb20592411d7ca10ec4f03275f49ee8456e225
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
