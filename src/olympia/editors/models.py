@@ -4,22 +4,24 @@ from datetime import date, datetime, timedelta
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Sum
+from django.db.models import Q, Sum
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
 from olympia import amo
-from olympia.amo.models import ManagerBase, ModelBase, skip_cache
+from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
 from olympia.amo.helpers import absolutify
+from olympia.amo.models import ManagerBase, ModelBase, skip_cache
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter, Persona
 from olympia.editors.sql_model import RawSQLModel
 from olympia.files.models import FileValidation
+from olympia.reviews.models import Review
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.models import Version, version_uploaded
 
@@ -704,9 +706,45 @@ class AutoApprovalSummary(ModelBase):
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
+    weight = models.IntegerField(default=0)
 
     def __unicode__(self):
         return u'%s %s' % (self.version.addon.name, self.version)
+
+    def calculate_weight(self):
+        """Calculate the weight value for this version according to various
+        risk factors.
+
+        That value is then used in editor tools to prioritize add-ons in the
+        auto-approved queue."""
+        # Note: for the moment, some factors are in direct contradiction with
+        # the rules determining whether or not an add-on can be auto-approved
+        # in the first place, but we'll relax those rules as we move towards
+        # post-review.
+        addon = self.version.addon
+        one_year_ago = (self.created or datetime.now()) - timedelta(days=365)
+        factors = {
+            'admin_review': 100 if addon.admin_review else 0,
+            'abuse_reports': min(
+                AbuseReport.objects
+                .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
+                .filter(created__gte=one_year_ago).count() * 10, 100),
+            'negative_reviews': min(
+                Review.objects
+                .filter(addon=addon)
+                .filter(rating__lte=3, created__gte=one_year_ago)
+                .count() * 2, 100),
+            'average_daily_users': min(addon.average_daily_users / 10000, 100),
+            'past_rejection_history': min(
+                Version.objects
+                .filter(addon=addon,
+                        files__reviewed__gte=one_year_ago,
+                        files__original_status=amo.STATUS_NULL,
+                        files__status=amo.STATUS_DISABLED)
+                .distinct().count() * 10, 100),
+        }
+        self.weight = sum(factors.values())
+        return factors
 
     def calculate_verdict(
             self, max_average_daily_users=0, min_approved_updates=0,
@@ -848,10 +886,12 @@ class AutoApprovalSummary(ModelBase):
         verdict_info = instance.calculate_verdict(
             dry_run=dry_run, max_average_daily_users=max_average_daily_users,
             min_approved_updates=min_approved_updates)
+        instance.calculate_weight()
         # We can't do instance.save(), because we want to handle the case where
-        # it already existed. So we put the verdict we just calculated in data
-        # and use update_or_create().
+        # it already existed. So we put the verdict and weight we just
+        # calculated in data and use update_or_create().
         data['verdict'] = instance.verdict
+        data['weight'] = instance.weight
         instance, _ = cls.objects.update_or_create(
             version=version, defaults=data)
         return instance, verdict_info

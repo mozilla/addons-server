@@ -11,6 +11,7 @@ from olympia.addons.tasks import (
     add_firefox57_tag, find_inconsistencies_between_es_and_db)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import convert_purified, get_preview_sizes
+from olympia.editors.tasks import recalculate_post_review_weight
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.reviews.tasks import addon_review_aggregates
 
@@ -21,6 +22,11 @@ tasks = {
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []},
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
+    'recalculate_post_review_weight': {
+        'method': recalculate_post_review_weight,
+        'qs': [
+            Q(_current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
+        ]},
     'sign_addons': {'method': sign_addons, 'qs': []},
     'add_firefox57_tag_to_webextensions': {
         'method': add_firefox57_tag,
