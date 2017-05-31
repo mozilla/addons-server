@@ -328,12 +328,12 @@ VALIDATOR_SKELETON_EXCEPTION = {
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [
         {"id": ["validator", "unexpected_exception"],
-         "message": "Sorry, we couldn't load your add-on.",
+         "message": _("Sorry, we couldn't load your add-on."),
          "description": [
-            "Validation was unable to complete successfully due to an "
-            "unexpected error.",
-            "The error has been logged, but please consider filing an issue "
-            "report here: http://bit.ly/1POrYYU"],
+            _("Validation was unable to complete successfully due to an "
+              "unexpected error."),
+            _("The error has been logged, but please consider filing an issue"
+              " report here: http://bit.ly/1POrYYU")],
          "type": "error",
          "tier": 1,
          "for_appversions": None,
@@ -353,13 +353,13 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [
         {"id": ["validator", "unexpected_exception"],
-         "message": "Sorry, we couldn't load your WebExtension.",
+         "message": _("Sorry, we couldn't load your WebExtension."),
          "description": [
-            "Validation was unable to complete successfully due to an "
-            "unexpected error.",
-            "Check https://developer.mozilla.org/en-US/Add-ons/WebExtensions "
-            "to ensure your webextension is valid or file a bug at "
-            "http://bit.ly/1POrYYU"],
+            _("Validation was unable to complete successfully due to an "
+              "unexpected error."),
+            _("Check https://developer.mozilla.org/en-US/Add-ons/WebExtensions"
+              " to ensure your webextension is valid or file a bug at "
+              "http://bit.ly/1POrYYU")],
          "type": "error",
          "tier": 1,
          "for_appversions": None,
