@@ -22,6 +22,11 @@ ifneq ($(NPM_CONFIG_PREFIX),)
 	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
 endif
 
+NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
+STATIC_JS := static/js/node_lib/
+NODE_LIBS_JS := \
+jquery/dist/jquery.js
+
 help:
 	@echo "Please use 'make <target>' where <target> is one of the following commands."
 	@echo "Commands that are designed be run in the container:"
@@ -141,6 +146,13 @@ ifeq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the container)
 endif
 	npm install $(NPM_ARGS)
+	$(MAKE) copy_node_js
+
+copy_node_js:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
+	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
 
 update_deps:
 ifeq ($(IN_DOCKER),)
