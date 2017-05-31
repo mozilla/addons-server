@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-31 18:58+0000\n"
+"PO-Revision-Date: 2017-05-31 19:21+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1075,7 +1075,7 @@ msgid "Collections I've Made"
 msgstr "האוספים שיצרתי"
 
 msgid "Collections I'm Following"
-msgstr "האוספים אחריהם אני עוקב"
+msgstr "אוספים במעקב"
 
 msgid "My Favorite Add-ons"
 msgstr "התוספות המועדפות עליי"
@@ -1250,7 +1250,7 @@ msgstr "שם"
 # 75%
 # 100%
 msgid "Recently Updated"
-msgstr "עודכן לאחרונה"
+msgstr "עודכנו לאחרונה"
 
 msgid "Recently Popular"
 msgstr "פופולרי לאחרונה"
