@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-31 22:29+0000\n"
+"PO-Revision-Date: 2017-05-31 22:44+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -600,7 +600,7 @@ msgid "Submit review"
 msgstr "שליחת סקירה"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "בבקשה אל תפרסם דיווחי באגים בסקירות. אנחנו לא מעבירים את כתובת הדוא״ל שלך למפתחי התוספות והם אולי יצטרכו ליצור אתך קשר כדי לפתור את הבעיה."
+msgstr "נא לא לפרסם דיווחי באגים בסקירות. כתובת הדוא״ל שלך לא זמינה למפתחי תוספות, כך שלא תהיה באפשרותם ליצור איתך קשר לצורך פתרון הבעיה."
 
 #, python-format
 msgid ""
@@ -8299,7 +8299,7 @@ msgid "Errors Found"
 msgstr ""
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "אירעו שגיאות בשינויים שביצעת. בבקשה תקן אותן ושלח שוב."
+msgstr "אירעו שגיאות בשינויים שביצעת. נא לתקן אותן ולשלוח שוב."
 
 msgid "User reported."
 msgstr ""
@@ -8308,7 +8308,7 @@ msgid "new"
 msgstr ""
 
 msgid "Delete User Account"
-msgstr "למחוק חשבון משתמש"
+msgstr "מחיקת חשבון משתמש"
 
 #, python-format
 msgid ""
@@ -8333,7 +8333,7 @@ msgid "I understand this step cannot be undone."
 msgstr ""
 
 msgid "Delete my user account now"
-msgstr "למחוק את חשבון המשתמש לי עכשיו"
+msgstr "מחיקת חשבון המשתמש שלי כעת"
 
 msgid "Delete User Photo"
 msgstr "מחיקת תמונת משתמש"
