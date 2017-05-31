@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
@@ -29,8 +29,8 @@ class CollectionSerializer(serializers.ModelSerializer):
         validators = [
             UniqueTogetherValidator(
                 queryset=Collection.objects.all(),
-                message=ugettext(u'This slug is already in use by another one '
-                                 u'of your collections.'),
+                message=_(u'This slug is already in use by another one '
+                          u'of your collections.'),
                 fields=('slug', 'author')
             )
         ]
@@ -40,7 +40,7 @@ class CollectionSerializer(serializers.ModelSerializer):
 
     def validate_name(self, value):
         # if we have a localised dict of values validate them all.
-        if type(value) == dict:
+        if isinstance(value, dict):
             return {locale: self.validate_name(sub_value)
                     for locale, sub_value in value.iteritems()}
         if DeniedName.blocked(value):
@@ -68,7 +68,9 @@ class CollectionSerializer(serializers.ModelSerializer):
 
     def validate_author(self, value):
         if not self.partial:
+            # If we've got a new collection set the author to account user
             value = self.context['request'].user
+        # Otherwise, we're modifying an existing collection so don't change it.
         return value
 
 

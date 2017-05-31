@@ -1425,10 +1425,10 @@ class CollectionViewSetDataMixin(object):
         super(CollectionViewSetDataMixin, self).setUp()
 
     def send(self, url=None, data=None):
-        pass
+        raise NotImplementedError
 
     def get_url(self, user):
-        pass
+        raise NotImplementedError
 
     @property
     def user(self):
@@ -1566,6 +1566,8 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         self.collection = self.collection.reload()
         self.check_data(self.collection, self.data,
                         json.loads(response.content))
+        # Just double-check we didn't steal their collection
+        assert self.collection.author.id == random_user.id
 
 
 class TestCollectionViewSetDelete(TestCase):

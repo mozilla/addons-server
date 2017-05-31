@@ -187,7 +187,7 @@ If your account has the `Collections:Edit` permission then you can access any co
     :>json string default_locale: The default locale of the description and name fields. (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
     :>json string modified: The date the collection was last updated.
-    :>json string|object name: The of the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object name: The name of the collection. (See :ref:`translated fields <api-overview-translations>`).
     :>json boolean public: Whether the collection is `listed` - publicly viewable.
     :>json string slug: The name used in the URL.
     :>json string url: The (absolute) collection detail URL.
@@ -211,7 +211,7 @@ in the :ref:`collection <collection-detail-object>` but not listed below are not
 
     :<json string|null default_locale: The default locale of the description and name fields. Defaults to `en-US`. (See :ref:`translated fields <api-overview-translations>`).
     :<json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
-    :<json string|object name: The of the collection. (required) (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object name: The name of the collection. (required) (See :ref:`translated fields <api-overview-translations>`).
     :<json boolean public: Whether the collection is `listed` - publicly viewable.  Defaults to `True`.
     :<json string slug: The name used in the URL (required).
 
@@ -235,7 +235,7 @@ in the :ref:`collection <collection-detail-object>` but not listed below are not
 
     :<json string default_locale: The default locale of the description and name fields. (See :ref:`translated fields <api-overview-translations>`).
     :<json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
-    :<json string|object name: The of the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object name: The name of the collection. (See :ref:`translated fields <api-overview-translations>`).
     :<json boolean public: Whether the collection is `listed` - publicly viewable.
     :<json string slug: The name used in the URL.
 
