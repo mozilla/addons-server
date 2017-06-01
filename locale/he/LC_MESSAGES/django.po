@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-06-01 17:44+0000\n"
+"PO-Revision-Date: 2017-06-01 18:10+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -402,7 +402,7 @@ msgstr "מאת"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr "ערכות נושא של {0} נוספות"
+msgstr "ערכות נושא נוספות של {0}"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
@@ -1418,7 +1418,7 @@ msgstr "התוספות המועדפות עליי"
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "תוספת <span>%(addons)s</span>"
+msgstr[0] "תוספת <span>אחת</span>"
 msgstr[1] "<span>%(addons)s</span> תוספות"
 
 #, python-format
@@ -7714,13 +7714,13 @@ msgstr ""
 # {2} is a number
 # {3} is the word the person is searching for
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "הצגת {0}–{1} מתוך {2} תוצאות עבור <strong>{3}</strong>"
+msgstr "מוצגים {0} - {1} מתוך {2} תוצאות עבור <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number
 # {2} is a number
 msgid "Showing {0} - {1} of {2} results"
-msgstr "הצגת {0}–{1} מתוך {2} תוצאות"
+msgstr "מוצגים {0} - {1} מתוך {2} תוצאות"
 
 msgid "All Add-ons"
 msgstr "כל התוספות"
@@ -8583,7 +8583,7 @@ msgstr "היסטורית הגירסאות של {0}"
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] "<b>{0}</b> גרסאות"
+msgstr[0] "גרסה <b>אחת</b>"
 msgstr[1] "<b>{0}</b> גרסאות"
 
 msgid "Be careful with old versions!"
