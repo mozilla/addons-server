@@ -1505,6 +1505,32 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         self.check_data(collection, self.data, json.loads(response.content))
         assert collection.author.id == self.user.id
 
+    def test_create_minimal(self):
+        self.client.login_api(self.user)
+        data = {
+            'name': u'this',
+            'slug': u'minimal',
+        }
+        response = self.send(data=data)
+        assert response.status_code == 201, response.content
+        collection = Collection.objects.get()
+        assert collection.name == data['name']
+        assert collection.slug == data['slug']
+
+    def test_create_cant_set_readonly(self):
+        self.client.login_api(self.user)
+        data = {
+            'name': u'this',
+            'slug': u'minimal',
+            'addon_count': 99,  # In the serializer but read-only.
+            'subscribers': 999,  # Not in the serializer.
+        }
+        response = self.send(data=data)
+        assert response.status_code == 201, response.content
+        collection = Collection.objects.get()
+        assert collection.addon_count != 99
+        assert collection.subscribers != 999
+
     def test_different_account(self):
         self.client.login_api(self.user)
         different_user = user_factory()

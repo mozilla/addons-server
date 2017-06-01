@@ -13,10 +13,10 @@ from olympia.users.serializers import BaseUserSerializer
 
 class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
-    description = TranslationSerializerField()
+    description = TranslationSerializerField(required=False)
     url = serializers.SerializerMethodField()
     author = BaseUserSerializer(required=False, default=None)
-    public = serializers.BooleanField(source='listed')
+    public = serializers.BooleanField(source='listed', default=True)
 
     class Meta:
         model = Collection
