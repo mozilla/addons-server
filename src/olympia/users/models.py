@@ -218,16 +218,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """List of all groups the user is a member of, as a cached property."""
         return list(self.groups.all())
 
-    @amo.cached_property(writable=True)
-    def addons_listed(self):
-        """Public add-ons this user is listed as author of."""
-        return self.addons.public().filter(
-            addonuser__user=self, addonuser__listed=True)
-
     @property
     def num_addons_listed(self):
         """Number of public add-ons this user is listed as author of."""
-        return self.addons_listed.count()
+        return self.addons.public().filter(
+            addonuser__user=self, addonuser__listed=True).count()
 
     def my_addons(self, n=8):
         """Returns n addons"""

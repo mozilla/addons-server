@@ -41,13 +41,11 @@ class TestPublicUserProfileSerializer(BaseTestCase):
 
     def test_addons(self):
         self.user.update(averagerating=3.6)
-        del self.user.addons_listed
         assert self.serialize()['num_addons_listed'] == 0
 
         addon_factory(users=[self.user])
         addon_factory(users=[self.user])
         addon_factory(status=amo.STATUS_NULL, users=[self.user])
-        del self.user.addons_listed
         data = self.serialize()
         assert data['num_addons_listed'] == 2  # only public addons.
         assert data['average_addon_rating'] == '3.6'

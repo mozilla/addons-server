@@ -10,7 +10,7 @@ import pytest
 
 import olympia  # noqa
 from olympia import amo
-from olympia.amo.tests import TestCase, safe_exec
+from olympia.amo.tests import addon_factory, TestCase, safe_exec
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.bandwagon.models import Collection, CollectionWatcher
@@ -182,20 +182,24 @@ class TestUserProfile(TestCase):
         assert new_reply.pk not in review_list, (
             'Developer reply must not show up in review list.')
 
-    def test_addons_listed(self):
-        """Make sure we're returning distinct add-ons."""
-        AddonUser.objects.create(addon_id=3615, user_id=2519, listed=True)
-        u = UserProfile.objects.get(id=2519)
-        addons = u.addons_listed.values_list('id', flat=True)
-        assert sorted(addons) == [3615]
+    def test_num_addons_listed(self):
+        """Test that num_addons_listed is only considering add-ons for which
+        the user is marked as listed, and that only public and listed add-ons
+        are counted."""
+        user = UserProfile.objects.get(id=2519)
+        addon = Addon.objects.get(pk=3615)
+        AddonUser.objects.create(addon=addon, user=user, listed=True)
+        assert user.num_addons_listed == 1
 
-    def test_addons_not_listed(self):
-        """Make sure user is not listed when another is."""
-        AddonUser.objects.create(addon_id=3615, user_id=2519, listed=False)
-        AddonUser.objects.create(addon_id=3615, user_id=4043307, listed=True)
-        u = UserProfile.objects.get(id=2519)
-        addons = u.addons_listed.values_list('id', flat=True)
-        assert 3615 not in addons
+        extra_addon = addon_factory(status=amo.STATUS_NOMINATED)
+        AddonUser.objects.create(addon=extra_addon, user=user, listed=True)
+        extra_addon2 = addon_factory()
+        AddonUser.objects.create(addon=extra_addon2, user=user, listed=True)
+        self.make_addon_unlisted(extra_addon2)
+        assert user.num_addons_listed == 1
+
+        AddonUser.objects.filter(addon=addon, user=user).update(listed=False)
+        assert user.num_addons_listed == 0
 
     def test_my_addons(self):
         """Test helper method to get N addons."""
