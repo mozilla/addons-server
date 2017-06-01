@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-06-01 12:13+0000\n"
+"PO-Revision-Date: 2017-06-01 12:57+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -7601,8 +7601,8 @@ msgstr "סקירה זו מתייחסת לגרסה קודמת של התוספת (
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "למשתמש זה יש <a href=\"%(user_review_url)s\">סקירה קודמת</a> של תוספת זו."
-msgstr[1] "למשתמש זה יש <a href=\"%(user_review_url)s\">%(cnt)sסקירות קודמות</a> של תוספת זו."
+msgstr[0] "למשתמש זה יש <a href=\"%(user_review_url)s\">סקירה קודמת</a> לתוספת זו."
+msgstr[1] "למשתמש זה יש <a href=\"%(user_review_url)s\">%(cnt)s סקירות קודמות</a> לתוספת זו."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
