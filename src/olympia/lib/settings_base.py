@@ -738,9 +738,6 @@ MINIFY_BUNDLES = {
             # Users
             'js/zamboni/users.js',
 
-            # Password length and strength
-            'js/zamboni/password-strength.js',
-
             # Search suggestions
             'js/impala/forms.js',
             'js/impala/ajaxcache.js',
