@@ -678,7 +678,7 @@ class CollectionAddonViewSet(AddonChildMixin, ModelViewSet):
     permission_classes = []  # We don't need extra permissions.
     serializer_class = CollectionAddonSerializer
     lookup_field = 'addon'
-    lookup_url_kwarg = 'addon_pk'
+    lookup_url_kwarg = 'addon_id'
 
     def get_collection_viewset(self):
         if not hasattr(self, 'collection_viewset'):
@@ -697,16 +697,26 @@ class CollectionAddonViewSet(AddonChildMixin, ModelViewSet):
         """
         if not hasattr(self, 'addon_object'):
             if self.lookup_url_kwarg not in self.kwargs:
-                self.kwargs[self.lookup_url_kwarg] = (
-                    unicode(self.request.data.get(self.lookup_url_kwarg)))
-            if self.kwargs[self.lookup_url_kwarg]:
+                addon_id = self.request.data.get(self.lookup_url_kwarg)
+                if addon_id:
+                    self.kwargs[self.lookup_url_kwarg] = unicode(addon_id)
+            if self.lookup_url_kwarg in self.kwargs:
                 # When loading the add-on, pass a specific permission class -
                 # the default from AddonViewSet is too restrictive.
                 self.addon_object = (super(CollectionAddonViewSet, self)
                                      .get_addon_object(
-                                        permission_classes=[AllowIfPublic]))
+                                        permission_classes=[AllowIfPublic],
+                                        lookup=self.lookup_url_kwarg))
+            else:
+                self.addon_object = None
         return self.addon_object
 
     def get_queryset(self):
         return CollectionAddon.objects.filter(
             collection=self.get_collection_viewset().get_object())
+
+    def create(self, request, *args, **kwargs):
+        # Drop 'addon' from data if provided - it makes the serializer choke.
+        request.data.pop('addon', None)
+        return super(CollectionAddonViewSet, self).create(
+            request, *args, **kwargs)

@@ -1721,7 +1721,7 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
             'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon_pk': self.addon.id})
+                'addon_id': self.addon.id})
         super(TestCollectionAddonViewSetDetail, self).setUp()
 
     def check_response(self, response):
@@ -1748,7 +1748,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
             collection=self.collection.id, addon=self.addon.id).exists()
 
     def send(self, url, data=None):
-        data = data or {'addon_pk': unicode(self.addon.pk)}
+        data = data or {'addon_id': unicode(self.addon.pk)}
         return self.client.post(url, data=data)
 
     def test_basic(self):
@@ -1761,7 +1761,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
     def test_add_with_comments(self):
         self.client.login_api(self.user)
         response = self.send(self.url,
-                             data={'addon_pk': unicode(self.addon.pk),
+                             data={'addon_id': unicode(self.addon.pk),
                                    'notes': 'its good!'})
         self.check_response(response)
         collection_addon = CollectionAddon.objects.get(
@@ -1769,6 +1769,28 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         assert collection_addon.addon == self.addon
         assert collection_addon.collection == self.collection
         assert collection_addon.comments == 'its good!'
+
+    def test_fail_when_no_addon(self):
+        self.client.login_api(self.user)
+        response = self.send(self.url, data={'notes': ''})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'addon_id': [u'This field is required.']}
+
+    def test_fail_when_not_public_addon(self):
+        self.client.login_api(self.user)
+        self.addon.update(status=amo.STATUS_NULL)
+        response = self.send(self.url)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'addon_id': [u'Addon provided is invalid.']}
+
+    def test_fail_when_invalid_addon(self):
+        self.client.login_api(self.user)
+        response = self.send(self.url, data={'addon_id': '3456'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'addon_id': [u'Addon provided is invalid.']}
 
 
 class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
@@ -1783,7 +1805,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
             'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon_pk': self.addon.id})
+                'addon_id': self.addon.id})
         super(TestCollectionAddonViewSetPatch, self).setUp()
 
     def check_response(self, response, data=None):
@@ -1808,7 +1830,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         self.client.login_api(self.user)
         new_addon = addon_factory()
         response = self.send(self.url,
-                             data={'addon_pk': unicode(new_addon.id)})
+                             data={'addon_id': unicode(new_addon.id)})
         self.check_response(response, data={'notes': None})
 
 
@@ -1824,7 +1846,7 @@ class TestCollectionAddonViewSetDelete(CollectionAddonViewSetMixin, TestCase):
             'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon_pk': self.addon.id})
+                'addon_id': self.addon.id})
         super(TestCollectionAddonViewSetDelete, self).setUp()
 
     def check_response(self, response):

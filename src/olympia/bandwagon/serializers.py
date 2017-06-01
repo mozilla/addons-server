@@ -1,6 +1,8 @@
+from django.http import Http404
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from rest_framework import serializers
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.validators import UniqueTogetherValidator
 
 from olympia.addons.serializers import AddonSerializer
@@ -91,8 +93,14 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         if not self.partial:
-            data['addon'] = self.context['view'].get_addon_object()
+            addon_id_kwarg = self.context['view'].lookup_url_kwarg
+            try:
+                data['addon'] = self.context['view'].get_addon_object()
+            except (PermissionDenied, Http404):
+                # Catch the permission and not found errors on addon object
+                raise serializers.ValidationError(
+                    {addon_id_kwarg: ugettext('Addon provided is invalid.')})
             if data['addon'] is None:
                 raise serializers.ValidationError(
-                    {'addon': ugettext('This field is required...')})
+                    {addon_id_kwarg: ugettext('This field is required.')})
         return super(CollectionAddonSerializer, self).validate(data)
