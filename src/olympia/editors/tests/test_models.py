@@ -771,6 +771,16 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight == 4
         assert weight_info['negative_reviews'] == 4
 
+        # Create fifty more to make sure it's capped at 100.
+        reviews = [Review(
+            user=user_factory(), addon=self.addon,
+            version=self.version, rating=3) for i in range(0, 50)]
+        Review.objects.bulk_create(reviews)
+
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 100
+        assert weight_info['negative_reviews'] == 100
+
     def test_calculate_weight_average_daily_users(self):
         self.addon.update(average_daily_users=142444)
         summary = AutoApprovalSummary(version=self.version)
