@@ -373,7 +373,7 @@ class TestReviewLog(EditorTest):
         r = self.client.get(self.url)
         url = reverse(
             'editors.review',
-            args=['unlisted'] + [addon.slug])
+            args=['unlisted', addon.slug])
         assert pq(r.content)('#log-listing tr td a').eq(1).attr('href') == url
 
 
