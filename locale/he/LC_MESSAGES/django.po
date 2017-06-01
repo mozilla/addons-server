@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-06-01 18:10+0000\n"
+"PO-Revision-Date: 2017-06-01 18:22+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -364,7 +364,7 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] "משתמש %(num)s"
+msgstr[0] "משתמש אחד"
 msgstr[1] "%(num)s משתמשים"
 
 msgid "Requires Restart"
@@ -892,8 +892,8 @@ msgstr ""
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "הורדה <strong>אחת</strong> בשבוע"
+msgstr[1] "<strong>{0}</strong> הורדות בשבוע"
 
 msgid "Tools"
 msgstr "כלים"
@@ -1338,7 +1338,7 @@ msgstr ""
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
+msgstr[0] "עוקב <span>אחד</span>"
 msgstr[1] "<span>%(num)s</span> עוקבים"
 
 # 76%
@@ -1374,13 +1374,13 @@ msgstr "מחיקת אוסף"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "ערכת נושא %(num)s באוסף זה"
+msgstr[0] "ערכת נושא אחת באוסף זה"
 msgstr[1] "%(num)s ערכות נושא באוסף זה"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "תוספת %(num)s באוסף זה"
+msgstr[0] "תוספת אחת באוסף זה"
 msgstr[1] "%(num)s תוספות באוסף זה"
 
 # 100%
@@ -1424,7 +1424,7 @@ msgstr[1] "<span>%(addons)s</span> תוספות"
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "עוקב <span>%(followers)s</span>"
+msgstr[0] "עוקב <span>אחד</span>"
 msgstr[1] "<span>%(followers)s</span> עוקבים"
 
 #. People "follow" collections to get notified of updates.                    Like
@@ -1452,7 +1452,7 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] "עוקב %(num)s"
+msgstr[0] "עוקב אחד"
 msgstr[1] "%(num)s עוקבים"
 
 msgid "by {0}"
@@ -8536,7 +8536,7 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] "תוספת %(num)s"
+msgstr[0] "תוספת אחת"
 msgstr[1] "%(num)s תוספות"
 
 msgid "Average rating of developer's add-ons"
