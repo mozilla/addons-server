@@ -31,7 +31,9 @@ RUN yum install -y                                          \
         uwsgi-2.0.13.1-2.el7                                \
         uwsgi-plugin-python                                 \
     && yum clean all                                        \
-    && curl -sSL https://bootstrap.pypa.io/get-pip.py | python
+    && curl -sSL https://bootstrap.pypa.io/get-pip.py | python \
+    && pip install six \
+    && pip install setuptools
 
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
