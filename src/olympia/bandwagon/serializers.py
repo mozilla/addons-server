@@ -15,7 +15,7 @@ class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     description = TranslationSerializerField(required=False)
     url = serializers.SerializerMethodField()
-    author = BaseUserSerializer(required=False, default=None)
+    author = BaseUserSerializer(default=serializers.CurrentUserDefault())
     public = serializers.BooleanField(source='listed', default=True)
 
     class Meta:
@@ -66,12 +66,6 @@ class CollectionSerializer(serializers.ModelSerializer):
 
         return value
 
-    def validate_author(self, value):
-        if not self.partial:
-            # If we've got a new collection set the author to account user
-            value = self.context['request'].user
-        # Otherwise, we're modifying an existing collection so don't change it.
-        return value
 
 
 class CollectionAddonSerializer(serializers.ModelSerializer):
