@@ -67,19 +67,32 @@ class CollectionSerializer(serializers.ModelSerializer):
         return value
 
 
+class ThisCollectionDefault(object):
+    def set_context(self, serializer_field):
+        viewset = serializer_field.context['view']
+        self.collection = viewset.get_collection_viewset().get_object()
+
+    def __call__(self):
+        return self.collection
+
 
 class CollectionAddonSerializer(serializers.ModelSerializer):
-    addon = AddonSerializer()
+    addon = AddonSerializer(required=False, default=None)
     notes = TranslationSerializerField(source='comments', required=False)
+    collection = serializers.HiddenField(default=ThisCollectionDefault())
 
     class Meta:
         model = CollectionAddon
-        fields = ('addon', 'downloads', 'notes')
+        fields = ('addon', 'downloads', 'notes', 'collection')
         writeable_fields = (
             'notes'
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
-    def validate_addon(self, value):
-        # check the addon is public, etc.
-        return value
+    def validate(self, data):
+        if not self.partial:
+            data['addon'] = self.context['view'].get_addon_object()
+            if data['addon'] is None:
+                raise serializers.ValidationError(
+                    {'addon': ugettext('This field is required...')})
+        return super(CollectionAddonSerializer, self).validate(data)

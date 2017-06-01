@@ -1710,7 +1710,7 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetBase, TestCase):
             'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon': self.addon.id})
+                'addon_pk': self.addon.id})
         super(TestCollectionAddonViewSetDetail, self).setUp()
 
     def check_response(self, response):
@@ -1728,17 +1728,33 @@ class TestCollectionAddonViewSetCreate(TestCase):
             'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug})
-        super(TestCollectionAddonViewSetList, self).setUp()
+        super(TestCollectionAddonViewSetCreate, self).setUp()
 
-    def test_add_addon(self):
+    def test_basic_add(self):
         assert not CollectionAddon.objects.filter(
             collection=self.collection.id).exists()
         self.client.login_api(self.user)
         addon = addon_factory()
-        response = self.client.post(self.url, data={addon: addon.id})
-        assert response.status_code == 201
-        assert not CollectionAddon.objects.filter(
+        response = self.client.post(self.url,
+                                    data={'addon_pk': unicode(addon.pk)})
+        assert response.status_code == 201, response.content
+        assert CollectionAddon.objects.filter(
             collection=self.collection.id, addon=addon.id).exists()
+
+    def test_add_with_comments(self):
+        self.client.login_api(self.user)
+        addon = addon_factory()
+        response = self.client.post(self.url,
+                                    data={'addon_pk': unicode(addon.pk),
+                                          'notes': 'its good!'})
+        assert response.status_code == 201, response.content
+        assert CollectionAddon.objects.filter(
+            collection=self.collection.id, addon=addon.id).exists()
+        collection_addon = CollectionAddon.objects.get(
+            collection=self.collection.id, addon=addon.id)
+        assert collection_addon.addon == addon
+        assert collection_addon.collection == self.collection
+        assert collection_addon.comments == 'its good!'
 
 
 class TestCollectionAddonViewSetDelete(TestCase):
@@ -1753,7 +1769,7 @@ class TestCollectionAddonViewSetDelete(TestCase):
             'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon': self.addon.id})
+                'addon_pk': self.addon.id})
         super(TestCollectionAddonViewSetDelete, self).setUp()
 
     def test_delete(self):

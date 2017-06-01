@@ -27,9 +27,9 @@ from olympia.access import acl
 from olympia.accounts.views import AccountViewSet
 from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
-from olympia.addons.views import BaseFilter
+from olympia.addons.views import AddonChildMixin, BaseFilter
 from olympia.api.permissions import (
-    AllOf, AllowReadOnlyIfPublic, AnyOf, GroupPermission,
+    AllOf, AllowIfPublic, AllowReadOnlyIfPublic, AnyOf, GroupPermission,
     PreventActionPermission)
 from olympia.legacy_api.utils import addon_to_dict
 from olympia.tags.models import Tag
@@ -674,10 +674,11 @@ class CollectionViewSet(ModelViewSet):
             author=self.get_account_viewset().get_object())
 
 
-class CollectionAddonViewSet(ModelViewSet):
+class CollectionAddonViewSet(AddonChildMixin, ModelViewSet):
     permission_classes = []  # We don't need extra permissions.
     serializer_class = CollectionAddonSerializer
     lookup_field = 'addon'
+    lookup_url_kwarg = 'addon_pk'
 
     def get_collection_viewset(self):
         if not hasattr(self, 'collection_viewset'):
@@ -687,6 +688,24 @@ class CollectionAddonViewSet(ModelViewSet):
                 kwargs={'user_pk': self.kwargs['user_pk'],
                         'slug': self.kwargs['collection_slug']})
         return self.collection_viewset
+
+    def get_addon_object(self):
+        """Return addon object associated with the request, or None if not
+        relevant.
+
+        Will also fire permission checks on the addon object when it's loaded.
+        """
+        if not hasattr(self, 'addon_object'):
+            if self.lookup_url_kwarg not in self.kwargs:
+                self.kwargs[self.lookup_url_kwarg] = (
+                    unicode(self.request.data.get(self.lookup_url_kwarg)))
+            if self.kwargs[self.lookup_url_kwarg]:
+                # When loading the add-on, pass a specific permission class -
+                # the default from AddonViewSet is too restrictive.
+                self.addon_object = (super(CollectionAddonViewSet, self)
+                                     .get_addon_object(
+                                        permission_classes=[AllowIfPublic]))
+        return self.addon_object
 
     def get_queryset(self):
         return CollectionAddon.objects.filter(
