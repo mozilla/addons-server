@@ -1718,6 +1718,29 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetBase, TestCase):
         assert response.data['addon']['id'] == self.addon.id
 
 
+class TestCollectionAddonViewSetCreate(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.collection = collection_factory(author=self.user)
+        self.url = reverse(
+            'collection-addon-list', kwargs={
+                'user_pk': self.user.pk,
+                'collection_slug': self.collection.slug})
+        super(TestCollectionAddonViewSetList, self).setUp()
+
+    def test_add_addon(self):
+        assert not CollectionAddon.objects.filter(
+            collection=self.collection.id).exists()
+        self.client.login_api(self.user)
+        addon = addon_factory()
+        response = self.client.post(self.url, data={addon: addon.id})
+        assert response.status_code == 201
+        assert not CollectionAddon.objects.filter(
+            collection=self.collection.id, addon=addon.id).exists()
+
+
 class TestCollectionAddonViewSetDelete(TestCase):
     client_class = APITestClient
 

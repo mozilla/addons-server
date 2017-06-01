@@ -76,7 +76,7 @@ class CollectionSerializer(serializers.ModelSerializer):
 
 class CollectionAddonSerializer(serializers.ModelSerializer):
     addon = AddonSerializer()
-    notes = TranslationSerializerField(source='comments')
+    notes = TranslationSerializerField(source='comments', required=False)
 
     class Meta:
         model = CollectionAddon
