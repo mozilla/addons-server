@@ -727,6 +727,20 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight == 100
         assert weight_info['abuse_reports'] == 100
 
+    def test_calculate_weight_abuse_reports_use_created_from_instance(self):
+        # Create an abuse report 400 days in the past. It should be ignored it
+        # we were calculating from today, but use an AutoApprovalSummary
+        # instance that is 40 days old, making the abuse report count.
+        report = AbuseReport.objects.create(addon=self.addon)
+        report.update(created=self.days_ago(400))
+
+        summary = AutoApprovalSummary.objects.create(version=self.version)
+        summary.update(created=self.days_ago(40))
+
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 10
+        assert weight_info['abuse_reports'] == 10
+
     def test_calculate_weight_negative_reviews(self):
         # Positive review, does not count.
         Review.objects.create(
