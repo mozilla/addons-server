@@ -703,10 +703,10 @@ class CollectionAddonViewSet(AddonChildMixin, ModelViewSet):
             if self.lookup_url_kwarg in self.kwargs:
                 # When loading the add-on, pass a specific permission class -
                 # the default from AddonViewSet is too restrictive.
-                self.addon_object = (super(CollectionAddonViewSet, self)
-                                     .get_addon_object(
-                                        permission_classes=[AllowIfPublic],
-                                        lookup=self.lookup_url_kwarg))
+                self.addon_object = (
+                    super(CollectionAddonViewSet, self).get_addon_object(
+                        permission_classes=[AllowIfPublic],
+                        lookup=self.lookup_url_kwarg))
             else:
                 self.addon_object = None
         return self.addon_object
