@@ -170,7 +170,7 @@ def recalculate_post_review_weight(ids):
     addons = Addon.objects.filter(id__in=ids)
     for addon in addons:
         summaries = AutoApprovalSummary.objects.filter(
-            version__in=addons.versions.all())
+            version__in=addon.versions.all())
 
         for summary in summaries:
             summary.calculate_weight()
