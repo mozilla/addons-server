@@ -8,12 +8,14 @@ from django.conf import settings
 from django.core import mail
 
 from olympia import amo
+from olympia.abuse.models import AbuseReport
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import (
     addon_factory, file_factory, user_factory, version_factory)
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonUser
 from olympia.files.models import FileValidation
+from olympia.reviews.models import Review
 from olympia.versions.models import (
     Version, version_uploaded)
 from olympia.files.models import File, WebextPermission
@@ -674,6 +676,185 @@ class TestAutoApprovalSummary(TestCase):
             file=self.version.all_files[0], validation=u'{}')
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
+    def test_calculate_weight(self):
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        expected_result = {
+            'abuse_reports': 0,
+            'admin_review': 0,
+            'average_daily_users': 0,
+            'negative_reviews': 0,
+            'past_rejection_history': 0
+        }
+        assert weight_info == expected_result
+
+    def test_calculate_weight_admin_review(self):
+        self.addon.update(admin_review=True)
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 100
+        assert weight_info['admin_review'] == 100
+
+    def test_calculate_weight_abuse_reports(self):
+        # Extra abuse report for a different add-on, does not count.
+        AbuseReport.objects.create(addon=addon_factory())
+
+        # Extra abuse report for a different user, does not count.
+        AbuseReport.objects.create(user=user_factory())
+
+        # Extra old abuse report, does not count either.
+        old_report = AbuseReport.objects.create(addon=self.addon)
+        old_report.update(created=self.days_ago(370))
+
+        # Recent abuse reports.
+        AbuseReport.objects.create(addon=self.addon)
+        AbuseReport.objects.create(addon=self.addon)
+
+        # Recent abuse report for one of the developers of the add-on.
+        author = user_factory()
+        AddonUser.objects.create(addon=self.addon, user=author)
+        AbuseReport.objects.create(user=author)
+
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 30
+        assert weight_info['abuse_reports'] == 30
+
+        # Should be capped at 100.
+        for i in range(0, 10):
+            AbuseReport.objects.create(addon=self.addon)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 100
+        assert weight_info['abuse_reports'] == 100
+
+    def test_calculate_weight_abuse_reports_use_created_from_instance(self):
+        # Create an abuse report 400 days in the past. It should be ignored it
+        # we were calculating from today, but use an AutoApprovalSummary
+        # instance that is 40 days old, making the abuse report count.
+        report = AbuseReport.objects.create(addon=self.addon)
+        report.update(created=self.days_ago(400))
+
+        summary = AutoApprovalSummary.objects.create(version=self.version)
+        summary.update(created=self.days_ago(40))
+
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 10
+        assert weight_info['abuse_reports'] == 10
+
+    def test_calculate_weight_negative_reviews(self):
+        # Positive review, does not count.
+        Review.objects.create(
+            user=user_factory(), addon=self.addon, version=self.version,
+            rating=5)
+
+        # Negative review, but too old, does not count.
+        old_review = Review.objects.create(
+            user=user_factory(), addon=self.addon, version=self.version,
+            rating=1)
+        old_review.update(created=self.days_ago(370))
+
+        # Negative review on a different add-on, does not count either.
+        extra_addon = addon_factory()
+        Review.objects.create(
+            user=user_factory(), addon=extra_addon,
+            version=extra_addon.current_version, rating=1)
+
+        # Recent negative reviews.
+        Review.objects.create(
+            user=user_factory(), addon=self.addon, version=self.version,
+            rating=1)
+        Review.objects.create(
+            user=user_factory(), addon=self.addon, version=self.version,
+            rating=2)
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 4
+        assert weight_info['negative_reviews'] == 4
+
+        # Create fifty more to make sure it's capped at 100.
+        reviews = [Review(
+            user=user_factory(), addon=self.addon,
+            version=self.version, rating=3) for i in range(0, 50)]
+        Review.objects.bulk_create(reviews)
+
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 100
+        assert weight_info['negative_reviews'] == 100
+
+    def test_calculate_weight_average_daily_users(self):
+        self.addon.update(average_daily_users=142444)
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 14
+        assert weight_info['average_daily_users'] == 14
+
+        self.addon.update(average_daily_users=1756567658)
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 100
+        assert weight_info['average_daily_users'] == 100
+
+    def test_calculate_weight_past_rejection_history(self):
+        # Old rejected version, does not count.
+        version_factory(
+            addon=self.addon,
+            file_kw={'reviewed': self.days_ago(370),
+                     'status': amo.STATUS_DISABLED})
+
+        # Version disabled by the developer, not Mozilla (original_status
+        # is set to something different than STATUS_NULL), does not count.
+        version_factory(
+            addon=self.addon,
+            file_kw={'reviewed': self.days_ago(15),
+                     'status': amo.STATUS_DISABLED,
+                     'original_status': amo.STATUS_PUBLIC})
+
+        # Rejected version.
+        version_factory(
+            addon=self.addon,
+            file_kw={'reviewed': self.days_ago(14),
+                     'status': amo.STATUS_DISABLED})
+
+        # Another rejected version, with multiple files. Only counts once.
+        version_with_multiple_files = version_factory(
+            addon=self.addon,
+            file_kw={'reviewed': self.days_ago(13),
+                     'status': amo.STATUS_DISABLED,
+                     'platform': amo.PLATFORM_WIN.id})
+        file_factory(
+            reviewed=self.days_ago(13),
+            version=version_with_multiple_files,
+            status=amo.STATUS_DISABLED,
+            platform=amo.PLATFORM_MAC.id)
+
+        # Rejected version on a different add-on, does not count.
+        version_factory(
+            addon=addon_factory(),
+            file_kw={'reviewed': self.days_ago(12),
+                     'status': amo.STATUS_DISABLED})
+
+        # Approved version, does not count.
+        version_factory(
+            addon=self.addon,
+            file_kw={'reviewed': self.days_ago(11)})
+
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['past_rejection_history'] == 20
+
+        # Should be capped at 100.
+        for i in range(0, 10):
+            version_factory(
+                addon=self.addon,
+                file_kw={'reviewed': self.days_ago(10),
+                         'status': amo.STATUS_DISABLED})
+
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 100
+        assert weight_info['past_rejection_history'] == 100
+
     def test_check_uses_custom_csp(self):
         assert AutoApprovalSummary.check_uses_custom_csp(self.version) is False
 
@@ -756,12 +937,15 @@ class TestAutoApprovalSummary(TestCase):
         self.version.update(has_info_request=True)
         assert AutoApprovalSummary.check_has_info_request(self.version) is True
 
+    @mock.patch.object(AutoApprovalSummary, 'calculate_weight', spec=True)
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
-    def test_create_summary_for_version(self, calculate_verdict_mock):
+    def test_create_summary_for_version(
+            self, calculate_verdict_mock, calculate_weight_mock):
         calculate_verdict_mock.return_value = {'dummy_verdict': True}
         summary, info = AutoApprovalSummary.create_summary_for_version(
             self.version,
             max_average_daily_users=111, min_approved_updates=222)
+        assert calculate_weight_mock.call_count == 1
         assert calculate_verdict_mock.call_count == 1
         assert calculate_verdict_mock.call_args == ({
             'max_average_daily_users': 111,

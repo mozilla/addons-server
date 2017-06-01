@@ -6,9 +6,11 @@ from django.utils.translation import override, ugettext
 import olympia.core.logger
 from olympia.constants import editors as rvw
 from olympia.activity.models import ActivityLog, CommentLog, VersionLog
+from olympia.addons.models import Addon
 from olympia.addons.tasks import create_persona_preview_images
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
+from olympia.editors.models import AutoApprovalSummary
 from olympia.amo.helpers import user_media_path
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.utils import LocalFileStorage, send_mail_jinja
@@ -158,3 +160,18 @@ def reject_rereview(theme):
     if reupload.footer:
         storage.delete(reupload.footer_path)
     rereview.delete()
+
+
+@task
+@write
+def recalculate_post_review_weight(ids):
+    """Recalculate the post-review weight that should be assigned to
+    auto-approved add-on versions from a list of ids."""
+    addons = Addon.objects.filter(id__in=ids)
+    for addon in addons:
+        summaries = AutoApprovalSummary.objects.filter(
+            version__in=addon.versions.all())
+
+        for summary in summaries:
+            summary.calculate_weight()
+            summary.save()
