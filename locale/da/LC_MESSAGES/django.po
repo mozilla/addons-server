@@ -2285,7 +2285,7 @@ msgid "Manual Reviewer Points"
 msgstr ""
 
 msgid "New Add-on Review"
-msgstr "ilføj en anmeldelse"
+msgstr ""
 
 msgid "Preliminary Add-on Review"
 msgstr ""
