@@ -1614,55 +1614,28 @@ class TestCollectionViewSetDelete(TestCase):
         assert not Collection.objects.filter(id=self.collection.id).exists()
 
 
-class TestCollectionAddonViewSet(TestCase):
-    client_class = APITestClient
-
-    def setUp(self):
-        self.user = user_factory()
-        self.collection = collection_factory(author=self.user)
-        self.collection.add_addon(addon_factory())
-        self.collection.add_addon(addon_factory())
-        self.collection.add_addon(addon_factory())
-        self.url = reverse(
-            'collection-addon-list', kwargs={
-                'user_pk': self.user.pk,
-                'collection_slug': self.collection.slug})
-        super(TestCollectionAddonViewSet, self).setUp()
+class CollectionAddonViewSetBase(object):
+    def check_response(self, response):
+        raise NotImplementedError
 
     def test_basic(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200, self.url
-        assert len(response.data['results']) == 3
+        self.check_response(self.client.get(self.url))
 
     def test_not_listed(self):
         self.collection.update(listed=False)
-
         response = self.client.get(self.url)
         assert response.status_code == 401
 
     def test_not_listed_self(self):
         self.collection.update(listed=False)
-
         self.client.login_api(self.user)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert len(response.data['results']) == 3
+        self.check_response(self.client.get(self.url))
 
     def test_not_listed_admin(self):
-        random_user = user_factory()
-        collection = collection_factory(author=random_user, listed=False)
-        collection.add_addon(addon_factory())
-        collection.add_addon(addon_factory())
-        collection.add_addon(addon_factory())
-
-        self.grant_permission(self.user, 'Collections:Edit')
-        self.client.login_api(self.user)
-        response = self.client.get(
-            reverse('collection-addon-list', kwargs={
-                'user_pk': random_user.pk,
-                'collection_slug': collection.slug}))
-        assert response.status_code == 200
-        assert len(response.data['results']) == 3
+        admin_user = user_factory()
+        self.grant_permission(admin_user, 'Collections:Edit')
+        self.client.login_api(admin_user)
+        self.check_response(self.client.get(self.url))
 
     def test_404(self):
         # Invalid user.
@@ -1677,3 +1650,87 @@ class TestCollectionAddonViewSet(TestCase):
                 'user_pk': self.user.pk,
                 'collection_slug': 'hello'}))
         assert response.status_code == 404
+
+
+class TestCollectionAddonViewSetList(CollectionAddonViewSetBase, TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.collection = collection_factory(author=self.user)
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+        self.collection.add_addon(addon_factory())
+        self.url = reverse(
+            'collection-addon-list', kwargs={
+                'user_pk': self.user.pk,
+                'collection_slug': self.collection.slug})
+        super(TestCollectionAddonViewSetList, self).setUp()
+
+    def check_response(self, response):
+        assert response.status_code == 200, self.url
+        assert len(response.data['results']) == 3
+
+
+class TestCollectionAddonViewSetDetail(CollectionAddonViewSetBase, TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.collection = collection_factory(author=self.user)
+        self.addon = addon_factory()
+        self.collection.add_addon(self.addon)
+        self.url = reverse(
+            'collection-addon-detail', kwargs={
+                'user_pk': self.user.pk,
+                'collection_slug': self.collection.slug,
+                'addon': self.addon.id})
+        super(TestCollectionAddonViewSetDetail, self).setUp()
+
+    def check_response(self, response):
+        assert response.status_code == 200, self.url
+        assert response.data['addon']['id'] == self.addon.id
+
+
+class TestCollectionAddonViewSetDelete(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.collection = collection_factory(author=self.user)
+        self.addon = addon_factory()
+        self.collection.add_addon(self.addon)
+        self.url = reverse(
+            'collection-addon-detail', kwargs={
+                'user_pk': self.user.pk,
+                'collection_slug': self.collection.slug,
+                'addon': self.addon.id})
+        super(TestCollectionAddonViewSetDelete, self).setUp()
+
+    def test_delete(self):
+        assert CollectionAddon.objects.filter(
+            collection=self.collection.id, addon=self.addon).exists()
+        self.client.login_api(self.user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert not CollectionAddon.objects.filter(
+            collection=self.collection.id, addon=self.addon).exists()
+
+    def test_no_auth(self):
+        response = self.client.delete(self.url)
+        assert response.status_code == 401
+
+    def test_different_account(self):
+        different_user = user_factory()
+        self.client.login_api(different_user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+
+    def test_admin_delete(self):
+        admin_user = user_factory()
+        self.grant_permission(admin_user, 'Collections:Edit')
+        self.client.login_api(admin_user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert not CollectionAddon.objects.filter(
+            collection=self.collection.id, addon=self.addon).exists()

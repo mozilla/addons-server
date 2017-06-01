@@ -677,6 +677,7 @@ class CollectionViewSet(ModelViewSet):
 class CollectionAddonViewSet(ModelViewSet):
     permission_classes = []  # We don't need extra permissions.
     serializer_class = CollectionAddonSerializer
+    lookup_field = 'addon'
 
     def get_collection_viewset(self):
         if not hasattr(self, 'collection_viewset'):
