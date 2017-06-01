@@ -332,6 +332,9 @@ class Collection(ModelBase):
     def publishable_by(self, user):
         return bool(self.owned_by(user) or self.users.filter(pk=user.id))
 
+    def is_public(self):
+        return self.listed
+
     @staticmethod
     def transformer(collections):
         if not collections:
