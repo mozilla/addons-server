@@ -13,6 +13,7 @@
     "addons-linter": "0.20.0",
     "clean-css": "4.1.1",
     "clean-css-cli": "4.1.0",
+    "jquery": "1.12.0",
     "less": "2.7.2",
     "stylus": "0.54.5",
     "uglify-js": "3.0.14"
