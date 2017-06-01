@@ -1,6 +1,7 @@
 -- Delete orphaned validation jobs (since we removed the 'Mobile' app).
 DELETE FROM validation_job WHERE curr_max_version_id NOT IN (SELECT id FROM appversions);
 DELETE FROM validation_job WHERE target_version_id NOT IN (SELECT id FROM appversions);
+DELETE FROM validation_job WHERE creator_id NOT IN (SELECT id FROM users);
 
 /*
 For validation_job.curr_max_version_id, validation_job.target_version_id and validation_job.creator_id:
