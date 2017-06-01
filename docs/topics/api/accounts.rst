@@ -256,11 +256,11 @@ This endpoint allows the collection to be deleted.
 
 
 
-------------------
-Collection Add-ons
-------------------
+-----------------------
+Collection Add-ons List
+-----------------------
 
-.. _collection-addon:
+.. _collection-addon-list:
 
 This endpoint lists the add-ons in a collection, together with collector's notes.
 
@@ -269,10 +269,74 @@ This endpoint lists the add-ons in a collection, together with collector's notes
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of items in this collection.
-    :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item.
-    :>json string|object|null results[].notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
-    :>json int results[].downloads: The downloads that occured via this collection.
+    :>json array results: An array of :ref:`items <collection-addon-detail-object>` in this collection.
+
+
+-------------------------
+Collection Add-ons Detail
+-------------------------
+
+.. _collection-addon-detail:
+
+This endpoint gets details of a single add-on in a collection, together with collector's notes.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug|string:guid)/
+
+    .. _collection-addon-detail-object:
+
+    :>json object addon: The :ref:`add-on <addon-detail-object>` for this item.
+    :>json string|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
+    :>json int downloads: The downloads that occured via this collection.
+
+
+-------------------------
+Collection Add-ons Create
+-------------------------
+
+.. _collection-addon-create:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Collections:Edit`
+    permission to edit collections other than your own.
+
+This endpoint allows a single add-on to be added to a collection, optionally with collector's notes.
+
+.. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/
+
+    :<json string addon_id: The add-on id to be added (required).
+    :<json string|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
+
+
+-----------------------
+Collection Add-ons Edit
+-----------------------
+
+.. _collection-addon-edit:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Collections:Edit`
+    permission to edit collections other than your own.
+
+This endpoint allows the collector's notes for single add-on to be updated.
+
+.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug|string:guid)/
+
+    :<json string|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
+
+
+-------------------------
+Collection Add-ons Delete
+-------------------------
+
+.. _collection-addon-delete:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Collections:Edit`
+    permission to edit collections other than your own.
+
+This endpoint allows a single add-on to be removed from a collection.
+
+.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug|string:guid)/
 
 
 ------------------
