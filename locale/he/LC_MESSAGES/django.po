@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-06-01 16:39+0000\n"
+"PO-Revision-Date: 2017-06-01 17:44+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -385,7 +385,7 @@ msgstr[1] ""
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "משתמש {0}"
+msgstr[0] "משתמש אחד"
 msgstr[1] "{0} משתמשים"
 
 msgid "Payment cancelled"
@@ -445,7 +445,7 @@ msgstr ""
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "משתמש <strong>{0}</strong>"
+msgstr[0] "משתמש <strong>אחד</strong>"
 msgstr[1] "<strong>{0}</strong> משתמשים"
 
 msgid "Hover to Preview"
@@ -1736,7 +1736,7 @@ msgstr "{0} :: כלי חיפוש"
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "תוספת <b>{0}</b>"
+msgstr[0] "תוספת <b>אחת</b>"
 msgstr[1] "<b>{0}</b> תוספות"
 
 msgid "Search Extensions"
@@ -3663,7 +3663,7 @@ msgstr ""
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] "משתמש פעיל <strong>{0}</strong>"
+msgstr[0] "משתמש פעיל <strong>אחד</strong>"
 msgstr[1] "<strong>{0}</strong> משתמשים פעילים"
 
 #, fuzzy
@@ -4895,7 +4895,7 @@ msgstr[1] ""
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] "יום {0}"
+msgstr[0] "יום אחד"
 msgstr[1] "{0} ימים"
 
 msgid "Last Review"
@@ -5218,7 +5218,7 @@ msgstr ""
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "תוספת {0}"
+msgstr[0] "תוספת אחת"
 msgstr[1] "{0} תוספות"
 
 #, python-format
@@ -7636,7 +7636,7 @@ msgstr "סקירות עבור {0}"
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "סקירה <b>{0}</b> עבור תוספת זו"
+msgstr[0] "סקירה <b>אחת</b> עבור תוספת זו"
 msgstr[1] "<b>{0}</b> סקירות עבור תוספת זו"
 
 #. {0} is a developer's name.
@@ -7765,7 +7765,7 @@ msgstr "תוצאות חיפוש עבור התג ״{0}״"
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "תוצאה תואמת <b>{0}</b>"
+msgstr[0] "תוצאה תואמת <b>אחת</b>"
 msgstr[1] "<b>{0}</b> תוצאות תואמות"
 
 msgid "Filter Results"
