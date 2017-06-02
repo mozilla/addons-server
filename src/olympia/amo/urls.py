@@ -3,6 +3,8 @@ from django.views.decorators.cache import never_cache
 
 from . import views
 
+from olympia.legacy_api import views as legacy_views
+
 
 services_patterns = [
     url('^monitor(\.json)?$', never_cache(views.monitor),
@@ -19,7 +21,7 @@ urlpatterns = [
     url('^services/', include(services_patterns)),
     url('^__version__$', views.version, name='version.json'),
 
-    url('^opensearch\.xml$', 'olympia.legacy_api.views.render_xml',
-                             {'template': 'amo/opensearch.xml'},
-                             name='amo.opensearch'),
+    url('^opensearch\.xml$', legacy_views.render_xml,
+        {'template': 'amo/opensearch.xml'},
+        name='amo.opensearch'),
 ]

@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.db.transaction import non_atomic_requests
 
 from olympia.addons.urls import ADDON_ID

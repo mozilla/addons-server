@@ -5,9 +5,12 @@ from django.shortcuts import redirect
 from django.views.i18n import javascript_catalog
 from django.views.decorators.cache import cache_page
 
+from olympia.addons import views as addons_views
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.versions.urls import download_patterns
+from olympia.versions import views as version_views
+from olympia.stats import views as stats_views
 
 
 admin.autodiscover()
@@ -22,7 +25,7 @@ urlpatterns = [
     url('^discovery/', include('olympia.legacy_discovery.urls')),
 
     # Home.
-    url('^$', 'olympia.addons.views.home', name='home'),
+    url('^$', addons_views.home, name='home'),
 
     # Add-ons.
     url('', include('olympia.addons.urls')),
@@ -84,7 +87,7 @@ urlpatterns = [
 
     # Site events data.
     url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8})\.json$',
-        'olympia.stats.views.site_events', name=' amo.site_events'),
+        stats_views.site_events, name='amo.site_events'),
 
     # Site statistics that we are going to catch, the rest will fall through.
     url('^statistics/', include('olympia.stats.urls')),
@@ -120,7 +123,7 @@ urlpatterns = [
                            permanent=True)),
 
     url('^persona/(?P<persona_id>\d+)',
-        'olympia.addons.views.persona_redirect', name='persona'),
+        addons_views.persona_redirect, name='persona'),
 
     url('^personas/film and tv/?$',
         lambda r: redirect('browse.personas', 'film-and-tv', permanent=True)),
@@ -133,7 +136,7 @@ urlpatterns = [
 
     # Legacy redirect. Requires a view to get extra data not provided in URL.
     url('^versions/updateInfo/(?P<version_id>\d+)',
-        'olympia.versions.views.update_info_redirect'),
+        version_views.update_info_redirect),
 
     url('^addons/reviews/(\d+)/format:rss$',
         lambda r, id: redirect('addons.reviews.list.rss', id, permanent=True)),
