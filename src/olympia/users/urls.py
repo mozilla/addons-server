@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.views.generic.base import RedirectView
 
 from . import views
@@ -8,16 +8,14 @@ USER_ID = r"""(?P<user_id>[^/<>"']+)"""
 
 
 # These will all start with /user/<user_id>/
-detail_patterns = patterns(
-    '',
+detail_patterns = [
     url('^$', views.profile, name='users.profile'),
     url('^themes(?:/(?P<category>[^ /]+))?$', views.themes,
         name='users.themes'),
     url('^abuse', views.report_abuse, name='users.abuse'),
-)
+]
 
-users_patterns = patterns(
-    '',
+users_patterns = [
     url('^ajax$', views.ajax, name='users.ajax'),
     url('^delete$', views.delete, name='users.delete'),
     url('^delete_photo/(?P<user_id>\d+)?$', views.delete_photo,
@@ -33,12 +31,11 @@ users_patterns = patterns(
     url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'
         r'(?P<perm_setting>[\w]+)?$', views.unsubscribe,
         name="users.unsubscribe"),
-)
+]
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     # URLs for a single user.
-    ('^user/%s/' % USER_ID, include(detail_patterns)),
-    ('^users/', include(users_patterns)),
-)
+    url('^user/%s/' % USER_ID, include(detail_patterns)),
+    url('^users/', include(users_patterns)),
+]

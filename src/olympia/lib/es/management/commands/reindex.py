@@ -3,8 +3,6 @@ import os
 import sys
 import time
 
-from optparse import make_option
-
 from celery import group
 from elasticsearch.exceptions import NotFoundError
 
@@ -106,22 +104,30 @@ Current Aliases configuration:
 
 class Command(BaseCommand):
     help = 'Reindex all ES indexes'
-    option_list = BaseCommand.option_list + (
-        make_option('--force', action='store_true',
-                    help=('Bypass the database flag that says '
-                          'another indexation is ongoing'),
-                    default=False),
-        make_option('--wipe', action='store_true',
-                    help=('Deletes AMO indexes prior to reindexing.'),
-                    default=False),
-        make_option('--with-stats', action='store_true',
-                    help=('Whether to also reindex AMO stats. Default: False'),
-                    default=False),
-        make_option('--noinput', action='store_true',
-                    help=('Do not ask for confirmation before wiping. '
-                          'Default: False'),
-                    default=False),
-    )
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--force',
+            action='store_true',
+            help=('Bypass the database flag that says '
+                  'another indexation is ongoing'),
+            default=False),
+        parser.add_argument(
+            '--wipe',
+            action='store_true',
+            help=('Deletes AMO indexes prior to reindexing.'),
+            default=False),
+        parser.add_argument(
+            '--with-stats',
+            action='store_true',
+            help=('Whether to also reindex AMO stats. Default: False'),
+            default=False),
+        parser.add_argument(
+            '--noinput',
+            action='store_true',
+            help=('Do not ask for confirmation before wiping. '
+                  'Default: False'),
+            default=False),
 
     def handle(self, *args, **kwargs):
         """Reindexing work.

@@ -220,7 +220,7 @@ class APIView(object):
     def __call__(self, request, api_version, *args, **kwargs):
 
         self.version = float(api_version)
-        self.format = request.REQUEST.get('format', 'xml')
+        self.format = request.GET.get('format', 'xml')
         self.content_type = ('text/xml' if self.format == 'xml'
                              else 'application/json')
         self.request = request
