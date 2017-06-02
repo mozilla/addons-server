@@ -262,30 +262,29 @@ class Collection(ModelBase):
             bucket = update if addon in existing else add
             bucket.append((addon, order[addon]))
         remove = existing.difference(addon_ids)
-
-        cursor = connection.cursor()
         now = datetime.now()
 
-        if remove:
-            cursor.execute("DELETE FROM addons_collections "
-                           "WHERE collection_id=%s AND addon_id IN (%s)" %
-                           (self.id, ','.join(map(str, remove))))
-            if self.listed:
-                for addon in remove:
-                    activity.log_create(amo.LOG.REMOVE_FROM_COLLECTION,
-                                        (Addon, addon), self)
-        if add:
-            insert = '(%s, %s, %s, NOW(), NOW(), 0)'
-            values = [insert % (a, self.id, idx) for a, idx in add]
-            cursor.execute("""
-                INSERT INTO addons_collections
-                    (addon_id, collection_id, ordering, created,
-                     modified, downloads)
-                VALUES %s""" % ','.join(values))
-            if self.listed:
-                for addon_id, idx in add:
-                    activity.log_create(amo.LOG.ADD_TO_COLLECTION,
-                                        (Addon, addon_id), self)
+        with connection.cursor() as cursor:
+            if remove:
+                cursor.execute("DELETE FROM addons_collections "
+                               "WHERE collection_id=%s AND addon_id IN (%s)" %
+                               (self.id, ','.join(map(str, remove))))
+                if self.listed:
+                    for addon in remove:
+                        activity.log_create(amo.LOG.REMOVE_FROM_COLLECTION,
+                                            (Addon, addon), self)
+            if add:
+                insert = '(%s, %s, %s, NOW(), NOW(), 0)'
+                values = [insert % (a, self.id, idx) for a, idx in add]
+                cursor.execute("""
+                    INSERT INTO addons_collections
+                        (addon_id, collection_id, ordering, created,
+                         modified, downloads)
+                    VALUES %s""" % ','.join(values))
+                if self.listed:
+                    for addon_id, idx in add:
+                        activity.log_create(amo.LOG.ADD_TO_COLLECTION,
+                                            (Addon, addon_id), self)
         for addon, ordering in update:
             (CollectionAddon.objects.filter(collection=self.id, addon=addon)
              .update(ordering=ordering, modified=now))

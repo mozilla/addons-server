@@ -494,32 +494,31 @@ _CACHED_KEYS = sorted(_KEYS.values())
 
 @memoize(prefix='global_stats', time=60 * 60)
 def _site_query(period, start, end, field=None, request=None):
+    with connection.cursor() as cursor:
+        # Let MySQL make this fast. Make sure we prevent SQL injection with the
+        # assert.
+        if period not in SERIES_GROUPS_DATE:
+            raise AssertionError('%s period is not valid.' % period)
 
-    cursor = connection.cursor()
-    # Let MySQL make this fast. Make sure we prevent SQL injection with the
-    # assert.
-    if period not in SERIES_GROUPS_DATE:
-        raise AssertionError('%s period is not valid.' % period)
+        sql = ("SELECT name, MIN(date), SUM(count) "
+               "FROM global_stats "
+               "WHERE date > %%s AND date <= %%s "
+               "AND name IN (%s) "
+               "GROUP BY %s(date), name "
+               "ORDER BY %s(date) DESC;"
+               % (', '.join(['%s' for key in _KEYS.keys()]), period, period))
+        cursor.execute(sql, [start, end] + _KEYS.keys())
 
-    sql = ("SELECT name, MIN(date), SUM(count) "
-           "FROM global_stats "
-           "WHERE date > %%s AND date <= %%s "
-           "AND name IN (%s) "
-           "GROUP BY %s(date), name "
-           "ORDER BY %s(date) DESC;"
-           % (', '.join(['%s' for key in _KEYS.keys()]), period, period))
-    cursor.execute(sql, [start, end] + _KEYS.keys())
-
-    # Process the results into a format that is friendly for render_*.
-    default = dict([(k, 0) for k in _CACHED_KEYS])
-    result = SortedDict()
-    for name, date_, count in cursor.fetchall():
-        date_ = date_.strftime('%Y-%m-%d')
-        if date_ not in result:
-            result[date_] = default.copy()
-            result[date_]['date'] = date_
-            result[date_]['data'] = {}
-        result[date_]['data'][_KEYS[name]] = int(count)
+        # Process the results into a format that is friendly for render_*.
+        default = dict([(k, 0) for k in _CACHED_KEYS])
+        result = SortedDict()
+        for name, date_, count in cursor.fetchall():
+            date_ = date_.strftime('%Y-%m-%d')
+            if date_ not in result:
+                result[date_] = default.copy()
+                result[date_]['date'] = date_
+                result[date_]['data'] = {}
+            result[date_]['data'][_KEYS[name]] = int(count)
 
     return result.values(), _CACHED_KEYS
 
