@@ -730,6 +730,9 @@ class AdminForm(happyforms.ModelForm):
     _choices = [(k, v) for k, v in amo.ADDON_TYPE.items()
                 if k != amo.ADDON_ANY]
     type = forms.ChoiceField(choices=_choices)
+    reputation = forms.ChoiceField(
+        label=_(u'Reputation'),
+        choices=[('', '')] + [(i, unicode(i)) for i in range(-3, 4)])
 
     # Request is needed in other ajax forms so we're stuck here.
     def __init__(self, request=None, *args, **kw):
@@ -737,7 +740,9 @@ class AdminForm(happyforms.ModelForm):
 
     class Meta:
         model = Addon
-        fields = ('type', 'target_locale', 'locale_disambiguation')
+        fields = (
+            'type', 'reputation', 'target_locale', 'locale_disambiguation'
+        )
 
 
 class CheckCompatibilityForm(happyforms.Form):

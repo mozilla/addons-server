@@ -676,6 +676,12 @@ class TestAutoApprovalSummary(TestCase):
             file=self.version.all_files[0], validation=u'{}')
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
+    def test_negative_weight(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, weight=-300)
+        summary = AutoApprovalSummary.objects.get(pk=summary.pk)
+        assert summary.weight == -300
+
     def test_calculate_weight(self):
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
@@ -684,6 +690,7 @@ class TestAutoApprovalSummary(TestCase):
             'admin_review': 0,
             'average_daily_users': 0,
             'negative_reviews': 0,
+            'reputation': 0,
             'past_rejection_history': 0
         }
         assert weight_info == expected_result
@@ -780,6 +787,28 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight == 100
         assert weight_info['negative_reviews'] == 100
+
+    def test_calculate_weight_reputation(self):
+        self.addon.update(reputation=3)
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == -300
+        assert weight_info['reputation'] == -300
+
+        self.addon.update(reputation=-3)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 300
+        assert weight_info['reputation'] == 300
+
+        self.addon.update(reputation=-1000)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 300
+        assert weight_info['reputation'] == 300
+
+        self.addon.update(reputation=1000)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == -300
+        assert weight_info['reputation'] == -300
 
     def test_calculate_weight_average_daily_users(self):
         self.addon.update(average_daily_users=142444)

@@ -734,6 +734,8 @@ class AutoApprovalSummary(ModelBase):
                 .filter(addon=addon)
                 .filter(rating__lte=3, created__gte=one_year_ago)
                 .count() * 2, 100),
+            'reputation': (
+                max(min(int(addon.reputation or 0) * -100, 300), -300)),
             'average_daily_users': min(addon.average_daily_users / 10000, 100),
             'past_rejection_history': min(
                 Version.objects

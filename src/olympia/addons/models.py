@@ -352,6 +352,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     is_experimental = models.BooleanField(default=False,
                                           db_column='experimental')
+    reputation = models.SmallIntegerField(default=0, null=True)
 
     # The order of those managers is very important:
     # The first one discovered, if it has "use_for_related_fields = True"
