@@ -100,22 +100,26 @@ def category_totals():
     log.debug('Starting category counts update...')
     addon_statuses = ",".join(['%s'] * len(VALID_ADDON_STATUSES))
     file_statuses = ",".join(['%s'] * len(VALID_FILE_STATUSES))
-    cursor = connection.cursor()
-    cursor.execute("""
-    UPDATE categories AS t INNER JOIN (
-     SELECT at.category_id, COUNT(DISTINCT Addon.id) AS ct
-      FROM addons AS Addon
-      INNER JOIN versions AS Version ON (Addon.id = Version.addon_id)
-      INNER JOIN applications_versions AS av ON (av.version_id = Version.id)
-      INNER JOIN addons_categories AS at ON (at.addon_id = Addon.id)
-      INNER JOIN files AS File ON (Version.id = File.version_id
-                                   AND File.status IN (%s))
-      WHERE Addon.status IN (%s) AND Addon.inactive = 0
-      GROUP BY at.category_id)
-    AS j ON (t.id = j.category_id)
-    SET t.count = j.ct
-    """ % (file_statuses, addon_statuses),
-        VALID_FILE_STATUSES + VALID_ADDON_STATUSES)
+
+    with connection.cursor() as cursor:
+        cursor.execute("""
+        UPDATE categories AS t INNER JOIN (
+         SELECT at.category_id, COUNT(DISTINCT Addon.id) AS ct
+          FROM addons AS Addon
+          INNER JOIN versions AS Version
+            ON (Addon.id = Version.addon_id)
+          INNER JOIN applications_versions AS av
+            ON (av.version_id = Version.id)
+          INNER JOIN addons_categories AS at
+            ON (at.addon_id = Addon.id)
+          INNER JOIN files AS File
+            ON (Version.id = File.version_id AND File.status IN (%s))
+          WHERE Addon.status IN (%s) AND Addon.inactive = 0
+          GROUP BY at.category_id)
+        AS j ON (t.id = j.category_id)
+        SET t.count = j.ct
+        """ % (file_statuses, addon_statuses),
+            VALID_FILE_STATUSES + VALID_ADDON_STATUSES)
 
 
 def collection_subscribers():
@@ -127,31 +131,32 @@ def collection_subscribers():
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    cursor = connection.cursor()
-    cursor.execute("""
-        UPDATE collections SET weekly_subscribers = 0, monthly_subscribers = 0
-    """)
-    cursor.execute("""
-        UPDATE collections AS c
-        INNER JOIN (
-            SELECT
-                COUNT(collection_id) AS count,
-                collection_id
-            FROM collection_subscriptions
-            WHERE created >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-            GROUP BY collection_id
-        ) AS weekly ON (c.id = weekly.collection_id)
-        INNER JOIN (
-            SELECT
-                COUNT(collection_id) AS count,
-                collection_id
-            FROM collection_subscriptions
-            WHERE created >= DATE_SUB(CURDATE(), INTERVAL 31 DAY)
-            GROUP BY collection_id
-        ) AS monthly ON (c.id = monthly.collection_id)
-        SET c.weekly_subscribers = weekly.count,
-            c.monthly_subscribers = monthly.count
-    """)
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            UPDATE collections
+            SET weekly_subscribers = 0, monthly_subscribers = 0
+        """)
+        cursor.execute("""
+            UPDATE collections AS c
+            INNER JOIN (
+                SELECT
+                    COUNT(collection_id) AS count,
+                    collection_id
+                FROM collection_subscriptions
+                WHERE created >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+                GROUP BY collection_id
+            ) AS weekly ON (c.id = weekly.collection_id)
+            INNER JOIN (
+                SELECT
+                    COUNT(collection_id) AS count,
+                    collection_id
+                FROM collection_subscriptions
+                WHERE created >= DATE_SUB(CURDATE(), INTERVAL 31 DAY)
+                GROUP BY collection_id
+            ) AS monthly ON (c.id = monthly.collection_id)
+            SET c.weekly_subscribers = weekly.count,
+                c.monthly_subscribers = monthly.count
+        """)
 
 
 def weekly_downloads():
@@ -163,32 +168,37 @@ def weekly_downloads():
         return False
 
     raise_if_reindex_in_progress('amo')
-    cursor = connection.cursor()
-    cursor.execute("""
-        SELECT addon_id, SUM(count) AS weekly_count
-        FROM download_counts
-        WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-        GROUP BY addon_id
-        ORDER BY addon_id""")
-    counts = cursor.fetchall()
+
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            SELECT addon_id, SUM(count) AS weekly_count
+            FROM download_counts
+            WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+            GROUP BY addon_id
+            ORDER BY addon_id""")
+        counts = cursor.fetchall()
+
     addon_ids = [r[0] for r in counts]
+
     if not addon_ids:
         return
-    cursor.execute("""
-        SELECT id, 0
-        FROM addons
-        WHERE id NOT IN %s""", (addon_ids,))
-    counts += cursor.fetchall()
 
-    cursor.execute("""
-        CREATE TEMPORARY TABLE tmp_wd
-        (addon_id INT PRIMARY KEY, count INT)""")
-    cursor.execute('INSERT INTO tmp_wd VALUES %s' %
-                   ','.join(['(%s,%s)'] * len(counts)),
-                   list(itertools.chain(*counts)))
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            SELECT id, 0
+            FROM addons
+            WHERE id NOT IN %s""", (addon_ids,))
+        counts += cursor.fetchall()
 
-    cursor.execute("""
-        UPDATE addons INNER JOIN tmp_wd
-            ON addons.id = tmp_wd.addon_id
-        SET weeklydownloads = tmp_wd.count""")
-    cursor.execute("DROP TABLE IF EXISTS tmp_wd")
+        cursor.execute("""
+            CREATE TEMPORARY TABLE tmp_wd
+            (addon_id INT PRIMARY KEY, count INT)""")
+        cursor.execute('INSERT INTO tmp_wd VALUES %s' %
+                       ','.join(['(%s,%s)'] * len(counts)),
+                       list(itertools.chain(*counts)))
+
+        cursor.execute("""
+            UPDATE addons INNER JOIN tmp_wd
+                ON addons.id = tmp_wd.addon_id
+            SET weeklydownloads = tmp_wd.count""")
+        cursor.execute("DROP TABLE IF EXISTS tmp_wd")

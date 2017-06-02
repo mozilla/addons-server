@@ -587,7 +587,7 @@ def get_locale_from_lang(lang):
     """Pass in a language (u'en-US') get back a Locale object courtesy of
     Babel.  Use this to figure out currencies, bidi, names, etc."""
     # Special fake language can just act like English for formatting and such
-    if not lang or lang == 'dbg':
+    if not lang or lang in ('dbg', 'dbr', 'dbl'):
         lang = 'en'
 
     return Locale.parse(translation.to_locale(lang))

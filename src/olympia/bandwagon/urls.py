@@ -1,21 +1,19 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 
 from olympia.stats.urls import collection_stats_urls
 
 from . import views, feeds
 
 
-edit_urls = patterns(
-    '',
+edit_urls = [
     url('^$', views.edit, name='collections.edit'),
     url('^addons$', views.edit_addons, name='collections.edit_addons'),
     url('^privacy$', views.edit_privacy, name='collections.edit_privacy'),
     url('^contributors$', views.edit_contributors,
         name='collections.edit_contributors'),
-)
+]
 
-detail_urls = patterns(
-    '',
+detail_urls = [
     url('^$', views.collection_detail, name='collections.detail'),
     url('^format:json$', views.collection_detail_json,
         name='collections.detail.json'),
@@ -29,20 +27,18 @@ detail_urls = patterns(
     url('^watch$', views.watch, name='collections.watch'),
     url('^format:rss$', feeds.CollectionDetailFeed(),
         name='collections.detail.rss'),
-)
+]
 
-ajax_urls = patterns(
-    '',
+ajax_urls = [
     url('^list$', views.ajax_list, name='collections.ajax_list'),
     url('^add$', views.ajax_collection_alter, {'action': 'add'},
         name='collections.ajax_add'),
     url('^remove$', views.ajax_collection_alter, {'action': 'remove'},
         name='collections.ajax_remove'),
     url('^new$', views.ajax_new, name='collections.ajax_new'),
-)
+]
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url('^collection/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
     url('^collections/view/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
     url('^collections/edit/(?P<uuid>[^/]+)/?$', views.legacy_redirect,
@@ -67,4 +63,4 @@ urlpatterns = patterns(
 
     url('^collections/format:rss$', feeds.CollectionFeed(),
         name='collections.rss'),
-)
+]

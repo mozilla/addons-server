@@ -92,7 +92,6 @@
 <div class="island primary{{ ' full' if not (own_coll or fav_coll) }}" id="reviews">
   <h2>{{ _('My Reviews') }}</h2>
   <div class="items">
-    {% if reviews %}
       {% for review in reviews %}
         {% if hasOneToOne(review, 'addon') %}
           {% set addon = review.addon %}
@@ -100,11 +99,10 @@
             {% include "reviews/review.html" %}
           {% endwith %}
         {% endif %}
+      {% else %}
+        <p class="no-reviews no-results">{{ _('No add-on reviews yet.') }}</p>
       {% endfor %}
       {{ edit_review_form() }}
-    {% else %}
-      <p class="no-reviews no-results">{{ _('No add-on reviews yet.') }}</p>
-    {% endif %}
   </div>
   {{ reviews|impala_paginator }}
 </div>

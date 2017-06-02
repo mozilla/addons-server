@@ -25,7 +25,7 @@ def monitor(request, format=None):
     results = {}
 
     checks = ['memcache', 'libraries', 'elastic', 'path',
-              'rabbitmq', 'redis']
+              'rabbitmq', 'redis', 'signer']
 
     for check in checks:
         with statsd.timer('monitor.%s' % check) as timer:

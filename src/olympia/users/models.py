@@ -23,6 +23,7 @@ from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
 from olympia.access.models import Group, GroupUser
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
+from olympia.users.notifications import NOTIFICATIONS_BY_ID
 
 log = olympia.core.logger.getLogger('z.users')
 
@@ -217,16 +218,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """List of all groups the user is a member of, as a cached property."""
         return list(self.groups.all())
 
-    @amo.cached_property(writable=True)
-    def addons_listed(self):
-        """Public add-ons this user is listed as author of."""
-        return self.addons.public().filter(
-            addonuser__user=self, addonuser__listed=True)
-
     @property
     def num_addons_listed(self):
         """Number of public add-ons this user is listed as author of."""
-        return self.addons_listed.count()
+        return self.addons.public().filter(
+            addonuser__user=self, addonuser__listed=True).count()
 
     def my_addons(self, n=8):
         """Returns n addons"""
@@ -427,14 +423,9 @@ class UserNotification(ModelBase):
     class Meta:
         db_table = 'users_notifications'
 
-    @staticmethod
-    def update_or_create(update=None, **kwargs):
-        if update is None:
-            update = {}
-        rows = UserNotification.objects.filter(**kwargs).update(**update)
-        if not rows:
-            update.update(dict(**kwargs))
-            UserNotification.objects.create(**update)
+    @property
+    def notification(self):
+        return NOTIFICATIONS_BY_ID[self.notification_id]
 
 
 class DeniedName(ModelBase):

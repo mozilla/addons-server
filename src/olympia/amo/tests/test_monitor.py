@@ -4,6 +4,7 @@ from mock import Mock, patch
 
 from olympia.amo.tests import TestCase
 from olympia.amo import monitors
+import responses
 
 
 class TestMonitor(TestCase):
@@ -85,3 +86,14 @@ class TestMonitor(TestCase):
             status, redis_results = monitors.redis()
         assert status == ''
         assert redis_results == {'master': mocked_redis_info}
+
+    @override_settings(SIGNING_SERVER='http://localhost')
+    @responses.activate
+    def test_signer(self):
+        responses.add(
+            responses.GET,
+            'http://localhost/status',
+            status=200
+        )
+        status, signer_result = monitors.signer()
+        assert status == ''

@@ -20,7 +20,7 @@ for pofile in `find $1 -type f -name "django.po"`; do
     dir=`dirname $pofile`
     lang=`echo $pofile | cut -d "/" -f2`
     stem=`basename $pofile .po`
-    if [ $lang != 'dbg' ]
+    if [ $lang != 'dbr' ] && [ $lang != 'dbl' ]
     then
         # lint the .po file
         dennis-cmd lint --quiet --errorsonly "$pofile"
@@ -41,7 +41,7 @@ for pofile in `find $1 -type f -name "djangojs.po"`; do
     lang=`echo $pofile | cut -d "/" -f2`
     stem=`basename $pofile .po`
     touch "${dir}/${stem}.mo"
-    if [ $lang != 'dbg' ]
+    if [ $lang != 'dbr' ] && [ $lang != 'dbl' ]
     then
         # lint the .po file
         dennis-cmd lint --quiet --errorsonly "$pofile"

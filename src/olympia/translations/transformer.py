@@ -74,14 +74,14 @@ def get_trans(items):
     item_dict = dict((item.pk, item) for item in items)
     ids = ','.join(map(str, item_dict.keys()))
 
-    cursor = connection.cursor()
-    cursor.execute(sql.format(ids='(%s)' % ids), tuple(params))
-    step = len(trans_fields)
-    for row in cursor.fetchall():
-        # We put the item's pk as the first selected field.
-        item = item_dict[row[0]]
-        for index, field in enumerate(model._meta.translated_fields):
-            start = 1 + step * index
-            t = Translation(*row[start:start + step])
-            if t.id is not None and t.localized_string is not None:
-                setattr(item, field.name, t)
+    with connection.cursor() as cursor:
+        cursor.execute(sql.format(ids='(%s)' % ids), tuple(params))
+        step = len(trans_fields)
+        for row in cursor.fetchall():
+            # We put the item's pk as the first selected field.
+            item = item_dict[row[0]]
+            for index, field in enumerate(model._meta.translated_fields):
+                start = 1 + step * index
+                t = Translation(*row[start:start + step])
+                if t.id is not None and t.localized_string is not None:
+                    setattr(item, field.name, t)

@@ -173,7 +173,6 @@
             "total_contributions": "0.00",
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": false,
             "thankyou_note": null,
             "admin_review": false,
             "external_software": true,
@@ -354,7 +353,7 @@
             "slug": "feeds-news-blogging",
             "db_name": 2323
         }
-    },    
+    },
     {
         "pk": 22,
         "model": "addons.category",

@@ -2,6 +2,7 @@ import os
 import socket
 import StringIO
 import traceback
+import requests
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -185,3 +186,31 @@ def redis():
         status = ','.join(status)
 
     return status, redis_results
+
+
+def signer():
+    # Check Signing Server Endpoint
+    signer_results = None
+    status = ''
+
+    if getattr(settings, 'SIGNING_SERVER', False):
+        try:
+            response = requests.get('%s/status' % settings.SIGNING_SERVER,
+                                    timeout=settings.SIGNING_SERVER_TIMEOUT)
+            if response.status_code != 200:
+                status = (
+                    'Failed to chat with signing service. '
+                    'Invalid HTTP response code.')
+                monitor_log.critical(status)
+                signer_results = False
+            else:
+                signer_results = True
+        except Exception, e:
+            status = 'Failed to chat with signing service: %s' % e
+            monitor_log.critical(status)
+            signer_results = False
+    else:
+        status = 'SIGNING_SERVER is not set'
+        monitor_log.critical(status)
+        signer_results = False
+    return status, signer_results

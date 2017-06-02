@@ -85,8 +85,9 @@ class Command(BaseCommand):
                 p.movers=t.movers
             WHERE t.persona_id=p.id
         """
-        cursor = connection.cursor()
-        cursor.execute(raw_query)
+
+        with connection.cursor() as cursor:
+            cursor.execute(raw_query)
 
         log.debug('Total processing time: %s' % (
             datetime.datetime.now() - start))

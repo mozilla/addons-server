@@ -5,6 +5,8 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.test import override_settings
 
+import waffle
+
 from olympia import amo
 from olympia.amo.tests import version_factory
 from olympia.accounts.tests.test_views import BaseAuthenticationView
@@ -45,6 +47,9 @@ class TestInternalAddonSearchView(ESTestCase):
 
     def perform_search_with_senior_editor(
             self, url, data=None, expected_queries_count=3, **headers):
+        # Just to cache the waffle switch, to avoid polluting the
+        # assertNumQueries() call later
+        waffle.switch_is_active('boost-webextensions-in-search')
         # We are expecting 3 SQL queries by default, because we need
         # to load the user and its groups.
         self.client.login_api(

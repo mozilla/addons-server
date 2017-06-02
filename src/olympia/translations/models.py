@@ -128,25 +128,25 @@ class Translation(ModelBase):
         """
         if id is None:
             # Get a sequence key for the new translation.
-            cursor = connections['default'].cursor()
-            cursor.execute("""
-                UPDATE translations_seq
-                SET id=LAST_INSERT_ID(
-                    id + @@global.auto_increment_increment
-                )
-            """)
-
-            # The sequence table should never be empty. But alas, if it is,
-            # let's fix it.
-            if not cursor.rowcount > 0:
+            with connections['default'].cursor() as cursor:
                 cursor.execute("""
-                    INSERT INTO translations_seq (id)
-                    VALUES(LAST_INSERT_ID(
+                    UPDATE translations_seq
+                    SET id=LAST_INSERT_ID(
                         id + @@global.auto_increment_increment
-                    ))
+                    )
                 """)
-            cursor.execute('SELECT LAST_INSERT_ID()')
-            id = cursor.fetchone()[0]
+
+                # The sequence table should never be empty. But alas, if it is,
+                # let's fix it.
+                if not cursor.rowcount > 0:
+                    cursor.execute("""
+                        INSERT INTO translations_seq (id)
+                        VALUES(LAST_INSERT_ID(
+                            id + @@global.auto_increment_increment
+                        ))
+                    """)
+                cursor.execute('SELECT LAST_INSERT_ID()')
+                id = cursor.fetchone()[0]
 
         # Update if one exists, otherwise create a new one.
         q = {'id': id, 'locale': locale}

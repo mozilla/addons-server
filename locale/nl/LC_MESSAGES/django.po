@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-10 15:30+0000\n"
+"PO-Revision-Date: 2017-05-18 16:25+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -97,9 +97,9 @@ msgstr "Toevoegen aan {0}"
 msgid "This slug is already in use. Please choose another."
 msgstr "Deze identificator wordt al gebruikt. Kies een andere."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "De identificator kan niet ‘%s’ zijn. Kies een andere."
+msgstr "De identificator kan niet ‘%(slug)s’ zijn. Kies een andere."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -558,9 +558,8 @@ msgstr "Wilt u {0} op uw mobiele Firefox? Scan deze QR-code om direct op uw tele
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Replacement Add-ons for {0}"
-msgstr "Add-ons voor {0}"
+msgstr "Vervangende add-ons voor {0}"
 
 msgid "Report Abuse"
 msgstr "Misbruik melden"
@@ -2162,13 +2161,11 @@ msgstr "Broncode voor {addon} {version} geüpload."
 msgid "Source code uploaded"
 msgstr "Broncode geüpload"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Goedkeuringsopmerkingen voor {addon} {version} gewijzigd."
+msgstr "Automatische goedkeuring bevestigd voor {addon} {version}."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "Samenvatting van automatische goedkeuring"
+msgstr "Automatische goedkeuring bevestigd"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2703,7 +2700,7 @@ msgid "An author can only be listed once."
 msgstr "Een schrijver kan maar één keer worden vermeld."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Identificator onjuist."
 
 msgid "Details"
 msgstr "Details"
@@ -4862,12 +4859,11 @@ msgstr "Hierdoor wordt deze versie goedgekeurd, ondertekend en gepubliceerd. De 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr "Dit wijst deze versie af en verwijdert deze uit de wachtrij. De opmerkingen worden naar de ontwikkelaar gestuurd."
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "Wacht op goedkeuring"
+msgstr "Goedkeuring bevestigen"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
+msgstr "De laatste publieke versie van deze add-on is automatisch goedgekeurd. Dit houdt uw bevestiging van de goedkeuring bij, zonder de ontwikkelaar te informeren."
 
 msgid "Reviewer reply"
 msgstr "Antwoord van beoordelaar"
@@ -4924,15 +4920,13 @@ msgid "Has too few consecutive human-approved updates."
 msgstr "Heeft te weinig opeenvolgende door mensen goedgekeurde updates."
 
 msgid "Has a pending info request."
-msgstr ""
+msgstr "Heeft een aanvraag voor info in behandeling."
 
-#, fuzzy
 msgid "Is flagged for admin review."
-msgstr "Gemarkeerd voor beoordeling"
+msgstr "Is gemarkeerd voor beoordeling."
 
-#, fuzzy
 msgid "Is locked by a reviewer."
-msgstr "mijn add-on wordt door een beoordelaar beoordeeld"
+msgstr "Is vergrendeld door een beoordelaar."
 
 msgid "Duplicate Submission"
 msgstr "Dubbele inzending"
@@ -4992,9 +4986,8 @@ msgstr "vereist superbeoordeling"
 msgid "commented"
 msgstr "met opmerking"
 
-#, fuzzy
 msgid "confirmed as approved"
-msgstr "is goedgekeurd"
+msgstr "bevestigd als goedgekeurd"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -5009,9 +5002,8 @@ msgstr ""
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon}:: Misbruikmeldingen"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Misbruikmeldingen voor {addon} ({num})"
+msgstr "Misbruikmeldingen voor {addon} en de ontwikkelaars ervan ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -5041,13 +5033,11 @@ msgstr "Datum van laatste goedkeuring"
 msgid "Approvals Since Last Automatic Review"
 msgstr "Goedkeuringen sinds laatste automatische beoordeling"
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Misbruikmeldingen voor {addon} ({num})"
+msgstr "Misbruikmeldingen ({num})"
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Gemodereerde beoordeling ({num})"
+msgstr "Slechte gebruikersbeoordelingen ({num})"
 
 msgid "More about this add-on"
 msgstr "Meer over deze add-on"
@@ -5310,12 +5300,11 @@ msgstr "Bestanden downloaden"
 msgid "The developer has provided source code."
 msgstr "De ontwikkelaar heeft een broncode opgegeven."
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Automatisch goedgekeurde add-ons"
+msgstr "Niet automatisch goedgekeurd vanwege"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Script voor automatische goedkeuring is nog niet op deze versie uitgevoerd."
 
 msgid "This version has not been reviewed."
 msgstr "Deze versie is niet beoordeeld."
@@ -5373,7 +5362,7 @@ msgstr "Geen beoordelingen in deze periode gevonden."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] heeft %(object)s gerapporteerd op %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Deze aankondiging verwijderen"
@@ -5387,9 +5376,8 @@ msgstr "Inhoud"
 msgid "Compare"
 msgstr "Vergelijken"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Toestemmingen"
+msgstr "Toestemmingen:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -7487,13 +7475,12 @@ msgstr "Ja, add-onschrijvers kunnen één antwoord op een beoordeling geven. U k
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Ik ben een add-onschrijver, kan ik ongunstige beoordelingen of waarderingen verwijderen?"
 
-#, fuzzy
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 "In het algemeen niet. Maar als de beoordeling niet aan de beoordelingsrichtlijnen hierboven voldoet, kunt u op ‘Deze beoordeling rapporteren’ klikken voor een evaluatie. Als de beoordeling een niet "
-"langer geldige klacht bevat vanwege een nieuwe uitgave van uw add-on, kunnen we overwegen de beoordeling te verwijderen. Stuur uw gedetailleerde verzoek naar amo-editors@mozilla.org."
+"langer geldige klacht bevat vanwege een nieuwe uitgave van uw add-on, kunnen we overwegen de beoordeling te verwijderen."
 
 msgid "Start Now"
 msgstr "Nu beginnen"

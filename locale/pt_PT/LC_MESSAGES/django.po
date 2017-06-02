@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 17:04+0000\n"
+"PO-Revision-Date: 2017-05-27 12:27+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1282,7 +1282,7 @@ msgstr "Criar uma nova coleção"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Como indicado nas nossas <a href=\"%(legal)s\">Informações legais</a>, a criação de coleções individuais é regida pela Licença  Creative Commons Attribution Share-Alike"
+msgstr "Como indicado nos nossos <a href=\"%(legal)s\">Avisos legais</a>, a criação de coleções individuais é regida pela Licença Creative Commons Attribution Share-Alike"
 
 msgid "Create Collection"
 msgstr "Criar coleção"
@@ -2786,7 +2786,7 @@ msgid "Version doesn't match"
 msgstr "A versão não corresponde."
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr "A versão {version} foi carregada anteriormente e eliminada."
+msgstr "A versão {version} foi anteriormente carregada e eliminada."
 
 msgid "Version {version} already exists."
 msgstr "A versão {version} já existe."
@@ -2976,7 +2976,7 @@ msgstr "Chave da API revogada"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
-"Antes de começar, por favor leia e aceite o nosso acordo de distribuição de extras do Firefox. Também tem uma ligação para a nossa Política de Privacidade que explica como gerimos a sua informação."
+"Antes de começar, por favor leia e aceite o nosso acordo de distribuição de extras do Firefox. Também tem uma ligação para a nossa Política de privacidade que explica como gerimos a sua informação."
 
 msgid "Printable Version"
 msgstr "Versão para impressão"
@@ -4433,7 +4433,7 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Eu concordo com o <a href=\"%(agreement_url)s\">Acordo de distribuição de extras do Firefox</a> e com a minha informação ser gerida tal como é descrito no <a href=\"%(privacy_notice_url)s\">aviso de"
+"Eu concordo com o <a href=\"%(agreement_url)s\">Acordo de distribuição de extras do Firefox</a> e com a minha informação ser gerida tal como é descrito no <a href=\"%(privacy_notice_url)s\">Aviso de"
 " privacidade de websites, comunicações e cookies</a>."
 
 msgid "Submit Theme"
@@ -6982,7 +6982,7 @@ msgid "You can submit an update for your add-on via the Developer Tools dashboar
 msgstr "Pode enviar uma atualização do seu extra através do painel de ferramentas de programador escolhendo a opção \"Enviar uma nova versão\" e carregando um novo ficheiro .xpi para o seu extra."
 
 msgid "Does my update need to be reviewed by reviewers?"
-msgstr "A minha atualização precisa de ser revista por editores?"
+msgstr "A minha atualização precisa de ser revista por revisores?"
 
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
@@ -7260,7 +7260,7 @@ msgid ""
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
-"Os extras experimentais foram marcados pelos seus programadores como não adequados para uma audiência grande.  Eles foram verificados pelos nossos editores para se certificar de que não têm "
+"Os extras experimentais foram marcados pelos seus programadores como não adequados para uma audiência grande.  Estes foram verificados pelos nossos editores para se certificar de que não têm "
 "problemas de segurança, mas podem ainda ter erros ou não funcionar corretamente. Tenha cuidado ao instalar extras experimentais e desinstale o extra imediatamente se notar problemas. <a "
 "href=\"%(url)s\">Saiba mais acerca do nosso processo de revisão</a></dd>"
 
@@ -7314,8 +7314,8 @@ msgstr "O que significa quando um extra é marcado como lento?"
 
 msgid "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown."
 msgstr ""
-"A maioria dos extras carregam código e recursos ao mesmo tempo que o Firefox está a iniciar. Na maioria dos casos o impacto no tempo de início é mínimo, mas alguns extras podem causar uma lentidão "
-"percetível."
+"A maioria dos extras carregam código e recursos ao mesmo tempo que o Firefox está a arrancar. Na maioria dos casos o impacto no tempo de arranque é mínimo, mas alguns extras podem causar uma "
+"lentidão percetível."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Como é que reporto uma revisão de um utilizador inapropriada ou de spam?"

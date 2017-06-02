@@ -7,6 +7,8 @@ A reviewer sent a message regarding the review of version {{ number }} of add-on
 {{ comments }}
 
 If you want to respond please reply to this email or visit {{ url }}
+
+You are receiving this email because {{ email_reason }}.
 --
 Mozilla Add-ons
 {{ SITE_URL }}

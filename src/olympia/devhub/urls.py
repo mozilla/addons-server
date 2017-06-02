@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.shortcuts import redirect
 
 from olympia.addons.urls import ADDON_ID
@@ -10,8 +10,7 @@ from . import views
 
 
 # These will all start with /theme/<slug>/
-theme_detail_patterns = patterns(
-    '',
+theme_detail_patterns = [
     url('^$', lambda r,
         addon_id: redirect('devhub.themes.edit', addon_id, permanent=True)),
     url('^delete$', views.delete, name='devhub.themes.delete'),
@@ -21,12 +20,10 @@ theme_detail_patterns = patterns(
         views.ajax_upload_image, name='devhub.personas.reupload_persona'),
     url('^edit$', views.edit_theme, name='devhub.themes.edit'),
     url('^rmlocale$', views.remove_locale, name='devhub.themes.remove-locale'),
-)
-
+]
 
 # These will all start with /addon/<addon_id>/
-detail_patterns = patterns(
-    '',
+detail_patterns = [
     # Redirect to the edit page from the base.
     url('^$', lambda r, addon_id: redirect('devhub.addons.edit', addon_id,
                                            permanent=True)),
@@ -114,11 +111,9 @@ detail_patterns = patterns(
     url('^request-review$',
         views.request_review, name='devhub.request-review'),
     url('^rmlocale$', views.remove_locale, name='devhub.addons.remove-locale'),
-)
-
+]
 # These will all start with /ajax/addon/<addon_id>/
-ajax_patterns = patterns(
-    '',
+ajax_patterns = [
     url('^dependencies$', views.ajax_dependencies,
         name='devhub.ajax.dependencies'),
     url('^versions/compatibility/status$',
@@ -128,27 +123,23 @@ ajax_patterns = patterns(
     url('^versions/(?P<version_id>\d+)/compatibility$',
         views.ajax_compat_update, name='devhub.ajax.compat.update'),
     url('^image/status$', views.image_status, name='devhub.ajax.image.status'),
-)
+]
+redirect_patterns = [
+    url('^addon/edit/(\d+)',
+        lambda r, id: redirect('devhub.addons.edit', id, permanent=True)),
+    url('^addon/status/(\d+)',
+        lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
+    url('^versions/(\d+)',
+        lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
+]
 
-redirect_patterns = patterns(
-    '',
-    ('^addon/edit/(\d+)',
-     lambda r, id: redirect('devhub.addons.edit', id, permanent=True)),
-    ('^addon/status/(\d+)',
-     lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
-    ('^versions/(\d+)',
-     lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
-)
-
-
-urlpatterns = decorate(write, patterns(
-    '',
+urlpatterns = decorate(write, [
     url('^$', views.index, name='devhub.index'),
     url('', include(redirect_patterns)),
 
     # Redirect people who have /addons/ instead of /addon/.
-    ('^addons/\d+/.*',
-     lambda r: redirect(r.path.replace('addons', 'addon', 1))),
+    url('^addons/\d+/.*',
+        lambda r: redirect(r.path.replace('addons', 'addon', 1))),
 
     # Add-on submission
     url('^addon/submit/(?:1)?$',
@@ -224,4 +215,4 @@ urlpatterns = decorate(write, patterns(
     # Developer docs
     url('docs/(?P<doc_name>[-_\w]+(?:/[-_\w]+)?)?$',
         views.docs, name='devhub.docs'),
-))
+])

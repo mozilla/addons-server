@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 
 from rest_framework.routers import SimpleRouter
 
@@ -9,9 +9,7 @@ addons.register(r'addon', views.InternalAddonViewSet,
                 base_name='internal-addon')
 
 
-urlpatterns = patterns(
-    '',
-
+urlpatterns = [
     url(r'^addons/search/$',
         views.InternalAddonSearchView.as_view(),
         name='internal-addon-search'),
@@ -22,4 +20,4 @@ urlpatterns = patterns(
     url(r'^accounts/login/$',
         views.LoginView.as_view(),
         name='internal-login'),
-)
+]

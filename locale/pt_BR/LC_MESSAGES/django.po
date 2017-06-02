@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 18:53+0000\n"
+"PO-Revision-Date: 2017-05-19 03:10+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5175,9 +5175,8 @@ msgstr "Denúncias de abuso ({num})"
 # %1 is the review count
 # 87%
 # 100%
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Análise moderada ({num})"
+msgstr "Análises negativas de usuários ({num})"
 
 msgid "More about this add-on"
 msgstr "Mais sobre esta extensão"

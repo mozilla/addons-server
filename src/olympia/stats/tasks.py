@@ -33,13 +33,16 @@ log = olympia.core.logger.getLogger('z.task')
 def update_addons_collections_downloads(data, **kw):
     log.info("[%s] Updating addons+collections download totals." %
              (len(data)))
-    cursor = connection.cursor()
-    q = ("UPDATE addons_collections SET downloads=%s WHERE addon_id=%s "
-         "AND collection_id=%s;" * len(data))
-    cursor.execute(q,
-                   list(itertools.chain.from_iterable(
-                       [var['sum'], var['addon'], var['collection']]
-                       for var in data)))
+    query = (
+        "UPDATE addons_collections SET downloads=%s WHERE addon_id=%s "
+        "AND collection_id=%s;" * len(data))
+
+    with connection.cursor() as cursor:
+        cursor.execute(
+            query,
+            list(itertools.chain.from_iterable(
+                [var['sum'], var['addon'], var['collection']]
+                for var in data)))
 
 
 @task
@@ -112,16 +115,18 @@ def update_google_analytics(date, **kw):
         log.critical(
             'Fetching stats data for %s from Google Analytics failed: %s' % e)
         return
+
     try:
         cursor = connection.cursor()
         cursor.execute('REPLACE INTO global_stats (name, count, date) '
                        'values (%s, %s, %s)', p)
     except Exception, e:
         log.critical('Failed to update global stats: (%s): %s' % (p, e))
-        return
-
-    log.debug('Committed global stats details: (%s) has (%s) for (%s)'
-              % tuple(p))
+    else:
+        log.debug('Committed global stats details: (%s) has (%s) for (%s)'
+                  % tuple(p))
+    finally:
+        cursor.close()
 
 
 @task
@@ -142,9 +147,11 @@ def update_global_totals(job, date, **kw):
         cursor.execute(q, p)
     except Exception, e:
         log.critical('Failed to update global stats: (%s): %s' % (p, e))
-
-    log.debug('Committed global stats details: (%s) has (%s) for (%s)'
-              % tuple(p))
+    else:
+        log.debug('Committed global stats details: (%s) has (%s) for (%s)'
+                  % tuple(p))
+    finally:
+        cursor.close()
 
 
 def _get_daily_jobs(date=None):

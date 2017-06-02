@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-04-26 16:14+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2017-05-21 07:31+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgid "Error with {0}"
 msgstr "{0} 发生错误"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "我们已启用新的处理器处理您的附加组件。如有任何问题，请报告到 GitHub"
+msgstr "我们开始使用新的 Linter 处理您的附加组件。如有任何问题，请到 GitHub 反馈"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -74,15 +74,15 @@ msgid "Finished validating {0}"
 msgstr "已完成验证 {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "您的附加组件验证超时，它将经过人工审核。"
+msgstr "您的附加组件验证超时，须经人工审核。"
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "您的附加组件已通过验证，无错误，{0} 条警告。"
+msgstr[0] "您的附加组件已通过验证，无错误，有 {0} 条警告。"
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "您的附加组件已通过验证，无错误，{0} 条消息。"
+msgstr[0] "您的附加组件已通过验证，无错误，有 {0} 条消息。"
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "您的附加组件已通过验证，无错误，无警告。"
@@ -94,7 +94,7 @@ msgid "WebExtension upgrade"
 msgstr "升级为 WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "我们允许，也鼓励您升级，但您将无法撤销此过程。一旦您的用户安装了 WebExtension 版本，他们将不能再安装旧式附加组件。"
+msgstr "Mozilla 为您提供了升级的途径，也鼓励您如此，但您将无法撤销此过程。一旦您的用户安装了 WebExtension 版本，他们将无法再安装旧式附加组件。"
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "到 MDN 了解如何移植旧式 Firefox 附加组件"
