@@ -24,7 +24,7 @@ def locale_html(translatedfield):
     if locale == site_locale:
         return ''
     else:
-        rtl_locales = map(translation.to_locale, settings.RTL_LANGUAGES)
+        rtl_locales = map(translation.to_locale, settings.LANGUAGES_BIDI)
         textdir = 'rtl' if locale in rtl_locales else 'ltr'
         return jinja2.Markup(' lang="%s" dir="%s"' % (
             jinja2.escape(translatedfield.locale), textdir))

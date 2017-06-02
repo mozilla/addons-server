@@ -14,7 +14,7 @@ Account
 This endpoint returns information about a user's account, by the account id.
 Most of the information is optional and provided by the user so may be missing or inaccurate.
 
-.. http:get:: /api/v3/accounts/account/(int:user_id)/
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/
 
     .. _account-object:
 
@@ -33,10 +33,10 @@ Most of the information is optional and provided by the user so may be missing o
     :>json boolean is_artist: The user has developed and listed themes on this website.
 
 
-If you authenticate and access your own account by specifing your own `user_id` the following additional fields are returned.
+If you authenticate and access your own account by specifing your own ``user_id`` the following additional fields are returned.
 If you have `Users:Edit` permission you will see these extra fields for all user accounts.
 
-.. http:get:: /api/v3/accounts/account/(int:user_id)/
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/
 
     .. _account-object-self:
 
@@ -50,13 +50,13 @@ If you have `Users:Edit` permission you will see these extra fields for all user
 
 
     :statuscode 200: account found.
-    :statuscode 400: an error occurred, check the `error` value in the JSON.
+    :statuscode 400: an error occurred, check the ``error`` value in the JSON.
     :statuscode 404: no account with that user id.
 
 
 .. important::
 
-    * `Biography` can contain HTML, or other unsanitized content, and it is the
+    * ``Biography`` can contain HTML, or other unsanitized content, and it is the
       responsibiliy of the client to clean and escape it appropriately before display.
 
 
@@ -72,8 +72,247 @@ This endpoint is a shortcut to your own account. It returns an :ref:`account obj
 
 .. http:get:: /api/v3/accounts/profile/
 
-    .. _self-account-object:
 
+----
+Edit
+----
+
+.. _`account-edit`:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Users:Edit`
+    permission to edit accounts other than your own.
+
+This endpoint allows some of the details for an account to be updated.  Any fields
+in the :ref:`account <account-object>` (or :ref:`self <account-object-self>`)
+but not listed below are not editable and will be ignored in the patch request.
+
+.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/
+
+    .. _account-edit-request:
+
+    :<json string|null biography: More details about the user.  No links are allowed.
+    :<json string|null display_name: The name chosen by the user.
+    :<json string|null homepage: The user's website.
+    :<json string|null location: The location of the user.
+    :<json string|null occupation: The occupation of the user.
+    :<json string|null username: username to be used in the account url.  The username can only contain letters, numbers, underscores or hyphens. All-number usernames are prohibited as they conflict with user-ids.
+
+
+-------------------
+Uploading a picture
+-------------------
+
+To upload a picture for the profile the request must be sent as content-type `multipart/form-data` instead of JSON.
+Images must be either PNG or JPG; the maximum file size is 4MB.
+Other :ref:`editable values <account-edit-request>` can be set at the same time.
+
+.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/
+
+    **Request:**
+
+    .. sourcecode:: bash
+
+        curl "https://addons.mozilla.org/api/v3/accounts/account/12345/"
+            -g -XPATCH --form "picture_upload=@photo.png"
+            -H "Authorization: Bearer <token>"
+
+    :param user-id: The numeric user id.
+    :form picture_upload: The user's picture to upload.
+    :reqheader Content-Type: multipart/form-data
+
+
+------
+Delete
+------
+
+.. _`account-delete`:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Users:Edit`
+    permission to delete accounts other than your own.
+
+.. note::
+    Accounts of users who are authors of Add-ons can't be deleted.
+    All Add-ons (and Themes) must be deleted or transfered to other users first.
+
+This endpoint allows the account to be deleted. The reviews and ratings
+created by the user will not be deleted; but all the user's details are
+cleared.
+
+.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/
+
+
+----------------
+Collections List
+----------------
+
+.. _collection-list:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Collections:Edit`
+    permission to list collections other than your own.
+
+This endpoint allows you to list all collections authored by the specified user.
+
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/
+
+    :>json int count: The number of results for this query.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of :ref:`collections <collection-detail-object>`.
+
+
+-----------------
+Collection Detail
+-----------------
+
+.. _collection-detail:
+
+This endpoint allows you to fetch a single collection by its ``slug``.
+It returns any ``public`` collection by the specified user. You can access
+a non-``public`` collection only if it was authored by you, the authenticated user.
+If your account has the `Collections:Edit` permission then you can access any collection.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
+
+    .. _collection-detail-object:
+
+    :>json int id: The id for the collection.
+    :>json int addon_count: The number of add-ons in this collection.
+    :>json int author.id: The id of the author (creator) of the collection.
+    :>json string author.name: The name of the author.
+    :>json string author.url: The link to the profile page for of the author.
+    :>json string default_locale: The default locale of the description and name fields. (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :>json string modified: The date the collection was last updated.
+    :>json string|object name: The name of the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :>json boolean public: Whether the collection is `listed` - publicly viewable.
+    :>json string slug: The name used in the URL.
+    :>json string url: The (absolute) collection detail URL.
+
+
+-----------------
+Collection Create
+-----------------
+
+.. _`collection-create`:
+
+.. note::
+    This API requires :doc:`authentication <auth>`.
+
+This endpoint allows a collection to be created under your account.  Any fields
+in the :ref:`collection <collection-detail-object>` but not listed below are not settable and will be ignored in the request.
+
+.. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/collections/
+
+    .. _collection-create-request:
+
+    :<json string|null default_locale: The default locale of the description and name fields. Defaults to `en-US`. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object name: The name of the collection. (required) (See :ref:`translated fields <api-overview-translations>`).
+    :<json boolean public: Whether the collection is `listed` - publicly viewable.  Defaults to `True`.
+    :<json string slug: The name used in the URL (required).
+
+
+---------------
+Collection Edit
+---------------
+
+.. _`collection-edit`:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Collections:Edit`
+    permission to edit collections other than your own.
+
+This endpoint allows some of the details for a collection to be updated.  Any fields
+in the :ref:`collection <collection-detail-object>` but not listed below are not editable and will be ignored in the patch request.
+
+.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
+
+    .. _collection-edit-request:
+
+    :<json string default_locale: The default locale of the description and name fields. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object name: The name of the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :<json boolean public: Whether the collection is `listed` - publicly viewable.
+    :<json string slug: The name used in the URL.
+
+
+-----------------
+Collection Delete
+-----------------
+
+.. _`collection-delete`:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Collections:Edit`
+    permission to delete collections other than your own.
+
+This endpoint allows the collection to be deleted.
+
+.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
+
+
+
+------------------
+Collection Add-ons
+------------------
+
+.. _collection-addon:
+
+This endpoint lists the add-ons in a collection, together with collector's notes.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/
+
+    :>json int count: The number of results for this query.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of items in this collection.
+    :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item.
+    :>json string|object|null results[].notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
+    :>json int results[].downloads: The downloads that occured via this collection.
+
+
+------------------
+Notifications List
+------------------
+
+.. _notification-list:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Users:Edit`
+    permission to list notifications on accounts other than your own.
+
+This endpoint allows you to list the account notifications set for the specified user.
+The result is an unpaginated list of the fields below. There are currently 11 notification types.
+
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/notifications/
+
+    :>json string name: The notification short name.
+    :>json boolean enabled: If the notification is enabled (defaults to True).
+    :>json boolean mandatory: If the notification can be set by the user.
+
+
+--------------------
+Notifications Update
+--------------------
+
+.. _`notification-update`:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Users:Edit`
+    permission to set notification preferences on accounts other than your own.
+
+This endpoint allows account notifications to be set or updated. The request should be a dict of `name`:True|False pairs.
+Any number of notifications can be changed; only non-mandatory notifications can be changed - attempting to set a mandatory notification will return an error.
+
+.. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/notifications/
+
+    .. _notification-update-request:
+
+    :<json boolean <name>: Is the notification enabled?
 
 
 --------------

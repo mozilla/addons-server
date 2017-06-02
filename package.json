@@ -6,12 +6,19 @@
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
+  "scripts": {
+    "potools": "potools"
+  },
   "dependencies": {
-    "addons-linter": "0.19.2",
+    "addons-linter": "0.20.0",
     "clean-css": "4.1.1",
     "clean-css-cli": "4.1.2",
+    "jquery": "1.12.0",
     "less": "2.7.2",
     "stylus": "0.54.5",
-    "uglify-js": "3.0.3"
+    "uglify-js": "3.0.14"
+  },
+  "devDependencies": {
+    "potools": "0.0.5"
   }
 }

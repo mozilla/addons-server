@@ -52,51 +52,6 @@
       </p>
     {% endtrans %}
 
-    <p>{{ _('Other resources include:') }}</p>
-    <ul>
-      <li>
-        <a href="https://blog.mozilla.org/addons/2014/06/05/how-to-develop-firefox-extension/">
-          {{ _('"How to develop a Firefox extension" post in the Add-ons Blog') }}</a>
-      </li>
-      <li>
-        <a href="https://blog.mozilla.org/addons/">{{ _('Mozilla Add-ons Blog') }}</a>
-      </li>
-    </ul>
-
-    <h3>{{ _('What tools do I need to be able to build an Add-on?') }}</h3>
-    <p>
-      {% trans %}
-        You will need to have a version of the Mozilla software that you're
-        building the add-on for and a code editor of your choice. Add-ons
-        can be built for almost all Mozilla software but are primarily
-        targeted for:
-      {% endtrans %}
-    </p>
-
-    <ul>
-        <li><a href="http://www.mozilla.org/firefox/">Firefox</a></li>
-        <li><a href="http://www.mozilla.org/thunderbird/">Thunderbird</a></li>
-        <li><a href="http://www.seamonkey-project.org/">SeaMonkey</a></li>
-    </ul>
-
-    <p>{{ _('Popular code editors include:') }}</p>
-    <ul>
-      {# L10n: This is a list of popular code editors.  Feel free to adjust as you like. #}
-      {% trans %}
-        <li><a href="http://komodoide.com/komodo-edit/">Komodo Edit</a></li>
-        <li><a href="http://macromates.com/">TextMate</a></li>
-        <li><a href="http://notepad-plus-plus.org/">Notepad++</a></li>
-        <li><a href="http://www.eclipse.org/">Eclipse IDE</a></li>
-      {% endtrans %}
-    </ul>
-
-    <p>
-      {% trans url='https://developer.mozilla.org/Add-ons/Setting_up_extension_development_environment' %}
-        You can also learn more about setting up your development environment
-        via the MDN article <a href="{{ url }}">Setting up extension development environment</a>
-      {% endtrans %}
-    </p>
-
     <h3>{{ _('What is a ".xpi" file?') }}</h3>
     <p>
       {% trans %}
@@ -115,57 +70,13 @@
         of the browser UI.
       {% endtrans %}
     </p>
-
-    <h3>{{ _('What is the "install.rdf" file used for?') }}</h3>
     <p>
-      {% trans url='https://developer.mozilla.org/Add-ons/Install_Manifests' %}
-        This file, called an <a href="{{ url }}">Install Manifest</a>,
-        is used by Add-on Manager-enabled XUL applications to determine
-        information about an add-on as it is being installed. It contains
-        metadata identifying the add-on, providing information about who
-        created it, where more information can be found about it, which
-        versions of what applications it is compatible with, how it should
-        be updated, and so on. The format of the Install Manifest is RDF/XML.
-      {% endtrans %}
-    </p>
-
-    <h3>{{ _('What does "maxVersion" mean?') }}</h3>
-    <p>
-      {% trans %}
-        This determines the maximum version of Firefox you're saying this
-        extension will work with. Set this to be no newer than the newest
-        currently available version!
-      {% endtrans %}
-    </p>
-
-    <h3>{{ _('Can my add-on contain binary components?') }}</h3>
-    <p>
-      {% trans url='https://developer.mozilla.org/docs/Mozilla/Tech/XPCOM' %}
-        Yes. You can use Mozilla's <a href="{{ url }}">XPCOM component object model</a>
-        to enhance your add-ons. XPCOM components be used and implemented in
-        JavaScript, Java, and Python in addition to C++.
-      {% endtrans %}
-    </p>
-
-    <h3>{{ _('Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?') }}</h3>
-    <p>
-      {% trans %}
-        Yes. It's possible, but some of the functionality provided by these
-        libraries are available through XPCOM, XUL, and JavaScript. In addition,
-        authors should take care if libraries modify primitive object
-        prototypes (String.prototype, Date.prototype, etc.) and/or define
-        global functions (eg. the $ function). These are prone to cause
-        conflict with other add-ons, in particular if different add-ons use
-        different versions of libraries and so on. Developers need to be
-        very, very careful with using them. Mozilla does not offer
-        documentation on using them to build add-ons.
-      {% endtrans %}
-    </p>
-
-    <h3>{{ _('How do I debug my add-on?') }}</h3>
-    <p>
-      {% trans url='https://developer.mozilla.org/Add-ons/Add-on_Debugger' %}
-        You can use the <a href="{{ url }}">Add-on Debugger</a>.
+      {% trans webext_url="https://developer.mozilla.org/en-US/Add-ons/WebExtensions",
+               portlegacy_url="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on"%}
+      <strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from 
+      Firefox 57. Please use <a href="{{ webext_url }}">WebExtensions</a> APIs to develop new add-ons. If you have a legacy add-on, 
+      consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit
+      <a href="{{ portlegacy_url }}">Porting a legacy Firefox add-on</a>. 
       {% endtrans %}
     </p>
 
@@ -174,35 +85,12 @@
       {% trans  %}
         To ensure compatibility with the latest Mozilla software, it's important
         to download updates as they become available and test your add-on to
-        ensure that it is still functioning as expected. In many cases, the latest
-        version of Mozilla software may be a beta release. Since these releases at
+        ensure that it is still functioning as expected. Since these releases at
         times introduce architectural changes that may impact the functionality of your
         add-on, it's important to be actively involved in the beta process to ensure
         that your add-on users are not negatively impacted upon final release of Mozilla software.
       {% endtrans %}
     </p>
-
-    <h3>{{ _('How to improve the performance of my add-on?') }}</h3>
-    <p>
-    {% trans url='https://developer.mozilla.org/docs/Mozilla/Performance' %}
-        Poorly written extensions can have a severe impact on the browsing experience,
-        including on the overall performance of Firefox itself. The following page contains
-        many good <a href="{{ url }}">guides</a> that help you improve performance, whether
-        you're developing core Mozilla code or an add-on.
-      {% endtrans %}
-    </p>
-
-    <h3>{{ _('Can my add-on support multiple locales?') }}</h3>
-    <p>
-      {% trans l10n_url='https://developer.mozilla.org/docs/Mozilla/Localization/Localizing_an_extension',
-               bz_url='http://www.babelzilla.org/' %}
-       Yes. Details on localizing your add-on can be found in the the
-       <a href="{{ l10n_url }}">Mozilla Developer Network Localization page</a>.
-       <a href="{{ bz_url }}">The BabelZilla project</a> is also a great resource
-       for learning about localization and volunteering to help translate add-ons.
-      {% endtrans %}
-    </p>
-
 
     {# L10n: Heading for a list of resources for developers #}
     <h2 id="support-resources">{{ _('Support Resources') }}</h2>
@@ -216,27 +104,12 @@
           <li>{{ _('#extdev (for add-on development discussions)') }}</li>
           {# L10n: #amo is the name of the IRC channel.  do not change. #}
           <li>{{ _('#amo (for support relating to hosting your add-on on AMO)') }}</li>
-          {# L10n: #jetpack is the name of the IRC channel.  do not change. #}
-          <li>{{ _('#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)') }}</li>
+          {# L10n: #webextensions is the name of the IRC channel.  do not change. #}
+          <li>{{ _('#webextensions (for discussions about developing and porting to WebExtensions)') }}</li>
           </ul>
       </li>
-      <li><a href="https://lists.mozilla.org/listinfo/dev-extensions">
-        {# L10n: Label for a link to the extension developers mailing list #}
-        {{ _('Mailing List') }}
-      </a></li>
-      <li><a href="news://news.mozilla.org/mozilla.dev.extensions">
-        {# L10n: Label for a link to the extension developers newsgroup #}
-        {{ _('Newsgroup') }}
-      </a></li>
-      <li><a href="http://groups.google.com/group/mozilla.dev.extensions">
-        {# L10n: Label for a link to the extension developers Google Group #}
-        {{ _('Google Group') }}
-      </a></li>
       <li><a href="https://discourse.mozilla-community.org/c/add-ons">
         {{ _('Add-ons forum') }}
-      </a></li>
-      <li><a href="http://stackoverflow.com/questions/tagged/firefox-addon-sdk">
-        {{ _('Stack Overflow') }}
       </a></li>
       </ul>
 
@@ -262,15 +135,11 @@
 
     <h3>{{ _('Can I host my own add-on?') }}</h3>
     <p>
-      {% trans amo_url='https://addons.mozilla.org',
-               md_url='http://mozdev.org/' %}
+      {% trans amo_url='https://addons.mozilla.org' %}
         Yes. Many developers choose to host their own add-ons. Choosing to
         host your add-on on <a href="{{ amo_url }}">Mozilla's add-on site</a>,
         though, allows for much greater exposure to your add-on due to the
-        large volume of visitors to the site. <a href="{{ md_url }}">mozdev.org</a>
-        offers free project hosting for Mozilla applications and extensions
-        providing developers with tools to help manage source code, version
-        control, bug tracking and documentation.
+        large volume of visitors to the site.
       {% endtrans %}
     </p>
 
@@ -294,7 +163,7 @@
 
     <h3>{{ _('Does Mozilla keep my account information private?') }}</h3>
     <p>
-      {% trans url='http://www.mozilla.org/en-US/privacy/policies/websites/' %}
+      {% trans url='https://www.mozilla.org/en-US/privacy/websites/' %}
       Yes. Our <a href="{{ url }}">Privacy Policy</a> describes how your information is managed by Mozilla.
       {% endtrans %}
     </p>
@@ -311,9 +180,9 @@
 
     <h3>{{ _('Does Mozilla have a policy in place as to what is an acceptable submission?') }}</h3>
     <p>
-      {% trans p_url="https://addons.mozilla.org/en-US/developers/docs/policies",
+      {% trans p_url="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews",
                g_url="https://wiki.mozilla.org/Add-ons/Reviewers/Guide" %}
-        Yes. Mozilla's <a href="{{ p_url }}">Add-on Policy</a> describes what is
+        Yes. Mozilla's <a href="{{ p_url }}">Add-on Review Policies</a> describe what is
         an acceptable submission. This policy is subject to change without
         notice. In addition, the Add-on Reviewer Team uses the
         <a href="{{ g_url }}">Add-on Review Guide</a> to ensure that your add-on meets
@@ -321,14 +190,14 @@
       {% endtrans %}
     </p>
 
-    <h3>{{ _('How do I submit my add-on for review?') }}</h3>
+    <h3>{{ _('How do I submit my add-on?') }}</h3>
     <p>
-      {% trans url='https://wiki.mozilla.org/Add-ons/Reviewers/Guide' %}
+      {% trans url='https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews' %}
         The Developer Tools dashboard will allow you to upload and submit
-        add-ons to AMO. You must be a registered AMO users before you can
+        add-ons to AMO. You must be a registered AMO user before you can
         submit an add-on. Before submitting your add-on be sure to you have
-        read the <a href="{{ url }}">Add-on Review Guide</a> to
-        ensure that your add-on has met the guidelines used by reviewers.
+        read the <a href="{{ url }}">Add-on Review Policies</a> to
+        ensure that your add-on has met our guidelines.
       {% endtrans %}
     </p>
 
@@ -371,13 +240,13 @@
 
     <h2 id="review-process">{{ _('Add-on Review Process') }}</h2>
 
-    <h3>{{ _('Why must my add-on be reviewed?') }}</h3>
+    <h3>{{ _('Must my add-on be reviewed?') }}</h3>
     <p>
       {% trans url='https://wiki.mozilla.org/Add-ons/Reviewers/Guide' %}
-        All add-ons submitted, whether new or updated, are reviewed to ensure
-        that Mozilla users have a stable and safe experience. All add-ons
-        submissions are reviewed using the guidelines outlined in the
-        <a href="{{ url }}">Add-on Review Guide</a>.
+        New and updated add-ons may be suject to reviewed to ensure
+        that Mozilla users have a stable and safe experience. The guidelines
+        outlined in the <a href="{{ url }}">Add-on Review Guide</a> are used
+        to review add-on submissions.
       {% endtrans %}
     </p>
 
@@ -387,7 +256,7 @@
         Add-ons are reviewed by the Add-on Reviewers, a group of talented
         developers that volunteer to help the Mozilla project by reviewing
         add-ons to ensure a stable and safe experience for Mozilla users.
-        When communicating with reviewer, please be courteous, patient and
+        When communicating with a reviewer, please be courteous, patient and
         respectful as they are working hard to ensure that your add-on is
         set up correctly and follows the guidelines outlined in the
         <a href="{{ url }}">Add-on Review Guide</a>.
@@ -398,11 +267,10 @@
     <p>
       {% trans url='https://wiki.mozilla.org/Add-ons/Reviewers/Guide' %}
         The Add-on Reviewer Team follows the <a href="{{ url }}">Add-on Review
-        Guide</a> when testing an add-on for acceptance onto AMO.
-        It is important that add-on developers review this guide to ensure
-        that common problem areas are addressed prior to submitting their
-        add-on for review. This will greatly assist in expediting the review
-        process.
+        Guide</a> when testing an add-on. It is important that add-on developers
+        review this guide to ensure that common problem areas are addressed
+        prior to submitting their add-on. This will greatly assist in avoiding
+        review issues.
       {% endtrans %}
     </p>
 
@@ -422,13 +290,10 @@
       <li>{{ _('number of problem areas discovered') }}</li>
     </ul>
     <p>
-      {% trans g_url="https://wiki.mozilla.org/Add-ons/Reviewers/Guide",
-               blog_url="http://blog.mozilla.com/addons/2009/01/14/successfully-getting-your-addon-reviewed/" %}
+      {% trans g_url="https://wiki.mozilla.org/Add-ons/Reviewers/Guide" %}
        This is why it's very important to read the
        <a href="{{ g_url }}">Add-on Review Guide</a> to ensure that your add-on is setup
-       as expected. It's also a good idea to read the blog post,
-       <a href="{{ blog_url }}">Successfully Getting your Add-on Reviewed</a> which
-        provides excellent insight into ensuring a smooth review of your add-on.
+       as expected.
       {% endtrans %}
     </p>
 
@@ -464,11 +329,8 @@
     <h3>{{ _('Does my update need to be reviewed by reviewers?') }}</h3>
     <p>
       {% trans %}
-        That depends. If you are simply changing a description of your add-on
-        or updating a "maxVersion" to ensure compatibility with a new Mozilla
-        software update, then your add-on does not need to be reviewed again.
-         If, however, you submit a new updated file, then your add-on update
-        will need to be reviewed by an Add-on Reviewer.
+        Add-on updates may be subject to review just the same as new
+        submissions.
       {% endtrans %}
     </p>
 
@@ -494,8 +356,7 @@
     <p>
       {% trans %}
         Currently, AMO does not provide a mechanism to directly communicate
-        with a reviewer but this feature is being investigated and considered
-        for a future update.
+        with a the author of a user review.
       {% endtrans %}
     </p>
 
@@ -542,8 +403,8 @@
     </p>
 
     <h3>
-      <a href="https://techbase.kde.org/Policies/Licensing_Policy">
-        https://techbase.kde.org/Policies/Licensing_Policy
+      <a href="https://community.kde.org/Policies/Licensing_Policy">
+        https://community.kde.org/Policies/Licensing_Policy
       </a>
     </h3>
     <p>

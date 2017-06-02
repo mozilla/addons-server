@@ -1,9 +1,0 @@
-.listing .item .info > * {
-    max-width: 420px;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-}
-
-.invisible-upload input {
-    font-size: 14px !important; /* !important overrides normal and :hover */
-}

@@ -7,7 +7,8 @@ A reply has been added to the review of version {{ number }} of add-on {{ name }
 {{ comments }}
 
 If you want to respond please reply to this email or visit {{ url }}
-If you need to send file attachments, please include the address amo-editors@mozilla.org and mention it in your reply.
+
+You are receiving this email because {{ email_reason }}.
 --
 Mozilla Add-ons
 {{ SITE_URL }}

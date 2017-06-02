@@ -11,7 +11,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.utils.translation import (
-    ugettext as _, trim_whitespace, to_locale, get_language)
+    ugettext, trim_whitespace, to_locale, get_language)
 from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.template import defaultfilters
@@ -138,7 +138,7 @@ def sidebar(app):
 
     Type = collections.namedtuple('Type', 'id name url')
     base = urlresolvers.reverse('home')
-    types = [Type(99, _('Collections'), base + 'collections/')]
+    types = [Type(99, ugettext('Collections'), base + 'collections/')]
 
     shown_types = {
         amo.ADDON_PERSONA: urlresolvers.reverse('browse.personas'),
@@ -146,8 +146,9 @@ def sidebar(app):
         amo.ADDON_SEARCH: urlresolvers.reverse('browse.search-tools'),
         amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
     }
-    titles = dict(amo.ADDON_TYPES,
-                  **{amo.ADDON_DICT: _('Dictionaries & Language Packs')})
+    titles = dict(
+        amo.ADDON_TYPES,
+        **{amo.ADDON_DICT: ugettext('Dictionaries & Language Packs')})
     for type_, url in shown_types.items():
         if type_ in app.types:
             types.append(Type(type_, titles[type_], url))
@@ -211,9 +212,9 @@ def currencyfmt(num, currency):
 def page_name(app=None):
     """Determine the correct page name for the given app (or no app)."""
     if app:
-        return _(u'Add-ons for {0}').format(app.pretty)
+        return ugettext(u'Add-ons for {0}').format(app.pretty)
     else:
-        return _('Add-ons')
+        return ugettext('Add-ons')
 
 
 @register.function
@@ -284,7 +285,7 @@ def license_link(license):
         return ''
 
     if not getattr(license, 'builtin', True):
-        return _('Custom License')
+        return ugettext('Custom License')
 
     template = get_env().get_template('amo/license_link.html')
     return jinja2.Markup(template.render({'license': license}))
@@ -314,7 +315,7 @@ def timesince(time):
         return u''
     ago = defaultfilters.timesince(time)
     # L10n: relative time in the past, like '4 days ago'
-    return _(u'{0} ago').format(ago)
+    return ugettext(u'{0} ago').format(ago)
 
 
 @register.inclusion_tag('amo/recaptcha.html')

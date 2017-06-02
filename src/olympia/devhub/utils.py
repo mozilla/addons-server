@@ -3,7 +3,7 @@ import uuid
 from django.conf import settings
 from django.db.models import Q
 from django.forms import ValidationError
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from celery import chain
 from validator.version import Version as VersionString
@@ -87,15 +87,17 @@ def limit_validation_results(validation):
                                        for msg in messages)
                        else None)
 
+        message = ugettext(
+            'Validation generated too many errors/warnings so %s '
+            'messages were truncated. After addressing the visible '
+            'messages, you\'ll be able to see the others.') % leftover_count
+
         messages.insert(0, {
             'tier': 1,
             'type': msg_type,
             # To respect the message structure, see bug 1139674.
             'id': ['validation', 'messages', 'truncated'],
-            'message': _('Validation generated too many errors/'
-                         'warnings so %s messages were truncated. '
-                         'After addressing the visible messages, '
-                         "you'll be able to see the others.") % leftover_count,
+            'message': message,
             'description': [],
             'compatibility_type': compat_type})
 

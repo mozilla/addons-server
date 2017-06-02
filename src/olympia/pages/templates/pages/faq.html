@@ -13,7 +13,7 @@
 <dl class="faq">
     <dt>{{ _('What is an add-on?') }}</dt>
     <dd>{% trans app_name=request.APP.pretty,
-           learnmore_url="http://support.mozilla.com/kb/Customizing+Firefox+with+add-ons" %}
+           learnmore_url="https://support.mozilla.org/kb/find-and-install-add-ons-add-features-to-firefox" %}
         Add-ons are small pieces of software that add new features or
         functionality to your installation of {{ app_name }}. Add-ons can
         augment {{ app_name }} with new features, foreign language
@@ -23,18 +23,18 @@
         {% endtrans %}</dd>
 
     <dt>{{ _('Will add-ons work with my web browser or application?') }}</dt>
-    <dd>{% trans getfirefox_url="http://getfirefox.com",
+    <dd>{% trans getfirefox_url="https://www.mozilla.org/firefox/",
            getthunderbird_url="http://getthunderbird.com",
-           getmobile_url="http://firefox.com/mobile",
+           getmobile_url="https://www.mozilla.org/firefox/android/",
            getseamonkey_url="http://getseamonkey.com" %}
         Add-ons listed in this gallery only work with Mozilla-based
         applications, such as <a href="{{ getfirefox_url }}">Firefox</a>,
-        <a href="{{ getmobile_url }}">Firefox Mobile</a>,
+        <a href="{{ getmobile_url }}">Firefox for Android</a>,
         <a href="{{ getseamonkey_url }}">SeaMonkey</a>, and
         <a href="{{ getthunderbird_url }}">Thunderbird</a>. However, not all
         add-ons work with each of those applications or every version of those
         applications. Each add-on specifies which applications and versions it
-        works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the
+        works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the
         install buttons will indicate whether the add-on is compatible or not.
         {% endtrans %}</dd>
 
@@ -73,19 +73,14 @@
                 <strong><a href="{{ browse_url }}">Dictionaries & Language
                 Packs</a></strong> add support for additional languages to
                 {{ app_name }}.{% endtrans %}</li>
-            <li>{% trans app_name=request.APP.pretty,
-                   browse_url='http://www.mozilla.org/en-US/plugincheck/' %}
-            <strong><a href="{{ browse_url }}">Plugins</a></strong> help
-            {{ app_name }} display or understand different types of media, such
-            as Adobe Flash or Apple Quicktime.{% endtrans %}</li>
         </ul>
     </dd>
 
     <dt>{{ _('How do I install, manage, or remove an add-on?') }}</dt>
     <dd>{% trans app_name=request.APP.pretty,
-           extension_url="http://support.mozilla.com/kb/Using+extensions+with+Firefox",
-           theme_url="http://support.mozilla.com/kb/Using+themes+with+Firefox",
-           troubleshooting_url="http://support.mozilla.com/kb/Unable+to+install+add-ons" %}
+           extension_url="https://support.mozilla.org/kb/extensions-add-features-to-firefox",
+           theme_url="https://support.mozilla.org/kb/use-themes-change-look-of-firefox",
+           troubleshooting_url="https://support.mozilla.org/kb/unable-install-add-ons-extensions-or-themes" %}
         In most cases, add-ons can be installed by simply clicking the install
         button provided. Add-ons can be managed, disabled, or uninstalled from
         the Add-ons Manager in {{ app_name }}. For more detailed instructions,
@@ -95,38 +90,19 @@
         <a href="{{ troubleshooting_url }}">Troubleshooting Extensions and
         Themes</a>.{% endtrans %}</dd>
 
-    {% if APP == amo.FIREFOX or APP == amo.ANDROID %}
-        <dt>{{ _('How do I install add-ons without restarting Firefox?') }}</dt>
-        <dd>{% trans sdk_url="https://developer.mozilla.org/en-US/Add-ons/SDK",
-               bootstrap_url="https://developer.mozilla.org/Extensions/Bootstrapped_extensions" %}
-            In Firefox, add-ons marked with "No restart required" can be installed
-            without restarting. These add-ons have been created using the
-            <a href="{{ sdk_url }}">Add-on SDK</a> or <a href="{{ bootstrap_url }}">bootstrapping</a>.
-            Other add-ons will still require a restart before you can use them.
-            {% endtrans %}</dd>
-    {% endif %}
-
     <dt>{{ _('How do I keep add-ons up-to-date?') }}</dt>
-    <dd>{% trans plugincheck_url="http://www.mozilla.com/plugincheck/",
-           plugin_url="http://support.mozilla.com/kb/Using+plugins+with+Firefox"  %}
-        Add-ons, unlike plugins, are automatically checked for updates once
-        every day. In Firefox, updates are automatically installed by
-        default. Versions of Firefox prior to 4 (and other applications) will alert
-        you that updates to your add-ons are available.
-        <a href="{{ plugin_url }}">Plugins</a> are not currently automatically
-        checked for updates, so be sure to regularly visit the
-        <a href="{{ plugincheck_url }}">Plugin Check</a> page to stay
-        up-to-date.{% endtrans %}</dd>
+    <dd>{{ _('Add-ons are automatically checked for updates once every day. In '
+             'Firefox, updates are automatically installed by default. ') }}
+    </dd>
 
     <dt>{{ _('Are add-ons safe to install?') }}</dt>
-    <dd>{% trans learnmore_url="https://addons.mozilla.org/developers/docs/policies/reviews" %}
-        Unless clearly marked otherwise, add-ons available from this gallery
-        have been checked and approved by Mozilla's team of editors and are
-        safe to install. We recommend that you only install approved add-ons.
-        If you wish to install unapproved add-ons or add-ons from third-party
-        websites, use caution as these add-ons may harm your computer or
-        violate your privacy. <a href="{{ learnmore_url }}">Learn more about
-        our approval process</a>{% endtrans %}</dd>
+    <dd>{% trans learnmore_url="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews" %}
+        Use caution when installing add-ons, as they may harm your computer or
+        violate your privacy. Add-ons available from this site may be subject to
+        review by Mozilla's team of reviewers, and user feedback is closely
+        monitored, so they should generally be safe to install.
+        <a href="{{ learnmore_url }}">Learn more about our review
+        process</a>{% endtrans %}</dd>
 
 
     <dt>{% trans app_name=request.APP.pretty %}Can add-ons make
@@ -154,7 +130,7 @@
 
     <dt>{{ _('What if I have problems with an add-on?') }}</dt>
     <dd>{% trans app_name=request.APP.pretty,
-           troubleshooting_url="http://support.mozilla.com/kb/Troubleshooting+extensions+and+themes" %}
+           troubleshooting_url="https://support.mozilla.org/kb/troubleshoot-extensions-themes-to-fix-problems" %}
         Add-ons are usually created by third-party developers from around the
         world, so the best way to get help with an add-on is to look for
         support links on the add-on's homepage or contact the developer. If you
@@ -181,25 +157,23 @@
          With thousands of add-ons available, there's something for everyone.
          But if you're looking for a particular add-on and can't find it, you
          might try searching on other sites or posting about it in our
-         <a href="{{ forum_url }}">Add-ons </a>forum.{% endtrans %}</dd>
+         <a href="{{ forum_url }}">Add-ons forum</a>.{% endtrans %}</dd>
 
     <dt id="experimental">{{ _('What does it mean if an add-on is "experimental"?') }}</dt>
-    <dd>{% trans url="https://addons.mozilla.org/developers/docs/policies/reviews" %}
+    <dd>{% trans url="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews" %}
          Experimental add-ons have been marked by their developers as not suitable
-         for a wide audience.  They have been checked by our editors to make sure they
-         don't have security problems, but they may still have bugs or not work
-         properly. Use caution when installing experimental add-ons and
-         uninstall the add-on immediately if you notice problems.
+         for a wide audience.  They may have bugs or not work properly. Use
+         caution when installing experimental add-ons and uninstall the add-on
+         immediately if you notice problems.
          <a href="{{ url }}">Learn more about our review process</a></dd>
          {% endtrans %}
 
     <dt id="unreviewed">{{ _('What does it mean if an add-on is "not reviewed"?') }}</dt>
-    <dd>{% trans url="https://addons.mozilla.org/developers/docs/policies/reviews" %}
-         While all add-ons publicly available in our gallery are reviewed by an
-         editor, you may receive a direct link to an add-on that hasn't yet been
-         reviewed. Use caution when installing these add-ons, as they could harm
-         your computer or violate your privacy. We recommend that you only
-         install reviewed add-ons.
+    <dd>{% trans url="https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews" %}
+         If you receive a direct link to an add-on that says it hasn't yet been
+         reviewed, it means it's currently awaiting review by Mozilla. Use
+         caution when installing these add-ons, as they could harm your computer
+         or violate your privacy.
          <a href="{{ url }}">Learn more about our review process</a></dd>
          {% endtrans %}
 
@@ -221,14 +195,8 @@
         <p>{% trans %}Please note that when you install an add-on from the
         "Beta Version" section of an add-on's listing, you will continue to
         receive updates for that add-on as they become available. Like the
-        initial version you installed, all beta releases are unreviewed by
+        initial version you installed, all beta releases are not reviewed by
         Mozilla and may harm your computer.{% endtrans %}</p>
-    </dd>
-
-    <dt id="slow-addons">{{ _('What does it mean when an add-on is flagged as slow?') }}</dt>
-    <dd>{{ _('Most add-ons load code and resources at the same time Firefox '
-             'is starting up. In most cases the impact in start-up time is minimal, '
-             'but some add-ons can cause a noticeable slowdown.') }}
     </dd>
 
     <dt>{{ _('How do I report an inappropriate or spam user review?') }}</dt>
@@ -274,11 +242,11 @@
 <dl class="faq">
 
     <dt>{{ _('What are mobile add-ons?') }}</dt>
-    <dd>{% trans mobile_url="http://www.mozilla.com/mobile",
+    <dd>{% trans mobile_url="https://www.mozilla.org/firefox/android/",
            gallery_url=locale_url('mobile') %}
         Mobile add-ons work with <a href="{{ mobile_url }}">Firefox for
-        Mobile</a> and add or modify functionality just like desktop add-ons.
-        You can find add-ons that work with Firefox for Mobile in our
+        Android</a> and add or modify functionality just like desktop add-ons.
+        You can find add-ons that work with Firefox for Android in our
         <a href="{{ gallery_url }}">gallery</a>.{% endtrans %}</dd>
 
 </dl>

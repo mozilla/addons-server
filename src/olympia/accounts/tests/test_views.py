@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import base64
+import json
 import urlparse
 from datetime import datetime
+from os import path
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -20,11 +22,15 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
-    assert_url_equal, create_switch, user_factory, APITestClient,
-    InitializeSessionMixin, PatchMixin, TestCase, WithDynamicEndpoints)
+    addon_factory, assert_url_equal, create_switch, user_factory,
+    APITestClient, InitializeSessionMixin, PatchMixin, TestCase,
+    WithDynamicEndpoints)
+from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestCase
-from olympia.users.models import UserProfile
+from olympia.users.models import UserNotification, UserProfile
+from olympia.users.notifications import NOTIFICATIONS_BY_ID
+
 
 FXA_CONFIG = {
     'oauth_host': 'https://accounts.firefox.com/v1',
@@ -945,10 +951,8 @@ class TestAccountViewSet(TestCase):
         # instead...
         response = self.client.post(reverse('account-profile'))
         assert response.status_code == 405
-        # We can try put/patch on the detail URL though.
+        # We can try put on the detail URL though.
         response = self.client.put(self.url)
-        assert response.status_code == 405
-        response = self.client.patch(self.url)
         assert response.status_code == 405
 
     def test_self_view(self):
@@ -975,6 +979,230 @@ class TestAccountViewSet(TestCase):
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
         assert response.data['email'] == self.random_user.email
+
+    def test_self_view_slug(self):
+        # Check it works the same with an account slug rather than pk.
+        self.url = reverse('account-detail',
+                           kwargs={'pk': self.user.username})
+        self.test_self_view()
+
+    def test_no_private_data_without_auth_slug(self):
+        # Check it works the same with an account slug rather than pk.
+        self.url = reverse('account-detail',
+                           kwargs={'pk': self.user.username})
+        self.test_no_private_data_without_auth()
+
+    def test_admin_view_slug(self):
+        # Check it works the same with an account slug rather than pk.
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        self.random_user = user_factory()
+        random_user_profile_url = reverse(
+            'account-detail', kwargs={'pk': self.random_user.username})
+        response = self.client.get(random_user_profile_url)
+        assert response.status_code == 200
+        assert response.data['name'] == self.random_user.name
+        assert response.data['email'] == self.random_user.email
+
+
+class TestProfileViewWithJWT(APIKeyAuthTestCase):
+    """This just tests JWT Auth (external) on the profile endpoint.
+
+    See TestAccountViewSet for internal auth test.
+    """
+
+    def test_profile_url(self):
+        self.create_api_user()
+        response = self.get(reverse('account-profile'))
+        assert response.status_code == 200
+        assert response.data['name'] == self.user.name
+        assert response.data['email'] == self.user.email
+
+
+class TestAccountViewSetUpdate(TestCase):
+    client_class = APITestClient
+    update_data = {
+        'display_name': 'Bob Loblaw',
+        'biography': 'You don`t need double talk; you need Bob Loblaw',
+        'homepage': 'http://bob-loblaw-law-web.blog',
+        'location': 'law office',
+        'occupation': 'lawyer',
+        'username': 'bob',
+    }
+
+    def setUp(self):
+        self.user = user_factory()
+        self.url = reverse('account-detail',
+                           kwargs={'pk': self.user.pk})
+        super(TestAccountViewSetUpdate, self).setUp()
+
+    def patch(self, url=None, data=None):
+        return self.client.patch(url or self.url, data or self.update_data)
+
+    def test_basic_patch(self):
+        self.client.login_api(self.user)
+        original = self.client.get(self.url).content
+        response = self.patch()
+        assert response.status_code == 200
+        assert response.content != original
+        modified_json = json.loads(response.content)
+        self.user = self.user.reload()
+        for prop, value in self.update_data.iteritems():
+            assert modified_json[prop] == value
+            assert getattr(self.user, prop) == value
+
+    def test_no_auth(self):
+        response = self.patch()
+        assert response.status_code == 401
+
+    def test_different_account(self):
+        self.client.login_api(self.user)
+        url = reverse('account-detail', kwargs={'pk': user_factory().pk})
+        response = self.patch(url=url)
+        assert response.status_code == 403
+
+    def test_admin_patch(self):
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        random_user = user_factory()
+        url = reverse('account-detail', kwargs={'pk': random_user.pk})
+        original = self.client.get(url).content
+        response = self.patch(url=url)
+        assert response.status_code == 200
+        assert response.content != original
+        modified_json = json.loads(response.content)
+        random_user = random_user.reload()
+        for prop, value in self.update_data.iteritems():
+            assert modified_json[prop] == value
+            assert getattr(random_user, prop) == value
+
+    def test_read_only_fields(self):
+        self.client.login_api(self.user)
+        original = self.client.get(self.url).content
+        # Try to patch a field that can't be patched.
+        response = self.patch(data={'last_login_ip': '666.666.666.666'})
+        assert response.status_code == 200
+        assert response.content == original
+        self.user = self.user.reload()
+        # Confirm field hasn't been updated.
+        assert json.loads(response.content)['last_login_ip'] == ''
+        assert self.user.last_login_ip == ''
+
+    def test_biography_no_links(self):
+        self.client.login_api(self.user)
+        response = self.patch(
+            data={'biography': '<a href="https://google.com">google</a>'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'biography': ['No links are allowed.']}
+
+    def test_username_valid(self):
+        self.client.login_api(self.user)
+        response = self.patch(
+            data={'username': '123456'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'username': ['Usernames cannot contain only digits.']}
+
+        response = self.patch(
+            data={'username': u'£^@'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'username': [u'Enter a valid username consisting of letters, '
+                         u'numbers, underscores or hyphens.']}
+
+    def test_picture_upload(self):
+        # Make sure the picture doesn't exist already or we get a false-postive
+        assert not path.exists(self.user.picture_path)
+
+        self.client.login_api(self.user)
+        photo = get_uploaded_file('transparent.png')
+        data = {'picture_upload': photo, 'biography': 'not just setting photo'}
+        response = self.client.patch(
+            self.url, data, format='multipart')
+        assert response.status_code == 200
+        json_content = json.loads(response.content)
+        self.user = self.user.reload()
+        assert 'anon_user.png' not in json_content['picture_url']
+        assert '%s.png' % self.user.id in json_content['picture_url']
+        assert self.user.biography == 'not just setting photo'
+
+        assert path.exists(self.user.picture_path)
+
+    def test_picture_upload_valid(self):
+        self.client.login_api(self.user)
+        gif = get_uploaded_file('animated.gif')
+        data = {'picture_upload': gif}
+        response = self.client.patch(
+            self.url, data, format='multipart')
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'picture_upload': [u'Images must be either PNG or JPG.']}
+
+
+class TestAccountViewSetDelete(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.url = reverse('account-detail',
+                           kwargs={'pk': self.user.pk})
+        super(TestAccountViewSetDelete, self).setUp()
+
+    def test_delete(self):
+        self.client.login_api(self.user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.user.reload().deleted
+
+    def test_no_auth(self):
+        response = self.client.delete(self.url)
+        assert response.status_code == 401
+
+    def test_different_account(self):
+        self.client.login_api(self.user)
+        url = reverse('account-detail', kwargs={'pk': user_factory().pk})
+        response = self.client.delete(url)
+        assert response.status_code == 403
+
+    def test_admin_patch(self):
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        random_user = user_factory()
+        url = reverse('account-detail', kwargs={'pk': random_user.pk})
+        response = self.client.delete(url)
+        assert response.status_code == 204
+        assert random_user.reload().deleted
+
+    def test_developers_cant_delete(self):
+        self.client.login_api(self.user)
+        addon = addon_factory(users=[self.user])
+        assert self.user.is_developer and self.user.is_addon_developer
+
+        response = self.client.delete(self.url)
+        assert response.status_code == 400
+        assert 'You must delete all add-ons and themes' in response.content
+        assert not self.user.reload().deleted
+
+        addon.delete()
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.user.reload().deleted
+
+    def test_theme_developers_cant_delete(self):
+        self.client.login_api(self.user)
+        addon = addon_factory(users=[self.user], type=amo.ADDON_PERSONA)
+        assert self.user.is_developer and self.user.is_artist
+
+        response = self.client.delete(self.url)
+        assert response.status_code == 400
+        assert 'You must delete all add-ons and themes' in response.content
+        assert not self.user.reload().deleted
+
+        addon.delete()
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.user.reload().deleted
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):
@@ -1152,3 +1380,154 @@ class TestSessionView(TestCase):
     def test_delete_when_unauthenticated(self):
         response = self.client.delete(reverse('accounts.session'))
         assert response.status_code == 401
+
+
+class TestAccountNotificationViewSetList(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.url = reverse('notification-list',
+                           kwargs={'user_pk': self.user.pk})
+        super(TestAccountNotificationViewSetList, self).setUp()
+
+    def test_defaults_only(self):
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data) == 11
+        assert (
+            {'name': u'dev_thanks', 'enabled': True, 'mandatory': False} in
+            response.data)
+
+    def test_user_set_notifications_included(self):
+        thanks_notification = NOTIFICATIONS_BY_ID[2]
+        UserNotification.objects.create(
+            user=self.user, notification_id=thanks_notification.id,
+            enabled=False)
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data) == 11
+        assert (
+            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            response.data)
+
+    def test_no_auth_fails(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_different_account_fails(self):
+        self.user = user_factory()  # different user now
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_admin_view(self):
+        self.user = user_factory()  # different user now
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data) == 11
+
+    def test_disallowed_verbs(self):
+        self.client.login_api(self.user)
+        response = self.client.put(self.url)
+        assert response.status_code == 405
+        response = self.client.patch(self.url)
+        assert response.status_code == 405
+        response = self.client.delete(self.url)
+        assert response.status_code == 405
+
+
+class TestAccountNotificationViewSetUpdate(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.url = reverse('notification-list',
+                           kwargs={'user_pk': self.user.pk})
+        self.list_url = reverse('notification-list',
+                                kwargs={'user_pk': self.user.pk})
+        super(TestAccountNotificationViewSetUpdate, self).setUp()
+
+    def test_new_notification(self):
+        thanks_notification = NOTIFICATIONS_BY_ID[2]
+        assert not UserNotification.objects.filter(
+            user=self.user, notification_id=thanks_notification.id).exists()
+        self.client.login_api(self.user)
+        # Check it's set to the default True beforehand.
+        assert (
+            {'name': u'dev_thanks', 'enabled': True, 'mandatory': False} in
+            self.client.get(self.list_url).data)
+
+        response = self.client.post(self.url, data={'dev_thanks': False})
+        assert response.status_code == 200, response.content
+        # Now we've set it to False.
+        assert (
+            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            response.data)
+        # And the notification has been saved.
+        un_obj = UserNotification.objects.get(
+            user=self.user, notification_id=thanks_notification.id)
+        assert not un_obj.enabled
+
+    def test_updated_notification(self):
+        thanks_notification = NOTIFICATIONS_BY_ID[2]
+        # Create the UserNotification object
+        UserNotification.objects.create(
+            user=self.user, notification_id=thanks_notification.id,
+            enabled=True)
+        self.client.login_api(self.user)
+
+        response = self.client.post(self.url, data={'dev_thanks': False})
+        assert response.status_code == 200, response.content
+        # Now we've set it to False.
+        assert (
+            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            response.data)
+        # And the notification has been saved.
+        un_obj = UserNotification.objects.get(
+            user=self.user, notification_id=thanks_notification.id)
+        assert not un_obj.enabled
+
+    def test_set_mandatory_fail(self):
+        contact_notification = NOTIFICATIONS_BY_ID[12]
+        self.client.login_api(self.user)
+        response = self.client.post(self.url,
+                                    data={'individual_contact': False})
+        assert response.status_code == 400
+        # Attempt fails.
+        assert 'Attempting to set [individual_contact] to False.' in (
+            response.content)
+        # And the notification hasn't been saved.
+        assert not UserNotification.objects.filter(
+            user=self.user, notification_id=contact_notification.id).exists()
+
+    def test_no_auth_fails(self):
+        response = self.client.post(self.url, data={'dev_thanks': False})
+        assert response.status_code == 401
+
+    def test_different_account_fails(self):
+        self.user = user_factory()  # different user now
+        self.client.login_api(self.user)
+        response = self.client.post(self.url, data={'dev_thanks': False})
+        assert response.status_code == 403
+
+    def test_admin_update(self):
+        original_user = self.user
+        self.user = user_factory()  # different user now
+        self.grant_permission(self.user, 'Users:Edit')
+        self.client.login_api(self.user)
+
+        response = self.client.post(self.url, data={'dev_thanks': False})
+        assert response.status_code == 200, response.content
+        # Now we've set it to False.
+        assert (
+            {'name': u'dev_thanks', 'enabled': False, 'mandatory': False} in
+            response.data)
+        # And the notification has been saved.
+        un_obj = UserNotification.objects.get(
+            user=original_user, notification_id=NOTIFICATIONS_BY_ID[2].id)
+        assert not un_obj.enabled

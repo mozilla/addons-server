@@ -1,6 +1,6 @@
 from django.db.transaction import non_atomic_requests
 from django.utils.translation import (
-    ugettext as _, ugettext_lazy as _lazy, pgettext_lazy)
+    ugettext, ugettext_lazy as _, pgettext_lazy)
 
 import jingo
 import jinja2
@@ -160,13 +160,13 @@ class InstallButton(object):
             url = file.get_url_path(self.src)
 
         if platform == amo.PLATFORM_ALL.id:
-            text, os = _('Download Now'), None
+            text, os = ugettext('Download Now'), None
         else:
-            text, os = _('Download'), amo.PLATFORMS[platform]
+            text, os = ugettext('Download'), amo.PLATFORMS[platform]
 
         if self.show_contrib:
             # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-            text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
+            text = jinja2.Markup(ugettext('Continue to Download&nbsp;&rarr;'))
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, version=self.version.version)
 
@@ -182,7 +182,7 @@ class InstallButton(object):
 
 class FeaturedInstallButton(InstallButton):
     install_class = ['featuredaddon']
-    install_text = _lazy(u'Featured')
+    install_text = _(u'Featured')
 
 
 class UnreviewedInstallButton(InstallButton):
@@ -201,7 +201,7 @@ class PersonaInstallButton(InstallButton):
     install_class = ['persona']
 
     def links(self):
-        return [Link(_(u'Add to {0}').format(unicode(self.app.pretty)),
+        return [Link(ugettext(u'Add to {0}').format(unicode(self.app.pretty)),
                      reverse('addons.detail', args=[amo.PERSONAS_ADDON_ID]))]
 
     def attrs(self):

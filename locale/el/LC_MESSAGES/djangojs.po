@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-17 11:23+0000\n"
 "PO-Revision-Date: 2017-01-05 11:38+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -15,141 +15,111 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} αστέρι"
 msgstr[1] "{0} αστέρια"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "Παρουσιάστηκε πρόβλημα επικοινωνίας με το διακομιστή."
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "Επιλογή αρχείου..."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Το πρόσθετο σας θα πρέπει να έχει κατάληξη .zip, .xpi, .crx, .jar ή .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
 msgstr "{0}% ολοκληρωμένο"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} από {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "Μεταφόρτωση του {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "Σφάλμα με το {0}"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "Έχουμε ενεργοποιήσει ένα νέο linter για επεξεργασία των προσθέτων σας. Παρακαλούμε βεβαιωθείτε ότι έχετε αναφέρει τυχόν ζητήματα στο GitHub"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Το πρόσθετο σας απέτυχε να επικυρωθεί, επιστρέφοντας {0} σφάλμα."
 msgstr[1] "Το πρόσθετο σας απέτυχε να επικυρωθεί, επιστρέφοντας {0} σφάλματα."
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;και {0} περισσότερο"
 msgstr[1] "&hellip;και {0} περισσότερα"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "Δείτε την αναλυτική αναφορά επικύρωσης"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "Γίνεται επικύρωση {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Η απάντηση του εξυπηρετητή ήταν κενή; κατάσταση: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "Απρόσμενο σφάλμα διακομιστή κατά την επικύρωση."
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "Ολοκληρώθηκε η επικύρωση του {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Το χρονικό όριο επαλήθευσης του προσθέτου σας έληξε, θα γίνει χειροκίνητος έλεγχος."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Το πρόσθετό σας επαληθεύτηκε χωρίς σφάλματα και με {0} προειδοποίηση."
 msgstr[1] "Το πρόσθετό σας επαληθεύτηκε χωρίς σφάλματα και με {0} προειδοποιήσεις."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Το πρόσθετό σας επαληθεύτηκε χωρίς σφάλματα και με {0} μήνυμα."
 msgstr[1] "Το πρόσθετό σας επαληθεύτηκε χωρίς σφάλματα και με {0} μηνύματα."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Το πρόσθετό σας επαληθεύτηκε χωρίς σφάλματα ή προειδοποιήσεις."
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "Η υποβολή σας θα υπογραφεί αυτόματα."
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "Αναβάθμιση επέκτασης ιστού"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Επιτρέπουμε και ενθαρρύνουμε να κάνετε μια αναβάθμιση, αλλά δεν μπορείτε να αναστρέψετε τη διαδικασία. Μόλις οι χρήστες σας αποκτήσουν το WebExtension, δεν θα μπορούν να εγκαταστήσουν ένα παλιό "
 "πρόσθετο."
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Διαδικασία port ενός παλιού προσθέτου Firefox στο MDN"
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Συμπεριλάβετε λεπτομερή σημειώματα της έκδοσης (αυτό μπορεί να γίνει στο επόμενο βήμα)."
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Εάν το πρόσθετό σας απαιτεί λογαριασμό σε ιστοσελίδα με σκοπό να δοκιμαστεί πλήρως, συμπεριλάβετε ένα όνομα χρήστη και κωδικό για δοκιμή στα Σημειώματα του Ελεγκτή (αυτό μπορεί να γίνει στο επόμενο "
 "βήμα). "
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Λίστα καταχωρήσεων προσθέτων"
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Παρακαλώ επιβεβαιώστε τα παρακάτω σημεία πριν την ολοκλήρωση της υποβολής σας. Αυτό θα μειώσει καθυστερήσεις είτε ασάφειες κατά την διαδικασία της αξιολόγησης."
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -157,1031 +127,792 @@ msgstr ""
 "Μεταγλωττισμένα εκτελέσιμα , καθώς και ελαχιστοποιημένα ή ασαφή σενάρια (με εξαίρεση γνωστές βιβλιοθήκες) είναι αναγκαίο να έχουν υποβάλει τις πηγές τους ξεχωριστά για αξιολόγηση. Βεβαιωθείτε ότι "
 "χρησιμοποιείτε το πεδίο μεταφόρτωσης πηγαίου κώδικα για να αποφύγετε την απόρριψή της υποβολή σας."
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Η διαδικασία επικύρωσης βρήκε προβλήματα που μπορούν να οδηγήσουν σε απόρριψη."
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr "Συγνώμη, δεν βρέθηκε υποστηριζόμενη πλατφόρμα."
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Δεν αναγνωρίζεται η μορφή αρχείου που αποστείλατε."
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "Ακυρώσατε την μεταφόρτωση."
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "Οι εικόνες πρέπει να είναι είτε PNG είτε JPG"
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "Τα βίντεο πρέπει να είναι τύπου WebM."
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "Παρακολούθηση της συλλογής"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "Διακοπή παρακολούθησης"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "Παρακολούθηση"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Δεν είναι συμβατό αυτό το θέμα με την έκδοση του {0} που έχετε"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "All Rights Reserved"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "Όνομα Θέματος"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "Σημειώθηκε για αξιολόγηση"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "Απαιτείται η εισαγωγή"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "Σημειώθηκε για διαγραφή"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "Ανανέωση αποτελεσμάτων&hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "Κατηγορία"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "Αναζήτηση θέματος για <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "Αναζήτηση εφαρμογών για <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Αναζήτηση προσθέτων για <b>{0}</b>"
 
-#: static/js/impala/users.js
 msgid "Use original"
 msgstr "Χρήση αρχικού"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "Εβδομάδα {0}"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " λήψεις"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "{0} χρήστες"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "{0} πρόσθετα"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "{0} συλλογές"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "{0} αξιολογήσεις"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "{0} πωλήσεις"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "{0} επιστροφές"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "{0} εγκαταστάσεις"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "Λήψεις"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "Καθημερινοί χρήστες"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
 msgstr "Σύνολο, σε USD"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "Αριθμός συνεισφορών"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "Περισσότερες πληροφορίες..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "Λεπτομέρειες του {0}"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "Συλλογές που δημιουργήθηκαν"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
 msgstr "Πρόσθετα σε χρήση"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
 msgstr "Δημιουργηθέντα Πρόσθετα"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
 msgstr "Ληφθέντα Πρόσθετα"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
 msgstr "Ενημερωμένα πρόσθετα"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "Συνταχθείσες αξιολογήσεις"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "Εγγραφές χρήστη"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "Εγγεγραμμένοι"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "Αξιολογήσεις"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "Πωλήσεις"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "Εγκαταστάσεις"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
 msgstr "Διαχειριστής προσθέτων"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
 msgstr "Προωθητική ενέργεια διαχείρισης προσθέτων"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
 msgstr "Προτεινόμενα διαχείρισης προσθέτων"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
 msgstr "Διαχείριση προσθέτων - Μάθετε περισσότερα"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "Προτάσεις αναζήτησης"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "Αποτελέσματα αναζήτησης"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr "Promo Αρχικής Σελίδας"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr "Προβεβλημένη Αρχική Σελίδα"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr "Προσεχής Αρχική Σελίδα"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr "Δημοφιλέστερη Αρχική Σελίδα"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "Σελίδα λεπτομερειών"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "Σελίδα λεπτομερειών (κάτω μέρος)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "Σελίδα λεπτομερειών (Κανάλι Ανάπτυξης)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "Χρησιμοποιείται συχνά μαζί με"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
 msgstr "Άλλα από τον ίδιο"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr "Εξαρτήσεις"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr "Upsell"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "Γνωρίστε τον προγραμματιστή"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "Προφίλ χρήστη"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "Ιστορικό εκδόσεων"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "Διαμοιρασμός"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "Σελίδες κατηγορίας"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "Συλλογές"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr "Κατηγορία Προβεβλημένο Καρουζέλ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr "Κατηγορία Υψηλότερη Βαθμολογία"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr "Κατηγορία Δημοφιλέστερα"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
 msgstr "Κατηγορία Προστέθηκαν πρόσφατα"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr "Αναζήτηση Λίστας Προβεβλημένων Ταξινόμηση"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr "Αναζήτηση Λίστας Χρηστών Ταξινόμηση"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr "Αναζήτηση Λίστας Αξιολογήσεων Ταξινόμηση"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr "Αναζήτηση Λίστας Δημιουργηθέντων Ταξινόμηση"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr "Αναζήτηση Λίστας Ονομάτων Ταξινόμηση"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr "Αναζήτηση Λίστας Δημοφιλών Ταξινόμηση"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr "Αναζήτηση Λίστας Ανανεωμένων"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Αναζήτηση Λίστας Προσεχών"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
 msgstr "Σύνολο συνεισφορών"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
 msgstr "Μέσος όρος συνεισφορών"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "Χρήση"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Λήψεις και Καθημερινοί Χρήστες, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Λήψεις και Καθημερινοί Χρήστες από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Λήψεις και Καθημερινοί Χρήστες, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Εγκαταστάσεις και Καθημερινοί Χρήστες από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "Λήψεις, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "Λήψεις από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "Καθημερινοί Χρήστες, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "Καθημερινοί Χρήστες από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
 msgstr "Εφαρμογές, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
 msgstr "Εφαρμογές από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "Πλατφόρμες, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "Πλατφόρμες από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "Γλώσσες, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "Γλώσσες από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
 msgstr "Εκδόσεις προσθέτου, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Εκδόσεις προσθέτου από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
 msgstr "Κατάσταση προσθέτου, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "Κατάσταση προσθέτου από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "Λήψη κώδικα, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "Λήψη κώδικα από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "Συνεισφορές, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "Συνεισφορές από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr "Μετρήσεις ιστοσελίδας, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Μετρήσεις ιστοσελίδας από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "Πρόσθετα σε χρήση, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Πρόσθετα σε χρήση από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Ληφθέντα πρόσθετα, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Ληφθέντα πρόσθετα από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
 msgstr "Πρόσθετα που δημιουργήθηκαν, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Πρόσθετα που δημιουργήθηκαν από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "Πρόσθετα που ενημερώθηκαν, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Πρόσθετα που ενημερώθηκαν από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "Συνταχθείσες αξιολογήσεις, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "Συνταχθείσες αξιολογήσεις από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "Εγγραφές χρήστη, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "Εγγραφές χρήστη από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "Συλλογές που δημιουργήθηκαν, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "Συλλογές που δημιουργήθηκαν από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "Εγγεγραμμένοι, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "Εγγεγραμμένοι από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "Αξιολογήσεις, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "Αξιολογήσεις από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "Πωλήσεις, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "Πωλήσεις από {0} ως {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "Εγκαταστάσεις, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "Εγκαταστάσεις από {0} ως {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> τις τελευταίες {1} ημέρες"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> από {1} ως {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> κατά μέσο όρο τις τελευταίες {1} ημέρες"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "Δεν υπάρχουν δεδομένα."
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "Ημερομηνία"
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "Άλλο"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "Επιλέξτε πρώτα εφαρμογή"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Ορισμός του max version για το πρόσθετο {0} σε {1} και αποστολή μηνύματος στον δημιουργό."
 msgstr[1] "Ορισμός του max version για τα πρόσθετα {0} σε {1} και αποστολή μηνύματος στους δημιουργούς."
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Στείλτε e-mail στον δημιουργό του {2} πρόσθετου το οποίου η επαλήθευση απέτυχε."
 msgstr[1] "Στείλτε e-mail στους δημιουργούς των {2} πρόσθετων των οποίων η επαλήθευση απέτυχε."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
 msgstr "Αποδοχή και εγκατάσταση"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
 msgstr "Προσθήκη στον {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "Λήψη τώρα"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Το πρόσθετο δεν έχει ενημερωθεί ώστε να υποστηρίζει την προεπιλογή σε συμβατό."
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Χρειάζεται να χρησιμοποιείτε την έκδοση 10.0 του Firefox ή υψηλότερη."
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Ο Mozilla έχει σημειώσει αυτή την έκδοση ως μη συμβατή με την έκδοση του Firefox που έχετε."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "Εγκατάσταση σε {0} οπωσδήποτε"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "Λήψη για {0} οπωσδήποτε"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "Δεν διατίθεται για το λειτουργικό σας"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "Δεν διατίθεται για τον {0} {1}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
 msgstr "Συμβατό με {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app}"
 msgstr "Λειτουργεί με {app}"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "Προβολή άλλων εκδόσεων"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Μόνο με το Firefox — Λήψη του Firefox τώρα!"
 
-#: static/js/zamboni/buttons.js
 msgid "Download now"
 msgstr "Λήψη τώρα"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr "Διαθέσιμο μόνο στο Firefox για υπολογιστές"
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Λυπούμαστε αλλά απαιτείται περιηγητής της οικογένειας Mozilla (όπως ο Firefox) για να εγκαταστήσετε πρόσθετα αναζήτησης."
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "Γίνεται προσθήκη στις αγαπημένες&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "Γίνεται αφαίρεση από τις αγαπημένες&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "Προσθήκη στις αγαπημένες"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "Αφαίρεση απ' τις αγαπημένες"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "Σε αναμονή"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "Προσθήκη σχολίου"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "Σχόλιο"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "Αφαίρεση αυτού του πρόσθετου από τη συλλογή"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "Αφαίρεση"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "Αφαίρεση χρήστη από τους συντελεστές"
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "Απαιτείται διεύθυνση email."
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "Δε μπορείτε να προσθέσετε τον εαυτό σας στους συνεισφέροντες."
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "Έχετε ήδη προσθέσει αυτόν τον χρήστη."
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "Προσθήκη στα αγαπημένα"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "Αφαίρεση απ' τα αγαπημένα"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "Διακοπή παρακολούθησης"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "Ο περιηγητής σας δεν υποστηρίζει την οδηγία video."
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "Οι αλλαγές αποθηκεύτηκαν"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr "Εισάγετε τη διεύθυνση νέου συντάκτη"
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} αρχείο"
 msgstr[1] "{files} αρχεία"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} αξιολόγηση χρήστη"
 msgstr[1] "{reviews} αξιολογήσεις χρήστη"
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "Μάθετε περισσότερα"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "Επεξεργάζονται οι αλλαγές εικόνων"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "Η διεύθυνση email πρέπει να είναι έγκυρη."
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "Δεν βρέθηκαν αποτελέσματα."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "Ο/Η {name} είχε φορτώσει τη σελίδα πριν από εσάς."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "Η απόδειξη ελέγχθηκε από την εφαρμογή."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "Η απόδειξη δεν ελέγχθηκε από την εφαρμογή."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "Ο χρήστης {name} είδε αυτό το πρόσθετο πρώτος."
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "Γίνεται φόρτωση&hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "Σημειώσεις έκδοσης"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "Σημειώσεις για αξιολογητές"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "Δεν βρέθηκαν σημειώσεις έκδοσης"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr "Κείμενο αξιολόγησης"
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "Βρέθηκαν σημειώσεις αξιολόγησης"
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr "Μέσες αξιολογήσεις"
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Αριθμός αξιολογήσεων"
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Γίνεται φόρτωση..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> χαρακτήρας διαθέσιμος."
 msgstr[1] "<b>{0}</b> χαρακτήρες διαθέσιμοι."
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Αυτό το χαρακτηριστικό έχει απενεργοποιηθεί προς το παρόν λόγω εκτέλεσης εργασιών συντήρησης. Παρακαλούμε προσπαθήστε ξανά αργότερα."
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
 msgstr "Αφαίρεση αυτής της μετάφρασης"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "Ισχύς κωδικού:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Τουλάχιστον {0} χαρακτήρας διαθέσιμος"
 msgstr[1] "Τουλάχιστον {0} χαρακτήρες διαθέσιμοι"
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "Ζητούμενες πληροφορίες"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "Σημειωμένο"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "Αντίγραφο"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "Απορριφθέν"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
 msgstr "Εγκεκριμένο"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "Δεν βρέθηκαν αποτελέσματα"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "Θέμα"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "Κριτικής"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "Κατάσταση"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "Όλοι οι έλεγχοι ολοκληρώθηκαν επιτυχώς."
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "Δεν εκτελέστηκαν αυτοί οι έλεγχοι."
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "Έλεγχοι"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Προειδοποίηση"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr "{0} γραμμή {1} στήλη {2}"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1}"
 msgstr "{0} γραμμή {1}"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "Τεστ συμβατότητας"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "Το πρόσθετο απέτυχε να επικυρωθεί."
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "Το πρόσθετο επικυρώθηκε."
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} σφάλμα"
 msgstr[1] "{0} σφάλματα"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} προειδοποίηση"
 msgstr[1] "{0} προειδοποιήσεις"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} σημείωμα"
 msgstr[1] "{0} σημειώματα"
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "Δεν ολοκληρώθηκε η επικύρωση ή ολοκληρώθηκε με σφάλματα"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Εσωτερικό σφάλμα διακομιστή"

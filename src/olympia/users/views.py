@@ -7,7 +7,7 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.http import is_safe_url
 from django.views.decorators.cache import never_cache
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
@@ -73,12 +73,12 @@ def ajax(request):
     email = request.GET.get('q', '').strip()
 
     if not email:
-        data.update(message=_('An email address is required.'))
+        data.update(message=ugettext('An email address is required.'))
         return data
 
     user = UserProfile.objects.filter(email=email)
 
-    msg = _('A user with that email address does not exist.')
+    msg = ugettext('A user with that email address does not exist.')
 
     if user:
         data.update(status=1, id=user[0].id, name=user[0].name)
@@ -94,8 +94,8 @@ def delete(request):
     if request.method == 'POST':
         form = forms.UserDeleteForm(request.POST, request=request)
         if form.is_valid():
-            messages.success(request, _('Profile Deleted'))
-            amouser.anonymize()
+            messages.success(request, ugettext('Profile Deleted'))
+            amouser.delete()
             response = http.HttpResponseRedirect(reverse('home'))
             logout_user(request, response)
             return response
@@ -120,7 +120,7 @@ def delete_photo(request, user_id):
         user.save()
         log.debug(u'User (%s) deleted photo' % user)
         tasks.delete_photo.delay(user.picture_path)
-        messages.success(request, _('Photo Deleted'))
+        messages.success(request, ugettext('Photo Deleted'))
         redirect = (
             reverse('users.admin_edit', kwargs={'user_id': user.id})
             if not_mine else reverse('users.edit')
@@ -141,15 +141,15 @@ def edit(request):
         form = forms.UserEditForm(request.POST, request.FILES, request=request,
                                   instance=amouser)
         if form.is_valid():
-            messages.success(request, _('Profile Updated'))
+            messages.success(request, ugettext('Profile Updated'))
             form.save()
             return redirect('users.edit')
         else:
             messages.error(
                 request,
-                _('Errors Found'),
-                _('There were errors in the changes you made. Please correct '
-                  'them and resubmit.'))
+                ugettext('Errors Found'),
+                ugettext('There were errors in the changes you made. '
+                         'Please correct them and resubmit.'))
     else:
         form = forms.UserEditForm(instance=amouser, request=request)
     return render(request, 'users/edit.html',
@@ -166,7 +166,7 @@ def admin_edit(request, user):
                                        request=request, instance=user)
         if form.is_valid():
             form.save()
-            messages.success(request, _('Profile Updated'))
+            messages.success(request, ugettext('Profile Updated'))
             return http.HttpResponseRedirect(reverse('zadmin.index'))
     else:
         form = forms.AdminUserEditForm(instance=user, request=request)
@@ -311,7 +311,7 @@ def report_abuse(request, user):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == 'POST' and form.is_valid():
         send_abuse_report(request, user, form.cleaned_data['text'])
-        messages.success(request, _('User reported.'))
+        messages.success(request, ugettext('User reported.'))
     else:
         return render(request, 'users/report_abuse_full.html',
                       {'profile': user, 'abuse_form': form})
@@ -334,18 +334,13 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
         pass
 
     perm_settings = []
-    if user is not None:
+    if user is not None and perm_setting is not None:
         unsubscribed = True
-        if not perm_setting:
-            # TODO: make this work. nothing currently links to it, though.
-            perm_settings = [l for l in notifications.NOTIFICATIONS
-                             if not l.mandatory]
-        else:
-            perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
-            UserNotification.update_or_create(
-                update={'enabled': False},
-                user=user, notification_id=perm_setting.id)
-            perm_settings = [perm_setting]
+        perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
+        UserNotification.objects.update_or_create(
+            user=user, notification_id=perm_setting.id,
+            defaults={'enabled': False})
+        perm_settings = [perm_setting]
     else:
         unsubscribed = False
         email = ''

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-17 11:23+0000\n"
 "PO-Revision-Date: 2016-11-09 11:01+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -18,139 +18,109 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} yll"
 msgstr[1] "{0} yje"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "Pati një problem gjatë kontaktimit me shërbyesin."
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "Përzgjidhni një kartelë..."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Shtesa juaj do të duhej të përfundonte me .zip, .xpi, .crx, .jar ose .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
 msgstr "{0}% e plotësuar"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} nga {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "Anuloje"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "Po ngarkohet {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "Gabim me {0}"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "Kemi aktivizuar një linter të ri për të kontrolluar shtesën tuaj. Ju lutemi, mos harroni të raportoni në GitHub çfarëdo problemi"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Vleftësimi i shtesës suaj dështoi për shkak të {0} gabimi."
 msgstr[1] "Vleftësimi i shtesës suaj dështoi për shkak të {0} gabimeve."
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;dhe {0} tjetër"
 msgstr[1] "&hellip;dhe {0} të tjerë"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "Shihni raportin e plotë të vleftësimit"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "Po vleftësohet {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prej shërbyesit u mor një përgjigje e zbrazët, me gjendjen: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "Gabim i papritur shërbyesi gjatë vleftësimit."
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "Po përfundohet vleftësimi i {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Vleftësimit të shtesës suaj i mbaroi koha, do të shqyrtohet dorazi."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Shtesa juaj e kaloi vleftësimin pa gabime dhe me {0} sinjalizim."
 msgstr[1] "Shtesa juaj e kaloi vleftësimin pa gabime dhe me {0} sinjalizime."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Shtesa juaj u vleftësua pa gabime dhe {0} mesazh."
 msgstr[1] "Shtesa juaj u vleftësua pa gabime dhe {0} mesazhe."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Shtesa juaj u vleftësua pa gabime apo sinjalizime."
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "Parashtrimi juaj do të nënshkruhet vetvetiu."
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "Përmirësim WebExtension"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "E lejojmë dhe e nxisim një përmirësim, por këtë proces nuk mund ta zhbëni. Pasi përdoruesit tuaj të kenë instaluar WebExtension, nuk do të jenë në gjendje të instalojnë shtesa nga të dikurshmet."
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Kalimi i një shtese të dikurshme Firefox në MDN"
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Përfshini shënime të hollësishme versioni (kjo mund të kryhet në hapin pasues)."
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Nëse shtesa juaj lyp një llogari në një sajt, që të mund të testohet plotësisht, përfshini një emër përdoruesi dhe fjalëkalim testi te Shënimet për Shqyrtuesin (kjo mund të bëhet te hapi pasues)."
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Listë kontrolli parashtrimi shtese"
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Ju lutemi verifikoni plotësimin e pikave vijuese, përpara se të përfundoni parashtrimin tuaj. Kjo do të minimizojë vonesat ose keqkuptimet gjatë procesit të shqyrtimit:"
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -158,1031 +128,792 @@ msgstr ""
 "Për dyorë të përpiluar, si dhe programthe të minimizuar, apo të fshehur njëfarësoj, (hiq librari të njohura) lypset të parashtrohen veçmas burimet e tyre, për shqyrtim. Mos harroni të përdorni "
 "fushën e ngarkimit të kodit burim, që të shmangni hedhjen pohstë të parashtrimit tuaj."
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Procesi i vleftësimit gjeti këto probleme që mund të sjellin hedhje poshtë të parashtrimit:"
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr "Na ndjeni, nuk u gjet platformë e mbuluar."
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Lloji i kartelës që ngarkuat nuk është i pranueshëm."
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "E anuluat ngarkimin."
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "Pamjet duhet të jenë ose PNG, ose JPG."
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "Videot duhet të jenë në formatin WebM."
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "Ndiqe këtë Koleksion"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "Resht Së Ndjekuri"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "Po e Ndiqni"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Kjo temë është e papërputhshme me versionin tuaj të {0}"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "Tërë të Drejtat të Rezervuara"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "Emri i Temës Suaj"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "Me shenjë për shqyrtim"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "Lypset dora juaj"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "Shënuar për fshirje"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "Po përditësohen përfundimet&hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "Kategori"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "Kërkoni tema për <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "Kërkoni aplikacione për <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Kërkoni shtesa për <b>{0}</b>"
 
-#: static/js/impala/users.js
 msgid "Use original"
 msgstr "Përdor origjinalen"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "Java e {0}"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " shkarkime"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "{0} përdorues"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "{0} shtesa"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "{0} koleksione"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "{0} shqyrtime"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "{0} shitje"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "{0} rimbursime"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "{0} instalime"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "Shkarkime"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "Përdorues të Përditshëm"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
 msgstr "Vleftë, në USD"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "Numër Kontributesh"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "Më tepër të Dhëna..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "Hollësi për {0}"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "Koleksione të Krijuar"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
 msgstr "Shtesa Në Përdorim"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
 msgstr "Shtesa të Krijuara"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
 msgstr "Shtesa të Shkarkuara"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
 msgstr "Shtesa të Përditësuara"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "Shqyrtime të Shkruara"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "Regjistrime Përdoruesish"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "Pajtimtarë"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "Vlerësime"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "Shitje"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "Instalime"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "E panjohur"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
 msgstr "Përgjegjës  Shtesash"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "Këshillime Kërkimi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "Përfundime Kërkimi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "Faqe Hollësish"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "Faqe Hollësish (fundi)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "Faqe Hollësish (Kanali i Zhvillimeve)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "Përdorur Shpesh Me"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
 msgstr "Të tjera Nga Autori"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr "Varësi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "Njihuni me Zhvilluesin"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "Profil Përdoruesi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "Historik Versionesh"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "Ndarje me të tjerët"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "Faqe Kategorish"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "Koleksione"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
 msgstr "Sasi e Kontribuar Gjithsej"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
 msgstr "Kontribut Mesatarisht"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "Përdorim"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Shkarkime dhe Përdorues të përditshëm, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Shkarkime dhe Përdorues të Përditshëm nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Instalime dhe Përdorues të Përditshëm, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Instalime dhe Përdorues të Përditshëm nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "Shkarkime, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "Shkarkime nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "Përdorues të Përditshëm, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "Përdorues të Përditshëm nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
 msgstr "Aplikacione, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
 msgstr "Aplikacione nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "Platforma, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "Platforma nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "Gjuhë, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "Gjuhë nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
 msgstr "Versione Shtesash, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Versione shtesash nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
 msgstr "Gjendje Shtesash, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "Gjendje Shtesash nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "Burime Shkarkimesh, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "Burime Shkarkimi nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "Kontribute, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "Kontribute nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr "Matje Për Site-in, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Matje Për Site-in nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "Shtesa në Përdorim, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Shtesa në Përdorim nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Shtesa të Shkarkuara, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Shtesa të Shkarkuara nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
 msgstr "Shtesa të Krijuara, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Shtesa të Krijuara nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "Shtesa të Përditësuara, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Shtesa të Përditësuara nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "Shqyrtime të Shkruara, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "Shqyrtime të Shkruara nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "Regjistrime Përdoruesish, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "Regjistrime Përdoruesish nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "Koleksione të Krijuar, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "Koleksione të Krijuar nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "Pajtimtarë, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "Pajtimtarë nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "Vlerësime, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "Vlerësime nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "Shitje, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "Shitje nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "Instalime, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "Instalime nga {0} te {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> në {1} ditët e fundit"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> nga {1} te {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> mesatarisht në {1} ditët e fundit"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "Pa të dhëna të passhme."
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "Datë"
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "Tjetër"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "Përzgjidhni së pari një aplikacion"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Caktoji {0} shtese versionin maksimal {1} dhe dërgoji email autorit."
 msgstr[1] "Caktoji {0} shtesave versionin maksimal {1} dhe dërgoji email autorëve."
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Dërgojini email autorit të {2} shtese që nuk e kaloi vleftësimin."
 msgstr[1] "Dërgojini email autorit të {2} shtesave që nuk e kaluan vleftësimin."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
 msgstr "Pranoje dhe Instaloje"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
 msgstr "Shtoje te {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "Shkarkojeni Tani"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Shtesa nuk është përditësuar për të mbuluar parazgjedhje-në-e-përputhshme."
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Lypset të përdorni Firefox 10.0 ose më të ri."
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla i ka vënë shenjë këtij versioni si i papërputhshëm me versionin tuaj të Firefox-it."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "Instaloje për {0} sido qoftë"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "Shkarkoje për {0} sido qoftë"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "Jo i passhëm për platformën tuaj"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "Jo i passhëm për {0} {1}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
 msgstr "Funksionon me {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app}"
 msgstr "Funksionon me {app}"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "Shihni versione të tjera"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Vetëm me Firefox  — Merreni Firefox-in Tani!"
 
-#: static/js/zamboni/buttons.js
 msgid "Download now"
 msgstr "Shkarkojeni tani"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr "E passhme vetëm për Firefox Desktop"
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Na ndjeni, për të instaluar një shtojcë kërkimi lypset të kini një shfletues me bazë Mozilla (si Firefox-i)."
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "Po shtohet te Të parapëlqyerit&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "Po hiqet prej Të parapëlqyerve&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "Shtoje te Të parapëlqyerit"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "Hiqe prej Të parapëlqyerve"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "Në pritje"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "Shtoni një koment"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "Koment"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "Hiqe këtë shtesë prej koleksionit"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "Hiqe"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "Hiqe këtë përdorues si kontribues"
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "Lypset një adresë email."
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "Nuk mund të shtoni vetveten si kontribues."
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "E keni shtuar një herë atë përdorues."
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "Shtojeni te të parapëlqyerit"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "Hiqe prej të parapëlqyerve"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "Resht së ndjekuri"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "Shfletuesi juaj nuk e mbulon etiketën video"
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "Ndryshimet u Ruajtën"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr "Jepni adresën email të autorit të ri"
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "Pati një gabim gjatë ngarkimit të kartelës suaj."
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} kartelë"
 msgstr[1] "{files} kartela"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} shqyrtim përdoruesi"
 msgstr[1] "{reviews} shqyrtime përdoruesi"
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "Mësoni më tepër"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "Po përpunohen ndryshimet e figurës"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "Duhet të jetë një adresë e-mail e vlefshme."
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "Nuk u gjetën përfundime."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "{name} po e shihte së pari këtë faqe."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "Dëftesa u kontrollua nga aplikacioni."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "Dëftesa nuk qe kontrolluar nga aplikacioni."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "{name} po e shihte i pari këtë shtesë."
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "Po ngarkohet&hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "Shënime Versioni"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "Shënime për Shqyrtuesit"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "S'u gjetën shënime versioni"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr "Tekst Shqyrtimi"
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "U gjetën shënime shqyrtimi"
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr "Shqyrtime Mesatarisht"
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Numër Shqyrtimesh"
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Po ngarkohet..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "Edhe <b>{0}</b> shenjë."
 msgstr[1] "Edhe <b>{0}</b> shenja."
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e \"site\"-it web. Ju lutemi, riprovoni pas pak."
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
 msgstr "Hiqe këtë përkthim"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "Fortësi fjalëkalimi:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Të paktën edhe <b>{0}</b> shenjë."
 msgstr[1] "Të paktën edhe <b>{0}</b> shenja."
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "Të dhëna të Domosdoshme"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "Me shenjë"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "Përsëdytje"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "Hedhur tej"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
 msgstr "Miratuar"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "S’u gjetën përfundime"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "Temë"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "Shqyrtues"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "Gjendje"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "Krejt provat u kaluan me sukses."
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "Këto prova nuk u xhiruan."
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "Prova"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "Gabim"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Sinjalizim"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr "{0} rreshti {1} shtylla {2}"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1}"
 msgstr "{0} rresht {1}"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "Prova Përputhshmërie"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "Shtesa nuk e kaloi provën e vleftësimit."
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "Shtesa e kaloi provën e vleftësimit."
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} gabim"
 msgstr[1] "{0} gabime"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} sinjalizim"
 msgstr[1] "{0} sinjalizime"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} njoftim"
 msgstr[1] "{0} njoftime"
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "Akti i vleftësimit nuk u plotësua dot ose u plotësua me gabime"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Gabim i brendshëm shërbyesi"

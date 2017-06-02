@@ -15,8 +15,8 @@ class DiscoItem(object):
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
 discopane_items = [
-    # 'Japanese Tattoo' theme.
-    DiscoItem(addon_id=18781),
+    # 'Colorful Mandala' theme.
+    DiscoItem(addon_id=704669, addon_name='Colorful Mandala'),
 
     # Bulk Media Downloader
     DiscoItem(
@@ -41,8 +41,8 @@ discopane_items = [
               u'bunch of memory.'),
             '</blockquote>')),
 
-    # 'Two Little Birds' theme.
-    DiscoItem(addon_id=153659, addon_name='Two Little Birds'),
+    # 'Fiery Lion' theme.
+    DiscoItem(addon_id=475322),
 
     # Awesome Screenshot Plus
     DiscoItem(
@@ -67,6 +67,6 @@ discopane_items = [
               u'click away.'),
             '</blockquote>')),
 
-    # 'Giz Gaz' theme.
-    DiscoItem(addon_id=292930, addon_name='Giz Gaz'),
+    # 'Sunshines Bright' theme.
+    DiscoItem(addon_id=390265, addon_name='Sunshines Bright'),
 ]

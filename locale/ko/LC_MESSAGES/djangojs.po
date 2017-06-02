@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-17 11:23+0000\n"
 "PO-Revision-Date: 2017-03-09 03:27+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,132 +15,102 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "별점 {0}점"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "서버와 연결 도중 문제가 발생했습니다."
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "파일을 선택하세요..."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "부가 기능의 확장자는 .zip, .xpi, .crx, .jar, 또는 .xml을 사용해야 합니다"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
 msgstr "{0}% 완료됨"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "취소"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "{0} 업로드 중"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "오류 {0}개"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "부가 기능을 처리하기위한 새 린터를 활성화했습니다. 이슈가 발생하면 GitHub에 보고해 주세요."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "부가 기능이 {0}개의 오류와 함께 검사를 통과하지 못했습니다."
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;추가 오류 {0}개"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "전체 검사 보고서 보기"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "{0} 검사중"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "서버로부터 공백의 응답을 받았습니다; 상태: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "검사 도중 예상치 못한 오류가 발생했습니다."
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "{0} 검사 완료"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "부가 기능의 유효성 검사가 시간 초과되어서 수동으로 재검토될 것입니다."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "부가 기능이 오류 없이 {0}개의 경고로 검증되었습니다."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "부가 기능이 오류 없이 {0}개의 메시지로 검증되었습니다."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "부가 기능이 오류와 경고 없이 검증되었습니다."
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "제출은 자동으로 서명됩니다."
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "WebExtension 업그레이드"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "업그레이드를 허용하고 장려하지만 이 순서를 거꾸로 할 수는 없습니다. WebExtension을 설치한 사용자는 이전의 부가 기능을 설치할 수 없습니다."
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "자세한 버전 정보를 포함합니다(다음 단계에서 할 수 있습니다)."
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "부가기능 제출 체크리스트"
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "제출을 마무리 하기 전에 다음 사항을 확인 하십시오. 이 사항들은 지연이나 검토 과정에서의 오해를 최소화할 것입니다:"
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -148,1026 +118,787 @@ msgstr ""
 "컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 귀하의 제출이 거절되지 않도록 소스 코드 업로드 필드를 사용하고 있는지 확인하십시"
 "오."
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "유효성 검사 과정에서 거부 원인이 될 수 있는 문제들 발견:"
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr "죄송합니다, 지원되는 플랫폼을 찾지 못하였습니다."
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "업로드한 파일 형식을 인식할 수 없습니다."
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "업로드를 취소했습니다."
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "이미지는 PNG나 JPG를 써야 합니다."
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "동영상은 WebM으로 된 것만 사용 가능합니다."
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "이 모음집 팔로우 하기"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "팔로잉 중단"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "팔로잉"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "이 테마는 현재 {0} 버전과 호환되지 않습니다"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "All Rights Reserved"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "테마 이름"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "평가에 표시하기"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "글을 입력해야 합니다"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "삭제 표시"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "결과 갱신중&hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "분류"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "<b>{0}</b>의 테마 검색"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "<b>{0}</b> 앱 검색"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> 부가 기능 검색"
 
-#: static/js/impala/users.js
 #, fuzzy
 msgid "Use original"
 msgstr "오리지널 사용"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "{0}번째 주"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " 다운로드"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "사용자 {0}명"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "부가 기능 {0}개"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "모음집 {0}개"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "평가 {0}개"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "판매 {0}회"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "환불 {0}회"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "설치 {0}회"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "다운로드 횟수"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "일일 사용자 수"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
 msgstr "금액 (미국 달러화)"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "기부 횟수"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "자세히 알아보기..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "{0}에 대한 상세 정보"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "만들어진 모음집"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
 msgstr "사용 중인 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
 msgstr "만들어진 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
 msgstr "다운로드한 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
 msgstr "업데이트한 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "평가가 있는 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "사용자 등록"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "구독자"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "평가"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "판매중"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "설치"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
 msgstr "부가 기능 관리자"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
 msgstr "부가 기능 관리자 프로모션"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
 msgstr "부가 기능 관리자 기능"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
 msgstr "부가 기능 관리자 자세히 알아보기"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "검색 추천"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "검색 결과"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr "홈페이지 홍보"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr "추천 홈페이지"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr "인기 급상승 홈페이지"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr "인기 홈페이지"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "상세 정보 페이지"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "상세 정보 페이지 (하단)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "상세 정보 페이지 (개발 채널)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "이것과 자주 쓰입니다"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
 msgstr "제작자의 다른 저작물"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr "의존성"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr "판촉행위"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "개발자 만나기"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "사용자 프로필"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "버전 기록"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "공유"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "분류 페이지"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "모음집"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr "분류별 추천 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr "분류별 최다 별점 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr "분류별 인기 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
 msgstr "분류별 신규 등록 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr "추천 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr "사용자 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr "별점 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr "등록일 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr "이름 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr "인기도 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr "업데이트 날짜 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "최근 급상승 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
 msgstr "총 기부금액"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
 msgstr "평균 기부금"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "사용처"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "최근 {0}일간 다운로드 횟수와 일일 사용자 수"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "{0} 부터 {1} 까지 다운로드 횟수와 일일 사용자 수"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "설치 및 일일 사용자 (지난 {0}일)"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "설치 및 일일 사용자 ({0}~{1})"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "최근 {0}일간 다운로드 횟수"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "{0}부터 {1} 까지 다운로드 횟수"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "최근 {0}일간 일일 사용자 수"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "{0}부터 {1} 까지 일일 사용자 수"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
 msgstr "최근 {0}일간 애플리케이션"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
 msgstr "{0}부터 {1} 까지 애플리케이션"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "최근 {0}일간 플랫폼"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "{0}부터 {1} 까지 플랫폼"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "최근 {0}일간 언어"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "{0}부터 {1} 까지 언어"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
 msgstr "최근 {0}일간 부가 기능 버전"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "{0}부터 {1} 까지 부가 기능 버전"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
 msgstr "최근 {0}일간 부가 기능 상태"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "{0}부터 {1} 까지 부가 기능 상태"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "최근 {0}일간 다운로드 출처"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "{0}부터 {1} 까지 다운로드 출처"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "최근 {0}일간 기부금"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "{0}부터 {1} 까지 기부금"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr "웹사이트 통계 (지난 {0}일)"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "웹사이트 통계 ({0}~{1})"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "최근 {0}일간 사용중인 부가 기능"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "{0}부터 {1}까지 사용중인 부가 기능"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "최근 {0}일간 다운로드 된 부가 기능"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "{0}부터 {1}까지 다운로드 된 부가 기능"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
 msgstr "최근 {0}일간 제작된 부가 기능"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "{0}부터 {1}까지 제작된 부가 기능"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "최근 {0}일간 업데이트된 부가 기능"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "{0}부터 {1}까지 업데이트된 부가 기능"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "최근 {0}일간 작성된 평가"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "{0}부터 {1}까지 작성된 평가"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "최근 {0}일간 가입한 사용자"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "{0}부터 {1}까지 가입한 사용자"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "최근 {0}일간 제작된 모음집"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "{0}부터 {1}까지 제작된 모음집"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "최근 {0}일간 구독자"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "{0}부터 {1}까지 구독자"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "최근 {0}일간 별점"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "{0}부터 {1}까지 별점"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "최근 {0}일간 매상"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "{0}부터 {1}까지 매상"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "최근 {0}일간 설치"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "{0}부터 {1}까지 설치"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> (최근 {1}일간)"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ({1}부터 {2}까지)"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> (최근 {1}일간 평균)"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "데이터가 없습니다."
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "날짜"
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "기타"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "먼저 애플리케이션을 선택하세요"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "{1}의 최신 버전에 부가 기능 {0}개를 설정하고 제작자에게 이메일을 보냅니다."
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "유효성 확인에 실패한 {2} 부가 기능 개발자에게 메일을 보냅니다."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
 msgstr "동의 및 설치"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
 msgstr "{0}에 추가"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "다운로드"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "부가 기능이 기본으로 호환성을 갖출 수 있도록 업데이트 되지 않았습니다."
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Firefox 10.0 이상 버전이 필요합니다."
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla에서 이 버전이 현재 사용중인 Firefox 버전과 호환되지 않음을 표시하고 있습니다."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "{0}용 강제 설치"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "{0}용 강제 다운로드"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "현재 플랫폼에서 사용 불가"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "{0} {1}에서 사용 불가"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max}에서 작동"
 
-#: static/js/zamboni/buttons.js
 #, fuzzy
 msgid "Works with {app}"
 msgstr "{app} {min} - {max}에서 작동"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "다른 버전 보기"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "오직 Firefox에서만 — 지금 Firefox를 받으세요!"
 
-#: static/js/zamboni/buttons.js
 #, fuzzy
 msgid "Download now"
 msgstr "다운로드"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr "Firefox 데스크톱에서만 이용 가능함"
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "죄송합니다. 검색 플러그인을 설치하려면 Mozilla 기반 브라우저(Firefox 같은)가 필요합니다."
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "선호 목록에 추가중&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "선호 목록에서 삭제중&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "선호 목록에 추가"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "선호 목록에서 삭제"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "대기중"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "코멘트 추가"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "코멘트"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "모음집에서 이 부가 기능 삭제"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "삭제"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "기여자에서 이 사용자 삭제"
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "이메일 주소를 입력해야 합니다."
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "자신의 계정은 기여자로 추가할 수 없습니다."
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "이미 추가된 사용자입니다."
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "선호 목록에 추가"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "선호 목록에서 삭제"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "팔로우 중단"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "이 웹 브라우저는 비디오 태그를 지원하지 않습니다"
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr "새 제작자의 이메일 주소를 입력하세요"
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "파일 {files}개"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 사용자 리뷰"
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "자세히 알아보기"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "올바른 이메일 주소를 입력해야 합니다."
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "검색한 결과가 없습니다."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "앱이 영수증을 확인했습니다."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "앱이 영수증을 확인하지 못했습니다."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "불러오는 중&hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "버전 기록서"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "심사자의 메모"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "버전 기록서가 없습니다"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "심사 메모가 발견됨"
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr "평균 심사 횟수"
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "심사 횟수"
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "읽는 중..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b>자 남았습니다."
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "이 기능은 웹사이트 점검으로 인해 잠시 사용할 수 없습니다. 잠시 후 다시 사용해 주세요."
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
 msgstr "이 번역 삭제"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "비밀번호 보안 등급:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "최소 {0}글자를 더 입력해야 합니다."
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "요청된 정보"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "표시됨"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "복사하기"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "거부됨"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
 msgstr "승인됨"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "검색 결과 없음"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "테마"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "심사원"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "상태"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "모든 테스트에 통과했습니다."
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "이 테스트는 실행되지 않았습니다."
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "검사"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "오류"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "경고"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr "{0} 줄 {1} 열 {2}"
 
-#: static/js/zamboni/validator.js
 #, fuzzy
 msgid "{0} line {1}"
 msgstr "{0} / {1}"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "호환성 검사"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "부가 기능이 검사를 통과하지 못했습니다."
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "부가 기능이 검사를 통과했습니다."
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "오류 {0}개"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "알림 {0}개"
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "검사 작업이 오류로 인해 완료되지 못했습니다"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "내부 서버 오류"

@@ -90,7 +90,8 @@ def urlparams(url_, hash=None, **query):
     New query params will be appended to existing parameters, except duplicate
     names, which will be replaced.
     """
-    url = django_urlparse(url_)
+    url = django_urlparse(force_text(url_))
+
     fragment = hash if hash is not None else url.fragment
 
     # Use dict(parse_qsl) so we don't get lists of values.
@@ -586,7 +587,7 @@ def get_locale_from_lang(lang):
     """Pass in a language (u'en-US') get back a Locale object courtesy of
     Babel.  Use this to figure out currencies, bidi, names, etc."""
     # Special fake language can just act like English for formatting and such
-    if not lang or lang == 'dbg':
+    if not lang or lang in ('dbg', 'dbr', 'dbl'):
         lang = 'en'
 
     return Locale.parse(translation.to_locale(lang))

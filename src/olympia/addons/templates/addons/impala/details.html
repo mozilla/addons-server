@@ -322,7 +322,7 @@
       </div>
     </div>
   {% endif %}
-  {% if waffle.switch('webext-permissions') and addon.should_show_permissions() %}
+  {% if addon.should_show_permissions() %}
     <div class="modal" id="webext-permissions">
       <a href="#" class="close">{{ _('close') }}</a>
       <h2>{{ _('Permissions') }}</h2>

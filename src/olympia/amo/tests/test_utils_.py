@@ -182,8 +182,11 @@ def test_get_locale_from_lang(lang):
     """Make sure all languages in settings.AMO_LANGUAGES can be resolved."""
     locale = get_locale_from_lang(lang)
 
+    debug_languages = ('dbg', 'dbr', 'dbl')
+    expected_language = lang[:2] if lang not in debug_languages else 'en'
+
     assert isinstance(locale, Locale)
-    assert locale.language == lang[:2]
+    assert locale.language == expected_language
 
     separator = '-' if '-' in lang else '_' if '_' in lang else None
 

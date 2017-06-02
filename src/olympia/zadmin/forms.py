@@ -8,7 +8,7 @@ from django.forms.models import modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.forms.models import BaseModelFormSet
 from django.template import Context, Template, TemplateSyntaxError
-from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 from product_details import product_details
 
@@ -46,17 +46,17 @@ class DevMailerForm(happyforms.Form):
 
 class BulkValidationForm(happyforms.ModelForm):
     application = forms.ChoiceField(
-        label=_lazy(u'Application'),
+        label=_(u'Application'),
         choices=amo.APPS_CHOICES)
     curr_max_version = forms.ChoiceField(
-        label=_lazy(u'Current Max. Version'),
-        choices=[('', _lazy(u'Select an application first'))])
+        label=_(u'Current Max. Version'),
+        choices=[('', _(u'Select an application first'))])
     target_version = forms.ChoiceField(
-        label=_lazy(u'Target Version'),
-        choices=[('', _lazy(u'Select an application first'))])
+        label=_(u'Target Version'),
+        choices=[('', _(u'Select an application first'))])
     finish_email = forms.CharField(
         required=False,
-        label=_lazy(u'Email when finished'))
+        label=_(u'Email when finished'))
 
     class Meta:
         model = ValidationJob
@@ -106,7 +106,7 @@ class NotifyForm(happyforms.Form):
     subject = forms.CharField(widget=forms.TextInput, required=True)
     preview_only = forms.BooleanField(
         initial=True, required=False,
-        label=_lazy(u'Log emails instead of sending'))
+        label=_(u'Log emails instead of sending'))
     text = forms.CharField(widget=forms.Textarea, required=True)
     variables = ['{{PASSING_ADDONS}}', '{{FAILING_ADDONS}}', '{{APPLICATION}}',
                  '{{VERSION}}']
@@ -137,7 +137,8 @@ class NotifyForm(happyforms.Form):
 class FeaturedCollectionForm(happyforms.ModelForm):
     LOCALES = (('', u'(Default Locale)'),) + tuple(
         (i, product_details.languages[i]['native'])
-        for i in settings.AMO_LANGUAGES)
+        for i in settings.AMO_LANGUAGES
+        if i not in ('dbl', 'dbr'))
 
     application = forms.ChoiceField(amo.APPS_CHOICES)
     collection = forms.CharField(widget=forms.HiddenInput)
@@ -216,7 +217,7 @@ class FileStatusForm(ModelForm):
         changed = not self.cleaned_data['status'] == self.instance.status
         if changed and self.instance.version.deleted:
             raise forms.ValidationError(
-                _('Deleted versions can`t be changed.'))
+                ugettext('Deleted versions can`t be changed.'))
         return self.cleaned_data['status']
 
 
@@ -237,9 +238,9 @@ class YesImSure(happyforms.Form):
 
 class CompatForm(forms.Form):
     appver = forms.ChoiceField(choices=APPVER_CHOICES, required=False)
-    type = forms.ChoiceField(choices=(('all', _lazy('All Add-ons')),
-                                      ('binary', _lazy('Binary')),
-                                      ('non-binary', _lazy('Non-binary'))),
+    type = forms.ChoiceField(choices=(('all', _('All Add-ons')),
+                                      ('binary', _('Binary')),
+                                      ('non-binary', _('Non-binary'))),
                              widget=RadioSelect, required=False)
     _minimum_choices = [(x, x) for x in xrange(100, -10, -10)]
     minimum = forms.TypedChoiceField(choices=_minimum_choices, coerce=int,

@@ -16,7 +16,8 @@ from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, CompatOverride, CompatOverrideRange)
 from olympia.applications.models import AppVersion
-from olympia.editors.models import ViewFullReviewQueue, ViewPendingQueue
+from olympia.editors.models import (
+    AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.users.models import UserProfile
@@ -555,6 +556,19 @@ class TestVersion(TestCase):
 
         addon.type = amo.ADDON_THEME
         assert not version.is_ready_for_auto_approval
+
+    def test_was_auto_approved(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        assert not version.was_auto_approved
+
+        AutoApprovalSummary.objects.create(
+            version=version, verdict=amo.AUTO_APPROVED)
+        assert version.was_auto_approved
+
+        version.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        del version.all_files  # Reset all_files cache.
+        assert not version.was_auto_approved
 
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [

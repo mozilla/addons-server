@@ -4,7 +4,7 @@ from django import http
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Rss201rev2Feed as RSS
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -42,9 +42,9 @@ class ActivityFeedRSS(Feed):
     def title(self, key):
         """Title for the feed as a whole"""
         if key.addon:
-            return _(u'Recent Changes for %s') % key.addon
+            return ugettext(u'Recent Changes for %s') % key.addon
         else:
-            return _(u'Recent Changes for My Add-ons')
+            return ugettext(u'Recent Changes for My Add-ons')
 
     def link(self):
         """Link for the feed as a whole"""

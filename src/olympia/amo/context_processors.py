@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
-from django.utils.translation import (
-    ugettext as _, get_language, get_language_bidi)
+from django.utils.translation import ugettext, get_language, get_language_bidi
 from django.utils.http import urlquote
 
 from olympia import amo
@@ -35,7 +34,7 @@ def global_settings(request):
     tools_links = []
     context = {}
 
-    tools_title = _('Tools')
+    tools_title = ugettext('Tools')
     is_reviewer = False
 
     if request.user.is_authenticated():
@@ -45,50 +44,50 @@ def global_settings(request):
         is_reviewer = (acl.check_addons_reviewer(request) or
                        acl.check_personas_reviewer(request))
 
-        account_links.append({'text': _('My Profile'),
+        account_links.append({'text': ugettext('My Profile'),
                               'href': profile.get_url_path()})
         if user.is_artist:
-            account_links.append({'text': _('My Themes'),
+            account_links.append({'text': ugettext('My Themes'),
                                   'href': profile.get_user_url('themes')})
 
-        account_links.append({'text': _('Account Settings'),
+        account_links.append({'text': ugettext('Account Settings'),
                               'href': reverse('users.edit')})
         account_links.append({
-            'text': _('My Collections'),
+            'text': ugettext('My Collections'),
             'href': reverse('collections.user', args=[user.username])})
 
         if user.favorite_addons:
             account_links.append(
-                {'text': _('My Favorites'),
+                {'text': ugettext('My Favorites'),
                  'href': reverse('collections.detail',
                                  args=[user.username, 'favorites'])})
 
         account_links.append({
-            'text': _('Log out'),
+            'text': ugettext('Log out'),
             'href': reverse('users.logout') + '?to=' + urlquote(request.path),
         })
 
         if request.user.is_developer:
-            tools_links.append({'text': _('Manage My Submissions'),
+            tools_links.append({'text': ugettext('Manage My Submissions'),
                                 'href': reverse('devhub.addons')})
         links = [
-            {'text': _('Submit a New Add-on'),
+            {'text': ugettext('Submit a New Add-on'),
              'href': reverse('devhub.submit.agreement')},
-            {'text': _('Submit a New Theme'),
+            {'text': ugettext('Submit a New Theme'),
              'href': reverse('devhub.themes.submit')},
-            {'text': _('Developer Hub'),
+            {'text': ugettext('Developer Hub'),
              'href': reverse('devhub.index')},
         ]
-        links.append({'text': _('Manage API Keys'),
+        links.append({'text': ugettext('Manage API Keys'),
                       'href': reverse('devhub.api_key')})
 
         tools_links += links
         if is_reviewer:
-            tools_links.append({'text': _('Reviewer Tools'),
+            tools_links.append({'text': ugettext('Reviewer Tools'),
                                 'href': reverse('editors.home')})
         if (acl.action_allowed(request, amo.permissions.ADMIN) or
                 acl.action_allowed(request, amo.permissions.ADMIN_TOOLS_VIEW)):
-            tools_links.append({'text': _('Admin Tools'),
+            tools_links.append({'text': ugettext('Admin Tools'),
                                 'href': reverse('zadmin.home')})
 
         context['user'] = request.user

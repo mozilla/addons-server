@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.shortcuts import redirect
 
 from olympia.amo.urlresolvers import reverse
@@ -7,8 +7,7 @@ from olympia.browse.feeds import (
 from . import views
 
 
-impala_patterns = patterns(
-    '',
+impala_patterns = [
     # TODO: Impalacize these views.
     url('^extensions/(?P<category>[^/]+)/featured$',
         views.legacy_creatured_redirect,
@@ -17,10 +16,9 @@ impala_patterns = patterns(
         name='i_browse.language-tools'),
     url('^search-tools/(?P<category>[^/]+)?$', views.search_tools,
         name='i_browse.search-tools'),
-)
+]
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url('^i/', include(impala_patterns)),
 
     url('^language-tools/(?P<category>[^/]+)?$', views.language_tools,
@@ -84,4 +82,4 @@ urlpatterns = patterns(
     url('^plugins$',
         lambda r: redirect('http://www.mozilla.org/en-US/plugincheck/',
                            permanent=True)),
-)
+]

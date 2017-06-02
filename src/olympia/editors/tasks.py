@@ -1,14 +1,16 @@
 import os
 
 from django.conf import settings
-from django.utils.translation import override, ugettext as _
+from django.utils.translation import override, ugettext
 
 import olympia.core.logger
 from olympia.constants import editors as rvw
 from olympia.activity.models import ActivityLog, CommentLog, VersionLog
+from olympia.addons.models import Addon
 from olympia.addons.tasks import create_persona_preview_images
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
+from olympia.editors.models import AutoApprovalSummary
 from olympia.amo.helpers import user_media_path
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.utils import LocalFileStorage, send_mail_jinja
@@ -65,7 +67,7 @@ def send_mail(cleaned_data, theme_lock):
         if reject_reason:
             reason = rvw.THEME_REJECT_REASONS[reject_reason]
         elif action == rvw.ACTION_DUPLICATE:
-            reason = _('Duplicate Submission')
+            reason = ugettext('Duplicate Submission')
 
         emails = set(theme.addon.authors.values_list('email', flat=True))
         context = {
@@ -77,22 +79,22 @@ def send_mail(cleaned_data, theme_lock):
 
         subject = None
         if action == rvw.ACTION_APPROVE:
-            subject = _('Thanks for submitting your Theme')
+            subject = ugettext('Thanks for submitting your Theme')
             template = 'editors/themes/emails/approve.html'
 
         elif action in (rvw.ACTION_REJECT, rvw.ACTION_DUPLICATE):
-            subject = _('A problem with your Theme submission')
+            subject = ugettext('A problem with your Theme submission')
             template = 'editors/themes/emails/reject.html'
 
         elif action == rvw.ACTION_FLAG:
-            subject = _('Theme submission flagged for review')
+            subject = ugettext('Theme submission flagged for review')
             template = 'editors/themes/emails/flag_reviewer.html'
 
             # Send the flagged email to themes email.
             emails = [settings.THEMES_EMAIL]
 
         elif action == rvw.ACTION_MOREINFO:
-            subject = _('A question about your Theme submission')
+            subject = ugettext('A question about your Theme submission')
             template = 'editors/themes/emails/moreinfo.html'
             context['reviewer_email'] = theme_lock.reviewer.email
 
@@ -158,3 +160,18 @@ def reject_rereview(theme):
     if reupload.footer:
         storage.delete(reupload.footer_path)
     rereview.delete()
+
+
+@task
+@write
+def recalculate_post_review_weight(ids):
+    """Recalculate the post-review weight that should be assigned to
+    auto-approved add-on versions from a list of ids."""
+    addons = Addon.objects.filter(id__in=ids)
+    for addon in addons:
+        summaries = AutoApprovalSummary.objects.filter(
+            version__in=addon.versions.all())
+
+        for summary in summaries:
+            summary.calculate_weight()
+            summary.save()

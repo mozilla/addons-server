@@ -227,3 +227,25 @@ class TestLangpackFetcher(TestCase):
         assert str(exc.exception) == 'Invalid path'
 
         assert not mock_sign_file.called
+
+    @mock.patch('olympia.zadmin.tasks.sign_file')
+    def test_fetch_new_langpack_name_summary_separate(self, mock_sign_file):
+        """Test for https://github.com/mozilla/addons-server/issues/5432"""
+        assert self.get_langpacks().count() == 0
+
+        self.fetch_langpacks(amo.FIREFOX.latest_version)
+
+        langpacks = self.get_langpacks()
+        assert langpacks.count() == 1
+
+        addon = langpacks[0]
+        assert addon.default_locale == 'de-DE'
+        assert addon.target_locale == 'de-DE'
+        assert str(addon.summary) == str(addon.name)
+
+        # The string is the same but we don't use the same
+        # translation instance
+        assert addon.summary.id != addon.name.id
+
+        assert addon._current_version
+        assert addon.current_version.version == amo.FIREFOX.latest_version

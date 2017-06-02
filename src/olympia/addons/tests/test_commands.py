@@ -9,8 +9,8 @@ import pytest
 from olympia import amo
 from olympia.activity.models import AddonLog
 from olympia.addons.management.commands import approve_addons
-from olympia.amo.tests import addon_factory, TestCase
-from olympia.editors.models import ReviewerScore
+from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.editors.models import AutoApprovalSummary, ReviewerScore
 
 
 # Where to monkeypatch "lib.crypto.tasks.sign_addons" so it's correctly mocked.
@@ -235,3 +235,57 @@ class AddFirefox57TagTestCase(TestCase):
         assert (
             set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
             set(['firefox57']))
+
+
+class RecalculateWeightTestCase(TestCase):
+    @mock.patch('olympia.editors.tasks.recalculate_post_review_weight.subtask')
+    def test_only_affects_auto_approved(
+            self, recalculate_post_review_weight_mock):
+        # Non auto-approved add-on, should not be considered.
+        addon_factory()
+
+        # Non auto-approved add-on that has an AutoApprovalSummary entry,
+        # should not be considered.
+        AutoApprovalSummary.objects.create(
+            version=addon_factory().current_version,
+            verdict=amo.NOT_AUTO_APPROVED)
+
+        # Add-on with the current version not auto-approved, should not be
+        # considered.
+        extra_addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=extra_addon.current_version, verdict=amo.AUTO_APPROVED)
+        extra_addon.current_version.update(created=self.days_ago(1))
+        version_factory(addon=extra_addon)
+
+        # Add-on that should be considered because it's current version is
+        # auto-approved.
+        auto_approved_addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=auto_approved_addon.current_version,
+            verdict=amo.AUTO_APPROVED)
+        # Add some extra versions that should not have an impact.
+        version_factory(
+            addon=auto_approved_addon,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=auto_approved_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        call_command(
+            'process_addons', task='recalculate_post_review_weight')
+
+        assert recalculate_post_review_weight_mock.call_count == 1
+        recalculate_post_review_weight_mock.assert_called_with(
+            args=[[auto_approved_addon.pk]], kwargs={})
+
+    def test_task_works_correctly(self):
+        addon = addon_factory(average_daily_users=100000)
+        summary = AutoApprovalSummary.objects.create(
+            version=addon.current_version, verdict=amo.AUTO_APPROVED)
+        assert summary.weight == 0
+
+        call_command(
+            'process_addons', task='recalculate_post_review_weight')
+
+        summary.reload()
+        assert summary.weight == 10  # Because of average_daily_users / 10000.

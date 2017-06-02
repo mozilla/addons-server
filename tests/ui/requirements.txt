@@ -1,9 +1,9 @@
 fxapom==1.10.0
 PyJWT==1.5.0
 PyPOM==1.1.1
-pytest==3.0.7
+pytest==3.1.1
 pytest-instafail==0.3.0
 pytest-selenium==1.9.1
 pytest-variables==1.6.1
 pytest-xdist==1.16.0
-selenium==3.4.1
+selenium==3.4.3

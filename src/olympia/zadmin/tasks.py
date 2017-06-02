@@ -59,9 +59,11 @@ def tally_job_results(job_id, **kw):
                     sum(case when completed IS NOT NULL then 1 else 0 end)
              from validation_result
              where validation_job_id=%s"""
-    cursor = connection.cursor()
-    cursor.execute(sql, [job_id])
-    total, completed = cursor.fetchone()
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [job_id])
+        total, completed = cursor.fetchone()
+
     if completed == total:
         # The job has finished.
         job = ValidationJob.objects.get(pk=job_id)
@@ -615,8 +617,9 @@ def fetch_langpack(url, xpi, **kw):
         sign_file(file_, settings.SIGNING_SERVER)
 
         # Finally, set the addon summary if one wasn't provided in the xpi.
-        addon.update(status=amo.STATUS_PUBLIC,
-                     summary=(addon.summary if addon.summary else addon.name))
+        addon.status = amo.STATUS_PUBLIC
+        addon.summary = addon.summary if addon.summary else unicode(addon.name)
+        addon.save(update_fields=('status', 'summary'))
         addon.update_status()
 
 

@@ -88,6 +88,10 @@ AMO_LANGUAGES = (
     'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
     'zh-CN', 'zh-TW',
 )
+
+# Make sure we run our tests with debug languages.
+AMO_LANGUAGES = AMO_LANGUAGES + DEBUG_LANGUAGES
+
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 TASK_USER_ID = 1337
@@ -166,6 +170,9 @@ if os.environ.get('RUNNING_IN_CI'):
                     u'English': u'Welsh'},
                 u'sr-Latn': {
                     u'native': u'Srpski',
-                    u'English': u'Serbian'}})
+                    u'English': u'Serbian'},
+                u'dbg': {
+                    u'English': u'Debug Robot',
+                    u'native': u'\u1e12\u1e17\u0180\u016d\u0260 \u0158\u01ff\u0180\u01ff\u0167'}})  # noqa
 
     product_details.product_details = MockProductDetails()

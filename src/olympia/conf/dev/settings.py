@@ -223,7 +223,7 @@ PAYPAL_CHAINS = (
 
 SENTRY_DSN = env('SENTRY_DSN')
 
-AMO_LANGUAGES = AMO_LANGUAGES + ('dbg',)
+AMO_LANGUAGES = AMO_LANGUAGES + DEBUG_LANGUAGES
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
@@ -242,7 +242,7 @@ FXA_CONFIG = {
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
         'redirect_url':
-            'https://addons-dev.allizom.org/api/v3/accounts/authenticate/',
+            'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
         'scope': 'profile',
     },
     'internal': {

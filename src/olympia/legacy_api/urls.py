@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.db.transaction import non_atomic_requests
 
 from olympia.addons.urls import ADDON_ID
@@ -44,28 +44,25 @@ search_regexps = build_urls(base_search_regexp, appendages)
 appendages.insert(0, '/(?P<list_type>[^/]+)')
 list_regexps = build_urls(r'list', appendages)
 
-legacy_api_patterns = patterns(
-    '',
+legacy_api_patterns = [
     # Addon_details
     url('addon/%s$' % ADDON_ID, api_view(views.AddonDetailView),
         name='legacy_api.addon_detail'),
     url(r'^get_language_packs$', api_view(views.LanguageView),
-        name='legacy_api.language'),)
+        name='legacy_api.language'),
+]
 
 for regexp in search_regexps:
-    legacy_api_patterns += patterns(
-        '',
+    legacy_api_patterns.append(
         url(regexp + '/?$', api_view(views.SearchView),
             name='legacy_api.search'))
 
 for regexp in list_regexps:
-    legacy_api_patterns += patterns(
-        '',
+    legacy_api_patterns.append(
         url(regexp + '/?$', api_view(views.ListView),
             name='legacy_api.list'))
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     # Redirect api requests without versions
     url('^((?:addon|search|list)/.*)$', views.redirect_view),
 
@@ -74,4 +71,4 @@ urlpatterns = patterns(
     url(r'^(?P<api_version>\d+|\d+.\d+)/search/guid:(?P<guids>.*)',
         views.guid_search),
     url(r'^(?P<api_version>\d+|\d+.\d+)/', include(legacy_api_patterns)),
-)
+]

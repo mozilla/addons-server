@@ -4,9 +4,11 @@ import os
 from django.conf import settings
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
+from django.utils.http import urlquote
 from django.test.utils import override_settings
 
 import mock
+import pytest
 from pyquery import PyQuery
 
 from olympia import amo
@@ -82,6 +84,7 @@ class TestViews(TestCase):
         assert response.status_code == 200
         return PyQuery(response.content)
 
+    @pytest.mark.xfail(reason='Temporarily hidden, #5431')
     def test_version_source(self):
         self.addon.update(view_source=True)
         assert len(self.get_content()('a.source-code')) == 1
@@ -183,8 +186,9 @@ class TestDownloadsBase(TestCase):
             file_ = self.file
         assert response.status_code == 302
         assert response.url == (
-            urlparams('%s%s/%s' % (host, self.addon.id, file_.filename),
-                      filehash=file_.hash))
+            urlparams('%s%s/%s' % (
+                host, self.addon.id, urlquote(file_.filename)
+            ), filehash=file_.hash))
         assert response['X-Target-Digest'] == file_.hash
 
     def assert_served_internally(self, response, guarded=True):
@@ -301,6 +305,11 @@ class TestDownloads(TestDownloadsBase):
         self.addon.update(status=amo.STATUS_BETA)
         self.file.update(status=amo.STATUS_BETA)
         self.assert_served_locally(self.client.get(self.file_url))
+
+    def test_unicode_url(self):
+        self.file.update(filename=u'图像浏览器-0.5-fx.xpi')
+
+        self.assert_served_by_cdn(self.client.get(self.file_url))
 
 
 class TestDisabledFileDownloads(TestDownloadsBase):

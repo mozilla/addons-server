@@ -12,7 +12,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
-from django.utils.translation import ugettext as _, pgettext
+from django.utils.translation import ugettext, pgettext
 
 from olympia import amo
 from olympia.devhub import tasks as devhub_tasks
@@ -146,9 +146,9 @@ def home(request):
 
     motd_editable = acl.action_allowed(
         request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
-    durations = (('new', _('New Add-ons (Under 5 days)')),
-                 ('med', _('Passable (5 to 10 days)')),
-                 ('old', _('Overdue (Over 10 days)')))
+    durations = (('new', ugettext('New Add-ons (Under 5 days)')),
+                 ('med', ugettext('Passable (5 to 10 days)')),
+                 ('old', ugettext('Overdue (Over 10 days)')))
 
     limited_reviewer = is_limited_reviewer(request)
     progress, percentage = _editor_progress(limited_reviewer=limited_reviewer)
@@ -468,14 +468,15 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
 
         return query.count
 
+    AUTO_APPROVED = amo.AUTO_APPROVED
     counts = {
         'pending': construct_query(ViewPendingQueue, **kw),
         'nominated': construct_query(ViewFullReviewQueue, **kw),
         'moderated': Review.objects.all().to_moderate().count,
         'auto_approved': (
-            AutoApprovalSummary.objects
-                               .filter(verdict=amo.AUTO_APPROVED)
-                               .values('version__addon').distinct().count)
+            Addon.objects.public().filter(
+                _current_version__autoapprovalsummary__verdict=AUTO_APPROVED)
+            .count)
     }
     if unlisted:
         counts = {
@@ -525,8 +526,10 @@ def queue_moderated(request):
             reviews_formset.save()
         else:
             amo.messages.error(
-                request, ' '.join(e.as_text() or _('An unknown error occurred')
-                                  for e in reviews_formset.errors))
+                request,
+                ' '.join(
+                    e.as_text() or ugettext('An unknown error occurred')
+                    for e in reviews_formset.errors))
         return redirect(reverse('editors.queue_moderated'))
 
     return render(request, 'editors/queue.html',
@@ -553,23 +556,15 @@ def application_versions_json(request):
 
 @permission_required(amo.permissions.ADDONS_POST_REVIEW)
 def queue_auto_approved(request):
-    # We need a GROUP BY addon_id to eliminate duplicates, but django does not
-    # support arbitrary GROUP BY clauses; it has support for DISTINCT ON but
-    # only on PostgreSQL. So, we do it ourselves using .raw().
-    query = """
-        SELECT `versions`.*, `addons_addonapprovalscounter`.`last_human_review`
-        FROM `versions` INNER JOIN `editors_autoapprovalsummary`
-        ON ( `versions`.`id` = `editors_autoapprovalsummary`.`version_id` )
-        INNER JOIN `addons` ON ( `versions`.`addon_id` = `addons`.`id` )
-        LEFT OUTER JOIN `addons_addonapprovalscounter`
-        ON ( `addons`.`id` = `addons_addonapprovalscounter`.`addon_id` )
-        WHERE NOT (`versions`.`deleted` = True)
-        AND `editors_autoapprovalsummary`.`verdict` = %s
-        GROUP BY `versions`.`addon_id`
-        ORDER BY `addons_addonapprovalscounter`.`last_human_review` ASC,
-                 `addons`.`created` ASC
-    """
-    qs = Version.objects.no_cache().raw(query, [amo.AUTO_APPROVED])
+    qs = (
+        Addon.objects.public()
+        .select_related(
+            'addonapprovalscounter', '_current_version__autoapprovalsummary')
+        .filter(
+            _current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
+        .order_by(
+            '-_current_version__autoapprovalsummary__weight',
+            'addonapprovalscounter__last_human_review'))
     return _queue(request, AutoApprovedTable, 'auto_approved',
                   qs=qs, SearchForm=None)
 
@@ -632,11 +627,13 @@ def review(request, addon, channel=None):
         channel=channel, exclude=(amo.STATUS_BETA,))
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
-        amo.messages.warning(request, _('Self-reviews are not allowed.'))
+        amo.messages.warning(
+            request, ugettext('Self-reviews are not allowed.'))
         return redirect(reverse('editors.queue'))
 
     form_helper = ReviewHelper(request=request, addon=addon, version=version)
-    form = forms.ReviewForm(request.POST or None, helper=form_helper)
+    form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
+                            helper=form_helper)
     if channel == amo.RELEASE_CHANNEL_LISTED:
         queue_type = form.helper.handler.review_type
         redirect_url = reverse('editors.queue_%s' % queue_type)
@@ -653,13 +650,7 @@ def review(request, addon, channel=None):
     was_auto_approved = False
     if channel == amo.RELEASE_CHANNEL_LISTED:
         if addon.current_version:
-            try:
-                was_auto_approved = (
-                    addon.current_version.autoapprovalsummary.verdict ==
-                    amo.AUTO_APPROVED
-                )
-            except AutoApprovalSummary.DoesNotExist:
-                pass
+            was_auto_approved = addon.current_version.was_auto_approved
         if is_post_reviewer and version and version.is_webextension:
             try:
                 approvals_info = addon.addonapprovalscounter
@@ -683,7 +674,8 @@ def review(request, addon, channel=None):
                                                      addon=addon)
         if form.cleaned_data.get('adminflag') and is_admin:
             addon.update(admin_review=False)
-        amo.messages.success(request, _('Review successfully processed.'))
+        amo.messages.success(
+            request, ugettext('Review successfully processed.'))
         clear_reviewing_cache(addon.id)
         return redirect(redirect_url)
 
@@ -709,8 +701,13 @@ def review(request, addon, channel=None):
     except Version.DoesNotExist:
         show_diff = None
 
-    # The actions we should show a minimal form from.
+    # The actions we should show a minimal form for.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
+
+    # The actions we should show the comments form for (contrary to minimal
+    # form above, it defaults to True, because most actions do need to have
+    # the comments form).
+    actions_comments = [k for (k, a) in actions if a.get('comments', True)]
 
     versions = (Version.unfiltered.filter(addon=addon, channel=channel)
                                   .select_related('autoapprovalsummary')
@@ -773,6 +770,7 @@ def review(request, addon, channel=None):
                   form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
                   actions=actions, actions_minimal=actions_minimal,
+                  actions_comments=actions_comments,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
                   user_changes=user_changes_log,
                   unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
@@ -820,7 +818,7 @@ def review_viewing(request):
             is_user = 1
         else:
             currently_viewing = settings.TASK_USER_ID
-            current_name = _('Review lock limit reached')
+            current_name = ugettext('Review lock limit reached')
             is_user = 2
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
@@ -901,19 +899,20 @@ def reviewlog(request):
                 Q(user__username__icontains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
-    ad = {
-        amo.LOG.APPROVE_VERSION.id: _('was approved'),
+    action_dict = {
+        amo.LOG.APPROVE_VERSION.id: ugettext('was approved'),
         # The log will still show preliminary, even after the migration.
-        amo.LOG.PRELIMINARY_VERSION.id: _('given preliminary review'),
-        amo.LOG.REJECT_VERSION.id: _('rejected'),
+        amo.LOG.PRELIMINARY_VERSION.id: ugettext('given preliminary review'),
+        amo.LOG.REJECT_VERSION.id: ugettext('rejected'),
         amo.LOG.ESCALATE_VERSION.id: pgettext(
             'editors_review_history_nominated_adminreview', 'escalated'),
-        amo.LOG.REQUEST_INFORMATION.id: _('needs more information'),
-        amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
-        amo.LOG.COMMENT_VERSION.id: _('commented'),
+        amo.LOG.REQUEST_INFORMATION.id: ugettext('needs more information'),
+        amo.LOG.REQUEST_SUPER_REVIEW.id: ugettext('needs super review'),
+        amo.LOG.COMMENT_VERSION.id: ugettext('commented'),
+        amo.LOG.CONFIRM_AUTO_APPROVED.id: ugettext('confirmed as approved'),
     }
 
-    data = context(request, form=form, pager=pager, ACTION_DICT=ad,
+    data = context(request, form=form, pager=pager, ACTION_DICT=action_dict,
                    motd_editable=motd_editable)
     return render(request, 'editors/reviewlog.html', data)
 

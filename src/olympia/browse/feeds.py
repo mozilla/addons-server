@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.amo.feeds import NonAtomicFeed
@@ -62,7 +62,7 @@ class CategoriesRss(AddonFeedMixin, NonAtomicFeed):
 
     def title(self, category):
         """Title for the feed as a whole"""
-        name = category.name if category else _('Extensions')
+        name = category.name if category else ugettext('Extensions')
         return u'%s :: %s' % (name, page_name(self.request.APP))
 
     def link(self, category):
@@ -73,9 +73,9 @@ class CategoriesRss(AddonFeedMixin, NonAtomicFeed):
         """Description for the feed as a whole"""
         if category:
             # L10n: %s is a category name.
-            return _(u'%s Add-ons') % category.name
+            return ugettext(u'%s Add-ons') % category.name
         else:
-            return _('Extensions')
+            return ugettext('Extensions')
 
     def items(self, category):
         """Return the Addons for this Category to be output as RSS <item>'s"""
@@ -89,28 +89,28 @@ class ExtensionCategoriesRss(CategoriesRss):
     category = None
     request = None
     TYPE = amo.ADDON_EXTENSION
-    title = _('Extensions')
+    title = ugettext('Extensions')
 
     def description(self, category):
         """Description for the feed as a whole."""
         if category:
             # L10n: %s is a category name.
-            return _(u'%s Add-ons') % category.name
+            return ugettext(u'%s Add-ons') % category.name
         else:
-            return _('Extensions')
+            return ugettext('Extensions')
 
 
 class ThemeCategoriesRss(CategoriesRss):
     category = None
     request = None
     TYPE = amo.ADDON_THEME
-    title = _('Themes')
+    title = ugettext('Themes')
 
     def description(self, category):
         """Description for the feed as a whole."""
         if category:
             # L10n: %s is a category name.
-            return _(u'%s Themes') % category.name
+            return ugettext(u'%s Themes') % category.name
         else:
             return self.title
 
@@ -126,7 +126,7 @@ class FeaturedRss(AddonFeedMixin, NonAtomicFeed):
 
     def title(self):
         """Title for the feed"""
-        return _('Featured Add-ons :: %s') % page_name(self.app)
+        return ugettext('Featured Add-ons :: %s') % page_name(self.app)
 
     def link(self):
         """Link for the feed"""
@@ -135,8 +135,9 @@ class FeaturedRss(AddonFeedMixin, NonAtomicFeed):
     def description(self):
         """Description for the feed"""
         # L10n: %s is an app name.
-        return _("Here's a few of our favorite add-ons to help you get"
-                 " started customizing %s.") % self.appname
+        return ugettext(
+            'Here\'s a few of our favorite add-ons to help you get'
+            ' started customizing %s.') % self.appname
 
     def items(self):
         """Return the Addons to be output as RSS <item>'s"""
@@ -154,11 +155,12 @@ class SearchToolsRss(AddonFeedMixin, NonAtomicFeed):
         """Description of this feed."""
         if self.category:
             # L10n: %s is a category name.
-            return _(u'Search tools relating to %s') % self.category.name
+            return ugettext(
+                u'Search tools relating to %s') % self.category.name
         elif self.show_featured:
-            return _('Search tools and search-related extensions')
+            return ugettext('Search tools and search-related extensions')
         else:
-            return _('Search tools')
+            return ugettext('Search tools')
 
     def get_object(self, request, category=None):
         if category:
@@ -204,7 +206,7 @@ class SearchToolsRss(AddonFeedMixin, NonAtomicFeed):
 
     def title(self):
         """Title for the feed as a whole"""
-        base = _('Search Tools')
+        base = ugettext('Search Tools')
         if self.category:
             base = u'%s :: %s' % (self.category.name, base)
         return u'%s :: %s' % (base, page_name(self.request.APP))

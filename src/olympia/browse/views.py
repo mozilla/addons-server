@@ -7,7 +7,7 @@ from django.http import (Http404, HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import cache_page
-from django.utils.translation import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _
 
 from product_details import product_details
 
@@ -51,25 +51,25 @@ Locale = collections.namedtuple('Locale', 'locale display native dicts packs')
 
 
 class AddonFilter(BaseFilter):
-    opts = (('featured', _lazy(u'Featured')),
-            ('users', _lazy(u'Most Users')),
-            ('rating', _lazy(u'Top Rated')),
-            ('created', _lazy(u'Newest')))
-    extras = (('name', _lazy(u'Name')),
-              ('popular', _lazy(u'Weekly Downloads')),
-              ('updated', _lazy(u'Recently Updated')),
-              ('hotness', _lazy(u'Up & Coming')))
+    opts = (('featured', _(u'Featured')),
+            ('users', _(u'Most Users')),
+            ('rating', _(u'Top Rated')),
+            ('created', _(u'Newest')))
+    extras = (('name', _(u'Name')),
+              ('popular', _(u'Weekly Downloads')),
+              ('updated', _(u'Recently Updated')),
+              ('hotness', _(u'Up & Coming')))
 
 
 class ThemeFilter(AddonFilter):
-    opts = (('users', _lazy(u'Most Users')),
-            ('rating', _lazy(u'Top Rated')),
-            ('created', _lazy(u'Newest')),
-            ('featured', _lazy(u'Featured')))
-    extras = (('name', _lazy(u'Name')),
-              ('popular', _lazy(u'Weekly Downloads')),
-              ('updated', _lazy(u'Recently Updated')),
-              ('hotness', _lazy(u'Up & Coming')))
+    opts = (('users', _(u'Most Users')),
+            ('rating', _(u'Top Rated')),
+            ('created', _(u'Newest')),
+            ('featured', _(u'Featured')))
+    extras = (('name', _(u'Name')),
+              ('popular', _(u'Weekly Downloads')),
+              ('updated', _(u'Recently Updated')),
+              ('hotness', _(u'Up & Coming')))
 
 
 def addon_listing(request, addon_types, filter_=AddonFilter, default=None):
@@ -190,10 +190,10 @@ def extensions(request, category=None):
 
 class CategoryLandingFilter(BaseFilter):
 
-    opts = (('featured', _lazy(u'Featured')),
-            ('users', _lazy(u'Most Popular')),
-            ('rating', _lazy(u'Top Rated')),
-            ('created', _lazy(u'Recently Added')))
+    opts = (('featured', _(u'Featured')),
+            ('users', _(u'Most Popular')),
+            ('rating', _(u'Top Rated')),
+            ('created', _(u'Recently Added')))
 
     def __init__(self, request, base, category, key, default):
         self.category = category
@@ -234,10 +234,10 @@ def creatured(request, category):
 
 class PersonasFilter(BaseFilter):
 
-    opts = (('up-and-coming', _lazy(u'Up & Coming')),
-            ('created', _lazy(u'Recently Added')),
-            ('popular', _lazy(u'Most Popular')),
-            ('rating', _lazy(u'Top Rated')))
+    opts = (('up-and-coming', _(u'Up & Coming')),
+            ('created', _(u'Recently Added')),
+            ('popular', _(u'Most Popular')),
+            ('rating', _(u'Top Rated')))
 
     def filter(self, field):
         # Special case with dashes.
@@ -410,11 +410,11 @@ def legacy_redirects(request, type_, category=None, sort=None, format=None):
 
 
 class SearchToolsFilter(AddonFilter):
-    opts = (('name', _lazy(u'Name')),
-            ('updated', _lazy(u'Updated')),
-            ('created', _lazy(u'Created')),
-            ('popular', _lazy(u'Downloads')),
-            ('rating', _lazy(u'Rating')))
+    opts = (('name', _(u'Name')),
+            ('updated', _(u'Updated')),
+            ('created', _(u'Created')),
+            ('popular', _(u'Downloads')),
+            ('rating', _(u'Rating')))
 
     def filter_featured(self):
         # Featured search add-ons in all locales:
@@ -433,8 +433,8 @@ class SearchToolsFilter(AddonFilter):
 
 
 class SearchExtensionsFilter(AddonFilter):
-    opts = (('popular', _lazy(u'Most Popular')),
-            ('created', _lazy(u'Recently Added')),)
+    opts = (('popular', _(u'Most Popular')),
+            ('created', _(u'Recently Added')),)
 
 
 @non_atomic_requests

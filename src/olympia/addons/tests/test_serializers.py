@@ -71,6 +71,7 @@ class AddonSerializerOutputTestMixin(object):
         self.addon = addon_factory(
             average_daily_users=4242,
             average_rating=4.21,
+            bayesian_rating=4.22,
             category=cat1,
             description=u'My Addôn description',
             file_kw={
@@ -199,6 +200,7 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['ratings'] == {
             'average': self.addon.average_rating,
+            'bayesian_average': self.addon.bayesian_rating,
             'count': self.addon.total_reviews,
         }
         assert result['public_stats'] == self.addon.public_stats

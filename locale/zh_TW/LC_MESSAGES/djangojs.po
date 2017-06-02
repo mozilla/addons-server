@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-17 11:23+0000\n"
 "PO-Revision-Date: 2017-03-02 16:40+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -15,1153 +15,884 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} 顆星"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "連線到伺服器時發生問題。"
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "選擇檔案..."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "您的附加元件應以 .zip、.xpi、.crx、.jar 或 .xml 副檔名結尾"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
 msgstr "已完成 {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "取消"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "正在上傳 {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "{0} 發生錯誤"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "我們使用了新的 Linter 來處理您上傳的附加元件。若您遇到任何問題請到 GitHub 回報"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "您的附加元件未通過驗證，有 {0} 個錯誤。"
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;還有 {0} 個"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "檢視完整驗證報告"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "{0} 驗證中"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "從伺服器收到一個空白的回覆; 狀態:{0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "在驗證時發生了不可預見的伺服器錯誤。"
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "已完成驗證 {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "您的附加元件驗證已逾時，需要進行手動審查。"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "您的附加元件已通過驗證，沒有錯誤，有 {0} 條警告。"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "已驗證您的附加元件，無錯誤，有 {0} 條訊息。"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "已驗證您的附加元件，無錯誤或警告。"
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "您的提交已被自動簽署。"
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "升級 WebExtension"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "我們允許，也鼓勵您升級，但升級後就不能回頭了。當您的使用者安裝 WebExtension 後，就無法再安裝傳統的附加元件。"
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "至 MDN 了解如何移植傳統 Firefox 附加元件"
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包含詳細的版本資訊（可以在下一步完成）。"
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "若您的附加元件需要在某個網站上有帳號才能進行測試，請也在給審核者的紀錄中包含測試帳號的帳號名稱與密碼。（可以在下一步完成）"
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "附加元件送出前檢查清單"
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "送出前，請確認下列幾項是否已完成。這樣將可以降低審查時間:"
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr "若有編譯過的二元碼，以及最小化過或擾亂過的指令碼（已知的程式庫除外），請同時另外送出原始碼提供審查。請確定您在原始碼上傳欄位中也上傳了這些檔案，以避免被退回。"
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "驗證過程找到下列可能會造成您的送出被退回的問題:"
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr "抱歉，找不到支援的平台。"
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "無法辨識您上傳的檔案格式。"
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "您已經取消上傳了。"
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "圖片必須是 PNG 或 JPG 格式。"
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "影片必須為 WebM 格式。"
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "追蹤這個收藏集"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "停止訂閱"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "訂閱中"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "這個佈景主題與您所使用的 {0} 版本不相容"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "保留所有權利"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons 姓名標示 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons 姓名標示-非商業性 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons 姓名標示-非商業性-禁止改作 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons 姓名標示-非商業性-相同方式分享 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons 姓名標示-禁止改作 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons 姓名標示-相同方式分享 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "您的佈景主題名稱"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "評論已被標記"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "必填"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "標示刪除"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "正在更新搜尋結果&hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "分類"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "搜尋符合<b>{0}</b>的佈景主題"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "搜尋含有 <b>{0}</b>的應用程式"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "搜尋含有 <b>{0}</b> 的附加元件"
 
-#: static/js/impala/users.js
 msgid "Use original"
 msgstr "使用原始的"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "第 {0} 週"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " 次下載"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "{0} 位使用者"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "{0} 個附加元件"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "{0} 個收藏集"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "{0} 個評論"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "{0} 筆銷售"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "{0} 筆退費"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "{0} 個安裝數"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "下載數"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "每日使用者"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
 msgstr "金額，以美元計價"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "捐款次數"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "更多資訊..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "{0} 的詳細資訊"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "已建立的收藏集"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
 msgstr "使用的附加元件"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
 msgstr "建立的附加元件"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
 msgstr "下載過的附加元件"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
 msgstr "已更新的附加元件"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "寫過的意見"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "註冊過的使用者"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "訂閱者"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "評分"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "銷售"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "安裝數"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "未知"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
 msgstr "附加元件管理員"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
 msgstr "附加元件管理員 Promo"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
 msgstr "附加元件管理員精選"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
 msgstr "附加元件管理員了解更多"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "搜尋建議"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "搜尋結果"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr "首頁促銷"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr "首頁精選"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr "首頁嶄露頭角"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr "首頁最熱門"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "詳細資訊頁面"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "詳細資訊頁面 (底端)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "詳細資訊頁面 (開發頻道)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "常與以下元件混用"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
 msgstr "由我建立的元件"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr "相依性"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr "付費升級"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "認識開發者"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "使用者資料"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "版本紀錄"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "分享"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "類別頁面"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "收藏集"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr "分類 Landing 精選旋轉木馬"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr "分類 Landing 評分最高"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr "分類 Landing 最熱門"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
 msgstr "分類 Landing 最近新增"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr "瀏覽頁面精選類別"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr "瀏覽頁面使用者類別"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr "瀏覽頁面評分類別"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr "瀏覽頁面 Created 類別"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr "瀏覽頁面名稱類別"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr "瀏覽頁面熱門類別"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr "瀏覽頁面已更新類別"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "瀏覽頁面嶄露頭角類別"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
 msgstr "總共貢獻量"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
 msgstr "平均貢獻"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "使用情況"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "thunderbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "下載數與每日使用者數，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "下載數與每日使用者數，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "安裝數與每日使用者數，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "安裝數與每日使用者數，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "下載數，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "下載數，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "每日使用者數，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "每日使用者數，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
 msgstr "應用程式，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
 msgstr "應用程式，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "平台，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "平台，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "語言，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "語言，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
 msgstr "附加元件版本，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "附加元件版本，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
 msgstr "附加元件狀態，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "附加元件狀態，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "下載來源，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "下載來源，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "貢獻，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "從 {0} 至 {1} 的貢獻"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr "網頁分析，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "網頁分析，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "使用中的附加元件，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "使用中的附加元件，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "附加元件下載數，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "附加元件下載數，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
 msgstr "新建立的附加元件，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "新建立的附加元件，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "有更新的附加元件，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "有更新的附加元件，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "給出的留言，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "給出的留言，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "註冊的使用者，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "註冊的使用者，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "建立的收藏集，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "建立的收藏集，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "訂閱者，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "訂閱者，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "評分，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "評分，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "銷售，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "銷售，從 {0} 至 {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "安裝數，最近 {0} 天"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "安裝數，從 {0} 至 {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "最近 {1} 天有 <b>{0}</b> 次"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "從 {1} 至 {2} 的 <b>{0}</b>"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "最近 {1} 天平均有 <b>{0}</b> 位"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "沒有資料。"
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "日期"
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "其他"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "請先選擇一份申請書"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "把 {0} 個附加元件的最大版本設定為 {1} 並用電子郵件通知作者。"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "通知 {2} 套未通過驗證的附加元件作者。"
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
 msgstr "接受並安裝"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
 msgstr "新增至 {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "立刻下載"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "附加元件未被更新為預設相容版本。"
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "您必須使用 Firefox 10.0 或更新版本。"
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla 已將此版本標示為與您的 Firefox 版本不相容。"
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "繼續安裝 {0} 版本"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "仍然下載 {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "與您的作業系統不相容"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "無法使用於 {0} {1}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
 msgstr "可於 {app} {min} - {max} 使用"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app}"
 msgstr "可於 {app} 使用"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "檢視其他版本"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "只在 Firefox 上才有，快來安裝！"
 
-#: static/js/zamboni/buttons.js
 msgid "Download now"
 msgstr "立刻下載"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr "僅在 Firefox 桌面版可用"
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要 Mozilla 系列的瀏覽器 (像是 Firefox) 才能安裝此搜尋外掛。"
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "加入至我的最愛&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "從我的最愛中移除&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "加入至我的最愛"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "從我的最愛中移除"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "擱置"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "新增一個意見"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "意見"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "從收藏集中移除此附加元件"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "移除"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "剝奪這位使用者的貢獻者資格"
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "必須輸入電子郵件地址。"
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "您不能新增自己為貢獻者。"
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "您已經新增該使用者。"
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "加入至我的最愛"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "從我的最愛移除"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "停止追蹤"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "您的瀏覽器不支援此視訊標籤"
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "修改已儲存"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr "輸入新作者的電子郵件地址"
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "上傳您的檔案時發生錯誤。"
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個檔案"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 筆使用者評論"
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "了解詳情"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "正在處理圖片更改"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "必須為有效的電子郵件地址。"
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "找不到結果。"
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "{name} 最先檢視此頁面。"
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "應用程式已檢查收據。"
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "應用程式未檢查收據。"
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "{name} 先檢視了這個附加元件。"
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "載入中&hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "版本資訊"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "給審查者的筆記"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "找不到版本紀錄"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr "評論文字"
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "找到評論筆記"
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr "平均評等"
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "留言數量"
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "載入中..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "還剩下 <b>{0}</b> 個字元可以輸入。"
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "我們正在維護網站，這個功能暫時無法使用。請您稍後再試。"
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
 msgstr "移除此語系"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "密碼強度:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "至少還需要再輸入 {0} 個字元。"
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "已要求資訊"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "已標記"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "重複"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "已拒絕"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
 msgstr "已核准"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "找不到結果"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "佈景主題"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "審核者"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "狀態"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "成功通過所有的測試。"
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "這些測試沒有執行。"
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "測試"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "錯誤"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "警告"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr "{0} 行 {1} 欄 {2}"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1}"
 msgstr "{0} 行 {1}"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "相容性測試"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "附加元件無法通過驗證。"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "附加元件通過驗證。"
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 個錯誤"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個警告"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} 則通知{0} 則通知"
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "驗證工作無法完成或是完成時發生錯誤"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "伺服器內部錯誤"

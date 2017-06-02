@@ -9,6 +9,7 @@ from django.core import mail
 from django.core.cache import cache
 from django.test.client import Client
 
+import waffle
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -698,14 +699,6 @@ class TestDetailPage(TestCase):
         privacy_url = reverse('addons.privacy', args=[self.addon.slug])
         assert doc('.privacy-policy').attr('href').endswith(privacy_url)
 
-    @override_switch('webext-permissions', active=False)
-    def test_permissions_not_shown_without_waffle(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('a.webext-permissions').length == 0
-        assert doc('#webext-permissions').length == 0
-
-    @override_switch('webext-permissions', active=True)
     def test_permissions_webext(self):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=True)
@@ -734,7 +727,6 @@ class TestDetailPage(TestCase):
             u'Exchange messages with programs other than Firefox '
             u'Read and modify bookmarks')
 
-    @override_switch('webext-permissions', active=True)
     def test_permissions_webext_no_permissions(self):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=True)
@@ -746,7 +738,6 @@ class TestDetailPage(TestCase):
         # And no model dialog
         assert doc('#webext-permissions').length == 0
 
-    @override_switch('webext-permissions', active=True)
     def test_permissions_non_webext(self):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=False)
@@ -762,7 +753,6 @@ class TestDetailPage(TestCase):
             doc('#webext-permissions div.prose').text())
         assert doc('.webext-permissions-list').length == 0
 
-    @override_switch('webext-permissions', active=True)
     def test_permissions_non_extension(self):
         self.addon.update(type=amo.ADDON_THEME)
         file_ = self.addon.current_version.all_files[0]
@@ -774,7 +764,6 @@ class TestDetailPage(TestCase):
         # And no model dialog
         assert doc('#webext-permissions').length == 0
 
-    @override_switch('webext-permissions', active=True)
     def test_permissions_xss_single_url(self):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=True)
@@ -788,7 +777,6 @@ class TestDetailPage(TestCase):
         assert '<script>alert(' not in response.content
         assert '&lt;script&gt;alert(' in response.content
 
-    @override_switch('webext-permissions', active=True)
     def test_permissions_xss_multiple_url(self):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=True)
@@ -2260,6 +2248,10 @@ class TestAddonSearchView(ESTestCase):
         self.refresh()
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
+        # Just to cache the waffle switch, to avoid polluting the
+        # assertNumQueries() call later.
+        waffle.switch_is_active('boost-webextensions-in-search')
+
         with self.assertNumQueries(0):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status

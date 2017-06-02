@@ -30,7 +30,7 @@
       {{ _('End-User License Agreement') }}
     </a>
   {% endif %}
-  {% if waffle.switch('webext-permissions') and addon.should_show_permissions(version) %}
+  {% if addon.should_show_permissions(version) %}
     <a class="webext-permissions badge" href="#">
       {% if not version.all_files[0].is_webextension %}
         <img src="{{ static('img/developers/test-warning.png') }}" alt="{{ _('[Warning]') }}"

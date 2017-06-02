@@ -1,9 +1,9 @@
-#, fuzzy
+# , fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-22 03:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,139 +11,110 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.4.0\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} şŧȧř"
 msgstr[1] "{0} şŧȧřş"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "Ŧħḗřḗ ẇȧş ȧ ƥřǿƀŀḗḿ ƈǿƞŧȧƈŧīƞɠ ŧħḗ şḗřṽḗř."
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "Şḗŀḗƈŧ ȧ ƒīŀḗ..."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Ẏǿŭř ȧḓḓ-ǿƞ şħǿŭŀḓ ḗƞḓ ẇīŧħ .zīƥ, .ẋƥī, .ƈřẋ, .ĵȧř ǿř .ẋḿŀ"
+msgstr "Ẏǿŭř ȧḓḓ-ǿƞ şħǿŭŀḓ ḗƞḓ ẇīŧħ .ẑīƥ, .ẋƥī, .ƈřẋ, .ĵȧř ǿř .ẋḿŀ"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
-msgstr "{0}% cǿḿƥŀḗŧḗ"
+msgstr "{0}% ƈǿḿƥŀḗŧḗ"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} ǿƒ {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "Ƈȧƞƈḗŀ"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "Ŭƥŀǿȧḓīƞɠ {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "Ḗřřǿř ẇīŧħ {0}"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Ẇḗ ħȧṽḗ ḗƞȧƀŀḗḓ ȧ ƞḗẇ ŀīƞŧḗř ŧǿ ƥřǿƈḗşş ẏǿŭř Ȧḓḓ-ǿƞ. Ƥŀḗȧşḗ ḿȧķḗ şŭřḗ ŧǿ řḗƥǿřŧ ȧƞẏ īşşŭḗş ǿƞ ƓīŧĦŭƀ"
+msgstr "Ẇḗ ħȧṽḗ ḗƞȧƀŀḗḓ ȧ ƞḗẇ ŀīƞŧḗř ŧǿ ƥřǿƈḗşş ẏǿŭř Aḓḓ-ǿƞ. Ƥŀḗȧşḗ ḿȧķḗ şŭřḗ ŧǿ řḗƥǿřŧ ȧƞẏ īşşŭḗş ǿƞ ƓīŧĦŭƀ"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Ẏǿŭř ȧḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿř."
 msgstr[1] "Ẏǿŭř ȧḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ ẇīŧħ {0} ḗřřǿřş."
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 msgstr[1] "&hellip;ȧƞḓ {0} ḿǿřḗ"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "Şḗḗ ƒŭŀŀ ṽȧŀīḓȧŧīǿƞ řḗƥǿřŧ"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "Ṽȧŀīḓȧŧīƞɠ {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Řḗƈḗīṽḗḓ ȧƞ ḗḿƥŧẏ řḗşƥǿƞşḗ ƒřǿḿ ŧħḗ şḗřṽḗř; şŧȧŧŭş: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "Ŭƞḗẋƥḗƈŧḗḓ şḗřṽḗř ḗřřǿř ẇħīŀḗ ṽȧŀīḓȧŧīƞɠ."
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "Ƒīƞīşħḗḓ ṽȧŀīḓȧŧīƞɠ {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ṽȧŀīḓȧŧīǿƞ ŧīḿḗḓ ǿŭŧ, īŧ ẇīŀŀ ƀḗ ḿȧƞŭȧŀŀẏ řḗṽīḗẇḗḓ."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Ẏǿŭř ȧḓḓ-ǿƞ ẇȧş ṽȧŀīḓȧŧḗḓ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ẇȧřƞīƞɠ."
 msgstr[1] "Ẏǿŭř ȧḓḓ-ǿƞ ẇȧş ṽȧŀīḓȧŧḗḓ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ẇȧřƞīƞɠş."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Ẏǿŭř ȧḓḓ-ǿƞ ẇȧş ṽȧŀīḓȧŧḗḓ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗ."
 msgstr[1] "Ẏǿŭř ȧḓḓ-ǿƞ ẇȧş ṽȧŀīḓȧŧḗḓ ẇīŧħ ƞǿ ḗřřǿřş ȧƞḓ {0} ḿḗşşȧɠḗş."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ẇȧş ṽȧŀīḓȧŧḗḓ ẇīŧħ ƞǿ ḗřřǿřş ǿř ẇȧřƞīƞɠş."
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "Ẏǿŭř şŭƀḿīşşīǿƞ ẇīŀŀ ƀḗ ȧŭŧǿḿȧŧīƈȧŀŀẏ şīɠƞḗḓ."
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "ẆḗƀḖẋŧḗƞşīǿƞ ŭƥɠřȧḓḗ"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Ẇḗ ȧŀŀǿẇ ȧƞḓ ḗƞƈǿŭřȧɠḗ ȧƞ ŭƥɠřȧḓḗ ƀŭŧ ẏǿŭ ƈȧƞƞǿŧ řḗṽḗřşḗ ŧħīş ƥřǿƈḗşş. Ǿƞƈḗ ẏǿŭř ŭşḗřş ħȧṽḗ ŧħḗ ẆḗƀḖẋŧḗƞşīǿƞ īƞşŧȧŀŀḗḓ, ŧħḗẏ ẇīŀŀ ƞǿŧ ƀḗ ȧƀŀḗ ŧǿ īƞşŧȧŀŀ ȧ ŀḗɠȧƈẏ ȧḓḓ-ǿƞ."
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Ƥǿřŧīƞɠ ȧ ŀḗɠȧƈẏ Ƒīřḗƒǿẋ ȧḓḓ-ǿƞ ǿƞ ḾḒȠ"
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Īƞƈŀŭḓḗ ḓḗŧȧīŀḗḓ ṽḗřşīǿƞ ƞǿŧḗş (ŧħīş ƈȧƞ ƀḗ ḓǿƞḗ īƞ ŧħḗ ƞḗẋŧ şŧḗƥ)."
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Īƒ ẏǿŭř ȧḓḓ-ǿƞ řḗɋŭīřḗş ȧƞ ȧƈƈǿŭƞŧ ŧǿ ȧ ẇḗƀşīŧḗ īƞ ǿřḓḗř ŧǿ ƀḗ ƒŭŀŀẏ ŧḗşŧḗḓ, īƞƈŀŭḓḗ ȧ ŧḗşŧ ŭşḗřƞȧḿḗ ȧƞḓ ƥȧşşẇǿřḓ īƞ ŧħḗ Ƞǿŧḗş ŧǿ Řḗṽīḗẇḗř (ŧħīş ƈȧƞ ƀḗ ḓǿƞḗ īƞ ŧħḗ ƞḗẋŧ şŧḗƥ)."
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
-msgstr "Ȧḓḓ-ǿƞ şŭƀḿīşşīǿƞ ƈħḗƈķŀīşŧ"
+msgstr "Aḓḓ-ǿƞ şŭƀḿīşşīǿƞ ƈħḗƈķŀīşŧ"
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Ƥŀḗȧşḗ ṽḗřīƒẏ ŧħḗ ƒǿŀŀǿẇīƞɠ ƥǿīƞŧş ƀḗƒǿřḗ ƒīƞȧŀīzīƞɠ ẏǿŭř şŭƀḿīşşīǿƞ. Ŧħīş ẇīŀŀ ḿīƞīḿīzḗ ḓḗŀȧẏş ǿř ḿīşŭƞḓḗřşŧȧƞḓīƞɠ ḓŭřīƞɠ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş:"
+msgstr "Ƥŀḗȧşḗ ṽḗřīƒẏ ŧħḗ ƒǿŀŀǿẇīƞɠ ƥǿīƞŧş ƀḗƒǿřḗ ƒīƞȧŀīẑīƞɠ ẏǿŭř şŭƀḿīşşīǿƞ. Ŧħīş ẇīŀŀ ḿīƞīḿīẑḗ ḓḗŀȧẏş ǿř ḿīşŭƞḓḗřşŧȧƞḓīƞɠ ḓŭřīƞɠ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş:"
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -151,1031 +122,792 @@ msgstr ""
 "Ƈǿḿƥīŀḗḓ ƀīƞȧřīḗş, ȧş ẇḗŀŀ ȧş ḿīƞīƒīḗḓ ǿř ǿƀƒŭşƈȧŧḗḓ şƈřīƥŧş (ḗẋƈŀŭḓīƞɠ ķƞǿẇƞ ŀīƀřȧřīḗş) ƞḗḗḓ ŧǿ ħȧṽḗ ŧħḗīř şǿŭřƈḗş şŭƀḿīŧŧḗḓ şḗƥȧřȧŧḗŀẏ ƒǿř řḗṽīḗẇ. Ḿȧķḗ şŭřḗ ŧħȧŧ ẏǿŭ ŭşḗ ŧħḗ şǿŭřƈḗ ƈǿḓḗ ŭƥŀǿȧḓ "
 "ƒīḗŀḓ ŧǿ ȧṽǿīḓ ħȧṽīƞɠ ẏǿŭř şŭƀḿīşşīǿƞ řḗĵḗƈŧḗḓ."
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Ŧħḗ ṽȧŀīḓȧŧīǿƞ ƥřǿƈḗşş ƒǿŭƞḓ ŧħḗşḗ īşşŭḗş ŧħȧŧ ƈȧƞ ŀḗȧḓ ŧǿ řḗĵḗƈŧīǿƞş:"
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr "Şǿřřẏ, ƞǿ şŭƥƥǿřŧḗḓ ƥŀȧŧƒǿřḿ ħȧş ƀḗḗƞ ƒǿŭƞḓ."
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Ŧħḗ ƒīŀḗŧẏƥḗ ẏǿŭ ŭƥŀǿȧḓḗḓ īşƞ'ŧ řḗƈǿɠƞīzḗḓ."
+msgstr "Ŧħḗ ƒīŀḗŧẏƥḗ ẏǿŭ ŭƥŀǿȧḓḗḓ īşƞ'ŧ řḗƈǿɠƞīẑḗḓ."
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "Ẏǿŭ ƈȧƞƈḗŀŀḗḓ ŧħḗ ŭƥŀǿȧḓ."
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "Īḿȧɠḗş ḿŭşŧ ƀḗ ḗīŧħḗř ƤȠƓ ǿř ĴƤƓ."
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "Ṽīḓḗǿş ḿŭşŧ ƀḗ īƞ ẆḗƀḾ."
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "Ƒǿŀŀǿẇ ŧħīş Ƈǿŀŀḗƈŧīǿƞ"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "Şŧǿƥ Ƒǿŀŀǿẇīƞɠ"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "Ƒǿŀŀǿẇīƞɠ"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ŧħīş ŧħḗḿḗ īş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř ṽḗřşīǿƞ ǿƒ {0}"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
-msgstr "Ȧŀŀ Řīɠħŧş Řḗşḗřṽḗḓ"
+msgstr "Aŀŀ Řīɠħŧş Řḗşḗřṽḗḓ"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ-ȠǿḒḗřīṽş 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ-ȠǿḒḗřīṽş 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ-Şħȧřḗ Ȧŀīķḗ 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ-ȠǿƞƇǿḿḿḗřƈīȧŀ-Şħȧřḗ Aŀīķḗ 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ȠǿḒḗřīṽş 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ-ȠǿḒḗřīṽş 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ-ŞħȧřḗȦŀīķḗ 3.0"
+msgstr "Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Aŧŧřīƀŭŧīǿƞ-ŞħȧřḗAŀīķḗ 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "Ẏǿŭř Ŧħḗḿḗ'ş Ƞȧḿḗ"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "Ƒŀȧɠɠḗḓ ƒǿř řḗṽīḗẇ"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "Ẏǿŭř īƞƥŭŧ īş řḗɋŭīřḗḓ"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "Ḿȧřķḗḓ ƒǿř ḓḗŀḗŧīǿƞ"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "Ŭƥḓȧŧīƞɠ řḗşŭŀŧş&hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "Ƈȧŧḗɠǿřẏ"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "Şḗȧřƈħ ŧħḗḿḗş ƒǿř <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "Şḗȧřƈħ ȧƥƥş ƒǿř <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Şḗȧřƈħ ȧḓḓ-ǿƞş ƒǿř <b>{0}</b>"
 
-#: static/js/impala/users.js
 msgid "Use original"
 msgstr "Ŭşḗ ǿřīɠīƞȧŀ"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "Ẇḗḗķ ǿƒ {0}"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " ḓǿẇƞŀǿȧḓş"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "{0} ŭşḗřş"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "{0} ȧḓḓ-ǿƞş"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "{0} ƈǿŀŀḗƈŧīǿƞş"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "{0} řḗṽīḗẇş"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "{0} şȧŀḗş"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "{0} řḗƒŭƞḓş"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "{0} īƞşŧȧŀŀş"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "Ḓǿẇƞŀǿȧḓş"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "Ḓȧīŀẏ Ŭşḗřş"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
-msgstr "Ȧḿǿŭƞŧ, īƞ ŬŞḒ"
+msgstr "Aḿǿŭƞŧ, īƞ ŬŞḒ"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "Ƞŭḿƀḗř ǿƒ Ƈǿƞŧřīƀŭŧīǿƞş"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "Ḿǿřḗ Īƞƒǿ..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "Ḓḗŧȧīŀş ƒǿř {0}"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş Ƈřḗȧŧḗḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
-msgstr "Ȧḓḓ-ǿƞş īƞ Ŭşḗ"
+msgstr "Aḓḓ-ǿƞş īƞ Ŭşḗ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
-msgstr "Ȧḓḓ-ǿƞş Ƈřḗȧŧḗḓ"
+msgstr "Aḓḓ-ǿƞş Ƈřḗȧŧḗḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
-msgstr "Ȧḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ"
+msgstr "Aḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
-msgstr "Ȧḓḓ-ǿƞş Ŭƥḓȧŧḗḓ"
+msgstr "Aḓḓ-ǿƞş Ŭƥḓȧŧḗḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "Řḗṽīḗẇş Ẇřīŧŧḗƞ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "Ŭşḗř Şīɠƞŭƥş"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "Şŭƀşƈřīƀḗřş"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "Řȧŧīƞɠş"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "Şȧŀḗş"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "Īƞşŧȧŀŀş"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "Ŭƞķƞǿẇƞ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
-msgstr "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř"
+msgstr "Aḓḓ-ǿƞş Ḿȧƞȧɠḗř"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
-msgstr "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř Ƥřǿḿǿ"
+msgstr "Aḓḓ-ǿƞş Ḿȧƞȧɠḗř Ƥřǿḿǿ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
-msgstr "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř Ƒḗȧŧŭřḗḓ"
+msgstr "Aḓḓ-ǿƞş Ḿȧƞȧɠḗř Ƒḗȧŧŭřḗḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
-msgstr "Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř Ŀḗȧřƞ Ḿǿřḗ"
+msgstr "Aḓḓ-ǿƞş Ḿȧƞȧɠḗř Ŀḗȧřƞ Ḿǿřḗ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "Şḗȧřƈħ Şŭɠɠḗşŧīǿƞş"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "Şḗȧřƈħ Řḗşŭŀŧş"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr "Ħǿḿḗƥȧɠḗ Ƥřǿḿǿ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr "Ħǿḿḗƥȧɠḗ Ƒḗȧŧŭřḗḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr "Ħǿḿḗƥȧɠḗ Ŭƥ ȧƞḓ Ƈǿḿīƞɠ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr "Ħǿḿḗƥȧɠḗ Ḿǿşŧ Ƥǿƥŭŀȧř"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (ƀǿŧŧǿḿ)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "Ḓḗŧȧīŀ Ƥȧɠḗ (Ḓḗṽḗŀǿƥḿḗƞŧ Ƈħȧƞƞḗŀ)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "Ǿƒŧḗƞ Ŭşḗḓ Ẇīŧħ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
-msgstr "Ǿŧħḗřş Ɓẏ Ȧŭŧħǿř"
+msgstr "Ǿŧħḗřş Ɓẏ Aŭŧħǿř"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr "Ḓḗƥḗƞḓḗƞƈīḗş"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr "Ŭƥşḗŀŀ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "Ḿḗḗŧ ŧħḗ Ḓḗṽḗŀǿƥḗř"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "Ŭşḗř Ƥřǿƒīŀḗ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "Ṽḗřşīǿƞ Ħīşŧǿřẏ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "Şħȧřīƞɠ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "Ƈȧŧḗɠǿřẏ Ƥȧɠḗş"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ƒḗȧŧŭřḗḓ Ƈȧřǿŭşḗŀ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ŧǿƥ Řȧŧḗḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Ḿǿşŧ Ƥǿƥŭŀȧř"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
-msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Řḗƈḗƞŧŀẏ Ȧḓḓḗḓ"
+msgstr "Ƈȧŧḗɠǿřẏ Ŀȧƞḓīƞɠ Řḗƈḗƞŧŀẏ Aḓḓḗḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƒḗȧŧŭřḗḓ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭşḗřş Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Řȧŧīƞɠ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƈřḗȧŧḗḓ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƞȧḿḗ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ƥǿƥŭŀȧř Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭƥḓȧŧḗḓ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Ɓřǿẇşḗ Ŀīşŧīƞɠ Ŭƥ ȧƞḓ Ƈǿḿīƞɠ Şǿřŧ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
-msgstr "Ŧǿŧȧŀ Ȧḿǿŭƞŧ Ƈǿƞŧřīƀŭŧḗḓ"
+msgstr "Ŧǿŧȧŀ Aḿǿŭƞŧ Ƈǿƞŧřīƀŭŧḗḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
-msgstr "Ȧṽḗřȧɠḗ Ƈǿƞŧřīƀŭŧīǿƞ"
+msgstr "Aṽḗřȧɠḗ Ƈǿƞŧřīƀŭŧīǿƞ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "Ŭşȧɠḗ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Ƒīřḗƒǿẋ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
-msgstr "Ḿǿzīŀŀȧ"
+msgstr "Ḿǿẑīŀŀȧ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "Ŧħŭƞḓḗřƀīřḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Şŭƞƀīřḓ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "ŞḗȧḾǿƞķḗẏ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Ƒḗƞƞḗƈ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
-msgstr "Ȧƞḓřǿīḓ"
+msgstr "Aƞḓřǿīḓ"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Ḓǿẇƞŀǿȧḓş ȧƞḓ Ḓȧīŀẏ Ŭşḗřş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Ḓǿẇƞŀǿȧḓş ȧƞḓ Ḓȧīŀẏ Ŭşḗřş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Īƞşŧȧŀŀş ȧƞḓ Ḓȧīŀẏ Ŭşḗřş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Īƞşŧȧŀŀş ȧƞḓ Ḓȧīŀẏ Ŭşḗřş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "Ḓǿẇƞŀǿȧḓş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "Ḓǿẇƞŀǿȧḓş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "Ḓȧīŀẏ Ŭşḗřş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "Ḓȧīŀẏ Ŭşḗřş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
-msgstr "Ȧƥƥŀīƈȧŧīǿƞş, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aƥƥŀīƈȧŧīǿƞş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
-msgstr "Ȧƥƥŀīƈȧŧīǿƞş ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aƥƥŀīƈȧŧīǿƞş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "Ƥŀȧŧƒǿřḿş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "Ƥŀȧŧƒǿřḿş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "Ŀȧƞɠŭȧɠḗş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "Ŀȧƞɠŭȧɠḗş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
-msgstr "Ȧḓḓ-ǿƞ Ṽḗřşīǿƞş, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞ Ṽḗřşīǿƞş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞ Ṽḗřşīǿƞş ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞ Ṽḗřşīǿƞş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
-msgstr "Ȧḓḓ-ǿƞ Şŧȧŧŭş, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞ Şŧȧŧŭş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞ Şŧȧŧŭş ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞ Şŧȧŧŭş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "Ḓǿẇƞŀǿȧḓ Şǿŭřƈḗş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "Ḓǿẇƞŀǿȧḓ Şǿŭřƈḗş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "Ƈǿƞŧřīƀŭŧīǿƞş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "Ƈǿƞŧřīƀŭŧīǿƞş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr "Şīŧḗ Ḿḗŧřīƈş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Şīŧḗ Ḿḗŧřīƈş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş īƞ Ŭşḗ, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞş īƞ Ŭşḗ, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş īƞ Ŭşḗ ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞş īƞ Ŭşḗ ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞş Ḓǿẇƞŀǿȧḓḗḓ ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş Ƈřḗȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞş Ƈřḗȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş Ƈřḗȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞş Ƈřḗȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
-msgstr "Ȧḓḓ-ǿƞş Ŭƥḓȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
+msgstr "Aḓḓ-ǿƞş Ŭƥḓȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "Ȧḓḓ-ǿƞş Ŭƥḓȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
+msgstr "Aḓḓ-ǿƞş Ŭƥḓȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "Řḗṽīḗẇş Ẇřīŧŧḗƞ, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "Řḗṽīḗẇş Ẇřīŧŧḗƞ ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "Ŭşḗř Şīɠƞŭƥş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "Ŭşḗř Şīɠƞŭƥş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş Ƈřḗȧŧḗḓ, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "Ƈǿŀŀḗƈŧīǿƞş Ƈřḗȧŧḗḓ ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "Şŭƀşƈřīƀḗřş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "Şŭƀşƈřīƀḗřş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "Řȧŧīƞɠş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "Řȧŧīƞɠş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "Şȧŀḗş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "Şȧŀḗş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "Īƞşŧȧŀŀş, ŀȧşŧ {0} ḓȧẏş"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "Īƞşŧȧŀŀş ƒřǿḿ {0} ŧǿ {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> īƞ ŀȧşŧ {1} ḓȧẏş"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ƒřǿḿ {1} ŧǿ {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> ȧṽḗřȧɠḗ īƞ ŀȧşŧ {1} ḓȧẏş"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "Ƞǿ ḓȧŧȧ ȧṽȧīŀȧƀŀḗ."
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "Ḓȧŧḗ"
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "Ǿŧħḗř"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Şḗŧ {0} ȧḓḓ-ǿƞ ŧǿ ȧ ḿȧẋ ṽḗřşīǿƞ ǿƒ {1} ȧƞḓ ḗḿȧīŀ ŧħḗ ȧŭŧħǿř."
 msgstr[1] "Şḗŧ {0} ȧḓḓ-ǿƞş ŧǿ ȧ ḿȧẋ ṽḗřşīǿƞ ǿƒ {1} ȧƞḓ ḗḿȧīŀ ŧħḗ ȧŭŧħǿřş."
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Ḗḿȧīŀ ȧŭŧħǿř ǿƒ {2} ȧḓḓ-ǿƞ ẇħīƈħ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
 msgstr[1] "Ḗḿȧīŀ ȧŭŧħǿřş ǿƒ {2} ȧḓḓ-ǿƞş ẇħīƈħ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
-msgstr "Ȧƈƈḗƥŧ ȧƞḓ Īƞşŧȧŀŀ"
+msgstr "Aƈƈḗƥŧ ȧƞḓ Īƞşŧȧŀŀ"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
-msgstr "Ȧḓḓ ŧǿ {0}"
+msgstr "Aḓḓ ŧǿ {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "Ḓǿẇƞŀǿȧḓ Ƞǿẇ"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr "Ȧḓḓ-ǿƞ ħȧş ƞǿŧ ƀḗḗƞ ŭƥḓȧŧḗḓ ŧǿ şŭƥƥǿřŧ ḓḗƒȧŭŀŧ-ŧǿ-ƈǿḿƥȧŧīƀŀḗ."
+msgstr "Aḓḓ-ǿƞ ħȧş ƞǿŧ ƀḗḗƞ ŭƥḓȧŧḗḓ ŧǿ şŭƥƥǿřŧ ḓḗƒȧŭŀŧ-ŧǿ-ƈǿḿƥȧŧīƀŀḗ."
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Ẏǿŭ ƞḗḗḓ ŧǿ ƀḗ ŭşīƞɠ Ƒīřḗƒǿẋ 10.0 ǿř ħīɠħḗř."
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Ḿǿzīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
+msgstr "Ḿǿẑīŀŀȧ ħȧş ḿȧřķḗḓ ŧħīş ṽḗřşīǿƞ ȧş īƞƈǿḿƥȧŧīƀŀḗ ẇīŧħ ẏǿŭř Ƒīřḗƒǿẋ ṽḗřşīǿƞ."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "Īƞşŧȧŀŀ ƒǿř {0} ȧƞẏẇȧẏ"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "Ḓǿẇƞŀǿȧḓ ƒǿř {0} ȧƞẏẇȧẏ"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř ẏǿŭř ƥŀȧŧƒǿřḿ"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "Ƞǿŧ ȧṽȧīŀȧƀŀḗ ƒǿř {0} {1}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
-msgstr "Ẇǿřķş ẇīŧħ {ȧƥƥ} {ḿīƞ} - {ḿȧẋ}"
+msgstr "Ẇǿřķş ẇīŧħ {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app}"
-msgstr "Ẇǿřķş ẇīŧħ {ȧƥƥ}"
+msgstr "Ẇǿřķş ẇīŧħ {app}"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "Ṽīḗẇ ǿŧħḗř ṽḗřşīǿƞş"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Ǿƞŀẏ ẇīŧħ Ƒīřḗƒǿẋ — Ɠḗŧ Ƒīřḗƒǿẋ Ƞǿẇ!"
 
-#: static/js/zamboni/buttons.js
 msgid "Download now"
 msgstr "Ḓǿẇƞŀǿȧḓ ƞǿẇ"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr "Ǿƞŀẏ ȧṽȧīŀȧƀŀḗ ǿƞ Ƒīřḗƒǿẋ Ḓḗşķŧǿƥ"
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿzīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ şḗȧřƈħ ƥŀŭɠīƞ."
+msgstr "Şǿřřẏ, ẏǿŭ ƞḗḗḓ ȧ Ḿǿẑīŀŀȧ-ƀȧşḗḓ ƀřǿẇşḗř (şŭƈħ ȧş Ƒīřḗƒǿẋ) ŧǿ īƞşŧȧŀŀ ȧ şḗȧřƈħ ƥŀŭɠīƞ."
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
-msgstr "Ȧḓḓīƞɠ ŧǿ Ƒȧṽǿřīŧḗş&hellip;"
+msgstr "Aḓḓīƞɠ ŧǿ Ƒȧṽǿřīŧḗş&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "Řḗḿǿṽīƞɠ Ƒȧṽǿřīŧḗ&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
-msgstr "Ȧḓḓ ŧǿ Ƒȧṽǿřīŧḗş"
+msgstr "Aḓḓ ŧǿ Ƒȧṽǿřīŧḗş"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "Řḗḿǿṽḗ ƒřǿḿ Ƒȧṽǿřīŧḗş"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "Ƥḗƞḓīƞɠ"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
-msgstr "Ȧḓḓ ȧ ƈǿḿḿḗƞŧ"
+msgstr "Aḓḓ ȧ ƈǿḿḿḗƞŧ"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "Ƈǿḿḿḗƞŧ"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "Řḗḿǿṽḗ ŧħīş ȧḓḓ-ǿƞ ƒřǿḿ ŧħḗ ƈǿŀŀḗƈŧīǿƞ"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "Řḗḿǿṽḗ"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "Řḗḿǿṽḗ ŧħīş ŭşḗř ȧş ȧ ƈǿƞŧřīƀŭŧǿř"
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
-msgstr "Ȧƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
+msgstr "Aƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ȧḓḓ ẏǿŭřşḗŀƒ ȧş ȧ ƈǿƞŧřīƀŭŧǿř."
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "Ẏǿŭ ħȧṽḗ ȧŀřḗȧḓẏ ȧḓḓḗḓ ŧħȧŧ ŭşḗř."
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
-msgstr "Ȧḓḓ ŧǿ ƒȧṽǿřīŧḗş"
+msgstr "Aḓḓ ŧǿ ƒȧṽǿřīŧḗş"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "Řḗḿǿṽḗ ƒřǿḿ ƒȧṽǿřīŧḗş"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "Şŧǿƥ ƒǿŀŀǿẇīƞɠ"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "Ẏǿŭř ƀřǿẇşḗř ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ŧħḗ ṽīḓḗǿ ŧȧɠ"
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "Ƈħȧƞɠḗş Şȧṽḗḓ"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr "Ḗƞŧḗř ȧ ƞḗẇ ȧŭŧħǿř'ş ḗḿȧīŀ ȧḓḓřḗşş"
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƒīŀḗ."
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] "{ƒīŀḗş} ƒīŀḗ"
-msgstr[1] "{ƒīŀḗş} ƒīŀḗş"
+msgstr[0] "{files} ƒīŀḗ"
+msgstr[1] "{files} ƒīŀḗş"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇ"
-msgstr[1] "{řḗṽīḗẇş} ŭşḗř řḗṽīḗẇş"
+msgstr[0] "{reviews} ŭşḗř řḗṽīḗẇ"
+msgstr[1] "{reviews} ŭşḗř řḗṽīḗẇş"
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "Ŀḗȧřƞ ḿǿřḗ"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "Īḿȧɠḗ ƈħȧƞɠḗş ƀḗīƞɠ ƥřǿƈḗşşḗḓ"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "Ḿŭşŧ ƀḗ ȧ ṽȧŀīḓ ḗ-ḿȧīŀ ȧḓḓřḗşş."
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
-msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
+msgstr "{name} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
-msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
+msgstr "{name} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "Ŀǿȧḓīƞɠ&hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr "Řḗṽīḗẇ Ŧḗẋŧ"
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "Řḗṽīḗẇ ƞǿŧḗş ƒǿŭƞḓ"
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
-msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
+msgstr "Aṽḗřȧɠḗ Řḗṽīḗẇş"
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Ƞŭḿƀḗř ǿƒ Řḗṽīḗẇş"
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Ŀǿȧḓīƞɠ..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> ƈħȧřȧƈŧḗř ŀḗƒŧ."
 msgstr[1] "<b>{0}</b> ƈħȧřȧƈŧḗřş ŀḗƒŧ."
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Ŧħīş ƒḗȧŧŭřḗ īş ŧḗḿƥǿřȧřīŀẏ ḓīşȧƀŀḗḓ ẇħīŀḗ ẇḗ ƥḗřƒǿřḿ ẇḗƀşīŧḗ ḿȧīƞŧḗƞȧƞƈḗ. Ƥŀḗȧşḗ ƈħḗƈķ ƀȧƈķ ȧ ŀīŧŧŀḗ ŀȧŧḗř."
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
-msgstr "Řḗḿǿṽḗ ŧħīş ŀǿƈȧŀīzȧŧīǿƞ"
+msgstr "Řḗḿǿṽḗ ŧħīş ŀǿƈȧŀīẑȧŧīǿƞ"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "Ƥȧşşẇǿřḓ şŧřḗƞɠŧħ:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] "Ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř ŀḗƒŧ."
-msgstr[1] "Ȧŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
+msgstr[0] "Aŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗř ŀḗƒŧ."
+msgstr[1] "Aŧ ŀḗȧşŧ {0} ƈħȧřȧƈŧḗřş ŀḗƒŧ."
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "Řḗɋŭḗşŧḗḓ Īƞƒǿ"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "Ƒŀȧɠɠḗḓ"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "Ḓŭƥŀīƈȧŧḗ"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "Řḗĵḗƈŧḗḓ"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
-msgstr "Ȧƥƥřǿṽḗḓ"
+msgstr "Aƥƥřǿṽḗḓ"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "Ƞǿ řḗşŭŀŧş ƒǿŭƞḓ"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "Ŧħḗḿḗ"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "Řḗṽīḗẇḗř"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "Şŧȧŧŭş"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
-msgstr "Ȧŀŀ ŧḗşŧş ƥȧşşḗḓ şŭƈƈḗşşƒŭŀŀẏ."
+msgstr "Aŀŀ ŧḗşŧş ƥȧşşḗḓ şŭƈƈḗşşƒŭŀŀẏ."
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "Ŧħḗşḗ ŧḗşŧş ẇḗřḗ ƞǿŧ řŭƞ."
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "Ŧḗşŧş"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "Ḗřřǿř"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Ẇȧřƞīƞɠ"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr "{0} ŀīƞḗ {1} ƈǿŀŭḿƞ {2}"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1}"
 msgstr "{0} ŀīƞḗ {1}"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ Ŧḗşŧş"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
-msgstr "Ȧḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
+msgstr "Aḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
-msgstr "Ȧḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ."
+msgstr "Aḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ."
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ḗřřǿř"
 msgstr[1] "{0} ḗřřǿřş"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} ƞǿŧīƈḗ"
 msgstr[1] "{0} ƞǿŧīƈḗş"
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "Ṽȧŀīḓȧŧīǿƞ ŧȧşķ ƈǿŭŀḓ ƞǿŧ ƈǿḿƥŀḗŧḗ ǿř ƈǿḿƥŀḗŧḗḓ ẇīŧħ ḗřřǿřş"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř"

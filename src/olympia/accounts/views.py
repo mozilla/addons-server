@@ -11,12 +11,14 @@ from django.http import HttpResponseRedirect
 from django.utils.encoding import force_bytes
 from django.utils.http import is_safe_url
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
+from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.decorators import list_route
-from rest_framework.mixins import RetrieveModelMixin
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.mixins import (
+    DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
+from rest_framework.permissions import (
+    AllowAny, BasePermission, IsAuthenticated)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
@@ -30,13 +32,15 @@ from olympia.amo import messages
 from olympia.amo.decorators import write
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
-from olympia.api.permissions import GroupPermission
-from olympia.users.models import UserProfile
+from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
+from olympia.users.models import UserProfile, UserNotification
+from olympia.users.notifications import NOTIFICATIONS
+
 
 from . import verify
 from .serializers import (
     AccountSuperCreateSerializer, PublicUserProfileSerializer,
-    UserProfileSerializer)
+    UserNotificationSerializer, UserProfileSerializer)
 from .utils import fxa_login_url, generate_fxa_state
 
 log = olympia.core.logger.getLogger('accounts')
@@ -371,15 +375,46 @@ class SessionView(APIView):
         return response
 
 
-class AccountViewSet(RetrieveModelMixin, GenericViewSet):
-    permission_classes = [AllowAny]
+class AllowSelf(BasePermission):
+    def has_permission(self, request, view):
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        return request.user.is_authenticated() and obj == request.user
+
+
+class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
+                     GenericViewSet):
+    permission_classes = [
+        ByHttpMethod({
+            'get': AllowAny,
+            'head': AllowAny,
+            'options': AllowAny,  # Needed for CORS.
+            # To edit a profile it has to yours, or be an admin.
+            'patch': AnyOf(AllowSelf, GroupPermission(
+                amo.permissions.USERS_EDIT)),
+            'delete': AnyOf(AllowSelf, GroupPermission(
+                amo.permissions.USERS_EDIT)),
+        }),
+    ]
     queryset = UserProfile.objects.all()
 
     def get_object(self):
         if hasattr(self, 'instance'):
             return self.instance
+        identifier = self.kwargs.get('pk')
+        self.lookup_field = self.get_lookup_field(identifier)
+        self.kwargs[self.lookup_field] = identifier
         self.instance = super(AccountViewSet, self).get_object()
         return self.instance
+
+    def get_lookup_field(self, identifier):
+        lookup_field = 'pk'
+        if identifier and not identifier.isdigit():
+            # If the identifier contains anything other than a digit, it's
+            # the username.
+            lookup_field = 'username'
+        return lookup_field
 
     @property
     def self_view(self):
@@ -395,10 +430,26 @@ class AccountViewSet(RetrieveModelMixin, GenericViewSet):
         else:
             return PublicUserProfileSerializer
 
-    @list_route(permission_classes=[IsAuthenticated])
-    def profile(self, request, *args, **kwargs):
-        self.kwargs['pk'] = self.request.user.pk
-        return self.retrieve(request, *args, **kwargs)
+    def perform_destroy(self, instance):
+        if instance.is_developer:
+            raise serializers.ValidationError(ugettext(
+                u'Developers of add-ons or themes cannot delete their '
+                u'account. You must delete all add-ons and themes linked to '
+                u'this account, or transfer them to other users.'))
+        return super(AccountViewSet, self).perform_destroy(instance)
+
+
+class ProfileView(APIView):
+    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        account_viewset = AccountViewSet(
+            request=request,
+            permission_classes=self.permission_classes,
+            kwargs={'pk': unicode(self.request.user.pk)})
+        account_viewset.format_kwarg = self.format_kwarg
+        return account_viewset.retrieve(request)
 
 
 class AccountSuperCreate(APIView):
@@ -458,3 +509,57 @@ class AccountSuperCreate(APIView):
             'fxa_id': user.fxa_id,
             'session_cookie': cookie,
         }, status=201)
+
+
+class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
+    """Returns account notifications.
+
+    If not already set by the user, defaults will be returned.
+    """
+
+    permission_classes = [IsAuthenticated]
+    # We're pushing the primary permission checking to AccountViewSet for ease.
+    account_permission_classes = [
+        AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))]
+    serializer_class = UserNotificationSerializer
+    paginator = None
+
+    def get_account_viewset(self):
+        if not hasattr(self, 'account_viewset'):
+            self.account_viewset = AccountViewSet(
+                request=self.request,
+                permission_classes=self.account_permission_classes,
+                kwargs={'pk': self.kwargs['user_pk']})
+        return self.account_viewset
+
+    def _get_default_object(self, notification):
+        return UserNotification(
+            user=self.get_account_viewset().get_object(),
+            notification_id=notification.id,
+            enabled=notification.default_checked)
+
+    def get_queryset(self):
+        queryset = UserNotification.objects.filter(
+            user=self.get_account_viewset().get_object())
+        # Put it into a dict so we can easily check for existence.
+        set_notifications = {
+            user_nfn.notification.short: user_nfn for user_nfn in queryset}
+        out = []
+        for notification in NOTIFICATIONS:
+            out.append(set_notifications.get(
+                notification.short,  # It's been set by the user.
+                self._get_default_object(notification)))  # Otherwise, default.
+        return out
+
+    def create(self, request, *args, **kwargs):
+        # Loop through possible notifications.
+        queryset = self.get_queryset()
+        for notification in queryset:
+            # Careful with ifs.  Enabled will be None|True|False.
+            enabled = request.data.get(notification.notification.short)
+            if enabled is not None:
+                serializer = self.get_serializer(
+                    notification, partial=True, data={'enabled': enabled})
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
+        return Response(self.get_serializer(queryset, many=True).data)

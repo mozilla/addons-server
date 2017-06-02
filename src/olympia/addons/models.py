@@ -299,7 +299,6 @@ class Addon(OnChangeMixin, ModelBase):
                                            db_column='inactive')
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
-    prerelease = models.BooleanField(default=False)
     admin_review = models.BooleanField(default=False, db_column='adminreview')
     external_software = models.BooleanField(default=False,
                                             db_column='externalsoftware')
@@ -322,7 +321,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     suggested_amount = models.DecimalField(
         max_digits=9, decimal_places=2, blank=True,
-        null=True, help_text=_(u'Users have the option of contributing more '
+        null=True, help_text=_('Users have the option of contributing more '
                                'or less than this amount.'))
 
     total_contributions = models.DecimalField(max_digits=9, decimal_places=2,

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.utils.translation import gettext
+from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.amo.models import ModelBase
@@ -32,7 +32,7 @@ class AbuseReport(ModelBase):
             user_name = 'An anonymous coward'
 
         with no_translation():
-            type_ = (gettext(amo.ADDON_TYPE[self.addon.type])
+            type_ = (ugettext(amo.ADDON_TYPE[self.addon.type])
                      if self.addon else 'User')
 
         subject = u'[%s] Abuse Report for %s' % (type_, obj.name)

@@ -3,7 +3,7 @@ from django.db.transaction import non_atomic_requests
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 import olympia.core.logger
 from olympia.access import acl
@@ -42,11 +42,11 @@ def setup_viewer(request, file_obj):
             data['validation_data'] = file_obj.validation.processed_validation
 
     if acl.check_addons_reviewer(request):
-        data['file_link'] = {'text': _('Back to review'),
+        data['file_link'] = {'text': ugettext('Back to review'),
                              'url': reverse('editors.review',
                                             args=[data['addon'].slug])}
     else:
-        data['file_link'] = {'text': _('Back to add-on'),
+        data['file_link'] = {'text': ugettext('Back to add-on'),
                              'url': reverse('addons.detail',
                                             args=[data['addon'].pk])}
     return data

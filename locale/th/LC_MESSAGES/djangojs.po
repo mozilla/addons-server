@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-17 11:23+0000\n"
 "PO-Revision-Date: 2016-10-17 14:02+0000\n"
 "Last-Translator: Googleโครม! <tamisun32646@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,1158 +15,889 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} ดาว"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "เกิดปัญหาในการติดต่อกับเซิร์ฟเวอร์"
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "เลือกไฟล์…"
 
-#: static/js/common/upload-addon.js
 #, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "ส่วนเสริมของคุณควรลงท้ายด้วย .xpi .jar หรือ .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, fuzzy, python-format
 msgid "{0}% complete"
 msgstr "เสร็จสิ้น {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} จาก {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "ยกเลิก"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "กำลังอัปโหลด {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "เกิดข้อผิดพลาดกับ {0}"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบด้วย {0} ข้อผิดพลาด"
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;และเพิ่มเติมอีก {0}"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "ดูรายงานการตรวจสอบฉบับเต็ม"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "กำลังตรวจสอบ {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ได้รับการตอบสนองที่ว่างเปล่าจากแม่ข่าย; สถานะ: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "ข้อผิดพลาดของแม่ข่ายที่ไม่คาดคิดขณะกำลังทำการตรวจสอบ"
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "เสร็จสิ้นการตรวจสอบ {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "อัปเกรด WebExtension"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr ""
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ไม่รู้จักรูปแบบไฟล์ที่คุณอัปโหลด"
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "คุณได้ยกเลิกการอัปโหลด"
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "รูปภาพต้องเป็น PNG หรือไม่ก็ JPG"
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "วิดีโอต้องเป็นแบบ WebM"
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "ติดตามชุดสะสมนี้"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "เลิกติดตาม"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "กำลังติดตาม"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ชุดตกแต่งนี้เข้ากันไม่ได้กับรุ่น {0} ของคุณ"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "สงวนลิขสิทธิ์"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์ 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า-ไม่ดัดแปลง 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ใช้เพื่อการค้า-อนุญาตแบบเดียวกัน 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-ไม่ดัดแปลง 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "สัญญาอนุญาตครีเอทีฟคอมมอนส์-อนุญาตแบบเดียวกัน 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "ชื่อชุดตกแต่งของคุณ"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "ปักธงสำหรับการวิจารณ์"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "คุณต้องป้อนข้อมูล"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "ทำเครื่องหมายสำหรับการลบ"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "กำลังปรับปรุงผลลัพธ์&hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "หมวดหมู่"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "ค้นหาชุดตกแต่งสำหรับ <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "ค้นหาแอพสำหรับ <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "ค้นหาส่วนเสริมสำหรับ <b>{0}</b>"
 
-#: static/js/impala/users.js
 #, fuzzy
 msgid "Use original"
 msgstr "ใช้ต้นฉบับ"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "สัปดาห์ที่ {0}"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " ดาวน์โหลด"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "{0} ผู้ใช้"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "{0} ส่วนเสริม"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "{0} ชุดสะสม"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "{0} บทวิจารณ์"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "{0} การขาย"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "{0} การคืนเงิน"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "{0} การติดตั้ง"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "ดาวน์โหลด"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "ผู้ใช้ต่อวัน"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
 msgstr "จำนวนในดอลลาร์สหรัฐ"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "จำนวนการบริจาค"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "ข้อมูลเพิ่มเติม..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "รายละเอียดสำหรับ {0}"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "สร้างชุดสะสมแล้ว"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
 msgstr "ส่วนเสริมที่ใช้อยู่"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
 msgstr "ส่วนเสริมที่สร้าง"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
 msgstr "ส่วนเสริมที่ดาวน์โหลด"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
 msgstr "ส่วนเสริมที่ปรับปรุง"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "เขียนบทวิจารณ์แล้ว"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "ผู้ใช้ที่ลงทะเบียน"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "ผู้ติดตาม"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "การจัดอันดับ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "ขาย"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "ติดตั้ง"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "ไม่ทราบ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
 msgstr "ตัวจัดการส่วนเสริม"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
 msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับตัวจัดการส่วนเสริม"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "คำแนะนำการค้นหา"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "ผลการค้นหา"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "หน้ารายละเอียด"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "หน้ารายละเอียด (ด้านล่าง)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "หน้ารายละเอียด (ช่องการพัฒนา)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "มักใช้กับ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
 msgstr "อื่น ๆ โดยผู้สร้าง"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr "เพิ่มยอดขาย"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "พบกับนักพัฒนา"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "ข้อมูลส่วนตัวผู้ใช้"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "ประวัติรุ่น"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "การแบ่งปัน"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "หน้าหมวดหมู่"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "ชุดสะสม"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr "ดูรายการตามการแนะนำ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr "เรียกดูรายการตามผู้ใช้"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr "เรียกดูรายการตามการจัดอันดับ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr "เรียกดูรายการตามการสร้าง"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr "เรียกดูรายการตามชื่อ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr "เรียกดูรายการตามความนิยม"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr "เรียกดูรายการตามการปรับปรุง"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "เรียกดูรายการตามที่กำลังจะมาถึง"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
 msgstr "จำนวนการบริจาครวม"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
 msgstr "การบริจาคโดยเฉลี่ย"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "การใช้งาน"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "การดาวน์โหลดและผู้ใช้ต่อวันใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "การดาวน์โหลดและผู้ใช้ต่อวันจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "การติดตั้งและผู้ใช้ต่อวันใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "การติดตั้งและผู้ใช้ต่อวันจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "การดาวน์โหลดใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "การดาวน์โหลดจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "ผู้ใช้ต่อวันใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "ผู้ใช้ต่อวันจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
 msgstr "แอพพลิเคชั่นใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
 msgstr "แอพพลิเคชั่นจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "แพลตฟอร์มใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "แพลตฟอร์มจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "ภาษาใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "ภาษาจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
 msgstr "รุ่นของส่วนเสริมใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "รุ่นของส่วนเสริมจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
 msgstr "สถานะของส่วนเสริมใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "สถานะของส่วนเสริมจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "การดาวน์โหลดซอร์สใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "การดาวน์โหลดซอร์สจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "การบริจาคใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "การบริจาคจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "ส่วนเสริมที่ใช้งานใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "ส่วนเสริมที่ใช้จาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "ส่วนเสริมที่ดาวน์โหลดใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "ส่วนเสริมที่ดาวน์โหลดจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
 msgstr "ส่วนเสริมที่สร้างใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "ส่วนเสริมที่สร้างจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "ส่วนเสริมที่ปรับปรุงใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "ส่วนเสริมที่ปรับปรุงจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "บทวิจารณ์ที่เขียนใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "บทวิจารณ์ที่เขียนจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "ผู้ใช้ที่ลงทะเบียนใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "ผู้ใช้ที่ลงทะเบียนจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "ชุดสะสมที่สร้างใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "ชุดสะสมที่สร้างจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "ผู้ติดตามใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "ผู้ติดตามจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "การจัดอันดับใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "การจัดอันดับจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "การขายใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "การขายจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "การติดตั้งใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "การติดตั้งจาก {0} ถึง {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> ใน {1} วันล่าสุด"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> จาก {1} ถึง {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> เฉลี่ยใน {1} วันล่าสุด"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "ไม่มีข้อมูล"
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "วันที่"
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "อื่น ๆ"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "เลือกแอพพลิเคชั่นก่อน"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
 msgstr "ยอมรับและติดตั้ง"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
 msgstr "เพิ่มไปยัง {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "ดาวน์โหลดตอนนี้"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr ""
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "คุณจำเป็นต้องใช้ Firefox 10.0 หรือสูงกว่า"
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla ทำเครื่องหมายว่ารุ่นนี้ไม่เข้ากันกับรุ่น Firefox ของคุณ"
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "ติดตั้ง {0} ต่อไป"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "ดาวน์โหลด {0} ต่อไป"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "ไม่พร้อมใช้งานสำหรับแพลตฟอร์มของคุณ"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "ไม่พร้อมใช้งานสำหรับ {0} {1}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
 msgstr "ทำงานได้กับ {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js
 #, fuzzy
 msgid "Works with {app}"
 msgstr "ทำงานได้กับ {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "ดูรุ่นอื่น"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
-#: static/js/zamboni/buttons.js
 #, fuzzy
 msgid "Download now"
 msgstr "ดาวน์โหลดเดี๋ยวนี้"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr ""
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งโปรแกรมเสริมสำหรับการค้นหา"
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "เพิ่มเข้ารายการโปรด&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "เอาออกจากรายการโปรด&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "เพิ่มเข้ารายการโปรด"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "เอาออกจากรายการโปรด"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "กำลังรอ"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "แสดงความคิดเห็น"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "ความคิดเห็น"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "เอาส่วนเสริมนี้ออกจากชุดสะสม"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "เอาออก"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr ""
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "ต้องการที่อยู่อีเมล"
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr ""
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "คุณได้เพิ่มผู้ใช้คนนี้แล้ว"
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "เพิ่มไปยังรายการโปรด"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "เอาออกจากรายการโปรด"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "หยุดการติดตาม"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "เบราว์เซอร์ของคุณไม่รองรับป้ายกำกับวิดีโอ"
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "การเปลี่ยนแปลงถูกบันทึกแล้ว"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "เกิดข้อผิดพลาดขึ้นในระหว่างการอัปโหลดไฟล์ของคุณ"
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ไฟล์"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "เรียนรู้เพิ่มเติม"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "รูปภาพที่เปลี่ยนกำลังดำเนินการอยู่"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "ต้องเป็นที่อยู่อีเมลที่ถูกต้อง"
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "ไม่พบผลลัพธ์"
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "{name} ดูหน้านี้เป็นคนแรก"
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "ใบเสร็จถูกตรวจสอบโดยแอพ"
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "ใบเสร็จไม่ได้ถูกตรวจสอบโดยแอพ"
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "{name} ดูส่วนเสริมนี้เป็นคนแรก"
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "กำลังโหลด&hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "บันทึกประจำรุ่น"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "หมายเหตุสำหรับนักวิจารณ์"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "ไม่พบบันทึกประจำรุ่น"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr ""
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr ""
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr ""
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "กำลังโหลด…"
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "เหลือ <b>{0}</b> ตัวอักษร"
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "คุณสมบัตินี้ถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ โปรดกลับมาอีกครั้งในภายหลัง"
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
 msgstr "ลบการแปลนี้"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "ความแข็งแกร่งของรหัสผ่าน:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "ยังเหลืออีกอย่างน้อย {0} ตัวอักษร"
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "ข้อมูลที่ร้องขอ"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "ถูกปักธง"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "ซ้ำ"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "ถูกปฏิเสธ"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
 msgstr "อนุมัติแล้ว"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "ไม่พบผลลัพธ์"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "ชุดตกแต่ง"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr ""
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "สถานะ"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "การทดสอบทั้งหมดผ่านอย่างประสบความสำเร็จ"
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "การทดสอบเหล่านี้ไม่ทำงาน"
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "ทดสอบ"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "ข้อผิดพลาด"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "คำเตือน"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr ""
 
-#: static/js/zamboni/validator.js
 #, fuzzy
 msgid "{0} line {1}"
 msgstr "{0} จาก {1}"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "การทดสอบความเข้ากันได้"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบ"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "ส่วนเสริมของคุณได้ผ่านการตรวจสอบ"
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ข้อผิดพลาด"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} คำเตือน"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "งานการตรวจสอบไม่สามารถเสร็จสิ้นได้เพราะมีข้อผิดพลาด"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "ข้อผิดพลาดภายในเซอร์เวอร์"

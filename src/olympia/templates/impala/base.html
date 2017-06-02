@@ -24,12 +24,6 @@
     {% block site_css %}
       {{ css('zamboni/impala') }}
       {{ css('restyle/css') }}
-      <!--[if lt IE 9]>
-        <script src="{{ static('js/lib/iepp.min.js') }}"></script>
-      <![endif]-->
-      <!--[if lte IE 9]>
-        <link rel="stylesheet" href="{{ static('css/legacy/ie9.css') }}">
-      <![endif]-->
     {% endblock %}
 
     {% block extrahead %}{% endblock %}

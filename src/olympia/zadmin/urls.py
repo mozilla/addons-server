@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
@@ -22,8 +22,7 @@ def login(request):
 admin.site.login = login
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     # AMO stuff.
     url('^$', views.index, name='zadmin.index'),
     url('^models$', lambda r: redirect('admin:index'), name='zadmin.home'),
@@ -89,4 +88,4 @@ urlpatterns = patterns(
     url('^models/', include(admin.site.urls)),
     url('^models/(?P<app_id>.+)/(?P<model_id>.+)/search\.json$',
         views.general_search, name='zadmin.search'),
-)
+]

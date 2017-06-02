@@ -12,12 +12,13 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
-from olympia.amo.helpers import absolutify
-from olympia.amo.tests import TestCase, version_factory
+from olympia.amo.tests import file_factory, TestCase, version_factory
+from olympia.amo.utils import send_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter
+from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.editors import helpers
-from olympia.editors.models import ReviewerScore
+from olympia.editors.models import AutoApprovalSummary, ReviewerScore
 from olympia.files.models import File
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
@@ -301,6 +302,22 @@ class TestReviewHelper(TestCase):
                 addon_status=amo.STATUS_PUBLIC,
                 file_status=file_status).keys() == expected
 
+    def test_actions_public_post_reviewer(self):
+        self.grant_permission(self.request.user, 'Addons:PostReview')
+        expected = ['reject_multiple_versions', 'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_PUBLIC).keys() == expected
+
+        # Now make current version auto-approved...
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        expected = ['confirm_auto_approved', 'reject_multiple_versions',
+                    'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_PUBLIC).keys() == expected
+
     def test_actions_no_version(self):
         """Deleted addons and addons with no versions in that channel have no
         version set."""
@@ -327,7 +344,7 @@ class TestReviewHelper(TestCase):
 
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
-        base_fragment = 'If you need to send file attachments'
+        base_fragment = 'If you want to respond please reply'
         legacy_cta_fragment = 'add-ons are compatible past Firefox 57'
         user = self.addon.listed_authors[0]
         ActivityLogToken.objects.create(version=self.version, user=user)
@@ -366,8 +383,6 @@ class TestReviewHelper(TestCase):
             'pending_to_sandbox': 'dev_versions_url',
 
             'unlisted_to_reviewed_auto': 'dev_versions_url',
-
-            'super_review': 'review_url',
         }
 
         self.helper.set_data(self.get_data())
@@ -378,29 +393,6 @@ class TestReviewHelper(TestCase):
             assert len(mail.outbox) == 1
             assert context_key in context_data
             assert context_data.get(context_key) in mail.outbox[0].body
-
-    def test_review_url_correct_channel(self):
-        # Listed email
-        self.helper.set_data(self.get_data())
-        self.helper.handler.notify_email('super_review',
-                                         'Sample subject %s, %s')
-        assert len(mail.outbox) == 1
-        listed_review_url = absolutify(
-            reverse('editors.review', args=[self.addon.pk], add_prefix=False))
-        assert listed_review_url in mail.outbox[0].body
-        mail.outbox = []
-
-        # Unlisted email
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.helper.set_data(self.get_data())
-        self.helper.handler.notify_email('super_review',
-                                         'Sample subject %s, %s')
-        assert len(mail.outbox) == 1
-        unlisted_review_url = absolutify(
-            reverse('editors.review',
-                    kwargs={'addon_id': self.addon.pk, 'channel': 'unlisted'},
-                    add_prefix=False))
-        assert unlisted_review_url in mail.outbox[0].body
 
     def setup_data(self, status, delete=None,
                    file_status=amo.STATUS_AWAITING_REVIEW,
@@ -699,6 +691,61 @@ class TestReviewHelper(TestCase):
 
         self._check_score(amo.REVIEWED_ADDON_UPDATE)
 
+    def test_public_addon_confirm_auto_approval(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED)
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.current_version.files.all()[0].status == (
+            amo.STATUS_PUBLIC)
+
+        self.helper.handler.confirm_auto_approved()
+
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
+                               .get())
+        assert activity.arguments == [self.addon, self.version]
+
+    def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED)
+        self.version = version_factory(
+            addon=self.addon, version='3.0',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.file = self.version.files.all()[0]
+        self.helper = self.get_helper()  # To make it pick up the new version.
+        self.helper.set_data(self.get_data())
+
+        # Safeguards.
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_AWAITING_REVIEW
+        assert self.addon.current_version.files.all()[0].status == (
+            amo.STATUS_PUBLIC)
+        assert self.version == self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        assert self.version != self.addon.current_version
+
+        self.helper.handler.confirm_auto_approved()
+
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
+                               .get())
+        # The log should have been created with the current public version,
+        # not the latest (unreviewed) one.
+        assert activity.arguments == [self.addon, self.addon.current_version]
+
     @patch('olympia.editors.helpers.sign_file')
     def test_null_to_public_unlisted(self, sign_mock):
         sign_mock.reset()
@@ -813,24 +860,25 @@ class TestReviewHelper(TestCase):
         self.helper.handler.process_sandbox()
         assert u'TaobaoShopping淘宝网导航按钮' in mail.outbox[0].subject
 
-    def test_super_review_email(self):
-        self.setup_data(amo.STATUS_NULL)
-        self.helper.handler.process_super_review()
-        url = reverse('editors.review', args=[self.addon.pk], add_prefix=False)
-        assert url in mail.outbox[1].body
-
     def test_nomination_to_super_review(self):
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.process_super_review()
 
         assert self.addon.admin_review
 
-        assert len(mail.outbox) == 2
-        assert mail.outbox[1].subject == (
-            'Super review requested: Delicious Bookmarks')
+        assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
             ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
              'Admin Review'))
+        assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
+
+    def test_auto_approved_super_review(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.helper.handler.process_super_review()
+
+        assert self.addon.admin_review
         assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
 
     def test_nomination_to_super_review_and_escalate(self):
@@ -840,9 +888,7 @@ class TestReviewHelper(TestCase):
 
         assert self.addon.admin_review
 
-        assert len(mail.outbox) == 2
-        assert mail.outbox[1].subject == (
-            'Super review requested: Delicious Bookmarks')
+        assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
             ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
              'Admin Review'))
@@ -890,9 +936,7 @@ class TestReviewHelper(TestCase):
 
             assert self.addon.admin_review
 
-            assert len(mail.outbox) == 2
-            assert mail.outbox[1].subject == (
-                'Super review requested: Delicious Bookmarks')
+            assert len(mail.outbox) == 1
             assert mail.outbox[0].subject == (
                 ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
                  'Admin Review'))
@@ -920,6 +964,95 @@ class TestReviewHelper(TestCase):
         self.addon.update(status=amo.STATUS_NOMINATED)
         assert self.get_helper()
 
+    def test_reject_multiple_versions(self):
+        old_version = self.version
+        self.version = version_factory(addon=self.addon, version='3.0')
+        # An extra file should not change anything.
+        file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, helpers.ReviewFiles)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.current_version.is_public()
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.current_version is None
+        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert self.file.status == amo.STATUS_DISABLED
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
+        assert mail.outbox[0].subject == (
+            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
+            u"didn't pass review")
+        assert ('Version(s) affected and disabled:\n3.0, 2.1.072'
+                in mail.outbox[0].body)
+        log_token = ActivityLogToken.objects.get()
+        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+
+    def test_reject_multiple_versions_except_latest(self):
+        old_version = self.version
+        extra_version = version_factory(addon=self.addon, version='3.1')
+        # Add yet another version we don't want to reject.
+        self.version = version_factory(addon=self.addon, version='42.0')
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, helpers.ReviewFiles)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.current_version.is_public()
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all().exclude(
+            pk=self.version.pk)
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        # latest_version is still public so the add-on is still public.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.current_version == self.version
+        assert list(self.addon.versions.all().order_by('-pk')) == [
+            self.version, extra_version, old_version]
+        assert self.file.status == amo.STATUS_DISABLED
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [self.addon.authors.all()[0].email]
+        assert mail.outbox[0].subject == (
+            u"Mozilla Add-ons: One or more versions of Delicious Bookmarks "
+            u"didn't pass review")
+        assert ('Version(s) affected and disabled:\n3.1, 2.1.072'
+                in mail.outbox[0].body)
+        log_token = ActivityLogToken.objects.filter(
+            version=self.version).get()
+        assert log_token.uuid.hex in mail.outbox[0].reply_to[0]
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+
+    def test_dev_versions_url_in_context(self):
+        self.helper.set_data(self.get_data())
+        context_data = self.helper.handler.get_context_data()
+        assert context_data['dev_versions_url'] == absolutify(
+            self.addon.get_dev_url('versions'))
+
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        context_data = self.helper.handler.get_context_data()
+        assert context_data['dev_versions_url'] == absolutify(
+            reverse('devhub.addons.versions', args=[self.addon.id]))
+
 
 def test_page_title_unicode():
     t = Translation(localized_string=u'\u30de\u30eb\u30c1\u30d712\u30eb')
@@ -929,18 +1062,15 @@ def test_page_title_unicode():
 
 
 def test_send_email_autoescape():
-    mock_request = Mock()
-    mock_request.user = None
-    base = helpers.ReviewBase(mock_request, None, None, '')
     s = 'woo&&<>\'""'
-    ctx = dict(name=s, review_url=s, reviewer=s, comments=s, SITE_URL=s)
-    base.get_context_data = Mock(name='get_context_data', return_value=ctx)
-    base.data = {'comments': ''}
 
     # Make sure HTML is not auto-escaped.
-    base.send_super_mail()
+    send_mail(u'Random subject with %s', s,
+              recipient_list=['nobody@mozilla.org'],
+              from_email='nobody@mozilla.org',
+              use_deny_list=False)
     assert len(mail.outbox) == 1
-    assert mail.outbox[0].body.count(s) == len(ctx)
+    assert mail.outbox[0].body == s
 
 
 class TestCompareLink(TestCase):

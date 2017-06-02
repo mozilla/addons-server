@@ -1,5 +1,5 @@
 from django.db.transaction import non_atomic_requests
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 import caching.base as caching
 
@@ -36,13 +36,13 @@ class AppversionsFeed(NonAtomicFeed):
     # wanky.  I blame fligtar.
 
     def title(self):
-        return _('Application Versions')
+        return ugettext(u'Application Versions')
 
     def link(self):
         return absolutify(url('apps.appversions'))
 
     def description(self):
-        return _('Acceptable versions for all applications on AMO.')
+        return ugettext(u'Acceptable versions for all applications on AMO.')
 
     def items(self):
         apps, versions = get_versions(order=('application', '-version_int'))

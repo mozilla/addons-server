@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import force_text
-from django.utils.translation import get_language, ugettext as _
+from django.utils.translation import get_language, ugettext
 from django.template.defaultfilters import filesizeformat
 # TODO (andym): change the validator variables.
 from validator.testcases.packagelayout import (
@@ -89,19 +89,19 @@ def extract_file(viewer, **kw):
         lock_attained = viewer.extract()
 
         if not lock_attained:
-            info_msg = _(
+            info_msg = ugettext(
                 'File viewer is locked, extraction for %s could be '
                 'in progress. Please try again in approximately 5 minutes.'
                 % viewer)
             msg.save(info_msg)
-    except Exception, err:
-        error_message = _('There was an error accessing file %s.') % viewer
+    except Exception, exc:
+        error_msg = ugettext('There was an error accessing file %s.') % viewer
 
         if settings.DEBUG:
-            msg.save(error_message + ' ' + err)
+            msg.save(error_msg + ' ' + exc)
         else:
-            msg.save(error_message)
-        task_log.error('Error unzipping: %s' % err)
+            msg.save(error_msg)
+        task_log.error('Error unzipping: %s' % exc)
 
     return msg
 
@@ -221,7 +221,7 @@ class FileViewer(object):
             file_data = self._read_file(allow_empty)
             return file_data
         except (IOError, OSError):
-            self.selected['msg'] = _('That file no longer exists.')
+            self.selected['msg'] = ugettext('That file no longer exists.')
             return ''
 
     def _read_file(self, allow_empty=False):
@@ -230,7 +230,7 @@ class FileViewer(object):
         assert self.selected, 'Please select a file'
         if self.selected['size'] > settings.FILE_VIEWER_SIZE_LIMIT:
             # L10n: {0} is the file size limit of the file viewer.
-            msg = _(u'File size is over the limit of {0}.').format(
+            msg = ugettext(u'File size is over the limit of {0}.').format(
                 filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT))
             self.selected['msg'] = msg
             return ''
@@ -244,7 +244,7 @@ class FileViewer(object):
                 cont = cont.decode(codec, 'ignore')
                 # L10n: {0} is the filename.
                 self.selected['msg'] = (
-                    _('Problems decoding {0}.').format(codec))
+                    ugettext('Problems decoding {0}.').format(codec))
                 return cont
 
     def select(self, file_):
@@ -254,15 +254,15 @@ class FileViewer(object):
         if self.selected:
             binary = self.selected['binary']
             if binary and (binary != 'image'):
-                self.selected['msg'] = _('This file is not viewable online. '
-                                         'Please download the file to view '
-                                         'the contents.')
+                self.selected['msg'] = ugettext(
+                    u'This file is not viewable online. Please download the '
+                    u'file to view the contents.')
             return binary
 
     def is_directory(self):
         if self.selected:
             if self.selected['directory']:
-                self.selected['msg'] = _('This file is a directory.')
+                self.selected['msg'] = ugettext('This file is a directory.')
             return self.selected['directory']
 
     def get_default(self, key=None):

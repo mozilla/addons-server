@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.shortcuts import redirect
 
 from . import views
@@ -15,8 +15,7 @@ collection_series = dict((type, '%s-%s' % (type, series_re))
                          for type in views.COLLECTION_SERIES)
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url('^$', lambda r: redirect('stats.addons_in_use', permanent=False),
         name='stats.dashboard'),
     url('^site%s/%s$' % (format_re, group_date_re),
@@ -24,24 +23,23 @@ urlpatterns = patterns(
     url('^site-%s' % series_re, views.site, name='stats.site.new'),
     url('^collection/(?P<uuid>[\w-]+).%s$' % (format_re),
         views.collection, name='stats.collection'),
-)
+]
 
 # These are the front end pages, so that when you click the links on the
 # navigation page, you end up on the correct stats page for AMO.
 keys = ['addons_in_use', 'addons_updated', 'addons_downloaded',
         'addons_created', 'collections_created',
         'reviews_created', 'users_created']
-urls = []
+
 for key in keys:
-    urls.append(url('^%s/$' % key, views.site_stats_report,
-                name='stats.%s' % key, kwargs={'report': key}))
-    urls.append(url(global_series[key], views.site_series,
-                    kwargs={'field': key}))
+    urlpatterns.append(url(
+        '^%s/$' % key, views.site_stats_report,
+        name='stats.%s' % key, kwargs={'report': key}))
+    urlpatterns.append(url(
+        global_series[key], views.site_series,
+        kwargs={'field': key}))
 
-urlpatterns += patterns('', *urls)
-
-collection_stats_urls = patterns(
-    '',
+collection_stats_urls = [
     url(collection_series['subscribers'], views.collection_series,
         kwargs={'field': 'subscribers'}),
     url(collection_series['ratings'], views.collection_series,
@@ -66,11 +64,10 @@ collection_stats_urls = patterns(
         kwargs={'report': 'downloads'}),
     url(collection_series['downloads'], views.collection_stats,
         name='collections.stats.downloads_series'),
-)
+]
 
 # Addon specific stats.
-stats_patterns = patterns(
-    '',
+stats_patterns = [
     # page URLs
     url('^$', views.stats_report, name='stats.overview',
         kwargs={'report': 'overview'}),
@@ -116,4 +113,4 @@ stats_patterns = patterns(
         name='stats.versions_series', kwargs={'field': 'versions'}),
     url(series['apps'], views.usage_breakdown_series,
         name='stats.apps_series', kwargs={'field': 'applications'}),
-)
+]

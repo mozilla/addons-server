@@ -4,9 +4,9 @@ from datetime import timedelta
 from django import forms
 from django.db.models import Q
 from django.forms import widgets
-from django.forms.models import BaseModelFormSet, modelformset_factory
-from django.utils.translation import (
-    ugettext as _, ugettext_lazy as _lazy, get_language)
+from django.forms.models import (
+    BaseModelFormSet, modelformset_factory, ModelMultipleChoiceField)
+from django.utils.translation import ugettext, ugettext_lazy as _, get_language
 
 import olympia.core.logger
 from olympia import amo
@@ -22,13 +22,14 @@ from olympia.editors.tasks import approve_rereview, reject_rereview, send_mail
 from olympia.lib import happyforms
 from olympia.reviews.helpers import user_can_delete_review
 from olympia.reviews.models import Review
+from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.reviewers.forms')
 
 
-ACTION_FILTERS = (('', ''), ('approved', _lazy(u'Approved reviews')),
-                  ('deleted', _lazy(u'Deleted reviews')))
+ACTION_FILTERS = (('', ''), ('approved', _(u'Approved reviews')),
+                  ('deleted', _(u'Deleted reviews')))
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_REVIEW,
                    deleted=amo.LOG.DELETE_REVIEW)
@@ -36,11 +37,11 @@ ACTION_DICT = dict(approved=amo.LOG.APPROVE_REVIEW,
 
 class EventLogForm(happyforms.Form):
     start = forms.DateField(required=False,
-                            label=_lazy(u'View entries between'))
+                            label=_(u'View entries between'))
     end = forms.DateField(required=False,
-                          label=_lazy(u'and'))
+                          label=_(u'and'))
     filter = forms.ChoiceField(required=False, choices=ACTION_FILTERS,
-                               label=_lazy(u'Filter by type/action'))
+                               label=_(u'Filter by type/action'))
 
     def clean(self):
         data = self.cleaned_data
@@ -57,31 +58,32 @@ class BetaSignedLogForm(happyforms.Form):
     VALIDATION_CHOICES = (
         ('', ''),
         (amo.LOG.BETA_SIGNED.id,
-         _lazy(u'Passed automatic validation')),
+         _(u'Passed automatic validation')),
         (amo.LOG.BETA_SIGNED.id,
-         _lazy(u'Failed automatic validation')))
+         _(u'Failed automatic validation')))
     filter = forms.ChoiceField(required=False, choices=VALIDATION_CHOICES,
-                               label=_lazy(u'Filter by automatic validation'))
+                               label=_(u'Filter by automatic validation'))
 
 
 class ReviewLogForm(happyforms.Form):
     start = forms.DateField(required=False,
-                            label=_lazy(u'View entries between'))
-    end = forms.DateField(required=False, label=_lazy(u'and'))
-    search = forms.CharField(required=False, label=_lazy(u'containing'))
+                            label=_(u'View entries between'))
+    end = forms.DateField(required=False, label=_(u'and'))
+    search = forms.CharField(required=False, label=_(u'containing'))
 
     def __init__(self, *args, **kw):
         super(ReviewLogForm, self).__init__(*args, **kw)
 
         # L10n: start, as in "start date"
-        self.fields['start'].widget.attrs = {'placeholder': _('start'),
-                                             'size': 10}
+        self.fields['start'].widget.attrs = {
+            'placeholder': ugettext('start'), 'size': 10}
 
         # L10n: end, as in "end date"
-        self.fields['end'].widget.attrs = {'size': 10, 'placeholder': _('end')}
+        self.fields['end'].widget.attrs = {
+            'size': 10, 'placeholder': ugettext('end')}
 
         # L10n: Description of what can be searched for
-        search_ph = _('add-on, editor or comment')
+        search_ph = ugettext('add-on, editor or comment')
         self.fields['search'].widget.attrs = {'placeholder': search_ph,
                                               'size': 30}
 
@@ -97,22 +99,22 @@ class ReviewLogForm(happyforms.Form):
 class QueueSearchForm(happyforms.Form):
     text_query = forms.CharField(
         required=False,
-        label=_lazy(u'Search by add-on name / author email'))
+        label=_(u'Search by add-on name / author email'))
     searching = forms.BooleanField(widget=forms.HiddenInput, required=False,
                                    initial=True)
     admin_review = forms.ChoiceField(required=False,
                                      choices=[('', ''),
-                                              ('1', _lazy(u'yes')),
-                                              ('0', _lazy(u'no'))],
-                                     label=_lazy(u'Admin Flag'))
+                                              ('1', _(u'yes')),
+                                              ('0', _(u'no'))],
+                                     label=_(u'Admin Flag'))
     application_id = forms.ChoiceField(
         required=False,
-        label=_lazy(u'Application'),
+        label=_(u'Application'),
         choices=([('', '')] +
                  [(a.id, a.pretty) for a in amo.APPS_ALL.values()]))
     addon_type_ids = forms.MultipleChoiceField(
         required=False,
-        label=_lazy(u'Add-on Types'),
+        label=_(u'Add-on Types'),
         choices=((id, tp) for id, tp in amo.ADDON_TYPES.items()))
 
     def __init__(self, *args, **kw):
@@ -175,28 +177,28 @@ class QueueSearchForm(happyforms.Form):
 class AllAddonSearchForm(happyforms.Form):
     text_query = forms.CharField(
         required=False,
-        label=_lazy(u'Search by add-on name / author email / guid'))
+        label=_(u'Search by add-on name / author email / guid'))
     searching = forms.BooleanField(
         widget=forms.HiddenInput,
         required=False,
         initial=True)
     admin_review = forms.ChoiceField(
         required=False,
-        choices=[('', ''), ('1', _lazy(u'yes')), ('0', _lazy(u'no'))],
-        label=_lazy(u'Admin Flag'))
+        choices=[('', ''), ('1', _(u'yes')), ('0', _(u'no'))],
+        label=_(u'Admin Flag'))
     application_id = forms.ChoiceField(
         required=False,
-        label=_lazy(u'Application'),
+        label=_(u'Application'),
         choices=([('', '')] +
                  [(a.id, a.pretty) for a in amo.APPS_ALL.values()]))
     max_version = forms.ChoiceField(
         required=False,
-        label=_lazy(u'Max. Version'),
-        choices=[('', _lazy(u'Select an application first'))])
+        label=_(u'Max. Version'),
+        choices=[('', _(u'Select an application first'))])
     deleted = forms.ChoiceField(
         required=False,
-        choices=[('', ''), ('1', _lazy(u'yes')), ('0', _lazy(u'no'))],
-        label=_lazy(u'Deleted'))
+        choices=[('', ''), ('1', _(u'yes')), ('0', _(u'no'))],
+        label=_(u'Deleted'))
 
     def __init__(self, *args, **kw):
         super(AllAddonSearchForm, self).__init__(*args, **kw)
@@ -284,24 +286,40 @@ class NonValidatingChoiceField(forms.ChoiceField):
 
 class ReviewForm(happyforms.Form):
     comments = forms.CharField(required=True, widget=forms.Textarea(),
-                               label=_lazy(u'Comments:'))
+                               label=_(u'Comments:'))
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
+    versions = ModelMultipleChoiceField(
+        widget=forms.SelectMultiple(
+            attrs={
+                'class': 'data-toggle',
+                'data-value': 'reject_multiple_versions|'
+            }),
+        required=False,
+        queryset=Version.objects.none())  # queryset is set later in __init__.
+
     operating_systems = forms.CharField(required=False,
-                                        label=_lazy(u'Operating systems:'))
+                                        label=_(u'Operating systems:'))
     applications = forms.CharField(required=False,
-                                   label=_lazy(u'Applications:'))
+                                   label=_(u'Applications:'))
     notify = forms.BooleanField(required=False,
-                                label=_lazy(u'Notify me the next time this '
-                                            'add-on is updated. (Subsequent '
-                                            'updates will not generate an '
-                                            'email)'))
+                                label=_(u'Notify me the next time this '
+                                        u'add-on is updated. (Subsequent '
+                                        u'updates will not generate an '
+                                        u'email)'))
     adminflag = forms.BooleanField(required=False,
-                                   label=_lazy(u'Clear Admin Review Flag'))
+                                   label=_(u'Clear Admin Review Flag'))
     clear_info_request = forms.BooleanField(
-        required=False, label=_lazy(u'Clear more info requested flag'))
+        required=False, label=_(u'Clear more info requested flag'))
 
     def is_valid(self):
+        # Some actions do not require comments.
+        action = self.helper.actions.get(self.data.get('action'))
+        if action:
+            if not action.get('comments', True):
+                self.fields['comments'].required = False
+            if action.get('versions', False):
+                self.fields['versions'].required = True
         result = super(ReviewForm, self).is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)
@@ -312,8 +330,20 @@ class ReviewForm(happyforms.Form):
         self.type = kw.pop('type', amo.CANNED_RESPONSE_ADDON)
         super(ReviewForm, self).__init__(*args, **kw)
 
-        # We're starting with an empty one, which will be hidden via CSS.
-        canned_choices = [['', [('', _('Choose a canned response...'))]]]
+        # With the helper, we now have the add-on and can set queryset on the
+        # versions field correctly. Small optimization: we only need to do this
+        # if the reject_multiple_versions action is available, otherwise we
+        # don't really care about this field.
+        if 'reject_multiple_versions' in self.helper.actions:
+            self.fields['versions'].queryset = (
+                self.helper.addon.versions.distinct().filter(
+                    channel=amo.RELEASE_CHANNEL_LISTED,
+                    files__status=amo.STATUS_PUBLIC).order_by('created'))
+
+        # For the canned responses, we're starting with an empty one, which
+        # will be hidden via CSS.
+        canned_choices = [
+            ['', [('', ugettext('Choose a canned response...'))]]]
 
         responses = CannedResponse.objects.filter(type=self.type)
 
@@ -330,7 +360,6 @@ class ReviewForm(happyforms.Form):
         for r in responses:
             if not r.sort_group:
                 canned_choices.append([r.response, r.name])
-
         self.fields['canned_response'].choices = canned_choices
         self.fields['action'].choices = [
             (k, v['label']) for k, v in self.helper.actions.items()]
@@ -351,7 +380,7 @@ class DeletedThemeLogForm(ReviewLogForm):
         super(DeletedThemeLogForm, self).__init__(*args, **kwargs)
         self.fields['search'].widget.attrs = {
             # L10n: Description of what can be searched for.
-            'placeholder': _lazy(u'theme name'),
+            'placeholder': _(u'theme name'),
             'size': 30}
 
 
@@ -377,7 +406,7 @@ class ThemeReviewForm(happyforms.Form):
             ThemeLock.objects.get(theme=theme)
         except ThemeLock.DoesNotExist:
             raise forms.ValidationError(
-                _('Someone else is reviewing this theme.'))
+                ugettext('Someone else is reviewing this theme.'))
         return theme
 
     def clean_reject_reason(self):
@@ -463,9 +492,9 @@ class ThemeReviewForm(happyforms.Form):
 
 class ThemeSearchForm(forms.Form):
     q = forms.CharField(
-        required=False, label=_lazy(u'Search'),
+        required=False, label=_(u'Search'),
         widget=forms.TextInput(attrs={'autocomplete': 'off',
-                                      'placeholder': _lazy(u'Search')}))
+                                      'placeholder': _(u'Search')}))
     queue_type = forms.CharField(required=False, widget=forms.HiddenInput())
 
 
@@ -475,7 +504,7 @@ class ReviewThemeLogForm(ReviewLogForm):
         super(ReviewThemeLogForm, self).__init__(*args, **kwargs)
         self.fields['search'].widget.attrs = {
             # L10n: Description of what can be searched for.
-            'placeholder': _lazy(u'theme, reviewer, or comment'),
+            'placeholder': _(u'theme, reviewer, or comment'),
             'size': 30}
 
 
@@ -489,10 +518,10 @@ class WhiteboardForm(forms.ModelForm):
 class ModerateReviewFlagForm(happyforms.ModelForm):
 
     action_choices = [(reviews.REVIEW_MODERATE_KEEP,
-                       _lazy(u'Keep review; remove flags')),
-                      (reviews.REVIEW_MODERATE_SKIP, _lazy(u'Skip for now')),
+                       _(u'Keep review; remove flags')),
+                      (reviews.REVIEW_MODERATE_SKIP, _(u'Skip for now')),
                       (reviews.REVIEW_MODERATE_DELETE,
-                       _lazy(u'Delete review'))]
+                       _(u'Delete review'))]
     action = forms.ChoiceField(choices=action_choices, required=False,
                                initial=0, widget=forms.RadioSelect())
 

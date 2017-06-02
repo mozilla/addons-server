@@ -11,7 +11,7 @@ from django.core import validators
 from django.db import models
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 from django.utils.encoding import force_text
 from django.utils.functional import lazy
 
@@ -23,6 +23,7 @@ from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
 from olympia.access.models import Group, GroupUser
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
+from olympia.users.notifications import NOTIFICATIONS_BY_ID
 
 log = olympia.core.logger.getLogger('z.users')
 
@@ -71,7 +72,7 @@ class UserEmailField(forms.EmailField):
         try:
             return UserProfile.objects.get(email=value)
         except UserProfile.DoesNotExist:
-            raise forms.ValidationError(_('No user with that email.'))
+            raise forms.ValidationError(ugettext('No user with that email.'))
 
     def widget_attrs(self, widget):
         lazy_reverse = lazy(reverse, str)
@@ -177,9 +178,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     backend = 'django.contrib.auth.backends.ModelBackend'
 
-    def is_anonymous(self):
-        return False
-
     def get_session_auth_hash(self):
         """Return a hash used to invalidate sessions of users when necessary.
 
@@ -220,16 +218,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """List of all groups the user is a member of, as a cached property."""
         return list(self.groups.all())
 
-    @amo.cached_property(writable=True)
-    def addons_listed(self):
-        """Public add-ons this user is listed as author of."""
-        return self.addons.public().filter(
-            addonuser__user=self, addonuser__listed=True)
-
     @property
     def num_addons_listed(self):
         """Number of public add-ons this user is listed as author of."""
-        return self.addons_listed.count()
+        return self.addons.public().filter(
+            addonuser__user=self, addonuser__listed=True).count()
 
     def my_addons(self, n=8):
         """Returns n addons"""
@@ -286,7 +279,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         elif self.has_anonymous_username():
             # L10n: {id} will be something like "13ad6a", just a random number
             # to differentiate this user from other anonymous users.
-            return _('Anonymous user {id}').format(
+            return ugettext('Anonymous user {id}').format(
                 id=self._anonymous_username_id())
         else:
             return force_text(self.username)
@@ -323,16 +316,20 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # reviews-related tests hang if this isn't done.
         return qs
 
-    def anonymize(self):
-        log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
-        self.email = None
-        self.fxa_id = None
-        self.username = "Anonymous-%s" % self.id  # Can't be null
-        self.display_name = None
-        self.homepage = ""
-        self.deleted = True
-        self.picture_type = ""
-        self.save()
+    def delete(self, hard=False):
+        if hard:
+            super(UserProfile, self).delete()
+        else:
+            log.info(
+                u'User (%s: <%s>) is being anonymized.' % (self, self.email))
+            self.email = None
+            self.fxa_id = None
+            self.username = "Anonymous-%s" % self.id  # Can't be null
+            self.display_name = None
+            self.homepage = ""
+            self.deleted = True
+            self.picture_type = ""
+            self.save()
 
     def set_unusable_password(self):
         raise NotImplementedError('cannot set unusable password')
@@ -365,13 +362,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.special_collection(
             amo.COLLECTION_MOBILE,
             defaults={'slug': 'mobile', 'listed': False,
-                      'name': _('My Mobile Add-ons')})
+                      'name': ugettext('My Mobile Add-ons')})
 
     def favorites_collection(self):
         return self.special_collection(
             amo.COLLECTION_FAVORITES,
             defaults={'slug': 'favorites', 'listed': False,
-                      'name': _('My Favorite Add-ons')})
+                      'name': ugettext('My Favorite Add-ons')})
 
     def special_collection(self, type_, defaults):
         from olympia.bandwagon.models import Collection
@@ -426,14 +423,9 @@ class UserNotification(ModelBase):
     class Meta:
         db_table = 'users_notifications'
 
-    @staticmethod
-    def update_or_create(update=None, **kwargs):
-        if update is None:
-            update = {}
-        rows = UserNotification.objects.filter(**kwargs).update(**update)
-        if not rows:
-            update.update(dict(**kwargs))
-            UserNotification.objects.create(**update)
+    @property
+    def notification(self):
+        return NOTIFICATIONS_BY_ID[self.notification_id]
 
 
 class DeniedName(ModelBase):

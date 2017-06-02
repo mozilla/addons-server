@@ -35,7 +35,6 @@ from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 from olympia.zadmin.models import get_config, set_config
-from waffle.testutils import override_switch
 
 
 class EditorTest(TestCase):
@@ -1251,10 +1250,10 @@ class TestAutoApprovedQueue(QueueTest):
     def get_addon_latest_version(self, addon):
         """Method used by _test_results() to fetch the version that the queue
         is supposed to display. Overridden here because in our case, it's not
-        necessarily the latest available version - we want the latest one to
-        have been auto approved."""
-        return AutoApprovalSummary.objects.filter(
-            version__in=list(addon.versions.all())).latest('pk').version
+        necessarily the latest available version - we display the current
+        public version instead (which is not guaranteed to be the latest
+        auto-approved one, but good enough) for this page."""
+        return addon.current_version
 
     def generate_files(self):
         """Generate add-ons needed for these tests."""
@@ -1286,7 +1285,12 @@ class TestAutoApprovedQueue(QueueTest):
         addon3 = addon_factory(name=u'Addôn 3', created=self.days_ago(10))
         AutoApprovalSummary.objects.create(
             version=addon3.current_version, verdict=amo.AUTO_APPROVED)
-        self.expected_addons = [addon2, addon3, addon1]
+        # Has been auto-approved, should be first because of its weight.
+        addon4 = addon_factory(name=u'Addôn 3', created=self.days_ago(14))
+        AutoApprovalSummary.objects.create(
+            version=addon4.current_version, verdict=amo.AUTO_APPROVED,
+            weight=500)
+        self.expected_addons = [addon4, addon2, addon3, addon1]
 
     def test_only_viewable_with_specific_permission(self):
         # Regular addon reviewer does not have access.
@@ -1312,10 +1316,10 @@ class TestAutoApprovedQueue(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         link = doc('.tabnav li a').eq(3)
-        assert link.text() == 'Auto Approved Add-ons (3)'
+        assert link.text() == 'Auto Approved Add-ons (4)'
         assert link.attr('href') == self.url
         assert doc('.data-grid-top .num-results').text() == (
-            u'Results 1 \u2013 1 of 3')
+            u'Results 1 \u2013 1 of 4')
 
     def test_navbar_queue_counts(self):
         self.login_with_permission()
@@ -1325,7 +1329,7 @@ class TestAutoApprovedQueue(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#navbar #listed-queues li').eq(3).text() == (
-            'Auto Approved Add-ons (3)'
+            'Auto Approved Add-ons (4)'
         )
 
 
@@ -1854,10 +1858,9 @@ class TestReview(ReviewBase):
         response = self.client.post(self.url, {'action': 'super',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
-        assert len(mail.outbox) == 2
+        assert len(mail.outbox) == 1
         self.assertTemplateUsed(response,
                                 'editors/emails/author_super_review.ltxt')
-        self.assertTemplateUsed(response, 'editors/emails/super_review.ltxt')
 
     def test_info_requested_canned_response(self):
         response = self.client.post(self.url, {'action': 'info',
@@ -2584,6 +2587,27 @@ class TestReview(ReviewBase):
             [u'Select a valid choice. public is not one of the available '
              u'choices.'])
 
+    def test_confirm_auto_approval_no_permission(self):
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.login_as_editor()
+        response = self.client.post(
+            self.url, {'action': 'confirm_auto_approved'})
+        assert response.status_code == 200
+        # Nothing happened: the user did not have the permission to do that.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 0
+
+    def test_confirm_auto_approval_with_permission(self):
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
+        self.login_as_senior_editor()
+        response = self.client.post(
+            self.url, {'action': 'confirm_auto_approved'})
+        assert response.status_code == 302
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count() == 1
+
     def test_user_changes_log(self):
         # Activity logs related to user changes should be displayed.
         # Create an activy log for each of the following: user addition, role
@@ -2701,7 +2725,6 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('.auto_approval')
 
-    @override_switch('webext-permissions', active=True)
     def test_permissions_display(self):
         permissions = ['bookmarks', 'high', 'voltage']
         self.file.update(is_webextension=True)
@@ -2786,6 +2809,60 @@ class TestReview(ReviewBase):
                 user.username, created_at
             )
         )
+
+    def test_data_value_attributes(self):
+        AutoApprovalSummary.objects.create(
+            verdict=amo.AUTO_APPROVED, version=self.version)
+        self.login_as_senior_editor()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        expected_actions_values = [
+            'confirm_auto_approved|', 'reject_multiple_versions|', 'info|',
+            'super|', 'comment|']
+        assert [
+            act.attrib['data-value'] for act in
+            doc('.data-toggle.review-actions-desc')] == expected_actions_values
+
+        assert (
+            doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
+            'reject_multiple_versions|')
+
+        assert (
+            doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
+            'reject_multiple_versions|info|super|comment|')
+        # We don't have approve/reject actions so these have an empty
+        # data-value.
+        assert (
+            doc('.data-toggle.review-files')[0].attrib['data-value'] == '|')
+        assert (
+            doc('.data-toggle.review-tested')[0].attrib['data-value'] == '|')
+
+    def test_data_value_attributes_unreviewed(self):
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.login_as_senior_editor()
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        expected_actions_values = [
+            'public|', 'reject|', 'info|', 'super|', 'comment|']
+        assert [
+            act.attrib['data-value'] for act in
+            doc('.data-toggle.review-actions-desc')] == expected_actions_values
+
+        assert (
+            doc('select#id_versions.data-toggle')[0].attrib['data-value'] ==
+            'reject_multiple_versions|')
+
+        assert (
+            doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
+            'public|reject|info|super|comment|')
+        assert (
+            doc('.data-toggle.review-files')[0].attrib['data-value'] ==
+            'public|reject|')
+        assert (
+            doc('.data-toggle.review-tested')[0].attrib['data-value'] ==
+            'public|reject|')
 
 
 class TestReviewPending(ReviewBase):

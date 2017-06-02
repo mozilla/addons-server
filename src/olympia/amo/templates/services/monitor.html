@@ -116,6 +116,18 @@
   </ul>
 </div>
 
+<div class="notification-box {{ status(status_summary.signer) }}">
+  <h2>[Signing Service] Connection Tests ({{ signer_timer }}ms)</h2>
+  <ul>
+    {% if signer_results %}
+    Success
+    {% else %}
+    <strong>Failed</strong>
+    {% endif %}
+    </li>
+  </ul>
+</div>
+
 {% macro section(text, summary, timer, results) %}
   <div class="notification-box {{ status(summary) }}">
     <h2>{{ text }} ({{ timer }}ms)</h2>

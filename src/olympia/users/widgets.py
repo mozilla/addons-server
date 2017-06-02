@@ -1,7 +1,7 @@
 from django import forms
 from django.template import Context, loader
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia.users import notifications as email
 
@@ -33,7 +33,7 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
 
             if (hasattr(self.form_instance, 'choices_status') and
                     self.form_instance.choices_status.get(idx)):
-                notes.append(u'<sup class="msg">%s</sup>' % _('new'))
+                notes.append(u'<sup class="msg">%s</sup>' % ugettext('new'))
 
             cb = forms.CheckboxInput(
                 cb_attrs, check_test=lambda value: value in str_values)

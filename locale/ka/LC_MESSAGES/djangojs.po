@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-17 11:23+0000\n"
 "PO-Revision-Date: 2016-12-18 12:19+0000\n"
 "Last-Translator: mindaKhinzmarauli <beseliaa.design-mozilla-firefox@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,134 +16,104 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} ვარსკვლავი"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "სერვერთან დაკავშირება ვერ მოხერხდა."
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "ფაილის არჩევა..."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "თქვენი დამატება უნდა სრულდებოდეს .zip, .xpi, .crx, .jar ან .xml გაფართოებით."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
 msgstr "{0}% დასრულებულია"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "გაუქმება"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "იტვირთება {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "{0} - შეცდომა"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "თქვენი დამატებების დასამუშავებლად ახალი ინსტრუმენტები ჩავრთეთ. გთხოვთ, ყველანაირი პრობლემა შეგვატყობინეთ GitHub-ზე"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "თქვენმა დამატებამ გადამოწმება {0} შეცდომის გამო ვერ გაიარა."
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;და კიდევ {0}"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "დამოწმების სრული ანგარიშგების ნახვა"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "მოწმდება {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "სერვერისგან მოვიდა უშინაარსო პასუხი; სტატუსი: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "გადამოწმებისას დაფიქსირდა სერვერის მოულოდნელი შეცდომა."
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "{0}-ის გადამოწმება დასრულდა"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "დამატების გადამოწმების დრო ამოიწურა, ის ხელით იქნება განხილული."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "დამატების გადამოწმება დასრულდა შეცდომის გარეშე და {0} გაფრთხილებით."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "დამატების გადამოწმება დასრულდა შეცდომის გარეშე და {0} შეტყობინებით."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "დამატების გადამოწმება დასრულდა შეცდომის და გაფრთხილებების გარეშე."
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "თქვენი შენატანი ავტომატურად იქნება ხელმოწერილი."
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "WebExtensionგანახლება"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "ჩვენ გაძლევთ საშუალებას განახლება. თუმცა, ეს პროცესი არ შეიძლება შეიცვალოს. ისინი, ვინც დაყენებული WebExtension შეგიძლიათ დააყენოთ ნებისმიერი add-on."
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Porting a legacy Firefox add-on on MDN"
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "მიუთითეთ ვერსიის შენიშვნები დეტალურად (ამის გაკეთება მომდევნო ნაბიჯში შეიძლება)."
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "თუ თქვენი დამატების სრულყოფილად გამოსაცდელად საჭიროა საიტის ანგარიში, მიმომხილველებისთვის განკუთვნილ შენიშვნებში მიუთითეთ საცდელი მომხმარებლის სახელი და პაროლი (ამის გაკეთება, შემდეგ ნაბიჯზეა "
 "შესაძლებელი)."
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "საკონტროლო სია დამატების წარსადგენად"
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "გთხოვთ, გადაამოწმოთ მოცემული პუნქტები წარდგენის დასასრულებლად. ეს შეამცირებს განხილვის დროს შეფერხების ან გაუგებრობის წარმოშობას."
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -151,1022 +121,783 @@ msgstr ""
 "შედგენილი ბინარული, ისევე როგორც ოპტიმიზებული ან დაცული კოდის (ცნობილი ბიბლიოთეკების გარდა) ორიგინალის გადაგზავნა განსახილველად, საჭიროა სათითაოდ. დარწმუნდით, რომ სარგებლობთ საწყისი კოდის ასატვირთი "
 "ველით, რომ თავიდან აიცილოთ უარი მიღებაზე."
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "გადამოწმებისას აღმოჩენილია გარკვეული საკითხები, რაც შეიძლება უარყოფის საფუძველი გახდეს."
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr "სამწუხაროდ, მხარდაჭერილი პლატფორმები არ მოიძებნა."
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ატვირთული ფაილის ტიპი,  გაურკვეველია."
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "თქვენ გააუქმეთ ატვირთვა."
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "ნახატი უნდა იყოს PNG ან JPG."
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "ვიდეო უნდა იყოს WebM."
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "კოლექციის გაყოლა"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "გაყოლის შეჩერება"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "მიჰყვებით"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "ეს თემა {0}-ის თქვენს ვერსიასთან შეუთავსებელია"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "ყველა უფლება დაცულია"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "თქვენი თემის სახელი"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "განსახილველად მონიშნული"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "საჭიროა მონაცემების შეყვანა"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "წასაშლელად მონიშნული"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "შედეგების განახლება&hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "კატეგორია"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "<b>{0}-ს</b> ძიება თემებში"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "<b>{0}-ს</b> ძიება აპებში"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}-ს</b> ძიება დამატებებში"
 
-#: static/js/impala/users.js
 msgid "Use original"
 msgstr "ორიგინალის გამოყენება"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "{0} კვირა"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " ჩამოტვირთვა"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "{0} მომხმარებელი"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "{0} დამატება"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "{0} კოლექცია"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "{0} მიმოხილვა"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "{0} გაყიდვა"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "{0} ანაზღაურება"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "{0} დაყენება"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "ჩამოტვირთვები"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "დღიური მომხმარებლები"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
 msgstr "ოდენობა, USD-ში"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "დამხმარეების რაოდენობა"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "მეტი ინფო..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "{0}-ის დეტალები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "კრებულები შეიქმნა"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
 msgstr "დამატებები, რომლებიც გამოიყენება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
 msgstr "შექმნილი დამატებები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
 msgstr "ჩამოტვირთული დამატებები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
 msgstr "განახლებული დამატებები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "მიმოხილვები გაკეთებულია"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "დარეგისტრებული მომხმარებლები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "გამომწერები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "შეფასებები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "გაყიდვები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "დაყენების რაოდ."
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "უცნობი"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
 msgstr "დამატებების მმართველი"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
 msgstr "დამატებების მმართველის პრომო"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
 msgstr "დამატებების მმართველის რჩეულები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
 msgstr "დამატებების მმართველის დაწვრილებით"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "ძიების შემოთავაზებები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "ძიების შედეგები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr "მთავარ გვერდზე დაწინაურებული"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr "მთავარ გვერდზე შემოთავაზებულებში"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr "მთავარ გვერდზე მზარდი მოთხოვნის"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr "მთავარ გვერდზე ყველაზე მოთხოვნადი"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "აღწერის გვერდი"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "აღწერის გვერდი (ქვემოთ)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "ინფორმაციის გვერდი (განვითარების არხი)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "ამასთან, ხშირად იყენებენ"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
 msgstr "ამ ავტორის სხვა პროდუქტები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr "დამოკიდებულებები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr "სარეკლამო"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "გაიცანით შემქმნელი"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "მომხმარებლის პროფილი"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "ვერსიის ისტორია"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "გაზიარება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "კატეგორიის გვერდები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "კოლექციები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr "განთავსება კატეგორიაში რჩეულები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr "განთავსება კატეგორიაში უმაღლესად შეფასებულები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr "განთავსება კატეგორიაში ყველაზე მოთხოვნადი"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
 msgstr "განთავსება კატეგორიაში ბოლოს დამატებულები"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr "რჩეულობის მიხედვით დახარისხებულის დათვალიერება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr "მომხმარებლის მიხედვით დახარისხებულის დათვალიერება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr "შეფასების მიხედვით დახარისხებულის დათვალიერება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr "შემქნელის მიხედვით დახარისხებულის დათვალიერება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr "სახელის მიხედვით დახარისხებულის დათვალიერება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr "მოთხოვნის მიხედვით დახარისხებულის დათვალიერება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr "განახლების თარიღის მიხედვით დახარისხებულის დათვალიერება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "მზარდი მოთხოვნის მიხედვით დახარისხებულის დათვალიერება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
 msgstr "შემოწირულობის საერთო რაოდენობა"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
 msgstr "შემოწირულობის საშუალო რაოდენობა"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "მოხმარება"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "ჩამოტვირთვების და ყოვედღიური მომხმარებლების რაოდენობა, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "ჩამოტვირთვების და ყოვედღიური მომხმარებლების რაოდენობა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "დაყენების და ყოვედღიური მომხმარებლების რაოდენობა, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "დაყენების და ყოვედღიური მომხმარებლების რაოდენობა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "ჩამოტვირთვები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "ჩამოტვირთვები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "ყოველდღიური მომხმარებლები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "ყოველდღიური მომხმარებლები {0}-იდან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
 msgstr "პროგრამები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
 msgstr "პროგრამები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "პლატფორმები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "პლატფორმები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "ენები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "ენები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
 msgstr "დამატების ვერსიები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "დამატების ვერსიები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
 msgstr "დამატების სტატუსი, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "დამატების სტატუსი {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "ჩამოტვირთვის წყაროები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "ჩამოტვირთვის წყაროები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "შემოწირულობა, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "შემოწირულობა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr "ვებ-გვერდის სტატისტიკა, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "ვებ-გვერდის სტატისტიკა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "დამატებების მოხმარება, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "დამატებების მოხმარება {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "ჩამოტვირთული დამატებები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "ჩამოტვირთული დამატებები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
 msgstr "შექმნილი დამატებები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "შექმნილი დამატებები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "განახლებული დამატებები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "განახლებული დამატებები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "გაკეთებული მიმოხილვები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "გაკეთებული მიმოხილვები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "დარეგისტრებული მომხმარებლები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "დარეგისტრებული მომხმარებლები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "შექმნილი კრებულები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "შექმნილი კრებულები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "გამომწერები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "გამომწერები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "შეფასებები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "შეფასებები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "გაყიდვები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "გაყიდვები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "დაყენების რაოდ. ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "დაყენებების რაოდ. {0}-დან {1}-მდე"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> ბოლო {1} დღეში"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> {1}-დან {2}-მდე"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "საშუალო <b>{0}</b> ბოლო {1} დღეში"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "მონაცემები არაა ხელმისაწვდომი."
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "თარიღი "
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "სხვა"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "დასაწყისისთვის აირჩიეთ პროგრამა"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "მიუთითეთ {0} დამატებისთვის {1} ვერსიის უმაღლესი მნიშვნელობა და მიწერეთ ავტორებს."
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "შეტყობინების მიწერა ავტორისთვის, რომლის {2} დამატებამ ვერ გაიარა შემოწმება."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
 msgstr "მიღება და ინსტალაცია"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
 msgstr "{0}-ში დამატება"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "ჩამოტვირთვა ახლავე"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "დამატება არ განახლებულა და ვერ იქნება ნაგულისხმევად თავსებადი."
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "თქვენ უნდა იყენებდეთ Firefox 10.0-ს ან უფრო მაღალ ვერსიას."
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla ეს ვერსია თქვენი Firefox-ის ვერსიასთან შეუთავსებლად მონიშნა."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "{0}-ის დაყენება მიუხედავად ყველაფრისა"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "{0}-ის ჩამოტვირთვა მიუხედავად ყველაფრისა"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "თქვენს პლატოფმრაზე ხელმისაწვდომი არაა"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "{0} {1}-სთვის არაა ხელმისაწვდომი"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
 msgstr "მუშაობს {app} ვერსიებთან: {min} - {max}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app}"
 msgstr "მუშაობს ვერსიასთან {app}"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "სხვა ვერსიების ნახვა"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "მხოლოდ Firefox-ზე — ჩამოტვირთეთ Firefox!"
 
-#: static/js/zamboni/buttons.js
 msgid "Download now"
 msgstr "ჩამოტვირთვა ახლავე"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr "Only available on Firefox Desktop"
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "ბოდიში, საძიებო მოდულის დასაინტსტალირებლად გესაჭირეობათ Mozilla-ზე დაფუძნებული ბრაუზერი (მაგალითად Firefox)."
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "ემატება რჩეულებში &hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "რჩეული იშლება &hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "რჩეულებში დამატება"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "რჩეულებიდან ამოღება"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "განხილვის პროცესში"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "კომენტარის დამატება"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "კომენტარი"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "ამ დამატების კრებულიდან ამოღება"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "ამოღება"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "ამ მომხმარებლის წვლილის შემტანებიდან ამოღება"
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "ელფოსტის მისამართი საჭიროა."
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "საკუთარი თავის წვლილის შემტანად დამატება არ შეგიძლიათ."
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "ეს მომხმარებელი უკვე დაამატეთ."
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "რჩეულებში დამატება"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "რჩეულებიდან ამოღება"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "ადევნების შეწყვეტა"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "თქვენი ბრაუზერს არ აქვს ვიდეო ნაჭდევების მხარდაჭერა"
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "ცვლილებები შენახულია"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr "შეიყვანეთ ავტორის ახალი ელ-ფოსტის მისამართი"
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "ფაილის ატვირთვისას წარმოიშვა შეცდომა."
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ფაილი"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} მიმოხილვა"
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "შეიტყვეთ მეტი"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "სურათის ცვლილებები მუშავდება"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "ელ-ფოსტის მისამართი უნდა იყოს ნამდვილი"
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "შედეგები ვერ მოიძებნა."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "{name} პირველმა მოინახულა ეს გვერდი."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "დასტური მიღებულია პროგრამის მიერ."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "დასტური არაა მიღებული პროგრამის მიერ."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "{name} პირველმა იხილა ეს დამატება."
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "იტვირთება&hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "ვერსიის შენიშვნები"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "შენიშვნები მიმომხილველთათვის"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "შენიშვნები ვერსიის შესახებ არ მოიძებნა"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr "ტექსტის განხილვა"
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "ნაპოვნი შენიშვნების განხილვა"
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr "განხილვების საშუალო რაოდ."
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "განხილვების რაოდენობა:"
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "იტვირთება...."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "დარჩენილია <b>{0}</b> სიმბოლო."
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "ვებ-საიტზე ტექნიკური მომსახურების გამო ეს ფუნქცია დროებით გამორთულია. გთხოვთ, შემოიარეთ მოგვიანებით."
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
 msgstr "ამ ლოკალიზაციის წაშლა"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "პაროლის სიძლიერე:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "დარჩენილია სულ მცირე {0} სიმბოლო."
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "მოთხოვნილი ინფორმაცია"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "დანიშნული"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "დუბლირება"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "უარყოფილია"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
 msgstr "მიღებულია"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "შედეგები ვერ მოიძებნა."
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "თემა"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "მიმომხილველი"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "სტატუსი"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "ყველა შემოწმება დასრულდა წარმატებით."
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "ეს შემოწმებები არ განხორციელებულა."
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "შემოწმება"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "შეცდომა"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "გაფრთხილება"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr "{0} სტრიქონი {1} სვეტი {2}"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1}"
 msgstr "{0} სტრიქონი {1}"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "შემოწმებები თავსებადობაზე"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "დამატებამ შემოწმება ვერ გაიარა."
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "დამატებამ შემოწმება გაიარა."
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} შეცდომა"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} გაფრთხილება"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} შენიშვნა"
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "დამოწმების დასრულება ვერ მოხერხდა ან დასრულდა ხარვეზებით"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "სერვერის შიდა შეცდომა"

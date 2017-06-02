@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-17 11:23+0000\n"
 "PO-Revision-Date: 2017-04-13 23:37+0000\n"
 "Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,133 +15,103 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} bintang"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "Ada masalah menghubungi server."
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "Pilih berkas..."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Pengaya anda harus diakhiri dengan .zip, .xpi, .crx, .jar atau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
 msgstr "{0}% komplet"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} dari {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "Batal"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "Mengunggah {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "Kesalahan dengan {0}"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "Kami telah memungkinkan linter baru untuk memproses Pengaya Anda. Pastikan untuk melaporkan masalah melalui GitHub"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Pengaya Anda gagal validasi dengan {0} kesalahan."
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;dan {0} lagi"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "Lihat laporan validasi lengkap"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "Mengvalidasi {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Menerima balasan kosong dari server; status: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "Kesalahan server tidak terduga saat mengesahkan."
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "Selesai validasi {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Waktu validasi pengaya Anda habis, akan ditinjau secara manual."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} peringatan."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} pesan."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Pengaya Anda telah divalidasi dengan tanpa kesalahan ataupun peringatan."
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "Pengiriman Anda akan ditandatangani secara otomatis."
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "Peningkatan WebExtension"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Kami membolehkan dan mengajurkan pembaruan tetapi Anda tidak dapat membalikkan proses ini. Sekali pengguna Anda memasang WebExtension, mereka tidak dapat memasang pengaya lawas."
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Mengalihkan pengaya lawas Firefox di MDN"
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Masukkan catatan versi yang rinci (dapat dilakukan di step berikutnya)."
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Jika pengaya Anda membutuhkan akun untuk situs web untuk diuji secara penuh, masukkan nama pengguna dan kata sandi cobaan di dalam Catatan untuk Pengulas (dapat dilakukan di langkah berikutnya)."
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Daftar cek pendaftaran pengaya"
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Tolong verifikasi poin berikut sebelum benar-benar mengirimkan. Ini mengurangi penundaan atau salah pengertian dalam proses ulasan:"
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -149,1022 +119,783 @@ msgstr ""
 "File Biner Hasil Kompilasi, dan juga skrip yang dikecilkan atau dikaburkan (tidak termasuk pustaka dikenal) , sumbernya harus dikirim terpisah untuk diulas. Pastikan anda menggunakan bidang "
 "pengunggah kode sumber untuk menghindari penolakan pengiriman Anda."
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proses pengsahan menemukan masalah yang dapat mengakibatkan penolakan:"
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr "Maaf, tidak ditemukan platform yang didukung."
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Tipe berkas yang Anda unggah tidak dikenal."
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "Anda membatalkan unggah."
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "Gambar harus dalam PNG atau JPG."
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "Video harus dalam WebM."
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "Ikuti Koleksi"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "Berhenti mengikuti"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "Mengikuti"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Tema ini tidak kompatibel dengan versi {0} Anda"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "Dilindungi Hak Cipta"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "Nama tema Anda"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "Ditandai untuk ulasan"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "Dibutuhkan masukan Anda"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "Ditandai untuk dihapus"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "Memperbarui hasil &hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "Kategori"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "Cari tema untuk <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "Cari aplikasi untuk <b>{0}</b>"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Cari pengaya untuk <b>{0}</b>"
 
-#: static/js/impala/users.js
 msgid "Use original"
 msgstr "Gunakan yang asli"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "Minggu ke {0}"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " unduhan"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "{0} pengguna"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "{0} pengaya"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "{0} koleksi"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "{0} ulasan"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "{0} penjualan"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "{0} pembayaran kembali"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "{0} pemasangan"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "Unggahan"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "Pengguna harian"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
 msgstr "Nilai, dalam USD"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "Jumlah Kontribusi"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "Info Lebih Lanjut..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "Detail untuk {0}"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "Koleksi Dibuat"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
 msgstr "Pengaya yang Dipakai"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
 msgstr "Pengaya yang Dibuat"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
 msgstr "Pengaya yang Diunduh"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
 msgstr "Pengaya yang Diperbarui"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "Ulasan yang Ditulis"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "Pendaftaran Pengguna"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "Pelanggan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "Peringkat"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "Penjualan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "Pemasangan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "Tidak diketahui"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
 msgstr "Pengelola Pengaya"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
 msgstr "Promo Pengelola Pengaya"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
 msgstr "Pengelola Pengaya yang Diutamakan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
 msgstr "Pengelola Pengaya Pelajari Lebih Lanjut"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "Saran Pencarian"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "Hasil Pencarian"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr "Promo Beranda"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr "Laman yang Diutamakan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr "Laman yang Akan Datang"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr "Laman Paling Populer"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "Detail Laman"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "Detail Laman (bawah)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "Detail Laman (Kanal Pengembangan)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "Sering Digunakan Dengan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
 msgstr "Yang Lain Oleh Penyusun"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr "Ketergantungan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr "Upsell"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "Temui Pengembang"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "Profil Pengguna"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "Riwayat Versi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "Berbagi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "Laman Kategori"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "Koleksi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr "Kategori Pendaratan Korsel yang Diutamakan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr "Kategori Pendaratan Peringkat Tertinggi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr "Kategori Pendaratan Paling Populer"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
 msgstr "Kategori Pendaratan Barusaja Ditambahkan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr "Mengurutkan Daftar Penjelajahan yang Diutamakan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr "Mengurutkan Daftar Penjelajahan Pengguna"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr "Mengurutkan Peringkat Daftar Penjelajahan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr "Mengurutkan Daftar Penjelajahan yang Dibuat"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr "Mengurutkan Daftar Penjelajahan Nama"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr "Mengurutkan Daftar Penjelajahan Populer"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr "Mengurutkan Daftar Penjelajahan Terbaru"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Mengurutkan Daftar Datang dan Pergi"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
 msgstr "Jumlah Total yang Dikontribusikan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
 msgstr "Kontribusi Rata-rata"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "Penggunaan"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Unduhan dan Pengguna Harian, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Unduhan dan Pengguna Harian dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Pemasangan dan Pengguna Harian, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Pemasangan dan Pengguna Harian dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "Unduhan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "Unduhan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "Pengguna Harian, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "Pengguna Harian dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
 msgstr "Aplikasi, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
 msgstr "Aplikasi dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "Platform, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "Platform dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "Bahasa, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "Bahasa dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
 msgstr "Versi Pengaya, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Versi Pengaya dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
 msgstr "Status Pengaya, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "Status Pengaya dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "Sumber Unggahan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "Sumber Unggahan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "Kontribusi, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "Kontribusi dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr "Metrik Situs, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Metrik Situs sejak {0} hingga {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "Pengaya yang dipakai, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Pengaya yang dipakai dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Pengaya yang Diunduh, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Pengaya yang Diunduh dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
 msgstr "Pengaya yang Dibuat, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Pengaya yang Dibuat dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "Pengaya yang Diperbarui, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Pengaya yang Diperbarui dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "Ulasan yang Ditulis, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "Ulasan yang Ditulis dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "Pendaftaran Pengguna, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "Pendaftaran Pengguna dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "Koleksi yang Dibuat, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "Koleksi yang Dibuat dari tanggal {0} sampai tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "Pelanggan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "Pelanggan dari tanggal {0} sampai tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "Peringkat, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "Peringkat dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "Penjualan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "Penjualan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "Pemasangan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "Pemasangan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> dalam {1} hari terakhir"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> dari tanggal {1} hingga tanggal {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "Rata-rata <b>{0}</b> dalam {1} hari terakhir"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "Tidak tersedia tanggal."
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "Tanggal"
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "Lainnya"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "Pilih aplikasi terlebih dulu"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Jadikan {0} pengaya menjadi versi terbaru {1} dan kirim email ke penyusun."
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Kirim email ke penyusun dari {2} pengaya yang gagal validasi."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
 msgstr "Terima dan Pasang"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
 msgstr "Tambahkan ke {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "Unduh Sekarang"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Pengaya belum diperbarui untuk mendukung kompatibel bawaan."
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Anda harus menggunakan Firefox 10.0 atau lebih baru."
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "Mozilla telah menandai versi ini tidak kompatibel dengan versi Firefox anda."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "Pasang {0} saja"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "Unduh {0} saja"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "Tidak tersedia untuk platform Anda"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "{0} {1} tidak tersedia"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
 msgstr "Bekerja dengan {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app}"
 msgstr "Bekerja dengan {app}"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "Lihat versi lainnya"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
 
-#: static/js/zamboni/buttons.js
 msgid "Download now"
 msgstr "Unduh sekarang"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr "Hanya tersedia di Firefox Desktop"
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Maaf, Anda membutuhkan peramban berbasis Mozilla (seperti Firefox) untuk memasang plugin pencari."
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "Tambahkan ke Favorit&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "Hapus Favorit&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "Tambah ke Favorit"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "Hapus dari Favorit"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "Tertunda"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "Tambahkan komentar"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "Komentar"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "Hapus pengaya ini dari koleksi"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "Hapus"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "Hapus pengguna ini sebagai kontributor"
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "Dibutuhkan alamat email."
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "Anda tidak dapat menambahkan diri sendiri sebagai kontributor."
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "Anda telah menambahkan pengguna tersebut."
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "Tambah ke favorit"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "Hapus dari favorit"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "Berhenti mengikuti"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "Peramban Anda tidak mendukung tag video"
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "Perubahan Disimpan"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr "Ketik alamat surel baru penyusun"
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "Ada kesalahan mengunggah berkas Anda."
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} berkas"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} ulasan pengguna"
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "Pelajari selengkapnya"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "Perubahan gambar sedang diproses"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "Harus alamat surel valid."
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "Tidak ditemukan hasil."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "{name} melihat laman ini terlebih dahulu."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "Tanda konfirmasi diperiksa oleh aplikasi."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "Tanda konfirmasi tidak diperiksa oleh aplikasi."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "{name} melihat pengaya ini terlebih dulu."
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "Memuat&hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "Catatan Versi"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "Catatan untuk Pengulas"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "Tidak ditemukan catatan versi"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr "Teks Ulasan"
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "Catatan ulasan ditemukan"
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr "Ulasan Rata-rata"
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Jumlah Ulasan"
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Memuat..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "Sisa <b>{0}</b> karakter."
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Fitur ini sementara dinonaktifkan saat kita melakukan pemeliharaan situs. Periksa kembali nanti."
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
 msgstr "Hapus pelokalan ini"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "Kekuatan kata sandi:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Paling sedikit sisa {0} karakter."
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "Info yang Diminta"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "Ditandai"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "Duplikat"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "Ditolak"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
 msgstr "Disetujui"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "Tidak ditemukan hasil"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "Tema"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "Pengulas"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "Status"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "Semua tes lulus dengan sukses."
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "Tes tersebut tidak dijalankan."
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "Tes"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "Masalah"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Peringatan"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr "{0} baris {1} kolom {2}"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1}"
 msgstr "{0} baris {1}"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "Tes Kompatibilitas"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "Pengaya gagal validasi."
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "Pengaya lulus validasi."
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} masalah"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} peringatan"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} pernyataan"
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "Tugas validasi tidak selesai atau selesai dengan masalah"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Masalah server internal"

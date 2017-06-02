@@ -7,7 +7,7 @@ from django.conf import settings
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
 
@@ -67,14 +67,15 @@ class BaseAuthorFormSet(BaseModelFormSet):
         data = filter(None, [f.cleaned_data for f in self.forms
                              if not f.cleaned_data.get('DELETE', False)])
         if not any(d['role'] == amo.AUTHOR_ROLE_OWNER for d in data):
-            raise forms.ValidationError(_('Must have at least one owner.'))
+            raise forms.ValidationError(
+                ugettext('Must have at least one owner.'))
         if not any(d['listed'] for d in data):
             raise forms.ValidationError(
-                _('At least one author must be listed.'))
+                ugettext('At least one author must be listed.'))
         users = [d['user'] for d in data]
         if sorted(users) != sorted(set(users)):
             raise forms.ValidationError(
-                _('An author can only be listed once.'))
+                ugettext('An author can only be listed once.'))
 
 
 AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
@@ -92,7 +93,7 @@ class DeleteForm(happyforms.Form):
     def clean_slug(self):
         data = self.cleaned_data
         if not data['slug'] == self.addon.slug:
-            raise forms.ValidationError(_('Slug incorrect.'))
+            raise forms.ValidationError(ugettext('Slug incorrect.'))
 
 
 class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
@@ -104,7 +105,7 @@ class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
         link = (u'<a class="xx extra" href="%s" target="_blank" '
                 u'rel="noopener noreferrer">%s</a>')
         if hasattr(license, 'url'):
-            details = link % (license.url, _('Details'))
+            details = link % (license.url, ugettext('Details'))
             self.choice_label = mark_safe(self.choice_label + details)
 
 
@@ -121,10 +122,10 @@ class LicenseForm(AMOModelForm):
         choices=[], coerce=int,
         widget=LicenseRadioSelect(attrs={'class': 'license'}))
     name = forms.CharField(widget=TranslationTextInput(),
-                           label=_lazy(u"What is your license's name?"),
-                           required=False, initial=_lazy('Custom License'))
+                           label=_(u'What is your license\'s name?'),
+                           required=False, initial=_('Custom License'))
     text = forms.CharField(widget=TranslationTextarea(), required=False,
-                           label=_lazy(u'Provide the text of your license.'))
+                           label=_(u'Provide the text of your license.'))
 
     def __init__(self, *args, **kwargs):
         self.version = kwargs.pop('version', None)
@@ -139,7 +140,7 @@ class LicenseForm(AMOModelForm):
 
         cs = [(x.builtin, x)
               for x in License.objects.builtins().filter(on_form=True)]
-        cs.append((License.OTHER, _('Other')))
+        cs.append((License.OTHER, ugettext('Other')))
         self.fields['builtin'].choices = cs
         if (self.version and
                 self.version.channel == amo.RELEASE_CHANNEL_UNLISTED):
@@ -151,7 +152,7 @@ class LicenseForm(AMOModelForm):
 
     def clean_name(self):
         name = self.cleaned_data['name']
-        return name.strip() or _('Custom License')
+        return name.strip() or ugettext('Custom License')
 
     def clean(self):
         data = self.cleaned_data
@@ -159,7 +160,7 @@ class LicenseForm(AMOModelForm):
             return data
         elif data['builtin'] == License.OTHER and not data['text']:
             raise forms.ValidationError(
-                _('License text is required when choosing Other.'))
+                ugettext('License text is required when choosing Other.'))
         return data
 
     def get_context(self):
@@ -215,17 +216,17 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
     """Form for editing the add-ons EULA and privacy policy."""
     has_eula = forms.BooleanField(
         required=False,
-        label=_lazy(u'This add-on has an End-User License Agreement'))
+        label=_(u'This add-on has an End-User License Agreement'))
     eula = TransField(
         widget=TransTextarea(), required=False,
-        label=_lazy(u"Please specify your add-on's "
-                    "End-User License Agreement:"))
+        label=_(u'Please specify your add-on\'s '
+                u'End-User License Agreement:'))
     has_priv = forms.BooleanField(
-        required=False, label=_lazy(u"This add-on has a Privacy Policy"),
+        required=False, label=_(u'This add-on has a Privacy Policy'),
         label_suffix='')
     privacy_policy = TransField(
         widget=TransTextarea(), required=False,
-        label=_lazy(u"Please specify your add-on's Privacy Policy:"))
+        label=_(u'Please specify your add-on\'s Privacy Policy:'))
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon', None)
@@ -264,8 +265,8 @@ def ProfileForm(*args, **kw):
     addon = kw['instance']
     fields_required = (kw.pop('required', False) or
                        bool(addon.takes_contributions))
-    the_reason_label = _('Why did you make this add-on?')
-    the_future_label = _("What's next for this add-on?")
+    the_reason_label = ugettext('Why did you make this add-on?')
+    the_future_label = ugettext('What\'s next for this add-on?')
 
     class _Form(TranslationFormMixin, happyforms.ModelForm):
         the_reason = TransField(widget=TransTextarea(),
@@ -302,9 +303,9 @@ class CharityForm(happyforms.ModelForm):
 
 
 class ContribForm(TranslationFormMixin, happyforms.ModelForm):
-    RECIPIENTS = (('dev', _lazy(u'The developers of this add-on')),
-                  ('moz', _lazy(u'The Mozilla Foundation')),
-                  ('org', _lazy(u'An organization of my choice')))
+    RECIPIENTS = (('dev', _(u'The developers of this add-on')),
+                  ('moz', _(u'The Mozilla Foundation')),
+                  ('org', _(u'An organization of my choice')))
 
     recipient = forms.ChoiceField(
         choices=RECIPIENTS,
@@ -347,10 +348,11 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
     def clean_suggested_amount(self):
         amount = self.cleaned_data['suggested_amount']
         if amount is not None and amount <= 0:
-            msg = _(u'Please enter a suggested amount greater than 0.')
+            msg = ugettext(u'Please enter a suggested amount greater than 0.')
             raise forms.ValidationError(msg)
         if amount > settings.MAX_CONTRIBUTION:
-            msg = _(u'Please enter a suggested amount less than ${0}.').format(
+            msg = ugettext(
+                u'Please enter a suggested amount less than ${0}.').format(
                 settings.MAX_CONTRIBUTION)
             raise forms.ValidationError(msg)
         return amount
@@ -359,13 +361,13 @@ class ContribForm(TranslationFormMixin, happyforms.ModelForm):
 def check_paypal_id(paypal_id):
     if not paypal_id:
         raise forms.ValidationError(
-            _('PayPal ID required to accept contributions.'))
+            ugettext('PayPal ID required to accept contributions.'))
     try:
         valid, msg = paypal.check_paypal_id(paypal_id)
         if not valid:
             raise forms.ValidationError(msg)
     except socket.error:
-        raise forms.ValidationError(_('Could not validate PayPal id.'))
+        raise forms.ValidationError(ugettext('Could not validate PayPal id.'))
 
 
 class WithSourceMixin(object):
@@ -373,10 +375,10 @@ class WithSourceMixin(object):
         source = self.cleaned_data.get('source')
         if source and not source.name.endswith(VALID_SOURCE_EXTENSIONS):
             raise forms.ValidationError(
-                _('Unsupported file type, please upload an archive file '
-                  '{extensions}.'.format(
-                      extensions=VALID_SOURCE_EXTENSIONS))
-            )
+                ugettext(
+                    'Unsupported file type, please upload an archive '
+                    'file {extensions}.'.format(
+                        extensions=VALID_SOURCE_EXTENSIONS)))
         return source
 
 
@@ -393,7 +395,10 @@ class SourceFileInput(forms.widgets.ClearableFileInput):
         output = super(SourceFileInput, self).render(name, value, attrs)
         if value and hasattr(value, 'instance'):
             url = reverse('downloads.source', args=(value.instance.pk, ))
-            params = {'url': url, 'output': output, 'label': _('View current')}
+            params = {
+                'url': url,
+                'output': output,
+                'label': ugettext('View current')}
             output = '<a href="%(url)s">%(label)s</a> %(output)s' % params
         return output
 
@@ -442,7 +447,7 @@ class CompatForm(happyforms.ModelForm):
         min = self.cleaned_data.get('min')
         max = self.cleaned_data.get('max')
         if not (min and max and min.version_int <= max.version_int):
-            raise forms.ValidationError(_('Invalid version range.'))
+            raise forms.ValidationError(ugettext('Invalid version range.'))
         return self.cleaned_data
 
 
@@ -473,7 +478,7 @@ class BaseCompatFormSet(BaseModelFormSet):
 
         if not apps:
             raise forms.ValidationError(
-                _('Need at least one compatible application.'))
+                ugettext('Need at least one compatible application.'))
 
 
 CompatFormSet = modelformset_factory(
@@ -487,16 +492,16 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
         queryset=FileUpload.objects,
         to_field_name='uuid',
         error_messages={
-            'invalid_choice': _lazy(u'There was an error with your '
-                                    u'upload. Please try again.')
+            'invalid_choice': _(u'There was an error with your '
+                                u'upload. Please try again.')
         }
     )
     admin_override_validation = forms.BooleanField(
-        required=False, label=_lazy(u'Override failed validation'))
+        required=False, label=_(u'Override failed validation'))
     source = forms.FileField(required=False)
     is_manual_review = forms.BooleanField(
         initial=False, required=False,
-        label=_lazy(u'Submit my add-on for manual review.'))
+        label=_(u'Submit my add-on for manual review.'))
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -508,16 +513,17 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
                 self.cleaned_data['admin_override_validation'] and
                 acl.action_allowed(self.request,
                                    amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)):
-            raise forms.ValidationError(_(u'There was an error with your '
-                                          u'upload. Please try again.'))
+            raise forms.ValidationError(
+                ugettext(u'There was an error with your upload. '
+                         u'Please try again.'))
 
 
 class StandaloneValidationForm(AddonUploadForm):
     is_unlisted = forms.BooleanField(
         initial=False,
         required=False,
-        label=_lazy(u'Do not list my add-on on this site'),
-        help_text=_lazy(
+        label=_(u'Do not list my add-on on this site'),
+        help_text=_(
             u'Check this option if you intend to distribute your add-on on '
             u'your own and only need it to be signed by Mozilla.'))
 
@@ -533,9 +539,9 @@ class NewUploadForm(AddonUploadForm):
 
     beta = forms.BooleanField(
         required=False,
-        help_text=_lazy(u'A file with a version ending with '
-                        u'a|alpha|b|beta|pre|rc and an optional number is '
-                        u'detected as beta.'))
+        help_text=_(u'A file with a version ending with '
+                    u'a|alpha|b|beta|pre|rc and an optional number is '
+                    u'detected as beta.'))
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon', None)
@@ -562,7 +568,7 @@ class NewUploadForm(AddonUploadForm):
     def clean(self):
         if self.version and not self.version.is_allowed_upload():
             raise forms.ValidationError(
-                _('You cannot upload any more files for this version.'))
+                ugettext('You cannot upload any more files for this version.'))
 
         if not self.errors:
             self._clean_upload()
@@ -570,7 +576,8 @@ class NewUploadForm(AddonUploadForm):
 
             if self.version:
                 if parsed_data['version'] != self.version.version:
-                    raise forms.ValidationError(_("Version doesn't match"))
+                    raise forms.ValidationError(
+                        ugettext('Version doesn\'t match'))
             elif self.addon:
                 # Make sure we don't already have this version.
                 existing_versions = Version.unfiltered.filter(
@@ -578,17 +585,19 @@ class NewUploadForm(AddonUploadForm):
                 if existing_versions.exists():
                     version = existing_versions[0]
                     if version.deleted:
-                        msg = _(u'Version {version} was uploaded before and '
-                                u'deleted.')
+                        msg = ugettext(
+                            u'Version {version} was uploaded before and '
+                            u'deleted.')
                     elif version.unreviewed_files:
                         next_url = reverse('devhub.submit.version.details',
                                            args=[self.addon.slug, version.pk])
                         msg = jinja2.Markup('%s <a href="%s">%s</a>' % (
-                            _(u'Version {version} already exists.'),
+                            ugettext(u'Version {version} already exists.'),
                             next_url,
-                            _(u'Continue with existing upload instead?')))
+                            ugettext(u'Continue with existing upload instead?')
+                        ))
                     else:
-                        msg = _(u'Version {version} already exists.')
+                        msg = ugettext(u'Version {version} already exists.')
                     raise forms.ValidationError(
                         msg.format(version=parsed_data['version']))
             self.cleaned_data['parsed_data'] = parsed_data
@@ -627,12 +636,12 @@ class BaseFileFormSet(BaseModelFormSet):
 
             if amo.PLATFORM_ALL.id in platforms and len(files) > 1:
                 raise forms.ValidationError(
-                    _('The platform All cannot be combined '
-                      'with specific platforms.'))
+                    ugettext('The platform All cannot be combined '
+                             'with specific platforms.'))
 
             if sorted(platforms) != sorted(set(platforms)):
                 raise forms.ValidationError(
-                    _('A platform can only be chosen once.'))
+                    ugettext('A platform can only be chosen once.'))
 
 
 FileFormSet = modelformset_factory(File, formset=BaseFileFormSet,
@@ -648,11 +657,11 @@ class DescribeForm(AddonFormBase):
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
     has_priv = forms.BooleanField(
-        required=False, label=_lazy(u"This add-on has a Privacy Policy"),
+        required=False, label=_(u'This add-on has a Privacy Policy'),
         label_suffix='')
     privacy_policy = TransField(
         widget=TransTextarea(), required=False,
-        label=_lazy(u"Please specify your add-on's Privacy Policy:"))
+        label=_(u'Please specify your add-on\'s Privacy Policy:'))
 
     class Meta:
         model = Addon
@@ -733,11 +742,11 @@ class AdminForm(happyforms.ModelForm):
 
 class CheckCompatibilityForm(happyforms.Form):
     application = forms.ChoiceField(
-        label=_lazy(u'Application'),
+        label=_(u'Application'),
         choices=[(a.id, a.pretty) for a in amo.APP_USAGE])
     app_version = forms.ChoiceField(
-        label=_lazy(u'Version'),
-        choices=[('', _lazy(u'Select an application first'))])
+        label=_(u'Version'),
+        choices=[('', _(u'Select an application first'))])
 
     def __init__(self, *args, **kw):
         super(CheckCompatibilityForm, self).__init__(*args, **kw)
@@ -789,8 +798,8 @@ def DependencyFormSet(*args, **kw):
             form_count = len([f for f in self.forms
                               if not f.cleaned_data.get('DELETE', False)])
             if form_count > 3:
-                error = _('There cannot be more than 3 required add-ons.')
-                raise forms.ValidationError(error)
+                raise forms.ValidationError(
+                    ugettext('There cannot be more than 3 required add-ons.'))
 
     FormSet = modelformset_factory(AddonDependency, formset=_FormSet,
                                    form=_Form, extra=0, can_delete=True)
@@ -798,7 +807,7 @@ def DependencyFormSet(*args, **kw):
 
 
 class DistributionChoiceForm(happyforms.Form):
-    LISTED_LABEL = _lazy(
+    LISTED_LABEL = _(
         u'On this site. <span class="helptext">'
         u'Your submission will be listed on this site and the Firefox '
         u'Add-ons Manager for millions of users, after it passes code '
@@ -806,7 +815,7 @@ class DistributionChoiceForm(happyforms.Form):
         u'add-on will also be considered for Mozilla promotions and '
         u'contests. Self-distribution of the reviewed files is also '
         u'possible.</span>')
-    UNLISTED_LABEL = _lazy(
+    UNLISTED_LABEL = _(
         u'On your own. <span class="helptext">'
         u'Your submission will be immediately signed for '
         u'self-distribution. Updates should be handled by you via an '

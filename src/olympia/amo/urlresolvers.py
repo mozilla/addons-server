@@ -52,6 +52,7 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
     # Blank out the script prefix since we add that in prefixer.fix().
     if prefixer:
         prefix = prefix or '/'
+
     url = django_reverse(viewname, urlconf, args, kwargs, prefix, current_app)
     if prefixer and add_prefix:
         return prefixer.fix(url)

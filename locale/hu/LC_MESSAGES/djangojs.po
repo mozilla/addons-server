@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-02 11:20+0000\n"
+"POT-Creation-Date: 2017-05-17 11:23+0000\n"
 "PO-Revision-Date: 2016-10-25 12:17+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -16,139 +16,109 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} csillag"
 msgstr[1] "{0} csillag"
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
 msgstr "Probléma történt a kiszolgálóhoz történő csatlakozás közben."
 
-#: static/js/common/upload-addon.js
 msgid "Select a file..."
 msgstr "Fájl kiválasztása…"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Kiegészítője végződése .zip, .xpi, .crx, .jar vagy .xml legyen"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js
 #, python-format
 msgid "{0}% complete"
 msgstr "{0}% kész"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
-#: static/js/common/upload-addon.js
 msgid "Cancel"
 msgstr "Mégsem"
 
-#: static/js/common/upload-addon.js
 msgid "Uploading {0}"
 msgstr "{0} feltöltése"
 
-#: static/js/common/upload-addon.js
 msgid "Error with {0}"
 msgstr "Hiba ezzel: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "Egy új elemzőt engedélyeztünk a kiegészítője feldolgozásához. Kérjük jelentse az esetleges problémákat a GitHubon"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "A kiegészítő az ellenőrzése {0} hiba miatt sikertelen."
 msgstr[1] "A kiegészítő az ellenőrzése {0} hiba miatt sikertelen."
 
-#: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; és további {0}"
 msgstr[1] "&hellip; és további {0}"
 
-#: static/js/common/upload-addon.js
 msgid "See full validation report"
 msgstr "Teljes ellenőrzési jelentés megjelenítése"
 
-#: static/js/common/upload-addon.js
 msgid "Validating {0}"
 msgstr "{0} ellenőrzése"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Üres válasz érkezett a kiszolgálótól; állapot: {0}"
 
-#: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
 msgstr "Az ellenőrzés közben váratlan hiba történt."
 
-#: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
 msgstr "{0} ellenőrzése befejeződött"
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Időtúllépés történt a kiegészítő érvényesítése közben, kézi felülvizsgálatra kerül."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "A kiegészítő hiba nélkül és {0} figyelmeztetéssel átment az ellenőrzésen."
 msgstr[1] "A kiegészítő hiba nélkül és {0} figyelmeztetéssel átment az ellenőrzésen."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "A kiegészítő hiba nélkül és {0} üzenettel átment az ellenőrzésen."
 msgstr[1] "A kiegészítő hiba nélkül és {0} üzenettel átment az ellenőrzésen."
 
-#: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "A kiegészítő hiba és figyelmeztetés nélkül átment az ellenőrzésen."
 
-#: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "A benyújtása aláírására automatikusan sor kerül."
 
-#: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
 msgstr "WebExtension frissítés"
 
-#: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem visszafordítható. Ha a felhasználók telepítik a WebExtensiont, akkor nem lesznek képesek telepíteni az örökölt kiegészítőt."
 
-#: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Egy örökölt Firefox kiegészítő portolása az MDN-en"
 
-#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben is megteheti)."
 
-#: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
 "a következő lépésben is megteheti)."
 
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
 
-#: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Kérjük, ellenőrizze a következő pontokat, mielőtt befejezi a beküldést. Ez csökkenti a vizsgálathoz szükséges időt és a félreértéseket:"
 
-#: static/js/common/upload-addon.js
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -156,1031 +126,792 @@ msgstr ""
 "A lefordított binárisoknak, mint ahogyan a minimalizált vagy olvashatatlanná tett parancsfájloknak is (kivéve az ismert könyvtárakat) külön kell beküldeni a forrását ellenőrzésre. Használja a "
 "forráskódfeltöltés mezőt, hogy elkerülje a beküldés visszautasítását."
 
-#: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Az ellenőrzési folyamat ezeket a problémákat találta, amik elutasításhoz vezethetnek:"
 
-#: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
 msgstr "Elnézést, nem található támogatott platform."
 
-#: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "A feltöltött fájl típusa nem ismerhető fel."
 
-#: static/js/common/upload-base.js
 msgid "You cancelled the upload."
 msgstr "A feltöltés megszakítva."
 
-#: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
 
-#: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
 msgstr "A videónak WebM formátumban kell lennie."
 
-#: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "Gyűjtemény követése"
 
-#: static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "Követés leállítása"
 
-#: static/js/impala/collections.js
 msgid "Following"
 msgstr "Követés"
 
 #. L10n: {0} is an app name.
-#: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "A téma nem kompatibilis ezzel a {0} verzióval"
 
-#: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "Minden jog fenntartva"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons – Nevezd meg! 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons – Nevezd meg! – Ne add el! 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons – Nevezd meg! – Ne add el! – Ne változtasd! 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons – Nevezd meg! – Ne add el! – Így add tovább! 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons – Nevezd meg! – Ne változtasd! 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons – Nevezd meg! – Így add tovább! 3.0"
 
-#: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "Téma neve"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "Vizsgálatra jelölve"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "Az adatok kitöltése kötelező"
 
-#: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "Törlésre jelölve"
 
-#: static/js/impala/search.js
 msgid "Updating results&hellip;"
 msgstr "Eredmény frissítése&hellip;"
 
-#: static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "Kategória"
 
-#: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "<b>{0}</b> téma keresése"
 
-#: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "<b>{0}</b> appok keresése"
 
-#: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> kiegészítő keresése"
 
-#: static/js/impala/users.js
 msgid "Use original"
 msgstr "Eredeti használata"
 
-#: static/js/impala/stats/chart.js
 msgid "Week of {0}"
 msgstr "{0}. hét"
 
-#: static/js/impala/stats/chart.js
 msgid " downloads"
 msgstr " letöltés"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} users"
 msgstr "{0} felhasználó"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
 msgstr "{0} kiegészítő"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} collections"
 msgstr "{0} gyűjtemény"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} reviews"
 msgstr "{0} értékelés"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} sales"
 msgstr "{0} eladás"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} refunds"
 msgstr "{0} visszatérítés"
 
-#: static/js/impala/stats/chart.js
 msgid "{0} installs"
 msgstr "{0} telepítés"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
 msgstr "Letöltések"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
 msgstr "Napi felhasználók"
 
-#: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
 msgstr "Mennyiség, USD-ben"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
 msgstr "Hozzájárulások száma"
 
-#: static/js/impala/stats/chart.js
 msgid "More Info..."
 msgstr "Tovább…"
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js
 msgid "Details for {0}"
 msgstr "{0} részletei"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
 msgstr "Létrehozott gyűjtemények"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
 msgstr "Használt kiegészítők"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
 msgstr "Létrehozott kiegészítők"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
 msgstr "Letöltött kiegészítők"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
 msgstr "Frissített kiegészítők"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
 msgstr "Megírt értékelések"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
 msgstr "Regisztrációk"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
 msgstr "Feliratkozók"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
 msgstr "Értékelések"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales"
 msgstr "Eladások"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs"
 msgstr "Telepítések"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
 msgstr "Kiegészítőkezelő"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
 msgstr "Kiegészítőkezelő – bemutató"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
 msgstr "Kiegészítőkezelő – kiemelt kiegészítők"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
 msgstr "Kiegészítőkezelő – tudjon meg többet"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
 msgstr "Keresési javaslatok"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
 msgstr "Keresési eredmények"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
 msgstr "Kezdőlap – bemutató"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
 msgstr "Kiemelt kezdőlap"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
 msgstr "Ígéretes kezdőlap"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
 msgstr "Legnépszerűbb kezdőlap"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
 msgstr "Részletek oldal"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
 msgstr "Részletek oldal (alul)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
 msgstr "Részletek oldal (Fejlesztői csatorna)"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
 msgstr "Gyakran használt ezzel:"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
 msgstr "A szerző további munkái"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
 msgstr "Függőségek"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
 msgstr "Bővítés"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
 msgstr "Ismerje meg a fejlesztőt"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
 msgstr "Felhasználói profil"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Version History"
 msgstr "Verziótörténet"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
 msgstr "Megosztás"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
 msgstr "Kategória oldalak"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections"
 msgstr "Gyűjtemények"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
 msgstr "Kategória nyitólap kiemelt körhinta"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
 msgstr "Kategória nyitólap legjobb értékelés"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
 msgstr "Kategória nyitólap legnépszerűbb"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
 msgstr "Kategória nyitólap nemrég hozzáadott"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
 msgstr "„Kiemelt” böngészési lista rendezése"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
 msgstr "„Felhasználók” böngészési lista rendezése"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
 msgstr "„Értékelés” böngészési lista rendezése"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
 msgstr "„Létrehozva” böngészési lista rendezése"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
 msgstr "„Név” böngészési lista rendezése"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
 msgstr "„Legnépszerűbb” böngészési lista rendezése"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
 msgstr "„Frissítve” böngészési lista rendezése"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "„Ígéretes” böngészési lista rendezése"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
 msgstr "Teljes adomány"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
 msgstr "Átlagos adomány"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Usage"
 msgstr "Használat"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Letöltések és felhasználók az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Letöltések és felhasználók {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Telepítések és felhasználók az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Letöltések és felhasználók {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
 msgstr "Letöltések az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
 msgstr "Letöltések {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
 msgstr "Felhasználók az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
 msgstr "Felhasználók {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
 msgstr "Alkalmazások az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
 msgstr "Alkalmazások {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms, last {0} days"
 msgstr "Platformok az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Platforms from {0} to {1}"
 msgstr "Platformok {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
 msgstr "Nyelvek az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
 msgstr "Nyelvek {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
 msgstr "Kiegészítő verziói az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Kiegészítő verziói {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
 msgstr "Kiegészítő állapota az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "Kiegészítő állapota {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
 msgstr "Letöltési források az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
 msgstr "Letöltési források {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions, last {0} days"
 msgstr "Adományok az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Contributions from {0} to {1}"
 msgstr "Adományok {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics, last {0} days"
 msgstr "Oldal metrikái az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Oldal metrikái {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "Használt kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Használt kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Letöltött kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Letöltött kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
 msgstr "Létrehozott kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Létrehozott kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "Frissített kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Frissített kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written, last {0} days"
 msgstr "Megírt értékelések száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "Megírt értékelések száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
 msgstr "Regisztrációk száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
 msgstr "Regisztrációk száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
 msgstr "Létrehozott gyűjtemények az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
 msgstr "Létrehozott gyűjtemények {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
 msgstr "Feliratkozók az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
 msgstr "Feliratkozók {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
 msgstr "Értékelések az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
 msgstr "Értékelések {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
 msgstr "Eladások az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
 msgstr "Eladások {0} és {1} között"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
 msgstr "Telepítések az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
 msgstr "Telepítések száma {0} és {1} között"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> az utolsó {1} napban"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> {1} és {2} között"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "átlagosan <b>{0}</b> az elmúlt {1} napban"
 
-#: static/js/impala/stats/overview.js
 msgid "No data available."
 msgstr "Nincs dátum."
 
-#: static/js/impala/stats/table.js
 msgid "Date"
 msgstr "Dátum"
 
-#: static/js/impala/stats/topchart.js
 msgid "Other"
 msgstr "Egyéb"
 
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "Először válasszon ki alkalmazást"
 
-#: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "{0} kiegészítő beállítása {1} legmagasabb verzióra, és levélküldés a szerzőnek."
 msgstr[1] "{0} kiegészítők beállítása {1} legmagasabb verzióra, és levélküldés a szerzőknek."
 
-#: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "E-mail küldése a(z) {2} kiegészítő szerzőjének, amely nem mentek át az ellenőrzésen."
 msgstr[1] "E-mail küldése a(z) {2} kiegészítők szerzőjének, amelyek nem mentek át az ellenőrzésen."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/zamboni/buttons.js
 msgid "Accept and Install"
 msgstr "Elfogadás és telepítés"
 
-#: static/js/zamboni/buttons.js
 msgid "Add to {0}"
 msgstr "Hozzáadás ehhez: {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download Now"
 msgstr "Letöltés most"
 
-#: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "A kiegészítő nem lett frissítve, hogy támogassa az alapértelmezett kompatibilitást."
 
-#: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Firefox 10.0 vagy annál frissebb verziót kell használnia."
 
-#: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
 msgstr "A Mozilla szerint ez a verzió nem működik a Firefox verziójával."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
 msgstr "Telepítés mindenképpen erre: {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
 msgstr "Letöltés mindenképpen erre: {0}"
 
-#: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
 msgstr "Nem érhető el ezen a platformon"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
 msgstr "Nem érhető el a(z) {0} {1} verzióhoz"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
 msgstr "Ezzel működik: {app} {min} - {max}"
 
-#: static/js/zamboni/buttons.js
 msgid "Works with {app}"
 msgstr "Ezzel működik: {app}"
 
-#: static/js/zamboni/buttons.js
 msgid "View other versions"
 msgstr "További verziók megtekintése"
 
-#: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Csak a Firefoxszal – szerezze be a Firefoxot most!"
 
-#: static/js/zamboni/buttons.js
 msgid "Download now"
 msgstr "Letöltés most"
 
-#: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
 msgstr "Csak a Firefox asztali változatán érhető el"
 
-#: static/js/zamboni/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "A keresőszolgáltatások telepítéséhez szükség van egy Mozilla-alapú böngészőre (pl. Firefox)."
 
-#: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "Hozzáadás a Kedvencekhez&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "Eltávolítás a Kedvencekből&hellip;"
 
-#: static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "Hozzáadás a Kedvencekhez"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "Eltávolítás a Kedvencekből"
 
-#: static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "Folyamatban"
 
-#: static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "Megjegyzés hozzáadása"
 
-#: static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "Megjegyzés"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "Kiegészítő eltávolítása a gyűjteményből"
 
-#: static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "Eltávolítás"
 
-#: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "Felhasználó eltávolítása a közreműködők közül"
 
-#: static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "Az e-mail cím megadása kötelező."
 
-#: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "Önmagát nem adhatja hozzá közreműködőnek."
 
-#: static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "Már hozzáadta ezt a felhasználót."
 
-#: static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "Hozzáadás a kedvencekhez"
 
-#: static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "Eltávolítás a kedvencekből"
 
-#: static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "Követés megszüntetése"
 
-#: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
 msgstr "A böngésző nem támogatja a video elemet"
 
-#: static/js/zamboni/devhub.js
 msgid "Changes Saved"
 msgstr "Változások lementve"
 
-#: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
 msgstr "Adja meg az új szerző e-mailcímét"
 
-#: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
 msgstr "Hiba történt a fájl feltöltésekor."
 
-#: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} fájl"
 msgstr[1] "{files} fájl"
 
-#: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} felhasználói értékelés"
 msgstr[1] "{reviews} felhasználói értékelés"
 
-#: static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "Tudjon meg többet"
 
-#: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "A kép módosítása folyamatban van"
 
-#: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "Érvényes e-mail címnek kell lennie."
 
-#: static/js/zamboni/devhub_search.js
 msgid "No results found."
 msgstr "Nincs találat."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "{name} nézte meg először az oldalt."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "Az app ellenőrizte a fogadást."
 
-#: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "Az app nem ellenőrizte a fogadást."
 
-#: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "{name} nézte meg először a kiegészítőt."
 
-#: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "Betöltés&hellip;"
 
-#: static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "Megjegyzések a verzióhoz"
 
-#: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "Megjegyzés a vizsgálatot végzőknek"
 
-#: static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "Nincsenek megjegyzések a verzióhoz"
 
-#: static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr "Értékelés szövege"
 
-#: static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "Talált értékelési jegyzetek"
 
-#: static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr "Átlagos értékelések"
 
-#: static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Értékelések száma"
 
-#: static/js/zamboni/global.js
 msgid "Loading..."
 msgstr "Betöltés…"
 
 #. L10n: {0} is the number of characters left.
-#: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> karakter maradt."
 msgstr[1] "<b>{0}</b> karakter maradt."
 
-#: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Ez a funkció a weboldal karbantartása alatt, átmenetileg nem érhető el. Kérjük, látogasson vissza kicsit később."
 
-#: static/js/zamboni/l10n.js
 msgid "Remove this localization"
 msgstr "Honosítás eltávolítása"
 
-#: static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "Jelszó erőssége:"
 
-#: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "{0} karakter maradt."
 msgstr[1] "{0} karakter maradt."
 
-#: static/js/zamboni/themes_review.js
 msgid "Requested Info"
 msgstr "Kért információ"
 
-#: static/js/zamboni/themes_review.js
 msgid "Flagged"
 msgstr "Megjelölt"
 
-#: static/js/zamboni/themes_review.js
 msgid "Duplicate"
 msgstr "Másolat"
 
-#: static/js/zamboni/themes_review.js
 msgid "Rejected"
 msgstr "Elutasított"
 
-#: static/js/zamboni/themes_review.js
 msgid "Approved"
 msgstr "Jóváhagyott"
 
-#: static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "Nincs találat"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "Téma"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "Véleményező"
 
-#: static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "Állapot"
 
-#: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "Az összes teszten sikeresen átment."
 
-#: static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "Ezek a tesztek nem futottak le."
 
-#: static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "Tesztek"
 
-#: static/js/zamboni/validator.js
 msgid "Error"
 msgstr "Hiba"
 
-#: static/js/zamboni/validator.js
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
 msgstr "{0} {1}. sor {2}. oszlop"
 
-#: static/js/zamboni/validator.js
 msgid "{0} line {1}"
 msgstr "{0} {1}. sor"
 
-#: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "Kompatibilitás tesztek"
 
-#: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "A kiegészítő nem ment át a vizsgálaton."
 
-#: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "A kiegészítő átment a vizsgálaton."
 
-#: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} hiba"
 msgstr[1] "{0} hiba"
 
-#: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
-#: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} értesítés"
 msgstr[1] "{0} értesítés"
 
-#: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "Az ellenőrzés nem fejeződött be vagy hibát okozott"
 
-#: static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Belső kiszolgálóhiba"
