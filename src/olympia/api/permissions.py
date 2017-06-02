@@ -239,3 +239,23 @@ class AllowRelatedObjectPermissions(BasePermission):
 
     def __call__(self):
         return self
+
+
+class PreventActionPermission(BasePermission):
+    """
+    Allow access except for a given action.
+    """
+    def __init__(self, action):
+        self.action = action
+
+    def has_permission(self, request, view):
+        return getattr(view, 'action', '') != self.action
+
+    def has_object_permission(self, request, view, obj):
+        return True
+
+    def __call__(self, *a):
+        """
+        ignore DRF's nonsensical need to call this object.
+        """
+        return self

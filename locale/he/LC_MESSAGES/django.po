@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-31 22:44+0000\n"
+"PO-Revision-Date: 2017-06-01 18:22+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -364,7 +364,7 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] "משתמש %(num)s"
+msgstr[0] "משתמש אחד"
 msgstr[1] "%(num)s משתמשים"
 
 msgid "Requires Restart"
@@ -385,7 +385,7 @@ msgstr[1] ""
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "משתמש {0}"
+msgstr[0] "משתמש אחד"
 msgstr[1] "{0} משתמשים"
 
 msgid "Payment cancelled"
@@ -402,7 +402,7 @@ msgstr "מאת"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr "ערכות נושא של {0} נוספות"
+msgstr "ערכות נושא נוספות של {0}"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
@@ -445,7 +445,7 @@ msgstr ""
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "משתמש <strong>{0}</strong>"
+msgstr[0] "משתמש <strong>אחד</strong>"
 msgstr[1] "<strong>{0}</strong> משתמשים"
 
 msgid "Hover to Preview"
@@ -694,8 +694,8 @@ msgstr[1] "תוספות אחרות מאת המחברים האלו"
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "סקירת משתמש אחת"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> סקירות משתמשים"
 
 msgid "View statistics"
 msgstr "צפייה בסטטיסטיקות"
@@ -892,8 +892,8 @@ msgstr ""
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "הורדה <strong>אחת</strong> בשבוע"
+msgstr[1] "<strong>{0}</strong> הורדות בשבוע"
 
 msgid "Tools"
 msgstr "כלים"
@@ -1338,7 +1338,7 @@ msgstr ""
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
+msgstr[0] "עוקב <span>אחד</span>"
 msgstr[1] "<span>%(num)s</span> עוקבים"
 
 # 76%
@@ -1374,13 +1374,13 @@ msgstr "מחיקת אוסף"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "ערכת נושא %(num)s באוסף זה"
+msgstr[0] "ערכת נושא אחת באוסף זה"
 msgstr[1] "%(num)s ערכות נושא באוסף זה"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "תוספת %(num)s באוסף זה"
+msgstr[0] "תוספת אחת באוסף זה"
 msgstr[1] "%(num)s תוספות באוסף זה"
 
 # 100%
@@ -1418,13 +1418,13 @@ msgstr "התוספות המועדפות עליי"
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "תוספת <span>%(addons)s</span>"
+msgstr[0] "תוספת <span>אחת</span>"
 msgstr[1] "<span>%(addons)s</span> תוספות"
 
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "עוקב <span>%(followers)s</span>"
+msgstr[0] "עוקב <span>אחד</span>"
 msgstr[1] "<span>%(followers)s</span> עוקבים"
 
 #. People "follow" collections to get notified of updates.                    Like
@@ -1452,7 +1452,7 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] "עוקב %(num)s"
+msgstr[0] "עוקב אחד"
 msgstr[1] "%(num)s עוקבים"
 
 msgid "by {0}"
@@ -1736,7 +1736,7 @@ msgstr "{0} :: כלי חיפוש"
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "תוספת <b>{0}</b>"
+msgstr[0] "תוספת <b>אחת</b>"
 msgstr[1] "<b>{0}</b> תוספות"
 
 msgid "Search Extensions"
@@ -2321,9 +2321,8 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "סקירה"
+msgstr "סקירת תוספת חדשה"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
@@ -3664,7 +3663,7 @@ msgstr ""
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] "משתמש פעיל <strong>{0}</strong>"
+msgstr[0] "משתמש פעיל <strong>אחד</strong>"
 msgstr[1] "<strong>{0}</strong> משתמשים פעילים"
 
 #, fuzzy
@@ -4896,7 +4895,7 @@ msgstr[1] ""
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] "יום {0}"
+msgstr[0] "יום אחד"
 msgstr[1] "{0} ימים"
 
 msgid "Last Review"
@@ -5219,7 +5218,7 @@ msgstr ""
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "תוספת {0}"
+msgstr[0] "תוספת אחת"
 msgstr[1] "{0} תוספות"
 
 #, python-format
@@ -7602,8 +7601,8 @@ msgstr "סקירה זו מתייחסת לגרסה קודמת של התוספת (
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "למשתמש זה יש <a href=\"%(user_review_url)s\">סקירה קודמת</a> של תוספת זו."
-msgstr[1] "למשתמש זה יש <a href=\"%(user_review_url)s\">%(cnt)sסקירות קודמות</a> של תוספת זו."
+msgstr[0] "למשתמש זה יש <a href=\"%(user_review_url)s\">סקירה קודמת</a> לתוספת זו."
+msgstr[1] "למשתמש זה יש <a href=\"%(user_review_url)s\">%(cnt)s סקירות קודמות</a> לתוספת זו."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
@@ -7637,7 +7636,7 @@ msgstr "סקירות עבור {0}"
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "סקירה <b>{0}</b> עבור תוספת זו"
+msgstr[0] "סקירה <b>אחת</b> עבור תוספת זו"
 msgstr[1] "<b>{0}</b> סקירות עבור תוספת זו"
 
 #. {0} is a developer's name.
@@ -7715,13 +7714,13 @@ msgstr ""
 # {2} is a number
 # {3} is the word the person is searching for
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "הצגת {0}–{1} מתוך {2} תוצאות עבור <strong>{3}</strong>"
+msgstr "מוצגים {0} - {1} מתוך {2} תוצאות עבור <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number
 # {2} is a number
 msgid "Showing {0} - {1} of {2} results"
-msgstr "הצגת {0}–{1} מתוך {2} תוצאות"
+msgstr "מוצגים {0} - {1} מתוך {2} תוצאות"
 
 msgid "All Add-ons"
 msgstr "כל התוספות"
@@ -7766,7 +7765,7 @@ msgstr "תוצאות חיפוש עבור התג ״{0}״"
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "תוצאה תואמת <b>{0}</b>"
+msgstr[0] "תוצאה תואמת <b>אחת</b>"
 msgstr[1] "<b>{0}</b> תוצאות תואמות"
 
 msgid "Filter Results"
@@ -8537,7 +8536,7 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] "תוספת %(num)s"
+msgstr[0] "תוספת אחת"
 msgstr[1] "%(num)s תוספות"
 
 msgid "Average rating of developer's add-ons"
@@ -8584,7 +8583,7 @@ msgstr "היסטורית הגירסאות של {0}"
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] "<b>{0}</b> גרסאות"
+msgstr[0] "גרסה <b>אחת</b>"
 msgstr[1] "<b>{0}</b> גרסאות"
 
 msgid "Be careful with old versions!"

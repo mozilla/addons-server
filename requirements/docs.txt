@@ -40,9 +40,9 @@ requests==2.17.3 \
     --hash=sha256:baf701b4a9d4cbe40169e8ab77816f7abadbad502ba459c30f7a2bc138e4d612 \
     --hash=sha256:8d29f97ed1541709b57caddb77bb20592411d7ca10ec4f03275f49ee8456e225
 # setuptools is required by Sphinx
-setuptools==35.0.2 \
-    --hash=sha256:19d753940f8cdbee7548da318f8b56159aead279ef811a6efc8b8a33d89c86a4 \
-    --hash=sha256:1e55496ca8058db68ae12ac29a985d1ee2c2483a5901f7692fb68fa2f9a250fd
+setuptools==36.0.1 \
+    --hash=sha256:f2900e560efc479938a219433c48f15a4ff4ecfe575a65de385eeb44f2425587 \
+    --hash=sha256:e17c4687fddd6d70a6604ac0ad25e33324cec71b5137267dd5c45e103c4b288a
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, elasticsearch-dsl, html5lib, mock, nobot, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, traitlets
 six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
@@ -56,3 +56,31 @@ sphinx-rtd-theme==0.2.4 \
 # typing is required by Sphinx
 typing==3.6.1 \
     --hash=sha256:c36dec260238e7464213dcd50d4b5ef63a507972f5780652e835d0228d0edace
+sphinxcontrib-websupport==1.0.1 \
+    --hash=sha256:7a85961326aa3a400cd4ad3c816d70ed6f7c740acd7ce5d78cd0a67825072eb9 \
+    --hash=sha256:f4932e95869599b89bf4f80fc3989132d83c9faa5bf633e7b5e0c25dffb75da2
+snowballstemmer==1.2.1 \
+    --hash=sha256:9f3bcd3c401c3e862ec0ebe6d2c069ebc012ce142cce209c098ccb5b09136e89 \
+    --hash=sha256:919f26a68b2c17a7634da993d91339e288964f93c274f1343e3bbbe2096e1128
+idna==2.5 \
+    --hash=sha256:cc19709fd6d0cbfed39ea875d29ba6d4e22c0cebc510a76d6302a28385e8bb70 \
+    --hash=sha256:3cb5ce08046c4e3a560fc02f138d0ac63e00f8ce5901a56b32ec8b7994082aab
+certifi==2017.4.17 \
+    --hash=sha256:f4318671072f030a33c7ca6acaef720ddd50ff124d1388e50c1bda4cbd6d7010 \
+    --hash=sha256:f7527ebf7461582ce95f7a9e03dd141ce810d40590834f4ec20cddd54234c10a
+chardet==3.0.3 \
+    --hash=sha256:8da3f329e2c5779247f4cff7081512c531731ef6a9c6ef78084e8ed8d18226c7 \
+    --hash=sha256:77df6d712a6037ed6f247ad1dd67faca506f64bc1295d43533e9212a101f28cb
+urllib3==1.21.1 \
+    --hash=sha256:8ed6d5c1ff9d6ba84677310060d6a3a78ca3072ce0684cb3c645023009c114b1 \
+    --hash=sha256:b14486978518ca0901a76ba973d7821047409d7f726f22156b24e83fd71382a5
+packaging==16.8 \
+    --hash=sha256:99276dc6e3a7851f32027a68f1095cd3f77c148091b092ea867a351811cfe388 \
+    --hash=sha256:5d50835fdf0a7edf0b55e311b7c887786504efea1177abd7e69329a8e5ea619e
+appdirs==1.4.3 \
+    --hash=sha256:d8b24664561d0d34ddfaec54636d502d7cea6e29c3eaf68f3df6180863e2166e \
+    --hash=sha256:9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92
+pyparsing==2.2.0 \
+    --hash=sha256:fee43f17a9c4087e7ed1605bd6df994c6173c1e977d7ade7b651292fab2bd010 \
+    --hash=sha256:0832bcf47acd283788593e7a0f542407bd9550a55a8a8435214a1960e04bcb04 \
+    --hash=sha256:281683241b25fe9b80ec9d66017485f6deff1af5cde372469134b56ca8447a07

@@ -22,6 +22,7 @@ RUN yum install -y                                          \
         libffi-devel                                        \
         libxml2-devel                                       \
         libxslt-devel                                       \
+        make                                                \
         mariadb                                             \
         mariadb-devel                                       \
         nodejs                                              \
@@ -31,7 +32,9 @@ RUN yum install -y                                          \
         uwsgi-2.0.13.1-2.el7                                \
         uwsgi-plugin-python                                 \
     && yum clean all                                        \
-    && curl -sSL https://bootstrap.pypa.io/get-pip.py | python
+    && curl -sSL https://bootstrap.pypa.io/get-pip.py | python \
+    && pip install six \
+    && pip install setuptools
 
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
@@ -63,6 +66,7 @@ RUN DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale
 
 # compile asssets
 RUN npm install \
+    && make copy_node_js \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets --use-uuid -t \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput
 

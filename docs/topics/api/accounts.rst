@@ -149,11 +149,12 @@ Collections List
 
 .. _collection-list:
 
-.. note:: This API requires :doc:`authentication <auth>`.
+.. note::
+    This API requires :doc:`authentication <auth>` and `Collections:Edit`
+    permission to list collections other than your own.
 
 This endpoint allows you to list all collections authored by the specified user.
-You can only list your own collections. To list collections for other users,
-your account must have the `Users:Edit` permission.
+
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/
 
@@ -170,9 +171,9 @@ Collection Detail
 .. _collection-detail:
 
 This endpoint allows you to fetch a single collection by its ``slug``.
-It returns any ``listed`` collection by the specified user. You can access
-a non-``listed`` collection only if it was authored by you, the authenticated user.
-If your account has the `Users:Edit` permission then you can access any collection.
+It returns any ``public`` collection by the specified user. You can access
+a non-``public`` collection only if it was authored by you, the authenticated user.
+If your account has the `Collections:Edit` permission then you can access any collection.
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
 
@@ -183,10 +184,76 @@ If your account has the `Users:Edit` permission then you can access any collecti
     :>json int author.id: The id of the author (creator) of the collection.
     :>json string author.name: The name of the author.
     :>json string author.url: The link to the profile page for of the author.
+    :>json string default_locale: The default locale of the description and name fields. (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
     :>json string modified: The date the collection was last updated.
-    :>json string|object|null name: The of the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object name: The name of the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :>json boolean public: Whether the collection is `listed` - publicly viewable.
+    :>json string slug: The name used in the URL.
     :>json string url: The (absolute) collection detail URL.
+
+
+-----------------
+Collection Create
+-----------------
+
+.. _`collection-create`:
+
+.. note::
+    This API requires :doc:`authentication <auth>`.
+
+This endpoint allows a collection to be created under your account.  Any fields
+in the :ref:`collection <collection-detail-object>` but not listed below are not settable and will be ignored in the request.
+
+.. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/collections/
+
+    .. _collection-create-request:
+
+    :<json string|null default_locale: The default locale of the description and name fields. Defaults to `en-US`. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object name: The name of the collection. (required) (See :ref:`translated fields <api-overview-translations>`).
+    :<json boolean public: Whether the collection is `listed` - publicly viewable.  Defaults to `True`.
+    :<json string slug: The name used in the URL (required).
+
+
+---------------
+Collection Edit
+---------------
+
+.. _`collection-edit`:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Collections:Edit`
+    permission to edit collections other than your own.
+
+This endpoint allows some of the details for a collection to be updated.  Any fields
+in the :ref:`collection <collection-detail-object>` but not listed below are not editable and will be ignored in the patch request.
+
+.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
+
+    .. _collection-edit-request:
+
+    :<json string default_locale: The default locale of the description and name fields. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object|null description: The description the author added to the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object name: The name of the collection. (See :ref:`translated fields <api-overview-translations>`).
+    :<json boolean public: Whether the collection is `listed` - publicly viewable.
+    :<json string slug: The name used in the URL.
+
+
+-----------------
+Collection Delete
+-----------------
+
+.. _`collection-delete`:
+
+.. note::
+    This API requires :doc:`authentication <auth>` and `Collections:Edit`
+    permission to delete collections other than your own.
+
+This endpoint allows the collection to be deleted.
+
+.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
+
 
 
 ------------------

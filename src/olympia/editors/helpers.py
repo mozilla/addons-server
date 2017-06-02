@@ -299,25 +299,33 @@ class ViewFullReviewQueueTable(EditorQueueTable):
 
 
 class AutoApprovedTable(EditorQueueTable):
-    addon = tables.Column(verbose_name=_(u'Add-on'))
+    addon_name = tables.Column(verbose_name=_(u'Add-on'), accessor='name')
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
     flags = tables.Column(
         verbose_name=_(u'Flags'), empty_values=(), orderable=False)
     last_human_review = tables.DateTimeColumn(
-        verbose_name=_(u'Last Review'))
+        verbose_name=_(u'Last Review'),
+        accessor='addonapprovalscounter.last_human_review')
+    weight = tables.Column(
+        verbose_name=_(u'Weight'),
+        accessor='_current_version.autoapprovalsummary.weight')
 
     class Meta(EditorQueueTable.Meta):
-        fields = ('addon', 'flags', 'last_human_review')
+        fields = ('addon_name', 'flags', 'last_human_review', 'weight')
         # Exclude base fields EditorQueueTable has that we don't want.
-        exclude = ('addon_name', 'addon_type_id', 'waiting_time_min',)
+        exclude = ('addon_type_id', 'waiting_time_min',)
         orderable = False
 
-    def render_addon(self, record):
-        url = reverse('editors.review', args=[record.addon.slug])
+    def render_flags(self, record):
+        return super(AutoApprovedTable, self).render_flags(
+            record.current_version)
+
+    def render_addon_name(self, record):
+        url = reverse('editors.review', args=[record.slug])
         return u'<a href="%s">%s <em>%s</em></a>' % (
-            url, jinja2.escape(record.addon.name),
-            jinja2.escape(record.addon.current_version))
+            url, jinja2.escape(record.name),
+            jinja2.escape(record.current_version))
 
     def render_last_human_review(self, value):
         return naturaltime(value) if value else ''
