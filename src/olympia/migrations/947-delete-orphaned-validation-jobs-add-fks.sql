@@ -56,6 +56,12 @@ EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 
 
+-- Add keys with proper names
+CREATE INDEX `validation_job_271f7e46` ON `validation_job` (`curr_max_version_id`);
+CREATE INDEX `validation_job_eb1d7e37` ON `validation_job` (`target_version_id`);
+CREATE INDEX `validation_job_ad376f8d` ON `validation_job` (`creator_id`);
+
+
 -- Add foreign key constraints (with proper names) to avoid future orphanes.
 ALTER TABLE `validation_job` ADD CONSTRAINT `curr_max_version_id_refs_id_535fc21b` FOREIGN KEY (`curr_max_version_id`) REFERENCES `appversions` (`id`);
 ALTER TABLE `validation_job` ADD CONSTRAINT `target_version_id_refs_id_535fc21b` FOREIGN KEY (`target_version_id`) REFERENCES `appversions` (`id`);
