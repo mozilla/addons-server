@@ -1266,14 +1266,18 @@ class TestAutoApprovedQueue(QueueTest):
         AutoApprovalSummary.objects.create(
             version=extra_addon2.current_version,
             verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED)
+
         # Has been auto-approved and reviewed by a human before.
         addon1 = addon_factory(name=u'Addôn 1')
         AutoApprovalSummary.objects.create(
             version=addon1.current_version, verdict=amo.AUTO_APPROVED)
         AddonApprovalsCounter.objects.create(
             addon=addon1, counter=1, last_human_review=self.days_ago(42))
-        # Has been auto-approved twice, last_human_review is somehow None.
+
+        # Has been auto-approved twice, last_human_review is somehow None,
+        # the 'created' date will be used to order it (older is higher).
         addon2 = addon_factory(name=u'Addôn 2')
+        addon2.update(created=self.days_ago(10))
         AutoApprovalSummary.objects.create(
             version=addon2.current_version, verdict=amo.AUTO_APPROVED)
         AddonApprovalsCounter.objects.create(
@@ -1281,12 +1285,18 @@ class TestAutoApprovedQueue(QueueTest):
         addon2_version2 = version_factory(addon=addon2)
         AutoApprovalSummary.objects.create(
             version=addon2_version2, verdict=amo.AUTO_APPROVED)
-        # Has been auto-approved and never been seen by a human.
-        addon3 = addon_factory(name=u'Addôn 3', created=self.days_ago(10))
+
+        # Has been auto-approved and never been seen by a human,
+        # the 'created' date will be used to order it (newer is lower).
+        addon3 = addon_factory(name=u'Addôn 3')
+        addon3.update(created=self.days_ago(2))
         AutoApprovalSummary.objects.create(
             version=addon3.current_version, verdict=amo.AUTO_APPROVED)
+        AddonApprovalsCounter.objects.create(
+            addon=addon3, counter=1, last_human_review=None)
+
         # Has been auto-approved, should be first because of its weight.
-        addon4 = addon_factory(name=u'Addôn 3', created=self.days_ago(14))
+        addon4 = addon_factory(name=u'Addôn 4', created=self.days_ago(14))
         AutoApprovalSummary.objects.create(
             version=addon4.current_version, verdict=amo.AUTO_APPROVED,
             weight=500)

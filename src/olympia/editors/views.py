@@ -564,7 +564,8 @@ def queue_auto_approved(request):
             _current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
         .order_by(
             '-_current_version__autoapprovalsummary__weight',
-            'addonapprovalscounter__last_human_review'))
+            'addonapprovalscounter__last_human_review',
+            'created'))
     return _queue(request, AutoApprovedTable, 'auto_approved',
                   qs=qs, SearchForm=None)
 
