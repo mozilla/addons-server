@@ -32,15 +32,23 @@ def update_collections_subscribers():
 def _update_collections_subscribers(data, **kw):
     task_log.info("[%s@%s] Updating collections' subscribers totals." % (
                   len(data), _update_collections_subscribers.rate_limit))
-    cursor = connection.cursor()
+
     today = date.today()
-    for var in data:
-        q = """REPLACE INTO
-                    stats_collections(`date`, `name`, `collection_id`, `count`)
-                VALUES
-                    (%s, %s, %s, %s)"""
-        p = [today, 'new_subscribers', var['collection_id'], var['count']]
-        cursor.execute(q, p)
+
+    statement = """
+        REPLACE INTO
+          stats_collections(`date`, `name`, `collection_id`, `count`)
+        VALUES
+          (%s, %s, %s, %s)
+    """
+
+    statements_data = [
+        (today, 'new_subscribers', var['collection_id'], var['count'])
+        for var in data
+    ]
+
+    with connection.cursor() as cursor:
+        cursor.executemany(statement, statements_data)
 
 
 def update_collections_votes():
@@ -69,13 +77,20 @@ def update_collections_votes():
 def _update_collections_votes(data, stat, **kw):
     task_log.info("[%s@%s] Updating collections' votes totals." % (
                   len(data), _update_collections_votes.rate_limit))
-    cursor = connection.cursor()
-    for var in data:
-        q = ('REPLACE INTO stats_collections(`date`, `name`, '
-             '`collection_id`, `count`) VALUES (%s, %s, %s, %s)')
-        p = [date.today(), stat,
-             var['collection_id'], var['count']]
-        cursor.execute(q, p)
+
+    today = date.today()
+
+    statement = (
+        'REPLACE INTO stats_collections(`date`, `name`, '
+        '`collection_id`, `count`) VALUES (%s, %s, %s, %s)')
+
+    statements_data = [
+        (today, stat, x['collection_id'], x['count'])
+        for x in data
+    ]
+
+    with connection.cursor() as cursor:
+        cursor.executemany(statement, statements_data)
 
 
 def reindex_collections(index=None):

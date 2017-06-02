@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-29 20:48+0000\n"
+"PO-Revision-Date: 2017-06-01 18:03+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "כוכב {0}"
+msgstr[0] "כוכב אחד"
 msgstr[1] "{0} כוכבים"
 
 msgid "There was a problem contacting the server."
@@ -140,7 +140,7 @@ msgid "Videos must be in WebM."
 msgstr "וידאו חייב להיות בתבנית WebM."
 
 msgid "Follow this Collection"
-msgstr ""
+msgstr "מעקב אחרי אוסף זה"
 
 msgid "Stop Following"
 msgstr "הפסקת מעקב"
@@ -150,7 +150,7 @@ msgstr "במעקב"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr "ערכת הנושא הזאת אינה תואמת לגרסתך שמספרה {0}"
+msgstr "ערכת נושא זו אינה תואמת לגרסה של ה־{0} שלך"
 
 msgid "All Rights Reserved"
 msgstr "כל הזכויות שמורות"
@@ -340,7 +340,7 @@ msgid "Meet the Developer"
 msgstr "הכירו את המפתח"
 
 msgid "User Profile"
-msgstr ""
+msgstr "פרופיל משתמש"
 
 msgid "Version History"
 msgstr "היסטוריית גרסאות"
@@ -670,7 +670,7 @@ msgstr "לא זמין לפלטפורמה שלך"
 
 #. L10n: {0} is an app name, {1} is the app version.
 msgid "Not available for {0} {1}"
-msgstr "לא זמין עבור {0} גרסה {1}"
+msgstr "לא זמין עבור {0} {1}"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "עובד עם {app} {min} - {max}"
@@ -682,7 +682,7 @@ msgid "View other versions"
 msgstr "צפייה בגרסאות אחרות"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "רק עם Firefox — קבלו את Firefox כעת!"
 
 msgid "Download now"
 msgstr "הורדה כעת"
@@ -709,10 +709,10 @@ msgid "Pending"
 msgstr "בהמתנה"
 
 msgid "Add a comment"
-msgstr "הוספת הערה"
+msgstr "הוספת תגובה"
 
 msgid "Comment"
-msgstr "הערה"
+msgstr "תגובה"
 
 msgid "Remove this add-on from the collection"
 msgstr "הסרת תוספת זו מהאוסף"
@@ -755,12 +755,12 @@ msgstr "אירעה שגיאה בהעלאת הקובץ שלך."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] "קובץ {files}"
+msgstr[0] "קובץ אחד"
 msgstr[1] "{files} קבצים"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] "סקירת משתמש {reviews}"
+msgstr[0] "סקירת משתמש אחת"
 msgstr[1] "{reviews} סקירות משתמשים"
 
 msgid "Learn more"
@@ -817,7 +817,7 @@ msgstr "בטעינה..."
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "נותר תו <b>{0}</b>."
+msgstr[0] "נותר תו <b>אחד</b>."
 msgstr[1] "נותרו <b>{0}</b> תווים."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."

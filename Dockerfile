@@ -52,6 +52,7 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 RUN yum install -y python-pip
+RUN pip install --upgrade six
 RUN pip install --upgrade pip setuptools
 
 # Until https://github.com/shazow/urllib3/commit/959d47d926e1331ad571dbfc150c9a3acb7a1eb9 lands
