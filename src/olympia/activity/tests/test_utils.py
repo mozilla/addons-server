@@ -250,6 +250,9 @@ class TestLogAndNotify(TestCase):
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_developer_reply(self, send_mail_mock):
+        # Set info-requested flag to make sure
+        # it has been dropped after the reply.
+        self.version.has_info_request = True
         # One from the reviewer.
         self._create(amo.LOG.REJECT_VERSION, self.reviewer)
         # One from the developer.  So the developer is on the 'thread'
@@ -285,6 +288,8 @@ class TestLogAndNotify(TestCase):
         self._check_email(send_mail_mock.call_args_list[1],
                           review_url, 'Developer Reply',
                           'you reviewed this add-on.')
+
+        assert not self.version.has_info_request
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_reviewer_reply(self, send_mail_mock):

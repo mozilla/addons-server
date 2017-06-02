@@ -273,6 +273,9 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
         '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
         perm_setting)
 
+    if action == amo.LOG.DEVELOPER_REPLY_VERSION:
+        version.update(has_info_request=False)
+
     return note
 
 
