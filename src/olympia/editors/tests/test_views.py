@@ -356,11 +356,11 @@ class TestReviewLog(EditorTest):
         unlisted_version = version_factory(
             addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        ActivityLog.create(
+        al = ActivityLog.create(
             amo.LOG.APPROVE_VERSION, addon, addon.current_version,
-            user=self.get_user(), details={'comments': 'foo'},
-            created=self.days_ago(1))
+            user=self.get_user(), details={'comments': 'foo'})
 
+        al.update(created=self.days_ago(1))
         r = self.client.get(self.url)
         url = reverse('editors.review', args=[addon.slug])
         assert pq(r.content)('#log-listing tr td a').eq(1).attr('href') == url
@@ -368,8 +368,7 @@ class TestReviewLog(EditorTest):
         ActivityLog.create(
             amo.LOG.APPROVE_VERSION, addon,
             unlisted_version,
-            user=self.get_user(), details={'comments': 'foo'},
-            created=self.days_ago(0))
+            user=self.get_user(), details={'comments': 'foo'})
         r = self.client.get(self.url)
         url = reverse(
             'editors.review',
