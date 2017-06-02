@@ -20,7 +20,7 @@ compare_patterns = [
 ]
 
 urlpatterns = [
-    ('^browse/(?P<file_id>\d+)/', include(file_patterns)),
-    ('^compare/(?P<one_id>\d+)\.{3}(?P<two_id>\d+)/',
-     include(compare_patterns)),
+    url('^browse/(?P<file_id>\d+)/', include(file_patterns)),
+    url('^compare/(?P<one_id>\d+)\.{3}(?P<two_id>\d+)/',
+        include(compare_patterns)),
 ]

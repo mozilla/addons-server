@@ -125,12 +125,12 @@ ajax_patterns = [
     url('^image/status$', views.image_status, name='devhub.ajax.image.status'),
 ]
 redirect_patterns = [
-    ('^addon/edit/(\d+)',
-     lambda r, id: redirect('devhub.addons.edit', id, permanent=True)),
-    ('^addon/status/(\d+)',
-     lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
-    ('^versions/(\d+)',
-     lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
+    url('^addon/edit/(\d+)',
+        lambda r, id: redirect('devhub.addons.edit', id, permanent=True)),
+    url('^addon/status/(\d+)',
+        lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
+    url('^versions/(\d+)',
+        lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
 ]
 
 urlpatterns = decorate(write, [

@@ -19,7 +19,7 @@ handler500 = 'olympia.amo.views.handler500'
 
 urlpatterns = [
     # Legacy Discovery pane is first for undetectable efficiency wins.
-    ('^discovery/', include('olympia.legacy_discovery.urls')),
+    url('^discovery/', include('olympia.legacy_discovery.urls')),
 
     # Home.
     url('^$', 'olympia.addons.views.home', name='home'),
@@ -158,6 +158,8 @@ if settings.DEBUG:
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
 
     urlpatterns.append(
-        (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
-         {'document_root': settings.MEDIA_ROOT}),
+        url(
+            r'^%s/(?P<path>.*)$' % media_url,
+            'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT}),
     )

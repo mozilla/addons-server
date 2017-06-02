@@ -16,7 +16,7 @@ services_patterns = [
 urlpatterns = [
     url('^robots\.txt$', views.robots, name='robots.txt'),
     url('^contribute\.json$', views.contribute, name='contribute.json'),
-    ('^services/', include(services_patterns)),
+    url('^services/', include(services_patterns)),
     url('^__version__$', views.version, name='version.json'),
 
     url('^opensearch\.xml$', 'olympia.legacy_api.views.render_xml',

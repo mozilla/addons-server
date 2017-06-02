@@ -54,7 +54,7 @@ urlpatterns = [
         name='addons.icloudbookmarksredirect'),
 
     # URLs for a single add-on.
-    ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
+    url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
 
     # Button messages to be used by JavaScript.
     # Should always be called with a cache-busting querystring.
@@ -63,14 +63,14 @@ urlpatterns = [
         name='addons.buttons.js'),
 
     # Remora EULA and Privacy policy URLS
-    ('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',
-     lambda r, addon_id, file_id: redirect('addons.eula',
-                                           addon_id, file_id, permanent=True)),
-    ('^addons/policy/0/(?P<addon_id>\d+)/',
-     lambda r, addon_id: redirect('addons.privacy',
-                                  addon_id, permanent=True)),
+    url('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',
+        lambda r, addon_id, file_id: redirect(
+            'addons.eula', addon_id, file_id, permanent=True)),
+    url('^addons/policy/0/(?P<addon_id>\d+)/',
+        lambda r, addon_id: redirect(
+            'addons.privacy', addon_id, permanent=True)),
 
-    ('^versions/license/(\d+)$', views.license_redirect),
+    url('^versions/license/(\d+)$', views.license_redirect),
 
     url('^find-replacement/$', views.find_replacement_addon,
         name='addons.find_replacement'),
