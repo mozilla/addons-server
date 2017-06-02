@@ -59,9 +59,11 @@ def tally_job_results(job_id, **kw):
                     sum(case when completed IS NOT NULL then 1 else 0 end)
              from validation_result
              where validation_job_id=%s"""
-    cursor = connection.cursor()
-    cursor.execute(sql, [job_id])
-    total, completed = cursor.fetchone()
+
+    with connection.cursor() as cursor:
+        cursor.execute(sql, [job_id])
+        total, completed = cursor.fetchone()
+
     if completed == total:
         # The job has finished.
         job = ValidationJob.objects.get(pk=job_id)
