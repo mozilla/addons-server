@@ -1296,7 +1296,8 @@ class TestAutoApprovedQueue(QueueTest):
             addon=addon3, counter=1, last_human_review=None)
 
         # Has been auto-approved, should be first because of its weight.
-        addon4 = addon_factory(name=u'Addôn 4', created=self.days_ago(14))
+        addon4 = addon_factory(name=u'Addôn 4')
+        addon4.update(created=self.days_ago(14))
         AutoApprovalSummary.objects.create(
             version=addon4.current_version, verdict=amo.AUTO_APPROVED,
             weight=500)
