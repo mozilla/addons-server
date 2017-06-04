@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-06-01 18:03+0000\n"
+"PO-Revision-Date: 2017-06-02 10:22+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -250,28 +250,28 @@ msgid "Details for {0}"
 msgstr ""
 
 msgid "Collections Created"
-msgstr ""
+msgstr "אוספים שנוצרו"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "תוספות שבשימוש"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "תוספות שנוצרו"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "תוספות שהורדו"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "תוספות שעודכנו"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "סקירות שנכתבו"
 
 msgid "User Signups"
-msgstr ""
+msgstr "הרשמות משתמשים"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "מנויים"
 
 msgid "Ratings"
 msgstr "דירוגים"
@@ -422,91 +422,91 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "הורדות ומשתמשים יומיים, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "הורדות ומשתמשים יומיים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "התקנות ומשתמשים יומיים, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "התקנות ומשתמשים יומיים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "הורדות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "הורדות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "משתמשים יומיים, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "משתמשים יומיים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "יישומים, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "יישומים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "פלטפורמות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "פלטפורמות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "שפות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "שפות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "גרסאות תוספות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "גרסאות תוספות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "סטטוס תוספות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "סטטוס תוספות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "מקורות הורדה, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "מקורות הורדה מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "תרומות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "תרומות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -518,106 +518,106 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "תוספות שבשימוש, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "תוספות שבשימוש מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "תוספות שהורדו, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "תוספות שהורדו מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "תוספות שנוצרו, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "תוספות שנוצרו מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "תוספות שעודכנו, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "תוספות שעודכנו מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "סקירות שנכתבו, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "סקירות שנכתבו מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "הרשמות משתמשים, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "הרשמות משתמשים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "אוספים שנוצרו, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "אוספים שנוצרו מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "מנויים, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "מנויים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "דירוגים, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "דירוגים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "מכירות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "מכירות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "התקנות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "התקנות מתאריך {0} עד {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> ב־{1} הימים האחרונים"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> מתאריך {1} עד {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "ממוצע <b>{0}</b> ב־{1} הימים האחרונים"
 
 msgid "No data available."
-msgstr ""
+msgstr "אין נתונים זמינים."
 
 msgid "Date"
 msgstr "תאריך"
@@ -688,7 +688,7 @@ msgid "Download now"
 msgstr "הורדה כעת"
 
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "זמין רק ב־Firefox שולחני"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "סליחה, אבל נדרש דפדפן ממשפחת Mozilla (כגון Firefox) כדי להתקין תוספת חיפוש."
