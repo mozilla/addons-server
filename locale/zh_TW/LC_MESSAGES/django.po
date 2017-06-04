@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-18 15:51+0000\n"
+"PO-Revision-Date: 2017-06-04 12:38+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -106,7 +106,7 @@ msgstr[0] "無效的標籤：{0}"
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" 為保留字不能使用。"
+msgstr[0] "「{0}」為保留字，不能使用。"
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -4547,25 +4547,25 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "您是否確定要取消審核要求？"
 
 msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "使用 {addon_name} {start_sub_heading}下載影音媒體{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}下載影音媒體{end_sub_heading}"
 
 msgid "Manage massive audio, video, and image downloads with this lightweight tool."
 msgstr "使用此輕量級工具管理大量的影音與圖片下載項目。"
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "使用 {addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "輕量而有效的廣告封鎖器。uBlock Origin 會使用數以千計的內容過濾規則來封鎖廣告，而不會吃掉太多記憶體。"
 
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "使用 {addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr "不只是拍攝畫面擷圖，Awesome Screenshot Plus 還可讓您在圖片上加上文字與其他圖片。存檔與分享也很簡單。"
 
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "使用 {addon_name} {start_sub_heading}輸入表情符號{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}輸入表情符號{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr "只要滑鼠一點，就可使用幾十種不同的表情符號。"
