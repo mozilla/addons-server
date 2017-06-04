@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-19 03:10+0000\n"
+"PO-Revision-Date: 2017-06-04 01:59+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -8504,7 +8504,7 @@ msgstr "Descartar alterações"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Deseja realmente remover todas as traduções de <b>{0}</b>? Isso não poderá ser desfeito."
+msgstr "Deseja realmente remover todas as traduções de <b>{0}</b>? Isso não pode ser desfeito."
 
 msgid "Delete Locale"
 msgstr "Excluir idioma"
