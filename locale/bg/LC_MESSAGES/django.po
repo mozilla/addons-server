@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-06-05 07:49+0000\n"
+"PO-Revision-Date: 2017-06-05 08:10+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -569,7 +569,7 @@ msgstr ""
 "Моля, не използвайте тази форма за други въпроси."
 
 msgid "Send Report"
-msgstr "Изпрати доклад"
+msgstr "Докладване"
 
 msgid "Cancel"
 msgstr "Отказ"
@@ -919,7 +919,7 @@ msgid "Manage API Keys"
 msgstr "Управление на ППИ"
 
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Инструменти за рецензенти"
 
 msgid "Admin Tools"
 msgstr "Администраторски инструменти"
@@ -1055,7 +1055,7 @@ msgid "Want more customization? Try <b>Complete Themes</b>"
 msgstr "Искате повече персонализиране? Опитайте с <b>цялостните теми</b>"
 
 msgid "Most Followers"
-msgstr "Най-много последователи"
+msgstr "Най-следвани"
 
 msgid "Collections I've Made"
 msgstr "Колекции, които съм направил"
@@ -1099,13 +1099,13 @@ msgid "Title"
 msgstr "Заглавие"
 
 msgid "Body"
-msgstr ""
+msgstr "Тяло"
 
 msgid "Another Title"
-msgstr ""
+msgstr "Друго заглавие"
 
 msgid "Another Body"
-msgstr ""
+msgstr "Друго тяло"
 
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
@@ -1230,10 +1230,10 @@ msgid "Name"
 msgstr "Име"
 
 msgid "Recently Updated"
-msgstr "Скоро обновени"
+msgstr "Последно обновени"
 
 msgid "Recently Popular"
-msgstr "Популярни наскоро"
+msgstr "Наскоро популярни"
 
 msgid "Added"
 msgstr "Добавено"
@@ -1266,7 +1266,7 @@ msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual colle
 msgstr "Както е отбелязано в <a href=\"%(legal)s\">правните бележки</a>, индивидуалните колекции се управляват от Creative Commons Attribution Share-Alike лиценз"
 
 msgid "Create Collection"
-msgstr "Създаване на колекция"
+msgstr "Нова колекция"
 
 msgid "View this collection"
 msgstr "Виж тази колекция"
@@ -1520,7 +1520,7 @@ msgid "Collections by Name"
 msgstr "Колекции по име"
 
 msgid "Recently Updated Collections"
-msgstr "Наскоро обновени колекции"
+msgstr "Последно обновени колекции"
 
 msgid "Recently Popular Collections"
 msgstr "Наскоро популярни колекции"
@@ -1539,7 +1539,7 @@ msgid "Create a Collection"
 msgstr "Създаване на колекция"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Колекциите правят следенето на любимите ви добавки и споделянето на браузъра ви с друго лесно."
+msgstr "Колекциите ви помагат да следите любимите си добавки и да споделяте персонализирания си четец с другите."
 
 msgid "Collection Icon"
 msgstr "Иконка на колекцията"
@@ -1727,7 +1727,7 @@ msgid "Extensions by Weekly Downloads"
 msgstr ""
 
 msgid "Recently Updated Extensions"
-msgstr "Наскоро актуализирани разширения"
+msgstr "Последно обновени разширения"
 
 msgid "Up & Coming Extensions"
 msgstr "Обещаващи разширения"
@@ -1753,7 +1753,7 @@ msgid "Complete Themes by Weekly Downloads"
 msgstr "Цялостни теми по изтегляния седмично"
 
 msgid "Recently Updated Complete Themes"
-msgstr "Наскоро обновени цялостни теми"
+msgstr "Последно обновени цялостни теми"
 
 msgid "Up & Coming Complete Themes"
 msgstr "Обещаващи цялостни теми"
@@ -2487,7 +2487,7 @@ msgid "Websites"
 msgstr "Сайтове"
 
 msgid "Device Features & Location"
-msgstr "Свойства на устройството и локация"
+msgstr "Системни и местоположение"
 
 msgid "Experimental"
 msgstr "Експериментални"
@@ -8328,7 +8328,7 @@ msgid "Report User"
 msgstr "Докладване на потребител"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "Моля, опишете защо докладвате този потребител, например за нежелано съдържание или за неподходящо изображение"
 
 msgid "Report user {0}"
 msgstr "Докладване на потребителя {0}"
@@ -8433,11 +8433,11 @@ msgstr[0] "<b>{0}</b> версия"
 msgstr[1] "<b>{0}</b> версии"
 
 msgid "Be careful with old versions!"
-msgstr "Внимавайте със старите версии!"
+msgstr "Отнасяйте се с повишено внимание към старите версии!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr "Тези версии са показани за справка и с тестови цели. Винаги трябва да използвате <a href=\"%(url)s\">последната версия</a> на добавките."
+msgstr "Тези версии са предоставени за справки и тестови цели. Винаги трябва да използвате <a href=\"%(url)s\">последната версия</a> на добавките."
 
 msgid "Current Max. Version"
 msgstr "Текуща макс. верия"
