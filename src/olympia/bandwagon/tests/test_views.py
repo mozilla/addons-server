@@ -1721,7 +1721,7 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
             'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon_id': self.addon.id})
+                'addon': self.addon.id})
         super(TestCollectionAddonViewSetDetail, self).setUp()
 
     def check_response(self, response):
@@ -1748,7 +1748,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
             collection=self.collection.id, addon=self.addon.id).exists()
 
     def send(self, url, data=None):
-        data = data or {'addon_id': unicode(self.addon.pk)}
+        data = data or {'addon': self.addon.pk}
         return self.client.post(url, data=data)
 
     def test_basic(self):
@@ -1761,7 +1761,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
     def test_add_with_comments(self):
         self.client.login_api(self.user)
         response = self.send(self.url,
-                             data={'addon_id': unicode(self.addon.pk),
+                             data={'addon': self.addon.pk,
                                    'notes': 'its good!'})
         self.check_response(response)
         collection_addon = CollectionAddon.objects.get(
@@ -1775,7 +1775,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url, data={'notes': ''})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'addon_id': [u'This field is required.']}
+            'addon': [u'This field is required.']}
 
     def test_fail_when_not_public_addon(self):
         self.client.login_api(self.user)
@@ -1783,14 +1783,15 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'addon_id': [u'Addon provided is invalid.']}
+            'addon': ['Invalid pk "%s" - object does not exist.' %
+                      self.addon.pk]}
 
     def test_fail_when_invalid_addon(self):
         self.client.login_api(self.user)
-        response = self.send(self.url, data={'addon_id': '3456'})
+        response = self.send(self.url, data={'addon': 3456})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'addon_id': [u'Addon provided is invalid.']}
+            'addon': ['Invalid pk "%s" - object does not exist.' % 3456]}
 
 
 class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
@@ -1805,14 +1806,14 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
             'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon_id': self.addon.id})
+                'addon': self.addon.id})
         super(TestCollectionAddonViewSetPatch, self).setUp()
 
     def check_response(self, response, data=None):
         data = data or {'notes': 'it does things'}
         assert response.status_code == 200, response.content
         collection_addon = CollectionAddon.objects.get(
-            collection=self.collection.id, addon=self.addon.id)
+            collection=self.collection.id)
         assert collection_addon.addon == self.addon
         assert collection_addon.collection == self.collection
         assert collection_addon.comments == data['notes']
@@ -1830,7 +1831,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         self.client.login_api(self.user)
         new_addon = addon_factory()
         response = self.send(self.url,
-                             data={'addon_id': unicode(new_addon.id)})
+                             data={'addon': new_addon.id})
         self.check_response(response, data={'notes': None})
 
 
@@ -1846,7 +1847,7 @@ class TestCollectionAddonViewSetDelete(CollectionAddonViewSetMixin, TestCase):
             'collection-addon-detail', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
-                'addon_id': self.addon.id})
+                'addon': self.addon.id})
         super(TestCollectionAddonViewSetDelete, self).setUp()
 
     def check_response(self, response):

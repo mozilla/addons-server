@@ -1,13 +1,12 @@
-from django.http import Http404
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from rest_framework import serializers
-from rest_framework.exceptions import PermissionDenied
 from rest_framework.validators import UniqueTogetherValidator
 
+from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.utils import clean_nl, has_links, slug_validator
-from olympia.api.fields import TranslationSerializerField
+from olympia.api.fields import SplitField, TranslationSerializerField
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.models import DeniedName
 from olympia.users.serializers import BaseUserSerializer
@@ -79,7 +78,10 @@ class ThisCollectionDefault(object):
 
 
 class CollectionAddonSerializer(serializers.ModelSerializer):
-    addon = AddonSerializer(required=False, default=None)
+    addon = SplitField(
+        serializers.PrimaryKeyRelatedField(
+            queryset=Addon.objects.public().no_cache()),
+        AddonSerializer())
     notes = TranslationSerializerField(source='comments', required=False)
     collection = serializers.HiddenField(default=ThisCollectionDefault())
 
@@ -87,20 +89,13 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
         model = CollectionAddon
         fields = ('addon', 'downloads', 'notes', 'collection')
         writeable_fields = (
-            'notes'
+            'notes',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
     def validate(self, data):
-        if not self.partial:
-            addon_id_kwarg = self.context['view'].lookup_url_kwarg
-            try:
-                data['addon'] = self.context['view'].get_addon_object()
-            except (PermissionDenied, Http404):
-                # Catch the permission and not found errors on addon object
-                raise serializers.ValidationError(
-                    {addon_id_kwarg: ugettext('Addon provided is invalid.')})
-            if data['addon'] is None:
-                raise serializers.ValidationError(
-                    {addon_id_kwarg: ugettext('This field is required.')})
+        if self.partial:
+            # addon is read_only but SplitField messes with the initialization.
+            # DRF normally ignores updates to read_only fields, so do the same.
+            data.pop('addon')
         return super(CollectionAddonSerializer, self).validate(data)
