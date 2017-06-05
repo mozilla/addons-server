@@ -732,7 +732,15 @@ class AdminForm(happyforms.ModelForm):
     type = forms.ChoiceField(choices=_choices)
     reputation = forms.ChoiceField(
         label=_(u'Reputation'),
-        choices=[('', '')] + [(i, unicode(i)) for i in range(-3, 4)])
+        choices=(
+            (None, ''),  # To handle null values - equivalent to 0.
+            (-3, 'Terrible (-3)'),
+            (-2, 'Very Bad (-2)'),
+            (-1, 'Bad (-1)'),
+            (0, 'No Reputation'),
+            (1, 'Good (1)'),
+            (2, 'Very Good (2)'),
+            (3, 'Excellent (3)')))
 
     # Request is needed in other ajax forms so we're stuck here.
     def __init__(self, request=None, *args, **kw):
