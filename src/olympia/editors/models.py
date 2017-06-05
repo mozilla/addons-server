@@ -724,17 +724,32 @@ class AutoApprovalSummary(ModelBase):
         addon = self.version.addon
         one_year_ago = (self.created or datetime.now()) - timedelta(days=365)
         factors = {
+            # Add-ons under admin review: 100 added to weight.
             'admin_review': 100 if addon.admin_review else 0,
+            # Each "recent" abuse reports for the add-on or one of the listed
+            # developers adds 10 to the weight, up to a maximum of 100.
             'abuse_reports': min(
                 AbuseReport.objects
                 .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
                 .filter(created__gte=one_year_ago).count() * 10, 100),
+            # Each "recent" review with a score of 3 or less adds 2 to the
+            # weight, up to a maximum of 100.
             'negative_reviews': min(
                 Review.objects
                 .filter(addon=addon)
                 .filter(rating__lte=3, created__gte=one_year_ago)
                 .count() * 2, 100),
+            # Reputation is set by admin - the value is inverted to add from
+            # -300 (decreasing priority for "trusted" add-ons) to +300
+            # (increasing priority for add-ons we want to monitor closely).
+            'reputation': (
+                max(min(int(addon.reputation or 0) * -100, 300), -300)),
+            # Average daily users: value divided by 10000 is added to the
+            # weight, up to a maximum of 100.
             'average_daily_users': min(addon.average_daily_users / 10000, 100),
+            # Pas rejection history: each "recent" rejected version (disabled
+            # with an original status of null, so not disabled by a developer)
+            # adds 10 to the weight, up to a maximum of 100.
             'past_rejection_history': min(
                 Version.objects
                 .filter(addon=addon,

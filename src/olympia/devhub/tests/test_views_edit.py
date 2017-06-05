@@ -1434,6 +1434,21 @@ class TestAdmin(TestCase):
         response = self.client.post(url)
         assert response.status_code == 403
 
+    def test_change_reputation_and_type(self):
+        addon = Addon.objects.get(pk=3615)
+        self.login_admin()
+        url = reverse('devhub.addons.admin', args=['a3615'])
+        data = {
+            'reputation': 3,
+            'type': amo.ADDON_THEME,
+        }
+        response = self.client.post(url, data)
+        assert response.status_code == 200
+        assert response.context['admin_form'].is_valid()
+        addon.reload()
+        assert addon.reputation == 3
+        assert addon.type == amo.ADDON_THEME
+
 
 class TestThemeEdit(TestCase):
     fixtures = ['base/user_999']

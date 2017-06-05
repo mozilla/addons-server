@@ -31,6 +31,25 @@
               {% endif %}
             </td>
           </tr>
+          <tr>
+            <th>
+              <label data-for="type">
+                Add-on Reputation
+                {{ tip(None,
+                       "The higher the reputation value, the further down the
+                       add-on will be in the auto-approved review queue. 
+                       A value of 0 has no impact.") }}
+              </label>
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ admin_form.reputation }}
+              {% else %}
+                {{ addon.reputation or 0 }}
+              {% endif %}
+            </td>
+          </tr>
           {% if addon.type in (amo.ADDON_DICT, amo.ADDON_LPAPP) %}
           <tr>
             <th>
