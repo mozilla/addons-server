@@ -34,6 +34,20 @@ class GroupUser(models.Model):
         db_table = u'groups_users'
 
 
+def invalidate_groups_list(groupuser):
+    """Callback to invalidate user.groups_list when creating/deleting GroupUser
+    instances for this user."""
+    try:
+        # groups_list is a @cached_property, delete it to force it to be
+        # refreshed (ignore AttributeError, that just means it has not been
+        # accessed yet).
+        del groupuser.user.groups_list
+    except AttributeError:
+        pass
+    # Help cache-machine invalidate the group-related queries...
+    Group.objects.invalidate(groupuser.group)
+
+
 @dispatch.receiver(signals.post_save, sender=GroupUser,
                    dispatch_uid='groupuser.post_save')
 def groupuser_post_save(sender, instance, **kw):
@@ -43,7 +57,7 @@ def groupuser_post_save(sender, instance, **kw):
     activity.log_create(amo.LOG.GROUP_USER_ADDED, instance.group,
                         instance.user)
     log.info('Added %s to %s' % (instance.user, instance.group))
-    del instance.user.groups_list
+    invalidate_groups_list(instance)
 
 
 @dispatch.receiver(signals.post_delete, sender=GroupUser,
@@ -55,4 +69,4 @@ def groupuser_post_delete(sender, instance, **kw):
     activity.log_create(amo.LOG.GROUP_USER_REMOVED, instance.group,
                         instance.user)
     log.info('Removed %s from %s' % (instance.user, instance.group))
-    del instance.user.groups_list
+    invalidate_groups_list(instance)
