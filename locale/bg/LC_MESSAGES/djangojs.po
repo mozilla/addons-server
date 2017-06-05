@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-09 13:26+0000\n"
+"PO-Revision-Date: 2017-06-05 07:48+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -21,7 +21,7 @@ msgstr[0] "{0} звезда"
 msgstr[1] "{0} звезди"
 
 msgid "There was a problem contacting the server."
-msgstr "Имаше проблем при свързването със сървъра."
+msgstr "Има проблем при свързване със сървъра."
 
 msgid "Select a file..."
 msgstr "Избиране на файл..."
@@ -61,17 +61,17 @@ msgstr[0] "&hellip;и {0} още"
 msgstr[1] "&hellip;и {0} още"
 
 msgid "See full validation report"
-msgstr "Виж целия доклад за валидацията"
+msgstr "Пълен доклад за валидацията"
 
 msgid "Validating {0}"
 msgstr "Валидиране {0}"
 
 #. L10n: first argument is an HTTP status code
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Получих празен отговор от сървъра; състояние {0}"
+msgstr "Получен е празен отговор от сървъра; състояние {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "Неочаквана грешка на сървъра, докато се валидира."
+msgstr "Неочаквана грешка на сървъра при валидиране."
 
 msgid "Finished validating {0}"
 msgstr "Валидирането приключи {0}"
@@ -109,7 +109,7 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Включете подробен отчет на промените (може и на следващата стъпка)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Ако добавката ви, за да бъде пълнофункционална, изисква сметка в уеб сайт добавете тестово потребителско име и парола в Бележката към рецензента (може и на следващата стъпка)."
+msgstr "Ако добавката ви, за да бъде пълнофункционална, изисква сметка в уебсайт добавете тестово потребителско име и парола в Бележката към рецензента (може и на следващата стъпка)."
 
 msgid "Add-on submission checklist"
 msgstr "Стъпки за изпращане на добавка"
@@ -177,7 +177,7 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr "Името на темата Ви"
+msgstr "Име на темата"
 
 msgid "Flagged for review"
 msgstr "Отбелязана за преглед"
@@ -186,7 +186,7 @@ msgid "Your input is required"
 msgstr "Моля, въведете нещо тук"
 
 msgid "Marked for deletion"
-msgstr "Отбелязан за изтриване"
+msgstr "Отбелязана за изтриване"
 
 msgid "Updating results&hellip;"
 msgstr "Актуализиране на резултатите&hellip;"
@@ -240,13 +240,13 @@ msgid "Daily Users"
 msgstr "Потребители дневно"
 
 msgid "Amount, in USD"
-msgstr "Размер, в USD"
+msgstr "Сума, в USD"
 
 msgid "Number of Contributions"
 msgstr "Брой допринесли"
 
 msgid "More Info..."
-msgstr "Още информация..."
+msgstr "Повече информация…"
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -289,22 +289,22 @@ msgid "Unknown"
 msgstr "Непознат"
 
 msgid "Add-ons Manager"
-msgstr "Мениджър на добавките"
+msgstr "Управление на добавки"
 
 msgid "Add-ons Manager Promo"
-msgstr "Като промо в Управление на добавките"
+msgstr "Като промо в Управление на добавки"
 
 msgid "Add-ons Manager Featured"
-msgstr "Като препоръчана в Управление на добавките"
+msgstr "Като препоръчана в Управление на добавки"
 
 msgid "Add-ons Manager Learn More"
-msgstr "Като научете повече в Управление на добавките"
+msgstr "Като научете повече в Управление на добавки"
 
 msgid "Search Suggestions"
 msgstr "Предложения при търсене"
 
 msgid "Search Results"
-msgstr "Резултати от търсенето"
+msgstr "Резултати от търсене"
 
 msgid "Homepage Promo"
 msgstr "Начална страница Промо"
@@ -313,10 +313,10 @@ msgid "Homepage Featured"
 msgstr "Начална страница Препоръчани"
 
 msgid "Homepage Up and Coming"
-msgstr "Начална страница Up and Coming"
+msgstr ""
 
 msgid "Homepage Most Popular"
-msgstr "Начална страница Най-известнии"
+msgstr "Начална страница Най-известни"
 
 msgid "Detail Page"
 msgstr "Страница с детайли"
@@ -328,7 +328,7 @@ msgid "Detail Page (Development Channel)"
 msgstr "Страница с детайли (канал за разработка)"
 
 msgid "Often Used With"
-msgstr "Често използван с"
+msgstr "Често използвана с"
 
 msgid "Others By Author"
 msgstr "Други от автора"
@@ -337,7 +337,7 @@ msgid "Dependencies"
 msgstr "Зависимости"
 
 msgid "Upsell"
-msgstr "Upsell"
+msgstr ""
 
 msgid "Meet the Developer"
 msgstr "Запознайте се с разработчика"
@@ -358,46 +358,46 @@ msgid "Collections"
 msgstr "Колекции"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Category Landing Featured Carousel"
+msgstr ""
 
 msgid "Category Landing Top Rated"
-msgstr "Категория Най-високо оценени"
+msgstr "Категория най-високо оценени"
 
 msgid "Category Landing Most Popular"
 msgstr "Категория най-известни"
 
 msgid "Category Landing Recently Added"
-msgstr "Категория Наскоро добавени"
+msgstr "Категория наскоро добавени"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Browse Listing Featured Sort"
+msgstr ""
 
 msgid "Browse Listing Users Sort"
-msgstr "Browse Listing Users Sort"
+msgstr ""
 
 msgid "Browse Listing Rating Sort"
-msgstr "Browse Listing Rating Sort"
+msgstr ""
 
 msgid "Browse Listing Created Sort"
-msgstr "Browse Listing Created Sort"
+msgstr ""
 
 msgid "Browse Listing Name Sort"
-msgstr "Browse Listing Name Sort"
+msgstr ""
 
 msgid "Browse Listing Popular Sort"
-msgstr "Browse Listing Popular Sort"
+msgstr ""
 
 msgid "Browse Listing Updated Sort"
-msgstr "Browse Listing Updated Sort"
+msgstr ""
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr "Browse Listing Up and Coming Sort"
+msgstr ""
 
 msgid "Total Amount Contributed"
 msgstr "Общо дарено"
 
 msgid "Average Contribution"
-msgstr "Средни дарения"
+msgstr "Средно дарено"
 
 msgid "Usage"
 msgstr "Употреба"
@@ -421,7 +421,7 @@ msgid "Fennec"
 msgstr "Fennec"
 
 msgid "Android"
-msgstr "Андроид"
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
@@ -912,4 +912,4 @@ msgid "Validation task could not complete or completed with errors"
 msgstr "Задачата за валидация не можа да премине или завърши с грешки"
 
 msgid "Internal server error"
-msgstr "Вътрешна сървърна грешка"
+msgstr "Грешка на сървъра"

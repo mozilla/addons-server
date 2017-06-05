@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-05-17 11:23+0000\n"
-"PO-Revision-Date: 2017-05-29 11:43+0000\n"
+"PO-Revision-Date: 2017-06-05 07:49+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -554,9 +554,8 @@ msgstr "Искате {0} на вашия мобилен Firefox? Сканира�
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Replacement Add-ons for {0}"
-msgstr "Добавки за {0}"
+msgstr ""
 
 msgid "Report Abuse"
 msgstr "Докладване на злоупотреба"
@@ -2129,9 +2128,8 @@ msgstr ""
 msgid "Source code uploaded"
 msgstr ""
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Коментар на {addon} {version}."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr ""
@@ -2351,10 +2349,10 @@ msgid "Level 9"
 msgstr ""
 
 msgid "Compatible"
-msgstr ""
+msgstr "Свместима"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "Несъвместима"
 
 msgid "Alerts & Updates"
 msgstr "Известия и актуализации"
@@ -4784,9 +4782,8 @@ msgstr ""
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Confirm Approval"
-msgstr "Очакваща одобрение"
+msgstr ""
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr ""
@@ -4959,13 +4956,11 @@ msgstr ""
 msgid "Approvals Since Last Automatic Review"
 msgstr ""
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "Доклади за злоупотреби"
+msgstr ""
 
-#, fuzzy
 msgid "Bad User Reviews ({num})"
-msgstr "Модерирана рецензия ({num})"
+msgstr ""
 
 msgid "More about this add-on"
 msgstr "Повече за добавката"
@@ -5301,9 +5296,8 @@ msgstr "Съдържание"
 msgid "Compare"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Права"
+msgstr "Права:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
