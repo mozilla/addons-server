@@ -285,7 +285,7 @@ This endpoint gets details of a single add-on in a collection, together with col
     .. _collection-addon-detail-object:
 
     :>json object addon: The :ref:`add-on <addon-detail-object>` for this item.
-    :>json string|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
     :>json int downloads: The downloads that occured via this collection.
 
 
@@ -303,8 +303,8 @@ This endpoint allows a single add-on to be added to a collection, optionally wit
 
 .. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/
 
-    :<json string addon_id: The add-on id to be added (required).
-    :<json string|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string addon: The add-on id or slug to be added (required).
+    :<json string|object|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
 
 
 -----------------------
@@ -321,7 +321,7 @@ This endpoint allows the collector's notes for single add-on to be updated.
 
 .. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug|string:guid)/
 
-    :<json string|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|object|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
 
 
 -------------------------
