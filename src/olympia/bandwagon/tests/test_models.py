@@ -193,7 +193,6 @@ class TestCollections(TestCase):
 
         # Developer.
         grouser.delete()
-        del fake_request.user.groups_list
         CollectionUser.objects.create(collection=c, user=self.user)
         fake_request.user = self.user
         assert c.can_view_stats(fake_request)
