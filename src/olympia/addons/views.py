@@ -615,7 +615,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
 class AddonChildMixin(object):
     """Mixin containing method to retrive the parent add-on object."""
 
-    def get_addon_object(self, permission_classes=None):
+    def get_addon_object(self, permission_classes=None, lookup='addon_pk'):
         """Return the parent Addon object using the URL parameter passed
         to the view.
 
@@ -630,7 +630,7 @@ class AddonChildMixin(object):
 
         self.addon_object = AddonViewSet(
             request=self.request, permission_classes=permission_classes,
-            kwargs={'pk': self.kwargs['addon_pk']}).get_object()
+            kwargs={'pk': self.kwargs[lookup]}).get_object()
         return self.addon_object
 
 

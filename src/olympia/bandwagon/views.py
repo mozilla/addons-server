@@ -14,9 +14,7 @@ from django.utils.translation import ugettext_lazy as _lazy, ugettext
 
 import caching.base as caching
 from django_statsd.clients import statsd
-from rest_framework.mixins import ListModelMixin
-from rest_framework.permissions import AllowAny
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
+from rest_framework.viewsets import ModelViewSet
 
 import olympia.core.logger
 from olympia import amo
@@ -676,16 +674,28 @@ class CollectionViewSet(ModelViewSet):
             author=self.get_account_viewset().get_object())
 
 
-class CollectionAddonViewSet(ListModelMixin, GenericViewSet):
-    permission_classes = [AllowAny]
+class CollectionAddonViewSet(ModelViewSet):
+    permission_classes = []  # We don't need extra permissions.
     serializer_class = CollectionAddonSerializer
+    lookup_field = 'addon'
 
-    def get_queryset(self):
-        if not hasattr(self, 'collection_object'):
-            self.collection_object = CollectionViewSet(
+    def get_collection_viewset(self):
+        if not hasattr(self, 'collection_viewset'):
+            # CollectionViewSet's permission_classes are good for us.
+            self.collection_viewset = CollectionViewSet(
                 request=self.request,
                 kwargs={'user_pk': self.kwargs['user_pk'],
-                        'slug': self.kwargs['collection_slug']}).get_object()
+                        'slug': self.kwargs['collection_slug']})
+        return self.collection_viewset
 
+    def get_object(self):
+        self.lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        lookup_value = self.kwargs.get(self.lookup_url_kwarg)
+        # if the lookup is not a number, its probably the slug instead.
+        if lookup_value and not unicode(lookup_value).isdigit():
+            self.lookup_field = '%s__slug' % self.lookup_field
+        return super(CollectionAddonViewSet, self).get_object()
+
+    def get_queryset(self):
         return CollectionAddon.objects.filter(
-            collection=self.collection_object)
+            collection=self.get_collection_viewset().get_object())

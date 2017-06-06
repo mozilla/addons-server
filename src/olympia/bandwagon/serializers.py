@@ -3,9 +3,11 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
+from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.utils import clean_nl, has_links, slug_validator
-from olympia.api.fields import TranslationSerializerField
+from olympia.api.fields import (
+    SplitField, SlugOrPrimaryKeyRelatedField, TranslationSerializerField)
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.models import DeniedName
 from olympia.users.serializers import BaseUserSerializer
@@ -13,10 +15,10 @@ from olympia.users.serializers import BaseUserSerializer
 
 class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
-    description = TranslationSerializerField()
+    description = TranslationSerializerField(required=False)
     url = serializers.SerializerMethodField()
-    author = BaseUserSerializer(required=False, default=None)
-    public = serializers.BooleanField(source='listed')
+    author = BaseUserSerializer(default=serializers.CurrentUserDefault())
+    public = serializers.BooleanField(source='listed', default=True)
 
     class Meta:
         model = Collection
@@ -66,18 +68,37 @@ class CollectionSerializer(serializers.ModelSerializer):
 
         return value
 
-    def validate_author(self, value):
-        if not self.partial:
-            # If we've got a new collection set the author to account user
-            value = self.context['request'].user
-        # Otherwise, we're modifying an existing collection so don't change it.
-        return value
+
+class ThisCollectionDefault(object):
+    def set_context(self, serializer_field):
+        viewset = serializer_field.context['view']
+        self.collection = viewset.get_collection_viewset().get_object()
+
+    def __call__(self):
+        return self.collection
 
 
 class CollectionAddonSerializer(serializers.ModelSerializer):
-    addon = AddonSerializer()
-    notes = TranslationSerializerField(source='comments')
+    addon = SplitField(
+        SlugOrPrimaryKeyRelatedField(
+            # .no_cache() because django-cache-machine blows up otherwise.
+            # Only used for writes (this is input field) so no perf concerns.
+            queryset=Addon.objects.public().no_cache()),
+        AddonSerializer())
+    notes = TranslationSerializerField(source='comments', required=False)
+    collection = serializers.HiddenField(default=ThisCollectionDefault())
 
     class Meta:
         model = CollectionAddon
-        fields = ('addon', 'downloads', 'notes')
+        fields = ('addon', 'downloads', 'notes', 'collection')
+        writeable_fields = (
+            'notes',
+        )
+        read_only_fields = tuple(set(fields) - set(writeable_fields))
+
+    def validate(self, data):
+        if self.partial:
+            # addon is read_only but SplitField messes with the initialization.
+            # DRF normally ignores updates to read_only fields, so do the same.
+            data.pop('addon')
+        return super(CollectionAddonSerializer, self).validate(data)
