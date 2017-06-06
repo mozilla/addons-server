@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 09:50+0000\n"
+"PO-Revision-Date: 2017-06-06 10:10+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -56,7 +56,7 @@ msgid "Need help?"
 msgstr "Behöver du hjälp?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Utvecklarna av tillägg eller teman kan inte radera sitt konto. Du måste ta bort alla tillägg och teman kopplade till detta konto, eller överföra dem till andra användare."
 
 msgid "Review"
 msgstr "Recensera"
@@ -6649,20 +6649,21 @@ msgid ""
 "APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
 "legacy Firefox add-on</a>."
 msgstr ""
+"<strong>Obs:</strong> XUL anses vara en äldre teknik i Firefox, och tillägg som använder XUL laddas inte längre från Firefox 57. Använd <a href=\"%(webext_url)s\">WebExtensions</a> API:er för att "
+"utveckla nya tillägg. Om du har ett äldre tillägg, överväg att överföra det till WebExtensions. För information om att migrera ett äldre tillägg, besök <a href=\"%(portlegacy_url)s\">portning av ett"
+" äldre Firefox-tillägg</a>."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Hur testar jag kompatibilitet med den senaste versionen av programvara från Mozilla?"
 
-#, fuzzy
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 "För att säkerställa kompatibilitet med den senaste programvaran av Mozilla, är det viktigt att ladda ner uppdateringar när de blir tillgängliga och testa ditt tillägg för att säkerställa att det "
-"fortfarande fungerar som förväntat. I många fall kan den senaste versionen av Mozillas programvara vara en betaversion. Eftersom dessa släpp ibland inför arkitektoniska förändringar som kan påverka "
-"funktionaliteten hos ditt tillägg, är det viktigt att aktivt delta i beta-processen för att säkerställa att ditt tilläggs användare inte negativt påverkas av den slutliga utgåvan av Mozillas "
-"programvara."
+"fortfarande fungerar som förväntat. Eftersom dessa utgåvor ibland inför arkitektoniska förändringar som kan påverka funktionaliteten hos ditt tillägg, är det viktigt att aktivt delta i beta-"
+"processen för att säkerställa att ditt tilläggs användare inte negativt påverkas av den slutliga utgåvan av Mozillas programvara."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "Jag behöver några råd för att bygga mitt tillägg. Var hittar jag hjälp?"
@@ -6677,7 +6678,7 @@ msgstr "#amo (för support relaterat till att hysa ditt tillägg på AMO)"
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (för diskussioner om utveckling och portning till WebExtensions)"
 
 msgid "Add-ons forum"
 msgstr "Tilläggsforum"
@@ -6702,14 +6703,13 @@ msgstr ""
 msgid "Can I host my own add-on?"
 msgstr "Kan jag hysa mina egna tillägg?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
 "Ja. Många utvecklare väljer att vara värd för sina egna tillägg. Att hysa ditt tillägg på <a href=\"%(amo_url)s\">Mozillas tilläggswebbplats</a>, möjliggör en mycket större exponering av ditt "
-"tillägg på grund av den stora mängden besökare.  <a href=\"%(md_url)s\">mozdev.org </a> erbjuder att gratis hysa projekt för Mozilla applikationer och utökningar. De förser utvecklaren med verktyg "
-"för att hantera källkod, versionskontroll , felrapporteringssystem och dokumentation."
+"tillägg på grund av den stora mängden besökare."
 
 msgid "Can Mozilla host my add-on?"
 msgstr "Kan Mozilla hysa mitt tillägg?"
@@ -6748,25 +6748,24 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Har Mozilla en policy på plats om vad som är en acceptabel inskickning?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
 " the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Ja. Mozillas <a href=\"%(p_url)s\">tilläggspolicy</a> beskriver vad som är ett acceptabelt bidrag. Denna policy kan ändras utan förvarning. Dessutom använder tilläggsgranskare <a "
-"href=\"%(g_url)s\">riktlinjer för granskare</a> för att säkerställa att ditt tillägg uppfyller de särskilda riktlinjer för funktionalitet och säkerhet."
+"Ja. Mozillas <a href=\"%(p_url)s\">granskningspolicyer för tillägg</a> beskriver vad som är en acceptabel inskickning. Denna policy kan ändras utan föregående meddelande. Dessutom använder gruppen "
+"av granskare <a href=\"%(g_url)s\">riktlinjer för granskare</a> för att se till att ditt tillägg uppfyller specifika riktlinjer för funktionalitet och säkerhet."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Hur skickar jag in mitt tillägg för granskning?"
+msgstr "Hur skickar jag in ett tillägg?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
-"Översikten för utvecklingsverktyg gör att du kan ladda upp och skicka in tillägg till AMO. Du måste vara registrerad AMO-användare innan du kan skicka in ett tillägg. Innan du skickar in ditt "
-"tillägg bör du ha läst <a href=\"%(url)s\">riktlinjer för granskare</a> för att säkerställa att ditt tillägg uppfyller de riktlinjer som används av granskare."
+"Översikten för utvecklarverktyget tillåter dig att ladda upp och skicka tillägg till AMO. Du måste vara en registrerad AMO-användare innan du kan skicka in ett tillägg. Innan du skickar in tillägget"
+" måste du läsa <a href=\"%(url)s\">granskningspolicyn för tillägg</a> för att se till att ditt tillägg har uppfyllt våra riktlinjer."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Vilket operativsystem ska jag välja för mitt tillägg?"
@@ -6799,22 +6798,21 @@ msgstr ""
 "Ja. Du kan ange en sekretesspolicy när du skickar in ditt tillägg. Du kan också lägga till eller uppdatera en sekretesspolicy via översikten för utvecklingsverktyg efter att tillägget har skickats "
 "in."
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Varför måste mitt tillägg bli granskat?"
+msgstr "Måste mitt tillägg bli granskat?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
 msgstr ""
-"Alla tillägg som skickas in, vare sig nya eller uppdaterade, granskas för att se till att Mozilla-användare har en stabil och säker upplevelse. Alla inskickade tillägg granskas med hjälp av "
-"riktlinjerna i <a href=\"%(url)s\">riktlinjer för granskare</a>."
+"Nya och uppdaterade tillägg kan vara övertygade om att granskas för att säkerställa att Mozilla-användare har en stabil och säker upplevelse. Riktlinjerna som beskrivs i <a "
+"href=\"%(url)s\">riktlinjer för granskare</a> används för att granska inskickade tillägg."
 
 msgid "Who reviews my add-on?"
 msgstr "Vem granskar mitt tillägg?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
@@ -6827,13 +6825,13 @@ msgstr ""
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Vilka riktlinjer används för att granska mitt tillägg?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
 "are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 msgstr ""
-"Mozilla tilläggsgranskare följer <a href=\"%(url)s\">riktlinjer för granskare</a> när man testar ett tillägg för godkännande på AMO. Det är viktigt att tilläggsutvecklare granskar denna guide för "
-"att se till att gemensamma problemområden behandlas innan de skickar in tillägg för granskning. Detta kommer att kraftigt bidra till att påskynda granskningsprocessen."
+"Mozilla tilläggsgranskare följer <a href=\"%(url)s\">riktlinjer för granskare</a> när man testar ett tillägg. Det är viktigt att tilläggsutvecklare granskar denna guide för att se till att "
+"gemensamma problemområden behandlas innan de skickar in tillägg för granskning. Detta kommer att kraftigt bidra till att påskynda granskningsprocessen."
 
 msgid "How long will it take for my add-on to be reviewed?"
 msgstr "Hur lång tid tar det innan mitt tillägg granskas?"
@@ -6855,7 +6853,7 @@ msgstr "antal upptäckta problemområden"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "Det är därför viktigt att du läser <a href=\"%(g_url)s\">riktlinjer för granskare</a> för att se till att ditt tillägg är förinställt som förväntat."
 
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "Hur kan jag se hur många gånger mitt tillägg har laddats ner?"
@@ -6882,7 +6880,7 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr "Behöver min uppdatering granskas av granskare?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "Tilläggsuppdateringar kan bli föremål för granskning precis som nya inlägg."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "Hur svarar jag på en användare som har postat en negativ recension av mitt tillägg?"
@@ -6906,9 +6904,8 @@ msgstr "Felrapport eller begäran om hjälp på fel ställe"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Annat (ger en pop-up prompt för information)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "För närvarande tillhandahåller AMO inte en mekanism för att kommunicera direkt med en granskare men denna funktion är under utredning och beaktad för en framtida uppdatering."
+msgstr "För närvarande tillhandahåller AMO inte en mekanism för att direkt kommunicera med en författare till en användarrecension."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Kan jag begära att en granskning tas bort om granskningen är negativ?"
@@ -6982,16 +6979,16 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Kommer tillägg att fungera med min webbläsare eller program?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Tillägg som listas i detta galleri fungerar endast med Mozilla-baserade program, såsom <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobil</a>, <a "
+"Tillägg som listas i detta galleri fungerar endast med Mozilla-baserade program, såsom <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox för Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a> och <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Men inte alla tillägg fungerar med vart och ett av dessa program eller varje version av dessa "
-"program. Varje tillägg anger vilka program och versioner som det fungerar med, såsom Firefox 2.0 - 3.6.*. För Firefoxs tillägg, kommer installationsknappen att ange om tillägget är kompatibel eller "
+"program. Varje tillägg anger vilka program och versioner som det fungerar med, såsom Firefox 50.0 - 52.*. För Firefoxs tillägg, kommer installationsknappen att ange om tillägget är kompatibel eller "
 "inte."
 
 msgid "What are the different types of add-ons?"
@@ -7042,7 +7039,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "Hur håller jag tillägg uppdaterade?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "Tillägg kontrolleras automatiskt för uppdateringar en gång varje dag. I Firefox installeras uppdateringar automatiskt som standard. "
 
 msgid "Are add-ons safe to install?"
 msgstr "Är tillägg säkra att installera?"
@@ -7052,6 +7049,8 @@ msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
 msgstr ""
+"Var försiktig när du installerar tillägg, eftersom de kan skada datorn eller bryta mot din integritet. Tillägg som är tillgängliga från den här webbplatsen kan bli föremål för granskning av Mozillas"
+" grupp av granskare och användarnas återkoppling följs noggrant, så de borde i allmänhet vara säkra att installera. <a href=\"%(learnmore_url)s\">Läs mer om vår granskningsprocess</a>"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -7123,14 +7122,13 @@ msgstr ""
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Vad betyder det om ett tillägg är \"experimentellt\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Experimentella tillägg har markerats av deras utvecklare som inte lämplig för en bred publik.  De har kontrollerats av våra redigerare för att se till att de inte har säkerhetsproblem, men de kan "
-"fortfarande ha fel eller inte fungera. Var försiktig när du installerar experimentella tillägg och avinstallera tillägget omedelbart om du märker problem. <a href=\"%(url)s\">Läs mer om vår "
-"granskningsprocess</a></dd>"
+"Experimentella tillägg har markerats av deras utvecklare som inte lämplig för en bred publik.  De kan ha buggar eller inte fungera ordentligt. Var försiktig när du installerar experimentella tillägg"
+" och avinstallera tillägget omedelbart om du märker problem. <a href=\"%(url)s\">Läs mer om vår granskningsprocess</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Vad innebär det om en tillägg är \"ej granskad\"?"
