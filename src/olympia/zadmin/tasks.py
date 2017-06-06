@@ -601,9 +601,6 @@ def fetch_langpack(url, xpi, **kw):
                 AddonCategory.objects.get_or_create(
                     addon=addon, category=category)
 
-        # Clear potentially outdated categories cached_property on Addon.
-        del addon.all_categories
-
         # Add a license if there isn't one already
         if not version.license:
             license = License.objects.builtins().get(builtin=1)

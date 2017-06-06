@@ -319,7 +319,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
                        13,
                        u'laststring!']
         WebextPermission.objects.create(permissions=permissions, file=file_)
-        del file_.webext_permissions_list
+
         # Strings only plz.
         assert file_.webext_permissions_list == [
             u'iamstring', u'iamnutherstring', u'laststring!']

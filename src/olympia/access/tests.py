@@ -2,6 +2,7 @@ import mock
 import pytest
 
 from olympia import amo
+from olympia.access.models import Group, GroupUser
 from olympia.amo.tests import TestCase, req_factory_factory
 from olympia.addons.models import Addon, AddonUser
 from olympia.users.models import UserProfile
@@ -193,6 +194,22 @@ class TestHasPerm(TestCase):
         self.au.role = amo.AUTHOR_ROLE_SUPPORT
         self.au.save()
         assert check_addon_ownership(self.request, self.addon, support=True)
+
+    def test_add_and_remove_group(self):
+        group = Group.objects.create(name='A Test Group', rules='Test:Group')
+        group_user = GroupUser.objects.create(group=group, user=self.user)
+        assert self.user.groups_list == [group]
+
+        # The groups_list property already existed. Make sure delete works.
+        group_user.delete()
+        assert self.user.groups_list == []
+
+        group_user = GroupUser.objects.create(group=group, user=self.user)
+        assert self.user.groups_list == [group]
+        del self.user.groups_list
+        # The groups_list didn't exist. Make sure delete works.
+        group_user.delete()
+        assert self.user.groups_list == []
 
 
 class TestCheckReviewer(TestCase):
