@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 09:11+0000\n"
+"PO-Revision-Date: 2017-06-06 09:50+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4890,9 +4890,8 @@ msgstr "Den senaste offentliga versionen av detta tillägg godkändes automatisk
 msgid "Reject Multiple Versions"
 msgstr "Avvisa flera versioner"
 
-#, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Detta kommer godkänna, signera och publicera denna version. Kommentarerna kommer att skickas till utvecklaren."
+msgstr "Detta kommer att avvisa de valda publika versionerna. Kommentarerna kommer att skickas till utvecklaren."
 
 msgid "Reviewer reply"
 msgstr "Granskarsvar"
@@ -5337,7 +5336,7 @@ msgid "This version has not been reviewed."
 msgstr "Denna version har inte granskats."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Vänligen välj en eller flera versioner i listan ovan."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Du kan fortfarande skicka in formuläret, men endast om du vet att det inte kommer skapa en konflikt."
@@ -7113,7 +7112,7 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Vad händer om jag inte kan hitta ett tillägg som jag söker?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
@@ -7136,14 +7135,13 @@ msgstr ""
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Vad innebär det om en tillägg är \"ej granskad\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Eftersom alla tillägg är publikt tillgängliga i vårt galleri granskas de av en redigerare, du kan få en direkt länk till ett tillägg som ännu inte har granskats. Var försiktig när du installerar "
-"detta tillägg, eftersom de kan skada din dator eller bryta mot sekretessen. Vi rekommenderar att du bara installerar granskade tillägg. <a href=\"%(url)s\">Mer information om vår "
-"granskningsprocess</a></dd>"
+"Om du får en direktlänk till ett tillägg som säger att det ännu inte har granskats, betyder det att det väntar på granskning av Mozilla. Var försiktig när du installerar dessa tillägg, eftersom de "
+"kan skada datorn eller bryta mot din integritet. <a href=\"%(url)s\">Läs mer om vår granskningsprocess</a></dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Hur mycket kostar ett tillägg att köpa?"
@@ -7175,13 +7173,12 @@ msgstr ""
 "        standarder för beta kodkvalitet, bör du anta att dessa tillägg\n"
 "        är mindre stabila än de allmänna tillägg som ges ut."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
 "Observera att när du installerar ett tillägg från sektionen \"Betaversion\" i ett tilläggs listning, kommer du att fortsätta att ta emot uppdateringar för detta tillägg när de blir tillgängliga. Som"
-" den första versionen du installerat, alla betaversioner är inte granskade av Mozilla och kan skada din dator."
+" den första versionen du installerat, alla betaversioner granskas inte av Mozilla och kan skada din dator."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Hur gör jag rapportera en olämplig eller skräppost användarrecension?"
@@ -7242,13 +7239,13 @@ msgstr "Mobila tillägg"
 msgid "What are mobile add-ons?"
 msgstr "Vad är mobila tillägg?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Mobila tillägg fungerar med <a href=\"%(mobile_url)s\">Firefox för mobil</a> och lägga till eller ändra funktioner precis som skrivbordstillägg. Du hittar tillägg som fungerar med Firefox för mobil "
-"i vårt <a href=\"%(gallery_url)s\">galleri</a>."
+"Mobila tillägg fungerar med <a href=\"%(mobile_url)s\">Firefox för Android</a> och lägger till eller ändrar funktioner precis som tillägg för datorer. Du hittar tillägg som fungerar med Firefox för "
+"Android i vårt <a href=\"%(gallery_url)s\">galleri</a>."
 
 msgid "Developer Topics"
 msgstr "Utvecklarämnen"
