@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 19:46+0000\n"
+"PO-Revision-Date: 2017-06-06 20:54+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -7215,24 +7215,24 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Kaj, če ne najdem tega, kar iščem?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
-"S tisoči objavljenih dodatkov je tu na voljo nekaj za vsakogar. Vendar če iščete določen dodatek in ga ne morete najti, ga lahko poiščete na drugih straneh ali o njem pišete v našem <a "
-"href=\"%(forum_url)s\">Forumu za dodatke</a>."
+"Med tisoči objavljenih dodatkov se najde kaj za vsakogar. Če pa iščete določen dodatek in ga ne morete najti, ga lahko poiščete na drugih straneh ali o njem pišete v našem <a "
+"href=\"%(forum_url)s\">forumu za dodatke</a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Kaj pomeni, da je dodatek \"poskusen\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Poskusne dodatke so njihovi razvijalci označili kot nepripravljene za širšo javnost.  Naši uredniki so jih pregledali in se prepričali, da ne predstavljajo varnostnih tveganj, vendar imajo lahko še "
-"vedno napake ali ne delujejo pravilno. Bodite previdni pri nameščanju poskusnih dodatkov in jih takoj odstranite, če naletite na težave. <a href=\"%(url)s\">Več o našem postopku pregledov</a></dd>"
+"Poskusne dodatke so njihovi razvijalci označili kot nepripravljene za širšo javnost. Še vedno imajo lahko napake ali ne delujejo pravilno. Bodite previdni pri nameščanju poskusnih dodatkov in jih "
+"takoj odstranite, če naletite na težave. <a href=\"%(url)s\">Več o našem postopku pregledov</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Kaj pomeni, če dodatek \"ni pregledan\"?"
