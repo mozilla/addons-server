@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-05 07:48+0000\n"
+"PO-Revision-Date: 2017-06-06 09:57+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -313,7 +313,7 @@ msgid "Homepage Featured"
 msgstr "Начална страница Препоръчани"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Начална страница Набиращи популярност"
 
 msgid "Homepage Most Popular"
 msgstr "Начална страница Най-известни"
@@ -358,16 +358,16 @@ msgid "Collections"
 msgstr "Колекции"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Категория Препоръчани"
 
 msgid "Category Landing Top Rated"
-msgstr "Категория най-високо оценени"
+msgstr "Категория Най-високо оценени"
 
 msgid "Category Landing Most Popular"
-msgstr "Категория най-известни"
+msgstr "Категория Най-известни"
 
 msgid "Category Landing Recently Added"
-msgstr "Категория наскоро добавени"
+msgstr "Категория Наскоро добавени"
 
 msgid "Browse Listing Featured Sort"
 msgstr ""
@@ -394,10 +394,10 @@ msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
 msgid "Total Amount Contributed"
-msgstr "Общо дарено"
+msgstr "Обща дарена сума"
 
 msgid "Average Contribution"
-msgstr "Средно дарено"
+msgstr "Средно дарена сума"
 
 msgid "Usage"
 msgstr "Употреба"
