@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 12:50+0000\n"
+"PO-Revision-Date: 2017-06-06 13:11+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5341,7 +5341,7 @@ msgid "This version has not been reviewed."
 msgstr "Esta versão ainda não foi revista."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Por favor selecione uma ou mais versões na lista acima."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Pode, ainda assim, submeter este formulário, no entanto, faça-o apenas se souber que não entra em conflito."
@@ -6666,16 +6666,14 @@ msgstr ""
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Como eu posso testar a compatibilidade com as versões mais recentes dos aplicativos Mozilla?"
 
-#, fuzzy
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Para garantir compatibilidade com as últimas versões do software da Mozilla, é importante descarregar atualizações assim que estas são disponibilizadas e testar o seu extra para garantir que ainda "
-"funciona como esperado. Em muitos casos a última versão do software da Mozilla pode ser um lançamento beta. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais, que podem "
-"ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente no processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento "
-"do software da Mozilla."
+"Para garantir compatibilidade com o software da Mozilla mais recente, é importante descarregar atualizações assim que estas se tornam disponíveis e testar o seu extra para garantir que ainda "
+"funciona como esperado. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem ter impacto na funcionalidade do seu extra, é importante estar envolvido ativamente "
+"no processo beta para garantir que os utilizadores do seu extra não são negativamente afetados após o lançamento do software da Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "Eu preciso de dicas para criar meu extra. Onde eu posso encontrar ajuda?"
@@ -6715,14 +6713,13 @@ msgstr ""
 msgid "Can I host my own add-on?"
 msgstr "Posso alojar o meu próprio extra?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
-"Sim. Muitos programadores optam por alojar os seus próprios extras. No entanto, ao optar por alojar o seu extra no <a href=\"%(amo_url)s\">site de extras da Mozilla</a> fornece uma exposição muito "
-"maior ao seu extra devido ao elevado número de visitantes ao site. <a href=\"%(md_url)s\">mozdev.org</a> oferece alojamento gratuito de projetos para aplicações e extensões da Mozilla fornecendo "
-"ferramentas aos programadores para ajudar na gestão de código-fonte, versões, gestão de bugs e documentação."
+"Sim. Muitos programadores optam por alojar os seus próprios extras. No entanto, ao escolher alojar o seu extra no <a href=\"%(amo_url)s\">site de extras da Mozilla</a> fornece uma exposição muito "
+"maior ao seu extra devido ao grande número de visitantes do site."
 
 msgid "Can Mozilla host my add-on?"
 msgstr "A Mozilla pode hospedar o meu extra?"
@@ -6772,13 +6769,13 @@ msgstr ""
 msgid "How do I submit my add-on?"
 msgstr "Como é que submeto o meu extra?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
 "O painel ferramentas de programador irá permitir-lhe carregar e submeter extras para o AMO. Deverá ser um utilizador registado do AMO antes de poder submeter um extra. Antes de submeter o seu extra,"
-" certifique-se de que leu o <a href=\"%(url)s\">Guia de revisão de extras</a> para garantir que o seu extra atende às diretrizes utilizadas pelos revisores."
+" certifique-se de que leu o <a href=\"%(url)s\">Guia de revisão de extras</a> para garantir que o seu extra atende às nossas diretrizes."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Que sistema operacional escolho para o meu extra?"
@@ -6812,41 +6809,40 @@ msgstr ""
 "Sim. Pode especificar uma política de privacidade ao submeter o seu extra. Pode também adicionar ou atualizar uma política de privacidade através do painel de ferramentas de programador após o seu "
 "extra ser submetido."
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Porque é que o meu extra tem de ser revisto?"
+msgstr "O meu extra tem de ser revisto?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
 msgstr ""
-"Todos os extras submetidos, sejam estes novos ou atualizações, são revistos para assegurar que os utilizadores da Mozilla têm uma experiência estável e segura. Todas as submissões de extras são "
-"revistas de acordo com as diretrizes descritas no <a href=\"%(url)s\">Guia de revisão de extras</a>."
+"Extras novos e atualizados podem ser sujeitos a ser revistos para assegurar que os utilizadores da Mozilla têm uma experiência estável e segura. As diretrizes descritas no <a href=\"%(url)s\">Guia "
+"de revisão de extras</a> são utilizadas para rever submissões de extras."
 
 msgid "Who reviews my add-on?"
 msgstr "Quem analisa meu extra?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
 " href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 "Os extras são revistos pelos revisores de extras, um grupo de programadores talentosos que se voluntariam para ajudar no projeto Mozilla, revendo extras para garantir uma experiência estável e "
-"segura para os utilizadores da Mozilla. Quando comunicar com os revisores, por favor seja cordial, paciente e respeitador, pois eles estão a trabalhar arduamente para garantir que o seu extra seja "
+"segura para os utilizadores da Mozilla. Quando comunicar com um revisor, por favor seja cordial, paciente e respeitador, pois eles estão a trabalhar arduamente para garantir que o seu extra seja "
 "configurado corretamente e siga as diretrizes descritas no <a href=\"%(url)s\">Guia de revisão de extras</a>."
 
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Quais são os critérios usados para analisar o meu extra?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
 "are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 msgstr ""
-"A equipa de revisão de extras segue o <a href=\"%(url)s\">Guia de revisão de extras</a> ao testar um extra para aceitação no AMO. É importante que os programadores de extras analisem este guia para "
-"garantir que áreas problemáticas frequentes sejam trabalhadas antes de submeter os extras para revisão. Isto irá tornar o processo de revisão mais expedito."
+"A equipa de revisão de extras segue o <a href=\"%(url)s\">Guia de revisão de extras</a> ao testar um extra. É importante que os programadores de extras analisem este guia para garantir que áreas "
+"problemáticas frequentes sejam abordadas antes de submeter o seu extra. Isso irá ajudar grandemente a evitar problemas de revisão."
 
 msgid "How long will it take for my add-on to be reviewed?"
 msgstr "Quanto tempo levará para o meu extra ser analisado?"
@@ -6896,7 +6892,7 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr "A minha atualização precisa de ser revista por revisores?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "As atualizações de extras podem ser sujeitas a revisão da mesma maneira que as novas submissões."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "Como eu posso responder a um utilizador que publicou uma análise negativa do meu extra?"
@@ -6920,9 +6916,8 @@ msgstr "Relatório de erro mal colocado ou pedido de ajuda"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Outro (providencia uma solicitação pop-up para mais informação)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Atualmente o AMO não fornece um mecanismo de comunicação direta com o autor da análise, mas esse recurso está a ser considerado para uma atualização futura."
+msgstr "Atualmente, o AMO não fornece um mecanismo de comunicação direta com um autor de análise de utilizador."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Eu posso solicitar que uma análise seja removida caso ela seja negativa?"
@@ -6996,16 +6991,17 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Os extras funcionam com o meu navegador web ou aplicação?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Os extras listados nesta galeria apenas funcionam com aplicações baseados na Mozilla, tais como <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. No entanto, nem todos os extras funcionam com cada uma dessas aplicações ou em qualquer versão "
-"das mesmas. Cada extra especifica quais as aplicações com que funcionam, tipo Firefox 2.0 - 3.6.*. Para extras do Firefox, o botão instalar indica se é compatível ou não."
+"Os extras listados nesta galeria apenas funcionam com aplicações baseadas na Mozilla, tais como o <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox para Android</a>, "
+"<a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, e <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. No entanto, nem todos os extras funcionam com cada uma dessas aplicações ou em qualquer versão "
+"dessas aplicações. Cada extra especifica quais as aplicações e versões com que funcionam, tipo Firefox 50.0 - 52.*. Para extras do Firefox, o botão de instalar irá indicar se o extra é compatível ou"
+" não."
 
 msgid "What are the different types of add-ons?"
 msgstr "Quais são os diferentes tipos de extras?"
@@ -7057,7 +7053,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "Como mantenho os extras atualizados?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "Os extras procuram automaticamente por atualizações uma vez por dia. No Firefox, as atualizações são automaticamente instaladas por predefinição. "
 
 msgid "Are add-ons safe to install?"
 msgstr "É seguro instalar extras?"
@@ -7125,37 +7121,35 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "E se não conseguir encontrar o extra que procuro?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
 "Com milhares de extras disponíveis, existe sempre algo para toda a gente. Mas se está à procura de um extra específico e não o consegue encontrar, pode tentar procurar em outros sites ou fazer uma "
-"entrada no nosso fórum de <a href=\"%(forum_url)s\">Extras</a>."
+"entrada no nosso <a href=\"%(forum_url)s\">Fórum de extras</a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Qual o significado de um extra \"experimental\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Os extras experimentais foram marcados pelos seus programadores como não adequados para uma audiência grande.  Estes foram verificados pelos nossos editores para se certificar de que não têm "
-"problemas de segurança, mas podem ainda ter erros ou não funcionar corretamente. Tenha cuidado ao instalar extras experimentais e desinstale o extra imediatamente se notar problemas. <a "
-"href=\"%(url)s\">Saiba mais acerca do nosso processo de revisão</a></dd>"
+"Os extras experimentais foram marcados pelos seus programadores como não adequados para uma audiência grande.  Estes podem ainda ter bugs ou não funcionar corretamente. Tenha cuidado ao instalar "
+"extras experimentais e desinstale o extra imediatamente se notar problemas. <a href=\"%(url)s\">Saiba mais acerca do nosso processo de revisão</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Qual o significado de um extra \"não revisto\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Embora todos os extras disponíveis publicamente na nossa galeria são revistos por um editor, poderá receber uma ligação direta para um extra que ainda não foi revisto. Tenha cuidado ao instalar "
-"estes extras, pois podem danificar o seu computador ou violar sua privacidade. Recomendamos que instale apenas extras revistos. <a href=\"%(url)s\">Saiba mais acerca do nosso processo de "
-"revisão</a></dd>"
+"Se receber uma ligação direta para um extra que diz que ainda não foi revisto, significa que está atualmente à espera de revisão pela Mozilla. Tenha cuidado ao instalar estes extras, pois podem "
+"danificar o seu computador ou violar sua privacidade. <a href=\"%(url)s\">Saiba mais acerca do nosso processo de revisão</a></dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Quanto custam os extras?"
@@ -7183,13 +7177,12 @@ msgstr ""
 "Extras beta são versões não revistas que representam o trabalho mais recente de um autor de extras. Enquanto diferentes autores têm diferentes standards para a qualidade de código beta, deve assumir"
 " que estes extras são menos estáveis que os lançamentos de extras gerais."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
-"Tenha em atenção que quando instala extras da secção \"versão Beta\" de uma listagem de extras, continua a receber atualizações assim que estejam disponíveis. Tal como a versão que instalou, todos "
-"os lançamentos beta não são revistos pela Mozilla e podem danificar o seu computador."
+"Por favor note que quando instala um extra da secção \"versão Beta\" da listagem de um extra, irá continua a receber atualizações para esse extra assim que estejam disponíveis. Tal como a versão que"
+" instalou, nenhum lançamento beta é revisto pela Mozilla e pode danificar o seu computador."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Como é que reporto uma revisão de um utilizador inapropriada ou de spam?"
@@ -7248,13 +7241,13 @@ msgstr "Extras do Mobile"
 msgid "What are mobile add-ons?"
 msgstr "O que são extras móveis?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Os extras do Mobile funcionam com o <a href=\"%(mobile_url)s\">Firefox para o Mobile</a> e adicionam ou modificam funcionalidades tal como os extras do computador de secretária. Pode encontrar "
-"extras que funcionam com o Firefox para Mobile na nossa <a href=\"%(gallery_url)s\">galeria</a>."
+"Os extras para dispositivos móveis funcionam com o <a href=\"%(mobile_url)s\">Firefox para Android</a> e adicionam ou modificam funcionalidade tal como os extras para computador. Pode encontrar "
+"extras que funcionam com o Firefox para Android na nossa <a href=\"%(gallery_url)s\">galeria</a>."
 
 msgid "Developer Topics"
 msgstr "Tópicos do programador"
