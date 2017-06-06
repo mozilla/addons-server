@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 14:12+0000\n"
+"PO-Revision-Date: 2017-06-06 14:37+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -4959,13 +4959,11 @@ msgstr "Confirmar aprobación"
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr "La última versión publicada de este complemento se aprobó automáticamente. Esto es un registro de la confirmación de tu aprobación sin enviarle ninguna notificación al desarrollador."
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "Reactivar versión"
+msgstr "Rechazar varias versiones"
 
-#, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Esto aprobará, firmará y publicará esta versión. El desarrollador recibirá los comentarios."
+msgstr "Esto eliminará las versiones públicas seleccionadas. El desarrollador recibirá los comentarios."
 
 msgid "Reviewer reply"
 msgstr "Respuesta del revisor"
@@ -6739,20 +6737,21 @@ msgid ""
 "APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
 "legacy Firefox add-on</a>."
 msgstr ""
+"<strong>Nota:</strong> XUL está considerada como una tecnología reemplazable en Firefox y los complementos que utilicen XUL no se cargarán a partir de Firefox 57. Utiliza APIs de <a "
+"href=\"%(webext_url)s\">WebExtensions</a> para desarrollar nuevos complementos. Si tienes un complemento que va a ser reemplazado, deberías pensar en migrarlo a WebExtensions. Para más información "
+"sobre cómo migrar un complemento que va a ser reemplazado, consulta <a href=\"%(portlegacy_url)s\">Migrar un complemento de Firefox  que va a ser reemplazado</a>."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "¿Cómo pruebo la compatibilidad con la última versión de software de Mozilla?"
 
-#, fuzzy
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 "Para asegurar la compatibilidad con el software de Mozilla más reciente, es importante descargar las actualizaciones cuando estén disponibles y probar tu complemento para estar seguro de que aún "
-"funciona como debería.  En muchos casos, la versión más reciente del software de Mozilla puede ser una versión beta. Ya que estas versiones a veces incluyen cambios estructurales que pueden impactar"
-" la funcionalidad de tu complemento, es importante estar involucrado activamente en el proceso beta para asegurarse de que los usuarios de tu complemento no sean afectados negativamente en las "
-"versiones definitivas del software de Mozilla."
+"funciona como debería. Ya que las versiones beta a veces incluyen cambios estructurales que pueden impactar la funcionalidad de tu complemento, es importante estar involucrado activamente en el "
+"proceso beta para asegurarse de que los usuarios de tu complemento no sea vean afectados negativamente en las versiones definitivas del software de Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "Necesito que me aconsejen sobre cómo crear un complemento. ¿Dónde me pueden ayudar?"
@@ -6767,7 +6766,7 @@ msgstr "#amo (para ayuda relacionada con el alojamiento de tu complemento en AMO
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (para discusiones sobre desarrollo y migración a WebExtensions)"
 
 msgid "Add-ons forum"
 msgstr "Foro de complementos"
@@ -6792,14 +6791,13 @@ msgstr ""
 msgid "Can I host my own add-on?"
 msgstr "¿Puedo alojar mi propio complemento?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
 "Sí. Muchos desarrolladores alojan sus propios complementos. Sin embargo, si lo alojas en la <a href=\"%(amo_url)s\">página de complementos de Mozilla</a>, tendrá mucha más visibilidad por el amplio "
-"número de visitantes de la página.  <a href=\"%(md_url)s\">mozdev.org</a> ofrece alojamiento gratis para las aplicaciones y extensiones de Mozilla, proporcionando a los desarrolladores herramientas "
-"para administrar el código fuente, control de la versión, rastreo de errores y documentación."
+"número de visitantes de la página."
 
 msgid "Can Mozilla host my add-on?"
 msgstr "¿Puede Mozilla alojar mi complemento?"
@@ -6838,7 +6836,7 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "¿Dispone Mozilla de una política en relación a lo que se considera un envío aceptable?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
 " the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
@@ -6846,17 +6844,16 @@ msgstr ""
 "Sí. La <a href=\"%(p_url)s\">Política de complementos</a> de Mozilla especifíca qué envíos son aceptables. Esta política está sujeta a cambios sin previo aviso. Además, el equipo de revisores de "
 "complementos utiliza la <a href=\"%(g_url)s\">Guía de revisión de complementos</a> para asegurarse de que tu complemento cumple con requisitos específicos de funcionalidad y seguridad."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "¿Cómo envío mi complemento a revisión?"
+msgstr "¿Cómo envío mi complemento?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
 "El panel de Herramientas para desarrolladores te permite subir y enviar complementos a AMO. Para poder hacerlo, debes registrarte como usuario de AMO. Antes de enviar tu complemento, asegúrate de "
-"leer la <a href=\"%(url)s\">Guía de revisión de complementos</a> para que cumpla con las directrices que los revisores aplican en la revisión de complementos."
+"leer la <a href=\"%(url)s\">Guía de revisión de complementos</a> para asegurarte de que tu complemento cumple con las pautas establecidas."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "¿Qué sistema operativo elijo para mi complemento?"
@@ -6890,11 +6887,10 @@ msgstr ""
 "Sí, puedes especificar una política de privacidad al enviar tu complemento. También puedes agregar o actualizar una política de privacidad después de enviar tu complemento usando el panel de "
 "Herramientas para desarrolladores."
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "¿Por qué se tiene que revisar mi complemento?"
+msgstr "¿Hay que revisar mi complemento?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
@@ -6905,27 +6901,26 @@ msgstr ""
 msgid "Who reviews my add-on?"
 msgstr "¿Quién revisa mi complemento?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
 " href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Los complementos los revisan los editores de complementos, un grupo de desarrolladores con talento que colaboraon con el proyecto Mozilla revisando complementos y garantizando que los usuarios de "
-"Mozilla disfruten de una experiencia estable y segura. Al comunicarte con los editores, intenta ser educado, paciente y respetuoso mientras dedican sus esfuerzos a asegurar que tu complemento está "
+"Los complementos los revisan los revisores de complementos, un grupo de desarrolladores con talento que colaboran con el proyecto Mozilla revisando complementos y garantizando que los usuarios de "
+"Mozilla disfruten de una experiencia estable y segura. Al comunicarte con los revisores, intenta ser educado, paciente y respetuoso mientras dedican sus esfuerzos a asegurar que tu complemento está "
 "configurado correctamente y cumple las directrices detalladas en la <a href=\"%(url)s\">Guía de revisión de complementos</a>."
 
 msgid "What are the guidelines used to review my add-on?"
 msgstr "¿Cuáles son las directrices que se aplican para revisar mi complemento?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
 "are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 msgstr ""
-"Cuando se prueba un complemento para aceptarlo en AMO, el equipo de revisores de complementos sigue la <a href=\"%(url)s\">Guía de revisión de complementos</a>. Es importante que el desarrollador "
-"del complemento revise la guía para asegurarse de que los problemas comunes están resueltos antes de enviar el complemento para su revisión. Esto será de gran ayuda para agilizar el proceso de "
-"revisión."
+"Cuando se prueba un complemento, el equipo de revisores de complementos sigue la <a href=\"%(url)s\">Guía de revisión de complementos</a>. Es importante que el desarrollador del complemento revise "
+"la guía para asegurarse de que los problemas comunes están resueltos antes de enviar el complemento para su revisión. Esto será de gran ayuda para agilizar el proceso de revisión."
 
 msgid "How long will it take for my add-on to be reviewed?"
 msgstr "¿Cuánto tiempo llevará revisar mi complemento?"
@@ -6947,7 +6942,7 @@ msgstr "número de aspectos problemáticos descubiertos"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "Por eso es muy importante que leas la <a href=\"%(g_url)s\">Guía de revisión de complementos</a>, para asegurarte de que configuras correctamente tu complemento."
 
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "¿Cómo puedo ver cuántas veces se ha descargado mi complemento?"
@@ -6978,7 +6973,7 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr "¿Es necesario que los editores revisen mi actualización?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "Las actualizaciones de complementos están sujetos a revisión, al igual que las nuevas aportaciones."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "¿Cómo puedo responder a un usuario que ha publicado una valoración negativa de mi complemento?"
@@ -7002,9 +6997,8 @@ msgstr "Informe de problema o petición de asistencia en una ubicación incorrec
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Otro (incluye información adicional en una ventana emergente)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Actualmente, AMO no incluye ningún sistema para contactar directamente con el autor de una valoración, pero es una opción que está siendo investigada y considerada para futuras versiones."
+msgstr "Actualmente, AMO no incluye ningún sistema para contactar directamente con el autor de una valoración."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "¿Puedo solicitar la eliminación de una valoración negativa?"
@@ -7080,17 +7074,17 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "¿Funcionarán los complementos con mi navegador o mi aplicación?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Los complementos que figuran en esta galería sólo funcionan con aplicaciones basadas en Mozilla, tales como <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox "
-"Móvil</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a> y <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Sin embargo, no todos los complementos trabajan con cada una de esas aplicaciones o "
-"con todas las versiones de estas aplicaciones. Cada complemento especifica con qué aplicaciones y con qué versiones trabaja, como Firefox 2.0 - 3.6.*. Para los complementos de Firefox, los botones "
-"de la instalación indican si el complemento es compatible o no."
+"Los complementos que figuran en esta galería sólo funcionan con aplicaciones basadas en Mozilla, tales como <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox para "
+"Android</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a> y <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Sin embargo, no todos los complementos funcionan con cada una de esas aplicaciones o"
+" con todas las versiones de estas aplicaciones. Cada complemento especifica con qué aplicaciones y con qué versiones funciona, como Firefox 50.0 - 52.*. Para los complementos de Firefox, los botones"
+" de la instalación indican si el complemento es compatible o no."
 
 msgid "What are the different types of add-ons?"
 msgstr "¿Cuáles son los diferentes tipos de complementos?"
@@ -7144,7 +7138,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "¿Cómo mantener actualizados los complementos?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "Una vez al día se comprueba automáticamente si existen actualizaciones para los complementos. En Firefox, se instalan automáticamente por defecto. "
 
 msgid "Are add-ons safe to install?"
 msgstr "¿Es seguro instalar los complementos?"
@@ -7154,6 +7148,8 @@ msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
 msgstr ""
+"Ten cuidado al instalar complementos, ya que pueden dañar tu equipo o violar tu privacidad. Los complementos de esta página están sujetos a revisión por el equipo de revisores de Mozilla y se "
+"monitorizan de cerca los comentarios de los usuarios, por lo que no debería haber ningún problema, <a href=\"%(learnmore_url)s\">Descubre más sobre el proceso de revisión</a>"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -7217,13 +7213,13 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "¿Qué hago si no puedo encontrar el complemento que estoy buscando?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
-"Con miles de complementos disponibles, hay algo para todos. Pero si lo que buscas es un complemento en particular y no lo encuentras, puedes intentar buscar en otros sitios o publicar algo al "
-"respecto en nuestro foro de<a href=\"%(forum_url)s\"> Complementos</a>."
+"Con miles de complementos disponibles, siempre hay algo para todos. Pero si lo que buscas es un complemento en particular y no lo encuentras, puedes intentar buscar en otros sitios o publicar algo "
+"al respecto en nuestro foro de<a href=\"%(forum_url)s\"> Complementos</a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "¿Qué significa que un complemento sea \"experimental\"?"
