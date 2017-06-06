@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 13:22+0000\n"
+"PO-Revision-Date: 2017-06-06 14:13+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4878,7 +4878,7 @@ msgid "No Reviews"
 msgstr "Nincsenek értékelések"
 
 msgid "Weight"
-msgstr ""
+msgstr "Súly"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Ez jóváhagyja, aláírja és közzéteszi ezt a verziót. A megjegyzések elküldésre kerülnek a fejlesztőnek."
@@ -5353,7 +5353,7 @@ msgid "This version has not been reviewed."
 msgstr "Ezt a verziót még nem értékelte senki."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Válasszon ki egy vagy több verziót a fenti listából."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Beküldheti az űrlap tartalmát, de csak akkor tegye meg, ha tudja, hogy nem okoz ütközést."
@@ -6665,6 +6665,9 @@ msgid ""
 "APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
 "legacy Firefox add-on</a>."
 msgstr ""
+"<strong>Megjegyzés:</strong> A XUL egy elavult technológia a Firefoxban, és a XUL-t használó kiegészítők a Firefox 57-től kezdődően nem fognak betöltődni. Használja a <a "
+"href=\"%(webext_url)s\">WebExtensions</a> API-kat az új kiegészítők fejlesztésére. Ha van egy örökölt kiegészítője, akkor fontolja meg a WebExtensionsre történő áttérést. További információkért az "
+"áttérésről, keresse fel az <a href=\"%(portlegacy_url)s\">Örökölt Firefox kiegészítő portolása</a> lapot."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Hogyan tesztelheti a kompatibilitást a legfrissebb Mozilla szoftverekkel?"
@@ -6691,7 +6694,7 @@ msgstr "#amo (támogatáshoz a kiegészítője AMO-n terjesztésével kapcsolatb
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (a WebExtensions alapú fejlesztésről és a portolásról szóló megbeszélésekhez)"
 
 msgid "Add-ons forum"
 msgstr "Kiegészítők fóruma"
@@ -6916,9 +6919,8 @@ msgstr "Rossz helyre küldött hibajelentés vagy támogatási kérés"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Más (felugró ablakot nyújt az információk bekéréséhez)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Jelenleg, az AMO nem biztosít módot az értékelővel való közvetlenül kommunikációra, de vizsgáljuk a funkciót, és megfontoljuk egy jövőbeni frissítésben."
+msgstr "Jelenleg, az AMO nem biztosít módot az értékelővel történő közvetlenül kommunikációra."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Kérhetem egy negatív értékelés eltávolítását?"
@@ -7250,13 +7252,13 @@ msgstr "Mobile kiegészítők"
 msgid "What are mobile add-ons?"
 msgstr "Mik azok a Mobile kiegészítők?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"A Mobile kiegészítők a <a href=\"%(mobile_url)s\">Firefox for Mobile</a> alkalmazással működnek és az asztali változathoz hasonlóan új funkciókat ad az alkalmazáshoz vagy módosítja valamely "
-"meglévőt. A Firefox for Mobile kiegészítők a <a href=\"%(gallery_url)s\">galériában</a> találhatók."
+"A mobil kiegészítők a <a href=\"%(mobile_url)s\">Firefox for Android</a> alkalmazással működnek, és az asztali változathoz hasonlóan új funkciókat ad az alkalmazáshoz vagy módosítja a meglévőket. A "
+"Firefox for Androiddal működő kiegészítők megtalálhatóak a <a href=\"%(gallery_url)s\">galériánkban</a>."
 
 msgid "Developer Topics"
 msgstr "Fejlesztői témák"
