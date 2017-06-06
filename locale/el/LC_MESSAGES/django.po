@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-05-17 11:23+0000\n"
+"POT-Creation-Date: 2017-06-06 03:35+0000\n"
 "PO-Revision-Date: 2017-05-30 12:34+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -54,6 +54,9 @@ msgstr "Δεν ήταν δυνατή η σύνδεσή σας. Παρακαλώ 
 
 msgid "Need help?"
 msgstr "Χρειάζεστε βοήθεια;"
+
+msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
+msgstr ""
 
 msgid "Review"
 msgstr "Αξιολόγηση"
@@ -165,8 +168,8 @@ msgstr "Οι χρήστες θα ερωτώνται πάντα στη Διαχε
 msgid "Listed"
 msgstr "Δηλωμένοι"
 
-#. l10n: {0} is the addon name
 # %1 is an add-on name.
+#. l10n: {0} is the addon name
 msgid "Contribution for {0}"
 msgstr "Δωρεά για το {0}"
 
@@ -210,9 +213,9 @@ msgstr "Οι δημιουργοί του πρόσθετου σας ζητούν 
 msgid "Contribute"
 msgstr "Συνεισφορά"
 
-#. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
+#. Click Contribute button OR Install button
 msgid "or"
 msgstr "ή"
 
@@ -241,12 +244,19 @@ msgid "Help support the continued development of <strong>%(addon_name)s</strong>
 msgstr "Βοηθήστε στην υποστήριξη της συνεχούς ανάπτυξης του/των <strong>%(addon_name)s</strong> κάνοντας μια μικρή συνεισφορά μέσω του <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Για να δείξετε την υποστήριξη σας στο/στα <b>%(addon_name)s</b>, ο προγραμματιστής ζητά να κάνετε μια δωρεά στο <a href=\"%(charity_url)s\">%(charity_name)s</a> <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr ""
+"Για να δείξετε την υποστήριξη σας στο/στα <b>%(addon_name)s</b>, ο προγραμματιστής ζητά να κάνετε μια δωρεά στο <a href=\"%(charity_url)s\">%(charity_name)s</a> <a href=\"%(paypal_url)s\">PayPal</"
+"a>."
 
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Για να δείξετε την υποστήριξη σας στο/στα <b>%(addon_name)s</b>, ο προγραμματιστής ζητά να κάνετε μια δωρεά στο <a href=\"%(charity_url)s\">%(charity_name)s</a> <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
+"a>."
+msgstr ""
+"Για να δείξετε την υποστήριξη σας στο/στα <b>%(addon_name)s</b>, ο προγραμματιστής ζητά να κάνετε μια δωρεά στο <a href=\"%(charity_url)s\">%(charity_name)s</a> <a href=\"%(paypal_url)s\">PayPal</"
+"a>."
 
 msgid "How much would you like to contribute?"
 msgstr "Τι ποσό θα θέλατε να κάνετε δωρεά;"
@@ -476,8 +486,8 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Πως θα εγκαταστήσετε το Thunderbird</strong> <ol> <li>Κατεβάστε και αποθηκεύστε το αρχείο στο σκληρό σας δίσκο.</li> <li>Στο Mozilla Thunderbird, ανοίξτε τα Πρόσθετα από το μενού "
-"Εργαλεία.</li> <li>Από το κουμπί επιλογές δίπλα στο πεδίο αναζήτησης προσθέτου, επιλέξτε \"Εγκατάσταση προσθέτου από αρχείο...\" και εντοπίστε το πρόσθετο που έχετε κατεβάσει.</li> </ol>"
+"<strong>Πως θα εγκαταστήσετε το Thunderbird</strong> <ol> <li>Κατεβάστε και αποθηκεύστε το αρχείο στο σκληρό σας δίσκο.</li> <li>Στο Mozilla Thunderbird, ανοίξτε τα Πρόσθετα από το μενού Εργαλεία.</"
+"li> <li>Από το κουμπί επιλογές δίπλα στο πεδίο αναζήτησης προσθέτου, επιλέξτε \"Εγκατάσταση προσθέτου από αρχείο...\" και εντοπίστε το πρόσθετο που έχετε κατεβάσει.</li> </ol>"
 
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr "Για να εγκαταστήσετε αυτό το Θέμα, <b>λάβετε τον Thunderbird</b>, έναν ελεύθερο και ανοιχτού κώδικα email client από το Mozilla Messaging και εγκαταστήστε το πρόσθετο Personas Plus."
@@ -518,8 +528,8 @@ msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(
 msgstr "Αυτό το Persona απαιτεί τον %(app)s %(new_version)s. Εσείς έχετε τον %(app)s {old_version}."
 
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
+"might harm your computer."
 msgstr ""
 "<strong>Προσοχή:</strong> Αυτό το πρόσθετο δεν έχει αξιολογηθεί από τη Mozilla και δεν μπορεί να εγκατασταθεί στις κανονικές εκδόσεις του Firefox 43 και νεότερες. Να προσέχετε κατά την εγκατάσταση "
 "λογισμικού τρίτων που ενδέχεται να βλάψει τον υπολογιστή σας."
@@ -786,8 +796,8 @@ msgstr ""
 "περιήγησής σας)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 "Επειδή έχετε τον απόλυτο έλεγχο του Firefox σας, η επιλογή για αποδοχή ή άρνηση αυτών των αιτημάτων είναι δική σας. Η παραχώρηση δικαιωμάτων δεν επηρεάζει εγγενώς τις επιδόσεις ή την ασφάλεια του "
 "προγράμματος περιήγησης, αλλά σε μερικές, σπάνιες περιπτώσεις υπάρχει κίνδυνος."
@@ -800,8 +810,8 @@ msgstr "Αυτό το πρόσθετο μπορεί να:"
 msgid "Thank you for installing {0}"
 msgstr "Σας ευχαριστούμε που εγκαταστήσατε το {0}"
 
-#. {0} is an add-on name.
 # %1 is an add-on name.
+#. {0} is an add-on name.
 msgid "Meet the {0} Developer"
 msgstr "Γνωρίστε το δημιουργό του {0}"
 
@@ -1003,17 +1013,17 @@ msgstr "Δεν βρέθηκε"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Λυπούμαστε, αλλά δεν μπορούμε να βρούμε αυτό που ψάχνετε.</h1> <p> Η σελίδα ή το αρχείο που ζητήσατε δεν βρέθηκε στην ιστοσελίδα μας. Είναι πιθανό να έχετε κάνει κλικ σε κάποιο παλιό σύνδεσμο, ή"
-" να πληκτρολογήσατε εσφαλμένα τη διεύθυνση. </p> <ul> <li>Αν πληκτρολογήσατε τη διεύθυνση, παρακαλούμε ελέγξτε τη για ορθογραφικά λάθη.</li> <li> Αν ακολουθήσατε κάποιο σύνδεσμο από κάπου, "
-"παρακαλούμε <a href=\"https://github.com/mozilla/addons-server/issues/new/\">αναφέρετε το ζήτημα</a>. Πείτε μας από που ήλθατε και τι ψάχνατε και θα κάνουμε ό,τι μπορούμε για να το διορθώσουμε. "
-"</li> </ul> <p>Ή μπορείτε απλά να μεταβείτε σε μερικές άλλες δημοφιλείς σελίδες στην ιστοσελίδα μας.</p> <ul> <li>Σάς ενδιαφέρει μια <a href=\"%(rec)s\">λίστα με προβεβλημένα πρόσθετα</a>;</li> <li>"
-" Θέλετε να κάνετε <a href=\"%(search)s\">αναζήτηση για πρόσθετα</a>; Μπορείτε να μεταβείτε στη <a href=\"%(search)s\">σελίδα αναζήτησης</a> ή να χρησιμοποιήσετε απλά το παραπάνω πεδίο αναζήτησης. "
-"</li> <li> Αν προτιμάτε να ξεκινήσετε από την αρχή, απλά μεταβείτε στην <a href=\"%(home)s\">αρχική σελίδα των προσθέτων</a>. </li> </ul>"
+"<h1>Λυπούμαστε, αλλά δεν μπορούμε να βρούμε αυτό που ψάχνετε.</h1> <p> Η σελίδα ή το αρχείο που ζητήσατε δεν βρέθηκε στην ιστοσελίδα μας. Είναι πιθανό να έχετε κάνει κλικ σε κάποιο παλιό σύνδεσμο, "
+"ή να πληκτρολογήσατε εσφαλμένα τη διεύθυνση. </p> <ul> <li>Αν πληκτρολογήσατε τη διεύθυνση, παρακαλούμε ελέγξτε τη για ορθογραφικά λάθη.</li> <li> Αν ακολουθήσατε κάποιο σύνδεσμο από κάπου, "
+"παρακαλούμε <a href=\"https://github.com/mozilla/addons-server/issues/new/\">αναφέρετε το ζήτημα</a>. Πείτε μας από που ήλθατε και τι ψάχνατε και θα κάνουμε ό,τι μπορούμε για να το διορθώσουμε. </"
+"li> </ul> <p>Ή μπορείτε απλά να μεταβείτε σε μερικές άλλες δημοφιλείς σελίδες στην ιστοσελίδα μας.</p> <ul> <li>Σάς ενδιαφέρει μια <a href=\"%(rec)s\">λίστα με προβεβλημένα πρόσθετα</a>;</li> <li> "
+"Θέλετε να κάνετε <a href=\"%(search)s\">αναζήτηση για πρόσθετα</a>; Μπορείτε να μεταβείτε στη <a href=\"%(search)s\">σελίδα αναζήτησης</a> ή να χρησιμοποιήσετε απλά το παραπάνω πεδίο αναζήτησης. </"
+"li> <li> Αν προτιμάτε να ξεκινήσετε από την αρχή, απλά μεταβείτε στην <a href=\"%(home)s\">αρχική σελίδα των προσθέτων</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ωχ"
@@ -1021,8 +1031,8 @@ msgstr "Ωχ"
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-"<h1>Ωχ!  Προέκυψε σφάλμα.</h1> <p>Θα το διορθώσουμε σύντομα.</p> <p> Μπορείτε να δοκιμάσετε να φορτώσετε εκ νέου τη σελίδα, ή να επιστρέψετε στην <a href=\"%(home)s\">αρχική σελίδα των "
-"προσθέτων</a>. </p>"
+"<h1>Ωχ!  Προέκυψε σφάλμα.</h1> <p>Θα το διορθώσουμε σύντομα.</p> <p> Μπορείτε να δοκιμάσετε να φορτώσετε εκ νέου τη σελίδα, ή να επιστρέψετε στην <a href=\"%(home)s\">αρχική σελίδα των προσθέτων</"
+"a>. </p>"
 
 msgid "Some rights reserved"
 msgstr "Μερική επιφύλαξη δικαιωμάτων"
@@ -1058,8 +1068,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Παρακαλώ εισάγετε <strong>όλες τις λέξεις</strong> παρακάτω, <strong>διαχωρισμένες με διάστημα αν χρειάζεται</strong>. </p> <p> Αν είναι δυσανάγνωστες, μπορείτε να <a href=\"#\" "
-"id=\"recaptcha_different\">δοκιμάσετε διαφορετικές λέξεις</a> ή να <a href=\"#\" id=\"recaptcha_audio\">δοκιμαστείτε με έναν άλλο τρόπο</a> . </p>"
+"<p> Παρακαλώ εισάγετε <strong>όλες τις λέξεις</strong> παρακάτω, <strong>διαχωρισμένες με διάστημα αν χρειάζεται</strong>. </p> <p> Αν είναι δυσανάγνωστες, μπορείτε να <a href=\"#\" id="
+"\"recaptcha_different\">δοκιμάσετε διαφορετικές λέξεις</a> ή να <a href=\"#\" id=\"recaptcha_audio\">δοκιμαστείτε με έναν άλλο τρόπο</a> . </p>"
 
 msgid "Top Rated"
 msgstr "Υψηλότερη βαθμολογια"
@@ -1255,6 +1265,18 @@ msgstr "Αγαπημένη"
 msgid "Remove from favorites"
 msgstr "Αφαίρεση από τις αγαπημένες"
 
+#, fuzzy
+msgid "This slug is already in use by another one of your collections."
+msgstr "Αυτό το url χρησιμοποιείται ήδη από άλλη συλλογή"
+
+#, fuzzy
+msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
+msgstr "Εισάγετε ένα έγκυρο όνομα χρήστη, αποτελούμενο από γράμματα, αριθμούς, κάτω παύλες ή παύλες."
+
+#, fuzzy
+msgid "This slug cannot be used."
+msgstr "Αυτό το όνομα δεν μπορεί να χρησιμοποιηθεί."
+
 msgid "Name"
 msgstr "Όνομα"
 
@@ -1292,7 +1314,8 @@ msgstr "Δημιουργία νέας συλλογής"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Όπως αναφέρεται και στις <a href=\"%(legal)s\">νομικές σημειώσεις</a> μας, κάθε ξεχωριστή διάταξη συλλογής διέπεται από την άδεια χρήσης Creative Commons Αναφορά προέλευσης - Παρόμοια Διανομή."
+msgstr ""
+"Όπως αναφέρεται και στις <a href=\"%(legal)s\">νομικές σημειώσεις</a> μας, κάθε ξεχωριστή διάταξη συλλογής διέπεται από την άδεια χρήσης Creative Commons Αναφορά προέλευσης - Παρόμοια Διανομή."
 
 msgid "Create Collection"
 msgstr "Δημιουργία συλλογής"
@@ -1393,12 +1416,12 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"Παρακάτω εμφανίζονται τα πρόσθετα που σημειώνετε σαν αγαπημένα χρησιμοποιώντας τη λειτουργία <b>Προσθήκη στα αγαπημένα</b>. Αυτή η συλλογή είναι προς το παρόν <b>δημόσια</b>, πράγμα που σημαίνει ότι"
-" μπορεί να τη δει οποιοσδήποτε. Αν θέλετε να αποκρυφτεί από τη δημόσια θέα, κάντε κλικ στο παρακάτω κουμπί για να την κάνετε ιδιωτική."
+"Παρακάτω εμφανίζονται τα πρόσθετα που σημειώνετε σαν αγαπημένα χρησιμοποιώντας τη λειτουργία <b>Προσθήκη στα αγαπημένα</b>. Αυτή η συλλογή είναι προς το παρόν <b>δημόσια</b>, πράγμα που σημαίνει "
+"ότι μπορεί να τη δει οποιοσδήποτε. Αν θέλετε να αποκρυφτεί από τη δημόσια θέα, κάντε κλικ στο παρακάτω κουμπί για να την κάνετε ιδιωτική."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Τα πρόσθετα που επισημαίνετε ως αγαπημένα με τη λειτουργία <b>Προσθήκη στα αγαπημένα</b> εμφανίζονται παρακάτω. Αυτή η συλλογή είναι <b>ιδιωτική</b> προς το παρόν, που σημαίνει ότι μόνο εσείς "
 "μπορείτε να την δείτε. Αν θέλετε να μπορούν όλοι να δουν τα αγαπημένα σας, κάντε κλικ στο παρακάτω κουμπί για να γίνουν δημόσια."
@@ -1563,8 +1586,8 @@ msgstr "Πρόσφατα δημοφιλείς συλλογές"
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-"Οι συλλογές είναι ομάδες σχετιζόμενων πρόσθετων που μπορεί να δημιουργήσει και να μοιράσει ο καθένας. Ανακαλύψτε τις συλλογές που έχουν φτιάξει άλλοι ή <a href=\"%(url)s\">δημιουργήστε τη δική "
-"σας</a>."
+"Οι συλλογές είναι ομάδες σχετιζόμενων πρόσθετων που μπορεί να δημιουργήσει και να μοιράσει ο καθένας. Ανακαλύψτε τις συλλογές που έχουν φτιάξει άλλοι ή <a href=\"%(url)s\">δημιουργήστε τη δική σας</"
+"a>."
 
 msgid "Subscribe"
 msgstr "Εγγραφή"
@@ -1863,8 +1886,8 @@ msgstr "Αναφορές συμβατότητας πρόσθετων"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Οι αναφορές που υποβάλλονται μέσω του <a href=\"%(url_)s\">Add-on Compatibility Reporter</a>, συλλέγονται εδώ για να τις δουν οι δημιουργοί. Αυτές οι αναφορές μας βοηθούν στο να αποφασίσουμε "
 "ποια πρόσθετα θα χρειαστούν επεμβάσεις για να είναι συμβατά με μια επερχόμενη έκδοση του Firefox. </p>"
@@ -2814,6 +2837,10 @@ msgstr "Η πλατφόρμα «Όλες» δεν μπορεί να συνδυα
 msgid "A platform can only be chosen once."
 msgstr "Μπορείτε να επιλέξετε πλατφόρμα μόνο μια φορά."
 
+#, fuzzy
+msgid "Reputation"
+msgstr "Ανάλυση"
+
 msgid "Application"
 msgstr "Εφαρμογή"
 
@@ -2828,21 +2855,22 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Τεκμηρίωση πρόσθετων :: Κέντρο δημιουργών"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} σφάλμα"
 msgstr[1] "{0} σφάλματα"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} προειδοποίηση"
@@ -3040,9 +3068,9 @@ msgid "Learn All About Add-ons"
 msgstr "Μάθετε τα πάντα για τα πρόσθετα"
 
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
-"great add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
+"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
+"add-on."
 msgstr ""
 
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -3180,7 +3208,9 @@ msgstr ""
 "σας ή αποστείλετε μια νέα έκδοση του."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Αναβάθμιση συμβατότητας</a> <a href=\"%(version_url)s\" class=\"button\">Αποστολή νέας έκδοσης</a> ή <a href=\"#\" "
 "class=\"close\">αγνόηση</a>"
@@ -3307,7 +3337,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr ""
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Οι κατηγορίες δε μπορούν να τροποποιηθούν καθώς το πρόσθετο σας προβάλλεται για αυτή την εφαρμογή. Παρακαλώ στείλτε email στο <a href=\"mailto:%(email)s\">%(email)s</a> αν υπάρχει λόγος για να "
 "τροποποιήσετε τις κατηγορίες σας."
@@ -3362,8 +3393,8 @@ msgid "Support Information for {0}"
 msgstr "Πληροφορίες υποστήριξης για το {0}"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -3823,8 +3854,8 @@ msgstr "Μυστικό JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 msgid "You don't have any API credentials."
@@ -4103,7 +4134,8 @@ msgstr "Μάθετε πώς"
 msgid "What's New"
 msgstr "Τι νέο υπάρχει"
 
-msgid "Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
+msgid ""
+"Migrating your legacy add-on to WebExtensions? Get more personalized help during Office Hours, or email <a href=\"mailto:webextensions-support@mozilla.org\">webextensions-support@mozilla.org</a>."
 msgstr ""
 
 msgid "See Schedule"
@@ -4143,8 +4175,8 @@ msgstr "Προσαρμογή του Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</a>,"
-" you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know <a href=\"%(html_link)s\">HTML</a>, <a href=\"%(js_link)s\">JavaScript</a>, and <a href=\"%(css_link)s\">CSS</"
+"a>, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
@@ -4458,8 +4490,8 @@ msgstr "Επιλογή διαφορετικής εικόνας υποσέλιδ�
 msgid "Manage Version {0}"
 msgstr "Διαχείριση της έκδοσης {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Διαχείριση συλλογής {0}"
 
@@ -4823,6 +4855,9 @@ msgstr "Τελευταία ενημέρωση"
 msgid "No Reviews"
 msgstr "Καμία κριτική"
 
+msgid "Weight"
+msgstr ""
+
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
 
@@ -4834,6 +4869,13 @@ msgid "Confirm Approval"
 msgstr "Σε αναμονή έγκρισης"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+msgstr ""
+
+#, fuzzy
+msgid "Reject Multiple Versions"
+msgstr "Εκ νέου ενεργοποίηση έκδοσης"
+
+msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr ""
 
 msgid "Reviewer reply"
@@ -5279,6 +5321,9 @@ msgstr ""
 
 msgid "This version has not been reviewed."
 msgstr "Αυτή η έκδοση δεν έχει αξιολογηθεί."
+
+msgid "Please select one or more versions in the list above."
+msgstr ""
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
@@ -6391,7 +6436,8 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -6411,7 +6457,9 @@ msgid "I have a question"
 msgstr "Έχω μια απορία"
 
 #, python-format
-msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgid ""
+"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
+"forums</a>."
 msgstr ""
 
 #, python-format
@@ -6423,8 +6471,8 @@ msgstr "Ποιος εργάζεται σε αυτή την ιστοσελίδα;
 
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
-"href=\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
+"\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 
 msgid "Add-on Compatibility Reporter"
@@ -6542,36 +6590,6 @@ msgstr "Συχνές ερωτήσεις προγραμματιστών προσ�
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
 msgstr ""
 
-msgid "Other resources include:"
-msgstr ""
-
-msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
-
-msgid "Mozilla Add-ons Blog"
-msgstr ""
-
-msgid "What tools do I need to be able to build an Add-on?"
-msgstr ""
-
-msgid ""
-"You will need to have a version of the Mozilla software that you're building the add-on for and a code editor of your choice. Add-ons can be built for almost all Mozilla software but are primarily "
-"targeted for:"
-msgstr ""
-
-msgid "Popular code editors include:"
-msgstr ""
-
-#. This is a list of popular code editors.  Feel free to adjust as you like.
-msgid ""
-"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
-"<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
-msgstr ""
-
-#, python-format
-msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
-msgstr ""
-
 msgid "What is a \".xpi\" file?"
 msgstr "Τι είναι ένα αρχείο \".xpi\";"
 
@@ -6586,71 +6604,20 @@ msgid ""
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
 
-msgid "What is the \"install.rdf\" file used for?"
-msgstr "Για ποιο σκοπό χρησιμοποιείται το αρχείο \"install.rdf\";"
-
 #, python-format
 msgid ""
-"This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
-"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
-" updated, and so on. The format of the Install Manifest is RDF/XML."
-msgstr ""
-
-msgid "What does \"maxVersion\" mean?"
-msgstr "Τι σημαίνει το \"maxVersion\";"
-
-msgid "This determines the maximum version of Firefox you're saying this extension will work with. Set this to be no newer than the newest currently available version!"
-msgstr ""
-
-msgid "Can my add-on contain binary components?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object model</a> to enhance your add-ons. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
-msgstr ""
-
-msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
-msgstr ""
-
-msgid ""
-"Yes. It's possible, but some of the functionality provided by these libraries are available through XPCOM, XUL, and JavaScript. In addition, authors should take care if libraries modify primitive "
-"object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
-"ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
-msgstr ""
-
-msgid "How do I debug my add-on?"
-msgstr ""
-
-#, python-format
-msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
+"<strong>Note:</strong> XUL is considered a legacy technology in Firefox, and add-ons using XUL will no longer load starting from Firefox 57. Please use <a href=\"%(webext_url)s\">WebExtensions</a> "
+"APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
+"legacy Firefox add-on</a>."
 msgstr ""
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr ""
 
 msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
-" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
-"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
-msgstr ""
-
-msgid "How to improve the performance of my add-on?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
-"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
-msgstr ""
-
-msgid "Can my add-on support multiple locales?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
-"great resource for learning about localization and volunteering to help translate add-ons."
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
+"these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
+"are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -6664,27 +6631,12 @@ msgstr ""
 msgid "#amo (for support relating to hosting your add-on on AMO)"
 msgstr ""
 
-#. #jetpack is the name of the IRC channel.  do not change.
-msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
+#. #webextensions is the name of the IRC channel.  do not change.
+msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
 msgstr ""
-
-#. Label for a link to the extension developers mailing list
-msgid "Mailing List"
-msgstr "Λίστα αλληλογραφίας"
-
-#. Label for a link to the extension developers newsgroup
-msgid "Newsgroup"
-msgstr "Ομάδα ειδήσεων"
-
-#. Label for a link to the extension developers Google Group
-msgid "Google Group"
-msgstr "Ομάδα Google"
 
 msgid "Add-ons forum"
 msgstr "Φόρουμ προσθέτων"
-
-msgid "Stack Overflow"
-msgstr "Stack Overflow"
 
 msgid "Does Mozilla offer development services?"
 msgstr "Προσφέρει η Mozilla υπηρεσίες προγραμματισμού;"
@@ -6697,8 +6649,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
-"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
+"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 
 msgid "Can I host my own add-on?"
@@ -6707,8 +6659,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
-"to the large volume of visitors to the site. <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help manage "
-"source code, version control, bug tracking and documentation."
+"to the large volume of visitors to the site."
 msgstr ""
 
 msgid "Can Mozilla host my add-on?"
@@ -6746,17 +6697,18 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses the <a "
-"href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
+"Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team "
+"uses the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
 
-msgid "How do I submit my add-on for review?"
-msgstr ""
+#, fuzzy
+msgid "How do I submit my add-on?"
+msgstr "Δεν μπορείτε να υποβάλετε αυτό τον τύπο προσθέτου"
 
 #, python-format
 msgid ""
-"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
-"have read the <a href=\"%(url)s\">Add-on Review Guide</a> to ensure that your add-on has met the guidelines used by reviewers."
+"The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you "
+"have read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
 
 msgid "What operating system do I choose for my add-on?"
@@ -6769,8 +6721,8 @@ msgid "What category do I choose for my add-on?"
 msgstr ""
 
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
-"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
+"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 
 msgid "Can I specify a license agreement for using my add-on?"
@@ -6785,13 +6737,14 @@ msgstr "Μπορώ να συμπεριλάβω μια πολιτική απορ�
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
 
-msgid "Why must my add-on be reviewed?"
+#, fuzzy
+msgid "Must my add-on be reviewed?"
 msgstr "Γιατί πρέπει να αξιολογηθεί το πρόσθετό μου;"
 
 #, python-format
 msgid ""
-"All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
-"<a href=\"%(url)s\">Add-on Review Guide</a>."
+"New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
+"to review add-on submissions."
 msgstr ""
 
 msgid "Who reviews my add-on?"
@@ -6799,9 +6752,9 @@ msgstr "Ποιος αξιολογεί το πρόσθετό μου;"
 
 #, python-format
 msgid ""
-"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
-" When communicating with reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
-"href=\"%(url)s\">Add-on Review Guide</a>."
+"Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla "
+"users. When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in "
+"the <a href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
 
 msgid "What are the guidelines used to review my add-on?"
@@ -6809,8 +6762,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to ensure "
-"that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
+"The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
+"are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 msgstr ""
 
 msgid "How long will it take for my add-on to be reviewed?"
@@ -6832,9 +6785,7 @@ msgid "number of problem areas discovered"
 msgstr ""
 
 #, python-format
-msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
-"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
 msgstr ""
 
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -6859,9 +6810,7 @@ msgstr ""
 msgid "Does my update need to be reviewed by reviewers?"
 msgstr ""
 
-msgid ""
-"That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
-"reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an Add-on Reviewer."
+msgid "Add-on updates may be subject to review just the same as new submissions."
 msgstr ""
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -6886,7 +6835,7 @@ msgstr "Αναφορά σφάλματος ή αίτημα υποστήριξης
 msgid "Other (provides a pop-up prompt for information)"
 msgstr ""
 
-msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
+msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
 msgstr ""
 
 msgid "Can I request that a review be removed if the review is negative?"
@@ -6902,10 +6851,10 @@ msgid "If an author contacts us and asks for a review containing false or inaccu
 msgstr ""
 
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
-" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
-"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
-"guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
+"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
+"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
+"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 
 msgid ""
@@ -6952,17 +6901,16 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Θα δουλεύουν τα πρόσθετα με τον περιηγητή μου ή άλλη εφαρμογή;"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
-"compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
+"Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
 msgstr ""
-"Τα πρόσθετα που παρουσιάζονται εδώ, δουλεύουν μόνο με εφαρμογές βασισμένες σε κώδικα Mozilla, όπως ο <a href=\"%(getfirefox_url)s\">Firefox</a>,  ο <a href=\"%(getmobile_url)s\">Firefox για "
-"κινητά</a>, ο<a href=\"%(getseamonkey_url)s\">SeaMonkey</a> και ο <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Δεν δουλεύουν όμως απαραίτητα όλα τα πρόσθετα με όλες αυτές τις εφαρμογές, ή και"
-" με όλες τις εκδόσεις κάποιας εφαρμογής. Κάθε πρόσθετο καθορίζει τις εφαρμογές και τις εκδόσεις των εφαρμογών που συνεργάζεται, όπως πχ τον Firefox 2.0 - 3.6.*. Για τα πρόσθετα του Firefox, τα "
-"κουμπιά εγκατάστασης αναφέρουν αν το πρόσθετο είναι συμβατό ή όχι με την έκδοση που έχετε."
+"Τα πρόσθετα που παρουσιάζονται εδώ, δουλεύουν μόνο με εφαρμογές βασισμένες σε κώδικα Mozilla, όπως ο <a href=\"%(getfirefox_url)s\">Firefox</a>,  ο <a href=\"%(getmobile_url)s\">Firefox για κινητά</"
+"a>, ο<a href=\"%(getseamonkey_url)s\">SeaMonkey</a> και ο <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Δεν δουλεύουν όμως απαραίτητα όλα τα πρόσθετα με όλες αυτές τις εφαρμογές, ή και με "
+"όλες τις εκδόσεις κάποιας εφαρμογής. Κάθε πρόσθετο καθορίζει τις εφαρμογές και τις εκδόσεις των εφαρμογών που συνεργάζεται, όπως πχ τον Firefox 2.0 - 3.6.*. Για τα πρόσθετα του Firefox, τα κουμπιά "
+"εγκατάστασης αναφέρουν αν το πρόσθετο είναι συμβατό ή όχι με την έκδοση που έχετε."
 
 msgid "What are the different types of add-ons?"
 msgstr "Τι είναι οι διάφοροι τύποι προσθέτων;"
@@ -6990,18 +6938,12 @@ msgstr ""
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
 msgstr ""
-"Οι <strong><a href=\"%(browse_url)s\">μηχανές αναζήτησης</a> </strong> προσθέτουν επιπλέον επιλογές στην εργαλειοθήκη αναζήτησης. Αυτές οι μηχανές σας επιτρέπουν να κάνετε αναζητήσεις σε οποιαδήποτε"
-" ιστοσελίδα."
+"Οι <strong><a href=\"%(browse_url)s\">μηχανές αναζήτησης</a> </strong> προσθέτουν επιπλέον επιλογές στην εργαλειοθήκη αναζήτησης. Αυτές οι μηχανές σας επιτρέπουν να κάνετε αναζητήσεις σε "
+"οποιαδήποτε ιστοσελίδα."
 
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
 msgstr "<strong><a href=\"%(browse_url)s\">Λεξικά & πακέτα γλωσσών</a></strong> προσθέτουν υποστήριξη για περισσότερες γλώσσες στον %(app_name)s."
-
-#, python-format
-msgid "<strong><a href=\"%(browse_url)s\">Plugins</a></strong> help %(app_name)s display or understand different types of media, such as Adobe Flash or Apple Quicktime."
-msgstr ""
-"Οι <strong><a href=\"%(browse_url)s\">πρόσθετες λειτουργίες</a></strong> βοηθούν τον %(app_name)s να εμφανίσει ή να επεξεργαστεί διαφορετικούς τύπους περιεχομένου όπως το Adobe Flash ή το Apple "
-"Quicktime."
 
 msgid "How do I install, manage, or remove an add-on?"
 msgstr "Πως εγκαθιστώ, διαχειρίζομαι ή αφαιρώ ένα πρόσθετο;"
@@ -7013,23 +6955,10 @@ msgid ""
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
 
-msgid "How do I install add-ons without restarting Firefox?"
-msgstr "Πως μπορώ να εγκαταστήσω πρόσθετα χωρίς να κάνω επανεκκίνηση του Firefox;"
-
-#, python-format
-msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
-"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
-msgstr ""
-
 msgid "How do I keep add-ons up-to-date?"
 msgstr "Πως μπορώ να διατηρώ ενημερωμένα τα πρόσθετα;"
 
-#, python-format
-msgid ""
-"Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
-"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
 msgstr ""
 
 msgid "Are add-ons safe to install?"
@@ -7037,13 +6966,9 @@ msgstr "Είναι ασφαλής η εγκατάσταση πρόσθετων;"
 
 #, python-format
 msgid ""
-"Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
-"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
+"Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
+"feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
 msgstr ""
-"Εκτός απ' όπου αναφέρεται διαφορετικά, τα πρόσθετα που διατίθενται από τις λίστες μας έχουν ελεγχθεί κι έχουν την έγκριση της συντακτικής ομάδας του Mozilla και η εγκατάσταση τους είναι ασφαλής. "
-"Συστήνουμε την εγκατάσταση μόνο εγκεκριμένων πρόσθετων. Αν θέλετε να εγκαταστήσετε μη εγκεκριμένα πρόσθετα ή πρόσθετα από ιστοσελίδες τρίτων, κάντε το με προσοχή αφού ίσως αυτά τα πρόσθετα "
-"προκαλέσουν πρόβλημα στο σύστημα σας ή να παραβιάσουν το ιδιωτικό σας απόρρητο. <a href=\"%(learnmore_url)s\">Μάθετε περισσότερα για τη διαδικασία έγκρισης που ακολουθούμε</a>"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -7066,8 +6991,8 @@ msgid ""
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
 "Αν ένα πρόσθετο δεν είναι συμβατό με την έκδοση του %(app_name)s που χρησιμοποιείτε, αυτό συνήθως συμβαίνει ότι είτε η έκδοση του %(app_name)s  που έχετε είναι παρωχημένη, είτε ο δημιουργός του "
-"πρόσθετου δεν έχει ενημερώσει ακόμα το πρόσθετο του για να είναι συμβατό με την νέα έκδοση που εσείς χρησιμοποιείτε. Ο οργανισμός Mozilla δεν συνιστά να παρακάμψετε τον έλεγχο συμβατότητας, καθώς μη"
-" συμβατές εκδόσεις προσθέτων μπορεί να οδηγήσουν σε αστάθεια του περιηγητή και σε ορισμένες περιπτώσεις σε απώλεια δεδομένων. Για χρήστες που χρησιμοποιούν δοκιμαστικές εκδόσεις του Firefox, "
+"πρόσθετου δεν έχει ενημερώσει ακόμα το πρόσθετο του για να είναι συμβατό με την νέα έκδοση που εσείς χρησιμοποιείτε. Ο οργανισμός Mozilla δεν συνιστά να παρακάμψετε τον έλεγχο συμβατότητας, καθώς "
+"μη συμβατές εκδόσεις προσθέτων μπορεί να οδηγήσουν σε αστάθεια του περιηγητή και σε ορισμένες περιπτώσεις σε απώλεια δεδομένων. Για χρήστες που χρησιμοποιούν δοκιμαστικές εκδόσεις του Firefox, "
 "διαθέτουμε το πρόσθετο <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> για να βοηθήσουν τους δημιουργούς των πρόσθετων να κάνουν ενημερώσεις συμβατότητας."
 
 msgid "What if I have problems with an add-on?"
@@ -7103,17 +7028,16 @@ msgstr "Τι μπορώ να κάνω αν δεν βρίσκω το πρόσθε
 #, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
-"our <a href=\"%(forum_url)s\">Add-ons </a>forum."
+"our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Τι σημαίνει όταν ένα πρόσθετο είναι \"πειραματικό\";"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
-"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
-"process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
+"uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Τα πειραματικά πρόσθετα έχουν επισημανθεί από τους προγραμματιστές τους ως μη κατάλληλα για ένα ευρύ κοινό. Έχουν ελεγχθεί από τους συντάκτες μας για να εξασφαλιστεί ότι δεν έχουν προβλήματα "
 "ασφαλείας, αλλά ενδέχεται να έχουν ακόμη πολλά ζητήματα ή να μην λειτουργούν σωστά. Θα πρέπει να εγκαθιστάτε με προσοχή τα πειραματικά πρόσθετα και να τα απεγκαθιστάτε αμέσως αν παρατηρείτε "
@@ -7122,10 +7046,10 @@ msgstr ""
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Τι σημαίνει ότι δεν έχει αξιολογηθεί ένα πρόσθετο;"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
-" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
+"your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Αν και όλα τα πρόσθετα της συλλογής μας που εμφανίζονται δημόσια έχουν αξιολογηθεί από τους συντάκτες μας, μπορεί να βρείτε μια σελίδα μέσω κάποιου εξωτερικού δεσμού με κάποιο πρόσθετο που δεν έχει "
 "αξιολογηθεί ακόμη. Αν εγκαταστήσετε τέτοιο πρόσθετο, κάντε με προσοχή, γιατί μπορεί να προκαλέσει προβλήματα στο μηχάνημα σας ή να παραβιάσει το ιδιωτικό σας απόρρητο. Συστήνουμε την εγκατάσταση "
@@ -7151,24 +7075,19 @@ msgid "What are beta add-ons?"
 msgstr "Τι είναι τα δοκιμαστικά πρόσθετα;"
 
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
+"ons are less stable than the general add-on releases."
 msgstr ""
-"Τα δοκιμαστικά (Beta) πρόσθετα, είναι εκδόσεις που δεν έχουν αξιολογηθεί και περιλαμβάνουν ό,τι πιο πρόσφατο έχει δημιουργήσει ο προγραμματιστής τους. Αν και κάθε δημιουργός έχει διαφορετικά πρότυπα"
-" για τον ορισμό μιας έκδοσης σαν δοκιμαστική, καλό θα είναι γενικότερα να θεωρείτε πως αυτά τα πρόσθετα είναι λιγότερο σταθερά από τις κανονικές εκδόσεις."
+"Τα δοκιμαστικά (Beta) πρόσθετα, είναι εκδόσεις που δεν έχουν αξιολογηθεί και περιλαμβάνουν ό,τι πιο πρόσφατο έχει δημιουργήσει ο προγραμματιστής τους. Αν και κάθε δημιουργός έχει διαφορετικά "
+"πρότυπα για τον ορισμό μιας έκδοσης σαν δοκιμαστική, καλό θα είναι γενικότερα να θεωρείτε πως αυτά τα πρόσθετα είναι λιγότερο σταθερά από τις κανονικές εκδόσεις."
 
+#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
-"version you installed, all beta releases are unreviewed by Mozilla and may harm your computer."
+"version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
 "Παρακαλούμε σημειώστε πως όταν εγκαταστήσετε ένα πρόσθετο από το «δοκιμαστικό» τμήμα της σελίδας προβολής του, θα λαμβάνετε και τις διαθέσιμες ενημερώσεις επίσης από το ίδιο τμήμα. Όπως και με την "
 "αρχική δοκιμαστική έκδοση που εγκαταστήσατε, όλες οι δοκιμαστικές εκδόσεις δεν αξιολογούνται από τους συντάκτες του Μozilla και μπορεί να προκαλέσουν προβλήματα στο σύστημα σας."
-
-msgid "What does it mean when an add-on is flagged as slow?"
-msgstr "Τι σημαίνει ότι ένα πρόσθετο έχει σημειωθεί σαν αργό;"
-
-msgid "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown."
-msgstr ""
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Πως μπορώ να αναφέρω μια απρεπή η κακόβουλη και άσχετη αξιολόγηση χρήστη;"
@@ -7177,8 +7096,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"Για να αναφέρετε μια αξιολόγηση χρήστη για ένα πρόσθετο, συνδεθείτε στο λογαριασμό σας και επισκεφθείτε τη σελίδα με τις αξιολογήσεις του πρόσθετου. Εντοπίστε την αξιολόγηση που θέλετε να αναφέρετε,"
-" κάντε κλικ στο «Αναφορά αξιολόγησης» και επιλέξτε μια αιτία.  Η συντακτική μας ομάδα θα διερευνήσει την αξιολόγηση και θα πάρει τα κατάλληλα μέτρα."
+"Για να αναφέρετε μια αξιολόγηση χρήστη για ένα πρόσθετο, συνδεθείτε στο λογαριασμό σας και επισκεφθείτε τη σελίδα με τις αξιολογήσεις του πρόσθετου. Εντοπίστε την αξιολόγηση που θέλετε να "
+"αναφέρετε, κάντε κλικ στο «Αναφορά αξιολόγησης» και επιλέξτε μια αιτία.  Η συντακτική μας ομάδα θα διερευνήσει την αξιολόγηση και θα πάρει τα κατάλληλα μέτρα."
 
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
 msgstr "Πως μπορώ να αναφέρω ένα σφάλμα ή να επικοινωνήσω με την ομάδα των πρόσθετων του Mozilla;"
@@ -7192,9 +7111,9 @@ msgstr "Τι είναι η άδεια πηγαίου κώδικα;"
 
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
-"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
-"like the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
+"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
+"the GPL or BSD licenses instead of making up their own."
 msgstr ""
 "Ο πηγαίος κώδικας στον οποίο οφείλει την ύπαρξη του ένα πρόσθετο, είναι αποκλειστική πνευματική περιουσία του δημιουργού του, εκτός κι αν καθορίζεται αλλιώς στην άδεια χρήσης του πηγαίου κώδικα. Τα "
 "περισσότερα πρόσθετα στις σελίδες μας έχουν <a href=\"%(url)s\" lang=\"en\">άδειες χρήσης ανοιχτού κώδικα</a> οι οποίες καθιστούν τον πηγαίο κώδικα δημόσια διαθέσιμο για αντιγραφή και τροποποίηση "
@@ -7227,10 +7146,10 @@ msgstr "Πρόσθετα κινητών"
 msgid "What are mobile add-ons?"
 msgstr "Τι είναι τα πρόσθετα για κινητό;"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
-" href=\"%(gallery_url)s\">gallery</a>."
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
+"<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
 "Τα πρόσθετα για κινητά, δουλεύουν στην έκδοση του <a href=\"%(mobile_url)s\">Firefox για κινητά</a> και προσθέτουν ή τροποποιούν χαρακτηριστικά όπως ακριβώς και τα πρόσθετα για τις υπόλοιπες "
 "πλατφόρμες. Μπορείτε να βρείτε πρόσθετα που δουλεύουν με τον Firefox για κινητά στη <a href=\"%(gallery_url)s\">λίστα</a> μας."
@@ -7240,7 +7159,8 @@ msgstr "Θεματολογία δημιουργών"
 
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr "Παρακαλούμε δείτε τις <a href=\"%(faq_url)s\">συχνές ερωτήσεις για δημιουργούς</a> και το <a href=\"%(hub_url)s\">ταμπλό δημιουργών</a> για απαντήσεις σε ερωτήσεις που αφορούν δημιουργούς πρόσθετων."
+msgstr ""
+"Παρακαλούμε δείτε τις <a href=\"%(faq_url)s\">συχνές ερωτήσεις για δημιουργούς</a> και το <a href=\"%(hub_url)s\">ταμπλό δημιουργών</a> για απαντήσεις σε ερωτήσεις που αφορούν δημιουργούς πρόσθετων."
 
 msgid "Still have questions?"
 msgstr "Έχετε κι άλλες ερωτήσεις;"
@@ -7248,8 +7168,8 @@ msgstr "Έχετε κι άλλες ερωτήσεις;"
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr ""
-"Για γενικότερη υποστήριξη του Firefox, επισκεφθείτε τις<a href=\"%(sumo_url)s\">σελίδες υποστήριξης</a>. Για γενικότερη υποστήριξη και ερωτήσεις σχετικά με τα πρόσθετα, επισκεφθείτε το <a "
-"href=\"%(forum_url)s\">φόρουμ</a> μας."
+"Για γενικότερη υποστήριξη του Firefox, επισκεφθείτε τις<a href=\"%(sumo_url)s\">σελίδες υποστήριξης</a>. Για γενικότερη υποστήριξη και ερωτήσεις σχετικά με τα πρόσθετα, επισκεφθείτε το <a href="
+"\"%(forum_url)s\">φόρουμ</a> μας."
 
 msgid "Some tips for writing a great review"
 msgstr ""
@@ -7258,8 +7178,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -7520,10 +7440,10 @@ msgstr "Προσθήκη αξιολόγησης για το {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 
 msgid "Reply to review by {0}"
@@ -7984,11 +7904,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"
@@ -8513,11 +8433,8 @@ msgstr ""
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Ο πηγαίος κώδικας εκδίδεται από <a href=\"%(url)s\">%(name)s</a>"
 
-msgid "View the source"
-msgstr "Δείτε τον πηγαίο κώδικα"
-
-#. {0} is an add-on name.
 # {0} is the add-on name
+#. {0} is an add-on name.
 msgid "{0} Version History"
 msgstr "Ιστορικό εκδόσεων {0} "
 
