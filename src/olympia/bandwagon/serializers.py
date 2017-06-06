@@ -81,6 +81,8 @@ class ThisCollectionDefault(object):
 class CollectionAddonSerializer(serializers.ModelSerializer):
     addon = SplitField(
         SlugOrPrimaryKeyRelatedField(
+            # .no_cache() because django-cache-machine blows up otherwise.
+            # Only used for writes (this is input field) so no perf concerns.
             queryset=Addon.objects.public().no_cache()),
         AddonSerializer())
     notes = TranslationSerializerField(source='comments', required=False)

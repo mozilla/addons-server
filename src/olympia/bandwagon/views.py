@@ -690,8 +690,9 @@ class CollectionAddonViewSet(ModelViewSet):
 
     def get_object(self):
         self.lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        lookup_value = self.kwargs.get(self.lookup_url_kwarg)
         # if the lookup is not a number, its probably the slug instead.
-        if not self.kwargs[self.lookup_url_kwarg].isdigit():
+        if lookup_value and not unicode(lookup_value).isdigit():
             self.lookup_field = '%s__slug' % self.lookup_field
         return super(CollectionAddonViewSet, self).get_object()
 

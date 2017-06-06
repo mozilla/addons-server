@@ -7,9 +7,10 @@ from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory
 
 from olympia.addons.models import Addon
+from olympia.addons.serializers import AddonSerializer
 from olympia.api.fields import (
     ESTranslationSerializerField, ReverseChoiceField,
-    TranslationSerializerField)
+    SlugOrPrimaryKeyRelatedField, SplitField, TranslationSerializerField)
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.translations.models import Translation
 
@@ -297,3 +298,96 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         field.bind('description', None)
         result = field.to_representation(field.get_attribute(self.addon))
         assert result is None
+
+
+class TestSlugOrPrimaryKeyRelatedField(TestCase):
+
+    def setUp(self):
+        self.addon = addon_factory()
+
+    def test_render_as_pk(self):
+        obj = Mock()
+        obj.attached = self.addon
+
+        field = SlugOrPrimaryKeyRelatedField(read_only=True)
+        field.bind('attached', None)
+        assert (field.to_representation(field.get_attribute(obj)) ==
+                self.addon.pk)
+
+    def test_render_as_pks_many(self):
+        obj = Mock()
+        obj.attached = [self.addon]
+
+        field = SlugOrPrimaryKeyRelatedField(many=True, read_only=True)
+        field.bind('attached', None)
+        assert (field.to_representation(field.get_attribute(obj)) ==
+                [self.addon.pk])
+
+    def test_render_as_slug(self):
+        obj = Mock()
+        obj.attached = self.addon
+
+        field = SlugOrPrimaryKeyRelatedField(render_as='slug',
+                                             read_only=True)
+        field.bind('attached', None)
+        assert (field.to_representation(field.get_attribute(obj)) ==
+                self.addon.slug)
+
+    def test_render_as_slugs_many(self):
+        obj = Mock()
+        obj.attached = [self.addon]
+
+        field = SlugOrPrimaryKeyRelatedField(render_as='slug',
+                                             many=True, read_only=True)
+        field.bind('attached', None)
+        assert (field.to_representation(field.get_attribute(obj)) ==
+                [self.addon.slug])
+
+    def test_parse_as_pk(self):
+        field = SlugOrPrimaryKeyRelatedField(queryset=Addon.objects.all())
+        assert field.to_internal_value(self.addon.pk) == self.addon
+
+    def test_parse_as_pks_many(self):
+        addon2 = addon_factory()
+        field = SlugOrPrimaryKeyRelatedField(queryset=Addon.objects.all(),
+                                             many=True)
+        assert (field.to_internal_value([self.addon.pk, addon2.pk]) ==
+                [self.addon, addon2])
+
+    def test_parse_as_slug(self):
+        field = SlugOrPrimaryKeyRelatedField(queryset=Addon.objects.all())
+        assert field.to_internal_value(self.addon.slug) == self.addon
+
+    def test_parse_as_slugs_many(self):
+        addon2 = addon_factory()
+        field = SlugOrPrimaryKeyRelatedField(queryset=Addon.objects.all(),
+                                             many=True)
+        assert (field.to_internal_value([self.addon.slug, addon2.slug]) ==
+                [self.addon, addon2])
+
+
+class SampleSerializer(serializers.Serializer):
+    addon = SplitField(
+        serializers.PrimaryKeyRelatedField(queryset=Addon.objects),
+        AddonSerializer())
+
+
+class TestSplitField(TestCase):
+
+    def setUp(self):
+        self.addon = addon_factory()
+
+    def test_output(self):
+        # If we pass an Addon instance.
+        serializer = SampleSerializer({'addon': self.addon})
+        assert 'addon' in serializer.data
+        # The output is from AddonSerializer.
+        assert serializer.data['addon']['id'] == self.addon.id
+        assert serializer.data['addon']['slug'] == self.addon.slug
+
+    def test_input(self):
+        # If we pass data (e.g. on create) the input serializer is used.
+        data = {'addon': self.addon.id}
+        serializer = SampleSerializer(data=data)
+        assert serializer.is_valid()
+        assert serializer.to_internal_value(data=data) == {'addon': self.addon}
