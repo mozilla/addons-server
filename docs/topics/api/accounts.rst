@@ -280,7 +280,7 @@ Collection Add-ons Detail
 
 This endpoint gets details of a single add-on in a collection, together with collector's notes.
 
-.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug|string:guid)/
+.. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug)/
 
     .. _collection-addon-detail-object:
 
@@ -319,7 +319,7 @@ Collection Add-ons Edit
 
 This endpoint allows the collector's notes for single add-on to be updated.
 
-.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug|string:guid)/
+.. http:patch:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug)/
 
     :<json string|object|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
 
@@ -336,7 +336,7 @@ Collection Add-ons Delete
 
 This endpoint allows a single add-on to be removed from a collection.
 
-.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug|string:guid)/
+.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/(int:addon_id|string:slug)/
 
 
 ------------------

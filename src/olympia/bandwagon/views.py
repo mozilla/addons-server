@@ -678,7 +678,6 @@ class CollectionAddonViewSet(ModelViewSet):
     permission_classes = []  # We don't need extra permissions.
     serializer_class = CollectionAddonSerializer
     lookup_field = 'addon'
-    # lookup_url_kwarg = 'addon_id'
 
     def get_collection_viewset(self):
         if not hasattr(self, 'collection_viewset'):
@@ -688,6 +687,13 @@ class CollectionAddonViewSet(ModelViewSet):
                 kwargs={'user_pk': self.kwargs['user_pk'],
                         'slug': self.kwargs['collection_slug']})
         return self.collection_viewset
+
+    def get_object(self):
+        self.lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+        # if the lookup is not a number, its probably the slug instead.
+        if not self.kwargs[self.lookup_url_kwarg].isdigit():
+            self.lookup_field = '%s__slug' % self.lookup_field
+        return super(CollectionAddonViewSet, self).get_object()
 
     def get_queryset(self):
         return CollectionAddon.objects.filter(

@@ -1728,6 +1728,14 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
         assert response.status_code == 200, self.url
         assert response.data['addon']['id'] == self.addon.id
 
+    def test_with_slug(self):
+        self.url = reverse(
+            'collection-addon-detail', kwargs={
+                'user_pk': self.user.pk,
+                'collection_slug': self.collection.slug,
+                'addon': self.addon.slug})
+        self.test_basic()
+
 
 class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
     client_class = APITestClient
@@ -1783,7 +1791,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url)
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'addon': ['Invalid pk "%s" - object does not exist.' %
+            'addon': ['Invalid pk or slug "%s" - object does not exist.' %
                       self.addon.pk]}
 
     def test_fail_when_invalid_addon(self):
@@ -1791,7 +1799,13 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         response = self.send(self.url, data={'addon': 3456})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'addon': ['Invalid pk "%s" - object does not exist.' % 3456]}
+            'addon': ['Invalid pk or slug "%s" - object does not exist.' %
+                      3456]}
+
+    def test_with_slug(self):
+        self.client.login_api(self.user)
+        response = self.send(self.url, data={'addon': self.addon.slug})
+        self.check_response(response)
 
 
 class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):

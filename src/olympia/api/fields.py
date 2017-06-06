@@ -1,8 +1,9 @@
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.utils.encoding import smart_text
 from django.utils.translation import get_language, ugettext_lazy as _
-from django.core.exceptions import ValidationError
 
-from rest_framework import fields
+from rest_framework import fields, serializers
 
 from olympia.amo.utils import to_language
 from olympia.translations.models import Translation
@@ -235,3 +236,38 @@ class SplitField(fields.Field):
 
     def to_representation(self, value):
         return self.output.to_representation(value)
+
+
+class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
+    """
+    Combines SlugRelatedField and PrimaryKeyRelatedField. Takes a
+    `render_as` argument (either "pk" or "slug") to indicate how to
+    serialize.
+    """
+    read_only = False
+
+    def __init__(self, *args, **kwargs):
+        self.render_as = kwargs.pop('render_as', 'pk')
+        if self.render_as not in ['pk', 'slug']:
+            raise ValueError("'render_as' must be one of 'pk' or 'slug', "
+                             "not %r" % (self.render_as,))
+        self.slug_field = kwargs.pop('slug_field', 'slug')
+        super(SlugOrPrimaryKeyRelatedField, self).__init__(
+            *args, **kwargs)
+
+    def to_representation(self, obj):
+        if self.render_as == 'slug':
+            return getattr(obj, self.slug_field)
+        else:
+            return obj.pk
+
+    def to_internal_value(self, data):
+        try:
+            return self.queryset.get(pk=data)
+        except:
+            try:
+                return self.queryset.get(**{self.slug_field: data})
+            except ObjectDoesNotExist:
+                msg = (_('Invalid pk or slug "%s" - object does not exist.') %
+                       smart_text(data))
+                raise ValidationError(msg)
