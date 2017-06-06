@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 19:16+0000\n"
+"PO-Revision-Date: 2017-06-06 19:26+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2869,9 +2869,8 @@ msgstr "Platforme Vse ni mogoče kombinirati s posebnimi platformami."
 msgid "A platform can only be chosen once."
 msgstr "Platformo se lahko izbere samo enkrat."
 
-#, fuzzy
 msgid "Reputation"
-msgstr "Odločitev"
+msgstr "Sloves"
 
 msgid "Application"
 msgstr "Program"
@@ -4957,7 +4956,7 @@ msgid "No Reviews"
 msgstr "Ni ocen"
 
 msgid "Weight"
-msgstr ""
+msgstr "Teža"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "S tem boste različico odobrili, podpisali in objavili. Komentarji bodo poslani razvijalcu."
@@ -5444,7 +5443,7 @@ msgid "This version has not been reviewed."
 msgstr "Te različice se ni pregledalo."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Izberite eno ali več različic na zgornjem seznamu."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Ta obrazec lahko še vedno uporabite, vendar le v primeru, če veste, da ne bo sporov."
@@ -6817,14 +6816,13 @@ msgstr ""
 msgid "Can I host my own add-on?"
 msgstr "Ali lahko svoj dodatek gostujem sam?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
-"Da.  Mnogi razvijalci sami gostujejo svoje dodatke.  Po drugi strani gostovanje dodatka na <a href=\"%(amo_url)s\">Mozillini stani za dodatke</a> omogoča večjo izpostavljenost dodatka zaradi večjega"
-" obiska strani.  <a href=\"%(md_url)s\">mozdev.org</a> nudi brezplačno gostovanje projektov za Mozilline aplikacije in razširitve in razvijalcem ponuja orodja za pomoč pri upravljanju z izvorno "
-"kodo, nadzorom različic, sledenjem hroščev in dokumentacijo."
+"Da. Mnogi razvijalci sami gostujejo svoje dodatke. Po drugi strani gostovanje dodatka na <a href=\"%(amo_url)s\">Mozillini stani za dodatke</a> omogoča večjo izpostavljenost dodatka zaradi velikega "
+"obiska strani."
 
 msgid "Can Mozilla host my add-on?"
 msgstr "Ali Mozilla lahko gosti moj dodatek?"
@@ -6911,9 +6909,8 @@ msgstr "Ali za uporabo svojega dodatka navedem politiko zasebnosti?"
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr "Da. Ob pošiljanju dodatka lahko določite politiko zasebnosti. Politiko zasebnosti lahko tudi dodate ali posodobite s nadzorno ploščo orodij za razvijalce potem, ko je vaš dodatek že poslan."
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Zakaj je treba moj dodatek pregledati?"
+msgstr "Ali je treba moj dodatek pregledati?"
 
 #, fuzzy, python-format
 msgid ""
@@ -6939,13 +6936,13 @@ msgstr ""
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Kakšne smernice se uporablja pri pregledu mojega dodatka?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
 "are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 msgstr ""
-"Kadar se preskušajo dodatki za sprejem na AMO, ekipa pregledovalcev sledi smernicam vodnika  <a href=\"%(url)s\">Vodnik urednikov za pregledovanje</a>. Pomembno je, da razvijalci dodatkov pred "
-"pošiljanjem svojih dodatkov za pregled pregledajo ta vodnik, da se izognejo splošnim pogostim pomanjkljivostim. To bo zelo pomagalo pri hitrosti procesa pregledovanja."
+"Ekipa pregledovalcev pri pregledovanju dodatkov sledi smernicam <a href=\"%(url)s\">Vodnika za pregledovanje</a>. Pomembno je, da razvijalci dodatkov pred pošiljanjem svojih dodatkov za pregled "
+"pregledajo ta vodnik, da se izognejo splošnim pogostim pomanjkljivostim. To bo zelo pomagalo pri hitrosti procesa pregledovanja."
 
 msgid "How long will it take for my add-on to be reviewed?"
 msgstr "Kako dolgo bo trajalo, preden bo moj dodatek pregledan?"
@@ -7016,9 +7013,8 @@ msgstr "Založeno poročilo o napaki ali zahteva za podporo"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Drugo (nudi spustno okno za informacije)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Trenutno AMO ne nudi mehanizma za neposredno komunikacijo z recenzentom, vendar se o tej temi razmišlja kot o možnosti za eno od bodočih različic."
+msgstr "Trenutno AMO ne nudi mehanizma za neposredno komunikacijo z avtorjem uporabniške ocene."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Ali lahko zahtevam, da se oceno odstrani, če je negativna?"
@@ -7150,7 +7146,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "Kako lahko poskrbim, da so dodatki na tekočem?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "Posodobitve dodatkov se preverijo enkrat na dan. V Firefoxu se posodobitve privzeto samodejno namestijo. "
 
 msgid "Are add-ons safe to install?"
 msgstr "Ali je dodatke varno namestiti?"
@@ -7341,12 +7337,12 @@ msgstr "Mobilni dodatki"
 msgid "What are mobile add-ons?"
 msgstr "Kaj so dodatki za mobilne naprave?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Mobilni dodatki so namenjeni <a href=\"%(mobile_url)s\">mobilnemu Firefoxu</a> in, tako kot namizni dodatki, dodajajo ali spreminjajo funkcionalnost. Dodatke, ki delujejo z mobilnim Firefoxom, "
+"Mobilni dodatki so namenjeni <a href=\"%(mobile_url)s\">Firefoxu za Android</a> in, tako kot namizni dodatki, dodajajo ali spreminjajo funkcionalnost. Dodatke, ki delujejo v Firefoxu za Android, "
 "najdete v naši <a href=\"%(gallery_url)s\">galeriji</a>."
 
 msgid "Developer Topics"
