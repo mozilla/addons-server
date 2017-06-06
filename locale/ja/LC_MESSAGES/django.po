@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 19:33+0000\n"
+"PO-Revision-Date: 2017-06-06 19:42+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -829,7 +829,7 @@ msgid "This add-on has not yet been reviewed."
 msgstr "このアドオンはまだレビューされていません。"
 
 msgid "Be the first!"
-msgstr "最初のレビュアーになりましょう！"
+msgstr "最初の一人になりましょう！"
 
 msgid "{0} users"
 msgstr "{0} ユーザー"
@@ -4662,7 +4662,7 @@ msgstr "誰か他の担当者がこのテーマを審査しています"
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr "テーマ、レビュアまたはコメント"
+msgstr "テーマ、審査担当者またはコメント"
 
 msgid "Keep review; remove flags"
 msgstr "レビューを残し、フラグを削除"
@@ -4736,7 +4736,7 @@ msgid "No Reviews"
 msgstr "レビューなし"
 
 msgid "Weight"
-msgstr ""
+msgstr "重み"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "これにより、このバージョンを承認、署名、公開します。コメントは開発者へ送られます。"
@@ -6759,16 +6759,16 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "アドオンは私のウェブブラウザーやアプリケーションで動作しますか？"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"このギャラリーに登録されているアドオンは、 Mozilla の関連製品 （<a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, <a "
-"href=\"%(getthunderbird_url)s\">Thunderbird</a> など） のみで動作します。ただし、すべてのアドオンが、それぞれのアプリケーションとそのすべてのバージョンで動作するわけではありません。それぞれのアドオンには、どのアプリケーションやバージョンで動作するかが明記されています （例えば、 Firefox 2.0 - 3.6.* など）。Firefox "
-"のアドオンに関しては、そのアドオンが動作するかどうかをインストールボタンで判断することができます。"
+"このギャラリーに登録されているアドオンは、<a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Android 版 Firefox</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, <a "
+"href=\"%(getthunderbird_url)s\">Thunderbird</a> といった、Mozilla の技術で開発されたアプリケーションのみで動作します。ただし、すべてのアドオンが、それぞれのアプリケーションとそのすべてのバージョンで動作するわけではありません。それぞれのアドオンには、どのアプリケーションやバージョンで動作するかが明記されています (例えば、 Firefox"
+" 50.0 - 52.* など)。Firefox のアドオンに関しては、そのアドオンが動作するかどうかをインストールボタンで判断することができます。"
 
 msgid "What are the different types of add-ons?"
 msgstr "アドオンにはどのような種類がありますか？"
@@ -6923,7 +6923,6 @@ msgid ""
 " are less stable than the general add-on releases."
 msgstr ""
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
@@ -6979,11 +6978,11 @@ msgstr "モバイル向けアドオン"
 msgid "What are mobile add-ons?"
 msgstr "モバイル向けアドオンとは？"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
-msgstr "モバイル向けアドオンは<a href=\"%(mobile_url)s\">モバイル向け Firefox</a> で動作し、デスクトップのアドオンと同じように機能を追加したり変更したりできます。モバイル向け Firefox で動作するアドオンは、<a href=\"%(gallery_url)s\">ギャラリー</a> で見つけられます。"
+msgstr "モバイル向けアドオンは<a href=\"%(mobile_url)s\">Android 版 Firefox</a> で動作し、デスクトップのアドオンと同じように機能を追加したり変更したりできます。Android 版 Firefox で動作するアドオンは、<a href=\"%(gallery_url)s\">ギャラリー</a> で見つけられます。"
 
 msgid "Developer Topics"
 msgstr "開発者向けトピックス"
