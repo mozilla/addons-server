@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 19:26+0000\n"
+"PO-Revision-Date: 2017-06-06 19:46+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -6764,19 +6764,21 @@ msgid ""
 "APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
 "legacy Firefox add-on</a>."
 msgstr ""
+"<strong>Opomba:</strong> XUL velja v Firefoxu za zastarelo tehnologijo, dodatki na osnovi XUL pa se v Firefoxu 57 in novejših ne bodo več naložili. Za razvoj novih dodatkov uporabljajte API-je <a "
+"href=\"%(webext_url)s\">WebExtensions</a>. Če razvijate zastarel dodatek, računajte s selitvijo na WebExtensions. Za informacije o selitvi zastarelega dodatka obiščite stran <a "
+"href=\"%(portlegacy_url)s\">Porting a legacy Firefox add-on</a>."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Kako preveriti združljivost z najnovejšo različico programske opreme Mozilla?"
 
-#, fuzzy
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Da zagotovite združljivost z najnovejšo Mozillino programsko opremo, je pomembno, da prenesete posodobitve takoj, ko do na voljo in se prepričate, da vaš dodatek še vedno pravilno deluje. V veliko "
-"primerih je najnovejša različica Mozilline programske opreme beta različica. Ker te različice občasno uvedejo spremembe zgradbe, ki lahko vplivajo na delovanje vašega dodatka, je pomembno, da "
-"aktivno sodelujete v postopku beta, da uporabniki ne bodo neprijetno presenečeni ob izidu končne izdaje Mozilline programske opreme."
+"Da zagotovite združljivost z najnovejšo Mozillino programsko opremo, je pomembno, da prenesete posodobitve takoj, ko so na voljo in se prepričate, da vaš dodatek še vedno pravilno deluje. Ker te "
+"različice občasno uvedejo spremembe zgradbe, ki lahko vplivajo na delovanje vašega dodatka, je pomembno, da aktivno sodelujete v postopku beta, da uporabniki ne bodo neprijetno presenečeni ob izidu "
+"končne izdaje Mozilline programske opreme."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "Pri gradnji svojega dodatka potrebujem nekaj nasvetov. Kje lahko najdem pomoč?"
@@ -6791,7 +6793,7 @@ msgstr "# Amo (za podporo v zvezi z gostovanjem vašega dodatka na AMO)"
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (za razprave o razvijanju in selitvi na WebExtensions)"
 
 msgid "Add-ons forum"
 msgstr "Forum dodatkov"
@@ -6869,17 +6871,16 @@ msgstr ""
 "Da. Mozillin <a href=\"%(p_url)s\">Pravilnik za dodatke</a> opisuje, kaj je sprejemljivo pošiljanje. Ta pravilnik je predmet sprememb brez obvestila. Poleg tega ekipa urednikov AMO uporablja <a "
 "href=\"%(g_url)s\">Vodnik urednikov za pregledovanje</a> zaradi zagotovitve, da dodatek ustreza določenim smernicam delovanja in varnosti."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Kako pošljem svoj dodatek v pregled?"
+msgstr "Kako pošljem svoj dodatek?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
-"Nadzorna plošča orodij za razvijalce vam bo omogočala naložiti in poslati dodatke na AMO. Preden lahko pošljete svoj dodatek, morate biti na AMO registriran uporabnik. Preden pošljete dodatek, "
-"preberite <a href=\"%(url)s\">Vodnik za pregled dodatkov</a> in se prepričate, da vaš dodatek ustreza smernicam, po katerih pregledovalci pregledujejo dodatke."
+"Nadzorna plošča orodij za razvijalce vam bo omogočala naložiti in poslati dodatke na AMO. Za pošiljanje dodatka morate biti na AMO registriran uporabnik. Preden pošljete dodatek, preberite <a "
+"href=\"%(url)s\">Vodnik za pregled dodatkov</a> in se prepričate, da vaš dodatek ustreza našim smernicam."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Kateri operacijski sistem naj izberem za svoj dodatek?"
@@ -6912,13 +6913,13 @@ msgstr "Da. Ob pošiljanju dodatka lahko določite politiko zasebnosti. Politiko
 msgid "Must my add-on be reviewed?"
 msgstr "Ali je treba moj dodatek pregledati?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
 msgstr ""
-"Vsi poslani dodatki, novi in posodobljeni, so pregledani, da Mozillinim uporabnikom zagotovimo stabilno in varno uporabo. Vsa pošiljanja dodatkov so pregledana s smernicami, opisanimi v <a "
-"href=\"%(url)s\">Vodniku za preglede za urednike</a>."
+"Vsi poslani dodatki, novi in posodobljeni, so pregledani, da Mozillinim uporabnikom zagotovimo stabilno in varno uporabo. Vsi poslani dodatki so pregledani s smernicami, opisanimi v <a "
+"href=\"%(url)s\">Vodniku za pregledovanje</a>."
 
 msgid "Who reviews my add-on?"
 msgstr "Kdo bo pregledal moj dodatek?"
@@ -6964,7 +6965,7 @@ msgstr "število odkritih problematičnih območij"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "Zato je zelo pomembno, da preberete <a href=\"%(g_url)s\">vodnik za pregledovanje dodatkov</a>, da zagotovite, da je vaš dodatek sestavljen, kot je treba."
 
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "Kako lahko vidim. kolikokrat se je preneslo moj dodatek?"
@@ -6989,7 +6990,7 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr "Ali morajo mojo posodobitev pregledati?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "Posodobitve dodatkov so lahko pregledane tako kot nove oddaje."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "Kako odgovoriti uporabniku, ki je objavil negativno mnenje o mojem dodatku?"
