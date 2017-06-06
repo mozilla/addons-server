@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 14:37+0000\n"
+"PO-Revision-Date: 2017-06-06 14:42+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -2824,9 +2824,8 @@ msgstr "La plataforma Todas no puede combinarse con plataformas específicas."
 msgid "A platform can only be chosen once."
 msgstr "Una plataforma sólo puede ser elegida una vez."
 
-#, fuzzy
 msgid "Reputation"
-msgstr "Resolución"
+msgstr "Valoración"
 
 msgid "Application"
 msgstr "Aplicación"
@@ -6907,8 +6906,8 @@ msgid ""
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
 " href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Los complementos los revisan los revisores de complementos, un grupo de desarrolladores con talento que colaboran con el proyecto Mozilla revisando complementos y garantizando que los usuarios de "
-"Mozilla disfruten de una experiencia estable y segura. Al comunicarte con los revisores, intenta ser educado, paciente y respetuoso mientras dedican sus esfuerzos a asegurar que tu complemento está "
+"Los complementos los revisan los editores de complementos, un grupo de desarrolladores con talento que colaboran con el proyecto Mozilla revisando complementos y garantizando que los usuarios de "
+"Mozilla disfruten de una experiencia estable y segura. Al comunicarte con los editores, intenta ser educado, paciente y respetuoso mientras dedican sus esfuerzos a asegurar que tu complemento está "
 "configurado correctamente y cumple las directrices detalladas en la <a href=\"%(url)s\">Guía de revisión de complementos</a>."
 
 msgid "What are the guidelines used to review my add-on?"
@@ -7224,26 +7223,24 @@ msgstr ""
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "¿Qué significa que un complemento sea \"experimental\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Los complementos experimentales son aquellos que los desarrolladores marcan como no apropiados para el público en general.  Han sido comprobados por nuestros editores para asegurarse de que no "
-"tienen problemas de seguridad, pero podrían tener fallos o no funcionar correctamente. Ten cuidado al instalar complementos experimentales y desinstala el complemento inmediatamente si observas "
-"problemas. <a href=\"%(url)s\">Más información sobre nuestro proceso de revisión</a></dd>"
+"Los complementos experimentales son aquellos que los desarrolladores marcan como no apropiados para el público en general. Podrían tener fallos o no funcionar correctamente. Ten cuidado al instalar "
+"complementos experimentales y desinstala el complemento inmediatamente si observas problemas. <a href=\"%(url)s\">Más información sobre nuestro proceso de revisión</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "¿Qué significa que un complemento esté \"no revisado\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Si bien todos los complementos disponibles públicamente en nuestra galería están revisados por un editor, puede que recibas un enlace directo a un complemento que aún no haya sido revisado. Ten "
-"cuidado al instalar estos complementos, ya que podrían dañar tu equipo o violar tu privacidad. Recomendamos que solo instales complementos revisados. <a href=\"%(url)s\">Más información sobre "
-"nuestro proceso de revisión</a></dd>"
+"Si recibes un enlace directo a un complemento que aún no ha sido revisado, significa que aún está pendiente de revisión por parte de los editores de Mozilla. Ten cuidado al instalar estos "
+"complementos, ya que podrían dañar tu equipo o violar tu privacidad. <a href=\"%(url)s\">Más información sobre nuestro proceso de revisión</a></dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "¿Cuánto cuesta comprar un complemento?"
@@ -7277,13 +7274,12 @@ msgstr ""
 "        para medir la calidad del código beta, deberías asumir que es una \n"
 "        versión menos estable que las generales."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
 "Por favor, ten en cuenta que cuando instalas un complemento de la sección \"Versiones beta\", seguirás recibiendo actualizaciones cuando estén disponibles. Como la versión inicial que instalaste, "
-"ninguna de las versiones beta son revisadas por Mozilla y pueden dañar tu equipo."
+"Mozilla no revisa ninguna de las versiones beta y pueden dañar tu equipo."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "¿Cómo informar de una reseña inapropiada o spam?"
@@ -7344,13 +7340,13 @@ msgstr "Complementos para Mobile"
 msgid "What are mobile add-ons?"
 msgstr "¿Qué son los complementos para móviles?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Los complementos para móviles funcionan con <a href=\"%(mobile_url)s\">Firefox para dispositivos móviles</a> y agregan o modifican funcionalidades de la misma forma que los complementos de "
-"escritorio. Puedes encontrar complementos que funcionan con Firefox para dispositivos móviles en nuestra <a href=\"%(gallery_url)s\">galería</a>."
+"Los complementos para móviles funcionan con <a href=\"%(mobile_url)s\">Firefox para Android</a> y agregan o modifican funcionalidades de la misma forma que los complementos de escritorio. Puedes "
+"encontrar complementos que funcionan con Firefox para Android en nuestra <a href=\"%(gallery_url)s\">galería</a>."
 
 msgid "Developer Topics"
 msgstr "Temas para desarrolladores"
