@@ -16,7 +16,6 @@ import mock
 import waffle
 from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
-from waffle.models import Flag
 
 from olympia import amo, core, paypal
 from olympia.activity.models import ActivityLog
@@ -63,71 +62,6 @@ class HubTest(TestCase):
             new_addon.addonuser_set.create(user=self.user_profile)
             ids.append(new_addon.id)
         return ids
-
-
-class TestNav(HubTest):
-
-    def test_navbar(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('#site-nav').length == 1
-
-    def test_no_addons(self):
-        """Check that no add-ons are displayed for this user."""
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        # My Add-ons menu should not be visible if user has no add-ons.
-        assert doc('#navbar ul li.top a').eq(0).text() != 'My Add-ons'
-
-    def test_my_addons(self):
-        """Check that the correct items are listed for the My Add-ons menu."""
-        # Assign this add-on to the current user profile.
-        addon = Addon.objects.get(id=3615)
-        addon.addonuser_set.create(user=self.user_profile)
-
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-
-        # Check the anchor for the 'My Add-ons' menu item.
-        assert doc('#site-nav ul li.top a').eq(0).text() == 'My Add-ons'
-
-        # Check the anchor for the single add-on.
-        assert doc('#site-nav ul li.top li a').eq(0).attr('href') == (
-            addon.get_dev_url())
-
-        # Create 6 add-ons.
-        self.clone_addon(6)
-
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-
-        # There should be 8 items in this menu.
-        assert doc('#site-nav ul li.top').eq(0).find('ul li').length == 8
-
-        # This should be the 8th anchor, after the 7 addons.
-        assert doc('#site-nav ul li.top').eq(0).find('li a').eq(7).text() == (
-            'Submit a New Add-on')
-
-        self.clone_addon(1)
-
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('#site-nav ul li.top').eq(0).find('li a').eq(7).text() == (
-            'more add-ons...')
-
-    def test_unlisted_addons_are_displayed(self):
-        """Check that unlisted addons are displayed in the nav."""
-        # Assign this add-on to the current user profile.
-        addon = Addon.objects.get(id=3615)
-        self.make_addon_unlisted(addon)
-        addon.addonuser_set.create(user=self.user_profile)
-
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-
-        # Check the anchor for the unlisted add-on.
-        assert doc('#site-nav ul li.top li a').eq(0).attr('href') == (
-            addon.get_dev_url())
 
 
 class TestDashboard(HubTest):
@@ -930,24 +864,57 @@ class TestHome(TestCase):
         assert response.status_code == 200
         return pq(response.content)
 
-    def test_addons(self):
+    def test_basic_logged_out(self):
+        self.client.logout()
         response = self.client.get(self.url)
         assert response.status_code == 200
         self.assertTemplateUsed(response, 'devhub/index.html')
+        assert 'Customize Firefox' in response.content
 
-    def test_editor_promo(self):
-        assert self.get_pq()('#devhub-sidebar #editor-promo').length == 1
+    def test_basic_logged_in(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, 'devhub/index.html')
+        assert 'My Add-ons' in response.content
 
-    def test_no_editor_promo(self):
-        Addon.objects.all().delete()
-        # Regular users (non-devs) should not see this promo.
-        assert self.get_pq()('#devhub-sidebar #editor-promo').length == 0
+    def test_my_addons_addon_versions_link(self):
+        assert self.client.login(email='del@icio.us')
+
+        doc = self.get_pq()
+        addon_list = doc('.DevHub-MyAddons-list')
+
+        href = addon_list.find('.DevHub-MyAddons-item-versions a').attr('href')
+        assert href == self.addon.get_dev_url('versions')
+
+    def test_my_addons_persona_versions_link(self):
+        """References https://github.com/mozilla/addons-server/issues/4283
+
+        Make sure that a call to a persona doesn't result in a 500."""
+        assert self.client.login(email='del@icio.us')
+        user_profile = UserProfile.objects.get(email='del@icio.us')
+        addon_factory(type=amo.ADDON_PERSONA, users=[user_profile])
+
+        doc = self.get_pq()
+        addon_list = doc('.DevHub-MyAddons-list')
+        assert len(addon_list.find('.DevHub-MyAddons-item')) == 2
+
+        span_text = (
+            addon_list.find('.DevHub-MyAddons-item')
+            .eq(0)
+            .find('span.DevHub-MyAddons-VersionStatus').text())
+
+        assert span_text == 'Approved'
 
     def test_my_addons(self):
-        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
-                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
+        statuses = [
+            (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
+                'Awaiting Review'),
+            (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
+                'Approved'),
+            (amo.STATUS_DISABLED, amo.STATUS_PUBLIC,
+                'Disabled by Mozilla')]
 
-        for addon_status, file_status in statuses:
+        for addon_status, file_status, status_str in statuses:
             latest_version = self.addon.find_latest_version(
                 amo.RELEASE_CHANNEL_LISTED)
             file = latest_version.files.all()[0]
@@ -956,91 +923,39 @@ class TestHome(TestCase):
             self.addon.update(status=addon_status)
 
             doc = self.get_pq()
-            addon_item = doc('#my-addons .addon-item')
+            addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
             assert addon_item.length == 1
-            assert addon_item.find('.addon-name').attr('href') == (
+            assert (
+                addon_item.find('.DevHub-MyAddons-item-edit').attr('href') ==
                 self.addon.get_dev_url('edit'))
-            assert addon_item.find('p').eq(2).find('a').attr('href') == (
-                self.addon.current_version.get_url_path())
-            assert 'Queue Position: 1 of 1' == (
-                addon_item.find('p').eq(3).text())
 
-            assert addon_item.find(
-                '.upload-new-version a').attr('href') == (
-                reverse('devhub.submit.version', args=[self.addon.slug]))
-
-            doc = self.get_pq()
-            addon_item = doc('#my-addons .addon-item')
-            status_str = 'Status: ' + unicode(
-                self.addon.STATUS_CHOICES[self.addon.status])
-            assert status_str == addon_item.find('p').eq(1).text()
+            assert (
+                status_str ==
+                addon_item.find('.DevHub-MyAddons-VersionStatus').text())
 
         Addon.objects.all().delete()
-        assert self.get_pq()('#my-addons').length == 0
+        assert self.get_pq()(
+            '.DevHub-MyAddons-list .DevHub-MyAddons-item').length == 0
 
-    def test_my_addons_disabled(self):
-        latest_version = self.addon.find_latest_version(
-            amo.RELEASE_CHANNEL_LISTED)
-        file = latest_version.files.all()[0]
-        file.update(status=amo.STATUS_DISABLED)
-        self.addon.update(status=amo.STATUS_DISABLED)
-
-        doc = self.get_pq()
-        addon_item = doc('#my-addons .addon-item')
-        assert addon_item.length == 1
-        assert addon_item.find('.addon-name').attr('href') == (
-            self.addon.get_dev_url('edit'))
-        assert not addon_item.find('p').eq(3).find('a').attr('href')
-        assert not addon_item.find('.upload-new-version a')
-
-        doc = self.get_pq()
-        addon_item = doc('#my-addons .addon-item')
-        status_str = 'Status: ' + unicode(
-            self.addon.STATUS_CHOICES[self.addon.status])
-        assert status_str == addon_item.find('p').eq(1).text()
-
-        Addon.objects.all().delete()
-        assert self.get_pq()('#my-addons').length == 0
-
-    def test_my_unlisted_addons(self):
-        self.make_addon_unlisted(self.addon)
-        assert self.addon.status == amo.STATUS_NULL
-
-        doc = self.get_pq()
-        addon_item = doc('#my-addons .addon-item')
-        assert addon_item.length == 1
-        assert addon_item.find('.addon-name').attr('href') == (
-            self.addon.get_dev_url('edit'))
-
-        assert addon_item.find(
-            '.upload-new-version a').attr('href') == (
-            reverse('devhub.submit.version', args=[self.addon.slug]))
-
-        doc = self.get_pq()
-        addon_item = doc('#my-addons .addon-item')
-        status_str = 'Status: ' + unicode(
-            self.addon.STATUS_CHOICES[self.addon.status])
-        assert status_str == addon_item.find('p').eq(1).text()
-
-        Addon.objects.all().delete()
-        assert self.get_pq()('#my-addons').length == 0
-
-    def test_incomplete_no_new_version(self):
-        def no_link():
-            doc = self.get_pq()
-            addon_item = doc('#my-addons .addon-item')
-            assert addon_item.length == 1
-            assert addon_item.find('.upload-new-version').length == 0
-
+    def test_my_addons_incomplete(self):
         self.addon.update(status=amo.STATUS_NULL)
-        self.addon.categories.all().delete()  # Make the add-on incomplete.
-        no_link()
+        self.addon.categories.all().delete()  # Make add-on incomplete
+        doc = self.get_pq()
+        addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
+        assert addon_item.length == 1
+        assert (
+            addon_item.find('.DevHub-MyAddons-item-edit').attr('href') ==
+            self.addon.get_dev_url('edit'))
 
-        self.addon.update(status=amo.STATUS_DISABLED)
-        no_link()
-
+    def test_my_addons_no_disabled_or_deleted(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
-        no_link()
+        doc = self.get_pq()
+
+        addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
+        assert addon_item.length == 1
+        assert (
+            addon_item.find('.DevHub-MyAddons-VersionStatus').text() ==
+            'Invisible')
 
 
 class TestActivityFeed(TestCase):
@@ -2061,51 +1976,3 @@ class TestXssOnAddonName(amo.tests.TestXss):
     def test_devhub_version_list_page(self):
         url = reverse('devhub.addons.versions', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
-
-
-class TestNewDevHubLanding(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        super(TestNewDevHubLanding, self).setUp()
-        self.url = reverse('devhub.index')
-        self.addon = Addon.objects.get(pk=3615)
-
-    def get_pq(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        return pq(response.content)
-
-    def test_basic(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        self.assertTemplateUsed(response, 'devhub/index.html')
-        assert 'Customize Firefox' in response.content
-
-    def test_my_addons_addon_versions_link(self):
-        assert self.client.login(email='del@icio.us')
-
-        doc = self.get_pq()
-        addon_list = doc('.DevHub-MyAddons-list')
-
-        href = addon_list.find('.DevHub-MyAddons-item-versions a').attr('href')
-        assert href == self.addon.get_dev_url('versions')
-
-    def test_my_addons_persona_versions_link(self):
-        """References https://github.com/mozilla/addons-server/issues/4283
-
-        Make sure that a call to a persona doesn't result in a 500."""
-        assert self.client.login(email='del@icio.us')
-        user_profile = UserProfile.objects.get(email='del@icio.us')
-        addon_factory(type=amo.ADDON_PERSONA, users=[user_profile])
-
-        doc = self.get_pq()
-        addon_list = doc('.DevHub-MyAddons-list')
-        assert len(addon_list.find('.DevHub-MyAddons-item')) == 2
-
-        span_text = (
-            addon_list.find('.DevHub-MyAddons-item')
-            .eq(0)
-            .find('span.DevHub-MyAddons-VersionStatus').text())
-
-        assert span_text == 'Approved'
