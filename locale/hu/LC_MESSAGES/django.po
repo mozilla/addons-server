@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 12:35+0000\n"
+"PO-Revision-Date: 2017-06-06 13:22+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6770,17 +6770,16 @@ msgstr ""
 "Igen. A Mozilla <a href=\"%(p_url)s\">kiegészítők szabályzata</a> leírja milyen egy elfogadható benyújtott kiegészítő. A szabályzat figyelmeztetés nélkül módosulhat. Továbbá, a szerkesztői csapat a "
 "<a href=\"%(g_url)s\">Kiegészítőértékelési útmutatót</a> használja, hogy biztosítsa, hogy a kiegészítője megfelel bizonyos funkcionális és biztonsági irányelveknek."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Hogyan kell benyújtani a kiegészítőjét értékelésre?"
+msgstr "Hogyan kell benyújtani a kiegészítőjét?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
-"A Fejlesztői eszközök irányítópult lehetővé teszi a kiegészítők feltöltését és benyújtását az AMO-ba. Regisztrált AMO felhasználónak kell lennie mielőtt benyújthat kiegészítőket. Mielőtt beküldi a "
-"kiegészítőjét, olvassa el a <a href=\"%(url)s\">Szerkesztői értékelési útmutatót</a>, hogy meggyőződjön arról, hogy az betartja a szerkesztők által, az értékelésnél használt irányelveket."
+"A Fejlesztői eszközök irányítópult lehetővé teszi a kiegészítők feltöltését és benyújtását az AMO-ba. Regisztrált AMO felhasználónak kell lennie mielőtt kiegészítőket nyújthat be. Mielőtt beküldi a "
+"kiegészítőjét, olvassa el a <a href=\"%(url)s\">Szerkesztői értékelési útmutatót</a>, hogy meggyőződjön arról, hogy a kiegészítője betartja-e az irányelveinket."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Milyen operációs rendszer kell megadni a kiegészítőjéhez?"
@@ -6811,22 +6810,21 @@ msgid "Yes. You can specify a privacy policy when submitting your add-on. You ca
 msgstr ""
 "Igen. Megadhatja az adatvédelmi szabályzatot a kiegészítője beküldésekor. A kiegészítő beküldése után, a fejlesztői eszközök vezérlőpulton is megadhatja vagy frissítheti az adatvédelmi szabályzatot."
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Miért kell a kiegészítőjét értékelni?"
+msgstr "Kell-e értékelni kiegészítőjét?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
 msgstr ""
-"Minden, akár új, akár frissített kiegészítő értékelésre kerül, hogy a Mozilla felhasználók számára biztosítva legyen a stabil és biztonságos felhasználói élmény. Minden beküldött kiegészítő "
-"értékelésre kerül a <a href=\"%(url)s\">Szerkesztői értékelési útmutató</a> irányelvei mentén."
+"Minden új és frissített kiegészítő értékelésre kerül, hogy a Mozilla felhasználók számára biztosítva legyen a stabil és biztonságos élmény. A beküldések a <a href=\"%(url)s\">Szerkesztői értékelési "
+"útmutató</a> irányelvei mentén kerülnek értékelésre."
 
 msgid "Who reviews my add-on?"
 msgstr "Ki értékeli a kiegészítőjét?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
