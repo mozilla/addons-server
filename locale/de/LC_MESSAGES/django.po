@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 16:40+0000\n"
+"PO-Revision-Date: 2017-06-06 16:48+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -6868,7 +6868,7 @@ msgstr "Anzahl der gefundenen Problembereiche"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "Daher ist es wichtig, den <a href=\"%(g_url)s\">Add-on-Überprüfungsleitfaden</a> zu lesen, um sicherzugehen, dass Ihr Add-on wie erwartet eingerichtet wird."
 
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "Wie kann ich sehen, wie oft mein Add-on heruntergeladen wurde?"
@@ -6895,7 +6895,7 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr "Muss mein Update von Kontrolleuren überprüft werden?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "Add-on-Aktualisierungen können den gleichen Überprüfungen unterzogen werden, wie Neueinreichungen."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "Wie antworte ich auf einen Benutzer, der eine negative Bewertung zu meinem Add-on geschrieben hat?"
@@ -6919,9 +6919,8 @@ msgstr "Unpassender Fehlerbericht, oder Unterstützungs-Anfrage"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Sonstiges (bietet eine Pop-Up-Abfrage für weitere Informationen)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Derzeit bietet AMO keine Möglichkeit, direkt mit einem Bewerter zu kommunizieren, aber diese Funktion wird derzeit untersucht und für eine zukünftige Version in Erwägung gezogen."
+msgstr "Derzeit bietet AMO keine Möglichkeit, direkt mit einem Bewerter zu kommunizieren."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Kann ich verlangen, dass eine Bewertung entfernt wird, wenn sie negativ ist?"
@@ -6997,16 +6996,16 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Werden Add-ons mit meinem Browser oder meiner Anwendung funktionieren?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Add-ons in dieser Galerie funktionieren nur mit Mozilla-basierten Anwendungen, wie zum Beispiel <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"Add-ons in dieser Galerie funktionieren nur mit Mozilla-basierten Anwendungen, wie zum Beispiel <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox für Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a> und <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Nicht alle Add-ons funktionieren aber mit all diesen Anwendungen oder jeder Version dieser "
-"Anwendungen. Jedes Add-on definiert, welche Anwendungen und Versionen unterstützt sind, zum Beispiel: Firefox 2.0 - 3.6.*. Für Firefox Add-ons zeigt Ihnen die Installations-Schaltfläche, ob das "
+"Anwendungen. Jedes Add-on definiert, welche Anwendungen und Versionen unterstützt sind, zum Beispiel: Firefox 50.0 – 52.*. Für Firefox-Add-ons zeigt Ihnen die Installations-Schaltfläche, ob das "
 "jeweilige Add-on kompatibel ist oder nicht."
 
 msgid "What are the different types of add-ons?"
@@ -7061,7 +7060,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "Wie kann ich Add-ons auf den neuesten Stand halten?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "Add-ons werden automatisch einmal pro Tag auf Aktualisierungen überprüft. In Firefox werden Updates standardmäßig automatisch installiert."
 
 msgid "Are add-ons safe to install?"
 msgstr "Ist es sicher, Add-ons zu installieren?"
@@ -7071,6 +7070,9 @@ msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
 msgstr ""
+"Seien Sie vorsichtig bei der Installation von Add-ons, da diese Ihrem Computer schaden oder Ihre Privatsphäre verletzten können. Auf dieser Website verfügbare Add-ons können von Mozillas "
+"Überprüferteam getestet werden, außerdem werden die Meinungen von Nutzern beobachtet – daher sollte die Installation üblicherweise sicher sein. <a href=\"%(learnmore_url)s\">Erfahren Sie mehr über "
+"unseren Überprüfungsprozess</a>."
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -7129,7 +7131,7 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Was ist, wenn ich nicht das Add-on finde, nach dem ich suche?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
@@ -7140,26 +7142,24 @@ msgstr ""
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Was bedeutet es, wenn ein Add-on „experimentell“ ist?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Experimentelle Add-ons wurden von ihren Entwicklern als ungeeignet für große Nutzergruppen gekennzeichnet. Experimentelle Add-ons wurden von unseren Redakteuren geprüft, um sicherzustellen, dass sie"
-" keine Sicherheitsprobleme haben, aber sie können immer noch Fehler haben oder nicht richtig funktionieren. Seien Sie vorsichtig, wenn Sie experimentelle Add-ons installieren und deinstallieren Sie "
-"das Add-on, sobald Sie Probleme feststellen. <a href=\"%(url)s\">Erfahren Sie mehr über unseren Überprüfungsprozess</a></dd>"
+"Experimentelle Add-ons wurden von ihren Entwicklern als ungeeignet für große Nutzergruppen gekennzeichnet. Sie können immer noch Fehler haben oder nicht richtig funktionieren. Seien Sie vorsichtig, "
+"wenn Sie experimentelle Add-ons installieren und deinstallieren Sie das Add-on, sobald Sie Probleme feststellen. <a href=\"%(url)s\">Erfahren Sie mehr über unseren Überprüfungsprozess</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Was bedeutet es, wenn ein Add-on \"nicht überprüft\" ist?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Obwohl alle Add-ons, die in unserer Galerie öffentlich verfügbar sind, von unseren Mitarbeitern geprüft wurden, haben Sie womöglich einen direkten Link zu einem Add-on erhalten, das bisher noch "
-"nicht geprüft wurde. Seien Sie vorsichtig, wenn Sie so ein Add-on installieren, da Sie Programme auf Ihrem Computer beschädigen oder Ihre Privatsphäre verletzten könnten. Wir empfehlen Ihnen, nur "
-"geprüfte Add-ons zu installieren. <a href=\"%(url)s\">Erfahren Sie mehr über unseren Prüfvorgang</a></dd>"
+"Wenn Sie einen Direktlink zu einem Add-on erhalten, das laut Hinweis noch nicht überprüft wurde, wartet es derzeit auf die Überprüfung durch Mozilla. Seien Sie vorsichtig bei der Installation dieser"
+" Add-ons, da Sie Ihrem Computer schaden oder Ihre Privatsphäre verletzten könnten. <a href=\"%(url)s\">Erfahren Sie mehr über unseren Prüfvorgang</a></dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Was kosten Add-ons?"
@@ -7187,13 +7187,12 @@ msgstr ""
 "Beta-Add-ons sind nicht überprüfte Versionen, die die neueste Arbeit eines Add-on-Autors darstellen. Je nach Autor unterscheidet sich die Qualität von Beta-Quelltext, aber Sie sollten davon "
 "ausgehen, dass diese Add-ons üblicherweise weniger stabil sind, als fertige Versionen."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
-"Bitte beachten Sie, dass Sie bei der Installation der \"Beta-Version\" eines Add-ons weiterhin Updates für dieses Add-on erhalten, wenn sie verfügbar sind. Ebenso wie die Version, die Sie "
-"installiert haben, sind auch alle anderen Beta-Veröffentlichungen nicht von Mozilla geprüft und können Ihren Computer beschädigen."
+"Bitte beachten Sie, dass Sie bei der Installation eines Add-ons aus dem Bereich „Beta-Version“ eines Add-on-Eintrags weiterhin Updates für dieses Add-on erhalten, wenn sie verfügbar sind. Ebenso wie"
+" die Version, die Sie installiert haben, sind auch alle anderen Beta-Veröffentlichungen nicht von Mozilla geprüft und können Ihren Computer beschädigen."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Wie melde ich eine unpassende Bewertung oder Spam?"
@@ -7252,13 +7251,13 @@ msgstr "Mobile Add-ons"
 msgid "What are mobile add-ons?"
 msgstr "Was sind mobile Add-ons?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Mobile add-ons funktionieren mit <a href=\"%(mobile_url)s\">Firefox für Mobile</a> und fügen Funktionen hinzu bzw. verändern sie genau so wie Desktop-Add-ons. Sie können Add-ons, die mit Firefox für"
-" Mobile kompatibel sind, in unserer <a href=\"%(gallery_url)s\">Galerie</a> finden."
+"Mobile add-ons funktionieren mit <a href=\"%(mobile_url)s\">Firefox für Android</a> und fügen Funktionen hinzu bzw. verändern sie genau so wie Desktop-Add-ons. Sie können Add-ons, die mit Firefox "
+"für Android kompatibel sind, in unserer <a href=\"%(gallery_url)s\">Galerie</a> finden."
 
 msgid "Developer Topics"
 msgstr "Entwickler-Themen"
