@@ -2070,7 +2070,6 @@ class TestNewDevHubLanding(TestCase):
         super(TestNewDevHubLanding, self).setUp()
         self.url = reverse('devhub.index')
         self.addon = Addon.objects.get(pk=3615)
-        self.create_flag('new-devhub-landing')
 
     def get_pq(self):
         response = self.client.get(self.url)
@@ -2080,26 +2079,7 @@ class TestNewDevHubLanding(TestCase):
     def test_basic(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
-        # The actual switch happens in the template, so we're using the same
-        # template.
         self.assertTemplateUsed(response, 'devhub/index.html')
-
-    def test_waffle_flag_inactive(self):
-        Flag.objects.filter(name='new-devhub-landing').delete()
-
-        response = self.client.get(reverse('devhub.index'))
-
-        assert response.status_code == 200
-
-        # This text only exists on the old page.
-        assert 'Learn All About Add-ons' in response.content
-
-    def test_waffle_active(self):
-        response = self.client.get(reverse('devhub.index'))
-
-        assert response.status_code == 200
-
-        # This text only exists on the old page.
         assert 'Customize Firefox' in response.content
 
     def test_my_addons_addon_versions_link(self):
