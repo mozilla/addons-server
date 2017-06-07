@@ -738,7 +738,7 @@ class AutoApprovalSummary(ModelBase):
                 Review.objects
                 .filter(addon=addon)
                 .filter(rating__lte=3, created__gte=one_year_ago)
-                .count() / 100. * 2), 100),
+                .count() / 100.0 * 2.0), 100),
             # Reputation is set by admin - the value is inverted to add from
             # -300 (decreasing priority for "trusted" add-ons) to +300
             # (increasing priority for add-ons we want to monitor closely).
