@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-07 18:56+0000\n"
+"PO-Revision-Date: 2017-06-07 19:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -7130,25 +7130,24 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Co mógu cyniś, jolic njenamakajom dodank, za kótarymž pytam?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
-"Su tysace dodankow k dispoziciji, dajo něco za kuždego. Ale jolic pytaśo za wósebnym dodankom a njamóžośo jen namakaś, wopytajśo na drugich sedłach pytaś abo pišćo pśinosk wo tom w našom <a "
-"href=\"%(forum_url)s\">dodankowem</a> forumje."
+"Su tysace dodankow k dispoziciji, dajo něco za kuždego. Ale jolic pytaśo za wósebnym dodankom a njamóžośo jen namakaś, pytajśo na drugich sedłach abo pišćo pśinosk wó tom w našom <a "
+"href=\"%(forum_url)s\">dodankowem forumje</a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Co ma na se, jolic dodank jo „eksperimentelny“?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Eksperimentelne dodanki su se wót swójich wuwijarjow ako njegóźece se za šyroki publikum markěrowali. Su wót našych redaktorow pśeglědali, aby se zawěsćiło, až njamaju wěstotne problemy, ale mógu "
-"hyšći zmólki měś abo njamógu pórědnje funkcioněrowaś. Buźćo wobglědniwy, gaž instalěrujośo eksperimentelne dodanki a wótinstalěrujśo dodank ned, jolic zawupytajośo problemy. <a "
-"href=\"%(url)s\">Dalšne informacije wó našom pśeglědowańskem procesu</a></dd>"
+"Eksperimentelne dodanki su se wót swójich wuwijarjow ako njegóźece se za šyroki publikum markěrowali. Mógu hyšći zmólki měś abo njamógu pórědnje funkcioněrowaś. Buźćo wobglědniwy, gaž instalěrujośo "
+"eksperimentelne dodanki a wótinstalěrujśo dodank ned, jolic zawupytajośo problemy. <a href=\"%(url)s\">Dalšne informacije wó našom pśeglědowańskem procesu</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Co ma na se, jolic dodank „njejo pśeglědany“?"
