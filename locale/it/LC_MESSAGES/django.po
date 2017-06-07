@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 17:01+0000\n"
+"PO-Revision-Date: 2017-06-06 17:27+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4918,7 +4918,7 @@ msgid "No Reviews"
 msgstr "Nessuna revisione"
 
 msgid "Weight"
-msgstr ""
+msgstr "Peso"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
@@ -4934,13 +4934,11 @@ msgstr ""
 "L’ultima versione pubblica di questo componente aggiuntivo è stata approvata automaticamente. Questo è un semplice promemoria dell’avvenuta approvazione. Nessuna notifica verrà inviata allo "
 "sviluppatore."
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "Riattiva versione"
+msgstr "Rifiuta più versioni"
 
-#, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
+msgstr "Questa azione rifiuterà tutte le versioni pubbliche selezionate. Il commento verrà inviato allo sviluppatore."
 
 msgid "Reviewer reply"
 msgstr "Risposta del revisore"
@@ -7049,17 +7047,17 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "I componenti aggiuntivi funzioneranno con il mio browser web o la mia applicazione?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"I componenti aggiuntivi presenti in questa galleria funzionano solamente con applicazioni basate su Mozilla come <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox per"
-" dispositivi portatili</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a> e <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. I componenti aggiuntivi non sono compatibili con tutte le "
-"applicazioni o tutte le rispettive versioni: per ogni componente aggiuntivo viene specificato con quali applicazioni e quali versioni è compatibile, ad esempio Firefox 2.0 - 3.6.*. Nel caso di "
-"componenti aggiuntivi per Firefox, il pulsante Installa indica direttamente se il componente aggiuntivo è compatibile oppure no con la versione del browser in uso."
+"I componenti aggiuntivi presenti in questa galleria funzionano solamente con applicazioni Mozilla come <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox per "
+"Android</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a> e <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Tuttavia non è garantito che ciascun componente aggiuntivo funzioni con tutte le "
+"applicazioni o tutte le rispettive versioni: per ogni componente aggiuntivo vengono specificate applicazioni e versioni compatibili, ad esempio Firefox 50.0 - 52.*. Nel caso di componenti aggiuntivi"
+" per Firefox, il pulsante Installa indica direttamente se il componente aggiuntivo è compatibile con la versione del browser in uso."
 
 msgid "What are the different types of add-ons?"
 msgstr "Che cosa sono i diversi tipi di componente aggiuntivo?"
@@ -7122,6 +7120,9 @@ msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
 msgstr ""
+"Esercita cautela ogni volta che installi un componente aggiuntivo, in quanto esso potrebbe danneggiare il dispositivo o violare la privacy. I componenti aggiuntivi pubblicati su questo sito "
+"normalmente vengono sottoposti a un processo di revisione da parte del team di revisori di Mozilla, inoltre anomalie sospette segnalate dagli utenti vengono attentamente monitorate, per cui "
+"installare un componente aggiuntivo da AMO è generalmente più sicuro. <a href=\"%(learnmore_url)s\">Ulteriori informazioni sul processo di revisione</a>"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
@@ -7180,37 +7181,35 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Che cosa posso fare se non trovo il componente aggiuntivo che mi serve?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
-"Con migliaia di componenti aggiuntivi disponibili, chiunque può trovare quello che soddisfa le proprie esigenze.Se però non riesci proprio a trovare il componente aggiuntivo di cui hai bisogno, "
+"Con migliaia di componenti aggiuntivi disponibili, chiunque può trovare quello che soddisfa le proprie esigenze. Se però non riesci proprio a trovare il componente aggiuntivo di cui hai bisogno, "
 "potresti espandere la ricerca ad altri siti oppure lasciare una richiesta sul <a href=\"%(forum_url)s\">forum dedicato ai componenti aggiuntivi</a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Che cosa significa che un componente aggiuntivo è “sperimentale”?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"“Sperimentale” è un'etichetta usata dagli sviluppatori per segnalare i componenti non ancora pronti per la distribuzione al pubblico. I componenti aggiuntivi sono stati verificati dai nostri "
-"revisori per escludere problemi di sicurezza ma potrebbero comunque presentare bug o non funzionare correttamente. Utilizza questi componenti aggiuntivi con cautela e disinstallali se riscontri "
-"problemi. <a href=\"%(url)s\">Ulteriori informazioni sul processo di revisione</a></dd>"
+"“Sperimentale” è un'etichetta usata dagli sviluppatori per segnalare i componenti non ancora pronti per la distribuzione al pubblico. Tali componenti potrebbero presentare bug o malfunzionamenti. "
+"Utilizzali con cautela e disinstallali se riscontri problemi. <a href=\"%(url)s\">Ulteriori informazioni sul processo di revisione</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Che cosa significa se un componente aggiuntivo è “non revisionato”?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Mentre i componenti aggiuntivi disponibili nelle nostre pagine sono stati controllati da un revisore, potresti ricevere un link diretto per scaricare un componente aggiuntivo non ancora revisionato."
-" Utilizza questi componenti aggiuntivi con cautela in quanto potrebbero danneggiare il tuo computer o la tua privacy. Ti consigliano di installare solo componenti aggiuntivi sottoposti a revisione. "
-"<a href=\"%(url)s\">Ulteriori informazioni sul processo di revisione</a></dd>"
+"Potresti ricevere un link diretto per scaricare un componente aggiuntivo non ancora revisionato da Mozilla. Utilizza questi componenti aggiuntivi con cautela in quanto potrebbero danneggiare il tuo "
+"computer o la tua privacy. Ti consigliano di installare solo componenti aggiuntivi sottoposti a revisione. <a href=\"%(url)s\">Ulteriori informazioni sul processo di revisione</a></dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Quanto costa acquistare un componente aggiuntivo?"
@@ -7238,13 +7237,12 @@ msgstr ""
 "I componenti aggiuntivi “beta” sono versioni non verificate e rappresentano il lavoro più aggiornato di uno sviluppatore. Ogni autore utilizza criteri diversi per quanto riguarda la qualità del "
 "codice di una versione beta, in ogni caso è opportuno ipotizzare che queste estensioni siano meno stabili rispetto alle versioni definitive."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
-"Attenzione: installando un componente aggiuntivo dalla sezione \"Versioni beta\", continuerai a ricevere aggiornamenti non appena saranno disponibili. Come la versione iniziale che hai installato, "
-"le versioni beta non sono verificate da Mozilla e potrebbero danneggiare il tuo computer."
+"Tieni presente che installando un componente aggiuntivo dalla sezione \"Versioni beta\", continuerai a ricevere aggiornamenti per il canale beta del componente. Come la versione beta che hai "
+"installato, anche i successivi aggiornamenti non sono stati verificati da Mozilla e pertanto potrebbero danneggiare il tuo computer."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Come posso segnalare una recensione inappropriata o contenente spam?"
@@ -7303,13 +7301,13 @@ msgstr "Comp. agg. Mobile"
 msgid "What are mobile add-ons?"
 msgstr "Che cosa sono i componenti aggiuntivi per dispositivi portatili?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"I componenti aggiuntivi per dispositivi portatili funzionano con <a href=\"%(mobile_url)s\">Firefox per dispositivi mobile</a> e aggiungono (o modificano) caratteristiche esattamente come i "
-"componenti aggiuntivi tradizionali. I componenti aggiuntivi compatibili con Firefox per dispositivi portatili sono disponibili nella <a href=\"%(gallery_url)s\">galleria</a>."
+"I componenti aggiuntivi per dispositivi portatili funzionano con <a href=\"%(mobile_url)s\">Firefox per Android</a> e aggiungono (o modificano) caratteristiche esattamente come i componenti "
+"aggiuntivi tradizionali. I componenti aggiuntivi compatibili con Firefox per Android sono disponibili nella <a href=\"%(gallery_url)s\">galleria</a>."
 
 msgid "Developer Topics"
 msgstr "Discussioni dello sviluppatore"
