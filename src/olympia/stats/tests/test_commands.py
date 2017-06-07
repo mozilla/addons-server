@@ -63,10 +63,11 @@ class TestADICommand(FixturesFolderMixin, TestCase):
                                 date=self.date)
         assert UpdateCount.objects.all().count() == 1
         update_count = UpdateCount.objects.last()
-        assert update_count.count == 5
+        # should be identical to `statuses.userEnabled`
+        assert update_count.count == 4
         assert update_count.date == date(2014, 7, 10)
         assert update_count.versions == {u'3.8': 2, u'3.7': 3}
-        assert update_count.statuses == {u'userEnabled': 5}
+        assert update_count.statuses == {u'userDisabled': 1, u'userEnabled': 4}
         application = u'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
         assert update_count.applications[application] == {u'3.6': 18}
         assert update_count.oses == {u'WINNT': 5}
@@ -283,8 +284,9 @@ class TestThemeADICommand(FixturesFolderMixin, TestCase):
                                 date=self.date)
         assert UpdateCount.objects.all().count() == 1
         uc = UpdateCount.objects.last()
-        assert uc.count == 1320
-        assert uc.date == date(2014, 11, 06)
+        # should be identical to `statuses.userEnabled`
+        assert uc.count == 1259
+        assert uc.date == date(2014, 11, 6)
         assert (uc.versions ==
                 {u'1.7.16': 1, u'userEnabled': 3, u'1.7.13': 2, u'1.7.11': 3,
                  u'1.6.0': 1, u'1.7.14': 1304, u'1.7.6': 6})
