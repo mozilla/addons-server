@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-07 10:49+0000\n"
+"PO-Revision-Date: 2017-06-07 11:24+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6815,14 +6815,13 @@ msgstr ""
 msgid "How do I submit my add-on?"
 msgstr "Kak móžu swój přidatk zapodać?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
-"Přehlad wuwiwarskich nastrojow wam zmóžnja, přidatki na AMO nahrać a tam zapodać. Dyrbiće zregistrowany AMO-wužiwar być, prjedy hač móžeće přidatk zapodać. Čitajće prošu <a "
-"href=\"%(url)s\">přepruwowanski přewodnik AMO za přepruwowarjow</a>, prjedy hač swój přidatk zapodaće, zo byšće zawěsćił, zo waš přidatk směrnicam wotpowěduje, kotrež so wot přepruwowarjow za "
-"přepruwowanje přidatkow wužiwaja."
+"Přehlad wuwiwarskich nastrojow wam zmóžnja, přidatki na AMO nahrać a tam zapodać. Dyrbiće zregistrowany AMO-wužiwar być, prjedy hač móžeće přidatk zapodać. Čitajće prošu <a href=\"%(url)s\">prawodła"
+" za přepruwowanje přidatkow</a>, prjedy hač swój přidatk zapodaće, zo byšće zawěsćił, zo waš přidatk našim směrnicam wotpowěduje."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Kotry dźěłowy system měł ja za swój přidatk wužiwać?"
@@ -6859,26 +6858,26 @@ msgstr ""
 msgid "Must my add-on be reviewed?"
 msgstr "Dyrbi so mój přidatk přepruwować?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "New and updated add-ons may be suject to reviewed to ensure that Mozilla users have a stable and safe experience. The guidelines outlined in the <a href=\"%(url)s\">Add-on Review Guide</a> are used "
 "to review add-on submissions."
 msgstr ""
-"Wšě zapodate přidatki, nowe abo zaktualizowane, so přepruwuja, zo by so zawěsćiło, zo wužiwarjo Mozilla maja stabilne a wěste dožiwjenje. Wšě zapodaća přidatkow so po směrnicach přepruwuja, kotrež "
-"su w <a href=\"%(url)s\">přepruwowanskej přiručce za přepruwowarjow</a> wobrysowane."
+"Nowe a zaktualizowane přidatki hodźa so přepruwować, zo by so zawěsćiło, zo wužiwarjo Mozilla maja stabilne a wěste dožiwjenje. Wšě zapodate přidatki so po směrnicach <a href=\"%(url)s\">přewodnika "
+"za přepruwowanje přidatkow</a> přepruwuja."
 
 msgid "Who reviews my add-on?"
 msgstr "Štó přepruwuje mój přidatk?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
 " href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Přidatki so wot AMO-přepruwowarjow přepruwuja, skupiny talentowanych wuwiwarjow, kotřiž dobrowólnje projektej Mozilla pomhaja, přepruwujo přidatki, zo bychu stabilne a wěste dožiwjenje za wužiwarjow"
-" Mozilla zawěsćili. Jeli z přepruwowarjemi komunikujeće, budźće zdwórliwy, sćerpliwy a respektny, dźěłaja ćežko, zo bychu zawěsćili, zo waš přidatk so korektnje zarjaduje a směrnicam w <a "
-"href=\"%(url)s\">přepruwowanskim přewodniku za přepruwowarjow</a> wotpowěduje."
+"Přidatki so wot AMO-přepruwowarjow přepruwuja, skupiny talentowanych wuwiwarjow, kotřiž dobrowólnje projektej Mozilla z přepruwowanjom přidatkow pomhaja, zo bychu stabilne a wěste dožiwjenje za "
+"wužiwarjow Mozilla zawěsćili. Budźće zdwórliwy, sćerpliwy a respektny, hdyž z přepruwowarjemi komunikujeće, dźěłaja ćežko, zo bychu zawěsćili, zo waš přidatk so korektnje zarjaduje a směrnicam <a "
+"href=\"%(url)s\">přewodnika za přepruwowanje přidatkow</a> wotpowěduje."
 
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Kotre směrnicy so za přepruwowanje mojeho přidatka wužiwaja?"
