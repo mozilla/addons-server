@@ -25,6 +25,7 @@ endif
 NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
 STATIC_JS := static/js/node_lib/
 NODE_LIBS_JS := \
+less/dist/less.js \
 jquery/dist/jquery.js
 
 help:
