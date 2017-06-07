@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 14:13+0000\n"
+"PO-Revision-Date: 2017-06-07 08:11+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1257,17 +1257,14 @@ msgstr "Kedvenc"
 msgid "Remove from favorites"
 msgstr "Eltávolítás a kedvencek közül"
 
-#, fuzzy
 msgid "This slug is already in use by another one of your collections."
-msgstr "Ezt az URL-t egy másik gyűjtemény használja"
+msgstr "Ezt a SEO URL-t már használja egy másik gyűjteménye."
 
-#, fuzzy
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Adjon meg egy érvényes felhasználónevet, amely betűkből, számokból, aláhúzásokból vagy kötőjelekből áll."
+msgstr "Adjon meg egy érvényes SEO URL-t, amely betűkből, számokból, aláhúzásokból vagy kötőjelekből áll."
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "Ez a név nem használható."
+msgstr "Ez a SEO URL nem használható."
 
 msgid "Name"
 msgstr "Név"
@@ -6719,14 +6716,13 @@ msgstr ""
 msgid "Can I host my own add-on?"
 msgstr "Biztosíthatom én a tárhelyet saját kiegészítőmnek?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
 "Igen. Sok fejlesztő választja, hogy maga szolgálja ki a saját kiegészítőjét. A <a href=\"%(amo_url)s\">Mozilla kiegészítők oldalon</a> történő kiszolgálással azonban sokkal szélesebb közönséget "
-"érhető el, az oldal látogatóinak nagy száma miatt. A <a href=\"%(md_url)s\">mozdev.org</a> ingyenes projektkiszolgálást biztosít Mozilla alkalmazások és kiegészítők száma, ellátva a fejlesztőket "
-"eszközökkel, hogy kezeljék a forráskódot, a verziókezelést, a hibakövetést és a dokumentációt is."
+"érhető el, az oldal látogatóinak nagy száma miatt."
 
 msgid "Can Mozilla host my add-on?"
 msgstr "Biztosít tárhelyet a Mozilla a kiegészítőmnek?"
