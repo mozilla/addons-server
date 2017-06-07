@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1147,6 +1147,10 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
+msgstr ""
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Application Versions"
@@ -3068,64 +3072,9 @@ msgstr ""
 msgid "No results found."
 msgstr "Não foram encontrados resultados."
 
-msgid "Submit an Add-on"
-msgstr "Submeter um extra"
-
-msgid "AMO Reviewers"
-msgstr "Revisores do AMO"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Força! Seja um revisor no AMO e tenha os seus extras revistos mais depressa."
-
-msgid "Become an AMO Reviewer"
-msgstr "Seja um revisor no AMO"
-
-msgid "Learn All About Add-ons"
-msgstr "Saber tudo sobre extras"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-"Os extras permitem que milhões de utilizadores do Firefox melhorem e personalizem a sua experiência de navegação. Se é um programador web e sabe <a href=\"https://developer.mozilla.org/docs/Web/HTML"
-"\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> e <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, então já tem todas as capacidades "
-"necessárias para fazer um ótimo extra."
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr "Visite a <a href=\"https://developer.mozilla.org/Add-ons\">Rede de Programadores da Mozilla</a> para aprender tudo o que precisa de saber para começar."
-
-msgid "Start Making Add-ons"
-msgstr "Começar a fazer extras"
-
-msgid "Status:"
-msgstr "Estado:"
-
-msgid "Latest Version:"
-msgstr "Última versão:"
-
-msgid "Queue Position:"
-msgstr "Posição na fila:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s de %(total)s"
-
-msgid "Upload New Version"
-msgstr "Enviar nova versão"
-
-msgid "View all add-ons ►"
-msgstr "Ver todos os extras ►"
-
-msgid "Publish your add-ons!"
-msgstr "Publicar os seus extras!"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "Envie um <a href=\"%(addon_url)s\">extra</a> ou um <a href=\"%(theme_url)s\">tema</a> para começar!"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "{0} extras"
 
 msgid "Return to the DevHub homepage"
 msgstr "Voltar à página inicial do DevHub"
@@ -3702,6 +3651,9 @@ msgstr "Este extra não é compatível com a sua versão do %(app)s."
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "Estado:"
+
 msgid "Disabled"
 msgstr "Desativado"
 
@@ -4003,8 +3955,18 @@ msgstr "Esta é a versão mas recente que foi enviada, mas que ainda não foi di
 msgid "Queues are not reviewed strictly in order"
 msgstr "As filas não são revistas numa ordem rigorosa"
 
+msgid "Queue Position:"
+msgstr "Posição na fila:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s de %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "Última versão:"
 
 #, fuzzy
 msgid "This is the newest uploaded unlisted version."
@@ -4038,6 +4000,9 @@ msgstr "Quer tenha sido uma ideia enquanto estava na fila do supermercado ou a s
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "Dizer aos seus utilizadores o que vem a seguir irá dar-lhes algo para eles ansiarem."
+
+msgid "Upload New Version"
+msgstr "Enviar nova versão"
 
 msgid "View All"
 msgstr "Ver todos"
@@ -4106,10 +4071,6 @@ msgstr ""
 
 msgid "Read more about the source code review policy."
 msgstr "Saiba mais sobre a política de revisão de código."
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "{0} extras"
 
 #, fuzzy
 msgid "Latest News"
@@ -4790,10 +4751,10 @@ msgstr "Cancelar o seu pedido de revisão vai marcar o seu extra como incompleto
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Tem a certeza que deseja cancelar o seu pedido de revisão?"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4802,16 +4763,16 @@ msgstr ""
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Approved reviews"

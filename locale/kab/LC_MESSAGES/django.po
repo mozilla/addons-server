@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2017-05-18 08:35+0000\n"
 "Last-Translator: Slimane Amiri <slimane.amiri@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1130,6 +1130,10 @@ msgstr "Urti-agi yessefk ad igber ɣarsum {num} n isekkilen."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Tangalt n tutlayt {lang_code} mačči d tameɣtut."
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
 
 msgid "Application Versions"
 msgstr "Ileqman n usnas"
@@ -3004,64 +3008,9 @@ msgstr "Asali n igmaḍ &hellip;"
 msgid "No results found."
 msgstr "Ulac igmad yettwafen."
 
-msgid "Submit an Add-on"
-msgstr "Azen azegrir"
-
-msgid "AMO Reviewers"
-msgstr "Imceggiren AMO"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Aha tura! Uɣal d ameɣri n AMO seg ass-a udiɣ sɣiwel acegger n izegrar."
-
-msgid "Become an AMO Reviewer"
-msgstr "Uɣal d amcegger n AMO"
-
-msgid "Learn All About Add-ons"
-msgstr "Issin yal taɣawsa ɣef izegrar"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-"Izegrar ttaǧǧan ifḍan n iseqdacen n Firefox ad sneflein neɣ ad sniflen tarrayt nsen n tunigin. Ma d aneflay Web i telliḍ udiq tesneḍ <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</"
-"a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, akked <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, ɣur-k ihi abrid yeldin akken ad tebnuḍ "
-"izegrar ifazen."
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr "Ddu ar <a href=\"https://developer.mozilla.org/Add-ons\">Uẓuṭṭa n ineflyane n Mozilla (MDN)</a> akken ad tissineḍ akk ayen ilaqen akken ad tebduḍ."
-
-msgid "Start Making Add-ons"
-msgstr "Bdu taneflit n izegrar"
-
-msgid "Status:"
-msgstr "Addad:"
-
-msgid "Latest Version:"
-msgstr "Lqem aneggaru:"
-
-msgid "Queue Position:"
-msgstr "Adig n wedras:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s si %(total)s"
-
-msgid "Upload New Version"
-msgstr "Sali lqem amaynut"
-
-msgid "View all add-ons ►"
-msgstr "Sken all izegrar ►"
-
-msgid "Publish your add-ons!"
-msgstr "Suffeɣ-d izegrar inek!"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "Tarrayt ifazen akken ad tezzuzreḍ azegrir inek d asezdeɣ ines di Mozilla Add-ons."
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "Sali  <a href=\"%(addon_url)s\">azegrir</a> neɣ <a href=\"%(theme_url)s\">asentel</a> akken ad tebduḍ!"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "{0} izegrar"
 
 msgid "Return to the DevHub homepage"
 msgstr "Uɣal ar usebter agejdan DevHub"
@@ -3614,6 +3563,9 @@ msgstr "Azegrir-agi ur imṣada xaṛsum akke yiwen seg ileqman-ik."
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "Addad:"
+
 msgid "Disabled"
 msgstr "Arurmid"
 
@@ -3870,8 +3822,18 @@ msgstr ""
 msgid "Queues are not reviewed strictly in order"
 msgstr ""
 
+msgid "Queue Position:"
+msgstr "Adig n wedras:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s si %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "Lqem aneggaru:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr ""
@@ -3902,6 +3864,9 @@ msgstr ""
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr ""
+
+msgid "Upload New Version"
+msgstr "Sali lqem amaynut"
 
 msgid "View All"
 msgstr "Sken akk"
@@ -3968,10 +3933,6 @@ msgstr ""
 
 msgid "Read more about the source code review policy."
 msgstr "Ɣeṛ ugar ɣef tsertit n ucegger n tengalt aɣbalu."
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "{0} izegrar"
 
 msgid "Latest News"
 msgstr "Isallen ineggura"
@@ -4601,10 +4562,10 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Tebɣiḍ ad tesfesxeḍ tuttra n ucegger?"
 
 #, fuzzy
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sider tividyutin {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4613,16 +4574,16 @@ msgstr "Sewḥel adellel {start_sub_heading}s {addon_name}{end_sub_heading}"
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ṭṭef igdilen {start_sub_heading} s {addon_name} {end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tanfalit Emoji {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ṭṭef igdilen {start_sub_heading} s {addon_name} {end_sub_heading}"
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Approved reviews"

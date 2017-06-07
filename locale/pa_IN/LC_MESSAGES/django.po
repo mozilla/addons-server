@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2017-03-03 00:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1142,6 +1142,10 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
+msgstr ""
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Application Versions"
@@ -3056,63 +3060,9 @@ msgstr ""
 msgid "No results found."
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂਂ ਮਿਲਿਆ"
 
-msgid "Submit an Add-on"
-msgstr "ਇੱਕ ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ"
-
-msgid "AMO Reviewers"
-msgstr "AMO ਸਮੀਖਿਅਕ"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "ਅੱਗੇ ਵਧੋ! ਅੱਜ ਹੀ ਇੱਕ AMO ਸਮੀਖਿਅਕ ਬਣੋ ਅਤੇ ਆਪਣੇ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਤੇਜ਼ੀ ਨਾਲ ਕਰਵਾਓ।"
-
-msgid "Become an AMO Reviewer"
-msgstr "ਇੱਕ AMO ਸਮੀਖਿਅਕ ਬਣੋ"
-
-msgid "Learn All About Add-ons"
-msgstr "ਐਡ-ਆਨਾਂ ਬਾਰੇ ਸੱਭ ਕੁੱਝ ਜਾਣੋ"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-"ਐਡ-ਆਨ ਲੱਖਾਂ ਫ਼ਾਇਰਫ਼ਾਕਸ ਉਪਭੋਗੀਆਂ ਨੂੰ ਆਪਣਾ ਬਰਾਊਜ਼ਿੰਗ ਅਨੁਭਵ ਵਧਾਉਣ ਅਤੇ ਫ਼ੇਰਬਦਲ ਕਰਨ ਵਿੱਚ ਦਿੰਦੇ ਹਨ। ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਵੈੱਬ ਡਿਵੈਲਪਰ ਹੋ ਅਤੇ <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer."
-"mozilla.org/docs/Web/JavaScript\">JavaScript</a>, ਅਤੇ <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>ਬਾਰੇ ਜਾਣਦੇ ਹੋ, ਇੱਕ ਵਧੀਆ ਐਡ-ਆਨ ਬਣਾਉਣ ਲਈ ਜ਼ਰੂਰੀ ਹਨੁਰ ਤੁਹਾਡੇ ਕੋਲ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr "ਹਰੇਕ ਚੀਜ਼ ਸਿੱਖਣ ਲਈ <a href=\"https://developer.mozilla.org/Add-ons\">ਮੌਜੀਲਾ ਡਿਵੈਲਪਰ ਨੈੱਟਵਰਕ</a> ਵੱਲ ਜਾਓ ਜਿਸਦੀ ਤੁਹਾਨੂੰ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਜ਼ਰੂਰਤ ਹੈ।"
-
-msgid "Start Making Add-ons"
-msgstr "ਐਡ-ਆਨ ਬਣਾਉਣਾ ਸ਼ੁਰੂ ਕਰੋ"
-
-msgid "Status:"
-msgstr "ਦਰਜਾ:"
-
-msgid "Latest Version:"
-msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
-
-msgid "Queue Position:"
-msgstr "ਕਤਾਰ ਸਥਿਤੀ:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(total)s ਦੀ %(position)s"
-
-msgid "Upload New Version"
-msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
-
-msgid "View all add-ons ►"
-msgstr "ਸਾਰੇ ਐਡ-ਆਨ ਵੇਖੋ ►"
-
-msgid "Publish your add-ons!"
-msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੇਸ਼ ਕਰੋ!"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "ਸ਼ਰੂ ਕਰਨ ਲਈ ਇੱਕ <a href=\"%(addon_url)s\">ਐਡ-ਆਨ</a> ਜਾਂ <a href=\"%(theme_url)s\">ਥੀਮ</a> ਅੱਪਲੋਡ ਕਰੋ!"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "{0} ਐਡ-ਆਨ"
 
 msgid "Return to the DevHub homepage"
 msgstr "DevHub ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
@@ -3670,6 +3620,9 @@ msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੇ %(app)s ਦੇ ਵਰਜਨ ਦ�
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "ਦਰਜਾ:"
+
 msgid "Disabled"
 msgstr "ਅਯੋਗ ਹੋਇਆ"
 
@@ -3963,8 +3916,18 @@ msgstr "ਇਹ ਬਿਲਕੁਲ ਨਵਾਂ ਅੱਪਲੋਡਿਡ ਵਰ�
 msgid "Queues are not reviewed strictly in order"
 msgstr "ਕਤਾਰਾਂ ਦੀ ਕਸਵੇਂ ਤੌਰ ਤੇ ਸਮੀਖਿਆ ਨਹੀਂ ਹੁੰਦੀ"
 
+msgid "Queue Position:"
+msgstr "ਕਤਾਰ ਸਥਿਤੀ:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(total)s ਦੀ %(position)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
 
 #, fuzzy
 msgid "This is the newest uploaded unlisted version."
@@ -3997,6 +3960,9 @@ msgstr "ਭਾਵੇਂ ਇਹ ਇੱਕ ਵਿਚਾਰ ਸੀ ਜਦੋਂ ਕ
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "ਆਪਣੇ ਉਪਭੋਗੀਆਂ ਨੂੰ ਦੱਸਣਾ ਕਿ ਅੱਗੇ ਕੀ ਆਉਣ ਵਾਲਾ ਹੈ ਉਹਨਾਂ ਨੂੰ ਅੱਗੇ ਵੱਧਣ ਵਿੱਚ ਸਹਾਇਕ  ਹੋਵੇਗਾ।"
+
+msgid "Upload New Version"
+msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
 
 msgid "View All"
 msgstr "ਸਾਰੇ ਵੇਖੋ"
@@ -4063,10 +4029,6 @@ msgstr ""
 
 msgid "Read more about the source code review policy."
 msgstr "ਸੋਰਸ ਕੋਡ ਸਮੀਖਿਆ ਨੀਤੀ ਬਾਰੇ ਹੋਰ ਪੜ੍ਹੋ।"
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "{0} ਐਡ-ਆਨ"
 
 #, fuzzy
 msgid "Latest News"
@@ -4739,10 +4701,10 @@ msgstr "ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕ�
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "ਕੀ ਤੁਸੀਂ ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4751,16 +4713,16 @@ msgstr ""
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Approved reviews"

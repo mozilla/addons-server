@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1373,6 +1373,10 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
+msgstr ""
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Application Versions"
@@ -3427,73 +3431,9 @@ msgstr ""
 msgid "No results found."
 msgstr "Nema pronađenih rezultata."
 
-msgid "Submit an Add-on"
-msgstr "Podnesi dodatak"
-
-msgid "AMO Reviewers"
-msgstr "AMO recenzenti"
-
-msgid ""
-"Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
-"Preuzmite vođstvo! Postanite AMO pregledač danas i Vaši dodaci će biti "
-"pregledani brže."
-
-msgid "Become an AMO Reviewer"
-msgstr "Postanite AMO recenzent"
-
-msgid "Learn All About Add-ons"
-msgstr ""
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing "
-"experience. If you're a Web developer and know <a href=\"https://developer."
-"mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla."
-"org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer."
-"mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary "
-"skills to make a great add-on."
-msgstr ""
-
-msgid ""
-"Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
-"Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
-
-msgid "Start Making Add-ons"
-msgstr "Krenite praviti dodatke"
-
-msgid "Status:"
-msgstr "Status:"
-
-msgid "Latest Version:"
-msgstr "Poslednja verzija:"
-
-msgid "Queue Position:"
-msgstr "Red pozicije:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s od %(total)s"
-
-msgid "Upload New Version"
-msgstr "Otpremi novu verziju"
-
-msgid "View all add-ons ►"
-msgstr "Pogledajte sve dodatke ►"
-
-msgid "Publish your add-ons!"
-msgstr ""
-
-msgid ""
-"There's no better way to distribute your add-on than by hosting it on "
-"Mozilla Add-ons."
-msgstr ""
-
-#, python-format
-msgid ""
-"Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s"
-"\">theme</a> to get started!"
-msgstr ""
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "{0} dodataka"
 
 msgid "Return to the DevHub homepage"
 msgstr "Povratak na početnu stranicu centra za programere"
@@ -4141,6 +4081,9 @@ msgid ""
 "(including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Disabled"
 msgstr "Onemogućen"
 
@@ -4485,8 +4428,18 @@ msgstr "Ovo je najnovija verzija, ali još uvek nije javna na sajtu."
 msgid "Queues are not reviewed strictly in order"
 msgstr "Redovi nisu strogo pregledani u redu"
 
+msgid "Queue Position:"
+msgstr "Red pozicije:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s od %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "Poslednja verzija:"
 
 #, fuzzy
 msgid "This is the newest uploaded unlisted version."
@@ -4533,6 +4486,9 @@ msgid ""
 msgstr ""
 "Govorite svojim korisnicima šta uskoro dolazi jer će im to dati nešto čemu "
 "da se raduju."
+
+msgid "Upload New Version"
+msgstr "Otpremi novu verziju"
 
 msgid "View All"
 msgstr "Prikaži sve"
@@ -4613,10 +4569,6 @@ msgstr ""
 
 msgid "Read more about the source code review policy."
 msgstr "Pročitajte više o polisi pregleda izvornog koda."
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "{0} dodataka"
 
 #, fuzzy
 msgid "Latest News"
@@ -5414,11 +5366,12 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Da li ste sigurni da želite da prekinete Vaš zahtev za pregled?"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid ""
-"Manage massive audio, video, and image downloads with this lightweight tool."
+"Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-"
+"play control, and more."
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5429,18 +5382,18 @@ msgid ""
 "content filters without chewing up a bunch of memory."
 msgstr ""
 
+msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid ""
 "More than just screenshots, Awesome Screenshot Plus lets you annotate images "
 "with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ""
 
 msgid "Approved reviews"

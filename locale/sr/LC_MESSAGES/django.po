@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1160,6 +1160,10 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
+msgstr ""
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Application Versions"
@@ -3092,61 +3096,9 @@ msgstr ""
 msgid "No results found."
 msgstr "Нема пронађених резултата."
 
-msgid "Submit an Add-on"
-msgstr "Поднеси додатак"
-
-msgid "AMO Reviewers"
-msgstr "AMO рецензенти"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Преузмите вођство! Постаните AMO прегледач данас и Ваши додаци ће бити прегледани брже."
-
-msgid "Become an AMO Reviewer"
-msgstr "Постаните AMO рецензент"
-
-msgid "Learn All About Add-ons"
-msgstr ""
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
-
-msgid "Start Making Add-ons"
-msgstr "Крените правити додатке"
-
-msgid "Status:"
-msgstr "Статус:"
-
-msgid "Latest Version:"
-msgstr "Последња верзија:"
-
-msgid "Queue Position:"
-msgstr "Ред позиције:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s од %(total)s"
-
-msgid "Upload New Version"
-msgstr "Отпреми нову верзију"
-
-msgid "View all add-ons ►"
-msgstr "Погледајте све додатке ►"
-
-msgid "Publish your add-ons!"
-msgstr ""
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "{0} додатака"
 
 msgid "Return to the DevHub homepage"
 msgstr "Повратак на почетну страницу центра за програмере"
@@ -3705,6 +3657,9 @@ msgstr "Овај додатак није компатибилан са Вашо�
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "Статус:"
+
 msgid "Disabled"
 msgstr "Онемогућен"
 
@@ -3997,8 +3952,18 @@ msgstr "Ово је најновија верзија, али још увек н
 msgid "Queues are not reviewed strictly in order"
 msgstr "Редови нису строго прегледани у реду"
 
+msgid "Queue Position:"
+msgstr "Ред позиције:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s од %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "Последња верзија:"
 
 #, fuzzy
 msgid "This is the newest uploaded unlisted version."
@@ -4032,6 +3997,9 @@ msgstr "Небитно је да ли је то идеја коју сте им�
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "Говорите својим корисницима шта ускоро долази јер ће им то дати нешто чему да се радују."
+
+msgid "Upload New Version"
+msgstr "Отпреми нову верзију"
 
 msgid "View All"
 msgstr "Прикажи све"
@@ -4098,10 +4066,6 @@ msgstr ""
 
 msgid "Read more about the source code review policy."
 msgstr "Прочитајте више о полиси прегледа изворног кода."
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "{0} додатака"
 
 #, fuzzy
 msgid "Latest News"
@@ -4780,10 +4744,10 @@ msgstr "Прекидање Вашег захтева за преглед ће о
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Да ли сте сигурни да желите да прекинете Ваш захтев за преглед?"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4792,16 +4756,16 @@ msgstr ""
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Approved reviews"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2017-05-26 21:54+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1177,6 +1177,10 @@ msgstr "Pole musí obsahovať aspoň {num} znakov."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Kód jazyka {lang_code} nie je platný."
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
 
 msgid "Application Versions"
 msgstr "Verzie aplikácie"
@@ -3080,62 +3084,9 @@ msgstr "Načítanie výsledkov&hellip;"
 msgid "No results found."
 msgstr "Nenašli sa žiadne výsledky."
 
-# 82%
-msgid "Submit an Add-on"
-msgstr "Pridať doplnok"
-
-msgid "AMO Reviewers"
-msgstr "Redaktori AMO"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Zapojte sa! Staňte sa redaktorom na AMO ešte dnes a pomôžte s rýchlejšou kontrolou doplnkov."
-
-msgid "Become an AMO Reviewer"
-msgstr "Stať sa redaktorom na AMO"
-
-msgid "Learn All About Add-ons"
-msgstr "Dozvedieť sa všetky informácie o doplnkoch"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
-
-msgid "Start Making Add-ons"
-msgstr "Začať s tvorbou doplnkov"
-
-msgid "Status:"
-msgstr "Stav:"
-
-msgid "Latest Version:"
-msgstr "Posledná verzia:"
-
-msgid "Queue Position:"
-msgstr "Pozícia vo fronte:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s z %(total)s"
-
-msgid "Upload New Version"
-msgstr "Odoslať novú verziu"
-
-msgid "View all add-ons ►"
-msgstr "Zobraziť všetky doplnky ►"
-
-msgid "Publish your add-ons!"
-msgstr "Publikujte svoj doplnok!"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "Doplnky pre {0}"
 
 msgid "Return to the DevHub homepage"
 msgstr "Späť do Centra pre vývojárov"
@@ -3696,6 +3647,9 @@ msgstr "Tento doplnok nemá žiadne verzie."
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "Stav:"
+
 msgid "Disabled"
 msgstr "Zakázaný"
 
@@ -3968,8 +3922,18 @@ msgstr "Toto je najnovšia nahraná verzia, no napriek tomu ešte nebola na str�
 msgid "Queues are not reviewed strictly in order"
 msgstr "Fronty nie sú striktne prechádzané podľa poradia"
 
+msgid "Queue Position:"
+msgstr "Pozícia vo fronte:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s z %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "Posledná verzia:"
 
 #, fuzzy
 msgid "This is the newest uploaded unlisted version."
@@ -4003,6 +3967,9 @@ msgstr "Či už to bol nápad, na ktorý ste prišli počas čakania v rade v po
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "Povedzte svojim používateľom, čo chystáte a na čo sa môžu tešiť."
+
+msgid "Upload New Version"
+msgstr "Odoslať novú verziu"
 
 msgid "View All"
 msgstr "Zobraziť všetko"
@@ -4071,10 +4038,6 @@ msgstr ""
 
 msgid "Read more about the source code review policy."
 msgstr "Prečítajte si viac o zásadách pre kontrolu zdrojového kódu."
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "Doplnky pre {0}"
 
 msgid "Latest News"
 msgstr "Najnovšie správy"
@@ -4738,11 +4701,12 @@ msgstr "Zrušením vaší žádosti o kontrolu označíte svůj doplněk jako ne
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Naozaj chcete zrušiť vašu žiadosť o kontrolu?"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Preberajte médiá {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blokujte reklamy {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
-msgstr "Spravujte preberanie veľkých obrázkov a zvukových a video súborov pomocou tohoto jednoduchého nástroja."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujte reklamy {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
@@ -4750,17 +4714,17 @@ msgstr "Blokujte reklamy {start_sub_heading}s doplnkom {addon_name}{end_sub_head
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Rýchly a efektívny blokovač reklám. uBlock Origin používa tisíce filtrov bez toho, aby zhltol veľkú časť vašej pamäte."
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tvorte snímky obrazovky {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Viac než len snímky obrazovky - Awesome Screenshot Plus vám umožňuje pridávať k obrázkom text a grafiku. Ukladanie a zdieľanie snímok obrazovky je s jeho pomocou jednoduché a rýchle."
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Vyjadrite sa prostredníctvom smajlíkov {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr "Tucty smajlíkov na každú príležitosť - stačí na nich len kliknúť."
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tvorte snímky obrazovky {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr "Viac než len snímky obrazovky - Awesome Screenshot Plus vám umožňuje pridávať k obrázkom text a grafiku. Ukladanie a zdieľanie snímok obrazovky je s jeho pomocou jednoduché a rýchle."
 
 msgid "Approved reviews"
 msgstr "Schválené recenzie"

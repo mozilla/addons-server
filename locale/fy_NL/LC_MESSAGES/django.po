@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2017-03-14 12:28+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1157,6 +1157,10 @@ msgstr "Dit fjild moat op syn minst {num} tekens te befetsje."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "De taalkoade {lang_code} is ûnjildich."
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
 
 msgid "Application Versions"
 msgstr "Tapassingsferzjes"
@@ -3053,64 +3057,9 @@ msgstr "Resultaten lade…"
 msgid "No results found."
 msgstr "Gjin resultaten fûn."
 
-msgid "Submit an Add-on"
-msgstr "In add-on yntsjinje"
-
-msgid "AMO Reviewers"
-msgstr "AMO-beoardielers"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Nim in foarsprong! Wurd hjoed noch AMO-beoardieler en krij jo add-ons flugger beoardiele."
-
-msgid "Become an AMO Reviewer"
-msgstr "In AMO-beoardieler wurde"
-
-msgid "Learn All About Add-ons"
-msgstr "Alles oer add-ons"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-"Mei add-ons kinne miljoenen Firefox-brûkers harren sneupûnderfining ferbetterje en oanpasse. As jo in webûntwikkeler binne en ferstân hawwe fan <a href=\"https://developer.mozilla.org/docs/Web/HTML"
-"\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> en <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, dan hawwe jo al de nedige feardichheden "
-"om in bjusterbaarlike add-on te meitsjen."
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr "Gean nei it <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> om alles wat jo witte moatte om te begjinnen te learen."
-
-msgid "Start Making Add-ons"
-msgstr "Start mei it meitsjen fan add-ons"
-
-msgid "Status:"
-msgstr "Steat:"
-
-msgid "Latest Version:"
-msgstr "Nijste ferzje:"
-
-msgid "Queue Position:"
-msgstr "Posysje yn wachtrige:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s fan %(total)s"
-
-msgid "Upload New Version"
-msgstr "Nije ferzje oplade"
-
-msgid "View all add-ons ►"
-msgstr "Alle add-ons besjen ►"
-
-msgid "Publish your add-ons!"
-msgstr "Publisearje jo add-ons!"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "Der is gjin bettere manier om jo add-on te fersprieden dan troch dizze hoste te litten op Mozilla Add-ons."
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "Laad in <a href=\"%(addon_url)s\">add-on</a> of <a href=\"%(theme_url)s\">tema</a> op om te begjinnen!"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "{0}-add-ons"
 
 msgid "Return to the DevHub homepage"
 msgstr "Tebek nei de startside fan de ûntwikkelershub"
@@ -3682,6 +3631,9 @@ msgstr "Dizze add-on is net kompatibel mei jo ferzje fan %(app)s."
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "Steat:"
+
 msgid "Disabled"
 msgstr "Utskeakele"
 
@@ -3945,8 +3897,18 @@ msgstr "Dit is de nijste oplade ferzje, mar dizze is op de website noch net live
 msgid "Queues are not reviewed strictly in order"
 msgstr "Wachtrigen wurde net op strikte folchoarder beoardiele"
 
+msgid "Queue Position:"
+msgstr "Posysje yn wachtrige:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s fan %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "Nijste ferzje:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr "Dit is de nijste opladen net-fermelde ferzje."
@@ -3979,6 +3941,9 @@ msgstr "Of it no in idee wie wylst jo yn de rige stiene by de winkelier of de op
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "Troch jo brûkers te fertellen wat der oan sit te kommen jouwe jo se wat om nei út te sjen."
+
+msgid "Upload New Version"
+msgstr "Nije ferzje oplade"
 
 msgid "View All"
 msgstr "Alles besjen"
@@ -4049,10 +4014,6 @@ msgstr "Nim ynstruksjes op oer hoe't it úteinlike add-onbestân reprodusearre w
 
 msgid "Read more about the source code review policy."
 msgstr "Lês mear oer it belied oangeande boarnekoadebeoardieling."
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "{0}-add-ons"
 
 msgid "Latest News"
 msgstr "Lêste nijs"
@@ -4718,10 +4679,10 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
 #, fuzzy
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ferbetterje YouTube {start_sub_heading}mei {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Emoji-útdrukking {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4730,18 +4691,18 @@ msgstr ""
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
+msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Emoji-útdrukking {start_sub_heading}mei {addon_name}{end_sub_heading}"
+
+msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr "Tsientallen geweldige emoji’s foar elke gelegenheid – altyd fia ien mûsklik."
+
 #, fuzzy
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ferbetterje YouTube {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
-
-msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Emoji-útdrukking {start_sub_heading}mei {addon_name}{end_sub_heading}"
-
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Tsientallen geweldige emoji’s foar elke gelegenheid – altyd fia ien mûsklik."
 
 msgid "Approved reviews"
 msgstr "Goedkarre beoardielingen"
