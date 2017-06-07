@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-07 19:18+0000\n"
+"PO-Revision-Date: 2017-06-07 19:24+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -7152,14 +7152,13 @@ msgstr ""
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Co ma na se, jolic dodank „njejo pśeglědany“?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Lěcrownož wšykne dodanki, kótarež su w našej galeriji zjawnje k dispoziciji, pśeglěduju se wót redaktora, dostanjośo snaź direktny wótkaz k dodankoju, kótaryž hyšći njejo pśeglědany. Buźćo "
-"wobglědniwy, gaž instalěrujośo toś te dodanki, dokulaž wóne by mógli wašo licadło wobškóźiś abo wašu priwatnosć zraniś. Pśiraźujomy, až instalěrujośo jano pśeglědane dodanki. <a "
-"href=\"%(url)s\">Dalšne informacije wó našom pśeglědowańskem procesu</a></dd>"
+"Jolic direktny wótkaz na dodank dóstanjośo, kótaryž groni, až hyšći njejo pśeglědany, to groni, až hyšći na pśeglědanje pśez Mozilla caka. Buźćo wobglědniwy z instalěrowanim toś tych dodankow, "
+"dokulaž mógli wašo licadło wobškóźiś abo wašu priwatnosć zraniś. <a href=\"%(url)s\">Dalšne informacije wó našom pśeglědowańskem procesu</a></dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Wjele płaśe dodanki?"
@@ -7187,13 +7186,12 @@ msgstr ""
 "Betadodanki su njepśeglědane wersije, kótarež reprezentěruju nejnowše źěło awtora dodanka. Lěcrownož druge awtory maju druge standardy za betakodowu kwalitu, wujźćo wót togo, až toś te dodanki su "
 "mjenjej stabilne ako powšykne wózjawjenja dodankow."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
-"Pšosym źiwajśo na to, až pśi instalěrowanju „betawersije“ dalej dostawaśo aktualizacije za toś ten dodank, gaž su k dispoziciji. Rowno tak ako prědna wersija, kótaruž sćo zainstalěrował, su teke "
-"wšykne betawersije wót Mozilla njepśeglědane a mógu wašo licadło wobškóźiś."
+"Pšosym źiwajśo na to, až pśi instalěrowanju dodanka z kategorije „betawersija“ dalej dostawaśo aktualizacije za toś ten dodank, gaž su k dispoziciji. Rowno tak ako prědna wersija, kótaruž sćo "
+"zainstalěrował, su teke wšykne betawersije wót Mozilla njepśeglědane a mógu wašo licadło wobškóźiś."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Kak mógu njepśigódne abo spamowe wužywarske pógódnośenje k wěsći daś?"
@@ -7252,7 +7250,7 @@ msgstr "Dodanki za mobilny Firefox"
 msgid "What are mobile add-ons?"
 msgstr "Co su mobilne dodanki?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
