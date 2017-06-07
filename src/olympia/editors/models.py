@@ -732,13 +732,13 @@ class AutoApprovalSummary(ModelBase):
                 AbuseReport.objects
                 .filter(Q(addon=addon) | Q(user__in=addon.listed_authors))
                 .filter(created__gte=one_year_ago).count() * 10, 100),
-            # Each "recent" review with a score of 3 or less adds 2 to the
-            # weight, up to a maximum of 100.
-            'negative_reviews': min(
+            # 1% of the total of "recent" reviews with a score of 3 or less
+            # adds 2 to the weight, up to a maximum of 100.
+            'negative_reviews': min(int(
                 Review.objects
                 .filter(addon=addon)
                 .filter(rating__lte=3, created__gte=one_year_ago)
-                .count() * 2, 100),
+                .count() / 100.0 * 2.0), 100),
             # Reputation is set by admin - the value is inverted to add from
             # -300 (decreasing priority for "trusted" add-ons) to +300
             # (increasing priority for add-ons we want to monitor closely).
