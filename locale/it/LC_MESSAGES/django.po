@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 17:27+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2017-06-07 13:44+0000\n"
+"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -6710,6 +6710,9 @@ msgid ""
 "APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
 "legacy Firefox add-on</a>."
 msgstr ""
+"<strong>Nota:</strong> XUL è considerata una tecnologia obsoleta in Firefox e i componenti aggiuntivi che la utilizzano smetteranno di funzionare a partire da Firefox 57. Per lo sviluppo di nuovi "
+"componenti aggiuntivi è consigliato utilizzare API <a href=\"%(webext_url)s\">WebExtension</a>. Per maggiori informazioni sulla migrazione di un componente aggiuntivo che utilizza tecnologie "
+"obsolete, fare riferimento a <a href=\"%(portlegacy_url)s\">Porting a legacy Firefox add-on</a>."
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Come posso fare il test di compatibilità con l’ultima versione di un programma Mozilla?"
@@ -6736,7 +6739,7 @@ msgstr "#amo (per supporto riguardo all’hosting del tuo componente aggiuntivo 
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (per discussioni che riguardano lo sviluppo e la portabilità con WebExtension)"
 
 msgid "Add-ons forum"
 msgstr "Forum dedicato ai componenti aggiuntivi"
@@ -6761,14 +6764,13 @@ msgstr ""
 msgid "Can I host my own add-on?"
 msgstr "Posso caricare il mio componente aggiuntivo in uno spazio web mio?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Many developers choose to host their own add-ons. Choosing to host your add-on on <a href=\"%(amo_url)s\">Mozilla's add-on site</a>, though, allows for much greater exposure to your add-on due "
 "to the large volume of visitors to the site."
 msgstr ""
-"Si. Molti sviluppatori scelgono di caricare i loro componenti aggiuntivi su un proprio spazio web. Tuttavia caricare il componente sul <a href=\"%(amo_url)s\">sito Mozilla dedicato ai componenti "
-"aggiuntivi</a> offre una maggiore visibilità grazie al grande numero di visitatori del sito. <a href=\"%(md_url)s\">mozdev.org</a> mette a disposizione un hosting gratuito ai progetti per "
-"applicazioni ed estensioni Mozilla, fornendo agli sviluppatori strumenti utili per gestire il codice sorgente, il controllo di versione, il bug tracking e la documentazione."
+"Sì. Molti sviluppatori scelgono di caricare i loro componenti aggiuntivi su un proprio spazio web. Tuttavia, caricare il componente sul <a href=\"%(amo_url)s\">sito Mozilla dedicato ai componenti "
+"aggiuntivi</a> offre una maggiore visibilità grazie al grande numero di visitatori del sito."
 
 msgid "Can Mozilla host my add-on?"
 msgstr "Mozilla può ospitare il mio componente aggiuntivo sul suo sito?"
@@ -6807,18 +6809,17 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Mozilla ha una politica definita riguardo ai requisiti che un componente aggiuntivo deve possedere per essere accettabile?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
 " the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Sì, i <a href=\"%(p_url)s\">criteri per i componenti aggiuntivi</a> Mozilla descrivono le caratteristiche che un componente aggiuntivo deve possedere per essere considerato accettabile. Questi "
-"criteri possono essere soggetti a cambiamenti senza alcun preavviso. Il team di revisori AMO fa inoltre riferimento alla <a href=\"%(g_url)s\">Guida per revisori</a> per determinare se un componente"
-" aggiuntivo rispetta le linee guida in materia di funzionalità e sicurezza."
+"Sì, i <a href=\"%(p_url)s\">criteri per i componenti aggiuntivi</a> Mozilla descrivono le caratteristiche che un componente aggiuntivo deve possedere per essere considerato consono. Questi criteri "
+"possono essere soggetti a cambiamenti senza alcun preavviso. Il team di revisori AMO fa inoltre riferimento alla <a href=\"%(g_url)s\">Guida per revisori</a> per determinare se un componente "
+"aggiuntivo rispetti le linee guida in materia di funzionalità e sicurezza."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Come posso caricare il mio componente aggiuntivo per farlo verificare?"
+msgstr "Come posso inviare un componente aggiuntivo?"
 
 #, python-format
 msgid ""
@@ -6970,9 +6971,8 @@ msgstr "segnalazione bug o richiesta di supporto inserita nella sezione non corr
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "altro (apre un menu pop-up dove inserire ulteriori informazioni)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Al momento AMO non dispone di un meccanismo per comunicare direttamente con il recensore, ma stiamo studiando un modo per introdurre questa funzione e includerla in futuro."
+msgstr "Al momento AMO non dispone di un meccanismo per comunicare direttamente con il revisore."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Posso chiedere che una recensione negativa venga rimossa?"
@@ -7111,6 +7111,7 @@ msgstr "Come posso mantenere aggiornati i componenti aggiuntivi?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
 msgstr ""
+"Quotidianamente viene effettuata una ricerca automatica di aggiornamenti per i componenti aggiuntivi. In Firefox, per impostazione predefinita, tali aggiornamenti vengono installati automaticamente."
 
 msgid "Are add-ons safe to install?"
 msgstr "I componenti aggiuntivi sono sicuri da installare?"
