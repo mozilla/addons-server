@@ -13,7 +13,7 @@ from django.utils import timezone
 from django.utils.crypto import salted_hmac
 from django.utils.translation import ugettext
 from django.utils.encoding import force_text
-from django.utils.functional import lazy
+from django.utils.functional import cached_property, lazy
 
 import caching.base as caching
 
@@ -213,7 +213,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def get_url_path(self, src=None):
         return self.get_user_url('profile', src=src)
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def groups_list(self):
         """List of all groups the user is a member of, as a cached property."""
         return list(self.groups.all())
@@ -256,17 +256,17 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             ])
             return user_media_url('userpics') + path
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def is_developer(self):
         return self.addonuser_set.exclude(
             addon__status=amo.STATUS_DELETED).exists()
 
-    @amo.cached_property
+    @cached_property
     def is_addon_developer(self):
         return self.addonuser_set.exclude(
             addon__type=amo.ADDON_PERSONA).exists()
 
-    @amo.cached_property
+    @cached_property
     def is_artist(self):
         """Is this user a Personas Artist?"""
         return self.addonuser_set.filter(
@@ -308,7 +308,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def has_anonymous_display_name(self):
         return not self.display_name and self.has_anonymous_username()
 
-    @amo.cached_property
+    @cached_property
     def reviews(self):
         """All reviews that are not dev replies."""
         qs = self._reviews_all.filter(reply_to=None)
@@ -386,15 +386,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             collection__author=self, collection__type=type_)
         return qs.values_list('addon', flat=True)
 
-    @amo.cached_property
+    @cached_property
     def mobile_addons(self):
         return self.addons_for_collection_type(amo.COLLECTION_MOBILE)
 
-    @amo.cached_property
+    @cached_property
     def favorite_addons(self):
         return self.addons_for_collection_type(amo.COLLECTION_FAVORITES)
 
-    @amo.cached_property
+    @cached_property
     def watching(self):
         return self.collectionwatcher_set.values_list('collection', flat=True)
 

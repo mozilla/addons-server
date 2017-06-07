@@ -1,8 +1,9 @@
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.utils.encoding import smart_text
 from django.utils.translation import get_language, ugettext_lazy as _
-from django.core.exceptions import ValidationError
 
-from rest_framework import fields
+from rest_framework import fields, serializers
 
 from olympia.amo.utils import to_language
 from olympia.translations.models import Translation
@@ -191,3 +192,82 @@ class ESTranslationSerializerField(TranslationSerializerField):
                 translations.get(getattr(obj, 'default_locale', None)) or
                 translations.get(getattr(obj, 'default_language', None)) or
                 translations.get(settings.LANGUAGE_CODE) or None)
+
+
+class SplitField(fields.Field):
+    """
+    A field composed of two separate fields: one used for input, and another
+    used for output. Most commonly used to accept a primary key for input and
+    use a full serializer for output.
+    Example usage:
+    addon = SplitField(serializers.PrimaryKeyRelatedField(), AddonSerializer())
+    """
+    label = None
+
+    def __init__(self, _input, output, **kwargs):
+        self.input = _input
+        self.output = output
+        kwargs['required'] = _input.required
+        fields.Field.__init__(self, source=_input.source, **kwargs)
+
+    def bind(self, field_name, parent):
+        fields.Field.bind(self, field_name, parent)
+        self.input.bind(field_name, parent)
+        self.output.bind(field_name, parent)
+
+    def get_read_only(self):
+        return self._read_only
+
+    def set_read_only(self, val):
+        self._read_only = val
+        self.input.read_only = val
+        self.output.read_only = val
+
+    read_only = property(get_read_only, set_read_only)
+
+    def get_value(self, data):
+        return self.input.get_value(data)
+
+    def to_internal_value(self, value):
+        return self.input.to_internal_value(value)
+
+    def get_attribute(self, obj):
+        return self.output.get_attribute(obj)
+
+    def to_representation(self, value):
+        return self.output.to_representation(value)
+
+
+class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
+    """
+    Combines SlugRelatedField and PrimaryKeyRelatedField. Takes a
+    `render_as` argument (either "pk" or "slug") to indicate how to
+    serialize.
+    """
+    read_only = False
+
+    def __init__(self, *args, **kwargs):
+        self.render_as = kwargs.pop('render_as', 'pk')
+        if self.render_as not in ['pk', 'slug']:
+            raise ValueError("'render_as' must be one of 'pk' or 'slug', "
+                             "not %r" % (self.render_as,))
+        self.slug_field = kwargs.pop('slug_field', 'slug')
+        super(SlugOrPrimaryKeyRelatedField, self).__init__(
+            *args, **kwargs)
+
+    def to_representation(self, obj):
+        if self.render_as == 'slug':
+            return getattr(obj, self.slug_field)
+        else:
+            return obj.pk
+
+    def to_internal_value(self, data):
+        try:
+            return self.queryset.get(pk=data)
+        except:
+            try:
+                return self.queryset.get(**{self.slug_field: data})
+            except ObjectDoesNotExist:
+                msg = (_('Invalid pk or slug "%s" - object does not exist.') %
+                       smart_text(data))
+                raise ValidationError(msg)

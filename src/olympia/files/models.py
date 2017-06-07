@@ -14,6 +14,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_bytes, force_text
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 from django_extensions.db.fields.json import JSONField
@@ -424,7 +425,7 @@ class File(OnChangeMixin, ModelBase):
 
         return ([match_url] if match_url else []) + knowns
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def webext_permissions_list(self):
         if not self.is_webextension:
             return []

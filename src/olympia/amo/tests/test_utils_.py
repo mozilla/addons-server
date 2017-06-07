@@ -5,6 +5,7 @@ import mock
 import pytest
 from babel import Locale
 from django.conf import settings
+from django.utils.functional import cached_property
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
@@ -141,7 +142,7 @@ def test_cached_property():
 
     class Foo(object):
 
-        @amo.cached_property
+        @cached_property
         def bar(self):
             callme()
             return 'value'
@@ -160,7 +161,7 @@ def test_set_writable_cached_property():
 
     class Foo(object):
 
-        @amo.cached_property(writable=True)
+        @cached_property
         def bar(self):
             callme()
             return 'original value'
