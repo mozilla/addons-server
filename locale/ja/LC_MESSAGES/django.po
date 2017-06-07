@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-07 16:52+0000\n"
+"PO-Revision-Date: 2017-06-07 16:59+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -59,7 +59,7 @@ msgid "Need help?"
 msgstr "サポートが必要ですか？"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "アドオンやテーマの開発者は自分のアカウントを削除できません。まずこのアカウントに関連付けられているすべてのアドオンとテーマを削除するか、他のユーザーへ移譲しなければなりません。"
 
 msgid "Review"
 msgstr "レビュー"
@@ -1123,7 +1123,7 @@ msgstr "言語コード {lang_code} が正しくありません。"
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "不正な pk もしくはスラグ「%s」です - オブジェクトが存在しません。"
 
 msgid "Application Versions"
 msgstr "アプリケーションのバージョン"
@@ -4515,7 +4515,7 @@ msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "シネマモード、広告ブロック、自動再生コントロールなど、YouTube の様々な新機能を試せます。"
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック"
@@ -4709,7 +4709,7 @@ msgid "Confirm Approval"
 msgstr "承認を確認"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
+msgstr "このアドオンの最新公開バージョンは自動承認されました。これにより、開発者に通知することなく、あなたによる承認の確認が記録されます。"
 
 msgid "Reject Multiple Versions"
 msgstr "複数のバージョンを却下"
