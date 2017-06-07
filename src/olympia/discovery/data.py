@@ -15,18 +15,18 @@ class DiscoItem(object):
 # are used instead of slugs to prevent any accidental replacement of a deleted
 # add-on by another.
 discopane_items = [
-    # 'Colorful Mandala' theme.
-    DiscoItem(addon_id=704669, addon_name='Colorful Mandala'),
+    # 'Sebastian Kitty' theme.
+    DiscoItem(addon_id=283823, addon_name='Sebastian Kitty'),
 
-    # Bulk Media Downloader
+    # Enhancer for YouTube
     DiscoItem(
-        addon_id=728674,
-        heading=_(u'Download media {start_sub_heading}with {addon_name}'
+        addon_id=700308,
+        heading=_(u'Improve videos {start_sub_heading}with {addon_name}'
                   u'{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Manage massive audio, video, and image downloads with this '
-              u'lightweight tool.'),
+            _(u'Enjoy a suite of new YouTube features, like cinema mode, '
+              u'ad blocking, auto-play control, and more.'),
             '</blockquote>')),
 
     # uBlock Origin
@@ -41,8 +41,19 @@ discopane_items = [
               u'bunch of memory.'),
             '</blockquote>')),
 
-    # 'Fiery Lion' theme.
-    DiscoItem(addon_id=475322),
+    # 'Vintage Fabric' theme.
+    DiscoItem(addon_id=492244, addon_name='Vintage Fabric'),
+
+    # Emoji Keyboard
+    DiscoItem(
+        addon_id=674732,
+        heading=_(u'Emoji expression {start_sub_heading}with {addon_name}'
+                  u'{end_sub_heading}'),
+        description=string_concat(
+            '<blockquote>',
+            _(u'Dozens of amazing emojis for every occasion—always just one '
+              u'click away.'),
+            '</blockquote>')),
 
     # Awesome Screenshot Plus
     DiscoItem(
@@ -56,17 +67,6 @@ discopane_items = [
               u'files is a breeze.'),
             '</blockquote>')),
 
-    # Emoji Keyboard
-    DiscoItem(
-        addon_id=674732,
-        heading=_(u'Emoji expression {start_sub_heading}with {addon_name}'
-                  u'{end_sub_heading}'),
-        description=string_concat(
-            '<blockquote>',
-            _(u'Dozens of amazing emojis for every occasion—always just one '
-              u'click away.'),
-            '</blockquote>')),
-
-    # 'Sunshines Bright' theme.
-    DiscoItem(addon_id=390265, addon_name='Sunshines Bright'),
+    # 'Festival of Lights' theme.
+    DiscoItem(addon_id=372503, addon_name='Festival of Lights'),
 ]
