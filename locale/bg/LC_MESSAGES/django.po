@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 09:32+0000\n"
+"PO-Revision-Date: 2017-06-07 08:11+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -2771,10 +2771,10 @@ msgid "Version doesn't match"
 msgstr "Версията не съвпада"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Версия {version} е била качена и изтрита."
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "Версия {version} вече съществува."
 
 msgid "Continue with existing upload instead?"
 msgstr ""
@@ -2869,7 +2869,7 @@ msgid "Changes successfully saved."
 msgstr "Промените запазени успешно."
 
 msgid "Please check the form for errors."
-msgstr ""
+msgstr "Проверете формуляра за грешки."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
@@ -2887,13 +2887,13 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Добавен е автор към ваша добавка"
 
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Променена е роля на автор на ваша добавка"
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Автор е премахнат от ваша добавка"
 
 msgid "There were errors in your submission."
 msgstr "Имаше грешки при пращането."
@@ -2908,7 +2908,7 @@ msgid "You cannot submit this type of add-on"
 msgstr "Не може да изпращате такъв вид добавки"
 
 msgid "You cannot submit an add-on with a guid ending \"@mozilla.org\""
-msgstr ""
+msgstr "Не може да публикувате добавки с guid, завършващ на „@mozilla.org“"
 
 msgid "Icons cannot be animated."
 msgstr "Иконките не могат да са анимирани."
@@ -2955,10 +2955,10 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr ""
+msgstr "Ключ на ППИ създаден"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "Ключ на ППИ изтеглен"
 
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
