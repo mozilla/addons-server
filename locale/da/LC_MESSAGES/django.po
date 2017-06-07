@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-07 18:58+0000\n"
+"PO-Revision-Date: 2017-06-07 19:02+0000\n"
 "Last-Translator: Bente <fox@frkolsen.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -4057,19 +4057,21 @@ msgstr ""
 "support@mozilla.org</a>."
 
 msgid "See Schedule"
-msgstr ""
+msgstr "Se tidsplanen"
 
 msgid "View All Submissions"
 msgstr ""
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
+"Her kan du se og håndtere dine tilføjelser og layouts. Vil du udgive din første tilføjelse eller dit første layout skal du klikke \"Indsend din første tilføjelse\" eller på \"Tilføj dit første "
+"layout\"."
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "Indsend din første tilføjelse"
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "Tilføj dit første layout"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
