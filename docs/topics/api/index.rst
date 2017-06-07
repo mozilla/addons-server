@@ -36,6 +36,7 @@ using the API.
    activity
    addons
    categories
+   collections
    discovery
    download_sources
    internal
