@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-07 11:49+0000\n"
+"PO-Revision-Date: 2017-06-07 11:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -7224,13 +7224,12 @@ msgstr ""
 "Betapřidatki su njepřepruwowane wersije, kotrež najnowše dźěło awtora přidatka reprezentuja. Hačrunjež druzy awtorojo maja druhe standardy za betakodowu kwalitu, wuńdźće wot toho, zo tute přidatki "
 "su mjenje stabilne hač powšitkowne wozjewjenja přidatkow."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
-"Prošu wobkedźbujće, zo při instalowanju „betawersije“ aktualizacije za tutón přidatk dale dóstawaće, hdyž su k dispoziciji. Runje tak kaž prěnja wersija, kotruž sće instalował, su tež wšě "
-"betawersije wot Mozilla njepřepruwowane a móža waš ličak wobškodźić."
+"Prošu dźiwajće na to, zo při instalowanju přidatka z kategorije „betawersija“ aktualizacije za tutón přidatk dale dóstawaće, hdyž su k dispoziciji. Runje tak kaž prěnja wersija, kotruž sće "
+"instalował, su tež wšě betawersije wot Mozilla njepřepruwowane a móža waš ličak wobškodźić."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Kak móžu njepřihódne abo spamowe wužiwarske pohódnoćenje zdźělić?"
@@ -7289,7 +7288,7 @@ msgstr "Přidatki za mobilny Firefox"
 msgid "What are mobile add-ons?"
 msgstr "Što su mobilne přidatki?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
