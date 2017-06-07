@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 14:53+0000\n"
+"PO-Revision-Date: 2017-06-07 12:30+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2748,9 +2748,8 @@ msgstr "不能既选择所有平台又指定特定平台。"
 msgid "A platform can only be chosen once."
 msgstr "一个平台只能被选择一次。"
 
-#, fuzzy
 msgid "Reputation"
-msgstr "决定"
+msgstr "声誉"
 
 msgid "Application"
 msgstr "应用程序"
@@ -4725,7 +4724,7 @@ msgid "No Reviews"
 msgstr "没有审核"
 
 msgid "Weight"
-msgstr ""
+msgstr "加权"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "这将批准、签名并发布此版本。该评论将发送给其开发者。"
