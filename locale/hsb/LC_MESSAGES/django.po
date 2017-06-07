@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-07 11:24+0000\n"
+"PO-Revision-Date: 2017-06-07 11:49+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6882,13 +6882,13 @@ msgstr ""
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Kotre směrnicy so za přepruwowanje mojeho přidatka wužiwaja?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
 "are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 msgstr ""
-"Team přepruwowarjow Mozilla slěduje <a href=\"%(url)s\">přepruwowanskemu přewodnikej za přidatki</a>, hdyž přidatk za přewzaće do AMO testuje. Je wažnje, zo wuwiwarjo přidatkow tutón přewodnik "
-"přehladuja, zo bychu zawěsćili, zo huste problemowe pola so před zapodawanjom jich přidatkow za přepruwowanje wobjednawaja. To jara pomha, přepruwowanski proces pospěšić."
+"Team přepruwowarjow Mozilla slěduje <a href=\"%(url)s\">přewodnikej za přepruwowanje přidatkow</a>, hdyž přidatk testuje. Je wažnje, zo wuwiwarjo přidatkow tutón přewodnik přehladuja, zo bychu "
+"zawěsćili, zo huste problemowe pola so před zapodawanjom jich přidatkow wobjednawaja. To jara pomha, přepruwowanske problemy wobchadźeć."
 
 msgid "How long will it take for my add-on to be reviewed?"
 msgstr "Kak dołho budźe přepruwowanje mojeho přidatka trać?"
@@ -7036,16 +7036,16 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Budu přidatki z mojim webwobhladowakom abo nałoženjom fungować?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"W galeriji nalistowane přidatki jenož z nałoženjemi na zakładźe wot Mozilla funguja, na přikład <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"W tutej galeriji nalistowane přidatki jenož z nałoženjemi Mozilla funguja, na přikład <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a> a <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Ale, nic wšě přidatki funguja z kóždym z tutych nałoženjow abo z kóždej wersiju tutych nałoženjow. "
-"Kóždy přidatk podawa, z kotrymiž nałoženjemi a wersijemi funguje, na přikład 2.0 - 3.6.*. Za přidatki Firefox instalowanske tłóčatka na to pokazuja, hač přidatk je kompatibelny abo nic."
+"Kóždy přidatk podawa, z kotrymiž nałoženjemi a wersijemi funguje, na přikład 50.0 - 52.*. Za přidatki Firefox instalowanske tłóčatka na to pokazuja, hač přidatk je kompatibelny abo nic."
 
 msgid "What are the different types of add-ons?"
 msgstr "Kotre rozdźělne typy přidatkow su?"
@@ -7168,37 +7168,35 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Što móžu činić, jeli přidatk njenamakam, za kotrymž pytam?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
-"Su tysacy přidatkow k dispoziciji, je něšto za kóždeho. Ale jeli za wosebitym přidatkom pytaće a njemóžeće jón namakać, spytajće na druhich sydłach pytać abo pisajće přinošk wo tym w našim <a "
-"href=\"%(forum_url)s\">přidatkowym</a> forumje."
+"Su tysacy přidatkow k dispoziciji, je něšto za kóždeho pódla. Ale jeli za wosebitym přidatkom pytaće a njemóžeće jón namakać, pytajće na druhich sydłach abo pisajće přinošk wo tym w našim <a "
+"href=\"%(forum_url)s\">přidatkowym forumje</a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Što woznamjenja, jeli přidatk je „eksperimentelny“?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Eksperimentelne přidatki su so wot swojich wuwiwarjow jako njepřihódne za šěroki publikum markěrowali. Su so wot našich redaktorow přepruwowali, zo by so zawěsćiło, zo nimaja wěstotne problemy, ale "
-"móža hišće zmylki měć abo njemóža porjadnje fungować. Bjerće so na kedźbu, hdyž eksperimentelne přidatki instalujeće a wotinstalujće přidatk hnydom, jeli problemy pytnjeće. <a href=\"%(url)s\">Dalše"
-" informacije wo našim přepruwowanskim procesu</a></dd>"
+"Eksperimentelne přidatki su so wot swojich wuwiwarjow jako njepřihódne za šěroki publikum markěrowali. Móža hišće zmylki měć abo njefunguja porjadnje. Bjerće so na kedźbu, hdyž eksperimentelne "
+"přidatki instalujeće a wotinstalujće přidatk hnydom, jeli problemy pytnjeće. <a href=\"%(url)s\">Dalše informacije wo našim přepruwowanskim procesu</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Što woznamjenja, jeli přidatk „přepruwowany njeje“?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Hačrunjež so wšě přidatki, kotrež su w našej galeriji zjawnje k dispoziciji, wot redaktora přepruwuja, dóstanjeće snano direktny wotkaz k přidatkej, kotryž hišće přepruwowany njeje. Bjerće so na "
-"kedźbu, hdyž tute přidatki instalujeće, dokelž wone móhli waš ličak wobškodźić abo wašu priwatnosć zranić. Poručamy, zo jenož přepruwowane přidatki instalujeće. <a href=\"%(url)s\">Dalše informacije"
-" wo našim přepruwowanskim procesu</a></dd>"
+"Jeli direktny wotkaz na přidatk dóstanjeće, kotryž praji, zo hišće přepruwowany njeje, to rěka, zo hišće na přepruwowanje přez Mozilla čaka. Bjerće so na kedźbu z instalowanjom tutych přidatkow, "
+"dokelž móhli waš ličak wobškodźić abo so přećiwo wašej priwatnosći přeńć. <a href=\"%(url)s\">Dalše informacije wo našim přepruwowanskim procesu</a></dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Kelko přidatki płaća?"
