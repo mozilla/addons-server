@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-07 04:10+0000\n"
+"PO-Revision-Date: 2017-06-07 10:10+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1209,17 +1209,15 @@ msgstr "最愛"
 msgid "Remove from favorites"
 msgstr "從最愛中移除"
 
-#, fuzzy
 msgid "This slug is already in use by another one of your collections."
-msgstr "這個網址已被其他的收藏集使用"
+msgstr "這個 slug 已被您其他的收藏集使用。"
 
 #, fuzzy
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
 msgstr "請輸入有效的使用者名稱，當中只能有字母、數字、底線或連字號。"
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "無法使用此名稱。"
+msgstr "無法使用此 slug。"
 
 msgid "Name"
 msgstr "名稱"
@@ -2762,9 +2760,8 @@ msgstr "所有平台不能與某特定平台結合。"
 msgid "A platform can only be chosen once."
 msgstr "只能選擇一個平台。"
 
-#, fuzzy
 msgid "Reputation"
-msgstr "決議"
+msgstr "聲望"
 
 msgid "Application"
 msgstr "應用程式"
@@ -4765,9 +4762,8 @@ msgstr "確認批准"
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr "此附加元件的最新公開版本是系統自動審核通過的，這筆紀錄確認無須通知開發者，直接通過審核。"
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "重新啟用版本"
+msgstr "退回多個版本"
 
 #, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
@@ -6496,6 +6492,8 @@ msgid ""
 "APIs to develop new add-ons. If you have a legacy add-on, consider migrating it to WebExtensions. For information on migrating a legacy add-on, please visit <a href=\"%(portlegacy_url)s\">Porting a "
 "legacy Firefox add-on</a>."
 msgstr ""
+"<strong>註: </strong> XUL 已經成為 Firefox 的過時技術。自 Firefox 57 版起，將不會再載入仍使用 XUL 的附加元件。請改用 <a href=\"%(webext_url)s\">WebExtensions</a> API 來開發新的附加元件；若您仍有傳統附加元件，請考慮將其移植使用 WebExtensions "
+"技術。若需關於如何移植傳統附加元件的資訊，請參考 <a href=\"%(portlegacy_url)s\">Porting a legacy Firefox add-on</a> 一文。"
 
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "我要如何測試附加元件與最新版本的 Mozilla 軟體之間的相容性？"
@@ -6592,9 +6590,8 @@ msgid ""
 " the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr "有。Mozilla 的<a href=\"%(p_url)s\">附加元件政策</a>當中描述了怎樣的上架請求會被接受。此政策可能會隨時修訂，不另行公告。此外，附加元件審核者團隊將透過 <a href=\"%(g_url)s\">Add-on Review Guide</a> 來確保您附加元件的功能與安全性符合此指南當中的規範。"
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "我要如何送出附加元件以供審核？"
+msgstr "我要如何送審附加元件？"
 
 #, fuzzy, python-format
 msgid ""
@@ -6628,9 +6625,8 @@ msgstr "我可以為我的附加元件指定隱私權保護政策嗎？"
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr "可以。您可以在提交您的附加元件時指定隱私權政策。您也可以在提交您的附加元件後透過開發者工具儀表板來新增或更新隱私權政策。"
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "為什麼我的附加元件要被審核？"
+msgstr "我的附加元件一定要被審核嗎？"
 
 #, fuzzy, python-format
 msgid ""
@@ -6677,7 +6673,7 @@ msgstr "找到的問題數量"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "這就是為什麼閱讀 <a href=\"%(g_url)s\">附加元件審核指南</a> 以確保您的附加元件遵循標準來開發很重要。"
 
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "我要如何看到我的附加元件已經被下載幾次？"
