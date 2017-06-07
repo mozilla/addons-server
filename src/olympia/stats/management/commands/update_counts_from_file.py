@@ -25,6 +25,7 @@ LOCALE_REGEX = re.compile(r"""^[a-z]{2,3}      # General: fr, en, dsb,...
                           """, re.VERBOSE)
 VALID_STATUSES = ["userDisabled,incompatible", "userEnabled", "Unknown",
                   "userDisabled", "userEnabled,incompatible"]
+UPDATE_COUNT_TRIGGER = "userEnable"
 VALID_APP_GUIDS = amo.APP_GUIDS.keys()
 APPVERSION_REGEX = re.compile(
     r"""^[0-9]{1,3}                # Major version: 2, 35
@@ -170,9 +171,10 @@ class Command(BaseCommand):
                         self.update_version(uc, data, count)
                         # Use this count to compute the global number of daily
                         # users for this addon.
-                        uc.count += count
                     elif group == 'status':
                         self.update_status(uc, data, count)
+                        if data == UPDATE_COUNT_TRIGGER:
+                            uc.count += count
                     elif group == 'app':
                         self.update_app(uc, app_id, app_ver, count)
                     elif group == 'os':
