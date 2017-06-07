@@ -231,15 +231,14 @@
         {{ form.adminflag.errors }}
       </div>
       {% endif %}
-      {% if version.has_info_request %}
-      <div class="review-actions-section">
-        {{ form.clear_info_request }}
-        <label for="{{ form.clear_info_request.auto_id }}">
-          {{ form.clear_info_request.label }}
+      <div class="review-actions-section data-toggle review-info-request"
+           data-value="{{ actions_info_request|join("|") }}|">
+        {{ form.info_request }}
+        <label for="{{ form.info_request.auto_id }}">
+          {{ form.info_request.label }}
         </label>
-        {{ form.clear_info_request.errors }}
+        {{ form.info_request.errors }}
       </div>
-      {% endif %}
       <div class="review-actions-section review-actions-save">
         <span class="currently_viewing_warning">
           {% trans %}

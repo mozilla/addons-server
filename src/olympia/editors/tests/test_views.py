@@ -2,6 +2,7 @@
 import json
 import time
 import urlparse
+from collections import OrderedDict
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -9,7 +10,6 @@ from django.core import mail
 from django.core.cache import cache
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-from django.utils.datastructures import SortedDict
 from django.test.utils import override_settings
 
 from lxml.html import fromstring, HTMLParser
@@ -612,13 +612,13 @@ class QueueTest(EditorTest):
         else:  # Testing unlisted views: needs Addons:ReviewUnlisted perm.
             self.login_as_senior_editor()
         self.url = reverse('editors.queue_pending')
-        self.addons = SortedDict()
+        self.addons = OrderedDict()
         self.expected_addons = []
 
     def generate_files(self, subset=None, files=None):
         if subset is None:
             subset = []
-        files = files or SortedDict([
+        files = files or OrderedDict([
             ('Pending One', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_PUBLIC,
@@ -645,7 +645,7 @@ class QueueTest(EditorTest):
                 'file_status': amo.STATUS_PUBLIC,
             }),
         ])
-        results = SortedDict()
+        results = OrderedDict()
         channel = (amo.RELEASE_CHANNEL_LISTED if self.listed else
                    amo.RELEASE_CHANNEL_UNLISTED)
         for name, attrs in files.iteritems():
@@ -1502,7 +1502,7 @@ class BaseTestQueueSearch(SearchTest):
     def generate_files(self, subset=None):
         if subset is None:
             subset = []
-        files = SortedDict([
+        files = OrderedDict([
             ('Not Admin Reviewed', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
@@ -1982,7 +1982,7 @@ class TestReview(ReviewBase):
             assert td.find('.history-comment').text() == 'something'
             assert td.find('th').text() == {
                 'public': 'Approved',
-                'info': 'More information requested'}[action]
+                'info': 'Reviewer Reply'}[action]
             editor_name = td.find('td a').text()
             assert ((editor_name == self.editor.display_name) or
                     (editor_name == self.senior_editor.display_name))
@@ -2283,6 +2283,18 @@ class TestReview(ReviewBase):
         self.assert3xx(response, reverse('editors.queue_pending'),
                        status_code=302)
         assert Addon.objects.get(pk=self.addon.pk).admin_review
+
+    def test_info_request_checkbox(self):
+        self.login_as_editor()
+        assert not self.version.has_info_request
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert 'checked' not in doc('#id_info_request')[0].attrib
+
+        self.version.update(has_info_request=True)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#id_info_request')[0].attrib['checked'] == 'checked'
 
     def test_no_public(self):
         has_public = self.version.files.filter(
@@ -2874,6 +2886,18 @@ class TestReview(ReviewBase):
         assert (
             doc('.data-toggle.review-tested')[0].attrib['data-value'] == '|')
 
+        assert (
+            doc('.data-toggle.review-info-request')[0].attrib['data-value'] ==
+            'info|')
+
+        # If we set info request checkbox should be available on comment too.
+        self.version.update(has_info_request=True)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert (
+            doc('.data-toggle.review-info-request')[0].attrib['data-value'] ==
+            'info|comment|')
+
     def test_data_value_attributes_unreviewed(self):
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.login_as_senior_editor()
@@ -3259,7 +3283,7 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
         self.login_as_limited_reviewer()
 
     def generate_files(self, subset=None):
-        files = SortedDict([
+        files = OrderedDict([
             ('Nominated new', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,

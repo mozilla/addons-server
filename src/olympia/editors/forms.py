@@ -309,8 +309,8 @@ class ReviewForm(happyforms.Form):
                                         u'email)'))
     adminflag = forms.BooleanField(required=False,
                                    label=_(u'Clear Admin Review Flag'))
-    clear_info_request = forms.BooleanField(
-        required=False, label=_(u'Clear more info requested flag'))
+    info_request = forms.BooleanField(
+        required=False, label=_(u'Is more info requested?'))
 
     def is_valid(self):
         # Some actions do not require comments.
