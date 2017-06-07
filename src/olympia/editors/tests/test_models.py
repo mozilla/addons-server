@@ -767,21 +767,27 @@ class TestAutoApprovalSummary(TestCase):
             version=extra_addon.current_version, rating=1)
 
         # Recent negative reviews.
-        Review.objects.create(
-            user=user_factory(), addon=self.addon, version=self.version,
-            rating=1)
+        reviews = [Review(
+            user=user_factory(), addon=self.addon,
+            version=self.version, rating=3) for i in range(0, 49)]
+        Review.objects.bulk_create(reviews)
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 0  # Not enough negative reviews yet...
+        assert weight_info['negative_reviews'] == 0
+
+        # Create one more to get to weight == 1.
         Review.objects.create(
             user=user_factory(), addon=self.addon, version=self.version,
             rating=2)
-        summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 4
-        assert weight_info['negative_reviews'] == 4
+        assert summary.weight == 1
+        assert weight_info['negative_reviews'] == 1
 
-        # Create fifty more to make sure it's capped at 100.
+        # Create 5000 more (sorry!) to make sure it's capped at 100.
         reviews = [Review(
             user=user_factory(), addon=self.addon,
-            version=self.version, rating=3) for i in range(0, 50)]
+            version=self.version, rating=3) for i in range(0, 5000)]
         Review.objects.bulk_create(reviews)
 
         weight_info = summary.calculate_weight()
