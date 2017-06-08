@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-08 14:42+0000\n"
+"PO-Revision-Date: 2017-06-08 14:56+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -3499,7 +3499,7 @@ msgid "Edit information about this add-on."
 msgstr "Редактиране на добавката."
 
 msgid "Upload a new version of this add-on."
-msgstr "Качи нова версия на тази добавка."
+msgstr "Качване на нова версия добавката."
 
 msgid "New Version"
 msgstr "Нова версия"
@@ -3799,13 +3799,13 @@ msgid "Listed on this site after passing code review. Automatic updates are hand
 msgstr ""
 
 msgid "Listed Version:"
-msgstr ""
+msgstr "Публикувана версия:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr ""
 
 msgid "Next Listed Version:"
-msgstr ""
+msgstr "Следваща публикувана версия:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr "Това е последната качена версия, която обаче все още не се вижда на сайта."
@@ -4485,7 +4485,7 @@ msgid ""
 msgstr ""
 
 msgid "Listed versions"
-msgstr ""
+msgstr "Публикувани версии"
 
 msgid "Currently on AMO"
 msgstr ""
