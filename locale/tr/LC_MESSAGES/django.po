@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-08 11:28+0000\n"
+"PO-Revision-Date: 2017-06-08 11:34+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4384,13 +4384,13 @@ msgid "What is the name of the organization?"
 msgstr "Eklenecek eklentinin adını girin"
 
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "Kuruluşun URL'si nedir?"
 
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "Kuruluşun PayPal kimliği nedir?"
 
 msgid "What is your PayPal ID?"
-msgstr ""
+msgstr "PayPal kimliğiniz nedir?"
 
 msgid "Sign up for PayPal"
 msgstr "PayPal'a kaydolun"
@@ -4406,7 +4406,7 @@ msgid "When should users be asked for contributions?"
 msgstr ""
 
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "Teşekkür notu gönderilsin mi?"
 
 msgid "We'll automatically email users who contribute to your add-on with this message."
 msgstr ""
@@ -5151,7 +5151,7 @@ msgid "Overdue (Over 10 days)"
 msgstr ""
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Bilinmeyen bir hata oluştu"
 
 msgid "Self-reviews are not allowed."
 msgstr ""
@@ -5840,7 +5840,7 @@ msgid "There was an error accessing file %s."
 msgstr ""
 
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Bu dosya artık mevcut değil."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
@@ -5850,10 +5850,10 @@ msgid "Problems decoding {0}."
 msgstr ""
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Bu dosya çevrimiçi olarak görüntülenemiyor. Lütfen içeriğini görüntülemek için dosyayı indirin."
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "Bu dosya bir dizindir."
 
 msgid "Access your data for {name}"
 msgstr ""
@@ -5885,7 +5885,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Geçersiz arşiv."
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5998,13 +5998,13 @@ msgid "Wrap or unwrap text"
 msgstr ""
 
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Yüklenen dosyada dosya yok."
 
 msgid "Fetching file."
-msgstr ""
+msgstr "Dosya getiriliyor."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Kullandığınız API sürümü {0:.1f} geçerli değil. Lütfen güncel {1:.1f} API sürümüne yükseltin."
 
 msgid "Not implemented yet."
 msgstr "Henüz hazır değil."
@@ -6060,10 +6060,10 @@ msgid "A+ add-ons for School"
 msgstr "Mobil Eklentiler"
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Okula dönen öğrenciler, veliler ve öğretmenler için eklentiler."
 
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Hangi web sitelerine güvenebileceğinizi öğrenmek ister miydiniz?"
 
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr "Xmarks bir numaralı yer imi eklentisidir."
@@ -6091,7 +6091,7 @@ msgid "Get the latest, must-have add-ons of the moment."
 msgstr ""
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Dertsiz tasasız gezinti"
 
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr ""
@@ -6187,7 +6187,7 @@ msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla&rsquo;dan Ayın Seçimi!"
 
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Test Pilotu olun"
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
@@ -7066,10 +7066,12 @@ msgid "Yes. You can specify a license agreement when submitting your add-on. You
 msgstr ""
 
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Eklentim için bir gizlilik politikası ekleyebilir miyim?"
 
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
+"Evet. Eklentinizi gönderirken bir gizlilik politikası belirleyebilirsiniz. Eklentiniz gönderildikten sonra da Geliştirici Araçları panosunda bir gizlilik politikası ekleyebilir veya "
+"güncelleyebilirsiniz."
 
 #, fuzzy
 msgid "Must my add-on be reviewed?"
@@ -7117,7 +7119,7 @@ msgstr ""
 
 #. part of a list (<li>)
 msgid "number of problem areas discovered"
-msgstr ""
+msgstr "keşfedilen sorunlu alanların sayısı"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
@@ -7130,14 +7132,14 @@ msgid "The Statistics Dashboard found in the Developer Tools dashboard provides 
 msgstr ""
 
 msgid "How can I see how many active users are using my add-on?"
-msgstr ""
+msgstr "Eklentimin kaç aktif kullanıcı tarafından kullanıldığını nasıl görebilirim?"
 
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
 msgstr ""
 
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Eklentim için bir güncellemeyi nasıl gönderirim?"
 
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
 msgstr ""
@@ -7164,11 +7166,11 @@ msgstr ""
 
 #. part of a list (<li>)
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Yanlış yere konmuş hata raporu veya destek isteği"
 
 #. part of a list (<li>)
 msgid "Other (provides a pop-up prompt for information)"
-msgstr ""
+msgstr "Diğer (bilgi için açılır pencere sağlar)"
 
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
 msgstr ""
@@ -7283,7 +7285,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "Eklentileri nasıl güncel tutarım?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
 msgstr ""
@@ -7341,7 +7343,7 @@ msgid ""
 msgstr ""
 
 msgid "What if I can't find an add-on I'm looking for?"
-msgstr ""
+msgstr "Aradığım bir eklentiyi bulamazsam ne yapmalıyım?"
 
 #, python-format
 msgid ""
@@ -7469,7 +7471,7 @@ msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(
 msgstr ""
 
 msgid "Still have questions?"
-msgstr ""
+msgstr "Hâlâ sorularınız var mı?"
 
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
@@ -7517,7 +7519,7 @@ msgid "Take a moment to read your review before submitting it to minimize typos.
 msgstr ""
 
 msgid "Don’t:"
-msgstr ""
+msgstr "Bunları yapmayın:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
