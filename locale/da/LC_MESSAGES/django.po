@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-08 10:50+0000\n"
+"PO-Revision-Date: 2017-06-08 10:58+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1253,13 +1253,11 @@ msgstr "Fjern fra favoritter"
 msgid "This slug is already in use by another one of your collections."
 msgstr "Denne url anvendes allerede af en anden af dine samlinger."
 
-#, fuzzy
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Indtast et gyldigt brugernavn bestående af bogstaver, tal, understreger eller bindestreger."
+msgstr "Indtast en gyldig URL bestående af bogstaver, tal, understreger eller bindestreger."
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "Dette navn kan ikke benyttes."
+msgstr "Denne URL kan ikke benyttes."
 
 msgid "Name"
 msgstr "Navn"
@@ -6894,7 +6892,7 @@ msgid "How do I keep add-ons up-to-date?"
 msgstr "Hvordan holder jeg en tilføjelse opdateret?"
 
 msgid "Add-ons are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. "
-msgstr ""
+msgstr "Tilføjelser kontrolleres automatisk for opdateringer én gang om dagen. I Firefox installeres opdateringer som standard automatisk."
 
 msgid "Are add-ons safe to install?"
 msgstr "Er det sikkert at installere tilføjelser?"
