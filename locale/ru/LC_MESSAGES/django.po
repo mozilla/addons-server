@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-08 09:30+0000\n"
+"PO-Revision-Date: 2017-06-08 09:32+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -1283,9 +1283,8 @@ msgstr "Эта ссылка уже используется другой из в
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
 msgstr "Введите корректное имя, состоящее из букв, цифр, подчеркиваний или дефисов."
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "Это имя не может быть использовано."
+msgstr "Этот slug не может быть использован."
 
 msgid "Name"
 msgstr "Имя"
@@ -6800,9 +6799,8 @@ msgstr ""
 "группа редакторов дополнений использует <a href=\"%(g_url)s\">Руководство редакторов по проверке</a>, чтобы убедиться, что ваше дополнение отвечает специфичным требованиям по функциональности и "
 "безопасности."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Как мне отправить моё дополнение на проверку?"
+msgstr "Как мне представить моё дополнение?"
 
 #, python-format
 msgid ""
@@ -7216,13 +7214,12 @@ msgstr ""
 "Бета-версии дополнений это непроверенные версии дополнений, которые представляют собой последнюю сборку выпущенную автором дополнения. Хотя разные авторы имеют разные стандарты качества для кода "
 "бета-версии, вам следует предполагать, что эти дополнения менее стабильны, чем обычные релизы дополнений."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
-"Пожалуйста, обратите внимание, что когда вы устанавливаете дополнение из раздела \"Бета-версия\" страницы дополнения, вы будете продолжать получать обновления для этого дополнения, как только они "
-"станут доступны. Как и в случае первоначальной установленной вами версии, все бета-версии не проверены Mozilla и могут нанести вред вашему компьютеру."
+"Пожалуйста, обратите внимание, что когда вы установите дополнение из раздела \"Бета-версия\" страницы дополнения, вы будете продолжать получать обновления для этого дополнения, как только они станут"
+" доступны. Как и в случае первоначальной установленной вами версии, все бета-версии не проверены Mozilla и могут нанести вред вашему компьютеру."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Как мне сообщить о неприемлемом отзыве пользователя или спаме?"
