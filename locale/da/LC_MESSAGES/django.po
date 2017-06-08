@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-08 11:22+0000\n"
-"Last-Translator: Kim Ludvigsen <ludvigs@kimludvigsen.dk>\n"
+"PO-Revision-Date: 2017-06-08 13:28+0000\n"
+"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -4060,15 +4060,13 @@ msgid "View All Submissions"
 msgstr ""
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
-"Her kan du se og håndtere dine tilføjelser og layouts. Vil du udgive din første tilføjelse eller dit første layout skal du klikke \"Indsend din første tilføjelse\" eller på \"Tilføj dit første "
-"layout\"."
+msgstr "Her kan du se og håndtere dine tilføjelser og temaer. Vil du udgive din første tilføjelse eller dit første tema, skal du klikke \"Indsend din første tilføjelse\" eller på \"Indsend dit første tema\"."
 
 msgid "Submit Your First Add-on"
 msgstr "Indsend din første tilføjelse"
 
 msgid "Submit Your First Theme"
-msgstr "Tilføj dit første layout"
+msgstr "Tilføj dit første tema"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
