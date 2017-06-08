@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-08 14:30+0000\n"
+"PO-Revision-Date: 2017-06-08 14:42+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -736,11 +736,11 @@ msgid "Info"
 msgstr "Информация"
 
 msgid "Last Updated:"
-msgstr "Актуализация на:"
+msgstr "Обновена на:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Лицензиран под <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Лицензирана под <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
 msgstr "Потребителски лиценз"
@@ -2031,7 +2031,7 @@ msgid "{0.name} role changed to {1} for {addon}."
 msgstr "ролята на {0.name} сменена на {1} за {addon}."
 
 msgid "{addon} is now licensed under {0.name}."
-msgstr "{addon} е вече лицензиран под {0.name}."
+msgstr "{addon} е вече лицензирана под {0.name}."
 
 msgid "{addon} policy changed."
 msgstr "Полицата на {addon} променена."
