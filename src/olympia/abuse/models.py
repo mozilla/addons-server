@@ -31,16 +31,19 @@ class AbuseReport(ModelBase):
         else:
             user_name = 'An anonymous coward'
 
+        msg = u'%s reported abuse for %s (%s%s).\n\n%s' % (
+            user_name, obj.name, settings.SITE_URL, obj.get_url_path(),
+            self.message)
+        send_mail(unicode(self), msg,
+                  recipient_list=(settings.ABUSE_EMAIL,))
+
+    def __unicode__(self):
+        obj = self.addon or self.user
         with no_translation():
             type_ = (ugettext(amo.ADDON_TYPE[self.addon.type])
                      if self.addon else 'User')
 
-        subject = u'[%s] Abuse Report for %s' % (type_, obj.name)
-        msg = u'%s reported abuse for %s (%s%s).\n\n%s' % (
-            user_name, obj.name, settings.SITE_URL, obj.get_url_path(),
-            self.message)
-        send_mail(subject, msg,
-                  recipient_list=(settings.ABUSE_EMAIL,))
+        return u'[%s] Abuse Report for %s' % (type_, obj.name)
 
 
 def send_abuse_report(request, obj, message):
