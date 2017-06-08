@@ -691,7 +691,12 @@ class TestAutoApprovalSummary(TestCase):
             'average_daily_users': 0,
             'negative_reviews': 0,
             'reputation': 0,
-            'past_rejection_history': 0
+            'past_rejection_history': 0,
+            'uses_custom_csp': 0,
+            'uses_dangerous_eval': 0,
+            'uses_implied_eval': 0,
+            'uses_innerhtml': 0,
+            'uses_native_messaging': 0
         }
         assert weight_info == expected_result
 
@@ -889,6 +894,91 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight == 100
         assert weight_info['past_rejection_history'] == 100
+
+    def test_calculate_weight_uses_dangerous_eval(self):
+        validation_data = {
+            'messages': [{
+                'id': ['DANGEROUS_EVAL'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['uses_dangerous_eval'] == 20
+
+    def test_calculate_weight_uses_implied_eval(self):
+        validation_data = {
+            'messages': [{
+                'id': ['IMPLIED_EVAL'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 5
+        assert weight_info['uses_implied_eval'] == 5
+
+    def test_calculate_weight_uses_innerhtml(self):
+        validation_data = {
+            'messages': [{
+                'id': ['UNSAFE_VAR_ASSIGNMENT'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['uses_innerhtml'] == 20
+
+    def test_calculate_weight_uses_custom_csp(self):
+        validation_data = {
+            'messages': [{
+                'id': ['MANIFEST_CSP'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 30
+        assert weight_info['uses_custom_csp'] == 30
+
+    def test_calculate_weight_uses_native_messaging(self):
+        WebextPermission.objects.create(
+            file=self.file, permissions=['nativeMessaging'])
+
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['uses_native_messaging'] == 20
+
+    def test_calculate_weight_sum(self):
+        validation_data = {
+            'messages': [
+                {'id': ['MANIFEST_CSP']},
+                {'id': ['UNSAFE_VAR_ASSIGNMENT']},
+                {'id': ['IMPLIED_EVAL']},
+                {'id': ['DANGEROUS_EVAL']},
+            ]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 75
+        expected_result = {
+            'abuse_reports': 0,
+            'admin_review': 0,
+            'average_daily_users': 0,
+            'negative_reviews': 0,
+            'reputation': 0,
+            'past_rejection_history': 0,
+            'uses_custom_csp': 30,
+            'uses_dangerous_eval': 20,
+            'uses_implied_eval': 5,
+            'uses_innerhtml': 20,
+            'uses_native_messaging': 0
+        }
+        assert weight_info == expected_result
 
     def test_check_uses_custom_csp(self):
         assert AutoApprovalSummary.check_uses_custom_csp(self.version) is False
