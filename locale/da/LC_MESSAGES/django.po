@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-07 19:02+0000\n"
-"Last-Translator: Bente <fox@frkolsen.dk>\n"
+"PO-Revision-Date: 2017-06-08 10:26+0000\n"
+"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -4575,9 +4575,8 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blokér reklamer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
@@ -7022,7 +7021,6 @@ msgstr ""
 "Beta-tilføjelser er ikke-godkendte versioner, som repræsenterer det seneste arbejde fra en udvikler. Udviklere har forskellige standarder for kvaliteten af beta-kode, men du bør gå ud fra, at disse "
 "tilføjelser er mindre stabile end de almindelige udgivelser."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
@@ -7087,13 +7085,13 @@ msgstr "Tilføjelser til Mobilen"
 msgid "What are mobile add-ons?"
 msgstr "Hvad er tilføjelser til Mobilen?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Tilføjelser til Mobilen kan installeres i <a href=\"%(mobile_url)s\">Mobilen</a>. De kan tilføje eller forbedre funktionalitet, ligesom tilføjelser til den almindelige Firefox. Du kan finde "
-"tilføjelser til Mobilen på <a href=\"%(gallery_url)s\">webstedet med Mozillas tilføjelser</a>."
+"Tilføjelser til Mobilen kan installeres i <a href=\"%(mobile_url)s\">Firefox til Android</a>. De kan tilføje eller ændre funktionalitet, ligesom tilføjelser til den almindelige Firefox. Du kan finde"
+" tilføjelser til Firefox til Android på <a href=\"%(gallery_url)s\">webstedet med Mozillas tilføjelser</a>."
 
 msgid "Developer Topics"
 msgstr "For udviklere"
