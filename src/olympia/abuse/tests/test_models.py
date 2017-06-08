@@ -2,8 +2,8 @@
 from django.conf import settings
 from django.core import mail
 
-from olympia.amo.tests import TestCase
 from olympia.abuse.models import AbuseReport
+from olympia.amo.tests import TestCase
 
 
 class TestAbuse(TestCase):
