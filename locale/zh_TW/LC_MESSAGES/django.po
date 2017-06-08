@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-08 05:06+0000\n"
+"PO-Revision-Date: 2017-06-08 10:08+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -6546,16 +6546,16 @@ msgstr "「開發者工具」儀表板提供您工具，以管理您的附加元
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "Mozilla 有任何關於可接受的提交的標準政策嗎？"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
 " the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr "有。Mozilla 的<a href=\"%(p_url)s\">附加元件政策</a>當中描述了怎樣的上架請求會被接受。此政策可能會隨時修訂，不另行公告。此外，附加元件審核者團隊將透過 <a href=\"%(g_url)s\">Add-on Review Guide</a> 來確保您附加元件的功能與安全性符合此指南當中的規範。"
+msgstr "有。Mozilla 的<a href=\"%(p_url)s\">附加元件審查政策</a>當中描述了怎樣的上架請求會被接受。此政策可能會隨時修訂，不另行公告。此外，附加元件審核者團隊將透過 <a href=\"%(g_url)s\">Add-on Review Guide</a> 來確保您附加元件的功能與安全性符合此指南當中的規範。"
 
 msgid "How do I submit my add-on?"
 msgstr "我要如何送審附加元件？"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
