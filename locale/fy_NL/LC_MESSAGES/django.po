@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-08 11:11+0000\n"
+"PO-Revision-Date: 2017-06-08 11:31+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4640,13 +4640,13 @@ msgstr ""
 " publyk ferdwine kin."
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Troch fuortsmiten fan dizze ferzje wurdt fuortsmiten:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Wichtich:</strong> as in ferzje ien kear fuortsmiten is, kinne jo gjin nije ferzje mei itselde ferzjenûmer oplade."
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Binne jo wis dat jo dizze ferzje fuortsmite wolle?"
 
 msgid "Delete Version"
 msgstr "Ferzje fuortsmite"
@@ -4658,19 +4658,19 @@ msgid "Hide Add-on"
 msgstr "Add-on ferstopje"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Troch jo add-on te ferstopjen wurdt dizze nearne yn ús galery werjûn en ûntfange brûkers gjin automatyske fernijingen mear."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "De op beoardieling wachtsjende bestannen wurde útskeakele en jo moatte nije ferzjes oplade."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Binne jo wis dat jo jo add-on ferstopje wolle?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Bine jo wis dat jo jo beoardielingsfersyk annulearje wolle?"
 
 #, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4680,10 +4680,10 @@ msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, aut
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Blokkearje advertinsjes {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "In ljochtgewicht en effektive advertinsjeblokkearder. uBlock Origin hanteart tûzenen ynhâldsfilters sûnder in protte ûnthâld te brûken."
 
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Emoji-útdrukking {start_sub_heading}mei {addon_name}{end_sub_heading}"
@@ -4766,60 +4766,60 @@ msgid "Applications:"
 msgstr "Tapassingen:"
 
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
+msgstr "Stjoer my in berjocht as dizze add-on de folgjende kear bywurke wurdt. (Folgjende fernijingen generearje gjin e-mailberjocht)"
 
 msgid "Clear Admin Review Flag"
-msgstr ""
+msgstr "Beoardielingslabel foar behearder wiskje"
 
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Label Mear ynformaasje frege wiskje"
 
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Kies in yn it foar definiearre antwurd…"
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
-msgstr ""
+msgstr "temanamme"
 
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "In oar beoardielet dit tema."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "tema, beoardieler of opmerking"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Beoardieling bewarje; labels fuortsmite"
 
 msgid "Skip for now"
-msgstr ""
+msgstr "Foarearst oerslaan"
 
 msgid "Delete review"
-msgstr ""
+msgstr "Beoardieling fuortsmite"
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Ofwezen of net beoardield"
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[steat:%s]"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nije add-on ({0})"
+msgstr[1] "Nije add-ons ({0})"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fernijing ({0})"
+msgstr[1] "Fernijingen ({0})"
 
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Oanpaste beoardieling ({0})"
+msgstr[1] "Oanpaste beoardielingen ({0})"
 
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
@@ -4827,46 +4827,46 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Alle net-fermelde add-ons"
 
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 msgid "Waiting Time"
-msgstr ""
+msgstr "Wachttiid"
 
 msgid "Flags"
-msgstr ""
+msgstr "Labels"
 
 msgid "moments ago"
-msgstr ""
+msgstr "koartlyn"
 
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} minút"
+msgstr[1] "{0} minuten"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} oer"
+msgstr[1] "{0} oer"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} dei"
+msgstr[1] "{0} dagen"
 
 msgid "Last Review"
-msgstr ""
+msgstr "Lêste beoardieling"
 
 msgid "Last Update"
-msgstr ""
+msgstr "Lêste fernijing"
 
 msgid "No Reviews"
-msgstr ""
+msgstr "Gjin beoardielingen"
 
 msgid "Weight"
 msgstr ""
