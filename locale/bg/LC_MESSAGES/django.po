@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-09 12:09+0000\n"
+"PO-Revision-Date: 2017-06-09 12:28+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -3737,7 +3737,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr "За подробни инструкции прочетете <a href=\"%(docs_url)s\">документацията за ППИ</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Пазете вашите ключове за ППИ в тайна и <strong>никога не ги споделяйте с никого</strong>, включително и със сътрудници на Mozilla."
 
 msgid "JWT issuer"
 msgstr ""
@@ -3758,10 +3758,10 @@ msgid "Revoke"
 msgstr ""
 
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Отменяне или създаване на удостоверение"
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Създаване на ново удостоверение"
 
 msgid "Invisible"
 msgstr "Невидим"
