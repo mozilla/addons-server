@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-09 11:12+0000\n"
+"PO-Revision-Date: 2017-06-09 11:14+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5326,7 +5326,7 @@ msgid "This version has not been reviewed."
 msgstr "Ця версія не була розглянута."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Будь ласка, оберіть одну або кілька версій з вище наведеного переліку."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Ви все ще можете відправити цю форму, але все ж робіть це лише якщо ви впевнені, що не буде конфлікту."
@@ -6669,7 +6669,7 @@ msgstr "#amo (для підтримки з питань розміщення в�
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (для дискусії про розробку і портування на WebExtensions)"
 
 msgid "Add-ons forum"
 msgstr "Форум додатків"
