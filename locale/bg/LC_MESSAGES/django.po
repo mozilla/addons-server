@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-09 11:24+0000\n"
+"PO-Revision-Date: 2017-06-09 12:09+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -3730,11 +3730,11 @@ msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
 msgid "API Credentials"
-msgstr ""
+msgstr "Удостоверителни данни за ППИ"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "За подробни инструкции прочетете <a href=\"%(docs_url)s\">документацията за ППИ</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
 msgstr ""
@@ -3752,7 +3752,7 @@ msgid ""
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Нямате удостоверителни данни за ППИ."
 
 msgid "Revoke"
 msgstr ""
