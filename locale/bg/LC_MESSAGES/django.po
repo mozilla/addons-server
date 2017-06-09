@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-09 13:26+0000\n"
+"PO-Revision-Date: 2017-06-09 13:39+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -92,7 +92,7 @@ msgstr "Не е прегледана"
 
 msgctxt "install_button"
 msgid "Experimental"
-msgstr "Експериментална"
+msgstr "Изпитателна"
 
 msgid "Add to {0}"
 msgstr "Добавяне към {0}"
@@ -200,7 +200,7 @@ msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn m
 msgstr "Тази добавка все още не е прегледана от Mozilla. <a href=\"%(url)s\">Научете повече</a>"
 
 msgid "This add-on has been marked as experimental by its developers."
-msgstr "Тази добавка е отбелязана като експериментална от разработчиците ѝ."
+msgstr "Добавката е отбелязана като изпитателна от разработчиците ѝ."
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr "Разработчикът на тази добавка ви моли да помогнете развитието ѝ, като направите скромно дарение."
@@ -642,7 +642,7 @@ msgid "Permissions"
 msgstr "Права"
 
 msgid "This add-on has been marked as experimental by its developers"
-msgstr "Тази добавка е отбелязана като експериментална от разработчиците ѝ"
+msgstr "Добавката е отбелязана като изпитателна от разработчиците ѝ"
 
 msgid "Download Anyway"
 msgstr "Изтегляне въпреки това"
@@ -2506,7 +2506,7 @@ msgid "Device Features & Location"
 msgstr "Системни и местоположение"
 
 msgid "Experimental"
-msgstr "Експериментални"
+msgstr "Изпитателни"
 
 msgid "Feeds, News, & Blogging"
 msgstr "Потоци, новини и блогове"
@@ -3211,16 +3211,16 @@ msgid ""
 msgstr ""
 
 msgid "Experimental?"
-msgstr ""
+msgstr "Изпитателна?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
 msgid "This add-on is experimental."
-msgstr "Тази добавка е изпитателна"
+msgstr "Добавката е изпитателна"
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Добавката е готова за общо ползване."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
@@ -3238,7 +3238,7 @@ msgstr[0] "Разделени със запетая, минимум {0} знак
 msgstr[1] "Разделени със запетая, минимум {0} знака."
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Например: тъмен, кино, noir. Ограничение 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
@@ -3417,7 +3417,7 @@ msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr "Поддържаните изображения са PNG и JPG. Ако изображението е по-голямо от 64x64, пиктограмата ще бъде смалена до този размер."
 
 msgid "Screenshots"
-msgstr "Скрийншоти"
+msgstr "Снимки на екрана"
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr "Моля осигурете поне една снимка на вашата добавка:"
@@ -3590,7 +3590,7 @@ msgid "This summary will be shown in listings and searches."
 msgstr "Това обобщение ще се показва в списъци и търсения."
 
 msgid "This add-on is experimental"
-msgstr "Тази добавка е изпитателна"
+msgstr "Добавката е изпитателна"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
@@ -3905,8 +3905,8 @@ msgstr ""
 #. the application name.
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Изберете <b>до {0}</b> {1} категория за добавката:"
+msgstr[1] "Изберете <b>до {0}</b> {1} категории за добавката:"
 
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
@@ -6910,7 +6910,7 @@ msgid ""
 msgstr ""
 
 msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr ""
+msgstr "Какво означава, че някоя добавка е „изпитателна“?"
 
 #, python-format
 msgid ""
