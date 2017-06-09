@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-09 01:13+0000\n"
-"Last-Translator: Fabio Beneditto <kamikazenh@gmail.com>\n"
+"PO-Revision-Date: 2017-06-09 16:53+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -6893,9 +6893,8 @@ msgstr ""
 "Sim. A <a href=\"%(p_url)s\">Política de Extensões</a> da Mozilla descreve o que é uma submissão aceitável. Esta política pode ser alterada sem aviso prévio. Além disso, a equipe de revisores do AMO"
 " usa o <a href=\"%(g_url)s\">Guia do Revisor</a> para garantir que seus complementos cumpram certos requisitos de funcionalidade e segurança."
 
-#, fuzzy
 msgid "How do I submit my add-on?"
-msgstr "Como eu submeto meu complemento para análise?"
+msgstr "Como eu submeto minha extensão?"
 
 #, fuzzy, python-format
 msgid ""
@@ -6937,9 +6936,8 @@ msgstr ""
 "Sim. Você pode especificar uma política de privacidade ao submeter um complemento. Você também pode adicionar ou atualizar uma política de privacidade através do painel de Ferramentas do "
 "desenvolvedor depois do seu complemento ter sido submetido."
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "Por que meu complemento deve ser analisado?"
+msgstr "A minha extensão deve ser analisada?"
 
 #, fuzzy, python-format
 msgid ""
