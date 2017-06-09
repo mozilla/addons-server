@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-08 14:56+0000\n"
+"PO-Revision-Date: 2017-06-09 11:24+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -616,7 +616,7 @@ msgid "by %(user)s on %(date)s"
 msgstr "от %(user)s на %(date)s"
 
 msgid "Show the developer's reply to this review"
-msgstr "Покажи отговора на разработчика към тази рецензия"
+msgstr "Отговор от разработчика към рецензията"
 
 #, python-format
 msgid "See all reviews of this add-on"
