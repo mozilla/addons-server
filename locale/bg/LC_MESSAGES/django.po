@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-09 12:58+0000\n"
+"PO-Revision-Date: 2017-06-09 13:26+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -2548,7 +2548,7 @@ msgid "Folders and Filters"
 msgstr "Папки и филтри"
 
 msgid "Import/Export"
-msgstr "Въвеждане/Извеждане"
+msgstr "Внасяне/Изнасяне"
 
 msgid "Message and News Reading"
 msgstr "Съобщения и четене на новини"
@@ -3217,7 +3217,7 @@ msgid "If your add-on on is experimental or otherwise not ready for general use.
 msgstr ""
 
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Тази добавка е изпитателна"
 
 msgid "This add-on is ready for general use."
 msgstr ""
@@ -3386,7 +3386,7 @@ msgid "Add-on Media for {0}"
 msgstr ""
 
 msgid "Add-on icon"
-msgstr "Иконка на добавката"
+msgstr "Пиктограма"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -7599,7 +7599,7 @@ msgid "Update"
 msgstr ""
 
 msgid "Export"
-msgstr ""
+msgstr "Изнасяне"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
