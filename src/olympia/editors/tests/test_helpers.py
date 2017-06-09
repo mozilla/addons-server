@@ -724,27 +724,24 @@ class TestReviewHelper(TestCase):
         self.helper = self.get_helper()  # To make it pick up the new version.
         self.helper.set_data(self.get_data())
 
-        # Safeguards.
-        self.addon.reload()
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert self.file.status == amo.STATUS_AWAITING_REVIEW
-        assert self.addon.current_version.files.all()[0].status == (
-            amo.STATUS_PUBLIC)
-        assert self.version == self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
-        assert self.version != self.addon.current_version
+        # Confirm approval action should not be available since the latest
+        # version is not public (#5604)
+        assert 'confirm_auto_approved' not in self.helper.actions
 
-        self.helper.handler.confirm_auto_approved()
+    def test_unlisted_version_addon_confirm_auto_approval(self):
+        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED)
+        self.version = version_factory(
+            addon=self.addon, version='3.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.file = self.version.files.all()[0]
+        self.helper = self.get_helper()  # To make it pick up the new version.
+        self.helper.set_data(self.get_data())
 
-        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        self.assertCloseToNow(approvals_counter.last_human_review)
-        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
-        activity = (ActivityLog.objects.for_addons(self.addon)
-                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
-                               .get())
-        # The log should have been created with the current public version,
-        # not the latest (unreviewed) one.
-        assert activity.arguments == [self.addon, self.addon.current_version]
+        # Confirm approval action should not be available since the version
+        # we are looking at is unlisted (#5609).
+        assert 'confirm_auto_approved' not in self.helper.actions
 
     @patch('olympia.editors.helpers.sign_file')
     def test_null_to_public_unlisted(self, sign_mock):

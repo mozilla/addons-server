@@ -443,10 +443,12 @@ class ReviewHelper(object):
         if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
             # Post-reviewers have 2 extra actions depending on the state of
             # the add-on:
-            # If the addon current version was auto-approved, they can confirm
-            # the approval.
-            if (self.addon.current_version and
-                    self.addon.current_version.was_auto_approved):
+            # If the addon current version was auto-approved, and it's the
+            # version we're looking at (i.e., we're using the listed review
+            # page, and it's the latest version) they can confirm the approval.
+            if (self.version and
+                    self.version == self.addon.current_version and
+                    self.version.was_auto_approved):
                 actions['confirm_auto_approved'] = {
                     'method': self.handler.confirm_auto_approved,
                     'label': _('Confirm Approval'),
@@ -733,8 +735,6 @@ class ReviewBase(object):
         human review date to now, and log it so that it's displayed later
         in the review page."""
         AddonApprovalsCounter.increment_for_addon(addon=self.addon)
-        # Log using the latest public version, not self.version, which could
-        # be awaiting review still.
         self.log_action(
             amo.LOG.CONFIRM_AUTO_APPROVED, version=self.addon.current_version)
 
