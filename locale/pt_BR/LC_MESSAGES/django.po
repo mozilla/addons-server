@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-09 16:53+0000\n"
+"PO-Revision-Date: 2017-06-10 12:20+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1283,17 +1283,14 @@ msgstr "Favorito"
 msgid "Remove from favorites"
 msgstr "Remover dos favoritos"
 
-#, fuzzy
 msgid "This slug is already in use by another one of your collections."
-msgstr "Essa URL já está sendo usada por outra coleção"
+msgstr "Este slug já está a ser usado por uma outra coleção sua."
 
-#, fuzzy
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Digite um nome de usuário válido constituído por letras, números, traços inferiores ou hifens."
+msgstr "Digite um slug válido constituído por letras, números, traços inferiores ou hifens."
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "Este nome não pode ser usado."
+msgstr "Este slug não pode ser usado."
 
 # 80%
 # 100%
@@ -4773,9 +4770,8 @@ msgstr "Cancelar o seu pedido de análise marcará sua extensão como incompleta
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Você tem certeza de que deseja cancelar sua solicitação de análise?"
 
-#, fuzzy
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Melhore os vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Aproveite uma variedade de novas funcionalidades do YouTube, como modo cinema, bloqueio de anúncios, reprodução automática, e mais."
@@ -4986,9 +4982,8 @@ msgstr "A última versão pública desta extensão foi aprovada automaticamente.
 msgid "Reject Multiple Versions"
 msgstr "Rejeitar várias versões"
 
-#, fuzzy
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr "Isto irá aprovar, assinar e publicar esta versão. Comentários serão enviados para o desenvolvedor."
+msgstr "Isto rejeitará as versões públicas selecionadas. Os comentários serão enviados ao desenvolvedor."
 
 msgid "Reviewer reply"
 msgstr "Resposta do revisor"
@@ -6790,16 +6785,14 @@ msgstr ""
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr "Como eu posso testar a compatibilidade com as versões mais recentes dos aplicativos Mozilla?"
 
-#, fuzzy
 msgid ""
 "To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. Since "
 "these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important to be actively involved in the beta process to ensure that your add-on users "
 "are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Para garantir a compatibilidade com as últimas versões do software da Mozilla, é importante transferir atualizações assim que são disponibilizadas e testar o seu complemento para garantir que ainda "
-"funciona como esperado. Em muitos casos a última versão do software da Mozilla pode ser um lançamento beta. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem "
-"ter impacto na funcionalidade do seu complemento, é importante estar envolvido ativamente no processo beta para garantir que os usuários do seu complemento não sejam negativamente afetados após o "
-"lançamento do software da Mozilla."
+"Para garantir a compatibilidade com as últimas versões do software da Mozilla, é importante baixar as atualizações assim que são disponibilizadas e testar sua extensão para garantir que ainda "
+"funciona como esperado. Dado que estes lançamentos podem por vezes apresentar alterações arquiteturais que podem ter impacto na funcionalidade da sua extensão, é importante estar envolvido "
+"ativamente no processo beta para garantir que os usuários da sua extensão não sejam negativamente afetados após o lançamento do software da Mozilla."
 
 msgid "I need some advice building my add-on. Where can I find help?"
 msgstr "Eu preciso de dicas para criar meu complemento. Onde eu posso encontrar ajuda?"
