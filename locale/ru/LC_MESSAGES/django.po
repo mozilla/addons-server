@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-08 09:32+0000\n"
+"PO-Revision-Date: 2017-06-10 20:47+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -6857,7 +6857,7 @@ msgstr ""
 msgid "Who reviews my add-on?"
 msgstr "Кто проверяет моё дополнение?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
@@ -6865,7 +6865,7 @@ msgid ""
 msgstr ""
 "Дополнения проверяются редакторами дополнений - группой талантливых разработчиков, которые добровольно помогают проекту Mozilla в проверке дополнений, чтобы обеспечить стабильную и безопасную работу"
 " пользователей Mozilla. При общении с редакторами, пожалуйста, будьте вежливы, терпеливы и уважительны, так как они упорно работают над тем, чтобы удостовериться, что ваше дополнение работает "
-"правильно и следует принципам изложенным в <a href=\"%(url)s\">Руководстве редакторов по проверке</a>."
+"правильно и соответствует принципам изложенным в <a href=\"%(url)s\">Руководстве редакторов по проверке</a>."
 
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Какие принципы используются при проверке моего дополнения?"
@@ -6898,7 +6898,7 @@ msgstr "число обнаруженных проблемных областе�
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "Вот почему важно прочитать <a href=\"%(g_url)s\">Руководство редакторов по проверке</a>, чтобы убедиться, что ваше дополнение настроено правильно."
 
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "Как я могу увидеть сколько раз было загружено моё дополнение?"
@@ -6927,7 +6927,7 @@ msgid "Does my update need to be reviewed by reviewers?"
 msgstr "Моё обновление должно быть проверено редакторами?"
 
 msgid "Add-on updates may be subject to review just the same as new submissions."
-msgstr ""
+msgstr "Обновления дополнений могут подлежать таким же проверкам, как и новые представления."
 
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr "Как мне ответить пользователю, который разместил негативный отзыв на моё дополнение?"
@@ -7100,6 +7100,9 @@ msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
 msgstr ""
+"Соблюдайте осторожность при установке дополнений, так как они могут нанести вред вашему компьютеру или нарушить вашу приватность. Дополнения, размещённые на этом сайте, могут проверяться командой "
+"рецензентов Mozilla, а на отзывы пользователей обращают пристальное внимание, поэтому обычно дополнения безопасны для установки. <a href=\"%(learnmore_url)s\">Узнайте больше о нашем процессе "
+"проверки</a>"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
