@@ -15,6 +15,7 @@ NODE_LIBS_JS := \
 less/dist/less.js \
 jquery/dist/jquery.js \
 jquery.browser/dist/jquery.browser.js \
+jquery.cookie/jquery.cookie.js \
 
 NODE_LIBS_JQUERY_UI := \
 jquery-ui/ui/version.js \

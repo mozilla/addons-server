@@ -674,7 +674,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
             'js/lib/format.js',
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
@@ -764,7 +764,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
             'js/lib/format.js',
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/lib/jquery.pjax.js',
@@ -863,7 +863,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/analytics.js',
 
             # Add-ons details
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/lib/ui.lightbox.js',
