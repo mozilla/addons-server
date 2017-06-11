@@ -1869,7 +1869,7 @@ class TestReview(ReviewBase):
         assert len(response.context['flags']) == 1
 
     def test_info_comments_requested(self):
-        response = self.client.post(self.url, {'action': 'info'})
+        response = self.client.post(self.url, {'action': 'reply'})
         assert response.context['form'].errors['comments'][0] == (
             'This field is required.')
 
@@ -1884,7 +1884,7 @@ class TestReview(ReviewBase):
             action=comment_version.id).count() == 1
 
     def test_info_requested(self):
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
         assert len(mail.outbox) == 1
@@ -1899,7 +1899,7 @@ class TestReview(ReviewBase):
                                 'editors/emails/author_super_review.ltxt')
 
     def test_info_requested_canned_response(self):
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor',
                                                'canned_response': 'foo'})
         assert response.status_code == 302
@@ -1907,14 +1907,14 @@ class TestReview(ReviewBase):
         self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
 
     def test_notify(self):
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor',
                                                'notify': True})
         assert response.status_code == 302
         assert EditorSubscription.objects.count() == 1
 
     def test_no_notify(self):
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
         assert EditorSubscription.objects.count() == 0
@@ -1982,7 +1982,7 @@ class TestReview(ReviewBase):
             assert td.find('.history-comment').text() == 'something'
             assert td.find('th').text() == {
                 'public': 'Approved',
-                'info': 'Reviewer Reply'}[action]
+                'reply': 'Reviewer Reply'}[action]
             editor_name = td.find('td a').text()
             assert ((editor_name == self.editor.display_name) or
                     (editor_name == self.senior_editor.display_name))
@@ -2266,7 +2266,7 @@ class TestReview(ReviewBase):
     def test_unadmin_flag_as_admin(self):
         self.addon.update(admin_review=True)
         self.login_as_admin()
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor',
                                                'adminflag': True})
         self.assert3xx(response, reverse('editors.queue_pending'),
@@ -2276,7 +2276,7 @@ class TestReview(ReviewBase):
     def test_unadmin_flag_as_editor(self):
         self.addon.update(admin_review=True)
         self.login_as_editor()
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor',
                                                'adminflag': True})
         # Should silently fail to set adminflag but work otherwise.
@@ -2394,7 +2394,7 @@ class TestReview(ReviewBase):
             version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
             action = 'public'
         else:
-            action = 'info'
+            action = 'reply'
 
         data = dict(action=action, operating_systems='win',
                     applications='something', comments='something')
@@ -2866,7 +2866,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
-            'confirm_auto_approved|', 'reject_multiple_versions|', 'info|',
+            'confirm_auto_approved|', 'reject_multiple_versions|', 'reply|',
             'super|', 'comment|']
         assert [
             act.attrib['data-value'] for act in
@@ -2878,7 +2878,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
-            'reject_multiple_versions|info|super|comment|')
+            'reject_multiple_versions|reply|super|comment|')
         # We don't have approve/reject actions so these have an empty
         # data-value.
         assert (
@@ -2888,7 +2888,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-info-request')[0].attrib['data-value'] ==
-            'info|')
+            'reply|')
 
         # If we set info request checkbox should be available on comment too.
         self.version.update(has_info_request=True)
@@ -2896,7 +2896,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert (
             doc('.data-toggle.review-info-request')[0].attrib['data-value'] ==
-            'info|comment|')
+            'reply|comment|')
 
     def test_data_value_attributes_unreviewed(self):
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -2905,7 +2905,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
-            'public|', 'reject|', 'info|', 'super|', 'comment|']
+            'public|', 'reject|', 'reply|', 'super|', 'comment|']
         assert [
             act.attrib['data-value'] for act in
             doc('.data-toggle.review-actions-desc')] == expected_actions_values
@@ -2916,7 +2916,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
-            'public|reject|info|super|comment|')
+            'public|reject|reply|super|comment|')
         assert (
             doc('.data-toggle.review-files')[0].attrib['data-value'] ==
             'public|reject|')

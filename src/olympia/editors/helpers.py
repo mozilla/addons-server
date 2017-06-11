@@ -473,7 +473,7 @@ class ReviewHelper(object):
                                  'developer.'),
                 }
         if self.version:
-            actions['info'] = {
+            actions['reply'] = {
                 'method': self.handler.reviewer_reply,
                 'label': _('Reviewer reply'),
                 'details': _('This will send a message to the developer. '

@@ -248,7 +248,7 @@ class TestReviewHelper(TestCase):
         self.assertRaises(self.helper.process)
 
     def test_process_action_good(self):
-        self.helper.set_data({'action': 'info', 'comments': 'foo'})
+        self.helper.set_data({'action': 'reply', 'comments': 'foo'})
         self.helper.process()
         assert len(mail.outbox) == 1
 
@@ -283,19 +283,19 @@ class TestReviewHelper(TestCase):
         return self.get_helper().actions
 
     def test_actions_full_nominated(self):
-        expected = ['public', 'reject', 'info', 'super', 'comment']
+        expected = ['public', 'reject', 'reply', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_NOMINATED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys() == expected
 
     def test_actions_full_update(self):
-        expected = ['public', 'reject', 'info', 'super', 'comment']
+        expected = ['public', 'reject', 'reply', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_AWAITING_REVIEW).keys() == expected
 
     def test_actions_full_nonpending(self):
-        expected = ['info', 'super', 'comment']
+        expected = ['reply', 'super', 'comment']
         f_statuses = [amo.STATUS_PUBLIC, amo.STATUS_DISABLED]
         for file_status in f_statuses:
             assert self.get_review_actions(
@@ -304,7 +304,7 @@ class TestReviewHelper(TestCase):
 
     def test_actions_public_post_reviewer(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
-        expected = ['reject_multiple_versions', 'info', 'super', 'comment']
+        expected = ['reject_multiple_versions', 'reply', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC).keys() == expected
@@ -313,7 +313,7 @@ class TestReviewHelper(TestCase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         expected = ['confirm_auto_approved', 'reject_multiple_versions',
-                    'info', 'super', 'comment']
+                    'reply', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC).keys() == expected
@@ -333,7 +333,7 @@ class TestReviewHelper(TestCase):
         actions = self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC)
-        assert actions['info']['info_request']
+        assert actions['reply']['info_request']
         assert not actions['comment']['info_request']
 
         # Now set the info request flag
@@ -341,7 +341,7 @@ class TestReviewHelper(TestCase):
         actions = self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC)
-        assert actions['info']['info_request']
+        assert actions['reply']['info_request']
         assert actions['comment']['info_request']
 
     def test_set_files(self):
