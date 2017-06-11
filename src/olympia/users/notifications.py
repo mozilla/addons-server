@@ -39,7 +39,7 @@ class upgrade_success(_NOTIFICATION):
     id = 5
     group = 'dev'
     short = 'upgrade_success'
-    label = _("my add-on's compatibility is upgraded successfully")
+    label = _('my add-on\'s compatibility is upgraded successfully')
     mandatory = False
     default_checked = True
 
@@ -48,7 +48,7 @@ class sdk_upgrade_success(_NOTIFICATION):
     id = 6
     group = 'dev'
     short = 'sdk_upgrade_success'
-    label = _("my sdk-based add-on is upgraded successfully")
+    label = _('my sdk-based add-on is upgraded successfully')
     mandatory = False
     default_checked = True
 
@@ -57,7 +57,7 @@ class new_review(_NOTIFICATION):
     id = 7
     group = 'dev'
     short = 'new_review'
-    label = _("someone writes a review of my add-on")
+    label = _('someone writes a review of my add-on')
     mandatory = False
     default_checked = True
 
@@ -66,8 +66,8 @@ class announcements(_NOTIFICATION):
     id = 8
     group = 'dev'
     short = 'announcements'
-    label = _("stay up-to-date with news and events relevant to add-on "
-              "developers")
+    label = _('stay up-to-date with news and events relevant to add-on '
+              'developers')
     mandatory = False
     default_checked = False
 
@@ -76,7 +76,7 @@ class upgrade_fail(_NOTIFICATION):
     id = 9
     group = 'dev'
     short = 'upgrade_fail'
-    label = _("my add-on's compatibility cannot be upgraded")
+    label = _('my add-on\'s compatibility cannot be upgraded')
     mandatory = True
     default_checked = True
 
@@ -85,7 +85,7 @@ class sdk_upgrade_fail(_NOTIFICATION):
     id = 10
     group = 'dev'
     short = 'sdk_upgrade_fail'
-    label = _("my sdk-based add-on cannot be upgraded")
+    label = _('my sdk-based add-on cannot be upgraded')
     mandatory = True
     default_checked = True
 
@@ -94,7 +94,7 @@ class editor_reviewed(_NOTIFICATION):
     id = 11
     group = 'dev'
     short = 'editor_reviewed'
-    label = _("my add-on is reviewed by a reviewer")
+    label = _('my add-on is reviewed by a reviewer')
     mandatory = True
     default_checked = True
 
@@ -103,7 +103,7 @@ class individual_contact(_NOTIFICATION):
     id = 12
     group = 'dev'
     short = 'individual_contact'
-    label = _("Mozilla needs to contact me about my individual add-on")
+    label = _('Mozilla needs to contact me about my individual add-on')
     mandatory = True
     default_checked = True
 
