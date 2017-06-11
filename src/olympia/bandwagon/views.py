@@ -28,6 +28,7 @@ from olympia.accounts.views import AccountViewSet
 from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
+from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
     AllOf, AllowReadOnlyIfPublic, AnyOf, GroupPermission,
     PreventActionPermission)
@@ -671,13 +672,20 @@ class CollectionViewSet(ModelViewSet):
 
     def get_queryset(self):
         return Collection.objects.filter(
-            author=self.get_account_viewset().get_object())
+            author=self.get_account_viewset().get_object()).order_by(
+            '-modified')
 
 
 class CollectionAddonViewSet(ModelViewSet):
     permission_classes = []  # We don't need extra permissions.
     serializer_class = CollectionAddonSerializer
     lookup_field = 'addon'
+    filter_backends = (OrderingAliasFilter,)
+    ordering_fields = ()
+    ordering_field_aliases = {'popularity': 'addon__weekly_downloads',
+                              'name': 'addon__name__localized_string',
+                              'added': 'created'}
+    ordering = ('-addon__weekly_downloads',)
 
     def get_collection_viewset(self):
         if not hasattr(self, 'collection_viewset'):
