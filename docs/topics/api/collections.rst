@@ -53,6 +53,7 @@ If your account has the `Collections:Edit` permission then you can access any co
     :>json boolean public: Whether the collection is `listed` - publicly viewable.
     :>json string slug: The name used in the URL.
     :>json string url: The (absolute) collection detail URL.
+    :>json string uuid: A unique identifier for this collection; primarily used to count addon installations that come via this collection.
 
 
 ------

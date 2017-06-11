@@ -1504,6 +1504,7 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         collection = Collection.objects.get()
         self.check_data(collection, self.data, json.loads(response.content))
         assert collection.author.id == self.user.id
+        assert collection.uuid
 
     def test_create_minimal(self):
         self.client.login_api(self.user)
