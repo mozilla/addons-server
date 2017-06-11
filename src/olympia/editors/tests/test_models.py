@@ -420,6 +420,11 @@ class TestEditorSubscription(TestCase):
         send_notifications(sender=self.version)
         assert len(mail.outbox) == 0
 
+    def test_no_email_address_for_editor(self):
+        self.user_one.update(email=None)
+        send_notifications(sender=self.version)
+        assert len(mail.outbox) == 1
+
 
 class TestReviewerScore(TestCase):
     fixtures = ['base/users']

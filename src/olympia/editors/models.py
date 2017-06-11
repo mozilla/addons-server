@@ -370,7 +370,7 @@ def send_notifications(signal=None, sender=None, **kw):
     for subscriber in subscribers:
         user = subscriber.user
         is_reviewer = (
-            user and not user.deleted and
+            user and not user.deleted and user.email and
             acl.action_allowed_user(user, amo.permissions.ADDONS_REVIEW))
         if is_reviewer:
             subscriber.send_notification(sender)
