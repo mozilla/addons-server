@@ -19,6 +19,7 @@
     "jquery-ui": "1.12.1",
     "less": "2.7.2",
     "stylus": "0.54.5",
+    "timeago": "1.5.4",
     "uglify-js": "3.0.15"
   },
   "devDependencies": {
