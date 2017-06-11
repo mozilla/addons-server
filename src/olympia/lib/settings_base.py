@@ -748,7 +748,7 @@ MINIFY_BUNDLES = {
         # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
             'js/node_lib/jquery.js',
-            'js/lib/jquery.browser.js',
+            'js/node_lib/jquery.browser.js',
             'js/impala/preloaded.js',
             'js/zamboni/analytics.js',
         ),
@@ -853,7 +853,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/discovery': (
             'js/node_lib/jquery.js',
-            'js/lib/jquery.browser.js',
+            'js/node_lib/jquery.browser.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
