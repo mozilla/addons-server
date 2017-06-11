@@ -66,9 +66,10 @@ class announcements(_NOTIFICATION):
     id = 8
     group = 'dev'
     short = 'announcements'
-    label = _("add-on contests or events are announced")
+    label = _("stay up-to-date with news and events relevant to add-on "
+              "developers")
     mandatory = False
-    default_checked = True
+    default_checked = False
 
 
 class upgrade_fail(_NOTIFICATION):
@@ -113,9 +114,11 @@ NOTIFICATION_GROUPS = {'dev': _('Developer'),
 NOTIFICATIONS = [x for x in vars().values()
                  if isclass(x) and issubclass(x, _NOTIFICATION) and
                  x != _NOTIFICATION]
-NOTIFICATIONS_BY_ID = dict((l.id, l) for l in NOTIFICATIONS)
+NOTIFICATIONS_BY_ID = {l.id: l for l in NOTIFICATIONS}
+NOTIFICATIONS_BY_ID_NOT_DEV = {l.id: l for l in NOTIFICATIONS
+                               if l.group != 'dev'}
 
-NOTIFICATIONS_BY_SHORT = dict((l.short, l) for l in NOTIFICATIONS)
+NOTIFICATIONS_BY_SHORT = {l.short: l for l in NOTIFICATIONS}
 NOTIFICATION = namedtuple('NotificationTuple',
                           [n.__name__ for n in NOTIFICATIONS]
                           )(*[n for n in NOTIFICATIONS])
