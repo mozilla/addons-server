@@ -9,6 +9,7 @@ from django.core import mail
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
+from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import (
@@ -360,8 +361,11 @@ class TestEditorSubscription(TestCase):
         self.version = self.addon.current_version
         self.user_one = UserProfile.objects.get(pk=55021)
         self.user_two = UserProfile.objects.get(pk=999)
+        self.editor_group = Group.objects.create(
+            name='editors', rules='Addons:Review')
         for user in [self.user_one, self.user_two]:
             EditorSubscription.objects.create(addon=self.addon, user=user)
+            GroupUser.objects.create(group=self.editor_group, user=user)
 
     def test_email(self):
         es = EditorSubscription.objects.get(user=self.user_one)
@@ -407,6 +411,19 @@ class TestEditorSubscription(TestCase):
         v = Version.objects.create(addon=self.addon)
         version_uploaded.send(sender=v)
         assert len(mail.outbox) == 0
+
+    def test_no_email_for_ex_editors(self):
+        self.user_one.delete()
+        # Remove user_two from editors.
+        GroupUser.objects.get(
+            group=self.editor_group, user=self.user_two).delete()
+        send_notifications(sender=self.version)
+        assert len(mail.outbox) == 0
+
+    def test_no_email_address_for_editor(self):
+        self.user_one.update(email=None)
+        send_notifications(sender=self.version)
+        assert len(mail.outbox) == 1
 
 
 class TestReviewerScore(TestCase):

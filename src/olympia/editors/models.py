@@ -12,6 +12,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport
+from olympia.access import acl
 from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
 from olympia.amo.helpers import absolutify
@@ -367,7 +368,12 @@ def send_notifications(signal=None, sender=None, **kw):
         return
 
     for subscriber in subscribers:
-        subscriber.send_notification(sender)
+        user = subscriber.user
+        is_reviewer = (
+            user and not user.deleted and user.email and
+            acl.action_allowed_user(user, amo.permissions.ADDONS_REVIEW))
+        if is_reviewer:
+            subscriber.send_notification(sender)
         subscriber.delete()
 
 
