@@ -469,8 +469,8 @@ class TestReviewHelper(TestCase):
         self.setup_data(status)
 
         # Make sure we have no public files
-        for i in self.addon.versions.all():
-            i.files.update(status=amo.STATUS_AWAITING_REVIEW)
+        for version in self.addon.versions.all():
+            version.files.update(status=amo.STATUS_AWAITING_REVIEW)
 
         self.helper.handler.process_public()
 
@@ -692,6 +692,7 @@ class TestReviewHelper(TestCase):
         self._check_score(amo.REVIEWED_ADDON_UPDATE)
 
     def test_public_addon_confirm_auto_approval(self):
+        self.grant_permission(self.request.user, 'Addons:PostReview')
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED)
@@ -714,6 +715,7 @@ class TestReviewHelper(TestCase):
         assert activity.arguments == [self.addon, self.version]
 
     def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
+        self.grant_permission(self.request.user, 'Addons:PostReview')
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED)
@@ -729,6 +731,7 @@ class TestReviewHelper(TestCase):
         assert 'confirm_auto_approved' not in self.helper.actions
 
     def test_unlisted_version_addon_confirm_auto_approval(self):
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED)
@@ -739,9 +742,21 @@ class TestReviewHelper(TestCase):
         self.helper = self.get_helper()  # To make it pick up the new version.
         self.helper.set_data(self.get_data())
 
-        # Confirm approval action should not be available since the version
-        # we are looking at is unlisted (#5609).
-        assert 'confirm_auto_approved' not in self.helper.actions
+        # Confirm approval action should be available since the version
+        # we are looking at is unlisted and reviewer has permission.
+        assert 'confirm_auto_approved' in self.helper.actions
+
+        self.helper.handler.confirm_auto_approved()
+
+        assert (
+            AddonApprovalsCounter.objects.filter(addon=self.addon).count() ==
+            0)  # Not incremented since it was unlisted.
+
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (ActivityLog.objects.for_addons(self.addon)
+                               .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
+                               .get())
+        assert activity.arguments == [self.addon, self.version]
 
     @patch('olympia.editors.helpers.sign_file')
     def test_null_to_public_unlisted(self, sign_mock):
