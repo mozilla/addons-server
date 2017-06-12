@@ -440,29 +440,41 @@ class ReviewHelper(object):
                              'from the queue. The comments will be sent '
                              'to the developer.'),
                 'minimal': False}
-        if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
-            # Post-reviewers have 2 extra actions depending on the state of
-            # the add-on:
-            # If the addon current version was auto-approved, they can confirm
-            # the approval.
-            if (self.addon.current_version and
-                    self.addon.current_version.was_auto_approved):
+        if self.version:
+            version_is_auto_approved_and_current = (
+                self.version == self.addon.current_version and
+                self.version.was_auto_approved)
+            version_is_unlisted = (
+                self.version.channel == amo.RELEASE_CHANNEL_UNLISTED)
+            is_post_reviewer = acl.action_allowed(
+                request, amo.permissions.ADDONS_POST_REVIEW)
+            is_unlisted_reviewer = acl.action_allowed(
+                request, amo.permissions.ADDONS_REVIEW_UNLISTED)
+
+            # Post-reviewers and unlisted reviewers can confirm approval if
+            # the version is unlisted or it's the current public version
+            # and it was auto approved, respectively.
+            if (is_unlisted_reviewer and version_is_unlisted) or (
+                    is_post_reviewer and version_is_auto_approved_and_current):
                 actions['confirm_auto_approved'] = {
                     'method': self.handler.confirm_auto_approved,
                     'label': _('Confirm Approval'),
-                    'details': _('The latest public version of this add-on '
-                                 'was automatically approved. This records '
-                                 'your confirmation of the approval, '
-                                 'without notifying the developer.'),
+                    'details': _('The latest public version of this '
+                                 'add-on was automatically approved. This '
+                                 'records your confirmation of the '
+                                 'approval, without notifying the '
+                                 'developer.'),
                     'minimal': True,
                     'comments': False,
                 }
-            if (self.version and self.addon.status == amo.STATUS_PUBLIC and
-                    self.version.channel == amo.RELEASE_CHANNEL_LISTED):
-                # They can reject multiple versions in one action on the listed
-                # review page, if the add-on is public (it's useless if the
-                # add-on is not public: that means there should only be one
-                # version to reject at most).
+            # Post-reviewers can also reject multiple versions in one action on
+            # the listed review page, if the add-on is public (it's useless if
+            # the add-on is not public: that means there should only be one
+            # version to reject at most).
+            version_is_public_and_listed = (
+                self.addon.status == amo.STATUS_PUBLIC and
+                self.version.channel == amo.RELEASE_CHANNEL_LISTED)
+            if is_post_reviewer and version_is_public_and_listed:
                 actions['reject_multiple_versions'] = {
                     'method': self.handler.reject_multiple_versions,
                     'label': _('Reject Multiple Versions'),
@@ -472,7 +484,6 @@ class ReviewHelper(object):
                                  'versions. The comments will be sent to the '
                                  'developer.'),
                 }
-        if self.version:
             actions['info'] = {
                 'method': self.handler.request_information,
                 'label': _('Reviewer reply'),
@@ -729,14 +740,13 @@ class ReviewBase(object):
         """Confirm an auto-approval decision.
 
         We don't need to really store that information, what we care about
-        is incrementing AddonApprovalsCounter, which also resets the last
-        human review date to now, and log it so that it's displayed later
-        in the review page."""
-        AddonApprovalsCounter.increment_for_addon(addon=self.addon)
-        # Log using the latest public version, not self.version, which could
-        # be awaiting review still.
-        self.log_action(
-            amo.LOG.CONFIRM_AUTO_APPROVED, version=self.addon.current_version)
+        is logging something for future reviewers to be aware of, and, if the
+        version is listed, incrementing AddonApprovalsCounter, which also
+        resets the last human review date to now, and log it so that it's
+        displayed later in the review page."""
+        if self.version.channel == amo.RELEASE_CHANNEL_LISTED:
+            AddonApprovalsCounter.increment_for_addon(addon=self.addon)
+        self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED)
 
     def reject_multiple_versions(self):
         """Reject a list of versions."""
