@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-12 11:09+0000\n"
+"PO-Revision-Date: 2017-06-12 11:27+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6807,7 +6807,7 @@ msgstr "#amo (para suporte relacionado à hospedagem do seu complemento no AMO)"
 
 #. #webextensions is the name of the IRC channel.  do not change.
 msgid "#webextensions (for discussions about developing and porting to WebExtensions)"
-msgstr ""
+msgstr "#webextensions (para discussão sobre o desenvolvimento e porte para WebExtensions)"
 
 msgid "Add-ons forum"
 msgstr "Fórum sobre complementos"
@@ -6877,24 +6877,24 @@ msgstr ""
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
 msgstr "A Mozilla possui uma política que descreva os critérios de submissão de complementos?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Review Policies</a> describe what is an acceptable submission. This policy is subject to change without notice. In addition, the Add-on Reviewer Team uses"
 " the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Sim. A <a href=\"%(p_url)s\">Política de Extensões</a> da Mozilla descreve o que é uma submissão aceitável. Esta política pode ser alterada sem aviso prévio. Além disso, a equipe de revisores do AMO"
-" usa o <a href=\"%(g_url)s\">Guia do Revisor</a> para garantir que seus complementos cumpram certos requisitos de funcionalidade e segurança."
+"Sim. A <a href=\"%(p_url)s\">Política de extensões</a> da Mozilla descreve o que é uma submissão aceitável. Esta política pode ser alterada sem aviso prévio. Em adição, o time de analise de "
+"extensões usa o <a href=\"%(g_url)s\">Guia de analise de extensões</a> para garantir que a sua extensão cumpra as orientações específicas para funcionalidade e segurança."
 
 msgid "How do I submit my add-on?"
 msgstr "Como eu submeto minha extensão?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO user before you can submit an add-on. Before submitting your add-on be sure to you have"
 " read the <a href=\"%(url)s\">Add-on Review Policies</a> to ensure that your add-on has met our guidelines."
 msgstr ""
-"O painel de Ferramentas do Desenvolvedor permite que envie e submeta extensões para o AMO. Você deve ser um usuário registrado na AMO antes de poder submeter uma extensão. Antes de submeter sua "
-"extensão, certifique-se de ler o <a href=\"%(url)s\">Guia de revisores</a> da Mozilla para garantir que sua extensão atende aos critérios usados pelos revisores."
+"O painel de ferramentas do desenvolvedor irá permitir carregar e submeter extras para a AMO. Você deverá ser um usuário registrado da AMO antes de poder submeter uma extensão. Antes de submeter sua "
+"extensão, certifique-se de que leu o <a href=\"%(url)s\">Guia de analise de extensões</a> para garantir que a sua extensão atenda às nossas diretrizes."
 
 msgid "What operating system do I choose for my add-on?"
 msgstr "Que sistema operacional eu escolho para meu complemento?"
@@ -6983,7 +6983,7 @@ msgstr "número de problemas descobertos"
 
 #, python-format
 msgid "This is why it's very important to read the <a href=\"%(g_url)s\">Add-on Review Guide</a> to ensure that your add-on is setup as expected."
-msgstr ""
+msgstr "Por isso é muito importante ler o <a href=\"%(g_url)s\">Guia de analise de extensões</a> para garantir que seu complemento está configurado como esperado."
 
 msgid "How can I see how many times my add-on has been downloaded?"
 msgstr "Como eu posso ver quantas vezes meu complemento foi baixado?"
