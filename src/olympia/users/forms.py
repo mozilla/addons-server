@@ -210,10 +210,15 @@ class UserEditForm(happyforms.ModelForm):
             tasks.resize_photo.delay(tmp_destination, u.picture_path,
                                      set_modified_on=[u])
 
-        for (i, n) in notifications.NOTIFICATIONS_BY_ID.items():
-            enabled = n.mandatory or (str(i) in data['notifications'])
+        visible_notifications = (
+            notifications.NOTIFICATIONS_BY_ID if self.instance.is_developer
+            else notifications.NOTIFICATIONS_BY_ID_NOT_DEV)
+
+        for (notification_id, notification) in visible_notifications.items():
+            enabled = (notification.mandatory or
+                       (str(notification_id) in data['notifications']))
             UserNotification.objects.update_or_create(
-                user=self.instance, notification_id=i,
+                user=self.instance, notification_id=notification_id,
                 defaults={'enabled': enabled})
 
         log.debug(u'User (%s) updated their profile' % u)

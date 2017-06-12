@@ -152,9 +152,9 @@ class TestEdit(UserViewBase):
     def check_default_choices(self, choices, checked=True):
         doc = pq(self.client.get(self.url).content)
         assert doc('input[name=notifications]:checkbox').length == len(choices)
-        for id, label in choices:
-            box = doc('input[name=notifications][value="%s"]' % id)
-            if checked:
+        for id_, label in choices:
+            box = doc('input[name=notifications][value="%s"]' % id_)
+            if checked and id_ in email.NOTIFICATIONS_DEFAULT:
                 assert box.filter(':checked').length == 1
             else:
                 assert box.length == 1
@@ -163,18 +163,6 @@ class TestEdit(UserViewBase):
                 # Check for "NEW" message.
                 assert parent.find('.msg').length == 1
             assert parent.remove('.msg, .req').text() == label
-
-    def post_notifications(self, choices):
-        self.check_default_choices(choices)
-
-        self.data['notifications'] = []
-        r = self.client.post(self.url, self.data)
-        self.assert3xx(r, self.url, 302)
-
-        assert UserNotification.objects.count() == len(email.NOTIFICATIONS)
-        assert UserNotification.objects.filter(enabled=True).count() == (
-            len(filter(lambda x: x.mandatory, email.NOTIFICATIONS)))
-        self.check_default_choices(choices, checked=False)
 
     def test_edit_notifications(self):
         # Make jbalogh a developer.
@@ -201,7 +189,19 @@ class TestEdit(UserViewBase):
         assert doc('.more-all').length == len(email.NOTIFICATION_GROUPS)
 
     def test_edit_notifications_non_dev(self):
-        self.post_notifications(email.NOTIFICATIONS_CHOICES_NOT_DEV)
+        choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
+        notifications_not_dev = [
+            n for n in email.NOTIFICATIONS if n.group != 'dev']
+        self.check_default_choices(choices)
+
+        self.data['notifications'] = []
+        r = self.client.post(self.url, self.data)
+        self.assert3xx(r, self.url, 302)
+
+        assert UserNotification.objects.count() == len(notifications_not_dev)
+        assert UserNotification.objects.filter(enabled=True).count() == (
+            len(filter(lambda x: x.mandatory, notifications_not_dev)))
+        self.check_default_choices(choices, checked=False)
 
     def test_edit_notifications_non_dev_error(self):
         self.data['notifications'] = [2, 4, 6]
