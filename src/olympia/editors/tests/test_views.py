@@ -2987,7 +2987,9 @@ class TestReviewPending(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.version,
             verdict=amo.NOT_AUTO_APPROVED,
-            uses_custom_csp=True
+            uses_custom_csp=True,
+            approved_updates=1,
+            average_daily_users=10000,
         )
         set_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS', 10000)
         set_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES', 2)
@@ -2999,6 +3001,9 @@ class TestReviewPending(ReviewBase):
             'Has too few consecutive human-approved updates.')
         assert (
             doc('.auto_approval li').eq(1).text() ==
+            'Has too many daily users.')
+        assert (
+            doc('.auto_approval li').eq(2).text() ==
             'Uses a custom CSP.')
 
 
