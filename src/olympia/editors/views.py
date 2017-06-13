@@ -736,7 +736,7 @@ def review(request, addon, channel=None):
     count = pager.paginator.count
 
     max_average_daily_users = int(
-        get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0),
+        get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0)
     min_approved_updates = int(
         get_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES') or 0)
     auto_approval_info = {}

@@ -734,9 +734,6 @@ class AdminForm(happyforms.ModelForm):
         label=_(u'Reputation'),
         choices=(
             (None, ''),  # To handle null values - equivalent to 0.
-            (-3, 'Terrible (-3)'),
-            (-2, 'Very Bad (-2)'),
-            (-1, 'Bad (-1)'),
             (0, 'No Reputation'),
             (1, 'Good (1)'),
             (2, 'Very Good (2)'),

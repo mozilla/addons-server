@@ -288,4 +288,6 @@ class RecalculateWeightTestCase(TestCase):
             'process_addons', task='recalculate_post_review_weight')
 
         summary.reload()
-        assert summary.weight == 10  # Because of average_daily_users / 10000.
+        # Weight should be 110 because of average_daily_users / 10000 and the
+        # fact there is no file validation result.
+        assert summary.weight == 110

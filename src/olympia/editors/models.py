@@ -12,6 +12,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport
+from olympia.access import acl
 from olympia.access.models import Group
 from olympia.activity.models import ActivityLog
 from olympia.amo.helpers import absolutify
@@ -367,7 +368,12 @@ def send_notifications(signal=None, sender=None, **kw):
         return
 
     for subscriber in subscribers:
-        subscriber.send_notification(sender)
+        user = subscriber.user
+        is_reviewer = (
+            user and not user.deleted and user.email and
+            acl.action_allowed_user(user, amo.permissions.ADDONS_REVIEW))
+        if is_reviewer:
+            subscriber.send_notification(sender)
         subscriber.delete()
 
 
@@ -740,10 +746,9 @@ class AutoApprovalSummary(ModelBase):
                 .filter(rating__lte=3, created__gte=one_year_ago)
                 .count() / 100.0 * 2.0), 100),
             # Reputation is set by admin - the value is inverted to add from
-            # -300 (decreasing priority for "trusted" add-ons) to +300
-            # (increasing priority for add-ons we want to monitor closely).
+            # -300 (decreasing priority for "trusted" add-ons) to 0.
             'reputation': (
-                max(min(int(addon.reputation or 0) * -100, 300), -300)),
+                max(min(int(addon.reputation or 0) * -100, 300), 0)),
             # Average daily users: value divided by 10000 is added to the
             # weight, up to a maximum of 100.
             'average_daily_users': min(addon.average_daily_users / 10000, 100),
@@ -758,7 +763,39 @@ class AutoApprovalSummary(ModelBase):
                         files__status=amo.STATUS_DISABLED)
                 .distinct().count() * 10, 100),
         }
+        factors.update(self.calculate_static_analysis_weight_factors())
         self.weight = sum(factors.values())
+        return factors
+
+    def calculate_static_analysis_weight_factors(self):
+        """Calculate the static analysis risk factors.
+        Used by calculate_weight()."""
+        try:
+            factors = {
+                # Static analysis flags from linter:
+                # eval, evalInSandbox, document.write: 20.
+                'uses_dangerous_eval': (
+                    20 if self.check_uses_eval(self.version) else 0),
+                # Implied eval in setTimeout/setInterval/ on* attributes: 5.
+                'uses_implied_eval': (
+                    5 if self.check_uses_implied_eval(self.version) else 0),
+                # innerHTML / unsafe DOM: 20.
+                'uses_innerhtml': (
+                    20 if self.check_uses_innerhtml(self.version) else 0),
+                # custom CSP: 30.
+                'uses_custom_csp': (
+                    30 if self.check_uses_custom_csp(self.version) else 0),
+                # nativeMessaging permission: 20.
+                'uses_native_messaging': (
+                    20 if self.check_uses_native_messaging(self.version) else
+                    0),
+            }
+        except AutoApprovalNoValidationResultError:
+            # We should have a FileValidationResult... since we don't and
+            # something is wrong, increase the weight by 100.
+            factors = {
+                'no_validation_result': 100,
+            }
         return factors
 
     def calculate_verdict(
@@ -823,17 +860,33 @@ class AutoApprovalSummary(ModelBase):
                 if value)
 
     @classmethod
-    def check_uses_custom_csp(cls, version):
-        def _check_uses_custom_csp_in_file(file_):
+    def check_for_linter_flag(cls, version, flag):
+        def _check_for_linter_flag_in_file(file_):
             try:
                 validation = file_.validation
             except FileValidation.DoesNotExist:
                 raise AutoApprovalNoValidationResultError()
             validation_data = json.loads(validation.validation)
-            return any('MANIFEST_CSP' in message['id']
+            return any(flag in message['id']
                        for message in validation_data.get('messages', []))
-        return any(_check_uses_custom_csp_in_file(file_)
+        return any(_check_for_linter_flag_in_file(file_)
                    for file_ in version.all_files)
+
+    @classmethod
+    def check_uses_eval(cls, version):
+        return cls.check_for_linter_flag(version, 'DANGEROUS_EVAL')
+
+    @classmethod
+    def check_uses_implied_eval(cls, version):
+        return cls.check_for_linter_flag(version, 'IMPLIED_EVAL')
+
+    @classmethod
+    def check_uses_innerhtml(cls, version):
+        return cls.check_for_linter_flag(version, 'UNSAFE_VAR_ASSIGNMENT')
+
+    @classmethod
+    def check_uses_custom_csp(cls, version):
+        return cls.check_for_linter_flag(version, 'MANIFEST_CSP')
 
     @classmethod
     def check_uses_native_messaging(cls, version):

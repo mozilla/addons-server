@@ -74,9 +74,9 @@ PyJWT==1.5.0 \
     --hash=sha256:fd182b728d13f04c289d9b2623d09256d356c9b4a6778018001454a954d7c54b
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
-amo-validator==1.10.64 \
-    --hash=sha256:fa9a745067760a50ca83423e2e2c1105221c5376392fd32afed6ca709957ed4c \
-    --hash=sha256:d573f77665c438dc9cca0e11528379bf23145ca64ab1b334c744460082815c29
+amo-validator==1.10.65 \
+    --hash=sha256:397168dc5511a4bb703986fe0db0aa64568926e2b1c6a7f73c2f4d36d007c457 \
+    --hash=sha256:348334f86e3ca95801fac1410a05902f92eaa2c35541ad7071f843ead7e6f0f9
 # amqp is required by kombu
 amqp==1.4.9 \
     --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908 \
@@ -149,8 +149,9 @@ cffi==1.10.0 \
     --hash=sha256:5576644b859197da7bbd8f8c7c2fb5dcc6cd505cadb42992d5f104c013f8a214 \
     --hash=sha256:b3b02911eb1f6ada203b0763ba924234629b51586f72a21faacc638269f4ced5
 # chardet is required by requests
-chardet==3.0.3 \
-    --hash=sha256:8da3f329e2c5779247f4cff7081512c531731ef6a9c6ef78084e8ed8d18226c7
+chardet==3.0.4 \
+    --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
+    --hash=sha256:84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae
 # click is required by dennis, pyupio
 click==6.7 \
     --hash=sha256:29f99fc6125fbc931b758dc053b3114e55c77a6e4c6c3a2674a2dc986016381d \
@@ -390,9 +391,9 @@ pyquery==1.2.17 \
     --hash=sha256:554335a65570b4871051320a30919836f7548dbb2f2616d6e1f7c3f887096ef3 \
     --hash=sha256:6aa0133b30d9a0229ad65d3a7708c4e853bf46808fb359d06ca56f5039102af6
 # pytest is required by amo-validator
-pytest==3.1.1 \
-    --hash=sha256:765ce3acfff504c6c31e3c024c97dd57c8caa9b0cacd5ec3d0ef4c646a1ddf04 \
-    --hash=sha256:0173a366a259e1d23b0f433b1f06e1b753110bb33e77a79bd8ea54cbd0b5df15
+pytest==3.1.2 \
+    --hash=sha256:41e618f317957505ae2e81935733d8304d84170f7e21dfb15184d6fa8d7a5230 \
+    --hash=sha256:795ec29fbba70b22a593691ce8bcd4bdde2dc96e8099731f73c7d8bb3ce879bf
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==2.6.0 \
     --hash=sha256:62a2f8df3d66f878373fd0072eacf4ee52194ba302e00082828e0d263b0418d2 \
@@ -459,9 +460,9 @@ six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
     --hash=sha256:105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a
 # spidermonkey is required by amo-validator
-spidermonkey==54.0a2.post2 \
-    --hash=sha256:f4b784e654a4542f50599b3fa5752ef8f4213706b9fbd3a6fa28d937f009e49d \
-    --hash=sha256:0e3c78a1750c60666a8358490696f00c69187e4dd06fa66be5eb19b46af6b1fe
+spidermonkey==55.0a1.post2 \
+    --hash=sha256:61a62effe4a6c6e1c8449f1997c4a39c88e53fd3cd6d1a2dc0156e02f22804c1 \
+    --hash=sha256:df311184630b12c3abcca751478ed60fb477b8170423057d0f65ab0cd1509dc5
 # statsd is required by django-statsd-mozilla
 statsd==3.2.1 \
     --hash=sha256:7aff40c6cdda703193fac6231410c6c0ad5939ce053a168016501e982c755c84 \
