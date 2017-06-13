@@ -210,6 +210,41 @@ class AvgDailyUserCountTestCase(TestCase):
         addon = Addon.objects.get(pk=3615)
         assert addon.average_daily_users == addon.total_downloads
 
+    def test_13_day_window(self):
+        addon = Addon.objects.get(pk=3615)
+
+        # can't use a fixed date since we are relying on
+        # mysql to get us the `CURDATE()`
+        today = datetime.date.today()
+
+        # data is coming from `tab groups` add-on from
+        # jun 11 till may 29th 2017
+        stats = [
+            (today - datetime.timedelta(days=days_in_past), update_count)
+            for days_in_past, update_count in (
+                (1, 82708), (2, 78793), (3, 99586), (4, 104426), (5, 105431),
+                (6, 106065), (7, 98093), (8, 81710), (9, 78843), (10, 99383),
+                (11, 104431), (12, 105943), (13, 105039), (14, 100183),
+                (15, 82265)
+            )]
+
+        UpdateCount.objects.bulk_create([
+            UpdateCount(addon=addon, date=date, count=count)
+            for date, count in stats
+        ])
+
+        addon.update(average_daily_users=0)
+
+        cron.update_addon_average_daily_users()
+
+        addon.refresh_from_db()
+
+        assert (
+            82708 + 78793 + 99586 + 104426 + 105431 + 106065 + 98093 +
+            81710 + 78843 + 99383 + 104431 + 105943) / 12 == 95451
+
+        assert addon.average_daily_users == 95451
+
     def test_adu_flag(self):
         addon = Addon.objects.get(pk=3615)
 
