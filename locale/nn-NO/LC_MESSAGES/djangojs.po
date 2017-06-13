@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-02-16 01:59+0000\n"
+"PO-Revision-Date: 2017-06-13 12:57+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -97,7 +97,7 @@ msgid "Your submission will be automatically signed."
 msgstr "Bidraget ditt vert automatisk signert."
 
 msgid "WebExtension upgrade"
-msgstr "WebExtension oppgradering"
+msgstr "WebExtension-oppgradering"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Vi tillèt og oppmuntrar ei oppgradering, men du kan ikkje angra denne prosessen. Når brukarane dine har WebExtension installert, vil dei ikkje kunna installera ei utviding med arv."
