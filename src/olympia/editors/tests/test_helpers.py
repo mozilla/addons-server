@@ -196,7 +196,8 @@ class TestReviewHelper(TestCase):
     def get_data(self):
         return {'comments': 'foo', 'addon_files': self.version.files.all(),
                 'action': 'public', 'operating_systems': 'osx',
-                'applications': 'Firefox'}
+                'applications': 'Firefox',
+                'info_request': self.version.has_info_request}
 
     def get_helper(self):
         return helpers.ReviewHelper(request=self.request, addon=self.addon,
@@ -247,24 +248,23 @@ class TestReviewHelper(TestCase):
         self.assertRaises(self.helper.process)
 
     def test_process_action_good(self):
-        self.helper.set_data({'action': 'info', 'comments': 'foo'})
+        self.helper.set_data({'action': 'reply', 'comments': 'foo'})
         self.helper.process()
         assert len(mail.outbox) == 1
 
-    def test_clear_has_info_request(self):
+    def test_comment_clear_has_info_request(self):
         self.version.update(has_info_request=True)
-        assert self.version.has_info_request
         self.helper.set_data({'action': 'comment', 'comments': 'foo',
-                              'clear_info_request': True})
+                              'info_request': False})
         self.helper.process()
         assert not self.version.has_info_request
 
-    def test_do_not_clear_has_info_request(self):
-        self.version.update(has_info_request=True)
-        assert self.version.has_info_request
-        self.helper.set_data({'action': 'comment', 'comments': 'foo'})
+    def test_comment_cant_set_has_info_request(self):
+        self.version.update(has_info_request=False)
+        self.helper.set_data({'action': 'comment', 'comments': 'foo',
+                              'info_request': True})
         self.helper.process()
-        assert self.version.has_info_request
+        assert not self.version.has_info_request
 
     def test_action_details(self):
         for status in Addon.STATUS_CHOICES:
@@ -283,19 +283,19 @@ class TestReviewHelper(TestCase):
         return self.get_helper().actions
 
     def test_actions_full_nominated(self):
-        expected = ['public', 'reject', 'info', 'super', 'comment']
+        expected = ['public', 'reject', 'reply', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_NOMINATED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys() == expected
 
     def test_actions_full_update(self):
-        expected = ['public', 'reject', 'info', 'super', 'comment']
+        expected = ['public', 'reject', 'reply', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_AWAITING_REVIEW).keys() == expected
 
     def test_actions_full_nonpending(self):
-        expected = ['info', 'super', 'comment']
+        expected = ['reply', 'super', 'comment']
         f_statuses = [amo.STATUS_PUBLIC, amo.STATUS_DISABLED]
         for file_status in f_statuses:
             assert self.get_review_actions(
@@ -304,7 +304,7 @@ class TestReviewHelper(TestCase):
 
     def test_actions_public_post_reviewer(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
-        expected = ['reject_multiple_versions', 'info', 'super', 'comment']
+        expected = ['reject_multiple_versions', 'reply', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC).keys() == expected
@@ -313,7 +313,7 @@ class TestReviewHelper(TestCase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         expected = ['confirm_auto_approved', 'reject_multiple_versions',
-                    'info', 'super', 'comment']
+                    'reply', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC).keys() == expected
@@ -326,6 +326,23 @@ class TestReviewHelper(TestCase):
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_PUBLIC).keys() == expected
+
+    def test_info_request_for_comments(self):
+        # Info request flag not set on the version
+        assert not self.version.has_info_request
+        actions = self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_PUBLIC)
+        assert actions['reply']['info_request']
+        assert not actions['comment']['info_request']
+
+        # Now set the info request flag
+        self.version.update(has_info_request=True)
+        actions = self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_PUBLIC)
+        assert actions['reply']['info_request']
+        assert actions['comment']['info_request']
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
@@ -413,9 +430,23 @@ class TestReviewHelper(TestCase):
             del data[key]
         self.helper.set_data(data)
 
+    def test_send_reviewer_reply(self):
+        assert not self.version.has_info_request
+        self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
+        self.helper.handler.reviewer_reply()
+
+        assert not self.version.has_info_request
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == '%s %s' % (
+            self.preamble, amo.LOG.REVIEWER_REPLY_VERSION.short)
+
+        assert self.check_log_count(amo.LOG.REVIEWER_REPLY_VERSION.id) == 1
+
     def test_request_more_information(self):
         self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
-        self.helper.handler.request_information()
+        self.helper.handler.data['info_request'] = True
+        self.helper.handler.reviewer_reply()
 
         assert self.version.has_info_request
 

@@ -1,4 +1,5 @@
 import json
+from collections import OrderedDict
 from datetime import date, datetime, timedelta
 
 from django.conf import settings
@@ -6,7 +7,6 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
 from django.template import Context, loader
-from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
@@ -142,7 +142,7 @@ class ViewQueue(RawSQLModel):
 
     def base_query(self):
         return {
-            'select': SortedDict([
+            'select': OrderedDict([
                 ('id', 'addons.id'),
                 ('addon_name', 'tr.localized_string'),
                 ('addon_status', 'addons.status'),
@@ -229,7 +229,7 @@ class ViewUnlistedAllList(RawSQLModel):
     def base_query(self):
         review_ids = ','.join([str(r) for r in amo.LOG_EDITOR_REVIEW_ACTION])
         return {
-            'select': SortedDict([
+            'select': OrderedDict([
                 ('id', 'addons.id'),
                 ('addon_name', 'tr.localized_string'),
                 ('addon_status', 'addons.status'),
@@ -311,7 +311,7 @@ class PerformanceGraph(RawSQLModel):
                       if r != request_ver]
 
         return {
-            'select': SortedDict([
+            'select': OrderedDict([
                 ('yearmonth',
                  "DATE_FORMAT(`log_activity`.`created`, '%%Y-%%m')"),
                 ('approval_created', '`log_activity`.`created`'),

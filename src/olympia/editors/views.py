@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from datetime import date, datetime, timedelta
 import json
 import time
@@ -10,7 +10,6 @@ from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext, pgettext
 
@@ -328,7 +327,7 @@ def _performance_total(data):
 
 
 def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
-    monthly_data = SortedDict()
+    monthly_data = OrderedDict()
 
     now = datetime.now()
     if not end_month:
@@ -632,9 +631,12 @@ def review(request, addon, channel=None):
             request, ugettext('Self-reviews are not allowed.'))
         return redirect(reverse('editors.queue'))
 
+    # Get the current info request state to set as the default.
+    form_initial = {'info_request': version and version.has_info_request}
+
     form_helper = ReviewHelper(request=request, addon=addon, version=version)
     form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
-                            helper=form_helper)
+                            helper=form_helper, initial=form_initial)
     if channel == amo.RELEASE_CHANNEL_LISTED:
         queue_type = form.helper.handler.review_type
         redirect_url = reverse('editors.queue_%s' % queue_type)
@@ -710,6 +712,10 @@ def review(request, addon, channel=None):
     # the comments form).
     actions_comments = [k for (k, a) in actions if a.get('comments', True)]
 
+    # The actions we should show the 'info request' checkbox for.
+    actions_info_request = [k for (k, a) in actions
+                            if a.get('info_request', False)]
+
     versions = (Version.unfiltered.filter(addon=addon, channel=channel)
                                   .select_related('autoapprovalsummary')
                                   .exclude(files__status=amo.STATUS_BETA)
@@ -772,6 +778,7 @@ def review(request, addon, channel=None):
                   show_diff=show_diff,
                   actions=actions, actions_minimal=actions_minimal,
                   actions_comments=actions_comments,
+                  actions_info_request=actions_info_request,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
                   user_changes=user_changes_log,
                   unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),

@@ -110,8 +110,8 @@ class TestReviewForm(TestCase):
         # Alter the action to make it not require comments to be sent
         # regardless of what the action actually is, what we want to test is
         # the form behaviour.
-        form = self.get_form(data={'action': 'info'})
-        form.helper.actions['info']['comments'] = False
+        form = self.get_form(data={'action': 'reply'})
+        form.helper.actions['reply']['comments'] = False
         assert form.is_bound
         assert form.is_valid()
         assert not form.errors

@@ -1,9 +1,9 @@
 import datetime
+from collections import OrderedDict
 
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.template import Context, loader
-from django.utils.datastructures import SortedDict
 from django.utils.encoding import force_text
 from django.utils import translation
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
@@ -401,7 +401,7 @@ class ReviewHelper(object):
                 request, self.addon, self.version, 'pending')
 
     def get_actions(self, request):
-        actions = SortedDict()
+        actions = OrderedDict()
         if request is None:
             # If request is not set, it means we are just (ab)using the
             # ReviewHelper for its `handler` attribute and we don't care about
@@ -484,12 +484,13 @@ class ReviewHelper(object):
                                  'versions. The comments will be sent to the '
                                  'developer.'),
                 }
-            actions['info'] = {
-                'method': self.handler.request_information,
+            actions['reply'] = {
+                'method': self.handler.reviewer_reply,
                 'label': _('Reviewer reply'),
                 'details': _('This will send a message to the developer. '
                              'You will be notified when they reply.'),
-                'minimal': True}
+                'minimal': True,
+                'info_request': True}
             actions['super'] = {
                 'method': self.handler.process_super_review,
                 'label': _('Request super-review'),
@@ -503,7 +504,8 @@ class ReviewHelper(object):
             'label': _('Comment'),
             'details': _('Make a comment on this version. The developer '
                          'won\'t be able to see this.'),
-            'minimal': True}
+            'minimal': True,
+            'info_request': self.version and self.version.has_info_request}
 
         return actions
 
@@ -626,9 +628,18 @@ class ReviewBase(object):
                 'legacy_addon':
                     not self.files[0].is_webextension if self.files else False}
 
-    def request_information(self):
+    def reviewer_reply(self):
+        # Default to reviewer reply action.
+        action = amo.LOG.REVIEWER_REPLY_VERSION
         if self.version:
-            kw = {'has_info_request': True}
+            kw = {}
+            info_request = self.data.get('info_request')
+            if info_request is not None:
+                # Update info request flag.
+                kw['has_info_request'] = info_request
+                if info_request:
+                    # And change action to request info if set
+                    action = amo.LOG.REQUEST_INFORMATION
             if (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
                     not self.version.reviewed):
                 kw['reviewed'] = datetime.datetime.now()
@@ -636,7 +647,7 @@ class ReviewBase(object):
 
         log.info(u'Sending request for information for %s to authors and other'
                  u'recipients' % self.addon)
-        log_and_notify(amo.LOG.REQUEST_INFORMATION, self.data['comments'],
+        log_and_notify(action, self.data['comments'],
                        self.user, self.version,
                        perm_setting='individual_contact',
                        detail_kwargs={'reviewtype': self.review_type})
@@ -644,7 +655,7 @@ class ReviewBase(object):
     def process_comment(self):
         if self.version:
             kw = {'has_editor_comment': True}
-            if self.data.get('clear_info_request'):
+            if not self.data.get('info_request'):
                 kw['has_info_request'] = False
             if (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
                     not self.version.reviewed):

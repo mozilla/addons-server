@@ -2,6 +2,7 @@
 import json
 import time
 import urlparse
+from collections import OrderedDict
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -9,7 +10,6 @@ from django.core import mail
 from django.core.cache import cache
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-from django.utils.datastructures import SortedDict
 from django.test.utils import override_settings
 
 from lxml.html import fromstring, HTMLParser
@@ -612,13 +612,13 @@ class QueueTest(EditorTest):
         else:  # Testing unlisted views: needs Addons:ReviewUnlisted perm.
             self.login_as_senior_editor()
         self.url = reverse('editors.queue_pending')
-        self.addons = SortedDict()
+        self.addons = OrderedDict()
         self.expected_addons = []
 
     def generate_files(self, subset=None, files=None):
         if subset is None:
             subset = []
-        files = files or SortedDict([
+        files = files or OrderedDict([
             ('Pending One', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_PUBLIC,
@@ -645,7 +645,7 @@ class QueueTest(EditorTest):
                 'file_status': amo.STATUS_PUBLIC,
             }),
         ])
-        results = SortedDict()
+        results = OrderedDict()
         channel = (amo.RELEASE_CHANNEL_LISTED if self.listed else
                    amo.RELEASE_CHANNEL_UNLISTED)
         for name, attrs in files.iteritems():
@@ -1502,7 +1502,7 @@ class BaseTestQueueSearch(SearchTest):
     def generate_files(self, subset=None):
         if subset is None:
             subset = []
-        files = SortedDict([
+        files = OrderedDict([
             ('Not Admin Reviewed', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
@@ -1869,7 +1869,7 @@ class TestReview(ReviewBase):
         assert len(response.context['flags']) == 1
 
     def test_info_comments_requested(self):
-        response = self.client.post(self.url, {'action': 'info'})
+        response = self.client.post(self.url, {'action': 'reply'})
         assert response.context['form'].errors['comments'][0] == (
             'This field is required.')
 
@@ -1884,7 +1884,7 @@ class TestReview(ReviewBase):
             action=comment_version.id).count() == 1
 
     def test_info_requested(self):
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
         assert len(mail.outbox) == 1
@@ -1899,7 +1899,7 @@ class TestReview(ReviewBase):
                                 'editors/emails/author_super_review.ltxt')
 
     def test_info_requested_canned_response(self):
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor',
                                                'canned_response': 'foo'})
         assert response.status_code == 302
@@ -1907,14 +1907,14 @@ class TestReview(ReviewBase):
         self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
 
     def test_notify(self):
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor',
                                                'notify': True})
         assert response.status_code == 302
         assert EditorSubscription.objects.count() == 1
 
     def test_no_notify(self):
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor'})
         assert response.status_code == 302
         assert EditorSubscription.objects.count() == 0
@@ -1982,7 +1982,7 @@ class TestReview(ReviewBase):
             assert td.find('.history-comment').text() == 'something'
             assert td.find('th').text() == {
                 'public': 'Approved',
-                'info': 'More information requested'}[action]
+                'reply': 'Reviewer Reply'}[action]
             editor_name = td.find('td a').text()
             assert ((editor_name == self.editor.display_name) or
                     (editor_name == self.senior_editor.display_name))
@@ -2266,7 +2266,7 @@ class TestReview(ReviewBase):
     def test_unadmin_flag_as_admin(self):
         self.addon.update(admin_review=True)
         self.login_as_admin()
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor',
                                                'adminflag': True})
         self.assert3xx(response, reverse('editors.queue_pending'),
@@ -2276,13 +2276,25 @@ class TestReview(ReviewBase):
     def test_unadmin_flag_as_editor(self):
         self.addon.update(admin_review=True)
         self.login_as_editor()
-        response = self.client.post(self.url, {'action': 'info',
+        response = self.client.post(self.url, {'action': 'reply',
                                                'comments': 'hello sailor',
                                                'adminflag': True})
         # Should silently fail to set adminflag but work otherwise.
         self.assert3xx(response, reverse('editors.queue_pending'),
                        status_code=302)
         assert Addon.objects.get(pk=self.addon.pk).admin_review
+
+    def test_info_request_checkbox(self):
+        self.login_as_editor()
+        assert not self.version.has_info_request
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert 'checked' not in doc('#id_info_request')[0].attrib
+
+        self.version.update(has_info_request=True)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#id_info_request')[0].attrib['checked'] == 'checked'
 
     def test_no_public(self):
         has_public = self.version.files.filter(
@@ -2382,7 +2394,7 @@ class TestReview(ReviewBase):
             version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
             action = 'public'
         else:
-            action = 'info'
+            action = 'reply'
 
         data = dict(action=action, operating_systems='win',
                     applications='something', comments='something')
@@ -2854,7 +2866,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
-            'confirm_auto_approved|', 'reject_multiple_versions|', 'info|',
+            'confirm_auto_approved|', 'reject_multiple_versions|', 'reply|',
             'super|', 'comment|']
         assert [
             act.attrib['data-value'] for act in
@@ -2866,13 +2878,25 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
-            'reject_multiple_versions|info|super|comment|')
+            'reject_multiple_versions|reply|super|comment|')
         # We don't have approve/reject actions so these have an empty
         # data-value.
         assert (
             doc('.data-toggle.review-files')[0].attrib['data-value'] == '|')
         assert (
             doc('.data-toggle.review-tested')[0].attrib['data-value'] == '|')
+
+        assert (
+            doc('.data-toggle.review-info-request')[0].attrib['data-value'] ==
+            'reply|')
+
+        # If we set info request checkbox should be available on comment too.
+        self.version.update(has_info_request=True)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert (
+            doc('.data-toggle.review-info-request')[0].attrib['data-value'] ==
+            'reply|comment|')
 
     def test_data_value_attributes_unreviewed(self):
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -2881,7 +2905,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
-            'public|', 'reject|', 'info|', 'super|', 'comment|']
+            'public|', 'reject|', 'reply|', 'super|', 'comment|']
         assert [
             act.attrib['data-value'] for act in
             doc('.data-toggle.review-actions-desc')] == expected_actions_values
@@ -2892,7 +2916,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value'] ==
-            'public|reject|info|super|comment|')
+            'public|reject|reply|super|comment|')
         assert (
             doc('.data-toggle.review-files')[0].attrib['data-value'] ==
             'public|reject|')
@@ -3264,7 +3288,7 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
         self.login_as_limited_reviewer()
 
     def generate_files(self, subset=None):
-        files = SortedDict([
+        files = OrderedDict([
             ('Nominated new', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
