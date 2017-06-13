@@ -740,10 +740,9 @@ class AutoApprovalSummary(ModelBase):
                 .filter(rating__lte=3, created__gte=one_year_ago)
                 .count() / 100.0 * 2.0), 100),
             # Reputation is set by admin - the value is inverted to add from
-            # -300 (decreasing priority for "trusted" add-ons) to +300
-            # (increasing priority for add-ons we want to monitor closely).
+            # -300 (decreasing priority for "trusted" add-ons) to 0.
             'reputation': (
-                max(min(int(addon.reputation or 0) * -100, 300), -300)),
+                max(min(int(addon.reputation or 0) * -100, 300), 0)),
             # Average daily users: value divided by 10000 is added to the
             # weight, up to a maximum of 100.
             'average_daily_users': min(addon.average_daily_users / 10000, 100),

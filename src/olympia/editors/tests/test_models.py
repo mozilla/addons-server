@@ -803,8 +803,8 @@ class TestAutoApprovalSummary(TestCase):
         self.addon.update(reputation=3)
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == -300
-        assert weight_info['reputation'] == -300
+        assert summary.weight == 0
+        assert weight_info['reputation'] == 0
 
         self.addon.update(reputation=-3)
         weight_info = summary.calculate_weight()
@@ -818,8 +818,8 @@ class TestAutoApprovalSummary(TestCase):
 
         self.addon.update(reputation=1000)
         weight_info = summary.calculate_weight()
-        assert summary.weight == -300
-        assert weight_info['reputation'] == -300
+        assert summary.weight == 0
+        assert weight_info['reputation'] == 0
 
     def test_calculate_weight_average_daily_users(self):
         self.addon.update(average_daily_users=142444)
