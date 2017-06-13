@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2017-05-30 12:34+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1164,6 +1164,10 @@ msgstr "Το πεδίο πρέπει να αποτελείται από τουλ
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Ο κωδικός γλώσσας {lang_code} δεν είναι έγκυρος."
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
 
 msgid "Application Versions"
 msgstr "Εκδόσεις εφαρμογών"
@@ -3052,61 +3056,9 @@ msgstr "Φόρτωση αποτελεσμάτων&hellip;"
 msgid "No results found."
 msgstr "Δε βρέθηκαν αποτελέσματα."
 
-msgid "Submit an Add-on"
-msgstr "Υποβολή προσθέτου"
-
-msgid "AMO Reviewers"
-msgstr "Κριτές AMO"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
-
-msgid "Become an AMO Reviewer"
-msgstr ""
-
-msgid "Learn All About Add-ons"
-msgstr "Μάθετε τα πάντα για τα πρόσθετα"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
-
-msgid "Start Making Add-ons"
-msgstr "Ξεκινήστε να φτιάχνετε πρόσθετα"
-
-msgid "Status:"
-msgstr "Κατάσταση:"
-
-msgid "Latest Version:"
-msgstr "Τελευταία έκδοση"
-
-msgid "Queue Position:"
-msgstr "Θέση ουράς:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s από %(total)s"
-
-msgid "Upload New Version"
-msgstr "Μεταφόρτωση νέας έκδοσης"
-
-msgid "View all add-ons ►"
-msgstr "Προβολή όλων των προσθέτων"
-
-msgid "Publish your add-ons!"
-msgstr "Δημοσιεύστε τα πρόσθετά σας!"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "Πρόσθετα {0} "
 
 msgid "Return to the DevHub homepage"
 msgstr "Επιστροφή στην αρχική σελίδα του DevHub"
@@ -3662,6 +3614,9 @@ msgstr ""
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "Κατάσταση:"
+
 msgid "Disabled"
 msgstr "Απενεργοποιημένο"
 
@@ -3920,8 +3875,18 @@ msgstr ""
 msgid "Queues are not reviewed strictly in order"
 msgstr ""
 
+msgid "Queue Position:"
+msgstr "Θέση ουράς:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s από %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "Τελευταία έκδοση"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr ""
@@ -3954,6 +3919,9 @@ msgstr "Είτε ήταν μια ιδέα που σας ήρθε καθώς πε
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "Οι χρήστες θα έχουν ένα λόγο να αδημονούν αν τους πείτε τι θα προσθέσετε στο εγγύς μέλλον."
+
+msgid "Upload New Version"
+msgstr "Μεταφόρτωση νέας έκδοσης"
 
 msgid "View All"
 msgstr "Προβολή όλων"
@@ -4018,10 +3986,6 @@ msgstr ""
 
 msgid "Read more about the source code review policy."
 msgstr ""
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "Πρόσθετα {0} "
 
 msgid "Latest News"
 msgstr "Τελευταίες ειδήσεις"
@@ -4657,10 +4621,11 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Θέλετε σίγουρα να ακυρωθεί η αίτηση σας για αξιολόγηση;"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Λήψη πολυμέσου {start_sub_heading}με {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Φραγή διαφημίσεων {start_sub_heading}με {addon_name}{end_sub_heading}"
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4669,16 +4634,16 @@ msgstr "Φραγή διαφημίσεων {start_sub_heading}με {addon_name}{e
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Ένα ελαφρύ και αποτελεσματικό πρόσθετο φραγής διαφημίσεων. Το uBlock Origin εξαναγκάζει χιλιάδες φίλτρα περιεχομένου χωρίς να καταναλώνει υπερβολική μνήμη."
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Λήψη στιγμιότυπων {start_sub_heading}με {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Λήψη στιγμιότυπων {start_sub_heading}με {addon_name}{end_sub_heading}"
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Approved reviews"

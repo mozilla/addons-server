@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 19:42+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"PO-Revision-Date: 2017-06-07 16:59+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -59,7 +59,7 @@ msgid "Need help?"
 msgstr "サポートが必要ですか？"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "アドオンやテーマの開発者は自分のアカウントを削除できません。まずこのアカウントに関連付けられているすべてのアドオンとテーマを削除するか、他のユーザーへ移譲しなければなりません。"
 
 msgid "Review"
 msgstr "レビュー"
@@ -1120,6 +1120,10 @@ msgstr "この項目には最低 {num} 文字入力してください。"
 
 msgid "The language code {lang_code} is invalid."
 msgstr "言語コード {lang_code} が正しくありません。"
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr "不正な pk もしくはスラグ「%s」です - オブジェクトが存在しません。"
 
 msgid "Application Versions"
 msgstr "アプリケーションのバージョン"
@@ -2968,64 +2972,9 @@ msgstr "結果を読み込み中..."
 msgid "No results found."
 msgstr "該当するアドオンはありません。"
 
-# ボタン
-msgid "Submit an Add-on"
-msgstr "アドオンを登録"
-
-msgid "AMO Reviewers"
-msgstr "AMO 審査担当者"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "一歩先へ！ AMO の審査担当者になって、あなたのアドオンの審査を早めましょう。"
-
-msgid "Become an AMO Reviewer"
-msgstr "AMO 審査担当者になる"
-
-msgid "Learn All About Add-ons"
-msgstr "アドオンについて詳しく学ぶ"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
-"great add-on."
-msgstr ""
-"アドオンを使用すると、数多くの Firefox ユーザーがブラウザー機能を拡張したりカスタマイズしたりできます。あなたがウェブ開発者で<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a> や <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>、<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> の知識があれば、素晴らしいアドオンを作成するのに必要な技術を既にお持ちです。"
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr "はじめに、必要なすべてのことを <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> で学んでください。"
-
-msgid "Start Making Add-ons"
-msgstr "アドオンを作り始める"
-
-msgid "Status:"
-msgstr "状態:"
-
-msgid "Latest Version:"
-msgstr "最新版:"
-
-msgid "Queue Position:"
-msgstr "審査待ちの順番:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(total)s 個中 %(position)s 個目"
-
-msgid "Upload New Version"
-msgstr "新バージョンをアップロード"
-
-msgid "View all add-ons ►"
-msgstr "すべてのアドオンを見る ►"
-
-msgid "Publish your add-ons!"
-msgstr "あなたのアドオンを公開しましょう！"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "あなたのアドオンを配布する最善の手段は、Mozilla Add-ons サイトによるホスティング以外にありません。"
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "<a href=\"%(addon_url)s\">アドオン</a> か <a href=\"%(theme_url)s\">テーマ</a> をアップロードすることから始めましょう！"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "{0} アドオン"
 
 msgid "Return to the DevHub homepage"
 msgstr "開発者センターのトップへ戻る"
@@ -3566,6 +3515,9 @@ msgstr "このアドオンには一切バージョンがありません。"
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr "このアドオンには承認済みのバージョンが一切ないため、(ベータ版を含む) 公開ページは非表示となっています。"
 
+msgid "Status:"
+msgstr "状態:"
+
 msgid "Disabled"
 msgstr "無効"
 
@@ -3821,8 +3773,18 @@ msgstr "これはアップロードされた最新バージョンですが、ま
 msgid "Queues are not reviewed strictly in order"
 msgstr "審査は待ち順にレビューされるとは限りません"
 
+msgid "Queue Position:"
+msgstr "審査待ちの順番:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(total)s 個中 %(position)s 個目"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "署名され自主配布可能となりました。更新はあなた自身で処理する必要があります。"
+
+msgid "Latest Version:"
+msgstr "最新版:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr "これはアップロードされた最新の未公開バージョンです。"
@@ -3853,6 +3815,9 @@ msgstr "スーパーマーケットで列に並んでいる間に思いついた
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "次に何が来るかをユーザーに伝えることで、彼らに何らかの期待を与えることができます。"
+
+msgid "Upload New Version"
+msgstr "新バージョンをアップロード"
 
 msgid "View All"
 msgstr "すべて表示"
@@ -3916,10 +3881,6 @@ msgstr "最終的なアドオンのファイルを再現するための手順を
 
 msgid "Read more about the source code review policy."
 msgstr "ソースコードのレビューポリシーについての詳細をお読みください。"
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "{0} アドオン"
 
 msgid "Latest News"
 msgstr "最新ニュース"
@@ -4550,11 +4511,11 @@ msgstr "審査リクエストをキャンセルすることで、このアドオ
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "本当にこの審査リクエストをキャンセルしますか？"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} メディアをダウンロード"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 動画を改善"
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
-msgstr "この軽量ツールで、大量の音声、動画、画像ダウンロードを管理しましょう。"
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "シネマモード、広告ブロック、自動再生コントロールなど、YouTube の様々な新機能を試せます。"
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロック"
@@ -4562,17 +4523,17 @@ msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 広告をブロッ�
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "軽量で効果的な広告ブロッカー。uBlock Origin は、大量のメモリを消費することなく、数千ものコンテンツフィルターを適用します。"
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンショットを撮影"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Awesome Screenshot Plus では、単なるスクリーンショットの作成にとどまらず、文字や図で画像に注釈を付けられます。ファイルの保存や共有も簡単。"
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} 絵文字を表現"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr "あらゆる場面で使える素敵な絵文字が豊富に揃っています。使いたい時はワンクリックで。"
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} スクリーンショットを撮影"
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr "Awesome Screenshot Plus では、単なるスクリーンショットの作成にとどまらず、文字や図で画像に注釈を付けられます。ファイルの保存や共有も簡単。"
 
 msgid "Approved reviews"
 msgstr "承認されたレビュー"
@@ -4748,7 +4709,7 @@ msgid "Confirm Approval"
 msgstr "承認を確認"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-msgstr ""
+msgstr "このアドオンの最新公開バージョンは自動承認されました。これにより、開発者に通知することなく、あなたによる承認の確認が記録されます。"
 
 msgid "Reject Multiple Versions"
 msgstr "複数のバージョンを却下"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2017-04-23 03:04+0000\n"
 "Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1141,6 +1141,10 @@ msgstr "Bidang harus memiliki panjang sekurangnya {num} karakter."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Kode bahasa {lang_code} tidak valid."
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
 
 msgid "Application Versions"
 msgstr "Versi Aplikasi"
@@ -3028,64 +3032,9 @@ msgstr "Memperbarui hasil&hellip;"
 msgid "No results found."
 msgstr "Tidak ada hasil yang ditemukan."
 
-msgid "Submit an Add-on"
-msgstr "Memasukkan Pengaya"
-
-msgid "AMO Reviewers"
-msgstr "Pengulas AMO"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Mari! Bergabunglah menjadi Pengulas AMO hari ini agar pengaya anda diulas lebih cepat."
-
-msgid "Become an AMO Reviewer"
-msgstr "Jadilah Pengulas AMO"
-
-msgid "Learn All About Add-ons"
-msgstr "Pelajari Segala Hal Mengenai Pengaya"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-"Pengaya memungkinkan jutaan pengguna Firefox meningkatkan dan menyesuaikan pengalaman penjelajahan mereka. Jika anda seorang pengembang Web dan tahu <a href=\"https://developer.mozilla.org/docs/Web/"
-"HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, dan <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, anda sudah memiliki semua "
-"keterampilan yang diperlukan untuk membuat pengaya yang hebat."
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr "Beralihlah ke <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> untuk mempelajari segala hal yang ingin anda ketahui untuk memulai."
-
-msgid "Start Making Add-ons"
-msgstr "Mulailah Membuat Pengaya"
-
-msgid "Status:"
-msgstr "Status:"
-
-msgid "Latest Version:"
-msgstr "Versi Terbaru:"
-
-msgid "Queue Position:"
-msgstr "Posisi Antrean:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s dari %(total)s"
-
-msgid "Upload New Version"
-msgstr "Unggah Versi Baru"
-
-msgid "View all add-ons ►"
-msgstr "Tampilkan semua pengaya ►"
-
-msgid "Publish your add-ons!"
-msgstr "Terbitkan pengaya anda!"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "Tidak ada cara yang lebih baik untuk menyebarluaskan pengaya Anda selain meletakkannya di Mozilla Add-ons."
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "Unggah sebuah <a href=\"%(addon_url)s\">pengaya</a> atau <a href=\"%(theme_url)s\">tema</a> untuk memulai!"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "Pengaya {0}"
 
 msgid "Return to the DevHub homepage"
 msgstr "Kembali ke beranda DevHub"
@@ -3695,6 +3644,9 @@ msgstr "Pengaya ini tidak kompatibel dengan versi %(app)s Anda."
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Disabled"
 msgstr "Dimatikan"
 
@@ -4008,8 +3960,18 @@ msgstr ""
 msgid "Queues are not reviewed strictly in order"
 msgstr "Antrean tidak ditinjau secara ketat dalam urutan"
 
+msgid "Queue Position:"
+msgstr "Posisi Antrean:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s dari %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "Versi Terbaru:"
 
 #, fuzzy
 msgid "This is the newest uploaded unlisted version."
@@ -4045,6 +4007,9 @@ msgstr "Apakah itu hanya ide saat mengantre di toko kelontong atau solusi untuk 
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "Menyampaikan pada pengguna apa yang akan muncul dalam waktu dekat akan memberi mereka sesuatu untuk ditunggu."
+
+msgid "Upload New Version"
+msgstr "Unggah Versi Baru"
 
 msgid "View All"
 msgstr "Tampilkan Semua"
@@ -4116,10 +4081,6 @@ msgstr ""
 
 msgid "Read more about the source code review policy."
 msgstr "Baca lebih lanjut mengenai kebijakan mengulas kode sumber."
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "Pengaya {0}"
 
 #, fuzzy
 msgid "Latest News"
@@ -4814,10 +4775,10 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Apakah anda ingin membatalkan permintaan ulasan anda?"
 
 #, fuzzy
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4827,17 +4788,17 @@ msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands 
 msgstr ""
 
 #, fuzzy
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-
-#, fuzzy
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+#, fuzzy
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Approved reviews"

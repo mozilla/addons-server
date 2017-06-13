@@ -661,8 +661,6 @@ MINIFY_BUNDLES = {
             'css/zamboni/admin-django.css',
             'css/zamboni/admin-mozilla.css',
             'css/zamboni/admin_features.css',
-            # Datepicker styles and jQuery UI core.
-            'css/zamboni/jquery-ui/custom-1.7.2.css',
         ),
     },
     'js': {
@@ -683,20 +681,34 @@ MINIFY_BUNDLES = {
             'js/common/keys.js',
 
             # jQuery UI
-            'js/lib/jquery-ui/core.js',
-            'js/lib/jquery-ui/position.js',
-            'js/lib/jquery-ui/widget.js',
-            'js/lib/jquery-ui/menu.js',
-            'js/lib/jquery-ui/mouse.js',
-            'js/lib/jquery-ui/autocomplete.js',
-            'js/lib/jquery-ui/datepicker.js',
-            'js/lib/jquery-ui/sortable.js',
+            'js/node_lib/ui/version.js',
+            'js/node_lib/ui/data.js',
+            'js/node_lib/ui/disable-selection.js',
+            'js/node_lib/ui/ie.js',
+            'js/node_lib/ui/keycode.js',
+            'js/node_lib/ui/escape-selector.js',
+            'js/node_lib/ui/labels.js',
+            'js/node_lib/ui/jquery-1-7.js',
+            'js/node_lib/ui/plugin.js',
+            'js/node_lib/ui/safe-active-element.js',
+            'js/node_lib/ui/safe-blur.js',
+            'js/node_lib/ui/scroll-parent.js',
+            'js/node_lib/ui/focusable.js',
+            'js/node_lib/ui/tabbable.js',
+            'js/node_lib/ui/unique-id.js',
+            'js/node_lib/ui/position.js',
+            'js/node_lib/ui/widget.js',
+            'js/node_lib/ui/menu.js',
+            'js/node_lib/ui/mouse.js',
+            'js/node_lib/ui/autocomplete.js',
+            'js/node_lib/ui/datepicker.js',
+            'js/node_lib/ui/sortable.js',
 
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/common/ratingwidget.js',
-            'js/lib/jquery-ui/jqModal.js',
+            'js/lib/jqModal.js',
             'js/zamboni/l10n.js',
             'js/zamboni/debouncer.js',
 
@@ -705,7 +717,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/homepage.js',
 
             # Add-ons details page
-            'js/lib/jquery-ui/ui.lightbox.js',
+            'js/lib/ui.lightbox.js',
             'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',
             'js/impala/abuse.js',
@@ -725,9 +737,6 @@ MINIFY_BUNDLES = {
 
             # Users
             'js/zamboni/users.js',
-
-            # Password length and strength
-            'js/zamboni/password-strength.js',
 
             # Search suggestions
             'js/impala/forms.js',
@@ -763,14 +772,28 @@ MINIFY_BUNDLES = {
             'js/common/keys.js',
 
             # jQuery UI
-            'js/lib/jquery-ui/core.js',
-            'js/lib/jquery-ui/position.js',
-            'js/lib/jquery-ui/widget.js',
-            'js/lib/jquery-ui/mouse.js',
-            'js/lib/jquery-ui/menu.js',
-            'js/lib/jquery-ui/autocomplete.js',
-            'js/lib/jquery-ui/datepicker.js',
-            'js/lib/jquery-ui/sortable.js',
+            'js/node_lib/ui/version.js',
+            'js/node_lib/ui/data.js',
+            'js/node_lib/ui/disable-selection.js',
+            'js/node_lib/ui/ie.js',
+            'js/node_lib/ui/keycode.js',
+            'js/node_lib/ui/escape-selector.js',
+            'js/node_lib/ui/labels.js',
+            'js/node_lib/ui/jquery-1-7.js',
+            'js/node_lib/ui/plugin.js',
+            'js/node_lib/ui/safe-active-element.js',
+            'js/node_lib/ui/safe-blur.js',
+            'js/node_lib/ui/scroll-parent.js',
+            'js/node_lib/ui/focusable.js',
+            'js/node_lib/ui/tabbable.js',
+            'js/node_lib/ui/unique-id.js',
+            'js/node_lib/ui/position.js',
+            'js/node_lib/ui/widget.js',
+            'js/node_lib/ui/mouse.js',
+            'js/node_lib/ui/menu.js',
+            'js/node_lib/ui/autocomplete.js',
+            'js/node_lib/ui/datepicker.js',
+            'js/node_lib/ui/sortable.js',
 
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
@@ -779,7 +802,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/global.js',
             'js/impala/global.js',
             'js/common/ratingwidget.js',
-            'js/lib/jquery-ui/jqModal.js',
+            'js/lib/jqModal.js',
             'js/zamboni/l10n.js',
             'js/impala/forms.js',
 
@@ -788,7 +811,7 @@ MINIFY_BUNDLES = {
             'js/impala/homepage.js',
 
             # Add-ons details page
-            'js/lib/jquery-ui/ui.lightbox.js',
+            'js/lib/ui.lightbox.js',
             'js/zamboni/contributions.js',
             'js/impala/addon_details.js',
             'js/impala/abuse.js',
@@ -843,7 +866,7 @@ MINIFY_BUNDLES = {
             'js/lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
-            'js/lib/jquery-ui/ui.lightbox.js',
+            'js/lib/ui.lightbox.js',
 
             # Personas
             'js/lib/jquery.hoverIntent.js',
@@ -915,7 +938,7 @@ MINIFY_BUNDLES = {
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
             'js/debug/less_setup.js',
-            'js/lib/less.js',
+            'js/node_lib/less.js',
             'js/debug/less_live.js',
         ),
     }

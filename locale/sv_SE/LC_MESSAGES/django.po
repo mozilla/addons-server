@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 10:10+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"PO-Revision-Date: 2017-06-07 20:04+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1130,6 +1130,10 @@ msgstr "Fältet måste minst ha en längd av {num} tecken."
 msgid "The language code {lang_code} is invalid."
 msgstr "Språkkoden {lang_code} är ogiltig."
 
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr "Ogiltig pk eller slugg \"%s\" - objektet finns inte."
+
 msgid "Application Versions"
 msgstr "Applikationsversioner"
 
@@ -1229,13 +1233,13 @@ msgid "Remove from favorites"
 msgstr "Ta bort från favoriter"
 
 msgid "This slug is already in use by another one of your collections."
-msgstr "Denna slug används redan av en av dina samlingar."
+msgstr "Denna slugg används redan av en av dina samlingar."
 
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
-msgstr "Ange en giltig slug som består av bokstäver, siffror, understreck eller bindestreck."
+msgstr "Ange en giltig slugg som består av bokstäver, siffror, understreck eller bindestreck."
 
 msgid "This slug cannot be used."
-msgstr "Denna slug kan inte användas."
+msgstr "Denna slugg kan inte användas."
 
 msgid "Name"
 msgstr "Namn"
@@ -2998,64 +3002,9 @@ msgstr "Laddar resultat &hellip;"
 msgid "No results found."
 msgstr "Inga resultat hittades."
 
-msgid "Submit an Add-on"
-msgstr "Skicka in ett tillägg"
-
-msgid "AMO Reviewers"
-msgstr "AMO-granskare"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Avancera! Bli en AMO-granskare idag och få ditt tillägg granskat snabbare."
-
-msgid "Become an AMO Reviewer"
-msgstr "Bli en AMO-granskare"
-
-msgid "Learn All About Add-ons"
-msgstr "Lär dig allt om tillägg"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
-"great add-on."
-msgstr ""
-"Tillägg låter miljontals Firefox-användare förbättra och anpassa sin webbupplevelse. Om du är en webbutvecklare och har kunskap inom <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>,"
-" <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> och <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, har du redan alla de kunskaper som behövs för att "
-"skapa ett bra tillägg."
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr "Bege dig till <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla utvecklarnätverk</a> för att lära dig allt du behöver för att komma igång."
-
-msgid "Start Making Add-ons"
-msgstr "Börja skapa tillägg"
-
-msgid "Status:"
-msgstr "Status:"
-
-msgid "Latest Version:"
-msgstr "Senaste version:"
-
-msgid "Queue Position:"
-msgstr "Köplats:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s av %(total)s"
-
-msgid "Upload New Version"
-msgstr "Ladda upp ny version"
-
-msgid "View all add-ons ►"
-msgstr "Visa alla tillägg ►"
-
-msgid "Publish your add-ons!"
-msgstr "Publicera dina tillägg!"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "Det finns inget bättre sätt att sprida ditt tillägg än att hosta det på Mozilla Add-ons."
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "Ladda upp ett <a href=\"%(addon_url)s\">tillägg</a> eller <a href=\"%(theme_url)s\">tema</a> för att komma igång!"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "{0} tillägg"
 
 msgid "Return to the DevHub homepage"
 msgstr "Gå tillbaka till hemsidan för DevHub"
@@ -3662,6 +3611,9 @@ msgstr "Detta tillägg har inga versioner."
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr "Detta tillägg har inte några godkända versioner, så dess publika sidor (inklusive betaversioner) är dolda."
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Disabled"
 msgstr "Inaktiverad"
 
@@ -3929,8 +3881,18 @@ msgstr ""
 msgid "Queues are not reviewed strictly in order"
 msgstr "Köerna granskas inte i strikt ordning"
 
+msgid "Queue Position:"
+msgstr "Köplats:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s av %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Signerad för självdistribution. Uppdateringar hanteras av dig."
+
+msgid "Latest Version:"
+msgstr "Senaste version:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr "Detta är den senaste uppladdade olistade versionen."
@@ -3963,6 +3925,9 @@ msgstr "Om det var en idé som du fick i kön i mataffären eller lösningen på
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "Berätta för dina användare vad som snart kommer kan att ge dem något att se fram emot."
+
+msgid "Upload New Version"
+msgstr "Ladda upp ny version"
 
 msgid "View All"
 msgstr "Visa alla"
@@ -4033,10 +3998,6 @@ msgstr "Inkludera instruktioner om hur man återskapar den slutliga tilläggsfil
 
 msgid "Read more about the source code review policy."
 msgstr "Läs mer om granskningspolicyn för källkod."
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "{0} tillägg"
 
 msgid "Latest News"
 msgstr "Senaste nytt"
@@ -4680,11 +4641,11 @@ msgstr "Att avbryta din begäran om granskning kommer att markera ditt tillägg 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Är du säker på att du vill avbryta din begäran om granskning?"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ladda ner media {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Förbättra videor {start_sub_heading}med {addon_name}{end_sub_heading}"
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
-msgstr "Hantera stora mängder ljud, video och grafiknedladdningar med detta enkla verktyg."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Njut av en serie av nya YouTube-funktioner, som biografläge, annonsblockering, automatisk spelkontroll och mycket mer."
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blockera annonser {start_sub_heading}med {addon_name}{end_sub_heading}"
@@ -4692,17 +4653,17 @@ msgstr "Blockera annonser {start_sub_heading}med {addon_name}{end_sub_heading}"
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "En lätt och effektiv annonsblockerare. uBlock Origin använder tusentals filter utan att använda en massa minne."
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ta skärmdumpar {start_sub_heading}med {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Mer än bara skärmdumpar, med fantastiska Screenshot Plus kan du kommentera bilder med text och grafik. Lagring och delning av filer är enkelt."
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Emoji-uttryck {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr "Dussintals fantastiska emojis för varje tillfälle — alltid bara ett klick bort."
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ta skärmdumpar {start_sub_heading}med {addon_name}{end_sub_heading}"
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr "Mer än bara skärmdumpar, med fantastiska Screenshot Plus kan du kommentera bilder med text och grafik. Lagring och delning av filer är enkelt."
 
 msgid "Approved reviews"
 msgstr "Godkända granskningar"

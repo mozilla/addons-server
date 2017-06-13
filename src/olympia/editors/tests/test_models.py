@@ -9,6 +9,7 @@ from django.core import mail
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
+from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import (
@@ -360,8 +361,11 @@ class TestEditorSubscription(TestCase):
         self.version = self.addon.current_version
         self.user_one = UserProfile.objects.get(pk=55021)
         self.user_two = UserProfile.objects.get(pk=999)
+        self.editor_group = Group.objects.create(
+            name='editors', rules='Addons:Review')
         for user in [self.user_one, self.user_two]:
             EditorSubscription.objects.create(addon=self.addon, user=user)
+            GroupUser.objects.create(group=self.editor_group, user=user)
 
     def test_email(self):
         es = EditorSubscription.objects.get(user=self.user_one)
@@ -407,6 +411,19 @@ class TestEditorSubscription(TestCase):
         v = Version.objects.create(addon=self.addon)
         version_uploaded.send(sender=v)
         assert len(mail.outbox) == 0
+
+    def test_no_email_for_ex_editors(self):
+        self.user_one.delete()
+        # Remove user_two from editors.
+        GroupUser.objects.get(
+            group=self.editor_group, user=self.user_two).delete()
+        send_notifications(sender=self.version)
+        assert len(mail.outbox) == 0
+
+    def test_no_email_address_for_editor(self):
+        self.user_one.update(email=None)
+        send_notifications(sender=self.version)
+        assert len(mail.outbox) == 1
 
 
 class TestReviewerScore(TestCase):
@@ -691,7 +708,12 @@ class TestAutoApprovalSummary(TestCase):
             'average_daily_users': 0,
             'negative_reviews': 0,
             'reputation': 0,
-            'past_rejection_history': 0
+            'past_rejection_history': 0,
+            'uses_custom_csp': 0,
+            'uses_dangerous_eval': 0,
+            'uses_implied_eval': 0,
+            'uses_innerhtml': 0,
+            'uses_native_messaging': 0
         }
         assert weight_info == expected_result
 
@@ -767,21 +789,27 @@ class TestAutoApprovalSummary(TestCase):
             version=extra_addon.current_version, rating=1)
 
         # Recent negative reviews.
-        Review.objects.create(
-            user=user_factory(), addon=self.addon, version=self.version,
-            rating=1)
+        reviews = [Review(
+            user=user_factory(), addon=self.addon,
+            version=self.version, rating=3) for i in range(0, 49)]
+        Review.objects.bulk_create(reviews)
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 0  # Not enough negative reviews yet...
+        assert weight_info['negative_reviews'] == 0
+
+        # Create one more to get to weight == 1.
         Review.objects.create(
             user=user_factory(), addon=self.addon, version=self.version,
             rating=2)
-        summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 4
-        assert weight_info['negative_reviews'] == 4
+        assert summary.weight == 1
+        assert weight_info['negative_reviews'] == 1
 
-        # Create fifty more to make sure it's capped at 100.
+        # Create 5000 more (sorry!) to make sure it's capped at 100.
         reviews = [Review(
             user=user_factory(), addon=self.addon,
-            version=self.version, rating=3) for i in range(0, 50)]
+            version=self.version, rating=3) for i in range(0, 5000)]
         Review.objects.bulk_create(reviews)
 
         weight_info = summary.calculate_weight()
@@ -883,6 +911,91 @@ class TestAutoApprovalSummary(TestCase):
         weight_info = summary.calculate_weight()
         assert summary.weight == 100
         assert weight_info['past_rejection_history'] == 100
+
+    def test_calculate_weight_uses_dangerous_eval(self):
+        validation_data = {
+            'messages': [{
+                'id': ['DANGEROUS_EVAL'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['uses_dangerous_eval'] == 20
+
+    def test_calculate_weight_uses_implied_eval(self):
+        validation_data = {
+            'messages': [{
+                'id': ['IMPLIED_EVAL'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 5
+        assert weight_info['uses_implied_eval'] == 5
+
+    def test_calculate_weight_uses_innerhtml(self):
+        validation_data = {
+            'messages': [{
+                'id': ['UNSAFE_VAR_ASSIGNMENT'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['uses_innerhtml'] == 20
+
+    def test_calculate_weight_uses_custom_csp(self):
+        validation_data = {
+            'messages': [{
+                'id': ['MANIFEST_CSP'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 30
+        assert weight_info['uses_custom_csp'] == 30
+
+    def test_calculate_weight_uses_native_messaging(self):
+        WebextPermission.objects.create(
+            file=self.file, permissions=['nativeMessaging'])
+
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['uses_native_messaging'] == 20
+
+    def test_calculate_weight_sum(self):
+        validation_data = {
+            'messages': [
+                {'id': ['MANIFEST_CSP']},
+                {'id': ['UNSAFE_VAR_ASSIGNMENT']},
+                {'id': ['IMPLIED_EVAL']},
+                {'id': ['DANGEROUS_EVAL']},
+            ]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 75
+        expected_result = {
+            'abuse_reports': 0,
+            'admin_review': 0,
+            'average_daily_users': 0,
+            'negative_reviews': 0,
+            'reputation': 0,
+            'past_rejection_history': 0,
+            'uses_custom_csp': 30,
+            'uses_dangerous_eval': 20,
+            'uses_implied_eval': 5,
+            'uses_innerhtml': 20,
+            'uses_native_messaging': 0
+        }
+        assert weight_info == expected_result
 
     def test_check_uses_custom_csp(self):
         assert AutoApprovalSummary.check_uses_custom_csp(self.version) is False

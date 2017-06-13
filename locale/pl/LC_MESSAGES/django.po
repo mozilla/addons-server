@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1171,6 +1171,10 @@ msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
 msgid "The language code {lang_code} is invalid."
+msgstr ""
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Application Versions"
@@ -3077,61 +3081,9 @@ msgstr ""
 msgid "No results found."
 msgstr "Nic nie znaleziono."
 
-msgid "Submit an Add-on"
-msgstr "Prześlij dodatek"
-
-msgid "AMO Reviewers"
-msgstr "Recenzenci AMO"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Rusz się! Zostań już dziś recenzentem AMO i spraw, by twoje dodatki były szybciej sprawdzone."
-
-msgid "Become an AMO Reviewer"
-msgstr "Zostań recenzentem AMO"
-
-msgid "Learn All About Add-ons"
-msgstr "Dowiedz się wszystkiego o dodatkach"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr "Przejdź do <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a>, aby nauczyć się wszystkiego, co jest potrzebne do rozpoczęcia."
-
-msgid "Start Making Add-ons"
-msgstr "Zacznij tworzyć dodatki"
-
-msgid "Status:"
-msgstr "Status:"
-
-msgid "Latest Version:"
-msgstr "Najnowsza wersja:"
-
-msgid "Queue Position:"
-msgstr "Pozycja w kolejce:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s z %(total)s"
-
-msgid "Upload New Version"
-msgstr "Ładowanie nowej wersji"
-
-msgid "View all add-ons ►"
-msgstr "Zobacz wszystkie dodatki ►"
-
-msgid "Publish your add-ons!"
-msgstr "Publikuj swoje dodatki!"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "Wgraj <a href=\"%(addon_url)s\">dodatek</a> lub <a href=\"%(theme_url)s\">motyw</a>, aby rozpocząć!"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "Dodatki dla {0}"
 
 msgid "Return to the DevHub homepage"
 msgstr "Wróć do strony głównej strefy autora"
@@ -3705,6 +3657,9 @@ msgstr "Ten dodatek nie jest kompatybilny z twoją wersją programu %(app)s."
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "Status:"
+
 msgid "Disabled"
 msgstr "wyłączony"
 
@@ -4002,8 +3957,18 @@ msgstr "To jest najnowsza załadowana wersja, jednak nie jest jeszcze dostępna 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Kolejki nie są sprawdzane dokładnie w kolejności"
 
+msgid "Queue Position:"
+msgstr "Pozycja w kolejce:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s z %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "Najnowsza wersja:"
 
 #, fuzzy
 msgid "This is the newest uploaded unlisted version."
@@ -4037,6 +4002,9 @@ msgstr "Czy pomysł powstał podczas stania w kolejce w sklepie spożywczym, czy
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "Informując użytkowników o dalszych planach rozwojowych, spowodujesz, że będą oczekiwali z niecierpliwością na nowe wydanie."
+
+msgid "Upload New Version"
+msgstr "Ładowanie nowej wersji"
 
 msgid "View All"
 msgstr "Wyświetl wszystko"
@@ -4105,10 +4073,6 @@ msgstr ""
 
 msgid "Read more about the source code review policy."
 msgstr "Dowiedz się więcej o zasadach sprawdzania kodu źródłowego."
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "Dodatki dla {0}"
 
 #, fuzzy
 msgid "Latest News"
@@ -4794,10 +4758,10 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Czy na pewno chcesz anulować prośbę o sprawdzenie?"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4806,16 +4770,16 @@ msgstr ""
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Approved reviews"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: 2017-03-23 03:00+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1147,6 +1147,10 @@ msgstr "적어도 {num} 자 이상 되어야 합니다."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "언어 코드 {lang_code}가 유효하지 않습니다."
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
 
 msgid "Application Versions"
 msgstr "애플리케이션 버전"
@@ -3039,61 +3043,9 @@ msgstr "결과를 불러오는 중&hellip;"
 msgid "No results found."
 msgstr "검색 결과가 없습니다."
 
-msgid "Submit an Add-on"
-msgstr "부가 기능 등록"
-
-msgid "AMO Reviewers"
-msgstr "AMO 심사원"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "출세의 지름길! AMO 심사원이 되서 내 부가 기능을 빠르게 심사합시다."
-
-msgid "Become an AMO Reviewer"
-msgstr "AMO 심사원 되기"
-
-msgid "Learn All About Add-ons"
-msgstr "부가 기능에 대해 알아보기"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
-
-msgid "Start Making Add-ons"
-msgstr "부가 기능 제작 시작"
-
-msgid "Status:"
-msgstr "상태:"
-
-msgid "Latest Version:"
-msgstr "최신 버전:"
-
-msgid "Queue Position:"
-msgstr "현재 대기열:"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s / %(total)s"
-
-msgid "Upload New Version"
-msgstr "새 버전 업로드하기"
-
-msgid "View all add-ons ►"
-msgstr "전체 부가 기능 보기 ►"
-
-msgid "Publish your add-ons!"
-msgstr "내 부가 기능 만들기!"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "Mozilla Add-ons에 호스팅하는 것 보다 더 나은 부가 기능의 배포 방법은 없습니다."
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "<a href=\"%(addon_url)s\">부가 기능</a> 또는 <a href=\"%(theme_url)s\">테마</a>를 업로드하여 시작하기!"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "{0} 부가 기능"
 
 msgid "Return to the DevHub homepage"
 msgstr "개발자 허브 대문으로 돌아가기"
@@ -3646,6 +3598,9 @@ msgstr "이 부가 기능은 현재 사용중인 %(app)s 버전과 호환되지 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
 
+msgid "Status:"
+msgstr "상태:"
+
 msgid "Disabled"
 msgstr "사용 안함"
 
@@ -3937,8 +3892,18 @@ msgstr "이 버전이 최신이지만 아직 사이트 상에 올라가지는 �
 msgid "Queues are not reviewed strictly in order"
 msgstr "대기열 순서를 정확하게 지켜가며 심사되지는 않습니다."
 
+msgid "Queue Position:"
+msgstr "현재 대기열:"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s / %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
+
+msgid "Latest Version:"
+msgstr "최신 버전:"
 
 #, fuzzy
 msgid "This is the newest uploaded unlisted version."
@@ -3972,6 +3937,9 @@ msgstr "마트에서 줄을 서면서 떠오른 아이디어가 인생의 난제
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "사람들에게 앞으로 어떤 기능이 추가되는지 말해준다면 이들은 기대감을 갖고 당신을 지켜볼 것입니다."
+
+msgid "Upload New Version"
+msgstr "새 버전 업로드하기"
 
 msgid "View All"
 msgstr "전부 보기"
@@ -4039,10 +4007,6 @@ msgstr "README 파일, 혹은 심사원에게 알려줄 주의 사항으로 마�
 
 msgid "Read more about the source code review policy."
 msgstr ""
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "{0} 부가 기능"
 
 #, fuzzy
 msgid "Latest News"
@@ -4732,10 +4696,10 @@ msgstr "심사 요청을 취소하면 부가 기능이 미완료 상태로 표�
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "정말 심사 요청을 취소하시겠습니까?"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr ""
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4744,16 +4708,16 @@ msgstr ""
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ""
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ""
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
+msgstr ""
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
 msgstr ""
 
 msgid "Approved reviews"

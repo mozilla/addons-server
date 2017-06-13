@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-06-06 14:53+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"PO-Revision-Date: 2017-06-08 09:37+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1111,6 +1111,10 @@ msgstr "该字段至少有 {num} 个字符。"
 
 msgid "The language code {lang_code} is invalid."
 msgstr "语言代码 {lang_code} 无效。"
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr "无效的 pk 或 slug \"%s\" - 对象不存在。"
 
 msgid "Application Versions"
 msgstr "应用程序版本"
@@ -2748,9 +2752,8 @@ msgstr "不能既选择所有平台又指定特定平台。"
 msgid "A platform can only be chosen once."
 msgstr "一个平台只能被选择一次。"
 
-#, fuzzy
 msgid "Reputation"
-msgstr "决定"
+msgstr "声誉"
 
 msgid "Application"
 msgstr "应用程序"
@@ -2960,63 +2963,9 @@ msgstr "正在载入搜索结果 &hellip;"
 msgid "No results found."
 msgstr "未找到结果。"
 
-msgid "Submit an Add-on"
-msgstr "提交附加组件"
-
-msgid "AMO Reviewers"
-msgstr "AMO 审核员"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "来吧！今天就成为 AMO 审核员，助大家的附加组件更快完成审核。"
-
-msgid "Become an AMO Reviewer"
-msgstr "成为 AMO 审核员"
-
-msgid "Learn All About Add-ons"
-msgstr "了解有关附加组件的事情"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
-"great add-on."
-msgstr ""
-"附加组件让超过数百万的 Firefox 用户能够增强和定制自己的浏览体验。如果您是一名网页开发者并且熟悉 <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> 和 "
-"<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>，您就已经可以有所有必要的技能来制作一个超棒的附加组件了。"
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr "请前往 <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla 开发者网络</a>了解您还需要熟悉哪些事物才能开始动手。"
-
-msgid "Start Making Add-ons"
-msgstr "开始制作附加组件"
-
-msgid "Status:"
-msgstr "状态："
-
-msgid "Latest Version:"
-msgstr "最新版本："
-
-msgid "Queue Position:"
-msgstr "队列位置："
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(position)s / %(total)s"
-
-msgid "Upload New Version"
-msgstr "上传新版本"
-
-msgid "View all add-ons ►"
-msgstr "查看所有附加组件►"
-
-msgid "Publish your add-ons!"
-msgstr "发布您的附加组件！"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr "没有比用 Mozilla 附加组件更好的方法来托管您的附加组件。"
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "上传一个<a href=\"%(addon_url)s\">附加组件</a>或者<a href=\"%(theme_url)s\">主题</a>吧！"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "{0} 附加组件"
 
 msgid "Return to the DevHub homepage"
 msgstr "返回开发者中心首页"
@@ -3556,6 +3505,9 @@ msgstr "此附加组件没有任何版本。"
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr "此附加组件没有任何已批准的版本，因此其公开页面（以及测试版本）为隐藏。"
 
+msgid "Status:"
+msgstr "状态："
+
 msgid "Disabled"
 msgstr "已停用"
 
@@ -3811,8 +3763,18 @@ msgstr "这是新上传的版本，但它还没有正式在网站上架。"
 msgid "Queues are not reviewed strictly in order"
 msgstr "审核时并不会严格按照进入队列的先后顺序进行"
 
+msgid "Queue Position:"
+msgstr "队列位置："
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(position)s / %(total)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "已签名为自行分发。更新将由您来处理。"
+
+msgid "Latest Version:"
+msgstr "最新版本："
 
 msgid "This is the newest uploaded unlisted version."
 msgstr "这是新上传的未上架版本。"
@@ -3843,6 +3805,9 @@ msgstr "无论是去杂货店途中偶然的灵感，还是人生大问题的解
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr "告诉您的用户下一步将带给他们期待的哪些功能或特性。"
+
+msgid "Upload New Version"
+msgstr "上传新版本"
 
 msgid "View All"
 msgstr "查看全部"
@@ -3906,10 +3871,6 @@ msgstr "请包含如何生成最终的附加组件文件的操作说明，通过
 
 msgid "Read more about the source code review policy."
 msgstr "详细了解源代码审查政策。"
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "{0} 附加组件"
 
 msgid "Latest News"
 msgstr "最新消息"
@@ -4539,11 +4500,11 @@ msgstr "撤销您的附加组件审核请求将使其停留在未完成状态。
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "您确定要撤销您的审核请求吗？"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "下载音视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "更好视频体验 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
-msgstr "使用这个轻量级工具管理大量音频、视频和图像的下载。"
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "尊享全新的 YouTube 功能，如剧院模式、广告拦截、自动播放控制等等。"
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "广告过滤 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
@@ -4551,17 +4512,17 @@ msgstr "广告过滤 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "一个轻量级、有效率的广告拦截器。uBlock Origin 可施行大量的内容过滤器，而不占用很多内存。"
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "截取图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr "Awesome Screenshot Plus 不仅仅是截图，还能用文本和图形注解图像。存储和共享文件也很轻松。"
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Emoji 输入器 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr "精美 emoji 一键即得——随处可用。"
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "截取图片 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr "Awesome Screenshot Plus 不仅仅是截图，还能用文本和图形注解图像。存储和共享文件也很轻松。"
 
 msgid "Approved reviews"
 msgstr "已通过的审核"
@@ -4725,7 +4686,7 @@ msgid "No Reviews"
 msgstr "没有审核"
 
 msgid "Weight"
-msgstr ""
+msgstr "加权"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr "这将批准、签名并发布此版本。该评论将发送给其开发者。"
@@ -6813,7 +6774,7 @@ msgstr "安装附加组件是否安全？"
 msgid ""
 "Use caution when installing add-ons, as they may harm your computer or violate your privacy. Add-ons available from this site may be subject to review by Mozilla's team of reviewers, and user "
 "feedback is closely monitored, so they should generally be safe to install. <a href=\"%(learnmore_url)s\">Learn more about our review process</a>"
-msgstr ""
+msgstr "请小心安装附加组件，以免它们损害您的计算机或侵犯您的隐私。Mozilla 的审核团队会对本网站提供的附加组件进行检查，并且关注用户，所以一般来说安装是安全的。<a href=\"%(learnmore_url)s\">详细了解我们的审核流程</a>"
 
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"

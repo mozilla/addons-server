@@ -24,8 +24,35 @@ endif
 
 NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
 STATIC_JS := static/js/node_lib/
+STATIC_JQUERY_UI := static/js/node_lib/ui/
+
 NODE_LIBS_JS := \
+less/dist/less.js \
 jquery/dist/jquery.js
+
+NODE_LIBS_JQUERY_UI := \
+jquery-ui/ui/version.js \
+jquery-ui/ui/data.js \
+jquery-ui/ui/disable-selection.js \
+jquery-ui/ui/ie.js \
+jquery-ui/ui/keycode.js \
+jquery-ui/ui/escape-selector.js \
+jquery-ui/ui/labels.js \
+jquery-ui/ui/jquery-1-7.js \
+jquery-ui/ui/plugin.js \
+jquery-ui/ui/safe-active-element.js \
+jquery-ui/ui/safe-blur.js \
+jquery-ui/ui/scroll-parent.js \
+jquery-ui/ui/focusable.js \
+jquery-ui/ui/tabbable.js \
+jquery-ui/ui/unique-id.js \
+jquery-ui/ui/position.js \
+jquery-ui/ui/widget.js \
+jquery-ui/ui/widgets/menu.js \
+jquery-ui/ui/widgets/mouse.js \
+jquery-ui/ui/widgets/autocomplete.js \
+jquery-ui/ui/widgets/datepicker.js \
+jquery-ui/ui/widgets/sortable.js
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of the following commands."
@@ -155,6 +182,7 @@ ifeq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the container)
 endif
 	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
+	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
 update_deps:
 ifeq ($(IN_DOCKER),)

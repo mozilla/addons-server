@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-07 15:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1133,6 +1133,10 @@ msgstr ".sɹǝʇɔɐɹɐɥɔ {num} ʇsɐǝʅ ʇɐ ɟo ɥʇƃuǝʅ ɐ ǝʌɐɥ ʇ
 
 msgid "The language code {lang_code} is invalid."
 msgstr ".pıʅɐʌuı sı {lang_code} ǝpoɔ ǝƃɐnƃuɐʅ ǝɥ⊥"
+
+#, python-format
+msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ".ʇsıxǝ ʇou sǝop ʇɔǝɾqo - „%s„ ƃnʅs ɹo ʞd pıʅɐʌuI"
 
 msgid "Application Versions"
 msgstr "suoısɹǝɅ uoıʇɐɔıʅdd∀"
@@ -3000,64 +3004,9 @@ msgstr "&hellip;sʇʅnsǝɹ ƃuıpɐo⅂"
 msgid "No results found."
 msgstr ".punoɟ sʇʅnsǝɹ oN"
 
-msgid "Submit an Add-on"
-msgstr "uo-pp∀ uɐ ʇıɯqnS"
-
-msgid "AMO Reviewers"
-msgstr "sɹǝʍǝıʌǝᴚ OW∀"
-
-msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ".ɹǝʇsɐɟ pǝʍǝıʌǝɹ suo-ppɐ ɹnoʎ ʇǝƃ puɐ ʎɐpoʇ ɹǝʍǝıʌǝᴚ OW∀ uɐ ǝɯoɔǝԐ ¡pɐǝɥɐ ʇǝ⅁"
-
-msgid "Become an AMO Reviewer"
-msgstr "ɹǝʍǝıʌǝᴚ OW∀ uɐ ǝɯoɔǝԐ"
-
-msgid "Learn All About Add-ons"
-msgstr "suo-pp∀ ʇnoq∀ ʅʅ∀ uɹɐǝ⅂"
-
-msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
-msgstr ""
-".uo-ppɐ ʇɐǝɹƃ ɐ ǝʞɐɯ oʇ sʅʅıʞs ʎɹɐssǝɔǝu ǝɥʇ ʅʅɐ ǝʌɐɥ ʎpɐǝɹʅɐ noʎ ´<a href=\"https://developer.mozilla.org/docs/Web/CSS\">SSↃ</a> puɐ ´<a href=\"https://developer.mozilla.org/docs/Web/JavaScript"
-"\">ʇdıɹɔSɐʌɐſ</a> ´<a href=\"https://developer.mozilla.org/docs/Web/HTML\">⅂W⊥H</a> ʍouʞ puɐ ɹǝdoʅǝʌǝp qǝＭ ɐ ǝɹ,noʎ ɟI .ǝɔuǝıɹǝdxǝ ƃuısʍoɹq ɹıǝɥʇ ǝzıɯoʇsnɔ puɐ ǝɔuɐɥuǝ sɹǝsn xoɟǝɹıℲ ɟo suoıʅʅıɯ "
-"ʇǝʅ suo-pp∀"
-
-msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ".pǝʇɹɐʇs ʇǝƃ oʇ ʍouʞ oʇ pǝǝu noʎ ƃuıɥʇʎɹǝʌǝ uɹɐǝʅ oʇ <a href=\"https://developer.mozilla.org/Add-ons\">ʞɹoʍʇǝN ɹǝdoʅǝʌǝᗡ ɐʅʅızoW</a> ǝɥʇ oʇ ɹǝʌo pɐǝH"
-
-msgid "Start Making Add-ons"
-msgstr "suo-pp∀ ƃuıʞɐW ʇɹɐʇS"
-
-msgid "Status:"
-msgstr ":snʇɐʇS"
-
-msgid "Latest Version:"
-msgstr ":uoısɹǝɅ ʇsǝʇɐ⅂"
-
-msgid "Queue Position:"
-msgstr ":uoıʇısoԀ ǝnǝnÒ"
-
-#, python-format
-msgid "%(position)s of %(total)s"
-msgstr "%(total)s ɟo %(position)s"
-
-msgid "Upload New Version"
-msgstr "uoısɹǝɅ ʍǝN pɐoʅd∩"
-
-msgid "View all add-ons ►"
-msgstr "► suo-ppɐ ʅʅɐ ʍǝıɅ"
-
-msgid "Publish your add-ons!"
-msgstr "¡suo-ppɐ ɹnoʎ ɥsıʅqnԀ"
-
-msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ".suo-pp∀ ɐʅʅızoW uo ʇı ƃuıʇsoɥ ʎq uɐɥʇ uo-ppɐ ɹnoʎ ǝʇnqıɹʇsıp oʇ ʎɐʍ ɹǝʇʇǝq ou s,ǝɹǝɥ⊥"
-
-#, python-format
-msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr "¡pǝʇɹɐʇs ʇǝƃ oʇ <a href=\"%(theme_url)s\">ǝɯǝɥʇ</a> ɹo <a href=\"%(addon_url)s\">uo-ppɐ</a> uɐ pɐoʅd∩"
+#. {0} is an application, like Firefox.
+msgid "{0} Add-ons"
+msgstr "suo-pp∀ {0}"
 
 msgid "Return to the DevHub homepage"
 msgstr "ǝƃɐdǝɯoɥ qnHʌǝᗡ ǝɥʇ oʇ uɹnʇǝᴚ"
@@ -3625,6 +3574,9 @@ msgstr ".suoısɹǝʌ ʎuɐ ǝʌɐɥ ʇ,usǝop uo-ppɐ sıɥ⊥"
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ".uǝppıɥ ǝɹɐ (suoısɹǝʌ ɐʇǝq ƃuıpnʅɔuı) sǝƃɐd ɔıʅqnd sʇı os ´suoısɹǝʌ pǝʌoɹddɐ ʎuɐ ǝʌɐɥ ʇ,usǝop uo-ppɐ sıɥ⊥"
 
+msgid "Status:"
+msgstr ":snʇɐʇS"
+
 msgid "Disabled"
 msgstr "pǝʅqɐsıᗡ"
 
@@ -3883,8 +3835,18 @@ msgstr ".ʇǝʎ ǝʇıs ǝɥʇ uo ǝʌıʅ ʇ’usı ʇı ɹǝʌǝʍoɥ ´uoıs�
 msgid "Queues are not reviewed strictly in order"
 msgstr "ɹǝpɹo uı ʎʅʇɔıɹʇs pǝʍǝıʌǝɹ ʇou ǝɹɐ sǝnǝnÒ"
 
+msgid "Queue Position:"
+msgstr ":uoıʇısoԀ ǝnǝnÒ"
+
+#, python-format
+msgid "%(position)s of %(total)s"
+msgstr "%(total)s ɟo %(position)s"
+
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ".noʎ ʎq pǝʅpuɐɥ ǝɹɐ sǝʇɐpd∩ .uoıʇnqıɹʇsıp-ɟʅǝs ɹoɟ pǝuƃıS"
+
+msgid "Latest Version:"
+msgstr ":uoısɹǝɅ ʇsǝʇɐ⅂"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr ".uoısɹǝʌ pǝʇsıʅun pǝpɐoʅdn ʇsǝʍǝu ǝɥʇ sı sıɥ⊥"
@@ -3917,6 +3879,9 @@ msgstr ".ʎɹoʇs ɹnoʎ ǝɹɐɥs ´sɯǝʅqoɹd ʇɐǝɹƃ s,ǝɟıʅ ɟo ǝuo
 
 msgid "Telling your users what's coming soon will give them something to look forward to."
 msgstr ".oʇ pɹɐʍɹoɟ ʞooʅ oʇ ƃuıɥʇǝɯos ɯǝɥʇ ǝʌıƃ ʅʅıʍ uoos ƃuıɯoɔ s,ʇɐɥʍ sɹǝsn ɹnoʎ ƃuıʅʅǝ⊥"
+
+msgid "Upload New Version"
+msgstr "uoısɹǝɅ ʍǝN pɐoʅd∩"
 
 msgid "View All"
 msgstr "ʅʅ∀ ʍǝıɅ"
@@ -3983,10 +3948,6 @@ msgstr ".uoısɹǝʌ sıɥʇ ɹoɟ ɹǝʍǝıʌǝᴚ oʇ sǝʇoN ǝɥʇ ɹo ǝʅ
 
 msgid "Read more about the source code review policy."
 msgstr ".ʎɔıʅod ʍǝıʌǝɹ ǝpoɔ ǝɔɹnos ǝɥʇ ʇnoqɐ ǝɹoɯ pɐǝᴚ"
-
-#. {0} is an application, like Firefox.
-msgid "{0} Add-ons"
-msgstr "suo-pp∀ {0}"
 
 msgid "Latest News"
 msgstr "sʍǝN ʇsǝʇɐ⅂"
@@ -4623,11 +4584,11 @@ msgstr ".pǝʅqɐsıp ǝq ʅʅıʍ ʍǝıʌǝɹ ƃuıʇıɐʍɐ suoısɹǝʌ ʎu
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "¿ʇsǝnbǝɹ ʍǝıʌǝɹ ɹnoʎ ʅǝɔuɐɔ oʇ ɥsıʍ noʎ ǝɹns noʎ ǝɹ∀"
 
-msgid "Download media {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} ɐıpǝɯ pɐoʅuʍoᗡ"
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} soǝpıʌ ǝʌoɹdɯI"
 
-msgid "Manage massive audio, video, and image downloads with this lightweight tool."
-msgstr ".ʅooʇ ʇɥƃıǝʍʇɥƃıʅ sıɥʇ ɥʇıʍ spɐoʅuʍop ǝƃɐɯı puɐ ´oǝpıʌ ´oıpnɐ ǝʌıssɐɯ ǝƃɐuɐW"
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ".ǝɹoɯ puɐ ´ʅoɹʇuoɔ ʎɐʅd-oʇnɐ ´ƃuıʞɔoʅq pɐ ´ǝpoɯ ɐɯǝuıɔ ǝʞıʅ ´sǝɹnʇɐǝɟ ǝqn⊥no⅄ ʍǝu ɟo ǝʇıns ɐ ʎoɾuƎ"
 
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} spɐ ʞɔoʅԐ"
@@ -4635,17 +4596,17 @@ msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} spɐ ʞɔoʅԐ
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr ".ʎɹoɯǝɯ ɟo ɥɔunq ɐ dn ƃuıʍǝɥɔ ʇnoɥʇıʍ sɹǝʇʅıɟ ʇuǝʇuoɔ ɟo spuɐsnoɥʇ sǝɔɹoɟuǝ uıƃıɹO ʞɔoʅԐn .ɹǝʞɔoʅq pɐ ǝʌıʇɔǝɟɟǝ puɐ ʇɥƃıǝʍʇɥƃıʅ ∀"
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sʇoɥsuǝǝɹɔs ǝʞɐ⊥"
-
-msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
-msgstr ".ǝzǝǝɹq ɐ sı sǝʅıɟ ƃuıɹɐɥs puɐ ƃuıɹoʇS .sɔıɥdɐɹƃ puɐ ʇxǝʇ ɥʇıʍ sǝƃɐɯı ǝʇɐʇouuɐ noʎ sʇǝʅ snʅԀ ʇoɥsuǝǝɹɔS ǝɯosǝʍ∀ ´sʇoɥsuǝǝɹɔs ʇsnɾ uɐɥʇ ǝɹoW"
-
 msgid "Emoji expression {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} uoıssǝɹdxǝ ıɾoɯƎ"
 
 msgid "Dozens of amazing emojis for every occasion—always just one click away."
 msgstr ".ʎɐʍɐ ʞɔıʅɔ ǝuo ʇsnɾ sʎɐʍʅɐ—uoısɐɔɔo ʎɹǝʌǝ ɹoɟ sıɾoɯǝ ƃuızɐɯɐ ɟo suǝzoᗡ"
+
+msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} ɥʇıʍ{end_sub_heading} sʇoɥsuǝǝɹɔs ǝʞɐ⊥"
+
+msgid "More than just screenshots, Awesome Screenshot Plus lets you annotate images with text and graphics. Storing and sharing files is a breeze."
+msgstr ".ǝzǝǝɹq ɐ sı sǝʅıɟ ƃuıɹɐɥs puɐ ƃuıɹoʇS .sɔıɥdɐɹƃ puɐ ʇxǝʇ ɥʇıʍ sǝƃɐɯı ǝʇɐʇouuɐ noʎ sʇǝʅ snʅԀ ʇoɥsuǝǝɹɔS ǝɯosǝʍ∀ ´sʇoɥsuǝǝɹɔs ʇsnɾ uɐɥʇ ǝɹoW"
 
 msgid "Approved reviews"
 msgstr "sʍǝıʌǝɹ pǝʌoɹdd∀"

@@ -1,5 +1,10 @@
 /* Styling for zamboni's admin. */
 
+/* Make the admin wide */
+.section {
+    width: auto;
+    max-width: 90%;
+}
 
 /* Cycle table row backgrounds. */
 table tr {
@@ -213,4 +218,7 @@ fieldset.module {
 }
 #changelist-form #result_list td img[alt=True] {
     background: url(../../img/admin/icon-yes.gif) no-repeat center center;
+}
+#result_list thead tr th.action-checkbox-column {
+    min-width: auto;
 }
