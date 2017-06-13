@@ -25,7 +25,7 @@ LOCALE_REGEX = re.compile(r"""^[a-z]{2,3}      # General: fr, en, dsb,...
                           """, re.VERBOSE)
 VALID_STATUSES = ["userDisabled,incompatible", "userEnabled", "Unknown",
                   "userDisabled", "userEnabled,incompatible"]
-UPDATE_COUNT_TRIGGER = "userEnable"
+UPDATE_COUNT_TRIGGER = "userEnabled"
 VALID_APP_GUIDS = amo.APP_GUIDS.keys()
 APPVERSION_REGEX = re.compile(
     r"""^[0-9]{1,3}                # Major version: 2, 35
