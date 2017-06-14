@@ -1354,6 +1354,22 @@ class TestCollectionViewSetList(TestCase):
         response = self.client.get(url)
         assert response.status_code == 404
 
+    def test_sort(self):
+        col_a = collection_factory(author=self.user)
+        col_b = collection_factory(author=self.user)
+        col_c = collection_factory(author=self.user)
+        col_a.update(modified=self.days_ago(3))
+        col_b.update(modified=self.days_ago(1))
+        col_c.update(modified=self.days_ago(6))
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        # should be b a c because 1, 3, 6 days ago.
+        assert response.data['results'][0]['uuid'] == col_b.uuid
+        assert response.data['results'][1]['uuid'] == col_a.uuid
+        assert response.data['results'][2]['uuid'] == col_c.uuid
+
 
 class TestCollectionViewSetDetail(TestCase):
     client_class = APITestClient
@@ -1504,6 +1520,7 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         collection = Collection.objects.get()
         self.check_data(collection, self.data, json.loads(response.content))
         assert collection.author.id == self.user.id
+        assert collection.uuid
 
     def test_create_minimal(self):
         self.client.login_api(self.user)
@@ -1681,9 +1698,13 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
     def setUp(self):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
-        self.collection.add_addon(addon_factory())
-        self.collection.add_addon(addon_factory())
-        self.collection.add_addon(addon_factory())
+        self.addon_a = addon_factory(name=u'anteater')
+        self.addon_b = addon_factory(name=u'baboon')
+        self.addon_c = addon_factory(name=u'cheetah')
+
+        self.collection.add_addon(self.addon_a)
+        self.collection.add_addon(self.addon_b)
+        self.collection.add_addon(self.addon_c)
         self.url = reverse(
             'collection-addon-list', kwargs={
                 'user_pk': self.user.pk,
@@ -1707,6 +1728,59 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
                 'user_pk': self.user.pk,
                 'collection_slug': 'hello'}))
         assert response.status_code == 404
+
+    def check_result_order(self, response, first, second, third):
+        results = response.data['results']
+        assert results[0]['addon']['id'] == first.id
+        assert results[1]['addon']['id'] == second.id
+        assert results[2]['addon']['id'] == third.id
+
+    def test_sorting(self):
+        self.addon_a.update(weekly_downloads=500)
+        self.addon_b.update(weekly_downloads=1000)
+        self.addon_c.update(weekly_downloads=100)
+
+        self.client.login_api(self.user)
+        # First default sort
+        self.check_result_order(
+            self.client.get(self.url),
+            self.addon_b, self.addon_a, self.addon_c)
+        # Popularity ascending
+        self.check_result_order(
+            self.client.get(self.url + '?sort=popularity'),
+            self.addon_c, self.addon_a, self.addon_b)
+        # Popularity descending (same as default)
+        self.check_result_order(
+            self.client.get(self.url + '?sort=-popularity'),
+            self.addon_b, self.addon_a, self.addon_c)
+
+        CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_a).update(
+            created=self.days_ago(1))
+        CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_b).update(
+            created=self.days_ago(3))
+        CollectionAddon.objects.get(
+            collection=self.collection, addon=self.addon_c).update(
+            created=self.days_ago(2))
+
+        # Added ascending
+        self.check_result_order(
+            self.client.get(self.url + '?sort=added'),
+            self.addon_b, self.addon_c, self.addon_a)
+        # Added descending
+        self.check_result_order(
+            self.client.get(self.url + '?sort=-added'),
+            self.addon_a, self.addon_c, self.addon_b)
+
+        # Name ascending
+        self.check_result_order(
+            self.client.get(self.url + '?sort=name'),
+            self.addon_a, self.addon_b, self.addon_c)
+        # Name descending
+        self.check_result_order(
+            self.client.get(self.url + '?sort=-name'),
+            self.addon_c, self.addon_b, self.addon_a)
 
 
 class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):

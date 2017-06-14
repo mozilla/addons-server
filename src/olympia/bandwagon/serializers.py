@@ -22,7 +22,7 @@ class CollectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Collection
-        fields = ('id', 'url', 'addon_count', 'author', 'description',
+        fields = ('id', 'uuid', 'url', 'addon_count', 'author', 'description',
                   'modified', 'name', 'slug', 'public', 'default_locale')
         writeable_fields = (
             'description', 'name', 'slug', 'public', 'default_locale'

@@ -16,6 +16,7 @@ List
     permission to list collections other than your own.
 
 This endpoint allows you to list all collections authored by the specified user.
+The results are sorted by the most recently updated collection first.
 
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/
@@ -53,6 +54,7 @@ If your account has the `Collections:Edit` permission then you can access any co
     :>json boolean public: Whether the collection is `listed` - publicly viewable.
     :>json string slug: The name used in the URL.
     :>json string url: The (absolute) collection detail URL.
+    :>json string uuid: A unique identifier for this collection; primarily used to count addon installations that come via this collection.
 
 
 ------
@@ -128,10 +130,27 @@ This endpoint lists the add-ons in a collection, together with collector's notes
 
 .. http:get:: /api/v3/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/addons/
 
+    :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <collection-addon-list-sort>`.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of :ref:`items <collection-addon-detail-object>` in this collection.
+
+
+.. _collection-addon-list-sort:
+
+    Available sorting parameters:
+
+    ==============  ==========================================================
+         Parameter  Description
+    ==============  ==========================================================
+             added  Date the add-on was added to the collection, ascending.
+        popularity  Number of total weekly downloads of the add-on, ascending.
+              name  Add-on name, ascending.
+    ==============  ==========================================================
+
+All sort parameters can be reversed, e.g. '-added' for descending dates.
+The default sorting is by popularity, descending ('-popularity').
 
 
 -------------------------

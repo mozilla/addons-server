@@ -1661,6 +1661,9 @@ REST_FRAMEWORK = {
     # Use http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
     # We can't use the default because we don't use django timezone support.
     'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
+
+    # Set our default ordering parameter
+    'ORDERING_PARAM': 'sort',
 }
 
 # This is the DSN to the local Sentry service. It might be overridden in
