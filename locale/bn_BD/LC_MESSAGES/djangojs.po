@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-06 03:35+0000\n"
-"PO-Revision-Date: 2017-02-25 23:56+0000\n"
-"Last-Translator: Mahay Alam Khan <mahayalamkhan@gmail.com>\n"
+"PO-Revision-Date: 2017-06-13 01:18+0000\n"
+"Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
@@ -81,8 +81,8 @@ msgstr "আপনার অ্যাড অন বৈধতা সময় শ�
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "আপনার অ্যাড-অন বিনা ত্রুটি সহ এবং {0} সতর্কতা সহ যাচাই করা হয়েছে।"
+msgstr[1] "ত্রুটিবিহীন ভাবে এবং {0} সতর্কতাসহ আপনার অ্যাড-অনটি যাচাই করা হয়েছে।"
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
@@ -454,7 +454,7 @@ msgstr "দৈনিক ব্যবহারকারী {0} থেকে {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "গত {0} দিনের, আবেদন সমুহ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
@@ -486,11 +486,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "শেষ {0} দিনে, অ্যাড-অন এর অবস্থা"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "অ্যাড-অন এর {0} থেকে {1} পর্যন্ত অবস্থা"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -550,11 +550,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "গত {0} দিনগুলিতে, পর্যালোচনা লেখা হয়েছে"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "পর্যালোচনাগুলি লেখা হয়েছে {0} থেকে {1} এ"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -606,7 +606,7 @@ msgstr ""
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> শেষ {1} দিনগুলিতে"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
