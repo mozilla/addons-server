@@ -1,6 +1,6 @@
 import os
 import time
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import connections
@@ -25,29 +25,20 @@ from olympia.stats.models import UpdateCount
 log = olympia.core.logger.getLogger('z.cron')
 task_log = olympia.core.logger.getLogger('z.task')
 
-# interval to calculate average active daily users
-ADI_INTERVAL = timedelta(days=13)
 
-
-def update_addon_average_daily_users(today=None):
+def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    if today is None:
-        today = date.today()
-
     raise_if_reindex_in_progress('amo')
-
-    gt_interval = today - ADI_INTERVAL
     cursor = connections[multidb.get_slave()].cursor()
-
     q = """SELECT addon_id, AVG(`count`)
            FROM update_counts
-           WHERE `date` > %(interval)s
+           WHERE `date` > DATE_SUB(CURDATE(), INTERVAL 13 DAY)
            GROUP BY addon_id
            ORDER BY addon_id"""
-    cursor.execute(q, {'interval': gt_interval})
+    cursor.execute(q)
     d = cursor.fetchall()
     cursor.close()
 
