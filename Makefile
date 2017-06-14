@@ -4,8 +4,10 @@ IN_DOCKER = $(wildcard /addons-server-centos7-container)
 
 ifneq ($(IN_DOCKER),)
 	SUB_MAKEFILE = Makefile-os
-endif
+else
 	SUB_MAKEFILE = Makefile-docker
+endif
+
 include $(SUB_MAKEFILE)
 
 help:
@@ -13,7 +15,6 @@ help:
 	@echo "Commands that are designed to be run in either the container or the host:"
 	@echo "  docs              to builds the documentation"
 	@echo "  flake8            to run the flake8 linter"
-	@echo "  update_code       to update the git repository"
 	@$(MAKE) help_submake --no-print-directory
 
 	@echo "Check the Makefile to know exactly what each target is doing."
