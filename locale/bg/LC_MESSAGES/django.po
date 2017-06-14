@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-14 07:41+0000\n"
+"PO-Revision-Date: 2017-06-14 08:09+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -84,7 +84,7 @@ msgid "Continue to Download&nbsp;&rarr;"
 msgstr "Продължете към изтеглянето&nbsp;&rarr;"
 
 msgid "Featured"
-msgstr "Препоръчани"
+msgstr "Препоръчанa"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
@@ -344,7 +344,7 @@ msgstr "Сортиране по:"
 #. {0} is a date.
 #. {0} is a date
 msgid "Updated {0}"
-msgstr "Актуализирано на {0}"
+msgstr "Обновено на {0}"
 
 #. {0} is a date.
 msgid "Added {0}"
@@ -1374,7 +1374,7 @@ msgid "More by this User"
 msgstr "Още от този потребител"
 
 msgid "See all collections by this user"
-msgstr "Вижте всички колекции от този потребител"
+msgstr "Вижте всички колекции на потребителя"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1521,7 +1521,7 @@ msgstr "или <a id=\"change-owner-cancel\" href=\"#\">Отказване</a>"
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr "Колекции от {0}"
+msgstr "Колекции на {0}"
 
 msgid "No collections found."
 msgstr "Няма намерени колекции."
@@ -1849,7 +1849,7 @@ msgid "Enter the GUID of an add-on below to view any reports we've received."
 msgstr "Въведете GUID на добавка отдолу, за да видите докладите, които сме получили."
 
 msgid "{addon} Compatibility Reports"
-msgstr "{addon} доклади за съвместимост"
+msgstr "Доклади за съвместимост на {addon}"
 
 msgid "{0} success report"
 msgid_plural "{0} success reports"
@@ -1865,7 +1865,7 @@ msgid "View all"
 msgstr "Вижте всички"
 
 msgid "Filter by Application"
-msgstr "Филтрирай по приложение"
+msgstr "Филтър по приложение"
 
 msgid "Report Type"
 msgstr "Тип на доклада"
@@ -3102,7 +3102,7 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Тази добавка е несъвместима с <b>%(app_name)s %(app_version)s</b>, последната версия на %(app_name)s. Моля, помислете за актуализиране на информацията за съвместимост на добавката ви или качете по-"
+"Тази добавка е несъвместима с <b>%(app_name)s %(app_version)s</b>, последната версия на %(app_name)s. Моля, помислете за обновяване на информацията за съвместимост на вашата добавката или качете "
 "нова версия."
 
 #, python-format
@@ -3201,7 +3201,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Изберете кратко, уникално име за вашата добавка."
 
 msgid "View Listing"
-msgstr "Виж Списък"
+msgstr "Преглед на добавката"
 
 msgid "Summary"
 msgstr "Обобщение"
@@ -8116,7 +8116,7 @@ msgid "Delete Account"
 msgstr "Изтриване на сметка"
 
 msgid "Update Account"
-msgstr "Актуализиране на сметка"
+msgstr "Запазване на промените"
 
 msgid "none"
 msgstr "никои"
