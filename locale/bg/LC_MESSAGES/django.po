@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-12 11:41+0000\n"
+"PO-Revision-Date: 2017-06-14 07:41+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -8251,7 +8251,7 @@ msgstr "Средна оценка на добавките"
 
 #, python-format
 msgid "%s Version History"
-msgstr "Хронология на версиите за %s"
+msgstr "Хронология на версиите на %s"
 
 msgid "Version History with Changelogs"
 msgstr "Хронология на версиите с история на промените"
@@ -8278,7 +8278,7 @@ msgstr "Изходният код е лицензиран под <a href=\"%(url
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
-msgstr "{0} Хронология на версиите"
+msgstr "Хронология на версиите на {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> version"
