@@ -1,6 +1,7 @@
 APP=src/olympia/
 
-UNAME_S := $(shell uname -s)
+help_redirect:
+	@$(MAKE) help --no-print-directory
 
 help_submake:
 	@echo "Commands that are designed to be run in the host:"

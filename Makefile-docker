@@ -1,8 +1,6 @@
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
-UNAME_S := $(shell uname -s)
-
 NPM_ARGS :=
 
 ifneq ($(NPM_CONFIG_PREFIX),)
@@ -40,6 +38,9 @@ jquery-ui/ui/widgets/mouse.js \
 jquery-ui/ui/widgets/autocomplete.js \
 jquery-ui/ui/widgets/datepicker.js \
 jquery-ui/ui/widgets/sortable.js
+
+help_redirect:
+	@$(MAKE) help --no-print-directory
 
 help_submake:
 	@echo "Commands that are designed be run in the container:"

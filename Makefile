@@ -3,9 +3,9 @@
 IN_DOCKER = $(wildcard /addons-server-centos7-container)
 
 ifneq ($(IN_DOCKER),)
-	SUB_MAKEFILE = Makefile-os
-else
 	SUB_MAKEFILE = Makefile-docker
+else
+	SUB_MAKEFILE = Makefile-os
 endif
 
 include $(SUB_MAKEFILE)
