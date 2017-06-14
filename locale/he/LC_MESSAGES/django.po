@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-06 18:25+0000\n"
+"PO-Revision-Date: 2017-06-06 20:07+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -73,7 +73,7 @@ msgid "Review note"
 msgstr "סקירה"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "ניתן להוסיף הערות רק לגרסאות עדכניות של תוספות."
 
 msgid "Download Now"
 msgstr "הורדה כעת"
@@ -204,7 +204,7 @@ msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn m
 msgstr ""
 
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "תוספת זו סומנה כניסיונית ע״י המפתחים שלה."
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr "מפתח התוספת הזאת מבקש תמיכה בהמשך קיומה על־ידי תרומה קטנה."
@@ -1338,7 +1338,7 @@ msgstr ""
 
 #. Link to remove a collection vote
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "על מנת לדרג אוספים, יש צורך בחשבון Add-ons."
 
 msgid "Create an Add-ons Account"
 msgstr "יצירת חשבון Add-ons"
@@ -3203,8 +3203,8 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ערכת נושא <b>אחת</b>"
+msgstr[1] "<b>{0}</b> ערכות נושא"
 
 msgid "Edit Information"
 msgstr "עריכת מידע"
@@ -4002,7 +4002,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr ""
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "מידע נוסף על מדיניות סקירה לקוד מקור."
 
 msgid "Latest News"
 msgstr ""
@@ -5143,7 +5143,7 @@ msgstr "עוד תוספות"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "כותרת התוספת"
@@ -5162,8 +5162,8 @@ msgstr ""
 
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "תוספת חדשה ({num})"
+msgstr[1] "תוספות חדשות ({num})"
 
 # 85%
 # 100%
@@ -6413,7 +6413,7 @@ msgid ""
 msgstr ""
 
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "איך אוכל להתעדכן במה שקורה ב־AMO?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
 msgstr ""
@@ -8120,7 +8120,7 @@ msgid "An email address is required."
 msgstr "נדרשת כתובת דוא״ל."
 
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "לא קיים משתמש עם כתובת דוא״ל זו."
 
 msgid "Profile Deleted"
 msgstr "הפרופיל נמחק"
