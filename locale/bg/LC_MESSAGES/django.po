@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-14 08:09+0000\n"
+"PO-Revision-Date: 2017-06-14 08:30+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -775,7 +775,7 @@ msgid "close"
 msgstr "затваряне"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Някои добавки искат разрешение, за да изпълнят определени действия (например, добавка която управлява раздели би искала достъп до системата от раздели на четеца)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
@@ -1329,13 +1329,13 @@ msgid "Add-ons synced to my Mobile Firefox"
 msgstr ""
 
 msgid "Make this Collection Private"
-msgstr "Направи тази колекция лична"
+msgstr "Превръщане в лична"
 
 msgid "Make this Collection Public"
-msgstr "Направи тази колекция публична"
+msgstr "Превръщане в публична"
 
 msgid "Learn about collections"
-msgstr "Научи за колекциите"
+msgstr "Повече за колекциите"
 
 msgid "More Options:"
 msgstr "Още действия:"
@@ -1349,14 +1349,14 @@ msgstr "Изтриване на колекцията"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s тема в тази колекция"
-msgstr[1] "%(num)s теми в тази колекция"
+msgstr[0] "%(num)s тема в колекцията"
+msgstr[1] "%(num)s теми в колекцията"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s добавка в тази колекция"
-msgstr[1] "%(num)s добавки в тази колекция"
+msgstr[0] "%(num)s добавка в колекцията"
+msgstr[1] "%(num)s добавки в колекцията"
 
 msgid "Go"
 msgstr "Давай"
@@ -1365,7 +1365,7 @@ msgid "What are Collections?"
 msgstr "Какво е колекция?"
 
 msgid "Explore Collections"
-msgstr "Разгледай колекции"
+msgstr "Повече колекции"
 
 msgid "Common Tags"
 msgstr "Чести етикети"
@@ -5700,7 +5700,7 @@ msgid "Worry-free browsing"
 msgstr "Безметежно разглеждане"
 
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr "Защитете неприкосновеността си онлайн с добавките в тази колекция."
+msgstr "Защитете неприкосновеността си онлайн с добавките от тази колекция."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "Страхотни добавки за работа, забавление, поверителност и продуктивност&hellip; за всекиго по нещо!"
