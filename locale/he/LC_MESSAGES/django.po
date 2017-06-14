@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-06 20:10+0000\n"
+"PO-Revision-Date: 2017-06-06 18:25+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3472,37 +3472,37 @@ msgid "Used in add-on detail pages."
 msgstr ""
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "העלאת צלמית מותאמת אישית..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
 
 msgid "Screenshots"
-msgstr ""
+msgstr "צילומי מסך"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "נא לספק לפחות צילום מסך אחד של התוספת שלך:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "נא לספק כותרת לצילום מסך זה:"
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "הוספת צילום מסך..."
 
 msgid "Tests"
-msgstr ""
+msgstr "בדיקות"
 
 msgid "General Tests"
-msgstr ""
+msgstr "בדיקות כלליות"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "בדיקות אבטחה"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "בדיקות הרחבה"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "בדיקות תרגום"
 
 msgid "Compatibility Tests"
 msgstr "בדיקות תאימות"
@@ -3520,10 +3520,10 @@ msgid "Delete Theme"
 msgstr "מחיקת ערכת נושא"
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "מחיקת תוספת"
 
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "מחיקת ערכת הנושא שלך תמחק אותה לחלוטין מהאתר."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -3540,7 +3540,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
+msgstr "פעולות"
 
 msgid "Resume the submission process for this add-on."
 msgstr ""
@@ -3570,7 +3570,7 @@ msgid "Statistics"
 msgstr "סטטיסטיקות"
 
 msgid "Manage Payments"
-msgstr ""
+msgstr "ניהול תשלומים"
 
 msgid "Manage Status & Versions"
 msgstr ""
@@ -3606,7 +3606,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "לתוספת זו אין שום גרסאות."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
@@ -3647,13 +3647,13 @@ msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
 msgid "Summary:"
-msgstr ""
+msgstr "תקציר:"
 
 msgid "This summary will be shown in listings and searches."
 msgstr ""
 
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "תוספת זו הינה ניסיונית"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
@@ -3695,7 +3695,7 @@ msgid "Describe Version"
 msgstr "עוד תוספות"
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "הערות שחרור:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
@@ -3713,7 +3713,7 @@ msgid "Submission Complete"
 msgstr ""
 
 msgid "You’re done!"
-msgstr ""
+msgstr "סיימת!"
 
 msgid "Version Submitted for Review"
 msgstr ""
@@ -3753,7 +3753,7 @@ msgid "You selected only some of the available platforms for this submission. Yo
 msgstr ""
 
 msgid "Upload File"
-msgstr ""
+msgstr "העלאת קובץ"
 
 msgid "Go to My Submissions"
 msgstr ""
@@ -3899,7 +3899,7 @@ msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "גרסה עדכנית:"
 
 msgid "This is the newest uploaded unlisted version."
 msgstr ""
@@ -4083,7 +4083,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "הצטרפו אלינו!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -4280,7 +4280,7 @@ msgid "What is your suggested contribution?"
 msgstr "מהי התרומה המוצעת שלך?"
 
 msgid "(Example: 3.99)"
-msgstr ""
+msgstr "(דוגמה: 3.99)"
 
 msgid "When should users be asked for contributions?"
 msgstr ""
@@ -4315,7 +4315,7 @@ msgid "Select the category that best describes your Theme."
 msgstr ""
 
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "הוסיפו מספר תגים כדי לתאר את ערכת הנושא שלכם."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 msgstr ""
@@ -4431,7 +4431,7 @@ msgid "Submit Theme"
 msgstr "שליחת ערכת נושא"
 
 msgid "You're done!"
-msgstr ""
+msgstr "סיימת!"
 
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr ""
@@ -4490,10 +4490,10 @@ msgid "Manage {0}"
 msgstr "ניהול {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "קבצים"
 
 msgid "Upload Another File"
-msgstr ""
+msgstr "העלאת קובץ אחר"
 
 msgid "Version Notes"
 msgstr ""
@@ -4513,7 +4513,7 @@ msgid "Optionally, enter any information that may be useful to the Reviewer of t
 msgstr ""
 
 msgid "Source code"
-msgstr ""
+msgstr "קוד מקור"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr ""
@@ -4533,10 +4533,10 @@ msgid "Status & Versions"
 msgstr ""
 
 msgid "Edit this version"
-msgstr ""
+msgstr "עריכת גרסה זו"
 
 msgid "0 files"
-msgstr ""
+msgstr "0 קבצים"
 
 msgid "Re-enable Version"
 msgstr ""
@@ -4592,17 +4592,17 @@ msgid "Currently on AMO"
 msgstr ""
 
 msgid "Status"
-msgstr ""
+msgstr "מצב"
 
 # Header for a column in a table
 msgid "Validation"
 msgstr "בדיקה"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "מחיקה/נטרול"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "הגרסה הבאה של התוספת הזו"
 
 msgid "Other versions"
 msgstr "גרסאות אחרות"
@@ -4611,10 +4611,10 @@ msgid "All versions"
 msgstr "כל הגרסאות"
 
 msgid "Upload a New Version"
-msgstr ""
+msgstr "העלאת גרסה חדשה"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "מחיקת גרסה {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
@@ -4630,13 +4630,13 @@ msgid "Are you sure you wish to delete this version?"
 msgstr ""
 
 msgid "Delete Version"
-msgstr ""
+msgstr "מחיקת גרסה"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "נטרול גרסה"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "הסתרת תוספת"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -4787,10 +4787,11 @@ msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
+#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
 msgstr[0] "תוספת חדשה ({0})"
-msgstr[1] ""
+msgstr[1] "תוספות עבור {0}"
 
 # 85%
 # 100%
@@ -4809,13 +4810,13 @@ msgstr[1] ""
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
 msgstr[0] "תוספת שאושרה אוטומטית ({0})"
-msgstr[1] ""
+msgstr[1] "תוספות שאושרו אוטומטית ({0})"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
 
 msgid "Type"
-msgstr ""
+msgstr "סוג"
 
 msgid "Waiting Time"
 msgstr ""
@@ -4829,14 +4830,14 @@ msgstr ""
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "דקה אחת"
+msgstr[1] "{0} דקות"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "שעה אחת"
+msgstr[1] "{0} שעות"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
@@ -4845,13 +4846,13 @@ msgstr[0] "יום אחד"
 msgstr[1] "{0} ימים"
 
 msgid "Last Review"
-msgstr ""
+msgstr "הסקירה האחרונה"
 
 msgid "Last Update"
 msgstr "עדכון אחרון"
 
 msgid "No Reviews"
-msgstr ""
+msgstr "ללא סקירות"
 
 msgid "Weight"
 msgstr ""
@@ -4896,7 +4897,7 @@ msgid "Flagged"
 msgstr ""
 
 msgid "Updates"
-msgstr ""
+msgstr "עדכונים"
 
 msgid "Admin Review"
 msgstr ""
@@ -5120,10 +5121,10 @@ msgid "Filter"
 msgstr "סינון"
 
 msgid "Date"
-msgstr ""
+msgstr "תאריך"
 
 msgid "Event"
-msgstr ""
+msgstr "אירוע"
 
 msgid "More details."
 msgstr "פרטים נוספים."
@@ -5145,13 +5146,13 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "כותרת התוספת"
 
 msgid "Review Title"
-msgstr ""
+msgstr "כותרת הסקירה"
 
 msgid "Review Text"
-msgstr ""
+msgstr "מלל הסקירה"
 
 msgid "Review was flagged prior to deletion."
 msgstr ""
@@ -5181,13 +5182,13 @@ msgstr[1] "{0} תוספות"
 
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "סה״כ סקירות"
 
 msgid "Reviews This Month"
-msgstr ""
+msgstr "סקירות החודש הזה"
 
 msgid "New Reviewers"
 msgstr "סוקרים חדשים"
@@ -5217,7 +5218,7 @@ msgid "Update message of the day"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "שמירה"
 
 msgid "Add-on Reviewer Performance"
 msgstr ""
@@ -5238,10 +5239,10 @@ msgid "Active Contributors"
 msgstr ""
 
 msgid "This Month"
-msgstr ""
+msgstr "החודש הזה"
 
 msgid "This Year"
-msgstr ""
+msgstr "השנה הזו"
 
 msgid "Monthly Performance"
 msgstr ""
@@ -5253,19 +5254,19 @@ msgid "Total"
 msgstr "סה״כ"
 
 msgid "Month"
-msgstr ""
+msgstr "חודש"
 
 msgid "Year"
-msgstr ""
+msgstr "שנה"
 
 msgid "All-Time"
 msgstr ""
 
 msgid "Advanced Search"
-msgstr ""
+msgstr "חיפוש מתקדם"
 
 msgid "clear search"
-msgstr ""
+msgstr "ניקוי חיפוש"
 
 msgid "Process Reviews"
 msgstr ""
@@ -5298,7 +5299,7 @@ msgstr ""
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "סקירת {0}"
 
 msgid "Add-on user change history"
 msgstr ""
@@ -5344,7 +5345,7 @@ msgid "Insert canned response..."
 msgstr ""
 
 msgid "Files:"
-msgstr ""
+msgstr "קבצים:"
 
 msgid "Tested on:"
 msgstr ""
@@ -5377,7 +5378,7 @@ msgid "Reviewer"
 msgstr ""
 
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "התוספת נמחקה."
 
 msgid "Show Comments"
 msgstr "הצגת תגובות"
@@ -5396,13 +5397,13 @@ msgid "Dismiss this announcement"
 msgstr ""
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "קבצים בגרסה זו:"
 
 msgid "Contents"
-msgstr ""
+msgstr "תכנים"
 
 msgid "Compare"
-msgstr ""
+msgstr "השוואה"
 
 msgid "Permissions:"
 msgstr "הרשאות:"
@@ -5453,10 +5454,10 @@ msgid "Review Date"
 msgstr ""
 
 msgid "Action"
-msgstr ""
+msgstr "פעולה"
 
 msgid "Reason"
-msgstr ""
+msgstr "סיבה"
 
 msgid "There are currently no reviews."
 msgstr ""
@@ -5473,8 +5474,8 @@ msgstr[1] ""
 
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "עדכון אחד"
+msgstr[1] "{num} עדכונים"
 
 msgid "Flagged Themes"
 msgstr ""
@@ -5489,13 +5490,13 @@ msgid "Auto-advance after review"
 msgstr ""
 
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "הפעלת קיצורי מקלדת"
 
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "קיצורי מקלדת"
 
 msgid "Next Theme"
-msgstr ""
+msgstr "ערכת נושא הבאה"
 
 msgid "Previous Theme"
 msgstr "ערכת נושא הקודמת"
@@ -5516,7 +5517,7 @@ msgid "There are currently no Themes to review."
 msgstr ""
 
 msgid "Clear Search"
-msgstr ""
+msgstr "ניקוי חיפוש"
 
 msgid "Release My Theme Locks"
 msgstr ""
@@ -5685,10 +5686,10 @@ msgid "Fetching validation results..."
 msgstr ""
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "קבצים שנמחקו:"
 
 msgid "Hide known files"
-msgstr ""
+msgstr "הסתרת קבצים ידועים"
 
 msgid "Add-on SDK Version:"
 msgstr ""
@@ -5863,7 +5864,7 @@ msgid "See all complete themes"
 msgstr ""
 
 msgid "Close Video"
-msgstr ""
+msgstr "סגירת וידאו"
 
 msgid "While the video plays, the add-ons being mentioned will appear here."
 msgstr ""
@@ -8116,7 +8117,7 @@ msgid "User Notifications"
 msgstr "התראות משתמש"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "נדרשת כתובת דוא״ל."
 
 msgid "A user with that email address does not exist."
 msgstr ""
@@ -8165,7 +8166,7 @@ msgid "Confirm account deletion"
 msgstr "אישור מחיקת חשבון"
 
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "מובן לי שצעד זה לא ניתן לביטול."
 
 msgid "Delete my user account now"
 msgstr "מחיקת חשבון המשתמש שלי כעת"
@@ -8355,7 +8356,7 @@ msgid "Time of last login"
 msgstr "זמן ההתחברות האחרונה"
 
 msgid "IP address of last login"
-msgstr ""
+msgstr "כתובת IP של התחברות אחרונה"
 
 msgid "Number of add-ons developed"
 msgstr "מספר התוספות שנוצרו"
