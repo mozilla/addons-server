@@ -286,7 +286,7 @@ class TestThemeADICommand(FixturesFolderMixin, TestCase):
         uc = UpdateCount.objects.last()
         # should be identical to `statuses.userEnabled`
         assert uc.count == 1259
-        assert uc.date == date(2014, 11, 06)
+        assert uc.date == date(2014, 11, 6)
         assert (uc.versions ==
                 {u'1.7.16': 1, u'userEnabled': 3, u'1.7.13': 2, u'1.7.11': 3,
                  u'1.6.0': 1, u'1.7.14': 1304, u'1.7.6': 6})
