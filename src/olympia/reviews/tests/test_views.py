@@ -10,7 +10,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.utils import generate_addon_guid
-from olympia.amo import helpers
+from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import (
     addon_factory, APITestClient, TestCase, version_factory, user_factory)
 from olympia.access.models import Group, GroupUser

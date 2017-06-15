@@ -6,7 +6,7 @@ import jingo
 import jinja2
 
 from olympia import amo
-from olympia.amo.helpers import urlparams
+from olympia.amo.templatetags.jinja_helpers import urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import render
 

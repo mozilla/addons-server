@@ -8,7 +8,7 @@ from django.db import transaction
 
 import olympia.core.logger
 from olympia import amo
-from olympia.editors.helpers import ReviewHelper
+from olympia.editors.templatetags.jinja_helpers import ReviewHelper
 from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)

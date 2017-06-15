@@ -188,7 +188,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     Adds deny checking and error logging.
     """
-    from olympia.amo.helpers import absolutify
+    from olympia.amo.templatetags.jinja_helpers import absolutify
     from olympia.amo.tasks import send_email
     from olympia.users import notifications
 

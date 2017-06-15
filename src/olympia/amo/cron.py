@@ -11,7 +11,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.utils import chunked
-from olympia.amo.helpers import user_media_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
 from olympia.lib.es.utils import raise_if_reindex_in_progress

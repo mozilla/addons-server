@@ -2,7 +2,7 @@ from django.test import RequestFactory
 
 import mock
 
-from olympia.accounts import helpers
+from olympia.accounts.templatetags import jinja_helpers
 
 
 @mock.patch(
@@ -10,7 +10,7 @@ from olympia.accounts import helpers
     lambda c: 'http://auth.ca')
 def test_login_link():
     request = RequestFactory().get('/en-US/firefox/addons')
-    assert helpers.login_link({'request': request}) == (
+    assert jinja_helpers.login_link({'request': request}) == (
         'http://auth.ca')
 
 
@@ -19,5 +19,5 @@ def test_login_link():
     lambda c: 'http://auth.ca')
 def test_register_link():
     request = RequestFactory().get('/en-US/firefox/addons')
-    assert helpers.register_link({'request': request}) == (
+    assert jinja_helpers.register_link({'request': request}) == (
         'http://auth.ca')

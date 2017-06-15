@@ -33,7 +33,7 @@ from olympia.amo.utils import (
 from olympia.addons.models import Addon
 from olympia.applications.management.commands import dump_apps
 from olympia.applications.models import AppVersion
-from olympia.files.helpers import copyfileobj
+from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.models import FileUpload, File, FileValidation
 from olympia.files.utils import is_beta
 from olympia.versions.compare import version_int

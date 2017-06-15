@@ -6,7 +6,7 @@ from django.utils.translation import ugettext
 from olympia.amo.utils import chunked
 from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
 
-from . import buttons
+from .. import buttons
 
 
 register.function(buttons.install_button)

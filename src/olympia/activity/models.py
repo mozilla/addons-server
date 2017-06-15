@@ -22,7 +22,7 @@ from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.reviews.models import Review
 from olympia.tags.models import Tag
-from olympia.users.helpers import user_link
+from olympia.users.templatetags.jinja_helpers import user_link
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 

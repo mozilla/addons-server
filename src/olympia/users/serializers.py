@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.users.models import UserProfile
 
 

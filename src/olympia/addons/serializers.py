@@ -3,7 +3,7 @@ from rest_framework import serializers
 from olympia import amo
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview)
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer

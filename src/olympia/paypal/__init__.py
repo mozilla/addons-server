@@ -11,7 +11,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia import amo
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 
 

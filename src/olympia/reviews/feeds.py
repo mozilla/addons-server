@@ -3,7 +3,7 @@ import urllib
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext
 
-from olympia.amo import helpers
+from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.feeds import NonAtomicFeed
 from olympia.addons.models import Addon, Review
 
@@ -24,7 +24,7 @@ class ReviewsRss(NonAtomicFeed):
 
     def link(self, addon):
         """Link for the feed"""
-        return helpers.absolutify(helpers.url('home'))
+        return jinja_helpers.absolutify(jinja_helpers.url('home'))
 
     def description(self, addon):
         """Description for the feed"""
@@ -38,9 +38,8 @@ class ReviewsRss(NonAtomicFeed):
 
     def item_link(self, review):
         """Link for a particular review (<item><link>)"""
-        return helpers.absolutify(helpers.url('addons.reviews.detail',
-                                              self.addon.slug,
-                                              review.id))
+        return jinja_helpers.absolutify(jinja_helpers.url(
+            'addons.reviews.detail', self.addon.slug, review.id))
 
     def item_title(self, review):
         """Title for particular review (<item><title>)"""
@@ -59,8 +58,8 @@ class ReviewsRss(NonAtomicFeed):
 
     def item_guid(self, review):
         """Guid for a particuar review  (<item><guid>)"""
-        guid_url = helpers.absolutify(helpers.url('addons.reviews.list',
-                                                  self.addon.slug))
+        guid_url = jinja_helpers.absolutify(
+            jinja_helpers.url('addons.reviews.list', self.addon.slug))
         return guid_url + urllib.quote(str(review.id))
 
     def item_author_name(self, review):

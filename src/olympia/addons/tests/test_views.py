@@ -16,7 +16,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import APITestClient, ESTestCase, TestCase
-from olympia.amo.helpers import numberfmt, urlparams
+from olympia.amo.templatetags.jinja_helpers import numberfmt, urlparams
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.utils import generate_addon_guid
@@ -30,7 +30,7 @@ from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.paypal.tests.test import other_error
 from olympia.reviews.models import Review
 from olympia.stats.models import Contribution
-from olympia.users.helpers import users_list
+from olympia.users.templatetags.jinja_helpers import users_list
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 

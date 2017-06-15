@@ -6,9 +6,9 @@ Django==1.8.18 \
     --hash=sha256:d8e2fd119756ab10b43a31052c3c8efbc262064b81eecb7871372de4d37b1a94 \
     --hash=sha256:c7611cdd5e2539a443b7960c7cafd867d986c2720a1b44808deaa60ce3da50c7 # pyup: >=1.8,<1.9
 # Jinja2 is required by Sphinx
-Jinja2==2.8.1 \
-    --hash=sha256:3997cf273f1424207c60d5895264f74483fce72702f15a7cd51a8551d43663ca \
-    --hash=sha256:35341f3a97b46327b3ef1eb624aadea87a535b8f50863036e085e7c426ac5891 # pyup: ==2.8.1
+Jinja2==2.9.6 \
+    --hash=sha256:2231bace0dfd8d2bf1e5d7e41239c06c9e0ded46e70cc1094a0aa64b0afeb054 \
+    --hash=sha256:ddaa01a212cd6d641401cb01b605f4a4d9f37bfc93043d7f760ec70fb99ff9ff
 # M2Crypto is required by django-aesfield, m2secret, signing-clients
 M2Crypto==0.24.0 \
     --hash=sha256:80a56441a1d2c0cf27e725be7554c92598b938fc8767ee2c71fdbc2fdc055ee8 # pyup: ==0.24.0
@@ -297,9 +297,6 @@ ipaddress==1.0.18 \
 # isodate is required by rdflib
 isodate==0.5.4 \
     --hash=sha256:42105c41d037246dc1987e36d96f3752ffd5c0c24834dd12e4fdbe1e79544e31
-jingo==0.9.0 \
-    --hash=sha256:12a983286519303c6afd3da6f0a7e1859e69effb5fe46109424cdfca382bea56 \
-    --hash=sha256:37de5435622d05763bc55d1a3d0a7edcf998ece9e6048bb470db431d1aa83c3a
 jingo_minify==0.7.0 \
     --hash=sha256:1427946e8d4082c909a98dbacfe1cd908cbdc83572003e1a0236da02b350e31f \
     --hash=sha256:f47ec7868467a1b270e115c301a4270137836ddb7b5f57552e65dff5c86aee05
@@ -474,3 +471,5 @@ urllib3==1.21.1 \
 vine==1.1.3 \
     --hash=sha256:739b19304065de99bd1f4665abe461b449b1022c1e4f89a7925db9d50e9741ea \
     --hash=sha256:87b95da19249373430a8fafca36f1aecb7aa0f1cc78545877857afc46aea2441
+django-jinja==2.3.1 \
+    --hash=sha256:ebfde44cb716e57a9cdff6c1a4935fc49c7419ea4cd0b2b89bcecc696b9c0c86

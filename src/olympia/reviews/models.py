@@ -8,11 +8,11 @@ import caching.base as caching
 
 import olympia.core.logger
 from olympia import activity, amo
-from olympia.amo import helpers
+from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.utils import send_mail_jinja
 from olympia.translations.fields import save_signal, TranslatedField
-from olympia.translations.helpers import truncate
+from olympia.translations.templatetags.jinja_helpers import truncate
 
 
 log = olympia.core.logger.getLogger('z.reviews')

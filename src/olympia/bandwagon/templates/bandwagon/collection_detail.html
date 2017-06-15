@@ -112,7 +112,7 @@
         <label for="sortby">{{ _('Sort by:') }}</label>
         <select id="sortby" name="{{ filter.key }}">
           {% for value, title in filter.opts %}
-          <option value="{{ value }}" {{ value|ifeq(filter.field, 'selected') }}>
+          <option value="{{ value }}"{% if value == filter.field %} selected{% endif %}>
             {{ title }}</option>
           {% endfor %}
         </select>

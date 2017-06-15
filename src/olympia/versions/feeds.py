@@ -5,7 +5,7 @@ from jingo.helpers import datetime
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.helpers import absolutify, url
+from olympia.amo.templatetags.jinja_helpers import absolutify, url
 from olympia.amo.feeds import NonAtomicFeed
 from olympia.amo.utils import urlparams
 from olympia.addons.models import Addon

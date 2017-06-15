@@ -16,7 +16,7 @@ from mock import Mock, patch
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.amo.tests import addon_factory, TestCase, version_factory
-from olympia.amo.helpers import absolutify, user_media_url
+from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
     AddonFeatureCompatibility, AddonUser, AppSupport, DeniedGuid, DeniedSlug,
@@ -992,7 +992,7 @@ class TestAddonModels(TestCase):
 
         assert self.newlines_helper(before) == after
 
-    @patch('olympia.amo.helpers.urlresolvers.get_outgoing_url')
+    @patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
     def test_newlines_attribute_link_doublequote(self, mock_get_outgoing_url):
         mock_get_outgoing_url.return_value = 'http://google.com'
         before = '<a href="http://google.com">test</a>'

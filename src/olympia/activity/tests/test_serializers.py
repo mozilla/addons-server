@@ -4,7 +4,7 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.serializers import ActivityLogSerializer
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory)
 

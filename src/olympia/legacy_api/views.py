@@ -42,7 +42,7 @@ OUT_OF_DATE = _(
 
 xml_env = jingo.get_env().overlay()
 old_finalize = xml_env.finalize
-xml_env.finalize = lambda x: amo.helpers.strip_controls(old_finalize(x))
+xml_env.finalize = lambda x: amo.templatetags.jinja_helpers.strip_controls(old_finalize(x))
 
 
 # Hard limit of 30.  The buffer is to try for locale-specific add-ons.

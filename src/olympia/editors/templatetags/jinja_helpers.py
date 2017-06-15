@@ -18,9 +18,9 @@ from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import send_activity_mail, log_and_notify
-from olympia.addons.helpers import new_context
+from olympia.addons.templatetags.jinja_helpers import new_context
 from olympia.addons.models import Addon, AddonApprovalsCounter
-from olympia.amo.helpers import absolutify, page_title
+from olympia.amo.templatetags.jinja_helpers import absolutify, page_title
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS

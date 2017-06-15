@@ -4,8 +4,8 @@ import jinja2
 from jingo import register, get_env
 from django.utils.translation import ugettext
 
-from olympia.addons.helpers import new_context
-from olympia.accounts.helpers import login_link
+from olympia.addons.templatetags.jinja_helpers import new_context
+from olympia.accounts.templatetags.jinja_helpers import login_link
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 

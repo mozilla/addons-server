@@ -15,7 +15,7 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
-from olympia.amo.helpers import user_media_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import (
     addon_factory, formset, initial, req_factory_factory)
 from olympia.amo.tests.test_helpers import get_image_path

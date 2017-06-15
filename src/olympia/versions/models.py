@@ -19,7 +19,7 @@ from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.amo.decorators import use_master
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.helpers import user_media_path, id_to_path
+from olympia.amo.templatetags.jinja_helpers import user_media_path, id_to_path
 from olympia.applications.models import AppVersion
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file

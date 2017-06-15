@@ -7,7 +7,7 @@ from django.db import IntegrityError
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.amo.helpers import url
+from olympia.amo.templatetags.jinja_helpers import url
 from olympia.applications.models import AppVersion
 
 

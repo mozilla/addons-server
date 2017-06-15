@@ -3,7 +3,7 @@ import json
 import mock
 from django.test.utils import override_settings
 
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import AMOPaths
 from olympia.github.tasks import process_results, process_webhook
 from olympia.github.tests.test_github import GithubBaseTestCase

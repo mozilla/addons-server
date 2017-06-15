@@ -11,7 +11,7 @@ from olympia import amo
 from olympia.amo.cache_nuggets import Token
 from olympia.access import acl
 from olympia.addons.decorators import owner_or_unlisted_reviewer
-from olympia.files.helpers import DiffHelper, FileViewer
+from olympia.files.templatetags.jinja_helpers import DiffHelper, FileViewer
 from olympia.files.models import File
 
 log = olympia.core.logger.getLogger('z.addons')

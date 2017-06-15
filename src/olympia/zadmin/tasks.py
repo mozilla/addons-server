@@ -23,7 +23,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonUser, Category
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
-from olympia.amo.helpers import absolutify
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked, send_mail, sorted_groupby
 from olympia.constants.categories import CATEGORIES

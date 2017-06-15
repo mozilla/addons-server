@@ -7,7 +7,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.reviews.models import ReviewFlag
 
-from . import forms
+from .. import forms
 
 
 @jingo.register.filter

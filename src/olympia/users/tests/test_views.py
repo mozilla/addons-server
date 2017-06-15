@@ -20,7 +20,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser, Category
-from olympia.amo.helpers import urlparams
+from olympia.amo.templatetags.jinja_helpers import urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.constants.categories import CATEGORIES

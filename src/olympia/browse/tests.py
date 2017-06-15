@@ -17,7 +17,7 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.helpers import absolutify, numberfmt, urlparams
+from olympia.amo.templatetags.jinja_helpers import absolutify, numberfmt, urlparams
 from olympia.addons.models import (
     Addon, AddonCategory, Category, AppSupport, FrozenAddon, Persona)
 from olympia.bandwagon.models import (

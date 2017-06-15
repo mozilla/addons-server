@@ -231,7 +231,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def picture_dir(self):
-        from olympia.amo.helpers import user_media_path
+        from olympia.amo.templatetags.jinja_helpers import user_media_path
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
         return os.path.join(user_media_path('userpics'),
                             split_id.group(2) or '0',
@@ -243,7 +243,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def picture_url(self):
-        from olympia.amo.helpers import user_media_url
+        from olympia.amo.templatetags.jinja_helpers import user_media_url
         if not self.picture_type:
             return settings.STATIC_URL + '/img/zamboni/anon_user.png'
         else:

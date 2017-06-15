@@ -153,7 +153,7 @@ class TestAutoApproveCommand(TestCase):
         )
         assert review_helper_mock().handler.process_public.call_count == 1
 
-    @mock.patch('olympia.editors.helpers.sign_file')
+    @mock.patch('olympia.editors.templatetags.jinja_helpers.sign_file')
     def test_full(self, sign_file_mock):
         # Simple integration test with as few mocks as possible.
         assert not AutoApprovalSummary.objects.exists()

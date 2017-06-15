@@ -421,7 +421,7 @@ class TestButtonHtml(ButtonTest):
         assert doc('.contrib .os').text() == ''
 
     @patch('olympia.addons.buttons.install_button')
-    @patch('olympia.addons.helpers.statusflags')
+    @patch('olympia.addons.templatetags.jinja_helpers.statusflags')
     def test_big_install_button_xss(self, flags_mock, button_mock):
         # Make sure there's no xss in statusflags.
         button_mock.return_value = jinja2.Markup('<b>button</b>')

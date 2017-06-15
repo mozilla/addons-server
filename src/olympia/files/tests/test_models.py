@@ -24,7 +24,7 @@ from olympia.files.models import (
     EXTENSIONS, File, FileUpload, FileValidation, nfd_str, Permission,
     track_file_status_change, WebextPermission, WebextPermissionDescription,
 )
-from olympia.files.helpers import copyfileobj
+from olympia.files.templatetags.jinja_helpers import copyfileobj
 from olympia.files.utils import check_xpi_info, parse_addon, parse_xpi
 from olympia.versions.models import Version
 
