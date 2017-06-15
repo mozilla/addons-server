@@ -31,7 +31,6 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
         AnyOf(AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted),
     ]
     serializer_class = ActivityLogSerializer
-    queryset = ActivityLog.objects.all()
 
     def get_queryset(self):
         alog = ActivityLog.objects.for_version(self.get_version_object)

@@ -11,7 +11,7 @@ from .views import (
 
 
 addons = SimpleRouter()
-addons.register(r'addon', AddonViewSet)
+addons.register(r'addon', AddonViewSet, base_name='addon')
 
 # Router for children of /addons/addon/{addon_pk}/.
 sub_addons = NestedSimpleRouter(addons, r'addon', lookup='addon')
