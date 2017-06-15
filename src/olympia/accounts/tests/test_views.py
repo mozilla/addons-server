@@ -1129,6 +1129,20 @@ class TestAccountViewSetUpdate(TestCase):
 
         assert path.exists(self.user.picture_path)
 
+    def test_delete_photo(self):
+        # use test_picture_upload to set up a photo
+        self.test_picture_upload()
+        assert path.exists(self.user.picture_path)
+        # call the clear endpoint
+        clear_url = reverse('account-clear-picture',
+                            kwargs={'pk': self.user.pk})
+        response = self.client.post(clear_url)
+        assert response.status_code == 200
+        # Should clear the photo
+        assert not path.exists(self.user.picture_path)
+        json_content = json.loads(response.content)
+        assert 'anon_user.png' in json_content['picture_url']
+
     def test_picture_upload_valid(self):
         self.client.login_api(self.user)
         gif = get_uploaded_file('animated.gif')
