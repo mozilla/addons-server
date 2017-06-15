@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-11-08 08:02+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -830,14 +830,6 @@ msgstr "Dizze funksje is tydlik útskeakele fanwegen ûnderhâld oan de website.
 
 msgid "Remove this localization"
 msgstr "Dizze oersetting fuortmsite"
-
-msgid "Password strength:"
-msgstr "Wachtwurdsterkte:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Op syn minst {0} teken restearjend."
-msgstr[1] "Op syn minst {0} tekens restearjend."
 
 msgid "Requested Info"
 msgstr "Oanfrege ynformaasje"

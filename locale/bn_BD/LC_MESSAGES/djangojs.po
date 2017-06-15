@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-06-13 01:18+0000\n"
 "Last-Translator: Noshin Tasneem <noshin.tasneem97@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -824,14 +824,6 @@ msgstr "ওয়েবসাইটটির তত্বাবধানের জ�
 
 msgid "Remove this localization"
 msgstr "এই স্থানীয়করণ অপসারণ করুন"
-
-msgid "Password strength:"
-msgstr "পার্সওয়ার্ড এর শক্তিমাত্রাঃ"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "Requested Info"
 msgstr "অনুরোধকৃত তখ্য"

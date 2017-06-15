@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-12-18 12:19+0000\n"
 "Last-Translator: mindaKhinzmarauli <beseliaa.design-mozilla-firefox@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -819,13 +819,6 @@ msgstr "ვებ-საიტზე ტექნიკური მომსა
 
 msgid "Remove this localization"
 msgstr "ამ ლოკალიზაციის წაშლა"
-
-msgid "Password strength:"
-msgstr "პაროლის სიძლიერე:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "დარჩენილია სულ მცირე {0} სიმბოლო."
 
 msgid "Requested Info"
 msgstr "მოთხოვნილი ინფორმაცია"

@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-06-13 12:57+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -827,14 +827,6 @@ msgstr "Denne funksjonen er mellombels slått av medan vi utfører vedlikehald a
 
 msgid "Remove this localization"
 msgstr "Fjern denne omsettinga"
-
-msgid "Password strength:"
-msgstr "Passordstyrke:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Minst {0} teikn att."
-msgstr[1] "Minst {0} teikn att."
 
 msgid "Requested Info"
 msgstr "Etterspurd info"

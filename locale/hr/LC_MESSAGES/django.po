@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2013-03-09 16:37+0000\n"
 "Last-Translator: Vedran <vedran.kovacevic@mozilla-hr.org>\n"
 "Language-Team: Croatian\n"
@@ -4788,8 +4788,9 @@ msgstr "OBavijestime kada se dodatak slijedeći put ažurira. (Slijedeća ažuri
 msgid "Clear Admin Review Flag"
 msgstr ""
 
-msgid "Clear more info requested flag"
-msgstr ""
+#, fuzzy
+msgid "Is more info requested?"
+msgstr "Otkaži zahtjev za revizijom"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -8149,7 +8150,7 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr ""
 
-msgid "add-on contests or events are announced"
+msgid "stay up-to-date with news and events relevant to add-on developers"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"

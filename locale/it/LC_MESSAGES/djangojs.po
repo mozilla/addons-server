@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-10-27 15:33+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -834,14 +834,6 @@ msgstr "Questa funzione è momentaneamente disattivata per dei lavori di manuten
 
 msgid "Remove this localization"
 msgstr "Rimuovi questa localizzazione"
-
-msgid "Password strength:"
-msgstr "Complessità password:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Almeno {0} carattere ancora disponibile."
-msgstr[1] "Almeno {0} caratteri ancora disponibili."
 
 msgid "Requested Info"
 msgstr "Informazioni richieste"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-05-24 11:32+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -824,14 +824,6 @@ msgstr "Denne funktion er midlertidig ude af drift mens vi udfører vedligeholde
 
 msgid "Remove this localization"
 msgstr ""
-
-msgid "Password strength:"
-msgstr "Adgangskodens styrke:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Mindst {0} tegn tilbage."
-msgstr[1] "Mindst {0} tegn tilbage."
 
 msgid "Requested Info"
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -827,14 +827,6 @@ msgstr "Funtzionaltasun hau behin-behinean desgaituta dago webgunearen mantentze
 
 msgid "Remove this localization"
 msgstr "Kendu itzulpen hau"
-
-msgid "Password strength:"
-msgstr "Pasahitzaren sendotasuna:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Gutxienez karaktere bat geratzen da."
-msgstr[1] "Gutxienez {0} karaktere geratzen dira."
 
 msgid "Requested Info"
 msgstr ""

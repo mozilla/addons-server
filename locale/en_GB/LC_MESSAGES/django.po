@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-04-07 05:29+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4746,7 +4746,8 @@ msgstr "Notify me the next time this add-on is updated. (Subsequent updates will
 msgid "Clear Admin Review Flag"
 msgstr "Clear Admin Review Flag"
 
-msgid "Clear more info requested flag"
+#, fuzzy
+msgid "Is more info requested?"
 msgstr "Clear more info requested flag"
 
 msgid "Choose a canned response..."
@@ -8217,8 +8218,8 @@ msgstr "my sdk-based add-on is upgraded successfully"
 msgid "someone writes a review of my add-on"
 msgstr "someone writes a review of my add-on"
 
-msgid "add-on contests or events are announced"
-msgstr "add-on contests or events are announced"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "my add-on's compatibility cannot be upgraded"

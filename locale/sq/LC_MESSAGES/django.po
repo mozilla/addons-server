@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-05-21 22:22+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -4753,7 +4753,8 @@ msgstr "Njoftomë herës tjetër që përditësohet kjo shtesë. (Përditësimet
 msgid "Clear Admin Review Flag"
 msgstr "Hiqi Shenjën Për Shqyrtim Përgjegjësi"
 
-msgid "Clear more info requested flag"
+#, fuzzy
+msgid "Is more info requested?"
 msgstr "Hiqjani shenjën e kërkesës për më tepër të dhëna"
 
 msgid "Choose a canned response..."
@@ -8240,8 +8241,8 @@ msgstr "shtesa sime e bazuar në sdk është përmirësuar me sukses"
 msgid "someone writes a review of my add-on"
 msgstr "dikush shkruan një shqyrtim të shtesës sime"
 
-msgid "add-on contests or events are announced"
-msgstr "lajmërohen veprimtari ose gara shtesash"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "përputhshmëria e shtesës sime s’mund të përmirësohet"

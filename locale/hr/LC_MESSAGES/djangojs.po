@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-04-19 19:31+0000\n"
 "Last-Translator: Mikeyy <mihovil@miho.im>\n"
 "Language-Team: Croatian\n"
@@ -839,15 +839,6 @@ msgstr "Usluga je privremeno onemogućena tijekom radova na održavanju stranice
 
 msgid "Remove this localization"
 msgstr "Ukloni ovaj prijevod"
-
-msgid "Password strength:"
-msgstr "Jačina lozinke:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Najmanje {0} znak ostao."
-msgstr[1] "Najmanje {0} znakova ostalo."
-msgstr[2] "Najmanje {0} znakova ostalo."
 
 msgid "Requested Info"
 msgstr "Zatražene informacije"

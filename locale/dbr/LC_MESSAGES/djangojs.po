@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -825,14 +825,6 @@ msgstr ".ɹǝʇɐʅ ǝʅʇʇıʅ ɐ ʞɔɐq ʞɔǝɥɔ ǝsɐǝʅԀ .ǝɔuɐuǝʇ
 
 msgid "Remove this localization"
 msgstr "uoıʇɐzıʅɐɔoʅ sıɥʇ ǝʌoɯǝᴚ"
-
-msgid "Password strength:"
-msgstr ":ɥʇƃuǝɹʇs pɹoʍssɐԀ"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] ".ʇɟǝʅ ɹǝʇɔɐɹɐɥɔ {0} ʇsɐǝʅ ʇ∀"
-msgstr[1] ".ʇɟǝʅ sɹǝʇɔɐɹɐɥɔ {0} ʇsɐǝʅ ʇ∀"
 
 msgid "Requested Info"
 msgstr "oɟuI pǝʇsǝnbǝᴚ"

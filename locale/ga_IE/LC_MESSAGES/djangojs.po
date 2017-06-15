@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-02-08 02:06+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -854,17 +854,6 @@ msgstr "Níl an ghné seo ar fáil faoi láthair agus cúram á dhéanamh ar an 
 
 msgid "Remove this localization"
 msgstr "Bain an logánú seo"
-
-msgid "Password strength:"
-msgstr "Neart an fhocail fhaire:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "{0} charachtar fágtha ar a laghad."
-msgstr[1] "{0} charachtar fágtha ar a laghad."
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
 
 msgid "Requested Info"
 msgstr ""
