@@ -674,7 +674,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
             'js/lib/format.js',
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
@@ -748,7 +748,7 @@ MINIFY_BUNDLES = {
         # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
             'js/node_lib/jquery.js',
-            'js/lib/jquery.browser.js',
+            'js/node_lib/jquery.browser.js',
             'js/impala/preloaded.js',
             'js/zamboni/analytics.js',
         ),
@@ -764,7 +764,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
             'js/lib/format.js',
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/lib/jquery.pjax.js',
@@ -853,7 +853,7 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/discovery': (
             'js/node_lib/jquery.js',
-            'js/lib/jquery.browser.js',
+            'js/node_lib/jquery.browser.js',
             'js/lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
@@ -863,7 +863,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/analytics.js',
 
             # Add-ons details
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/lib/ui.lightbox.js',
@@ -894,7 +894,7 @@ MINIFY_BUNDLES = {
             'js/impala/formset.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
-            'js/lib/jquery.timeago.js',
+            'js/node_lib/jquery.timeago.js',
         ),
         'zamboni/editors': (
             'js/lib/highcharts.src.js',
