@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-11-09 11:01+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -831,14 +831,6 @@ msgstr "Kjo veçori është çaktivizuar përkohësisht, teksa bëjmë mirëmbaj
 
 msgid "Remove this localization"
 msgstr "Hiqe këtë përkthim"
-
-msgid "Password strength:"
-msgstr "Fortësi fjalëkalimi:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Të paktën edhe <b>{0}</b> shenjë."
-msgstr[1] "Të paktën edhe <b>{0}</b> shenja."
 
 msgid "Requested Info"
 msgstr "Të dhëna të Domosdoshme"

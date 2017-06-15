@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-10-25 14:02+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -826,14 +826,6 @@ msgstr "Den här funktionen är tillfälligt inaktiverad under tiden vi utför u
 
 msgid "Remove this localization"
 msgstr "Ta bort denna översättning"
-
-msgid "Password strength:"
-msgstr "Lösenordsstyrka:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Minst {0} tecken kvar."
-msgstr[1] "Minst {0} tecken kvar."
 
 msgid "Requested Info"
 msgstr "Begärd info"

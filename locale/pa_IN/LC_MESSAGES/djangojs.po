@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-08-08 12:39+0000\n"
 "Last-Translator: Amanpreet Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -830,14 +830,6 @@ msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ
 
 msgid "Remove this localization"
 msgstr "ਇਹ ਸਥਾਨੀਕਰਨ ਹਟਾਓ"
-
-msgid "Password strength:"
-msgstr "ਪਾਸਵਰਡ ਤਾਕਤ"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "ਘੱਟੋ ਤੋਂ ਘੱਟ {0} ਅੱਖਰ ਬਾਕੀ।"
-msgstr[1] "ਘੱਟੋ ਤੋਂ ਘੱਟ {0} ਅੱਖਰ ਬਾਕੀ।"
 
 msgid "Requested Info"
 msgstr "ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"

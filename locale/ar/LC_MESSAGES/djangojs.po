@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-02-15 10:49+0000\n"
 "Last-Translator: Abdalrahman Hwoij <howij1995@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -867,18 +867,6 @@ msgstr "هذه الميزة معطلة مؤقتا بينما نقوم بصيان
 
 msgid "Remove this localization"
 msgstr ""
-
-msgid "Password strength:"
-msgstr "قوة كلمة السر:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "لا حروف متبقية"
-msgstr[1] "حرف واحد متبقي على الأقل"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 msgid "Requested Info"
 msgstr ""

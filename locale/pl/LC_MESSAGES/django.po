@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -4855,8 +4855,9 @@ msgstr "Powiadom mnie, gdy ten dodatek zostanie zaktualizowany. (Kolejne aktuali
 msgid "Clear Admin Review Flag"
 msgstr "Usuń oznaczenie „Do sprawdzenia przez administratora”"
 
-msgid "Clear more info requested flag"
-msgstr ""
+#, fuzzy
+msgid "Is more info requested?"
+msgstr "Poproszono o więcej informacji"
 
 msgid "Choose a canned response..."
 msgstr "Wybierz gotową odpowiedź…"
@@ -8357,8 +8358,8 @@ msgstr "Mój dodatek stworzony za pomocą SDK został zaktualizowany"
 msgid "someone writes a review of my add-on"
 msgstr "Ktoś napisał opinię o moim dodatku"
 
-msgid "add-on contests or events are announced"
-msgstr "Zapowiedziano konkursy lub imprezy związane z dodatkami"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "Nie można zaktualizować kompatybilności mojego dodatku"

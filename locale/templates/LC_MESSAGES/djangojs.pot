@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1086,16 +1086,6 @@ msgstr ""
 #: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr ""
-
-#: static/js/zamboni/password-strength.js:20
-msgid "Password strength:"
-msgstr ""
-
-#: static/js/zamboni/password-strength.js:26
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"

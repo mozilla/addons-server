@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-03-23 03:00+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -4793,8 +4793,9 @@ msgstr "다음에 이 부가 기능이 업데이트 되면 알립니다. (이후
 msgid "Clear Admin Review Flag"
 msgstr "관리자 심사 플래그 지우기"
 
-msgid "Clear more info requested flag"
-msgstr ""
+#, fuzzy
+msgid "Is more info requested?"
+msgstr "추가 정보 필요"
 
 msgid "Choose a canned response..."
 msgstr "자동 응답 메시지를 선택해 주세요..."
@@ -8251,8 +8252,8 @@ msgstr "sdk 기반 부가 기능이 업그레이 되었습니다"
 msgid "someone writes a review of my add-on"
 msgstr "누군가 부가 기능에 평가를 작성했습니다"
 
-msgid "add-on contests or events are announced"
-msgstr "부가 기능 콘테스트나 이벤트 소식이 있습니다"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "부가 기능 호환성을 업그레이드 할 수 없습니다"

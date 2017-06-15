@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-11-07 11:20+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -824,14 +824,6 @@ msgstr "আমরা ওয়েবসাইট রক্ষণাবেক্�
 
 msgid "Remove this localization"
 msgstr ""
-
-msgid "Password strength:"
-msgstr "পাসওয়ার্ডের দৃঢ়তা:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "Requested Info"
 msgstr ""

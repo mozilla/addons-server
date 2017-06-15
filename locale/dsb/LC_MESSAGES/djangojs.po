@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-10-26 17:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -847,16 +847,6 @@ msgstr "Toś ta funkcija jo se nachylu znjemóžnjona, mjaztym až pśewjedujomy
 
 msgid "Remove this localization"
 msgstr "Toś ten pśełožk wótpóraś"
-
-msgid "Password strength:"
-msgstr "Gronidłowa móc:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Nanejmjenjej {0} znamuško wušej."
-msgstr[1] "Nanejmjenjej {0} znamušce wušej."
-msgstr[2] "Nanejmjenjej {0} znamuška wušej."
-msgstr[3] "Nanejmjenjej {0} znamuškow wušej."
 
 msgid "Requested Info"
 msgstr "Informacije pominane"

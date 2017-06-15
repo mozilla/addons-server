@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4841,8 +4841,9 @@ msgstr "Обавести ме следећи пут када се овај до�
 msgid "Clear Admin Review Flag"
 msgstr "Уклони ознаку за рецензију администратора"
 
-msgid "Clear more info requested flag"
-msgstr ""
+#, fuzzy
+msgid "Is more info requested?"
+msgstr "Захтеване додатне информације"
 
 msgid "Choose a canned response..."
 msgstr "Изабери готов одговор..."
@@ -8247,8 +8248,8 @@ msgstr "мој додатак заснован на sdk је успешно на
 msgid "someone writes a review of my add-on"
 msgstr "неко пише рецензију на мој додатак"
 
-msgid "add-on contests or events are announced"
-msgstr "такмичење у прављењу додатака или догађаји су објављени"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "компатабилност мог додатка се не може надоградити"

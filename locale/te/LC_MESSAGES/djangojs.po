@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2012-03-02 17:35-0700\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -821,14 +821,6 @@ msgstr ""
 
 msgid "Remove this localization"
 msgstr ""
-
-msgid "Password strength:"
-msgstr ""
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "Requested Info"
 msgstr ""
