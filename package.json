@@ -17,7 +17,7 @@
     "jquery-ui": "1.12.1",
     "less": "2.7.2",
     "stylus": "0.54.5",
-    "uglify-js": "3.0.15"
+    "uglify-js": "3.0.16"
   },
   "devDependencies": {
     "potools": "0.0.5"
