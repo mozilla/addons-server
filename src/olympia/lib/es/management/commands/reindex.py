@@ -1,6 +1,5 @@
 import json
 import os
-import sys
 import time
 
 from celery import group
@@ -81,14 +80,14 @@ def index_data(alias, index):
 
 
 @task(ignore_result=False)
-def flag_database(new_index, old_index, alias, stdout=sys.stdout):
+def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
     logger.info('Flagging the database to start the reindexation')
     flag_reindexing_amo(new_index=new_index, old_index=old_index, alias=alias)
 
 
 @task
-def unflag_database(stdout=sys.stdout):
+def unflag_database():
     """Unflag the database to indicate that the reindexing is over."""
     logger.info('Unflagging the database')
     unflag_reindexing_amo()
@@ -147,7 +146,7 @@ class Command(BaseCommand):
             raise CommandError('Indexation already occurring - use --force to '
                                'bypass')
 
-        logger.info('Starting the reindexation')
+        self.stdout.write('Starting the reindexation')
 
         modules = get_modules(with_stats=kwargs.get('with_stats', False))
 
@@ -179,7 +178,7 @@ class Command(BaseCommand):
             alias_actions.append(action)
 
         # Creating a task chain.
-        logger.info('Building the task chain')
+        self.stdout.write('Building the task chain')
 
         to_remove = []
         workflow = []
@@ -232,7 +231,7 @@ class Command(BaseCommand):
             workflow |= delete_indexes.si(to_remove)
 
         # Let's do it.
-        logger.info('Running all indexation tasks')
+        self.stdout.write('Running all indexation tasks')
 
         os.environ['FORCE_INDEXING'] = '1'
 
@@ -241,16 +240,16 @@ class Command(BaseCommand):
             if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
                 time.sleep(10)   # give celeryd some time to flag the DB
             while is_reindexing_amo():
-                sys.stdout.write('.')
-                sys.stdout.flush()
+                self.stdout.write('.')
+                self.stdout.flush()
                 time.sleep(5)
         finally:
             del os.environ['FORCE_INDEXING']
 
-        sys.stdout.write('\n')
+        self.stdout.write('\n')
 
         # Let's return the /_aliases values.
         aliases = ES.indices.get_alias()
         aliases = json.dumps(aliases, sort_keys=True, indent=4)
         summary = _SUMMARY % (len(modules), aliases)
-        logger.info(summary)
+        self.stdout.write(summary)
