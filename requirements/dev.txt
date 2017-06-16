@@ -55,5 +55,3 @@ cookies==2.2.1 \
     --hash=sha256:15bee753002dff684987b8df8c235288eb8d45f8191ae056254812dfd42c81d3
 responses==0.5.1 \
     --hash=sha256:3a907f7aae2fd2286d06cfdf238957786c38bbcadc451adceecc769a4ef882b7
-translate-toolkit==2.1.0 \
-    --hash=sha256:785fcf2136e1b1a920e2127c0ad2701c5e799680bc5e33983c61ed815ee693ee

@@ -108,6 +108,9 @@ update_assets:
 	python manage.py compress_assets --use-uuid
 	python manage.py collectstatic --noinput
 
+compile_locales:
+	./locale/compile-mo.sh locale/
+
 update:
 	$(MAKE) update_deps update_db update_assets
 	python manage.py update_permissions_from_mc

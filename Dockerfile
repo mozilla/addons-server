@@ -37,6 +37,7 @@ RUN yum install -y \
         mysql-community-libs \
         epel-release \
         swig \
+        gettext \
     && yum clean all
 
 # Install Nodejs (for less, stylus, uglifyjs and others) separately, because

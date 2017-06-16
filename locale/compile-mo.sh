@@ -1,8 +1,8 @@
 #!/bin/bash
-# Requires `pip install dennis` for po linting.
-
 # syntax:
 # compile-mo.sh locale-dir/
+
+set -e
 
 function usage() {
     echo "syntax:"
