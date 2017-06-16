@@ -1,0 +1,61 @@
+APP=src/olympia/
+
+help_redirect:
+	@$(MAKE) help --no-print-directory
+
+help_submake:
+	@echo "Commands that are designed to be run in the host:"
+	@echo "  debug             to connect to a running addons-server docker for debugging"
+	@echo "  djshell           to connect to a running addons-server docker django shell"
+	@echo "  dbshell           to connect to a running addons-server docker database shell"
+	@echo "  make              to connect to a running addons-server docker and run make ARGS"
+	@echo "  shell             to connect to a running addons-server docker shell"
+	@echo "  tdd               to run the entire test suite, but stop on the first error"
+	@echo "  test              to run the entire test suite"
+	@echo "  test_es           to run the ES tests"
+	@echo "  test_failed       to rerun the failed tests from the previous run"
+	@echo "  test_force_db     to run the entire test suite with a new database"
+	@echo "  test_no_es        to run all but the ES tests"
+	@echo "  initialize_docker to initialize a docker image"
+	@echo "  update_docker     to update a docker image"
+
+test:
+	docker-compose exec web py.test $(APP) $(ARGS)
+
+test_es:
+	docker-compose exec web py.test -m es_tests $(APP) $(ARGS)
+
+test_no_es:
+	docker-compose exec web py.test -m "not es_tests" $(APP) $(ARGS)
+
+test_force_db:
+	docker-compose exec web py.test --create-db $(APP) $(ARGS)
+
+tdd:
+	docker-compose exec web py.test -x --pdb $(ARGS) $(APP)
+
+test_failed:
+	docker-compose exec web py.test --lf $(ARGS) $(APP)
+
+update_docker:
+	docker-compose exec worker make update_deps
+	docker-compose exec web make update
+
+initialize_docker:
+	docker-compose exec web make initialize
+
+debug:
+	docker-compose exec web supervisorctl fg olympia
+
+shell:
+	docker-compose exec web bash
+
+djshell:
+	docker-compose exec web ./manage.py shell
+
+dbshell:
+	docker-compose exec web ./manage.py dbshell
+
+# Run a make command in the container
+make:
+	docker-compose exec web make $(ARGS)
