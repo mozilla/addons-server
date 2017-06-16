@@ -11,7 +11,6 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia.amo.decorators import post_required, write
-from olympia.stats.db import StatsDictField
 from olympia.stats.models import Contribution, ContributionError
 
 
