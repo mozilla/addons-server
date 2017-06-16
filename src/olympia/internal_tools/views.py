@@ -41,11 +41,12 @@ class InternalAddonViewSet(AddonViewSet):
         AnyOf(GroupPermission(amo.permissions.ADMIN_TOOLS_VIEW),
               GroupPermission(amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW))]
 
-    # Internal tools allow access to everything, including deleted add-ons.
-    queryset = Addon.unfiltered.all()
-
     # Can display unlisted data.
     serializer_class = AddonSerializerWithUnlistedData
+
+    def get_queryset(self):
+        # Internal tools allow access to everything, including deleted add-ons.
+        return Addon.unfiltered.all()
 
 
 class LoginStartView(LoginStartBaseView):

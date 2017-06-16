@@ -6,7 +6,7 @@ from olympia.reviews.views import ReviewViewSet
 
 
 reviews = SimpleRouter()
-reviews.register(r'review', ReviewViewSet)
+reviews.register(r'review', ReviewViewSet, base_name='review')
 
 urlpatterns = [
     url(r'', include(reviews.urls))

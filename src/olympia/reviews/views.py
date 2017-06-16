@@ -249,8 +249,6 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
     )]
     reply_serializer_class = ReviewSerializerReply
 
-    queryset = Review.objects.all()
-
     def set_addon_object_from_review(self, review):
         """Set addon object on the instance from a review object."""
         # At this point it's likely we didn't have an addon in the request, so
@@ -383,30 +381,32 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             # any filtering, allowing them to access any review out of the box
             # with no extra parameter needed.
             if self.action == 'list':
-                self.queryset = Review.unfiltered.filter(reply_to__isnull=True)
+                queryset = Review.unfiltered.filter(reply_to__isnull=True)
             else:
-                self.queryset = Review.unfiltered.all()
+                queryset = Review.unfiltered.all()
         elif should_access_only_top_level_reviews:
             # When listing add-on reviews, exclude replies, they'll be
             # included during serialization as children of the relevant
             # reviews instead.
-            self.queryset = Review.without_replies.all()
+            queryset = Review.without_replies.all()
+        else:
+            queryset = Review.objects.all()
 
         # Filter out (other user's) empty reviews for non-admins.
         if self.action == 'list' and not has_addons_edit:
             user_filter = (Q(user=self.request.user.pk)
                            if self.request.user.is_authenticated() else Q())
-            self.queryset = self.queryset.filter(~Q(body=None) | user_filter)
+            queryset = queryset.filter(~Q(body=None) | user_filter)
 
-        qs = super(ReviewViewSet, self).get_queryset()
         # The serializer needs reply, version (only the "version" field) and
         # user. We don't need much for version and user, so we can make joins
         # with select_related(), but for replies additional queries will be
         # made for translations anyway so we're better off using
         # prefetch_related() to make a separate query to fetch them all.
-        qs = qs.select_related('version__version', 'user')
+        queryset = queryset.select_related('version__version', 'user')
         replies_qs = Review.unfiltered.select_related('user')
-        return qs.prefetch_related(Prefetch('reply', queryset=replies_qs))
+        return queryset.prefetch_related(
+            Prefetch('reply', queryset=replies_qs))
 
     @detail_route(
         methods=['post'], permission_classes=reply_permission_classes,
