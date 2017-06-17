@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-17 21:25+0000\n"
+"PO-Revision-Date: 2017-06-17 21:48+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1212,16 +1212,14 @@ msgstr "რჩეული"
 msgid "Remove from favorites"
 msgstr "რჩეულებიდან ამოღება"
 
-#, fuzzy
 msgid "This slug is already in use by another one of your collections."
-msgstr "ამ ბმულს სხვა კრებული უკვე იყენებს"
+msgstr "მისამართის ეს დაბოლოება უკვე გამოყენებულია თქვენს ერთ-ერთ კრებულში."
 
 msgid "Enter a valid slug consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#, fuzzy
 msgid "This slug cannot be used."
-msgstr "ეს სახელი ვერ გამიყენება."
+msgstr "მისამართის ამ დაბოლოების გამოყენება შეუძლებელია."
 
 msgid "Name"
 msgstr "სახელი"
@@ -2084,25 +2082,20 @@ msgstr "{file} დამოწმებულია."
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "დამატების id {0} GUID {1} -ით წაშლილია"
 
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} გადაცემულია წინასწარი განხილვისთვის."
+msgstr "{addon} {version} გადატანილია წინასწარი განხილვიდან."
 
-#, fuzzy
 msgid "Reply by developer on {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
+msgstr "შემმუშავებლის პასუხი {addon} {version}-ზე."
 
-#, fuzzy
 msgid "Developer Reply"
-msgstr "დეველოპერთა ბაზა"
+msgstr "შემმუშავებლის პასუხი"
 
-#, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
+msgstr "მიმომხილველის პასუხი {addon} {version}-ზე."
 
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "დეველოპერთა ბაზა"
+msgstr "მიმომხილველის პასუხი"
 
 #, fuzzy
 msgid "Approval notes changed for {addon} {version}."
