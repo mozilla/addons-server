@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-17 23:10+0000\n"
+"PO-Revision-Date: 2017-06-17 23:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -45,7 +45,7 @@ msgid "You are already logged in."
 msgstr "თქვენ უკვე შესული ხართ."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "თქვენი შესვლის მცდელობები ვერ შედგა. გთხოვთ, სცადოთ ხელახლა."
+msgstr "თქვენი შესვლის მცდელობები წარუმატებლად დასრულდა. გთხოვთ, სცადოთ ხელახლა."
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "თქვენი Firefox ანგარიში ვერ მოიძებნა. გთხოვთ, ცადეთ ხელახლა."
@@ -4953,9 +4953,8 @@ msgstr ""
 msgid "Log details"
 msgstr ""
 
-#, fuzzy
 msgid "Review Author"
-msgstr "მიმოხილვის ისტორია"
+msgstr "მიმოხილვის ავტორი"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
@@ -4980,10 +4979,9 @@ msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
 msgstr[0] ""
 
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "განახლებული {0}"
+msgstr[0] "განახლებები ({num})"
 
 msgid "Current waiting times:"
 msgstr ""
@@ -5002,9 +5000,8 @@ msgstr ""
 msgid "Reviews This Month"
 msgstr ""
 
-#, fuzzy
 msgid "New Reviewers"
-msgstr "განუხილველია"
+msgstr "ახალი მიმომხილველები"
 
 msgid "You're #{0} with {1} reviews"
 msgstr ""
@@ -5135,9 +5132,8 @@ msgstr ""
 msgid "The developer has provided source code."
 msgstr ""
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Android დამატებები"
+msgstr "ავტომატურად არაა მიღებული, იმიტომ რომ"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
@@ -5215,9 +5211,8 @@ msgstr ""
 msgid "Compare"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "ვერსიები"
+msgstr "უფლებები:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5464,9 +5459,8 @@ msgstr ""
 msgid "Back to review"
 msgstr ""
 
-#, fuzzy
 msgid "Back to add-on"
-msgstr "დამატების QR კოდი"
+msgstr "დამატების გვერდზე დაბრუნება"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
@@ -5707,7 +5701,6 @@ msgstr ""
 msgid "Unlock early access to experimental browser features."
 msgstr ""
 
-#, fuzzy
 msgid "Get Started"
 msgstr "სამუშაოს დაწყება"
 
@@ -6554,9 +6547,8 @@ msgstr ""
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
 
-#, fuzzy
 msgid "Must my add-on be reviewed?"
-msgstr "{addon} განხილულია."
+msgstr "ჩემი დამატება განსახილველია?"
 
 #, python-format
 msgid ""
@@ -6828,9 +6820,8 @@ msgid ""
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
 
-#, fuzzy
 msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "ეს დამატება ამოღებულია ავტორის მიერ."
+msgstr "რას ნიშნავს, როცა დამატება არის \"საცდელი\"?"
 
 #, python-format
 msgid ""
@@ -7087,9 +7078,8 @@ msgstr ""
 msgid "Opting out of a study does not prevent you from participating in future studies."
 msgstr ""
 
-#, fuzzy
 msgid "Your privacy"
-msgstr "პირადულობა:"
+msgstr "პირადი მონაცემების დაცულობა:"
 
 msgid "All Shield Studies"
 msgstr ""
@@ -7720,9 +7710,8 @@ msgstr ""
 msgid "View Mobile Site"
 msgstr ""
 
-#, fuzzy
 msgid "Report a bug"
-msgstr "შეტყობინება უკანონო გამოყენების შესახებ"
+msgstr "მოხსენება ხარვეზის შესახებ"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
@@ -8036,9 +8025,8 @@ msgstr ""
 msgid "User Login"
 msgstr ""
 
-#, fuzzy
 msgid "Log in with Firefox Accounts"
-msgstr "ახლა დამატებებში შესვლა თქვენი Firefox ანგარიშით შეგიძლიათ."
+msgstr "Firefox Accounts-ით შესვლა"
 
 msgid "Password Reset"
 msgstr ""
