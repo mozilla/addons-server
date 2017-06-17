@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-17 22:50+0000\n"
+"PO-Revision-Date: 2017-06-17 23:10+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4044,9 +4044,8 @@ msgstr ""
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr ""
 
-#, fuzzy
 msgid "Sign In"
-msgstr "ჩემი დამატებები"
+msgstr "შესვლა"
 
 msgid "Validator"
 msgstr ""
@@ -4085,17 +4084,15 @@ msgstr ""
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
 msgstr ""
 
-#, fuzzy
 msgid "Contributions are only available for add-ons with listed versions."
-msgstr "შემოწირულობა {addon}-სთვის."
+msgstr "შემოწირულობები ხელმისაწვდომია მხოლოდ გამოქვეყნებული დამატებების ვერსიებისთვის."
 
 #, python-format
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
 msgstr ""
 
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "შემოწირულობა {addon}-სთვის."
+msgstr "შემოწირულობები ხელმისაწვდომია მხოლოდ მიღებული დამატებებისთვის."
 
 msgid "Set up Contributions"
 msgstr ""
@@ -4395,9 +4392,8 @@ msgstr ""
 msgid "Re-enable Version"
 msgstr ""
 
-#, fuzzy
 msgid "Close Review History"
-msgstr "მიმოხილვის ისტორია"
+msgstr "განხილვების ისტორიის დახურვა"
 
 msgid "Not validated."
 msgstr ""
@@ -4405,16 +4401,14 @@ msgstr ""
 msgid "Validate now."
 msgstr ""
 
-#, fuzzy
 msgid "Request Review"
-msgstr "განუხილველია"
+msgstr "განხილვის მოთხოვნა"
 
 msgid "Cancel Review Request"
 msgstr ""
 
-#, fuzzy
 msgid "Loading Review History..."
-msgstr "მიმოხილვის ისტორია"
+msgstr "განხილვების ისტორიის ჩატვირთვა..."
 
 msgid "We had a problem retrieving review notes"
 msgstr ""
@@ -4428,9 +4422,8 @@ msgstr ""
 msgid "Reply"
 msgstr ""
 
-#, fuzzy
 msgid "Listing visibility"
-msgstr "ხილულობა"
+msgstr "დამატებების ხილულობა"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
 msgstr ""
@@ -4439,9 +4432,8 @@ msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 
-#, fuzzy
 msgid "Listed versions"
-msgstr "სხვა ვერსიების ნახვა"
+msgstr "გამოქვეყნებული ვერსიები"
 
 msgid "Currently on AMO"
 msgstr ""
@@ -4458,13 +4450,11 @@ msgstr ""
 msgid "Next version of this add-on"
 msgstr ""
 
-#, fuzzy
 msgid "Other versions"
-msgstr "სხვა ვერსიების ნახვა"
+msgstr "სხვა ვერსიები"
 
-#, fuzzy
 msgid "All versions"
-msgstr "ყველა ვერსიის ნახვა"
+msgstr "ყველა ვერსია"
 
 msgid "Upload a New Version"
 msgstr ""
@@ -4606,9 +4596,8 @@ msgstr ""
 msgid "Clear Admin Review Flag"
 msgstr ""
 
-#, fuzzy
 msgid "Is more info requested?"
-msgstr "საჭიროა მეტი ინფორმაციის მითითება."
+msgstr "მოითხოვება დამატებითი ინფორმაცია?"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -4640,24 +4629,21 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "დამატებები {0}-სთვის"
+msgstr[0] "ახალი დამატებები ({0})"
 
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "განახლებული {0}"
+msgstr[0] "განახლებები ({0})"
 
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] ""
 
-#, fuzzy
 msgid "Auto Approved Add-on ({0})"
 msgid_plural "Auto Approved Add-ons ({0})"
-msgstr[0] "დამატებები {0}-სთვის"
+msgstr[0] "ავტომატურად მიღებული დამატებები ({0})"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
@@ -4713,16 +4699,14 @@ msgstr ""
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reject Multiple Versions"
-msgstr "აღწერეთ თქვენი დამატება"
+msgstr "რამდენიმე ვერსიის უარყოფა"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "დეველოპერთა ბაზა"
+msgstr "მიმომხილველის პასუხი"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
@@ -4751,9 +4735,8 @@ msgstr ""
 msgid "More Information Requested"
 msgstr ""
 
-#, fuzzy
 msgid "Contains Reviewer Comment"
-msgstr "შემქმნელის კომენტარები"
+msgstr "შეიცავს მიმომხილველის კომენტარს"
 
 msgid "Sources provided"
 msgstr ""
@@ -4866,7 +4849,6 @@ msgstr "მუშაობს ვერსიასთან"
 msgid "Visibility"
 msgstr "ხილულობა"
 
-#, fuzzy
 msgid "Visible"
 msgstr "ხილულობა"
 
@@ -4882,16 +4864,14 @@ msgstr "პრივატულობის პოლიტიკა"
 msgid "EULA"
 msgstr "EULA"
 
-#, fuzzy
 msgid "Last Approval Date"
-msgstr "ბოლო განახლება"
+msgstr "მიღების ბოლო თარიღი"
 
 msgid "Approvals Since Last Automatic Review"
 msgstr ""
 
-#, fuzzy
 msgid "Abuse Reports ({num})"
-msgstr "დარღვევების მოხსენებები"
+msgstr "მოხსენებები დარღვევების შესახებ ({num})"
 
 msgid "Bad User Reviews ({num})"
 msgstr ""
@@ -4921,23 +4901,20 @@ msgstr ""
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr "აქ არაფერია სანახავი! შემქმნელმა დაწვრილებითი ინფორმაცია არ მოაყოლა."
 
-#, fuzzy
 msgid "Return to the Reviewer Tools homepage"
-msgstr "{0} დამატების გვერდზე დაბრუნება"
+msgstr "მიმომხილველის ხელსაწყოების გვერდზე დაბრუნება"
 
 msgid "Queues"
 msgstr ""
 
-#, fuzzy
 msgid "New Add-ons"
-msgstr "მეტი დამატებები"
+msgstr "ახალი დამატებები"
 
 msgid "Moderated Reviews"
 msgstr ""
 
-#, fuzzy
 msgid "Auto Approved Add-ons"
-msgstr "Android დამატებები"
+msgstr "ავტომატურად მიღებული დამატებები"
 
 msgid "Unlisted Queues"
 msgstr ""
