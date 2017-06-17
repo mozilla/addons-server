@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-17 19:49+0000\n"
+"PO-Revision-Date: 2017-06-17 20:53+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -44,9 +44,8 @@ msgstr ""
 msgid "You are already logged in."
 msgstr "თქვენ უკვე შესული ხართ."
 
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "თქვენი შესვლის მცდელობა ვერ გაანალიზდა. გთხოვთ, ცადეთ ხელახლა."
+msgstr "თქვენი შესვლის მცდელობები ვერ შედგა. გთხოვთ, სცადოთ ხელახლა."
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "თქვენი Firefox ანგარიში ვერ მოიძებნა. გთხოვთ, ცადეთ ხელახლა."
@@ -66,9 +65,8 @@ msgstr ""
 msgid "Version {0}"
 msgstr "ვერსია {0}"
 
-#, fuzzy
 msgid "Review note"
-msgstr "საჭიროებს განხილვას"
+msgstr "მიმოხილვის შენიშვნა"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "შენიშვნების დართვა შესაძლებელია დამატებების, მხოლოდ, უახლესს ვერსიებზე."
@@ -86,7 +84,6 @@ msgstr "&nbsp;&rarr;-ის ჩამოტვირთვის გაგრძ
 msgid "Featured"
 msgstr "რეკომენდებული"
 
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "განუხილველია"
