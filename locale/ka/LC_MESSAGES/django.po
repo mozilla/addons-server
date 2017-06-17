@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-01-26 00:44+0000\n"
+"PO-Revision-Date: 2017-06-17 17:08+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -548,6 +548,7 @@ msgstr "დამატების QR კოდი"
 
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
+"გსურთ {0} თქვენს Firefox mobile ვერსიაზე?  დაასკანერეთ QR კოდი და დააყენეთ პირდაპირ თქვენს ტელეფონზე.  (დაგჭირდებათ QR წამკითხველი.  თუ არ გიყენიათ, მოიძიეთ თქვენი ტელეფონის აპლიკაციების მაღაზიაში.)"
 
 #, fuzzy
 msgid "Replacement Add-ons for {0}"
@@ -598,6 +599,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
+"იხილეთ, ამ დამატების <a href=\"%(support)s\">მხარდაჭერის განყოფილება</a> რომ გაარკვიოთ, შესაძლებელია თუ არა დახმარების მიღება. ასევე, შეგიძლიათ <a href=\"https://discourse.mozilla-community.org/c"
+"/add-ons/add-on-support\">დამატებების ჯგუფსაც</a> მიმართოთ დასახმარებლად."
 
 msgid "Review Guidelines"
 msgstr "მითითებები მიმოხილვის გასაკეთებლად"
@@ -943,10 +946,10 @@ msgid "Not allowed"
 msgstr "არ არის ნებადართული"
 
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr ""
+msgstr "<h1>უი! არაა ნებადართული.</h1><p>თქვენ სცადეთ ისეთი რამის გაკეთება, რისი უფლებაც არ გაქვთ.</p>"
 
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr ""
+msgstr "<p>სცადეთ, წინა გვერდზე გადასვლა, ხელახლა ჩატვირთვა და მოქმედების გამეორება.</p>"
 
 #, fuzzy
 msgid "Page Not Found"
@@ -1015,7 +1018,7 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr ""
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "მიმდინარეობს ტექნიკური სამუშაოები"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
 msgstr "ვებ-საიტზე მიმდინარე ტექნიკური სამუშაოების გამო, ეს ფუნქცია დროებით მიწვდომელია. გამოიყენეთ ბრაუზერის უკან დასაბრუნებელი ღილაკი და სცადეთ ხელახლა, ცოტა მოგვიანებით."
@@ -1048,13 +1051,13 @@ msgid "Themes"
 msgstr "თემები"
 
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "გსურთ მეტად მორგება? სცადეთ <b>სრული თემები</b>"
 
 msgid "Most Followers"
 msgstr "ყველაზე მეტი მიმდევარი"
 
 msgid "Collections I've Made"
-msgstr ""
+msgstr "ჩემ მიერ შექმნილი კოლექციები"
 
 msgid "Collections I'm Following"
 msgstr ""
@@ -1074,7 +1077,7 @@ msgstr "ძიების ხელსაწყოები"
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "გვერდი <a href=\"%(current_pg_url)s\">%(current_pg)s</a> <a href=\"%(last_pg_url)s\">%(last_pg)s</a>-დან"
 
 msgid "Jump to first page"
 msgstr "გადახტომა პირველ გვერდზე"
@@ -1089,7 +1092,7 @@ msgstr "გადახტომა ბოლო გვერდზე"
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "ნაჩვენებია <b>%(begin)s</b>&ndash;<b>%(end)s</b> <b>%(count)s</b>-დან"
 
 msgid "Title"
 msgstr "სათაური"
