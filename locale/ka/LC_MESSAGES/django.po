@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-17 22:05+0000\n"
+"PO-Revision-Date: 2017-06-17 22:30+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2109,13 +2109,11 @@ msgstr "{addon} {version}-ის საწყისი კოდი ატვი
 msgid "Source code uploaded"
 msgstr "საწყისი კოდი ატვირთულია"
 
-#, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
+msgstr "{addon} {version}-ის ავტომატურად მიღება დაშვებულია."
 
-#, fuzzy
 msgid "Auto-Approval confirmed"
-msgstr "ბოლო განახლება"
+msgstr "ავტომატური მიღება დაშვებულია"
 
 msgid "Firefox"
 msgstr ""
@@ -2241,9 +2239,8 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "განუხილველია"
+msgstr "ახალი დამატების განხილვა"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
@@ -2251,9 +2248,8 @@ msgstr ""
 msgid "Updated Add-on Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "ელოდება განხილვას"
+msgstr "ახალი ლექსიკონის განხილვა"
 
 msgid "Preliminary Dictionary Review"
 msgstr ""
@@ -2261,9 +2257,8 @@ msgstr ""
 msgid "Updated Dictionary Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "ენის პაკეტები"
+msgstr "ენის ახალი პაკეტის განხილვა"
 
 msgid "Preliminary Language Pack Review"
 msgstr ""
@@ -2391,9 +2386,8 @@ msgstr ""
 msgid "Modern"
 msgstr ""
 
-#, fuzzy
 msgid "Nature"
-msgstr "რეკომენდებული"
+msgstr "ბუნება"
 
 msgid "OS Integration"
 msgstr ""
@@ -2401,9 +2395,8 @@ msgstr ""
 msgid "Retro"
 msgstr ""
 
-#, fuzzy
 msgid "Sports"
-msgstr "მხარდაჭერის საიტი"
+msgstr "სპორტი"
 
 msgid "General"
 msgstr ""
@@ -2411,9 +2404,8 @@ msgstr ""
 msgid "Business"
 msgstr ""
 
-#, fuzzy
 msgid "Dictionaries & Encyclopedias"
-msgstr "ლექსიკონები & ენის პაკეტები"
+msgstr "ლექსიკონები & ენციკლოპედიები"
 
 msgid "Kids"
 msgstr ""
@@ -2469,13 +2461,11 @@ msgstr ""
 msgid "Solid"
 msgstr ""
 
-#, fuzzy
 msgid "Websites"
-msgstr "საიტი"
+msgstr "ვებ-გვერდები"
 
-#, fuzzy
 msgid "Device Features & Location"
-msgstr "რეკლამირებული კოლექციები"
+msgstr "მოწყობილობის შესაძლებლობები & ადგილმდებარეობა"
 
 msgid "Experimental"
 msgstr ""
@@ -2510,9 +2500,8 @@ msgstr ""
 msgid "Chat and IM"
 msgstr ""
 
-#, fuzzy
 msgid "Message Composition"
-msgstr "შემოწირულობის გაღება"
+msgstr "შეტყობინების შემადგენლობა"
 
 msgid "Contacts"
 msgstr ""
@@ -2746,9 +2735,8 @@ msgstr ""
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "{addon} {version} მიღებულია."
+msgstr "{version} ვერსია უკვე არსებობს."
 
 msgid "Continue with existing upload instead?"
 msgstr ""
@@ -2912,9 +2900,8 @@ msgstr ""
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#, fuzzy
 msgid "Review requested."
-msgstr "საჭიროებს განხილვას"
+msgstr "საჭიროებს განხილვას."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -3110,9 +3097,8 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
 
-#, fuzzy
 msgid "Edit Information"
-msgstr "ვერსიის ინფორმაცია"
+msgstr "მონაცემების შესწორება"
 
 msgid "None"
 msgstr ""
@@ -3176,16 +3162,14 @@ msgid ""
 msgstr ""
 "მოკლე აღწერა თქვენი დამატების ძირითადი ფუნქციების შესახებ, რომელიც გამოჩნდება საძიებო სისტემაში, ასევე ამ დამატების სრული მონაცემების გვერდის დასაწყისში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
-#, fuzzy
 msgid "Experimental?"
-msgstr "ექსპერიმენტული"
+msgstr "საცდელია?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "ეს დამატება ამოღებულია ავტორის მიერ."
+msgstr "ეს დამატება საცდელია"
 
 msgid "This add-on is ready for general use."
 msgstr ""
@@ -3469,9 +3453,8 @@ msgstr ""
 msgid "Delete"
 msgstr "წაშლა"
 
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "მეტი ამ დამატების შესახებ"
+msgstr "დამატების მონაცემების შესწორება."
 
 msgid "Upload a new version of this add-on."
 msgstr ""
@@ -3521,9 +3504,8 @@ msgstr ""
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "ეს დამატება არაა თავსებადი %(app)s-ის თქვენს ვერსიასთან."
+msgstr "დამატებას არ აქვს სხვადასხვა ვერსიები."
 
 msgid "This add-on doesn't have any approved versions, so its public pages (including beta versions) are hidden."
 msgstr ""
@@ -3543,21 +3525,17 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] ""
 
-#, fuzzy
 msgid "Submit a New File"
-msgstr "ახალი თემის წარდგენა"
+msgstr "ახალი ფაილის წარდგენა"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "წარადგინეთ ახალი დამატება"
+msgstr "ახალი ვერსიის წარდგენა"
 
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "აღწერეთ თქვენი დამატება"
+msgstr "დამატების აღწერა"
 
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "დამატებები"
+msgstr "დამატების URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
@@ -3568,24 +3546,20 @@ msgstr ""
 msgid "This summary will be shown in listings and searches."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "ეს დამატება ამოღებულია ავტორის მიერ."
+msgstr "ეს დამატება საცდელია"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Support email:"
-msgstr "მხარდაჭერის ელ-ფოსტა"
+msgstr "მხარდაჭერის ელ-ფოსტა:"
 
-#, fuzzy
 msgid "Support website:"
-msgstr "მხარდაჭერის საიტი"
+msgstr "მხარდაჭერის საიტი:"
 
-#, fuzzy
 msgid "License:"
-msgstr "ლიცენზია"
+msgstr "ლიცენზია:"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code."
 msgstr ""
@@ -3593,9 +3567,8 @@ msgstr ""
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
 
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "განუხილველია"
+msgstr "შენიშვნები მიმომხილველისთვის:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
@@ -3606,13 +3579,11 @@ msgstr ""
 msgid "Cancel Review and Disable Version"
 msgstr ""
 
-#, fuzzy
 msgid "Submit Version for Review"
-msgstr "შეფასების გაგზავნა"
+msgstr "ვერსიის წარდგენა განსახილველად"
 
-#, fuzzy
 msgid "Describe Version"
-msgstr "აღწერეთ თქვენი დამატება"
+msgstr "ვერსიის აღწერა"
 
 msgid "Release Notes:"
 msgstr ""
@@ -3632,13 +3603,11 @@ msgstr ""
 msgid "Submission Complete"
 msgstr ""
 
-#, fuzzy
 msgid "You’re done!"
 msgstr "მორჩა!"
 
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "შეფასების გაგზავნა"
+msgstr "ვერსია წარდგენილია განსახილველად"
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
@@ -3646,27 +3615,23 @@ msgstr ""
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
 
-#, fuzzy
 msgid "Manage Listing"
 msgstr "წარდგენილი ნამუშევრების მართვა"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "ვერსია {0}"
+msgstr "{0} ვერსიის ჩასწორება"
 
-#, fuzzy
 msgid "File Signed"
-msgstr "ვერსიის შენიშვნები"
+msgstr "ფაილი ხელმოწერილია"
 
 msgid "You’re done! This file is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
 
-#, fuzzy
 msgid "Version Signed"
-msgstr "ვერსიის შენიშვნები"
+msgstr "ვერსია ხელმოწერილია"
 
 msgid "You’re done! This version is signed and ready to for self-distribution. You can download it by clicking the button below."
 msgstr ""
@@ -3680,16 +3645,14 @@ msgstr ""
 msgid "Upload File"
 msgstr ""
 
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "წარდგენილი ნამუშევრების მართვა"
+msgstr "წარდგენილი ნამუშევრები"
 
 msgid "Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "ატვირთეთ თქვენი დამატება"
+msgstr "დამატების ატვირთვა"
 
 msgid "Where to Host File"
 msgstr ""
@@ -3697,9 +3660,8 @@ msgstr ""
 msgid "Where to Host Version"
 msgstr ""
 
-#, fuzzy
 msgid "Upload Version"
-msgstr "ვერსია"
+msgstr "ვერსიის ატვირთვა"
 
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
@@ -3713,13 +3675,11 @@ msgstr ""
 msgid "Administrative overrides"
 msgstr ""
 
-#, fuzzy
 msgid "Submit File"
-msgstr "ახალი თემის წარდგენა"
+msgstr "ფაილის წარდგენა"
 
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "ჩემი დამატებები"
+msgstr "დამატების ხელმოწერა"
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
