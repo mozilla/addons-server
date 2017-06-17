@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-17 17:08+0000\n"
+"PO-Revision-Date: 2017-06-17 19:29+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1107,10 +1107,10 @@ msgid "Another Body"
 msgstr "სხვა შიგთავსი"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "ავტორიზაციის არასწორი თავსართი. მონაცემები არაა წარმოდგენილი."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "ავტორიზაციის არასწორი თავსართი. მონაცემების სტრიქონი, არ უნდა შეიცავდეს გამოტოვებულ ადგილებს."
 
 msgid "Signature has expired."
 msgstr "ხელმოწერა ამოიწურა."
@@ -1122,26 +1122,28 @@ msgid "Invalid JWT Token."
 msgstr "არასწორი JWT ჟეტონი."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "ველს უნდა ჰქონდეს მინიმუმ {num} სიმბოლოს ზომა."
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "ენის კოდი {lang_code} არასწორია."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Application Versions"
-msgstr ""
+msgstr "აპლიკაციის ვერსიები"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "ყველა აპლიკაციის დასაშვები ვერსიები AMO-ზე."
 
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "აპლიკაციის მართებული ვერსიები"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
+"Mozilla-ს დამატებების საიტისთვის წარდგენილ დამატებას, თან უნდა ახლდეს მანიფესტ ფაილი, ქვემოთ მოცემული პროგრამებიდან, ერთ-ერთის მხარდაჭერით მაინც. ამ პროგრამებისთვის, მხოლოდ ქვემოთ მითითებული "
+"ვესიებია დასაშვები."
 
 #, fuzzy
 msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
@@ -1149,7 +1151,7 @@ msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr ""
+msgstr "გთხოვთ, არ დაგავიწყდეთ, რომ WebExtensions არ მიიღებს \"*\" სიმბოლოს <a href=\"%(version_url)s\">strict_min_version</a>-ში."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1974,6 +1976,8 @@ msgstr "{addon} {version} საჭიროებს პროფესიო�
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"თქვენი დამატება მონიშნულია, რომ ადმინისტრაციამ განიხილოს.  ჯერ კიდევ განსახილველთა რიგშია, მაგრამ საჭიროა ერთმა ადმინისტრატორმა მაინც შეამოწმოს. რის გამოც, ეს განხილვა, ჩვეულზე მეტ ხანს შეიძლება "
+"გაგრძელდეს."
 
 msgid "Comment on {addon} {version}."
 msgstr "კომენტარი {addon} {version}-ზე."
@@ -2091,14 +2095,14 @@ msgid "User {0.name} removed from {group}."
 msgstr "მომხამრებელი {0.name} წაიშალა {group}-იდან."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} გამოუქვეყნებელია."
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} დამოწმებულია."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "დამატების id {0} GUID {1} -ით წაშლილია"
 
 #, fuzzy
 msgid "{addon} migrated from preliminary."
@@ -2674,10 +2678,10 @@ msgid "Must have at least one owner."
 msgstr ""
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "ერთი ავტორი მაინც უნდა იყოს მითითებული."
 
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "ერთი ავტორი, მხოლოდ ერთხელ შეიძლება მიეთითოს."
 
 msgid "Slug incorrect."
 msgstr ""
@@ -3200,6 +3204,7 @@ msgstr ""
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"მოკლე აღწერა თქვენი დამატების ძირითადი ფუნქციების შესახებ, რომელიც გამოჩნდება საძიებო სისტემაში, ასევე ამ დამატების სრული მონაცემების გვერდის დასაწყისში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 #, fuzzy
 msgid "Experimental?"
@@ -3216,7 +3221,7 @@ msgid "This add-on is ready for general use."
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "კატეგორიები, მომხმარებლისთვის არის მთავარი საშუალება დამატებების მოსაძიებლად. აირჩიეთ ისეთი, რომელიც ყველაზე მეტად ერგება თქვენი დამატების ფუნქციონალს. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
@@ -3224,6 +3229,8 @@ msgstr ""
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
+"ჭდეები ეხმარება მომხმარებლებს დამატებების ძიებისას და უნდა წარმოადგენდეს მოკლე აღწერას, როგორიცაა ჩანართები, ხელსაწყოების ზოლი, ან twitter. სულ შეგიძლიათ {0} ჭდის დამატება. ეხება მხოლოდ "
+"გამოქვეყნებულ დამატებებს."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -3244,12 +3251,13 @@ msgstr ""
 
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"ვრცელი განმარტება ფუნქციების და შესაძლებლობების, ასევე დამატებითი საჭირო ინფორმაცია. მოცემული ველი გამოჩნდება მხოლოდ დამატების სრული მონაცემების გვერდზე. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Default Locale"
 msgstr ""
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "დამატების შესახებ ინფორმაცია გამოჩნდება ამ ენაზე, სანამ არ ჩაანაცვლებთ განსაზღვრულ ენაზე თარგმანით. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Homepage"
 msgstr ""
@@ -3258,6 +3266,7 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"თუ თქვენს დამატებას აქვს საკუთარი ვებ-გვერდი, მისამართი შეიყვანეთ აქ. თუ თქვენი ვებ-გვერდი თარგმნილია სხვადასხვა ენებზე, ამ ველში შეიძლება ჩაემატოს თარგმანიც. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "Images"
 msgstr ""
@@ -3273,6 +3282,8 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
+"თუ გსურთ, ელ-ფოსტის მითითება, შეკითხვების, თხოვნების, მხადაჭერისთვის და ა.შ. შეიყვანეთ აქ. თუ სხვადასხვა მისამართები გაქვთ, თითოეული ენისთვის, შეიძლება დაემატოს ამ ველის თარგმანიც. ეხება, მხოლოდ "
+"გამოქვეყნებულ დამატებებს."
 
 msgid "Website"
 msgstr "საიტი"
@@ -3281,6 +3292,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"თუ თქვენს დამატებას აქვს განსახილველი საიტი ან ფორუმი, მისამართი შეიყვანეთ აქ. თუ თქვენი ვებ-გვერდი თარგმნილია სხვადასხვა ენებზე, ამ ველში შეიძლება ჩაემატოს თარგმანიც. ეხება, მხოლოდ გამოქვეყნებულ "
+"დამატებებს."
 
 msgid "Technical Details"
 msgstr ""
