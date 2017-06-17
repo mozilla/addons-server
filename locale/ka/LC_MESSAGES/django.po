@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-17 21:48+0000\n"
+"PO-Revision-Date: 2017-06-17 22:05+0000\n"
 "Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -805,11 +805,11 @@ msgid "This add-on has been disabled by an administrator."
 msgstr "ეს დამატება შეზღუდულია ადმინისტრატორის მიერ."
 
 msgid "Source Code License for {addon}"
-msgstr "{addon}-ის წყაროს კოდის ლიცენზია"
+msgstr "{addon}-ის საწყისი კოდის ლიცენზია"
 
 #. The License for this add-on.
 msgid "Source Code License"
-msgstr "წყაროს კოდის ლიცენზია"
+msgstr "საწყისი კოდის ლიცენზია"
 
 msgid "permalink"
 msgstr "permalink"
@@ -2097,20 +2097,17 @@ msgstr "მიმომხილველის პასუხი {addon} {vers
 msgid "Reviewer Reply"
 msgstr "მიმომხილველის პასუხი"
 
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
+msgstr "{addon} {version}-ის მისაღები შენიშვნები შეიცვალა."
 
 msgid "Approval notes changed"
 msgstr ""
 
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
+msgstr "{addon} {version}-ის საწყისი კოდი ატვირთულია."
 
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "წყაროს კოდის ლიცენზია"
+msgstr "საწყისი კოდი ატვირთულია"
 
 #, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
@@ -3304,7 +3301,7 @@ msgid "View Source?"
 msgstr ""
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "თქვენი დამატების კოდის გამოჩენა ვებ-მნახველში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
+msgstr "თქვენი დამატების საწყისი კოდის გამოჩენა ვებ-მნახველში. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
 
 msgid "This add-on's source code is publicly viewable."
 msgstr ""
