@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-15 06:55+0000\n"
+"PO-Revision-Date: 2017-06-18 07:30+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -746,7 +746,7 @@ msgstr "Última atualização:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Lançado sobre <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Lançado sob <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
 msgstr "Licença personalizada"
@@ -8528,7 +8528,7 @@ msgstr "Ligação permanente para esta versão"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr "Lançado {0}"
+msgstr "Lançado a {0}"
 
 # 77%
 #, python-format
