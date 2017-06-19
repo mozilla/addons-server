@@ -280,7 +280,7 @@ class ThemeUserCount(StatsSearchMixin, models.Model):
     """
     addon = models.ForeignKey('addons.Addon')
     count = models.PositiveIntegerField()
-    date = models.DateField()
+    date = models.DateField(db_index=True)
 
     class Meta:
         db_table = 'theme_user_counts'
