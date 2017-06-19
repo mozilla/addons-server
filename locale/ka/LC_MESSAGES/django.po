@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -2083,7 +2083,7 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "დამატების id {0} GUID {1} -ით წაშლილია"
 
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} გადატანილია წინასწარი განხილვიდან."
+msgstr "{addon} გადატანილია წინასწარი განხილვიდან."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "შემმუშავებლის პასუხი {addon} {version}-ზე."
