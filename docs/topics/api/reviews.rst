@@ -44,16 +44,16 @@ user has already posted a review for the current version of an add-on.
    include reviews without text. You can change that with the ``filter`` query
    parameter.  You can filter by multiple values, e.g. ``filter=with_deleted,without_textless``
 
-    =======================  ==================================================
-                      Value  Description
-    =======================  ==================================================
-               with_deleted  Returns deleted reviews too.  This requires the
-                             Addons:Edit permission.
-           without_textless  Excludes reviews that only contain a rating, and
-                             no textual content.
-    without_textless_others  As `without_textless` but includes your own
-                             reviews, even if they have no text.
-    =======================  ==================================================
+    ===================  ======================================================
+                  Value  Description
+    ===================  ======================================================
+           with_deleted  Returns deleted reviews too.  This requires the
+                         Addons:Edit permission.
+     without_empty_body  Excludes reviews that only contain a rating, and no
+                         textual content.
+             with_yours  Used in combination `without_empty_body` to include
+                         your own reviews, even if they have no text.
+    ===================  ======================================================
 
 ------
 Detail

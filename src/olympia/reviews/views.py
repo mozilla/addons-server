@@ -393,12 +393,14 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             queryset = Review.objects.all()
 
         # Filter out empty reviews if specified.
-        if ('without_textless_others' in requested and
-                self.request.user.is_authenticated()):
+        # Should the users own empty reviews be filtered back in?
+        if 'with_yours' in requested and self.request.user.is_authenticated():
             user_filter = Q(user=self.request.user.pk)
+        else:
+            user_filter = Q()
+        # Apply the filter(s)
+        if 'without_empty_body' in requested:
             queryset = queryset.filter(~Q(body=None) | user_filter)
-        if 'without_textless' in requested:
-            queryset = queryset.filter(~Q(body=None))
 
         # The serializer needs reply, version (only the "version" field) and
         # user. We don't need much for version and user, so we can make joins

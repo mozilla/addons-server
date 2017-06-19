@@ -885,14 +885,14 @@ class TestReviewViewSetGet(TestCase):
         self.client.login_api(self.user)
         # Unless you filter them out
         response = self.client.get(
-            self.url, {'addon': self.addon.pk, 'filter': 'without_textless'})
+            self.url, {'addon': self.addon.pk, 'filter': 'without_empty_body'})
         data = json.loads(response.content)
         assert data['count'] == 2 == len(data['results'])
 
         # And maybe you only want your own empty reviews
         response = self.client.get(
             self.url, {'addon': self.addon.pk,
-                       'filter': 'without_textless_others'})
+                       'filter': 'without_empty_body,with_yours'})
         data = json.loads(response.content)
         assert data['count'] == 3 == len(data['results'])
 
