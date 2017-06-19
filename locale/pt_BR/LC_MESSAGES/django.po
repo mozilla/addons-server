@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-17 12:23+0000\n"
+"PO-Revision-Date: 2017-06-19 21:45+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4868,9 +4868,8 @@ msgstr "Notificar-me na próxima vez que este complemento for atualizado. (Atual
 msgid "Clear Admin Review Flag"
 msgstr "Limpar propriedade de administração"
 
-#, fuzzy
 msgid "Is more info requested?"
-msgstr "Limpar a marcação de mais informação solicitada"
+msgstr "Mais informação solicitada?"
 
 msgid "Choose a canned response..."
 msgstr "Escolha um modelo de resposta..."
