@@ -123,13 +123,13 @@ Other :ref:`editable values <account-edit-request>` can be set at the same time.
     :reqheader Content-Type: multipart/form-data
 
 
-------------------
-Clearing the photo
-------------------
+--------------------
+Deleting the picture
+--------------------
 
-To clear the photo call the special endpoint.
+To delete the account profile picture call the special endpoint.
 
-.. http:post:: /api/v3/accounts/account/(int:user_id|string:username)/clear_photo
+.. http:delete:: /api/v3/accounts/account/(int:user_id|string:username)/picture
 
 
 ------

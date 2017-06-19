@@ -441,9 +441,9 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
         return super(AccountViewSet, self).perform_destroy(instance)
 
     @detail_route(
-        methods=['post'], permission_classes=[
+        methods=['delete'], permission_classes=[
             AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))])
-    def clear_picture(self, request, pk=None):
+    def picture(self, request, pk=None):
         user = self.get_object()
         user.update(picture_type='')
         log.debug(u'User (%s) deleted photo' % user)
