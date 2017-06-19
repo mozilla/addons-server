@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2016-12-18 12:19+0000\n"
-"Last-Translator: mindaKhinzmarauli <beseliaa.design-mozilla-firefox@gmx.de>\n"
+"PO-Revision-Date: 2017-06-17 22:02+0000\n"
+"Last-Translator: Georgianizator <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -118,8 +118,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"შედგენილი ბინარული, ისევე როგორც ოპტიმიზებული ან დაცული კოდის (ცნობილი ბიბლიოთეკების გარდა) ორიგინალის გადაგზავნა განსახილველად, საჭიროა სათითაოდ. დარწმუნდით, რომ სარგებლობთ საწყისი კოდის ასატვირთი "
-"ველით, რომ თავიდან აიცილოთ უარი მიღებაზე."
+"შედგენილი ბინარები, ისევე როგორც ოპტიმიზებული ან დაცული კოდები (ცნობილი ბიბლიოთეკების გარდა) განსახილველად უნდა გადაიგზავნოს სათითაოდ. დარწმუნდით, რომ სარგებლობთ საწყისი კოდის ასატვირთი ველით, რომ "
+"თავიდან აიცილოთ უარი მიღებაზე."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "გადამოწმებისას აღმოჩენილია გარკვეული საკითხები, რაც შეიძლება უარყოფის საფუძველი გახდეს."

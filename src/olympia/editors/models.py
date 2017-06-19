@@ -748,7 +748,7 @@ class AutoApprovalSummary(ModelBase):
             # Reputation is set by admin - the value is inverted to add from
             # -300 (decreasing priority for "trusted" add-ons) to 0.
             'reputation': (
-                max(min(int(addon.reputation or 0) * -100, 300), 0)),
+                max(min(int(addon.reputation or 0) * -100, 0), -300)),
             # Average daily users: value divided by 10000 is added to the
             # weight, up to a maximum of 100.
             'average_daily_users': min(addon.average_daily_users / 10000, 100),

@@ -54,6 +54,8 @@ on your host machine::
     # Start up the containers
     docker-compose up -d
     make initialize_docker  # Answer yes, and create your superuser when asked.
+    # On Windows you can substitute `make initialize_docker` for the command:
+    docker-compose exec web make initialize
 
 .. note::
 
@@ -92,9 +94,14 @@ Running common commands
 Run the tests using ``make``, *outside* of the Docker container::
 
     make test
+    # or
+    docker-compose exec web py.test src/olympia/
 
 You can run commands inside the Docker container by ``ssh``\ing into it using::
+
     make shell
+    # or
+    docker-compose exec web bash
 
 Then to run the tests inside the Docker container you can run::
 
@@ -127,6 +134,9 @@ migrations::
     docker-compose pull
     docker-compose up -d
     make update_docker  # Runs database migrations and rebuilds assets.
+    # On Windows you can substitute `make update_docker` for the following two commands:
+    docker-compose exec worker make update_deps
+    docker-compose exec web make update
 
 Gotchas!
 ~~~~~~~~
