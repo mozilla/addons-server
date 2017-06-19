@@ -1142,6 +1142,18 @@ class TestAccountViewSetUpdate(TestCase):
         json_content = json.loads(response.content)
         assert 'anon_user.png' in json_content['picture_url']
 
+    def test_account_picture_disallowed_verbs(self):
+        picture_url = reverse('account-picture', kwargs={'pk': self.user.pk})
+        self.client.login_api(self.user)
+        response = self.client.get(picture_url)
+        assert response.status_code == 405
+        response = self.client.post(picture_url)
+        assert response.status_code == 405
+        response = self.client.put(picture_url)
+        assert response.status_code == 405
+        response = self.client.patch(picture_url)
+        assert response.status_code == 405
+
     def test_picture_upload_valid(self):
         self.client.login_api(self.user)
         gif = get_uploaded_file('animated.gif')
