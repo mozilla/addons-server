@@ -167,7 +167,7 @@ class Command(BaseCommand):
             else:
                 raise CommandError("Aborted.")
         elif force:
-            unflag_database(stdout=self.stdout)
+            unflag_database()
 
         alias_actions = []
 
