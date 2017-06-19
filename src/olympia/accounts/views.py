@@ -397,7 +397,9 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
                 amo.permissions.USERS_EDIT)),
         }),
     ]
-    queryset = UserProfile.objects.all()
+
+    def get_queryset(self):
+        return UserProfile.objects.all()
 
     def get_object(self):
         if hasattr(self, 'instance'):

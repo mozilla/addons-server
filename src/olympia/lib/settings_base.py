@@ -668,7 +668,7 @@ MINIFY_BUNDLES = {
         'common': (
             'js/lib/raven.min.js',
             'js/common/raven-config.js',
-            'js/lib/underscore.js',
+            'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
@@ -757,7 +757,7 @@ MINIFY_BUNDLES = {
             'js/lib/ngettext-overload.js',
             'js/lib/raven.min.js',
             'js/common/raven-config.js',
-            'js/lib/underscore.js',
+            'js/node_lib/underscore.js',
             'js/impala/carousel.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
@@ -854,7 +854,7 @@ MINIFY_BUNDLES = {
         'zamboni/discovery': (
             'js/node_lib/jquery.js',
             'js/node_lib/jquery.browser.js',
-            'js/lib/underscore.js',
+            'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',

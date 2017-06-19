@@ -10,7 +10,6 @@ from olympia.discovery.serializers import DiscoverySerializer
 class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = DiscoverySerializer
-    queryset = Addon.objects.public()
 
     def get_queryset(self):
         ids = [item.addon_id for item in discopane_items]
@@ -20,7 +19,7 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
         # es = amo.search.get_es()
         # es.mget({'ids': ids}, index=AddonIndexer.get_index_alias(),
         #         doc_type=AddonIndexer.get_doctype_name())
-        addons = self.queryset.in_bulk(ids)
+        addons = Addon.objects.public().in_bulk(ids)
 
         # Patch items to add addons.
         result = []

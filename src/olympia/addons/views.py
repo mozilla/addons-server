@@ -552,19 +552,21 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     ]
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
-    # Permission classes disallow access to non-public/unlisted add-ons unless
-    # logged in as a reviewer/addon owner/admin, so we don't have to filter the
-    # base queryset here.
-    queryset = Addon.objects.all()
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
 
     def get_queryset(self):
+        """Return queryset to be used for the view. We implement our own that
+        does not depend on self.queryset to avoid cache-machine caching the
+        queryset too agressively (mozilla/addons-frontend#2497)."""
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
         if self.request.user.is_authenticated() and self.request.user.is_staff:
             return Addon.unfiltered.all()
-        return super(AddonViewSet, self).get_queryset()
+        # Permission classes disallow access to non-public/unlisted add-ons
+        # unless logged in as a reviewer/addon owner/admin, so we don't have to
+        # filter the base queryset here.
+        return Addon.objects.all()
 
     def get_serializer_class(self):
         # Override serializer to use serializer_class_with_unlisted_data if
@@ -642,12 +644,6 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
     # below in check_permissions() and check_object_permissions() depending on
     # what the client is requesting to see.
     permission_classes = []
-    # By default, we rely on queryset filtering to hide non-public/unlisted
-    # versions. get_queryset() might override this if we are asked to see
-    # non-valid, deleted and/or unlisted versions explicitly.
-    queryset = Version.objects.filter(
-        files__status=amo.STATUS_PUBLIC,
-        channel=amo.RELEASE_CHANNEL_LISTED).distinct()
     serializer_class = VersionSerializer
 
     def check_permissions(self, request):
@@ -717,26 +713,31 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             elif requested not in valid_filters:
                 raise serializers.ValidationError(
                     'Invalid "filter" parameter specified.')
-
         # By default we restrict to valid, listed versions. Some filtering
         # options are available when listing, and in addition, when returning
         # a single instance, we don't filter at all.
         if requested == 'all_with_deleted' or self.action != 'list':
-            self.queryset = Version.unfiltered.all()
+            queryset = Version.unfiltered.all()
         elif requested == 'all_with_unlisted':
-            self.queryset = Version.objects.all()
+            queryset = Version.objects.all()
         elif requested == 'all_without_unlisted':
-            self.queryset = Version.objects.filter(
+            queryset = Version.objects.filter(
                 channel=amo.RELEASE_CHANNEL_LISTED)
         elif requested == 'only_beta':
-            self.queryset = Version.objects.filter(
+            queryset = Version.objects.filter(
                 channel=amo.RELEASE_CHANNEL_LISTED,
                 files__status=amo.STATUS_BETA).distinct()
+        else:
+            # By default, we rely on queryset filtering to hide
+            # non-public/unlisted versions. get_queryset() might override this
+            # if we are asked to see non-valid, deleted and/or unlisted
+            # versions explicitly.
+            queryset = Version.objects.filter(
+                files__status=amo.STATUS_PUBLIC,
+                channel=amo.RELEASE_CHANNEL_LISTED).distinct()
 
-        # Now that the base queryset has been altered, call super() to use it.
-        qs = super(AddonVersionViewSet, self).get_queryset()
         # Filter with the add-on.
-        return qs.filter(addon=self.get_addon_object())
+        return queryset.filter(addon=self.get_addon_object())
 
 
 class AddonSearchView(ListAPIView):
@@ -767,7 +768,6 @@ class AddonFeaturedView(GenericAPIView):
     # We accept the 'page_size' parameter but we do not allow pagination for
     # this endpoint since the order is random.
     pagination_class = None
-    queryset = Addon.objects.valid()
 
     def get(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -780,6 +780,9 @@ class AddonFeaturedView(GenericAPIView):
     def as_view(cls, **kwargs):
         view = super(AddonFeaturedView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
+
+    def get_queryset(self):
+        return Addon.objects.valid()
 
     def filter_queryset(self, queryset):
         # We can pass the optional lang parameter to either get_creatured_ids()
