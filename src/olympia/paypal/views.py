@@ -6,13 +6,11 @@ from django import http
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
-import phpserialize as php
 import requests
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia.amo.decorators import post_required, write
-from olympia.stats.db import StatsDictField
 from olympia.stats.models import Contribution, ContributionError
 
 
@@ -160,7 +158,7 @@ def _paypal(request):
     return result
 
 
-def paypal_completed(request, transaction_id, serialize=None, amount=None):
+def paypal_completed(request, transaction_id, post_data=None, amount=None):
     # Make sure transaction has not yet been processed.
     if Contribution.objects.filter(transaction_id=transaction_id).exists():
         paypal_log.info('Completed IPN already processed')
@@ -174,9 +172,8 @@ def paypal_completed(request, transaction_id, serialize=None, amount=None):
         return http.HttpResponse('Transaction not found; skipping.')
 
     paypal_log.info('Completed IPN received: %s' % transaction_id)
-    data = StatsDictField().to_python(php.serialize(serialize))
     update = {'transaction_id': transaction_id,
-              'uuid': None, 'post_data': data}
+              'uuid': None, 'post_data': post_data}
 
     if amount:
         update['amount'] = _parse_currency(amount)['amount']

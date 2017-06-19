@@ -3,8 +3,6 @@ import json
 
 from django.core import mail
 
-import phpserialize as php
-
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.stats.models import Contribution
@@ -19,10 +17,6 @@ class TestStatsDictField(TestCase):
 
     def test_to_python_dict(self):
         assert StatsDictField().to_python({'a': 1}) == {'a': 1}
-
-    def test_to_python_php(self):
-        val = {'a': 1}
-        assert StatsDictField().to_python(php.serialize(val)) == val
 
     def test_to_python_json(self):
         val = {'a': 1}
