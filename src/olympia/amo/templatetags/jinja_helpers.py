@@ -12,7 +12,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.utils.translation import (
     ugettext, trim_whitespace, to_locale, get_language)
-from django.utils.encoding import force_text
+from django.utils.encoding import smart_text
 from django.utils.html import format_html
 from django.template import defaultfilters
 from django.utils.functional import lazy
@@ -21,6 +21,7 @@ from django.utils.safestring import mark_safe
 import caching.base as caching
 import jinja2
 import waffle
+from django_jinja import library
 from babel.support import Format
 from jingo import register, get_env
 # Needed to make sure our own |f filter overrides jingo's one.
@@ -220,7 +221,7 @@ def page_name(app=None):
 @register.function
 @jinja2.contextfunction
 def page_title(context, title):
-    title = force_text(title)
+    title = smart_text(title)
     base_title = page_name(context['request'].APP)
     # The following line doesn't use string formatting because we want to
     # preserve the type of `title` in case it's a jinja2 `Markup` (safe,
@@ -563,3 +564,31 @@ def id_to_path(pk):
 @register.filter
 def hidden_field(field):
     return field.as_widget(attrs={'style': 'display:none'})
+
+
+@library.filter
+def f(s, *args, **kwargs):
+    """
+    Uses ``str.format`` for string interpolation.
+
+    **Note**: Always converts to s to text type before interpolation.
+
+    >>> {{ "{0} arguments and {x} arguments"|f('positional', x='keyword') }}
+    "positional arguments and keyword arguments"
+    """
+    return smart_text(s).format(*args, **kwargs)
+
+
+@library.filter
+def fe(s, *args, **kwargs):
+    """Format a safe string with potentially unsafe arguments, then return a
+    safe string."""
+
+    s = smart_text(s)
+
+    args = [jinja2.escape(smart_text(v)) for v in args]
+
+    for k in kwargs:
+        kwargs[k] = jinja2.escape(smart_text(kwargs[k]))
+
+    return jinja2.Markup(s.format(*args, **kwargs))
