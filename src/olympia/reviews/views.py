@@ -341,7 +341,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
                 # because the frontend wants to call this before and after
                 # having posted a new review, and needs accurate results.
                 self.pagination_class = OneOrZeroPageNumberPagination
-        return qs
+        return super(ReviewViewSet, self).filter_queryset(qs)
 
     def get_paginated_response(self, data):
         response = super(ReviewViewSet, self).get_paginated_response(data)
@@ -359,7 +359,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         return response
 
     def get_queryset(self):
-        requested = self.request.GET.get('filter')
+        requested = self.request.GET.get('filter', '').split(',')
         has_addons_edit = acl.action_allowed(self.request,
                                              amo.permissions.ADDONS_EDIT)
 
@@ -367,7 +367,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         # information to the serializer to show/hide delete replies.
         if not hasattr(self, 'should_access_deleted_reviews'):
             self.should_access_deleted_reviews = (
-                (requested == 'with_deleted' or self.action != 'list') and
+                ('with_deleted' in requested or self.action != 'list') and
                 self.request.user.is_authenticated() and
                 has_addons_edit)
 
@@ -392,11 +392,13 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         else:
             queryset = Review.objects.all()
 
-        # Filter out (other user's) empty reviews for non-admins.
-        if self.action == 'list' and not has_addons_edit:
-            user_filter = (Q(user=self.request.user.pk)
-                           if self.request.user.is_authenticated() else Q())
+        # Filter out empty reviews if specified.
+        if ('without_textless_others' in requested and
+                self.request.user.is_authenticated()):
+            user_filter = Q(user=self.request.user.pk)
             queryset = queryset.filter(~Q(body=None) | user_filter)
+        if 'without_textless' in requested:
+            queryset = queryset.filter(~Q(body=None))
 
         # The serializer needs reply, version (only the "version" field) and
         # user. We don't need much for version and user, so we can make joins

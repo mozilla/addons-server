@@ -874,24 +874,27 @@ class TestReviewViewSetGet(TestCase):
         create_review()
         create_review()
         create_review(body=None)
+        create_review(body=None)
         create_review(body=None, user=self.user)
 
-        # Don't show the reviews with no body.
+        # Do show the reviews with no body by default
         response = self.client.get(self.url, {'addon': self.addon.pk})
+        data = json.loads(response.content)
+        assert data['count'] == 5 == len(data['results'])
+
+        self.client.login_api(self.user)
+        # Unless you filter them out
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'filter': 'without_textless'})
         data = json.loads(response.content)
         assert data['count'] == 2 == len(data['results'])
 
-        # Except if it's your review
-        self.client.login_api(self.user)
-        response = self.client.get(self.url, {'addon': self.addon.pk})
+        # And maybe you only want your own empty reviews
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk,
+                       'filter': 'without_textless_others'})
         data = json.loads(response.content)
         assert data['count'] == 3 == len(data['results'])
-
-        # Or you're an admin
-        self.grant_permission(self.user, 'Addons:Edit')
-        response = self.client.get(self.url, {'addon': self.addon.pk})
-        data = json.loads(response.content)
-        assert data['count'] == 4 == len(data['results'])
 
     def test_list_user(self, **kwargs):
         self.user = user_factory()
