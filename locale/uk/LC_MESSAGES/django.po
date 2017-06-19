@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-19 09:08+0000\n"
+"PO-Revision-Date: 2017-06-19 09:21+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6973,16 +6973,16 @@ msgstr ""
 msgid "Will add-ons work with my web browser or application?"
 msgstr "Чи будуть додатки працювати з моїм браузером чи програмою?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox for Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 50.0 - 52.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
-"Додатки в цій галереї працюють тільки з програмами на основі Mozilla, такими як <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">мобільний Firefox</a>, <a "
+"Додатки в цій галереї працюють тільки з програмами від Mozilla, такими як <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox для Android</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a> і <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Однак, не всі додатки працюють з кожною із цих програм, чи будь-якою версією цих додатків. У кожному"
-" додатку вказано, з якими програмами і версіями він працює, наприклад, Firefox 2.0 - 3.6.*. Для додатків Firefox кнопки встановлення будуть вказувати, сумісний додаток чи ні."
+" додатку вказано, з якими програмами і версіями він працює, наприклад, Firefox 50.0 - 52.*. Для додатків Firefox кнопки встановлення будуть вказувати, сумісний додаток чи ні."
 
 msgid "What are the different types of add-ons?"
 msgstr "Чому існують різні типи додатків?"
@@ -7105,37 +7105,35 @@ msgstr ""
 msgid "What if I can't find an add-on I'm looking for?"
 msgstr "Що, як мені не вдається знайти додаток, який я шукаю?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons forum</a>."
 msgstr ""
-"З поміж тисяч доступних додатків, знайдеться щось для кожного. Але якщо ви шукаєте конкретний додаток і не можете його знайти, можете спробувати пошукати на інших сайтах, або написати про нього на "
-"нашому <a href=\"%(forum_url)s\">форумі додатків</a>."
+"Серед тисяч доступних додатків, знайдеться щось для кожного. Але якщо ви шукаєте конкретний додаток і не можете його знайти, спробуйте пошукати на інших сайтах, або написати про нього на нашому <a "
+"href=\"%(forum_url)s\">форумі додатків</a>."
 
 msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Що означає, коли додаток \"експериментальний\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They may have bugs or not work properly. Use caution when installing experimental add-ons and "
 "uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Експериментальні додатки були помічені їх розробниками як такі, що призначені для невеликої аудиторії.  Вони були перевірені нашими редакторами, щоб переконатися, що вони не мають проблем з "
-"безпекою, але все ж вони можуть містити помилки чи не працювати належним чином. Будьте обережні під час установки експериментальних додатків і негайно видаляйте додатки, якщо ви помітите проблеми. "
-"<a href=\"%(url)s\">Дізнайтеся більше про наш процес перевірки</a></dd>"
+"Експериментальні додатки позначаються розробниками як такі, що не призначені для широкої аудиторії.  Вони можуть бути з помилками, або працювати не належним чином. Будьте обережні під час "
+"встановлення експериментальних додатків і негайно видаляйте їх при виявленні проблем. <a href=\"%(url)s\">Дізнайтеся більше про наш процес перевірки</a></dd>"
 
 msgid "What does it mean if an add-on is \"not reviewed\"?"
 msgstr "Що це означає, коли додаток \"не перевірений\"?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you receive a direct link to an add-on that says it hasn't yet been reviewed, it means it's currently awaiting review by Mozilla. Use caution when installing these add-ons, as they could harm "
 "your computer or violate your privacy. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Хоча всі додатки, яуі публічно доступні в нашій галереї, були перевірені редакторами, ви все ж можете отримати пряме посилання на додаток, який поки не було перевірено. Будьте обережні під час "
-"установки цих додатків, так як вони можуть завдати шкоди вашому комп'ютеру або порушити вашу приватність. Ми рекомендуємо вам встановлювати тільки перевірені додатки. <a href=\"%(url)s\">Дізнайтеся "
-"більше про наш процес перевірки</a></dd>"
+"Якщо ви отримаєте пряме посилання на додаток про те, що він ще не був перевірений, це означає, що він в даний момент очікує перевірку Mozilla. Будьте обережні при встановленні цих додатків, тому що "
+"вони можуть нашкодити вашому комп'ютеру або порушити вашу приватність. <a href=\"%(url)s\">Дізнайтеся більше про наш процес перевірки</a></dd>"
 
 msgid "How much do add-ons cost to purchase?"
 msgstr "Скільки коштують додатки?"
@@ -7163,13 +7161,12 @@ msgstr ""
 "Бета-версії додатків це неперевірені версії додатків, які представляють собою останню збірку, випущену автором додатка. Хоча різні автори мають різні стандарти якості для коду бета-версії, вам слід "
 "припускати, що ці додатки менш стабільні, ніж звичайні релізи додатків."
 
-#, fuzzy
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are not reviewed by Mozilla and may harm your computer."
 msgstr ""
-"Будь ласка, зверніть увагу, що коли ви встановлюєте додаток з розділу \"Бета-версія\" сторінки додатка, ви будете продовжувати отримувати оновлення для цього додатка, як тільки вони стануть "
-"доступні. Як і у випадку первісної встановленої вами версії, бета-всі версії не перевірені Mozilla і можуть завдати шкоди вашому комп'ютеру."
+"Зверніть увагу, що коли ви встановлюєте додаток з розділу \"Бета-версія\" сторінки додатка, ви будете й надалі отримувати оновлення для бета-версії цього додатка з цього розділу. Всі бета-версії "
+"додатків не проходять перевірку Mozilla і можуть нашкодити вашому комп'ютеру."
 
 msgid "How do I report an inappropriate or spam user review?"
 msgstr "Як я можу повідомити про невідповідний відгук чи спам?"
@@ -7228,13 +7225,13 @@ msgstr "Мобільні додатки"
 msgid "What are mobile add-ons?"
 msgstr "Що таке мобільні додатки?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Android</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Android in our "
 "<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Мобільні додатки працюють з <a href=\"%(mobile_url)s\">Firefox для мобільних пристроїв</a> і додають або змінюють функціональність, як і додатки для настільних комп'ютерів. Ви можете знайти додатки,"
-" які працюють з Firefox для мобільних пристроїв, в нашій <a href=\"%(gallery_url)s\">галереї</a>."
+"Мобільні додатки працюють з <a href=\"%(mobile_url)s\">Firefox для Android</a> і додають або змінюють його функціональність так само, як і додатки для комп'ютера. Ви можете знайти додатки, які "
+"працюють з Firefox для Android в нашій <a href=\"%(gallery_url)s\">галереї</a>."
 
 msgid "Developer Topics"
 msgstr "Теми для розробників"
