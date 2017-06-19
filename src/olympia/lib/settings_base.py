@@ -767,7 +767,7 @@ MINIFY_BUNDLES = {
             'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
-            'js/node_lib/jquery.pjax.js',
+            'js/lib/jquery.pjax.js',
             'js/impala/footer.js',
             'js/common/keys.js',
 
