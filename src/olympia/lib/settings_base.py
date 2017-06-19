@@ -310,6 +310,7 @@ from django_jinja.builtins import DEFAULT_EXTENSIONS
 TEMPLATES = [
     {
         'BACKEND': 'django_jinja.backend.Jinja2',
+        'NAME': 'jinja2',
         'APP_DIRS': True,
         'DIRS': (
             path('media', 'docs'),
