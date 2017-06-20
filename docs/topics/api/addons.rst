@@ -222,6 +222,13 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
         dictionary  Dictionary
     ==============  ==========================================================
 
+
+-----------------------------
+Add-on and Version Submission
+-----------------------------
+
+See :ref:`Uploading a version <upload-version>`.
+
 -------------
 Versions List
 -------------
