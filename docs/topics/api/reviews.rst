@@ -42,7 +42,7 @@ user has already posted a review for the current version of an add-on.
 
    By default, the review list API will only return not-deleted reviews, and
    include reviews without text. You can change that with the ``filter`` query
-   parameter.  You can filter by multiple values, e.g. ``filter=with_deleted,without_textless``
+   parameter.  You can filter by multiple values, e.g. ``filter=with_deleted,without_empty_body,with_yours``
 
     ===================  ======================================================
                   Value  Description
