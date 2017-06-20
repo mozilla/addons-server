@@ -800,7 +800,7 @@ class AutoApprovalSummary(ModelBase):
 
     def calculate_verdict(
             self, max_average_daily_users=0, min_approved_updates=0,
-            dry_run=False, pretty=False):
+            dry_run=False, pretty=False, post_review=False):
         """Calculate the verdict for this instance based on the values set
         on it and the current configuration.
 
@@ -813,21 +813,26 @@ class AutoApprovalSummary(ModelBase):
             success_verdict = amo.AUTO_APPROVED
             failure_verdict = amo.NOT_AUTO_APPROVED
 
-        # We need everything in that dict to be False for verdict to be
-        # successful.
-        verdict_info = {
-            'uses_custom_csp': self.uses_custom_csp,
-            'uses_native_messaging': self.uses_native_messaging,
-            'uses_content_script_for_all_urls':
-                self.uses_content_script_for_all_urls,
-            'too_many_average_daily_users':
-                self.average_daily_users >= max_average_daily_users,
-            'too_few_approved_updates':
-                self.approved_updates < min_approved_updates,
-            'has_info_request': self.has_info_request,
-            'is_under_admin_review': self.is_under_admin_review,
-            'is_locked': self.is_locked,
-        }
+        if post_review:
+            # If post_review is enabled, add-ons always get a successful
+            # verdict, so verdict_info must be an empty dict.
+            verdict_info = {}
+        else:
+            # We need everything in that dict to be False for verdict to be
+            # successful.
+            verdict_info = {
+                'uses_custom_csp': self.uses_custom_csp,
+                'uses_native_messaging': self.uses_native_messaging,
+                'uses_content_script_for_all_urls':
+                    self.uses_content_script_for_all_urls,
+                'too_many_average_daily_users':
+                    self.average_daily_users >= max_average_daily_users,
+                'too_few_approved_updates':
+                    self.approved_updates < min_approved_updates,
+                'has_info_request': self.has_info_request,
+                'is_under_admin_review': self.is_under_admin_review,
+                'is_locked': self.is_locked,
+            }
         if any(verdict_info.values()):
             self.verdict = failure_verdict
         else:
@@ -914,7 +919,7 @@ class AutoApprovalSummary(ModelBase):
     @classmethod
     def create_summary_for_version(
             cls, version, max_average_daily_users=0,
-            min_approved_updates=0, dry_run=False):
+            min_approved_updates=0, dry_run=False, post_review=False):
         """Create a AutoApprovalSummary instance in db from the specified
         version.
 
@@ -953,7 +958,7 @@ class AutoApprovalSummary(ModelBase):
         instance = cls(**data)
         verdict_info = instance.calculate_verdict(
             dry_run=dry_run, max_average_daily_users=max_average_daily_users,
-            min_approved_updates=min_approved_updates)
+            min_approved_updates=min_approved_updates, post_review=post_review)
         instance.calculate_weight()
         # We can't do instance.save(), because we want to handle the case where
         # it already existed. So we put the verdict and weight we just

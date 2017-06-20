@@ -1092,7 +1092,8 @@ class TestAutoApprovalSummary(TestCase):
         assert calculate_verdict_mock.call_args == ({
             'max_average_daily_users': 111,
             'min_approved_updates': 222,
-            'dry_run': False
+            'dry_run': False,
+            'post_review': False,
         },)
         assert summary.pk
         assert summary.version == self.version
@@ -1251,6 +1252,26 @@ class TestAutoApprovalSummary(TestCase):
             'is_locked': False,
             'is_under_admin_review': False,
         }
+        assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
+
+    def test_calculate_verdict_post_review(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, average_daily_users=1, approved_updates=2)
+        info = summary.calculate_verdict(
+            max_average_daily_users=summary.average_daily_users + 1,
+            min_approved_updates=summary.approved_updates + 1,
+            post_review=True)
+        assert info == {}
+        assert summary.verdict == amo.AUTO_APPROVED
+
+    def test_calculate_verdict_post_review_dry_run(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, average_daily_users=1, approved_updates=2)
+        info = summary.calculate_verdict(
+            max_average_daily_users=summary.average_daily_users + 1,
+            min_approved_updates=summary.approved_updates + 1,
+            post_review=True, dry_run=True)
+        assert info == {}
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
     def test_verdict_info_prettifier(self):
