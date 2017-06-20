@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-06-15 03:41+0000\n"
-"PO-Revision-Date: 2017-06-19 21:45+0000\n"
+"PO-Revision-Date: 2017-06-20 00:49+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6942,26 +6942,26 @@ msgstr ""
 msgid "Who reviews my add-on?"
 msgstr "Quem analisa meu complemento?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Add-ons are reviewed by the Add-on Reviewers, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users."
 " When communicating with a reviewer, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a"
 " href=\"%(url)s\">Add-on Review Guide</a>."
 msgstr ""
-"Extensões são analisadas pelos revisores AMO, um grupo de desenvolvedores talentosos que trabalham como voluntários para ajudar o projeto Mozilla, analisando os complementos para garantir uma "
-"experiência estável e segura para os usuários da Mozilla. Ao se comunicar com os revisores, por favor, seja cortês, paciente e respeitoso, eles estão trabalhando duro para garantir que a sua "
-"extensão esteja configurada corretamente e segue as diretrizes definidas no <a href=\"%(url)s\">Guia de Revisão</a>."
+"As extensões são analisadas pelos revisores AMO, um grupo de desenvolvedores talentosos que trabalham como voluntários para ajudar o projeto Mozilla, analisando as extensões para garantir uma "
+"experiência estável e segura para os usuários da Mozilla. Ao se comunicar com um revisor, por favor, seja cortês, paciente e respeitoso, eles estão trabalhando duro para garantir que a sua extensão "
+"seja configurada corretamente e siga as diretrizes definidas no <a href=\"%(url)s\">Guia de analise</a>."
 
 msgid "What are the guidelines used to review my add-on?"
 msgstr "Quais são os critérios usados para analisar o meu complemento?"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Add-on Reviewer Team follows the <a href=\"%(url)s\">Add-on Review Guide</a> when testing an add-on. It is important that add-on developers review this guide to ensure that common problem areas "
 "are addressed prior to submitting their add-on. This will greatly assist in avoiding review issues."
 msgstr ""
-"A equipe de revisores da Mozilla segue o <a href=\"%(url)s\">Guia de Revisão</a> ao testar uma extensão para ser aceita no AMO. É importante que os desenvolvedores de extensões analisem esse guia "
-"para garantir que problemas sejam resolvidos antes de submeter sua extensão para revisão. Isto irá tornar o processo de revisão mais rápido."
+"A equipe de revisores da Mozilla segue o <a href=\"%(url)s\">Guia de Revisão</a> ao testar uma extensão. É importante que os desenvolvedores de extensões analisem este guia para garantir que "
+"problemas sejam resolvidos antes de submeter sua extensão para revisão. Isso ajudará grandemente a evitar problemas de revisão."
 
 msgid "How long will it take for my add-on to be reviewed?"
 msgstr "Quanto tempo levará para o meu complemento ser analisado?"
@@ -7037,9 +7037,8 @@ msgstr "Pedido de ajuda ou bug reportado no local errado"
 msgid "Other (provides a pop-up prompt for information)"
 msgstr "Outro (você poderá fornecer mais informações)"
 
-#, fuzzy
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a the author of a user review."
-msgstr "Atualmente o AMO não fornece um mecanismo de comunicação direta com o revisor, mas esse recurso está sendo considerado para uma atualização futura."
+msgstr "Atualmente, a AMO não fornece um mecanismo para se comunicar diretamente com o autor de uma analise de usuário."
 
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr "Eu posso solicitar que uma análise seja removida caso ela seja negativa?"
