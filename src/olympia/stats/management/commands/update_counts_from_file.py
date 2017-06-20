@@ -8,8 +8,7 @@ from os import path, unlink
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.stats.models import update_inc, UpdateCount
@@ -17,7 +16,7 @@ from olympia.stats.models import update_inc, UpdateCount
 from . import get_date_from_file, save_stats_to_file
 
 
-log = commonware.log.getLogger('adi.updatecountsfromfile')
+log = olympia.core.logger.getLogger('adi.updatecountsfromfile')
 
 # Validate a locale: must be like 'fr', 'en-us', 'zap-MX-diiste', ...
 LOCALE_REGEX = re.compile(r"""^[a-z]{2,3}      # General: fr, en, dsb,...
@@ -26,6 +25,7 @@ LOCALE_REGEX = re.compile(r"""^[a-z]{2,3}      # General: fr, en, dsb,...
                           """, re.VERBOSE)
 VALID_STATUSES = ["userDisabled,incompatible", "userEnabled", "Unknown",
                   "userDisabled", "userEnabled,incompatible"]
+UPDATE_COUNT_TRIGGER = "userEnabled"
 VALID_APP_GUIDS = amo.APP_GUIDS.keys()
 APPVERSION_REGEX = re.compile(
     r"""^[0-9]{1,3}                # Major version: 2, 35
@@ -97,7 +97,8 @@ class Command(BaseCommand):
         # Perf: preload all the addons once and for all.
         # This builds a dict where each key (the addon guid we get from the
         # hive query) has the addon_id as value.
-        guids_to_addon = (dict(Addon.objects.exclude(guid__isnull=True)
+        guids_to_addon = (dict(Addon.objects.public()
+                                            .exclude(guid__isnull=True)
                                             .exclude(type=amo.ADDON_PERSONA)
                                             .values_list('guid', 'id')))
 
@@ -168,11 +169,12 @@ class Command(BaseCommand):
                     # We can now fill the UpdateCount object.
                     if group == 'version':
                         self.update_version(uc, data, count)
-                        # Use this count to compute the global number of daily
-                        # users for this addon.
-                        uc.count += count
                     elif group == 'status':
                         self.update_status(uc, data, count)
+                        if data == UPDATE_COUNT_TRIGGER:
+                            # Use this count to compute the global number
+                            # of daily users for this addon.
+                            uc.count += count
                     elif group == 'app':
                         self.update_app(uc, app_id, app_ver, count)
                     elif group == 'os':

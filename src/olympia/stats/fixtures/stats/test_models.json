@@ -57,7 +57,7 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-06-01"
         }
     },
@@ -67,7 +67,7 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-06-07"
         }
     },
@@ -77,7 +77,7 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-06-12"
         }
     },
@@ -87,7 +87,7 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-06-20"
         }
     },
@@ -97,7 +97,7 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-06-28"
         }
     },
@@ -107,7 +107,7 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-07-03"
         }
     },
@@ -117,7 +117,7 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-08-03"
         }
     },
@@ -127,7 +127,7 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-09-03"
         }
     },
@@ -137,7 +137,7 @@
         "fields": {
             "addon": 5,
             "count": 10,
-            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-10-03"
         }
     },
@@ -147,7 +147,7 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "sources": "a:2:{s:6:\"search\";i:3;s:3:\"api\";i:2;}",
+            "sources": "{\"search\": 3, \"api\": 2}",
             "date": "2009-10-03"
         }
     },
@@ -157,11 +157,11 @@
         "fields": {
             "addon": 4,
             "count": 1000,
-            "versions": "a:2:{s:3:\"1.0\";i:200;s:3:\"2.0\";i:800;}",
-            "statuses": "a:2:{s:11:\"userEnabled\";i:950;s:12:\"userDisabled\";i:50;}",
-            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:3:\"4.0\";i:1000;}}",
-            "oses": "a:2:{s:5:\"Linux\";i:300;s:5:\"WINNT\";i:400;}",
-            "locales": "a:2:{s:5:\"en-US\";i:300;s:2:\"el\";i:400;}",
+            "versions": "{\"2.0\": 800, \"1.0\": 200}",
+            "statuses": "{\"userEnabled\": 950, \"userDisabled\": 50}",
+            "applications": "{\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\": {\"4.0\": 1000}}",
+            "oses": "{\"WINNT\": 400, \"Linux\": 300}",
+            "locales": "{\"el\": 400, \"en-US\": 300}",
             "date": "2009-06-01"
         }
     },
@@ -171,11 +171,11 @@
         "fields": {
             "addon": 4,
             "count": 1500,
-            "versions": "a:2:{s:3:\"1.0\";i:550;s:3:\"2.0\";i:950;}",
-            "statuses": "a:2:{s:11:\"userEnabled\";i:1370;s:12:\"userDisabled\";i:130;}",
-            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:3:\"4.0\";i:1500;}}",
-            "oses": "a:2:{s:5:\"Linux\";i:400;s:5:\"WINNT\";i:500;}",
-            "locales": "a:2:{s:5:\"en-US\";i:300;s:2:\"el\";i:400;}",
+            "versions": "{\"2.0\": 950, \"1.0\": 550}",
+            "statuses": "{\"userEnabled\": 1370, \"userDisabled\": 130}",
+            "applications": "{\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\": {\"4.0\": 1500}}",
+            "oses": "{\"WINNT\": 500, \"Linux\": 400}",
+            "locales": "{\"el\": 400, \"en-US\": 300}",
             "date": "2009-06-02"
         }
     },
@@ -185,11 +185,11 @@
         "fields": {
             "addon": 4,
             "count": 10,
-            "versions": "a:2:{s:3:\"1.0\";i:200;s:3:\"2.0\";i:800;}",
-            "statuses": "a:2:{s:11:\"userEnabled\";i:950;s:12:\"userDisabled\";i:50;}",
-            "applications": "a:1:{s:38:\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\";a:1:{s:3:\"4.0\";i:1500;}}",
+            "versions": "{\"2.0\": 800, \"1.0\": 200}",
+            "statuses": "{\"userEnabled\": 950, \"userDisabled\": 50}",
+            "applications": "{\"{ec8030f7-c20a-464f-9b0e-13a3a9e97384}\": {\"4.0\": 1500}}",
             "oses": "a:2:{s:5:\"Linux\";i:400;s:5:\"WINNT\";i:500;}",
-            "locales": "a:2:{s:5:\"en-US\";i:300;s:2:\"el\";i:400;}",
+            "locales": "{\"el\": 400, \"en-US\": 300}",
             "date": "2007-01-01"
         }
     },
@@ -233,7 +233,7 @@
             "comment": "thanks!",
             "uuid": null,
             "transaction_id": "0HX69660HR839625E",
-            "post_data": "a:3:{s:11:\"payer_email\";s:18:\"nobody@mozilla.com\";s:10:\"first_name\";s:5:\"First\";s:9:\"last_name\";s:4:\"Last\";}",
+            "post_data": "{\"payer_email\": \"nobody@mozilla.com\", \"first_name\": \"First\", \"last_name\": \"Last\"}",
             "created": "2009-06-02 17:55:23",
             "modified": "2009-06-02 17:55:23"
         }
@@ -251,7 +251,7 @@
             "comment": "",
             "uuid": null,
             "transaction_id": "0HX96990HR526938E",
-            "post_data": "a:1:{s:11:\"payer_email\";s:18:\"snowbody@mozilla.com\";}",
+            "post_data": "{\"payer_email\": \"snowbody@mozilla.com\"}",
             "created": "2009-06-02 17:55:23",
             "modified": "2009-06-02 17:55:23"
         }
@@ -287,7 +287,7 @@
             "comment": "",
             "uuid": null,
             "transaction_id": "0HY96990HR526938E",
-            "post_data": "a:1:{s:11:\"payer_email\";s:18:\"snowbody@mozilla.com\";}",
+            "post_data": "{\"payer_email\": \"snowbody@mozilla.com\"}",
             "created": "2009-06-01 18:55:23",
             "modified": "2009-06-01 18:55:23"
         }

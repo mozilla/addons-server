@@ -77,8 +77,6 @@ UNREVIEWED_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PENDING)
 VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_PUBLIC)
 VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PUBLIC, STATUS_BETA)
 
-MIRROR_STATUSES = (STATUS_PUBLIC, STATUS_BETA)
-
 # Version channels
 RELEASE_CHANNEL_UNLISTED = 1
 RELEASE_CHANNEL_LISTED = 2
@@ -87,6 +85,11 @@ RELEASE_CHANNEL_CHOICES = (
     (RELEASE_CHANNEL_UNLISTED, _(u'Unlisted')),
     (RELEASE_CHANNEL_LISTED, _(u'Listed')),
 )
+
+CHANNEL_CHOICES_API = {
+    RELEASE_CHANNEL_UNLISTED: 'unlisted',
+    RELEASE_CHANNEL_LISTED: 'listed',
+}
 
 CHANNEL_CHOICES_LOOKUP = {
     'unlisted': RELEASE_CHANNEL_UNLISTED,
@@ -308,7 +311,6 @@ VALIDATOR_SKELETON_RESULTS = {
     "notices": 0,
     "success": True,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "signing_summary": {"high": 0, "medium": 0, "trivial": 0, "low": 0},
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [],
     "message_tree": {},
@@ -323,7 +325,6 @@ VALIDATOR_SKELETON_EXCEPTION = {
     "notices": 0,
     "success": True,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "signing_summary": {"high": 0, "medium": 0, "trivial": 0, "low": 0},
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [
         {"id": ["validator", "unexpected_exception"],
@@ -341,7 +342,6 @@ VALIDATOR_SKELETON_EXCEPTION = {
     "message_tree": {},
     "detected_type": "extension",
     "ending_tier": 5,
-    "passed_auto_validation": False,
 }
 
 VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
@@ -350,7 +350,6 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "notices": 0,
     "success": True,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "signing_summary": {"high": 0, "medium": 0, "trivial": 0, "low": 0},
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [
         {"id": ["validator", "unexpected_exception"],
@@ -369,7 +368,6 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "message_tree": {},
     "detected_type": "extension",
     "ending_tier": 5,
-    "passed_auto_validation": False,
 }
 
 # Contributions.
@@ -381,7 +379,7 @@ VERSION_BETA = re.compile(r"""(a|alpha|b|beta|pre|rc) # Either of these
                               """, re.VERBOSE)
 VERSION_SEARCH = re.compile('\.(\d+)$')
 
-# Editor Tools
+# Reviewer Tools
 EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 EDITOR_REVIEW_LOCK_LIMIT = 3  # How many pages can an editor "watch"
 
@@ -542,3 +540,9 @@ E10S_COMPATIBILITY_CHOICES_API = {
     E10S_COMPATIBLE: 'compatible',
     E10S_INCOMPATIBLE: 'incompatible',
 }
+
+ADDON_GUID_PATTERN = re.compile(
+    # Match {uuid} or something@host.tld ("something" being optional)
+    # guids. Copied from mozilla-central XPIProvider.jsm.
+    r'^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
+    r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)

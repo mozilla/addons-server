@@ -1,7 +1,7 @@
 import jingo
 from pyquery import PyQuery as pq
 
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
 from olympia.reviews.models import ReviewFlag
@@ -35,7 +35,7 @@ class HelpersTest(TestCase):
         assert doc.attr('class') == 'stars stars-5'
 
     def test_reviews_link(self):
-        a = Addon(average_rating=4, total_reviews=37, id=1, type=1, slug='xx')
+        a = addon_factory(average_rating=4, total_reviews=37, id=1, slug='xx')
         s = self.render('{{ reviews_link(myaddon) }}', {'myaddon': a})
         assert pq(s)('strong').text() == '37 reviews'
 
@@ -60,7 +60,7 @@ class HelpersTest(TestCase):
         assert pq(s)('a').attr('href') == u
 
     def test_impala_reviews_link(self):
-        a = Addon(average_rating=4, total_reviews=37, id=1, type=1, slug='xx')
+        a = addon_factory(average_rating=4, total_reviews=37, id=1, slug='xx')
         s = self.render('{{ impala_reviews_link(myaddon) }}', {'myaddon': a})
         assert pq(s)('a').text() == '(37)'
 
@@ -84,29 +84,6 @@ class HelpersTest(TestCase):
             '{{ impala_reviews_link(myaddon, link_to_list=True) }}',
             {'myaddon': a})
         assert pq(s)('a').attr('href') == u
-
-    def test_mobile_reviews_link(self):
-        def s(a):
-            return pq(self.render('{{ mobile_reviews_link(myaddon) }}',
-                                  {'myaddon': a}))
-
-        a = Addon(total_reviews=0, id=1, type=1, slug='xx')
-        doc = s(a)
-        assert doc('a').attr('href') == (
-            reverse('addons.reviews.add', args=['xx']))
-
-        u = reverse('addons.reviews.list', args=['xx'])
-
-        a = Addon(average_rating=4, total_reviews=37, id=1, type=1, slug='xx')
-        doc = s(a)
-        assert doc('a').attr('href') == u
-        assert doc('a').text() == 'Rated 4 out of 5 stars See All 37 Reviews'
-
-        a = Addon(average_rating=4, total_reviews=1, id=1, type=1, slug='xx')
-        doc = s(a)
-        doc.remove('div')
-        assert doc('a').attr('href') == u
-        assert doc('a').text() == 'See All Reviews'
 
     def test_report_review_popup(self):
         doc = pq(self.render('{{ report_review_popup() }}'))

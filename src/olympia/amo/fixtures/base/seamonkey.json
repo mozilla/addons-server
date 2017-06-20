@@ -59,7 +59,6 @@
             "description": 83414,
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": 0,
             "thankyou_note": null,
             "admin_review": 0,
             "external_software": 0,
@@ -70,7 +69,6 @@
             "annoying": 0,
             "modified": "2010-03-09 10:33:46",
             "suggested_amount": null,
-            "site_specific": 1,
             "total_reviews": 453
         }
     },

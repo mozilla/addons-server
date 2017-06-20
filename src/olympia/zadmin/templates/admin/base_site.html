@@ -24,13 +24,6 @@ them.  See zadmin.rendered_content for more details.
 {% templatetag openblock %}- endblock {% templatetag closeblock %}
 
 {% templatetag openblock %} block content {% templatetag closeblock %}
-  {% block breadcrumbs %}
-    <div class="breadcrumbs">
-      <a href="/">Home</a>
-      {% if title %} &rsaquo; {{ title }}{% endif %}
-    </div>
-  {% endblock %}
-
   <div id="content" class="{% block coltype %}colM{% endblock %}">
     {% block pretitle %}{% endblock %}
     {% block content_title %}

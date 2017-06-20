@@ -102,8 +102,7 @@ class TestHideDisabledFiles(TestCase):
             assert not os_mock.path.exists.called, (addon_status, file_status)
 
     @mock.patch('olympia.files.models.File.mv')
-    @mock.patch('olympia.files.models.storage')
-    def test_move_user_disabled_addon(self, m_storage, mv_mock):
+    def test_move_user_disabled_addon(self, mv_mock):
         # Use Addon.objects.update so the signal handler isn't called.
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_PUBLIC, disabled_by_user=True)
@@ -113,21 +112,16 @@ class TestHideDisabledFiles(TestCase):
         f2 = self.f2
         mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path,
                                    self.msg)
-        m_storage.delete.assert_called_with(f2.mirror_file_path)
         # Check that f1 was moved as well.
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
-        m_storage.delete.call_args = m_storage.delete.call_args_list[0]
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
-        m_storage.delete.assert_called_with(f1.mirror_file_path)
         # There's only 2 files, both should have been moved.
         assert mv_mock.call_count == 2
-        assert m_storage.delete.call_count == 2
 
     @mock.patch('olympia.files.models.File.mv')
-    @mock.patch('olympia.files.models.storage')
-    def test_move_admin_disabled_addon(self, m_storage, mv_mock):
+    def test_move_admin_disabled_addon(self, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_DISABLED)
         File.objects.update(status=amo.STATUS_PUBLIC)
@@ -136,21 +130,16 @@ class TestHideDisabledFiles(TestCase):
         f2 = self.f2
         mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path,
                                    self.msg)
-        m_storage.delete.assert_called_with(f2.mirror_file_path)
         # Check that f1 was moved as well.
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
-        m_storage.delete.call_args = m_storage.delete.call_args_list[0]
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
-        m_storage.delete.assert_called_with(f1.mirror_file_path)
         # There's only 2 files, both should have been moved.
         assert mv_mock.call_count == 2
-        assert m_storage.delete.call_count == 2
 
     @mock.patch('olympia.files.models.File.mv')
-    @mock.patch('olympia.files.models.storage')
-    def test_move_disabled_file(self, m_storage, mv_mock):
+    def test_move_disabled_file(self, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_PUBLIC)
         File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
         File.objects.filter(id=self.f2.id).update(
@@ -161,9 +150,6 @@ class TestHideDisabledFiles(TestCase):
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path,
                                    self.msg)
         assert mv_mock.call_count == 1
-        # It should have been removed from mirror stagins.
-        m_storage.delete.assert_called_with(f1.mirror_file_path)
-        assert m_storage.delete.call_count == 1
 
 
 class TestUnhideDisabledFiles(TestCase):
@@ -223,6 +209,41 @@ class AvgDailyUserCountTestCase(TestCase):
         cron._update_addon_average_daily_users([(3615, 6000000)])
         addon = Addon.objects.get(pk=3615)
         assert addon.average_daily_users == addon.total_downloads
+
+    def test_13_day_window(self):
+        addon = Addon.objects.get(pk=3615)
+
+        # can't use a fixed date since we are relying on
+        # mysql to get us the `CURDATE()`
+        today = datetime.date.today()
+
+        # data is coming from `tab groups` add-on from
+        # jun 11 till may 29th 2017
+        stats = [
+            (today - datetime.timedelta(days=days_in_past), update_count)
+            for days_in_past, update_count in (
+                (1, 82708), (2, 78793), (3, 99586), (4, 104426), (5, 105431),
+                (6, 106065), (7, 98093), (8, 81710), (9, 78843), (10, 99383),
+                (11, 104431), (12, 105943), (13, 105039), (14, 100183),
+                (15, 82265)
+            )]
+
+        UpdateCount.objects.bulk_create([
+            UpdateCount(addon=addon, date=date, count=count)
+            for date, count in stats
+        ])
+
+        addon.update(average_daily_users=0)
+
+        cron.update_addon_average_daily_users()
+
+        addon.refresh_from_db()
+
+        assert (
+            82708 + 78793 + 99586 + 104426 + 105431 + 106065 + 98093 +
+            81710 + 78843 + 99383 + 104431 + 105943) / 12 == 95451
+
+        assert addon.average_daily_users == 95451
 
     def test_adu_flag(self):
         addon = Addon.objects.get(pk=3615)

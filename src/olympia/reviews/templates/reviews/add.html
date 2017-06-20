@@ -9,11 +9,6 @@
 
 {% block content %}
 
-  {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                         (addon.get_url_path(), addon.name),
-                         (addon.reviews_url, _('Reviews')),
-                         (None, _('Add'))]) }}
-
   <h1>{{ title }}</h1>
 
   <div class="secondary">
@@ -35,10 +30,11 @@
           you believe this is so.
         </li>
         <li>
-          Please do not post bug reports in reviews. We do not make your email
-          address available to add-on developers and they may need to contact you to help
-          resolve your issue. See the <a href="{{ support }}">support section</a> to find out
-          where to get assistance for this add-on.
+          Please do not post bug reports here. We do not make your email
+          address available to add-on developers, so they can't contact you
+          to resolve your issue. See this add-on's <a href="{{ support }}">support section</a>
+          to find out if assistance is available. You can also try asking the
+          <a href="https://discourse.mozilla-community.org/c/add-ons/add-on-support">add-on community</a> for help.
         </li>
         <li>Please keep reviews clean, avoid the use of improper language and do not
             post any personal information.

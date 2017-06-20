@@ -12,7 +12,7 @@ import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
@@ -37,6 +37,10 @@ class StatsTest(TestCase):
         self.url_args = {'start': '20090601', 'end': '20090930', 'addon_id': 4}
         self.url_args_theme = {'start': '20090601', 'end': '20090930',
                                'addon_id': 6}
+        version_factory(addon=Addon.objects.get(pk=4))
+        version_factory(addon=Addon.objects.get(pk=5))
+        version_factory(addon=Addon.objects.get(pk=6))
+        Addon.objects.filter(id__in=(4, 5, 6)).update(status=amo.STATUS_PUBLIC)
         # Most tests don't care about permissions.
         self.login_as_admin()
 
@@ -88,7 +92,9 @@ class TestUnlistedAddons(StatsTest):
 
     def setUp(self):
         super(TestUnlistedAddons, self).setUp()
-        Addon.objects.get(pk=4).update(is_listed=False)
+        addon = Addon.objects.get(pk=4)
+        addon.update(public_stats=True)
+        self.make_addon_unlisted(addon)
 
     def test_no_stats_for_unlisted_addon(self):
         """All the views for the stats return 404 for unlisted addons."""
@@ -96,13 +102,6 @@ class TestUnlistedAddons(StatsTest):
 
         self._check_it(self.public_views_gen(format='json'), 404)
         self._check_it(self.private_views_gen(format='json'), 404)
-
-    def test_stats_for_unlisted_addon_owner(self):
-        """All the views for the stats return 404 for unlisted addons owner."""
-        self.login_as_admin()
-
-        self._check_it(self.public_views_gen(format='json'), 200)
-        self._check_it(self.private_views_gen(format='json'), 200)
 
 
 class ESStatsTest(StatsTest, amo.tests.ESTestCase):
@@ -134,7 +133,6 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
 
 class TestSeriesSecurity(StatsTest):
     """Tests to make sure all restricted data remains restricted."""
-    mock_es = True  # We're checking only headers, not content.
 
     def test_private_addon_no_groups(self):
         # Logged in but no groups
@@ -314,18 +312,14 @@ class TestCSVs(ESStatsTest):
         response = self.get_view_response('stats.versions_series', head=True,
                                           group='day', format='csv')
 
-        assert (
-            set(response['cache-control'].split(', ')) ==
-            {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'},
-        )
+        assert set(response['cache-control'].split(', ')) == (
+            {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'})
 
         self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
         response = self.get_view_response('stats.versions_series', head=True,
                                           group='day', format='json')
-        assert (
-            set(response['cache-control'].split(', ')) ==
-            {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'},
-        )
+        assert set(response['cache-control'].split(', ')) == (
+            {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'})
 
     def test_usage_series_no_data(self):
         url_args = [
@@ -355,20 +349,23 @@ class TestCacheControl(StatsTest):
 class TestLayout(StatsTest):
 
     def test_not_public_stats(self):
-        r = self.client.get(reverse('stats.downloads', args=[4]))
-        assert r.status_code == 404
+        self.login_as_visitor()
+        addon = amo.tests.addon_factory(public_stats=False)
+        response = self.client.get(self.get_public_url(addon))
+        assert response.status_code == 403
 
-    def get_public_url(self):
-        addon = amo.tests.addon_factory(public_stats=True)
+    def get_public_url(self, addon):
         return reverse('stats.downloads', args=[addon.slug])
 
     def test_public_stats_page_loads(self):
-        r = self.client.get(self.get_public_url())
-        assert r.status_code == 200
+        addon = amo.tests.addon_factory(public_stats=True)
+        response = self.client.get(self.get_public_url(addon))
+        assert response.status_code == 200
 
     def test_public_stats_stats_notes(self):
-        r = self.client.get(self.get_public_url())
-        assert pq(r.content)('#stats-note h2').length == 1
+        addon = amo.tests.addon_factory(public_stats=True)
+        response = self.client.get(self.get_public_url(addon))
+        assert pq(response.content)('#stats-note h2').length == 1
 
 
 class TestResponses(ESStatsTest):
@@ -981,6 +978,37 @@ class ArchiveTestCase(APIKeyAuthTestCase):
             read_dev_agreement=datetime.datetime.now())
         self.api_key = self.create_api_key(self.user, 'bar')
         AddonUser.objects.create(user=self.user, addon=self.addon)
+
+        response = self.get(
+            reverse('stats.archive', kwargs={
+                'slug': 'a3615', 'year': '2016', 'month': '01',
+                'day': '18', 'model_name': 'themeupdatecount'}))
+        assert response.status_code == 404
+
+    def test_list_unlisted_addon(self):
+        self.user = UserProfile.objects.create(
+            read_dev_agreement=datetime.datetime.now())
+        self.api_key = self.create_api_key(self.user, 'bar')
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+
+        save_stats_to_file(self.theme_update_count)
+        self.make_addon_unlisted(self.addon)
+
+        response = self.get(
+            reverse('stats.archive_list', kwargs={
+                'slug': 'a3615', 'year': '2016', 'month': '01'}))
+        # There are stats for this add-on for the requested timeframe, but it
+        # has no listed versions to it should return a 404.
+        assert response.status_code == 404
+
+    def test_get_unlisted_addon(self):
+        self.user = UserProfile.objects.create(
+            read_dev_agreement=datetime.datetime.now())
+        self.api_key = self.create_api_key(self.user, 'bar')
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+
+        save_stats_to_file(self.theme_update_count)
+        self.make_addon_unlisted(self.addon)
 
         response = self.get(
             reverse('stats.archive', kwargs={

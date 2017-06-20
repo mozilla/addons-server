@@ -8,11 +8,10 @@ from django.conf import settings
 from django.db.models import Q
 from django.utils.encoding import force_bytes
 
-import commonware.log
-
+import olympia.core.logger
 from olympia.users.models import UserProfile, DeniedName
 
-log = commonware.log.getLogger('z.users')
+log = olympia.core.logger.getLogger('z.users')
 
 
 class UnsubscribeCode(object):
@@ -81,3 +80,10 @@ def autocreate_username(candidate, tries=1):
     if UserProfile.objects.filter(username=adjusted_u).count():
         return autocreate_username(candidate, tries=tries + 1)
     return adjusted_u
+
+
+def system_addon_submission_allowed(user, parsed_addon_data):
+    guid = parsed_addon_data.get('guid') or ''
+    return (
+        not guid.endswith(u'@mozilla.org') or
+        user.email.endswith(u'@mozilla.com'))

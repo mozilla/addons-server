@@ -16,11 +16,11 @@ class TestUserProfileIndexer(TestCase):
     def test_extract_attributes(self):
         self.user = UserProfile.objects.create(
             email='nobody@mozilla.org', username='nobody',
-            display_name=u'Nôbody', bio=u'My Bïo',
+            display_name=u'Nôbody', biography=u'My Bïo',
             homepage='http://example.com/', location=u'Nëverland',
             occupation='What')
         extracted = self._extract()
-        for attr in ('email', 'username', 'display_name', 'bio',
+        for attr in ('email', 'username', 'display_name', 'biography',
                      'homepage', 'location', 'occupation'):
             assert extracted[attr] == unicode(getattr(self.user, attr))
         assert extracted['id'] == self.user.pk

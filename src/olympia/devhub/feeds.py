@@ -4,12 +4,14 @@ from django import http
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Rss201rev2Feed as RSS
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
-from olympia.amo.helpers import absolutify, url, strip_html
-from olympia.devhub.models import ActivityLog, RssKey
+from olympia.amo.helpers import absolutify, url
+from olympia.translations.helpers import clean as clean_html
+from olympia.devhub.models import RssKey
 
 
 class ActivityFeedRSS(Feed):
@@ -29,20 +31,20 @@ class ActivityFeedRSS(Feed):
         if key.addon:
             addons = key.addon
         else:  # We are showing all the add-ons
-            addons = Addon.with_unlisted.filter(authors=key.user)
+            addons = Addon.objects.filter(authors=key.user)
 
         return (ActivityLog.objects.for_addons(addons)
                            .exclude(action__in=amo.LOG_HIDE_DEVELOPER))[:20]
 
     def item_title(self, item):
-        return strip_html(item.to_string())
+        return clean_html(item.to_string(), True)
 
     def title(self, key):
         """Title for the feed as a whole"""
         if key.addon:
-            return _(u'Recent Changes for %s') % key.addon
+            return ugettext(u'Recent Changes for %s') % key.addon
         else:
-            return _(u'Recent Changes for My Add-ons')
+            return ugettext(u'Recent Changes for My Add-ons')
 
     def link(self):
         """Link for the feed as a whole"""

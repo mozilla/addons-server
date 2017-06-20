@@ -24,24 +24,36 @@ from olympia.files.helpers import copyfileobj
 from olympia.files.models import FileUpload
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, License, Version
+from olympia.versions.models import ApplicationsVersions, License
 
 
-class TestNewAddonForm(TestCase):
+class TestNewUploadForm(TestCase):
 
     def test_only_valid_uploads(self):
         upload = FileUpload.objects.create(valid=False)
-        form = forms.NewAddonForm(
+        form = forms.NewUploadForm(
             {'upload': upload.uuid, 'supported_platforms': [1]},
             request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' in
                 form.errors.get('__all__')), form.errors
 
+        # Admin override makes the form ignore the brokenness
+        with mock.patch('olympia.access.acl.action_allowed_user') as acl:
+            # For the 'Addons:Edit' permission check.
+            acl.return_value = True
+            form = forms.NewUploadForm(
+                {'upload': upload.uuid, 'supported_platforms': [1],
+                    'admin_override_validation': True},
+                request=mock.Mock())
+            assert ('There was an error with your upload. Please try' not in
+                    form.errors.get('__all__')), form.errors
+
         upload.validation = '{"errors": 0}'
         upload.save()
-        form = forms.NewAddonForm(
+        addon = Addon.objects.create()
+        form = forms.NewUploadForm(
             {'upload': upload.uuid, 'supported_platforms': [1]},
-            request=mock.Mock())
+            addon=addon, request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' not in
                 form.errors.get('__all__')), form.errors
 
@@ -62,72 +74,10 @@ class TestNewAddonForm(TestCase):
         mock_parse.return_value = None
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
         upload = FileUpload.objects.create(valid=True)
-        form = forms.NewAddonForm(
+        addon = Addon.objects.create()
+        form = forms.NewUploadForm(
             {'upload': upload.uuid, 'supported_platforms': [1]},
-            request=mock.Mock())
-        form.clean()
-        assert mock_check_xpi_info.called
-
-
-class TestNewVersionForm(TestCase):
-
-    # Those three patches are so files.utils.parse_addon doesn't fail on a
-    # non-existent file even before having a chance to call check_xpi_info.
-    @mock.patch('olympia.files.utils.Extractor.parse')
-    @mock.patch('olympia.files.utils.extract_xpi', lambda xpi, path: None)
-    @mock.patch('olympia.files.utils.get_file', lambda xpi: None)
-    # This is the one we want to test.
-    @mock.patch('olympia.files.utils.check_xpi_info')
-    def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
-        """Make sure the check_xpi_info helper is called.
-
-        There's some important checks made in check_xpi_info, if we ever
-        refactor the form to not call it anymore, we need to make sure those
-        checks are run at some point.
-        """
-        mock_parse.return_value = None
-        mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
-        upload = FileUpload.objects.create(valid=True)
-        addon = Addon.objects.create()
-        form = forms.NewVersionForm(
-            {'upload': upload.uuid, 'supported_platforms': [1],
-             'nomination_type': amo.STATUS_NOMINATED},
-            addon=addon,
-            request=mock.Mock())
-        form.clean()
-        assert mock_check_xpi_info.called
-
-
-class TestNewFileForm(TestCase):
-
-    # Those three patches are so files.utils.parse_addon doesn't fail on a
-    # non-existent file even before having a chance to call check_xpi_info.
-    @mock.patch('olympia.files.utils.Extractor.parse')
-    @mock.patch('olympia.files.utils.extract_xpi', lambda xpi, path: None)
-    @mock.patch('olympia.files.utils.get_file', lambda xpi: None)
-    # This is the one we want to test.
-    @mock.patch('olympia.files.utils.check_xpi_info')
-    def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
-        """Make sure the check_xpi_info helper is called.
-
-        There's some important checks made in check_xpi_info, if we ever
-        refactor the form to not call it anymore, we need to make sure those
-        checks are run at some point.
-        """
-        mock_parse.return_value = None
-        mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
-        upload = FileUpload.objects.create(valid=True)
-        addon = Addon.objects.create()
-        version = Version.objects.create(addon=addon)
-        version.compatible_platforms = mock.Mock()
-        version.compatible_platforms.return_value = amo.SUPPORTED_PLATFORMS
-        form = forms.NewFileForm(
-            {'upload': upload.uuid, 'supported_platforms': [1],
-             'nomination_type': amo.STATUS_NOMINATED,
-             'platform': '1'},
-            addon=addon,
-            version=version,
-            request=mock.Mock())
+            addon=addon, request=mock.Mock())
         form.clean()
         assert mock_check_xpi_info.called
 
@@ -159,7 +109,7 @@ class TestCharityForm(TestCase):
 
     def test_always_new(self):
         # Editing a charity should always produce a new row.
-        params = dict(name='name', url='http://url.com/', paypal='paypal')
+        params = {'name': 'name', 'url': 'http://url.com/', 'paypal': 'paypal'}
         charity = forms.CharityForm(params).save()
         for k, v in params.items():
             assert getattr(charity, k) == v
@@ -181,10 +131,10 @@ class TestCompatForm(TestCase):
     def test_mozilla_app(self):
         moz = amo.MOZILLA
         appver = AppVersion.objects.create(application=moz.id)
-        v = Addon.objects.get(id=3615).current_version
-        ApplicationsVersions(application=moz.id, version=v,
+        version = Addon.objects.get(id=3615).current_version
+        ApplicationsVersions(application=moz.id, version=version,
                              min=appver, max=appver).save()
-        fs = forms.CompatFormSet(None, queryset=v.apps.all())
+        fs = forms.CompatFormSet(None, queryset=version.apps.all())
         apps = [f.app for f in fs.forms]
         assert moz in apps
 
@@ -259,16 +209,6 @@ class TestThemeForm(TestCase):
     def post(self, **kw):
         self.form = ThemeForm(self.get_dict(**kw), request=self.request)
         return self.form
-
-    def test_name_unique(self):
-        # A theme cannot share the same name as another theme's.
-        Addon.objects.create(type=amo.ADDON_PERSONA, name='harry-potter')
-        for name in ('Harry-Potter', '  harry-potter  ', 'harry-potter'):
-            self.post(name=name)
-            assert not self.form.is_valid()
-            assert self.form.errors == (
-                {'name': ['This name is already in use. '
-                          'Please choose another.']})
 
     def test_name_required(self):
         self.post(name='')
@@ -570,38 +510,6 @@ class TestEditThemeForm(TestCase):
         self.save_success()
         self.form.save()
 
-    def test_name_unique(self):
-        data = self.get_dict(**{'name_en-us': 'Bands Make You Dance'})
-        Addon.objects.create(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC,
-                             name=data['name_en-us'])
-        self.form = EditThemeForm(data, request=self.request,
-                                  instance=self.instance)
-
-        assert not self.form.is_valid()
-        assert self.form.errors == {
-            'name': [
-                'This name is already in use. Please choose another.'
-            ]
-        }
-
-    def test_name_unique_multiple_locale_conflicts(self):
-        name = {'name_en-us': 'English', 'name_es': u'Español'}
-        data = self.get_dict(**name)
-
-        Addon.objects.create(
-            type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC,
-            name={'en-us': 'English', 'es': u'Español'})
-
-        self.form = EditThemeForm(data, request=self.request,
-                                  instance=self.instance)
-
-        assert not self.form.is_valid()
-        assert self.form.errors == {
-            'name': [
-                'This name is already in use. Please choose another.'
-            ]
-        }
-
     def test_localize_name_description(self):
         data = self.get_dict(name_de='name_de',
                              description_de='description_de')
@@ -776,7 +684,7 @@ class TestDistributionChoiceForm(TestCase):
         """
         with translation.override('en-US'):
             form = forms.DistributionChoiceForm()
-            label = form.fields['choices'].choices[0][1]
+            label = form.fields['channel'].choices[0][1]
 
             expected = 'On this site.'
             label = unicode(label)
@@ -784,7 +692,7 @@ class TestDistributionChoiceForm(TestCase):
 
         with translation.override('de'):
             form = forms.DistributionChoiceForm()
-            label = form.fields['choices'].choices[0][1]
+            label = form.fields['channel'].choices[0][1]
 
             expected = 'Auf dieser Website.'
             label = unicode(label)

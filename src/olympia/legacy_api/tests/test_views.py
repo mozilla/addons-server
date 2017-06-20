@@ -156,11 +156,13 @@ class StripHTMLTest(TestCase):
         a.summary = '<i>xxx video</i>s'
         a.description = 'FFFF<b>UUUU</b>'
         a.save()
+
         r = make_call('addon/3615', version=1.5)
         doc = pq(r.content)
         assert doc('eula').html() == '<i>free</i> stock tips'
         assert doc('summary').html() == '&lt;i&gt;xxx video&lt;/i&gt;s'
         assert doc('description').html() == 'FFFF<b>UUUU</b>'
+
         r = make_call('addon/3615')
         doc = pq(r.content)
         assert doc('eula').html() == 'free stock tips'
@@ -532,8 +534,16 @@ class APITest(TestCase):
         self.assertContains(
             result, '<thumbnail type="image/png" width="200" height="150">')
 
-    @patch.object(Addon, 'is_disabled', lambda self: True)
     def test_disabled_addon(self):
+        Addon.objects.get(pk=3615).update(disabled_by_user=True)
+        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
+                                   legacy_api.CURRENT_VERSION)
+        doc = pq(response.content)
+        assert doc[0].tag == 'error'
+        assert response.status_code == 404
+
+    def test_addon_with_no_listed_versions(self):
+        self.make_addon_unlisted(Addon.objects.get(pk=3615))
         response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
                                    legacy_api.CURRENT_VERSION)
         doc = pq(response.content)
@@ -812,9 +822,7 @@ class TestGuidSearch(TestCase):
         self.assertContains(response, '<summary>Francais')
 
     def test_xss(self):
-        Addon.objects.create(guid='test@xss', type=amo.ADDON_EXTENSION,
-                             status=amo.STATUS_PUBLIC,
-                             name='<script>alert("test");</script>')
+        addon_factory(guid='test@xss', name='<script>alert("test");</script>')
         r = make_call('search/guid:test@xss')
         assert '<script>alert' not in r.content
         assert '&lt;script&gt;alert' in r.content
@@ -966,7 +974,7 @@ class SearchTest(ESTestCase):
             'delicious/1': 'Delicious Bookmarks',
             'grapple/all/10/Darwin': 'GrApple',
             'delicious/all/10/Darwin/3.5': 'Delicious Bookmarks',
-            '/en-US/mobile/api/1.2/search/twitter/all/10/Linux/1.0':
+            '/en-US/firefox/api/1.2/search/twitter/all/10/Linux/3.5':
                 'TwitterBar',
         }
 
@@ -1000,7 +1008,8 @@ class SearchTest(ESTestCase):
         Test that unlisted add-ons are not shown.
         """
         addon = Addon.objects.get(pk=3615)
-        addon.update(is_listed=False)
+        self.make_addon_unlisted(addon)
+        addon.reload()
         self.refresh()
         response = self.client.get(
             "/en-US/firefox/api/1.2/search/delicious")

@@ -1,5 +1,6 @@
 from django import http
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
+from django.test import RequestFactory
 
 import pytest
 from mock import Mock, patch
@@ -14,8 +15,14 @@ class AllowedTest(TestCase):
 
     def setUp(self):
         super(AllowedTest, self).setUp()
-        self.request = Mock()
-        self.file = Mock()
+
+        request_factory = RequestFactory()
+        self.request = request_factory.get('/')
+        self.request.user = amo.tests.user_factory()
+
+        self.addon = amo.tests.addon_factory(
+            version_kw={'channel': amo.RELEASE_CHANNEL_LISTED})
+        self.file = self.addon.versions.get().files.get()
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
@@ -39,11 +46,14 @@ class AllowedTest(TestCase):
             @property
             def addon(self):
                 raise ObjectDoesNotExist
-        self.file.version = MockVersion()
-        self.assertRaises(http.Http404, allowed, self.request, self.file)
+
+        file = Mock()
+        file.version = MockVersion()
+        self.assertRaises(http.Http404, allowed, self.request, file)
 
     def get_unlisted_addon_file(self):
-        addon = amo.tests.addon_factory(is_listed=False)
+        addon = amo.tests.addon_factory(
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
         return addon, addon.versions.get().files.get()
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: False)
@@ -74,3 +84,16 @@ class AllowedTest(TestCase):
     def test_unlisted_owner_allowed(self):
         addon, file_ = self.get_unlisted_addon_file()
         assert allowed(self.request, file_)
+
+    @patch.object(acl, 'check_addons_reviewer', lambda x: False)
+    @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
+    def test_listed_public_disallowed(self):
+        self.assertRaises(PermissionDenied, allowed, self.request, self.file)
+
+        self.addon.update(view_source=True)
+
+        self.assertRaises(PermissionDenied, allowed, self.request, self.file)
+
+        self.addon.update(view_source=True, status=amo.STATUS_PUBLIC)
+
+        self.assertRaises(PermissionDenied, allowed, self.request, self.file)

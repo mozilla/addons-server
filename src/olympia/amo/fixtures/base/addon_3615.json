@@ -173,10 +173,9 @@
             "total_contributions": "0.00",
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": false,
             "thankyou_note": null,
             "admin_review": false,
-            "external_software": false,
+            "external_software": true,
             "name": 15000,
             "created": "2006-10-23 12:57:41",
             "type": 1,
@@ -185,7 +184,6 @@
             "modified": "2010-05-28 09:01:57",
             "summary": 15004,
             "suggested_amount": null,
-            "site_specific": true,
             "total_reviews": 413,
             "the_reason": null
         }
@@ -240,7 +238,7 @@
             "homepage": "http://www.yahoo.com/",
             "email": "del@icio.us",
             "location": "",
-            "bio": null,
+            "biography": null,
             "deleted": false,
             "username": "55021",
             "display_name": "55021 \u0627\u0644\u062a\u0637\u0628",
@@ -355,7 +353,7 @@
             "slug": "feeds-news-blogging",
             "db_name": 2323
         }
-    },    
+    },
     {
         "pk": 22,
         "model": "addons.category",

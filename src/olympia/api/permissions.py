@@ -1,6 +1,7 @@
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
+from olympia import amo
 from olympia.access import acl
 
 
@@ -12,14 +13,13 @@ class GroupPermission(BasePermission):
     """
     Allow access depending on the result of action_allowed_user().
     """
-    def __init__(self, app, action):
-        self.app = app
-        self.action = action
+    def __init__(self, permission):
+        self.permission = permission
 
     def has_permission(self, request, view):
         if not request.user.is_authenticated():
             return False
-        return acl.action_allowed_user(request.user, self.app, self.action)
+        return acl.action_allowed_user(request.user, self.permission)
 
     def has_object_permission(self, request, view, obj):
         return self.has_permission(request, view)
@@ -50,6 +50,32 @@ class AnyOf(BasePermission):
         # `has_object_permission` returns True unconditionally, and
         # some permission objects might not override it.
         return any((perm.has_permission(request, view) and
+                    perm.has_object_permission(request, view, obj))
+                   for perm in self.perms)
+
+    def __call__(self):
+        return self
+
+
+class AllOf(BasePermission):
+    """
+    Takes multiple permission objects and succeeds if all of them do.
+    """
+
+    def __init__(self, *perms):
+        # DRF calls the items in permission_classes, might as well do
+        # it here too.
+        self.perms = [p() for p in perms]
+
+    def has_permission(self, request, view):
+        return all(perm.has_permission(request, view) for perm in self.perms)
+
+    def has_object_permission(self, request, view, obj):
+        # This method *must* call `has_permission` for each
+        # sub-permission since the default implementation of
+        # `has_object_permission` returns True unconditionally, and
+        # some permission objects might not override it.
+        return all((perm.has_permission(request, view) and
                     perm.has_object_permission(request, view, obj))
                    for perm in self.perms)
 
@@ -90,7 +116,7 @@ class AllowOwner(BasePermission):
 
 
 class AllowReviewer(BasePermission):
-    """Allow addons reviewer access.
+    """Allow reviewers to access add-ons with listed versions.
 
     Like editors.decorators.addons_reviewer_required, but as a permission class
     and not a decorator.
@@ -103,15 +129,17 @@ class AllowReviewer(BasePermission):
     """
     def has_permission(self, request, view):
         return ((request.method in SAFE_METHODS and
-                 acl.action_allowed(request, 'ReviewerTools', 'View')) or
+                 acl.action_allowed(request,
+                                    amo.permissions.REVIEWER_TOOLS_VIEW)) or
                 acl.check_addons_reviewer(request))
 
     def has_object_permission(self, request, view, obj):
-        return obj.is_listed and self.has_permission(request, view)
+        return obj.has_listed_versions() and self.has_permission(request, view)
 
 
 class AllowReviewerUnlisted(AllowReviewer):
-    """Allow unlisted addons reviewer access.
+    """Allow unlisted reviewers to access add-ons with unlisted versions, or
+    add-ons with no listed versions at all.
 
     Like editors.decorators.unlisted_addons_reviewer_required, but as a
     permission class and not a decorator.
@@ -125,26 +153,26 @@ class AllowReviewerUnlisted(AllowReviewer):
         return acl.check_unlisted_addons_reviewer(request)
 
     def has_object_permission(self, request, view, obj):
-        return not obj.is_listed and self.has_permission(request, view)
+        return (
+            (obj.has_unlisted_versions() or not obj.has_listed_versions()) and
+            self.has_permission(request, view))
 
 
-class AllowIfReviewedAndListed(BasePermission):
+class AllowIfPublic(BasePermission):
     """
-    Allow access when the object's is_public() method and is_listed property
-    both return True.
+    Allow access when the object's is_public() method returns True.
     """
     def has_permission(self, request, view):
         return True
 
     def has_object_permission(self, request, view, obj):
-        return (obj.is_reviewed() and not obj.disabled_by_user and
-                obj.is_listed and self.has_permission(request, view))
+        return (obj.is_public() and self.has_permission(request, view))
 
 
-class AllowReadOnlyIfReviewedAndListed(AllowIfReviewedAndListed):
+class AllowReadOnlyIfPublic(AllowIfPublic):
     """
-    Allow access when the object's is_public() method and is_listed property
-    both return True and the request HTTP method is GET/OPTIONS/HEAD.
+    Allow access when the object's is_public() method returns True and the
+    request HTTP method is GET/OPTIONS/HEAD.
     """
     def has_permission(self, request, view):
         return request.method in SAFE_METHODS
@@ -210,4 +238,24 @@ class AllowRelatedObjectPermissions(BasePermission):
                    for perm in self.perms)
 
     def __call__(self):
+        return self
+
+
+class PreventActionPermission(BasePermission):
+    """
+    Allow access except for a given action.
+    """
+    def __init__(self, action):
+        self.action = action
+
+    def has_permission(self, request, view):
+        return getattr(view, 'action', '') != self.action
+
+    def has_object_permission(self, request, view, obj):
+        return True
+
+    def __call__(self, *a):
+        """
+        ignore DRF's nonsensical need to call this object.
+        """
         return self

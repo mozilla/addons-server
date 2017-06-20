@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-import logging
-
 from django.core.management.base import BaseCommand, CommandError
 
+import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.utils import chunked
 from olympia.editors.helpers import ReviewHelper
 
-log = logging.getLogger('z.addons')
+log = olympia.core.logger.getLogger('z.addons')
 
 
 class Command(BaseCommand):
@@ -43,14 +42,15 @@ def get_files(addon_guids):
     """
     # Get all the add-ons that have a GUID from the list, and which are either
     # reviewed or awaiting a review.
-    addons = Addon.with_unlisted.filter(
+    addons = Addon.objects.filter(
         guid__in=addon_guids,
         status__in=amo.VALID_ADDON_STATUSES)
     # Of all those add-ons, we return the list of latest version files that are
     # under review, or add-ons that are under review.
     files = []
     for addon in addons:
-        files += addon.find_latest_version().unreviewed_files
+        files += addon.find_latest_version(
+            amo.RELEASE_CHANNEL_LISTED).unreviewed_files
     return files
 
 

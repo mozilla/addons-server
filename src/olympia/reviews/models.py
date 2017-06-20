@@ -1,24 +1,21 @@
-from datetime import datetime, timedelta
-import logging
-
 from django.core.cache import cache
 from django.db import models
+from django.db.models import Q
 from django.template import Context
 from django.utils.translation import ugettext_lazy as _
 
-import bleach
 import caching.base as caching
 
-from olympia import amo
+import olympia.core.logger
+from olympia import activity, amo
 from olympia.amo import helpers
-from olympia.amo.celery import task
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.utils import send_mail_jinja
 from olympia.translations.fields import save_signal, TranslatedField
 from olympia.translations.helpers import truncate
 
 
-log = logging.getLogger('z.reviews')
+log = olympia.core.logger.getLogger('z.reviews')
 
 
 class ReviewManager(ManagerBase):
@@ -52,6 +49,18 @@ class ReviewQuerySet(caching.CachingQuerySet):
     """
     A queryset modified for soft deletion.
     """
+    def to_moderate(self):
+        """Return reviews to moderate.
+
+        Reviews attached lacking an addon or attached to an addon that is no
+        longer nominated or public are ignored, as well as reviews attached to
+        unlisted versions.
+        """
+        return self.exclude(
+            Q(addon__isnull=True) |
+            Q(version__channel=amo.RELEASE_CHANNEL_UNLISTED) |
+            Q(reviewflag__isnull=True)).filter(
+                editorreview=1, addon__status__in=amo.VALID_ADDON_STATUSES)
 
     def delete(self, user_responsible=None, hard_delete=False):
         if hard_delete:
@@ -76,8 +85,6 @@ class Review(ModelBase):
 
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
-    sandbox = models.BooleanField(default=False)
-    client_data = models.ForeignKey('stats.ClientData', null=True, blank=True)
 
     deleted = models.BooleanField(default=False)
 
@@ -114,31 +121,16 @@ class Review(ModelBase):
     def get_url_path(self):
         return helpers.url('addons.reviews.detail', self.addon.slug, self.id)
 
-    def moderator_delete(self, user):
+    def approve(self, user):
         from olympia.editors.models import ReviewerScore
 
-        amo.log(amo.LOG.DELETE_REVIEW, self.addon, self,
-                user=user,
-                details=dict(title=unicode(self.title),
-                             body=unicode(self.body),
-                             addon_id=self.addon.pk,
-                             addon_title=unicode(self.addon.name),
-                             is_flagged=self.reviewflag_set.exists()))
-        for flag in self.reviewflag_set.all():
-            flag.delete()
-        self.delete(user_responsible=user)
-        ReviewerScore.award_moderation_points(user, self.addon, self.pk)
-
-    def moderator_approve(self, user):
-        from olympia.editors.models import ReviewerScore
-
-        amo.log(amo.LOG.APPROVE_REVIEW, self.addon, self,
-                user=user,
-                details=dict(title=unicode(self.title),
-                             body=unicode(self.body),
-                             addon_id=self.addon.pk,
-                             addon_title=unicode(self.addon.name),
-                             is_flagged=self.reviewflag_set.exists()))
+        activity.log_create(
+            amo.LOG.APPROVE_REVIEW, self.addon, self, user=user, details=dict(
+                title=unicode(self.title),
+                body=unicode(self.body),
+                addon_id=self.addon.pk,
+                addon_title=unicode(self.addon.name),
+                is_flagged=self.reviewflag_set.exists()))
         for flag in self.reviewflag_set.all():
             flag.delete()
         self.editorreview = False
@@ -150,6 +142,26 @@ class Review(ModelBase):
     def delete(self, user_responsible=None):
         if user_responsible is None:
             user_responsible = self.user
+
+        review_was_moderated = False
+        # Log deleting reviews to moderation log,
+        # except if the author deletes it
+        if user_responsible != self.user:
+            # Remember moderation state
+            review_was_moderated = True
+            from olympia.editors.models import ReviewerScore
+
+            activity.log_create(
+                amo.LOG.DELETE_REVIEW, self.addon, self, user=user_responsible,
+                details=dict(
+                    title=unicode(self.title),
+                    body=unicode(self.body),
+                    addon_id=self.addon.pk,
+                    addon_title=unicode(self.addon.name),
+                    is_flagged=self.reviewflag_set.exists()))
+            for flag in self.reviewflag_set.all():
+                flag.delete()
+
         log.info(u'Review deleted: %s deleted id:%s by %s ("%s": "%s")',
                  user_responsible.name, self.pk, self.user.name,
                  unicode(self.title), unicode(self.body))
@@ -157,6 +169,11 @@ class Review(ModelBase):
         # Force refreshing of denormalized data (it wouldn't happen otherwise
         # because we're not dealing with a creation).
         self.update_denormalized_fields()
+
+        if (review_was_moderated):
+            ReviewerScore.award_moderation_points(user_responsible,
+                                                  self.addon,
+                                                  self.pk)
 
     def undelete(self):
         self.update(deleted=False)
@@ -225,17 +242,14 @@ class Review(ModelBase):
             new_review_or_edit = not instance.reply_to or not created
             if new_review_or_edit:
                 action = amo.LOG.ADD_REVIEW if created else amo.LOG.EDIT_REVIEW
-                amo.log(action, instance.addon, instance,
-                        user=instance.user_responsible)
+                activity.log_create(action, instance.addon, instance,
+                                    user=instance.user_responsible)
 
             # For new reviews and new replies we want to send an email.
             if created:
                 instance.send_notification_email()
 
         instance.refresh(update_denorm=created)
-        if created:
-            # Avoid slave lag with the delay.
-            check_spam.apply_async(args=[instance.id], countdown=600)
 
     def refresh(self, update_denorm=False):
         from olympia.addons.models import update_search_index
@@ -322,50 +336,3 @@ class GroupedRating(object):
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
         cache.set(cls.key(addon), ratings)
         return ratings
-
-
-class Spam(object):
-
-    def add(self, review, reason):
-        reason = 'amo:review:spam:%s' % reason
-        try:
-            reasonset = cache.get('amo:review:spam:reasons', set())
-        except KeyError:
-            reasonset = set()
-        try:
-            idset = cache.get(reason, set())
-        except KeyError:
-            idset = set()
-        reasonset.add(reason)
-        cache.set('amo:review:spam:reasons', reasonset)
-        idset.add(review.id)
-        cache.set(reason, idset)
-        return True
-
-    def reasons(self):
-        return cache.get('amo:review:spam:reasons')
-
-
-@task
-def check_spam(review_id, **kw):
-    spam = Spam()
-    try:
-        review = Review.objects.using('default').get(id=review_id)
-    except Review.DoesNotExist:
-        log.error('Review does not exist, check spam for review_id: %s'
-                  % review_id)
-        return
-
-    thirty_days = datetime.now() - timedelta(days=30)
-    others = (Review.objects.no_cache().exclude(id=review.id)
-              .filter(user=review.user, created__gte=thirty_days))
-    if len(others) > 10:
-        spam.add(review, 'numbers')
-    if (review.body is not None and
-            bleach.url_re.search(review.body.localized_string)):
-        spam.add(review, 'urls')
-    for other in others:
-        if ((review.title and review.title == other.title) or
-                review.body == other.body):
-            spam.add(review, 'matches')
-            break

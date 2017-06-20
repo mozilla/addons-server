@@ -566,6 +566,10 @@ body:not(.home) .amo-header,
   margin-top: 22px;
   padding: 15px 45px 15px 15px;
 
+  .html-rtl & {
+    padding: 15px 15px 15px 45px;
+  }
+
   &::before, &::after {
     display: none;
   }
@@ -1191,11 +1195,6 @@ body:not(.developer-hub) section.secondary {
   margin-bottom: 0.5em;
 }
 
-// Add-on Details Page
-#breadcrumbs {
-  display: none;
-}
-
 .addon-details {
   .primary,
   .secondary {
@@ -1265,6 +1264,10 @@ body:not(.developer-hub) section.secondary {
   text-decoration: underline;
 }
 
+.notice.c.author a.download {
+  text-decoration: none;
+}
+
 .notice.c.author {
   h3, p {
     margin-left: 90px;
@@ -1301,7 +1304,7 @@ body:not(.developer-hub) section.secondary {
 /* Notice - underneath description (asking for contribution &/or showing dependencies )*/
 .addon-details {
 
-  .hovercard.addon {
+  .hovercard.addon:hover {
     .rating a {
       color: @link-on-white-bg;
     }
@@ -1357,6 +1360,7 @@ h3.author .transfer-ownership {
   h4.author a,
   a.eula,
   a.privacy-policy,
+  a.webext-permissions,
   .notice h3,
   .notice p,
   .notice p a,
@@ -1371,6 +1375,7 @@ h3.author .transfer-ownership {
 
   h4.author a,
   a.privacy-policy,
+  a.webext-permissions,
   a.eula,
   .vital a,
   .warning a,
@@ -1435,6 +1440,15 @@ h3.author .transfer-ownership {
 .featured-inner {
   border: 0;
   padding-top: 0;
+}
+
+// Create a new collection search
+#ui-id-1 {
+  position: absolute !important; // because jQuery has set postion: relative with inline css
+}
+
+.ui-helper-hidden-accessible {
+  display: none;
 }
 
 // Navigation
@@ -2117,10 +2131,18 @@ h3.author .transfer-ownership {
     float: left;
     margin-left: 0;
     width: 74%;
+
+    .html-rtl& {
+      margin-right: 0;
+    }
   }
 
-  .stat-criteria .island.criteria {
-    float: left;
+  .stat-criteria {
+    overflow: auto;
+
+    .island.criteria {
+      float: left;
+    }
   }
 
   .notification-box {
@@ -2554,4 +2576,56 @@ body.windows .install-shell .platform.mac {
       visibility: visible;
     }
   }
+}
+
+.webext-permissions.badge {
+  display: block;
+  img {
+    height: 1.1em;
+    margin-right: 0.25em;
+    .html-rtl & {
+      margin-left: 0.25em;
+    }
+  }
+}
+
+#webext-permissions {
+  ul {
+    margin-left: 1.5em;
+    .html-rtl & {
+      margin-right: 1.5em;
+    }
+    li {
+      list-style: circle;
+      details {
+        summary {
+          list-style: none;
+        }
+        li {
+          list-style-type: disc;
+        }
+      }
+      details[open] summary:after {
+        content: " \25b2"
+      }
+      details summary:after {
+        content: " \25bc"
+      }
+    }
+  }
+  h3 {
+      font-size: larger;
+      margin-top: 1em;
+  }
+  .prose {
+    img {
+      float: left;
+      margin: 10px;
+    }
+  }
+}
+
+div.detailed {
+  display: inline-block;
+  vertical-align: middle;
 }

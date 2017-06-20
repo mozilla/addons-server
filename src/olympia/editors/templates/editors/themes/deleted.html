@@ -1,9 +1,5 @@
 {% extends "editors/themes/base.html" %}
 
-{% block breadcrumbs %}
-  {{ editors_breadcrumbs(items=[(None, _('Deleted Themes'))]) }}
-{% endblock %}
-
 {% block content %}
   {% include "editors/themes/includes/logs_filter_deleted.html" %}
 

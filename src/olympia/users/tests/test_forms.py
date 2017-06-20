@@ -64,8 +64,7 @@ class TestUserEditForm(UserFormBase):
     def test_no_username_or_display_name(self):
         assert not self.user.has_anonymous_username()
         data = {'username': '',
-                'email': 'jbalogh@mozilla.com',
-                'lang': 'pt-BR'}
+                'email': 'jbalogh@mozilla.com'}
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
         assert self.user.reload().has_anonymous_username()
@@ -73,8 +72,7 @@ class TestUserEditForm(UserFormBase):
     def test_change_username(self):
         assert self.user.username != 'new-username'
         data = {'username': 'new-username',
-                'email': 'jbalogh@mozilla.com',
-                'lang': 'fr'}
+                'email': 'jbalogh@mozilla.com'}
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
         assert self.user.reload().username == 'new-username'
@@ -85,8 +83,7 @@ class TestUserEditForm(UserFormBase):
         username = self.user.anonymize_username()
         self.user.save()
         data = {'username': '',
-                'email': 'jbalogh@mozilla.com',
-                'lang': 'en-US'}
+                'email': 'jbalogh@mozilla.com'}
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
         assert self.user.reload().username == username
@@ -95,23 +92,20 @@ class TestUserEditForm(UserFormBase):
         assert self.user.fxa_id is None
         data = {'username': 'blah',
                 'email': 'jbalogh@mozilla.com',
-                'fxa_id': 'yo',
-                'lang': 'en-US'}
+                'fxa_id': 'yo'}
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
         assert self.user.reload().fxa_id is None
 
     def test_no_real_name(self):
         data = {'username': 'blah',
-                'email': 'jbalogh@mozilla.com',
-                'lang': 'en-US'}
+                'email': 'jbalogh@mozilla.com'}
         r = self.client.post(self.url, data, follow=True)
         self.assertContains(r, 'Profile Updated')
 
     def test_long_data(self):
         data = {'username': 'jbalogh',
-                'email': 'jbalogh@mozilla.com',
-                'lang': 'en-US'}
+                'email': 'jbalogh@mozilla.com'}
         for field, length in (('username', 50), ('display_name', 50),
                               ('location', 100), ('occupation', 100)):
             data[field] = 'x' * (length + 1)
@@ -125,8 +119,7 @@ class TestUserEditForm(UserFormBase):
         dummy.user = self.user
 
         data = {'username': self.user_profile.username,
-                'email': self.user_profile.email,
-                'lang': 'en-US'}
+                'email': self.user_profile.email}
         files = {'photo': get_uploaded_file('transparent.png')}
         form = UserEditForm(data, files=files, instance=self.user_profile,
                             request=dummy)
@@ -134,36 +127,10 @@ class TestUserEditForm(UserFormBase):
         form.save()
         assert update_mock.called
 
-    def test_lang_initial(self):
-        """If no lang is set on the user, initial value is current locale."""
-        # Lang is already set: don't change it.
-        res = self.client.get(self.url)
-        form = res.context['form']
-        assert form.initial['lang'] == 'en-US'
-
-        with self.activate('fr'):
-            res = self.client.get(reverse('users.edit'))
-            form = res.context['form']
-            assert form.initial['lang'] == 'en-US'
-
-        # Lang isn't set yet: initial value is set to the current locale.
-        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        user.lang = None
-        user.save()
-
-        res = self.client.get(self.url)
-        form = res.context['form']
-        assert form.initial['lang'] == 'en-US'
-
-        with self.activate('fr'):
-            res = self.client.get(reverse('users.edit'))
-            form = res.context['form']
-            assert form.initial['lang'] == 'fr'
-
     def test_cannot_change_email(self):
         self.user.update(fxa_id='1a2b3c', email='me@example.com')
         form = UserEditForm(
-            {'email': 'noway@example.com', 'lang': 'de'}, instance=self.user)
+            {'email': 'noway@example.com'}, instance=self.user)
         assert form.is_valid()
         form.save()
         assert self.user.reload().email == 'me@example.com'
@@ -187,7 +154,6 @@ class TestAdminUserEditForm(UserFormBase):
         assert self.user.email != 'nobody@mozilla.org'
         form = AdminUserEditForm({
             'email': 'nobody@mozilla.org',
-            'lang': 'fr',
             'admin_log': 'Change email',
         }, instance=self.user)
         assert form.is_valid(), form.errors

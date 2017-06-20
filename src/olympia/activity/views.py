@@ -1,9 +1,8 @@
 import json
-import logging
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from rest_framework import status
 from rest_framework.decorators import (api_view, authentication_classes,
@@ -12,9 +11,10 @@ from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from waffle.decorators import waffle_switch
 
+import olympia.core.logger
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.activity.serializers import ActivityLogSerializer
 from olympia.activity.tasks import process_email
 from olympia.activity.utils import (
@@ -22,7 +22,6 @@ from olympia.activity.utils import (
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
-from olympia.devhub.models import ActivityLog
 from olympia.versions.models import Version
 
 
@@ -32,7 +31,6 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
         AnyOf(AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted),
     ]
     serializer_class = ActivityLogSerializer
-    queryset = ActivityLog.objects.all()
 
     def get_queryset(self):
         alog = ActivityLog.objects.for_version(self.get_version_object)
@@ -59,21 +57,21 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
             self.get_queryset())
         return ctx
 
-    @waffle_switch('activity-email')
     def create(self, request, *args, **kwargs):
         version = self.get_version_object()
-        latest_version = version.addon.find_latest_version_including_rejected(
-            channel=version.channel)
+        latest_version = version.addon.find_latest_version(
+            channel=version.channel, exclude=(amo.STATUS_BETA,))
         if version != latest_version:
-            raise ParseError(
-                _('Only latest versions of addons can have notes added.'))
+            raise ParseError(ugettext(
+                'Only latest versions of addons can have notes added.'))
         activity_object = log_and_notify(
             action_from_user(request.user, version), request.data['comments'],
             request.user, version)
         serializer = self.get_serializer(activity_object)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-log = logging.getLogger('z.amo.activity')
+
+log = olympia.core.logger.getLogger('z.amo.activity')
 
 
 class EmailCreationPermission(object):

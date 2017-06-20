@@ -1,0 +1,20 @@
+<section class="DevHub-manage-your content scheme-light">
+  <div class="DevHub-content-container DevHub-content-container--manage">
+    <div class="DevHub-content-copy DevHub-content-copy--manage">
+      <h3 class="DevHub-content-header DevHub-content-header--manage">{{ _('Manage Your Add-on') }}</h3>
+      <a href="{{ login_link() }}" class="Button">{{ _('Sign In to Edit and Update Your Add-on') }}</a>
+    </div>
+    <div class="DevHub-content-copy DevHub-content-copy--evolution">
+      <div class="DevHub-callout-box DevHub-ext-ladder-icon">
+        <h3 class="DevHub-callout-header">{{ _('Evolution in Add-on Development') }}</h3>
+        <p class="DevHub-callout-copy">
+          {% trans %}
+          WebExtensions are now the standard for add-on development in Firefox.
+          You'll need to update your legacy add-ons to stay compatible.
+          {% endtrans %}
+        </p>
+        <a href="https://developer.mozilla.org/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on" class="Button Button--evolution">{{ _('Learn How') }}</a>
+      </div>
+    </div>
+  </div>
+</section>

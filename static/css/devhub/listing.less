@@ -47,6 +47,23 @@
     }
     .item-details {
         width: 68%;
+        li.distribution-tag-unlisted,
+        li.distribution-tag-listed {
+            padding-top: 5px;
+            border-top: 1px dotted #94bfce;
+        }
+        span.distribution-tag-listed, span.distribution-tag-unlisted {
+            color: white;
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-size: smaller
+        }
+        span.distribution-tag-listed {
+            background-color: #01BDAD;
+        }
+        span.distribution-tag-unlisted {
+            background-color: #7A2F7A;
+        }
     }
     &:hover {
         a {
@@ -78,7 +95,7 @@
     line-height: 13px;
     margin: 1.75em 0 0;
 
-    a {
+    a, button.link {
         color: @note-gray;
 
         &.more-actions {
@@ -99,6 +116,17 @@
                 border-top-color: #05e;
             }
         }
+    }
+    button.link {
+        background: transparent none;
+        text-shadow: none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border: 0;
+        font-weight: normal;
+        font-size: 11px;
+        padding: 0;
     }
     h5 {
         font-size: 1em;
@@ -128,10 +156,13 @@
 .html-rtl .item-actions a.more-actions:after {
     margin: 5px 4px 0 0;
 }
+.html-rtl .item-actions {
+    float: none;
+}
 
 .item:hover a.delete-addon {
     color: #d33;
 }
-#addon-current-state.item:hover a.delete-addon {
+#addon-delete-listing.item:hover a.delete-addon {
     color: #fff;
 }

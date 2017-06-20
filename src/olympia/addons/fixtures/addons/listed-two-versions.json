@@ -38,7 +38,6 @@
             "description": null,
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": 0,
             "thankyou_note": null,
             "admin_review": 0,
             "external_software": 0,
@@ -50,7 +49,6 @@
             "modified": "2009-12-14 17:40:19",
             "summary": null,
             "suggested_amount": null,
-            "site_specific": 0,
             "total_reviews": 1,
             "the_reason": null
         }

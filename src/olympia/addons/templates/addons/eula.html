@@ -12,9 +12,6 @@
 {% block primary %}
 <section class="primary" id="eula">
   <hgroup class="hero">
-    {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                           (detail_url, addon.name),
-                           (None, _('End-User License Agreement'))]) }}
     {{ addon_heading(addon, version) }}
   </hgroup>
   <div class="prose">

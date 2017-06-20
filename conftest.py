@@ -7,7 +7,8 @@ import caching
 import pytest
 from multidb import pinning
 
-from olympia import amo
+from olympia import amo, core
+from olympia.amo.tests import start_es_mocks, stop_es_mocks
 from olympia.access.models import Group, GroupUser
 from olympia.translations.hold import clean_translations
 from olympia.users.models import UserProfile
@@ -22,6 +23,19 @@ def unpin_db(request):
     of DB slave functionality."""
 
     request.addfinalizer(pinning.unpin_this_thread)
+
+
+@pytest.fixture(autouse=True)
+def mock_elasticsearch():
+    """Mock ElasticSearch in tests by default.
+
+    Tests that do need ES should inherit from ESTestCase, which will stop the
+    mock at setup time."""
+    start_es_mocks()
+
+    yield
+
+    stop_es_mocks()
 
 
 @pytest.fixture(autouse=True)
@@ -111,7 +125,7 @@ def test_pre_setup():
 
 @pytest.fixture(autouse=True)
 def test_post_teardown():
-    amo.set_user(None)
+    core.set_user(None)
     clean_translations(None)  # Make sure queued translations are removed.
 
     # Make sure we revert everything we might have changed to prefixers.

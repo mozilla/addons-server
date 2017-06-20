@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from datetime import date, datetime, timedelta
 import json
 import time
@@ -7,34 +7,38 @@ from django import http
 from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
-from django.utils.translation import ugettext as _, pgettext
+from django.utils.translation import ugettext, pgettext
 
 from olympia import amo
 from olympia.devhub import tasks as devhub_tasks
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
+from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
-from olympia.addons.models import Addon, Version
-from olympia.amo.decorators import json_view, post_required
+from olympia.addons.models import Addon, AddonApprovalsCounter
+from olympia.amo.decorators import (
+    json_view, permission_required, post_required)
 from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
-from olympia.devhub.models import ActivityLog, AddonLog, CommentLog
+from olympia.constants.editors import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.editors import forms
 from olympia.editors.models import (
-    AddonCannedResponse, EditorSubscription, EventLog, get_flags,
-    PerformanceGraph, ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
+    AddonCannedResponse, AutoApprovalSummary, clear_reviewing_cache,
+    EditorSubscription, EventLog, get_flags, get_reviewing_cache,
+    get_reviewing_cache_key, PerformanceGraph, ReviewerScore,
+    set_reviewing_cache, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
 from olympia.editors.helpers import (
-    is_limited_reviewer, ReviewHelper, ViewFullReviewQueueTable,
-    ViewPendingQueueTable, ViewUnlistedAllListTable)
-from olympia.reviews.forms import ReviewFlagFormSet
+    AutoApprovedTable, is_limited_reviewer, ReviewHelper,
+    ViewFullReviewQueueTable, ViewPendingQueueTable, ViewUnlistedAllListTable)
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
@@ -63,7 +67,8 @@ def context(request, **kw):
 def eventlog(request):
     form = forms.EventLogForm(request.GET)
     eventlog = ActivityLog.objects.editor_events()
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     if form.is_valid():
         if form.cleaned_data['start']:
@@ -91,7 +96,8 @@ def eventlog_detail(request, id):
     if len(log.arguments) > 1 and isinstance(log.arguments[1], Review):
         review = log.arguments[1]
 
-    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+    is_admin = acl.action_allowed(request,
+                                  amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
 
     can_undelete = review and review.deleted and (
         is_admin or request.user.pk == log.user.pk)
@@ -116,7 +122,8 @@ def beta_signed_log(request):
     """Log of all the beta files that got signed."""
     form = forms.BetaSignedLogForm(request.GET)
     beta_signed_log = ActivityLog.objects.beta_signed_events()
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     if form.is_valid():
         if form.cleaned_data['filter']:
@@ -132,14 +139,15 @@ def beta_signed_log(request):
 
 @any_reviewer_required
 def home(request):
-    if (not acl.action_allowed(request, 'Addons', 'Review') and
-            acl.action_allowed(request, 'Personas', 'Review')):
+    if (not acl.action_allowed(request, amo.permissions.ADDONS_REVIEW) and
+            acl.action_allowed(request, amo.permissions.THEMES_REVIEW)):
         return http.HttpResponseRedirect(reverse('editors.themes.home'))
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
-    durations = (('new', _('New Add-ons (Under 5 days)')),
-                 ('med', _('Passable (5 to 10 days)')),
-                 ('old', _('Overdue (Over 10 days)')))
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
+    durations = (('new', ugettext('New Add-ons (Under 5 days)')),
+                 ('med', ugettext('Passable (5 to 10 days)')),
+                 ('old', ugettext('Overdue (Over 10 days)')))
 
     limited_reviewer = is_limited_reviewer(request)
     progress, percentage = _editor_progress(limited_reviewer=limited_reviewer)
@@ -220,8 +228,9 @@ def performance(request, user_id=False):
     user = request.user
     editors = _recent_editors()
 
-    is_admin = (acl.action_allowed(request, 'Admin', '%') or
-                acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
+    is_admin = (acl.action_allowed(request, amo.permissions.ADMIN) or
+                acl.action_allowed(request,
+                                   amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW))
 
     if is_admin and user_id:
         try:
@@ -229,7 +238,8 @@ def performance(request, user_id=False):
         except UserProfile.DoesNotExist:
             pass  # Use request.user from above.
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     monthly_data = _performance_by_month(user.id)
     performance_total = _performance_total(monthly_data)
@@ -286,11 +296,13 @@ def performance(request, user_id=False):
 
 def _recent_editors(days=90):
     since_date = datetime.now() - timedelta(days=days)
-    editors = (UserProfile.objects
-                          .filter(activitylog__action__in=amo.LOG_REVIEW_QUEUE,
-                                  activitylog__created__gt=since_date)
-                          .order_by('display_name')
-                          .distinct())
+    editors = (
+        UserProfile.objects.filter(
+            activitylog__action__in=amo.LOG_EDITOR_REVIEW_ACTION,
+            activitylog__created__gt=since_date)
+        .exclude(id=settings.TASK_USER_ID)
+        .order_by('display_name')
+        .distinct())
     return editors
 
 
@@ -315,7 +327,7 @@ def _performance_total(data):
 
 
 def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
-    monthly_data = SortedDict()
+    monthly_data = OrderedDict()
 
     now = datetime.now()
     if not end_month:
@@ -360,10 +372,11 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
 @addons_reviewer_required
 def motd(request):
     form = None
-    if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
+    if motd_editable:
         form = forms.MOTDForm(
             initial={'motd': get_config('editors_review_motd')})
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
     data = context(request, form=form, motd_editable=motd_editable)
     return render(request, 'editors/motd.html', data)
 
@@ -371,7 +384,8 @@ def motd(request):
 @addons_reviewer_required
 @post_required
 def save_motd(request):
-    if not acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
+    if not acl.action_allowed(
+            request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT):
         raise PermissionDenied
     form = forms.MOTDForm(request.POST)
     if form.is_valid():
@@ -382,7 +396,8 @@ def save_motd(request):
 
 
 def is_admin_reviewer(request):
-    return acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+    return acl.action_allowed(request,
+                              amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW)
 
 
 def exclude_admin_only_addons(queryset):
@@ -397,29 +412,34 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     if is_limited_reviewer(request):
         qs = qs.having('waiting_time_hours >=', REVIEW_LIMITED_DELAY_HOURS)
 
-    if request.GET:
-        search_form = SearchForm(request.GET)
-        if search_form.is_valid():
-            qs = search_form.filter_qs(qs)
+    if SearchForm:
+        if request.GET:
+            search_form = SearchForm(request.GET)
+            if search_form.is_valid():
+                qs = search_form.filter_qs(qs)
+        else:
+            search_form = SearchForm()
+        is_searching = search_form.data.get('searching')
     else:
-        search_form = SearchForm()
+        search_form = None
+        is_searching = False
     admin_reviewer = is_admin_reviewer(request)
-    if not admin_reviewer and not search_form.data.get('searching'):
+    if not admin_reviewer and not is_searching and hasattr(qs, 'filter'):
         qs = exclude_admin_only_addons(qs)
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
     order_by = request.GET.get('sort', TableObj.default_order_by())
     if hasattr(TableObj, 'translate_sort_cols'):
         order_by = TableObj.translate_sort_cols(order_by)
     table = TableObj(data=qs, order_by=order_by)
-    default = 100
-    per_page = request.GET.get('per_page', default)
+    per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
     try:
         per_page = int(per_page)
     except ValueError:
-        per_page = default
-    if per_page <= 0 or per_page > 200:
-        per_page = default
+        per_page = REVIEWS_PER_PAGE
+    if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
+        per_page = REVIEWS_PER_PAGE
     page = paginate(request, table.rows, per_page=per_page)
     table.set_page(page)
     return render(request, 'editors/queue.html',
@@ -447,16 +467,22 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
 
         return query.count
 
-    counts = {'pending': construct_query(ViewPendingQueue, **kw),
-              'nominated': construct_query(ViewFullReviewQueue, **kw),
-              'moderated': (
-                  Review.objects.filter(reviewflag__isnull=False,
-                                        editorreview=1).count)}
+    AUTO_APPROVED = amo.AUTO_APPROVED
+    counts = {
+        'pending': construct_query(ViewPendingQueue, **kw),
+        'nominated': construct_query(ViewFullReviewQueue, **kw),
+        'moderated': Review.objects.all().to_moderate().count,
+        'auto_approved': (
+            Addon.objects.public().filter(
+                _current_version__autoapprovalsummary__verdict=AUTO_APPROVED)
+            .count)
+    }
     if unlisted:
         counts = {
             'all': (ViewUnlistedAllList.objects if admin_reviewer
                     else exclude_admin_only_addons(
-                        ViewUnlistedAllList.objects)).count}
+                        ViewUnlistedAllList.objects)).count
+        }
     rv = {}
     if isinstance(type, basestring):
         return counts[type]()
@@ -483,32 +509,26 @@ def queue_pending(request):
 
 @addons_reviewer_required
 def queue_moderated(request):
-    # In addition to other checks, this only show reviews for public and
-    # listed add-ons. Unlisted add-ons typically won't have reviews anyway
-    # but they might if their status ever gets changed.
-    rf = (Review.objects.exclude(Q(addon__isnull=True) |
-                                 Q(addon__is_listed=False) |
-                                 Q(reviewflag__isnull=True))
-                        .filter(editorreview=1,
-                                addon__status__in=amo.VALID_ADDON_STATUSES)
-                        .order_by('reviewflag__created'))
-
-    page = paginate(request, rf, per_page=20)
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    qs = Review.objects.all().to_moderate().order_by('reviewflag__created')
+    page = paginate(request, qs, per_page=20)
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     flags = dict(ReviewFlag.FLAGS)
 
-    reviews_formset = ReviewFlagFormSet(request.POST or None,
-                                        queryset=page.object_list,
-                                        request=request)
+    reviews_formset = forms.ReviewFlagFormSet(request.POST or None,
+                                              queryset=page.object_list,
+                                              request=request)
 
     if request.method == 'POST':
         if reviews_formset.is_valid():
             reviews_formset.save()
         else:
             amo.messages.error(
-                request, ' '.join(e.as_text() or _('An unknown error occurred')
-                                  for e in reviews_formset.errors))
+                request,
+                ' '.join(
+                    e.as_text() or ugettext('An unknown error occurred')
+                    for e in reviews_formset.errors))
         return redirect(reverse('editors.queue_moderated'))
 
     return render(request, 'editors/queue.html',
@@ -533,27 +553,122 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
+@permission_required(amo.permissions.ADDONS_POST_REVIEW)
+def queue_auto_approved(request):
+    qs = (
+        Addon.objects.public()
+        .select_related(
+            'addonapprovalscounter', '_current_version__autoapprovalsummary')
+        .filter(
+            _current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
+        .order_by(
+            '-_current_version__autoapprovalsummary__weight',
+            'addonapprovalscounter__last_human_review',
+            'created'))
+    return _queue(request, AutoApprovedTable, 'auto_approved',
+                  qs=qs, SearchForm=None)
+
+
+def _get_comments_for_hard_deleted_versions(addon):
+    """Versions are soft-deleted now but we need to grab review history for
+    older deleted versions that were hard-deleted so the only record we have
+    of them is in the review log.  Hard deletion was pre Feb 2016.
+
+    We don't know if they were unlisted or listed but given the time overlap
+    they're most likely listed so we assume that."""
+    class PseudoVersion(object):
+        def __init__(self):
+            self.all_activity = []
+
+        all_files = ()
+        approvalnotes = None
+        compatible_apps_ordered = ()
+        releasenotes = None
+        status = 'Deleted'
+        deleted = True
+        channel = amo.RELEASE_CHANNEL_LISTED
+        is_ready_for_auto_approval = False
+
+        @property
+        def created(self):
+            return self.all_activity[0].created
+
+        @property
+        def version(self):
+            return (self.all_activity[0].activity_log
+                        .details.get('version', '[deleted]'))
+
+    comments = (CommentLog.objects
+                .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
+                        activity_log__versionlog=None,
+                        activity_log__addonlog__addon=addon)
+                .order_by('created')
+                .select_related('activity_log'))
+
+    comment_versions = defaultdict(PseudoVersion)
+    for c in comments:
+        c.version = c.activity_log.details.get('version', c.created)
+        comment_versions[c.version].all_activity.append(c)
+    return comment_versions.values()
+
+
 @addons_reviewer_required
 @addon_view_factory(qs=Addon.unfiltered.all)
-def review(request, addon):
-    if not addon.is_listed and not acl.check_unlisted_addons_reviewer(request):
-        raise http.Http404
+def review(request, addon, channel=None):
+    # channel is passed in as text, but we want the constant.
+    channel = amo.CHANNEL_CHOICES_LOOKUP.get(
+        channel, amo.RELEASE_CHANNEL_LISTED)
+    unlisted_only = (channel == amo.RELEASE_CHANNEL_UNLISTED or
+                     not addon.has_listed_versions())
+    if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
+        raise PermissionDenied
 
-    version = addon.find_latest_version_including_rejected()
+    version = addon.find_latest_version(
+        channel=channel, exclude=(amo.STATUS_BETA,))
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
-        amo.messages.warning(request, _('Self-reviews are not allowed.'))
+        amo.messages.warning(
+            request, ugettext('Self-reviews are not allowed.'))
         return redirect(reverse('editors.queue'))
 
+    # Get the current info request state to set as the default.
+    form_initial = {'info_request': version and version.has_info_request}
+
     form_helper = ReviewHelper(request=request, addon=addon, version=version)
-    form = forms.ReviewForm(request.POST or None, helper=form_helper)
-    if addon.is_listed:
-        queue_type = form.helper.review_type
+    form = forms.ReviewForm(request.POST if request.method == 'POST' else None,
+                            helper=form_helper, initial=form_initial)
+    if channel == amo.RELEASE_CHANNEL_LISTED:
+        queue_type = form.helper.handler.review_type
         redirect_url = reverse('editors.queue_%s' % queue_type)
     else:
         redirect_url = reverse('editors.unlisted_queue_all')
 
-    is_admin = acl.action_allowed(request, 'Addons', 'Edit')
+    is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
+    is_post_reviewer = acl.action_allowed(request,
+                                          amo.permissions.ADDONS_POST_REVIEW)
+
+    approvals_info = None
+    reports = None
+    user_reviews = None
+    was_auto_approved = False
+    if channel == amo.RELEASE_CHANNEL_LISTED:
+        if addon.current_version:
+            was_auto_approved = addon.current_version.was_auto_approved
+        if is_post_reviewer and version and version.is_webextension:
+            try:
+                approvals_info = addon.addonapprovalscounter
+            except AddonApprovalsCounter.DoesNotExist:
+                pass
+
+        developers = addon.listed_authors
+        reports = Paginator(
+            (AbuseReport.objects
+                        .filter(Q(addon=addon) | Q(user__in=developers))
+                        .order_by('-created')), 5).page(1)
+        user_reviews = Paginator(
+            (Review.without_replies
+                   .filter(addon=addon, rating__lte=3, body__isnull=False)
+                   .order_by('-created')), 5).page(1)
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
@@ -562,8 +677,9 @@ def review(request, addon):
                                                      addon=addon)
         if form.cleaned_data.get('adminflag') and is_admin:
             addon.update(admin_review=False)
-        amo.messages.success(request, _('Review successfully processed.'))
-        clear_review_reviewing_cache(addon.id)
+        amo.messages.success(
+            request, ugettext('Review successfully processed.'))
+        clear_reviewing_cache(addon.id)
         return redirect(redirect_url)
 
     # Kick off validation tasks for any files in this version which don't have
@@ -581,70 +697,70 @@ def review(request, addon):
     try:
         show_diff = version and (
             addon.versions.exclude(id=version.id).filter(
-                files__isnull=False, created__lt=version.created,
+                channel=channel,
+                files__isnull=False,
+                created__lt=version.created,
                 files__status=amo.STATUS_PUBLIC).latest())
     except Version.DoesNotExist:
         show_diff = None
 
-    # The actions we should show a minimal form from.
+    # The actions we should show a minimal form for.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
-    versions = (Version.unfiltered.filter(addon=addon)
+    # The actions we should show the comments form for (contrary to minimal
+    # form above, it defaults to True, because most actions do need to have
+    # the comments form).
+    actions_comments = [k for (k, a) in actions if a.get('comments', True)]
+
+    # The actions we should show the 'info request' checkbox for.
+    actions_info_request = [k for (k, a) in actions
+                            if a.get('info_request', False)]
+
+    versions = (Version.unfiltered.filter(addon=addon, channel=channel)
+                                  .select_related('autoapprovalsummary')
                                   .exclude(files__status=amo.STATUS_BETA)
                                   .order_by('-created')
                                   .transform(Version.transformer_activity)
                                   .transform(Version.transformer))
 
-    class PseudoVersion(object):
-        def __init__(self):
-            self.all_activity = []
-
-        all_files = ()
-        approvalnotes = None
-        compatible_apps_ordered = ()
-        releasenotes = None
-        status = 'Deleted'
-        deleted = True
-        channel = amo.RELEASE_CHANNEL_LISTED
-
-        @property
-        def created(self):
-            return self.all_activity[0].created
-
-        @property
-        def version(self):
-            return (self.all_activity[0].activity_log
-                        .details.get('version', '[deleted]'))
-
-    # Grab review history for deleted versions of this add-on
-    # Version are soft-deleted now but we need this for older deletions.
-    comments = (CommentLog.objects
-                .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
-                        activity_log__versionlog=None,
-                        activity_log__addonlog__addon=addon)
-                .order_by('created')
-                .select_related('activity_log'))
-
-    comment_versions = defaultdict(PseudoVersion)
-    for c in comments:
-        c.version = c.activity_log.details.get('version', c.created)
-        comment_versions[c.version].all_activity.append(c)
-
-    all_versions = comment_versions.values()
+    # We assume comments on old deleted versions are for listed versions.
+    # See _get_comments_for_hard_deleted_versions above for more detail.
+    all_versions = (_get_comments_for_hard_deleted_versions(addon)
+                    if channel == amo.RELEASE_CHANNEL_LISTED else [])
     all_versions.extend(versions)
     all_versions.sort(key=lambda v: v.created,
                       reverse=True)
 
     pager = amo.utils.paginate(request, all_versions, 10)
-
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
+    max_average_daily_users = int(
+        get_config('AUTO_APPROVAL_MAX_AVERAGE_DAILY_USERS') or 0)
+    min_approved_updates = int(
+        get_config('AUTO_APPROVAL_MIN_APPROVED_UPDATES') or 0)
+    auto_approval_info = {}
+    # Now that we've paginated the versions queryset, iterate on them to
+    # generate auto approvals info. Note that the variable should not clash
+    # the already existing 'version'.
+    for a_version in pager.object_list:
+        if not is_post_reviewer or not a_version.is_ready_for_auto_approval:
+            continue
+        try:
+            summary = a_version.autoapprovalsummary
+        except AutoApprovalSummary.DoesNotExist:
+            auto_approval_info[a_version.pk] = None
+            continue
+        # Call calculate_verdict() again, it will use the data already stored.
+        # Need to pass max_average_daily_users and min_approved_updates current
+        # values.
+        verdict_info = summary.calculate_verdict(
+            max_average_daily_users=max_average_daily_users,
+            min_approved_updates=min_approved_updates,
+            pretty=True)
+        auto_approval_info[a_version.pk] = verdict_info
+
     if version:
-        version.admin_review = addon.admin_review
-        version.sources_provided = bool(version.source)
-        version.is_webextension = any(
-            file_.is_webextension for file_ in version.all_files)
         flags = get_flags(version)
     else:
         flags = []
@@ -661,19 +777,18 @@ def review(request, addon):
                   form=form, canned=canned, is_admin=is_admin,
                   show_diff=show_diff,
                   actions=actions, actions_minimal=actions_minimal,
+                  actions_comments=actions_comments,
+                  actions_info_request=actions_info_request,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
                   user_changes=user_changes_log,
-                  unlisted=not addon.is_listed)
+                  unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
+                  approvals_info=approvals_info,
+                  is_post_reviewer=is_post_reviewer,
+                  auto_approval_info=auto_approval_info,
+                  reports=reports, user_reviews=user_reviews,
+                  was_auto_approved=was_auto_approved)
 
     return render(request, 'editors/review.html', ctx)
-
-
-_review_viewing_cache_key = '%s:review_viewing:%s'
-
-
-def clear_review_reviewing_cache(addon_id):
-    key = _review_viewing_cache_key % (settings.CACHE_PREFIX, addon_id)
-    cache.delete(key)
 
 
 @never_cache
@@ -687,12 +802,12 @@ def review_viewing(request):
     user_id = request.user.id
     current_name = ''
     is_user = 0
-    key = _review_viewing_cache_key % (settings.CACHE_PREFIX, addon_id)
+    key = get_reviewing_cache_key(addon_id)
     user_key = '%s:review_viewing_user:%s' % (settings.CACHE_PREFIX, user_id)
     interval = amo.EDITOR_VIEWING_INTERVAL
 
     # Check who is viewing.
-    currently_viewing = cache.get(key)
+    currently_viewing = get_reviewing_cache(addon_id)
 
     # If nobody is viewing or current user is, set current user as viewing
     if not currently_viewing or currently_viewing == user_id:
@@ -700,11 +815,10 @@ def review_viewing(request):
         review_locks = cache.get_many(cache.get(user_key, {}))
         can_lock_more_reviews = (
             len(review_locks) < amo.EDITOR_REVIEW_LOCK_LIMIT or
-            acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
+            acl.action_allowed(request,
+                               amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW))
         if can_lock_more_reviews or currently_viewing == user_id:
-            # We want to save it for twice as long as the ping interval,
-            # just to account for latency and the like.
-            cache.set(key, user_id, interval * 2)
+            set_reviewing_cache(addon_id, user_id)
             # Give it double expiry just to be safe.
             cache.set(user_key, set(review_locks) | {key}, interval * 4)
             currently_viewing = user_id
@@ -712,7 +826,7 @@ def review_viewing(request):
             is_user = 1
         else:
             currently_viewing = settings.TASK_USER_ID
-            current_name = _('Review lock limit reached')
+            current_name = ugettext('Review lock limit reached')
             is_user = 2
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
@@ -733,7 +847,7 @@ def queue_viewing(request):
 
     for addon_id in request.POST['addon_ids'].split(','):
         addon_id = addon_id.strip()
-        key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
+        key = get_reviewing_cache_key(addon_id)
         currently_viewing = cache.get(key)
         if currently_viewing and currently_viewing != user_id:
             viewing[addon_id] = (UserProfile.objects
@@ -763,7 +877,8 @@ def queue_review_text(request, log_id):
 def reviewlog(request):
     data = request.GET.copy()
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = acl.action_allowed(
+        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 
     if not data.get('start') and not data.get('end'):
         today = date.today()
@@ -771,10 +886,11 @@ def reviewlog(request):
 
     form = forms.ReviewLogForm(data)
 
-    approvals = ActivityLog.objects.review_queue()
+    approvals = ActivityLog.objects.review_log()
     if not acl.check_unlisted_addons_reviewer(request):
-        # Display logs related to unlisted add-ons only to senior reviewers.
-        approvals = approvals.filter(addonlog__addon__is_listed=True)
+        # Display logs related to unlisted versions only to senior reviewers.
+        list_channel = amo.RELEASE_CHANNEL_LISTED
+        approvals = approvals.filter(versionlog__version__channel=list_channel)
 
     if form.is_valid():
         data = form.cleaned_data
@@ -791,19 +907,20 @@ def reviewlog(request):
                 Q(user__username__icontains=term)).distinct()
 
     pager = amo.utils.paginate(request, approvals, 50)
-    ad = {
-        amo.LOG.APPROVE_VERSION.id: _('was approved'),
+    action_dict = {
+        amo.LOG.APPROVE_VERSION.id: ugettext('was approved'),
         # The log will still show preliminary, even after the migration.
-        amo.LOG.PRELIMINARY_VERSION.id: _('given preliminary review'),
-        amo.LOG.REJECT_VERSION.id: _('rejected'),
+        amo.LOG.PRELIMINARY_VERSION.id: ugettext('given preliminary review'),
+        amo.LOG.REJECT_VERSION.id: ugettext('rejected'),
         amo.LOG.ESCALATE_VERSION.id: pgettext(
             'editors_review_history_nominated_adminreview', 'escalated'),
-        amo.LOG.REQUEST_INFORMATION.id: _('needs more information'),
-        amo.LOG.REQUEST_SUPER_REVIEW.id: _('needs super review'),
-        amo.LOG.COMMENT_VERSION.id: _('commented'),
+        amo.LOG.REQUEST_INFORMATION.id: ugettext('needs more information'),
+        amo.LOG.REQUEST_SUPER_REVIEW.id: ugettext('needs super review'),
+        amo.LOG.COMMENT_VERSION.id: ugettext('commented'),
+        amo.LOG.CONFIRM_AUTO_APPROVED.id: ugettext('confirmed as approved'),
     }
 
-    data = context(request, form=form, pager=pager, ACTION_DICT=ad,
+    data = context(request, form=form, pager=pager, ACTION_DICT=action_dict,
                    motd_editable=motd_editable)
     return render(request, 'editors/reviewlog.html', data)
 
@@ -811,10 +928,11 @@ def reviewlog(request):
 @addons_reviewer_required
 @addon_view
 def abuse_reports(request, addon):
-    reports = AbuseReport.objects.filter(addon=addon).order_by('-created')
-    total = reports.count()
+    developers = addon.listed_authors
+    reports = AbuseReport.objects.filter(
+        Q(addon=addon) | Q(user__in=developers)).order_by('-created')
     reports = amo.utils.paginate(request, reports)
-    data = context(request, addon=addon, reports=reports, total=total)
+    data = context(request, addon=addon, reports=reports)
     return render(request, 'editors/abuse_reports.html', data)
 
 

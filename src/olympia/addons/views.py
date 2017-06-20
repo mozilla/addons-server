@@ -1,16 +1,12 @@
-import functools
 import hashlib
 import json
-import random
-import re
 import uuid
-from operator import attrgetter
 
 from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
@@ -18,11 +14,10 @@ from django.views.decorators.vary import vary_on_headers
 
 import caching.base as caching
 import jinja2
-import commonware.log
 import session_csrf
 import waffle
 from elasticsearch_dsl import Search
-from mobility.decorators import mobilized, mobile_template
+from rest_framework import serializers
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import GenericAPIView, ListAPIView
@@ -32,6 +27,7 @@ from rest_framework.settings import api_settings
 from rest_framework.viewsets import GenericViewSet
 from session_csrf import anonymous_csrf_exempt
 
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.amo import messages
@@ -48,8 +44,8 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia import paypal
 from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReadOnlyIfReviewedAndListed,
-    AllowRelatedObjectPermissions, AllowReviewer, AllowReviewerUnlisted, AnyOf)
+    AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
+    AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
@@ -71,28 +67,11 @@ from .serializers import (
 from .utils import get_creatured_ids, get_featured_ids
 
 
-log = commonware.log.getLogger('z.addons')
-paypal_log = commonware.log.getLogger('z.paypal')
+log = olympia.core.logger.getLogger('z.addons')
+paypal_log = olympia.core.logger.getLogger('z.paypal')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
-addon_unreviewed_view = addon_view_factory(qs=Addon.objects.unreviewed)
 addon_valid_disabled_pending_view = addon_view_factory(
     qs=Addon.objects.valid_and_disabled_and_pending)
-
-
-def author_addon_clicked(f):
-    """Decorator redirecting clicks on "Other add-ons by author"."""
-    @functools.wraps(f)
-    def decorated(request, *args, **kwargs):
-        redirect_id = request.GET.get('addons-author-addons-select', None)
-        if not redirect_id:
-            return f(request, *args, **kwargs)
-        try:
-            target_id = int(redirect_id)
-            return http.HttpResponsePermanentRedirect(reverse(
-                'addons.detail', args=[target_id]))
-        except ValueError:
-            return http.HttpResponseBadRequest('Invalid add-on ID.')
-    return decorated
 
 
 @addon_valid_disabled_pending_view
@@ -151,7 +130,7 @@ def extension_detail(request, addon):
         'grouped_ratings': GroupedRating.get(addon.id),
         'review_form': ReviewForm(),
         'reviews': Review.without_replies.all().filter(
-            addon=addon, is_latest=True),
+            addon=addon, is_latest=True).exclude(body=None),
         'get_replies': Review.get_replies,
         'collections': collections.order_by('-subscribers')[:3],
         'abuse_form': AbuseForm(request=request),
@@ -167,17 +146,6 @@ def extension_detail(request, addon):
         return render(request, 'addons/impala/details.html', ctx)
 
 
-@mobilized(extension_detail)
-@non_atomic_requests
-def extension_detail(request, addon):
-    if not request.META.get('HTTP_USER_AGENT'):
-        ios_user = False
-    else:
-        ios_user = 'FxiOS' in request.META.get('HTTP_USER_AGENT')
-    return render(request, 'addons/mobile/details.html',
-                  {'addon': addon, 'ios_user': ios_user})
-
-
 def _category_personas(qs, limit):
     def f():
         return randslice(qs, limit=limit)
@@ -185,9 +153,8 @@ def _category_personas(qs, limit):
     return caching.cached(f, key)
 
 
-@mobile_template('addons/{mobile/}persona_detail.html')
 @non_atomic_requests
-def persona_detail(request, addon, template=None):
+def persona_detail(request, addon):
     """Details page for Personas."""
     if not (addon.is_public() or addon.is_pending()):
         raise http.Http404
@@ -217,21 +184,19 @@ def persona_detail(request, addon, template=None):
         author = author.get_url_path(src='addon-detail')
     data['author_gallery'] = author
 
-    if not request.MOBILE:
-        # tags
-        dev_tags, user_tags = addon.tags_partitioned_by_developer
-        data.update({
-            'dev_tags': dev_tags,
-            'user_tags': user_tags,
-            'review_form': ReviewForm(),
-            'reviews': Review.without_replies.all().filter(
-                addon=addon, is_latest=True),
-            'get_replies': Review.get_replies,
-            'search_cat': 'themes',
-            'abuse_form': AbuseForm(request=request),
-        })
+    dev_tags, user_tags = addon.tags_partitioned_by_developer
+    data.update({
+        'dev_tags': dev_tags,
+        'user_tags': user_tags,
+        'review_form': ReviewForm(),
+        'reviews': Review.without_replies.all().filter(
+            addon=addon, is_latest=True),
+        'get_replies': Review.get_replies,
+        'search_cat': 'themes',
+        'abuse_form': AbuseForm(request=request),
+    })
 
-    return render(request, template, data)
+    return render(request, 'addons/persona_detail.html', data)
 
 
 class BaseFilter(object):
@@ -365,37 +330,6 @@ def home(request):
                    'src': 'homepage', 'collections': collections})
 
 
-@mobilized(home)
-@non_atomic_requests
-def home(request):
-    # Shuffle the list and get 3 items.
-    def rand(xs):
-        return random.shuffle(xs) or xs[:3]
-
-    # Get some featured add-ons with randomness.
-    featured = Addon.featured_random(request.APP, request.LANG)[:3]
-    # Get 10 popular add-ons, then pick 3 at random.
-    qs = list(Addon.objects.listed(request.APP)
-                   .filter(type=amo.ADDON_EXTENSION)
-                   .order_by('-average_daily_users')
-                   .values_list('id', flat=True)[:10])
-    popular = rand(qs)
-    # Do one query and split up the add-ons.
-    addons = (Addon.objects.filter(id__in=featured + popular)
-              .filter(type=amo.ADDON_EXTENSION))
-    featured = [a for a in addons if a.id in featured]
-    popular = sorted([a for a in addons if a.id in popular],
-                     key=attrgetter('average_daily_users'), reverse=True)
-
-    if not request.META.get('HTTP_USER_AGENT'):
-        ios_user = False
-    else:
-        ios_user = 'FxiOS' in request.META.get('HTTP_USER_AGENT')
-    return render(request, 'addons/mobile/home.html',
-                  {'featured': featured, 'popular': popular,
-                   'ios_user': ios_user})
-
-
 @non_atomic_requests
 def homepage_promos(request):
     from olympia.legacy_discovery.views import promos
@@ -432,12 +366,6 @@ def privacy(request, addon):
 def developers(request, addon, page):
     if addon.is_persona():
         raise http.Http404()
-    if 'version' in request.GET:
-        qs = addon.versions.filter(files__status__in=amo.VALID_ADDON_STATUSES)
-        version = get_list_or_404(qs, version=request.GET['version'])[0]
-    else:
-        version = addon.current_version
-
     if 'src' in request.GET:
         contribution_src = src = request.GET['src']
     else:
@@ -450,8 +378,7 @@ def developers(request, addon, page):
         src, contribution_src = page_srcs.get(page)
     return render(request, 'addons/impala/developers.html',
                   {'addon': addon, 'page': page, 'src': src,
-                   'contribution_src': contribution_src,
-                   'version': version})
+                   'contribution_src': contribution_src})
 
 
 @addon_view
@@ -482,7 +409,7 @@ def contribute(request, addon):
                                              'paykey': ''}),
                                  content_type='application/json')
 
-    contribution_uuid = hashlib.md5(str(uuid.uuid4())).hexdigest()
+    contribution_uuid = hashlib.sha256(str(uuid.uuid4())).hexdigest()
 
     if addon.charity:
         # TODO(andym): Figure out how to get this in the addon authors
@@ -492,7 +419,7 @@ def contribute(request, addon):
     else:
         name, paypal_id = addon.name, addon.paypal_id
     # l10n: {0} is the addon name
-    contrib_for = _(u'Contribution for {0}').format(jinja2.escape(name))
+    contrib_for = ugettext(u'Contribution for {0}').format(jinja2.escape(name))
 
     paykey, error, status = '', '', ''
     try:
@@ -554,7 +481,8 @@ def paypal_result(request, addon, status):
 @non_atomic_requests
 def license(request, addon, version=None):
     if version is not None:
-        qs = addon.versions.filter(files__status__in=amo.VALID_FILE_STATUSES)
+        qs = addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED,
+                                   files__status__in=amo.VALID_FILE_STATUSES)
         version = get_list_or_404(qs, version=version)[0]
     else:
         version = addon.current_version
@@ -577,7 +505,7 @@ def report_abuse(request, addon):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
         send_abuse_report(request, addon, form.cleaned_data['text'])
-        messages.success(request, _('Abuse reported.'))
+        messages.success(request, ugettext('Abuse reported.'))
         return http.HttpResponseRedirect(addon.get_url_path())
     else:
         return render(request, 'addons/report_abuse_full.html',
@@ -610,31 +538,35 @@ def icloud_bookmarks_redirect(request):
         return addon_detail(request, 'icloud-bookmarks')
 
 
+def find_replacement_addon(request):
+    guid = request.GET.get('guid')
+    if not guid:
+        raise http.Http404
+    return render(request, 'addons/replacement_addons.html')
+
+
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [
-        AnyOf(AllowReadOnlyIfReviewedAndListed, AllowAddonAuthor,
+        AnyOf(AllowReadOnlyIfPublic, AllowAddonAuthor,
               AllowReviewer, AllowReviewerUnlisted),
     ]
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
-    addon_id_pattern = re.compile(
-        # Match {uuid} or something@host.tld ("something" being optional)
-        # guids. Copied from mozilla-central XPIProvider.jsm.
-        r'^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
-        r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
-    # Permission classes disallow access to non-public/unlisted add-ons unless
-    # logged in as a reviewer/addon owner/admin, so the with_unlisted queryset
-    # is fine here.
-    queryset = Addon.with_unlisted.all()
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
 
     def get_queryset(self):
+        """Return queryset to be used for the view. We implement our own that
+        does not depend on self.queryset to avoid cache-machine caching the
+        queryset too agressively (mozilla/addons-frontend#2497)."""
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
         if self.request.user.is_authenticated() and self.request.user.is_staff:
             return Addon.unfiltered.all()
-        return super(AddonViewSet, self).get_queryset()
+        # Permission classes disallow access to non-public/unlisted add-ons
+        # unless logged in as a reviewer/addon owner/admin, so we don't have to
+        # filter the base queryset here.
+        return Addon.objects.all()
 
     def get_serializer_class(self):
         # Override serializer to use serializer_class_with_unlisted_data if
@@ -653,7 +585,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             # If the identifier contains anything other than a digit, it's
             # either a slug or a guid. guids need to contain either {} or @,
             # which are invalid in a slug.
-            if self.addon_id_pattern.match(identifier):
+            if amo.ADDON_GUID_PATTERN.match(identifier):
                 lookup_field = 'guid'
             else:
                 lookup_field = 'slug'
@@ -685,7 +617,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
 class AddonChildMixin(object):
     """Mixin containing method to retrive the parent add-on object."""
 
-    def get_addon_object(self, permission_classes=None):
+    def get_addon_object(self, permission_classes=None, lookup='addon_pk'):
         """Return the parent Addon object using the URL parameter passed
         to the view.
 
@@ -700,63 +632,112 @@ class AddonChildMixin(object):
 
         self.addon_object = AddonViewSet(
             request=self.request, permission_classes=permission_classes,
-            kwargs={'pk': self.kwargs['addon_pk']}).get_object()
+            kwargs={'pk': self.kwargs[lookup]}).get_object()
         return self.addon_object
 
 
 class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
                           ListModelMixin, GenericViewSet):
-    # Permissions are checked against the parent add-on.
-    permission_classes = [
-        AllowRelatedObjectPermissions('addon', AddonViewSet.permission_classes)
-    ]
+    # Permissions are always checked against the parent add-on in
+    # get_addon_object() using AddonViewSet.permission_classes so we don't need
+    # to set any here. Some extra permission classes are added dynamically
+    # below in check_permissions() and check_object_permissions() depending on
+    # what the client is requesting to see.
+    permission_classes = []
     serializer_class = VersionSerializer
-    # Since permission checks are done on the parent add-on, we rely on
-    # queryset filtering to hide non-valid versions. get_queryset() might
-    # override this if we are asked to see non-valid versions explicitly.
-    queryset = Version.objects.filter(
-        files__status__in=amo.VALID_FILE_STATUSES).distinct()
+
+    def check_permissions(self, request):
+        requested = self.request.GET.get('filter')
+        if self.action == 'list':
+            if requested == 'all_with_deleted':
+                # To see deleted versions, you need Admin:%.
+                self.permission_classes = [
+                    GroupPermission(amo.permissions.ADMIN)]
+            elif requested == 'all_with_unlisted':
+                # To see unlisted versions, you need to be add-on author or
+                # unlisted reviewer.
+                self.permission_classes = [AnyOf(
+                    AllowReviewerUnlisted, AllowAddonAuthor)]
+            elif requested == 'all_without_unlisted':
+                # To see all listed versions (not just public ones) you need to
+                # be add-on author or reviewer.
+                self.permission_classes = [AnyOf(
+                    AllowReviewer, AllowAddonAuthor)]
+            # When listing, we can't use AllowRelatedObjectPermissions() with
+            # check_permissions(), because AllowAddonAuthor needs an author to
+            # do the actual permission check. To work around that, we call
+            # super + check_object_permission() ourselves, passing down the
+            # addon object directly.
+            return super(AddonVersionViewSet, self).check_object_permissions(
+                request, self.get_addon_object())
+        super(AddonVersionViewSet, self).check_permissions(request)
+
+    def check_object_permissions(self, request, obj):
+        # If the instance is marked as deleted and the client is not allowed to
+        # see deleted instances, we want to return a 404, behaving as if it
+        # does not exist.
+        if (obj.deleted and
+            not GroupPermission(amo.permissions.ADMIN).has_object_permission(
+                request, self, obj)):
+            raise http.Http404
+
+        if obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
+            # If the instance is unlisted, only allow unlisted reviewers and
+            # authors..
+            self.permission_classes = [
+                AllowRelatedObjectPermissions(
+                    'addon', [AnyOf(AllowReviewerUnlisted, AllowAddonAuthor)])
+            ]
+        elif not obj.is_public():
+            # If the instance is disabled, only allow reviewers and authors.
+            self.permission_classes = [
+                AllowRelatedObjectPermissions(
+                    'addon', [AnyOf(AllowReviewer, AllowAddonAuthor)])
+            ]
+
+        super(AddonVersionViewSet, self).check_object_permissions(request, obj)
 
     def get_queryset(self):
-        """Return the right base queryset depending on the situation. Note that
-        permissions checks still apply on top of that, against the add-on
-        as per check_object_permissions() above."""
+        """Return the right base queryset depending on the situation."""
         requested = self.request.GET.get('filter')
-
-        # By default we restrict to valid versions. However:
-        #
-        # When accessing a single version or if requesting it explicitly when
-        # listing, admins can access all versions, including deleted ones.
-        should_access_all_versions_included_deleted = (
-            (requested == 'all_with_deleted' or self.action != 'list') and
-            self.request.user.is_authenticated() and
-            self.request.user.is_staff)
-
-        # When accessing a single version or if requesting it explicitly when
-        # listing, reviewers and add-on authors can access all non-deleted
-        # versions.
-        should_access_all_versions = (
-            (requested == 'all' or self.action != 'list') and
-            (AllowReviewer().has_permission(self.request, self) or
-                AllowAddonAuthor().has_object_permission(
-                    self.request, self, self.get_addon_object())))
-
-        # Everyone can see (non deleted) beta version when they request it
-        # explicitly.
-        should_access_only_beta_versions = (requested == 'beta_only')
-
-        if should_access_all_versions_included_deleted:
-            self.queryset = Version.unfiltered.all()
-        elif should_access_all_versions:
-            self.queryset = Version.objects.all()
-        elif should_access_only_beta_versions:
-            self.queryset = Version.objects.filter(
+        valid_filters = (
+            'all_with_deleted',
+            'all_with_unlisted',
+            'all_without_unlisted',
+            'only_beta'
+        )
+        if requested is not None:
+            if self.action != 'list':
+                raise serializers.ValidationError(
+                    'The "filter" parameter is not valid in this context.')
+            elif requested not in valid_filters:
+                raise serializers.ValidationError(
+                    'Invalid "filter" parameter specified.')
+        # By default we restrict to valid, listed versions. Some filtering
+        # options are available when listing, and in addition, when returning
+        # a single instance, we don't filter at all.
+        if requested == 'all_with_deleted' or self.action != 'list':
+            queryset = Version.unfiltered.all()
+        elif requested == 'all_with_unlisted':
+            queryset = Version.objects.all()
+        elif requested == 'all_without_unlisted':
+            queryset = Version.objects.filter(
+                channel=amo.RELEASE_CHANNEL_LISTED)
+        elif requested == 'only_beta':
+            queryset = Version.objects.filter(
+                channel=amo.RELEASE_CHANNEL_LISTED,
                 files__status=amo.STATUS_BETA).distinct()
+        else:
+            # By default, we rely on queryset filtering to hide
+            # non-public/unlisted versions. get_queryset() might override this
+            # if we are asked to see non-valid, deleted and/or unlisted
+            # versions explicitly.
+            queryset = Version.objects.filter(
+                files__status=amo.STATUS_PUBLIC,
+                channel=amo.RELEASE_CHANNEL_LISTED).distinct()
 
-        # Now that the base queryset has been altered, call super() to use it.
-        qs = super(AddonVersionViewSet, self).get_queryset()
         # Filter with the add-on.
-        return qs.filter(addon=self.get_addon_object())
+        return queryset.filter(addon=self.get_addon_object())
 
 
 class AddonSearchView(ListAPIView):
@@ -787,7 +768,6 @@ class AddonFeaturedView(GenericAPIView):
     # We accept the 'page_size' parameter but we do not allow pagination for
     # this endpoint since the order is random.
     pagination_class = None
-    queryset = Addon.objects.valid()
 
     def get(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -800,6 +780,9 @@ class AddonFeaturedView(GenericAPIView):
     def as_view(cls, **kwargs):
         view = super(AddonFeaturedView, cls).as_view(**kwargs)
         return non_atomic_requests(view)
+
+    def get_queryset(self):
+        return Addon.objects.valid()
 
     def filter_queryset(self, queryset):
         # We can pass the optional lang parameter to either get_creatured_ids()

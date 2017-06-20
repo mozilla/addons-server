@@ -3,22 +3,18 @@ import datetime
 
 import django  # noqa
 from django import forms
-from django.conf import settings
 from django.db import models, migrations
 from django.db.migrations.writer import MigrationWriter
-from django.utils import translation
 
 import pytest
-from mock import patch
 
 import olympia  # noqa
 from olympia import amo
-from olympia.amo.tests import TestCase, safe_exec
+from olympia.amo.tests import addon_factory, TestCase, safe_exec
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.reviews.models import Review
-from olympia.translations.models import Translation
 from olympia.users.models import (
     DeniedName, UserEmailField, UserProfile,
     UserForeignKey)
@@ -29,10 +25,26 @@ class TestUserProfile(TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
                 'users/test_backends')
 
-    def test_anonymize(self):
+    def test_is_developer(self):
+        user = UserProfile.objects.get(id=4043307)
+        assert not user.addonuser_set.exists()
+        assert not user.is_developer
+
+        addon = Addon.objects.get(pk=3615)
+        addon.addonuser_set.create(user=user)
+
+        assert not user.is_developer  # it's a cached property...
+        del user.is_developer  # ... let's reset it and try again.
+        assert user.is_developer
+
+        addon.delete()
+        del user.is_developer
+        assert not user.is_developer
+
+    def test_delete(self):
         u = UserProfile.objects.get(id='4043307')
         assert u.email == 'jbalogh@mozilla.com'
-        u.anonymize()
+        u.delete()
         x = UserProfile.objects.get(id='4043307')
         assert x.email is None
 
@@ -154,7 +166,7 @@ class TestUserProfile(TestCase):
         """
         addon = Addon.objects.get(id=3615)
         u = UserProfile.objects.get(pk=2519)
-        version = addon.find_latest_public_version()
+        version = addon.find_latest_public_listed_version()
         new_review = Review(version=version, user=u, rating=2, body='hello',
                             addon=addon)
         new_review.save()
@@ -170,20 +182,24 @@ class TestUserProfile(TestCase):
         assert new_reply.pk not in review_list, (
             'Developer reply must not show up in review list.')
 
-    def test_addons_listed(self):
-        """Make sure we're returning distinct add-ons."""
-        AddonUser.objects.create(addon_id=3615, user_id=2519, listed=True)
-        u = UserProfile.objects.get(id=2519)
-        addons = u.addons_listed.values_list('id', flat=True)
-        assert sorted(addons) == [3615]
+    def test_num_addons_listed(self):
+        """Test that num_addons_listed is only considering add-ons for which
+        the user is marked as listed, and that only public and listed add-ons
+        are counted."""
+        user = UserProfile.objects.get(id=2519)
+        addon = Addon.objects.get(pk=3615)
+        AddonUser.objects.create(addon=addon, user=user, listed=True)
+        assert user.num_addons_listed == 1
 
-    def test_addons_not_listed(self):
-        """Make sure user is not listed when another is."""
-        AddonUser.objects.create(addon_id=3615, user_id=2519, listed=False)
-        AddonUser.objects.create(addon_id=3615, user_id=4043307, listed=True)
-        u = UserProfile.objects.get(id=2519)
-        addons = u.addons_listed.values_list('id', flat=True)
-        assert 3615 not in addons
+        extra_addon = addon_factory(status=amo.STATUS_NOMINATED)
+        AddonUser.objects.create(addon=extra_addon, user=user, listed=True)
+        extra_addon2 = addon_factory()
+        AddonUser.objects.create(addon=extra_addon2, user=user, listed=True)
+        self.make_addon_unlisted(extra_addon2)
+        assert user.num_addons_listed == 1
+
+        AddonUser.objects.filter(addon=addon, user=user).update(listed=False)
+        assert user.num_addons_listed == 0
 
     def test_my_addons(self):
         """Test helper method to get N addons."""
@@ -192,16 +208,6 @@ class TestUserProfile(TestCase):
         addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION)
         AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
         addons = UserProfile.objects.get(id=2519).my_addons()
-        assert sorted(a.name for a in addons) == [addon1.name, addon2.name]
-
-    def test_my_addons_with_unlisted_addons(self):
-        """Test helper method can return unlisted addons."""
-        addon1 = Addon.objects.create(name='test-1', type=amo.ADDON_EXTENSION)
-        AddonUser.objects.create(addon_id=addon1.id, user_id=2519, listed=True)
-        addon2 = Addon.objects.create(name='test-2', type=amo.ADDON_EXTENSION,
-                                      is_listed=False)
-        AddonUser.objects.create(addon_id=addon2.id, user_id=2519, listed=True)
-        addons = UserProfile.objects.get(id=2519).my_addons(with_unlisted=True)
         assert sorted(a.name for a in addons) == [addon1.name, addon2.name]
 
     def test_mobile_collection(self):
@@ -229,35 +235,6 @@ class TestUserProfile(TestCase):
             '/en-US/firefox/user/1/')
         assert UserProfile(username='<yolo>', id=1).get_url_path() == (
             '/en-US/firefox/user/1/')
-
-    @patch.object(settings, 'LANGUAGE_CODE', 'en-US')
-    def test_activate_locale(self):
-        assert translation.get_language() == 'en-us'
-        with UserProfile(username='yolo').activate_lang():
-            assert translation.get_language() == 'en-us'
-
-        with UserProfile(username='yolo', lang='fr').activate_lang():
-            assert translation.get_language() == 'fr'
-
-    def test_remove_locale(self):
-        u = UserProfile.objects.create()
-        u.bio = {'en-US': 'my bio', 'fr': 'ma bio'}
-        u.save()
-        u.remove_locale('fr')
-        qs = (Translation.objects.filter(localized_string__isnull=False)
-              .values_list('locale', flat=True))
-        assert sorted(qs.filter(id=u.bio_id)) == ['en-US']
-
-    def test_get_fallback(self):
-        """Return the translation for the locale fallback."""
-        user = UserProfile.objects.create(
-            lang='fr', bio={'en-US': 'my bio', 'fr': 'ma bio'})
-        self.trans_eq(user.bio, 'my bio', 'en-US')  # Uses current locale.
-
-        with self.activate(locale='de'):
-            user = UserProfile.objects.get(pk=user.pk)  # Reload.
-            # Uses the default fallback.
-            self.trans_eq(user.bio, 'ma bio', 'fr')
 
     def test_mobile_addons(self):
         user = UserProfile.objects.get(id='4043307')
@@ -303,6 +280,19 @@ class TestUserProfile(TestCase):
         user = UserProfile.objects.get(id='4043307')
         with self.assertRaises(NotImplementedError):
             user.check_password('password')
+
+    def test_get_session_auth_hash(self):
+        user = UserProfile.objects.get(id=4043307)
+        user.update(auth_id=None)
+        assert user.get_session_auth_hash() is None
+
+        user.update(auth_id=12345)
+        hash1 = user.get_session_auth_hash()
+        assert hash1
+
+        user.update(auth_id=67890)
+        hash2 = user.get_session_auth_hash()
+        assert hash1 != hash2
 
 
 class TestDeniedName(TestCase):

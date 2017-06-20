@@ -7,28 +7,31 @@ from celery import chord, group
 
 from olympia import amo
 from olympia.addons.models import Addon
+from olympia.addons.tasks import (
+    add_firefox57_tag, find_inconsistencies_between_es_and_db)
 from olympia.amo.utils import chunked
-from olympia.devhub.tasks import (
-    convert_purified, flag_binary, get_preview_sizes)
+from olympia.devhub.tasks import convert_purified, get_preview_sizes
+from olympia.editors.tasks import recalculate_post_review_weight
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.reviews.tasks import addon_review_aggregates
 
 
 tasks = {
-    # binary-components depend on having a chrome manifest.
-    'flag_binary_components': {'method': flag_binary,
-                               'qs': [Q(type__in=[amo.ADDON_EXTENSION,
-                                                  amo.ADDON_DICT,
-                                                  amo.ADDON_LPADDON,
-                                                  amo.ADDON_PLUGIN,
-                                                  amo.ADDON_API]),
-                                      Q(disabled_by_user=False)],
-                               'kwargs': dict(latest=False)},
-    'flag_binary': {'method': flag_binary, 'qs': []},
+    'find_inconsistencies_between_es_and_db': {
+        'method': find_inconsistencies_between_es_and_db, 'qs': []},
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []},
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
+    'recalculate_post_review_weight': {
+        'method': recalculate_post_review_weight,
+        'qs': [
+            Q(_current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
+        ]},
     'sign_addons': {'method': sign_addons, 'qs': []},
+    'add_firefox57_tag_to_webextensions': {
+        'method': add_firefox57_tag,
+        'qs': [Q(status=amo.STATUS_PUBLIC,
+                 _current_version__files__is_webextension=True)]}
 }
 
 
@@ -46,10 +49,9 @@ class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--task', action='store', type='string',
                     dest='task', help='Run task on the addons.'),
-
-        make_option('--with-unlisted', action='store_true',
-                    dest='with_unlisted',
-                    help='Include unlisted add-ons when determining which '
+        make_option('--with-deleted', action='store_true',
+                    dest='with_deleted',
+                    help='Include deleted add-ons when determining which '
                          'add-ons to process.'),
     )
 
@@ -58,13 +60,13 @@ class Command(BaseCommand):
         if not task:
             raise CommandError('Unknown task provided. Options are: %s'
                                % ', '.join(tasks.keys()))
-        if options.get('with_unlisted'):
-            base_manager = Addon.with_unlisted
+        if options.get('with_deleted'):
+            addon_manager = Addon.unfiltered
         else:
-            base_manager = Addon.objects
-        pks = (base_manager.filter(*task['qs'])
-                           .values_list('pk', flat=True)
-                           .order_by('-last_updated'))
+            addon_manager = Addon.objects
+        pks = (addon_manager.filter(*task['qs'])
+                            .values_list('pk', flat=True)
+                            .order_by('id'))
         if 'pre' in task:
             # This is run in process to ensure its run before the tasks.
             pks = task['pre'](pks)

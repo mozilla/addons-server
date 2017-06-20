@@ -1,5 +1,5 @@
 <div id="log-filter" class="log-filter-outside">
-  <form action="{{ url('editors.themes.deleted') }}" method="get">
+  <form action="{{ url('editors.themes.deleted') }}" method="get" data-no-csrf>
     <div class="date_range">
       {{ form.start.label_tag() }}
       {{ form.start }}

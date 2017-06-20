@@ -1,0 +1,156 @@
+@import (less) '../../common/normalize.css';
+@import 'fonts';
+
+// Grid
+@grid-max: 960px;
+@extra-small: ~"only screen and (max-width: 399px)";
+@small: ~"only screen and (min-width: 400px)";
+@medium: ~"only screen and (min-width: 700px)";
+@large: ~"only screen and (min-width: 1024px)";
+@retina: ~"only screen and (min-resolution: 1.5dppx)";
+
+// Fonts
+@font-primary: 'Fira Sans', sans-serif;
+
+// Colors
+@color-text: #333;
+@color-items: #fff;
+@color-callout-border: #FDC900;
+
+// Color Schemes
+// Default
+@color-scheme-default-background: #ffffff;
+
+// Light
+@color-scheme-light-text: #333;
+@color-scheme-light-background: #f3f5f8;
+
+// Medium
+@color-scheme-medium-text: #fff;
+@color-scheme-medium-background: #0568ba;
+@color-scheme-medium-items: #29c978;
+
+// Dark
+@color-scheme-dark-text: #fff;
+@color-scheme-dark-background: #1d3770;
+@color-scheme-dark-items: #40d38d;
+
+// Buttons
+@color-button-default: #0996F8;
+@color-button-primary: #29c978;
+
+// State colors in 'My Addons'
+@color-version-state-disabled: #9b9898;
+@color-version-state-nominated: #ff9216;
+@color-version-state-approved: #329902;
+@color-version-state-admin-disabled: #d92215;
+
+@color-publish-channel-listed: #01bdad;
+@color-publish-channel-unlisted: #7a2f7a;
+
+// Common styles
+* {
+  font-family: @font-primary;
+  // widths take into account padding + borders.
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: content-box;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+.link(@color, @decoration: none) {
+  color: @color;
+  text-decoration: @decoration;
+
+  &:link {
+    color: @color;
+  }
+
+  &:visited {
+    color: fadeout(@color, 10%);
+  }
+
+  &:hover {
+    color: fadeout(@color, 20%);
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: fadeout(@color, 10%);
+  }
+}
+
+a {
+  .link(@color-text);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: column;
+  line-height: 1.35;
+
+  // prevent horizontal scrollbars.
+  overflow-x: hidden;
+
+  &.user-signedin {
+    // But not for our signed-in 'My Addons' section
+    // since this is not supposed to be responsive (yet)
+    overflow-x: auto;
+  }
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 1.2;
+  margin-bottom: 0;
+  margin-top: 20px;
+  margin-top: 0;
+}
+
+h2,
+h3 {
+  font-size: 32px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 500;
+}
+
+@media @medium {
+  h1, h2, h3 {
+    font-weight: 400;
+  }
+}
+
+// Mixins / Utilities
+@import 'utils';
+
+// Common component utilities
+@import 'common';
+
+// Generic Components
+@import 'button';
+@import 'logo';
+@import 'navigation';
+
+// Content sections
+@import 'sections/overview';
+@import 'sections/more-information';
+@import 'sections/my-addons';
+
+// Footer
+@import 'footer';
+
+// Tooltip
+@import '../../impala/tooltips';

@@ -6,8 +6,7 @@ from os import path, unlink
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-import commonware.log
-
+import olympia.core.logger
 from olympia.addons.models import Addon
 from olympia.files.models import File
 from olympia.stats.models import update_inc, DownloadCount
@@ -16,7 +15,7 @@ from olympia.zadmin.models import DownloadSource
 from . import get_date_from_file, save_stats_to_file
 
 
-log = commonware.log.getLogger('adi.downloadcountsfromfile')
+log = olympia.core.logger.getLogger('adi.downloadcountsfromfile')
 
 
 def is_valid_source(src, fulls, prefixes):
@@ -89,7 +88,7 @@ class Command(BaseCommand):
         # - One where each key (the add-on slug) has the add-on_id as value.
         files_to_addon = dict(File.objects.values_list('id',
                                                        'version__addon_id'))
-        slugs_to_addon = dict(Addon.objects.values_list('slug', 'id'))
+        slugs_to_addon = dict(Addon.objects.public().values_list('slug', 'id'))
 
         # Only accept valid sources, which are listed in the DownloadSource
         # model. The source must either be exactly one of the "full" valid

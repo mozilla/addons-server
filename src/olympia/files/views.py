@@ -3,23 +3,21 @@ from django.db.transaction import non_atomic_requests
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
-import commonware.log
-import waffle
-from cache_nuggets.lib import Message, Token
-
+import olympia.core.logger
 from olympia.access import acl
+from olympia.amo.cache_nuggets import Message, Token
 from olympia.amo.decorators import json_view
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, urlparams, render
 from olympia.files.decorators import (
     etag, file_view, compare_file_view, file_view_token, last_modified)
-from olympia.files.tasks import extract_file
+from olympia.files.helpers import extract_file
 
 from . import forms
 
-log = commonware.log.getLogger('z.addons')
+log = olympia.core.logger.getLogger('z.addons')
 
 
 def setup_viewer(request, file_obj):
@@ -38,22 +36,17 @@ def setup_viewer(request, file_obj):
 
         data['validate_url'] = reverse('devhub.json_file_validation',
                                        args=[addon.slug, file_obj.id])
-
-        if acl.check_addons_reviewer(request):
-            data['annotate_url'] = reverse('devhub.annotate_file_validation',
-                                           args=[addon.slug, file_obj.id])
-
         data['automated_signing'] = file_obj.automated_signing
 
         if file_obj.has_been_validated:
             data['validation_data'] = file_obj.validation.processed_validation
 
     if acl.check_addons_reviewer(request):
-        data['file_link'] = {'text': _('Back to review'),
+        data['file_link'] = {'text': ugettext('Back to review'),
                              'url': reverse('editors.review',
                                             args=[data['addon'].slug])}
     else:
-        data['file_link'] = {'text': _('Back to add-on'),
+        data['file_link'] = {'text': ugettext('Back to add-on'),
                              'url': reverse('addons.detail',
                                             args=[data['addon'].pk])}
     return data
@@ -88,7 +81,8 @@ def check_compare_form(request, form):
 @non_atomic_requests
 def browse(request, viewer, key=None, type='file'):
     form = forms.FileCompareForm(request.POST or None, addon=viewer.addon,
-                                 initial={'left': viewer.file})
+                                 initial={'left': viewer.file},
+                                 request=request)
     response = check_compare_form(request, form)
     if response:
         return response
@@ -98,8 +92,7 @@ def browse(request, viewer, key=None, type='file'):
     data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
     data['form'] = form
 
-    if (not waffle.switch_is_active('delay-file-viewer') and
-            not viewer.is_extracted()):
+    if not viewer.is_extracted():
         extract_file(viewer)
 
     if viewer.is_extracted():
@@ -112,9 +105,6 @@ def browse(request, viewer, key=None, type='file'):
         data['key'] = key
         if (not viewer.is_directory() and not viewer.is_binary()):
             data['content'] = viewer.read_file()
-
-    else:
-        extract_file.delay(viewer)
 
     tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)
@@ -140,7 +130,8 @@ def compare_poll(request, diff):
 def compare(request, diff, key=None, type='file'):
     form = forms.FileCompareForm(request.POST or None, addon=diff.addon,
                                  initial={'left': diff.left.file,
-                                          'right': diff.right.file})
+                                          'right': diff.right.file},
+                                 request=request)
     response = check_compare_form(request, form)
     if response:
         return response
@@ -152,8 +143,7 @@ def compare(request, diff, key=None, type='file'):
                                      diff.right.file.id])
     data['form'] = form
 
-    if (not waffle.switch_is_active('delay-file-viewer') and
-            not diff.is_extracted()):
+    if not diff.is_extracted():
         extract_file(diff.left)
         extract_file(diff.right)
 
@@ -169,10 +159,6 @@ def compare(request, diff, key=None, type='file'):
         data['key'] = key
         if diff.is_diffable():
             data['left'], data['right'] = diff.read_file()
-
-    else:
-        extract_file.delay(diff.left)
-        extract_file.delay(diff.right)
 
     tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)

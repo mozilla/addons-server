@@ -5,6 +5,7 @@ import mock
 import pytest
 from babel import Locale
 from django.conf import settings
+from django.utils.functional import cached_property
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
@@ -141,7 +142,7 @@ def test_cached_property():
 
     class Foo(object):
 
-        @amo.cached_property
+        @cached_property
         def bar(self):
             callme()
             return 'value'
@@ -160,7 +161,7 @@ def test_set_writable_cached_property():
 
     class Foo(object):
 
-        @amo.cached_property(writable=True)
+        @cached_property
         def bar(self):
             callme()
             return 'original value'
@@ -182,12 +183,14 @@ def test_get_locale_from_lang(lang):
     """Make sure all languages in settings.AMO_LANGUAGES can be resolved."""
     locale = get_locale_from_lang(lang)
 
-    assert isinstance(locale, Locale)
-    assert locale.language == lang[:2]
+    debug_languages = ('dbg', 'dbr', 'dbl')
+    expected_language = lang[:2] if lang not in debug_languages else 'en'
 
-    separator = filter(
-        None, [sep if sep in lang else None for sep in ('-', '_')])
+    assert isinstance(locale, Locale)
+    assert locale.language == expected_language
+
+    separator = '-' if '-' in lang else '_' if '_' in lang else None
 
     if separator:
-        territory = lang.split(separator[0])[1]
+        territory = lang.split(separator)[1]
         assert locale.territory == territory

@@ -1,4 +1,4 @@
-{% from "addons/macros.html" import sort_vital %}
+{% from "addons/macros.html" import sort_vital, addon_flags %}
 {% cache addons %}
   {% for addon in addons %}
     <div class="item addon">
@@ -10,9 +10,7 @@
           {% endif %}
           <a href="{{ dl_url }}">
             <img src="{{ addon.icon_url }}" alt="">{{ addon.name }}</a>
-          {% if addon.requires_restart %}
-            <span class="requires-restart">{{ _('Requires Restart') }}</span>
-          {% endif %}
+          {{ addon_flags(addon, addon.current_version) }}
           {% if addon.is_featured(request.APP, request.LANG) %}
             <span class="featured">{{ _('Featured') }}</span>
           {% endif %}

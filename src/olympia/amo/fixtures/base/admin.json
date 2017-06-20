@@ -12,7 +12,7 @@
             "homepage": "http://jeffbalogh.org",
             "email": "jbalogh@mozilla.com",
             "notifycompat": 1,
-            "bio": null,
+            "biography": null,
             "deleted": 0,
             "username": "jbalogh",
             "created": "2009-02-02 11:50:31",
@@ -30,16 +30,6 @@
             "modified": "2007-03-05 16:06:55",
             "name": "Admins",
             "created": "2007-03-05 16:06:55"
-        }
-    },
-    {
-        "pk": 2,
-        "model": "access.group",
-        "fields": {
-            "rules": "Restricted:UGC",
-            "modified": "2012-06-10 16:06:55",
-            "name": "Restricted Users",
-            "created": "2012-06-10 16:06:55"
         }
     },
     {

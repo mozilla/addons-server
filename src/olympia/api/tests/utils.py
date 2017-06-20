@@ -11,6 +11,7 @@ class APIKeyAuthTestCase(APITestCase, JWTAuthKeyTester):
 
     def create_api_user(self):
         self.user = UserProfile.objects.create(
+            username='amo',
             email='a@m.o',
             read_dev_agreement=datetime.today(),
         )

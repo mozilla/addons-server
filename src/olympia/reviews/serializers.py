@@ -1,6 +1,8 @@
 import re
 from urllib2 import unquote
 
+from django.utils.translation import ugettext
+
 from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 
@@ -29,12 +31,15 @@ class BaseReviewSerializer(serializers.ModelSerializer):
                   'previous_count', 'title', 'user')
 
     def get_addon(self, obj):
-        # We only return the addon id for convenience, so just return the
-        # addon_id field from the review obj, no need to do any extra queries
-        # or instantiate a full serializer.
+        # We only return the addon id and slug for convenience, so just return
+        # them directly to avoid instantiating a full serializer. Also avoid
+        # database queries if possible by re-using the addon object from the
+        # view if there is one.
+        addon = self.context['view'].get_addon_object() or obj.addon
 
         return {
-            'id': obj.addon_id
+            'id': addon.id,
+            'slug': addon.slug
         }
 
     def validate(self, data):
@@ -43,10 +48,16 @@ class BaseReviewSerializer(serializers.ModelSerializer):
 
         data['user_responsible'] = request.user
 
+        # There are a few fields that need to be set at creation time and never
+        # modified afterwards:
         if not self.partial:
-            # Get the add-on pk from the URL, no need to pass it as POST data
-            # since the URL is always going to have it.
+            # Because we want to avoid extra queries, addon is a
+            # SerializerMethodField, which means it needs to be validated
+            # manually. Fortunately the view does most of the work for us.
             data['addon'] = self.context['view'].get_addon_object()
+            if data['addon'] is None:
+                raise serializers.ValidationError(
+                    {'addon': ugettext('This field is required.')})
 
             # Get the user from the request, don't allow clients to pick one
             # themselves.
@@ -54,6 +65,13 @@ class BaseReviewSerializer(serializers.ModelSerializer):
 
             # Also include the user ip adress.
             data['ip_address'] = request.META.get('REMOTE_ADDR', '')
+        else:
+            # When editing, you can't change the add-on.
+            if self.context['request'].data.get('addon'):
+                raise serializers.ValidationError(
+                    {'addon': ugettext(
+                        u'You can\'t change the add-on of a review once'
+                        u' it has been created.')})
 
         # Clean up body and automatically flag the review if an URL was in it.
         body = data.get('body', '')
@@ -92,8 +110,9 @@ class ReviewSerializerReply(BaseReviewSerializer):
         if data['reply_to'].reply_to:
             # Only one level of replying is allowed, so if it's already a
             # reply, we shouldn't allow that.
-            raise serializers.ValidationError(
-                'Can not reply to a review that is already a reply.')
+            msg = ugettext(
+                u'You can\'t reply to a review that is already a reply.')
+            raise serializers.ValidationError(msg)
 
         data = super(ReviewSerializerReply, self).validate(data)
         return data
@@ -116,7 +135,6 @@ class ReviewVersionSerializer(SimpleVersionSerializer):
 class ReviewSerializer(BaseReviewSerializer):
     reply = ReviewSerializerReply(read_only=True)
     rating = serializers.IntegerField(min_value=1, max_value=5)
-
     version = ReviewVersionSerializer()
 
     class Meta:
@@ -127,12 +145,18 @@ class ReviewSerializer(BaseReviewSerializer):
     def validate_version(self, version):
         if self.partial:
             raise serializers.ValidationError(
-                'Can not change version once the review has been created.')
+                ugettext(u'You can\'t change the version of the add-on '
+                         u'reviewed once the review has been created.'))
 
         addon = self.context['view'].get_addon_object()
+        if not addon:
+            # BaseReviewSerializer.validate() should complain about that, not
+            # this method.
+            return None
         if version.addon_id != addon.pk or not version.is_public():
             raise serializers.ValidationError(
-                'Version does not exist on this add-on or is not public.')
+                ugettext(u'This version of the add-on doesn\'t exist or '
+                         u'isn\'t public.'))
         return version
 
     def validate(self, data):
@@ -140,14 +164,13 @@ class ReviewSerializer(BaseReviewSerializer):
         if not self.partial:
             if data['addon'].authors.filter(pk=data['user'].pk).exists():
                 raise serializers.ValidationError(
-                    'An add-on author can not leave a review on its own '
-                    'add-on.')
+                    ugettext(u'You can\'t leave a review on your own add-on.'))
 
             review_exists_on_this_version = Review.objects.filter(
                 addon=data['addon'], user=data['user'],
                 version=data['version']).exists()
             if review_exists_on_this_version:
                 raise serializers.ValidationError(
-                    'The same user can not leave a review on the same version'
-                    ' more than once.')
+                    ugettext(u'You can\'t leave more than one review for the '
+                             u'same version of an add-on.'))
         return data

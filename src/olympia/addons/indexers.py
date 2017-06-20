@@ -1,14 +1,21 @@
-import logging
-
 from django.core.exceptions import ObjectDoesNotExist
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.indexers import BaseSearchIndexer
 from olympia.amo.utils import attach_trans_dict
 from olympia.versions.compare import version_int
 
 
-log = logging.getLogger('z.es')
+log = olympia.core.logger.getLogger('z.es')
+
+
+# When the 'boost-webextensions-in-search' waffle switch is enabled, queries
+# against the addon index should be scored to assign this weight to
+# webextensions.
+# The value is used to multiply matching documents score.A value of 1 is
+# neutral.
+WEBEXTENSIONS_WEIGHT = 2.0
 
 
 class AddonIndexer(BaseSearchIndexer):
@@ -33,7 +40,9 @@ class AddonIndexer(BaseSearchIndexer):
             'properties': {
                 'compatible_apps': {'properties': {app.id: appver_mapping
                                                    for app in amo.APP_USAGE}},
-                'id': {'type': 'long', 'index': 'no'},
+                # Keep '<version>.id' indexed to be able to run exists queries
+                # on it.
+                'id': {'type': 'long'},
                 'reviewed': {'type': 'date', 'index': 'no'},
                 'files': {
                     'type': 'object',
@@ -43,10 +52,13 @@ class AddonIndexer(BaseSearchIndexer):
                         'hash': {'type': 'string', 'index': 'no'},
                         'filename': {
                             'type': 'string', 'index': 'no'},
+                        'is_webextension': {'type': 'boolean'},
                         'platform': {
                             'type': 'byte', 'index': 'no'},
                         'size': {'type': 'long', 'index': 'no'},
                         'status': {'type': 'byte'},
+                        'webext_permissions_list': {
+                            'type': 'string', 'index': 'no'},
                     }
                 },
                 'version': {'type': 'string', 'index': 'no'},
@@ -71,12 +83,10 @@ class AddonIndexer(BaseSearchIndexer):
                     'has_eula': {'type': 'boolean', 'index': 'no'},
                     'has_privacy_policy': {'type': 'boolean', 'index': 'no'},
                     'has_theme_rereview': {'type': 'boolean'},
-                    'has_version': {'type': 'boolean'},
                     'hotness': {'type': 'double'},
                     'icon_type': {'type': 'string', 'index': 'no'},
                     'is_disabled': {'type': 'boolean'},
                     'is_experimental': {'type': 'boolean'},
-                    'is_listed': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
                     'latest_unlisted_version': version_mapping,
                     'listed_authors': {
@@ -155,9 +165,11 @@ class AddonIndexer(BaseSearchIndexer):
                 'created': file_.created,
                 'filename': file_.filename,
                 'hash': file_.hash,
+                'is_webextension': file_.is_webextension,
                 'platform': file_.platform,
                 'size': file_.size,
                 'status': file_.status,
+                'webext_permissions_list': file_.webext_permissions_list,
             } for file_ in version_obj.all_files],
             'reviewed': version_obj.reviewed,
             'version': version_obj.version,
@@ -187,7 +199,7 @@ class AddonIndexer(BaseSearchIndexer):
 
         attrs = ('id', 'average_daily_users', 'bayesian_rating', 'created',
                  'default_locale', 'guid', 'hotness', 'icon_type',
-                 'is_disabled', 'is_experimental', 'is_listed', 'last_updated',
+                 'is_disabled', 'is_experimental', 'last_updated',
                  'modified', 'public_stats', 'slug', 'status', 'type',
                  'view_source', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
@@ -227,14 +239,11 @@ class AddonIndexer(BaseSearchIndexer):
         # We can use all_categories because the indexing code goes through the
         # transformer that sets it.
         data['category'] = [cat.id for cat in obj.all_categories]
+        data['current_version'] = cls.extract_version(
+            obj, obj.current_version)
         if obj.current_version:
-            data['current_version'] = cls.extract_version(
-                obj, obj.current_version)
-            data['has_version'] = True
             data['platforms'] = [p.id for p in
                                  obj.current_version.supported_platforms]
-        else:
-            data['has_version'] = None
         data['current_beta_version'] = cls.extract_version(
             obj, obj.current_beta_version)
         data['listed_authors'] = [

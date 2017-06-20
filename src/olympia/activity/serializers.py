@@ -1,9 +1,9 @@
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext
 
 from rest_framework import serializers
 
+from olympia.activity.models import ActivityLog
 from olympia.users.serializers import BaseUserSerializer
-from olympia.devhub.models import ActivityLog
 
 
 class ActivityLogSerializer(serializers.ModelSerializer):
@@ -24,11 +24,13 @@ class ActivityLogSerializer(serializers.ModelSerializer):
         self.to_highlight = kwargs.get('context', []).get('to_highlight', [])
 
     def get_comments(self, obj):
-        return getattr(obj.log(), 'sanitize', obj.details['comments'])
+        comments = obj.details['comments'] if obj.details else ''
+        return getattr(obj.log(), 'sanitize', comments)
 
     def get_action_label(self, obj):
         log = obj.log()
-        return _(u'Review note') if not hasattr(log, 'short') else log.short
+        default = ugettext(u'Review note')
+        return default if not hasattr(log, 'short') else log.short
 
     def get_action(self, obj):
         return self.get_action_label(obj).replace(' ', '-').lower()

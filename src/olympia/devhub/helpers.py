@@ -4,16 +4,15 @@ import urllib
 import jinja2
 from jingo import register
 from jingo.helpers import datetime
-from django.utils.translation import ugettext as _, ungettext as ngettext
+from django.utils.translation import ugettext, ungettext
 from django.utils.encoding import force_bytes
 
 from olympia import amo
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.helpers import breadcrumbs, impala_breadcrumbs, page_title
+from olympia.amo.helpers import page_title
 from olympia.access import acl
+from olympia.activity.models import ActivityLog
 from olympia.activity.utils import filter_queryset_to_pending_replies
 from olympia.addons.helpers import new_context
-from olympia.devhub.models import ActivityLog
 from olympia.compat.models import CompatReport
 from olympia.files.models import File
 
@@ -36,7 +35,7 @@ def dev_page_title(context, title=None, addon=None):
     if addon:
         title = u'%s :: %s' % (title, addon.name)
     else:
-        devhub = _('Developer Hub')
+        devhub = ugettext('Developer Hub')
         title = '%s :: %s' % (title, devhub) if title else devhub
     return page_title(context, title)
 
@@ -45,90 +44,9 @@ def dev_page_title(context, title=None, addon=None):
 @jinja2.contextfunction
 def docs_page_title(context, title=None):
     """Wrapper for docs page titles."""
-    devhub = _('Add-on Documentation :: Developer Hub')
+    devhub = ugettext('Add-on Documentation :: Developer Hub')
     title = '%s :: %s' % (title, devhub) if title else devhub
     return page_title(context, title)
-
-
-@register.function
-@jinja2.contextfunction
-def dev_breadcrumbs(context, addon=None, items=None, add_default=False,
-                    impala=False):
-    """
-    Wrapper function for ``breadcrumbs``. Prepends 'Developer Hub'
-    breadcrumbs.
-
-    **items**
-        list of [(url, label)] to be inserted after Add-on.
-    **addon**
-        Adds the Add-on name to the end of the trail.  If items are
-        specified then the Add-on will be linked.
-    **add_default**
-        Prepends trail back to home when True.  Default is False.
-    **impala**
-        Whether to use the impala_breadcrumbs helper. Default is False.
-    """
-    crumbs = [(reverse('devhub.index'), _('Developer Hub'))]
-    title = _('My Submissions')
-    link = reverse('devhub.addons')
-
-    if not addon and not items:
-        # We are at the end of the crumb trail.
-        crumbs.append((None, title))
-    else:
-        crumbs.append((link, title))
-    if addon:
-        if items:
-            url = addon.get_dev_url()
-        else:
-            # The Addon is the end of the trail.
-            url = None
-        crumbs.append((url, addon.name))
-    if items:
-        crumbs.extend(items)
-
-    if len(crumbs) == 1:
-        crumbs = []
-
-    if impala:
-        return impala_breadcrumbs(context, crumbs, add_default)
-    else:
-        return breadcrumbs(context, crumbs, add_default)
-
-
-@register.function
-@jinja2.contextfunction
-def docs_breadcrumbs(context, items=None):
-    """
-    Wrapper function for `breadcrumbs` for devhub docs.
-    """
-    crumbs = [(reverse('devhub.index'), _('Developer Hub')),
-              (None, _('Developer Docs'))]
-
-    if items:
-        crumbs.extend(items)
-
-    return breadcrumbs(context, crumbs, True)
-
-
-@register.inclusion_tag('devhub/versions/add_file_modal.html')
-@jinja2.contextfunction
-def add_file_modal(context, title, action, action_label, modal_type='file'):
-    addon = context['addon']
-    version = context.get('version',
-                          addon.find_latest_version_including_rejected())
-    if version:
-        channel = ('listed' if version.channel == amo.RELEASE_CHANNEL_LISTED
-                   else 'unlisted')
-    else:
-        # short term fix - this function won't be used after new file upload.
-        channel = 'listed' if addon.is_listed else 'unlisted'
-
-    upload_url = reverse('devhub.upload_for_version',
-                         args=[addon.slug, channel])
-    return new_context(modal_type=modal_type, context=context, title=title,
-                       action=action, upload_url=upload_url,
-                       action_label=action_label)
 
 
 @register.inclusion_tag('devhub/includes/source_form_field.html')
@@ -188,11 +106,11 @@ def log_action_class(action_id):
 def summarize_validation(validation):
     """Readable summary of add-on validation results."""
     # L10n: first parameter is the number of errors
-    errors = ngettext('{0} error', '{0} errors',
-                      validation.errors).format(validation.errors)
+    errors = ungettext('{0} error', '{0} errors',
+                       validation.errors).format(validation.errors)
     # L10n: first parameter is the number of warnings
-    warnings = ngettext('{0} warning', '{0} warnings',
-                        validation.warnings).format(validation.warnings)
+    warnings = ungettext('{0} warning', '{0} warnings',
+                         validation.warnings).format(validation.warnings)
     return "%s, %s" % (errors, warnings)
 
 

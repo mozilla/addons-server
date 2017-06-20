@@ -4,10 +4,11 @@ import os
 from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
 
 from django_statsd.clients import statsd
+from rest_framework.exceptions import NotFound
 
 from olympia import amo, legacy_api
 from olympia.amo.utils import render
@@ -24,7 +25,7 @@ def monitor(request, format=None):
     results = {}
 
     checks = ['memcache', 'libraries', 'elastic', 'path',
-              'rabbitmq', 'redis']
+              'rabbitmq', 'redis', 'signer']
 
     for check in checks:
         with statsd.timer('monitor.%s' % check) as timer:
@@ -78,9 +79,16 @@ def handler403(request):
 
 @non_atomic_requests
 def handler404(request):
-    if request.path_info.startswith('/api/'):
+    if request.path_info.startswith('/api/v3/'):
+        return JsonResponse(
+            {'detail': unicode(NotFound.default_detail)}, status=404)
+    elif request.path_info.startswith('/api/'):
         # Pass over to handler404 view in api if api was targeted.
         return legacy_api.views.handler404(request)
+    # X_IS_MOBILE_AGENTS is set by nginx as an env variable when it detects
+    # a mobile User Agent or when the mamo cookie is present.
+    if request.META.get('X_IS_MOBILE_AGENTS') == '1':
+        return render(request, 'amo/404-responsive.html', status=404)
     else:
         return render(request, 'amo/404.html', status=404)
 

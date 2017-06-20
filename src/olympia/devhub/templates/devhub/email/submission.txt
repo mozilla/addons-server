@@ -1,6 +1,6 @@
 Thanks for submitting your {{ app }} Add-on to addons.mozilla.org (AMO)! Your add-on has been added to the New Add-on queue.
 
-We will contact you if we need more information. After it is reviewed, you will receive an email notification and your add-on will appear in categories and search results. While awaiting review, your add-on can still be accessed and installed directly from its detail page:
+We will contact you if we need more information. After it is reviewed, you will receive an email notification and your add-on will appear in categories and search results. While awaiting review, you can preview your add-on on detail page, but it can't be installed until it is reviewed and signed:
 
 {{ detail_url }}
 
@@ -18,11 +18,11 @@ Get Ahead in the Review Queue!
 
 Are you an experienced add-on developer? Become an add-ons reviewer today and get your add-ons reviewed faster. As a key member of the Mozilla community, reviewers also enjoy these privileges and perks:
 
-* Invitations to events (https://wiki.mozilla.org/Marketplace/Reviewers): Top reviewers may be invited to Mozilla events worldwide
-* Contests & prizes (https://wiki.mozilla.org/Marketplace/Reviewers): Win prizes such as tablets and laptops in reviewers-only contests
-* Get gear (https://wiki.mozilla.org/Marketplace/Reviewers/Points_and_Incentives): Collect points as you contribute and get cool gear!
+* Invitations to events (https://wiki.mozilla.org/Add-ons/Reviewers): Top reviewers may be invited to Mozilla events worldwide
+* Contests & prizes (https://wiki.mozilla.org/Add-ons/Reviewers): Win prizes such as tablets and laptops in reviewers-only contests
+* Get gear (https://wiki.mozilla.org/Add-ons/Reviewers/Points_and_Incentives): Collect points as you contribute and get cool gear!
 
-Learn more and apply today! https://wiki.mozilla.org/Marketplace/Reviewers
+Learn more and apply today! https://wiki.mozilla.org/Add-ons/Reviewers
 
 Sincerely,
 The Add-ons Team

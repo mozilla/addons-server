@@ -6,14 +6,10 @@ from django.core import management
 from django.db import connection
 from django.test.testcases import TransactionTestCase
 
-from olympia.amo.search import get_es
 from olympia.amo.tests import addon_factory, ESTestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
-
-
-ES = get_es()
 
 
 class TestIndexCommand(ESTestCase):
@@ -26,7 +22,7 @@ class TestIndexCommand(ESTestCase):
 
         # We store previously existing indices in order to delete the ones
         # created during this test run.
-        self.indices = ES.indices.status()['indices'].keys()
+        self.indices = self.es.indices.status()['indices'].keys()
 
     # Since this test plays with transactions, but we don't have (and don't
     # really want to have) a ESTransactionTestCase class, use the fixture setup
@@ -38,17 +34,17 @@ class TestIndexCommand(ESTestCase):
         return TransactionTestCase._fixture_teardown(self)
 
     def tearDown(self):
-        current_indices = ES.indices.status()['indices'].keys()
+        current_indices = self.es.indices.status()['indices'].keys()
         for index in current_indices:
             if index not in self.indices:
-                ES.indices.delete(index, ignore=404)
+                self.es.indices.delete(index, ignore=404)
         super(TestIndexCommand, self).tearDown()
 
     def check_settings(self, new_indices):
         """Make sure the indices settings are properly set."""
 
         for index, alias in new_indices:
-            settings = ES.indices.get_settings(alias)[index]['settings']
+            settings = self.es.indices.get_settings(alias)[index]['settings']
 
             # These should be set in settings_test.
             assert int(settings['index']['number_of_replicas']) == 0
@@ -73,12 +69,13 @@ class TestIndexCommand(ESTestCase):
                             in pager.paginator.page(page_num + 1)])
         return results
 
-    def get_indices_aliases(self):
+    @classmethod
+    def get_indices_aliases(cls):
         """Return the test indices with an alias."""
-        indices = ES.indices.get_aliases()
+        indices = cls.es.indices.get_aliases()
         items = [(index, aliases['aliases'].keys()[0])
                  for index, aliases in indices.items()
-                 if len(aliases['aliases']) > 0 and index.startswith('test')]
+                 if len(aliases['aliases']) > 0 and index.startswith('test_')]
         items.sort()
         return items
 

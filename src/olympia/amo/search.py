@@ -1,18 +1,16 @@
-import logging
-
 from django.conf import settings as dj_settings
 
 from django_statsd.clients import statsd
 from elasticsearch import Elasticsearch
 
+import olympia.core.logger
 
-log = logging.getLogger('z.es')
+
+log = olympia.core.logger.getLogger('z.es')
 
 
 DEFAULT_HOSTS = ['localhost:9200']
 DEFAULT_TIMEOUT = 5
-DEFAULT_INDEXES = ['default']
-DEFAULT_DUMP_CURL = None
 
 
 def get_es(hosts=None, timeout=None, **settings):
@@ -66,6 +64,9 @@ class ES(object):
     def source(self, *fields):
         return self._clone(next_step=('source', fields))
 
+    def score(self, function):
+        return self._clone(next_step=('score', function))
+
     def extra(self, **kw):
         new = self._clone()
         actions = 'values values_dict order_by query filter aggregate'.split()
@@ -103,6 +104,11 @@ class ES(object):
         fields = ['id']
         source = []
         aggregations = {}
+        functions = [
+            # By default, boost results using the field in the index named...
+            # boost.
+            {'field_value_factor': {'field': 'boost', 'missing': 1.0}}
+        ]
         as_list = as_dict = False
         for action, value in self.steps:
             if action == 'order_by':
@@ -128,6 +134,8 @@ class ES(object):
                 source.extend(value)
             elif action == 'aggregate':
                 aggregations.update(value)
+            elif action == 'score':
+                functions.append(value)
             else:
                 raise NotImplementedError(action)
 
@@ -138,14 +146,13 @@ class ES(object):
         else:
             qs = {"match_all": {}}
 
-        qs = {
-            "function_score": {
-                "query": qs,
-                "functions": [{"field_value_factor": {
-                    "field": "boost", "missing": 1.0
-                }}]
+        if functions:
+            qs = {
+                "function_score": {
+                    "query": qs,
+                    "functions": functions
+                }
             }
-        }
 
         if filters:
             if len(filters) > 1:
@@ -191,7 +198,12 @@ class ES(object):
             key, field_action = self._split(key)
             if field_action is None:
                 rv.append({'term': {key: val}})
-            if field_action == 'in':
+            elif field_action == 'exists':
+                if val is not True:
+                    raise NotImplementedError(
+                        '<field>__exists only works with a "True" value.')
+                rv.append({'exists': {'field': key}})
+            elif field_action == 'in':
                 rv.append({'in': {key: val}})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
                 rv.append({'range': {key: {field_action: val}}})

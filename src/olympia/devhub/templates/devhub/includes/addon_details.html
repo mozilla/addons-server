@@ -1,85 +1,36 @@
 {% from "includes/forms.html" import tip %}
-{% from "devhub/includes/macros.html" import link_if_listed_else_text %}
 
-{% macro status_and_tip(addon, tip, url='') %}
-  {% if not url %}
-    {% set url = addon.get_dev_url('versions') %}
+{% macro status_and_tip(addon) %}
+  {% set url = addon.get_dev_url('versions') %}
+  {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
+    {% set status_text = _('Invisible') %}
+    {% set tooltip_text = status_tips['invisible'] %}
+  {% else %}
+    {% set status_text = addon.STATUS_CHOICES[addon.status] %}
+    {% set tooltip_text = status_tips[addon.status] %}
   {% endif %}
   <a href="{{ url }}">
-    {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
-      <span class="{{ status_class(addon) }}"><b>{{ _('You have disabled this add-on') }}</b></span>
-    {% else %}
-      <span class="{{ status_class(addon) }}"><b>{{ addon.STATUS_CHOICES[addon.status] }}</b></span>
-    {% endif %}
+    <span class="{{ status_class(addon) }}"><b>{{ status_text }}</b></span>
   </a>
-  <span class="tip tooltip" title="{{ tip }}">?</span>
+  <span class="tip tooltip" title="{{ tooltip_text }}">?</span>
 {% endmacro %}
 
-<li>
-  <strong>
-    {{ _('Status:') }}
-
-    {% if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED %}
-        {{ status_and_tip(addon,
-                          _("Your add-on's listing is disabled and is not showing "
-                            "anywhere in our gallery or update service.")) }}
-    {% elif addon.status == amo.STATUS_NULL %}
-        {{ status_and_tip(addon, _('Please complete your add-on.'),
-                          url=url('devhub.submit.resume', addon.slug)) }}
-    {% elif addon.status == amo.STATUS_NOMINATED %}
-        {{ status_and_tip(addon,
-                          _("You will receive an email when the review is complete. Until "
+{% set status_tips = {
+    amo.STATUS_NULL: _('Please complete your add-on by adding a version or missing metadata.'),
+    amo.STATUS_NOMINATED: _("You will receive an email when the review is complete. Until "
                             "then, your add-on is not listed in our gallery but can be "
-                            "accessed directly from its details page. ")
-                          if addon.is_listed else
-                          _("You will receive an email when the review is "
-                            "complete and your add-on is signed.")) }}
-    {% elif addon.status == amo.STATUS_PUBLIC %}
-        {{ status_and_tip(addon,
-                          _("Your add-on is displayed in our gallery and users are "
-                            "receiving automatic updates.")
-                          if addon.is_listed else
-                          _("Your add-on has been signed and can be bundled with an "
-                            "application installer.")) }}
-    {% elif addon.status == amo.STATUS_DISABLED %}
-        {{ status_and_tip(addon,
-                          _("Your add-on was disabled by a site administrator and is no "
-                            "longer shown in our gallery. If you have any questions, "
-                            "please email amo-admins@mozilla.org."),
-                            url=(addon.get_dev_url('versions') + '#version-upload')) }}
-    {% endif %}
-  </strong>
-</li>
+                            "accessed directly from its details page. "),
+    amo.STATUS_PUBLIC: _("Your add-on is displayed in our gallery and users are "
+                         "receiving automatic updates."),
+    amo.STATUS_DISABLED: _("Your add-on was disabled by a site administrator and is no "
+                           "longer shown in our gallery. If you have any questions, "
+                           "please email amo-admins@mozilla.org."),
+    amo.STATUS_DELETED: '',
+    'invisible': _("Your add-on won't be included in search results, and its "
+                   "listing page will indicate you disabled it. New version "
+                   "submissions for listing won't be accepted in this state."),
+} %}
 
-<li>
-  <strong>{{ _('Visibility:') }}</strong>
-  {% if not addon.is_disabled and addon.is_listed %}
-    {{ _('Listed') }}
-  {% elif addon.is_disabled and addon.is_listed %}
-    {{ _('Hidden') }}
-  {% elif not addon.is_listed %}
-    {{ _('Unlisted') }}
-  {% endif %}
-</li>
-
-</li>
-{% if addon.current_version %}
-  <li>
-    <strong>{{ _('Current Version:') }}</strong>
-    {{ link_if_listed_else_text(addon.current_version, addon.current_version) }}
-    <span class="tip tooltip" title="{{ _('This is the version of your add-on that will '
-                                          'be installed if someone clicks the Install '
-                                          'button on addons.mozilla.org. It is only '
-                                          'relevant for listed add-ons.') }}">?</span>
-  </li>
-{% endif %}
-{% if addon.type == amo.ADDON_EXTENSION and amo.FIREFOX in addon.compatible_apps %}
-<li class="e10s-compatibility e10s-{{ addon.feature_compatibility.get_e10s_classname() }}">
-  <strong>{{ _('Multi Process Status:') }}</strong>
-  <b>{{ addon.feature_compatibility.get_e10s_display() }}</b>
-  <span class="tip tooltip" title="{{ _('Your add-on compatibility with Multi Process Firefox (e10s).') }}">?</span>
-</li>
-{% endif %}
 {% if sorting == 'created' %}
   <li class="date-created">
     <strong>{{ _('Created:') }}</strong>
@@ -93,22 +44,81 @@
       {{ addon.last_updated|datetime(_('%%b %%e, %%Y')) }}
   </li>
 {% endif %}
-{% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
-{% if latest_listed_version and latest_listed_version != addon.current_version %}
-  <li>
-    <strong>{{ _('Next Version:') }}</strong>
-    {{ link_if_listed_else_text(latest_listed_version, latest_listed_version.version) }}
-    <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet.') }}">?</span>
-  </li>
+{% if addon.type == amo.ADDON_EXTENSION and amo.FIREFOX in addon.compatible_apps %}
+<li class="e10s-compatibility e10s-{{ addon.feature_compatibility.get_e10s_classname() }}">
+  <strong>{{ _('Add-on Multi Process Status:') }}</strong>
+  <b>{{ addon.feature_compatibility.get_e10s_display() }}</b>
+  <span class="tip tooltip" title="{{ _('Your add-on compatibility with Multi Process Firefox (e10s).') }}">?</span>
+</li>
 {% endif %}
-{% with position = get_position(addon) %}
-  {% if position and position.pos and position.total %}
-    <li class="queue-position" title="{{ _('Queues are not reviewed strictly in order') }}">
-      <strong>{{ _('Queue Position:') }}</strong>
-      {% trans position=position.pos|numberfmt,
-               total=position.total|numberfmt %}
-        {{ position }} of {{ total }}
-      {% endtrans %}
+
+{% if addon.has_listed_versions() %}
+    {% if addon.has_unlisted_versions() %}
+      <li class="distribution-tag-listed">
+        <span class="distribution-tag-listed tooltip"
+              title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site.') }}"
+              >AMO</span>
+      </li>
+    {% endif %}
+    <li class="addon-listed-status">
+      <strong>
+        {{ _('Status:') }} {{ status_and_tip(addon) }}
+      </strong>
     </li>
-  {% endif %}
-{% endwith %}
+
+    {% if addon.current_version %}
+      <li>
+        <strong>{{ _('Listed Version:') }}</strong>
+        <a href="{{ addon.current_version.get_url_path() }}">{{ addon.current_version.version }}</a>
+        <span class="tip tooltip" title="{{ _('This is the version of your add-on that will '
+                                              'be installed if someone clicks the Install '
+                                              'button on addons.mozilla.org.') }}">?</span>
+      </li>
+    {% endif %}
+
+    {% set latest_listed_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
+    {% if latest_listed_version and latest_listed_version != addon.current_version %}
+      <li>
+        <strong>{{ _('Next Listed Version:') }}</strong>
+        <a href="{{ latest_listed_version.get_url_path() }}">{{ latest_listed_version.version }}</a>
+        <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet.') }}">?</span>
+      </li>
+    {% endif %}
+
+    {% with position = get_position(addon) %}
+      {% if position and position.pos and position.total %}
+        <li class="queue-position" title="{{ _('Queues are not reviewed strictly in order') }}">
+          <strong>{{ _('Queue Position:') }}</strong>
+          {% trans position=position.pos|numberfmt,
+                   total=position.total|numberfmt %}
+            {{ position }} of {{ total }}
+          {% endtrans %}
+        </li>
+      {% endif %}
+    {% endwith %}
+{% endif %}
+
+{% if addon.status == amo.STATUS_DISABLED and not addon.has_listed_versions() %}
+    <li>
+        <strong>
+          {{ _('Status:') }} {{ status_and_tip(addon) }}
+        </strong>
+      </li>
+{% endif %}
+
+{% set latest_unlisted_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED) %}
+{% if latest_unlisted_version %}
+    {% if addon.has_listed_versions() %}
+      <li class="distribution-tag-unlisted">
+          <span class="distribution-tag-unlisted tooltip"
+                title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
+                >Self</span>
+      </li>
+    {% endif %}
+
+    <li>
+      <strong>{{ _('Latest Version:') }}</strong>
+      {{ latest_unlisted_version.version }}
+      <span class="tip tooltip" title="{{ _('This is the newest uploaded unlisted version.') }}">?</span>
+    </li>
+{% endif %}

@@ -7,7 +7,7 @@
       {% endfor %}
     </ul>
     {# Using a fake form so we get submission on keyboard-enter. #}
-    <form class="other-note" method="post">
+    <form class="other-note" method="post" data-no-csrf>
       {{ flag_form.note }}
       <input type="submit" value="{{ _('Submit') }}">
     </form>

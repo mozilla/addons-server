@@ -1,17 +1,14 @@
 from django.conf import settings
 
-import commonware.log
 from dateutil import parser
 import feedparser
 
-import cronjobs
-
+import olympia.core.logger
 from olympia.devhub.models import BlogPost
 
-log = commonware.log.getLogger('z.cron')
+log = olympia.core.logger.getLogger('z.cron')
 
 
-@cronjobs.register
 def update_blog_posts():
     """Update the blog post cache."""
     items = feedparser.parse(settings.DEVELOPER_BLOG_URL)['items']

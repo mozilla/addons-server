@@ -36,7 +36,7 @@ def test_locale_html():
     assert s == ' lang="de" dir="ltr"'
 
     # rtl language
-    for lang in settings.RTL_LANGUAGES:
+    for lang in settings.LANGUAGES_BIDI:
         testfield.locale = lang
         s = helpers.locale_html(testfield)
         assert s == ' lang="%s" dir="rtl"' % testfield.locale
@@ -88,6 +88,14 @@ def test_clean():
 def test_clean_in_template():
     s = '<a href="#woo">yeah</a>'
     assert jingo.get_env().from_string('{{ s|clean }}').render({'s': s}) == s
+
+
+def test_clean_strip_all_html():
+    s = '<a href="#woo">yeah</a>'
+
+    expected = 'yeah'
+    assert jingo.get_env().from_string(
+        '{{ s|clean(true) }}').render({'s': s}) == expected
 
 
 def test_no_links():

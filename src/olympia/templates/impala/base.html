@@ -24,18 +24,10 @@
     {% block site_css %}
       {{ css('zamboni/impala') }}
       {{ css('restyle/css') }}
-      <!--[if lt IE 9]>
-        <script src="{{ static('js/lib/iepp.min.js') }}"></script>
-      <![endif]-->
-      <!--[if lte IE 9]>
-        <link rel="stylesheet" href="{{ static('css/legacy/ie9.css') }}">
-      <![endif]-->
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
     <noscript><link rel="stylesheet" href="{{ static('css/impala/nojs.css') }}"></noscript>
-
-    {% include "mobile/head_debug.html" %}
 
     {% if request.user.is_authenticated() %}
       <meta name="csrf" content="{{ csrf_token }}">
@@ -73,7 +65,7 @@
                         <a href="#" id="other-apps" title="{{ _('Find add-ons for other applications') }}">{{ _('Other Applications') }}</a>
                         <ul class="other-apps">
                           {% for app in amo.APP_USAGE %}
-                            {% if app != request.APP and app != amo.MOBILE %}
+                            {% if app != request.APP %}
                               <li id="app-{{ app.short }}" class="{{ app.short }}">
                                 <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
                               </li>

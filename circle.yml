@@ -7,38 +7,19 @@ machine:
 dependencies:
   override:
     - docker version
+    - >
+        printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n'
+        "$CIRCLE_SHA1"
+        "$CIRCLE_TAG"
+        "$CIRCLE_PROJECT_USERNAME"
+        "$CIRCLE_PROJECT_REPONAME"
+        "$CIRCLE_BUILD_URL"
+        > version.json
     - docker build -t app:build -f Dockerfile.deploy .
-    - pip install tox mozdownload mozinstall
 
 test:
-  pre:
-    - mozdownload --version latest --destination firefox.tar.bz2
-    - mozinstall firefox.tar.bz2
-    - wget -O geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.10.0/geckodriver-v0.10.0-linux64.tar.gz
-    - gunzip -c geckodriver.tar.gz | tar xopf -
-    - chmod +x geckodriver
-    - sudo mv geckodriver /home/ubuntu/bin
-    - docker-compose pull
-    - docker-compose up -d
-    - sleep 60
-    - docker-compose run web ./scripts/setup-docker.sh
   override:
-    - tox -e ui-tests --
-      --base-url=http://olympia.dev
-      --firefox-path=firefox/firefox
-      --junit-xml=$CIRCLE_TEST_REPORTS/junit.xml
-      --html=$CIRCLE_ARTIFACTS/results.html
-  post:
-    - docker logs addonsserver_elasticsearch_1 > $CIRCLE_ARTIFACTS/elasticsearch.log
-    - docker logs addonsserver_memcached_1 > $CIRCLE_ARTIFACTS/memcached.log
-    - docker logs addonsserver_mysqld_1 > $CIRCLE_ARTIFACTS/mysqld.log
-    - docker logs addonsserver_nginx_1 > $CIRCLE_ARTIFACTS/nginx.log
-    - docker logs addonsserver_rabbitmq_1 > $CIRCLE_ARTIFACTS/rabbitmq.log
-    - docker logs addonsserver_redis_1 > $CIRCLE_ARTIFACTS/redis.log
-    - docker logs addonsserver_web_1 > $CIRCLE_ARTIFACTS/web.log
-    - docker logs addonsserver_worker_1 > $CIRCLE_ARTIFACTS/worker.log
-    - cp logs/* $CIRCLE_ARTIFACTS
-    - cp geckodriver.log $CIRCLE_ARTIFACTS
+    - echo "UI Tests are run on Travis CI. https://travis-ci.org/mozilla/addons-server/"
 
 deployment:
   latest:

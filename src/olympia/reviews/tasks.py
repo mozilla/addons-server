@@ -1,16 +1,15 @@
-import logging
-
 from django.db.models import Count, Avg, F
 
 import caching.base as caching
 
+import olympia.core.logger
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
 
 from .models import Review, GroupedRating
 
-log = logging.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.task')
 
 
 @task(rate_limit='50/m')
@@ -49,10 +48,11 @@ def addon_review_aggregates(addons, **kw):
     # [{'rating': 2.0, 'addon': 7L, 'count': 5},
     #  {'rating': 3.75, 'addon': 6L, 'count': 8}, ...]
     qs = (Review.without_replies.all().no_cache()
+          .filter(addon__in=addons, is_latest=True)
           .values('addon')  # Group by addon id.
           .annotate(rating=Avg('rating'), count=Count('addon'))  # Aggregates.
           .order_by())  # Reset order by so that `created` is not included.
-    stats = dict((x['addon'], (x['rating'], x['count'])) for x in qs)
+    stats = {x['addon']: (x['rating'], x['count']) for x in qs}
     for addon in addon_objs:
         rating, reviews = stats.get(addon.id, [0, 0])
         addon.update(total_reviews=reviews, average_rating=rating)
@@ -66,8 +66,8 @@ def addon_review_aggregates(addons, **kw):
 @write
 def addon_bayesian_rating(*addons, **kw):
     def addon_aggregates():
-        return Addon.objects.aggregate(rating=Avg('average_rating'),
-                                       reviews=Avg('total_reviews'))
+        return Addon.objects.valid().aggregate(rating=Avg('average_rating'),
+                                               reviews=Avg('total_reviews'))
 
     log.info('[%s@%s] Updating bayesian ratings.' %
              (len(addons), addon_bayesian_rating.rate_limit))
@@ -81,13 +81,15 @@ def addon_bayesian_rating(*addons, **kw):
             # Ignoring addons with no average rating.
             continue
 
-        q = Addon.objects.filter(id=addon.id)
+        # Update the addon bayesian_rating atomically using F objects (unless
+        # it has no reviews, in which case directly set it to 0).
+        qs = Addon.objects.filter(id=addon.id)
         if addon.total_reviews:
             num = mc + F('total_reviews') * F('average_rating')
             denom = avg['reviews'] + F('total_reviews')
-            q.update(bayesian_rating=num / denom)
+            qs.update(bayesian_rating=num / denom)
         else:
-            q.update(bayesian_rating=0)
+            qs.update(bayesian_rating=0)
 
 
 @task

@@ -12,10 +12,10 @@ from olympia import amo
 from olympia.amo.tests import TestCase, initialize_session
 from olympia.constants import editors as rvw
 from olympia.access.models import GroupUser
+from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.models import Persona
 from olympia.amo.tests import addon_factory, days_ago
 from olympia.amo.urlresolvers import reverse
-from olympia.devhub.models import ActivityLog, AddonLog
 from olympia.editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
 from olympia.editors.views_themes import _get_themes, home, themes_search
 from olympia.users.models import UserProfile
@@ -416,9 +416,10 @@ class TestThemeQueue(ThemeReviewTestMixin, TestCase):
 
         theme = Persona.objects.all()[0]
         for x in range(3):
-            amo.log(amo.LOG.THEME_REVIEW, theme.addon, user=reviewer,
-                    details={'action': rvw.ACTION_APPROVE,
-                             'comment': '', 'reject_reason': ''})
+            ActivityLog.create(
+                amo.LOG.THEME_REVIEW, theme.addon, user=reviewer,
+                details={'action': rvw.ACTION_APPROVE,
+                         'comment': '', 'reject_reason': ''})
 
         res = self.client.get(reverse('editors.themes.history'))
         assert res.status_code == 200
@@ -756,8 +757,8 @@ class TestDashboard(TestCase):
     def test_dashboard_review_counts(self):
         theme = addon_factory(type=amo.ADDON_PERSONA)
         for i in range(3):
-            amo.log(amo.LOG.THEME_REVIEW, theme,
-                    user=UserProfile.objects.get())
+            ActivityLog.create(amo.LOG.THEME_REVIEW, theme,
+                               user=UserProfile.objects.get())
 
         r = home(self.request)
         assert r.status_code == 200
@@ -775,7 +776,7 @@ class TestXssOnThemeName(amo.tests.TestXss):
         super(TestXssOnThemeName, self).setUp()
         self.theme = addon_factory(type=amo.ADDON_PERSONA,
                                    status=amo.STATUS_PENDING,
-                                   name=self.name)
+                                   name=unicode(self.name, 'utf-8'))
         persona = self.theme.persona
         persona.persona_id = 0
         persona.header = 'header'

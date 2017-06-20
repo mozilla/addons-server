@@ -1,7 +1,7 @@
 from django import forms
 from django.template import Context, loader
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia.users import notifications as email
 
@@ -19,11 +19,11 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
 
         # Mark the mandatory fields.
         mandatory = [k for k, v in
-                     email.ALL_NOTIFICATIONS_BY_ID.iteritems() if v.mandatory]
+                     email.NOTIFICATIONS_BY_ID.iteritems() if v.mandatory]
         str_values = set(mandatory + str_values)
 
         for idx, label in sorted(self.choices):
-            notification = email.ALL_NOTIFICATIONS_BY_ID[idx]
+            notification = email.NOTIFICATIONS_BY_ID[idx]
             cb_attrs = dict(final_attrs, id='%s_%s' % (attrs['id'], idx))
             notes = []
 
@@ -33,7 +33,7 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
 
             if (hasattr(self.form_instance, 'choices_status') and
                     self.form_instance.choices_status.get(idx)):
-                notes.append(u'<sup class="msg">%s</sup>' % _('new'))
+                notes.append(u'<sup class="msg">%s</sup>' % ugettext('new'))
 
             cb = forms.CheckboxInput(
                 cb_attrs, check_test=lambda value: value in str_values)
@@ -65,10 +65,6 @@ class RequiredInputMixin(object):
         attrs = attrs or {}
         attrs.update(self.required_attrs)
         return super(RequiredInputMixin, self).render(name, value, attrs)
-
-
-class RequiredTextInput(RequiredInputMixin, forms.TextInput):
-    """A Django TextInput with required attributes."""
 
 
 class RequiredEmailInput(RequiredInputMixin, forms.EmailInput):

@@ -17,10 +17,6 @@
     clear: both;
 }
 
-#breadcrumbs-wrapper .breadcrumbs {
-    clear: left;
-}
-
 #diff-selector {
     float: right;
     margin-bottom: .5em;

@@ -1,15 +1,21 @@
+.. image:: https://img.shields.io/badge/%E2%9D%A4-code%20of%20conduct-blue.svg
+    :target: https://github.com/mozilla/addons-server/blob/master/CODE_OF_CONDUCT.md
+    :alt: Code of conduct
+
 .. image:: https://travis-ci.org/mozilla/addons-server.svg?branch=master
     :target: https://travis-ci.org/mozilla/addons-server
 
-.. image:: https://buildtimetrend.herokuapp.com/badge/mozilla/addons-server/
-    :alt: Buildtime Trend badge
-    :target: https://buildtimetrend.herokuapp.com/dashboard/mozilla/addons-server
-
-.. image:: https://requires.io/github/mozilla/addons-server/requirements.svg?branch=master
-    :target: https://requires.io/github/mozilla/addons-server/requirements/?branch=master
+.. image:: https://pyup.io/repos/github/mozilla/addons-server/shield.svg
+    :target: https://pyup.io/repos/github/mozilla/addons-server/
+    :alt: Updates
 
 .. image:: https://codecov.io/gh/mozilla/addons-server/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/mozilla/addons-server
+    :target: https://codecov.io/gh/mozilla/addons-server
+
+.. image:: https://pyup.io/repos/github/mozilla/addons-server/python-3-shield.svg
+    :target: https://pyup.io/repos/github/mozilla/addons-server/
+    :alt: Python 3
+
 
 Addons-Server
 =============

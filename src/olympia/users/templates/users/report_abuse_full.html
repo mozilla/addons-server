@@ -5,8 +5,6 @@
 {% block title %}{{ page_title(title) }}{% endblock %}
 {% block content %}
 <header>
-  {{ impala_breadcrumbs([(profile.get_url_path(), profile.name),
-                  (None, _('Report user'))]) }}
   <h1>{{ title }}</h1>
 </header>
 

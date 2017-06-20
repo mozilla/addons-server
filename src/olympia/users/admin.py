@@ -19,7 +19,7 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('email', 'username', 'display_name',
-                       'bio', 'homepage', 'location', 'occupation'),
+                       'biography', 'homepage', 'location', 'occupation'),
         }),
         ('Flags', {
             'fields': ('deleted', 'display_collections',
@@ -30,6 +30,9 @@ class UserAdmin(admin.ModelAdmin):
             'fields': ('notes', 'picture_type'),
         }),
     )
+
+    def delete_model(self, request, obj):
+        obj.delete(hard=True)
 
 
 class DeniedModelAdmin(admin.ModelAdmin):
@@ -72,6 +75,7 @@ class DeniedNameAdmin(DeniedModelAdmin):
     model_add_form = forms.DeniedNameAddForm
     add_form_field = 'names'
     template_path = 'users/admin/denied_name/add.html'
+
 
 admin.site.register(UserProfile, UserAdmin)
 admin.site.register(DeniedName, DeniedNameAdmin)

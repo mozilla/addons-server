@@ -38,19 +38,10 @@ def render(s, context=None):
     return t.render(context)
 
 
-def test_strip_html():
-    assert 'Hey Brother!' == render('{{ "Hey <b>Brother!</b>"|strip_html }}')
-
-
 def test_currencyfmt():
     assert helpers.currencyfmt(None, 'USD') == ''
     assert helpers.currencyfmt(5, 'USD') == '$5.00'
     assert helpers.currencyfmt('12', 'USD') == '$12.00'
-
-
-def test_strip_html_none():
-    assert '' == render('{{ a|strip_html }}', {'a': None})
-    assert '' == render('{{ a|strip_html(True) }}', {'a': None})
 
 
 def test_strip_controls():
@@ -152,76 +143,6 @@ def test_template_escaping():
     assert render(
         '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)|f(5) }}'
     ) == expected
-
-
-class TestBreadcrumbs(amo.tests.BaseTestCase):
-
-    def setUp(self):
-        super(TestBreadcrumbs, self).setUp()
-        self.req_noapp = Mock()
-        self.req_noapp.APP = None
-        self.req_app = Mock()
-        self.req_app.APP = amo.FIREFOX
-
-    def test_no_app(self):
-        s = render('{{ breadcrumbs() }}', {'request': self.req_noapp})
-        doc = PyQuery(s)
-        crumbs = doc('li>a')
-        assert len(crumbs) == 1
-        assert crumbs.text() == 'Add-ons'
-        assert crumbs.attr('href') == urlresolvers.reverse('home')
-
-    def test_with_app(self):
-        s = render('{{ breadcrumbs() }}', {'request': self.req_app})
-        doc = PyQuery(s)
-        crumbs = doc('li>a')
-        assert len(crumbs) == 1
-        assert crumbs.text() == 'Add-ons for Firefox'
-        assert crumbs.attr('href') == urlresolvers.reverse('home')
-
-    def test_no_add_default(self):
-        s = render('{{ breadcrumbs(add_default=False) }}',
-                   {'request': self.req_app})
-        assert len(s) == 0
-
-    def test_items(self):
-        s = render("""{{ breadcrumbs([('/foo', 'foo'),
-                                      ('/bar', 'bar')],
-                                     add_default=False) }}'""",
-                   {'request': self.req_app})
-        doc = PyQuery(s)
-        crumbs = doc('li>a')
-        assert len(crumbs) == 2
-        assert crumbs.eq(0).text() == 'foo'
-        assert crumbs.eq(0).attr('href') == '/foo'
-        assert crumbs.eq(1).text() == 'bar'
-        assert crumbs.eq(1).attr('href') == '/bar'
-
-    def test_items_with_default(self):
-        s = render("""{{ breadcrumbs([('/foo', 'foo'),
-                                      ('/bar', 'bar')]) }}'""",
-                   {'request': self.req_app})
-        doc = PyQuery(s)
-        crumbs = doc('li>a')
-        assert len(crumbs) == 3
-        assert crumbs.eq(1).text() == 'foo'
-        assert crumbs.eq(1).attr('href') == '/foo'
-        assert crumbs.eq(2).text() == 'bar'
-        assert crumbs.eq(2).attr('href') == '/bar'
-
-    def test_truncate(self):
-        s = render("""{{ breadcrumbs([('/foo', 'abcd efghij'),],
-                                     crumb_size=5) }}'""",
-                   {'request': self.req_app})
-        doc = PyQuery(s)
-        crumbs = doc('li>a')
-        assert 'ab...' == crumbs.eq(1).text()
-
-    def test_xss(self):
-        s = render("{{ breadcrumbs([('/foo', '<script>')]) }}",
-                   {'request': self.req_app})
-        assert '&lt;script&gt;' in s, s
-        assert '<script>' not in s
 
 
 @patch('olympia.amo.helpers.urlresolvers.reverse')
@@ -556,22 +477,6 @@ def test_f():
     # This makes sure there's no UnicodeEncodeError when doing the string
     # interpolation.
     assert render(u'{{ "foo {0}"|f("baré") }}') == u'foo baré'
-
-
-def test_inline_css(monkeypatch):
-    jingo.load_helpers()
-    env = jingo.get_env()
-    t = env.from_string("{{ inline_css('zamboni/mobile', debug=True) }}")
-
-    # Monkeypatch settings.LESS_BIN to not call the less compiler. We don't
-    # need nor want it in tests.
-    monkeypatch.setattr(settings, 'LESS_BIN', 'ls')
-    # Monkeypatch jingo_minify.helpers.is_external to counter-effect the
-    # autouse fixture in conftest.py.
-    monkeypatch.setattr(amo.helpers, 'is_external', lambda css: False)
-    s = t.render()
-
-    assert 'background-image: url(/static/img/icons/stars.png);' in s
 
 
 class TestStoragePath(TestCase):

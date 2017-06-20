@@ -1,11 +1,15 @@
 {% extends "impala/base_shared.html" %}
+{% from "addons/macros.html" import addon_flags %}
+
 {% set is_author = request.check_ownership(addon, require_owner=False) %}
-{% set is_reviewer = action_allowed("Addons", "Review") %}
-{% set is_staff = action_allowed("ReviewerAdminTools", "View") %}
+{% set is_reviewer = action_allowed(amo.permissions.ADDONS_REVIEW) %}
+{% set is_staff = action_allowed(amo.permissions.REVIEWER_ADMIN_TOOLS_VIEW) %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block js %}
-  <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+  {% if addon.takes_contributions %}
+    <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+  {% endif %}
 {% endblock %}
 {% block bodyclass %}gutter addon-details {{ super() }}{% endblock %}
 
@@ -82,7 +86,7 @@
       <p class="manage-button"><a href="{{ addon.get_dev_url() }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a></p>
     {% endif %}
     {% if is_reviewer %}
-      <p class="manage-button"><a href="{{ url('editors.review', addon.slug) }}" class="button"><span>{{ _('Editor Review') }}</span></a></p>
+      <p class="manage-button"><a href="{{ url('editors.review', addon.slug) }}" class="button"><span>{{ _('Add-on Review') }}</span></a></p>
     {% endif %}
     {% if is_staff %}
       <p class="manage-button"><a href="{{ url('zadmin.addon_manage', addon.slug) }}" class="button"><span>{{ _('Admin Manage') }}</span></a></p>
@@ -102,9 +106,7 @@
           <span itemprop="name">{{ addon.name }}</span>
           {% if version %}
             <span class="version-number" itemprop="version">{{ version.version }}</span>
-          {% endif %}
-          {% if addon.requires_restart %}
-            &nbsp;<span class="requires-restart">{{ _('Requires Restart') }}</span>
+            {{ addon_flags(addon, version) }}
           {% endif %}
         </h1>
         <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
@@ -148,8 +150,6 @@
 {% endblock header_content %}
 
 {% block content %}
-{{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                       (None, addon.name)]) }}
 
 {% if addon.type != amo.ADDON_PERSONA %}
   {% set version = addon.current_version %}
@@ -287,7 +287,7 @@
             {% endtrans %}
           </p>
           <dl>
-            <dt class="beta-version">{{ _('Version {0}:')|f(
+            <dt class="beta-version">{{ _('Version {0}')|f(
               addon.current_beta_version.version) }}</dt>
             <dd>{{ install_button(addon, latest_beta=True,
                                   show_warning=False, impala=True,
@@ -320,6 +320,42 @@
       <div class="prose">
         {{ addon.privacy_policy|nl2br }}
       </div>
+    </div>
+  {% endif %}
+  {% if addon.should_show_permissions() %}
+    <div class="modal" id="webext-permissions">
+      <a href="#" class="close">{{ _('close') }}</a>
+      <h2>{{ _('Permissions') }}</h2>
+      {% if addon.current_version.all_files[0].is_webextension %}
+        {% set permissions = addon.current_version.all_files[0].webext_permissions %}
+        <div class="prose">
+          <p>
+          {{ _('Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system).') }}
+          </p><p>
+          {{ _('Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some rare cases risk may be involved.') }}
+          </p>
+        </div>
+        <div>
+          <p>
+            {# l10n: This is a header of a list of things the add-on can do. #}
+            <h3>{{ _('This add-on can:') }}</h3>
+            <ul class="webext-permissions-list">
+              {% for perm in permissions %}
+                <li class="webext-permissions-list">{{ perm.description|e }}</li>
+              {% endfor %}
+            </ul>
+          </p>
+        </div>
+      {% else %}
+        <div class="prose">
+          <img src="{{ static('img/developers/test-warning.png') }}" alt="{{ _('[Warning]') }}">
+          <p>
+          {{ ('Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours.') }}
+          </p><p>
+          {{ ('Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission.') }}
+          </p>
+        </div>
+      {% endif %}
     </div>
   {% endif %}
   {% if addon.eula %}

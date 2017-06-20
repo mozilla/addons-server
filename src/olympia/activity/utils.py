@@ -1,29 +1,30 @@
 import datetime
-import logging
 import re
 
 from django.conf import settings
 from django.template import Context, loader
+from django.utils import translation
 
 from email_reply_parser import EmailReplyParser
 import waffle
 
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
-from olympia.activity.models import ActivityLogToken
+from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import send_mail
-from olympia.devhub.models import ActivityLog
+from olympia.amo.utils import no_translation, send_mail
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 
-log = logging.getLogger('z.amo.activity')
+log = olympia.core.logger.getLogger('z.amo.activity')
 
 # Prefix of the reply to address in devcomm emails.
 REPLY_TO_PREFIX = 'reviewreply+'
 # Group for users that want a copy of all Activity Emails.
 ACTIVITY_MAIL_GROUP = 'Activity Mail CC'
+NOTIFICATIONS_FROM_EMAIL = 'notifications@%s' % settings.INBOUND_EMAIL_DOMAIN
 
 
 class ActivityEmailError(ValueError):
@@ -39,6 +40,10 @@ class ActivityEmailUUIDError(ActivityEmailError):
 
 
 class ActivityEmailTokenError(ActivityEmailError):
+    pass
+
+
+class ActivityEmailToNotificationsError(ActivityEmailError):
     pass
 
 
@@ -72,18 +77,30 @@ class ActivityEmailParser(object):
             return split_email[0]
 
     def get_uuid(self):
-        to_header = self.email.get('To', [])
-        for to in to_header:
-            address = to.get('EmailAddress', '')
+        addresses = [to.get('EmailAddress', '')
+                     for to in self.email.get('To', [])]
+        to_notifications_alias = False
+        for address in addresses:
             if address.startswith(self.address_prefix):
                 # Strip everything between "reviewreply+" and the "@" sign.
                 return address[len(self.address_prefix):].split('@')[0]
+            elif address == NOTIFICATIONS_FROM_EMAIL:
+                # Someone sent an email to notifications@
+                to_notifications_alias = True
+        if to_notifications_alias:
+            log.exception('TO: notifications email used (%s)'
+                          % ', '.join(addresses))
+            raise ActivityEmailToNotificationsError(
+                'This email address is not meant to receive emails directly. '
+                'If you want to get in contact with add-on reviewers, please '
+                'reply to the original email or join us in IRC on '
+                'irc.mozilla.org/#addon-reviewers. Thank you.')
         log.exception(
             'TO: address missing or not related to activity emails. (%s)'
-            % to_header)
+            % ', '.join(addresses))
         raise ActivityEmailUUIDError(
-            'TO: address doesn\'t contain activity email uuid (%s).'
-            % to_header)
+            'TO: address does not contain activity email uuid (%s).'
+            % ', '.join(addresses))
 
 
 def add_email_to_activity_log_wrapper(message):
@@ -144,31 +161,59 @@ def add_email_to_activity_log(parser):
 
 
 def action_from_user(user, version):
-    review_perm = 'Review' if version.addon.is_listed else 'ReviewUnlisted'
+    review_perm = (amo.permissions.ADDONS_REVIEW
+                   if version.channel == amo.RELEASE_CHANNEL_LISTED
+                   else amo.permissions.ADDONS_REVIEW_UNLISTED)
     if version.addon.authors.filter(pk=user.pk).exists():
         return amo.LOG.DEVELOPER_REPLY_VERSION
-    elif acl.action_allowed_user(user, 'Addons', review_perm):
+    elif acl.action_allowed_user(user, review_perm):
         return amo.LOG.REVIEWER_REPLY_VERSION
 
 
-def log_and_notify(action, comments, note_creator, version):
+def template_from_user(user, version):
+    review_perm = (amo.permissions.ADDONS_REVIEW
+                   if version.channel == amo.RELEASE_CHANNEL_LISTED
+                   else amo.permissions.ADDONS_REVIEW_UNLISTED)
+    template = 'activity/emails/developer.txt'
+    if (not version.addon.authors.filter(pk=user.pk).exists() and
+            acl.action_allowed_user(user, review_perm)):
+        template = 'activity/emails/from_reviewer.txt'
+    return loader.get_template(template)
+
+
+def log_and_notify(action, comments, note_creator, version, perm_setting=None,
+                   detail_kwargs=None):
     log_kwargs = {
         'user': note_creator,
         'created': datetime.datetime.now(),
-        'details': {
-            'comments': comments,
-            'version': version.version}}
-    note = amo.log(action, version.addon, version, **log_kwargs)
+    }
+    if detail_kwargs is None:
+        detail_kwargs = {}
+    if comments:
+        detail_kwargs['version'] = version.version
+        detail_kwargs['comments'] = comments
+    else:
+        # Just use the name of the action if no comments provided.  Alas we
+        # can't know the locale of recipient, and our templates are English
+        # only so prevent language jumble by forcing into en-US.
+        with no_translation():
+            comments = '%s' % action.short
+    if detail_kwargs:
+        log_kwargs['details'] = detail_kwargs
+
+    note = ActivityLog.create(action, version.addon, version, **log_kwargs)
 
     # Collect reviewers involved with this version.
-    review_perm = 'Review' if version.addon.is_listed else 'ReviewUnlisted'
+    review_perm = (amo.permissions.ADDONS_REVIEW
+                   if version.channel == amo.RELEASE_CHANNEL_LISTED
+                   else amo.permissions.ADDONS_REVIEW_UNLISTED)
     log_users = {
         alog.user for alog in ActivityLog.objects.for_version(version) if
-        acl.action_allowed_user(alog.user, 'Addons', review_perm)}
+        acl.action_allowed_user(alog.user, review_perm)}
     # Collect add-on authors (excl. the person who sent the email.)
     addon_authors = set(version.addon.authors.all()) - {note_creator}
     # Collect staff that want a copy of the email
-    staff_cc = set(
+    staff = set(
         UserProfile.objects.filter(groups__name=ACTIVITY_MAIL_GROUP))
     # If task_user doesn't exist that's no big issue (i.e. in tests)
     try:
@@ -177,29 +222,60 @@ def log_and_notify(action, comments, note_creator, version):
         task_user = set()
     # Collect reviewers on the thread (excl. the email sender and task user for
     # automated messages).
-    reviewers = ((log_users | staff_cc) - addon_authors - task_user -
-                 {note_creator})
+    reviewers = log_users - addon_authors - task_user - {note_creator}
+    staff_cc = staff - reviewers - addon_authors - task_user - {note_creator}
     author_context_dict = {
         'name': version.addon.name,
         'number': version.version,
         'author': note_creator.name,
         'comments': comments,
-        'url': version.addon.get_dev_url('versions'),
+        'url': absolutify(version.addon.get_dev_url('versions')),
         'SITE_URL': settings.SITE_URL,
+        'email_reason': 'you are an author of this add-on'
     }
+
     reviewer_context_dict = author_context_dict.copy()
     reviewer_context_dict['url'] = absolutify(
-        reverse('editors.review', args=[version.addon.pk], add_prefix=False))
+        reverse('editors.review',
+                kwargs={'addon_id': version.addon.pk,
+                        'channel': amo.CHANNEL_CHOICES_API[version.channel]},
+                add_prefix=False))
+    reviewer_context_dict['email_reason'] = 'you reviewed this add-on'
+
+    staff_cc_context_dict = reviewer_context_dict.copy()
+    staff_cc_context_dict['email_reason'] = (
+        'you are member of the activity email cc group')
 
     # Not being localised because we don't know the recipients locale.
-    subject = 'Mozilla Add-ons: %s Updated' % version.addon.name
-    template = loader.get_template('activity/emails/developer.txt')
+    with translation.override('en-US'):
+        subject = u'Mozilla Add-ons: %s %s %s' % (
+            version.addon.name, version.version, action.short)
+    template = template_from_user(note_creator, version)
+
     send_activity_mail(
-        subject, template.render(Context(author_context_dict)), version,
-        addon_authors, settings.EDITORS_EMAIL)
+        subject, template.render(Context(
+            author_context_dict, autoescape=False)),
+        version, addon_authors,
+        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
+        perm_setting)
+
     send_activity_mail(
-        subject, template.render(Context(reviewer_context_dict)), version,
-        reviewers, settings.EDITORS_EMAIL)
+        subject, template.render(Context(
+            reviewer_context_dict, autoescape=False)),
+        version, reviewers,
+        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
+        perm_setting)
+
+    send_activity_mail(
+        subject, template.render(Context(
+            staff_cc_context_dict, autoescape=False)),
+        version, staff_cc,
+        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
+        perm_setting)
+
+    if action == amo.LOG.DEVELOPER_REPLY_VERSION:
+        version.update(has_info_request=False)
+
     return note
 
 
@@ -211,8 +287,6 @@ def send_activity_mail(subject, message, version, recipients, from_email,
         if not created:
             token.update(use_count=0)
         else:
-            # We need .uuid to be a real UUID not just a str.
-            token.reload()
             log.info('Created token with UUID %s for user: %s.' % (
                 token.uuid, recipient.id))
         reply_to = "%s%s@%s" % (
@@ -231,6 +305,8 @@ NOT_PENDING_IDS = (
     amo.LOG.REJECT_VERSION.id,
     amo.LOG.PRELIMINARY_VERSION.id,
     amo.LOG.PRELIMINARY_ADDON_MIGRATED.id,
+    amo.LOG.APPROVAL_NOTES_CHANGED.id,
+    amo.LOG.SOURCE_CODE_UPLOADED.id,
 )
 
 

@@ -7,16 +7,16 @@ from django.db.models import Q
 from django.forms.formsets import formset_factory
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import MultiValueDictKeyError
-from django.utils.translation import ugettext as _, ungettext as ngettext
+from django.utils.translation import ugettext, ungettext
 
 from olympia import amo
 from olympia.constants import editors as rvw
 from olympia.access import acl
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, Persona
 from olympia.amo.decorators import json_view, post_required
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
-from olympia.devhub.models import ActivityLog
 from olympia.editors import forms
 from olympia.editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock
 from olympia.editors.views import base_context as context
@@ -46,7 +46,7 @@ def queue_counts_themes(request):
                                  .count(),
     }
 
-    if acl.action_allowed(request, 'SeniorPersonasTools', 'View'):
+    if acl.action_allowed(request, amo.permissions.THEME_ADMIN_TOOLS_VIEW):
         counts.update({
             'flagged_themes': (Persona.objects.no_cache()
                                .filter(addon__status=amo.STATUS_REVIEW_PENDING)
@@ -150,7 +150,7 @@ def _get_themes(request, reviewer, flagged=False, rereview=False):
 
     # Don't allow self-reviews.
     if (not settings.ALLOW_SELF_REVIEWS and
-            not acl.action_allowed(request, 'Admin', '%')):
+            not acl.action_allowed(request, amo.permissions.ADMIN)):
         if rereview:
             themes = themes.exclude(theme__addon__addonuser__user=reviewer)
         else:
@@ -318,7 +318,7 @@ def themes_commit(request):
 
     # Success message.
     points = sum(scores)
-    success = ngettext(
+    success = ungettext(
         # L10n: {0} is the number of reviews. {1} is the points just earned.
         # L10n: {2} is the total number of points the reviewer has overall.
         '{0} theme review successfully processed (+{1} points, {2} total).',
@@ -338,10 +338,11 @@ def release_locks(request):
     ThemeLock.objects.filter(reviewer=request.user).delete()
     amo.messages.success(
         request,
-        _('Your theme locks have successfully been released. '
-          'Other reviewers may now review those released themes. '
-          'You may have to refresh the page to see the changes reflected in '
-          'the table below.'))
+        ugettext(
+            'Your theme locks have successfully been released. '
+            'Other reviewers may now review those released themes. '
+            'You may have to refresh the page to see the changes reflected in '
+            'the table below.'))
     return redirect(reverse('editors.themes.list'))
 
 
@@ -361,7 +362,7 @@ def themes_single(request, slug):
         reviewable = False
 
     if (not settings.ALLOW_SELF_REVIEWS and
-            not acl.action_allowed(request, 'Admin', '%') and
+            not acl.action_allowed(request, amo.permissions.ADMIN) and
             theme.addon.has_author(request.user)):
         reviewable = False
     else:

@@ -17,11 +17,8 @@
 {% block primary %}
 <section class="primary">
   {% if sort %}
-    {{ impala_breadcrumbs([(url('collections.list'), _('Collections')),
-                           (None, title)]) }}
     <h1>{{ title }}</h1>
   {% else %}
-    {{ impala_breadcrumbs([(None, _('Collections'))]) }}
     <masthead class="hero" id="collections-landing">
       <h1>{{ title }}</h1>
       <p>

@@ -5,12 +5,11 @@ from django.utils import translation
 
 import pytest
 from mock import Mock
-from pyquery import PyQuery as pq
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo import LOG
 from olympia.amo.tests import addon_factory, days_ago, TestCase, user_factory
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests.test_helpers import render
 from olympia.addons.models import Addon
 from olympia.devhub import helpers
@@ -41,80 +40,6 @@ def test_dev_page_title():
     s1 = render('{{ dev_page_title("%s", addon) }}' % title, ctx)
     s2 = render('{{ page_title("%s :: %s") }}' % (title, addon.name), ctx)
     assert s1 == s2
-
-
-class TestDevBreadcrumbs(amo.tests.BaseTestCase):
-
-    def setUp(self):
-        super(TestDevBreadcrumbs, self).setUp()
-        self.request = Mock()
-        self.request.APP = None
-
-    def test_no_args(self):
-        s = render('{{ dev_breadcrumbs() }}', {'request': self.request})
-        doc = pq(s)
-        crumbs = doc('li')
-        assert len(crumbs) == 2
-        assert crumbs.text() == 'Developer Hub My Submissions'
-        assert crumbs.eq(1).children('a') == []
-
-    def test_no_args_with_default(self):
-        s = render('{{ dev_breadcrumbs(add_default=True) }}',
-                   {'request': self.request})
-        doc = pq(s)
-        crumbs = doc('li')
-        assert crumbs.text() == 'Add-ons Developer Hub My Submissions'
-        assert crumbs.eq(1).children('a').attr('href') == (
-            reverse('devhub.index'))
-        assert crumbs.eq(2).children('a') == []
-
-    def test_with_items(self):
-        s = render("""{{ dev_breadcrumbs(items=[('/foo', 'foo'),
-                                                ('/bar', 'bar')]) }}'""",
-                   {'request': self.request})
-        doc = pq(s)
-        crumbs = doc('li>a')
-        assert len(crumbs) == 4
-        assert crumbs.eq(2).text() == 'foo'
-        assert crumbs.eq(2).attr('href') == '/foo'
-        assert crumbs.eq(3).text() == 'bar'
-        assert crumbs.eq(3).attr('href') == '/bar'
-
-    def test_with_addon(self):
-        addon = Mock()
-        addon.name = 'Firebug'
-        addon.id = 1843
-        s = render("""{{ dev_breadcrumbs(addon) }}""",
-                   {'request': self.request, 'addon': addon})
-        doc = pq(s)
-        crumbs = doc('li')
-        assert crumbs.text() == 'Developer Hub My Submissions Firebug'
-        assert crumbs.eq(1).text() == 'My Submissions'
-        assert crumbs.eq(1).children('a').attr('href') == (
-            reverse('devhub.addons'))
-        assert crumbs.eq(2).text() == 'Firebug'
-        assert crumbs.eq(2).children('a') == []
-
-    def test_with_addon_and_items(self):
-        addon = Mock()
-        addon.name = 'Firebug'
-        addon.id = 1843
-        addon.slug = 'fbug'
-        addon.get_dev_url.return_value = reverse('devhub.addons.edit',
-                                                 args=[addon.slug])
-        s = render("""{{ dev_breadcrumbs(addon,
-                                         items=[('/foo', 'foo'),
-                                                ('/bar', 'bar')]) }}""",
-                   {'request': self.request, 'addon': addon})
-        doc = pq(s)
-        crumbs = doc('li')
-        assert len(crumbs) == 5
-        assert crumbs.eq(2).text() == 'Firebug'
-        assert crumbs.eq(2).children('a').attr('href') == addon.get_dev_url()
-        assert crumbs.eq(3).text() == 'foo'
-        assert crumbs.eq(3).children('a').attr('href') == '/foo'
-        assert crumbs.eq(4).text() == 'bar'
-        assert crumbs.eq(4).children('a').attr('href') == '/bar'
 
 
 def test_summarize_validation():
@@ -232,8 +157,11 @@ def test_pending_activity_log_count_for_developer(
     user = user_factory()
     addon = addon_factory()
     version = addon.current_version
-    amo.log(action1, addon, version, user=user, created=days_ago(2))
-    amo.log(action2, addon, version, user=user, created=days_ago(1))
-    amo.log(action3, addon, version, user=user, created=days_ago(0))
+    ActivityLog.create(action1, addon, version, user=user).update(
+        created=days_ago(2))
+    ActivityLog.create(action2, addon, version, user=user).update(
+        created=days_ago(1))
+    ActivityLog.create(action3, addon, version, user=user).update(
+        created=days_ago(0))
 
     assert helpers.pending_activity_log_count_for_developer(version) == count

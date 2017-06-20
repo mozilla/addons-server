@@ -3,7 +3,7 @@ from collections import defaultdict
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
 
-from olympia.devhub.models import ActivityLog
+from olympia.activity.models import ActivityLog
 from olympia.users.models import UserProfile
 from olympia.amo.utils import render
 

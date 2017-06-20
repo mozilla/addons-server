@@ -1,4 +1,3 @@
-import logging
 import os
 import re
 import shutil
@@ -6,6 +5,7 @@ import shutil
 from django.conf import settings
 from django.db.models import Q
 
+import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.celery import task
@@ -15,7 +15,7 @@ from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
 
-log = logging.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.task')
 
 
 MAIL_SUBJECT = u'Mozilla Add-ons: {addon} has been automatically signed on AMO'
@@ -38,7 +38,7 @@ following documents:
 * Documentation page and FAQ: https://wiki.mozilla.org/Addons/Extension_Signing
 
 If you have any questions or comments on this, please reply to this email or
-join #amo-editors on irc.mozilla.org.
+join #addon-reviewers on irc.mozilla.org.
 
 You're receiving this email because you have an add-on hosted on
 https://addons.mozilla.org
@@ -188,5 +188,5 @@ def sign_addons(addon_ids, force=False, **kw):
                 amo.utils.send_mail(
                     subject, message, recipient_list=emails,
                     fail_silently=True,
-                    headers={'Reply-To': 'amo-editors@mozilla.org'})
+                    headers={'Reply-To': 'amo-admins@mozilla.org'})
                 addons_emailed.add(addon.pk)

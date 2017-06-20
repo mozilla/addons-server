@@ -10,7 +10,7 @@
             "homepage": "",
             "email": "regular@mozilla.com",
             "notifycompat": 1,
-            "bio": null,
+            "biography": null,
             "deleted": 0,
             "username": "regularuser",
             "display_name": "regularuser \u0627\u0644\u062a\u0637\u0628",
@@ -25,18 +25,6 @@
         "pk": 999
     },
     {
-        "pk": 418040,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "clever phrase here",
-            "created": "2009-05-11 22:06:47",
-            "modified": "2009-05-11 22:06:47",
-            "locale": "en-US",
-            "id": 379598,
-            "localized_string_clean": null
-        }
-    },
-    {
         "pk": 10482,
         "model": "users.userprofile",
         "fields": {
@@ -49,7 +37,7 @@
             "homepage": "http://micropipes.com/blog/",
             "email": "clouserw@gmail.com",
             "location": "Portland, OR",
-            "bio": 379598,
+            "biography": "clever phrase here",
             "deleted": 0,
             "username": "clouserw",
             "display_name": "clouserw \u0627\u0644\u062a\u0637\u0628",
@@ -72,7 +60,7 @@
             "homepage": "http://jeffbalogh.org",
             "email": "admin@mozilla.com",
             "notifycompat": 1,
-            "bio": null,
+            "biography": null,
             "deleted": 0,
             "username": "admin",
             "display_name": "admin \u0627\u0644\u062a\u0637\u0628",
@@ -87,6 +75,30 @@
         "pk": 4043307
     },
     {
+        "fields": {
+            "display_collections_fav": 1,
+            "display_collections": 1,
+            "occupation": "",
+            "location": "",
+            "picture_type": "",
+            "averagerating": "",
+            "homepage": "http://mozilla.org",
+            "email": "taskuser@mozilla.com",
+            "notifycompat": 1,
+            "biography": null,
+            "deleted": 0,
+            "username": "mozilla",
+            "display_name": "mozilla taskuser \u0627\u0644\u062a\u0637\u0628",
+            "created": "2009-02-02 11:50:31",
+            "notes": "",
+            "modified": "2010-01-12 17:01:41",
+            "notifyevents": 1,
+            "read_dev_agreement": "2012-08-20 00:00:00",
+            "last_login": "2012-05-22 14:59:28"
+        },
+        "model": "users.userprofile",
+        "pk": 1337
+    },{
         "pk": 5497308,
         "model": "users.userprofile",
         "fields": {
@@ -143,7 +155,7 @@
             "email": "partner@mozilla.com",
             "notifycompat": true,
             "username": "partner",
-            "bio": null,
+            "biography": null,
             "failed_login_attempts": 0,
             "deleted": false,
             "last_login_attempt_ip": "",
@@ -191,7 +203,7 @@
         "pk": 50004,
         "model": "access.group",
         "fields": {
-            "rules": "Addons:Review,Addons:ReviewUnlisted,Reviews:Edit,ReviewerAdminTools:View",
+            "rules": "Addons:Review,Addons:PostReview,Addons:ReviewUnlisted,Reviews:Edit,ReviewerAdminTools:View",
             "modified": "2012-01-27 13:32:08",
             "name": "Senior Add-on Reviewers",
             "created": "2012-01-27 12:41:00"
@@ -244,7 +256,7 @@
             "email": "support-staff@mozilla.com",
             "notifycompat": true,
             "username": "support_staff",
-            "bio": null,
+            "biography": null,
             "failed_login_attempts": 0,
             "deleted": false,
             "last_login_attempt_ip": "127.0.0.1",

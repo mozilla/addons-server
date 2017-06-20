@@ -1,28 +1,27 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.db import IntegrityError
 
-import commonware.log
-
+import olympia.core.logger
 from olympia.access.models import Group, GroupUser
 from olympia.users.models import UserProfile
 
 
 class Command(BaseCommand):
-    help = ('Add a new user to a group. Syntax: \n'
-            '    ./manage.py addusertogroup <user_id|email> <group_id>')
+    help = 'Add a new user to a group.'
 
-    log = commonware.log.getLogger('z.users')
+    log = olympia.core.logger.getLogger('z.users')
+
+    def add_arguments(self, parser):
+        parser.add_argument('user', type=unicode, help='User id or email')
+        parser.add_argument('group_id', type=int, help='Group id')
 
     def handle(self, *args, **options):
-        try:
-            do_adduser(args[0], args[1])
+        do_adduser(options['user'], options['group_id'])
 
-            msg = 'Adding {user} to {group}\n'.format(user=args[0],
-                                                      group=args[1])
-            self.log.info(msg)
-            self.stdout.write(msg)
-        except IndexError:
-            raise CommandError(self.help)
+        msg = 'Adding {user} to {group}\n'.format(
+            user=options['user'], group=options['group_id'])
+        self.log.info(msg)
+        self.stdout.write(msg)
 
 
 def do_adduser(user, group):
@@ -34,10 +33,7 @@ def do_adduser(user, group):
         else:
             raise CommandError('Unknown input for user.')
 
-        if group.isdigit():
-            group = Group.objects.get(pk=group)
-        else:
-            raise CommandError('Group must be a valid ID.')
+        group = Group.objects.get(pk=group)
 
         GroupUser.objects.create(user=user, group=group)
 

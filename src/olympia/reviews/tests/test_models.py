@@ -6,12 +6,11 @@ from django.utils import translation
 
 from olympia import amo
 from olympia.amo import helpers
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import addon_factory, TestCase, ESTestCase, user_factory
 from olympia.addons.models import Addon
-from olympia.devhub.models import ActivityLog
 from olympia.reviews import tasks
-from olympia.reviews.models import (
-    check_spam, GroupedRating, Review, ReviewFlag, Spam)
+from olympia.reviews.models import GroupedRating, Review, ReviewFlag
 from olympia.users.models import UserProfile
 
 
@@ -110,12 +109,20 @@ class TestReviewModel(TestCase):
         assert Review.unfiltered.count() == 3
 
     @mock.patch('olympia.reviews.models.log')
+    def test_author_delete(self, log_mock):
+        review = Review.objects.get(pk=1)
+        review.delete(user_responsible=review.user)
+
+        review.reload()
+        assert ActivityLog.objects.count() == 0
+
+    @mock.patch('olympia.reviews.models.log')
     def test_moderator_delete(self, log_mock):
         moderator = user_factory()
         review = Review.objects.get(pk=1)
         review.update(editorreview=True)
         review.reviewflag_set.create()
-        review.moderator_delete(user=moderator)
+        review.delete(user_responsible=moderator)
 
         review.reload()
         assert ActivityLog.objects.count() == 1
@@ -147,7 +154,7 @@ class TestReviewModel(TestCase):
         review = Review.objects.get(pk=1)
         review.update(editorreview=True)
         review.reviewflag_set.create()
-        review.moderator_approve(user=moderator)
+        review.approve(user=moderator)
 
         review.reload()
         assert ActivityLog.objects.count() == 1
@@ -185,14 +192,13 @@ class TestReviewModel(TestCase):
         assert flag.review == review
 
         # Delete the review: reviewflag.review should still work.
-        review.delete()
+        review.delete(user_responsible=review.user)
         flag = ReviewFlag.objects.get(pk=flag.pk)
         assert flag.review == review
 
     def test_creation_triggers_email_and_logging(self):
         addon = Addon.objects.get(pk=4)
-        addon_author = user_factory()
-        addon.addonuser_set.create(user=addon_author)
+        addon_author = addon.authors.first()
         review_user = user_factory()
         review = Review.objects.create(
             user=review_user, addon=addon,
@@ -332,24 +338,12 @@ class TestGroupedRating(TestCase):
             self.expected_grouped_rating)
 
 
-class TestSpamTest(TestCase):
-    fixtures = ['reviews/test_models']
-
-    def test_create_not_there(self):
-        Review.objects.all().delete()
-        assert Review.objects.count() == 0
-        check_spam(1)
-
-    def test_add(self):
-        assert Spam().add(Review.objects.all()[0], 'numbers')
-
-
 class TestRefreshTest(ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
         super(TestRefreshTest, self).setUp()
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
+        self.addon = addon_factory()
         self.user = UserProfile.objects.all()[0]
         self.refresh()
 

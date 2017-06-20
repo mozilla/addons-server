@@ -7,10 +7,9 @@ from django.http import (Http404, HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import cache_page
-from django.utils.translation import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _
 
 from product_details import product_details
-from mobility.decorators import mobile_template
 
 from olympia import amo
 from olympia.amo.models import manual_order
@@ -18,7 +17,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import render
 from olympia.addons.models import Addon, AddonCategory, Category, FrozenAddon
 from olympia.addons.utils import get_featured_ids, get_creatured_ids
-from olympia.addons.views import BaseFilter, ESBaseFilter
+from olympia.addons.views import BaseFilter
 
 
 languages = dict((lang.lower(), val)
@@ -52,35 +51,30 @@ Locale = collections.namedtuple('Locale', 'locale display native dicts packs')
 
 
 class AddonFilter(BaseFilter):
-    opts = (('featured', _lazy(u'Featured')),
-            ('users', _lazy(u'Most Users')),
-            ('rating', _lazy(u'Top Rated')),
-            ('created', _lazy(u'Newest')))
-    extras = (('name', _lazy(u'Name')),
-              ('popular', _lazy(u'Weekly Downloads')),
-              ('updated', _lazy(u'Recently Updated')),
-              ('hotness', _lazy(u'Up & Coming')))
+    opts = (('featured', _(u'Featured')),
+            ('users', _(u'Most Users')),
+            ('rating', _(u'Top Rated')),
+            ('created', _(u'Newest')))
+    extras = (('name', _(u'Name')),
+              ('popular', _(u'Weekly Downloads')),
+              ('updated', _(u'Recently Updated')),
+              ('hotness', _(u'Up & Coming')))
 
 
 class ThemeFilter(AddonFilter):
-    opts = (('users', _lazy(u'Most Users')),
-            ('rating', _lazy(u'Top Rated')),
-            ('created', _lazy(u'Newest')),
-            ('featured', _lazy(u'Featured')))
-    extras = (('name', _lazy(u'Name')),
-              ('popular', _lazy(u'Weekly Downloads')),
-              ('updated', _lazy(u'Recently Updated')),
-              ('hotness', _lazy(u'Up & Coming')))
-
-
-class ESAddonFilter(ESBaseFilter):
-    opts = AddonFilter.opts
-    extras = AddonFilter.extras
+    opts = (('users', _(u'Most Users')),
+            ('rating', _(u'Top Rated')),
+            ('created', _(u'Newest')),
+            ('featured', _(u'Featured')))
+    extras = (('name', _(u'Name')),
+              ('popular', _(u'Weekly Downloads')),
+              ('updated', _(u'Recently Updated')),
+              ('hotness', _(u'Up & Coming')))
 
 
 def addon_listing(request, addon_types, filter_=AddonFilter, default=None):
     if default is None:
-        default = 'rating' if request.MOBILE else 'featured'
+        default = 'featured'
     # Set up the queryset and filtering for themes & extension listing pages.
     if amo.ADDON_PERSONA in addon_types:
         qs = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
@@ -165,9 +159,8 @@ def themes(request, category=None):
                    'search_cat': '%s,0' % TYPE, 'src': src, 'dl_src': dl_src})
 
 
-@mobile_template('browse/{mobile/}extensions.html')
 @non_atomic_requests
-def extensions(request, category=None, template=None):
+def extensions(request, category=None):
     TYPE = amo.ADDON_EXTENSION
 
     if category is not None:
@@ -175,7 +168,7 @@ def extensions(request, category=None, template=None):
         category = get_object_or_404(q, slug=category)
 
     sort = request.GET.get('sort')
-    if not sort and not request.MOBILE and category and category.count > 4:
+    if not sort and category and category.count > 4:
         return category_landing(request, category)
 
     addons, filter = addon_listing(request, [TYPE])
@@ -187,7 +180,7 @@ def extensions(request, category=None, template=None):
         addons = addons.filter(categories__id=category.id)
 
     addons = amo.utils.paginate(request, addons, count=addons.count())
-    return render(request, template,
+    return render(request, 'browse/extensions.html',
                   {'section': 'extensions', 'addon_type': TYPE,
                    'category': category, 'addons': addons,
                    'filter': filter, 'sorting': sorting,
@@ -197,10 +190,10 @@ def extensions(request, category=None, template=None):
 
 class CategoryLandingFilter(BaseFilter):
 
-    opts = (('featured', _lazy(u'Featured')),
-            ('users', _lazy(u'Most Popular')),
-            ('rating', _lazy(u'Top Rated')),
-            ('created', _lazy(u'Recently Added')))
+    opts = (('featured', _(u'Featured')),
+            ('users', _(u'Most Popular')),
+            ('rating', _(u'Top Rated')),
+            ('created', _(u'Recently Added')))
 
     def __init__(self, request, base, category, key, default):
         self.category = category
@@ -241,10 +234,10 @@ def creatured(request, category):
 
 class PersonasFilter(BaseFilter):
 
-    opts = (('up-and-coming', _lazy(u'Up & Coming')),
-            ('created', _lazy(u'Recently Added')),
-            ('popular', _lazy(u'Most Popular')),
-            ('rating', _lazy(u'Top Rated')))
+    opts = (('up-and-coming', _(u'Up & Coming')),
+            ('created', _(u'Recently Added')),
+            ('popular', _(u'Most Popular')),
+            ('rating', _(u'Top Rated')))
 
     def filter(self, field):
         # Special case with dashes.
@@ -300,9 +293,8 @@ def personas_listing(request, category_slug=None):
     return categories, filter_, base, cat
 
 
-@mobile_template('browse/personas/{mobile/}')
 @non_atomic_requests
-def personas(request, category=None, template=None):
+def personas(request, category=None):
     listing = personas_listing(request, category)
 
     # I guess this was a Complete Theme after all.
@@ -327,12 +319,10 @@ def personas(request, category=None, template=None):
     addons = amo.utils.paginate(request, filter_.qs, PAGINATE_PERSONAS_BY,
                                 count=count)
 
-    if ('sort' not in request.GET and (
-            (request.MOBILE and not cat) or
-            (not request.MOBILE and count > MIN_COUNT_FOR_LANDING))):
-        template += 'category_landing.html'
+    if 'sort' not in request.GET and count > MIN_COUNT_FOR_LANDING:
+        template = 'browse/personas/category_landing.html'
     else:
-        template += 'grid.html'
+        template = 'browse/personas/grid.html'
 
     if cat:
         ids = AddonCategory.creatured_random(cat, request.LANG)
@@ -420,11 +410,11 @@ def legacy_redirects(request, type_, category=None, sort=None, format=None):
 
 
 class SearchToolsFilter(AddonFilter):
-    opts = (('name', _lazy(u'Name')),
-            ('updated', _lazy(u'Updated')),
-            ('created', _lazy(u'Created')),
-            ('popular', _lazy(u'Downloads')),
-            ('rating', _lazy(u'Rating')))
+    opts = (('name', _(u'Name')),
+            ('updated', _(u'Updated')),
+            ('created', _(u'Created')),
+            ('popular', _(u'Downloads')),
+            ('rating', _(u'Rating')))
 
     def filter_featured(self):
         # Featured search add-ons in all locales:
@@ -443,8 +433,8 @@ class SearchToolsFilter(AddonFilter):
 
 
 class SearchExtensionsFilter(AddonFilter):
-    opts = (('popular', _lazy(u'Most Popular')),
-            ('created', _lazy(u'Recently Added')),)
+    opts = (('popular', _(u'Most Popular')),
+            ('created', _(u'Recently Added')),)
 
 
 @non_atomic_requests

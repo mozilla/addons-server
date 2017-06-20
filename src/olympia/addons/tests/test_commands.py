@@ -1,13 +1,16 @@
-import pytest
+import mock
 
 from django.conf import settings
 from django.core.management import call_command
+from django.core.management.base import CommandError
+
+import pytest
 
 from olympia import amo
+from olympia.activity.models import AddonLog
 from olympia.addons.management.commands import approve_addons
-from olympia.amo.tests import addon_factory
-from olympia.devhub.models import AddonLog
-from olympia.editors.models import ReviewerScore
+from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.editors.models import AutoApprovalSummary, ReviewerScore
 
 
 # Where to monkeypatch "lib.crypto.tasks.sign_addons" so it's correctly mocked.
@@ -71,11 +74,13 @@ def test_approve_addons_get_files_incomplete():
 def test_approve_addons_get_files_bad_guid():
     """An add-on with another guid doesn't get approved."""
     addon1 = addon_factory(status=amo.STATUS_NOMINATED, guid='foo')
-    addon1_file = addon1.find_latest_version().files.get()
+    addon1_file = addon1.find_latest_version(
+        amo.RELEASE_CHANNEL_LISTED).files.get()
     addon1_file.update(status=amo.STATUS_AWAITING_REVIEW)
     # Create another add-on that we won't get the files for.
     addon2 = addon_factory(status=amo.STATUS_NOMINATED, guid='bar')
-    addon2_file = addon2.find_latest_version().files.get()
+    addon2_file = addon2.find_latest_version(
+        amo.RELEASE_CHANNEL_LISTED).files.get()
     addon2_file.update(status=amo.STATUS_AWAITING_REVIEW)
     # There's only the addon1's file returned, no other.
     assert approve_addons.get_files(['foo']) == [addon1_file]
@@ -115,7 +120,7 @@ def use_case(request, db):
     addon_status, file_status, review_type = request.param
 
     addon = addon_factory(status=addon_status, guid='foo')
-    version = addon.find_latest_version()
+    version = addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
     file1 = version.files.get()
     file1.update(status=file_status)
     # A second file for good measure.
@@ -197,3 +202,92 @@ def test_approve_addons_get_review_type(use_case):
     """
     addon, file1, _, review_type = use_case
     assert approve_addons.get_review_type(file1) == review_type
+
+
+def test_process_addons_invalid_task():
+    with pytest.raises(CommandError):
+        call_command('process_addons', task='foo')
+
+
+class AddFirefox57TagTestCase(TestCase):
+    @mock.patch('olympia.addons.tasks.add_firefox57_tag.subtask')
+    def test_affects_only_public_webextensions(self, add_firefox57_tag_mock):
+        addon_factory()
+        addon_factory(file_kw={'is_webextension': True,
+                               'status': amo.STATUS_AWAITING_REVIEW},
+                      status=amo.STATUS_NOMINATED)
+        public_webextension = addon_factory(file_kw={'is_webextension': True})
+
+        call_command(
+            'process_addons', task='add_firefox57_tag_to_webextensions')
+
+        assert add_firefox57_tag_mock.call_count == 1
+        add_firefox57_tag_mock.assert_called_with(
+            args=[[public_webextension.pk]], kwargs={})
+
+    def test_task_works(self):
+        self.addon = addon_factory(file_kw={'is_webextension': True})
+        assert self.addon.tags.all().count() == 0
+
+        call_command(
+            'process_addons', task='add_firefox57_tag_to_webextensions')
+
+        assert (
+            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
+            set(['firefox57']))
+
+
+class RecalculateWeightTestCase(TestCase):
+    @mock.patch('olympia.editors.tasks.recalculate_post_review_weight.subtask')
+    def test_only_affects_auto_approved(
+            self, recalculate_post_review_weight_mock):
+        # Non auto-approved add-on, should not be considered.
+        addon_factory()
+
+        # Non auto-approved add-on that has an AutoApprovalSummary entry,
+        # should not be considered.
+        AutoApprovalSummary.objects.create(
+            version=addon_factory().current_version,
+            verdict=amo.NOT_AUTO_APPROVED)
+
+        # Add-on with the current version not auto-approved, should not be
+        # considered.
+        extra_addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=extra_addon.current_version, verdict=amo.AUTO_APPROVED)
+        extra_addon.current_version.update(created=self.days_ago(1))
+        version_factory(addon=extra_addon)
+
+        # Add-on that should be considered because it's current version is
+        # auto-approved.
+        auto_approved_addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=auto_approved_addon.current_version,
+            verdict=amo.AUTO_APPROVED)
+        # Add some extra versions that should not have an impact.
+        version_factory(
+            addon=auto_approved_addon,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version_factory(
+            addon=auto_approved_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        call_command(
+            'process_addons', task='recalculate_post_review_weight')
+
+        assert recalculate_post_review_weight_mock.call_count == 1
+        recalculate_post_review_weight_mock.assert_called_with(
+            args=[[auto_approved_addon.pk]], kwargs={})
+
+    def test_task_works_correctly(self):
+        addon = addon_factory(average_daily_users=100000)
+        summary = AutoApprovalSummary.objects.create(
+            version=addon.current_version, verdict=amo.AUTO_APPROVED)
+        assert summary.weight == 0
+
+        call_command(
+            'process_addons', task='recalculate_post_review_weight')
+
+        summary.reload()
+        # Weight should be 110 because of average_daily_users / 10000 and the
+        # fact there is no file validation result.
+        assert summary.weight == 110

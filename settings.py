@@ -5,7 +5,6 @@ won't be tracked in git).
 
 """
 import os
-import re
 from urlparse import urlparse
 
 from olympia.lib.settings_base import *  # noqa
@@ -40,14 +39,15 @@ CACHES = {
     }
 }
 
-HAS_SYSLOG = False  # syslog is used if HAS_SYSLOG and NOT DEBUG.
+# For local development, we don't need syslog and mozlog loggers.
+USE_SYSLOG = False
+USE_MOZLOG = False
 
 # If you're not running on SSL you'll want this to be False.
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = None
 
 CELERY_ALWAYS_EAGER = False
-CELERY_ROUTES = {}
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
@@ -59,7 +59,7 @@ STYLUS_BIN = os.getenv('STYLUS_BIN', path('node_modules/stylus/bin/stylus'))
 LESS_BIN = os.getenv('LESS_BIN', path('node_modules/less/bin/lessc'))
 CLEANCSS_BIN = os.getenv(
     'CLEANCSS_BIN',
-    path('node_modules/clean-css/bin/cleancss'))
+    path('node_modules/clean-css-cli/bin/cleancss'))
 UGLIFY_BIN = os.getenv(
     'UGLIFY_BIN',
     path('node_modules/uglify-js/bin/uglifyjs'))
@@ -112,10 +112,20 @@ FXA_CONFIG = {
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
         'redirect_url': 'http://localhost:3000/fxa-authenticate',
         'scope': 'profile',
+        'skip_register_redirect': True,
+    },
+    'local': {
+        'client_id': '1778aef72d1adfb3',
+        'client_secret':
+            '3feebe3c009c1a0acdedd009f3530eae2b88859f430fa8bb951ea41f2f859b18',
+        'content_host': 'https://stable.dev.lcip.org',
+        'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
+        'profile_host': 'https://stable.dev.lcip.org/profile/v1',
+        'redirect_url': 'http://localhost:3000/api/v3/accounts/authenticate/',
+        'scope': 'profile',
     },
 }
 FXA_CONFIG['amo'] = FXA_CONFIG['internal']
-FXA_CONFIG['local'] = FXA_CONFIG['internal']
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
@@ -131,6 +141,10 @@ CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
 INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
 # Validation key we need to send in POST response.
 INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
+
+# For the Github webhook API.
+GITHUB_API_USER = ''
+GITHUB_API_TOKEN = ''
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

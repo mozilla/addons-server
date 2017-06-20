@@ -4,8 +4,6 @@
   {{ css('zamboni/themes_review') }}
 {% endblock %}
 
-{% block breadcrumbs %}{% endblock %}
-
 {% block content %}
   <section id="reviewers-score-bar" class="island full c">
     {{ reviewers_score_bar(addon_type=amo.ADDON_PERSONA) }}
@@ -21,7 +19,7 @@
                         queue_counts['themes'])|f(num=queue_counts['themes']) }}
           </a>
         </div>
-        {% if action_allowed('SeniorPersonasTools', 'View') %}
+        {% if action_allowed(amo.permissions.THEME_ADMIN_TOOLS_VIEW) %}
           <div class="editor-stats-title">
             <a href="{{ url('editors.themes.list_flagged') }}">
               {{ ngettext('{num} Flagged Review',
@@ -38,7 +36,7 @@
           </div>
         {% endif %}
         <div class="editor-stats">
-          {% if action_allowed('SeniorPersonasTools', 'View') %}
+          {% if action_allowed(amo.permissions.THEME_ADMIN_TOOLS_VIEW) %}
             {% set queue_types = ['pending_themes', 'flagged_themes', 'rereview_themes'] %}
           {% else %}
             {% set queue_types = ['pending_themes'] %}

@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.http import HttpResponsePermanentRedirect as perma_redirect
 from django.views.generic.base import TemplateView
 
@@ -8,8 +8,7 @@ from olympia.amo.urlresolvers import reverse
 from . import views
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url('^about$',
         TemplateView.as_view(template_name='pages/about.lhtml'),
         name='pages.about'),
@@ -49,6 +48,18 @@ urlpatterns = patterns(
     url('^shield_study_7$',
         TemplateView.as_view(template_name='pages/shield_study_7.html'),
         name='pages.shield_study_7'),
+    url('^shield_study_8$',
+        TemplateView.as_view(template_name='pages/shield_study_8.html'),
+        name='pages.shield_study_8'),
+    url('^shield_study_9$',
+        TemplateView.as_view(template_name='pages/shield_study_9.html'),
+        name='pages.shield_study_9'),
+    url('^shield_study_10$',
+        TemplateView.as_view(template_name='pages/shield_study_10.html'),
+        name='pages.shield_study_10'),
+    url('^shield_study_11$',
+        TemplateView.as_view(template_name='pages/shield_study_11.html'),
+        name='pages.shield_study_11'),
 
     url('^pages/compatibility_firstrun$',
         lambda r: perma_redirect(reverse('pages.acr_firstrun'))),
@@ -66,4 +77,4 @@ urlpatterns = patterns(
         TemplateView.as_view(template_name='pages/sunbird.html'),
         name='pages.sunbird'),
     url('^sunbird/', lambda r: perma_redirect(reverse('pages.sunbird'))),
-)
+]

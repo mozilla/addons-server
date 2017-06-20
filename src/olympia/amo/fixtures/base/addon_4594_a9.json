@@ -55,7 +55,6 @@
             "total_contributions": "0.00",
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": false,
             "thankyou_note": null,
             "admin_review": false,
             "external_software": false,
@@ -66,7 +65,6 @@
             "annoying": 0,
             "modified": "2010-05-24 17:32:41",
             "suggested_amount": null,
-            "site_specific": true,
             "total_reviews": 12,
             "the_reason": null
         }

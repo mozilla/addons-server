@@ -1,39 +1,46 @@
 {% extends "files/base.html" %}
 {% block title -%}
     {% if diff %}
-        {{ _('File Compare :: Editor tools') }}
+        {{ _('File Compare :: Reviewer tools') }}
     {% else %}
-        {{ _('File Viewer :: Editor tools') }}
+        {{ _('File Viewer :: Reviewer tools') }}
     {% endif %}
 {% endblock %}
 
 {% block content %}
 <div id="metadata" class="js-hidden"
+     data-id="{{ addon.id }}"
      data-name="{{ addon.name }}"
      data-slug="{{ addon.slug }}"
      data-version="{{ version }}"
      data-validate-url="{{ validate_url }}"
      {% if validation_data %}data-validation="{{ validation_data|json }}"{% endif %}
-     {% if annotate_url %}data-annotate-url="{{ annotate_url }}"{% endif %}
-     {% if automated_signing %}data-automated-signing="true"{% endif %}
      data-validation-failed="{{ _("Validation failed:") }}"></div>
+
+<div class="modal highlighter-output-broken js-hidden">
+  <h2>{{ _('File content not supported for syntax highlighting') }}</h2>
+  <p>
+   {% trans link_start='<a href="https://github.com/mozilla/addons-server/issues/">'|safe, link_end='</a>'|safe %}
+    The output can be broken, please be careful and {{ link_start }}report an issue{{ link_end }} immediately!
+    {% endtrans %}
+  </p>
+  <p>
+    <a class="close">{{ _('close') }}</a>
+  </p>
+</div>
 
 <h3>
   <a href="{{ file_link['url'] }}">{{ addon.name }} {{ version }}</a>
   {% if file.platform != amo.PLATFORM_ALL.id %}({{ file.get_platform_display() }}){% endif %}
 </h3>
 <div id="breadcrumbs-wrapper">
-  <form method="POST" id="diff-selector">
+  <form method="POST" id="diff-selector" data-no-csrf>
     {{ form.left }}
     {{ form.right }}
     <input type="submit" value="{{ _('Go') }}">
   </form>
-  <ol id="top" class="breadcrumbs">
-    <li><a href="{{ file_link['url'] }}">{{ addon.name }}</a></li>
-    <li><a href="{{ url('addons.versions', addon.slug) }}">{{ version }}</a></li>
-  </ol>
 </div>
-<div id="file-viewer" class="featured{% if automated_signing %} automated-signing{% endif %}">
+<div id="file-viewer" class="featured">
   <div class="featured-inner">
     <div id="file-viewer-inner">
       <div id="messages">
@@ -134,24 +141,6 @@
         {{ _('Fetching file.') }}
         </p>
       </div>
-      {% if automated_signing %}
-        <div id="validation-options">
-          <div>
-            <label>
-              <input type="checkbox" id="signing-hide-unnecessary" checked="true">
-              {{ _('Hide messages not required for automated signing') }}
-            </label>
-          </div>
-          <div id="signing-hide-ignored-container"
-                {% if not (validation_data and validation_data.signing_ignored_summary) %}class="js-hidden"{% endif
-            %}>
-            <label>
-              <input type="checkbox" id="signing-hide-ignored" checked="true">
-              {{ _('Hide messages present in previous version and ignored') }}
-            </label>
-          </div>
-        </div>
-      {% endif %}
       {% include "files/content.html" %}
     </div>
   </div>

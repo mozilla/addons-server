@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
+import json
 import random
 
 from django import test
@@ -7,12 +8,13 @@ from django.conf import settings
 from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
 
-import commonware.log
 from lxml import etree
 import mock
+import pytest
 from mock import patch
 from pyquery import PyQuery as pq
 
+from olympia import amo, core
 from olympia.amo.tests import TestCase
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
@@ -20,6 +22,13 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import check_links, WithDynamicEndpoints
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize('locale', list(settings.LANGUAGES))
+def test_locale_switcher(client, locale):
+    response = client.get('/{}/firefox/'.format(locale))
+    assert response.status_code == 200
 
 
 class Test403(TestCase):
@@ -56,6 +65,21 @@ class Test404(TestCase):
         self.assertTemplateUsed(res, 'amo/404.html')
         links = pq(res.content)('[role=main] ul a[href^="/en-US/thunderbird"]')
         assert links.length == 4
+
+    def test_404_api(self):
+        response = self.client.get('/api/v3/lol')
+        assert response.status_code == 404
+        data = json.loads(response.content)
+        assert data['detail'] == u'Not found.'
+
+    def test_404_with_mobile_detected(self):
+        res = self.client.get('/en-US/firefox/xxxxxxx', X_IS_MOBILE_AGENTS='1')
+        assert res.status_code == 404
+        self.assertTemplateUsed(res, 'amo/404-responsive.html')
+
+        res = self.client.get('/en-US/firefox/xxxxxxx', X_IS_MOBILE_AGENTS='0')
+        assert res.status_code == 404
+        self.assertTemplateUsed(res, 'amo/404.html')
 
 
 class TestCommon(TestCase):
@@ -111,7 +135,7 @@ class TestCommon(TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         assert not request.user.is_developer
-        assert acl.action_allowed(request, 'Addons', 'Review')
+        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
 
         expected = [
             ('Tools', '#'),
@@ -119,7 +143,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Editor Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('editors.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
@@ -131,7 +155,7 @@ class TestCommon(TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         assert request.user.is_developer
-        assert acl.action_allowed(request, 'Addons', 'Review')
+        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
 
         expected = [
             ('Tools', '#'),
@@ -140,7 +164,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Editor Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('editors.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
@@ -149,9 +173,9 @@ class TestCommon(TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         assert not request.user.is_developer
-        assert acl.action_allowed(request, 'Addons', 'Review')
-        assert acl.action_allowed(request, 'Localizer', '%')
-        assert acl.action_allowed(request, 'Admin', '%')
+        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
+        assert acl.action_allowed(request, amo.permissions.LOCALIZER)
+        assert acl.action_allowed(request, amo.permissions.ADMIN)
 
         expected = [
             ('Tools', '#'),
@@ -159,7 +183,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Editor Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('editors.home')),
             ('Admin Tools', reverse('zadmin.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
@@ -172,9 +196,9 @@ class TestCommon(TestCase):
         r = self.client.get(self.url, follow=True)
         request = r.context['request']
         assert request.user.is_developer
-        assert acl.action_allowed(request, 'Addons', 'Review')
-        assert acl.action_allowed(request, 'Localizer', '%')
-        assert acl.action_allowed(request, 'Admin', '%')
+        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
+        assert acl.action_allowed(request, amo.permissions.LOCALIZER)
+        assert acl.action_allowed(request, amo.permissions.ADMIN)
 
         expected = [
             ('Tools', '#'),
@@ -183,7 +207,7 @@ class TestCommon(TestCase):
             ('Submit a New Theme', reverse('devhub.themes.submit')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
-            ('Editor Tools', reverse('editors.home')),
+            ('Reviewer Tools', reverse('editors.home')),
             ('Admin Tools', reverse('zadmin.home')),
         ]
         check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
@@ -233,7 +257,6 @@ class TestOtherStuff(TestCase):
 
         title_eq('/firefox/', 'Firefox', 'Add-ons')
         title_eq('/thunderbird/', 'Thunderbird', 'Add-ons')
-        title_eq('/mobile/extensions/', 'Mobile', 'Mobile Add-ons')
         title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
     @patch('olympia.accounts.utils.default_fxa_login_url',
@@ -260,13 +283,17 @@ class TestOtherStuff(TestCase):
         assert doc('input[type=hidden][name=bar]').attr('value') == 'barval'
 
     @patch.object(settings, 'KNOWN_PROXIES', ['127.0.0.1'])
-    def test_remote_addr(self):
+    @patch.object(core, 'set_remote_addr')
+    def test_remote_addr(self, set_remote_addr_mock):
         """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
         client = test.Client()
         # Send X-Forwarded-For as it shows up in a wsgi request.
         client.get('/en-US/firefox/', follow=True,
-                   HTTP_X_FORWARDED_FOR='1.1.1.1')
-        assert commonware.log.get_remote_addr() == '1.1.1.1'
+                   HTTP_X_FORWARDED_FOR='1.1.1.1',
+                   REMOTE_ADDR='127.0.0.1')
+        assert set_remote_addr_mock.call_count == 2
+        assert set_remote_addr_mock.call_args_list[0] == (('1.1.1.1',), {})
+        assert set_remote_addr_mock.call_args_list[1] == ((None,), {})
 
     @patch.object(settings, 'CDN_HOST', 'https://cdn.example.com')
     def test_jsi18n_caching_and_cdn(self):
@@ -307,7 +334,7 @@ class TestOtherStuff(TestCase):
         assert doc('#site-nav #more .more-mobile a').length == 1
 
     def test_mobile_link_nonfirefox(self):
-        for app in ('thunderbird', 'mobile'):
+        for app in ('thunderbird', 'android'):
             doc = pq(test.Client().get('/' + app, follow=True).content)
             assert doc('#site-nav #more .more-mobile').length == 0
 

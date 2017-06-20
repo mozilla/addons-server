@@ -1,8 +1,12 @@
 import json
 import os
 import zipfile
-from tempfile import NamedTemporaryFile
+import tempfile
+import time
+import shutil
+from datetime import timedelta
 
+import flufl.lock
 import lxml
 import mock
 import pytest
@@ -11,15 +15,18 @@ from django import forms
 from defusedxml.common import EntitiesForbidden, NotSupportedError
 
 from olympia import amo
-from olympia.amo.tests import TestCase
-from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase, create_switch
 from olympia.applications.models import AppVersion
 from olympia.files import utils
-from olympia.files.models import File
-from olympia.versions.models import Version
+from olympia.files.tests.test_helpers import get_file
 
 
 pytestmark = pytest.mark.django_db
+
+
+def _touch(fname):
+    open(fname, 'a').close()
+    os.utime(fname, None)
 
 
 def test_is_beta():
@@ -73,53 +80,6 @@ def test_is_beta():
     assert utils.is_beta('1.2rc.123')
     assert utils.is_beta('1.2rc-1')
     assert utils.is_beta('1.2rc-123')
-
-
-class TestFindJetpacks(TestCase):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        super(TestFindJetpacks, self).setUp()
-        File.objects.update(jetpack_version='1.0')
-        self.file = File.objects.filter(version__addon=3615).get()
-
-    def test_success(self):
-        files = utils.find_jetpacks('1.0', '1.1')
-        assert files == [self.file]
-
-    def test_skip_autorepackage(self):
-        Addon.objects.update(auto_repackage=False)
-        assert utils.find_jetpacks('1.0', '1.1') == []
-
-    def test_minver(self):
-        files = utils.find_jetpacks('1.1', '1.2')
-        assert files == [self.file]
-        assert not files[0].needs_upgrade
-
-    def test_maxver(self):
-        files = utils.find_jetpacks('.1', '1.0')
-        assert files == [self.file]
-        assert not files[0].needs_upgrade
-
-    def test_unreviewed_files_plus_reviewed_file(self):
-        # We upgrade unreviewed files up to the latest reviewed file.
-        v = Version.objects.create(addon_id=3615)
-        new_file = File.objects.create(version=v, jetpack_version='1.0')
-        Version.objects.create(addon_id=3615)
-        new_file2 = File.objects.create(version=v, jetpack_version='1.0')
-        assert new_file.status == amo.STATUS_AWAITING_REVIEW
-        assert new_file2.status == amo.STATUS_AWAITING_REVIEW
-
-        files = utils.find_jetpacks('1.0', '1.1')
-        assert files == [self.file, new_file, new_file2]
-        assert all(f.needs_upgrade for f in files)
-
-        # Now self.file will not need an upgrade since we skip old versions.
-        new_file.update(status=amo.STATUS_PUBLIC)
-        files = utils.find_jetpacks('1.0', '1.1')
-        assert files == [self.file, new_file, new_file2]
-        assert not files[0].needs_upgrade
-        assert all(f.needs_upgrade for f in files[1:])
 
 
 class TestExtractor(TestCase):
@@ -202,7 +162,7 @@ class TestManifestJSONExtractor(TestCase):
     def test_instanciate_without_data(self):
         """Without data, we load the data from the file path."""
         data = {'id': 'some-id'}
-        with NamedTemporaryFile() as file_:
+        with tempfile.NamedTemporaryFile() as file_:
             file_.write(json.dumps(data))
             file_.flush()
             mje = utils.ManifestJSONExtractor(file_.name)
@@ -296,6 +256,27 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_is_webextension(self):
         assert self.parse({})['is_webextension']
+
+    def test_disallow_static_theme(self):
+        manifest = utils.ManifestJSONExtractor(
+            '/fake_path', '{"theme": {}}').parse()
+
+        with pytest.raises(forms.ValidationError) as exc:
+            utils.check_xpi_info(manifest)
+
+        assert (
+            exc.value.message ==
+            'WebExtension theme uploads are currently not supported.')
+
+    def test_allow_static_theme_waffle(self):
+        create_switch('allow-static-theme-uploads')
+
+        manifest = utils.ManifestJSONExtractor(
+            '/fake_path', '{"theme": {}}').parse()
+
+        utils.check_xpi_info(manifest)
+
+        assert self.parse({'theme': {}})['is_static_theme']
 
     def test_is_e10s_compatible(self):
         data = self.parse({})
@@ -493,7 +474,7 @@ def test_extract_translations_simple(file_obj):
 
 
 @mock.patch('olympia.files.utils.zipfile.ZipFile.read')
-def test_extract_translations_fail_silent_missing_file(read_mock, file_obj):
+def test_extract_translations_fail_silent_invalid_file(read_mock, file_obj):
     extension = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
     with amo.tests.copy_file(extension, file_obj.file_path):
@@ -507,11 +488,144 @@ def test_extract_translations_fail_silent_missing_file(read_mock, file_obj):
         # Does not raise an exception too
         utils.extract_translations(file_obj)
 
-        # We only catch KeyError and IOError though
+        # We don't fail on invalid JSON too, this is addons-linter domain
         read_mock.side_effect = ValueError
 
-        with pytest.raises(ValueError):
+        utils.extract_translations(file_obj)
+
+        # But everything else...
+        read_mock.side_effect = TypeError
+
+        with pytest.raises(TypeError):
             utils.extract_translations(file_obj)
+
+
+def test_get_all_files():
+    tempdir = tempfile.mkdtemp()
+
+    os.mkdir(os.path.join(tempdir, 'dir1'))
+
+    _touch(os.path.join(tempdir, 'foo1'))
+    _touch(os.path.join(tempdir, 'dir1', 'foo2'))
+
+    assert utils.get_all_files(tempdir) == [
+        os.path.join(tempdir, 'dir1'),
+        os.path.join(tempdir, 'dir1', 'foo2'),
+        os.path.join(tempdir, 'foo1'),
+    ]
+
+    shutil.rmtree(tempdir)
+    assert not os.path.exists(tempdir)
+
+
+def test_get_all_files_strip_prefix_no_prefix_silent():
+    tempdir = tempfile.mkdtemp()
+
+    os.mkdir(os.path.join(tempdir, 'dir1'))
+
+    _touch(os.path.join(tempdir, 'foo1'))
+    _touch(os.path.join(tempdir, 'dir1', 'foo2'))
+
+    # strip_prefix alone doesn't do anything.
+    assert utils.get_all_files(tempdir, strip_prefix=tempdir) == [
+        os.path.join(tempdir, 'dir1'),
+        os.path.join(tempdir, 'dir1', 'foo2'),
+        os.path.join(tempdir, 'foo1'),
+    ]
+
+
+def test_get_all_files_prefix():
+    tempdir = tempfile.mkdtemp()
+
+    os.mkdir(os.path.join(tempdir, 'dir1'))
+
+    _touch(os.path.join(tempdir, 'foo1'))
+    _touch(os.path.join(tempdir, 'dir1', 'foo2'))
+
+    # strip_prefix alone doesn't do anything.
+    assert utils.get_all_files(tempdir, prefix='/foo/bar') == [
+        '/foo/bar' + os.path.join(tempdir, 'dir1'),
+        '/foo/bar' + os.path.join(tempdir, 'dir1', 'foo2'),
+        '/foo/bar' + os.path.join(tempdir, 'foo1'),
+    ]
+
+
+def test_get_all_files_prefix_with_strip_prefix():
+    tempdir = tempfile.mkdtemp()
+
+    os.mkdir(os.path.join(tempdir, 'dir1'))
+
+    _touch(os.path.join(tempdir, 'foo1'))
+    _touch(os.path.join(tempdir, 'dir1', 'foo2'))
+
+    # strip_prefix alone doesn't do anything.
+    result = utils.get_all_files(
+        tempdir, strip_prefix=tempdir, prefix='/foo/bar')
+    assert result == [
+        os.path.join('/foo', 'bar', 'dir1'),
+        os.path.join('/foo', 'bar', 'dir1', 'foo2'),
+        os.path.join('/foo', 'bar', 'foo1'),
+    ]
+
+
+def test_atomic_lock_with():
+    lock = flufl.lock.Lock('/tmp/test-atomic-lock1.lock')
+
+    assert not lock.is_locked
+
+    lock.lock()
+
+    assert lock.is_locked
+
+    with utils.atomic_lock('/tmp/', 'test-atomic-lock1') as lock_attained:
+        assert not lock_attained
+
+    lock.unlock()
+
+    with utils.atomic_lock('/tmp/', 'test-atomic-lock1') as lock_attained:
+        assert lock_attained
+
+
+def test_atomic_lock_with_lock_attained():
+    with utils.atomic_lock('/tmp/', 'test-atomic-lock2') as lock_attained:
+        assert lock_attained
+
+
+@mock.patch.object(flufl.lock._lockfile, 'CLOCK_SLOP', timedelta(seconds=0))
+def test_atomic_lock_lifetime():
+    def _get_lock():
+        return utils.atomic_lock('/tmp/', 'test-atomic-lock3', lifetime=1)
+
+    with _get_lock() as lock_attained:
+        assert lock_attained
+
+        lock2 = flufl.lock.Lock('/tmp/test-atomic-lock3.lock')
+
+        with pytest.raises(flufl.lock.TimeOutError):
+            # We have to apply `timedelta` to actually raise an exception,
+            # otherwise `.lock()` will wait for 2 seconds and get the lock
+            # for us. We get a `TimeOutError` because we were locking
+            # with a different claim file
+            lock2.lock(timeout=timedelta(seconds=0))
+
+        with _get_lock() as lock_attained2:
+            assert not lock_attained2
+
+        time.sleep(2)
+
+        with _get_lock() as lock_attained2:
+            assert lock_attained2
+
+
+def test_parse_search_empty_shortname():
+    fname = get_file('search_empty_shortname.xml')
+
+    with pytest.raises(forms.ValidationError) as excinfo:
+        utils.parse_search(fname)
+
+    assert (
+        excinfo.value[0] ==
+        'Could not parse uploaded file, missing or empty <ShortName> element')
 
 
 class TestResolvei18nMessage(object):

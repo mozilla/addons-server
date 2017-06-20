@@ -1,15 +1,11 @@
 {% extends "editors/base.html" %}
 
-{% block breadcrumbs %}
-{{ editors_breadcrumbs(items=[(None, _('Signed Beta Files Log'))]) }}
-{% endblock %}
-
 {% block content %}
 <h2>{{ _('Signed Beta Files Log') }}</h2>
 
 <div class="listing results">
   <div class="results-inner controls">
-    <form action="{{ url('editors.beta_signed_log') }}">
+    <form action="{{ url('editors.beta_signed_log') }}" data-no-csrf>
       <p class="date_range">
         {{ form.filter.label_tag() }}
         {{ form.filter }}

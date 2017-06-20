@@ -1,0 +1,345 @@
+.content {
+  width: 100%;
+
+  > div {
+    color: @color-text;
+    padding: 20px;
+
+    @media @medium {
+      margin: 0 auto;
+      max-width: @grid-max;
+      padding: 0 20px;
+    }
+  }
+
+  p {
+    color: @color-text;
+    font-weight: 300;
+  }
+
+  li {
+    color: @color-text;
+    font-weight: 400;
+  }
+}
+
+.scheme-default {
+  background-color: @color-scheme-default-background;
+}
+
+.scheme-light {
+  background-color: @color-scheme-light-background;
+
+  p,
+  li {
+    color: @color-scheme-light-text;
+  }
+
+  &:before,
+  &:after {
+    background-color: @color-scheme-light-background;
+  }
+}
+
+.scheme-medium {
+  background-color: @color-scheme-medium-background;
+
+  p,
+  li {
+    color: @color-scheme-medium-text;
+  }
+
+  &:before,
+  &:after {
+    background-color: @color-scheme-medium-background;
+  }
+}
+
+.scheme-dark {
+  background-color: @color-scheme-dark-background;
+
+  p,
+  li {
+    color: @color-scheme-dark-text;
+  }
+
+  &:before,
+  &:after {
+    background-color: @color-scheme-dark-background;
+  }
+}
+
+.DevHub-content-container {
+  display: flex;
+  position: relative;
+}
+
+.DevHub-content-header {
+  max-width: 66%;
+}
+
+.DevHub-content-image-wrapper {
+  max-width: 33%;
+  padding: 30px 0;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+
+  html[dir=rtl] & {
+    left: 20px;
+    right: auto;
+  }
+}
+
+.DevHub-content-image-wrapper--publish-addon {
+  right: 0;
+
+  html[dir=rtl] & {
+    transform: scaleX(-1);
+    left: 0;
+    right: auto;
+  }
+}
+
+.DevHub-content-copy {
+  position: relative;
+  z-index: 4;
+}
+
+.DevHub-callout-box {
+  border: 8px solid @color-callout-border;
+  background: #fff;
+  // Override default padding on container
+  // with negative margin.
+  margin: 0 -20px -20px;
+  padding: 0 20px 20px;
+  position: relative;
+
+  @media @medium {
+    box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 0.15);
+    margin: -50px auto 0 auto;
+    max-width: 70%;
+  }
+
+  &::after {
+    background-image: url(../../../img/developers/new-landing/ladder.png);
+    background-repeat: no-repeat;
+    content: '';
+    display: block;
+    height: 275px;
+    position: absolute;
+    right: -186px;
+    top: ~"calc(50% - 57px)"; // 57px is from the top of the image to the orange cog.
+    width: 227px;
+
+    html[dir=rtl] & {
+      left: -186px;
+      right: auto;
+      transform: scaleX(-1);
+    }
+
+    @media @retina {
+      background-image: url(../../../img/developers/new-landing/ladder-2x.png);
+      background-size: 100%;
+    }
+  }
+}
+
+.DevHub-callout-header {
+  font-size: 22px;
+  min-height: 50px;
+  padding-right: 35px;
+  position: relative;
+
+  &::after {
+    background: url(../../../img/developers/new-landing/callout-header-fox.svg) no-repeat 100% 50%;
+    content: '';
+    display: inline-block;
+    height: 52px;
+    position: absolute;
+    right: 0;
+    top: ~"calc(50% - 26px)";
+    width: 47px
+  }
+
+  html[dir=rtl] & {
+    padding-right: 0;
+    padding-left: 35px;
+
+    &::after {
+      transform: scaleX(-1);
+      left: 0;
+      right: auto;
+    }
+  }
+}
+
+.DevHub-callout-copy {
+  padding-right: 30px;
+
+  html[dir=rtl] & {
+    padding-left: 30px;
+    padding-right: 0;
+  }
+}
+
+.DevHub-content-header--manage {
+  max-width: 100%;
+  text-align: center;
+}
+
+.DevHub-content-container--manage {
+  flex-direction: column;
+  background-image: url(../../../img/developers/new-landing/manage-addon.png);
+  background-size: auto 50%;
+  background-repeat: no-repeat;
+  background-position: 50% 10px;
+
+  @media @medium {
+    background-position: 30px 100%;
+    background-size: auto 95%;
+
+    html[dir=rtl] & {
+      background-position: 100% 30px;
+    }
+  }
+
+  @media @retina {
+    background-image: url(../../../img/developers/new-landing/manage-addon-2x.png);
+  }
+}
+
+.DevHub-content-copy--manage,
+.DevHub-content-copy--evolution {
+  margin-bottom: 30px;
+  max-width: 100%;
+}
+
+.DevHub-content-copy--manage .Button {
+  display: block;
+}
+
+.DevHub-content-copy--evolution {
+  margin-bottom: 0;
+
+  .Button--evolution {
+    margin: 20px auto 10px;
+  }
+}
+
+@media @small {
+  .DevHub-content-copy {
+    max-width: 66%;
+  }
+
+  .DevHub-content-image-wrapper {
+    max-width: 33%;
+  }
+
+  .DevHub-content-copy--manage,
+  .DevHub-content-copy--evolution {
+    max-width: 100%;
+  }
+}
+
+@media @medium {
+  .DevHub-content-copy,
+  .DevHub-content-image-wrapper {
+    max-width: 50%;
+  }
+
+  .DevHub-content-container--manage {
+    flex-direction: row;
+  }
+
+  .DevHub-content-header--manage {
+    text-align: left;
+    max-width: 66%;
+
+    html[dir=rtl] & {
+      text-align: right;
+    }
+  }
+
+  .DevHub-content-copy .Button {
+    margin: 25px 0 40px 0;
+  }
+
+  .DevHub-content-copy--manage .Button {
+    display: inline-block;
+  }
+
+  .DevHub-content-copy--manage,
+  .DevHub-content-copy--evolution {
+      margin-bottom: 0;
+      width: 50%;
+  }
+
+  .DevHub-publish-addon .DevHub-content-container {
+    padding-bottom: 40px;
+  }
+
+  .DevHub-content-copy {
+    margin: 0 auto 40px auto;
+  }
+
+  .DevHub-content-container {
+    overflow: visible;
+  }
+
+  .DevHub-content-header {
+    max-width: 100%;
+    margin: 60px 0 20px;
+  }
+
+  .DevHub-content-image-wrapper {
+    position: relative;
+    top: 10px;
+    width: 100%;
+
+    &::before {
+      content: '';
+      display: block;
+      // Pad out the wrapper to a percentage
+      // based on the wrapper's width.
+      padding-bottom: 70%;
+
+      .DevHub-publish-addon & {
+        padding-bottom: 60%;
+      }
+    }
+  }
+
+  .DevHub-content-image-wrapper--port-chrome {
+    right: 0;
+  }
+
+  .DevHub-content-image-wrapper--publish-addon {
+    right: 80px;
+
+    html[dir=rtl] & {
+      left: 80px;
+      right: 0;
+    }
+  }
+
+  .DevHub-content-image {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    left: 20px;
+    bottom: 0;
+
+    html[dir=rtl] & {
+      left: 0;
+      right: 20px;
+    }
+  }
+
+  .DevHub-content-image--publish-addon {
+    top: -70px;
+    min-width: 350px;
+    max-width: 115%;
+  }
+}

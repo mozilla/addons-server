@@ -4,9 +4,6 @@
 {% block bodyclass %}gutter{% endblock %}
 
 {% block content %}
-{{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                         (None, addon.name)]) }}
-
 <aside class="secondary">
   {{ addon|sidebar_listing }}
 </aside>

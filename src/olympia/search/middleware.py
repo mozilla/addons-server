@@ -1,16 +1,15 @@
-import logging
-
 from elasticsearch import TransportError
 
+import olympia.core.logger
 from olympia.amo.utils import render
 
 
-log = logging.getLogger('z.es')
+log = olympia.core.logger.getLogger('z.es')
 
 
 class ElasticsearchExceptionMiddleware(object):
 
     def process_exception(self, request, exception):
         if issubclass(exception.__class__, TransportError):
-            log.error(u'Elasticsearch error: %s' % exception)
+            log.exception(u'Elasticsearch error')
             return render(request, 'search/down.html', status=503)

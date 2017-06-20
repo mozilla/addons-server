@@ -4,7 +4,6 @@ import re
 import hmac
 import urllib
 from threading import local
-from urlparse import urlparse
 
 import bleach
 import jinja2
@@ -13,6 +12,7 @@ from django.conf import settings
 from django.core import urlresolvers
 from django.utils.encoding import force_bytes
 from django.utils.translation.trans_real import parse_accept_lang_header
+from django.utils.http import _urlparse as urlparse
 
 from olympia import amo
 
@@ -52,11 +52,13 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
     # Blank out the script prefix since we add that in prefixer.fix().
     if prefixer:
         prefix = prefix or '/'
+
     url = django_reverse(viewname, urlconf, args, kwargs, prefix, current_app)
     if prefixer and add_prefix:
         return prefixer.fix(url)
     else:
         return url
+
 
 # Replace Django's reverse with our own.
 urlresolvers.reverse = reverse
@@ -69,6 +71,7 @@ def resolve(path, urlconf=None):
         _lang, _platform, path_fragment = prefixer.split_path(path)
         path = '/%s' % path_fragment
     return django_resolve(path, urlconf)
+
 
 # Replace Django's resolve with our own.
 urlresolvers.resolve = resolve

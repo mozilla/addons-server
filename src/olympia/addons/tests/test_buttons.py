@@ -11,8 +11,7 @@ import pytest
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.addons.buttons import (
-    big_install_button, install_button, mobile_install_button)
+from olympia.addons.buttons import big_install_button, install_button
 
 
 def setup():
@@ -73,14 +72,11 @@ class ButtonTest(TestCase):
         }
 
     @patch('olympia.addons.buttons.jingo.Environment.get_template')
-    def get_button(self, t_mock, is_mobile=False, **kwargs):
+    def get_button(self, t_mock, **kwargs):
         """Proxy for calling install_button."""
         template_mock = Mock()
         t_mock.return_value = template_mock
-        if is_mobile:
-            mobile_install_button(self.context, self.addon, **kwargs)
-        else:
-            install_button(self.context, self.addon, **kwargs)
+        install_button(self.context, self.addon, **kwargs)
         # Extract button from the kwargs from the first call.
         return template_mock.render.call_args[0][0]['button']
 
@@ -196,19 +192,6 @@ class TestButton(ButtonTest):
         assert b.show_contrib
         assert b.button_class == ['contrib', 'go']
         assert b.install_class == ['contrib']
-
-    def test_show_contrib_mobile(self):
-        """Contributions are not shown on mobile."""
-        b = self.get_button(is_mobile=True)
-        assert not b.show_contrib
-
-        self.addon.takes_contributions = True
-        b = self.get_button(is_mobile=True)
-        assert not b.show_contrib
-
-        self.addon.annoying = amo.CONTRIB_ROADBLOCK
-        b = self.get_button(is_mobile=True)
-        assert not b.show_contrib
 
     def test_show_warning(self):
         b = self.get_button()

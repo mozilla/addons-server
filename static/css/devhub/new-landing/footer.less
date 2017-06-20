@@ -1,0 +1,57 @@
+.DevHub-Footer {
+  background-color: @color-scheme-default-background;
+  margin: 60px 0 0;
+
+  a {
+    .link(@color-button-default);
+  }
+
+  &.scheme-light {
+    background-color: @color-scheme-light-background;
+  }
+}
+
+.DevHub-Footer-sections {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.DevHub-Footer-sections-header {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.DevHub-Footer-section {
+  width: 300px;
+  margin-bottom: 20px;
+  font-size: 13px;
+
+  h4 {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.DevHub-Footer-LanguageSwitcher {
+  justify-content: flex-end;
+
+  label {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 10px 0 4px;
+    text-transform: none;
+  }
+}

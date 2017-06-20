@@ -21,6 +21,7 @@ import sqlalchemy.pool as pool
 from django.utils import importlib
 settings = importlib.import_module(settingmodule)
 
+import olympia.core.logger
 from olympia.lib.log_settings_base import formatters, handlers
 
 # Ugh. But this avoids any olympia models or django imports at all.
@@ -28,7 +29,6 @@ from olympia.lib.log_settings_base import formatters, handlers
 # remove all this.
 from olympia.constants.applications import APPS_ALL
 from olympia.constants.platforms import PLATFORMS
-from olympia.constants.base import STATUS_DISABLED
 
 
 # This is not DRY: it's a copy of amo.helpers.user_media_path, to avoid an
@@ -85,12 +85,8 @@ version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                           """, re.VERBOSE)
 
 
-def get_mirror(status, id, row):
-    if row['disabled_by_user'] or status == STATUS_DISABLED:
-        host = settings.PRIVATE_MIRROR_URL
-    else:
-        host = user_media_url('addons')
-
+def get_cdn_url(id, row):
+    host = user_media_url('addons')
     url = posixpath.join(host, str(id), row['filename'])
     params = urllib.urlencode({'filehash': row['hash']})
     return '{0}?{1}'.format(url, params)
@@ -128,10 +124,5 @@ def log_exception(data):
     # Note: although this logs exceptions, it logs at the info level so that
     # on prod, we log at the error level and result in no logs on prod.
     typ, value, discard = sys.exc_info()
-    error_log = logging.getLogger('z.update')
+    error_log = olympia.core.logger.getLogger('z.update')
     error_log.exception(u'Type: %s, %s. Data: %s' % (typ, value, data))
-
-
-def log_info(msg):
-    error_log = logging.getLogger('z.update')
-    error_log.info(msg)

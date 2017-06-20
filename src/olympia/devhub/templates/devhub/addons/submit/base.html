@@ -1,16 +1,25 @@
 {% extends "devhub/base.html" %}
 
-
-{% set title = _('Submit a New Add-on') %}
+{% if submit_page == 'file' %}
+  {% set title = _('Submit a New File') %}
+{% elif submit_page == 'version' %}
+  {% set title = _('Submit a New Version') %}
+{% else %}
+  {% set title = _('Submit a New Add-on') %}
+{% endif %}
 
 {% block title %}
 {{ dev_page_title(title) }}
 {% endblock %}
 
 {% block content %}
-{% set page_title = _('Submit Add-on') %}
+{% if submit_notification_warning %}
+    <div class="notification-box warning">
+        {# The submit notification warning is controlled by admins, HTML is allowed #}
+        {{ submit_notification_warning|safe }}
+    </div>
+{% endif %}
 <header>
-  {{ dev_breadcrumbs(items=[(None, page_title)]) }}
   <h2 class="is_addon">{{ title }}</h2>
 </header>
 

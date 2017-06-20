@@ -17,11 +17,13 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
+from olympia.accounts.views import API_TOKEN_COOKIE
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo.helpers import urlparams
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
-from olympia.devhub.models import ActivityLog
+from olympia.constants.categories import CATEGORIES
 from olympia.reviews.models import Review
 from olympia.users import notifications as email
 from olympia.users.models import UserProfile, UserNotification
@@ -119,34 +121,40 @@ class TestEdit(UserViewBase):
         self.client.login(email='jbalogh@mozilla.com')
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
-        self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                     'lang': 'en-US'}
+        self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com'}
 
     def test_edit_bio(self):
-        assert self.get_profile().bio is None
+        assert self.get_profile().biography is None
 
         data = {'username': 'jbalogh',
                 'email': 'jbalogh.changed@mozilla.com',
-                'bio': 'xxx unst unst',
-                'lang': 'en-US'}
+                'biography': 'xxx unst unst'}
 
         r = self.client.post(self.url, data, follow=True)
         self.assert3xx(r, self.url)
-        self.assertContains(r, data['bio'])
-        assert unicode(self.get_profile().bio) == data['bio']
+        self.assertContains(r, data['biography'])
+        assert unicode(self.get_profile().biography) == data['biography']
 
-        data['bio'] = 'yyy unst unst'
+        data['biography'] = 'yyy unst unst'
         r = self.client.post(self.url, data, follow=True)
         self.assert3xx(r, self.url)
-        self.assertContains(r, data['bio'])
-        assert unicode(self.get_profile().bio) == data['bio']
+        self.assertContains(r, data['biography'])
+        assert unicode(self.get_profile().biography) == data['biography']
+
+    def test_bio_no_links(self):
+        self.data.update(biography='<a href="https://google.com">google</a>')
+        response = self.client.post(self.url, self.data, follow=True)
+        assert response.status_code == 200
+        print response.context
+        self.assertFormError(response, 'form', 'biography',
+                             u'No links are allowed.')
 
     def check_default_choices(self, choices, checked=True):
         doc = pq(self.client.get(self.url).content)
         assert doc('input[name=notifications]:checkbox').length == len(choices)
-        for id, label in choices:
-            box = doc('input[name=notifications][value="%s"]' % id)
-            if checked:
+        for id_, label in choices:
+            box = doc('input[name=notifications][value="%s"]' % id_)
+            if checked and id_ in email.NOTIFICATIONS_DEFAULT:
                 assert box.filter(':checked').length == 1
             else:
                 assert box.length == 1
@@ -155,18 +163,6 @@ class TestEdit(UserViewBase):
                 # Check for "NEW" message.
                 assert parent.find('.msg').length == 1
             assert parent.remove('.msg, .req').text() == label
-
-    def post_notifications(self, choices):
-        self.check_default_choices(choices)
-
-        self.data['notifications'] = []
-        r = self.client.post(self.url, self.data)
-        self.assert3xx(r, self.url, 302)
-
-        assert UserNotification.objects.count() == len(email.NOTIFICATIONS)
-        assert UserNotification.objects.filter(enabled=True).count() == (
-            len(filter(lambda x: x.mandatory, email.NOTIFICATIONS)))
-        self.check_default_choices(choices, checked=False)
 
     def test_edit_notifications(self):
         # Make jbalogh a developer.
@@ -193,7 +189,19 @@ class TestEdit(UserViewBase):
         assert doc('.more-all').length == len(email.NOTIFICATION_GROUPS)
 
     def test_edit_notifications_non_dev(self):
-        self.post_notifications(email.NOTIFICATIONS_CHOICES_NOT_DEV)
+        choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
+        notifications_not_dev = [
+            n for n in email.NOTIFICATIONS if n.group != 'dev']
+        self.check_default_choices(choices)
+
+        self.data['notifications'] = []
+        r = self.client.post(self.url, self.data)
+        self.assert3xx(r, self.url, 302)
+
+        assert UserNotification.objects.count() == len(notifications_not_dev)
+        assert UserNotification.objects.filter(enabled=True).count() == (
+            len(filter(lambda x: x.mandatory, notifications_not_dev)))
+        self.check_default_choices(choices, checked=False)
 
     def test_edit_notifications_non_dev_error(self):
         self.data['notifications'] = [2, 4, 6]
@@ -205,22 +213,6 @@ class TestEdit(UserViewBase):
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('#profile-misc').length == 1
-
-    def test_remove_locale_bad_request(self):
-        r = self.client.post(self.user.get_user_url('remove-locale'))
-        assert r.status_code == 400
-
-    @patch.object(UserProfile, 'remove_locale')
-    def test_remove_locale(self, remove_locale_mock):
-        r = self.client.post(self.user.get_user_url('remove-locale'),
-                             {'locale': 'el'})
-        assert r.status_code == 200
-        remove_locale_mock.assert_called_with('el')
-
-    def test_remove_locale_default_locale(self):
-        r = self.client.post(self.user.get_user_url('remove-locale'),
-                             {'locale': settings.LANGUAGE_CODE})
-        assert r.status_code == 400
 
 
 class TestEditAdmin(UserViewBase):
@@ -243,12 +235,6 @@ class TestEditAdmin(UserViewBase):
         return UserProfile.objects.get(pk=10482)
 
     def test_edit(self):
-        res = self.client.get(self.url)
-        assert res.status_code == 200
-
-    def test_edit_without_user_lang(self):
-        self.regular.lang = None
-        self.regular.save()
         res = self.client.get(self.url)
         assert res.status_code == 200
 
@@ -453,10 +439,14 @@ class TestLogout(UserViewBase):
 
     def test_session_cookie_deleted_on_logout(self):
         self.client.login(email='jbalogh@mozilla.com')
+        self.client.cookies[API_TOKEN_COOKIE] = 'some.token.value'
         r = self.client.get(reverse('users.logout'))
         cookie = r.cookies[settings.SESSION_COOKIE_NAME]
         assert cookie.value == ''
         assert cookie['expires'] == u'Thu, 01-Jan-1970 00:00:00 GMT'
+        jwt_cookie = r.cookies[API_TOKEN_COOKIE]
+        assert jwt_cookie.value == ''
+        assert jwt_cookie['expires'] == u'Thu, 01-Jan-1970 00:00:00 GMT'
 
 
 class TestRegistration(UserViewBase):
@@ -600,13 +590,14 @@ class TestProfileSections(TestCase):
         assert items('.install[data-addon="5299"]').length == 1
 
     def test_my_unlisted_addons(self):
-        """I can't see my own unlisted addons on my profile page."""
+        """I can't see my own unlisted addons on my profile page (because
+        we filter by status through .valid())."""
         assert pq(self.client.get(self.url).content)(
             '.num-addons a').length == 0
 
         AddonUser.objects.create(user=self.user, addon_id=3615)
-        Addon.objects.get(pk=5299).update(is_listed=False)
         AddonUser.objects.create(user=self.user, addon_id=5299)
+        self.make_addon_unlisted(Addon.objects.get(pk=5299))
 
         r = self.client.get(self.url)
         assert list(r.context['addons'].object_list) == [
@@ -618,14 +609,15 @@ class TestProfileSections(TestCase):
         assert items('.install[data-addon="3615"]').length == 1
 
     def test_not_my_unlisted_addons(self):
-        """I can't see others' unlisted addons on their profile pages."""
+        """I can't see others' unlisted addons on their profile pages (because
+        we filter by status through .valid())."""
         res = self.client.get('/user/999/', follow=True)
         assert pq(res.content)('.num-addons a').length == 0
 
         user = UserProfile.objects.get(pk=999)
         AddonUser.objects.create(user=user, addon_id=3615)
-        Addon.objects.get(pk=5299).update(is_listed=False)
         AddonUser.objects.create(user=user, addon_id=5299)
+        self.make_addon_unlisted(Addon.objects.get(pk=5299))
 
         r = self.client.get('/user/999/', follow=True)
         assert list(r.context['addons'].object_list) == [
@@ -667,6 +659,12 @@ class TestProfileSections(TestCase):
         # Edit Review form should be present.
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
 
+    def _get_reviews(self, username):
+        self.client.login(email=username)
+        r = self.client.get(reverse('users.profile', args=[999]))
+        doc = pq(r.content)('#reviews')
+        return doc('#review-218207 .item-actions a.delete-review')
+
     def test_my_reviews_delete_link(self):
         review = Review.objects.filter(reply_to=None)[0]
         review.user_id = 999
@@ -675,41 +673,50 @@ class TestProfileSections(TestCase):
         slug = Addon.objects.get(id=review.addon_id).slug
         delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
 
-        def _get_reviews(username):
-            self.client.login(email=username)
-            r = self.client.get(reverse('users.profile', args=[999]))
-            doc = pq(r.content)('#reviews')
-            return doc('#review-218207 .item-actions a.delete-review')
-
         # Admins get the Delete Review link.
-        r = _get_reviews(username='admin@mozilla.com')
+        r = self._get_reviews(username='admin@mozilla.com')
         assert r.length == 1
         assert r.attr('href') == delete_url
 
-        # Editors get the Delete Review link.
-        r = _get_reviews(username='editor@mozilla.com')
-        assert r.length == 1
-        assert r.attr('href') == delete_url
+        # Editors don't get the Delete Review link
+        # (unless it's pending moderation).
+        r = self._get_reviews(username='editor@mozilla.com')
+        assert r.length == 0
 
         # Author gets the Delete Review link.
-        r = _get_reviews(username='regular@mozilla.com')
+        r = self._get_reviews(username='regular@mozilla.com')
         assert r.length == 1
         assert r.attr('href') == delete_url
 
         # Other user does not get the Delete Review link.
-        r = _get_reviews(username='clouserw@gmail.com')
+        r = self._get_reviews(username='clouserw@gmail.com')
         assert r.length == 0
+
+    def test_my_reviews_delete_link_moderated(self):
+        review = Review.objects.filter(reply_to=None)[0]
+        review.user_id = 999
+        review.editorreview = True
+        review.save()
+        cache.clear()
+        slug = Addon.objects.get(id=review.addon_id).slug
+        delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
+
+        # Editors get the Delete Review link
+        # because the review is pending moderation
+        r = self._get_reviews(username='editor@mozilla.com')
+        assert r.length == 1
+        assert r.attr('href') == delete_url
 
     def test_my_reviews_no_pagination(self):
         r = self.client.get(self.url)
-        assert len(self.user.addons_listed) <= 10, (
+        assert self.user.num_addons_listed <= 10, (
             'This user should have fewer than 10 add-ons.')
         assert pq(r.content)('#my-addons .paginator').length == 0
 
     def test_my_reviews_pagination(self):
         for i in xrange(20):
             AddonUser.objects.create(user=self.user, addon_id=3615)
-        assert len(self.user.addons_listed) > 10, (
+        assert self.user.num_addons_listed > 10, (
             'This user should have way more than 10 add-ons.')
         r = self.client.get(self.url)
         assert pq(r.content)('#my-addons .paginator').length == 1
@@ -789,6 +796,22 @@ class TestProfileSections(TestCase):
         assert doc('#popup-staging #report-user-modal.modal').length == 0
         self.assertTemplateNotUsed(r, 'users/report_abuse.html')
 
+    def test_biography_escaping(self):
+        self.user.update(
+            biography=u'<script>alert("xss")</script>'
+                      u'line\r\nbreak'
+                      u'<a href="http://spam.com/">linkylink</a>'
+                      u'<b>acceptably bold</b>')
+        assert '<script>' in self.user.biography
+        response = self.client.get(self.url)
+        assert '<script>' not in response.content
+        assert 'http://spam.com/' not in response.content
+
+        assert 'alert("xss")' in response.content
+        assert 'line<br>break' in response.content
+        assert 'linkylink' in response.content
+        assert '<b>acceptably bold</b>' in response.content
+
 
 class TestThemesProfile(TestCase):
     fixtures = ['base/user_2519']
@@ -847,13 +870,16 @@ class TestThemesProfile(TestCase):
         assert res.status_code == 200
 
     def test_themes_category(self):
-        self.theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        self.theme.addonuser_set.create(user=self.user, listed=True)
-        cat = Category.objects.create(type=amo.ADDON_PERSONA, slug='swag')
-        self.theme.addoncategory_set.create(category=cat)
+        static_category = (
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_PERSONA]['fashion'])
+        category, _ = Category.objects.get_or_create(
+            id=static_category.id, defaults=static_category.__dict__)
+
+        self.theme = amo.tests.addon_factory(
+            type=amo.ADDON_PERSONA, users=[self.user], category=category)
 
         res = self.client.get(
-            self.user.get_user_url('themes', args=[cat.slug]))
+            self.user.get_user_url('themes', args=[category.slug]))
         self._test_good(res)
 
 

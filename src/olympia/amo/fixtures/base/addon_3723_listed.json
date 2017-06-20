@@ -33,7 +33,6 @@
             "total_contributions": "0.00",
             "default_locale": "ja",
             "target_locale": null,
-            "prerelease": false,
             "thankyou_note": null,
             "admin_review": false,
             "external_software": false,
@@ -45,7 +44,6 @@
             "modified": "2010-08-11 15:30:31",
             "summary": null,
             "suggested_amount": null,
-            "site_specific": false,
             "total_reviews": 2,
             "the_reason": null
         }
@@ -84,7 +82,7 @@
             "homepage": "",
             "email": "dd+b2f47812c@davedash.com",
             "location": "",
-            "bio": null,
+            "biography": null,
             "deleted": false,
             "username": "8735",
             "display_name": "8735 \u0627\u0644\u062a\u0637\u0628",

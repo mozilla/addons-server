@@ -3,7 +3,6 @@ import contextlib
 import glob
 import hashlib
 import json
-import logging
 import os
 import re
 import shutil
@@ -14,30 +13,30 @@ import tempfile
 import zipfile
 
 from cStringIO import StringIO as cStringIO
-from datetime import datetime
-from itertools import groupby
+from datetime import datetime, timedelta
 from xml.dom import minidom
 from zipfile import BadZipfile, ZipFile
 
 from django import forms
 from django.conf import settings
-from django.core.cache import cache
 from django.core.files.storage import (
     default_storage as storage, File as DjangoFile)
 from django.utils.jslex import JsLexer
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
+import flufl.lock
 import rdflib
 import waffle
 
-from olympia import amo
+import olympia.core.logger
+from olympia import amo, core
 from olympia.amo.utils import rm_local_tmp_dir, find_language, decode_json
 from olympia.applications.models import AppVersion
 from olympia.versions.compare import version_int as vint
 from olympia.lib.safe_xml import lxml
 
 
-log = logging.getLogger('z.files.utils')
+log = olympia.core.logger.getLogger('z.files.utils')
 
 
 class ParseError(forms.ValidationError):
@@ -60,6 +59,11 @@ default = (
     'locale=%APP_LOCALE%&currentAppVersion=%CURRENT_APP_VERSION%&'
     'updateType=%UPDATE_TYPE%'
 )
+
+# number of times this lock has been aquired and not yet released
+# could be helpful to debug potential race-conditions and multiple-locking
+# scenarios.
+_lock_count = {}
 
 
 def get_filepath(fileorpath):
@@ -245,12 +249,14 @@ class RDFExtractor(object):
 
     def apps(self):
         rv = []
+        seen_apps = set()
         for ctx in self.rdf.objects(None, self.uri('targetApplication')):
             app = amo.APP_GUIDS.get(self.find('id', ctx))
             if not app:
                 continue
-            if app.guid not in amo.APP_GUIDS:
+            if app.guid not in amo.APP_GUIDS or app.id in seen_apps:
                 continue
+            seen_apps.add(app.id)
             try:
                 min_appver, max_appver = get_appversions(
                     app,
@@ -260,6 +266,7 @@ class RDFExtractor(object):
                 continue
             rv.append(Extractor.App(
                 appdata=app, id=app.id, min=min_appver, max=max_appver))
+
         return rv
 
 
@@ -327,7 +334,7 @@ class ManifestJSONExtractor(object):
 
         if self.guid is None and doesnt_support_no_id:
             raise forms.ValidationError(
-                _('GUID is required for Firefox 47 and below.')
+                ugettext('GUID is required for Firefox 47 and below.')
             )
 
         couldnt_find_version = False
@@ -365,7 +372,7 @@ class ManifestJSONExtractor(object):
         specified_versions = self.strict_min_version or self.strict_max_version
 
         if couldnt_find_version and specified_versions:
-            msg = _(
+            msg = ugettext(
                 'Cannot find min/max version. Maybe '
                 '"strict_min_version" or "strict_max_version" '
                 'contains an unsupported version?')
@@ -384,6 +391,9 @@ class ManifestJSONExtractor(object):
             'is_webextension': True,
             'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
             'default_locale': self.get('default_locale'),
+            'permissions': self.get('permissions', []),
+            'content_scripts': self.get('content_scripts', []),
+            'is_static_theme': 'theme' in self.data
         }
 
 
@@ -391,8 +401,13 @@ def extract_search(content):
     rv = {}
     dom = minidom.parse(content)
 
-    def text(x):
-        return dom.getElementsByTagName(x)[0].childNodes[0].wholeText
+    def text(tag):
+        try:
+            return dom.getElementsByTagName(tag)[0].childNodes[0].wholeText
+        except (IndexError, AttributeError):
+            raise forms.ValidationError(
+                ugettext('Could not parse uploaded file, missing or empty '
+                         '<%s> element') % tag)
 
     rv['name'] = text('ShortName')
     rv['description'] = text('Description')
@@ -407,7 +422,7 @@ def parse_search(fileorpath, addon=None):
         raise
     except Exception:
         log.error('OpenSearch parse error', exc_info=True)
-        raise forms.ValidationError(_('Could not parse uploaded file.'))
+        raise forms.ValidationError(ugettext('Could not parse uploaded file.'))
 
     return {'guid': None,
             'type': amo.ADDON_SEARCH,
@@ -444,17 +459,17 @@ class SafeUnzip(object):
                 log.error('Extraction error, invalid file name (%s) in '
                           'archive: %s' % (info.filename, self.source))
                 # L10n: {0} is the name of the invalid file.
-                raise forms.ValidationError(
-                    _('Invalid file name in archive: {0}').format(
-                        info.filename))
+                msg = ugettext('Invalid file name in archive: {0}')
+                raise forms.ValidationError(msg.format(info.filename))
 
             if info.file_size > settings.FILE_UNZIP_SIZE_LIMIT:
                 log.error('Extraction error, file too big (%s) for file (%s): '
                           '%s' % (self.source, info.filename, info.file_size))
                 # L10n: {0} is the name of the invalid file.
                 raise forms.ValidationError(
-                    _('File exceeding size limit in archive: {0}').format(
-                        info.filename))
+                    ugettext(
+                        'File exceeding size limit in archive: {0}'
+                    ).format(info.filename))
 
         self.info_list = info_list
         self.zip_file = zip_file
@@ -504,7 +519,7 @@ class SafeUnzip(object):
             if size != info.file_size:
                 log.error('Extraction error, uncompressed size: %s, %s not %s'
                           % (self.source, size, info.file_size))
-                raise forms.ValidationError(_('Invalid archive.'))
+                raise forms.ValidationError(ugettext('Invalid archive.'))
 
     def extract_to_dest(self, dest):
         """Extracts the zip file to a directory."""
@@ -513,6 +528,13 @@ class SafeUnzip(object):
 
     def close(self):
         self.zip_file.close()
+
+    @property
+    def filelist(self):
+        return self.zip_file.filelist
+
+    def read(self, filename):
+        return self.zip_file.read(filename)
 
 
 def extract_zip(source, remove=False, fatal=True):
@@ -547,7 +569,42 @@ def copy_over(source, dest):
     shutil.rmtree(source)
 
 
-def extract_xpi(xpi, path, expand=False):
+def get_all_files(folder, strip_prefix='', prefix=None):
+    """Return all files in a file/directory tree.
+
+    :param folder: The folder of which to return the file-tree.
+    :param strip_prefix str: A string to strip in case we're adding a custom
+                             `prefix` Doesn't have any implications if
+                             `prefix` isn't given.
+    :param prefix: A custom prefix to add to all files and folders.
+    """
+
+    all_files = []
+
+    # Not using os.path.walk so we get just the right order.
+    def iterate(path):
+        path_dirs, path_files = storage.listdir(path)
+        for dirname in sorted(path_dirs):
+            full = os.path.join(path, dirname)
+            all_files.append(full)
+            iterate(full)
+
+        for filename in sorted(path_files):
+            full = os.path.join(path, filename)
+            all_files.append(full)
+
+    iterate(folder)
+
+    if prefix is not None:
+        # This is magic: strip the prefix, e.g /tmp/ and prepend the prefix
+        all_files = [
+            os.path.join(prefix, fname[len(strip_prefix) + 1:])
+            for fname in all_files]
+
+    return all_files
+
+
+def extract_xpi(xpi, path, expand=False, verify=True):
     """
     If expand is given, will look inside the expanded file
     and find anything in the allow list and try and expand it as well.
@@ -559,6 +616,7 @@ def extract_xpi(xpi, path, expand=False):
     """
     expand_allow_list = ['.crx', '.jar', '.xpi', '.zip']
     tempdir = extract_zip(xpi)
+    all_files = get_all_files(tempdir)
 
     if expand:
         for x in xrange(0, 10):
@@ -569,6 +627,8 @@ def extract_xpi(xpi, path, expand=False):
                         src = os.path.join(root, name)
                         if not os.path.isdir(src):
                             dest = extract_zip(src, remove=True, fatal=False)
+                            all_files.extend(get_all_files(
+                                dest, strip_prefix=tempdir, prefix=src))
                             if dest:
                                 copy_over(dest, src)
                                 flag = True
@@ -576,6 +636,7 @@ def extract_xpi(xpi, path, expand=False):
                 break
 
     copy_over(tempdir, path)
+    return all_files
 
 
 def parse_xpi(xpi, addon=None, check=True):
@@ -594,10 +655,12 @@ def parse_xpi(xpi, addon=None, check=True):
         else:
             errno, strerror = e
         log.error('I/O error({0}): {1}'.format(errno, strerror))
-        raise forms.ValidationError(_('Could not parse the manifest file.'))
+        raise forms.ValidationError(ugettext(
+            'Could not parse the manifest file.'))
     except Exception:
         log.error('XPI parse error', exc_info=True)
-        raise forms.ValidationError(_('Could not parse the manifest file.'))
+        raise forms.ValidationError(ugettext(
+            'Could not parse the manifest file.'))
     finally:
         rm_local_tmp_dir(path)
 
@@ -620,12 +683,13 @@ def check_xpi_info(xpi_info, addon=None):
     if addon and not guid and is_webextension:
         xpi_info['guid'] = guid = addon.guid
     if not guid and not is_webextension:
-        raise forms.ValidationError(_("Could not find an add-on ID."))
+        raise forms.ValidationError(ugettext('Could not find an add-on ID.'))
 
     if guid:
-        if amo.get_user():
+        current_user = core.get_user()
+        if current_user:
             deleted_guid_clashes = Addon.unfiltered.exclude(
-                authors__id=amo.get_user().id).filter(guid=guid)
+                authors__id=current_user.id).filter(guid=guid)
         else:
             deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
         guid_too_long = (
@@ -634,27 +698,33 @@ def check_xpi_info(xpi_info, addon=None):
         )
         if guid_too_long:
             raise forms.ValidationError(
-                _("Add-on ID must be 64 characters or less."))
+                ugettext('Add-on ID must be 64 characters or less.'))
         if addon and addon.guid != guid:
-            msg = _(
-                "The add-on ID in your manifest.json or install.rdf (%s) "
-                "does not match the ID of your add-on on AMO (%s)")
+            msg = ugettext(
+                'The add-on ID in your manifest.json or install.rdf (%s) '
+                'does not match the ID of your add-on on AMO (%s)')
             raise forms.ValidationError(msg % (guid, addon.guid))
         if (not addon and
             # Non-deleted add-ons.
-            (Addon.with_unlisted.filter(guid=guid).exists() or
+            (Addon.objects.filter(guid=guid).exists() or
              # DeniedGuid objects for legacy deletions.
              DeniedGuid.objects.filter(guid=guid).exists() or
              # Deleted add-ons that don't belong to the uploader.
              deleted_guid_clashes.exists())):
-            raise forms.ValidationError(_('Duplicate add-on ID found.'))
+            raise forms.ValidationError(ugettext('Duplicate add-on ID found.'))
     if len(xpi_info['version']) > 32:
         raise forms.ValidationError(
-            _('Version numbers should have fewer than 32 characters.'))
+            ugettext('Version numbers should have fewer than 32 characters.'))
     if not VERSION_RE.match(xpi_info['version']):
         raise forms.ValidationError(
-            _('Version numbers should only contain letters, numbers, '
-              'and these punctuation characters: +*.-_.'))
+            ugettext('Version numbers should only contain letters, numbers, '
+                     'and these punctuation characters: +*.-_.'))
+
+    if is_webextension and xpi_info.get('is_static_theme', False):
+        if not waffle.switch_is_active('allow-static-theme-uploads'):
+            raise forms.ValidationError(ugettext(
+                'WebExtension theme uploads are currently not supported.'))
+
     return xpi_info
 
 
@@ -670,15 +740,15 @@ def parse_addon(pkg, addon=None, check=True):
         parsed = parse_xpi(pkg, addon, check)
 
     if addon and addon.type != parsed['type']:
-        msg = _(
+        msg = ugettext(
             "<em:type> in your install.rdf (%s) "
             "does not match the type of your add-on on AMO (%s)")
         raise forms.ValidationError(msg % (parsed['type'], addon.type))
     return parsed
 
 
-def _get_hash(filename, block_size=2 ** 20, hash=hashlib.md5):
-    """Returns an MD5 hash for a filename."""
+def _get_hash(filename, block_size=2 ** 20, hash=hashlib.sha256):
+    """Returns an sha256 hash for a filename."""
     f = open(filename, 'rb')
     hash_ = hash()
     while True:
@@ -689,101 +759,8 @@ def _get_hash(filename, block_size=2 ** 20, hash=hashlib.md5):
     return hash_.hexdigest()
 
 
-def get_md5(filename, **kw):
-    return _get_hash(filename, **kw)
-
-
 def get_sha256(filename, **kw):
     return _get_hash(filename, hash=hashlib.sha256, **kw)
-
-
-def find_jetpacks(minver, maxver):
-    """
-    Find all jetpack files that aren't disabled.
-
-    Files that should be upgraded will have needs_upgrade=True.
-    """
-    from .models import File
-    statuses = amo.VALID_ADDON_STATUSES
-    files = (File.objects.filter(jetpack_version__isnull=False,
-                                 version__addon__auto_repackage=True,
-                                 version__addon__status__in=statuses,
-                                 version__addon__disabled_by_user=False)
-             .exclude(status=amo.STATUS_DISABLED).no_cache()
-             .select_related('version'))
-    files = sorted(files, key=lambda f: (f.version.addon_id, f.version.id))
-
-    # Figure out which files need to be upgraded.
-    for file_ in files:
-        file_.needs_upgrade = False
-    # If any files for this add-on are reviewed, take the last reviewed file
-    # plus all newer files.  Otherwise, only upgrade the latest file.
-    for _group, fs in groupby(files, key=lambda f: f.version.addon_id):
-        fs = list(fs)
-        if any(f.status in amo.REVIEWED_STATUSES for f in fs):
-            for file_ in reversed(fs):
-                file_.needs_upgrade = True
-                if file_.status in amo.REVIEWED_STATUSES:
-                    break
-        else:
-            fs[-1].needs_upgrade = True
-    # Make sure only old files are marked.
-    for file_ in [f for f in files if f.needs_upgrade]:
-        if not (vint(minver) <= vint(file_.jetpack_version) < vint(maxver)):
-            file_.needs_upgrade = False
-    return files
-
-
-class JetpackUpgrader(object):
-    """A little manager for jetpack upgrade data in memcache."""
-    prefix = 'admin:jetpack:upgrade:'
-
-    def __init__(self):
-        self.version_key = self.prefix + 'version'
-        self.file_key = self.prefix + 'files'
-        self.jetpack_key = self.prefix + 'jetpack'
-
-    def jetpack_versions(self, min_=None, max_=None):
-        if None not in (min_, max_):
-            d = {'min': min_, 'max': max_}
-            return cache.set(self.jetpack_key, d)
-        d = cache.get(self.jetpack_key, {})
-        return d.get('min'), d.get('max')
-
-    def version(self, val=None):
-        if val is not None:
-            return cache.add(self.version_key, val)
-        return cache.get(self.version_key)
-
-    def files(self, val=None):
-        if val is not None:
-            current = cache.get(self.file_key, {})
-            current.update(val)
-            return cache.set(self.file_key, val)
-        return cache.get(self.file_key, {})
-
-    def file(self, file_id, val=None):
-        file_id = int(file_id)
-        if val is not None:
-            current = cache.get(self.file_key, {})
-            current[file_id] = val
-            cache.set(self.file_key, current)
-            return val
-        return cache.get(self.file_key, {}).get(file_id, {})
-
-    def cancel(self):
-        cache.delete(self.version_key)
-        newfiles = dict([(k, v) for (k, v) in self.files().items()
-                         if v.get('owner') != 'bulk'])
-        cache.set(self.file_key, newfiles)
-
-    def finish(self, file_id):
-        file_id = int(file_id)
-        newfiles = dict([(k, v) for (k, v) in self.files().items()
-                         if k != file_id])
-        cache.set(self.file_key, newfiles)
-        if not newfiles:
-            cache.delete(self.version_key)
 
 
 def zip_folder_content(folder, filename):
@@ -948,10 +925,11 @@ def extract_translations(file_obj):
                 try:
                     data = source.read(fname)
                     messages[corrected_locale] = decode_json(data)
-
-                except KeyError:
-                    # thrown by `source.read` usually means the file doesn't
-                    # exist for some reason, we fail silently
+                except (ValueError, KeyError):
+                    # `ValueError` thrown by `decode_json` if the json is
+                    # invalid and `KeyError` thrown by `source.read`
+                    # usually means the file doesn't exist for some reason,
+                    # we fail silently
                     continue
     except IOError:
         pass
@@ -1001,3 +979,56 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
         return default['message']
 
     return message['message']
+
+
+@contextlib.contextmanager
+def atomic_lock(lock_dir, lock_name, lifetime=60):
+    """A atomic, NFS safe implementation of a file lock.
+
+    Uses `flufl.lock` under the hood. Can be used as a context manager::
+
+        with atomic_lock(settings.TMP_PATH, 'extraction-1234'):
+            extract_xpi(...)
+
+    :return: `True` if the lock was attained, we are owning the lock,
+             `False` if there is an already existing lock.
+    """
+    lock_name = lock_name + '.lock'
+    count = _lock_count.get(lock_name, 0)
+
+    log.debug('Acquiring lock %s, count is %d.' % (lock_name, count))
+
+    lock_name = os.path.join(lock_dir, lock_name)
+    lock = flufl.lock.Lock(lock_name, lifetime=timedelta(seconds=lifetime))
+
+    try:
+        # set `timeout=0` to avoid any process blocking but catch the
+        # TimeOutError raised instead.
+        lock.lock(timeout=timedelta(seconds=0))
+    except flufl.lock.AlreadyLockedError:
+        # This process already holds the lock
+        yield False
+    except flufl.lock.TimeOutError:
+        # Some other process holds the lock.
+        # Let's break the lock if it has expired. Unfortunately
+        # there's a bug in flufl.lock so let's do this manually.
+        # Bug: https://gitlab.com/warsaw/flufl.lock/merge_requests/1
+        release_time = lock._releasetime
+        max_release_time = release_time + flufl.lock._lockfile.CLOCK_SLOP
+
+        if (release_time != -1 and datetime.now() > max_release_time):
+            # Break the lock and try to aquire again
+            lock._break()
+            lock.lock(timeout=timedelta(seconds=0))
+            yield lock.is_locked
+        else:
+            # Already locked
+            yield False
+    else:
+        # Is usually `True` but just in case there were some weird `lifetime`
+        # values set we return the check if we really attained the lock.
+        yield lock.is_locked
+
+    if lock.is_locked:
+        log.debug('Releasing lock %s.' % lock.details[2])
+        lock.unlock()

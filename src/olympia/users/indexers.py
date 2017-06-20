@@ -27,7 +27,7 @@ class UserProfileIndexer(BaseSearchIndexer):
     @classmethod
     def extract_document(cls, obj):
         # These all get converted into unicode.
-        unicode_attrs = ('email', 'username', 'display_name', 'bio',
+        unicode_attrs = ('email', 'username', 'display_name', 'biography',
                          'homepage', 'location', 'occupation')
         data = dict(zip(unicode_attrs,
                     [unicode(attr) for attr in attrgetter(*unicode_attrs)(obj)

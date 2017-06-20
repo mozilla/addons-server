@@ -59,7 +59,7 @@ function initReviewActions() {
     function showForm(element, pageload) {
         var $element = $(element),
             value = $element.find('input').val(),
-            $data_toggle = $('#review-actions-form').find('.data-toggle');
+            $data_toggle = $('form.review-form').find('.data-toggle');
 
         pageload = pageload || false;
         $element.closest('.review-actions').addClass('on');
@@ -75,8 +75,13 @@ function initReviewActions() {
           $('#review-actions').find('.errorlist').remove();
         }
 
+        // Hide everything, then show the ones containing the value we're
+        // interested in. An extra | (the separator used) is added at the end
+        // to make sure we don't match things with a common prefix (i.e. don't
+        // show elements with data-value="reject_multiple_versions" when the
+        // value is "reject".)
         $data_toggle.hide();
-        $data_toggle.filter('[data-value*="' + value + '"]').show();
+        $data_toggle.filter('[data-value*="' + value + '|"]').show();
 
         /* Fade out canned responses */
         var label = $element.text().trim();
@@ -434,42 +439,3 @@ function initPerformanceStats() {
     }
 
 }
-
-// Editors review translations.
-$(function () {
-    // Click to translate.
-    $('#reviews-flagged').delegate('.review-flagged .translate', 'click', _pd(function(event) {
-        var $this = $(this);
-        // Flag when translated.
-        if ($this.data('translated')) {
-            return;
-        }
-        $this.data('translated', true);
-        $this.addClass('loading-submit');
-        // Find text target.
-        var $title = $this.closest('p').siblings('h3').find('span');
-        var $body = $this.closest('p').siblings('.description');
-        // Retrieve the translation and insert it into the target.
-        $.get($this.attr('href'), function(response, status) {
-            if (status == 'success') {
-                var data = JSON.parse(response);
-                if (data.title) {
-                    $title.text(data.title);
-                }
-                if (data.body) {
-                    $body.text(data.body);
-                }
-            } else {
-                console.error(status);
-            }
-        }, 'text')
-        .always(function() {
-            $this.removeClass('loading-submit');
-        })
-        .error(function(status) {
-            $body.append('<p><small class="error">' +
-                         gettext('Error loading translation') +
-                         '</small></p>');
-        });
-    }));
-});

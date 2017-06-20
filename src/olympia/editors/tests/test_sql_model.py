@@ -15,11 +15,11 @@ from olympia.editors.sql_model import RawSQLModel
 
 
 def execute_all(statements):
-    cursor = connection.cursor()
-    for sql in statements:
-        if not sql.strip():
-            continue
-        cursor.execute(sql, [])
+    with connection.cursor() as cursor:
+        for sql in statements:
+            if not sql.strip():
+                continue
+            cursor.execute(sql, [])
 
 
 class Summary(RawSQLModel):

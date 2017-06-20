@@ -1,8 +1,5 @@
 FROM centos:centos7
 
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-
 # need to compile swig
 ENV SWIG_FEATURES="-D__x86_64__"
 
@@ -11,12 +8,13 @@ ENV SWIG_FEATURES="-D__x86_64__"
 ENV OLYMPIA_UID=9500
 RUN useradd -u ${OLYMPIA_UID} -s /sbin/nologin olympia
 
-ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
+ADD docker/git.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-git
 ADD docker/epel.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
-ADD docker/nodesource.repo docker/epel.repo /etc/yum.repos.d/
 
-RUN yum update -y                                           \
-    && yum install -y                                       \
+ADD docker/epel.repo /etc/yum.repos.d/
+ADD docker/git.repo /etc/yum.repos.d/git.repo
+
+RUN yum install -y                                          \
         gcc-c++                                             \
         gettext                                             \
         # Git, because we're using git-checkout dependencies
@@ -24,6 +22,7 @@ RUN yum update -y                                           \
         libffi-devel                                        \
         libxml2-devel                                       \
         libxslt-devel                                       \
+        make                                                \
         mariadb                                             \
         mariadb-devel                                       \
         nodejs                                              \
@@ -33,8 +32,19 @@ RUN yum update -y                                           \
         uwsgi-2.0.13.1-2.el7                                \
         uwsgi-plugin-python                                 \
     && yum clean all                                        \
-    && curl -sSL https://bootstrap.pypa.io/get-pip.py | python
+    && curl -sSL https://bootstrap.pypa.io/get-pip.py | python \
+    && pip install six \
+    && pip install setuptools
 
+# Compile required locale
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+
+# version.json is overwritten by CircleCI (see circle.yml).
+# The pipeline v2 standard requires the existence of /app/version.json
+# inside the docker image, thus it's copied there.
+COPY version.json /app/version.json
 COPY . /data/olympia
 WORKDIR /data/olympia
 
@@ -47,7 +57,7 @@ RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod.
 RUN echo -e "from olympia.lib.settings_base import *\n\
 STYLUS_BIN = 'node_modules/stylus/bin/stylus'\n\
 LESS_BIN = 'node_modules/less/bin/lessc'\n\
-CLEANCSS_BIN = 'node_modules/clean-css/bin/cleancss'\n\
+CLEANCSS_BIN = 'node_modules/clean-css-cli/bin/cleancss'\n\
 UGLIFY_BIN = 'node_modules/uglify-js/bin/uglifyjs'\n\
 FXA_CONFIG = {'default': {}, 'internal': {}}\n"\
 > settings_local.py
@@ -56,12 +66,8 @@ RUN DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale
 
 # compile asssets
 RUN npm install \
-    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets -t \
+    && make -f Makefile-docker copy_node_js \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets --use-uuid -t \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput
 
 RUN rm -f settings_local.py settings_local.pyc
-
-RUN GITREF=$(git rev-parse HEAD)                        \
-    GITTAG=$(git name-rev --tags --name-only $GITREF)   \
-    SOURCE='https://github.com/mozilla/addons-server'   \
-    && echo "{\"source\": \"$SOURCE\", \"version\": \"$GITTAG\", \"commit\": \"$GITREF\"}" > version.json

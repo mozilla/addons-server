@@ -2,6 +2,7 @@ from django.db import models
 from django.core.urlresolvers import NoReverseMatch
 
 from olympia import amo
+from olympia import activity
 from olympia.amo.models import ModelBase, ManagerBase
 from olympia.amo.urlresolvers import reverse
 
@@ -47,14 +48,14 @@ class Tag(ModelBase):
     def save_tag(self, addon):
         tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
         AddonTag.objects.get_or_create(addon=addon, tag=tag)
-        amo.log(amo.LOG.ADD_TAG, tag, addon)
+        activity.log_create(amo.LOG.ADD_TAG, tag, addon)
         return tag
 
     def remove_tag(self, addon):
         tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
         for addon_tag in AddonTag.objects.filter(addon=addon, tag=tag):
             addon_tag.delete()
-        amo.log(amo.LOG.REMOVE_TAG, tag, addon)
+        activity.log_create(amo.LOG.REMOVE_TAG, tag, addon)
 
     def update_stat(self):
         if self.denied:
@@ -78,6 +79,7 @@ def update_tag_stat_signal(sender, instance, **kw):
             update_tag_stat.delay(instance.tag)
         except Tag.DoesNotExist:
             pass
+
 
 models.signals.post_save.connect(update_tag_stat_signal, sender=AddonTag,
                                  dispatch_uid='update_tag_stat')

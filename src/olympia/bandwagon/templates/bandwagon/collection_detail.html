@@ -12,12 +12,6 @@
 {% endblock %}
 
 {% block content %}
-  {% with crumbs = [(url('collections.list'), _('Collections')), (None, c.name)] %}
-    {% if c.author %}
-      {% do crumbs.insert(1, (url('collections.user', c.author.username), c.author.name)) %}
-    {% endif %}
-    {{ breadcrumbs(crumbs) }}
-  {% endwith %}
   <hgroup>
     <h2 class="collection" data-collectionid="{{ collection.id }}">
       <img src="{{ c.icon_url }}" class="icon" alt="">
@@ -114,7 +108,7 @@
           {{ num }} Add-ons in this Collection
         {% endtrans %}
       </h3>
-      <form class="item-sort go">
+      <form class="item-sort go" data-no-csrf>
         <label for="sortby">{{ _('Sort by:') }}</label>
         <select id="sortby" name="{{ filter.key }}">
           {% for value, title in filter.opts %}
@@ -185,7 +179,7 @@
     {% else %}
       <p>{% trans %}
         Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below.
-        This collection is currently <b>private</b>, which means only you can see it.  If you would
+        This collection is currently <b>private</b>, which means only you can see it. If you would
         like everyone to be able to see your favorites, click the button below to make it public.
       {% endtrans %}</p>
     {% endif %}

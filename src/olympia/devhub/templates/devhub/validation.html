@@ -10,7 +10,6 @@
 
 {% block content %}
 <header>
-  {{ dev_breadcrumbs(addon, items=[(None, title)]) }}
   <h2>{{ title }}</h2>
 </header>
 
@@ -29,14 +28,11 @@
     {% endif %}
 </table>
 
-<div class="addon-validator-suite{% if automated_signing %} automated-signing{% endif %}"
+<div class="addon-validator-suite"
      id="addon-validator-suite"
      {% if file %}
         data-file-url="{{ file_url }}"
         data-file-id="{{ file.id }}"
-     {% endif %}
-     {% if annotate_url %}
-        data-annotate-url="{{ annotate_url }}"
      {% endif %}
      {% if validation_data %}
         data-validation="{{ validation_data|json }}"

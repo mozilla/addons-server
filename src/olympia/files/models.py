@@ -7,18 +7,24 @@ import time
 import unicodedata
 import uuid
 import zipfile
+from collections import namedtuple
 
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.utils.encoding import force_bytes, force_text
+from django.utils.functional import cached_property
+from django.utils.translation import ugettext, ugettext_lazy as _
 
-import commonware
-from cache_nuggets.lib import memoize
+from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
+from django.utils.safestring import mark_safe
+from jinja2 import escape as jinja2_escape
 
+import olympia.core.logger
 from olympia import amo
+from olympia.amo.cache_nuggets import memoize
 from olympia.amo.models import OnChangeMixin, ModelBase, UncachedManagerBase
 from olympia.amo.decorators import use_master
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
@@ -26,8 +32,10 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import user_media_path, user_media_url
 from olympia.applications.models import AppVersion
 from olympia.files.utils import SafeUnzip, write_crx_as_xpi
+from olympia.translations.fields import TranslatedField
 
-log = commonware.log.getLogger('z.files')
+
+log = olympia.core.logger.getLogger('z.files')
 
 # Acceptable extensions.
 EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
@@ -104,9 +112,8 @@ class File(OnChangeMixin, ModelBase):
     @property
     def automated_signing(self):
         """True if this file is eligible for automated signing. This currently
-        means that either its add-on is eligible for automated signing, or
-        this file is a beta version."""
-        return (self.version.addon.automated_signing or
+        means that either its version is unlisted, or it's a beta version."""
+        return (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED or
                 self.status == amo.STATUS_BETA)
 
     @property
@@ -116,16 +123,9 @@ class File(OnChangeMixin, ModelBase):
         # is exactly the opposite.
         return not self.no_restart
 
-    def is_mirrorable(self):
-        return self.status in amo.MIRROR_STATUSES
-
-    def has_been_copied(self):
-        """Checks if file has been copied to mirror"""
-        if not self.mirror_file_path:
-            return False
-        return storage.exists(self.mirror_file_path)
-
-    def get_mirror(self, attachment=False):
+    def get_file_cdn_url(self, attachment=False):
+        """Return the URL for the file corresponding to this instance
+        on the CDN."""
         if attachment:
             host = posixpath.join(user_media_url('addons'), '_attachments')
         else:
@@ -148,9 +148,9 @@ class File(OnChangeMixin, ModelBase):
 
     @classmethod
     def from_upload(cls, upload, version, platform, is_beta=False,
-                    parse_data=None):
-        if parse_data is None:
-            parse_data = {}
+                    parsed_data=None):
+        if parsed_data is None:
+            parsed_data = {}
         addon = version.addon
 
         file_ = cls(version=version, platform=platform)
@@ -164,14 +164,15 @@ class File(OnChangeMixin, ModelBase):
         data = cls.get_jetpack_metadata(upload.path)
         if 'sdkVersion' in data and data['sdkVersion']:
             file_.jetpack_version = data['sdkVersion'][:10]
-        file_.no_restart = parse_data.get('no_restart', False)
-        file_.strict_compatibility = parse_data.get('strict_compatibility',
-                                                    False)
-        file_.is_multi_package = parse_data.get('is_multi_package', False)
-        file_.is_experiment = parse_data.get('is_experiment', False)
-        file_.is_webextension = parse_data.get('is_webextension', False)
+        file_.no_restart = parsed_data.get('no_restart', False)
+        file_.strict_compatibility = parsed_data.get('strict_compatibility',
+                                                     False)
+        file_.is_multi_package = parsed_data.get('is_multi_package', False)
+        file_.is_experiment = parsed_data.get('is_experiment', False)
+        file_.is_webextension = parsed_data.get('is_webextension', False)
 
-        if is_beta and addon.status == amo.STATUS_PUBLIC and addon.is_listed:
+        if (is_beta and addon.status == amo.STATUS_PUBLIC and
+                version.channel == amo.RELEASE_CHANNEL_LISTED):
             file_.status = amo.STATUS_BETA
 
         file_.hash = file_.generate_hash(upload.path)
@@ -183,26 +184,23 @@ class File(OnChangeMixin, ModelBase):
                 file_.requires_chrome = True
 
         file_.save()
+        if file_.is_webextension:
+            permissions = list(parsed_data.get('permissions', []))
+            # Add content_scripts host matches too.
+            for script in parsed_data.get('content_scripts', []):
+                permissions.extend(script.get('matches', []))
+            if permissions:
+                WebextPermission.objects.create(permissions=permissions,
+                                                file=file_)
 
         log.debug('New file: %r from %r' % (file_, upload))
         # Move the uploaded file from the temp location.
-        destinations = [version.path_prefix]
-        if file_.status in amo.MIRROR_STATUSES:
-            destinations.append(version.mirror_path_prefix)
-        for dest in destinations:
-            copy_stored_file(upload.path,
-                             os.path.join(dest, nfd_str(file_.filename)))
+        copy_stored_file(
+            upload.path,
+            os.path.join(version.path_prefix, nfd_str(file_.filename)))
 
         if upload.validation:
-            # Import loop.
-            from olympia.devhub.tasks import annotate_validation_results
-            from olympia.devhub.utils import ValidationAnnotator
-
-            validation = annotate_validation_results(validation)
             FileValidation.from_json(file_, validation)
-
-            # Copy annotations from any previously approved file.
-            ValidationAnnotator(file_).update_annotations()
 
         return file_
 
@@ -298,11 +296,6 @@ class File(OnChangeMixin, ModelBase):
         return self.version.addon
 
     @property
-    def mirror_file_path(self):
-        return os.path.join(user_media_path('addons'),
-                            str(self.version.addon_id), self.filename)
-
-    @property
     def guarded_file_path(self):
         return os.path.join(user_media_path('guarded_addons'),
                             str(self.version.addon_id), self.filename)
@@ -336,44 +329,12 @@ class File(OnChangeMixin, ModelBase):
             return
         src, dst = self.file_path, self.guarded_file_path
         self.mv(src, dst, 'Moving disabled file: %s => %s')
-        # Remove the file from the mirrors if necessary.
-        if (self.mirror_file_path and
-                storage.exists(force_bytes(self.mirror_file_path))):
-            log.info('Unmirroring disabled file: %s'
-                     % self.mirror_file_path)
-            storage.delete(force_bytes(self.mirror_file_path))
 
     def unhide_disabled_file(self):
         if not self.filename:
             return
         src, dst = self.guarded_file_path, self.file_path
         self.mv(src, dst, 'Moving undisabled file: %s => %s')
-        # Put files back on the mirrors if necessary.
-        if storage.exists(self.file_path):
-            destinations = [self.version.path_prefix]
-            if self.status in amo.MIRROR_STATUSES:
-                destinations.append(self.version.mirror_path_prefix)
-            for dest in destinations:
-                dest = os.path.join(dest, nfd_str(self.filename))
-                log.info('Re-mirroring disabled/enabled file to %s' % dest)
-                copy_stored_file(self.file_path, dest)
-
-    def copy_to_mirror(self):
-        if not self.filename:
-            return
-        try:
-            if storage.exists(self.file_path):
-                dst = self.mirror_file_path
-                if not dst:
-                    return
-
-                log.info('Moving file to mirror: %s => %s'
-                         % (self.file_path, dst))
-                copy_stored_file(self.file_path, dst)
-        except UnicodeEncodeError:
-            log.info('Copy Failure: %s %s %s' %
-                     (self.id, force_bytes(self.filename),
-                      force_bytes(self.file_path)))
 
     _get_localepicker = re.compile('^locale browser ([\w\-_]+) (.*)$', re.M)
 
@@ -417,6 +378,63 @@ class File(OnChangeMixin, ModelBase):
                  (self.pk, end))
         statsd.timing('files.extract.localepicker', (end * 1000))
         return res
+
+    @property
+    def webext_permissions(self):
+        """Return permissions that should be displayed, with descriptions, in
+        defined order:
+        1) Either the match all permission, if present (e.g. <all-urls>), or
+           match urls for sites (<all-urls> takes preference over match urls)
+        2) nativeMessaging permission, if present
+        3) other known permissions in alphabetical order
+        """
+        knowns = list(WebextPermissionDescription.objects.filter(
+            name__in=self.webext_permissions_list).iterator())
+
+        urls = []
+        match_url = None
+        for name in self.webext_permissions_list:
+            if re.match(WebextPermissionDescription.MATCH_ALL_REGEX, name):
+                match_url = WebextPermissionDescription.ALL_URLS_PERMISSION
+            elif name == WebextPermission.NATIVE_MESSAGING_NAME:
+                # Move nativeMessaging to front of the list
+                for index, perm in enumerate(knowns):
+                    if perm.name == WebextPermission.NATIVE_MESSAGING_NAME:
+                        knowns.pop(index)
+                        knowns.insert(0, perm)
+                        break
+            elif '//' in name:
+                # Filter out match urls so we can group them.
+                urls.append(name)
+            # Other strings are unknown permissions we don't care about
+
+        if match_url is None and len(urls) == 1:
+            match_url = Permission(
+                u'single-match',
+                ugettext(u'Access your data for {name}')
+                .format(name=urls[0]))
+        elif match_url is None and len(urls) > 1:
+            details = (u'<details><summary>{copy}</summary><ul>{sites}</ul>'
+                       u'</details>')
+            copy = ugettext(u'Access your data on the following websites:')
+            sites = ''.join(
+                [u'<li>%s</li>' % jinja2_escape(name) for name in urls])
+            match_url = Permission(
+                u'multiple-match',
+                mark_safe(details.format(copy=copy, sites=sites)))
+
+        return ([match_url] if match_url else []) + knowns
+
+    @cached_property
+    def webext_permissions_list(self):
+        if not self.is_webextension:
+            return []
+        try:
+            # Filter out any errant non-strings included in the manifest JSON.
+            return [p for p in self._webext_permissions.permissions
+                    if isinstance(p, basestring)]
+        except WebextPermission.DoesNotExist:
+            return []
 
 
 @receiver(models.signals.post_save, sender=File,
@@ -468,7 +486,7 @@ def cleanup_file(sender, instance, **kw):
     if kw.get('raw') or not instance.filename:
         return
     # Use getattr so the paths are accessed inside the try block.
-    for path in ('file_path', 'mirror_file_path', 'guarded_file_path'):
+    for path in ('file_path', 'guarded_file_path'):
         try:
             filename = getattr(instance, path)
         except models.ObjectDoesNotExist:
@@ -477,13 +495,6 @@ def cleanup_file(sender, instance, **kw):
             log.info('Removing filename: %s for file: %s'
                      % (filename, instance.pk))
             storage.delete(filename)
-
-    if not (File.objects.filter(original_hash=instance.original_hash)
-            .exclude(pk=instance.pk).exists()):
-        # This is the last remaining file with this hash.
-        # Delete any validation annotations keyed to it.
-        ValidationAnnotation.objects.filter(
-            file_hash=instance.original_hash).delete()
 
 
 @File.on_change
@@ -495,8 +506,6 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
         instance.hide_disabled_file()
     elif old == amo.STATUS_DISABLED and new != amo.STATUS_DISABLED:
         instance.unhide_disabled_file()
-    elif (new in amo.MIRROR_STATUSES and old not in amo.MIRROR_STATUSES):
-        instance.copy_to_mirror()
 
     # Log that the hash has changed.
     old, new = old_attr.get('hash'), instance.hash
@@ -670,10 +679,6 @@ class FileUpload(ModelBase):
     def passed_all_validations(self):
         return self.processed and self.valid
 
-    @property
-    def passed_auto_validation(self):
-        return self.load_validation()['passed_auto_validation']
-
     def load_validation(self):
         return json.loads(self.validation)
 
@@ -691,11 +696,6 @@ class FileValidation(ModelBase):
     errors = models.IntegerField(default=0)
     warnings = models.IntegerField(default=0)
     notices = models.IntegerField(default=0)
-    signing_trivials = models.IntegerField(default=0)
-    signing_lows = models.IntegerField(default=0)
-    signing_mediums = models.IntegerField(default=0)
-    signing_highs = models.IntegerField(default=0)
-    passed_auto_validation = models.BooleanField(default=False)
     validation = models.TextField()
 
     class Meta:
@@ -705,19 +705,11 @@ class FileValidation(ModelBase):
     def from_json(cls, file, validation):
         if isinstance(validation, basestring):
             validation = json.loads(validation)
-
-        signing = validation['signing_summary']
-
         new = cls(file=file, validation=json.dumps(validation),
                   errors=validation['errors'],
                   warnings=validation['warnings'],
                   notices=validation['notices'],
-                  valid=validation['errors'] == 0,
-                  signing_trivials=signing['trivial'],
-                  signing_lows=signing['low'],
-                  signing_mediums=signing['medium'],
-                  signing_highs=signing['high'],
-                  passed_auto_validation=validation['passed_auto_validation'])
+                  valid=validation['errors'] == 0)
 
         if 'metadata' in validation:
             if (validation['metadata'].get('contains_binary_extension') or
@@ -745,13 +737,32 @@ class FileValidation(ModelBase):
                                   file_hash=self.file.original_hash)
 
 
-class ValidationAnnotation(ModelBase):
-    file_hash = models.CharField(max_length=255, db_index=True)
-    message_key = models.CharField(max_length=1024)
-    ignore_duplicates = models.NullBooleanField(blank=True, null=True)
+class WebextPermission(ModelBase):
+    NATIVE_MESSAGING_NAME = u'nativeMessaging'
+    permissions = JSONField(default={})
+    file = models.OneToOneField('File', related_name='_webext_permissions',
+                                on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'validation_annotations'
+        db_table = 'webext_permissions'
+
+
+Permission = namedtuple('Permission',
+                        'name, description')
+
+
+class WebextPermissionDescription(ModelBase):
+    MATCH_ALL_REGEX = r'^\<all_urls\>|(\*|http|https):\/\/\*\/'
+    ALL_URLS_PERMISSION = Permission(
+        u'all_urls',
+        _(u'Access your data for all websites')
+    )
+    name = models.CharField(max_length=255, unique=True)
+    description = TranslatedField()
+
+    class Meta:
+        db_table = 'webext_permission_descriptions'
+        ordering = ['name']
 
 
 def nfd_str(u):

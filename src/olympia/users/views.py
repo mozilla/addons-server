@@ -3,27 +3,25 @@ from operator import attrgetter
 
 from django import http
 from django.conf import settings
-from django.contrib import auth
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.http import is_safe_url
 from django.views.decorators.cache import never_cache
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
-import commonware.log
-from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 
+import olympia.core.logger
 from olympia import amo
 from olympia.users import notifications as notifications
 from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
+from olympia.accounts.views import logout_user
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, Category
 from olympia.amo import messages
 from olympia.amo.decorators import (
-    json_view, login_required, permission_required,
-    post_required, write)
+    json_view, login_required, permission_required, write)
 from olympia.amo.forms import AbuseForm
 from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import escape_all, render
@@ -37,7 +35,7 @@ from .signals import logged_out
 from .utils import UnsubscribeCode
 
 
-log = commonware.log.getLogger('z.users')
+log = olympia.core.logger.getLogger('z.users')
 
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 
@@ -75,12 +73,12 @@ def ajax(request):
     email = request.GET.get('q', '').strip()
 
     if not email:
-        data.update(message=_('An email address is required.'))
+        data.update(message=ugettext('An email address is required.'))
         return data
 
     user = UserProfile.objects.filter(email=email)
 
-    msg = _('A user with that email address does not exist.')
+    msg = ugettext('A user with that email address does not exist.')
 
     if user:
         data.update(status=1, id=user[0].id, name=user[0].name)
@@ -96,11 +94,11 @@ def delete(request):
     if request.method == 'POST':
         form = forms.UserDeleteForm(request.POST, request=request)
         if form.is_valid():
-            messages.success(request, _('Profile Deleted'))
-            amouser.anonymize()
-            logout(request)
-            form = None
-            return http.HttpResponseRedirect(reverse('home'))
+            messages.success(request, ugettext('Profile Deleted'))
+            amouser.delete()
+            response = http.HttpResponseRedirect(reverse('home'))
+            logout_user(request, response)
+            return response
     else:
         form = forms.UserDeleteForm(request=request)
 
@@ -111,7 +109,8 @@ def delete(request):
 @login_required
 def delete_photo(request, user_id):
     not_mine = str(request.user.id) != user_id
-    if (not_mine and not acl.action_allowed(request, 'Users', 'Edit')):
+    if (not_mine and not acl.action_allowed(request,
+                                            amo.permissions.USERS_EDIT)):
         return http.HttpResponseForbidden()
 
     user = UserProfile.objects.get(id=user_id)
@@ -121,7 +120,7 @@ def delete_photo(request, user_id):
         user.save()
         log.debug(u'User (%s) deleted photo' % user)
         tasks.delete_photo.delay(user.picture_path)
-        messages.success(request, _('Photo Deleted'))
+        messages.success(request, ugettext('Photo Deleted'))
         redirect = (
             reverse('users.admin_edit', kwargs={'user_id': user.id})
             if not_mine else reverse('users.edit')
@@ -142,15 +141,15 @@ def edit(request):
         form = forms.UserEditForm(request.POST, request.FILES, request=request,
                                   instance=amouser)
         if form.is_valid():
-            messages.success(request, _('Profile Updated'))
+            messages.success(request, ugettext('Profile Updated'))
             form.save()
             return redirect('users.edit')
         else:
             messages.error(
                 request,
-                _('Errors Found'),
-                _('There were errors in the changes you made. Please correct '
-                  'them and resubmit.'))
+                ugettext('Errors Found'),
+                ugettext('There were errors in the changes you made. '
+                         'Please correct them and resubmit.'))
     else:
         form = forms.UserEditForm(instance=amouser, request=request)
     return render(request, 'users/edit.html',
@@ -159,7 +158,7 @@ def edit(request):
 
 @write
 @login_required
-@permission_required('Users', 'Edit')
+@permission_required(amo.permissions.USERS_EDIT)
 @user_view
 def admin_edit(request, user):
     if request.method == 'POST':
@@ -167,7 +166,7 @@ def admin_edit(request, user):
                                        request=request, instance=user)
         if form.is_valid():
             form.save()
-            messages.success(request, _('Profile Updated'))
+            messages.success(request, ugettext('Profile Updated'))
             return http.HttpResponseRedirect(reverse('zadmin.index'))
     else:
         form = forms.AdminUserEditForm(instance=user, request=request)
@@ -192,17 +191,14 @@ def _clean_next_url(request):
 
 
 @anonymous_csrf
-@mobile_template('users/{mobile/}login.html')
-def login(request, template=None):
-    return render(request, template)
+def login(request):
+    return render(request, 'users/login.html')
 
 
 def logout(request):
     user = request.user
     if not user.is_anonymous():
         log.debug(u"User (%s) logged out" % user)
-
-    auth.logout(request)
 
     if 'to' in request.GET:
         request = _clean_next_url(request)
@@ -213,7 +209,11 @@ def logout(request):
         prefixer = get_url_prefix()
         if prefixer:
             next = prefixer.fix(next)
+
     response = http.HttpResponseRedirect(next)
+
+    logout_user(request, response)
+
     # Fire logged out signal.
     logged_out.send(None, request=request, response=response)
     return response
@@ -232,7 +232,7 @@ def profile(request, user):
                     .filter(following__user=user)
                     .order_by('-following__created'))[:10]
 
-    edit_any_user = acl.action_allowed(request, 'Users', 'Edit')
+    edit_any_user = acl.action_allowed(request, amo.permissions.USERS_EDIT)
     own_profile = (request.user.is_authenticated() and
                    request.user.id == user.id)
 
@@ -240,7 +240,7 @@ def profile(request, user):
     personas = []
     limited_personas = False
     if user.is_developer:
-        addons = user.addons.reviewed().filter(
+        addons = user.addons.public().filter(
             addonuser__user=user, addonuser__listed=True)
 
         personas = addons.filter(type=amo.ADDON_PERSONA).order_by(
@@ -278,7 +278,7 @@ def themes(request, user, category=None):
     }
 
     if user.is_artist:
-        base = user.addons.reviewed().filter(
+        base = user.addons.public().filter(
             type=amo.ADDON_PERSONA,
             addonuser__user=user, addonuser__listed=True)
 
@@ -311,22 +311,11 @@ def report_abuse(request, user):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == 'POST' and form.is_valid():
         send_abuse_report(request, user, form.cleaned_data['text'])
-        messages.success(request, _('User reported.'))
+        messages.success(request, ugettext('User reported.'))
     else:
         return render(request, 'users/report_abuse_full.html',
                       {'profile': user, 'abuse_form': form})
     return redirect(user.get_url_path())
-
-
-@post_required
-@user_view
-def remove_locale(request, user):
-    """Remove a locale from the user's translations."""
-    POST = request.POST
-    if 'locale' in POST and POST['locale'] != settings.LANGUAGE_CODE:
-        user.remove_locale(POST['locale'])
-        return http.HttpResponse()
-    return http.HttpResponseBadRequest()
 
 
 @never_cache
@@ -345,18 +334,13 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
         pass
 
     perm_settings = []
-    if user is not None:
+    if user is not None and perm_setting is not None:
         unsubscribed = True
-        if not perm_setting:
-            # TODO: make this work. nothing currently links to it, though.
-            perm_settings = [l for l in notifications.NOTIFICATIONS
-                             if not l.mandatory]
-        else:
-            perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
-            UserNotification.update_or_create(
-                update={'enabled': False},
-                user=user, notification_id=perm_setting.id)
-            perm_settings = [perm_setting]
+        perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
+        UserNotification.objects.update_or_create(
+            user=user, notification_id=perm_setting.id,
+            defaults={'enabled': False})
+        perm_settings = [perm_setting]
     else:
         unsubscribed = False
         email = ''

@@ -2,7 +2,6 @@ import cStringIO
 import csv
 import itertools
 import json
-import logging
 import os
 import time
 from datetime import date, timedelta, datetime
@@ -18,7 +17,6 @@ from django.shortcuts import get_object_or_404
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.datastructures import SortedDict
 
-from cache_nuggets.lib import memoize
 from dateutil.parser import parse
 from product_details import product_details
 from rest_framework import status
@@ -26,7 +24,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+import olympia.core.logger
 from olympia import amo
+from olympia.amo.cache_nuggets import memoize
 from olympia.amo.utils import render, AMOJSONEncoder
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
@@ -44,7 +44,7 @@ from .models import (
     CollectionCount, Contribution, DownloadCount, ThemeUserCount, UpdateCount)
 
 
-logger = logging.getLogger('z.apps.stats.views')
+logger = olympia.core.logger.getLogger('z.apps.stats.views')
 
 
 SERIES_GROUPS = ('day', 'week', 'month')
@@ -58,7 +58,7 @@ GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
                  'users_created', 'my_apps')
 
 
-addon_view_with_unlisted = addon_view_factory(qs=Addon.with_unlisted.all)
+addon_view = addon_view_factory(qs=Addon.objects.valid)
 storage = get_storage_class()()
 
 
@@ -154,7 +154,7 @@ def extract(dicts):
     return extracted
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def overview_series(request, addon, group, start, end, format):
     """Combines downloads_series and updates_series into one payload."""
@@ -200,7 +200,7 @@ def zip_overview(downloads, updates):
                'data': {'downloads': dl_count, 'updates': up_count}}
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def downloads_series(request, addon, group, start, end, format):
     """Generate download counts grouped by ``group`` in ``format``."""
@@ -215,7 +215,7 @@ def downloads_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def sources_series(request, addon, group, start, end, format):
     """Generate download source breakdown."""
@@ -233,7 +233,7 @@ def sources_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def usage_series(request, addon, group, start, end, format):
     """Generate ADU counts grouped by ``group`` in ``format``."""
@@ -250,7 +250,7 @@ def usage_series(request, addon, group, start, end, format):
         return render_json(request, addon, series)
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def usage_breakdown_series(request, addon, group,
                            start, end, format, field):
@@ -337,19 +337,20 @@ def check_stats_permission(request, addon, for_contributions=False):
     if not for_contributions:
         # Only authors and Stats Viewers allowed.
         if (addon.has_author(request.user) or
-                acl.action_allowed(request, 'Stats', 'View')):
+                acl.action_allowed(request, amo.permissions.STATS_VIEW)):
             return
 
     else:  # For contribution stats.
         # Only authors and Contribution Stats Viewers.
         if (addon.has_author(request.user) or
-                acl.action_allowed(request, 'RevenueStats', 'View')):
+                acl.action_allowed(request,
+                                   amo.permissions.REVENUE_STATS_VIEW)):
             return
 
     raise PermissionDenied
 
 
-@addon_view_factory(qs=Addon.with_unlisted.valid)
+@addon_view
 @non_atomic_requests
 def stats_report(request, addon, report):
     check_stats_permission(request, addon,
@@ -444,7 +445,7 @@ def site_event_format(request, events):
         }
 
 
-@addon_view_with_unlisted
+@addon_view
 @non_atomic_requests
 def contributions_series(request, addon, group, start, end, format):
     """Generate summarized contributions grouped by ``group`` in ``format``."""
@@ -475,6 +476,7 @@ def daterange(start_date, end_date):
     for n in range((end_date - start_date).days):
         yield start_date + timedelta(n)
 
+
 # Cached lookup of the keys and the SQL.
 # Taken from remora, a mapping of the old values.
 _KEYS = {
@@ -492,32 +494,31 @@ _CACHED_KEYS = sorted(_KEYS.values())
 
 @memoize(prefix='global_stats', time=60 * 60)
 def _site_query(period, start, end, field=None, request=None):
+    with connection.cursor() as cursor:
+        # Let MySQL make this fast. Make sure we prevent SQL injection with the
+        # assert.
+        if period not in SERIES_GROUPS_DATE:
+            raise AssertionError('%s period is not valid.' % period)
 
-    cursor = connection.cursor()
-    # Let MySQL make this fast. Make sure we prevent SQL injection with the
-    # assert.
-    if period not in SERIES_GROUPS_DATE:
-        raise AssertionError('%s period is not valid.' % period)
+        sql = ("SELECT name, MIN(date), SUM(count) "
+               "FROM global_stats "
+               "WHERE date > %%s AND date <= %%s "
+               "AND name IN (%s) "
+               "GROUP BY %s(date), name "
+               "ORDER BY %s(date) DESC;"
+               % (', '.join(['%s' for key in _KEYS.keys()]), period, period))
+        cursor.execute(sql, [start, end] + _KEYS.keys())
 
-    sql = ("SELECT name, MIN(date), SUM(count) "
-           "FROM global_stats "
-           "WHERE date > %%s AND date <= %%s "
-           "AND name IN (%s) "
-           "GROUP BY %s(date), name "
-           "ORDER BY %s(date) DESC;"
-           % (', '.join(['%s' for key in _KEYS.keys()]), period, period))
-    cursor.execute(sql, [start, end] + _KEYS.keys())
-
-    # Process the results into a format that is friendly for render_*.
-    default = dict([(k, 0) for k in _CACHED_KEYS])
-    result = SortedDict()
-    for name, date_, count in cursor.fetchall():
-        date_ = date_.strftime('%Y-%m-%d')
-        if date_ not in result:
-            result[date_] = default.copy()
-            result[date_]['date'] = date_
-            result[date_]['data'] = {}
-        result[date_]['data'][_KEYS[name]] = int(count)
+        # Process the results into a format that is friendly for render_*.
+        default = dict([(k, 0) for k in _CACHED_KEYS])
+        result = SortedDict()
+        for name, date_, count in cursor.fetchall():
+            date_ = date_.strftime('%Y-%m-%d')
+            if date_ not in result:
+                result[date_] = default.copy()
+                result[date_]['date'] = date_
+                result[date_]['data'] = {}
+            result[date_]['data'][_KEYS[name]] = int(count)
 
     return result.values(), _CACHED_KEYS
 
@@ -700,8 +701,8 @@ def render_json(request, addon, stats):
     response = http.HttpResponse(content_type='text/json')
 
     # Django's encoder supports date and datetime.
-    fudge_headers(response, stats)
     json.dump(stats, response, cls=AMOJSONEncoder)
+    fudge_headers(response, response.content != json.dumps([]))
     return response
 
 
@@ -709,11 +710,11 @@ class ArchiveMixin(object):
     """Provides common helper methods for all archive views."""
     def get_addon(self, request, slug):
         """Fetches an addon by `slug`"""
-        qset = Addon.with_unlisted.all()
+        qset = Addon.objects.all()
 
         addon = get_object_or_404(qset, slug=slug)
 
-        if not addon.is_listed:
+        if not addon.has_listed_versions():
             raise http.Http404
         return addon
 

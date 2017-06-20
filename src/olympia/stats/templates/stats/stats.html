@@ -25,18 +25,6 @@
 
 {% block navbar %}
 <header>
-  {% if addon %}
-    {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                           (addon.get_url_path(), addon.name),
-                           (link, _('Statistics'))]) }}
-  {% elif c %}
-    {{ impala_breadcrumbs([(url('collections.list'), _('Collections')),
-                           (url('collections.user', c.author.username), c.author.name),
-                           (c.get_url_path(), c.name), (None, _('Statistics'))]) }}
-  {% else %}
-    {{ impala_breadcrumbs([(link, _('Statistics'))]) }}
-  {% endif %}
-  {# TODO: Replace above line with this --> once we serve the extension home. { breadcrumbs([(addon.type.get_url_path(), amo.ADDON_TYPES[addon.type_id])]) } #}
   <hgroup>
     {% if addon %}
       <h1 class="addon"{{ addon.name|locale_html }}>
@@ -190,7 +178,7 @@
     {% endif %}
     <div class="hidden">
       <div id="fieldMenuPopup" class="popup">
-        <form id="fieldMenu">
+        <form id="fieldMenu" data-no-csrf>
           <ul id="fieldList">
           </ul>
         </form>

@@ -1,17 +1,17 @@
 from django.core.files.storage import default_storage as storage
 
-import commonware.log
-
+import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on
 from olympia.amo.utils import resize_image
 from olympia.amo.helpers import user_media_path
 from olympia.lib.es.utils import index_objects
 
+
 from .models import UserProfile
 from .indexers import UserProfileIndexer
 
-task_log = commonware.log.getLogger('z.task')
+task_log = olympia.core.logger.getLogger('z.task')
 
 
 @task

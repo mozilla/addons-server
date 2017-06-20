@@ -3,13 +3,12 @@ import datetime
 from django.core.management.base import BaseCommand
 from django.db import connection
 
-import commonware.log
-
+import olympia.core.logger
 from olympia.stats.models import (
     ThemeUpdateCount, ThemeUpdateCountBulk, ThemeUserCount)
 
 
-log = commonware.log.getLogger('adi.themepopularitymovers')
+log = olympia.core.logger.getLogger('adi.themepopularitymovers')
 
 
 class Command(BaseCommand):
@@ -86,8 +85,9 @@ class Command(BaseCommand):
                 p.movers=t.movers
             WHERE t.persona_id=p.id
         """
-        cursor = connection.cursor()
-        cursor.execute(raw_query)
+
+        with connection.cursor() as cursor:
+            cursor.execute(raw_query)
 
         log.debug('Total processing time: %s' % (
             datetime.datetime.now() - start))

@@ -129,7 +129,6 @@
             "description": 1325258,
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": false,
             "thankyou_note": null,
             "admin_review": false,
             "slug": "a228106",
@@ -142,7 +141,6 @@
             "modified": "2010-09-12 15:01:38",
             "summary": 1325251,
             "suggested_amount": "5.00",
-            "site_specific": false,
             "_current_version": 117445,
             "total_reviews": 0,
             "the_reason": 1325264
@@ -156,18 +154,6 @@
             "addon": 228106,
             "modified": "2010-10-02 07:22:41",
             "created": "2010-10-02 07:22:41"
-        }
-    },
-    {
-        "pk": 1399510,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": "Bio: This is line one.\n\nThis is line two",
-            "created": "2010-09-12 07:34:47",
-            "locale": "en-us",
-            "modified": "2010-09-12 07:34:47",
-            "id": 1325270,
-            "localized_string": "Bio: This is line one.\n\nThis is line two"
         }
     },
     {
@@ -185,7 +171,7 @@
             "email": "the-author@nowehere.com",
             "notifycompat": false,
             "username": "theauthor",
-            "bio": 1325270,
+            "biography": "Bio: This is line one.\n\nThis is line two",
             "failed_login_attempts": 0,
             "deleted": false,
             "last_login_attempt_ip": "",

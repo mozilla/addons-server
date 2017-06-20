@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.utils.translation import gettext
+from django.utils.translation import ugettext
 
 from olympia import amo
 from olympia.amo.models import ModelBase
@@ -25,49 +25,30 @@ class AbuseReport(ModelBase):
         db_table = 'abuse_reports'
 
     def send(self):
-        obj = self.addon or self.user
         if self.reporter:
             user_name = '%s (%s)' % (self.reporter.name, self.reporter.email)
         else:
             user_name = 'An anonymous coward'
 
-        with no_translation():
-            type_ = (gettext(amo.ADDON_TYPE[self.addon.type])
-                     if self.addon else 'User')
-
-        subject = u'[%s] Abuse Report for %s' % (type_, obj.name)
         msg = u'%s reported abuse for %s (%s%s).\n\n%s' % (
-            user_name, obj.name, settings.SITE_URL, obj.get_url_path(),
-            self.message)
-        send_mail(subject, msg,
+            user_name, self.target.name, settings.SITE_URL,
+            self.target.get_url_path(), self.message)
+        send_mail(unicode(self), msg,
                   recipient_list=(settings.ABUSE_EMAIL,))
 
-    @classmethod
-    def recent_high_abuse_reports(cls, threshold, period, addon_id=None,
-                                  addon_type=None):
-        """
-        Returns AbuseReport objects for the given threshold over the given time
-        period (in days). Filters by addon_id or addon_type if provided.
+    @property
+    def target(self):
+        return self.addon or self.user
 
-        E.g. Greater than 5 abuse reports for all addons in the past 7 days.
-        """
-        abuse_sql = ['''
-            SELECT `abuse_reports`.*,
-                   COUNT(`abuse_reports`.`addon_id`) AS `num_reports`
-            FROM `abuse_reports`
-            INNER JOIN `addons` ON (`abuse_reports`.`addon_id` = `addons`.`id`)
-            WHERE `abuse_reports`.`created` >= %s ''']
-        params = [period]
-        if addon_id:
-            abuse_sql.append('AND `addons`.`id` = %s ')
-            params.append(addon_id)
-        elif addon_type and addon_type in amo.ADDON_TYPES:
-            abuse_sql.append('AND `addons`.`addontype_id` = %s ')
-            params.append(addon_type)
-        abuse_sql.append('GROUP BY addon_id HAVING num_reports > %s')
-        params.append(threshold)
+    @property
+    def type(self):
+        with no_translation():
+            type_ = (ugettext(amo.ADDON_TYPE[self.addon.type])
+                     if self.addon else 'User')
+        return type_
 
-        return list(cls.objects.raw(''.join(abuse_sql), params))
+    def __unicode__(self):
+        return u'[%s] Abuse Report for %s' % (self.type, self.target.name)
 
 
 def send_abuse_report(request, obj, message):

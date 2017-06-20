@@ -5,7 +5,6 @@
 
 {% block content %}
 
-{{ impala_breadcrumbs([(None, profile.name)]) }}
 <div id="profile-actions" class="c">
   {% if own_profile %}
     <a id="edit-profile" class="button" href="{{ url('users.edit') }}">{{ _('Edit profile') }}</a>
@@ -41,9 +40,9 @@
       {{ profile|user_vcard(is_profile=True) }}
     </div>
     <div class="prose">
-      {% if profile.bio %}
+      {% if profile.biography %}
         <h3>{{ _('In a little more detail...') }}</h3>
-        <p class="intro">{{ profile.bio|nl2br|no_links }}</p>
+        <p class="intro">{{ profile.biography|no_links|nl2br }}</p>
       {% endif %}
     </div>
   </section>
@@ -93,7 +92,6 @@
 <div class="island primary{{ ' full' if not (own_coll or fav_coll) }}" id="reviews">
   <h2>{{ _('My Reviews') }}</h2>
   <div class="items">
-    {% if reviews %}
       {% for review in reviews %}
         {% if hasOneToOne(review, 'addon') %}
           {% set addon = review.addon %}
@@ -101,11 +99,10 @@
             {% include "reviews/review.html" %}
           {% endwith %}
         {% endif %}
+      {% else %}
+        <p class="no-reviews no-results">{{ _('No add-on reviews yet.') }}</p>
       {% endfor %}
       {{ edit_review_form() }}
-    {% else %}
-      <p class="no-reviews no-results">{{ _('No add-on reviews yet.') }}</p>
-    {% endif %}
   </div>
   {{ reviews|impala_paginator }}
 </div>

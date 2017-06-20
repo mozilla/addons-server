@@ -14,7 +14,6 @@
 {% block content %}
 <div class="primary" role="main">
   <header class="results-head">
-    {{ breadcrumbs([(None, _('Search'))]) }}
     <h2>{{ _('Search Results') }}</h2>
     <h3 class="results-count">{{ showing(query, pager) }}</h3>
   </header>
@@ -22,7 +21,7 @@
     {% if pager.object_list %}
       <div class="featured-inner">
         <div class="listing-header">
-          <form class="item-sort go">
+          <form class="item-sort go" data-no-csrf>
             <div>
               {{ form.cat }}
               {% if request.GET.get('q') %}

@@ -1,4 +1,3 @@
-import hashlib
 import os
 import re
 import time
@@ -11,7 +10,7 @@ from django.db import connection, models
 
 import caching.base as caching
 
-from olympia import amo
+from olympia import activity, amo
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.access import acl
 from olympia.addons.models import Addon
@@ -133,10 +132,6 @@ class Collection(ModelBase):
     users = models.ManyToManyField(UserProfile, through='CollectionUser',
                                    related_name='collections_publishable')
 
-    addon_index = models.CharField(
-        max_length=40, null=True, db_index=True,
-        help_text='Custom index for the add-ons in this collection')
-
     objects = CollectionManager()
 
     top_tags = TopTags()
@@ -148,22 +143,12 @@ class Collection(ModelBase):
     def __unicode__(self):
         return u'%s (%s)' % (self.name, self.addon_count)
 
-    @classmethod
-    def make_index(cls, addon_ids):
-        ids = ':'.join(map(str, sorted(addon_ids)))
-        return hashlib.md5(ids).hexdigest()
-
     def save(self, **kw):
         if not self.uuid:
             self.uuid = unicode(uuid.uuid4())
         if not self.slug:
             self.slug = self.uuid[:30]
         self.clean_slug()
-
-        # Maintain our index of add-on ids.
-        if self.id:
-            ids = self.addons.values_list('id', flat=True)
-            self.addon_index = self.make_index(ids)
 
         super(Collection, self).save(**kw)
 
@@ -277,30 +262,29 @@ class Collection(ModelBase):
             bucket = update if addon in existing else add
             bucket.append((addon, order[addon]))
         remove = existing.difference(addon_ids)
-
-        cursor = connection.cursor()
         now = datetime.now()
 
-        if remove:
-            cursor.execute("DELETE FROM addons_collections "
-                           "WHERE collection_id=%s AND addon_id IN (%s)" %
-                           (self.id, ','.join(map(str, remove))))
-            if self.listed:
-                for addon in remove:
-                    amo.log(amo.LOG.REMOVE_FROM_COLLECTION,
-                            (Addon, addon), self)
-        if add:
-            insert = '(%s, %s, %s, NOW(), NOW(), 0)'
-            values = [insert % (a, self.id, idx) for a, idx in add]
-            cursor.execute("""
-                INSERT INTO addons_collections
-                    (addon_id, collection_id, ordering, created,
-                     modified, downloads)
-                VALUES %s""" % ','.join(values))
-            if self.listed:
-                for addon_id, idx in add:
-                    amo.log(amo.LOG.ADD_TO_COLLECTION,
-                            (Addon, addon_id), self)
+        with connection.cursor() as cursor:
+            if remove:
+                cursor.execute("DELETE FROM addons_collections "
+                               "WHERE collection_id=%s AND addon_id IN (%s)" %
+                               (self.id, ','.join(map(str, remove))))
+                if self.listed:
+                    for addon in remove:
+                        activity.log_create(amo.LOG.REMOVE_FROM_COLLECTION,
+                                            (Addon, addon), self)
+            if add:
+                insert = '(%s, %s, %s, NOW(), NOW(), 0)'
+                values = [insert % (a, self.id, idx) for a, idx in add]
+                cursor.execute("""
+                    INSERT INTO addons_collections
+                        (addon_id, collection_id, ordering, created,
+                         modified, downloads)
+                    VALUES %s""" % ','.join(values))
+                if self.listed:
+                    for addon_id, idx in add:
+                        activity.log_create(amo.LOG.ADD_TO_COLLECTION,
+                                            (Addon, addon_id), self)
         for addon, ordering in update:
             (CollectionAddon.objects.filter(collection=self.id, addon=addon)
              .update(ordering=ordering, modified=now))
@@ -325,13 +309,13 @@ class Collection(ModelBase):
         "Adds an addon to the collection."
         CollectionAddon.objects.get_or_create(addon=addon, collection=self)
         if self.listed:
-            amo.log(amo.LOG.ADD_TO_COLLECTION, addon, self)
+            activity.log_create(amo.LOG.ADD_TO_COLLECTION, addon, self)
         self.save()  # To invalidate Collection.
 
     def remove_addon(self, addon):
         CollectionAddon.objects.filter(addon=addon, collection=self).delete()
         if self.listed:
-            amo.log(amo.LOG.REMOVE_FROM_COLLECTION, addon, self)
+            activity.log_create(amo.LOG.REMOVE_FROM_COLLECTION, addon, self)
         self.save()  # To invalidate Collection.
 
     def owned_by(self, user):
@@ -340,12 +324,15 @@ class Collection(ModelBase):
     def can_view_stats(self, request):
         if request and request.user:
             return (self.publishable_by(request.user) or
-                    acl.action_allowed(request, 'CollectionStats', 'View'))
+                    acl.action_allowed(request,
+                                       amo.permissions.COLLECTION_STATS_VIEW))
         return False
 
-    @caching.cached_method
     def publishable_by(self, user):
         return bool(self.owned_by(user) or self.users.filter(pk=user.id))
+
+    def is_public(self):
+        return self.listed
 
     @staticmethod
     def transformer(collections):
@@ -431,6 +418,7 @@ class CollectionFeature(ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'collection_features'
+
 
 models.signals.pre_save.connect(save_signal, sender=CollectionFeature,
                                 dispatch_uid='collectionfeature_translations')

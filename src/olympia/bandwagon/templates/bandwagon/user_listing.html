@@ -14,13 +14,6 @@
 {% block content %}
 <div class="primary">
   <header>
-    {% if page == 'following' %}
-      {{ breadcrumbs([(url('collections.list'), _('Collections')),
-                      (None, title)]) }}
-    {% else %}
-      {{ breadcrumbs([(url('collections.list'), _('Collections')),
-                      (None, author.name)]) }}
-    {% endif %}
     <h2>{{ title }}</h2>
   </header>
   <div class="featured listing">

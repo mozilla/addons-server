@@ -157,20 +157,6 @@ class TestRedirects(TestCase):
         self.assert3xx(r, '/en-US/firefox/addon/4/reviews/format:rss',
                        status_code=301)
 
-    def test_mobile_to_android(self):
-        """
-        'Mobile' is the legacy XUL-based Firefox for Android.
-        'Android' is the new hotness.
-        """
-        res = self.client.get('/mobile', follow=True)
-        self.assert3xx(res, '/en-US/android/', status_code=301)
-
-        res = self.client.get('/mobile/', follow=True)
-        self.assert3xx(res, '/en-US/android/', status_code=301)
-
-        res = self.client.get('/mobile/extensions/', follow=True)
-        self.assert3xx(res, '/en-US/mobile/extensions/', status_code=301)
-
 
 class TestPersonaRedirect(TestCase):
     fixtures = ['addons/persona']
@@ -184,16 +170,18 @@ class TestPersonaRedirect(TestCase):
         """When the persona exists but not its addon, throw a 404."""
         # Got get shady to separate Persona/Addons.
         try:
-            connection.cursor().execute("""
-                SET FOREIGN_KEY_CHECKS = 0;
-                UPDATE personas SET addon_id=123 WHERE persona_id=813;
-                SET FOREIGN_KEY_CHECKS = 1;
-            """)
+            with connection.cursor() as cursor:
+                cursor.execute("""
+                    SET FOREIGN_KEY_CHECKS = 0;
+                    UPDATE personas SET addon_id=123 WHERE persona_id=813;
+                    SET FOREIGN_KEY_CHECKS = 1;
+                """)
             r = self.client.get('/persona/813', follow=True)
             assert r.status_code == 404
         finally:
-            connection.cursor().execute("""
-                SET FOREIGN_KEY_CHECKS = 0;
-                UPDATE personas SET addon_id=15663 WHERE persona_id=813;
-                SET FOREIGN_KEY_CHECKS = 1;
-            """)
+            with connection.cursor() as cursor:
+                cursor.execute("""
+                    SET FOREIGN_KEY_CHECKS = 0;
+                    UPDATE personas SET addon_id=15663 WHERE persona_id=813;
+                    SET FOREIGN_KEY_CHECKS = 1;
+                """)

@@ -3,11 +3,11 @@ import functools
 from django import http
 from django.shortcuts import get_object_or_404
 
-import commonware.log
+import olympia.core.logger
 from olympia.access import acl
 from olympia.addons.models import Addon
 
-log = commonware.log.getLogger('mkt.purchase')
+log = olympia.core.logger.getLogger('mkt.purchase')
 
 
 def owner_or_unlisted_reviewer(request, addon):
@@ -39,7 +39,8 @@ def addon_view(f, qs=Addon.objects.all):
             addon = get_object_or_404(qs(), slug=addon_id)
         # If the addon is unlisted it needs either an owner/viewer/dev/support,
         # or an unlisted addon reviewer.
-        if not (addon.is_listed or owner_or_unlisted_reviewer(request, addon)):
+        if not (addon.has_listed_versions() or
+                owner_or_unlisted_reviewer(request, addon)):
             raise http.Http404
         return f(request, addon, *args, **kw)
     return wrapper

@@ -1,11 +1,7 @@
 <div id="categories" class="categories">
   <h3 title="{{ _('Choose a category') }}">
     <a href="#categoriesdropdown" aria-haspopup="true">
-      {% if is_mobile(request.APP) -%}
-        {{ _('Mobile Categories') }}
-      {% else %}
-        {{ _('Categories') }}
-      {%- endif %}
+      {{ _('Categories') }}
     </a>
   </h3>
   <ul id="categoriesdropdown">

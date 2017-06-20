@@ -112,6 +112,32 @@ var Highlighter = {
         // highlighter will try to replace the original element in the
         // DOM when it's done.
 
+        // Verify that we actually support the used brush
+        // see https://github.com/mozilla/addons-server/issues/4552 for more
+        // details. This shows an alert if a brush is not supported.
+        var discoveredBrushes = SyntaxHighlighter.brushes;
+
+        if (discoveredBrushes) {
+            var brushes = [];
+
+            for (var discoveredBrush in discoveredBrushes) {
+                var aliases = discoveredBrushes[discoveredBrush].aliases;
+
+                if (aliases == null) {
+                    continue;
+                }
+
+                for (var i = 0, l = aliases.length; i < l; i++) {
+                    brushes.push(aliases[i]);
+                }
+            }
+
+            if (!brushes.includes(brush.toLowerCase())) {
+                $('.highlighter-output-broken').modal('', { width: 960 }).render();
+                $('.highlighter-output-broken').toggleClass('js-hidden');
+            }
+        }
+
         var $node = $('<pre>', {'class': format('brush: {0}; toolbar: false;',
                                                 [brush]),
                                 text: text});
@@ -207,7 +233,7 @@ if (typeof SyntaxHighlighter !== 'undefined') {
         //   https://github.com/mozilla/olympia/blob/a35ab083/static/js/lib/syntaxhighlighter/shCore.js#L1552
 
         // find matches in the code using brushes regex list
-        var matches = this.findMatches(this.regexList, code);
+        var matches = this.findMatchesNew(this.regexList, code);
 
         // processes found matches into the html
         var html = this.getMatchesHtml(code, matches);
@@ -228,19 +254,19 @@ if (typeof SyntaxHighlighter !== 'undefined') {
     // newer keywords:
     new function() {
         function JSBrush() {
-            var keywords =  'break case catch continue ' +
-                            'default delete do else false  ' +
-                            'for function if in instanceof ' +
-                            'new null return super switch ' +
-                            'this throw true try typeof var while with ' +
-                            'const let of debugger'
-                            ;
+            var keywords = 'break case catch class const continue debugger' +
+                           'default delete do else enum export extends false finally ' +
+                           'for function if implements import in instanceof ' +
+                           'interface let new null package private protected public' +
+                           'static return super switch this throw true try typeof ' +
+                           'var void while with yield';
 
             var r = SyntaxHighlighter.regexLib;
 
             this.regexList = [
                 { regex: r.multiLineDoubleQuotedString,                 css: 'string' },            // double quoted strings
                 { regex: r.multiLineSingleQuotedString,                 css: 'string' },            // single quoted strings
+                { regex: /`([^`])*`/g,                                  css: 'string' },            // template literals
                 { regex: r.singleLineCComments,                         css: 'comments' },          // one line comments
                 { regex: r.multiLineCComments,                          css: 'comments' },          // multiline comments
                 { regex: /\s*#.*/gm,                                    css: 'preprocessor' },      // preprocessor tags like #region and #endregion
@@ -344,25 +370,9 @@ function bind_viewer(nodes) {
             this.show_selected();
         };
         this.update_message_filters = function() {
-            if (file_metadata.automatedSigning) {
-                this.hideNonSigning = $('#signing-hide-unnecessary').prop('checked');
-
-                // Hiding ignored messages only makes sense if we're only
-                // showing signing-related messages.
-                $('#signing-hide-ignored-container input').prop('disabled', !this.hideNonSigning);
-                if (!this.hideNonSigning) {
-                    $('#signing-hide-ignored').prop('checked', false);
-                }
-
-                this.hideIgnored = $('#signing-hide-ignored').prop('checked');
-            }
-
             var $root = this.nodes.$root;
-            $root.addClass('messages-signing');
             $root.toggleClass('messages-duplicate', !this.hideIgnored);
-            $root.toggleClass('messages-all', !this.hideNonSigning);
-
-            $("#signing-hide-ignored-container").toggle(!!this.validation.signing_ignored_summary);
+            $root.toggleClass('messages-all');
         };
         this.message_type_map = {
             'error': 'error',
@@ -372,13 +382,9 @@ function bind_viewer(nodes) {
         this.message_classes = function(message, base_class) {
             base_class = base_class || '';
             var classes = [''];
-            if (message.signing_severity || message.type == "error") {
-                // For the moment, we only ignore messages in signing
-                // validation.
+            if (message.type == "error") {
                 if (message.ignored) {
                     classes.push('-ignored');
-                } else {
-                    classes.push('-signing');
                 }
             }
             return classes.map(function(cls) { return [base_class, message.type, cls].join(""); });
@@ -404,22 +410,6 @@ function bind_viewer(nodes) {
                                    message.type[0].toUpperCase(),
                                    message.type.substr(1),
                                    message.message)];
-
-                if (message.ignore_duplicates != null && file_metadata.annotateUrl) {
-                    var checked = message.ignore_duplicates ? 'checked="checked" ' : '';
-
-                    html.push('<p><label>',
-                              format('<input type="checkbox" class="ignore-duplicates-checkbox"' +
-                                     ' {0}name="{1}">', [checked, _.escape(JSON.stringify(message))]),
-                              ' ', gettext('Ignore this message in future updates'), '</label></p>');
-                }
-
-                if (message.signing_severity && file_metadata.automatedSigning) {
-                    html.push(format(
-                        '<p><label>{0}</label> {1}</p>',
-                        [gettext('Severity for automated signing:'),
-                         message.signing_severity]));
-                }
 
                 $.each(message.description, function(i, msg) {
                     html.push('<p>', msg, '</p>');
@@ -694,11 +684,6 @@ function bind_viewer(nodes) {
                         $(this).prev('li').find('a:first')
                                .removeClass('closed').addClass('open');
             });
-            if ($('.breadcrumbs li').length > 2) {
-                $('.breadcrumbs li').eq(2).text($link.attr('data-short'));
-            } else {
-                $('.breadcrumbs').append(format('<li>{0}</li>', $link.attr('data-short')));
-            }
 
             this.show_selected();
         };
@@ -910,24 +895,6 @@ function bind_viewer(nodes) {
 
     var file_metadata = $('#metadata').data();
 
-    if (file_metadata.annotateUrl) {
-        $('#file-viewer').delegate('.ignore-duplicates-checkbox', 'change',
-                                   function(event) {
-            var $target = $(event.target);
-            $.ajax({type: 'POST',
-                    url: file_metadata.annotateUrl,
-                    data: { message: $target.attr('name'),
-                            ignore_duplicates: $target.prop('checked') || undefined },
-                    dataType: 'json'})
-        });
-    }
-
-    if (file_metadata.automatedSigning) {
-        $('#signing-hide-unnecessary, #signing-hide-ignored').change(function() {
-            viewer.update_message_filters();
-        });
-    }
-
     if (file_metadata.validation) {
         viewer.update_validation({validation: file_metadata.validation,
                                   error: null}, true);
@@ -1032,14 +999,21 @@ $(document).ready(function() {
                 });
             } else if (json) {
                 var errors = false;
+
                 $.each(json.msg, function(k) {
                     if (json.msg[k] !== null) {
                         errors = true;
-                        $('<p>').text(json.msg[k]).appendTo($('#file-viewer div.error'));
+
+                        // The box isn't visible / created if there are errors
+                        // so we have to create the notification-box ourselves.
+                        $('#validating').after($('<div>', {
+                            'class': 'notification-box error',
+                            'text': json.msg[k]
+                        }));
                     }
                 });
                 if (errors) {
-                    $('#file-viewer div.error').show();
+                    $('.notification-box .error').show();
                     $('#extracting').hide();
                 } else {
                     setTimeout(poll_file_extraction, 2000);

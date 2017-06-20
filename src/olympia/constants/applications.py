@@ -83,6 +83,9 @@ class SUNBIRD(App):
 
 
 class MOBILE(App):
+    """Old Firefox for Mobile.
+
+    Not supported anymore, should not be added to APPS."""
     id = 60
     short = 'mobile'
     shortername = 'fn'
@@ -150,15 +153,13 @@ class UNKNOWN_APP(App):
 
 
 # UAs will attempt to match in this order.
-APP_DETECT = (ANDROID, MOBILE, THUNDERBIRD, SEAMONKEY, FIREFOX)
-APP_USAGE = _apps = (FIREFOX, THUNDERBIRD, ANDROID, MOBILE, SEAMONKEY)
-APPS = dict((app.short, app) for app in _apps)
-
-APPS_ALL = dict((app.id, app) for app in _apps + (MOZILLA, SUNBIRD))
-APP_IDS = dict((app.id, app) for app in _apps)
-APP_GUIDS = dict((app.guid, app) for app in _apps)
-APPS_RETIRED = dict([(MOZILLA.short, MOZILLA), (SUNBIRD.short, SUNBIRD)])
-APPS_CHOICES = tuple((app.id, app.pretty) for app in _apps)
+APP_DETECT = (ANDROID, THUNDERBIRD, SEAMONKEY, FIREFOX)
+APP_USAGE = (FIREFOX, THUNDERBIRD, ANDROID, SEAMONKEY)
+APPS = {app.short: app for app in APP_USAGE}
+APPS_ALL = {app.id: app for app in APP_USAGE + (MOZILLA, SUNBIRD, MOBILE)}
+APP_IDS = {app.id: app for app in APP_USAGE}
+APP_GUIDS = {app.guid: app for app in APP_USAGE}
+APPS_CHOICES = tuple((app.id, app.pretty) for app in APP_USAGE)
 
 APP_TYPE_SUPPORT = {}
 for _app in APP_USAGE:
@@ -168,7 +169,6 @@ for _app in APP_USAGE:
 # The lowest maxVersion an app has to support to allow default-to-compatible.
 D2C_MAX_VERSIONS = {
     FIREFOX.id: '4.0',
-    MOBILE.id: '11.0',
     SEAMONKEY.id: '2.1',
     THUNDERBIRD.id: '5.0',
 }
@@ -180,4 +180,4 @@ for _app in APPS_ALL.values():
     _versions.append(99)
     _app.exclude_versions = tuple(_versions)
 
-del _app, _apps, _type, _versions
+del _app, _type, _versions

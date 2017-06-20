@@ -3,13 +3,13 @@ import random
 
 import mock
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.tests import TestCase
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
     Collection, CollectionAddon, CollectionUser, CollectionWatcher)
-from olympia.devhub.models import ActivityLog
 from olympia.bandwagon import tasks
 from olympia.users.models import UserProfile
 
@@ -34,7 +34,7 @@ class TestCollections(TestCase):
         super(TestCollections, self).setUp()
         self.user = UserProfile.objects.create(username='uhhh', email='uh@hh')
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
-        amo.set_user(self.user)
+        core.set_user(self.user)
 
     def test_description(self):
         c = Collection.objects.create(
@@ -84,14 +84,6 @@ class TestCollections(TestCase):
         c = Collection.objects.create(author=self.user)
         assert c.uuid != ''
         assert isinstance(c.uuid, basestring)
-
-    def test_addon_index(self):
-        c = Collection.objects.get(pk=512)
-        c.author = self.user
-        assert c.addon_index is None
-        ids = c.addons.values_list('id', flat=True)
-        c.save()
-        assert c.addon_index == Collection.make_index(ids)
 
     def test_set_addons(self):
         addons = list(Addon.objects.values_list('id', flat=True))
@@ -201,7 +193,6 @@ class TestCollections(TestCase):
 
         # Developer.
         grouser.delete()
-        del fake_request.user.groups_list
         CollectionUser.objects.create(collection=c, user=self.user)
         fake_request.user = self.user
         assert c.can_view_stats(fake_request)

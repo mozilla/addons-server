@@ -5,15 +5,13 @@ import os
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.forms.formsets import formset_factory
-from django.utils.translation import (
-    ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext)
+from django.forms.formsets import BaseFormSet, formset_factory
+from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
-import commonware.log
-from quieter_formset.formset import BaseFormSet
-
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
+from olympia.activity.models import ActivityLog
 from olympia.amo.fields import (
     ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
 from olympia.amo.urlresolvers import reverse
@@ -22,7 +20,6 @@ from olympia.amo.utils import (
 from olympia.addons.models import (
     Addon, AddonCategory, DeniedSlug, Category, Persona)
 from olympia.addons.tasks import save_theme, save_theme_reupload
-from olympia.addons.utils import reverse_name_lookup
 from olympia.addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from olympia.devhub import tasks as devhub_tasks
 from olympia.lib import happyforms
@@ -36,31 +33,7 @@ from olympia.users.models import UserEmailField
 from olympia.versions.models import Version
 
 
-log = commonware.log.getLogger('z.addons')
-
-
-def clean_addon_name(name, instance=None, addon_type=None):
-    if not instance:
-        log.debug('clean_addon_name called without an instance: %s' % name)
-
-    # We don't need to do anything to prevent an unlisted addon name from
-    # clashing with listed addons, because the `reverse_name_lookup` util below
-    # uses the Addon.objects manager, which filters out unlisted addons.
-    if instance and not instance.is_listed:
-        return name
-
-    assert instance or addon_type
-    if not addon_type:
-        addon_type = instance.type
-
-    match = reverse_name_lookup(name, addon_type=addon_type, instance=instance)
-
-    if match:
-        raise forms.ValidationError(_(
-            'This name is already in use. Please choose another.'
-        ))
-
-    return name
+log = olympia.core.logger.getLogger('z.addons')
 
 
 def clean_addon_slug(slug, instance):
@@ -68,11 +41,12 @@ def clean_addon_slug(slug, instance):
 
     if slug != instance.slug:
         if Addon.objects.filter(slug=slug).exists():
-            raise forms.ValidationError(
-                _('This slug is already in use. Please choose another.'))
+            raise forms.ValidationError(ugettext(
+                'This slug is already in use. Please choose another.'))
         if DeniedSlug.blocked(slug):
-            raise forms.ValidationError(
-                _('The slug cannot be "%s". Please choose another.' % slug))
+            msg = ugettext(u'The slug cannot be "%(slug)s". '
+                           u'Please choose another.')
+            raise forms.ValidationError(msg % {'slug': slug})
 
     return slug
 
@@ -90,18 +64,18 @@ def clean_tags(request, tags):
               .filter(tag_text__in=target, denied=True))
     if denied:
         # L10n: {0} is a single tag or a comma-separated list of tags.
-        msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}',
-                       len(denied)).format(', '.join(denied))
+        msg = ungettext('Invalid tag: {0}', 'Invalid tags: {0}',
+                        len(denied)).format(', '.join(denied))
         raise forms.ValidationError(msg)
 
     restricted = (Tag.objects.values_list('tag_text', flat=True)
                      .filter(tag_text__in=target, restricted=True))
-    if not acl.action_allowed(request, 'Addons', 'Edit'):
+    if not acl.action_allowed(request, amo.permissions.ADDONS_EDIT):
         if restricted:
             # L10n: {0} is a single tag or a comma-separated list of tags.
-            msg = ngettext('"{0}" is a reserved tag and cannot be used.',
-                           '"{0}" are reserved tags and cannot be used.',
-                           len(restricted)).format('", "'.join(restricted))
+            msg = ungettext('"{0}" is a reserved tag and cannot be used.',
+                            '"{0}" are reserved tags and cannot be used.',
+                            len(restricted)).format('", "'.join(restricted))
             raise forms.ValidationError(msg)
     else:
         # Admin's restricted tags don't count towards the limit.
@@ -109,19 +83,20 @@ def clean_tags(request, tags):
 
     if total > max_tags:
         num = total - max_tags
-        msg = ngettext('You have {0} too many tags.',
-                       'You have {0} too many tags.', num).format(num)
+        msg = ungettext('You have {0} too many tags.',
+                        'You have {0} too many tags.', num).format(num)
         raise forms.ValidationError(msg)
 
     if any(t for t in target if len(t) > max_len):
         raise forms.ValidationError(
-            _('All tags must be %s characters or less after invalid characters'
-              ' are removed.' % max_len))
+            ugettext(
+                'All tags must be %s characters or less after invalid '
+                'characters are removed.' % max_len))
 
     if any(t for t in target if len(t) < min_len):
-        msg = ngettext("All tags must be at least {0} character.",
-                       "All tags must be at least {0} characters.",
-                       min_len).format(min_len)
+        msg = ungettext('All tags must be at least {0} character.',
+                        'All tags must be at least {0} characters.',
+                        min_len).format(min_len)
         raise forms.ValidationError(msg)
 
     return target
@@ -144,7 +119,7 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
         return clean_tags(self.request, self.cleaned_data['tags'])
 
     def get_tags(self, addon):
-        if acl.action_allowed(self.request, 'Addons', 'Edit'):
+        if acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
             return list(addon.tags.values_list('tag_text', flat=True))
         else:
             return list(addon.tags.filter(restricted=False)
@@ -169,9 +144,6 @@ class AddonFormBasic(AddonFormBase):
         if self.fields.get('tags'):
             self.fields['tags'].initial = ', '.join(
                 self.get_tags(self.instance))
-
-    def clean_name(self):
-        return clean_addon_name(self.cleaned_data['name'], self.instance)
 
     def clean_slug(self):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
@@ -240,21 +212,21 @@ class CategoryForm(forms.Form):
         max_cat = amo.MAX_CATEGORIES
 
         if getattr(self, 'disabled', False) and total:
-            raise forms.ValidationError(
-                _('Categories cannot be changed while your add-on is featured '
-                  'for this application.'))
+            raise forms.ValidationError(ugettext(
+                'Categories cannot be changed while your add-on is featured '
+                'for this application.'))
         if total > max_cat:
             # L10n: {0} is the number of categories.
-            raise forms.ValidationError(ngettext(
+            raise forms.ValidationError(ungettext(
                 'You can have only {0} category.',
                 'You can have only {0} categories.',
                 max_cat).format(max_cat))
 
         has_misc = filter(lambda x: x.misc, categories)
         if has_misc and total > 1:
-            raise forms.ValidationError(
-                _('The miscellaneous category cannot be combined with '
-                  'additional categories.'))
+            raise forms.ValidationError(ugettext(
+                'The miscellaneous category cannot be combined with '
+                'additional categories.'))
 
         return categories
 
@@ -293,7 +265,8 @@ class BaseCategoryFormSet(BaseFormSet):
 
             # If this add-on is featured for this application, category
             # changes are forbidden.
-            if not acl.action_allowed(self.request, 'Addons', 'Edit'):
+            if not acl.action_allowed(self.request,
+                                      amo.permissions.ADDONS_EDIT):
                 form.disabled = (app and self.addon.is_featured(app))
 
     def save(self):
@@ -376,10 +349,10 @@ class AddonFormDetails(AddonFormBase):
             if 'description' in missing and locale in data['description']:
                 missing.remove('description')
             if missing:
-                raise forms.ValidationError(
-                    _('Before changing your default locale you must have a '
-                      'name, summary, and description in that locale. '
-                      'You are missing %s.') % ', '.join(map(repr, missing)))
+                raise forms.ValidationError(ugettext(
+                    'Before changing your default locale you must have a '
+                    'name, summary, and description in that locale. '
+                    'You are missing %s.') % ', '.join(map(repr, missing)))
         return data
 
 
@@ -411,9 +384,8 @@ class AddonFormTechnical(AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('developer_comments', 'view_source', 'site_specific',
-                  'external_software', 'auto_repackage', 'public_stats',
-                  'whiteboard')
+        fields = ('developer_comments', 'view_source', 'external_software',
+                  'auto_repackage', 'public_stats', 'whiteboard')
 
 
 class AddonFormTechnicalUnlisted(AddonFormBase):
@@ -452,14 +424,6 @@ class ThemeFormBase(AddonFormBase):
                 'data-allowed-types': 'image/jpeg|image/png'
             }
 
-    def clean_name(self):
-        """
-        Overwrite `clean_name` to make sure we pass the correct add-on type
-        """
-        return clean_addon_name(
-            self.cleaned_data['name'], instance=self.instance,
-            addon_type=amo.ADDON_PERSONA)
-
 
 class ThemeForm(ThemeFormBase):
     name = forms.CharField(max_length=50)
@@ -473,7 +437,7 @@ class ThemeForm(ThemeFormBase):
     license = forms.TypedChoiceField(
         choices=amo.PERSONA_LICENSES_CHOICES,
         coerce=int, empty_value=None, widget=forms.HiddenInput,
-        error_messages={'required': _lazy(u'A license must be selected.')})
+        error_messages={'required': _(u'A license must be selected.')})
     header = forms.FileField(required=False)
     header_hash = forms.CharField(widget=forms.HiddenInput)
     footer = forms.FileField(required=False)
@@ -545,13 +509,13 @@ class ThemeForm(ThemeFormBase):
 
 
 class EditThemeForm(AddonFormBase):
-    name = TransField(max_length=50, label=_lazy('Give Your Theme a Name.'))
+    name = TransField(max_length=50, label=_('Give Your Theme a Name.'))
     slug = forms.CharField(max_length=30)
     category = forms.ModelChoiceField(queryset=Category.objects.all(),
                                       widget=forms.widgets.RadioSelect)
     description = TransField(
         widget=TransTextarea(attrs={'rows': 4}),
-        max_length=500, required=False, label=_lazy('Describe your Theme.'))
+        max_length=500, required=False, label=_('Describe your Theme.'))
     tags = forms.CharField(required=False)
     accentcolor = ColorField(
         required=False,
@@ -564,7 +528,7 @@ class EditThemeForm(AddonFormBase):
     license = forms.TypedChoiceField(
         choices=amo.PERSONA_LICENSES_CHOICES, coerce=int, empty_value=None,
         widget=forms.HiddenInput,
-        error_messages={'required': _lazy(u'A license must be selected.')})
+        error_messages={'required': _(u'A license must be selected.')})
 
     # Theme re-upload.
     header = forms.FileField(required=False)
@@ -617,9 +581,6 @@ class EditThemeForm(AddonFormBase):
                 'data-allowed-types': 'image/jpeg|image/png'
             }
 
-    def clean_name(self):
-        return clean_addon_name(self.cleaned_data['name'], self.instance)
-
     def clean_slug(self):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
@@ -645,7 +606,7 @@ class EditThemeForm(AddonFormBase):
             persona.save()
 
         if self.changed_data:
-            amo.log(amo.LOG.EDIT_PROPERTIES, addon)
+            ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
         self.instance.modified = datetime.now()
 
         # Update Addon-specific data.

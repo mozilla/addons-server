@@ -2,32 +2,51 @@ import codecs
 import mimetypes
 import os
 import stat
+from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import force_text
-from django.utils.translation import get_language, ugettext as _
+from django.utils.translation import get_language, ugettext
 from django.template.defaultfilters import filesizeformat
 # TODO (andym): change the validator variables.
 from validator.testcases.packagelayout import (
     blacklisted_extensions, blacklisted_magic_numbers)
 
 import jinja2
-import commonware.log
-from cache_nuggets.lib import memoize, Message
 from jingo import register, get_env
 
+import olympia.core.logger
 from olympia import amo
+from olympia.amo.cache_nuggets import memoize, Message
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.amo.urlresolvers import reverse
-from olympia.files.utils import extract_xpi, get_md5
+from olympia.files.utils import (
+    extract_xpi, get_sha256, get_all_files, atomic_lock)
 
 # Allow files with a shebang through.
 denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
                         if b != (0x23, 0x21)]
 denied_extensions = [b for b in list(blacklisted_extensions) if b != 'sh']
-task_log = commonware.log.getLogger('z.task')
+task_log = olympia.core.logger.getLogger('z.task')
+
+LOCKED_LIFETIME = 60 * 5
+
+SYNTAX_HIGHLIGHTER_ALIAS_MAPPING = {
+    'xul': 'xml',
+    'rdf': 'xml',
+    'jsm': 'js',
+    'json': 'js',
+    'htm': 'html'
+}
+
+# See settings.MINIFY_BUNDLES['js']['zamboni/files'] for more details
+# as to which brushes we support.
+SYNTAX_HIGHLIGHTER_SUPPORTED_LANGUAGES = frozenset([
+    'css', 'html', 'java', 'javascript', 'js', 'jscript',
+    'plain', 'text', 'xml', 'xhtml', 'xlst',
+])
 
 
 @register.function
@@ -60,6 +79,33 @@ def file_tree(files, selected):
     return jinja2.Markup('\n'.join(output))
 
 
+def extract_file(viewer, **kw):
+    # This message is for end users so they'll see a nice error.
+    msg = Message('file-viewer:%s' % viewer)
+    msg.delete()
+    task_log.debug('Unzipping %s for file viewer.' % viewer)
+
+    try:
+        lock_attained = viewer.extract()
+
+        if not lock_attained:
+            info_msg = ugettext(
+                'File viewer is locked, extraction for %s could be '
+                'in progress. Please try again in approximately 5 minutes.'
+                % viewer)
+            msg.save(info_msg)
+    except Exception, exc:
+        error_msg = ugettext('There was an error accessing file %s.') % viewer
+
+        if settings.DEBUG:
+            msg.save(error_msg + ' ' + exc)
+        else:
+            msg.save(error_msg)
+        task_log.error('Error unzipping: %s' % exc)
+
+    return msg
+
+
 class FileViewer(object):
     """
     Provide access to a storage-managed file by copying it locally and
@@ -71,41 +117,67 @@ class FileViewer(object):
         self.file = file_obj
         self.addon = self.file.version.addon
         self.src = file_obj.current_file_path
-        self.dest = os.path.join(settings.TMP_PATH, 'file_viewer',
-                                 str(file_obj.pk))
+        self.dest = os.path.join(
+            settings.TMP_PATH, 'file_viewer',
+            datetime.now().strftime('%m%d'),
+            str(file_obj.pk))
         self._files, self.selected = None, None
 
     def __str__(self):
         return str(self.file.id)
 
-    def _extraction_cache_key(self):
-        return ('%s:file-viewer:extraction-in-progress:%s' %
-                (settings.CACHE_PREFIX, self.file.id))
+    def _cache_key(self, key=None):
+        assert key is not None
+        return '{0}:file-viewer:{1}:{2}'.format(
+            settings.CACHE_PREFIX, key, self.file.id
+        )
 
     def extract(self):
         """
         Will make all the directories and expand the files.
         Raises error on nasty files.
-        """
-        try:
-            os.makedirs(os.path.dirname(self.dest))
-        except OSError, err:
-            pass
 
-        if self.is_search_engine() and self.src.endswith('.xml'):
-            try:
-                os.makedirs(self.dest)
-            except OSError, err:
-                pass
-            copyfileobj(storage.open(self.src),
-                        open(os.path.join(self.dest,
-                                          self.file.filename), 'w'))
-        else:
-            try:
-                extract_xpi(self.src, self.dest, expand=True)
-            except Exception, err:
-                task_log.error('Error (%s) extracting %s' % (err, self.src))
-                raise
+        :returns: `True` if successfully extracted,
+                  `False` in case of an existing lock.
+        """
+        lock = atomic_lock(
+            settings.TMP_PATH, 'file-viewer-%s' % self.file.pk,
+            lifetime=LOCKED_LIFETIME)
+
+        with lock as lock_attained:
+            if lock_attained:
+                if self.is_extracted():
+                    # Be vigilent with existing files. It's better to delete
+                    # and re-extract than to trust whatever we have
+                    # lying around.
+                    task_log.warning(
+                        'cleaning up %s as there were files lying around'
+                        % self.dest)
+                    self.cleanup()
+
+                try:
+                    os.makedirs(self.dest)
+                except OSError, err:
+                    task_log.error(
+                        'Error (%s) creating directories %s'
+                        % (err, self.dest))
+                    raise
+
+                if self.is_search_engine() and self.src.endswith('.xml'):
+                    copyfileobj(storage.open(self.src),
+                                open(os.path.join(self.dest,
+                                                  self.file.filename), 'w'))
+                else:
+                    try:
+                        extracted_files = extract_xpi(
+                            self.src, self.dest, expand=True)
+                        self._verify_files(extracted_files)
+                    except Exception, err:
+                        task_log.error(
+                            'Error (%s) extracting %s' % (err, self.src))
+                        raise
+
+        return lock_attained
 
     def cleanup(self):
         if os.path.exists(self.dest):
@@ -117,8 +189,7 @@ class FileViewer(object):
 
     def is_extracted(self):
         """If the file has been extracted or not."""
-        return (os.path.exists(self.dest) and not
-                Message(self._extraction_cache_key()).get())
+        return os.path.exists(self.dest)
 
     def _is_binary(self, mimetype, path):
         """Uses the filename to see if the file can be shown in HTML or not."""
@@ -150,7 +221,7 @@ class FileViewer(object):
             file_data = self._read_file(allow_empty)
             return file_data
         except (IOError, OSError):
-            self.selected['msg'] = _('That file no longer exists.')
+            self.selected['msg'] = ugettext('That file no longer exists.')
             return ''
 
     def _read_file(self, allow_empty=False):
@@ -159,7 +230,7 @@ class FileViewer(object):
         assert self.selected, 'Please select a file'
         if self.selected['size'] > settings.FILE_VIEWER_SIZE_LIMIT:
             # L10n: {0} is the file size limit of the file viewer.
-            msg = _(u'File size is over the limit of {0}.').format(
+            msg = ugettext(u'File size is over the limit of {0}.').format(
                 filesizeformat(settings.FILE_VIEWER_SIZE_LIMIT))
             self.selected['msg'] = msg
             return ''
@@ -173,7 +244,7 @@ class FileViewer(object):
                 cont = cont.decode(codec, 'ignore')
                 # L10n: {0} is the filename.
                 self.selected['msg'] = (
-                    _('Problems decoding {0}.').format(codec))
+                    ugettext('Problems decoding {0}.').format(codec))
                 return cont
 
     def select(self, file_):
@@ -183,15 +254,15 @@ class FileViewer(object):
         if self.selected:
             binary = self.selected['binary']
             if binary and (binary != 'image'):
-                self.selected['msg'] = _('This file is not viewable online. '
-                                         'Please download the file to view '
-                                         'the contents.')
+                self.selected['msg'] = ugettext(
+                    u'This file is not viewable online. Please download the '
+                    u'file to view the contents.')
             return binary
 
     def is_directory(self):
         if self.selected:
             if self.selected['directory']:
-                self.selected['msg'] = _('This file is a directory.')
+                self.selected['msg'] = ugettext('This file is a directory.')
             return self.selected['directory']
 
     def get_default(self, key=None):
@@ -216,6 +287,7 @@ class FileViewer(object):
 
         if not self.is_extracted():
             return {}
+
         # In case a cron job comes along and deletes the files
         # mid tree building.
         try:
@@ -249,17 +321,36 @@ class FileViewer(object):
         """
         if filename:
             short = os.path.splitext(filename)[1][1:]
-            syntax_map = {'xul': 'xml', 'rdf': 'xml', 'jsm': 'js',
-                          'json': 'js', 'htm': 'html'}
-            short = syntax_map.get(short, short)
-            if short in ['actionscript3', 'as3', 'bash', 'shell', 'cpp', 'c',
-                         'c#', 'c-sharp', 'csharp', 'css', 'diff', 'html',
-                         'java', 'javascript', 'js', 'jscript', 'patch',
-                         'pas', 'php', 'plain', 'py', 'python', 'sass',
-                         'scss', 'text', 'sql', 'vb', 'vbnet', 'xml', 'xhtml',
-                         'xslt']:
+            short = SYNTAX_HIGHLIGHTER_ALIAS_MAPPING.get(short, short)
+
+            if short in SYNTAX_HIGHLIGHTER_SUPPORTED_LANGUAGES:
                 return short
         return 'plain'
+
+    def _verify_files(self, expected_files, raise_on_verify=False):
+        """Verifies that all files are properly extracted.
+
+        TODO: This should probably be extracted into a separate helper
+        once we can verify that it works as expected.
+        """
+        difference = self._check_dest_for_complete_listing(expected_files)
+
+        if difference:
+            if raise_on_verify:
+                error_msg = (
+                    'Error verifying extraction of %s. Difference: %s' % (
+                        self.src, ', '.join(list(difference))))
+                task_log.error(error_msg)
+                raise ValueError(error_msg)
+            else:
+                task_log.warning(
+                    'Calling fsync, files from %s extraction aren\'t'
+                    ' completely available.' % self.src)
+
+                self._fsync_dest_to_complete_listing(
+                    self._normalize_file_list(expected_files))
+
+                self._verify_files(expected_files, raise_on_verify=True)
 
     @memoize(prefix='file-viewer', time=60 * 60)
     def _get_files(self, locale=None):
@@ -272,35 +363,21 @@ class FileViewer(object):
         Otherwise, we would just always have the urls for the files with the
         locale from the first person checking them.
         """
-        all_files, res = [], SortedDict()
-        # Not using os.path.walk so we get just the right order.
+        result = SortedDict()
 
-        def iterate(path):
-            path_dirs, path_files = storage.listdir(path)
-            for dirname in sorted(path_dirs):
-                full = os.path.join(path, dirname)
-                all_files.append(full)
-                iterate(full)
-
-            for filename in sorted(path_files):
-                full = os.path.join(path, filename)
-                all_files.append(full)
-
-        iterate(self.dest)
-
-        for path in all_files:
+        for path in get_all_files(self.dest):
             filename = force_text(os.path.basename(path), errors='replace')
             short = force_text(path[len(self.dest) + 1:], errors='replace')
             mime, encoding = mimetypes.guess_type(filename)
             directory = os.path.isdir(path)
 
-            res[short] = {
+            result[short] = {
                 'binary': self._is_binary(mime, path),
                 'depth': short.count(os.sep),
                 'directory': directory,
                 'filename': filename,
                 'full': path,
-                'md5': get_md5(path) if not directory else '',
+                'sha256': get_sha256(path) if not directory else '',
                 'mimetype': mime or 'application/octet-stream',
                 'syntax': self.get_syntax(filename),
                 'modified': os.stat(path)[stat.ST_MTIME],
@@ -314,7 +391,41 @@ class FileViewer(object):
                 'version': self.file.version.version,
             }
 
-        return res
+        return result
+
+    def _check_dest_for_complete_listing(self, expected_files):
+        """Check that all filex we expect are in `self.dest`."""
+        dest_len = len(self.dest)
+
+        files_to_verify = get_all_files(self.dest)
+
+        difference = (
+            set([name[dest_len:].strip('/') for name in files_to_verify]) -
+            set(self._normalize_file_list(expected_files)))
+
+        return difference
+
+    def _normalize_file_list(self, expected_files):
+        """Normalize file names, strip /tmp/xxxx/ prefix."""
+        normalized_files = [fname.strip('/') for fname in expected_files]
+        normalized_files = [
+            os.path.join(*fname.split(os.path.sep)[2:])
+            for fname in normalized_files]
+
+        return normalized_files
+
+    def _fsync_dest_to_complete_listing(self, files):
+        # Now call fsync for every single file. This might block for a
+        # few milliseconds but it's still way faster than doing any
+        # kind of sleeps to wait for writes to happen.
+        for fname in files:
+            fpath = os.path.join(settings.TMP_PATH, fname)
+            descriptor = os.open(fpath, os.O_RDONLY)
+            os.fsync(descriptor)
+
+        # Then make sure to call fsync on the top-level directory
+        top_descriptor = os.open(self.dest, os.O_RDONLY)
+        os.fsync(top_descriptor)
 
 
 class DiffHelper(object):
@@ -353,7 +464,7 @@ class DiffHelper(object):
         different = []
         for key, file in left_files.items():
             file['url'] = self.get_url(file['short'])
-            diff = file['md5'] != right_files.get(key, {}).get('md5')
+            diff = file['sha256'] != right_files.get(key, {}).get('sha256')
             file['diff'] = diff
             if diff:
                 different.append(file)

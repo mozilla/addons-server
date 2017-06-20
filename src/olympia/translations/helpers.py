@@ -8,6 +8,7 @@ import jinja2
 import jingo
 
 from olympia.amo.utils import clean_nl
+from olympia.translations.models import PurifiedTranslation
 
 jingo.register.filter(to_language)
 
@@ -23,7 +24,7 @@ def locale_html(translatedfield):
     if locale == site_locale:
         return ''
     else:
-        rtl_locales = map(translation.to_locale, settings.RTL_LANGUAGES)
+        rtl_locales = map(translation.to_locale, settings.LANGUAGES_BIDI)
         textdir = 'rtl' if locale in rtl_locales else 'ltr'
         return jinja2.Markup(' lang="%s" dir="%s"' % (
             jinja2.escape(translatedfield.locale), textdir))
@@ -74,8 +75,26 @@ def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
 
 
 @jingo.register.filter
-def clean(string):
-    return jinja2.Markup(clean_nl(bleach.clean(unicode(string))).strip())
+def clean(string, strip_all_html=False):
+    """Clean html with bleach.
+
+    :param string string: The original string to clean.
+    :param bool strip_all_html: If given, remove all html code from `string`.
+    """
+    # Edgecase for PurifiedTranslation to avoid already-escaped html code
+    # to slip through. This isn't a problem if `strip_all_html` is `False`.
+    if isinstance(string, PurifiedTranslation) and strip_all_html:
+        string = string.localized_string
+
+    if hasattr(string, '__html__'):
+        string = string.__html__()
+
+    if strip_all_html:
+        string = bleach.clean(unicode(string), tags=[], strip=True)
+    else:
+        string = bleach.clean(unicode(string))
+
+    return jinja2.Markup(clean_nl(string).strip())
 
 
 @jingo.register.filter

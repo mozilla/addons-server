@@ -1,9 +1,8 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
 from django.views.decorators.cache import cache_page
 
-from olympia.reviews.urls import review_patterns
 from olympia.stats.urls import stats_patterns
 from . import buttons
 from . import views
@@ -12,8 +11,7 @@ ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 
 
 # These will all start with /addon/<addon_id>/
-detail_patterns = patterns(
-    '',
+detail_patterns = [
     url('^$', views.addon_detail, name='addons.detail'),
     url('^more$', views.addon_detail, name='addons.detail_more'),
     url('^eula/(?P<file_id>\d+)?$', views.eula, name='addons.eula'),
@@ -39,14 +37,13 @@ detail_patterns = patterns(
                                      addon_id, permanent=True),
         name='addons.about'),
 
-    ('^reviews/', include(review_patterns('addons'))),
-    ('^statistics/', include(stats_patterns)),
-    ('^versions/', include('olympia.versions.urls')),
-)
+    url('^reviews/', include('olympia.reviews.urls')),
+    url('^statistics/', include(stats_patterns)),
+    url('^versions/', include('olympia.versions.urls')),
+]
 
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     # Promo modules for the homepage
     url('^i/promos$', views.homepage_promos, name='addons.homepage_promos'),
 
@@ -57,7 +54,7 @@ urlpatterns = patterns(
         name='addons.icloudbookmarksredirect'),
 
     # URLs for a single add-on.
-    ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
+    url('^addon/%s/' % ADDON_ID, include(detail_patterns)),
 
     # Button messages to be used by JavaScript.
     # Should always be called with a cache-busting querystring.
@@ -66,12 +63,15 @@ urlpatterns = patterns(
         name='addons.buttons.js'),
 
     # Remora EULA and Privacy policy URLS
-    ('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',
-     lambda r, addon_id, file_id: redirect('addons.eula',
-                                           addon_id, file_id, permanent=True)),
-    ('^addons/policy/0/(?P<addon_id>\d+)/',
-     lambda r, addon_id: redirect('addons.privacy',
-                                  addon_id, permanent=True)),
+    url('^addons/policy/0/(?P<addon_id>\d+)/(?P<file_id>\d+)',
+        lambda r, addon_id, file_id: redirect(
+            'addons.eula', addon_id, file_id, permanent=True)),
+    url('^addons/policy/0/(?P<addon_id>\d+)/',
+        lambda r, addon_id: redirect(
+            'addons.privacy', addon_id, permanent=True)),
 
-    ('^versions/license/(\d+)$', views.license_redirect),
-)
+    url('^versions/license/(\d+)$', views.license_redirect),
+
+    url('^find-replacement/$', views.find_replacement_addon,
+        name='addons.find_replacement'),
+]

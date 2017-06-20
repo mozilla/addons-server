@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import timedelta
 from itertools import chain
 
 from olympia import amo
@@ -12,6 +11,7 @@ from olympia.addons.indexers import AddonIndexer
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
+from olympia.files.models import WebextPermission
 
 
 class TestAddonIndexer(TestCase):
@@ -23,7 +23,7 @@ class TestAddonIndexer(TestCase):
     simple_fields = [
         'average_daily_users', 'bayesian_rating', 'created', 'default_locale',
         'guid', 'hotness', 'icon_type', 'id', 'is_disabled', 'is_experimental',
-        'is_listed', 'last_updated', 'modified', 'public_stats', 'slug',
+        'last_updated', 'modified', 'public_stats', 'slug',
         'status', 'type', 'view_source', 'weekly_downloads',
     ]
 
@@ -48,7 +48,9 @@ class TestAddonIndexer(TestCase):
         complex_fields = [
             'app', 'boost', 'category', 'current_beta_version',
             'current_version', 'description', 'has_eula', 'has_privacy_policy',
-            'has_theme_rereview', 'has_version', 'latest_unlisted_version',
+            'has_theme_rereview', 'latest_unlisted_version', 'listed_authors',
+            'name', 'name_sort', 'platforms', 'previews', 'public_stats',
+            'ratings', 'summary', 'tags', 'has_theme_rereview',
             'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
             'public_stats', 'ratings', 'summary', 'tags',
         ]
@@ -113,8 +115,9 @@ class TestAddonIndexer(TestCase):
 
         # Make sure files mapping is set inside current_version.
         files_mapping = version_mapping['files']['properties']
-        expected_file_keys = ('id', 'created', 'filename', 'hash', 'platform',
-                              'size', 'status')
+        expected_file_keys = (
+            'id', 'created', 'filename', 'hash', 'is_webextension', 'platform',
+            'size', 'status', 'webext_permissions_list')
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
     def _extract(self):
@@ -166,17 +169,25 @@ class TestAddonIndexer(TestCase):
         assert extracted['has_eula'] is False
         assert extracted['has_privacy_policy'] is False
 
+    def test_extract_no_current_version(self):
+        self.addon.current_version.delete()
+        extracted = self._extract()
+
+        assert extracted['current_version'] is None
+
     def test_extract_version_and_files(self):
         version = self.addon.current_version
         file_factory(version=version, platform=PLATFORM_MAC.id)
         current_beta_version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_BETA})
+            addon=self.addon,
+            file_kw={'status': amo.STATUS_BETA, 'is_webextension': True})
+        # Give one of the versions some webext permissions to test that.
+        WebextPermission.objects.create(
+            file=current_beta_version.all_files[0],
+            permissions=['bookmarks', 'random permission']
+        )
         unlisted_version = version_factory(
             addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
-        # FIXME: remove this next line once current_version is modified to only
-        # return listed versions.
-        unlisted_version.update(
-            created=version.created - timedelta(days=42))
         extracted = self._extract()
 
         assert extracted['current_version']
@@ -200,8 +211,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
+            assert extracted_file['webext_permissions_list'] == []
 
-        assert extracted['has_version']
         assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
                                                    PLATFORM_ALL.id])
         version = current_beta_version
@@ -225,6 +236,9 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
+            assert (extracted_file['webext_permissions_list'] ==
+                    file_.webext_permissions_list ==
+                    ['bookmarks', 'random permission'])
 
         version = unlisted_version
         assert extracted['latest_unlisted_version']
@@ -248,6 +262,7 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
+            assert extracted_file['webext_permissions_list'] == []
 
     def test_extract_translations(self):
         translations_name = {
@@ -347,7 +362,7 @@ class TestAddonIndexerWithES(ESTestCase):
 
         indexer = AddonIndexer()
         doc_name = indexer.get_doctype_name()
-        real_index_name = self.index_names[SearchMixin.ES_ALIAS_KEY]
+        real_index_name = self.get_index_name(SearchMixin.ES_ALIAS_KEY)
         mappings = self.es.indices.get_mapping(
             indexer.get_index_alias())[real_index_name]['mappings']
 

@@ -1,0 +1,22 @@
+<section class="DevHub-publish-addon content scheme-default">
+  <div class="DevHub-content-container">
+    <div class="DevHub-content-image-wrapper DevHub-content-image-wrapper--publish-addon">
+      <img class="DevHub-content-image DevHub-content-image--publish-addon"
+           src="{{ STATIC_URL }}img/developers/new-landing/publish-my-addon.png"
+           srcset="{{ STATIC_URL }}img/developers/new-landing/publish-my-addon.png 1x,
+                   {{ STATIC_URL }}img/developers/new-landing/publish-my-addon-2x.png 2x"
+           alt="" />
+    </div>
+    <div class="DevHub-content-copy">
+      <h2 class="DevHub-content-header">{{ _('Publish Your Add-on') }}</h2>
+      <p>
+        {% trans %}
+        Have an add-on ready? Submit your extension or theme to be
+        listed on addons.mozilla.org or sign and distribute your extension
+        on your own.
+        {% endtrans %}
+      </p>
+      <a href="{{ login_link() }}" class="Button">{{ _('Sign In') }}</a>
+    </div>
+  </div>
+</section>

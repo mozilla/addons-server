@@ -5,13 +5,8 @@
 {% endblock %}
 
 {% block content %}
-  <header>
-    {{ breadcrumbs([(url('collections.list'), _('Collections')),
-                    (url('collections.user', collection.author_username),
-                     collection.author.name),
-                    (collection.get_url_path(), collection.name),
-                    (None, _('Delete')),]) }}
 
+  <header>
     <h2>{{ _('Delete {0}')|fe(collection.name) }}</h2>
     <h3>{{ _('Are you sure?') }}</h3>
   </header>

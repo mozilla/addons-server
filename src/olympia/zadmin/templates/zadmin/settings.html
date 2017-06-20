@@ -1,6 +1,6 @@
 {% extends "admin/base.html" %}
 
-{% block title %}{{ page_title('Settings!') }}{% endblock %}
+{% block title %}{{ page_title(title) }}{% endblock %}
 
 {% block content %}
 <style>
@@ -14,7 +14,7 @@
     visibility: visible;
   }
 </style>
-<h2>Settings!</h2>
+<h2>{{ title }}</h2>
 <table id="settings">
   <tbody>
     {% for key, value in settings_dict|dictsort %}

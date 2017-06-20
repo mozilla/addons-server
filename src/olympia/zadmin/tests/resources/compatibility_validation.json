@@ -15,7 +15,7 @@
             "description": "...",
             "file": "chrome/content/foxclocks.xul",
             "for_appversions": {},
-            "id": ["testcases_regex", "generic", "_generated"],
+            "id": ["testcases_regex", "generic", "餐飲"],
             "line": 214,
             "message": "compat error",
             "tier": 5,
@@ -29,9 +29,37 @@
             "description": "...",
             "file": "chrome/content/foxclocks.xul",
             "for_appversions": {},
-            "id": ["testcases_regex", "generic", "_generated"],
+            "id": ["testcases_regex", "generic", "餐飲"],
             "line": 214,
             "message": "compat warning",
+            "tier": 5,
+            "type": "warning",
+            "uid": "413d2e888f9a492390d4a3b46317e560"
+        },
+        {
+            "column": null,
+            "compatibility_type": "error",
+            "context": [],
+            "description": "...",
+            "file": "chrome/content/foxclocks.xul",
+            "for_appversions": {},
+            "id": ["testcases_regex", "generic", "_generated"],
+            "line": 214,
+            "message": "regex compat error",
+            "tier": 5,
+            "type": "warning",
+            "uid": "413d2e888f9a492390d4a3b46317e560"
+        },
+        {
+            "column": null,
+            "compatibility_type": "error",
+            "context": [],
+            "description": "...",
+            "file": "chrome/content/foxclocks.xul",
+            "for_appversions": {},
+            "id": ["testcases_regex", "generic", "_generated"],
+            "line": 214,
+            "message": "regex compat error 2",
             "tier": 5,
             "type": "warning",
             "uid": "413d2e888f9a492390d4a3b46317e560"
@@ -48,12 +76,6 @@
         "version": "4.2.3"
     },
     "notices": 8,
-    "signing_summary": {
-        "high": 0,
-        "low": 2,
-        "medium": 0,
-        "trivial": 0
-    },
     "success": false,
     "warnings": 1
 }

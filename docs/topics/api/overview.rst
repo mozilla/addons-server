@@ -62,16 +62,42 @@ Example:
              "non_field_errors": ["Error not linked to a specific field."]
          }
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unauthorized and Permission Denied
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When returning ``HTTP 401 Unauthorized`` and ``HTTP 403 Permission Denied``
+responses, the API will try to return some information about the error in the
+body of the response, as a JSON object. A ``detail`` property will contain a
+message explaining the error. In addition, in some cases, an optional ``code``
+property will be present and will contain a constant corresponding to
+specific problems to help clients address the situation programmatically. The
+constants are as follows:
+
+    ========================  =========================================================
+                       Value  Description
+    ========================  =========================================================
+        ERROR_INVALID_HEADER  The ``Authorization`` header is invalid.
+     ERROR_SIGNATURE_EXPIRED  The signature of the token indicates it has expired.
+    ERROR_DECODING_SIGNATURE  The token was impossible to decode and probably invalid.
+    ========================  =========================================================
+
 
 ~~~~~~~~~~
 Pagination
 ~~~~~~~~~~
 
-Unless specified, endpoints returning a list of results will be paginated. The
-following properties will be available in the responses of those endpoints:
+By default, all endpoints returning a list of results are paginated.
+The default number of items per page is 25 and clients can use the `page_size`
+query parameter to change it to any value between 1 and 50. Exceptions to those
+rules are possible but will be noted in the corresponding documentation for
+affected endpoints.
+
+The following properties will be available in paginated responses:
 
 * *next*: the URL for the next page in the pagination.
 * *previous*: the URL for the previous page in the pagination.
+* *page_size*: The number of items per page in the pagination.
 * *count*: the total number of records.
 * *results*: the array containing the results for this page.
 

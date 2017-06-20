@@ -11,7 +11,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.utils.translation import (
-    ugettext as _, trim_whitespace, to_locale, get_language)
+    ugettext, trim_whitespace, to_locale, get_language)
 from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.template import defaultfilters
@@ -31,7 +31,6 @@ from jingo_minify.helpers import (
 from olympia import amo
 from olympia.amo import utils, urlresolvers
 from olympia.constants.licenses import PERSONA_LICENSES_IDS
-from olympia.translations.helpers import truncate
 
 # Yanking filters from Django.
 register.filter(defaultfilters.slugify)
@@ -123,24 +122,6 @@ def impala_paginator(pager):
     return jinja2.Markup(t.render({'pager': pager}))
 
 
-@register.filter
-def mobile_paginator(pager):
-    t = get_env().get_template('amo/mobile/paginator.html')
-    return jinja2.Markup(t.render({'pager': pager}))
-
-
-@register.filter
-def mobile_impala_paginator(pager):
-    # Impala-style paginator that is easier to mobilefy.
-    t = get_env().get_template('amo/mobile/impala_paginator.html')
-    return jinja2.Markup(t.render({'pager': pager}))
-
-
-@register.function
-def is_mobile(app):
-    return app == amo.MOBILE
-
-
 @register.function
 def sidebar(app):
     """Populates the sidebar with (categories, types)."""
@@ -157,7 +138,7 @@ def sidebar(app):
 
     Type = collections.namedtuple('Type', 'id name url')
     base = urlresolvers.reverse('home')
-    types = [Type(99, _('Collections'), base + 'collections/')]
+    types = [Type(99, ugettext('Collections'), base + 'collections/')]
 
     shown_types = {
         amo.ADDON_PERSONA: urlresolvers.reverse('browse.personas'),
@@ -165,8 +146,9 @@ def sidebar(app):
         amo.ADDON_SEARCH: urlresolvers.reverse('browse.search-tools'),
         amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
     }
-    titles = dict(amo.ADDON_TYPES,
-                  **{amo.ADDON_DICT: _('Dictionaries & Language Packs')})
+    titles = dict(
+        amo.ADDON_TYPES,
+        **{amo.ADDON_DICT: ugettext('Dictionaries & Language Packs')})
     for type_, url in shown_types.items():
         if type_ in app.types:
             types.append(Type(type_, titles[type_], url))
@@ -230,9 +212,9 @@ def currencyfmt(num, currency):
 def page_name(app=None):
     """Determine the correct page name for the given app (or no app)."""
     if app:
-        return _(u'Add-ons for {0}').format(app.pretty)
+        return ugettext(u'Add-ons for {0}').format(app.pretty)
     else:
-        return _('Add-ons')
+        return ugettext('Add-ons')
 
 
 @register.function
@@ -244,58 +226,6 @@ def page_title(context, title):
     # preserve the type of `title` in case it's a jinja2 `Markup` (safe,
     # escaped) object.
     return format_html(u'{} :: {}', title, base_title)
-
-
-@register.function
-@jinja2.contextfunction
-def breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
-    """
-    show a list of breadcrumbs. If url is None, it won't be a link.
-    Accepts: [(url, label)]
-    """
-    if add_default:
-        app = context['request'].APP
-        crumbs = [(urlresolvers.reverse('home'), page_name(app))]
-    else:
-        crumbs = []
-
-    # add user-defined breadcrumbs
-    if items:
-        try:
-            crumbs += items
-        except TypeError:
-            crumbs.append(items)
-
-    crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
-    c = {'breadcrumbs': crumbs}
-    t = get_env().get_template('amo/breadcrumbs.html').render(c)
-    return jinja2.Markup(t)
-
-
-@register.function
-@jinja2.contextfunction
-def impala_breadcrumbs(context, items=list(), add_default=True, crumb_size=40):
-    """
-    show a list of breadcrumbs. If url is None, it won't be a link.
-    Accepts: [(url, label)]
-    """
-    if add_default:
-        base_title = page_name(context['request'].APP)
-        crumbs = [(urlresolvers.reverse('home'), base_title)]
-    else:
-        crumbs = []
-
-    # add user-defined breadcrumbs
-    if items:
-        try:
-            crumbs += items
-        except TypeError:
-            crumbs.append(items)
-
-    crumbs = [(url, truncate(label, crumb_size)) for (url, label) in crumbs]
-    c = {'breadcrumbs': crumbs, 'has_home': add_default}
-    t = get_env().get_template('amo/impala/breadcrumbs.html').render(c)
-    return jinja2.Markup(t)
 
 
 @register.filter
@@ -321,19 +251,6 @@ def strip_controls(s):
     control_trans = dict((n, None) for n in xrange(32) if n not in [10, 13])
     rv = unicode(s).translate(control_trans)
     return jinja2.Markup(rv) if isinstance(s, jinja2.Markup) else rv
-
-
-@register.filter
-def strip_html(s, just_kidding=False):
-    """Strips HTML.  Confirm lets us opt out easily."""
-    if just_kidding:
-        return s
-
-    if not s:
-        return ''
-    else:
-        s = re.sub(r'&lt;.*?&gt;', '', force_text(s, errors='ignore'))
-        return re.sub(r'<.*?>', '', s)
 
 
 @register.filter
@@ -368,7 +285,7 @@ def license_link(license):
         return ''
 
     if not getattr(license, 'builtin', True):
-        return _('Custom License')
+        return ugettext('Custom License')
 
     template = get_env().get_template('amo/license_link.html')
     return jinja2.Markup(template.render({'license': license}))
@@ -398,7 +315,7 @@ def timesince(time):
         return u''
     ago = defaultfilters.timesince(time)
     # L10n: relative time in the past, like '4 days ago'
-    return _(u'{0} ago').format(ago)
+    return ugettext(u'{0} ago').format(ago)
 
 
 @register.inclusion_tag('amo/recaptcha.html')
@@ -415,25 +332,6 @@ def is_choice_field(value):
         return isinstance(value.field.widget, CheckboxInput)
     except AttributeError:
         pass
-
-
-@register.inclusion_tag('amo/mobile/sort_by.html')
-def mobile_sort_by(base_url, options=None, selected=None, extra_sort_opts=None,
-                   search_filter=None):
-    if search_filter:
-        selected = search_filter.field
-        options = search_filter.opts
-        if hasattr(search_filter, 'extras'):
-            options += search_filter.extras
-    if extra_sort_opts:
-        options_dict = dict(options + extra_sort_opts)
-    else:
-        options_dict = dict(options)
-    if selected in options_dict:
-        current = options_dict[selected]
-    else:
-        selected, current = options[0]  # Default to the first option.
-    return locals()
 
 
 @register.function

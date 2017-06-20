@@ -1,6 +1,10 @@
+from collections import OrderedDict
+
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
+
 from django.core.paginator import (
-    EmptyPage, Page, PageNotAnInteger, Paginator)
+    EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator)
 
 
 class ESPaginator(Paginator):
@@ -10,6 +14,13 @@ class ESPaginator(Paginator):
     results contain the total number of results, we can take an optimistic
     slice and then adjust the count.
     """
+
+    # Maximum result position. Should match 'index.max_result_window' ES
+    # setting if present. ES defaults to 10000 but we'd like more to make sure
+    # all our extensions can be found if searching without a query and
+    # paginating through all results.
+    max_result_window = 25000
+
     def validate_number(self, number):
         """
         Validates the given 1-based page number.
@@ -32,6 +43,10 @@ class ESPaginator(Paginator):
         number = self.validate_number(number)
         bottom = (number - 1) * self.per_page
         top = bottom + self.per_page
+
+        if bottom > self.max_result_window:
+            raise InvalidPage(
+                'That page number is too high for the current page size')
 
         # Force the search to evaluate and then attach the count. We want to
         # avoid an extra useless query even if there are no results, so we
@@ -57,7 +72,40 @@ class CustomPageNumberPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
     max_page_size = 50
 
+    def get_paginated_response(self, data):
+        # Like PageNumberPagination.get_paginated_response, but with
+        # 'page_size' added to the top of the response data.
+        return Response(OrderedDict([
+            # Note that self.page_size doesn't work, it contains the default
+            # page size.
+            ('page_size', self.page.paginator.per_page),
+            ('count', self.page.paginator.count),
+            ('next', self.get_next_link()),
+            ('previous', self.get_previous_link()),
+            ('results', data)
+        ]))
+
 
 class ESPageNumberPagination(CustomPageNumberPagination):
     """Custom pagination implementation to hook in our `ESPaginator`."""
     django_paginator_class = ESPaginator
+
+
+class OneOrZeroPageNumberPagination(CustomPageNumberPagination):
+    """Fake pagination that returns a result object like
+    CustomPageNumberPagination, but for special cases where we know we're never
+    going to have more than one object in the results anyway.
+    """
+    def paginate_queryset(self, queryset, request, view=None):
+        return list(queryset[:1])
+
+    def get_paginated_response(self, data):
+        # Always consider page_size is 1, avoid the count() call, and never
+        # return next/prev links.
+        return Response(OrderedDict([
+            ('page_size', 1),
+            ('count', len(data)),
+            ('next', None),
+            ('previous', None),
+            ('results', data)
+        ]))

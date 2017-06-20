@@ -1,0 +1,204 @@
+.DevHub-MyAddons {
+  min-width: @grid-max;
+}
+
+.DevHub-MyAddons-copy {
+  max-width: 32em;
+}
+
+.DevHub-MyAddons-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e4e4e4;
+  padding: 10px 0 25px 0;
+}
+
+.DevHub-MyAddons-item-modified {
+  margin-left: auto;
+  align-self: flex-end;
+  display: flex;
+
+  span {
+    margin: 0 2px;
+  }
+
+  html[dir=rtl] & {
+    margin-right: auto;
+    margin-left: 0;
+  }
+}
+
+.DevHub-MyAddons-item-details {
+  margin-left: 25px;
+  display: flex;
+  flex-flow: column;
+
+  a {
+    .link(@color-button-default);
+  }
+
+  a,
+  .DevHub-MyAddons-VersionStatus {
+    font-size: 15px;
+
+    &.DevHub-MyAddons-version-status-incomplete,
+    &.DevHub-MyAddons-version-status-deleted,
+    &.DevHub-MyAddons-version-status-rejected,
+    &.DevHub-MyAddons-version-status-disabled,
+    &.DevHub-MyAddons-version-status-none {
+      color: @color-version-state-disabled;
+    }
+
+    &.DevHub-MyAddons-version-status-nominated {
+      color: @color-version-state-nominated;
+    }
+
+    &.DevHub-MyAddons-version-status-approved {
+      color: @color-version-state-approved;
+    }
+
+    &.DevHub-MyAddons-version-status-admin-disabled {
+      color: @color-version-state-admin-disabled;
+    }
+  }
+
+  .DevHub-MyAddons-VersionStatus {
+    margin: 0 5px;
+  }
+}
+
+.DevHub-MyAddons-item-name {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.DevHub-MyAddons-item-channel-listed,
+.DevHub-MyAddons-item-channel-unlisted {
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 5px;
+}
+
+.DevHub-MyAddons-item-channel-listed {
+  background-color: @color-publish-channel-listed;
+}
+
+.DevHub-MyAddons-item-channel-unlisted {
+  background-color: @color-publish-channel-unlisted;
+}
+
+.DevHub-MyAddons-item-icon {
+  width: 48px;
+  height: 48px;
+
+  html[dir=rtl] & {
+    margin-left: 15px;
+  }
+}
+
+.DevHub-MyAddons-item-versions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.DevHub-MyAddons-item-version-details {
+  display: flex;
+  width: 320px;
+  align-items: baseline;
+}
+
+.DevHub-MyAddons-item-version {
+  margin: 0 0 5px;
+}
+
+.DevHub-MyAddons-item-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.DevHub-MyAddons-item-buttons-all-submissions {
+  .link(@color-button-default);
+
+  font-size: 15px;
+}
+
+.DevHub-MyAddons-item-buttons-submit {
+  margin-left: auto;
+
+  html[dir=rtl] & {
+    margin-right: auto;
+    margin-left: 0;
+  }
+}
+
+.DevHub-MyAddons-whatsnew-container {
+  border: 8px solid @color-callout-border;
+  background: #fff;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  padding: 30px;
+  margin: 30px 0 60px;
+  position: relative;
+  background-image: url("../../../img/developers/new-landing/whatsnew-background.png");
+  background-repeat: no-repeat;
+  background-position: right 10px bottom 10px;
+
+  html[dir=rtl] & {
+    background-position: left 35px bottom 10px;
+  }
+
+  &::before {
+    content: '';
+    background-image: url("../../../img/developers/new-landing/whatsnew-rocket.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    width: 100%;
+    height: 170px;
+    left: -8px;
+    bottom: -8px;
+    pointer-events: none;
+
+    html[dir=rtl] & {
+      transform: scaleX(-1);
+      left: auto;
+      right: -8px;
+    }
+
+    @media @retina {
+      background-image: url("../../../img/developers/new-landing/whatsnew-rocket-2x.png");
+    }
+  }
+
+  div {
+    flex: 0 0 30%;
+  }
+
+  div:first-child {
+    text-align: right;
+    min-height: 170px;
+
+    html[dir=rtl] & {
+      text-align: left;
+    }
+  }
+
+  p,
+  .Button {
+    font-size: 14px;
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 0;
+  }
+}

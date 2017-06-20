@@ -2,10 +2,6 @@
 
 {% set title = _('Theme Review History for {0}')|f(username) %}
 
-{% block breadcrumbs %}
-  {{ editors_breadcrumbs(items=[(None, title)]) }}
-{% endblock %}
-
 {% block content %}
   <h1>{{ title }}</h1>
   {% include "editors/themes/history_table.html" %}

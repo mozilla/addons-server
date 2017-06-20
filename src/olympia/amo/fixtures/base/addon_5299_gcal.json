@@ -47,7 +47,6 @@
             "status": 4,
             "total_contributions": "0.00",
             "default_locale": "en-US",
-            "prerelease": false,
             "admin_review": false,
             "external_software": false,
             "name": 58814,
@@ -56,7 +55,6 @@
             "icon_type": "image/png",
             "annoying": 0,
             "modified": "2010-06-25 15:27:34",
-            "site_specific": true,
             "total_reviews": 42
         }
     },

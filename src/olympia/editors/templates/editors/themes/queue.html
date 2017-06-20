@@ -14,10 +14,6 @@
   {{ css('zamboni/themes_review') }}
 {% endblock %}
 
-{% block breadcrumbs %}
-  {{ editors_breadcrumbs(queue=(tab + '_themes'), themes=True) }}
-{% endblock %}
-
 {% block content %}
 
 <h2 class="theme-queue-header">{% block page_header %}{{ title_text }}{% endblock %}</h2>
@@ -41,7 +37,7 @@
 {% if theme_count > 1 %}{% set sidebar_class = "align fixed" %}{% endif %}
 <div class="sidebar"><div class="{{ sidebar_class }}">
   {% block queue_options %}
-    <form class="box options">
+    <form class="box options" data-no-csrf>
       <h2>{{ _('Review Options') }}</h2>
       <fieldset>
         <div class="option"> <label for="rq-advance">

@@ -1,4 +1,3 @@
-import logging
 import os
 import time
 from datetime import datetime, timedelta
@@ -8,11 +7,11 @@ from django.db import connections
 from django.db.models import Q, F, Avg
 from django.utils.encoding import force_text
 
-import cronjobs
 import multidb
 from celery.task.sets import TaskSet
 import waffle
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import write
@@ -23,11 +22,10 @@ from olympia.lib.es.utils import raise_if_reindex_in_progress
 from olympia.stats.models import UpdateCount
 
 
-log = logging.getLogger('z.cron')
-task_log = logging.getLogger('z.task')
+log = olympia.core.logger.getLogger('z.cron')
+task_log = olympia.core.logger.getLogger('z.task')
 
 
-@cronjobs.register
 def update_addon_average_daily_users():
     """Update add-ons ADU totals."""
     if not waffle.switch_is_active('local-statistics-processing'):
@@ -37,7 +35,7 @@ def update_addon_average_daily_users():
     cursor = connections[multidb.get_slave()].cursor()
     q = """SELECT addon_id, AVG(`count`)
            FROM update_counts
-           WHERE `date` > DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+           WHERE `date` > DATE_SUB(CURDATE(), INTERVAL 13 DAY)
            GROUP BY addon_id
            ORDER BY addon_id"""
     cursor.execute(q)
@@ -75,7 +73,6 @@ def _update_addon_average_daily_users(data, **kw):
             addon.update(average_daily_users=count)
 
 
-@cronjobs.register
 def update_addon_download_totals():
     """Update add-on total and average downloads."""
     if not waffle.switch_is_active('local-statistics-processing'):
@@ -149,7 +146,6 @@ def _change_last_updated(next):
         addon.save()
 
 
-@cronjobs.register
 @write
 def addon_last_updated():
     next = {}
@@ -165,7 +161,6 @@ def addon_last_updated():
     _change_last_updated(dict(other))
 
 
-@cronjobs.register
 def update_addon_appsupport():
     # Find all the add-ons that need their app support details updated.
     newish = (Q(last_updated__gte=F('appsupport__created')) |
@@ -183,7 +178,6 @@ def update_addon_appsupport():
     TaskSet(ts).apply_async()
 
 
-@cronjobs.register
 def update_all_appsupport():
     from .tasks import update_appsupport
     ids = sorted(set(AppSupport.objects.values_list('addon', flat=True)))
@@ -202,7 +196,6 @@ def _update_appsupport(ids, **kw):
     update_appsupport(ids)
 
 
-@cronjobs.register
 def hide_disabled_files():
     # If an add-on or a file is disabled, it should be moved to
     # GUARDED_ADDONS_PATH so it's not publicly visible.
@@ -217,11 +210,10 @@ def hide_disabled_files():
             f.hide_disabled_file()
 
 
-@cronjobs.register
 def unhide_disabled_files():
     # Files are getting stuck in /guarded-addons for some reason. This job
     # makes sure guarded add-ons are supposed to be disabled.
-    log = logging.getLogger('z.files.disabled')
+    log = olympia.core.logger.getLogger('z.files.disabled')
     q = (Q(version__addon__status=amo.STATUS_DISABLED) |
          Q(version__addon__disabled_by_user=True))
     files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
@@ -235,9 +227,6 @@ def unhide_disabled_files():
                 file_ = (File.objects.select_related('version__addon')
                          .get(version__addon=addon, filename=filename))
                 file_.unhide_disabled_file()
-                if (file_.version.addon.status in amo.MIRROR_STATUSES and
-                        file_.status in amo.MIRROR_STATUSES):
-                    file_.copy_to_mirror()
             except File.DoesNotExist:
                 log.warning(u'File object does not exist for: %s.' % filepath)
             except Exception:
@@ -245,7 +234,6 @@ def unhide_disabled_files():
                           exc_info=True)
 
 
-@cronjobs.register
 def deliver_hotness():
     """
     Calculate hotness of all add-ons.
@@ -256,6 +244,7 @@ def deliver_hotness():
     """
     frozen = set(f.id for f in FrozenAddon.objects.all())
     all_ids = list((Addon.objects.exclude(type=amo.ADDON_PERSONA)
+                   .filter(status__in=amo.VALID_ADDON_STATUSES)
                    .values_list('id', flat=True)))
     now = datetime.now()
     one_week = now - timedelta(days=7)
@@ -277,7 +266,6 @@ def deliver_hotness():
         time.sleep(10)
 
 
-@cronjobs.register
 def reindex_addons(index=None, addon_type=None):
     from . import tasks
     ids = Addon.unfiltered.values_list('id', flat=True)
@@ -288,7 +276,6 @@ def reindex_addons(index=None, addon_type=None):
     TaskSet(ts).apply_async()
 
 
-@cronjobs.register
 def cleanup_image_files():
     """
     Clean up all header and footer images files for themes.

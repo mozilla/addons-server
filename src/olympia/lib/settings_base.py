@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
-# Django settings for olympia project.
+# Django settings for addons-server project.
 
-import datetime
 import logging
 import os
 import socket
@@ -10,6 +9,8 @@ from django.utils.functional import lazy
 from django.core.urlresolvers import reverse_lazy
 
 import environ
+from kombu import Queue
+
 
 env = environ.Env()
 
@@ -18,6 +19,7 @@ ALLOWED_HOSTS = [
     '.mozilla.org',
     '.mozilla.com',
     '.mozilla.net',
+    '.mozaws.net',
 ]
 
 # jingo-minify settings
@@ -107,6 +109,7 @@ def cors_endpoint_overrides(internal, public):
         }),
     ]
 
+
 CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
     public=['localhost:3000', 'olympia.dev'],
     internal=['localhost:3000'],
@@ -156,8 +159,8 @@ LANGUAGE_CODE = 'en-US'
 AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'dsb',
     'el', 'en-GB', 'en-US', 'es', 'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu',
-    'hsb', 'id', 'it', 'ja', 'ka', 'ko', 'nn-NO', 'mk', 'mn', 'nl', 'pl',
-    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
+    'hsb', 'id', 'it', 'ja', 'ka', 'kab', 'ko', 'nn-NO', 'mk', 'mn', 'nl',
+    'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
     'zh-CN', 'zh-TW',
 )
 
@@ -170,13 +173,28 @@ SHORTER_LANGUAGES = {
 # L10n dashboard.  Generally languages start here and move into AMO_LANGUAGES.
 HIDDEN_LANGUAGES = ('cy', 'hr', 'sr', 'sr-Latn', 'tr')
 
+DEBUG_LANGUAGES = ('dbr', 'dbl')
+
 
 def lazy_langs(languages):
     from product_details import product_details
     if not product_details.languages:
         return {}
-    return dict([(i.lower(), product_details.languages[i]['native'])
-                 for i in languages])
+
+    language_mapping = {}
+
+    for lang in languages:
+        if lang == 'dbl':
+            lang_name = product_details.languages['dbg']['native']
+        elif lang == 'dbr':
+            lang_name = product_details.languages['dbg']['native'] + ' (RTL)'
+        else:
+            lang_name = product_details.languages[lang]['native']
+
+        language_mapping[lang.lower()] = lang_name
+
+    return language_mapping
+
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('src', 'olympia', 'lib', 'product_json')
@@ -184,7 +202,7 @@ PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage
 
 # Override Django's built-in with our native names
 LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
-RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')
+LANGUAGES_BIDI = ('ar', 'fa', 'fa-IR', 'he', 'dbr')
 
 LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 
@@ -217,12 +235,6 @@ SERVICES_DOMAIN = 'services.%s' % DOMAIN
 #   Example: https://services.addons.mozilla.org
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
-# The domain of the mobile site.
-MOBILE_DOMAIN = 'm.%s' % DOMAIN
-
-# The full url of the mobile site.
-MOBILE_SITE_URL = 'http://%s' % MOBILE_DOMAIN
-
 # Filter IP addresses of allowed clients that can post email through the API.
 ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
 # Auth token required to authorize inbound email.
@@ -253,12 +265,14 @@ DUMPED_USERS_DAYS_DELETE = 3600 * 24 * 30
 # path that isn't just one /, and doesn't require any locale or app.
 SUPPORTED_NONAPPS_NONLOCALES_PREFIX = (
     'api/v3',
-    'blocked/blocklists.json',
 )
 
 # paths that don't require an app prefix
+# This needs to be kept in sync with addons-frontend's
+# validClientAppUrlExceptions
+# https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONAPPS = (
-    'about', 'admin', 'apps', 'blocklist', 'contribute.json', 'credits',
+    'about', 'admin', 'apps', 'contribute.json', 'credits',
     'developer_agreement', 'developer_faq', 'developers', 'editors', 'faq',
     'jsi18n', 'review_guide', 'google1f3e37b7351799a5.html',
     'robots.txt', 'statistics', 'services', 'sunbird', 'static', 'user-media',
@@ -267,9 +281,11 @@ SUPPORTED_NONAPPS = (
 DEFAULT_APP = 'firefox'
 
 # paths that don't require a locale prefix
+# This needs to be kept in sync with addons-frontend's validLocaleUrlExceptions
+# https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONLOCALES = (
     'contribute.json', 'google1f3e37b7351799a5.html', 'robots.txt', 'services',
-    'downloads', 'blocklist', 'static', 'user-media', '__version__',
+    'downloads', 'static', 'user-media', '__version__',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -309,9 +325,9 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': (
                 'django.contrib.auth.context_processors.auth',
-                'django.core.context_processors.debug',
-                'django.core.context_processors.media',
-                'django.core.context_processors.request',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.media',
+                'django.template.context_processors.request',
                 'session_csrf.context_processor',
 
                 'django.contrib.messages.context_processors.messages',
@@ -363,23 +379,24 @@ def JINJA_CONFIG():
         config['bytecode_cache'] = bc
     return config
 
+
 X_FRAME_OPTIONS = 'DENY'
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 31536000
 
 MIDDLEWARE_CLASSES = (
-    # AMO URL middleware comes first so everyone else sees nice URLs.
+    # Statsd and logging come first to get timings etc. Munging REMOTE_ADDR
+    # must come before middlewares potentially using REMOTE_ADDR, so it's
+    # also up there.
     'django_statsd.middleware.GraphiteRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
-    'olympia.amo.middleware.LocaleAndAppURLMiddleware',
-    # Mobile detection should happen in Zeus.
-    'mobility.middleware.DetectMobileMiddleware',
-    'mobility.middleware.XMobileMiddleware',
-    'olympia.amo.middleware.RemoveSlashMiddleware',
+    'olympia.amo.middleware.SetRemoteAddrFromForwardedFor',
 
-    # Munging REMOTE_ADDR must come before ThreadRequest.
-    'commonware.middleware.SetRemoteAddrFromForwardedFor',
+    # AMO URL middleware is as high as possible to get locale/app aware URLs.
+    'olympia.amo.middleware.LocaleAndAppURLMiddleware',
+
+    'olympia.amo.middleware.RemoveSlashMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -396,14 +413,15 @@ MIDDLEWARE_CLASSES = (
     'olympia.amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
-    'commonware.log.ThreadRequestMiddleware',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',
 
-    # This should come after authentication middleware
-    'olympia.access.middleware.ACLMiddleware',
+    # This should come after AuthenticationMiddlewareWithoutAPI (to get the
+    # current user) and after SetRemoteAddrFromForwardedFor (to get the correct
+    # IP).
+    'olympia.access.middleware.UserAndAddrMiddleware',
 
-    'commonware.middleware.ScrubRequestOnException',
+    'olympia.amo.middleware.ScrubRequestOnException',
 )
 
 # Auth
@@ -423,13 +441,13 @@ INSTALLED_APPS = (
     'olympia.api',
     'olympia.applications',
     'olympia.bandwagon',
-    'olympia.blocklist',
     'olympia.browse',
     'olympia.compat',
     'olympia.devhub',
     'olympia.discovery',
     'olympia.editors',
     'olympia.files',
+    'olympia.github',
     'olympia.internal_tools',
     'olympia.legacy_api',
     'olympia.legacy_discovery',
@@ -446,7 +464,6 @@ INSTALLED_APPS = (
 
     # Third party apps
     'product_details',
-    'cronjobs',
     'csp',
     'aesfield',
     'django_extensions',
@@ -518,6 +535,18 @@ MINIFY_BUNDLES = {
         'restyle/css': (
             'css/restyle/restyle.less',
         ),
+
+        # CSS files our DevHub (currently only required for the
+        # new landing page)
+        'devhub/new-landing/css': (
+            'css/devhub/new-landing/base.less',
+        ),
+
+        # Responsive error page styling.
+        'errors/css': (
+            'css/errors/base.less',
+        ),
+
         # CSS files common to the entire site.
         'zamboni/css': (
             'css/legacy/main.css',
@@ -628,22 +657,10 @@ MINIFY_BUNDLES = {
             'css/lib/syntaxhighlighter/shCoreDefault.css',
             'css/zamboni/files.css',
         ),
-        'zamboni/mobile': (
-            'css/zamboni/mobile.css',
-            'css/mobile/typography.less',
-            'css/mobile/forms.less',
-            'css/mobile/header.less',
-            'css/mobile/search.less',
-            'css/mobile/listing.less',
-            'css/mobile/footer.less',
-            'css/mobile/notifications.less',
-        ),
         'zamboni/admin': (
             'css/zamboni/admin-django.css',
             'css/zamboni/admin-mozilla.css',
             'css/zamboni/admin_features.css',
-            # Datepicker styles and jQuery UI core.
-            'css/zamboni/jquery-ui/custom-1.7.2.css',
         ),
     },
     'js': {
@@ -651,33 +668,47 @@ MINIFY_BUNDLES = {
         'common': (
             'js/lib/raven.min.js',
             'js/common/raven-config.js',
-            'js/lib/underscore.js',
+            'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
             'js/lib/format.js',
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/zamboni/tabs.js',
             'js/common/keys.js',
 
             # jQuery UI
-            'js/lib/jquery-ui/core.js',
-            'js/lib/jquery-ui/position.js',
-            'js/lib/jquery-ui/widget.js',
-            'js/lib/jquery-ui/menu.js',
-            'js/lib/jquery-ui/mouse.js',
-            'js/lib/jquery-ui/autocomplete.js',
-            'js/lib/jquery-ui/datepicker.js',
-            'js/lib/jquery-ui/sortable.js',
+            'js/node_lib/ui/version.js',
+            'js/node_lib/ui/data.js',
+            'js/node_lib/ui/disable-selection.js',
+            'js/node_lib/ui/ie.js',
+            'js/node_lib/ui/keycode.js',
+            'js/node_lib/ui/escape-selector.js',
+            'js/node_lib/ui/labels.js',
+            'js/node_lib/ui/jquery-1-7.js',
+            'js/node_lib/ui/plugin.js',
+            'js/node_lib/ui/safe-active-element.js',
+            'js/node_lib/ui/safe-blur.js',
+            'js/node_lib/ui/scroll-parent.js',
+            'js/node_lib/ui/focusable.js',
+            'js/node_lib/ui/tabbable.js',
+            'js/node_lib/ui/unique-id.js',
+            'js/node_lib/ui/position.js',
+            'js/node_lib/ui/widget.js',
+            'js/node_lib/ui/menu.js',
+            'js/node_lib/ui/mouse.js',
+            'js/node_lib/ui/autocomplete.js',
+            'js/node_lib/ui/datepicker.js',
+            'js/node_lib/ui/sortable.js',
 
             'js/zamboni/helpers.js',
             'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/common/ratingwidget.js',
-            'js/lib/jquery-ui/jqModal.js',
+            'js/lib/jqModal.js',
             'js/zamboni/l10n.js',
             'js/zamboni/debouncer.js',
 
@@ -686,7 +717,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/homepage.js',
 
             # Add-ons details page
-            'js/lib/jquery-ui/ui.lightbox.js',
+            'js/lib/ui.lightbox.js',
             'js/zamboni/contributions.js',
             'js/zamboni/addon_details.js',
             'js/impala/abuse.js',
@@ -707,9 +738,6 @@ MINIFY_BUNDLES = {
             # Users
             'js/zamboni/users.js',
 
-            # Password length and strength
-            'js/zamboni/password-strength.js',
-
             # Search suggestions
             'js/impala/forms.js',
             'js/impala/ajaxcache.js',
@@ -719,23 +747,24 @@ MINIFY_BUNDLES = {
 
         # Impala and Legacy: Things to be loaded at the top of the page
         'preload': (
-            'js/lib/jquery-1.12.0.js',
-            'js/lib/jquery.browser.js',
+            'js/node_lib/jquery.js',
+            'js/node_lib/jquery.browser.js',
             'js/impala/preloaded.js',
             'js/zamboni/analytics.js',
         ),
         # Impala: Things to be loaded at the bottom
         'impala': (
+            'js/lib/ngettext-overload.js',
             'js/lib/raven.min.js',
             'js/common/raven-config.js',
-            'js/lib/underscore.js',
+            'js/node_lib/underscore.js',
             'js/impala/carousel.js',
             'js/zamboni/browser.js',
             'js/amo2009/addons.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
             'js/lib/format.js',
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/lib/jquery.pjax.js',
@@ -743,14 +772,28 @@ MINIFY_BUNDLES = {
             'js/common/keys.js',
 
             # jQuery UI
-            'js/lib/jquery-ui/core.js',
-            'js/lib/jquery-ui/position.js',
-            'js/lib/jquery-ui/widget.js',
-            'js/lib/jquery-ui/mouse.js',
-            'js/lib/jquery-ui/menu.js',
-            'js/lib/jquery-ui/autocomplete.js',
-            'js/lib/jquery-ui/datepicker.js',
-            'js/lib/jquery-ui/sortable.js',
+            'js/node_lib/ui/version.js',
+            'js/node_lib/ui/data.js',
+            'js/node_lib/ui/disable-selection.js',
+            'js/node_lib/ui/ie.js',
+            'js/node_lib/ui/keycode.js',
+            'js/node_lib/ui/escape-selector.js',
+            'js/node_lib/ui/labels.js',
+            'js/node_lib/ui/jquery-1-7.js',
+            'js/node_lib/ui/plugin.js',
+            'js/node_lib/ui/safe-active-element.js',
+            'js/node_lib/ui/safe-blur.js',
+            'js/node_lib/ui/scroll-parent.js',
+            'js/node_lib/ui/focusable.js',
+            'js/node_lib/ui/tabbable.js',
+            'js/node_lib/ui/unique-id.js',
+            'js/node_lib/ui/position.js',
+            'js/node_lib/ui/widget.js',
+            'js/node_lib/ui/mouse.js',
+            'js/node_lib/ui/menu.js',
+            'js/node_lib/ui/autocomplete.js',
+            'js/node_lib/ui/datepicker.js',
+            'js/node_lib/ui/sortable.js',
 
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
@@ -759,7 +802,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/global.js',
             'js/impala/global.js',
             'js/common/ratingwidget.js',
-            'js/lib/jquery-ui/jqModal.js',
+            'js/lib/jqModal.js',
             'js/zamboni/l10n.js',
             'js/impala/forms.js',
 
@@ -768,7 +811,7 @@ MINIFY_BUNDLES = {
             'js/impala/homepage.js',
 
             # Add-ons details page
-            'js/lib/jquery-ui/ui.lightbox.js',
+            'js/lib/ui.lightbox.js',
             'js/zamboni/contributions.js',
             'js/impala/addon_details.js',
             'js/impala/abuse.js',
@@ -809,9 +852,9 @@ MINIFY_BUNDLES = {
             'js/impala/login.js',
         ),
         'zamboni/discovery': (
-            'js/lib/jquery-1.12.0.js',
-            'js/lib/jquery.browser.js',
-            'js/lib/underscore.js',
+            'js/node_lib/jquery.js',
+            'js/node_lib/jquery.browser.js',
+            'js/node_lib/underscore.js',
             'js/zamboni/browser.js',
             'js/zamboni/init.js',
             'js/impala/capabilities.js',
@@ -820,10 +863,10 @@ MINIFY_BUNDLES = {
             'js/zamboni/analytics.js',
 
             # Add-ons details
-            'js/lib/jquery.cookie.js',
+            'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
-            'js/lib/jquery-ui/ui.lightbox.js',
+            'js/lib/ui.lightbox.js',
 
             # Personas
             'js/lib/jquery.hoverIntent.js',
@@ -851,7 +894,7 @@ MINIFY_BUNDLES = {
             'js/impala/formset.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
-            'js/lib/jquery.timeago.js',
+            'js/node_lib/jquery.timeago.js',
         ),
         'zamboni/editors': (
             'js/lib/highcharts.src.js',
@@ -863,49 +906,16 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/files': (
             'js/lib/diff_match_patch_uncompressed.js',
-            'js/lib/syntaxhighlighter/xregexp-min.js',
             'js/lib/syntaxhighlighter/shCore.js',
             'js/lib/syntaxhighlighter/shLegacy.js',
-            'js/lib/syntaxhighlighter/shBrushAppleScript.js',
-            'js/lib/syntaxhighlighter/shBrushAS3.js',
-            'js/lib/syntaxhighlighter/shBrushBash.js',
-            'js/lib/syntaxhighlighter/shBrushCpp.js',
-            'js/lib/syntaxhighlighter/shBrushCSharp.js',
             'js/lib/syntaxhighlighter/shBrushCss.js',
-            'js/lib/syntaxhighlighter/shBrushDiff.js',
             'js/lib/syntaxhighlighter/shBrushJava.js',
             'js/lib/syntaxhighlighter/shBrushJScript.js',
-            'js/lib/syntaxhighlighter/shBrushPhp.js',
             'js/lib/syntaxhighlighter/shBrushPlain.js',
-            'js/lib/syntaxhighlighter/shBrushPython.js',
-            'js/lib/syntaxhighlighter/shBrushSass.js',
-            'js/lib/syntaxhighlighter/shBrushSql.js',
-            'js/lib/syntaxhighlighter/shBrushVb.js',
             'js/lib/syntaxhighlighter/shBrushXml.js',
             'js/zamboni/storage.js',
             'js/zamboni/files_templates.js',
             'js/zamboni/files.js',
-        ),
-        'zamboni/mobile': (
-            'js/lib/jquery-1.12.0.js',
-            'js/lib/jquery.browser.js',
-            'js/lib/underscore.js',
-            'js/lib/jqmobile.js',
-            'js/lib/jquery.cookie.js',
-            'js/zamboni/browser.js',
-            'js/zamboni/init.js',
-            'js/impala/capabilities.js',
-            'js/zamboni/analytics.js',
-            'js/lib/format.js',
-            'js/zamboni/mobile/buttons.js',
-            'js/lib/truncate.js',
-            'js/zamboni/truncation.js',
-            'js/impala/footer.js',
-            'js/zamboni/personas_core.js',
-            'js/zamboni/mobile/personas.js',
-            'js/zamboni/helpers.js',
-            'js/zamboni/mobile/general.js',
-            'js/common/ratingwidget.js',
         ),
         'zamboni/stats': (
             'js/lib/highcharts.src.js',
@@ -928,7 +938,7 @@ MINIFY_BUNDLES = {
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
             'js/debug/less_setup.js',
-            'js/lib/less.js',
+            'js/node_lib/less.js',
             'js/debug/less_live.js',
         ),
     }
@@ -950,9 +960,6 @@ PYLIBMC_MIN_COMPRESS_LEN = 0  # disabled
 
 # External tools.
 JAVA_BIN = '/usr/bin/java'
-
-# Add-on download settings.
-PRIVATE_MIRROR_URL = '/_privatefiles'
 
 # File paths
 ADDON_ICONS_DEFAULT_PATH = os.path.join(ROOT, 'static', 'img', 'addon-icons')
@@ -976,7 +983,9 @@ REDIRECT_URL_ALLOW_LIST = ['addons.mozilla.org']
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 # See: https://github.com/mozilla/addons-server/issues/1789
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
-SESSION_COOKIE_AGE = 2592000
+# This value must be kept in sync with authTokenValidFor from addons-frontend:
+# https://github.com/mozilla/addons-frontend/blob/2f480b474fe13a676237fe76a1b2a057e4a2aac7/config/default-amo.js#L111
+SESSION_COOKIE_AGE = 2592000  # 30 days
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797
@@ -1051,6 +1060,27 @@ CELERY_IMPORTS = (
     'olympia.lib.es.management.commands.reindex',
 )
 
+CELERY_QUEUES = (
+    Queue('default', routing_key='default'),
+    Queue('priority', routing_key='priority'),
+    Queue('devhub', routing_key='devhub'),
+    Queue('images', routing_key='images'),
+    Queue('limited', routing_key='limited'),
+    Queue('amo', routing_key='amo'),
+    Queue('addons', routing_key='addons'),
+    Queue('api', routing_key='api'),
+    Queue('cron', routing_key='cron'),
+    Queue('bandwagon', routing_key='bandwagon'),
+    Queue('editors', routing_key='editors'),
+    Queue('crypto', routing_key='crypto'),
+    Queue('search', routing_key='search'),
+    Queue('reviews', routing_key='reviews'),
+    Queue('stats', routing_key='stats'),
+    Queue('tags', routing_key='tags'),
+    Queue('users', routing_key='users'),
+    Queue('zadmin', routing_key='zadmin'),
+)
+
 # We have separate celeryds for processing devhub & images as fast as possible
 # Some notes:
 # - always add routes here instead of @task(queue=<name>)
@@ -1072,17 +1102,17 @@ CELERY_ROUTES = {
 
     # AMO Devhub.
     'olympia.devhub.tasks.convert_purified': {'queue': 'devhub'},
-    'olympia.devhub.tasks.flag_binary': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {
         'queue': 'devhub'},
-    'olympia.devhub.tasks.resize_icon': {'queue': 'devhub'},
-    'olympia.devhub.tasks.resize_preview': {'queue': 'devhub'},
     'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
+
+    # Activity (goes to devhub queue).
+    'olympia.activity.tasks.process_email': {'queue': 'devhub'},
 
     # This is currently used only by validation tasks.
     # This puts the chord_unlock task on the devhub queue. Which means anything
@@ -1094,7 +1124,6 @@ CELERY_ROUTES = {
     # Images.
     'olympia.bandwagon.tasks.resize_icon': {'queue': 'images'},
     'olympia.users.tasks.resize_photo': {'queue': 'images'},
-    'olympia.users.tasks.delete_photo': {'queue': 'images'},
     'olympia.devhub.tasks.resize_icon': {'queue': 'images'},
     'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
 
@@ -1136,7 +1165,6 @@ CELERY_ROUTES = {
     'olympia.bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.resize_icon': {'queue': 'bandwagon'},
 
     # Editors
     'olympia.editors.tasks.add_commentlog': {'queue': 'editors'},
@@ -1144,9 +1172,6 @@ CELERY_ROUTES = {
     'olympia.editors.tasks.approve_rereview': {'queue': 'editors'},
     'olympia.editors.tasks.reject_rereview': {'queue': 'editors'},
     'olympia.editors.tasks.send_mail': {'queue': 'editors'},
-
-    # Files
-    'olympia.files.tasks.extract_file': {'queue': 'files'},
 
     # Crypto
     'olympia.lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
@@ -1166,7 +1191,6 @@ CELERY_ROUTES = {
         'queue': 'search'},
 
     # Reviews
-    'olympia.reviews.models.check_spam': {'queue': 'reviews'},
     'olympia.reviews.tasks.addon_bayesian_rating': {'queue': 'reviews'},
     'olympia.reviews.tasks.addon_grouped_rating': {'queue': 'reviews'},
     'olympia.reviews.tasks.addon_review_aggregates': {'queue': 'reviews'},
@@ -1174,7 +1198,6 @@ CELERY_ROUTES = {
 
 
     # Stats
-    'olympia.stats.tasks.addon_total_contributions': {'queue': 'stats'},
     'olympia.stats.tasks.index_collection_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
@@ -1191,8 +1214,8 @@ CELERY_ROUTES = {
 
     # Users
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
-    'olympia.users.tasks.resize_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
+    'olympia.users.tasks.generate_secret_for_users': {'queue': 'users'},
 
     # Zadmin
     'olympia.zadmin.tasks.add_validation_jobs': {'queue': 'zadmin'},
@@ -1203,6 +1226,10 @@ CELERY_ROUTES = {
     'olympia.zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
+
+    # Github API
+    'olympia.github.tasks.process_results': {'queue': 'devhub'},
+    'olympia.github.tasks.process_webhook': {'queue': 'devhub'},
 }
 
 
@@ -1226,12 +1253,14 @@ CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
 
 # Logging
 LOG_LEVEL = logging.DEBUG
-HAS_SYSLOG = True  # syslog is used if HAS_SYSLOG and NOT DEBUG.
+USE_SYSLOG = True
+USE_MOZLOG = True
 SYSLOG_TAG = "http_app_addons"
 SYSLOG_TAG2 = "http_app_addons2"
-# See PEP 391 and log_settings.py for formatting help.  Each section of
+MOZLOG_NAME = SYSLOG_TAG
+# See PEP 391 and log_settings_base.py for formatting help.  Each section of
 # LOGGING will get merged into the corresponding section of
-# log_settings.py. Handlers and log levels are set up automatically based
+# log_settings_base.py. Handlers and log levels are set up automatically based
 # on LOG_LEVEL and DEBUG unless you set them here.  Messages will not
 # propagate through a logger unless propagate: True is set.
 LOGGING_CONFIG = None
@@ -1245,6 +1274,7 @@ LOGGING = {
         'rdflib': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
+        'z.editors.auto_approve': {'handlers': ['syslog', 'console']},
         's.client': {'level': logging.INFO},
     },
 }
@@ -1292,7 +1322,8 @@ CSP_IMG_SRC = (
     "'self'",
     'data:',  # Used in inlined mobile css.
     'blob:',  # Needed for image uploads.
-    'https://www.paypal.com',
+    'https://www.paypal.com/webapps/checkout/',  # Needed for contrib.
+    'https://www.paypal.com/webapps/hermes/api/logger',  # Needed for contrib.
     ANALYTICS_HOST,
     PROD_CDN_HOST,
     'https://static.addons.mozilla.net',  # CDN origin server.
@@ -1392,6 +1423,7 @@ def get_redis_settings(uri):
         'OPTIONS': options
     }
 
+
 # This is used for `django-cache-machine`
 REDIS_BACKEND = REDIS_LOCATION
 
@@ -1419,8 +1451,6 @@ DEFAULT_SUGGESTED_CONTRIBUTION = 5
 
 # Path to `ps`.
 PS_BIN = '/bin/ps'
-
-BLOCKLIST_COOKIE = 'BLOCKLIST_v1'
 
 # The maximum file size that is shown inside the file viewer.
 FILE_VIEWER_SIZE_LIMIT = 1048576
@@ -1515,24 +1545,11 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
 
-# Modify the user-agents we check for in django-mobility
-# (Android has since changed its user agent).
-MOBILE_USER_AGENTS = ('mozilla.+mobile|android|fennec|iemobile|'
-                      'iphone|opera (?:mini|mobi)')
-
 # Credentials for accessing Google Analytics stats.
 GOOGLE_ANALYTICS_CREDENTIALS = {}
 
 # Which domain to access GA stats for. If not set, defaults to DOMAIN.
 GOOGLE_ANALYTICS_DOMAIN = None
-
-# Used for general web API access.
-GOOGLE_API_CREDENTIALS = ''
-
-# Google translate settings.
-GOOGLE_TRANSLATE_API_URL = 'https://www.googleapis.com/language/translate/v2'
-GOOGLE_TRANSLATE_REDIRECT_URL = (
-    'https://translate.google.com/#auto/{lang}/{text}')
 
 # Language pack fetcher settings
 LANGPACK_OWNER_EMAIL = 'addons-team@mozilla.com'
@@ -1605,17 +1622,8 @@ JWT_AUTH = {
     # clocks are off.
     'JWT_LEEWAY': 5,
 
-    # Expiration for non-apikey jwt tokens. Since this will be used by our
-    # frontend clients we want a longer expiration than normal, matching the
-    # session cookie expiration.
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=SESSION_COOKIE_AGE),
-
-    # We don't allow refreshes, instead we simply have a long duration.
+    # We don't allow refreshes.
     'JWT_ALLOW_REFRESH': False,
-
-    # Prefix for non-apikey jwt tokens. Should be different from 'JWT' which we
-    # already used for api key tokens.
-    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
 }
 
 REST_FRAMEWORK = {
@@ -1626,7 +1634,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'olympia.api.authentication.JSONWebTokenAuthentication',
+        'olympia.api.authentication.WebTokenAuthentication',
     ),
     # Set parser classes to include the fix for
     # https://github.com/tomchristie/django-rest-framework/issues/3951
@@ -1653,6 +1661,9 @@ REST_FRAMEWORK = {
     # Use http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
     # We can't use the default because we don't use django timezone support.
     'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
+
+    # Set our default ordering parameter
+    'ORDERING_PARAM': 'sort',
 }
 
 # This is the DSN to the local Sentry service. It might be overridden in
@@ -1667,3 +1678,50 @@ SHELL_PLUS_POST_IMPORTS = (
 DEFAULT_FXA_CONFIG_NAME = 'default'
 INTERNAL_FXA_CONFIG_NAME = 'internal'
 ALLOWED_FXA_CONFIGS = ['default']
+
+WEBEXT_PERM_DESCRIPTIONS_URL = (
+    'https://hg.mozilla.org/mozilla-central/raw-file/tip/'
+    'browser/locales/en-US/chrome/browser/browser.properties')
+WEBEXT_PERM_DESCRIPTIONS_LOCALISED_URL = (
+    'https://hg.mozilla.org/l10n-central/{locale}/raw-file/tip/'
+    'browser/chrome/browser/browser.properties')
+
+# List all jobs that should be callable with cron here.
+# syntax is: job_and_method_name: full.package.path
+CRON_JOBS = {
+    'update_addon_average_daily_users': 'olympia.addons.cron',
+    'update_addon_download_totals': 'olympia.addons.cron',
+    'addon_last_updated': 'olympia.addons.cron',
+    'update_addon_appsupport': 'olympia.addons.cron',
+    'update_all_appsupport': 'olympia.addons.cron',
+    'hide_disabled_files': 'olympia.addons.cron',
+    'unhide_disabled_files': 'olympia.addons.cron',
+    'deliver_hotness': 'olympia.addons.cron',
+    'reindex_addons': 'olympia.addons.cron',
+    'cleanup_image_files': 'olympia.addons.cron',
+
+    'gc': 'olympia.amo.cron',
+    'category_totals': 'olympia.amo.cron',
+    'collection_subscribers': 'olympia.amo.cron',
+    'weekly_downloads': 'olympia.amo.cron',
+
+    'update_collections_subscribers': 'olympia.bandwagon.cron',
+    'update_collections_votes': 'olympia.bandwagon.cron',
+    'reindex_collections': 'olympia.bandwagon.cron',
+
+    'compatibility_report': 'olympia.compat.cron',
+
+    'update_blog_posts': 'olympia.devhub.cron',
+
+    'cleanup_extracted_file': 'olympia.files.cron',
+    'cleanup_validation_results': 'olympia.files.cron',
+
+    'update_addons_collections_downloads': 'olympia.stats.cron',
+    'update_collections_total': 'olympia.stats.cron',
+    'update_global_totals': 'olympia.stats.cron',
+    'update_google_analytics': 'olympia.stats.cron',
+    'index_latest_stats': 'olympia.stats.cron',
+
+    'update_user_ratings': 'olympia.users.cron',
+    'reindex_users': 'olympia.users.cron',
+}

@@ -5,6 +5,8 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.test import override_settings
 
+import waffle
+
 from olympia import amo
 from olympia.amo.tests import version_factory
 from olympia.accounts.tests.test_views import BaseAuthenticationView
@@ -45,6 +47,9 @@ class TestInternalAddonSearchView(ESTestCase):
 
     def perform_search_with_senior_editor(
             self, url, data=None, expected_queries_count=3, **headers):
+        # Just to cache the waffle switch, to avoid polluting the
+        # assertNumQueries() call later
+        waffle.switch_is_active('boost-webextensions-in-search')
         # We are expecting 3 SQL queries by default, because we need
         # to load the user and its groups.
         self.client.login_api(
@@ -76,8 +81,10 @@ class TestInternalAddonSearchView(ESTestCase):
         assert response.status_code == 401
 
     def test_basic(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=666, is_listed=False)
+        addon = addon_factory(
+            name=u'My Addôn', slug='my-addon', status=amo.STATUS_NULL,
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            weekly_downloads=666)
         addon2 = addon_factory(slug='my-second-addon', name=u'My second Addôn',
                                weekly_downloads=555)
         addon2.delete()
@@ -89,8 +96,7 @@ class TestInternalAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon.pk
-        assert result['is_listed'] is False
-        assert result['status'] == 'public'
+        assert result['status'] == 'incomplete'
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
         assert result['last_updated'] == addon.last_updated.isoformat() + 'Z'
@@ -259,7 +265,7 @@ class TestInternalAddonViewSetDetail(TestCase):
         assert response.status_code == 403
 
     def test_get_not_listed(self):
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -298,6 +304,7 @@ def update_domains(overrides):
     overrides = overrides.copy()
     overrides['CORS_ORIGIN_WHITELIST'] = ['addons-frontend', 'localhost:3000']
     return overrides
+
 
 endpoint_overrides = [
     (regex, update_domains(overrides))

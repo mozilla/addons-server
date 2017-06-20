@@ -15,7 +15,6 @@
 {% block content %}
 <div class="primary" role="main">
   <header class="results-head">
-    {{ breadcrumbs([(None, _('Search'))]) }}
     <hgroup>
       <h2>{{ _('Search Results') }}</h2>
       <h3 class="results-count">{{ showing(query, pager) }}</h3>

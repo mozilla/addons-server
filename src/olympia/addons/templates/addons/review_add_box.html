@@ -22,16 +22,16 @@
     <div>
       <p>
         {% trans %}
-          Please do not post bug reports in reviews. We do not make your email
-          address available to add-on developers and they may need to contact
-          you to help resolve your issue.
+          Please do not post bug reports here. We do not make your email
+          address available to add-on developers, so they can't contact you
+          to resolve your issue.
         {% endtrans %}
       </p>
       {% if addon.support_url or addon.support_email %}
       <p>
         {% trans support='#support' %}
-          See the <a href="{{ support }}">support section</a> to find out
-          where to get assistance for this add-on.
+          See this add-on's <a href="{{ support }}">support section</a> to find out if assistance is available.
+          You can also try asking the <a href="https://discourse.mozilla-community.org/c/add-ons/add-on-support">add-on community</a> for help.
         {% endtrans %}
       </p>
       {% endif %}

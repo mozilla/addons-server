@@ -18,7 +18,7 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False,
     When allow_editors is True, an editor can view the page.
     """
     def decorator(f):
-        @addon_view_factory(qs=Addon.with_unlisted.all)
+        @addon_view_factory(qs=Addon.objects.all)
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
@@ -43,8 +43,7 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False,
             elif acl.check_addon_ownership(request, addon, viewer=True,
                                            ignore_disabled=True):
                 # Redirect to the submit flow if they're not done.
-                if (not submitting and addon.status == amo.STATUS_NULL and
-                        not addon.has_complete_metadata()):
+                if (not submitting and addon.should_redirect_to_submit_flow()):
                     return redirect('devhub.submit.details', addon.slug)
                 return fun()
             raise PermissionDenied
@@ -56,3 +55,14 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False,
         return decorator(f)
     else:
         return decorator
+
+
+def no_admin_disabled(f):
+    """Requires the addon not be STATUS_DISABLED (mozilla admin disabled)."""
+    @functools.wraps(f)
+    def wrapper(*args, **kw):
+        addon = kw.get('addon')
+        if addon and addon.status == amo.STATUS_DISABLED:
+            raise http.Http404()
+        return f(*args, **kw)
+    return wrapper

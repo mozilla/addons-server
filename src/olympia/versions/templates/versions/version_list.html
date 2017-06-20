@@ -18,9 +18,6 @@
 {% block content %}
 <section class="primary">
   <header>
-    {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                           (addon.get_url_path(), addon.name),
-                           (None, _('Versions'))]) }}
     {# L10n: {0} is an add-on name. #}
     <hgroup>
       <h1>{{ _('{0} Version History')|fe(addon.name) }}</h1>
@@ -40,7 +37,13 @@
     </div>
     <div class="items">
       {% for version in versions.object_list %}
-        {{ version_detail(addon, version, src='version-history', impala=True) }}
+        {#
+           We pass skip_contrib=False on purpose, to display the direct link.
+           Otherwise we'd have to show the warning about old versions in the
+           contribute roadblock page too - and make it possible to specify a
+           custom version there - it'd get a bit messy.
+        #}
+        {{ version_detail(addon, version, src='version-history', impala=True, skip_contrib=True) }}
       {% endfor %}
     </div>
     {{ versions|impala_paginator }}

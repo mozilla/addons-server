@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 import json
 
-from elasticsearch_dsl import Search
-from mock import Mock
-
 from django.test.client import RequestFactory
 
+from elasticsearch_dsl import Search
+from mock import Mock
+from rest_framework import serializers
+
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import create_switch, TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
     InternalSearchParameterFilter, ReviewedContentFilter,
@@ -36,10 +37,10 @@ class TestQueryFilter(FilterTestsBase):
 
     filter_classes = [SearchQueryFilter]
 
-    def test_q(self):
+    def _test_q(self):
         qs = self._filter(data={'q': 'tea pot'})
         # Spot check a few queries.
-        should = (qs['query']['function_score']['query']['bool']['should'])
+        should = qs['query']['function_score']['query']['bool']['should']
 
         expected = {
             'match': {
@@ -75,9 +76,18 @@ class TestQueryFilter(FilterTestsBase):
         }
         assert expected in should
 
+        functions = qs['query']['function_score']['functions']
+        assert functions[0] == {'field_value_factor': {'field': 'boost'}}
+        return qs
+
+    def test_q(self):
+        qs = self._test_q()
+        functions = qs['query']['function_score']['functions']
+        assert len(functions) == 1
+
     def test_fuzzy_single_word(self):
         qs = self._filter(data={'q': 'blah'})
-        should = (qs['query']['function_score']['query']['bool']['should'])
+        should = qs['query']['function_score']['query']['bool']['should']
         expected = {
             'fuzzy': {
                 'name': {
@@ -92,6 +102,19 @@ class TestQueryFilter(FilterTestsBase):
         qs_str = json.dumps(qs)
         assert 'fuzzy' not in qs_str
 
+    def test_webextension_boost(self):
+        create_switch('boost-webextensions-in-search')
+
+        # Repeat base test with the switch enabled.
+        qs = self._test_q()
+        functions = qs['query']['function_score']['functions']
+
+        assert len(functions) == 2
+        assert functions[1] == {
+            'weight': 2.0,  # WEBEXTENSIONS_WEIGHT,
+            'filter': {'term': {'current_version.files.is_webextension': True}}
+        }
+
 
 class TestReviewedContentFilter(FilterTestsBase):
 
@@ -103,10 +126,9 @@ class TestReviewedContentFilter(FilterTestsBase):
         must_not = qs['query']['filtered']['filter']['bool']['must_not']
 
         assert {'terms': {'status': amo.REVIEWED_STATUSES}} in must
-        assert {'term': {'has_version': True}} in must
+        assert {'exists': {'field': 'current_version'}} in must
         assert {'term': {'is_disabled': True}} in must_not
         assert {'term': {'is_deleted': True}} in must_not
-        assert {'term': {'is_listed': False}} in must_not
 
 
 class TestSortingFilter(FilterTestsBase):
@@ -121,7 +143,7 @@ class TestSortingFilter(FilterTestsBase):
 
     def test_sort_default(self):
         qs = self._filter(data={'q': 'something'})
-        assert 'sort' not in qs
+        assert qs['sort'] == [self._reformat_order('-_score')]
 
         qs = self._filter()
         assert qs['sort'] == [self._reformat_order('-weekly_downloads')]
@@ -138,34 +160,37 @@ class TestSortingFilter(FilterTestsBase):
             qs = self._filter(data={'q': 'something', 'sort': param})
             assert qs['sort'] == [self._reformat_order(SORTING_PARAMS[param])]
 
-        # If the sort query is wrong, just omit it and fall back to the
-        # default.
-        qs = self._filter(data={'sort': 'WRONGLOL'})
-        assert qs['sort'] == [self._reformat_order('-weekly_downloads')]
+        # If the sort query is wrong.
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'sort': 'WRONGLOL'})
+        assert context.exception.detail == ['Invalid "sort" parameter.']
 
         # Same as above but with a search query.
-        qs = self._filter(data={'q': 'something', 'sort': 'WRONGLOL'})
-        assert 'sort' not in qs
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'q': 'something', 'sort': 'WRONGLOL'})
+        assert context.exception.detail == ['Invalid "sort" parameter.']
 
     def test_sort_query_multiple(self):
         qs = self._filter(data={'sort': ['rating,created']})
         assert qs['sort'] == [self._reformat_order('-bayesian_rating'),
                               self._reformat_order('-created')]
 
-        # If the sort query is wrong, just omit it.
-        qs = self._filter(data={'sort': ['LOLWRONG,created']})
-        assert qs['sort'] == [self._reformat_order('-created')]
+        # If the sort query is wrong.
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'sort': ['LOLWRONG,created']})
+        assert context.exception.detail == ['Invalid "sort" parameter.']
 
 
 class TestSearchParameterFilter(FilterTestsBase):
     filter_classes = [SearchParameterFilter]
 
     def test_search_by_type_invalid(self):
-        qs = self._filter(data={'type': unicode(amo.ADDON_EXTENSION + 666)})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'type': unicode(amo.ADDON_EXTENSION + 666)})
 
-        qs = self._filter(data={'type': 'nosuchtype'})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'type': 'nosuchtype'})
+        assert context.exception.detail == ['Invalid "type" parameter.']
 
     def test_search_by_type_id(self):
         qs = self._filter(data={'type': unicode(amo.ADDON_EXTENSION)})
@@ -186,11 +211,12 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'term': {'type': amo.ADDON_PERSONA}} in must
 
     def test_search_by_app_invalid(self):
-        qs = self._filter(data={'app': unicode(amo.FIREFOX.id + 666)})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'app': unicode(amo.FIREFOX.id + 666)})
 
-        qs = self._filter(data={'app': 'nosuchapp'})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'app': 'nosuchapp'})
+        assert context.exception.detail == ['Invalid "app" parameter.']
 
     def test_search_by_app_id(self):
         qs = self._filter(data={'app': unicode(amo.FIREFOX.id)})
@@ -211,20 +237,21 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'term': {'app': amo.THUNDERBIRD.id}} in must
 
     def test_search_by_appversion_app_missing(self):
-        qs = self._filter(data={'appversion': '46.0'})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'appversion': '46.0'})
+        assert context.exception.detail == ['Invalid "app" parameter.']
 
     def test_search_by_appversion_app_invalid(self):
-        qs = self._filter(data={'appversion': '46.0',
-                                'app': 'internet_explorer'})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'appversion': '46.0',
+                               'app': 'internet_explorer'})
+        assert context.exception.detail == ['Invalid "app" parameter.']
 
     def test_search_by_appversion_invalid(self):
-        qs = self._filter(data={'appversion': 'not_a_version',
-                                'app': 'firefox'})
-        must = qs['query']['filtered']['filter']['bool']['must']
-        assert {'term': {'app': amo.FIREFOX.id}} in must
-        assert len(must) == 1  # No appversion filtering since invalid.
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'appversion': 'not_a_version',
+                               'app': 'firefox'})
+        assert context.exception.detail == ['Invalid "appversion" parameter.']
 
     def test_search_by_appversion(self):
         qs = self._filter(data={'appversion': '46.0',
@@ -237,11 +264,12 @@ class TestSearchParameterFilter(FilterTestsBase):
                 {'gte': 46000000000100}}} in must
 
     def test_search_by_platform_invalid(self):
-        qs = self._filter(data={'platform': unicode(amo.PLATFORM_WIN.id + 42)})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'platform': unicode(amo.PLATFORM_WIN.id + 42)})
 
-        qs = self._filter(data={'app': 'nosuchplatform'})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'platform': 'nosuchplatform'})
+        assert context.exception.detail == ['Invalid "platform" parameter.']
 
     def test_search_by_platform_id(self):
         qs = self._filter(data={'platform': unicode(amo.PLATFORM_WIN.id)})
@@ -286,12 +314,14 @@ class TestSearchParameterFilter(FilterTestsBase):
             amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]}} in must
 
     def test_search_by_category_slug_no_app_or_type(self):
-        qs = self._filter(data={'category': 'other'})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'category': 'other'})
+        assert context.exception.detail == ['Invalid "app" parameter.']
 
     def test_search_by_category_id_no_app_or_type(self):
-        qs = self._filter(data={'category': 1})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'category': 1})
+        assert context.exception.detail == ['Invalid "app" parameter.']
 
     def test_search_by_category_slug(self):
         category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
@@ -313,26 +343,32 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'term': {'category': 1}} in must
 
     def test_search_by_category_invalid(self):
-        qs = self._filter(data={
-            'category': 666,
-            'app': 'firefox',
-            'type': 'extension'
-        })
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(
+                data={'category': 666, 'app': 'firefox', 'type': 'extension'})
+        assert context.exception.detail == ['Invalid "category" parameter.']
+
+    def test_search_by_tag(self):
+        qs = self._filter(data={'tag': 'foo'})
         must = qs['query']['filtered']['filter']['bool']['must']
-        assert {'term': {'app': amo.FIREFOX.id}} in must
-        assert {'term': {'type': amo.ADDON_EXTENSION}} in must
-        assert len(must) == 2  # No category filtering since invalid.
+        assert {'term': {'tags': 'foo'}} in must
+
+        qs = self._filter(data={'tag': 'foo,bar'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'tags': 'foo'}} in must
+        assert {'term': {'tags': 'bar'}} in must
 
 
 class TestInternalSearchParameterFilter(TestSearchParameterFilter):
     filter_classes = [InternalSearchParameterFilter]
 
     def test_search_by_status_invalid(self):
-        qs = self._filter(data={'status': unicode(amo.STATUS_PUBLIC + 999)})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'status': unicode(amo.STATUS_PUBLIC + 999)})
 
-        qs = self._filter(data={'status': 'nosuchstatus'})
-        assert 'filtered' not in qs['query']
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'status': 'nosuchstatus'})
+        assert context.exception.detail == ['Invalid "status" parameter.']
 
     def test_search_by_status_id(self):
         qs = self._filter(data={'status': unicode(amo.STATUS_PUBLIC)})
@@ -373,7 +409,7 @@ class TestCombinedFilter(FilterTestsBase):
         must_not = filtered['filter']['bool']['must_not']
         assert {'term': {'is_disabled': True}} in must_not
 
-        assert 'sort' not in qs
+        assert qs['sort'] == [{'_score': {'order': 'desc'}}]
 
         should = filtered['query']['function_score']['query']['bool']['should']
         expected = {

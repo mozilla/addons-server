@@ -7,7 +7,7 @@ import time
 import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
-from functools import partial, wraps
+from functools import partial
 from tempfile import NamedTemporaryFile
 from urlparse import parse_qs, urlparse, urlsplit, urlunsplit
 
@@ -15,6 +15,7 @@ from django import forms, test
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
+from django.core import signing
 from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.http import HttpRequest, SimpleCookie
@@ -35,23 +36,25 @@ from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
 from olympia.access.acl import check_ownership
+from olympia.api.authentication import WebTokenAuthentication
 from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
 from olympia.addons.models import (
-    Addon, Persona, update_search_index as addon_update_search_index)
+    Addon, AddonCategory, Category, Persona,
+    update_search_index as addon_update_search_index)
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
+from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File
-from olympia.lib.es.signals import process, reset
 from olympia.lib.es.utils import timestamp_index
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
-from olympia.versions.models import ApplicationsVersions, Version
+from olympia.versions.models import ApplicationsVersions, License, Version
 from olympia.users.models import UserProfile
 
 from . import dynamic_urls
@@ -127,7 +130,7 @@ def check_links(expected, elements, selected=None, verify=True):
 
         e = elements.eq(idx)
         if text is not None:
-            assert e.text() == text, e.text()
+            assert e.text() == text, u'Expected %s, got %s' % (text, e.text())
         if link is not None:
             # If we passed an <li>, try to find an <a>.
             if not e.filter('a'):
@@ -184,34 +187,6 @@ def create_flag(name=None, **kw):
     return flag
 
 
-class MobileTest(object):
-    """Mixing for when you want to hit a mobile view."""
-
-    def _pre_setup(self):
-        super(MobileTest, self)._pre_setup()
-        MobileTest._mobile_init(self)
-
-    def mobile_init(self):
-        MobileTest._mobile_init(self)
-
-    # This is a static method so we can call it in @mobile_test.
-    @staticmethod
-    def _mobile_init(self):
-        self.client.cookies['mamo'] = 'on'
-        self.client.defaults['SERVER_NAME'] = settings.MOBILE_DOMAIN
-        self.request = mock.Mock()
-        self.MOBILE = self.request.MOBILE = True
-
-
-def mobile_test(f):
-    """Test decorator for hitting mobile views."""
-    @wraps(f)
-    def wrapper(self, *args, **kw):
-        MobileTest._mobile_init(self)
-        return f(self, *args, **kw)
-    return wrapper
-
-
 class PatchMixin(object):
 
     def patch(self, thing):
@@ -242,7 +217,7 @@ class InitializeSessionMixin(object):
             'max-age': None,
             'path': '/',
             'domain': settings.SESSION_COOKIE_DOMAIN,
-            'secure': settings.SESSION_COOKIE_SECURE or None,
+            'secure': settings.SESSION_COOKIE_SECURE,
             'expires': None,
         }
         self.client.cookies[session_cookie].update(cookie_data)
@@ -268,13 +243,12 @@ class APITestClient(APIClient):
         """
         Creates a jwt token for this user.
         """
-        from rest_framework_jwt.settings import api_settings
-        payload = api_settings.JWT_PAYLOAD_HANDLER(user)
-        payload.update(payload_overrides)
-        if ('user_id' in payload_overrides and
-                payload_overrides['user_id'] is None):
-            del payload['user_id']
-        token = api_settings.JWT_ENCODE_HANDLER(payload)
+        data = {
+            'auth_hash': user.get_session_auth_hash(),
+            'user_id': user.pk,
+        }
+        data.update(payload_overrides)
+        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
         return token
 
     def login_api(self, user):
@@ -283,8 +257,7 @@ class APITestClient(APIClient):
         will be sent in an Authorization header with all future requests for
         this client.
         """
-        from rest_framework_jwt.settings import api_settings
-        prefix = api_settings.JWT_AUTH_HEADER_PREFIX
+        prefix = WebTokenAuthentication.auth_header_prefix
         token = self.generate_api_token(user)
         self.defaults['HTTP_AUTHORIZATION'] = '{0} {1}'.format(prefix, token)
 
@@ -325,40 +298,18 @@ ES_patchers = [
 ]
 
 
-def start_es_mock():
+def start_es_mocks():
     for patch in ES_patchers:
         patch.start()
 
 
-def stop_es_mock():
+def stop_es_mocks():
     for patch in ES_patchers:
-        patch.stop()
-
-
-class MockEsMixin(object):
-    mock_es = True
-
-    @classmethod
-    def setUpClass(cls):
-        if cls.mock_es:
-            start_es_mock()
         try:
-            reset.send(None)  # Reset all the ES tasks on hold.
-            super(MockEsMixin, cls).setUpClass()
-        except Exception:
-            # We need to unpatch here because tearDownClass will not be
-            # called.
-            if cls.mock_es:
-                stop_es_mock()
-            raise
-
-    @classmethod
-    def tearDownClass(cls):
-        try:
-            super(MockEsMixin, cls).tearDownClass()
-        finally:
-            if cls.mock_es:
-                stop_es_mock()
+            patch.stop()
+        except RuntimeError:
+            # Ignore already stopped patches.
+            pass
 
 
 class BaseTestCase(test.TestCase):
@@ -439,8 +390,7 @@ def assert3xx(response, expected_url, status_code=302, target_status_code=200):
     assert url == expected_url, msg
 
 
-class TestCase(PatchMixin, InitializeSessionMixin, MockEsMixin,
-               BaseTestCase):
+class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
     """Base class for all amo tests."""
     client_class = TestClient
 
@@ -591,6 +541,18 @@ class TestCase(PatchMixin, InitializeSessionMixin, MockEsMixin,
         setattr(request, '_messages', messages)
         return request
 
+    def make_addon_unlisted(self, addon):
+        self.change_channel_for_addon(addon, False)
+
+    def make_addon_listed(self, addon):
+        self.change_channel_for_addon(addon, True)
+
+    def change_channel_for_addon(self, addon, listed):
+        channel = (amo.RELEASE_CHANNEL_LISTED if listed else
+                   amo.RELEASE_CHANNEL_UNLISTED)
+        for version in addon.versions.all():
+            version.update(channel=channel)
+
 
 class AMOPaths(object):
     """Mixin for getting common AMO Paths."""
@@ -643,7 +605,9 @@ def addon_factory(
     popularity = kw.pop('popularity', None)
     persona_id = kw.pop('persona_id', None)
     tags = kw.pop('tags', [])
+    users = kw.pop('users', [])
     when = _get_created(kw.pop('created', None))
+    category = kw.pop('category', None)
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
     name = kw.pop('name', u'Addôn %s' % unicode(uuid.uuid4()).replace('-', ''))
@@ -656,12 +620,14 @@ def addon_factory(
         'status': amo.STATUS_PUBLIC,
         'name': name,
         'slug': name.replace(' ', '-').lower()[:30],
-        'bayesian_rating': random.uniform(1, 5),
         'average_daily_users': popularity or random.randint(200, 2000),
         'weekly_downloads': popularity or random.randint(200, 2000),
         'created': when,
         'last_updated': when,
     }
+    if type_ != amo.ADDON_PERSONA:
+        # Personas don't have a summary.
+        kwargs['summary'] = u'Summary for %s' % name
     kwargs.update(kw)
 
     # Save 1.
@@ -672,9 +638,6 @@ def addon_factory(
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
-    if 'channel' not in version_kw and 'is_listed' in kw:
-        version_kw['channel'] = (amo.RELEASE_CHANNEL_LISTED if kw['is_listed']
-                                 else amo.RELEASE_CHANNEL_UNLISTED)
     version = version_factory(file_kw, addon=addon, **version_kw)
     addon.update_version()
     addon.status = status
@@ -689,6 +652,17 @@ def addon_factory(
 
     for tag in tags:
         Tag(tag_text=tag).save_tag(addon)
+
+    for user in users:
+        addon.addonuser_set.create(user=user)
+
+    application = version_kw.get('application', amo.FIREFOX.id)
+    if not category:
+        static_category = random.choice(
+            CATEGORIES[application][type_].values())
+        category, _ = Category.objects.get_or_create(
+            id=static_category.id, defaults=static_category.__dict__)
+    AddonCategory.objects.create(addon=addon, category=category)
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
@@ -710,6 +684,7 @@ def collection_factory(**kw):
         'type': amo.COLLECTION_NORMAL,
         'application': amo.FIREFOX.id,
         'name': 'Collection %s' % abs(hash(datetime.now())),
+        'description': 'Its a collection %s' % abs(hash(datetime.now())),
         'addon_count': random.randint(200, 2000),
         'subscribers': random.randint(1000, 5000),
         'monthly_subscribers': random.randint(100, 500),
@@ -729,13 +704,29 @@ def collection_factory(**kw):
     return c
 
 
+def license_factory(**kw):
+    data = {
+        'name': {
+            'en-US': u'My License',
+            'fr': u'Mä Licence',
+        },
+        'text': {
+            'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+        },
+        'url': 'http://license.example.com/',
+    }
+    data.update(**kw)
+    return License.objects.create(**data)
+
+
 def file_factory(**kw):
-    v = kw['version']
+    version = kw['version']
+    filename = kw.pop('filename', '%s-%s' % (version.addon_id, version.id))
     status = kw.pop('status', amo.STATUS_PUBLIC)
     platform = kw.pop('platform', amo.PLATFORM_ALL.id)
-    f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
-                            platform=platform, status=status, **kw)
-    return f
+    file_ = File.objects.create(filename=filename,
+                                platform=platform, status=status, **kw)
+    return file_
 
 
 def req_factory_factory(url, user=None, post=False, data=None, session=None):
@@ -776,41 +767,60 @@ def version_factory(file_kw=None, **kw):
     # not already created in fixtures (use fake versions).
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
-    version = kw.pop('version', '%.1f' % random.uniform(0, 2))
+    version_str = kw.pop('version', '%.1f' % random.uniform(0, 2))
     application = kw.pop('application', amo.FIREFOX.id)
-    v = Version.objects.create(version=version, **kw)
-    v.created = v.last_updated = _get_created(kw.pop('created', 'now'))
-    v.save()
+    if not kw.get('license') and not kw.get('license_id'):
+        # Is there a built-in one we can use?
+        builtins = License.objects.builtins()
+        if builtins.exists():
+            kw['license_id'] = builtins[0].id
+        else:
+            license_kw = {'builtin': 99}
+            license_kw.update(kw.get('license_kw', {}))
+            kw['license'] = license_factory(**license_kw)
+    ver = Version.objects.create(version=version_str, **kw)
+    ver.created = ver.last_updated = _get_created(kw.pop('created', 'now'))
+    ver.save()
     if kw.get('addon').type not in (amo.ADDON_PERSONA, amo.ADDON_SEARCH):
         av_min, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=min_app_version)
         av_max, _ = AppVersion.objects.get_or_create(application=application,
                                                      version=max_app_version)
         ApplicationsVersions.objects.get_or_create(application=application,
-                                                   version=v, min=av_min,
+                                                   version=ver, min=av_min,
                                                    max=av_max)
     file_kw = file_kw or {}
-    file_factory(version=v, **file_kw)
-    return v
+    file_factory(version=ver, **file_kw)
+    return ver
 
 
 @pytest.mark.es_tests
 class ESTestCase(TestCase):
-    """Base class for tests that require elasticsearch."""
-    # ES is slow to set up so this uses class setup/teardown. That happens
-    # outside Django transactions so be careful to clean up afterwards.
-    mock_es = False
-
     # We need ES indexes aliases to match prod behaviour, but also we need the
     # names need to stay consistent during the whole test run, so we generate
     # them at import time. Note that this works because pytest overrides
     # ES_INDEXES before the test run even begins - if we were using
     # override_settings() on ES_INDEXES we'd be in trouble.
-    index_names = {key: timestamp_index(value)
-                   for key, value in settings.ES_INDEXES.items()}
+    index_suffixes = {key: timestamp_index('')
+                      for key in settings.ES_INDEXES.keys()}
+
+    @classmethod
+    def get_index_name(cls, key):
+        """Return the name of the actual index used in tests for a given key
+        taken from settings.ES_INDEXES.
+
+        Can be used to check whether aliases have been set properly -
+        ES_INDEXES will give the aliases, and this method will give the indices
+        the aliases point to."""
+        value = settings.ES_INDEXES[key]
+        return '%s%s' % (value, cls.index_suffixes[key])
+
+    def setUp(self):
+        stop_es_mocks()
 
     @classmethod
     def setUpClass(cls):
+        stop_es_mocks()
         cls.es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
         cls._SEARCH_ANALYZER_MAP = amo.SEARCH_ANALYZER_MAP
         amo.SEARCH_ANALYZER_MAP = {
@@ -821,6 +831,7 @@ class ESTestCase(TestCase):
 
     @classmethod
     def setUpTestData(cls):
+        stop_es_mocks()
         try:
             cls.es.cluster.health()
         except Exception, e:
@@ -836,19 +847,25 @@ class ESTestCase(TestCase):
             if key.startswith('test_amo'):
                 cls.es.indices.delete(key, ignore=[404])
 
+        # Figure out the name of the indices we're going to create from the
+        # suffixes generated at import time. Like the aliases later, the name
+        # has been prefixed by pytest, we need to add a suffix that is unique
+        # to this test run.
+        actual_indices = {key: cls.get_index_name(key)
+                          for key in settings.ES_INDEXES.keys()}
+
         # Create new search and stats indexes with the timestamped name.
         # This is crucial to set up the correct mappings before we start
         # indexing things in tests.
-        search_indexers.create_new_index(
-            index_name=cls.index_names['default'])
-        stats_search.create_new_index(index_name=cls.index_names['stats'])
+        search_indexers.create_new_index(index_name=actual_indices['default'])
+        stats_search.create_new_index(index_name=actual_indices['stats'])
 
         # Alias it to the name the code is going to use (which is suffixed by
         # pytest to avoid clashing with the real thing).
         actions = [
-            {'add': {'index': cls.index_names['default'],
+            {'add': {'index': actual_indices['default'],
                      'alias': settings.ES_INDEXES['default']}},
-            {'add': {'index': cls.index_names['stats'],
+            {'add': {'index': actual_indices['stats'],
                      'alias': settings.ES_INDEXES['stats']}}
         ]
         cls.es.indices.update_aliases({'actions': actions})
@@ -860,13 +877,7 @@ class ESTestCase(TestCase):
         super(ESTestCase, cls).tearDownClass()
 
     @classmethod
-    def send(cls):
-        # Send all the ES tasks on hold.
-        process.send(None)
-
-    @classmethod
-    def refresh(cls, index='default', timesleep=0):
-        process.send(None)
+    def refresh(cls, index='default'):
         cls.es.indices.refresh(settings.ES_INDEXES[index])
 
     @classmethod

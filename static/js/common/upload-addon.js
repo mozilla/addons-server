@@ -429,7 +429,8 @@
                     $("<strong>").text(message).appendTo(upload_results);
 
                     // Specific messages for unlisted addons.
-                    if (isUnlisted()) {
+                    var validation_type = results.validation.detected_type
+                    if ((["extension", "dictionary", "languagepack"].indexOf(validation_type) != -1) && isUnlisted()) {
                       $("<p>").text(gettext("Your submission will be automatically signed.")).appendTo(upload_results);
                     }
 

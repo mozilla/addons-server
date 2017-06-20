@@ -8,7 +8,6 @@
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
 
 {% block content %}
-{{ docs_breadcrumbs(items=[(None, _('Search Results'))]) }}
 {% if query %}
 <h1>{{ _('Search Results for "{0}"')|f(query) }}</h1>
 {% else %}

@@ -6,13 +6,12 @@ from django.core.management import call_command
 import mock
 
 from olympia import amo
-from olympia.amo.tests import TestCase
-from olympia.addons.models import Addon
+from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.stats import cron, tasks
 from olympia.stats.models import (
-    AddonCollectionCount, Contribution, DownloadCount, GlobalStat,
-    ThemeUserCount, UpdateCount)
+    AddonCollectionCount, DownloadCount, GlobalStat, ThemeUserCount,
+    UpdateCount)
 
 
 class TestGlobalStats(TestCase):
@@ -28,6 +27,32 @@ class TestGlobalStats(TestCase):
         tasks.update_global_totals(job, date)
         assert len(GlobalStat.objects.no_cache().filter(
             date=date, name=job)) == 1
+
+    def test_count_stats_for_date(self):
+        # Add a listed add-on, it should show up in "addon_count_new".
+        listed_addon = addon_factory()
+
+        # Add an unlisted version to that add-on, it should *not* increase the
+        # "version_count_new" count.
+        version_factory(
+            addon=listed_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        # Add an unlisted add-on, it should not show up in either
+        # "addon_count_new" or "version_count_new".
+        addon_factory(version_kw={
+            'channel': amo.RELEASE_CHANNEL_UNLISTED
+        })
+
+        date = datetime.date.today()
+        job = 'addon_count_new'
+        tasks.update_global_totals(job, date)
+        global_stat = GlobalStat.objects.no_cache().get(date=date, name=job)
+        assert global_stat.count == 1
+
+        job = 'version_count_new'
+        tasks.update_global_totals(job, date)
+        global_stat = GlobalStat.objects.no_cache().get(date=date, name=job)
+        assert global_stat.count == 1
 
     def test_input(self):
         for x in ['2009-1-1',
@@ -56,30 +81,6 @@ class TestGoogleAnalytics(TestCase):
         cron.update_google_analytics(d)
         assert GlobalStat.objects.get(
             name='webtrends_DailyVisitors', date=d).count == 49
-
-
-class TestTotalContributions(TestCase):
-    fixtures = ['base/appversion', 'base/users', 'base/addon_3615']
-
-    def test_total_contributions(self):
-
-        c = Contribution()
-        c.addon_id = 3615
-        c.amount = '9.99'
-        c.save()
-
-        tasks.addon_total_contributions(3615)
-        a = Addon.objects.no_cache().get(pk=3615)
-        assert float(a.total_contributions) == 9.99
-
-        c = Contribution()
-        c.addon_id = 3615
-        c.amount = '10.00'
-        c.save()
-
-        tasks.addon_total_contributions(3615)
-        a = Addon.objects.no_cache().get(pk=3615)
-        assert float(a.total_contributions) == 19.99
 
 
 @mock.patch('olympia.stats.management.commands.index_stats.create_subtasks')

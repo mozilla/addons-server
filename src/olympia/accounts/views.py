@@ -1,41 +1,51 @@
 import base64
 import functools
-import logging
 import os
 
 from django.conf import settings
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
+from django.core import signing
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.utils.encoding import force_bytes
 from django.utils.http import is_safe_url
 from django.utils.html import format_html
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext, ugettext_lazy as _
 
-from rest_framework import generics
+from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.mixins import RetrieveModelMixin
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import detail_route
+from rest_framework.mixins import (
+    DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
+from rest_framework.permissions import (
+    AllowAny, BasePermission, IsAuthenticated)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
-from rest_framework_jwt.settings import api_settings as jwt_api_settings
 from waffle.decorators import waffle_switch
 
+import olympia.core.logger
+from olympia import amo
+from olympia.access import acl
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
-from olympia.amo.utils import urlparams
-from olympia.api.authentication import JWTKeyAuthentication
-from olympia.api.permissions import GroupPermission
-from olympia.users.models import UserProfile
+from olympia.api.authentication import (
+    JWTKeyAuthentication, WebTokenAuthentication)
+from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
+from olympia.users import tasks
+from olympia.users.models import UserProfile, UserNotification
+from olympia.users.notifications import NOTIFICATIONS
+
 
 from . import verify
-from .serializers import AccountSuperCreateSerializer, UserProfileSerializer
+from .serializers import (
+    AccountSuperCreateSerializer, PublicUserProfileSerializer,
+    UserNotificationSerializer, UserProfileSerializer)
 from .utils import fxa_login_url, generate_fxa_state
 
-log = logging.getLogger('accounts')
+log = olympia.core.logger.getLogger('accounts')
 
 ERROR_AUTHENTICATED = 'authenticated'
 ERROR_NO_CODE = 'no-code'
@@ -51,11 +61,13 @@ ERROR_STATUSES = {
 LOGIN_ERROR_MESSAGES = {
     ERROR_AUTHENTICATED: _(u'You are already logged in.'),
     ERROR_NO_CODE:
-        _(u'Your log in attempt could not be parsed. Please try again.'),
+        _(u'Your login attempt could not be parsed. Please try again.'),
     ERROR_NO_PROFILE:
         _(u'Your Firefox Account could not be found. Please try again.'),
     ERROR_STATE_MISMATCH: _(u'You could not be logged in. Please try again.'),
 }
+
+API_TOKEN_COOKIE = 'api_auth_token'
 
 
 def safe_redirect(url, action):
@@ -93,7 +105,8 @@ def register_user(request, identity):
 
 
 def update_user(user, identity):
-    """Update a user's info from FxA if needed."""
+    """Update a user's info from FxA if needed, as well as generating the id
+    that is used as part of the session/api token generation."""
     if (user.fxa_id != identity['uid'] or
             user.email != identity['email']):
         log.info(
@@ -102,6 +115,10 @@ def update_user(user, identity):
                 pk=user.pk, old_email=user.email, old_uid=user.fxa_id,
                 new_email=identity['email'], new_uid=identity['uid']))
         user.update(fxa_id=identity['uid'], email=identity['email'])
+    if user.auth_id is None:
+        # If the user didn't have an auth id (old user account created before
+        # we added the field), generate one for them.
+        user.update(auth_id=UserProfile._meta.get_field('auth_id').default())
 
 
 def login_user(request, user, identity):
@@ -123,16 +140,18 @@ def fxa_error_message(message):
 def render_error(request, error, next_path=None, format=None):
     if format == 'json':
         status = ERROR_STATUSES.get(error, 422)
-        return Response({'error': error}, status=status)
+        response = Response({'error': error}, status=status)
     else:
         if not is_safe_url(next_path):
             next_path = None
         messages.error(
             request, fxa_error_message(LOGIN_ERROR_MESSAGES[error]),
             extra_tags='fxa')
-        redirect_view = 'users.login'
-        return HttpResponseRedirect(
-            urlparams(reverse(redirect_view), to=next_path))
+        if next_path is None:
+            response = HttpResponseRedirect(reverse('users.login'))
+        else:
+            response = HttpResponseRedirect(next_path)
+    return response
 
 
 def parse_next_path(state_parts):
@@ -160,8 +179,11 @@ def with_user(format, config=None):
         @write
         def inner(self, request):
             if config is None:
-                fxa_config = (
-                    settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME])
+                if hasattr(self, 'get_fxa_config'):
+                    fxa_config = self.get_fxa_config(request)
+                else:
+                    fxa_config = (
+                        settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME])
             else:
                 fxa_config = config
 
@@ -188,9 +210,18 @@ def with_user(format, config=None):
                     request, ERROR_STATE_MISMATCH, next_path=next_path,
                     format=format)
             elif request.user.is_authenticated():
-                return render_error(
-                    request, ERROR_AUTHENTICATED, next_path=None,
+                response = render_error(
+                    request, ERROR_AUTHENTICATED, next_path=next_path,
                     format=format)
+                # If the api token cookie is missing but we're still
+                # authenticated using the session, add it back.
+                if API_TOKEN_COOKIE not in request.COOKIES:
+                    log.info('User %s was already authenticated but did not '
+                             'have an API token cookie, adding one.',
+                             request.user.pk)
+                    response = add_api_token_to_response(
+                        response, request.user)
+                return response
             try:
                 identity = verify.fxa_identify(data['code'], config=fxa_config)
             except verify.IdentificationError:
@@ -206,23 +237,37 @@ def with_user(format, config=None):
     return outer
 
 
-def add_api_token_to_response(response, user, set_cookie=True):
-    # Generate API token and add it to the json response.
-    payload = jwt_api_settings.JWT_PAYLOAD_HANDLER(user)
-    token = jwt_api_settings.JWT_ENCODE_HANDLER(payload)
+def generate_api_token(user):
+    """Generate a new API token for a given user."""
+    data = {
+        'auth_hash': user.get_session_auth_hash(),
+        'user_id': user.pk,
+    }
+    return signing.dumps(data, salt=WebTokenAuthentication.salt)
+
+
+def add_api_token_to_response(response, user):
+    """Generate API token and add it to the response (both as a `token` key in
+    the response if it was json and by setting a cookie named API_TOKEN_COOKIE.
+    """
+    token = generate_api_token(user)
     if hasattr(response, 'data'):
         response.data['token'] = token
-    if set_cookie:
-        # Also include the API token in a session cookie, so that it is
-        # available for universal frontend apps.
-        response.set_cookie(
-            'jwt_api_auth_token',
-            token,
-            max_age=settings.SESSION_COOKIE_AGE or None,
-            secure=settings.SESSION_COOKIE_SECURE or None,
-            httponly=settings.SESSION_COOKIE_HTTPONLY or None)
+    # Also include the API token in a session cookie, so that it is
+    # available for universal frontend apps.
+    response.set_cookie(
+        API_TOKEN_COOKIE,
+        token,
+        max_age=settings.SESSION_COOKIE_AGE,
+        secure=settings.SESSION_COOKIE_SECURE,
+        httponly=settings.SESSION_COOKIE_HTTPONLY)
 
     return response
+
+
+def remove_api_token_cookie(response):
+    """Delete the api token cookie."""
+    response.delete_cookie(API_TOKEN_COOKIE)
 
 
 class FxAConfigMixin(object):
@@ -261,20 +306,16 @@ class LoginStartView(LoginStartBaseView):
 
 class LoginBaseView(FxAConfigMixin, APIView):
 
-    def post(self, request):
-        config = self.get_fxa_config(request)
-
-        @with_user(format='json', config=config)
-        def _post(self, request, user, identity, next_path):
-            if user is None:
-                return Response({'error': ERROR_NO_USER}, status=422)
-            else:
-                update_user(user, identity)
-                response = Response({'email': identity['email']})
-                add_api_token_to_response(response, user, set_cookie=False)
-                log.info('Logging in user {} from FxA'.format(user))
-                return response
-        return _post(self, request)
+    @with_user(format='json')
+    def post(self, request, user, identity, next_path):
+        if user is None:
+            return Response({'error': ERROR_NO_USER}, status=422)
+        else:
+            update_user(user, identity)
+            response = Response({'email': identity['email']})
+            add_api_token_to_response(response, user)
+            log.info('Logging in user {} from FxA'.format(user))
+            return response
 
     def options(self, request):
         return Response()
@@ -300,44 +341,136 @@ class RegisterView(APIView):
             return response
 
 
-class AuthenticateView(APIView):
+class AuthenticateView(FxAConfigMixin, APIView):
+    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
+    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
+
     authentication_classes = (SessionAuthentication,)
 
     @with_user(format='html')
     def get(self, request, user, identity, next_path):
         if user is None:
-            register_user(request, identity)
-            return safe_redirect(reverse('users.edit'), 'register')
+            user = register_user(request, identity)
+            fxa_config = self.get_fxa_config(request)
+            if fxa_config.get('skip_register_redirect'):
+                response = safe_redirect(next_path, 'register')
+            else:
+                response = safe_redirect(reverse('users.edit'), 'register')
         else:
             login_user(request, user, identity)
             response = safe_redirect(next_path, 'login')
-            add_api_token_to_response(response, user)
-            return response
+        add_api_token_to_response(response, user)
+        return response
 
 
-class ProfileView(generics.RetrieveAPIView):
-    authentication_classes = [JWTKeyAuthentication]
+def logout_user(request, response):
+    logout(request)
+    remove_api_token_cookie(response)
+
+
+class SessionView(APIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = UserProfileSerializer
 
-    def retrieve(self, request, *args, **kw):
-        return Response(self.get_serializer(request.user).data)
+    def delete(self, request, *args, **kwargs):
+        response = Response({'ok': True})
+        logout_user(request, response)
+        return response
 
 
-class AccountViewSet(RetrieveModelMixin, GenericViewSet):
-    queryset = UserProfile.objects.all()
+class AllowSelf(BasePermission):
+    def has_permission(self, request, view):
+        return True
 
-    def retrieve(self, request, *args, **kwargs):
-        # See https://github.com/mozilla/addons-server/issues/3138 ; be careful
-        # when implementing it, we don't want to list users, only retrieve them
-        # and eventually modify them through this ViewSet.
-        raise NotImplementedError
+    def has_object_permission(self, request, view, obj):
+        return request.user.is_authenticated() and obj == request.user
+
+
+class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
+                     GenericViewSet):
+    permission_classes = [
+        ByHttpMethod({
+            'get': AllowAny,
+            'head': AllowAny,
+            'options': AllowAny,  # Needed for CORS.
+            # To edit a profile it has to yours, or be an admin.
+            'patch': AnyOf(AllowSelf, GroupPermission(
+                amo.permissions.USERS_EDIT)),
+            'delete': AnyOf(AllowSelf, GroupPermission(
+                amo.permissions.USERS_EDIT)),
+        }),
+    ]
+
+    def get_queryset(self):
+        return UserProfile.objects.all()
+
+    def get_object(self):
+        if hasattr(self, 'instance'):
+            return self.instance
+        identifier = self.kwargs.get('pk')
+        self.lookup_field = self.get_lookup_field(identifier)
+        self.kwargs[self.lookup_field] = identifier
+        self.instance = super(AccountViewSet, self).get_object()
+        return self.instance
+
+    def get_lookup_field(self, identifier):
+        lookup_field = 'pk'
+        if identifier and not identifier.isdigit():
+            # If the identifier contains anything other than a digit, it's
+            # the username.
+            lookup_field = 'username'
+        return lookup_field
+
+    @property
+    def self_view(self):
+        return (
+            self.request.user.is_authenticated() and
+            self.get_object() == self.request.user)
+
+    def get_serializer_class(self):
+        if (self.self_view or
+                acl.action_allowed_user(self.request.user,
+                                        amo.permissions.USERS_EDIT)):
+            return UserProfileSerializer
+        else:
+            return PublicUserProfileSerializer
+
+    def perform_destroy(self, instance):
+        if instance.is_developer:
+            raise serializers.ValidationError(ugettext(
+                u'Developers of add-ons or themes cannot delete their '
+                u'account. You must delete all add-ons and themes linked to '
+                u'this account, or transfer them to other users.'))
+        return super(AccountViewSet, self).perform_destroy(instance)
+
+    @detail_route(
+        methods=['delete'], permission_classes=[
+            AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))])
+    def picture(self, request, pk=None):
+        user = self.get_object()
+        user.update(picture_type='')
+        log.debug(u'User (%s) deleted photo' % user)
+        tasks.delete_photo.delay(user.picture_path)
+        return self.retrieve(request)
+
+
+class ProfileView(APIView):
+    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        account_viewset = AccountViewSet(
+            request=request,
+            permission_classes=self.permission_classes,
+            kwargs={'pk': unicode(self.request.user.pk)})
+        account_viewset.format_kwarg = self.format_kwarg
+        return account_viewset.retrieve(request)
 
 
 class AccountSuperCreate(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [
-        IsAuthenticated, GroupPermission('Accounts', 'SuperCreate')]
+        IsAuthenticated,
+        GroupPermission(amo.permissions.ACCOUNTS_SUPER_CREATE)]
 
     @waffle_switch('super-create-accounts')
     def post(self, request):
@@ -390,3 +523,57 @@ class AccountSuperCreate(APIView):
             'fxa_id': user.fxa_id,
             'session_cookie': cookie,
         }, status=201)
+
+
+class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
+    """Returns account notifications.
+
+    If not already set by the user, defaults will be returned.
+    """
+
+    permission_classes = [IsAuthenticated]
+    # We're pushing the primary permission checking to AccountViewSet for ease.
+    account_permission_classes = [
+        AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))]
+    serializer_class = UserNotificationSerializer
+    paginator = None
+
+    def get_account_viewset(self):
+        if not hasattr(self, 'account_viewset'):
+            self.account_viewset = AccountViewSet(
+                request=self.request,
+                permission_classes=self.account_permission_classes,
+                kwargs={'pk': self.kwargs['user_pk']})
+        return self.account_viewset
+
+    def _get_default_object(self, notification):
+        return UserNotification(
+            user=self.get_account_viewset().get_object(),
+            notification_id=notification.id,
+            enabled=notification.default_checked)
+
+    def get_queryset(self):
+        queryset = UserNotification.objects.filter(
+            user=self.get_account_viewset().get_object())
+        # Put it into a dict so we can easily check for existence.
+        set_notifications = {
+            user_nfn.notification.short: user_nfn for user_nfn in queryset}
+        out = []
+        for notification in NOTIFICATIONS:
+            out.append(set_notifications.get(
+                notification.short,  # It's been set by the user.
+                self._get_default_object(notification)))  # Otherwise, default.
+        return out
+
+    def create(self, request, *args, **kwargs):
+        # Loop through possible notifications.
+        queryset = self.get_queryset()
+        for notification in queryset:
+            # Careful with ifs.  Enabled will be None|True|False.
+            enabled = request.data.get(notification.notification.short)
+            if enabled is not None:
+                serializer = self.get_serializer(
+                    notification, partial=True, data={'enabled': enabled})
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
+        return Response(self.get_serializer(queryset, many=True).data)

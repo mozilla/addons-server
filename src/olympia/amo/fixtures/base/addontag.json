@@ -36,7 +36,7 @@
             "homepage": "http://www.podvalchik.ru",
             "email": "4043307@yermom.com",
             "notifycompat": 1,
-            "bio": null,
+            "biography": null,
             "deleted": 0,
             "username": "Wink-RU",
             "display_name": "Wink-RU \u0627\u0644\u062a\u0637\u0628",
@@ -86,7 +86,6 @@
             "privacy_policy": null,
             "default_locale": "ru",
             "target_locale": null,
-            "prerelease": 0,
             "thankyou_note": null,
             "admin_review": 0,
             "external_software": 0,
@@ -97,7 +96,6 @@
             "annoying": 0,
             "modified": "2009-12-06 03:06:48",
             "suggested_amount": null,
-            "site_specific": 1,
             "total_reviews": 97,
             "the_reason": null
         }

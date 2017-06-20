@@ -79,7 +79,6 @@
             "total_contributions": "0.00",
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": false,
             "thankyou_note": null,
             "admin_review": false,
             "external_software": false,
@@ -90,7 +89,6 @@
             "annoying": 0,
             "modified": "2010-05-24 16:53:43",
             "suggested_amount": null,
-            "site_specific": false,
             "total_reviews": 1173,
             "the_reason": null
         }
@@ -144,7 +142,7 @@
             "homepage": "http://www.cooliris.com",
             "email": "dd+4edd7c76d@davedash.com",
             "location": "",
-            "bio": null,
+            "biography": null,
             "deleted": false,
             "username": "9873",
             "display_name": "9873 \u0627\u0644\u062a\u0637\u0628",

@@ -16,6 +16,7 @@ EMAIL_PORT = EMAIL_URL['EMAIL_PORT']
 EMAIL_BACKEND = EMAIL_URL['EMAIL_BACKEND']
 EMAIL_HOST_USER = EMAIL_URL['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
+EMAIL_QA_ALLOW_LIST = env.list('EMAIL_QA_ALLOW_LIST')
 EMAIL_DENY_LIST = env.list('EMAIL_DENY_LIST')
 
 SEND_REAL_EMAIL = True
@@ -31,7 +32,6 @@ REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 
 CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
-CRONJOB_LOCK_PREFIX = DOMAIN
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = env('SERVICES_URL',
@@ -73,8 +73,6 @@ SERVICES_DATABASE = env.db('SERVICES_DATABASE_URL')
 
 SLAVE_DATABASES = ['slave']
 
-CACHE_PREFIX = 'olympia.%s' % ENV
-KEY_PREFIX = CACHE_PREFIX
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
 CACHES = {}
@@ -143,9 +141,6 @@ RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY')
 NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY')
 
-# Remove DetectMobileMiddleware from middleware in production.
-detect = 'mobility.middleware.DetectMobileMiddleware'
-
 RESPONSYS_ID = env('RESPONSYS_ID')
 
 ES_TIMEOUT = 60
@@ -174,8 +169,6 @@ XSENDFILE_HEADER = 'X-Accel-Redirect'
 GOOGLE_ANALYTICS_CREDENTIALS = env.dict('GOOGLE_ANALYTICS_CREDENTIALS')
 GOOGLE_ANALYTICS_CREDENTIALS['user_agent'] = None
 GOOGLE_ANALYTICS_CREDENTIALS['token_expiry'] = datetime.datetime(2013, 1, 3, 1, 20, 16, 45465)  # noqa
-
-GOOGLE_API_CREDENTIALS = env('GOOGLE_API_CREDENTIALS')
 
 GEOIP_URL = 'https://geo.services.mozilla.com'
 
@@ -210,7 +203,7 @@ FXA_CONFIG = {
         'oauth_host': 'https://oauth.accounts.firefox.com/v1',
         'profile_host': 'https://profile.accounts.firefox.com/v1',
         'redirect_url':
-            'https://addons.mozilla.org/api/v3/accounts/authenticate/',
+            'https://%s/api/v3/accounts/authenticate/' % DOMAIN,
         'scope': 'profile',
     },
     'internal': {
@@ -223,8 +216,18 @@ FXA_CONFIG = {
             'https://addons-admin.prod.mozaws.net/fxa-authenticate',
         'scope': 'profile',
     },
+    'amo': {
+        'client_id': env('AMO_FXA_CLIENT_ID'),
+        'client_secret': env('AMO_FXA_CLIENT_SECRET'),
+        'content_host': 'https://accounts.firefox.com',
+        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
+        'profile_host': 'https://profile.accounts.firefox.com/v1',
+        'redirect_url':
+            'https://addons.mozilla.org/api/v3/accounts/authenticate/',
+        'scope': 'profile',
+        'skip_register_redirect': True,
+    },
 }
-FXA_CONFIG['amo'] = FXA_CONFIG['default']
 DEFAULT_FXA_CONFIG_NAME = 'default'
 INTERNAL_FXA_CONFIG_NAME = 'internal'
 ALLOWED_FXA_CONFIGS = ['default', 'amo']
@@ -243,3 +246,6 @@ READ_ONLY = env.bool('READ_ONLY', default=False)
 RAVEN_DSN = (
     'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
 RAVEN_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
+
+GITHUB_API_USER = env('GITHUB_API_USER')
+GITHUB_API_TOKEN = env('GITHUB_API_TOKEN')

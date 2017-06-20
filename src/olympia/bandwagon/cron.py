@@ -3,10 +3,9 @@ from datetime import date
 from django.db import connection
 from django.db.models import Count
 
-import commonware.log
-import cronjobs
 from celery.task.sets import TaskSet
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.utils import chunked
@@ -14,10 +13,9 @@ from olympia.bandwagon.models import (
     Collection, CollectionVote, CollectionWatcher)
 
 
-task_log = commonware.log.getLogger('z.task')
+task_log = olympia.core.logger.getLogger('z.task')
 
 
-@cronjobs.register
 def update_collections_subscribers():
     """Update collections subscribers totals."""
 
@@ -34,18 +32,25 @@ def update_collections_subscribers():
 def _update_collections_subscribers(data, **kw):
     task_log.info("[%s@%s] Updating collections' subscribers totals." % (
                   len(data), _update_collections_subscribers.rate_limit))
-    cursor = connection.cursor()
+
     today = date.today()
-    for var in data:
-        q = """REPLACE INTO
-                    stats_collections(`date`, `name`, `collection_id`, `count`)
-                VALUES
-                    (%s, %s, %s, %s)"""
-        p = [today, 'new_subscribers', var['collection_id'], var['count']]
-        cursor.execute(q, p)
+
+    statement = """
+        REPLACE INTO
+          stats_collections(`date`, `name`, `collection_id`, `count`)
+        VALUES
+          (%s, %s, %s, %s)
+    """
+
+    statements_data = [
+        (today, 'new_subscribers', var['collection_id'], var['count'])
+        for var in data
+    ]
+
+    with connection.cursor() as cursor:
+        cursor.executemany(statement, statements_data)
 
 
-@cronjobs.register
 def update_collections_votes():
     """Update collection's votes."""
 
@@ -72,16 +77,22 @@ def update_collections_votes():
 def _update_collections_votes(data, stat, **kw):
     task_log.info("[%s@%s] Updating collections' votes totals." % (
                   len(data), _update_collections_votes.rate_limit))
-    cursor = connection.cursor()
-    for var in data:
-        q = ('REPLACE INTO stats_collections(`date`, `name`, '
-             '`collection_id`, `count`) VALUES (%s, %s, %s, %s)')
-        p = [date.today(), stat,
-             var['collection_id'], var['count']]
-        cursor.execute(q, p)
+
+    today = date.today()
+
+    statement = (
+        'REPLACE INTO stats_collections(`date`, `name`, '
+        '`collection_id`, `count`) VALUES (%s, %s, %s, %s)')
+
+    statements_data = [
+        (today, stat, x['collection_id'], x['count'])
+        for x in data
+    ]
+
+    with connection.cursor() as cursor:
+        cursor.executemany(statement, statements_data)
 
 
-@cronjobs.register
 def reindex_collections(index=None):
     from . import tasks
     ids = (Collection.objects.exclude(type=amo.COLLECTION_SYNCHRONIZED)

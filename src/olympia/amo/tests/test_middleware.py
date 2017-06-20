@@ -3,13 +3,12 @@ from django import test
 from django.test.client import RequestFactory
 
 import pytest
-from commonware.middleware import ScrubRequestOnException
 from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase
-
-from olympia.amo.middleware import AuthenticationMiddlewareWithoutAPI
+from olympia.amo.middleware import (
+    AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException)
 from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config
 
@@ -20,13 +19,15 @@ pytestmark = pytest.mark.django_db
 class TestMiddleware(TestCase):
 
     def test_no_vary_cookie(self):
-        # We don't break good usage of Vary.
+        # Requesting / forces a Vary on Accept-Language on User-Agent, since
+        # we redirect to /<lang>/<app>/.
         response = test.Client().get('/')
-        assert response['Vary'] == 'Accept-Language, User-Agent, X-Mobile'
+        assert response['Vary'] == 'Accept-Language, User-Agent'
 
-        # But we do prevent Vary: Cookie.
+        # No Vary after that (we should Vary on Cookie but avoid it for perf
+        # reasons).
         response = test.Client().get('/', follow=True)
-        assert response['Vary'] == 'X-Mobile, User-Agent'
+        assert 'Vary' not in response
 
     @patch('django.contrib.auth.middleware.'
            'AuthenticationMiddleware.process_request')

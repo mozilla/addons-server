@@ -1,8 +1,8 @@
 <h1 class="site-title">
 {% macro heading(app, text, icon) -%}
 <a href="{{ url('home') }}" title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
-  {% if waffle.flag ('restyle') and request.APP == amo.FIREFOX %}
-  <img alt="" src="{{ static('img/icons/firefox.png')|safe }}">
+  {% if request.APP == amo.FIREFOX %}
+  <img alt="{{ APP.pretty }}" src="{{ static('img/icons/firefox.png')|safe }}">
   {% else %}
   <img alt="{{ APP.pretty }}" src="{{ static('img/app-icons/med/' + icon + '.png')|safe }}">
   {% endif %}
@@ -13,8 +13,6 @@
   {{ heading('Firefox', _('Add-ons'), 'firefox') }}
 {% elif request.APP == amo.THUNDERBIRD %}
   {{ heading('Thunderbird', _('Add-ons'), 'thunderbird') }}
-{% elif request.APP == amo.MOBILE %}
-  {{ heading('Firefox Mobile', _('Mobile Add-ons'), 'firefox') }}
 {% elif request.APP == amo.SEAMONKEY %}
   {{ heading('SeaMonkey', _('Add-ons'), 'seamonkey') }}
 {% elif request.APP == amo.ANDROID %}

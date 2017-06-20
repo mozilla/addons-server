@@ -1,7 +1,9 @@
 {% extends "impala/base_shared.html" %}
 
 {% block js %}
+  {% if addon.takes_contributions %}
     <script async defer src="{{ settings.PAYPAL_JS_URL }}"></script>
+  {% endif %}
 {% endblock %}
 
 {% if page == 'installed' %}
@@ -55,9 +57,6 @@
     {% if page == 'installed' %}
       <h1 class="addon"{{ addon.name|locale_html }}>{{ title }}</h1>
     {% else %}
-      {{ impala_breadcrumbs([(addon.type_url(), amo.ADDON_TYPES[addon.type]),
-                             (addon.get_url_path(), addon.name),
-                             (None, title)]) }}
       <h1>{{ title }}</h1>
     {% endif %}
   </header>
@@ -100,9 +99,9 @@
           {{ author|user_vcard }}
         </div>
         <div class="prose">
-          {% if author.bio %}
+          {% if author.biography %}
             <h3>{{ _('Who is {0}?')|f(author.name) }}</h3>
-            <p class="bio">{{ author.bio|nl2br }}</p>
+            <p class="biography">{{ author.biography|nl2br|clean|no_links }}</p>
           {% endif %}
         </div>
       </section>

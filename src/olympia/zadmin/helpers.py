@@ -23,15 +23,16 @@ def admin_site_links():
         ],
         'settings': [
             ('View site settings', reverse('zadmin.settings')),
+            ('View request environment', reverse('zadmin.env')),
             ('Django admin pages', reverse('zadmin.home')),
             ('Site Events', reverse('zadmin.site_events')),
         ],
         'tools': [
-            ('View request environment', reverse('amo.env')),
             ('Manage elasticsearch', reverse('zadmin.elastic')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
             ('View event log', reverse('admin:editors_eventlog_changelist')),
-            ('View addon log', reverse('admin:devhub_activitylog_changelist')),
+            ('View addon log',
+             reverse('admin:activity_activitylog_changelist')),
             ('Site Status', reverse('amo.monitor')),
         ],
     }

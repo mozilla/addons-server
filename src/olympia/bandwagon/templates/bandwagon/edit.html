@@ -12,12 +12,6 @@
   </div>
   <div class="primary">
     <header>
-      {{ breadcrumbs([(url('collections.list'), _('Collections')),
-                      (url('collections.user', collection.author_username),
-                       collection.author.name),
-                      (collection.get_url_path(), collection.name),
-                      (None, _('Edit'))]) }}
-
       <h2>{{ _('Edit {0}')|fe(collection.name) }}</h2>
     </header>
 

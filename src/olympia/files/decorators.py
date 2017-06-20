@@ -1,35 +1,37 @@
 from datetime import datetime
 import functools
 
-import commonware.log
-from cache_nuggets.lib import Token
-
 from django import http
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.utils.http import http_date
 
+import olympia.core.logger
 from olympia import amo
+from olympia.amo.cache_nuggets import Token
 from olympia.access import acl
 from olympia.addons.decorators import owner_or_unlisted_reviewer
 from olympia.files.helpers import DiffHelper, FileViewer
 from olympia.files.models import File
 
-log = commonware.log.getLogger('z.addons')
+log = olympia.core.logger.getLogger('z.addons')
 
 
 def allowed(request, file):
     try:
-        addon = file.version.addon
+        version = file.version
+        addon = version.addon
     except ObjectDoesNotExist:
         raise http.Http404
 
     # General case: addon is listed.
-    if addon.is_listed:
-        if ((addon.view_source and addon.status in amo.REVIEWED_STATUSES) or
-                acl.check_addons_reviewer(request) or
-                acl.check_addon_ownership(request, addon, viewer=True,
-                                          dev=True)):
+    if version.channel == amo.RELEASE_CHANNEL_LISTED:
+        # We don't show the file-browser publicly because of potential DOS
+        # issues, we're working on a fix but for now, let's not do this.
+        # (cgrebs, 06042017)
+        is_owner = acl.check_addon_ownership(
+            request, addon, viewer=True, dev=True)
+        if (acl.check_addons_reviewer(request) or is_owner):
             return True  # Public and sources are visible, or reviewer.
         raise PermissionDenied  # Listed but not allowed.
     # Not listed? Needs an owner or an "unlisted" admin.
@@ -53,7 +55,7 @@ def last_modified(request, obj, key=None, **kw):
 
 
 def etag(request, obj, key=None, **kw):
-    return _get_value(obj, key, 'md5')
+    return _get_value(obj, key, 'sha256')
 
 
 def file_view(func, **kwargs):
@@ -70,7 +72,7 @@ def file_view(func, **kwargs):
 
         response = func(request, obj, *args, **kw)
         if obj.selected:
-            response['ETag'] = '"%s"' % obj.selected.get('md5')
+            response['ETag'] = '"%s"' % obj.selected.get('sha256')
             response['Last-Modified'] = http_date(obj.selected.get('modified'))
         return response
     return wrapper
@@ -92,7 +94,7 @@ def compare_file_view(func, **kwargs):
 
         response = func(request, obj, *args, **kw)
         if obj.left.selected:
-            response['ETag'] = '"%s"' % obj.left.selected.get('md5')
+            response['ETag'] = '"%s"' % obj.left.selected.get('sha256')
             response['Last-Modified'] = http_date(obj.left.selected
                                                           .get('modified'))
         return response

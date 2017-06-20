@@ -40,7 +40,6 @@
             "description": null,
             "default_locale": "ja",
             "target_locale": null,
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "name": null,
@@ -51,7 +50,6 @@
             "modified": "2010-01-03 22:27:15",
             "summary": null,
             "suggested_amount": null,
-            "site_specific": 0,
             "total_reviews": 2,
             "the_reason": null
         }

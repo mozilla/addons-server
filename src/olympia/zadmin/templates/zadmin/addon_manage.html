@@ -19,22 +19,29 @@
         <tr>
           <th>Date</th>
           <th>Version</th>
+          <th>Channel</th>
           <th>File ID</th>
           <th>Platform</th>
           <th>Status</th>
           <th>Hash</th>
-          <th>Copied</th>
         </tr>
       </thead>
       <tbody>
       {% for v in versions %}
         <tr>
           <td>{{ v.created|datetime }}</td>
-          <td><a href="{{ url('editors.review', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a></td>
+          <td>
+            {% if v.channel == amo.RELEASE_CHANNEL_LISTED %}
+              <a href="{{ url('editors.review', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a>
+            {% else %}
+              <a href="{{ url('editors.review', 'unlisted', addon.slug) }}" title="{{ v.id }}">{{ v.version }}</a>
+            {% endif %}
+          </td>
+          <td>{{ v.get_channel_display() }}</td>
           {% with files = file_map.get(v.id, []) %}
             {% if files %}
               {% for file in files %}
-                {% if not loop.first %}</tr><tr><td colspan="2">{% endif %}
+                {% if not loop.first %}</tr><tr><td colspan="3">{% endif %}
                 <td><a href="{{ url('files.list', file.id) }}" title="{{ file.filename }}">{{ file.id }}</a></td>
                 <td>{{ file.get_platform_display() }}</td>
                 <td>
@@ -48,14 +55,9 @@
                   {% endfor %}
                 </td>
                 <td><a href="{{ url('zadmin.recalc_hash', file.id)|urlparams(page=pager.number) }}" class="recalc" title="{{ file.hash }}">Recalc Hash</a></td>
-                <td>
-                  {% if file.is_mirrorable() %}
-                    {{ "Copied" if file.has_been_copied() else "Not Copied" }}
-                  {% endif %}
-                </td>
               {% endfor %}
             {% else %}
-              <td colspan="5"></td>
+              <td colspan="4"></td>
             {% endif %}
           {% endwith %}
         </tr>

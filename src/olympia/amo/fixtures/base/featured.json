@@ -33,7 +33,6 @@
             "public_stats": 0,
             "status": 4,
             "default_locale": "en-US",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "name": 590910,
@@ -43,7 +42,6 @@
             "modified": "2009-03-30 23:18:20",
             "summary": null,
             "suggested_amount": null,
-            "site_specific": 0,
             "total_reviews": 0,
             "the_reason": null
         }
@@ -134,7 +132,6 @@
             "status": 4,
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "name": 113719,
@@ -144,7 +141,6 @@
             "annoying": 0,
             "modified": "2009-05-07 13:52:26",
             "suggested_amount": null,
-            "site_specific": 0,
             "total_reviews": 87,
             "the_reason": null
         }
@@ -174,7 +170,6 @@
             "status": 4,
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "name": 160423,
@@ -185,7 +180,6 @@
             "annoying": 1,
             "modified": "2009-10-20 08:25:58",
             "suggested_amount": "1",
-            "site_specific": 0,
             "total_reviews": 185
         }
     },
@@ -214,7 +208,6 @@
             "status": 4,
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "name": 10435,
@@ -225,7 +218,6 @@
             "annoying": 3,
             "modified": "2009-11-14 16:12:16",
             "suggested_amount": "10.00",
-            "site_specific": 0,
             "total_reviews": 147
         }
     },
@@ -254,7 +246,6 @@
             "status": 4,
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "name": 14520,
@@ -264,7 +255,6 @@
             "annoying": 0,
             "modified": "2009-11-09 05:27:57",
             "suggested_amount": null,
-            "site_specific": 0,
             "total_reviews": 224,
             "the_reason": null
         }
@@ -369,7 +359,6 @@
             "description": null,
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "name": 377979,
@@ -380,7 +369,6 @@
             "modified": "2009-05-13 18:19:30",
             "summary": null,
             "suggested_amount": null,
-            "site_specific": 0,
             "total_reviews": 0,
             "the_reason": null
         }

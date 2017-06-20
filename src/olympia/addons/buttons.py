@@ -1,6 +1,6 @@
 from django.db.transaction import non_atomic_requests
 from django.utils.translation import (
-    ugettext as _, ugettext_lazy as _lazy, pgettext_lazy)
+    ugettext, ugettext_lazy as _, pgettext_lazy)
 
 import jingo
 import jinja2
@@ -14,8 +14,7 @@ from olympia.amo.utils import render
 @jinja2.contextfunction
 def install_button(context, addon, version=None, show_contrib=True,
                    show_warning=True, src='', collection=None, size='',
-                   detailed=False, mobile=False, impala=False,
-                   latest_beta=False):
+                   detailed=False, impala=False, latest_beta=False):
     """
     If version isn't given, we use the latest version. You can set latest_beta
     parameter to use latest beta version instead.
@@ -42,8 +41,6 @@ def install_button(context, addon, version=None, show_contrib=True,
          'installed': installed}
     if impala:
         template = 'addons/impala/button.html'
-    elif mobile:
-        template = 'addons/mobile/button.html'
     else:
         template = 'addons/button.html'
     t = jingo.render_to_string(request, template, c)
@@ -56,16 +53,6 @@ def big_install_button(context, addon, **kwargs):
     flags = jinja2.escape(statusflags(context, addon))
     button = install_button(context, addon, detailed=True, size='prominent',
                             **kwargs)
-    markup = u'<div class="install-wrapper %s">%s</div>' % (flags, button)
-    return jinja2.Markup(markup)
-
-
-@jinja2.contextfunction
-def mobile_install_button(context, addon, **kwargs):
-    from olympia.addons.helpers import statusflags
-    button = install_button(context, addon, detailed=True, size='prominent',
-                            mobile=True, show_contrib=False, **kwargs)
-    flags = jinja2.escape(statusflags(context, addon))
     markup = u'<div class="install-wrapper %s">%s</div>' % (flags, button)
     return jinja2.Markup(markup)
 
@@ -173,13 +160,13 @@ class InstallButton(object):
             url = file.get_url_path(self.src)
 
         if platform == amo.PLATFORM_ALL.id:
-            text, os = _('Download Now'), None
+            text, os = ugettext('Download Now'), None
         else:
-            text, os = _('Download'), amo.PLATFORMS[platform]
+            text, os = ugettext('Download'), amo.PLATFORMS[platform]
 
         if self.show_contrib:
             # L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-            text = jinja2.Markup(_('Continue to Download&nbsp;&rarr;'))
+            text = jinja2.Markup(ugettext('Continue to Download&nbsp;&rarr;'))
             roadblock = reverse('addons.roadblock', args=[self.addon.id])
             url = urlparams(roadblock, version=self.version.version)
 
@@ -195,7 +182,7 @@ class InstallButton(object):
 
 class FeaturedInstallButton(InstallButton):
     install_class = ['featuredaddon']
-    install_text = _lazy(u'Featured')
+    install_text = _(u'Featured')
 
 
 class UnreviewedInstallButton(InstallButton):
@@ -214,7 +201,7 @@ class PersonaInstallButton(InstallButton):
     install_class = ['persona']
 
     def links(self):
-        return [Link(_(u'Add to {0}').format(unicode(self.app.pretty)),
+        return [Link(ugettext(u'Add to {0}').format(unicode(self.app.pretty)),
                      reverse('addons.detail', args=[amo.PERSONAS_ADDON_ID]))]
 
     def attrs(self):

@@ -4,11 +4,11 @@ from pyquery import PyQuery as pq
 from django.core import mail
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import formset
 from olympia.addons.models import Addon, AddonUser
 from olympia.devhub.forms import LicenseForm
-from olympia.devhub.models import ActivityLog
 from olympia.versions.models import License, Version
 
 
@@ -44,16 +44,16 @@ class TestEditPolicy(TestOwnership):
     def test_edit_eula(self):
         old_eula = self.addon.eula
         data = self.formset(eula='new eula', has_eula=True)
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         addon = self.get_addon()
         assert unicode(addon.eula) == 'new eula'
         assert addon.eula.id == old_eula.id
 
     def test_delete_eula(self):
         assert self.addon.eula
-        r = self.client.post(self.url, self.formset(has_eula=False))
-        assert r.status_code == 302
+        response = self.client.post(self.url, self.formset(has_eula=False))
+        assert response.status_code == 302
         assert self.get_addon().eula is None
 
     def test_edit_eula_locale(self):
@@ -90,24 +90,23 @@ class TestEditLicense(TestOwnership):
         assert license_form.errors == {'builtin': [u'This field is required.']}
 
     def test_no_license_required_for_unlisted(self):
-        self.addon.update(is_listed=False)
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.make_addon_unlisted(self.addon)
         data = self.formset(builtin='')
         response = self.client.post(self.url, data)
         assert response.status_code == 302
 
     def test_success_add_builtin(self):
         data = self.formset(builtin=1)
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         assert self.license == self.get_version().license
         assert ActivityLog.objects.filter(
             action=amo.LOG.CHANGE_LICENSE.id).count() == 1
 
     def test_success_add_custom(self):
         data = self.formset(builtin=License.OTHER, text='text', name='name')
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         license = self.get_version().license
         assert unicode(license.text) == 'text'
         assert unicode(license.name) == 'name'
@@ -115,12 +114,12 @@ class TestEditLicense(TestOwnership):
 
     def test_success_edit_custom(self):
         data = self.formset(builtin=License.OTHER, text='text', name='name')
-        r = self.client.post(self.url, data)
+        response = self.client.post(self.url, data)
         license_one = self.get_version().license
 
         data = self.formset(builtin=License.OTHER, text='woo', name='name')
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         license_two = self.get_version().license
         assert unicode(license_two.text) == 'woo'
         assert unicode(license_two.name) == 'name'
@@ -129,12 +128,12 @@ class TestEditLicense(TestOwnership):
 
     def test_success_switch_license(self):
         data = self.formset(builtin=1)
-        r = self.client.post(self.url, data)
+        response = self.client.post(self.url, data)
         license_one = self.get_version().license
 
         data = self.formset(builtin=License.OTHER, text='text', name='name')
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         license_two = self.get_version().license
         assert unicode(license_two.text) == 'text'
         assert unicode(license_two.name) == 'name'
@@ -146,22 +145,22 @@ class TestEditLicense(TestOwnership):
         assert unicode(license.name) == 'bsd'
 
         data = self.formset(builtin=1)
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         license_three = self.get_version().license
         assert license_three == license_one
 
     def test_custom_has_text(self):
         data = self.formset(builtin=License.OTHER, name='name')
-        r = self.client.post(self.url, data)
-        assert r.status_code == 200
-        self.assertFormError(r, 'license_form', None,
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        self.assertFormError(response, 'license_form', None,
                              'License text is required when choosing Other.')
 
     def test_custom_has_name(self):
         data = self.formset(builtin=License.OTHER, text='text')
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         license = self.get_version().license
         assert unicode(license.text) == 'text'
         assert unicode(license.name) == 'Custom License'
@@ -172,8 +171,8 @@ class TestEditLicense(TestOwnership):
         self.addon.update(_current_version=None)
         Version.objects.all().delete()
         data = self.formset(builtin=License.OTHER, text='text')
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
 
     def test_license_details_links(self):
         # Check that builtin licenses get details links.
@@ -207,36 +206,44 @@ class TestEditAuthor(TestOwnership):
         ActivityLog.
         """
         # flip form-0-position
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=0)
-        data = self.formset(f.initial, u, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        u1 = f.initial
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        user_data = {
+            'user': 'regular@mozilla.com',
+            'listed': True,
+            'role': amo.AUTHOR_ROLE_DEV,
+            'position': 0
+        }
+        data = self.formset(form.initial, user_data, initial_count=1)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        u1 = form.initial
         u1['position'] = 1
-        f = self.client.get(self.url).context['user_form'].initial_forms[1]
-        u2 = f.initial
+        form = self.client.get(self.url).context['user_form'].initial_forms[1]
+        u2 = form.initial
         data = self.formset(u1, u2)
 
         orig = ActivityLog.objects.all().count()
-        r = self.client.post(self.url, data)
-        self.assert3xx(r, self.url, 302)
+        response = self.client.post(self.url, data)
+        self.assert3xx(response, self.url, 302)
         assert ActivityLog.objects.all().count() == orig
 
     def test_success_add_user(self):
-        q = (AddonUser.objects.no_cache().filter(addon=3615)
-             .values_list('user', flat=True))
-        assert list(q.all()) == [55021]
+        qs = (AddonUser.objects.no_cache().filter(addon=3615)
+              .values_list('user', flat=True))
+        assert list(qs.all()) == [55021]
 
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=0)
-        data = self.formset(f.initial, u, initial_count=1)
-        r = self.client.post(self.url, data)
-        self.assert3xx(r, self.url, 302)
-        assert list(q.all()) == [55021, 999]
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        user_data = {
+            'user': 'regular@mozilla.com',
+            'listed': True,
+            'role': amo.AUTHOR_ROLE_DEV,
+            'position': 0
+        }
+        data = self.formset(form.initial, user_data, initial_count=1)
+        response = self.client.post(self.url, data)
+        self.assert3xx(response, self.url, 302)
+        assert list(qs.all()) == [55021, 999]
 
         # An email has been sent to the authors to warn them.
         author_added = mail.outbox[0]
@@ -248,10 +255,14 @@ class TestEditAuthor(TestOwnership):
 
     def test_success_edit_user(self):
         # Add an author b/c we can't edit anything about the current one.
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=1)
-        data = self.formset(f.initial, u, initial_count=1)
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        user_data = {
+            'user': 'regular@mozilla.com',
+            'listed': True,
+            'role': amo.AUTHOR_ROLE_DEV,
+            'position': 1
+        }
+        data = self.formset(form.initial, user_data, initial_count=1)
         self.client.post(self.url, data)
         assert AddonUser.objects.get(addon=3615, user=999).listed
 
@@ -259,19 +270,28 @@ class TestEditAuthor(TestOwnership):
         user_form = self.client.get(self.url).context['user_form']
         one, two = user_form.initial_forms
         del two.initial['listed']
-        empty = dict(user='', listed=True, role=5, position=0)
+        empty = {
+            'user': '',
+            'listed': True,
+            'role': 5,
+            'position': 0
+        }
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
-        r = self.client.post(self.url, data)
-        self.assert3xx(r, self.url, 302)
+        response = self.client.post(self.url, data)
+        self.assert3xx(response, self.url, 302)
         assert not AddonUser.objects.no_cache().get(
             addon=3615, user=999).listed
 
     def test_change_user_role(self):
         # Add an author b/c we can't edit anything about the current one.
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=1)
-        data = self.formset(f.initial, u, initial_count=1)
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        user_data = {
+            'user': 'regular@mozilla.com',
+            'listed': True,
+            'role': amo.AUTHOR_ROLE_DEV,
+            'position': 1
+        }
+        data = self.formset(form.initial, user_data, initial_count=1)
         self.client.post(self.url, data)
         assert AddonUser.objects.get(addon=3615, user=999).listed
 
@@ -279,10 +299,15 @@ class TestEditAuthor(TestOwnership):
         user_form = self.client.get(self.url).context['user_form']
         one, two = user_form.initial_forms
         two.initial['role'] = amo.AUTHOR_ROLE_VIEWER
-        empty = dict(user='', listed=True, role=5, position=0)
+        empty = {
+            'user': '',
+            'listed': True,
+            'role': 5,
+            'position': 0
+        }
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
-        r = self.client.post(self.url, data)
-        self.assert3xx(r, self.url, 302)
+        response = self.client.post(self.url, data)
+        self.assert3xx(response, self.url, 302)
 
         # An email has been sent to the authors to warn them.
         author_edit = mail.outbox[1]  # First mail was for the addition.
@@ -293,27 +318,36 @@ class TestEditAuthor(TestOwnership):
         assert 'regular@mozilla.com' in author_edit.to  # The edited one.
 
     def test_add_user_twice(self):
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=1)
-        data = self.formset(f.initial, u, u, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.status_code == 200
-        assert r.context['user_form'].non_form_errors() == (
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        user_data = {
+            'user': 'regular@mozilla.com',
+            'listed': True,
+            'role': amo.AUTHOR_ROLE_DEV,
+            'position': 1
+        }
+        data = self.formset(
+            form.initial, user_data, user_data, initial_count=1)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        assert response.context['user_form'].non_form_errors() == (
             ['An author can only be listed once.'])
 
     def test_success_delete_user(self):
         # Add a new user so we have one to delete.
-        data = self.formset(dict(user='regular@mozilla.com', listed=True,
-                                 role=amo.AUTHOR_ROLE_OWNER, position=1),
-                            initial_count=0)
+        user_data = {
+            'user': 'regular@mozilla.com',
+            'listed': True,
+            'role': amo.AUTHOR_ROLE_OWNER,
+            'position': 1
+        }
+        data = self.formset(user_data, initial_count=0)
         self.client.post(self.url, data)
 
         one, two = self.client.get(self.url).context['user_form'].initial_forms
         one.initial['DELETE'] = True
         data = self.formset(one.initial, two.initial, initial_count=2)
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         assert 999 == AddonUser.objects.get(addon=3615).user_id
 
         # An email has been sent to the authors to warn them.
@@ -326,11 +360,11 @@ class TestEditAuthor(TestOwnership):
 
     def test_switch_owner(self):
         # See if we can transfer ownership in one POST.
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        f.initial['user'] = 'regular@mozilla.com'
-        data = self.formset(f.initial, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        form.initial['user'] = 'regular@mozilla.com'
+        data = self.formset(form.initial, initial_count=1)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         assert 999 == AddonUser.objects.get(addon=3615).user_id
         assert ActivityLog.objects.filter(
             action=amo.LOG.ADD_USER_WITH_ROLE.id).count() == 1
@@ -338,10 +372,14 @@ class TestEditAuthor(TestOwnership):
             action=amo.LOG.REMOVE_USER_WITH_ROLE.id).count() == 1
 
     def test_only_owner_can_edit(self):
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        u = dict(user='regular@mozilla.com', listed=True,
-                 role=amo.AUTHOR_ROLE_DEV, position=0)
-        data = self.formset(f.initial, u, initial_count=1)
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        user_data = {
+            'user': 'regular@mozilla.com',
+            'listed': True,
+            'role': amo.AUTHOR_ROLE_DEV,
+            'position': 0
+        }
+        data = self.formset(form.initial, user_data, initial_count=1)
         self.client.post(self.url, data)
 
         self.client.login(email='regular@mozilla.com')
@@ -351,30 +389,30 @@ class TestEditAuthor(TestOwnership):
         one, two = self.client.get(self.url).context['user_form'].initial_forms
         one.initial['DELETE'] = True
         data = self.formset(one.initial, two.initial, initial_count=2)
-        r = self.client.post(self.url, data, follow=True)
-        assert r.status_code == 403
+        response = self.client.post(self.url, data, follow=True)
+        assert response.status_code == 403
         assert AddonUser.objects.filter(addon=3615).count() == 2
 
     def test_must_have_listed(self):
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        f.initial['listed'] = False
-        data = self.formset(f.initial, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['user_form'].non_form_errors() == (
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        form.initial['listed'] = False
+        data = self.formset(form.initial, initial_count=1)
+        response = self.client.post(self.url, data)
+        assert response.context['user_form'].non_form_errors() == (
             ['At least one author must be listed.'])
 
     def test_must_have_owner(self):
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        f.initial['role'] = amo.AUTHOR_ROLE_DEV
-        data = self.formset(f.initial, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['user_form'].non_form_errors() == (
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        form.initial['role'] = amo.AUTHOR_ROLE_DEV
+        data = self.formset(form.initial, initial_count=1)
+        response = self.client.post(self.url, data)
+        assert response.context['user_form'].non_form_errors() == (
             ['Must have at least one owner.'])
 
     def test_must_have_owner_delete(self):
-        f = self.client.get(self.url).context['user_form'].initial_forms[0]
-        f.initial['DELETE'] = True
-        data = self.formset(f.initial, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['user_form'].non_form_errors() == (
+        form = self.client.get(self.url).context['user_form'].initial_forms[0]
+        form.initial['DELETE'] = True
+        data = self.formset(form.initial, initial_count=1)
+        response = self.client.post(self.url, data)
+        assert response.context['user_form'].non_form_errors() == (
             ['Must have at least one owner.'])

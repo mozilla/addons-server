@@ -12,15 +12,15 @@ from django.core.cache import cache
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.utils.decorators import method_decorator
-from django.utils.translation import ugettext as _, ugettext_lazy, get_language
+from django.utils.translation import ugettext, ugettext_lazy as _, get_language
 from django.utils.encoding import force_bytes
 
-import commonware.log
 import jingo
 import waffle
 from caching.base import cached_with
 from jingo import get_standard_processors
 
+import olympia.core.logger
 from olympia import amo, legacy_api
 from olympia.addons.models import Addon, CompatOverride
 from olympia.amo.decorators import (
@@ -28,17 +28,17 @@ from olympia.amo.decorators import (
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_url_prefix
 from olympia.amo.utils import AMOJSONEncoder
-from olympia.legacy_api.utils import addon_to_dict, extract_filters
+from olympia.legacy_api.utils import (
+    addon_to_dict, extract_filters, find_compatible_version)
 from olympia.search.views import (
     AddonSuggestionsAjax, PersonaSuggestionsAjax, name_query)
 from olympia.versions.compare import version_int
 
 
 ERROR = 'error'
-OUT_OF_DATE = ugettext_lazy(
-    u"The API version, {0:.1f}, you are using is not valid. "
-    u"Please upgrade to the current version {1:.1f} API.")
-SEARCHABLE_STATUSES = (amo.STATUS_PUBLIC, )
+OUT_OF_DATE = _(
+    u'The API version, {0:.1f}, you are using is not valid. '
+    u'Please upgrade to the current version {1:.1f} API.')
 
 xml_env = jingo.get_env().overlay()
 old_finalize = xml_env.finalize
@@ -51,7 +51,7 @@ MAX_LIMIT, BUFFER = 30, 10
 # "New" is arbitrarily defined as 10 days old.
 NEW_DAYS = 10
 
-log = commonware.log.getLogger('z.api')
+log = olympia.core.logger.getLogger('z.api')
 
 
 def partition(seq, key):
@@ -179,8 +179,8 @@ def addon_filter(addons, addon_type, limit, app, platform, version,
             elif compat_mode == 'normal':
                 # This does a db hit but it's cached. This handles the cases
                 # for strict opt-in, binary components, and compat overrides.
-                v = addon.compatible_version(APP.id, version, platform,
-                                             compat_mode)
+                v = find_compatible_version(addon, APP.id, version, platform,
+                                            compat_mode)
                 if v:  # There's a compatible version.
                     addons.append(addon)
 
@@ -220,7 +220,7 @@ class APIView(object):
     def __call__(self, request, api_version, *args, **kwargs):
 
         self.version = float(api_version)
-        self.format = request.REQUEST.get('format', 'xml')
+        self.format = request.GET.get('format', 'xml')
         self.content_type = ('text/xml' if self.format == 'xml'
                              else 'application/json')
         self.request = request
@@ -255,7 +255,7 @@ class APIView(object):
                                 content_type=self.content_type)
 
     def render_json(self, context):
-        return json.dumps({'msg': _('Not implemented yet.')})
+        return json.dumps({'msg': ugettext('Not implemented yet.')})
 
 
 class AddonDetailView(APIView):
@@ -263,16 +263,15 @@ class AddonDetailView(APIView):
     @allow_cross_site_request
     def process_request(self, addon_id):
         try:
-            addon = Addon.objects.id_or_slug(addon_id).get()
+            # Nominated or public add-ons should be viewable using the legacy
+            # API detail endpoint.
+            addon = Addon.objects.valid().id_or_slug(addon_id).get()
         except Addon.DoesNotExist:
+            # Add-on is either inexistent or not public/nominated.
             return self.render_msg(
                 'Add-on not found!', ERROR, status=404,
                 content_type=self.content_type
             )
-
-        if addon.is_disabled:
-            return self.render_msg('Add-on disabled.', ERROR, status=404,
-                                   content_type=self.content_type)
         return self.render_addon(addon)
 
     def render_addon(self, addon):
@@ -288,20 +287,21 @@ def guid_search(request, api_version, guids):
 
     def guid_search_cache_key(guid):
         key = 'guid_search:%s:%s:%s' % (api_version, lang, guid)
-        return hashlib.md5(force_bytes(key)).hexdigest()
+        return hashlib.sha256(force_bytes(key)).hexdigest()
 
-    guids = [g.strip() for g in guids.split(',')] if guids else []
+    guids = [guid.strip() for guid in guids.split(',')] if guids else []
 
-    addons_xml = cache.get_many([guid_search_cache_key(g) for g in guids])
+    addons_xml = cache.get_many(
+        [guid_search_cache_key(guid) for guid in guids])
     dirty_keys = set()
 
-    for g in guids:
-        key = guid_search_cache_key(g)
+    for guid in guids:
+        key = guid_search_cache_key(guid)
         if key not in addons_xml:
             dirty_keys.add(key)
             try:
-                addon = Addon.objects.get(guid=g, disabled_by_user=False,
-                                          status__in=SEARCHABLE_STATUSES)
+                # Only search through public (and not disabled) add-ons.
+                addon = Addon.objects.public().get(guid=guid)
 
             except Addon.DoesNotExist:
                 addons_xml[key] = ''
@@ -346,10 +346,9 @@ class SearchView(APIView):
         filters = {
             'app': app_id,
             'status': amo.STATUS_PUBLIC,
-            'is_listed': True,
             'is_experimental': False,
             'is_disabled': False,
-            'has_version': True,
+            'current_version__exists': True,
         }
 
         # Opts may get overridden by query string filters.
@@ -385,10 +384,10 @@ class SearchView(APIView):
 
         results = []
         for addon in qs:
-            compat_version = addon.compatible_version(app_id,
-                                                      params['version'],
-                                                      params['platform'],
-                                                      compat_mode)
+            compat_version = find_compatible_version(addon, app_id,
+                                                     params['version'],
+                                                     params['platform'],
+                                                     compat_mode)
             # Specific case for Personas (bug 990768): if we search providing
             # the Persona addon type (9), then don't look for a compatible
             # version.
@@ -482,10 +481,10 @@ class ListView(APIView):
 class LanguageView(APIView):
 
     def process_request(self):
-        addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
-                                      type=amo.ADDON_LPAPP,
-                                      appsupport__app=self.request.APP.id,
-                                      disabled_by_user=False).order_by('pk')
+        addons = (Addon.objects.public()
+                               .filter(type=amo.ADDON_LPAPP,
+                                       appsupport__app=self.request.APP.id)
+                               .order_by('pk'))
         return self.render('legacy_api/list.xml', {'addons': addons,
                                                    'show_localepicker': True})
 

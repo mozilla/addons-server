@@ -8,9 +8,6 @@
 
 {% block content %}
 <header>
-  {{ dev_breadcrumbs(addon, items=[(addon.get_dev_url('versions'),
-                                    _('Status & Versions')),
-                                   (None, title)]) }}
   {# L10n: {0} is an add-on name. #}
   {{ l10n_menu(addon.default_locale) }}
   <h2>{{ _('Manage {0}')|fe(addon.name) }}</h2>
@@ -35,7 +32,8 @@
                 </tbody>
               </table>
               {% if version.is_allowed_upload() %}
-              <a href="#" class="add-file button">{{ _('Upload Another File') }}</a>
+                {% set version_upload_url = url('devhub.submit.file', addon.slug, version.id) %}
+                <a href="{{ version_upload_url }}" class="add-file button">{{ _('Upload Another File') }}</a>
               {% endif %}
             </td>
           </tr>
@@ -112,7 +110,7 @@
             <th>
               <label for="{{ field.auto_id }}">{{ _("Notes for Reviewers") }}</label>
               {{ tip(None, _("Optionally, enter any information that may be useful "
-                             "to the Editor reviewing this add-on, such as test "
+                             "to the Reviewer of this add-on, such as test "
                              "account information.")) }}
             </th>
             <td>
@@ -141,11 +139,6 @@
       </div>
     </div>
   </form>
-
-  {{ add_file_modal(_("Upload a new file"),
-                    url('devhub.versions.add_file', addon.slug, version.id),
-                    _('Add File') )}}
 </section>
-{% set no_inline_version_upload = True %}
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}

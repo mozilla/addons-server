@@ -5,25 +5,23 @@ from subprocess import Popen, PIPE
 from django.conf import settings
 from django.db import connection
 
-import cronjobs
-import commonware.log
 import waffle
 
+import olympia.core.logger
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.utils import chunked
 from olympia.amo.helpers import user_media_path
 from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
-from olympia.devhub.models import ActivityLog
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 from olympia.stats.models import Contribution
 
 from . import tasks
 
-log = commonware.log.getLogger('z.cron')
+log = olympia.core.logger.getLogger('z.cron')
 
 
-@cronjobs.register
 def gc(test_result=True):
     """Site-wide garbage collections."""
     def days_ago(days):
@@ -95,7 +93,6 @@ def gc(test_result=True):
             log.debug(line)
 
 
-@cronjobs.register
 def category_totals():
     """
     Update category counts for sidebar navigation.
@@ -103,25 +100,28 @@ def category_totals():
     log.debug('Starting category counts update...')
     addon_statuses = ",".join(['%s'] * len(VALID_ADDON_STATUSES))
     file_statuses = ",".join(['%s'] * len(VALID_FILE_STATUSES))
-    cursor = connection.cursor()
-    cursor.execute("""
-    UPDATE categories AS t INNER JOIN (
-     SELECT at.category_id, COUNT(DISTINCT Addon.id) AS ct
-      FROM addons AS Addon
-      INNER JOIN versions AS Version ON (Addon.id = Version.addon_id)
-      INNER JOIN applications_versions AS av ON (av.version_id = Version.id)
-      INNER JOIN addons_categories AS at ON (at.addon_id = Addon.id)
-      INNER JOIN files AS File ON (Version.id = File.version_id
-                                   AND File.status IN (%s))
-      WHERE Addon.status IN (%s) AND Addon.inactive = 0
-      GROUP BY at.category_id)
-    AS j ON (t.id = j.category_id)
-    SET t.count = j.ct
-    """ % (file_statuses, addon_statuses),
-        VALID_FILE_STATUSES + VALID_ADDON_STATUSES)
+
+    with connection.cursor() as cursor:
+        cursor.execute("""
+        UPDATE categories AS t INNER JOIN (
+         SELECT at.category_id, COUNT(DISTINCT Addon.id) AS ct
+          FROM addons AS Addon
+          INNER JOIN versions AS Version
+            ON (Addon.id = Version.addon_id)
+          INNER JOIN applications_versions AS av
+            ON (av.version_id = Version.id)
+          INNER JOIN addons_categories AS at
+            ON (at.addon_id = Addon.id)
+          INNER JOIN files AS File
+            ON (Version.id = File.version_id AND File.status IN (%s))
+          WHERE Addon.status IN (%s) AND Addon.inactive = 0
+          GROUP BY at.category_id)
+        AS j ON (t.id = j.category_id)
+        SET t.count = j.ct
+        """ % (file_statuses, addon_statuses),
+            VALID_FILE_STATUSES + VALID_ADDON_STATUSES)
 
 
-@cronjobs.register
 def collection_subscribers():
     """
     Collection weekly and monthly subscriber counts.
@@ -131,34 +131,34 @@ def collection_subscribers():
     if not waffle.switch_is_active('local-statistics-processing'):
         return False
 
-    cursor = connection.cursor()
-    cursor.execute("""
-        UPDATE collections SET weekly_subscribers = 0, monthly_subscribers = 0
-    """)
-    cursor.execute("""
-        UPDATE collections AS c
-        INNER JOIN (
-            SELECT
-                COUNT(collection_id) AS count,
-                collection_id
-            FROM collection_subscriptions
-            WHERE created >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-            GROUP BY collection_id
-        ) AS weekly ON (c.id = weekly.collection_id)
-        INNER JOIN (
-            SELECT
-                COUNT(collection_id) AS count,
-                collection_id
-            FROM collection_subscriptions
-            WHERE created >= DATE_SUB(CURDATE(), INTERVAL 31 DAY)
-            GROUP BY collection_id
-        ) AS monthly ON (c.id = monthly.collection_id)
-        SET c.weekly_subscribers = weekly.count,
-            c.monthly_subscribers = monthly.count
-    """)
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            UPDATE collections
+            SET weekly_subscribers = 0, monthly_subscribers = 0
+        """)
+        cursor.execute("""
+            UPDATE collections AS c
+            INNER JOIN (
+                SELECT
+                    COUNT(collection_id) AS count,
+                    collection_id
+                FROM collection_subscriptions
+                WHERE created >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+                GROUP BY collection_id
+            ) AS weekly ON (c.id = weekly.collection_id)
+            INNER JOIN (
+                SELECT
+                    COUNT(collection_id) AS count,
+                    collection_id
+                FROM collection_subscriptions
+                WHERE created >= DATE_SUB(CURDATE(), INTERVAL 31 DAY)
+                GROUP BY collection_id
+            ) AS monthly ON (c.id = monthly.collection_id)
+            SET c.weekly_subscribers = weekly.count,
+                c.monthly_subscribers = monthly.count
+        """)
 
 
-@cronjobs.register
 def weekly_downloads():
     """
     Update 7-day add-on download counts.
@@ -168,32 +168,37 @@ def weekly_downloads():
         return False
 
     raise_if_reindex_in_progress('amo')
-    cursor = connection.cursor()
-    cursor.execute("""
-        SELECT addon_id, SUM(count) AS weekly_count
-        FROM download_counts
-        WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-        GROUP BY addon_id
-        ORDER BY addon_id""")
-    counts = cursor.fetchall()
+
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            SELECT addon_id, SUM(count) AS weekly_count
+            FROM download_counts
+            WHERE `date` >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+            GROUP BY addon_id
+            ORDER BY addon_id""")
+        counts = cursor.fetchall()
+
     addon_ids = [r[0] for r in counts]
+
     if not addon_ids:
         return
-    cursor.execute("""
-        SELECT id, 0
-        FROM addons
-        WHERE id NOT IN %s""", (addon_ids,))
-    counts += cursor.fetchall()
 
-    cursor.execute("""
-        CREATE TEMPORARY TABLE tmp_wd
-        (addon_id INT PRIMARY KEY, count INT)""")
-    cursor.execute('INSERT INTO tmp_wd VALUES %s' %
-                   ','.join(['(%s,%s)'] * len(counts)),
-                   list(itertools.chain(*counts)))
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            SELECT id, 0
+            FROM addons
+            WHERE id NOT IN %s""", (addon_ids,))
+        counts += cursor.fetchall()
 
-    cursor.execute("""
-        UPDATE addons INNER JOIN tmp_wd
-            ON addons.id = tmp_wd.addon_id
-        SET weeklydownloads = tmp_wd.count""")
-    cursor.execute("DROP TABLE IF EXISTS tmp_wd")
+        cursor.execute("""
+            CREATE TEMPORARY TABLE tmp_wd
+            (addon_id INT PRIMARY KEY, count INT)""")
+        cursor.execute('INSERT INTO tmp_wd VALUES %s' %
+                       ','.join(['(%s,%s)'] * len(counts)),
+                       list(itertools.chain(*counts)))
+
+        cursor.execute("""
+            UPDATE addons INNER JOIN tmp_wd
+                ON addons.id = tmp_wd.addon_id
+            SET weeklydownloads = tmp_wd.count""")
+        cursor.execute("DROP TABLE IF EXISTS tmp_wd")

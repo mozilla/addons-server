@@ -8,8 +8,8 @@ from django.conf import settings
 from django.core import management
 
 from olympia import amo
-from olympia.amo.tests import TestCase
-from olympia.addons.models import Addon, Persona
+from olympia.amo.tests import addon_factory, TestCase
+from olympia.addons.models import Persona
 from olympia.stats.management.commands import (
     save_stats_to_file, serialize_stats)
 from olympia.stats.management.commands.download_counts_from_file import is_valid_source  # noqa
@@ -63,10 +63,11 @@ class TestADICommand(FixturesFolderMixin, TestCase):
                                 date=self.date)
         assert UpdateCount.objects.all().count() == 1
         update_count = UpdateCount.objects.last()
-        assert update_count.count == 5
+        # should be identical to `statuses.userEnabled`
+        assert update_count.count == 4
         assert update_count.date == date(2014, 7, 10)
         assert update_count.versions == {u'3.8': 2, u'3.7': 3}
-        assert update_count.statuses == {u'userEnabled': 5}
+        assert update_count.statuses == {u'userDisabled': 1, u'userEnabled': 4}
         application = u'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
         assert update_count.applications[application] == {u'3.6': 18}
         assert update_count.oses == {u'WINNT': 5}
@@ -196,16 +197,14 @@ class TestADICommand(FixturesFolderMixin, TestCase):
     def test_theme_update_counts_from_file(self, mock_save_stats_to_file):
         management.call_command('theme_update_counts_from_file', hive_folder,
                                 date=self.date)
-        assert ThemeUpdateCount.objects.all().count() == 2
-        tuc1 = ThemeUpdateCount.objects.get(addon_id=3615)
-        assert tuc1.count == 2
+        assert ThemeUpdateCount.objects.all().count() == 1
         # Persona 813 has addon id 15663: we need the count to be the sum of
         # the "old" request on the persona_id 813 (only the one with the source
         # "gp") and the "new" request on the addon_id 15663.
         tuc2 = ThemeUpdateCount.objects.get(addon_id=15663)
         assert tuc2.count == 15
 
-        assert mock_save_stats_to_file.call_count == 2
+        assert mock_save_stats_to_file.call_count == 1
 
         # save_stats_to_file is called with a non-saved model.
         assert isinstance(
@@ -279,14 +278,15 @@ class TestThemeADICommand(FixturesFolderMixin, TestCase):
         'save_stats_to_file')
     def test_update_counts_from_file_bug_1093699(self,
                                                  mock_save_stats_to_file):
-        Addon.objects.create(guid='{fe9e9f88-42f0-40dc-970b-4b0e6b7a3d0b}',
-                             type=amo.ADDON_THEME)
+        addon_factory(guid='{fe9e9f88-42f0-40dc-970b-4b0e6b7a3d0b}',
+                      type=amo.ADDON_THEME)
         management.call_command('update_counts_from_file', hive_folder,
                                 date=self.date)
         assert UpdateCount.objects.all().count() == 1
         uc = UpdateCount.objects.last()
-        assert uc.count == 1320
-        assert uc.date == date(2014, 11, 06)
+        # should be identical to `statuses.userEnabled`
+        assert uc.count == 1259
+        assert uc.date == date(2014, 11, 6)
         assert (uc.versions ==
                 {u'1.7.16': 1, u'userEnabled': 3, u'1.7.13': 2, u'1.7.11': 3,
                  u'1.6.0': 1, u'1.7.14': 1304, u'1.7.6': 6})

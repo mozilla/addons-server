@@ -6,18 +6,17 @@ from django.conf import settings
 from django.db import connection
 from django.db.models import Sum, Max
 
-import commonware.log
 from apiclient.discovery import build
 from elasticsearch.helpers import bulk_index
 from oauth2client.client import OAuth2Credentials
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo import search as amo_search
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.bandwagon.models import Collection
 from olympia.reviews.models import Review
-from olympia.stats.models import Contribution
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -27,34 +26,23 @@ from .models import (
     ThemeUserCount, UpdateCount)
 
 
-log = commonware.log.getLogger('z.task')
-
-
-@task
-def addon_total_contributions(*addons, **kw):
-    "Updates the total contributions for a given addon."
-
-    log.info('[%s@%s] Updating total contributions.' %
-             (len(addons), addon_total_contributions.rate_limit))
-    # Only count uuid=None; those are verified transactions.
-    stats = (Contribution.objects.filter(addon__in=addons, uuid=None)
-             .values_list('addon').annotate(Sum('amount')))
-
-    for addon, total in stats:
-        Addon.objects.filter(id=addon).update(total_contributions=total)
+log = olympia.core.logger.getLogger('z.task')
 
 
 @task
 def update_addons_collections_downloads(data, **kw):
     log.info("[%s] Updating addons+collections download totals." %
              (len(data)))
-    cursor = connection.cursor()
-    q = ("UPDATE addons_collections SET downloads=%s WHERE addon_id=%s "
-         "AND collection_id=%s;" * len(data))
-    cursor.execute(q,
-                   list(itertools.chain.from_iterable(
-                       [var['sum'], var['addon'], var['collection']]
-                       for var in data)))
+    query = (
+        "UPDATE addons_collections SET downloads=%s WHERE addon_id=%s "
+        "AND collection_id=%s;" * len(data))
+
+    with connection.cursor() as cursor:
+        cursor.execute(
+            query,
+            list(itertools.chain.from_iterable(
+                [var['sum'], var['addon'], var['collection']]
+                for var in data)))
 
 
 @task
@@ -127,16 +115,18 @@ def update_google_analytics(date, **kw):
         log.critical(
             'Fetching stats data for %s from Google Analytics failed: %s' % e)
         return
+
     try:
         cursor = connection.cursor()
         cursor.execute('REPLACE INTO global_stats (name, count, date) '
                        'values (%s, %s, %s)', p)
     except Exception, e:
         log.critical('Failed to update global stats: (%s): %s' % (p, e))
-        return
-
-    log.debug('Committed global stats details: (%s) has (%s) for (%s)'
-              % tuple(p))
+    else:
+        log.debug('Committed global stats details: (%s) has (%s) for (%s)'
+                  % tuple(p))
+    finally:
+        cursor.close()
 
 
 @task
@@ -157,9 +147,11 @@ def update_global_totals(job, date, **kw):
         cursor.execute(q, p)
     except Exception, e:
         log.critical('Failed to update global stats: (%s): %s' % (p, e))
-
-    log.debug('Committed global stats details: (%s) has (%s) for (%s)'
-              % tuple(p))
+    else:
+        log.debug('Committed global stats details: (%s) has (%s) for (%s)'
+                  % tuple(p))
+    finally:
+        cursor.close()
 
 
 def _get_daily_jobs(date=None):
@@ -193,11 +185,12 @@ def _get_daily_jobs(date=None):
         'addon_downloads_new': lambda: DownloadCount.objects.filter(
             date=date).aggregate(sum=Sum('count'))['sum'],
 
-        # Add-on counts
-        'addon_count_new': Addon.objects.extra(**extra).count,
+        # Listed Add-on counts
+        'addon_count_new': Addon.objects.valid().extra(**extra).count,
 
-        # Version counts
-        'version_count_new': Version.objects.extra(**extra).count,
+        # Listed Version counts
+        'version_count_new': Version.objects.filter(
+            channel=amo.RELEASE_CHANNEL_LISTED).extra(**extra).count,
 
         # User counts
         'user_count_total': UserProfile.objects.filter(

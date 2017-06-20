@@ -27,12 +27,11 @@
 </section>
 <section class="primary">
   <header>
-    {{ impala_breadcrumbs([(None, _('Add-on Compatibility Center'))]) }}
     <h1>{{ title }}</h1>
   </header>
   <section class="island hero">
     <p class="enter">{{ _("Enter the GUID of an add-on below to view any reports we've received.") }}</p>
-    <form>
+    <form data-no-csrf>
       <input name="guid" value="{{ query }}" id="compat-query">
     </form>
   </section>

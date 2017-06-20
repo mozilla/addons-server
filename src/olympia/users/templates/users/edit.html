@@ -101,12 +101,6 @@ data-default-locale="{{ request.LANG|lower }}"
               {% endif %}
               {{ form.photo.errors }}
             </li>
-            <li>
-              <label for="id_lang">{{ _('Default locale') }}</label>
-              {{ form.lang }}
-              <small class="note">{{ _('This is the default locale used to display information about you (like your description).') }}</small>
-              {{ form.lang.errors }}
-            </li>
           </ol>
         </fieldset>
         <fieldset id="profile-detail" class="c">
@@ -117,14 +111,13 @@ data-default-locale="{{ request.LANG|lower }}"
               This text will appear publicly on your user info page.
             {%- endtrans %}
           </p>
-          {{ l10n_menu(remove_locale_url=amouser.get_user_url('remove-locale')) }}
           <div class="formfields">
-          {{ form.bio }}
+          {{ form.biography }}
           {{ some_html_tip(title=
               _('Allowed HTML: {0}. Links are forbidden.')|f(
                   '<abbr title> <acronym title> <b> <blockquote> <code> <em>
                    <i> <li> <ol> <strong> <ul>')|e) }}
-          {{ form.bio.errors }}
+          {{ form.biography.errors }}
           </div>
         </fieldset> {# /.profile-detail #}
         <fieldset id="profile-misc" class="c">

@@ -22,7 +22,7 @@ Staging or Development
     you're testing features that aren't available in production yet.
     Your production account is not linked to any of these APIs.
 
-Dive into the :ref:`overview section <api-overview>` and the 
+Dive into the :ref:`overview section <api-overview>` and the
 :ref:`authentication section <api-auth>` for an example of how to get started
 using the API.
 
@@ -36,9 +36,11 @@ using the API.
    activity
    addons
    categories
+   collections
    discovery
    download_sources
    internal
    reviews
    signing
    stats
+   github

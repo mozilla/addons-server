@@ -3,7 +3,7 @@ Hello,
 An email was received, apparently from you. Unfortunately we couldn't process it because of:
 {{ reason }}
 
-Please visit {{ SITE_URL }} to leave a reply instead; alternatively if you need to send file attachments, please reply by email to amo-editors@mozilla.org.
+Please visit {{ SITE_URL }} to leave a reply instead.
 --
 Mozilla Add-ons
 {{ SITE_URL }}

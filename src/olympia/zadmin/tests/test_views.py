@@ -11,22 +11,23 @@ from django.core.cache import cache
 
 import mock
 from pyquery import PyQuery as pq
+from lxml.html import HTMLParser, fromstring
 
 import olympia
 from olympia import amo
-from olympia.amo.tests import TestCase
-from olympia.amo.tests import formset, initial
+from olympia.amo.tests import (
+    TestCase, formset, initial, file_factory, user_factory, version_factory)
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import FeaturedCollection, MonthlyPick
 from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.tests import TestCompatibilityReportCronMixin
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
-from olympia.devhub.models import ActivityLog
 from olympia.files.models import File, FileUpload
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
@@ -49,15 +50,27 @@ ZADMIN_TEST_FILES = os.path.join(
     'zadmin', 'tests', 'resources')
 
 
-class TestHome(TestCase):
+class TestHomeAndIndex(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestHome, self).setUp()
+        super(TestHomeAndIndex, self).setUp()
         self.client.login(email='admin@mozilla.com')
 
-    def test_get(self):
+    def test_get_home(self):
         url = reverse('zadmin.home')
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
+        assert response.context['user'].username == 'admin'
+        assert response.context['user'].email == 'admin@mozilla.com'
+
+    def test_get_index(self):
+        # Add fake log that would be shown in the index page.
+        user = UserProfile.objects.get(email='admin@mozilla.com')
+        ActivityLog.create(
+            amo.LOG.GROUP_USER_ADDED, user.groups.latest('pk'), user,
+            user=user)
+        url = reverse('zadmin.index')
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
         assert response.context['user'].username == 'admin'
@@ -118,7 +131,7 @@ class BulkValidationTest(TestCase):
         assert self.client.login(email='admin@mozilla.com')
         self.addon = Addon.objects.get(pk=3615)
         self.creator = UserProfile.objects.get(username='editor')
-        self.version = self.addon.find_latest_public_version()
+        self.version = self.addon.find_latest_public_listed_version()
         ApplicationsVersions.objects.filter(
             application=amo.FIREFOX.id, version=self.version).update(
             max=AppVersion.objects.get(application=1, version='3.7a1pre'))
@@ -187,6 +200,27 @@ class TestBulkValidation(BulkValidationTest):
 
     @mock.patch('olympia.zadmin.tasks.bulk_validate_file')
     def test_start(self, bulk_validate_file):
+        new_max = self.appversion('3.7a3')
+        r = self.client.post(reverse('zadmin.start_validation'),
+                             {'application': amo.FIREFOX.id,
+                              'curr_max_version': self.curr_max.id,
+                              'target_version': new_max.id,
+                              'finish_email': 'fliggy@mozilla.com'},
+                             follow=True)
+        self.assertNoFormErrors(r)
+        self.assert3xx(r, reverse('zadmin.validation'))
+        job = ValidationJob.objects.get()
+        assert job.application == amo.FIREFOX.id
+        assert job.curr_max_version.version == self.curr_max.version
+        assert job.target_version.version == new_max.version
+        assert job.finish_email == 'fliggy@mozilla.com'
+        assert job.completed is None
+        assert job.result_set.all().count() == len(self.version.all_files)
+        assert bulk_validate_file.delay.called
+
+    @mock.patch('olympia.zadmin.tasks.bulk_validate_file')
+    def test_ignore_unlisted_versions(self, bulk_validate_file):
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
         new_max = self.appversion('3.7a3')
         r = self.client.post(reverse('zadmin.start_validation'),
                              {'application': amo.FIREFOX.id,
@@ -336,7 +370,7 @@ class TestBulkValidation(BulkValidationTest):
                 'application': amo.FIREFOX.id,
                 'curr_max_version': self.curr_max.id,
                 'target_version': new_max.id,
-                'finish_email': 'fliggy@mozilla.com'
+                'finish_email': u'fliggy@mozilla.com'
             },
             follow=True)
 
@@ -357,13 +391,25 @@ class TestBulkValidation(BulkValidationTest):
             reverse('zadmin.validation_summary', args=(job.pk,)))
 
         assert response.status_code == 200
-        doc = pq(response.content)
 
-        msgid = 'testcases_regex.generic._generated'
-        assert doc('table tr td').eq(0).text() == msgid
-        assert doc('table tr td').eq(1).text() == 'compat error'
+        UTF8_PARSER = HTMLParser(encoding='utf-8')
+        doc = pq(fromstring(response.content, parser=UTF8_PARSER))
+
+        msgid = u'testcases_regex.generic.餐飲'
+        assert doc('table tr').eq(3).find('td').eq(0).text() == msgid
+        assert doc('table tr').eq(3).find('td').eq(1).text() == 'compat error'
+
+        assert (
+            doc('table tr').eq(1).find('td').eq(0).text() ==
+            '19ab4e645c1dc715977d707481f89292654c19cd558db4e0b9c97f2a438c2282')
+        assert (
+            doc('table tr').eq(2).find('td').eq(0).text() ==
+            '5a997b84c5f318d9a0189d2bf0d616ffb02dbfbaf70fb5545c651bee0e1b9c1a')
 
     def test_bulk_validation_summary_detail(self):
+        self.addon.name = '美味的食物'
+        self.addon.save()
+
         new_max = self.appversion('3.7a3')
         response = self.client.post(
             reverse('zadmin.start_validation'),
@@ -396,8 +442,57 @@ class TestBulkValidation(BulkValidationTest):
         response = self.client.get(url)
 
         assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('table tr td').eq(0).text() == 'Delicious Bookmarks'
+
+        UTF8_PARSER = HTMLParser(encoding='utf-8')
+        doc = pq(fromstring(response.content, parser=UTF8_PARSER))
+        assert message.message_id in doc('div#message_details').text()
+        assert message.message in doc('div#message_details').text()
+        assert doc('table tr td').eq(0).text() == u'美味的食物'
+        assert '3615/validation-resul' in doc('table tr td').eq(1).html()
+
+    def test_bulk_validation_summary_multiple_files(self):
+        version = self.addon.versions.all()[0]
+        version.files.add(file_factory(version=version))
+
+        new_max = self.appversion('3.7a3')
+        response = self.client.post(
+            reverse('zadmin.start_validation'),
+            {
+                'application': amo.FIREFOX.id,
+                'curr_max_version': self.curr_max.id,
+                'target_version': new_max.id,
+                'finish_email': u'fliggy@mozilla.com'
+            },
+            follow=True)
+
+        self.assert3xx(response, reverse('zadmin.validation'))
+
+        job = ValidationJob.objects.get()
+
+        # Apply validation for all result sets (two because we added a
+        # new version). This should not lead to duplicate add-ons
+        # being added to the list
+        for result in job.result_set.all():
+            compat_summary_path = os.path.join(
+                ZADMIN_TEST_FILES, 'compatibility_validation.json')
+
+            with open(compat_summary_path) as fobj:
+                validation = fobj.read()
+
+            result.apply_validation(validation)
+
+        message = ValidationResultMessage.objects.first()
+
+        url = reverse(
+            'zadmin.validation_summary_detail',
+            args=(message.validation_job.pk, message.pk,))
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+
+        UTF8_PARSER = HTMLParser(encoding='utf-8')
+        doc = pq(fromstring(response.content, parser=UTF8_PARSER))
+        assert doc('table').html().count('Delicious Bookmarks') == 1
 
 
 class TestBulkUpdate(BulkValidationTest):
@@ -1221,9 +1316,9 @@ class TestFeatures(TestCase):
         assert self.initial['collection'] == 80
 
     def test_form_attrs(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('#features tr').attr('data-app') == str(amo.FIREFOX.id)
         assert doc('#features td.app').hasClass(amo.FIREFOX.short)
         assert doc('#features td.collection.loading').attr(
@@ -1233,84 +1328,78 @@ class TestFeatures(TestCase):
 
     def test_disabled_autocomplete_errors(self):
         """If any collection errors, autocomplete field should be enabled."""
-        d = dict(application=amo.FIREFOX.id, collection=999)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        doc = pq(r.content)
+        data = initial(self.f)
+        data['collection'] = 999
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        doc = pq(response.content)
         assert not doc('#features .collection-ac[disabled]')
 
     def test_required_app(self):
-        d = dict(locale='zh-CN', collection=80)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.status_code == 200
-        assert r.context['form'].errors[0]['application'] == (
+        data = initial(self.f)
+        del data['application']
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.status_code == 200
+        assert response.context['form'].errors[0]['application'] == (
             ['This field is required.'])
-        assert r.context['form'].errors[0]['collection'] == (
+        assert response.context['form'].errors[0]['collection'] == (
             ['Invalid collection for this application.'])
 
     def test_bad_app(self):
-        d = dict(application=999, collection=80)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['application'] == [
+        data = initial(self.f)
+        data['application'] = 999
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.context['form'].errors[0]['application'] == [
             'Select a valid choice. 999 is not one of the available choices.']
 
     def test_bad_collection_for_app(self):
-        d = dict(application=amo.THUNDERBIRD.id, collection=80)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['collection'] == (
+        data = initial(self.f)
+        data['application'] = amo.THUNDERBIRD.id
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.context['form'].errors[0]['collection'] == (
             ['Invalid collection for this application.'])
 
-    def test_optional_locale(self):
-        d = dict(application=amo.FIREFOX.id, collection=80)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors == [{}]
-
     def test_bad_locale(self):
-        d = dict(application=amo.FIREFOX.id, locale='klingon', collection=80)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['locale'] == (
+        data = initial(self.f)
+        data['locale'] = 'klingon'
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.context['form'].errors[0]['locale'] == (
             ['Select a valid choice. klingon is not one of the available '
              'choices.'])
 
     def test_required_collection(self):
-        d = dict(application=amo.FIREFOX.id)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['collection'] == (
+        data = initial(self.f)
+        del data['collection']
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.context['form'].errors[0]['collection'] == (
             ['This field is required.'])
 
     def test_bad_collection(self):
-        d = dict(application=amo.FIREFOX.id, collection=999)
-        data = formset(self.initial, d, initial_count=1)
-        r = self.client.post(self.url, data)
-        assert r.context['form'].errors[0]['collection'] == (
+        data = initial(self.f)
+        data['collection'] = 999
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.context['form'].errors[0]['collection'] == (
             ['Invalid collection for this application.'])
 
     def test_success_insert(self):
         dupe = initial(self.f)
         del dupe['id']
-        dupe.update(locale='fr')
+        dupe['locale'] = 'fr'
         data = formset(initial(self.f), dupe, initial_count=1)
         self.client.post(self.url, data)
         assert FeaturedCollection.objects.count() == 2
         assert FeaturedCollection.objects.all()[1].locale == 'fr'
 
     def test_success_update(self):
-        d = initial(self.f)
-        d.update(locale='fr')
-        r = self.client.post(self.url, formset(d, initial_count=1))
-        assert r.status_code == 302
+        data = initial(self.f)
+        data['locale'] = 'fr'
+        response = self.client.post(self.url, formset(data, initial_count=1))
+        assert response.status_code == 302
         assert FeaturedCollection.objects.all()[0].locale == 'fr'
 
     def test_success_delete(self):
-        d = initial(self.f)
-        d.update(DELETE=True)
-        self.client.post(self.url, formset(d, initial_count=1))
+        data = initial(self.f)
+        data['DELETE'] = True
+        self.client.post(self.url, formset(data, initial_count=1))
         assert FeaturedCollection.objects.count() == 0
 
 
@@ -1408,8 +1497,30 @@ class TestAddonManagement(TestCase):
 
     def test_can_manage_unlisted_addons(self):
         """Unlisted addons can be managed too."""
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 200
+
+    def test_addon_mixed_channels(self):
+        first_version = self.addon.current_version
+        second_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        first_expected_review_link = reverse(
+            'editors.review', args=(self.addon.slug,))
+        elms = doc('a[href="%s"]' % first_expected_review_link)
+        assert len(elms) == 1
+        assert elms[0].attrib['title'] == str(first_version.pk)
+        assert elms[0].text == first_version.version
+
+        second_expected_review_link = reverse(
+            'editors.review', args=('unlisted', self.addon.slug,))
+        elms = doc('a[href="%s"]' % second_expected_review_link)
+        assert len(elms) == 1
+        assert elms[0].attrib['title'] == str(second_version.pk)
+        assert elms[0].text == second_version.version
 
     def _form_data(self, data=None):
         initial_data = {
@@ -1748,8 +1859,9 @@ class TestEmailDevs(TestCase):
 
     def test_depreliminary_addon_devs(self):
         # We just need a user for the log(), it would normally be task user.
-        amo.log(amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
-                details={'email': True}, user=self.addon.authors.get())
+        ActivityLog.create(
+            amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
+            details={'email': True}, user=self.addon.authors.get())
         res = self.post(recipients='depreliminary')
         self.assertNoFormErrors(res)
         self.assert3xx(res, reverse('zadmin.email_devs'))
@@ -1765,8 +1877,9 @@ class TestEmailDevs(TestCase):
 
     def test_we_only_email_devs_that_need_emailing(self):
         # Doesn't matter the reason, but this addon doesn't get an email.
-        amo.log(amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
-                details={'email': False}, user=self.addon.authors.get())
+        ActivityLog.create(
+            amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
+            details={'email': False}, user=self.addon.authors.get())
         res = self.post(recipients='depreliminary')
         self.assertNoFormErrors(res)
         self.assert3xx(res, reverse('zadmin.email_devs'))
@@ -1810,6 +1923,7 @@ class TestPerms(TestCase):
         # Admin should see views with Django's perm decorator and our own.
         assert self.client.login(email='admin@mozilla.com')
         self.assert_status('zadmin.index', 200)
+        self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
@@ -1825,6 +1939,7 @@ class TestPerms(TestCase):
         GroupUser.objects.create(group=group, user=user)
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 200)
+        self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
@@ -1844,12 +1959,14 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
+        self.assert_status('zadmin.env', 403)
         self.assert_status('zadmin.settings', 403)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
         assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 403)
+        self.assert_status('zadmin.env', 403)
         self.assert_status('zadmin.settings', 403)
         self.assert_status('zadmin.langpacks', 403)
         self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
@@ -1861,3 +1978,21 @@ class TestPerms(TestCase):
         self.client.logout()
         self.assertLoginRedirects(
             self.client.get(reverse('zadmin.index')), to='/en-US/admin/')
+
+
+class TestUserProfileAdmin(TestCase):
+
+    def setUp(self):
+        super(TestUserProfileAdmin, self).setUp()
+        self.user = user_factory(email='admin@mozilla.com')
+        self.grant_permission(self.user, '*:*')
+        self.login(self.user)
+
+    def test_delete_does_hard_delete(self):
+        user_to_delete = user_factory()
+        user_to_delete_pk = user_to_delete.pk
+        url = reverse('admin:users_userprofile_delete',
+                      args=[user_to_delete.pk])
+        response = self.client.post(url, data={'post': 'yes'}, follow=True)
+        assert response.status_code == 200
+        assert not UserProfile.objects.filter(id=user_to_delete_pk).exists()

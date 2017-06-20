@@ -8,5 +8,9 @@
 {% endblock %}
 
 {% block content %}
+  <div id='message_details'>
+    Message ID: {{ message_id }}<br>
+    Message: {{ message }}
+  </div>
   {% include 'zadmin/_data_grid.html' %}
 {% endblock %}

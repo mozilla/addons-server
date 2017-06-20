@@ -7,23 +7,24 @@ import posixpath
 import re
 import time
 from operator import attrgetter
+from datetime import datetime
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
+from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
-from django.db.models import Max, Q, signals as dbsignals
+from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
 
 import caching.base as caching
-import commonware.log
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 
-from olympia import amo
+import olympia.core.logger
+from olympia import activity, amo, core
 from olympia.amo.models import (
     SlugField, OnChangeMixin, ModelBase, ManagerBase, manual_order)
 from olympia.access import acl
@@ -51,7 +52,7 @@ from olympia.versions.models import inherit_nomination, Version
 from . import signals
 
 
-log = commonware.log.getLogger('z.addons')
+log = olympia.core.logger.getLogger('z.addons')
 
 
 def clean_slug(instance, slug_field='slug'):
@@ -128,44 +129,20 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
-class AddonManager(ManagerBase):
-
-    def __init__(self, include_deleted=False, include_unlisted=False):
-        # DO NOT change the default value of include_deleted and
-        # include_unlisted unless you've read through the comment just above
-        # the Addon managers declaration/instantiation and understand the
-        # consequences.
-        ManagerBase.__init__(self)
-        self.include_deleted = include_deleted
-        self.include_unlisted = include_unlisted
-
-    def get_queryset(self):
-        qs = super(AddonManager, self).get_queryset()
-        if not self.include_deleted:
-            qs = qs.exclude(status=amo.STATUS_DELETED)
-        if not self.include_unlisted:
-            qs = qs.exclude(is_listed=False)
-        return qs.transform(Addon.transformer)
-
+class AddonQuerySet(caching.CachingQuerySet):
     def id_or_slug(self, val):
+        """Get add-ons by id or slug."""
         if isinstance(val, basestring) and not val.isdigit():
             return self.filter(slug=val)
         return self.filter(id=val)
 
     def enabled(self):
+        """Get add-ons that haven't been disabled by their developer(s)."""
         return self.filter(disabled_by_user=False)
 
     def public(self):
         """Get public add-ons only"""
         return self.filter(self.valid_q([amo.STATUS_PUBLIC]))
-
-    def reviewed(self):
-        """Get add-ons with a reviewed status"""
-        return self.filter(self.valid_q(amo.REVIEWED_STATUSES))
-
-    def unreviewed(self):
-        """Get only unreviewed add-ons"""
-        return self.filter(self.valid_q(amo.UNREVIEWED_ADDON_STATUSES))
 
     def valid(self):
         """Get valid, enabled add-ons only"""
@@ -191,8 +168,8 @@ class AddonManager(ManagerBase):
 
     def listed(self, app, *status):
         """
-        Listed add-ons have a version with a file matching ``status`` and are
-        not disabled.  Personas and self-hosted add-ons will be returned too.
+        Return add-ons that support a given ``app``, have a version with a file
+        matching ``status`` and are not disabled.
         """
         if len(status) == 0:
             status = [amo.STATUS_PUBLIC]
@@ -217,6 +194,59 @@ class AddonManager(ManagerBase):
 
         return q(q(_current_version__isnull=False),
                  disabled_by_user=False, status__in=status)
+
+
+class AddonManager(ManagerBase):
+
+    def __init__(self, include_deleted=False):
+        # DO NOT change the default value of include_deleted unless you've read
+        # through the comment just above the Addon managers
+        # declaration/instantiation and understand the consequences.
+        ManagerBase.__init__(self)
+        self.include_deleted = include_deleted
+
+    def get_queryset(self):
+        qs = super(AddonManager, self).get_queryset()
+        qs = qs._clone(klass=AddonQuerySet)
+        if not self.include_deleted:
+            qs = qs.exclude(status=amo.STATUS_DELETED)
+        return qs.transform(Addon.transformer)
+
+    def id_or_slug(self, val):
+        """Get add-ons by id or slug."""
+        return self.get_queryset().id_or_slug(val)
+
+    def enabled(self):
+        """Get add-ons that haven't been disabled by their developer(s)."""
+        return self.get_queryset().enabled()
+
+    def public(self):
+        """Get public add-ons only"""
+        return self.get_queryset().public()
+
+    def valid(self):
+        """Get valid, enabled add-ons only"""
+        return self.get_queryset().valid()
+
+    def valid_and_disabled_and_pending(self):
+        """
+        Get valid, pending, enabled and disabled add-ons.
+        Used to allow pending theme pages to still be viewed.
+        """
+        return self.get_queryset().valid_and_disabled_and_pending()
+
+    def featured(self, app, lang=None, type=None):
+        """
+        Filter for all featured add-ons for an application in all locales.
+        """
+        return self.get_queryset().featured(app, lang=lang, type=type)
+
+    def listed(self, app, *status):
+        """
+        Return add-ons that support a given ``app``, have a version with a file
+        matching ``status`` and are not disabled.
+        """
+        return self.get_queryset().listed(app, *status)
 
 
 class Addon(OnChangeMixin, ModelBase):
@@ -270,10 +300,7 @@ class Addon(OnChangeMixin, ModelBase):
                                            db_column='inactive')
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
-    prerelease = models.BooleanField(default=False)
     admin_review = models.BooleanField(default=False, db_column='adminreview')
-    site_specific = models.BooleanField(default=False,
-                                        db_column='sitespecific')
     external_software = models.BooleanField(default=False,
                                             db_column='externalsoftware')
     dev_agreement = models.BooleanField(
@@ -295,7 +322,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     suggested_amount = models.DecimalField(
         max_digits=9, decimal_places=2, blank=True,
-        null=True, help_text=_(u'Users have the option of contributing more '
+        null=True, help_text=_('Users have the option of contributing more '
                                'or less than this amount.'))
 
     total_contributions = models.DecimalField(max_digits=9, decimal_places=2,
@@ -321,16 +348,12 @@ class Addon(OnChangeMixin, ModelBase):
     _current_version = models.ForeignKey(Version, db_column='current_version',
                                          related_name='+', null=True,
                                          on_delete=models.SET_NULL)
-    _latest_version = models.ForeignKey(Version, db_column='latest_version',
-                                        on_delete=models.SET_NULL,
-                                        null=True, related_name='+')
-    whiteboard = models.TextField(blank=True)
 
-    # Whether the add-on is listed on AMO or not.
-    is_listed = models.BooleanField(default=True, db_index=True)
+    whiteboard = models.TextField(blank=True)
 
     is_experimental = models.BooleanField(default=False,
                                           db_column='experimental')
+    reputation = models.SmallIntegerField(default=0, null=True)
 
     # The order of those managers is very important:
     # The first one discovered, if it has "use_for_related_fields = True"
@@ -344,10 +367,9 @@ class Addon(OnChangeMixin, ModelBase):
     # mistake. You thus want the CLASS of the first one to be filtered by
     # default.
     # We don't control the instantiation, but AddonManager sets include_deleted
-    # and include_unlisted to False by default, so filtering is enabled by
-    # default. This is also why it's not repeated for 'objects' below.
-    unfiltered = AddonManager(include_deleted=True, include_unlisted=True)
-    with_unlisted = AddonManager(include_unlisted=True)
+    # to False by default, so filtering is enabled by default. This is also why
+    # it's not repeated for 'objects' below.
+    unfiltered = AddonManager(include_deleted=True)
     objects = AddonManager()
 
     class Meta:
@@ -376,16 +398,21 @@ class Addon(OnChangeMixin, ModelBase):
         self.clean_slug()
         super(Addon, self).save(**kw)
 
-    # Like the above Manager objects (`objects`, `with_unlisted`, ...), but
-    # for ElasticSearch queries.
     @classmethod
     def search_public(cls):
-        return cls.search_with_unlisted().filter(is_listed=True)
+        """Legacy search method for public add-ons.
 
-    @classmethod
-    def search_with_unlisted(cls):
+        Note that typically, code using this method do a search in ES but then
+        will fetch the relevant objects from the database using Addon.objects,
+        so deleted addons won't be returned no matter what ES returns. See
+        amo.search.ES and amo.search.ObjectSearchResults for more details.
+
+        In new code, use elasticsearch-dsl instead.
+        """
         return cls.search().filter(
-            is_disabled=False, status__in=amo.REVIEWED_STATUSES)
+            is_disabled=False,
+            status__in=amo.REVIEWED_STATUSES,
+            current_version__exists=True)
 
     @use_master
     def clean_slug(self, slug_field='slug'):
@@ -398,7 +425,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @transaction.atomic
     def delete(self, msg='', reason=''):
-        # To avoid a circular import.
+        # To avoid a circular import
         from . import tasks
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE) with no versions.
@@ -423,7 +450,7 @@ class Addon(OnChangeMixin, ModelBase):
             log.debug('Deleting add-on: %s' % self.id)
 
             to = [settings.FLIGTAR]
-            user = amo.get_user()
+            user = core.get_user()
 
             # Don't localize email to admins, use 'en-US' always.
             with no_translation():
@@ -466,9 +493,10 @@ class Addon(OnChangeMixin, ModelBase):
             models.signals.pre_delete.send(sender=Addon, instance=self)
             self._reviews.all().delete()
             # The last parameter is needed to automagically create an AddonLog.
-            amo.log(amo.LOG.DELETE_ADDON, self.pk, unicode(self.guid), self)
+            activity.log_create(amo.LOG.DELETE_ADDON, self.pk,
+                                unicode(self.guid), self)
             self.update(status=amo.STATUS_DELETED, slug=None,
-                        _current_version=None)
+                        _current_version=None, modified=datetime.now())
             models.signals.post_delete.send(sender=Addon, instance=self)
 
             send_mail(subject, email_msg, recipient_list=to)
@@ -482,7 +510,7 @@ class Addon(OnChangeMixin, ModelBase):
         return True
 
     @classmethod
-    def initialize_addon_from_upload(cls, data, upload, is_listed=True):
+    def initialize_addon_from_upload(cls, data, upload, channel):
         fields = cls._meta.get_all_field_names()
         guid = data.get('guid')
         old_guid_addon = None
@@ -507,7 +535,6 @@ class Addon(OnChangeMixin, ModelBase):
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
 
         addon.status = amo.STATUS_NULL
-        addon.is_listed = is_listed
         locale_is_set = (addon.default_locale and
                          addon.default_locale in (
                              settings.AMO_LANGUAGES +
@@ -524,29 +551,27 @@ class Addon(OnChangeMixin, ModelBase):
         return addon
 
     @classmethod
-    def create_addon_from_upload_data(cls, data, upload, user=None, **kwargs):
-        addon = cls.initialize_addon_from_upload(data, upload=upload, **kwargs)
+    def create_addon_from_upload_data(cls, data, upload, channel, user=None,
+                                      **kwargs):
+        addon = cls.initialize_addon_from_upload(data, upload, channel,
+                                                 **kwargs)
         AddonUser(addon=addon, user=user).save()
         return addon
 
     @classmethod
-    def from_upload(cls, upload, platforms, source=None, is_listed=True,
-                    data=None):
-        # TODO: change is_listed arg to channel
-        if not data:
-            data = parse_addon(upload)
+    def from_upload(cls, upload, platforms, source=None,
+                    channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=None):
+        if not parsed_data:
+            parsed_data = parse_addon(upload)
 
-        addon = cls.initialize_addon_from_upload(
-            is_listed=is_listed, data=data, upload=upload)
+        addon = cls.initialize_addon_from_upload(parsed_data, upload, channel)
 
         if upload.validation_timeout:
             addon.update(admin_review=True)
-        channel = (amo.RELEASE_CHANNEL_LISTED if is_listed else
-                   amo.RELEASE_CHANNEL_UNLISTED)
         Version.from_upload(upload, addon, platforms, source=source,
                             channel=channel)
 
-        amo.log(amo.LOG.CREATE_ADDON, addon)
+        activity.log_create(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))
 
         return addon
@@ -580,7 +605,7 @@ class Addon(OnChangeMixin, ModelBase):
         return data
 
     def get_url_path(self, more=False, add_prefix=True):
-        if not self.is_listed:  # Not listed? Doesn't have a public page.
+        if not self.current_version:
             return ''
         # If more=True you get the link to the ajax'd middle chunk of the
         # detail page.
@@ -629,14 +654,7 @@ class Addon(OnChangeMixin, ModelBase):
     def share_url(self):
         return reverse('addons.share', args=[self.slug])
 
-    @property
-    def automated_signing(self):
-        # We allow automated signing for add-ons which are not listed.
-        # Beta versions are a special case for listed add-ons, and are dealt
-        # with on a file-by-file basis.
-        return not self.is_listed
-
-    @amo.cached_property(writable=True)
+    @cached_property
     def listed_authors(self):
         return UserProfile.objects.filter(
             addons=self,
@@ -664,18 +682,20 @@ class Addon(OnChangeMixin, ModelBase):
             return [amo.STATUS_PUBLIC]
         return amo.VALID_FILE_STATUSES
 
-    def find_latest_public_version(self):
-        """Retrieve the latest public version of an addon.
+    def find_latest_public_listed_version(self):
+        """Retrieve the latest public listed version of an addon.
 
-        If the add-on is not public, it can return a version with files
-        awaiting review."""
+        If the add-on is not public, it can return a listed version awaiting
+        review (since non-public add-ons should not have public versions)."""
         if self.type == amo.ADDON_PERSONA:
             return
         try:
-            status = self.valid_file_statuses
-
-            status_list = ','.join(map(str, status))
-            fltr = {'files__status__in': status}
+            statuses = self.valid_file_statuses
+            status_list = ','.join(map(str, statuses))
+            fltr = {
+                'channel': amo.RELEASE_CHANNEL_LISTED,
+                'files__status__in': statuses
+            }
             return self.versions.no_cache().filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
@@ -687,30 +707,30 @@ class Addon(OnChangeMixin, ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
-    def find_latest_version(self, ignore=None, channel=None):
-        """Retrieve the latest non-disabled version of an add-on.
+    def find_latest_version(
+            self, channel, exclude=(amo.STATUS_DISABLED, amo.STATUS_BETA)):
+        """Retrieve the latest version of an add-on for the specified channel.
 
-        Accepts an optional ignore argument to ignore a specific version, and
-        an optional channel argument to restrict to versions released in that
-        channel."""
+        If channel is None either channel is returned.
+
+        Keyword arguments:
+        exclude -- exclude versions for which all files have one
+                   of those statuses (default STATUS_DISABLED, STATUS_BETA)."""
+
         # If the add-on is deleted or hasn't been saved yet, it should not
         # have a latest version.
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
-        # We can't use .exclude(files__status=STATUS_DISABLED) because this
-        # excludes a version if any of the files are the disabled and there may
-        # be files we do want to include.  Having a single beta file /does/
-        # mean we want the whole version disqualified though.
-        statuses_without_disabled = (
-            set(amo.STATUS_CHOICES_FILE.keys()) -
-            {amo.STATUS_DISABLED, amo.STATUS_BETA})
+        # We can't use .exclude(files__status=excluded_statuses) because that
+        # would exclude a version if *any* of its files match but if there is
+        # only one file that doesn't have one of the excluded statuses it
+        # should be enough for that version to be considered.
+        statuses_no_disabled_or_beta = (
+            set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude))
         try:
             latest_qs = (
                 Version.objects.filter(addon=self)
-                       .exclude(files__status=amo.STATUS_BETA)
-                       .filter(files__status__in=statuses_without_disabled))
-            if ignore is not None:
-                latest_qs = latest_qs.exclude(pk=ignore.pk)
+                       .filter(files__status__in=statuses_no_disabled_or_beta))
             if channel is not None:
                 latest_qs = latest_qs.filter(channel=channel)
             latest = latest_qs.latest()
@@ -719,22 +739,12 @@ class Addon(OnChangeMixin, ModelBase):
             latest = None
         return latest
 
-    def find_latest_version_including_rejected(self, channel=None):
-        """Similar to latest_version but includes rejected versions.  Used so
-        we correctly attach review content to the last version reviewed."""
-        try:
-            latest_qs = self.versions.exclude(files__status=amo.STATUS_BETA)
-            if channel is not None:
-                latest_qs = latest_qs.filter(channel=channel)
-            latest = latest_qs.latest()
-        except Version.DoesNotExist:
-            latest = None
-        return latest
-
     @write
     def update_version(self, ignore=None, _signal=True):
         """
-        Returns true if we updated the field.
+        Update the current_version field on this add-on if necessary.
+
+        Returns True if we updated the current_version field.
 
         The optional ``ignore`` parameter, if present, is a a version
         to not consider as part of the update, since it may be in the
@@ -743,56 +753,32 @@ class Addon(OnChangeMixin, ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
-        current = self.find_latest_public_version()
-        latest = self.find_latest_version(ignore=ignore)
-
         if self.is_persona():
             # Themes should only have a single version. So, if there is not
             # current version set, we just need to copy over the latest version
             # to current_version and we should never have to set it again.
             if not self._current_version:
-                if latest:
-                    self.update(_current_version=latest,
-                                _latest_version=latest,
-                                _signal=False)
+                latest_version = self.find_latest_version(None)
+                if latest_version:
+                    self.update(_current_version=latest_version, _signal=False)
                 return True
             return False
 
-        latest_id = latest and latest.id
-        diff = [self._current_version, current]
-
-        # Sometimes the DB is in an inconsistent state when this
-        # signal is dispatched.
-        try:
-            if self._latest_version:
-                # Make sure stringifying this does not trigger
-                # Version.DoesNotExist before trying to use it for
-                # logging.
-                unicode(self._latest_version)
-            diff += [self._latest_version, latest]
-        except Version.DoesNotExist:
-            diff += [self._latest_version_id, latest_id]
-
+        new_current_version = self.find_latest_public_listed_version()
         updated = {}
         send_signal = False
-        if self._current_version != current:
-            updated.update({'_current_version': current})
+        if self._current_version != new_current_version:
+            updated['_current_version'] = new_current_version
             send_signal = True
-        # Don't use _latest_version here. It may throw Version.DoesNotExist
-        # if we're called from a post_delete signal. We also don't set
-        # send_signal since we only want this fired if the public version
-        # changes.
-        if self._latest_version_id != latest_id:
-            updated.update({'_latest_version': latest})
 
         # update_version can be called by a post_delete signal (such
         # as File's) when deleting a version. If so, we should avoid putting
         # that version-being-deleted in any fields.
         if ignore is not None:
-            updated = dict([(k, v) for (k, v) in updated.iteritems()
-                            if v != ignore])
+            updated = {k: v for k, v in updated.iteritems() if v != ignore}
 
         if updated:
+            diff = [self._current_version, new_current_version]
             # Pass along _signal to the .update() to prevent it from firing
             # signals if we don't want them.
             updated['_signal'] = _signal
@@ -800,133 +786,19 @@ class Addon(OnChangeMixin, ModelBase):
                 self.update(**updated)
                 if send_signal and _signal:
                     signals.version_changed.send(sender=self)
-                log.info(u'Version changed from current: %s to %s, '
-                         u'latest: %s to %s for addon %s'
+                log.info(u'Version changed from current: %s to %s '
+                         u'for addon %s'
                          % tuple(diff + [self]))
             except Exception, e:
-                log.error(u'Could not save version changes current: %s to %s, '
-                          u'latest: %s to %s for addon %s (%s)' %
+                log.error(u'Could not save version changes current: %s to %s '
+                          u'for addon %s (%s)' %
                           tuple(diff + [self, e]))
 
         return bool(updated)
 
-    def compatible_version(self, app_id, app_version=None, platform=None,
-                           compat_mode='strict'):
-        """Returns the newest compatible version given the input."""
-        if not app_id:
-            return None
-
-        if platform:
-            # We include platform_id=1 always in the SQL so we skip it here.
-            platform = platform.lower()
-            if platform != 'all' and platform in amo.PLATFORM_DICT:
-                platform = amo.PLATFORM_DICT[platform].id
-            else:
-                platform = None
-
-        log.debug(u'Checking compatibility for add-on ID:%s, APP:%s, V:%s, '
-                  u'OS:%s, Mode:%s' % (self.id, app_id, app_version, platform,
-                                       compat_mode))
-        valid_file_statuses = ','.join(map(str, self.valid_file_statuses))
-        data = dict(id=self.id, app_id=app_id, platform=platform,
-                    valid_file_statuses=valid_file_statuses)
-        if app_version:
-            data.update(version_int=version_int(app_version))
-        else:
-            # We can't perform the search queries for strict or normal without
-            # an app version.
-            compat_mode = 'ignore'
-
-        ns_key = cache_ns_key('d2c-versions:%s' % self.id)
-        cache_key = '%s:%s:%s:%s:%s' % (ns_key, app_id, app_version, platform,
-                                        compat_mode)
-        version_id = cache.get(cache_key)
-        if version_id is not None:
-            log.debug(u'Found compatible version in cache: %s => %s' % (
-                      cache_key, version_id))
-            if version_id == 0:
-                return None
-            else:
-                try:
-                    return Version.objects.get(pk=version_id)
-                except Version.DoesNotExist:
-                    pass
-
-        raw_sql = ["""
-            SELECT versions.*
-            FROM versions
-            INNER JOIN addons
-                ON addons.id = versions.addon_id AND addons.id = %(id)s
-            INNER JOIN applications_versions
-                ON applications_versions.version_id = versions.id
-            INNER JOIN appversions appmin
-                ON appmin.id = applications_versions.min
-                AND appmin.application_id = %(app_id)s
-            INNER JOIN appversions appmax
-                ON appmax.id = applications_versions.max
-                AND appmax.application_id = %(app_id)s
-            INNER JOIN files
-                ON files.version_id = versions.id AND
-                   (files.platform_id = 1"""]
-
-        if platform:
-            raw_sql.append(' OR files.platform_id = %(platform)s')
-
-        raw_sql.append(') WHERE files.status IN (%(valid_file_statuses)s) ')
-
-        if app_version:
-            raw_sql.append('AND appmin.version_int <= %(version_int)s ')
-
-        if compat_mode == 'ignore':
-            pass  # No further SQL modification required.
-
-        elif compat_mode == 'normal':
-            raw_sql.append("""AND
-                CASE WHEN files.strict_compatibility = 1 OR
-                          files.binary_components = 1
-                THEN appmax.version_int >= %(version_int)s ELSE 1 END
-            """)
-            # Filter out versions that don't have the minimum maxVersion
-            # requirement to qualify for default-to-compatible.
-            d2c_max = amo.D2C_MAX_VERSIONS.get(app_id)
-            if d2c_max:
-                data['d2c_max_version'] = version_int(d2c_max)
-                raw_sql.append(
-                    "AND appmax.version_int >= %(d2c_max_version)s ")
-
-            # Filter out versions found in compat overrides
-            raw_sql.append("""AND
-                NOT versions.id IN (
-                SELECT version_id FROM incompatible_versions
-                WHERE app_id=%(app_id)s AND
-                  (min_app_version='0' AND
-                       max_app_version_int >= %(version_int)s) OR
-                  (min_app_version_int <= %(version_int)s AND
-                       max_app_version='*') OR
-                  (min_app_version_int <= %(version_int)s AND
-                       max_app_version_int >= %(version_int)s)) """)
-
-        else:  # Not defined or 'strict'.
-            raw_sql.append('AND appmax.version_int >= %(version_int)s ')
-
-        raw_sql.append('ORDER BY versions.id DESC LIMIT 1;')
-
-        version = Version.objects.raw(''.join(raw_sql) % data)
-        if version:
-            version = version[0]
-            version_id = version.id
-        else:
-            version = None
-            version_id = 0
-
-        log.debug(u'Caching compat version %s => %s' % (cache_key, version_id))
-        cache.set(cache_key, version_id, None)
-
-        return version
-
     def increment_theme_version_number(self):
         """Increment theme version number by 1."""
-        latest_version = self.find_latest_version()
+        latest_version = self.find_latest_version(None)
         version = latest_version or self.current_version
         version.version = str(float(version.version) + 1)
         # Set the current version.
@@ -944,8 +816,13 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def current_version(self):
-        """Returns the current_version or None if the app is deleted or not
-        created yet"""
+        """Return the latest public listed version of an addon
+
+        If the add-on is not public, it can return a listed version awaiting
+        review (since non-public add-ons should not have public versions).
+
+        If the add-on has not been created yet or is deleted, it returns None.
+        """
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
         try:
@@ -954,13 +831,13 @@ class Addon(OnChangeMixin, ModelBase):
             pass
         return None
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def latest_unlisted_version(self):
         """Shortcut property for Addon.find_latest_version(
         channel=RELEASE_CHANNEL_UNLISTED)."""
         return self.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-    @amo.cached_property
+    @cached_property
     def binary(self):
         """Returns if the current version has binary files."""
         version = self.current_version
@@ -968,7 +845,7 @@ class Addon(OnChangeMixin, ModelBase):
             return version.files.filter(binary=True).exists()
         return False
 
-    @amo.cached_property
+    @cached_property
     def binary_components(self):
         """Returns if the current version has files with binary_components."""
         version = self.current_version
@@ -1045,29 +922,24 @@ class Addon(OnChangeMixin, ModelBase):
             self.update_version(ignore=ignore_version)
             return
 
-        def logit(reason, old=self.status):
-            log.info('Changing add-on status [%s]: %s => %s (%s).'
-                     % (self.id, old, self.status, reason))
-            amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
-
-        versions = self.versions.all()
+        versions = self.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
         status = None
         if not versions.exists():
             status = amo.STATUS_NULL
-            logit('no versions')
+            reason = 'no listed versions'
         elif not versions.filter(
                 files__status__in=amo.VALID_FILE_STATUSES).exists():
             status = amo.STATUS_NULL
-            logit('no version with valid file')
+            reason = 'no listed version with valid file'
         elif (self.status == amo.STATUS_PUBLIC and
               not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
             if versions.filter(
                     files__status=amo.STATUS_AWAITING_REVIEW).exists():
                 status = amo.STATUS_NOMINATED
-                logit('only an unreviewed file')
+                reason = 'only an unreviewed file'
             else:
                 status = amo.STATUS_NULL
-                logit('no reviewed files')
+                reason = 'no reviewed files'
         elif self.status == amo.STATUS_PUBLIC:
             latest_version = self.find_latest_version(
                 channel=amo.RELEASE_CHANNEL_LISTED)
@@ -1078,9 +950,14 @@ class Addon(OnChangeMixin, ModelBase):
                 # a new file upload). So, call update, to trigger watch_status,
                 # which takes care of setting nomination time when needed.
                 status = self.status
+                reason = 'triggering watch_status'
 
         if status is not None:
+            log.info('Changing add-on status [%s]: %s => %s (%s).'
+                     % (self.id, self.status, status, reason))
             self.update(status=status)
+            activity.log_create(amo.LOG.CHANGE_STATUS,
+                                self.get_status_display(), self)
 
         self.update_version(ignore=ignore_version)
 
@@ -1089,10 +966,7 @@ class Addon(OnChangeMixin, ModelBase):
         if addon_dict is None:
             addon_dict = dict((a.id, a) for a in addons)
 
-        current_ids = filter(None, (a._current_version_id for a in addons))
-        latest_ids = filter(None, (a._latest_version_id for a in addons))
-        all_ids = set(current_ids) | set(latest_ids)
-
+        all_ids = set(filter(None, (a._current_version_id for a in addons)))
         versions = list(Version.objects.filter(id__in=all_ids).order_by())
         for version in versions:
             try:
@@ -1102,8 +976,6 @@ class Addon(OnChangeMixin, ModelBase):
                 continue
             if addon._current_version_id == version.id:
                 addon._current_version = version
-            if addon._latest_version_id == version.id:
-                addon._latest_version = version
 
             version.addon = addon
 
@@ -1170,7 +1042,7 @@ class Addon(OnChangeMixin, ModelBase):
         personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
-        # Set _latest_version, _current_version
+        # Set _current_version.
         Addon.attach_related_versions(addons, addon_dict=addon_dict)
 
         # Attach listed authors.
@@ -1194,7 +1066,7 @@ class Addon(OnChangeMixin, ModelBase):
     def show_adu(self):
         return self.type != amo.ADDON_SEARCH
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""
         versions = self.versions.filter(files__status=amo.STATUS_BETA)[:1]
@@ -1244,17 +1116,10 @@ class Addon(OnChangeMixin, ModelBase):
                                 amo.STATUS_DELETED)):
             return False
 
-        if not File.objects.filter(version__addon=self).exists():
-            return False
-
         latest_version = self.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            amo.RELEASE_CHANNEL_LISTED, exclude=(amo.STATUS_BETA,))
 
-        if not latest_version or not latest_version.files.exclude(
-                status=amo.STATUS_DISABLED).exists():
-            return False
-
-        return True
+        return latest_version is not None and latest_version.files.exists()
 
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
@@ -1277,20 +1142,39 @@ class Addon(OnChangeMixin, ModelBase):
     def is_public(self):
         return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
 
-    def has_complete_metadata(self):
-        return all(self.get_required_metadata())
+    def has_complete_metadata(self, has_listed_versions=None):
+        """See get_required_metadata for has_listed_versions details."""
+        return all(self.get_required_metadata(
+            has_listed_versions=has_listed_versions))
 
-    def get_required_metadata(self):
-        if not self.has_listed_versions():
+    def get_required_metadata(self, has_listed_versions=None):
+        """If has_listed_versions is not specified this method will return the
+        current (required) metadata (truthy values if present) for this Addon.
+
+        If has_listed_versions is specified then the method will act as if
+        Addon.has_listed_versions() returns that value. Used to predict if the
+        addon will require extra metadata before a version is created."""
+        if has_listed_versions is None:
+            has_listed_versions = self.has_listed_versions()
+        if not has_listed_versions:
             # Add-ons with only unlisted versions have no required metadata.
             return []
-        latest_version = self.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
+        # We need to find out if the add-on has a license set. We prefer to
+        # check the current_version first because that's what would be used for
+        # public pages, but if there isn't any listed version will do.
+        version = self.current_version or self.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED, exclude=())
         return [
             self.all_categories,
             self.summary,
-            (not latest_version or latest_version.license),
+            (version and version.license),
         ]
+
+    def should_redirect_to_submit_flow(self):
+        return (
+            self.status == amo.STATUS_NULL and
+            not self.has_complete_metadata() and
+            self.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED))
 
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
@@ -1298,15 +1182,16 @@ class Addon(OnChangeMixin, ModelBase):
     def is_rejected(self):
         return self.status == amo.STATUS_REJECTED
 
-    def is_reviewed(self):
-        return self.status in amo.REVIEWED_STATUSES
-
     def can_be_deleted(self):
         return not self.is_deleted
 
     def has_listed_versions(self):
         return self.versions.filter(
             channel=amo.RELEASE_CHANNEL_LISTED).exists()
+
+    def has_unlisted_versions(self):
+        return self.versions.filter(
+            channel=amo.RELEASE_CHANNEL_UNLISTED).exists()
 
     @classmethod
     def featured_random(cls, app, lang):
@@ -1331,7 +1216,7 @@ class Addon(OnChangeMixin, ModelBase):
         """Is developer profile (partially or entirely) completed?"""
         return self.the_reason or self.the_future
 
-    @amo.cached_property
+    @cached_property
     def tags_partitioned_by_developer(self):
         """Returns a tuple of developer tags and user tags for this addon."""
         tags = self.tags.not_denied()
@@ -1341,7 +1226,7 @@ class Addon(OnChangeMixin, ModelBase):
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
         # Search providers and personas don't list their supported apps.
@@ -1359,7 +1244,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def incompatible_latest_apps(self):
         """Returns a list of applications with which this add-on is
-        incompatible (based on the latest version).
+        incompatible (based on the latest version of each app).
 
         """
         return [app for app, ver in self.compatible_apps.items() if ver and
@@ -1407,12 +1292,12 @@ class Addon(OnChangeMixin, ModelBase):
                     .extra(select={'last_updated': 'created'}))
         return dict(public=public, exp=exp, personas=personas)
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def all_categories(self):
         return filter(
             None, [cat.to_static_category() for cat in self.categories.all()])
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def all_previews(self):
         return list(self.get_previews())
 
@@ -1456,23 +1341,6 @@ class Addon(OnChangeMixin, ModelBase):
         """Return all the (valid) add-ons this add-on depends on."""
         return list(self.dependencies.valid().all()[:3])
 
-    def has_installed(self, user):
-        if not user or not isinstance(user, UserProfile):
-            return False
-
-        return self.installed.filter(user=user).exists()
-
-    def get_latest_file(self):
-        """Get the latest file from the current version."""
-        cur = self.current_version
-        if cur:
-            res = cur.files.order_by('-created')
-            if res:
-                return res[0]
-
-    def in_escalation_queue(self):
-        return self.escalationqueue_set.exists()
-
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
         """
@@ -1497,6 +1365,13 @@ class Addon(OnChangeMixin, ModelBase):
             # unexpected database writes.
             feature_compatibility = AddonFeatureCompatibility()
         return feature_compatibility
+
+    def should_show_permissions(self, version=None):
+        version = version or self.current_version
+        return (self.type == amo.ADDON_EXTENSION and
+                version and version.all_files[0] and
+                (not version.all_files[0].is_webextension or
+                 version.all_files[0].webext_permissions))
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
@@ -1637,15 +1512,7 @@ class Persona(caching.CachingMixin, models.Model):
         return self.persona_id == 0
 
     def _image_url(self, filename):
-        return self.get_mirror_url(filename)
-
-    def _image_path(self, filename):
-        return os.path.join(helpers.user_media_path('addons'),
-                            str(self.addon.id), filename)
-
-    def get_mirror_url(self, filename):
-        host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
-                else helpers.user_media_url('addons'))
+        host = helpers.user_media_url('addons')
         image_url = posixpath.join(host, str(self.addon.id), filename or '')
         # TODO: Bust the cache on the hash of the image contents or something.
         if self.addon.modified is not None:
@@ -1654,7 +1521,11 @@ class Persona(caching.CachingMixin, models.Model):
             modified = 0
         return '%s?%s' % (image_url, modified)
 
-    @amo.cached_property
+    def _image_path(self, filename):
+        return os.path.join(helpers.user_media_path('addons'),
+                            str(self.addon.id), filename)
+
+    @cached_property
     def thumb_url(self):
         """
         Handles deprecated GetPersonas URL.
@@ -1666,7 +1537,7 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_url('preview.jpg')
 
-    @amo.cached_property
+    @cached_property
     def thumb_path(self):
         """
         Handles deprecated GetPersonas path.
@@ -1678,7 +1549,7 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_path('preview.jpg')
 
-    @amo.cached_property
+    @cached_property
     def icon_url(self):
         """URL to personas square preview."""
         if self.is_new():
@@ -1686,7 +1557,7 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_url('preview_small.jpg')
 
-    @amo.cached_property
+    @cached_property
     def icon_path(self):
         """Path to personas square preview."""
         if self.is_new():
@@ -1694,7 +1565,7 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_path('preview_small.jpg')
 
-    @amo.cached_property
+    @cached_property
     def preview_url(self):
         """URL to Persona's big, 680px, preview."""
         if self.is_new():
@@ -1702,7 +1573,7 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_url('preview_large.jpg')
 
-    @amo.cached_property
+    @cached_property
     def preview_path(self):
         """Path to Persona's big, 680px, preview."""
         if self.is_new():
@@ -1710,23 +1581,23 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_path('preview_large.jpg')
 
-    @amo.cached_property
+    @cached_property
     def header_url(self):
         return self._image_url(self.header)
 
-    @amo.cached_property
+    @cached_property
     def footer_url(self):
         return self.footer and self._image_url(self.footer) or ''
 
-    @amo.cached_property
+    @cached_property
     def header_path(self):
         return self._image_path(self.header)
 
-    @amo.cached_property
+    @cached_property
     def footer_path(self):
         return self.footer and self._image_path(self.footer) or ''
 
-    @amo.cached_property
+    @cached_property
     def update_url(self):
         locale = settings.LANGUAGE_URL_MAP.get(trans_real.get_language())
         return settings.NEW_PERSONAS_UPDATE_URL % {
@@ -1734,7 +1605,7 @@ class Persona(caching.CachingMixin, models.Model):
             'id': self.addon.id
         }
 
-    @amo.cached_property
+    @cached_property
     def theme_data(self):
         """Theme JSON Data for Browser/extension preview."""
         def hexcolor(color):
@@ -1780,7 +1651,7 @@ class Persona(caching.CachingMixin, models.Model):
                           authors__in=self.addon.listed_authors)
                   .distinct())
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def listed_authors(self):
         return self.addon.listed_authors
 
@@ -1841,6 +1712,46 @@ class AddonFeatureCompatibility(ModelBase):
 
     def get_e10s_classname(self):
         return amo.E10S_COMPATIBILITY_CHOICES_API[self.e10s]
+
+
+class AddonApprovalsCounter(ModelBase):
+    """Model holding a counter of the number of times a listed version
+    belonging to an add-on has been approved by a human. Reset everytime a
+    listed version is auto-approved for this add-on."""
+    addon = models.OneToOneField(
+        Addon, primary_key=True, on_delete=models.CASCADE)
+    counter = models.PositiveIntegerField(default=0)
+    last_human_review = models.DateTimeField(null=True)
+
+    def __unicode__(self):
+        return u'%s: %d' % (unicode(self.pk), self.counter) if self.pk else u''
+
+    @classmethod
+    def increment_for_addon(cls, addon):
+        """
+        Increment approval counter for the specified addon, setting the last
+        human review date to now. If an AddonApprovalsCounter already exists,
+        it updates it, otherwise it creates and saves a new instance.
+        """
+        data = {
+            'counter': 1,
+            'last_human_review': datetime.now(),
+        }
+        obj, created = cls.objects.get_or_create(
+            addon=addon, defaults=data)
+        if not created:
+            data['counter'] = F('counter') + 1
+            obj.update(**data)
+        return obj
+
+    @classmethod
+    def reset_for_addon(cls, addon):
+        """
+        Reset the approval counter for the specified addon.
+        """
+        obj, created = cls.objects.update_or_create(
+            addon=addon, defaults={'counter': 0})
+        return obj
 
 
 class DeniedGuid(ModelBase):
@@ -1947,13 +1858,6 @@ class Preview(ModelBase):
         return d
 
     @property
-    def is_landscape(self):
-        size = self.image_size
-        if not size:
-            return False
-        return size[0] > size[1]
-
-    @property
     def thumbnail_url(self):
         template = (
             helpers.user_media_url('previews') +
@@ -1994,6 +1898,7 @@ class Preview(ModelBase):
     @property
     def image_size(self):
         return self.sizes.get('image', []) if self.sizes else []
+
 
 dbsignals.pre_save.connect(save_signal, sender=Preview,
                            dispatch_uid='preview_translations')
@@ -2117,7 +2022,7 @@ class CompatOverride(ModelBase):
             id_map[compat_id].compat_ranges = list(ranges)
 
     # May be filled in by a transformer for performance.
-    @amo.cached_property(writable=True)
+    @cached_property
     def compat_ranges(self):
         return list(self._compat_ranges.all())
 
@@ -2256,7 +2161,3 @@ def track_status_change(old_attr=None, new_attr=None, **kw):
 def track_addon_status_change(addon):
     statsd.incr('addon_status_change.all.status_{}'
                 .format(addon.status))
-
-    listed_tag = 'listed' if addon.is_listed else 'unlisted'
-    statsd.incr('addon_status_change.{}.status_{}'
-                .format(listed_tag, addon.status))

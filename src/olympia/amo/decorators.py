@@ -7,9 +7,8 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.db import connection, transaction
 
-import commonware.log
-
-from olympia.amo import get_user, set_user
+import olympia.core.logger
+from olympia import core
 from olympia.accounts.utils import redirect_for_login
 from olympia.users.utils import get_task_user
 
@@ -17,7 +16,7 @@ from . import models as context
 from .utils import AMOJSONEncoder
 
 
-task_log = commonware.log.getLogger('z.task')
+task_log = olympia.core.logger.getLogger('z.task')
 
 
 def login_required(f=None, redirect=True):
@@ -54,13 +53,13 @@ def post_required(f):
     return wrapper
 
 
-def permission_required(app, action):
+def permission_required(permission):
     def decorator(f):
         @functools.wraps(f)
         @login_required
         def wrapper(request, *args, **kw):
             from olympia.access import acl
-            if acl.action_allowed(request, app, action):
+            if acl.action_allowed(request, permission):
                 return f(request, *args, **kw)
             else:
                 raise PermissionDenied
@@ -68,7 +67,7 @@ def permission_required(app, action):
     return decorator
 
 
-def any_permission_required(pairs):
+def any_permission_required(permissions):
     """
     If any permission passes, call the function. Otherwise raise 403.
     """
@@ -77,28 +76,12 @@ def any_permission_required(pairs):
         @login_required
         def wrapper(request, *args, **kw):
             from olympia.access import acl
-            for app, action in pairs:
-                if acl.action_allowed(request, app, action):
+            for permission in permissions:
+                if acl.action_allowed(request, permission):
                     return f(request, *args, **kw)
             raise PermissionDenied
         return wrapper
     return decorator
-
-
-def restricted_content(f):
-    """
-    Prevent access to a view function for accounts restricted from
-    posting user-generated content.
-    """
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        from olympia.access import acl
-        if (acl.action_allowed(request, '*', '*') or
-                not acl.action_allowed(request, 'Restricted', 'UGC')):
-            return f(request, *args, **kw)
-        else:
-            raise PermissionDenied
-    return wrapper
 
 
 def json_response(response, has_trans=False, status_code=200):
@@ -209,12 +192,12 @@ def set_task_user(f):
     """Sets the user to be the task user, then unsets it."""
     @functools.wraps(f)
     def wrapper(*args, **kw):
-        old_user = get_user()
-        set_user(get_task_user())
+        old_user = core.get_user()
+        core.set_user(get_task_user())
         try:
             result = f(*args, **kw)
         finally:
-            set_user(old_user)
+            core.set_user(old_user)
         return result
     return wrapper
 

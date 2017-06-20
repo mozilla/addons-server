@@ -1,4 +1,4 @@
-from django.conf.urls import include, patterns, url
+from django.conf.urls import include, url
 from django.shortcuts import redirect
 
 from olympia.addons.urls import ADDON_ID
@@ -8,21 +8,9 @@ from olympia.lib.misc.urlconf_decorator import decorate
 
 from . import views
 
-PACKAGE_NAME = '(?P<package_name>[_\w]+)'
-
-
-# These will all start with /addon/<addon_id>/submit/
-submit_patterns = patterns(
-    '',
-    url('^$', lambda r, addon_id: redirect('devhub.submit.finish', addon_id)),
-    url('^details$', views.submit_details, name='devhub.submit.details'),
-    url('^finish$', views.submit_finish, name='devhub.submit.finish'),
-)
-
 
 # These will all start with /theme/<slug>/
-theme_detail_patterns = patterns(
-    '',
+theme_detail_patterns = [
     url('^$', lambda r,
         addon_id: redirect('devhub.themes.edit', addon_id, permanent=True)),
     url('^delete$', views.delete, name='devhub.themes.delete'),
@@ -32,19 +20,16 @@ theme_detail_patterns = patterns(
         views.ajax_upload_image, name='devhub.personas.reupload_persona'),
     url('^edit$', views.edit_theme, name='devhub.themes.edit'),
     url('^rmlocale$', views.remove_locale, name='devhub.themes.remove-locale'),
-)
-
+]
 
 # These will all start with /addon/<addon_id>/
-detail_patterns = patterns(
-    '',
+detail_patterns = [
     # Redirect to the edit page from the base.
     url('^$', lambda r, addon_id: redirect('devhub.addons.edit', addon_id,
                                            permanent=True)),
     url('^edit$', views.edit, name='devhub.addons.edit'),
     url('^delete$', views.delete, name='devhub.addons.delete'),
     url('^disable$', views.disable, name='devhub.addons.disable'),
-    url('^unlist$', views.unlist, name='devhub.addons.unlist'),
     url('^enable$', views.enable, name='devhub.addons.enable'),
     url('^cancel$', views.cancel, name='devhub.addons.cancel'),
     url('^ownership$', views.ownership, name='devhub.addons.owner'),
@@ -73,24 +58,41 @@ detail_patterns = patterns(
         name='devhub.versions.delete'),
     url('^versions/reenable$', views.version_reenable,
         name='devhub.versions.reenable'),
-    url('^versions/add$', views.version_add, name='devhub.versions.add'),
     url('^versions/stats$', views.version_stats,
         name='devhub.versions.stats'),
     url('^versions/(?P<version_id>\d+)$', views.version_edit,
         name='devhub.versions.edit'),
-    url('^versions/(?P<version_id>\d+)/add$', views.version_add_file,
-        name='devhub.versions.add_file'),
     url('^versions/(?P<version>[^/]+)$', views.version_bounce),
+
+    # New version submission
+    url('^versions/submit/$',
+        views.submit_version_auto,
+        name='devhub.submit.version'),
+    url('^versions/submit/distribution$',
+        views.submit_version_distribution,
+        name='devhub.submit.version.distribution'),
+    url('^versions/submit/upload-(?P<channel>listed|unlisted)$',
+        views.submit_version_upload,
+        name='devhub.submit.version.upload'),
+    url('^versions/submit/(?P<version_id>\d+)/details$',
+        views.submit_version_details,
+        name='devhub.submit.version.details'),
+    url('^versions/submit/(?P<version_id>\d+)/finish$',
+        views.submit_version_finish,
+        name='devhub.submit.version.finish'),
+    # New file submission
+    url('^versions/(?P<version_id>\d+)/submit-file/$',
+        views.submit_file,
+        name='devhub.submit.file'),
+    url('^versions/submit/(?P<version_id>\d+)/finish-file$',
+        views.submit_file_finish,
+        name='devhub.submit.file.finish'),
 
     url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
         name='devhub.file_validation'),
     url('^file/(?P<file_id>[^/]+)/validation\.json$',
         views.json_file_validation,
         name='devhub.json_file_validation'),
-
-    url('^file/(?P<file_id>[^/]+)/validation/annotate$',
-        views.annotate_file_validation,
-        name='devhub.annotate_file_validation'),
 
     url('^validation-result/(?P<result_id>\d+)$',
         views.bulk_compat_result,
@@ -99,16 +101,19 @@ detail_patterns = patterns(
         views.json_bulk_compat_result,
         name='devhub.json_bulk_compat_result'),
 
-    url('^submit/', include(submit_patterns)),
-    url('^submit/resume$', views.submit_resume, name='devhub.submit.resume'),
+    url('^submit/$',
+        lambda r, addon_id: redirect('devhub.submit.finish', addon_id)),
+    url('^submit/details$',
+        views.submit_addon_details, name='devhub.submit.details'),
+    url('^submit/finish$', views.submit_addon_finish,
+        name='devhub.submit.finish'),
+
     url('^request-review$',
         views.request_review, name='devhub.request-review'),
     url('^rmlocale$', views.remove_locale, name='devhub.addons.remove-locale'),
-)
-
+]
 # These will all start with /ajax/addon/<addon_id>/
-ajax_patterns = patterns(
-    '',
+ajax_patterns = [
     url('^dependencies$', views.ajax_dependencies,
         name='devhub.ajax.dependencies'),
     url('^versions/compatibility/status$',
@@ -118,32 +123,28 @@ ajax_patterns = patterns(
     url('^versions/(?P<version_id>\d+)/compatibility$',
         views.ajax_compat_update, name='devhub.ajax.compat.update'),
     url('^image/status$', views.image_status, name='devhub.ajax.image.status'),
-)
+]
+redirect_patterns = [
+    url('^addon/edit/(\d+)',
+        lambda r, id: redirect('devhub.addons.edit', id, permanent=True)),
+    url('^addon/status/(\d+)',
+        lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
+    url('^versions/(\d+)',
+        lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
+]
 
-redirect_patterns = patterns(
-    '',
-    ('^addon/edit/(\d+)',
-     lambda r, id: redirect('devhub.addons.edit', id, permanent=True)),
-    ('^addon/status/(\d+)',
-     lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
-    ('^versions/(\d+)',
-     lambda r, id: redirect('devhub.addons.versions', id, permanent=True)),
-)
-
-
-urlpatterns = decorate(write, patterns(
-    '',
+urlpatterns = decorate(write, [
     url('^$', views.index, name='devhub.index'),
     url('', include(redirect_patterns)),
 
     # Redirect people who have /addons/ instead of /addon/.
-    ('^addons/\d+/.*',
-     lambda r: redirect(r.path.replace('addons', 'addon', 1))),
+    url('^addons/\d+/.*',
+        lambda r: redirect(r.path.replace('addons', 'addon', 1))),
 
     # Add-on submission
     url('^addon/submit/(?:1)?$',
         lambda r: redirect('devhub.submit.agreement', permanent=True)),
-    url('^addon/submit/agreement$', views.submit,
+    url('^addon/submit/agreement$', views.submit_addon,
         name='devhub.submit.agreement'),
     url('^addon/submit/distribution$', views.submit_addon_distribution,
         name='devhub.submit.distribution'),
@@ -214,4 +215,4 @@ urlpatterns = decorate(write, patterns(
     # Developer docs
     url('docs/(?P<doc_name>[-_\w]+(?:/[-_\w]+)?)?$',
         views.docs, name='devhub.docs'),
-))
+])

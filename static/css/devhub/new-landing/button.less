@@ -1,0 +1,52 @@
+.button(@color, @background-color) {
+  background-color: @background-color;
+  color: @color;
+
+  // Reset global link styles
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    text-decoration: none;
+    color: @color;
+  }
+
+  &:active,
+  &:hover,
+  &:focus {
+    background-color: darken(@background-color, 5%);
+    text-decoration: none;
+  }
+
+  &:focus {
+    border-color: @color-callout-border;
+    box-shadow: 0 0 5px 0 @color-callout-border;
+    outline: none;
+  }
+}
+
+.Button {
+  .button(@color-items, @color-button-default);
+
+  border-radius: 2px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.3);
+  color: @color-items;
+  display: inline-block;
+  padding: 10px 30px;
+  margin: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+
+  @media @small {
+    width: auto;
+  }
+
+  @media @medium {
+    margin: 0;
+  }
+}
+
+.Button--primary {
+  .button(@color-items, @color-button-primary);
+}

@@ -1,8 +1,9 @@
 import jinja2
 
 import jingo
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
+from olympia import amo
 from olympia.access import acl
 from olympia.reviews.models import ReviewFlag
 
@@ -14,7 +15,7 @@ def stars(num, large=False):
     # check for 0.0 incase None was cast to a float. Should
     # be safe since lowest rating you can give is 1.0
     if num is None or num == 0.0:
-        return _('Not yet rated')
+        return ugettext('Not yet rated')
     else:
         num = min(5, int(round(num)))
         t = jingo.get_env().get_template('reviews/impala/reviews_rating.html')
@@ -36,14 +37,6 @@ def impala_reviews_link(addon, collection_uuid=None, link_to_list=False):
     return jinja2.Markup(t.render({'addon': addon,
                                    'link_to_list': link_to_list,
                                    'collection_uuid': collection_uuid}))
-
-
-@jingo.register.inclusion_tag('reviews/mobile/reviews_link.html')
-@jinja2.contextfunction
-def mobile_reviews_link(context, addon):
-    c = dict(context.items())
-    c.update(addon=addon)
-    return c
 
 
 @jingo.register.inclusion_tag('reviews/report_review.html')
@@ -75,7 +68,8 @@ def user_can_delete_review(request, review):
 
     People who can delete reviews:
       * The original review author.
-      * Editors, but only if they aren't listed as an author of the add-on.
+      * Editors, but only if they aren't listed as an author of the add-on
+        and the add-on is flagged for moderation
       * Users in a group with "Users:Edit" privileges.
       * Users in a group with "Addons:Edit" privileges.
 
@@ -86,9 +80,9 @@ def user_can_delete_review(request, review):
     return (
         review.user_id == request.user.id or
         not is_author and (
-            acl.is_editor(request, review.addon) or
-            acl.action_allowed(request, 'Users', 'Edit') or
-            acl.action_allowed(request, 'Addons', 'Edit')))
+            (acl.is_editor(request, review.addon) and review.editorreview) or
+            acl.action_allowed(request, amo.permissions.USERS_EDIT) or
+            acl.action_allowed(request, amo.permissions.ADDONS_EDIT)))
 
 
 @jingo.register.function

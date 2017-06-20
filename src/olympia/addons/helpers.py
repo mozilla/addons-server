@@ -1,7 +1,7 @@
 import jinja2
 
 from jingo import register
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext
 
 from olympia.amo.utils import chunked
 from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
@@ -11,7 +11,6 @@ from . import buttons
 
 register.function(buttons.install_button)
 register.function(buttons.big_install_button)
-register.function(buttons.mobile_install_button)
 
 
 @register.filter
@@ -33,7 +32,9 @@ def statusflags(context, addon):
 def flag(context, addon):
     """unreviewed/featuredaddon flag heading."""
     status = statusflags(context, addon)
-    msg = {'unreviewed': _('Not Reviewed'), 'featuredaddon': _('Featured')}
+    msg = {
+        'unreviewed': ugettext('Not Reviewed'),
+        'featuredaddon': ugettext('Featured')}
     if status:
         return jinja2.Markup(u'<h5 class="flag">%s</h5>' % msg[status])
     else:
@@ -168,12 +169,6 @@ def addon_listing_items_compact(context, addons, show_date=False, src=None):
     return new_context(**locals())
 
 
-@register.inclusion_tag('addons/listing/items_mobile.html')
-@jinja2.contextfunction
-def addon_listing_items_mobile(context, addons, sort=None, src=None):
-    return new_context(**locals())
-
-
 @register.inclusion_tag('addons/listing_header.html')
 @jinja2.contextfunction
 def addon_listing_header(context, url_base, sort_opts, selected):
@@ -282,24 +277,6 @@ def persona_preview(context, persona, size='large', linked=True, extra=None,
               'size': size, 'preview': preview_map[size], 'extra': extra,
               'details': details, 'title': title, 'caption': caption,
               'url_': url})
-    return c
-
-
-@register.inclusion_tag('addons/mobile/persona_preview.html')
-@jinja2.contextfunction
-def mobile_persona_preview(context, persona):
-    addon = persona.addon
-    c = dict(context.items())
-    c.update({'persona': persona, 'addon': addon})
-    return c
-
-
-@register.inclusion_tag('addons/mobile/persona_confirm.html')
-@jinja2.contextfunction
-def mobile_persona_confirm(context, persona, size='large'):
-    addon = persona.addon
-    c = dict(context.items())
-    c.update({'persona': persona, 'addon': addon, 'size': size})
     return c
 
 

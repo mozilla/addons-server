@@ -1,0 +1,139 @@
+{% macro render_status(addon) %}
+  {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
+    {% set status_text = _('Invisible') %}
+  {% else %}
+    {% set status_text = addon.STATUS_CHOICES[addon.status] %}
+  {% endif %}
+
+  {% if addon.is_persona() %}
+    <span class="DevHub-MyAddons-version-{{ status_class(addon) }} DevHub-MyAddons-VersionStatus">
+      {{ status_text }}
+    </span>
+  {% else %}
+    {% set url = addon.get_dev_url('versions') %}
+    <a class="DevHub-MyAddons-version-{{ status_class(addon) }} DevHub-MyAddons-VersionStatus" href="{{ url }}">
+      {{ status_text }}
+    </a>
+  {% endif %}
+{% endmacro %}
+
+<div class="DevHub-MyAddons content">
+  <div>
+    <div class="DevHub-MyAddons-whatsnew-container">
+      <div>
+        <h2>{{ _("What's New") }}</h2>
+      </div>
+      <div>
+        <p>
+          {% trans %}
+            Migrating your legacy add-on to WebExtensions?
+            Get more personalized help during Office Hours, or email
+            <a href="mailto:webextensions-support@mozilla.org">webextensions-support@mozilla.org</a>.
+          {% endtrans %}
+        </p>
+        <a href="https://atsay.github.io/WebExtensions_office_hours/" class="Button">
+          {{ _('See Schedule') }}
+        </a>
+      </div>
+      <div>
+        <p>
+          {% trans %}
+            WebExtensions are now the standard for add-on development in Firefox.
+            You'll need to update your legacy add-ons to stay compatible.
+          {% endtrans %}
+        </p>
+        <a href="https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on" class="Button">
+          {{ _('Learn How') }}
+        </a>
+      </div>
+    </div>
+
+    <h2>{{ ('My Add-ons') }}</h2>
+
+    {% if recent_addons %}
+      <div class="DevHub-MyAddons-list">
+        {% for item in recent_addons %}
+          {% set addon = item.addon %}
+
+          <div class="DevHub-MyAddons-item">
+            <img class="DevHub-MyAddons-item-icon" src="{{ addon.get_icon_url(64) }}" alt="">
+            <div class="DevHub-MyAddons-item-details">
+              <span class="DevHub-MyAddons-item-name">
+                {{ addon.name }}
+              </span>
+
+              <a class="DevHub-MyAddons-item-edit" href="{{ addon.get_dev_url('edit') }}">
+                {{ _('Edit Listing') }}
+              </a>
+
+              <div class="DevHub-MyAddons-item-versions">
+                {% if addon.has_listed_versions() %}
+                  {% if addon.current_version %}
+                    <div class="DevHub-MyAddons-item-version-details">
+                      {% if addon.has_unlisted_versions() %}
+                        <span class="DevHub-MyAddons-item-channel-listed tooltip"
+                              title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site.') }}"
+                        >AMO</span>
+                      {% endif %}
+
+                      <span class="DevHub-MyAddons-item-version">
+                        {{ addon.current_version.version }}
+                      </span>
+
+                      {{ render_status(addon) }}
+                    </div>
+                  {% endif %}
+                {% endif %}
+
+                {% set latest_unlisted_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED) %}
+
+                {% if latest_unlisted_version %}
+                  <div class="DevHub-MyAddons-item-version-details">
+                    {% if addon.has_listed_versions() %}
+                      <span class="DevHub-MyAddons-item-channel-unlisted tooltip"
+                            title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
+                      >Self</span>
+                    {% endif %}
+
+                    <span class="DevHub-MyAddons-item-version">
+                      {{ latest_unlisted_version.version }}
+                    </span>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <span class="DevHub-MyAddons-item-modified">
+              {% if addon.last_updated %}
+                <span>{{ _('Last Updated:') }}</span>
+                {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
+                <span>{{ addon.last_updated|datetime(_('%%b %%e, %%Y')) }}</span>
+              {% else %}
+                <span>{{ _('Created:') }}</span>
+                {# L10n: {0} is a date. dennis-ignore: E201,E202,W202 #}
+                <span>{{ addon.created|datetime(_('%%b %%e, %%Y')) }}</span>
+              {% endif %}
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="DevHub-MyAddons-item-buttons">
+        <a class="DevHub-MyAddons-item-buttons-all" href="{{ url('devhub.addons') }}">{{ _('View All Submissions') }}</a>
+        <div class="DevHub-MyAddons-item-buttons-submit">
+          <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit a New Add-on') }}</a>
+          <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit a New Theme') }}</a>
+        </div>
+      </div>
+    {% else %}
+      <p class="DevHub-MyAddons-copy">
+        {% trans %}
+          This is where you view and manage your add-ons and themes.
+          To publish your first add-on, click "Submit Your First Add-on"
+          or "Submit Your First Theme".
+        {% endtrans %}
+      </p>
+      <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit Your First Add-on') }}</a>
+      <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit Your First Theme') }}</a>
+    {% endif %}
+  </div>
+</div>

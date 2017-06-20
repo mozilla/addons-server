@@ -1,7 +1,6 @@
 """
 Monkey patch and defuse all stdlib xml packages and lxml.
 """
-import logging
 import sys
 
 patched_modules = (
@@ -16,11 +15,6 @@ if any(module in sys.modules for module in patched_modules):
             existing_modules))
 
 from defusedxml import defuse_stdlib  # noqa
-
-log = logging.getLogger('z.files.utils')
-log.warn(
-    'Calling defusedxml.defuse_stdlib to patch known xml '
-    'security vulnerabilities')
 
 defuse_stdlib()
 
@@ -46,11 +40,9 @@ def create_rdf_parser_without_externals(target, store):
     See https://bugzilla.mozilla.org/show_bug.cgi?id=1306954
     """
     parser = _rdfxml_create_parser(target, store)
-    log.warn('Using a custom XML parser without external entities or params')
     parser.setFeature(feature_external_ges, 0)
     parser.setFeature(feature_external_pes, 0)
     return parser
 
 
-log.warn('Patching rdfxml create_parser() to disable external entities/params')
 rdfxml.create_parser = create_rdf_parser_without_externals

@@ -49,7 +49,6 @@
             "total_contributions": "0.00",
             "default_locale": "en-US",
             "target_locale": null,
-            "prerelease": false,
             "thankyou_note": null,
             "admin_review": false,
             "external_software": false,
@@ -60,7 +59,6 @@
             "annoying": 2,
             "modified": "2010-06-25 15:30:56",
             "suggested_amount": "20.00",
-            "site_specific": true,
             "total_reviews": 29
         }
     },
@@ -113,7 +111,7 @@
             "homepage": "http://richard.jones.name",
             "email": "dd+5e83a56fe@davedash.com",
             "location": "",
-            "bio": null,
+            "biography": null,
             "deleted": false,
             "username": "802",
             "display_name": "802 \u0627\u0644\u062a\u0637\u0628",

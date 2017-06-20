@@ -1,11 +1,11 @@
-import logging
 from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
 
+import olympia.core.logger
 from olympia.activity.models import ActivityLogToken
 
-log = logging.getLogger('z.amo.activity')
+log = olympia.core.logger.getLogger('z.amo.activity')
 
 
 class Command(BaseCommand):

@@ -9,14 +9,17 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django import forms
 
+import pytest
+import flufl.lock
 from mock import Mock, patch
+from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.files.helpers import FileViewer, DiffHelper
+from olympia.files.helpers import FileViewer, DiffHelper, extract_file
 from olympia.files.models import File
-from olympia.files.utils import SafeUnzip
+from olympia.files.utils import SafeUnzip, get_all_files
 
 root = os.path.join(settings.ROOT, 'src/olympia/files/fixtures/files')
 
@@ -38,15 +41,15 @@ def make_file(pk, file_path, **kwargs):
     return obj
 
 
-class TestFileHelper(TestCase):
+class TestFileViewer(TestCase):
 
     def setUp(self):
-        super(TestFileHelper, self).setUp()
+        super(TestFileViewer, self).setUp()
         self.viewer = FileViewer(make_file(1, get_file('dictionary-test.xpi')))
 
     def tearDown(self):
         self.viewer.cleanup()
-        super(TestFileHelper, self).tearDown()
+        super(TestFileViewer, self).tearDown()
 
     def test_files_not_extracted(self):
         assert not self.viewer.is_extracted()
@@ -84,10 +87,54 @@ class TestFileHelper(TestCase):
         for name in file_list:
             assert name in files
 
+    def test_locked(self):
+        self.viewer.src = get_file('dictionary-test.xpi')
+
+        # Lock was successfully attained
+        assert self.viewer.extract()
+
+        lock = flufl.lock.Lock(os.path.join(
+            settings.TMP_PATH, 'file-viewer-%s.lock' % self.viewer.file.pk
+        ))
+
+        assert not lock.is_locked
+
+        lock.lock()
+
+        assert lock.is_locked
+
+        # Not extracting, the viewer is locked, lock could not be attained
+        assert not self.viewer.extract()
+
+    def test_extract_file_locked_message(self):
+        self.viewer.src = get_file('dictionary-test.xpi')
+        assert not self.viewer.is_extracted()
+
+        lock = flufl.lock.Lock(os.path.join(
+            settings.TMP_PATH, 'file-viewer-%s.lock' % self.viewer.file.pk
+        ))
+
+        assert not lock.is_locked
+
+        lock.lock()
+
+        assert lock.is_locked
+
+        msg = extract_file(self.viewer)
+        assert str(msg.get()).startswith(u'File viewer is locked')
+        msg.delete()
+
     def test_cleanup(self):
         self.viewer.extract()
         self.viewer.cleanup()
         assert not self.viewer.is_extracted()
+
+    @freeze_time('2017-01-08 02:01:00')
+    def test_dest(self):
+        viewer = FileViewer(make_file(1, get_file('webextension.xpi')))
+        assert viewer.dest == os.path.join(
+            settings.TMP_PATH, 'file_viewer',
+            '0108', str(self.viewer.file.pk))
 
     def test_isbinary(self):
         binary = self.viewer._is_binary
@@ -177,7 +224,8 @@ class TestFileHelper(TestCase):
                                  ('foo.json', 'js'),
                                  ('foo.jsm', 'js'),
                                  ('foo.htm', 'html'),
-                                 ('foo.bar', 'plain')]:
+                                 ('foo.bar', 'plain'),
+                                 ('foo.diff', 'plain')]:
             assert self.viewer.get_syntax(filename) == syntax
 
     def test_file_order(self):
@@ -247,11 +295,36 @@ class TestFileHelper(TestCase):
         assert res == ''
         assert self.viewer.selected['msg'].startswith('That file no')
 
-    @patch('olympia.files.helpers.get_md5')
-    def test_delete_mid_tree(self, get_md5):
-        get_md5.side_effect = IOError('ow')
+    @patch('olympia.files.helpers.get_sha256')
+    def test_delete_mid_tree(self, get_sha256):
+        get_sha256.side_effect = IOError('ow')
         self.viewer.extract()
         assert {} == self.viewer.get_files()
+
+    @patch('olympia.files.helpers.os.fsync')
+    def test_verify_files_doesnt_call_fsync_regularly(self, fsync):
+        self.viewer.extract()
+
+        assert not fsync.called
+
+    @patch('olympia.files.helpers.os.fsync')
+    def test_verify_files_calls_fsync_on_differences(self, fsync):
+        self.viewer.extract()
+
+        assert not fsync.called
+
+        files_to_verify = get_all_files(self.viewer.dest)
+        files_to_verify.pop()
+
+        with patch('olympia.files.helpers.get_all_files') as get_all_files_mck:
+            get_all_files_mck.return_value = files_to_verify
+
+            with pytest.raises(ValueError):
+                # We don't put things back into place after fsync
+                # so a `ValueError` is raised
+                self.viewer._verify_files(files_to_verify)
+
+        assert len(fsync.call_args_list) == len(files_to_verify) + 1
 
 
 class TestSearchEngineHelper(TestCase):

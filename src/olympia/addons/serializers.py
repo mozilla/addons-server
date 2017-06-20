@@ -4,7 +4,7 @@ from olympia import amo
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview)
 from olympia.amo.helpers import absolutify
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
 from olympia.applications.models import AppVersion
@@ -30,10 +30,14 @@ class FileSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
     platform = ReverseChoiceField(choices=amo.PLATFORM_CHOICES_API.items())
     status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
+    permissions = serializers.ListField(
+        source='webext_permissions_list',
+        child=serializers.CharField())
 
     class Meta:
         model = File
-        fields = ('id', 'created', 'hash', 'platform', 'size', 'status', 'url')
+        fields = ('id', 'created', 'hash', 'is_webextension', 'platform',
+                  'size', 'status', 'url', 'permissions')
 
     def get_url(self, obj):
         # File.get_url_path() is a little different, it's already absolute, but
@@ -84,19 +88,26 @@ class LicenseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = License
-        fields = ('name', 'text', 'url')
+        fields = ('id', 'name', 'text', 'url')
+
+
+class CompactLicenseSerializer(LicenseSerializer):
+    class Meta:
+        model = License
+        fields = ('id', 'name', 'url')
 
 
 class SimpleVersionSerializer(serializers.ModelSerializer):
     compatibility = serializers.SerializerMethodField()
     edit_url = serializers.SerializerMethodField()
     files = FileSerializer(source='all_files', many=True)
+    license = CompactLicenseSerializer()
     url = serializers.SerializerMethodField()
 
     class Meta:
         model = Version
-        fields = ('id', 'compatibility', 'edit_url', 'files', 'reviewed',
-                  'url', 'version')
+        fields = ('id', 'license', 'compatibility', 'edit_url', 'files',
+                  'reviewed', 'url', 'version')
 
     def get_url(self, obj):
         return absolutify(obj.get_url_path())
@@ -112,13 +123,14 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
 
 
 class VersionSerializer(SimpleVersionSerializer):
+    channel = ReverseChoiceField(choices=amo.CHANNEL_CHOICES_API.items())
     license = LicenseSerializer()
     release_notes = TranslationSerializerField(source='releasenotes')
 
     class Meta:
         model = Version
-        fields = ('id', 'compatibility', 'edit_url', 'files', 'license',
-                  'release_notes', 'reviewed', 'url', 'version')
+        fields = ('id', 'channel', 'compatibility', 'edit_url', 'files',
+                  'license', 'release_notes', 'reviewed', 'url', 'version')
 
 
 class AddonEulaPolicySerializer(serializers.ModelSerializer):
@@ -177,7 +189,6 @@ class AddonSerializer(serializers.ModelSerializer):
             'icon_url',
             'is_disabled',
             'is_experimental',
-            'is_listed',
             'is_source_public',
             'last_updated',
             'name',
@@ -199,8 +210,21 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def to_representation(self, obj):
         data = super(AddonSerializer, self).to_representation(obj)
-        if data['theme_data'] is None:
+        if 'theme_data' in data and data['theme_data'] is None:
             data.pop('theme_data')
+        if 'homepage' in data:
+            data['homepage'] = self.outgoingify(data['homepage'])
+        if 'support_url' in data:
+            data['support_url'] = self.outgoingify(data['support_url'])
+        return data
+
+    def outgoingify(self, data):
+        if isinstance(data, basestring):
+            return get_outgoing_url(data)
+        elif isinstance(data, dict):
+            return {key: get_outgoing_url(value) if value else None
+                    for key, value in data.items()}
+        # Probably None... don't bother.
         return data
 
     def get_categories(self, obj):
@@ -241,6 +265,7 @@ class AddonSerializer(serializers.ModelSerializer):
     def get_ratings(self, obj):
         return {
             'average': obj.average_rating,
+            'bayesian_average': obj.bayesian_rating,
             'count': obj.total_reviews,
         }
 
@@ -288,19 +313,25 @@ class ESBaseAddonSerializer(BaseESSerializer):
     translated_fields = ('name', 'description', 'homepage', 'summary',
                          'support_email', 'support_url')
 
-    def fake_version_object(self, obj, data):
+    def fake_file_object(self, obj, data):
+        file_ = File(
+            id=data['id'], created=self.handle_date(data['created']),
+            hash=data['hash'], filename=data['filename'],
+            is_webextension=data.get('is_webextension'),
+            platform=data['platform'], size=data['size'],
+            status=data['status'], version=obj)
+        file_.webext_permissions_list = data.get('webext_permissions_list', [])
+        return file_
+
+    def fake_version_object(self, obj, data, channel):
         if data:
             version = Version(
                 addon=obj, id=data['id'],
                 reviewed=self.handle_date(data['reviewed']),
-                version=data['version'])
+                version=data['version'], channel=channel)
             version.all_files = [
-                File(
-                    id=file_['id'], created=self.handle_date(file_['created']),
-                    hash=file_['hash'], filename=file_['filename'],
-                    platform=file_['platform'], size=file_['size'],
-                    status=file_['status'], version=version)
-                for file_ in data.get('files', [])
+                self.fake_file_object(version, file_data)
+                for file_data in data.get('files', [])
             ]
 
             # In ES we store integers for the appversion info, we need to
@@ -334,7 +365,6 @@ class ESBaseAddonSerializer(BaseESSerializer):
                 'hotness',
                 'icon_type',
                 'is_experimental',
-                'is_listed',
                 'last_updated',
                 'modified',
                 'public_stats',
@@ -361,11 +391,12 @@ class ESBaseAddonSerializer(BaseESSerializer):
         # `latest_unlisted_version` are writeable cached_property so we can
         # directly write to them.
         obj.current_beta_version = self.fake_version_object(
-            obj, data.get('current_beta_version'))
+            obj, data.get('current_beta_version'), amo.RELEASE_CHANNEL_LISTED)
         obj._current_version = self.fake_version_object(
-            obj, data.get('current_version'))
+            obj, data.get('current_version'), amo.RELEASE_CHANNEL_LISTED)
         obj.latest_unlisted_version = self.fake_version_object(
-            obj, data.get('latest_unlisted_version'))
+            obj, data.get('latest_unlisted_version'),
+            amo.RELEASE_CHANNEL_UNLISTED)
 
         data_authors = data.get('listed_authors', [])
         obj.listed_authors = [
@@ -392,7 +423,9 @@ class ESBaseAddonSerializer(BaseESSerializer):
                     display_username=persona_data['author'],
                     header=persona_data['header'],
                     footer=persona_data['footer'],
-                    persona_id=1 if persona_data['is_new'] else None,
+                    # "New" Persona do not have a persona_id, it's a relic from
+                    # old ones.
+                    persona_id=0 if persona_data['is_new'] else 42,
                     textcolor=persona_data['textcolor']
                 )
             else:

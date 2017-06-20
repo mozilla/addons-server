@@ -3,24 +3,25 @@
 import os
 import sys
 import shlex
+from pkg_resources import safe_name
 
 import pip
 from pip.req.req_file import parse_requirements, build_parser, break_args_options
-from hashin import run as run_hashin
+from hashin import run_single_package
 
 
 def rdeps(pkg_name):
-    return sorted([pkg.project_name
+    return sorted([safe_name(pkg.project_name)
             for pkg in pip.get_installed_distributions()
-            if pkg_name in [requirement.project_name
-                            for requirement in pkg.requires()]])
+            if safe_name(pkg_name) in [
+                safe_name(requirement.project_name)
+                for requirement in pkg.requires()]])
 
 
 def main(requirements_path):
     this_requirements_file = os.path.basename(requirements_path)
     parsed = parse_requirements(
         requirements_path, session=pip.download.PipSession())
-
     requirements = [
         req for req in parsed
             # Skip packages from other requirements files
@@ -45,7 +46,7 @@ def main(requirements_path):
     # Build reverse requirements to be able to add a note on who is depending
     # on what
     for req in requirements:
-        reverse_requirements[req.name] = rdeps(req.name)
+        reverse_requirements[safe_name(req.name)] = rdeps(req.name)
 
     output = []
 
@@ -53,14 +54,14 @@ def main(requirements_path):
     output.append('')
 
     # Let's output the updated, fixed and more correct requirements version
-    for req in sorted(requirements, key=lambda x: x.name):
-        if reverse_requirements.get(req.name):
+    for req in sorted(requirements, key=lambda x: safe_name(x.name)):
+        if reverse_requirements.get(safe_name(req.name)):
             msg = '# %s is required by %s' % (
-                req.name,
-                ', '.join(reverse_requirements[req.name]))
+                safe_name(req.name),
+                ', '.join(reverse_requirements[safe_name(req.name)]))
             output.append(msg)
 
-        output.append('%s%s' % (req.name, req.specifier))
+        output.append('%s%s' % (safe_name(req.name), str(req.specifier)))
 
     with open(requirements_path, 'wb') as fobj:
         fobj.write('\n'.join(output))
@@ -69,8 +70,8 @@ def main(requirements_path):
         fobj.write('\n')
 
     for req in requirements:
-        run_hashin(
-            '%s%s' % (req.name, req.specifier),
+        run_single_package(
+            '%s%s' % (safe_name(req.name), str(req.specifier)),
             requirements_path,
             'sha256',
             # Workaround a bug or feature in hashin which would avoid

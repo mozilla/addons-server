@@ -10,13 +10,12 @@ from django.utils.http import http_date
 from django.test.utils import override_settings
 
 import pytest
-from cache_nuggets.lib import Message
 from mock import patch
 from pyquery import PyQuery as pq
-from waffle.models import Switch
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.cache_nuggets import Message
+from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import Addon
 from olympia.files.helpers import DiffHelper, FileViewer
@@ -30,6 +29,9 @@ binary = 'dictionaries/ar.dic'
 
 
 class FilesBase(object):
+
+    def login_as_admin(self):
+        assert self.client.login(email='admin@mozilla.com')
 
     def login_as_editor(self):
         assert self.client.login(email='editor@mozilla.com')
@@ -67,10 +69,6 @@ class FilesBase(object):
             shutil.copyfile(src, file_obj.file_path)
 
         self.file_viewer = FileViewer(self.file)
-        # Setting this to True, so we are delaying the extraction of files,
-        # in the tests, the files won't be extracted.
-        # Most of these tests extract as needed to.
-        Switch.objects.get_or_create(name='delay-file-viewer', active=True)
 
     def tearDown(self):
         self.file_viewer.cleanup()
@@ -87,16 +85,18 @@ class FilesBase(object):
         self.check_urls(403)
 
     def test_view_access_anon_view_source(self):
+        # This is disallowed for now, see Bug 1353788 for more details.
         self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.client.logout()
-        self.check_urls(200)
+        self.check_urls(403)
 
     def test_view_access_editor(self):
         self.file_viewer.extract()
         self.check_urls(200)
 
     def test_view_access_editor_view_source(self):
+        # This is disallowed for now, see Bug 1353788 for more details.
         self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.check_urls(200)
@@ -108,6 +108,7 @@ class FilesBase(object):
         self.check_urls(200)
 
     def test_view_access_reviewed(self):
+        # This is disallowed for now, see Bug 1353788 for more details.
         self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.client.logout()
@@ -118,7 +119,7 @@ class FilesBase(object):
 
         for status in amo.REVIEWED_STATUSES:
             self.addon.update(status=status)
-            self.check_urls(200)
+            self.check_urls(403)
 
     def test_view_access_developer_view_source(self):
         self.client.logout()
@@ -134,11 +135,12 @@ class FilesBase(object):
         self.check_urls(403)
 
     def test_view_access_another_developer_view_source(self):
+        # This is disallowed for now, see Bug 1353788 for more details.
         self.client.logout()
         assert self.client.login(email=self.regular.email)
         self.addon.update(view_source=True)
         self.file_viewer.extract()
-        self.check_urls(200)
+        self.check_urls(403)
 
     def test_poll_extracted(self):
         self.file_viewer.extract()
@@ -166,7 +168,7 @@ class FilesBase(object):
         self.file_viewer.extract()
         self.file_viewer.select('install.js')
         obj = getattr(self.file_viewer, 'left', self.file_viewer)
-        etag = obj.selected.get('md5')
+        etag = obj.selected.get('sha256')
         res = self.client.get(self.file_url('install.js'),
                               HTTP_IF_NONE_MATCH=etag)
         assert res.status_code == 304
@@ -186,34 +188,11 @@ class FilesBase(object):
         url = res.context['file_link']['url']
         assert url == reverse('editors.review', args=[self.addon.slug])
 
-    def test_file_header_anon(self):
-        self.client.logout()
-        self.file_viewer.extract()
-        self.addon.update(view_source=True)
-        res = self.client.get(self.file_url(not_binary))
-        url = res.context['file_link']['url']
-        assert url == reverse('addons.detail', args=[self.addon.pk])
-
     def test_content_no_file(self):
         self.file_viewer.extract()
         res = self.client.get(self.file_url())
         doc = pq(res.content)
         assert len(doc('#content')) == 0
-
-    def test_no_files(self):
-        res = self.client.get(self.file_url())
-        assert res.status_code == 200
-        assert 'files' not in res.context
-
-    @patch('waffle.switch_is_active')
-    def test_no_files_switch(self, switch_is_active):
-        switch_is_active.return_value = False
-        # By setting the switch to False, we are not delaying the file
-        # extraction. The files will be extracted and there will be
-        # files in context.
-        res = self.client.get(self.file_url())
-        assert res.status_code == 200
-        assert 'files' in res.context
 
     def test_files(self):
         self.file_viewer.extract()
@@ -239,13 +218,12 @@ class FilesBase(object):
         assert doc('#commands td')[-1].text_content() == 'Back to review'
 
     def test_files_back_link_anon(self):
+        # This is disallowed for now, see Bug 1353788 for more details.
         self.file_viewer.extract()
         self.client.logout()
         self.addon.update(view_source=True)
         res = self.client.get(self.file_url(not_binary))
-        assert res.status_code == 200
-        doc = pq(res.content)
-        assert doc('#commands td')[-1].text_content() == 'Back to add-on'
+        assert res.status_code == 403
 
     def test_diff_redirect(self):
         ids = self.files[0].id, self.files[1].id
@@ -306,6 +284,82 @@ class FilesBase(object):
         disabled_file = doc('#id_left > optgroup > option.status-disabled')
         assert disabled_file.attr('value') == str(self.files[2].id)
 
+    def test_files_for_unlisted_addon_returns_404(self):
+        """Files browsing isn't allowed for unlisted addons."""
+        self.make_addon_unlisted(self.addon)
+        assert self.client.get(self.file_url()).status_code == 404
+
+    def test_files_for_unlisted_addon_with_admin(self):
+        """Files browsing is allowed for unlisted addons if you're admin."""
+        self.login_as_admin()
+        self.make_addon_unlisted(self.addon)
+        assert self.client.get(self.file_url()).status_code == 200
+
+    def test_all_versions_shown_for_admin(self):
+        self.login_as_admin()
+        listed_ver = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            version='4.0', created=self.days_ago(1))
+        unlisted_ver = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='5.0')
+        assert self.addon.versions.count() == 3
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        left_select = doc('#id_left')
+        assert left_select('optgroup').attr('label') == self.version.version
+        file_options = left_select('option.status-public')
+        assert len(file_options) == 3, left_select.html()
+        # Check the files in the list are the two we added and the default.
+        assert file_options.eq(0).attr('value') == str(
+            unlisted_ver.all_files[0].pk)
+        assert file_options.eq(1).attr('value') == str(
+            listed_ver.all_files[0].pk)
+        assert file_options.eq(2).attr('value') == str(self.file.pk)
+        # Check there are prefixes on the labels for the channels
+        assert file_options.eq(0).text().endswith('[Self]')
+        assert file_options.eq(1).text().endswith('[AMO]')
+        assert file_options.eq(2).text().endswith('[AMO]')
+
+    def test_channel_prefix_not_shown_when_no_mixed_channels(self):
+        self.login_as_admin()
+        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        assert self.addon.versions.count() == 2
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        left_select = doc('#id_left')
+        assert left_select('optgroup').attr('label') == self.version.version
+        # Check there are NO prefixes on the labels for the channels
+        file_options = left_select('option.status-public')
+        assert not file_options.eq(0).text().endswith('[Self]')
+        assert not file_options.eq(1).text().endswith('[AMO]')
+        assert not file_options.eq(2).text().endswith('[AMO]')
+
+    def test_only_listed_versions_shown_for_editor(self):
+        listed_ver = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED,
+            version='4.0')
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='5.0')
+        assert self.addon.versions.count() == 3
+        res = self.client.get(self.file_url())
+        doc = pq(res.content)
+
+        left_select = doc('#id_left')
+        assert left_select('optgroup').attr('label') == self.version.version
+        # Check the files in the list are just the listed, and the default.
+        file_options = left_select('option.status-public')
+        assert len(file_options) == 2, left_select.html()
+        assert file_options.eq(0).attr('value') == str(
+            listed_ver.all_files[0].pk)
+        assert file_options.eq(1).attr('value') == str(self.file.pk)
+        # Check there are NO prefixes on the labels for the channels
+        assert not file_options.eq(0).text().endswith('[AMO]')
+        assert not file_options.eq(1).text().endswith('[AMO]')
+
 
 class TestFileViewer(FilesBase, TestCase):
     fixtures = ['base/addon_3615', 'base/users']
@@ -361,11 +415,12 @@ class TestFileViewer(FilesBase, TestCase):
             assert doc('#content').attr('data-content').startswith('<script')
 
     def test_binary(self):
-        self.file_viewer.extract()
+        viewer = self.file_viewer
+        viewer.extract()
         self.add_file('file.php', '<script>alert("foo")</script>')
         res = self.client.get(self.file_url('file.php'))
         assert res.status_code == 200
-        assert self.file_viewer.get_files()['file.php']['md5'] in res.content
+        assert viewer.get_files()['file.php']['sha256'] in res.content
 
     def test_tree_no_file(self):
         self.file_viewer.extract()
@@ -467,10 +522,10 @@ class TestFileViewer(FilesBase, TestCase):
             assert doc('#id_left option[value="%d"]' % f.id).text() == (
                 PLATFORM_NAME)
 
-    def test_files_for_unlisted_addon_returns_404(self):
-        """Files browsing isn't allowed for unlisted addons."""
-        self.addon.update(is_listed=False)
-        assert self.client.get(self.file_url()).status_code == 404
+    def test_content_file_size_uses_binary_prefix(self):
+        self.file_viewer.extract()
+        response = self.client.get(self.file_url('dictionaries/license.txt'))
+        assert '17.6 KiB' in response.content
 
 
 class TestDiffViewer(FilesBase, TestCase):

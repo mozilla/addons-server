@@ -13,7 +13,7 @@
         <a href="{{ url('devhub.addons') }}" class="controller">
             {{ _('My Add-ons') }}</a>
         <ul>
-          {% set my_addons = request.user.my_addons(with_unlisted=True) %}
+          {% set my_addons = request.user.my_addons() %}
           {% for addon in my_addons %}
             {% if loop.index == 8 %}
               <li><a href="{{ url('devhub.addons') }}">
@@ -53,7 +53,7 @@
     <li>
       <a href="#" class="controller">{{ _('Community & Support')|forceescape }}</a>
       <ul>
-        <li><a href="http://blog.mozilla.com/addons/">
+        <li><a href="https://blog.mozilla.com/addons/">
           {{ _('Add-ons Blog') }}</a></li>
         <li><a href="https://discourse.mozilla-community.org/c/add-ons">
           {{ _('Add-ons Forum') }}</a></li>

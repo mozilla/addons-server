@@ -4,17 +4,16 @@ import re
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
+from django.utils.translation import ugettext, ugettext_lazy as _
 
-import commonware.log
-
+import olympia.core.logger
 from olympia import amo
 from olympia.accounts.views import fxa_error_message
+from olympia.activity.models import ActivityLog
 from olympia.amo.fields import HttpHttpsOnlyURLField
-from olympia.users import notifications
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.lib import happyforms
-from olympia.translations import LOCALES
+from olympia.users import notifications
 
 from . import tasks
 from .models import (
@@ -24,7 +23,7 @@ from .widgets import (
     RequiredTextarea)
 
 
-log = commonware.log.getLogger('z.users')
+log = olympia.core.logger.getLogger('z.users')
 admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
 
 
@@ -42,8 +41,8 @@ class UserDeleteForm(forms.Form):
     def clean_email(self):
         user_email = self.request.user.email
         if not user_email == self.cleaned_data['email']:
-            raise forms.ValidationError(_('Email must be {email}.').format(
-                email=user_email))
+            raise forms.ValidationError(
+                ugettext('Email must be {email}.').format(email=user_email))
 
     def clean(self):
         amouser = self.request.user
@@ -57,29 +56,27 @@ class UserDeleteForm(forms.Form):
 
 class UserEditForm(happyforms.ModelForm):
     username = forms.CharField(max_length=50, required=False)
-    display_name = forms.CharField(label=_lazy(u'Display Name'), max_length=50,
+    display_name = forms.CharField(label=_(u'Display Name'), max_length=50,
                                    required=False)
-    location = forms.CharField(label=_lazy(u'Location'), max_length=100,
+    location = forms.CharField(label=_(u'Location'), max_length=100,
                                required=False)
-    occupation = forms.CharField(label=_lazy(u'Occupation'), max_length=100,
+    occupation = forms.CharField(label=_(u'Occupation'), max_length=100,
                                  required=False)
-    homepage = HttpHttpsOnlyURLField(label=_lazy(u'Homepage'), required=False)
+    homepage = HttpHttpsOnlyURLField(label=_(u'Homepage'), required=False)
     email = forms.EmailField(
         required=False,
         help_text=fxa_error_message(
-            _(u'Firefox Accounts users cannot currently change their email '
-              u'address.')),
+            _(u'Firefox Accounts users cannot currently change their '
+              u'email address.')),
         widget=forms.EmailInput(attrs={'readonly': 'readonly'}))
-    photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
+    photo = forms.FileField(label=_(u'Profile Photo'), required=False)
+    biography = forms.CharField(widget=forms.Textarea, required=False)
 
     notifications = forms.MultipleChoiceField(
         choices=[],
         widget=NotificationsSelectMultiple,
         initial=notifications.NOTIFICATIONS_DEFAULT,
         required=False)
-
-    lang = forms.TypedChoiceField(label=_lazy(u'Default locale'),
-                                  choices=LOCALES)
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -91,13 +88,11 @@ class UserEditForm(happyforms.ModelForm):
 
         super(UserEditForm, self).__init__(*args, **kwargs)
 
-        errors = {'invalid': _('This URL has an invalid format. '
-                               'Valid URLs look like '
-                               'http://example.com/my_page.')}
+        errors = {
+            'invalid': ugettext(
+                'This URL has an invalid format. Valid URLs look like '
+                'http://example.com/my_page.')}
         self.fields['homepage'].error_messages = errors
-
-        if not self.instance.lang and self.request:
-            self.initial['lang'] = self.request.LANG
 
         if self.instance:
             default = dict((i, n.default_checked) for i, n
@@ -127,7 +122,7 @@ class UserEditForm(happyforms.ModelForm):
         model = UserProfile
         fields = (
             'username', 'email', 'display_name', 'location', 'occupation',
-            'homepage', 'photo', 'lang', 'bio', 'display_collections',
+            'homepage', 'photo', 'biography', 'display_collections',
             'display_collections_fav', 'notifications',
         )
 
@@ -144,27 +139,31 @@ class UserEditForm(happyforms.ModelForm):
         # confused for user IDs in URLs. (See bug 862121.)
         if name.isdigit():
             raise forms.ValidationError(
-                _('Usernames cannot contain only digits.'))
+                ugettext('Usernames cannot contain only digits.'))
 
         slug_validator(
             name, lower=False,
-            message=_('Enter a valid username consisting of letters, numbers, '
-                      'underscores or hyphens.'))
+            message=ugettext(
+                'Enter a valid username consisting of letters, numbers, '
+                'underscores or hyphens.'))
         if DeniedName.blocked(name):
-            raise forms.ValidationError(_('This username cannot be used.'))
+            raise forms.ValidationError(
+                ugettext('This username cannot be used.'))
 
         # FIXME: Bug 858452. Remove this check when collation of the username
         # column is changed to case insensitive.
         if (UserProfile.objects.exclude(id=self.instance.id)
                        .filter(username__iexact=name).exists()):
-            raise forms.ValidationError(_('This username is already in use.'))
+            raise forms.ValidationError(
+                ugettext('This username is already in use.'))
 
         return name
 
     def clean_display_name(self):
         name = self.cleaned_data['display_name']
         if DeniedName.blocked(name):
-            raise forms.ValidationError(_('This display name cannot be used.'))
+            raise forms.ValidationError(
+                ugettext('This display name cannot be used.'))
         return name
 
     def clean_email(self):
@@ -179,22 +178,22 @@ class UserEditForm(happyforms.ModelForm):
 
         if photo.content_type not in ('image/png', 'image/jpeg'):
             raise forms.ValidationError(
-                _('Images must be either PNG or JPG.'))
+                ugettext('Images must be either PNG or JPG.'))
 
         if photo.size > settings.MAX_PHOTO_UPLOAD_SIZE:
-            raise forms.ValidationError(
-                _('Please use images smaller than %dMB.' %
-                  (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024 - 1)))
+            msg = ugettext('Please use images smaller than %dMB.')
+            size_in_mb = settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024 - 1
+            raise forms.ValidationError(msg % size_in_mb)
 
         return photo
 
-    def clean_bio(self):
-        bio = self.cleaned_data['bio']
-        normalized = clean_nl(unicode(bio))
+    def clean_biography(self):
+        biography = self.cleaned_data['biography']
+        normalized = clean_nl(unicode(biography))
         if has_links(normalized):
             # There's some links, we don't want them.
-            raise forms.ValidationError(_('No links are allowed.'))
-        return bio
+            raise forms.ValidationError(ugettext('No links are allowed.'))
+        return biography
 
     def save(self, log_for_developer=True):
         u = super(UserEditForm, self).save(commit=False)
@@ -211,10 +210,16 @@ class UserEditForm(happyforms.ModelForm):
             tasks.resize_photo.delay(tmp_destination, u.picture_path,
                                      set_modified_on=[u])
 
-        for (i, n) in notifications.NOTIFICATIONS_BY_ID.items():
-            enabled = n.mandatory or (str(i) in data['notifications'])
-            UserNotification.update_or_create(
-                user=u, notification_id=i, update={'enabled': enabled})
+        visible_notifications = (
+            notifications.NOTIFICATIONS_BY_ID if self.instance.is_developer
+            else notifications.NOTIFICATIONS_BY_ID_NOT_DEV)
+
+        for (notification_id, notification) in visible_notifications.items():
+            enabled = (notification.mandatory or
+                       (str(notification_id) in data['notifications']))
+            UserNotification.objects.update_or_create(
+                user=self.instance, notification_id=notification_id,
+                defaults={'enabled': enabled})
 
         log.debug(u'User (%s) updated their profile' % u)
 
@@ -245,9 +250,9 @@ class AdminUserEditForm(UserEditForm):
     def clean_anonymize(self):
         if (self.cleaned_data['anonymize'] and
                 self.changed_fields() != set(['anonymize'])):
-            raise forms.ValidationError(_('To anonymize, enter a reason for'
-                                          ' the change but do not change any'
-                                          ' other field.'))
+            raise forms.ValidationError(ugettext(
+                'To anonymize, enter a reason for the change but do not '
+                'change any other field.'))
         return self.cleaned_data['anonymize']
 
     def clean_email(self):
@@ -256,12 +261,13 @@ class AdminUserEditForm(UserEditForm):
     def save(self, *args, **kw):
         profile = super(AdminUserEditForm, self).save(log_for_developer=False)
         if self.cleaned_data['anonymize']:
-            amo.log(amo.LOG.ADMIN_USER_ANONYMIZED, self.instance,
-                    self.cleaned_data['admin_log'])
-            profile.anonymize()  # This also logs
+            ActivityLog.create(amo.LOG.ADMIN_USER_ANONYMIZED, self.instance,
+                               self.cleaned_data['admin_log'])
+            profile.delete()  # This also logs
         else:
-            amo.log(amo.LOG.ADMIN_USER_EDITED, self.instance,
-                    self.cleaned_data['admin_log'], details=self.changes())
+            ActivityLog.create(amo.LOG.ADMIN_USER_EDITED, self.instance,
+                               self.cleaned_data['admin_log'],
+                               details=self.changes())
             log.info('Admin edit user: %s changed fields: %s' %
                      (self.instance, self.changed_fields()))
         return profile
@@ -276,7 +282,7 @@ class DeniedNameAddForm(forms.Form):
         names = self.cleaned_data['names'].strip()
         if not names:
             raise forms.ValidationError(
-                _('Please enter at least one name to be denied.'))
+                ugettext('Please enter at least one name to be denied.'))
         names = os.linesep.join(
             [s.strip() for s in names.splitlines() if s.strip()])
         return names

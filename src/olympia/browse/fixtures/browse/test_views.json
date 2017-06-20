@@ -45,7 +45,6 @@
             "status": 4,
             "default_locale": "el-XX",
             "target_locale": "el-XX",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "created": "2006-09-24 09:02:12",
@@ -54,7 +53,6 @@
             "annoying": 0,
             "modified": "2009-03-17 00:01:54",
             "suggested_amount": "0",
-            "site_specific": 0,
             "total_reviews": 3
         }
     },
@@ -82,7 +80,6 @@
             "status": 4,
             "default_locale": "en-US",
             "target_locale": "en-US",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "created": "2006-10-05 12:01:22",
@@ -91,7 +88,6 @@
             "annoying": 0,
             "modified": "2009-10-05 00:05:30",
             "suggested_amount": "0",
-            "site_specific": 0,
             "total_reviews": 62
         }
     },
@@ -117,7 +113,6 @@
             "status": 4,
             "default_locale": "es",
             "target_locale": "ca-valencia",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "created": "2007-04-12 13:29:54",
@@ -126,7 +121,6 @@
             "annoying": 0,
             "modified": "2009-07-28 16:48:16",
             "suggested_amount": "0",
-            "site_specific": 0,
             "total_reviews": 14
         }
     },
@@ -154,7 +148,6 @@
             "status": 4,
             "default_locale": "en-US",
             "target_locale": "en-US",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "created": "2008-02-16 09:36:21",
@@ -163,7 +156,6 @@
             "annoying": 0,
             "modified": "2009-10-05 12:58:02",
             "suggested_amount": "0",
-            "site_specific": 0,
             "total_reviews": 4
         }
     },
@@ -191,7 +183,6 @@
             "status": 4,
             "default_locale": "ca",
             "target_locale": "ca-valencia",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "created": "2008-10-09 02:02:50",
@@ -200,7 +191,6 @@
             "annoying": 0,
             "modified": "2009-07-08 15:54:34",
             "suggested_amount": "0",
-            "site_specific": 0,
             "total_reviews": 19
         }
     },
@@ -228,7 +218,6 @@
             "status": 4,
             "default_locale": "es",
             "target_locale": "ca-valencia",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "created": "2006-11-06 12:21:10",
@@ -237,7 +226,6 @@
             "annoying": 0,
             "modified": "2009-07-28 16:50:43",
             "suggested_amount": "0",
-            "site_specific": 0,
             "total_reviews": 27
         }
     },
@@ -265,7 +253,6 @@
             "status": 4,
             "default_locale": "es",
             "target_locale": "ca-valencia",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "created": "2007-02-01 12:00:59",
@@ -274,7 +261,6 @@
             "annoying": 0,
             "modified": "2009-12-25 14:14:12",
             "suggested_amount": "0",
-            "site_specific": 0,
             "total_reviews": 11
         }
     },
@@ -302,7 +288,6 @@
             "status": 4,
             "default_locale": "ca",
             "target_locale": "ca-valencia",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "created": "2008-11-21 08:51:28",
@@ -311,7 +296,6 @@
             "annoying": 0,
             "modified": "2010-01-14 16:20:07",
             "suggested_amount": "0",
-            "site_specific": 0,
             "total_reviews": 9
         }
     },
@@ -339,7 +323,6 @@
             "status": 4,
             "default_locale": "ca",
             "target_locale": "ca-valencia",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "created": "2008-11-24 01:02:34",
@@ -348,7 +331,6 @@
             "annoying": 0,
             "modified": "2009-12-19 05:49:48",
             "suggested_amount": "0",
-            "site_specific": 0,
             "total_reviews": 5
         }
     },
@@ -377,7 +359,6 @@
             "status": 4,
             "default_locale": "en-US",
             "target_locale": "wa",
-            "prerelease": 0,
             "admin_review": 0,
             "external_software": 0,
             "created": "2009-11-16 13:36:27",
@@ -386,7 +367,6 @@
             "annoying": 0,
             "modified": "2010-01-15 09:19:03",
             "suggested_amount": "0",
-            "site_specific": 0,
             "total_reviews": 0
         }
     },

@@ -11,6 +11,7 @@ class TranslatedModel(ModelBase):
     default_locale = models.CharField(max_length=10)
     no_locale = TranslatedField(require_locale=False)
 
+
 models.signals.pre_save.connect(save_signal, sender=TranslatedModel,
                                 dispatch_uid='testapp_translatedmodel')
 

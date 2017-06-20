@@ -5,10 +5,8 @@ import StringIO
 
 from django.test.utils import override_settings
 
-from waffle.testutils import override_switch
-
 from olympia import amo
-from olympia.activity.models import ActivityLogToken
+from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.activity.tests.test_utils import sample_message_content
 from olympia.activity.views import inbound_email, EmailCreationPermission
@@ -18,7 +16,6 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import AddonUser
 from olympia.addons.utils import generate_addon_guid
-from olympia.devhub.models import ActivityLog
 from olympia.users.models import UserProfile
 
 
@@ -38,6 +35,11 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
 
     def _login_reviewer(self, permission='Addons:Review'):
         user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, permission)
+        self.client.login_api(user)
+
+    def _login_unlisted_reviewer(self, permission='Addons:ReviewUnlisted'):
+        user = UserProfile.objects.create(username='reviewer-unlisted')
         self.grant_permission(user, permission)
         self.client.login_api(user)
 
@@ -71,19 +73,19 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         assert response.status_code == 200
 
     def test_get_not_listed_simple_reviewer(self):
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self._login_reviewer()
         response = self.client.get(self.url)
         assert response.status_code == 403
 
     def test_get_not_listed_specific_reviewer(self):
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self._login_reviewer(permission='Addons:ReviewUnlisted')
         response = self.client.get(self.url)
         assert response.status_code == 200
 
     def test_get_not_listed_author(self):
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self._login_developer()
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -118,8 +120,16 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
 
     def test_deleted_version_reviewer(self):
         self.version.delete()
-        self._login_reviewer()
+        self._login_unlisted_reviewer()
         self._test_url()
+
+    def test_deleted_version_regular_reviewer(self):
+        self.version.delete()
+
+        # No version left, only unlisted reviewers can access.
+        self._login_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
     def test_deleted_version_developer(self):
         self.version.delete()
@@ -220,7 +230,6 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
         self._test_url()
 
 
-@override_switch('activity-email', active=True)
 class TestReviewNotesViewSetCreate(TestCase):
     client_class = APITestClient
 
@@ -274,7 +283,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert not rdata['highlight']  # developer replies aren't highlighted.
 
     def test_developer_reply_unlisted(self):
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self.test_developer_reply()
 
     def _test_reviewer_reply(self, perm):
@@ -302,7 +311,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         self._test_reviewer_reply('Addons:Review')
 
     def test_reviewer_reply_unlisted(self):
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self._test_reviewer_reply('Addons:ReviewUnlisted')
 
     def test_reply_to_deleted_addon_is_404(self):
@@ -366,34 +375,9 @@ class TestReviewNotesViewSetCreate(TestCase):
         self._test_reviewer_reply('Addons:Review')
 
     def test_reviewer_can_reply_to_disabled_version_unlisted(self):
-        self.addon.update(is_listed=False)
+        self.make_addon_unlisted(self.addon)
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_reviewer_reply('Addons:ReviewUnlisted')
-
-
-class TestReviewNotesViewSetCreateActivityEmailWaffleOff(TestCase):
-    client_class = APITestClient
-
-    def setUp(self):
-        super(TestReviewNotesViewSetCreateActivityEmailWaffleOff, self).setUp()
-        self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED)
-        self.url = reverse('version-reviewnotes-list', kwargs={
-            'addon_pk': self.addon.pk,
-            'version_pk': self.version.pk})
-
-    def _post_reply(self):
-        return self.client.post(self.url, {'comments': u'comménty McCómm€nt'})
-
-    def test_developer_reply(self):
-        self.user = user_factory()
-        self.user.addonuser_set.create(addon=self.addon)
-        self.client.login_api(self.user)
-
-        response = self._post_reply()
-        assert response.status_code == 404
 
 
 @override_settings(ALLOWED_CLIENTS_EMAIL_API=['10.10.10.10'])
