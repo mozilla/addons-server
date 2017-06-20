@@ -708,7 +708,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/global.js',
             'js/amo2009/global.js',
             'js/common/ratingwidget.js',
-            'js/lib/jqModal.js',
+            'js/node_lib/jqModal.js',
             'js/zamboni/l10n.js',
             'js/zamboni/debouncer.js',
 
@@ -802,7 +802,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/global.js',
             'js/impala/global.js',
             'js/common/ratingwidget.js',
-            'js/lib/jqModal.js',
+            'js/node_lib/jqModal.js',
             'js/zamboni/l10n.js',
             'js/impala/forms.js',
 
