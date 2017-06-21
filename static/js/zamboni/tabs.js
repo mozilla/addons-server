@@ -23,7 +23,7 @@ Tabs.prototype = {
 
         /* Bind hashchange, trigger event to check for existing hash. */
         var self = this;
-        $(document).bind('hashchange', function(e) {
+        $(document).on('hashchange', function(e) {
             self.hashChange(e);
         }).trigger('hashchange');
     },

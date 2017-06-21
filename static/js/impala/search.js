@@ -5,7 +5,7 @@
     function autofillPlatform(context) {
         var $context = $(context || document.body);
 
-        $('#search', $context).bind('autofill', function(e) {
+        $('#search', $context).on('autofill', function(e) {
             var $this = $(this);
 
             // Bail if we're searching within apps.

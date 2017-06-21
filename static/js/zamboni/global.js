@@ -56,7 +56,7 @@ jQuery.fn.tooltip = function(tip_el) {
         }, delay);
     }
 
-    $(document.body).bind("tooltip_change", setTip);
+    $(document.body).on("tooltip_change", setTip);
 
     function mouseover(e) {
         $tgt = $(this);
@@ -213,7 +213,7 @@ $.fn.popup = function(click_target, o) {
         };
         if (p.hideme) {
             setTimeout(function(){
-                $(document.body).bind('click.'+uid, $popup.hider);
+                $(document.body).on('click.'+uid, $popup.hider);
             }, 0);
         }
         $popup.on('click', '.close', function(e) {
@@ -314,7 +314,7 @@ $.fn.modal = function(click_target, o) {
         $modal.off();
         $(document.body).unbind('click newmodal', $modal.hider);
         $(window).unbind('keydown.lightboxDismiss');
-        $(window).bind('resize', p.onresize);
+        $(window).on('resize', p.onresize);
         $('.modal-overlay').remove();
         return $modal;
     };
@@ -338,8 +338,7 @@ $.fn.modal = function(click_target, o) {
         if (p.hideme) {
             try {
                 setTimeout(function(){
-                    $('.modal-overlay, .close').bind('click modal',
-                                                     $modal.hider);
+                    $('.modal-overlay, .close').on('click modal', $modal.hider);
                 }, 0);
             } catch (err) {
                 // TODO(Kumar) handle this more gracefully. See bug 701221.
@@ -357,7 +356,7 @@ $.fn.modal = function(click_target, o) {
             e.preventDefault();
             $modal.trigger('close');
         });
-        $modal.bind('close', function(e) {
+        $modal.on('close', function(e) {
             if (p.emptyme) {
                 $modal.empty();
             }
@@ -376,8 +375,8 @@ $.fn.modal = function(click_target, o) {
             $modal.show();
         }, 0);
 
-        $(window).bind('resize', p.onresize)
-        .bind('keydown.lightboxDismiss', function(e) {
+        $(window).on('resize', p.onresize)
+        .on('keydown.lightboxDismiss', function(e) {
             if (e.which == 27) {
                 $modal.hideMe();
             }
@@ -484,7 +483,7 @@ function initCharCount() {
         } else {
             $el = $('textarea#' + $cc.attr('data-for'), $form);
         }
-        $el.bind('keyup blur', function() { countChars(this, $cc); }).trigger('blur');
+        $el.on('keyup blur', function() { countChars(this, $cc); }).trigger('blur');
     });
 }
 

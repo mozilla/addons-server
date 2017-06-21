@@ -169,8 +169,8 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
             }, 150);
         });
     } else {
-        $self.bind('keydown', gestureHandler)
-             .bind('keyup paste', _.throttle(inputHandler, 250));
+        $self.on('keydown', gestureHandler)
+             .on('keyup paste', _.throttle(inputHandler, 250));
     }
 
     function clearCurrentSuggestions(e) {
@@ -202,7 +202,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         $self.val('');
     });
 
-    $results.bind('highlight', function(e, val) {
+    $results.on('highlight', function(e, val) {
         // If an item starts with `val`, wrap the matched text with boldness.
         $results.find('ul a span').highlightTerm(val);
         $results.addClass('visible');
@@ -211,7 +211,7 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         }
     });
 
-    $results.bind('dismiss', clearCurrentSuggestions);
+    $results.on('dismiss', clearCurrentSuggestions);
 
     $(document).keyup(function(e) {
         if (fieldFocused(e)) {

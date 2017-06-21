@@ -67,7 +67,7 @@ $.fn.zCarousel = function(o) {
         $strip.prepend($lis.slice(-o.itemsPerPage).clone().addClass("cloned"))
               .append($lis.slice(0,o.itemsPerPage).clone().addClass("cloned"));
         $strip.addClass('noslide');
-        $strip.bind("transitionend webkitTransitionEnd", function() {
+        $strip.on("transitionend webkitTransitionEnd", function() {
             if (currentPos > maxPos || currentPos < 1) {
                 $strip.addClass("noslide");
                 setTimeout(function() {

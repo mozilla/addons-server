@@ -53,7 +53,7 @@
             clearInterval(self.interval);
         });
 
-        $(self.container).bind('newPopup', function() {
+        $(self.container).on('newPopup', function() {
             clearInterval(self.interval);
         });
 
@@ -177,7 +177,7 @@
        }
      );
      // if box now showing bind bodyclick
-     $('body').bind("click", function(e) {
+     $('body').on("click", function(e) {
        self.bodyclick(e);
      });
     }

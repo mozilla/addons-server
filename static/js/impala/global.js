@@ -1,5 +1,5 @@
 //bind pager controls to our addon grids
-$('.island .listing-grid').bind('grid.init', function(e, data) {
+$('.island .listing-grid').on('grid.init', function(e, data) {
     var $grid = data.self,
         numPages = data.maxPage;
 
@@ -22,7 +22,7 @@ $('.island .listing-grid').bind('grid.init', function(e, data) {
                 $grid.nextPage();
             }
         });
-        $grid.bind('grid.update', function(e, data) {
+        $grid.on('grid.update', function(e, data) {
             $nav.find('.dot').removeClass('selected')
                 .eq(data.current).addClass('selected');
         });

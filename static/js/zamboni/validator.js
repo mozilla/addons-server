@@ -477,7 +477,7 @@ function initValidator($doc) {
         });
     }
 
-    $('.addon-validator-suite', $doc).bind('validate', function(e) {
+    $('.addon-validator-suite', $doc).on('validate', function(e) {
         var el = $(this),
             data = el.data();
 

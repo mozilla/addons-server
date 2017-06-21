@@ -118,7 +118,7 @@ $(document).ready(function() {
                 $src_ogv = $('<source>', {'type': 'video/ogv; codecs="theora, vorbis"',
                                           'src': $this.attr('data-ogv') });
 
-            $(window).bind('keydown.lightboxDismiss', function(e) {
+            $(window).on('keydown.lightboxDismiss', function(e) {
                 if (e.which == 27) {
                     $overlay.remove();
                     $(window).unbind('keydown.lightboxDismiss');
@@ -150,7 +150,7 @@ $(document).ready(function() {
         $('#edit-addon-media').attr('data-checkurl') !== undefined) {
         imageStatus.start();
     }
-    $('#edit-addon-media').bind('click', function() {
+    $('#edit-addon-media').on('click', function() {
         imageStatus.cancel();
     });
 
@@ -211,7 +211,7 @@ $(document).ready(function() {
         });
     });
 
-    $('.enable-addon').bind('click', function() {
+    $('.enable-addon').on('click', function() {
         $.ajax({
             'type': 'POST',
             'url': $(this).data('url'),
@@ -1380,7 +1380,7 @@ function initMerchantAccount() {
         current = $paypal_field.val(),
         keyup = true;
 
-    $paypal_field.bind('keyup', function(e) {
+    $paypal_field.on('keyup', function(e) {
         if($paypal_field.val() != current) {
             if(ajax) {
                 ajax.abort();

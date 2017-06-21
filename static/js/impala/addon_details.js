@@ -26,7 +26,7 @@ $(function () {
         function showLightbox() {
             $lightbox.show();
             showImage(this);
-            $(window).bind('keydown.lightboxDismiss', function(e) {
+            $(window).on('keydown.lightboxDismiss', function(e) {
                 switch(e.which) {
                     case z.keys.ESCAPE:
                         e.preventDefault();

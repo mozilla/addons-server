@@ -5,7 +5,7 @@
 
         // Modify the URL when the page state changes, if the browser supports pushState.
         if (z.capabilities.replaceState) {
-            $(window).bind('changeview', function(e, view) {
+            $(window).on('changeview', function(e, view) {
                 var queryParams = {},
                     range = view.range;
                 if (range) {
@@ -63,7 +63,7 @@
         (function() {
             if (!z.capabilities.localStorage) return;
             var ssView = _.clone(initView);
-            $(window).bind('changeview', function(e, newView) {
+            $(window).on('changeview', function(e, newView) {
                 _.extend(ssView, newView);
                 sessionStorage.setItem('stats_view', JSON.stringify({
                     'range': ssView.range,
@@ -76,7 +76,7 @@
         (function() {
             var view = {},
                 baseURL = $('.primary').attr('data-base_url');
-            $(window).bind('changeview', function(e, newView) {
+            $(window).on('changeview', function(e, newView) {
                 _.extend(view, newView);
                 var metric = view.metric,
                     range = normalizeRange(view.range),
@@ -91,7 +91,7 @@
 
         // set up stats exception modal.
         var $exceptionModal = $('#exception-note').modal('', { width: 250 });
-        $(window).bind('explain-exception', function() {
+        $(window).on('explain-exception', function() {
             $exceptionModal.render();
         });
 

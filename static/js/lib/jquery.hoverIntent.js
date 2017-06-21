@@ -87,7 +87,7 @@
 				// set "previous" X and Y position based on initial entry point
 				pX = ev.pageX; pY = ev.pageY;
 				// update "current" X and Y position based on mousemove
-				$(ob).bind("mousemove",track);
+				$(ob).on("mousemove",track);
 				// start polling interval (self-calling timeout) to compare mouse coordinates over time
 				if (ob.hoverIntent_s != 1) { ob.hoverIntent_t = setTimeout( function(){compare(ev,ob);} , cfg.interval );}
 
@@ -101,6 +101,6 @@
 		};
 
 		// bind the function to the two event listeners
-		return this.bind('mouseenter',handleHover).bind('mouseleave',handleHover);
+		return this.on('mouseenter', handleHover).on('mouseleave', handleHover);
 	};
 })(jQuery);

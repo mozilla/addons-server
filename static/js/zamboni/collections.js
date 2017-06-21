@@ -212,7 +212,7 @@ $(document).ready(function() {
                     $(document.body).unbind('click newPopup', cb);
                 }
 
-                $(document.body).bind('click newPopup', cb);
+                $(document.body).on('click newPopup', cb);
             }, 0);
 
         });
@@ -417,7 +417,7 @@ $(document).ready(function () {
 
     var name_val = $('#id_name').val();
 
-    $(document).bind('unicode_loaded', function() {
+    $(document).on('unicode_loaded', function() {
         $('#id_slug').attr('data-customized', (!!$('#id_slug').val() &&
                            ($('#id_slug').val() != makeslug(name_val))) ? 1 : 0);
         slugify();
@@ -533,7 +533,7 @@ $(document).ready(function () {
 
             $widget.hideMe();
             $widget.unbind('click.popup', stopPropagation);
-            $widget.bind('click.popup', stopPropagation);
+            $widget.on('click.popup', stopPropagation);
 
             loadList();
 

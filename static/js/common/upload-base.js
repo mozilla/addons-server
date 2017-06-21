@@ -20,7 +20,7 @@
                 $.extend( settings, options );
             }
 
-            $upload_field.bind({"change": uploaderStart});
+            $upload_field.on("change", uploaderStart);
 
             $(settings.cancel).click(_pd(function(){
                 $upload_field.trigger('upload_action_abort');
@@ -46,7 +46,7 @@
                 /* Disable uploading while something is uploading */
                 $upload_field.prop('disabled', true);
                 $upload_field.parent().find('a').addClass("disabled");
-                $upload_field.bind("reenable_uploader", function() {
+                $upload_field.on("reenable_uploader", function() {
                     $upload_field.prop('disabled', false);
                     $upload_field.parent().find('a').removeClass("disabled");
                 });
@@ -73,7 +73,7 @@
                   formData.append("upload", domfile);
                 }
 
-                $upload_field.unbind("upload_action_abort").bind("upload_action_abort", function() {
+                $upload_field.unbind("upload_action_abort").on("upload_action_abort", function() {
                     aborted = true;
                     formData.xhr.abort();
                     errors = [gettext("You cancelled the upload.")];

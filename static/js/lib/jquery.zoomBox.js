@@ -53,7 +53,7 @@
 			$(img).stop(false, true);
 
 			$(img).animate(imageZoom(e.pageX, e.pageY), opts.zoomSpeed, 'linear', function() {
-				$(box).bind('mousemove', onMouseMove);
+				$(box).on('mousemove', onMouseMove);
 			});
 		}
 

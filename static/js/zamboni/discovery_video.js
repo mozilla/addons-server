@@ -141,7 +141,7 @@ function PopcornObj() {
 
     this.code = function(options){
         if(options['onEnd']) {
-            $('#promo-video').bind('close', options['onEnd']);
+            $('#promo-video').on('close', options['onEnd']);
         }
         pop.code(options);
     }

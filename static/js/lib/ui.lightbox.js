@@ -259,7 +259,7 @@
                     $(this).css({ 'background' : 'url(' + settings.imageBtnPrev + ') left 45% no-repeat' });
                 },function() {
                     $(this).css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
-                }).show().bind('click',function() {
+                }).show().on('click', function() {
                     settings.activeImage = settings.activeImage - 1;
                     _set_image_to_view();
                     return false;
@@ -273,7 +273,7 @@
                     $(this).css({ 'background' : 'url(' + settings.imageBtnNext + ') right 45% no-repeat' });
                 },function() {
                     $(this).css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
-                }).show().bind('click',function() {
+                }).show().on('click', function() {
                     settings.activeImage = settings.activeImage + 1;
                     _set_image_to_view();
                     return false;
