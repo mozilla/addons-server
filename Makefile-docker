@@ -13,6 +13,7 @@ STATIC_JQUERY_UI := static/js/node_lib/ui/
 
 NODE_LIBS_JS := \
 less/dist/less.js \
+jqmodal/jqModal.js \
 jquery/dist/jquery.js \
 jquery.browser/dist/jquery.browser.js \
 jquery.cookie/jquery.cookie.js \
