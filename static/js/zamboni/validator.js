@@ -482,7 +482,7 @@ function initValidator($doc) {
             data = el.data();
 
         if (data.annotateUrl) {
-            el.delegate('.ignore-duplicates-checkbox', 'change',
+            el.on('change', '.ignore-duplicates-checkbox',
                         function(event) {
                 var $target = $(event.target);
                 $.ajax({type: 'POST',

@@ -185,7 +185,7 @@ $.fn.popup = function(click_target, o) {
     $popup.hideMe = function() {
         $popup.hide();
         $popup.unbind();
-        $popup.undelegate();
+        $popup.off();
         $(document.body).unbind('click.'+uid, $popup.hider);
         return $popup;
     };
@@ -216,7 +216,7 @@ $.fn.popup = function(click_target, o) {
                 $(document.body).bind('click.'+uid, $popup.hider);
             }, 0);
         }
-        $popup.delegate('.close', 'click', function(e) {
+        $popup.on('click', '.close', function(e) {
             e.preventDefault();
             $popup.hideMe();
         });
@@ -233,7 +233,7 @@ $.fn.popup = function(click_target, o) {
     };
 
     if ($popup.o.delegate) {
-        $($popup.o.delegate).delegate(click_target, "click", handler);
+        $($popup.o.delegate).on("click", click_target, handler);
     } else {
         $ct.click(handler);
     }
@@ -311,7 +311,7 @@ $.fn.modal = function(click_target, o) {
         var p = $modal.o;
         $modal.hide();
         $modal.unbind();
-        $modal.undelegate();
+        $modal.off();
         $(document.body).unbind('click newmodal', $modal.hider);
         $(window).unbind('keydown.lightboxDismiss');
         $(window).bind('resize', p.onresize);
@@ -353,7 +353,7 @@ $.fn.modal = function(click_target, o) {
             $modal.append(close);
         }
         $('.popup').hide();
-        $modal.delegate('.close', 'click', function(e) {
+        $modal.on('click', '.close', function(e) {
             e.preventDefault();
             $modal.trigger('close');
         });
@@ -386,7 +386,7 @@ $.fn.modal = function(click_target, o) {
     };
 
     if ($modal.o.delegate) {
-        $($modal.o.delegate).delegate(click_target, "click", handler);
+        $($modal.o.delegate).on("click", click_target, handler);
     } else {
         $ct.click(handler);
     }
@@ -577,7 +577,7 @@ $.fn.exists = function(callback, args){
 };
 
 // Bind to the mobile site if a mobile link is clicked.
-$(document).delegate('.mobile-link', 'click', function() {
+$(document).on('click', '.mobile-link', function() {
     $.cookie('mamo', 'on', {expires:30, path: '/'});
     window.location.reload();
 });

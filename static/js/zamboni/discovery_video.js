@@ -259,7 +259,7 @@ $(function() {
         popcorn.start();
     }));
 
-    $('#promos').delegate('.vid-button a', 'click', _pd(function() {
+    $('#promos').on('click', '.vid-button a', _pd(function() {
         popcorn.start();
     }));
 });

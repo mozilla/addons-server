@@ -193,11 +193,11 @@ $.fn.searchSuggestions = function($results, processCallback, searchType) {
         $form.submit();
     });
 
-    $results.delegate('li, p', 'mouseenter mouseleave', function() {
+    $results.on('mouseenter mouseleave', 'li, p', function() {
         $results.find('.sel').removeClass('sel');
         $results.addClass('sel');
         $(this).find('a').addClass('sel');
-    }).delegate('a', 'click', function() {
+    }).on('click', 'a', function() {
         clearCurrentSuggestions();
         $self.val('');
     });

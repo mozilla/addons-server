@@ -37,7 +37,7 @@
         e.preventDefault();
     });
 
-    $groupSelector.delegate('a', 'click', function(e) {
+    $groupSelector.on('click', 'a', function(e) {
         var $target = $(this).parent(),
             newGroup = $target.attr("data-group");
 

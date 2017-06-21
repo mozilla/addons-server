@@ -13,7 +13,7 @@
 
 (function() {
     var $window = $(window);
-    $window.delegate('.install-button a.button', 'click', function(e) {
+    $window.on('click', '.install-button a.button', function(e) {
         e.preventDefault();
         var $el = $(this);
 
@@ -28,6 +28,6 @@
 
         // Clean up after ourselves
         $window.unbind('buttons_loaded buttons_loaded_click');
-        $window.undelegate('.install-button a.button', 'click');
+        $window.off('click', '.install-button a.button');
     });
 })();

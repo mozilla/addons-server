@@ -20,7 +20,7 @@ $(document).ready(function () {
         modalActions = $(".modal-actions", unsavedModal),
         translations = {}; //hold the initial values of the fields to check for changes
 
-    $(".primary").delegate(".trans input, .trans textarea", "change keyup paste blur", checkTranslation);
+    $(".primary").on("change keyup paste blur", ".trans input, .trans textarea", checkTranslation);
     $("form").submit(function () {
         $(this).find(".trans .cloned").remove();
     });
@@ -84,9 +84,9 @@ $(document).ready(function () {
         }
     }
 
-    $(".primary").delegate(".errorlist .l10n", "click", switchLocale);
+    $(".primary").on("click", ".errorlist .l10n", switchLocale);
 
-    $("#all_locales").delegate("a", "switch", switchLocale);
+    $("#all_locales").on("switch", "a", switchLocale);
 
     // If the locale switcher is visible, use the cookie.
     var initLocale = dl;
@@ -177,8 +177,8 @@ $(document).ready(function () {
         width: 200,
         callback: function() {
             showExistingLocales();
-            $("#locale-popup").delegate('a:not(.remove)', 'click', switchLocale);
-            $("#locale-popup").delegate('a.remove', 'click', function (e) {
+            $("#locale-popup").on('click', 'a:not(.remove)', switchLocale);
+            $("#locale-popup").on('click', 'a.remove', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 var toRemove = $(this).closest("li").find("a:not(.remove)").attr("href").substring(1);

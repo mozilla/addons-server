@@ -312,10 +312,10 @@ $('#addon-select').click(function(e) {
 });
 
 var table = $('#addon-ac').closest('table');
-table.delegate(".remove", "click", function() {
+table.on("click", ".remove", function() {
     $(this).closest('tr').remove();
 })
-.delegate(".comment", "click", function() {
+.on("click", ".comment", function() {
     var row = $(this).closest('tr');
     row.find('.comments').show();
     $('.comments textarea', row).focus();
@@ -374,14 +374,14 @@ if ($('body.collections-contributors')) {
     });
 
     var table = $('#contributors-list');
-    table.delegate(".remove", "click", function() {
+    table.on("click", ".remove", function() {
         $(this).closest('tr').remove();
     })
     $("#change-owner").popup(".make-owner", {
         callback: function (obj) {
             var $popup = this,
                 ct = $(obj.click_target);
-            $popup.delegate("#change-owner-cancel", "click", function(e) {
+            $popup.on("click", "#change-owner-cancel", function(e) {
                 e.preventDefault();
                 $popup.hideMe();
             });
@@ -424,10 +424,10 @@ $(document).ready(function () {
     });
 
     $('#details-edit form, .collection-create form')
-        .delegate('#id_name', 'keyup', slugify)
-        .delegate('#id_name', 'blur', slugify)
-        .delegate('#edit_slug', 'click', show_slug_edit)
-        .delegate('#id_slug', 'change', function() {
+        .on('keyup', '#id_name', slugify)
+        .on('blur', '#id_name', slugify)
+        .on('click', '#edit_slug', show_slug_edit)
+        .on('change', '#id_slug', function() {
             $('#id_slug').attr('data-customized', 1);
             if (!$('#id_slug').val()) {
                 $('#id_slug').attr('data-customized', 0);
@@ -477,12 +477,12 @@ $(document).ready(function () {
                     $widget.setWidth(200);
                 $widget.setPos(ct);
                 $widget.render();
-                $widget.delegate('#ajax_collections_list li', 'click', handleToggle)
-                       .delegate('#ajax_new_collection', 'click', handleNew)
-                       .delegate('#id_name', 'keyup', slugify)
-                       .delegate('#id_name', 'blur', slugify)
-                       .delegate('#edit_slug', 'click', show_slug_edit)
-                       .delegate('#id_slug', 'change', function() {
+                $widget.on('click', '#ajax_collections_list li', handleToggle)
+                       .on('click', '#ajax_new_collection', handleNew)
+                       .on('keyup', '#id_name', slugify)
+                       .on('blur', '#id_name', slugify)
+                       .on('click', '#edit_slug', show_slug_edit)
+                       .on('change', '#id_slug', function() {
                            if (!$('#id_slug').val()) {
                              $('#id_slug').attr('data-customized', 0);
                              slugify();

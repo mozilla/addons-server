@@ -223,7 +223,7 @@ $.zAutoFormset = function(o) {
 
     toggleInput();
 
-    $delegate.delegate('.' + removeClass, 'click', _pd(function() {
+    $delegate.on('click', '.' + removeClass, _pd(function() {
         removed($(this).closest(formSelector));
     }));
 
