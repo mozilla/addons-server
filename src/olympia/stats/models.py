@@ -42,10 +42,10 @@ class StatsSearchMixin(SearchMixin):
 class CollectionCount(StatsSearchMixin, models.Model):
     collection = models.ForeignKey('bandwagon.Collection')
 
-    # index name in database: `count`
+    # index name in our dev/stage/prod database: `count`
     count = models.PositiveIntegerField(db_index=True)
 
-    # index name in database: `date`
+    # index name in our dev/stage/prod database: `date`
     date = models.DateField(db_index=True)
 
     class Meta:
@@ -67,7 +67,7 @@ class DownloadCount(StatsSearchMixin, models.Model):
     # has an index `addon_id` on this column...
     addon = models.ForeignKey('addons.Addon')
 
-    # has an index named `count`
+    # has an index named `count` in dev, stage and prod
     count = models.PositiveIntegerField(db_index=True)
     date = models.DateField()
     sources = StatsDictField(db_column='src', null=True)
@@ -75,20 +75,21 @@ class DownloadCount(StatsSearchMixin, models.Model):
     class Meta:
         db_table = 'download_counts'
 
-        # additional indices on this table:
+        # additional indices on this table (in dev, stage and prod):
         # * KEY `addon_and_count` (`addon_id`,`count`)
         # * KEY `addon_date_idx` (`addon_id`,`date`)
 
-        # in our database: UNIQUE KEY `date_2` (`date`,`addon_id`)
+        # in our (dev, stage and prod) database:
+        # UNIQUE KEY `date_2` (`date`,`addon_id`)
         unique_together = ('date', 'addon')
 
 
 class UpdateCount(StatsSearchMixin, models.Model):
-    # Has an index `addon_id` in the database
+    # Has an index `addon_id` in our dev, stage and prod database
     addon = models.ForeignKey('addons.Addon')
-    # Has an index named `count` in the database
+    # Has an index named `count` in our dev, stage and prod database
     count = models.PositiveIntegerField(db_index=True)
-    # Has an index named `date` in the database
+    # Has an index named `date` in our dev, stage and prod database
     date = models.DateField(db_index=True)
     versions = StatsDictField(db_column='version', null=True)
     statuses = StatsDictField(db_column='status', null=True)
@@ -99,7 +100,7 @@ class UpdateCount(StatsSearchMixin, models.Model):
     class Meta:
         db_table = 'update_counts'
 
-        # Additional indices on this table:
+        # Additional indices on this table (on dev, stage and prod):
         # * KEY `addon_and_count` (`addon_id`,`count`)
         # * KEY `addon_date_idx` (`addon_id`,`date`)
 
