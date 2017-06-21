@@ -251,27 +251,22 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
         subject = u'Mozilla Add-ons: %s %s %s' % (
             version.addon.name, version.version, action.short)
     template = template_from_user(note_creator, version)
-
+    from_name = unicode(note_creator.name).replace('"', '\"')
+    from_email = '"%s" <%s>' % (from_name, NOTIFICATIONS_FROM_EMAIL)
     send_activity_mail(
         subject, template.render(Context(
             author_context_dict, autoescape=False)),
-        version, addon_authors,
-        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
-        perm_setting)
+        version, addon_authors, from_email, perm_setting)
 
     send_activity_mail(
         subject, template.render(Context(
             reviewer_context_dict, autoescape=False)),
-        version, reviewers,
-        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
-        perm_setting)
+        version, reviewers, from_email, perm_setting)
 
     send_activity_mail(
         subject, template.render(Context(
             staff_cc_context_dict, autoescape=False)),
-        version, staff_cc,
-        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
-        perm_setting)
+        version, staff_cc, from_email, perm_setting)
 
     if action == amo.LOG.DEVELOPER_REPLY_VERSION:
         version.update(has_info_request=False)
