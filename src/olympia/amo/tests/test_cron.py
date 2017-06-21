@@ -97,7 +97,7 @@ class TestTaskQueued(TestCase):
 class TestGC(TestCase):
     def test_file_uploads_deletion(self, storage_mock):
         fu_new = FileUpload.objects.create(path='/tmp/new', name='new')
-        fu_new.created = self.days_ago(178)
+        fu_new.update(created=self.days_ago(178))
         fu_old = FileUpload.objects.create(path='/tmp/old', name='old')
         fu_old.update(created=self.days_ago(181))
 
