@@ -17,7 +17,7 @@
     <a class="compare" href="{{ url('files.compare', file[0].id, file_compare(file[0], show_diff)) }}">{{ _('Compare') }}</a>
     {% endif %}
     {% if file[0].is_webextension %}
-    <div><strong>{{ _('Permissions:') }}</strong> {{ ', '.join(file[0].webext_permissions_list) or _('None') }}</div>
+    <div class="file-permissions"><strong>{{ _('Permissions:') }}</strong> {{ ', '.join(file[0].webext_permissions_list) or _('None') }}</div>
     {% endif %}
   </span>
 </li>
