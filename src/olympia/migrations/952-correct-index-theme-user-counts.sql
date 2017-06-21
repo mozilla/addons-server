@@ -6,11 +6,15 @@ SET @KEY_ADDON_DATE_IDX := (
         TABLE_SCHEMA = (SELECT DATABASE()) AND
         TABLE_NAME = 'theme_user_counts' AND
         INDEX_NAME = 'addon_date_idx'
+    -- Need the limit 1 here because the query will match two columns
+    -- because the index is a composite index on (addon_id, date)
+    -- and since we re-use it below in the prepared-statement we want
+    -- only the name.
     LIMIT 1);
 
 SET @QUERY_DROP_KEY_ADDON_DATE_IDX = IF(
     @KEY_ADDON_DATE_IDX IS NOT NULL,
-    CONCAT('ALTER TABLE validation_job DROP KEY ', @KEY_ADDON_DATE_IDX, ';'),
+    CONCAT('ALTER TABLE theme_user_counts DROP KEY ', @KEY_ADDON_DATE_IDX, ';'),
     'SELECT 0;');
 
 PREPARE stmt FROM @QUERY_DROP_KEY_ADDON_DATE_IDX;
