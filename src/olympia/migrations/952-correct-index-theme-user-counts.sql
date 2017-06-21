@@ -1,6 +1,6 @@
 -- Drop old index first, if it exists.
 
--- Set the index_name or NULL if it doesn't exist
+-- Set to index_name (addon_date_idx) or NULL if it doesn't exist
 SET @KEY_ADDON_DATE_IDX := (
     SELECT INDEX_NAME FROM information_schema.STATISTICS WHERE
         TABLE_SCHEMA = (SELECT DATABASE()) AND
@@ -17,5 +17,5 @@ PREPARE stmt FROM @QUERY_DROP_KEY_ADDON_DATE_IDX;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 
--- Now create a proper
+-- Now create our new, proper index.
 ALTER TABLE `theme_user_counts` ADD CONSTRAINT `theme_user_counts_date_cc9034dde90789f_uniq` UNIQUE (`date`, `addon_id`);
