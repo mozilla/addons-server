@@ -773,9 +773,10 @@ class AutoApprovalSummary(ModelBase):
         try:
             factors = {
                 # Static analysis flags from linter:
-                # eval, evalInSandbox, document.write: 20.
-                'uses_dangerous_eval': (
-                    20 if self.check_uses_eval(self.version) else 0),
+                # eval() or document.write(): 20.
+                'uses_eval_or_document_write': (
+                    20 if self.check_uses_eval_or_document_write(self.version)
+                    else 0),
                 # Implied eval in setTimeout/setInterval/ on* attributes: 5.
                 'uses_implied_eval': (
                     5 if self.check_uses_implied_eval(self.version) else 0),
@@ -878,8 +879,10 @@ class AutoApprovalSummary(ModelBase):
                    for file_ in version.all_files)
 
     @classmethod
-    def check_uses_eval(cls, version):
-        return cls.check_for_linter_flag(version, 'DANGEROUS_EVAL')
+    def check_uses_eval_or_document_write(cls, version):
+        return (
+            cls.check_for_linter_flag(version, 'NO_DOCUMENT_WRITE') or
+            cls.check_for_linter_flag(version, 'DANGEROUS_EVAL'))
 
     @classmethod
     def check_uses_implied_eval(cls, version):
