@@ -768,7 +768,9 @@ MINIFY_BUNDLES = {
             'js/zamboni/storage.js',
             'js/zamboni/buttons.js',
             'js/node_lib/jquery.pjax.js',
-            'js/lib/semicolon.js',
+            # jquery.pjax.js is missing a semicolon at the end which breaks
+            # our wonderful minification process... so add one.
+            'js/lib/semicolon.js',  # It's just a semicolon!
             'js/impala/footer.js',
             'js/common/keys.js',
 
