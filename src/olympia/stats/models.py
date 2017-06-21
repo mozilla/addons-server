@@ -305,6 +305,4 @@ class ThemeUserCount(StatsSearchMixin, models.Model):
 
     class Meta:
         db_table = 'theme_user_counts'
-
-        # Additional keys in database:
-        # * KEY `addon_date_idx` (`addon_id`,`date`),
+        unique_together = ('date', 'addon')
