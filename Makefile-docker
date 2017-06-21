@@ -8,8 +8,13 @@ ifneq ($(NPM_CONFIG_PREFIX),)
 endif
 
 NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
+STATIC_CSS := static/css/node_lib/
 STATIC_JS := static/js/node_lib/
 STATIC_JQUERY_UI := static/js/node_lib/ui/
+
+NODE_LIBS_CSS := \
+@claviska/jquery-minicolors/jquery.minicolors.css \
+@claviska/jquery-minicolors/jquery.minicolors.png \
 
 NODE_LIBS_JS := \
 less/dist/less.js \
@@ -17,6 +22,7 @@ jqmodal/jqModal.js \
 jquery/dist/jquery.js \
 jquery.browser/dist/jquery.browser.js \
 jquery.cookie/jquery.cookie.js \
+@claviska/jquery-minicolors/jquery.minicolors.js \
 jquery-pjax/jquery.pjax.js \
 raven-js/dist/raven.js \
 timeago/jquery.timeago.js \
@@ -100,6 +106,7 @@ install_node_js:
 	npm install $(NPM_ARGS)
 
 copy_node_js:
+	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
 	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 

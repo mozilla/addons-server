@@ -597,7 +597,7 @@ MINIFY_BUNDLES = {
             'css/impala/tooltips.less',
             'css/impala/search.less',
             'css/impala/suggestions.less',
-            'css/impala/jquery.minicolors.css',
+            'css/node_lib/jquery.minicolors.css',
             'css/impala/personas.less',
             'css/impala/login.less',
             'css/impala/dictionaries.less',
@@ -830,7 +830,7 @@ MINIFY_BUNDLES = {
 
             # Persona creation
             'js/common/upload-image.js',
-            'js/lib/jquery.minicolors.js',
+            'js/node_lib/jquery.minicolors.js',
             'js/impala/persona_creation.js',
 
             # Unicode: needs to be loaded after collections.js which listens to
