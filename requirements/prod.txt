@@ -362,9 +362,9 @@ packaging==16.8 \
     --hash=sha256:99276dc6e3a7851f32027a68f1095cd3f77c148091b092ea867a351811cfe388 \
     --hash=sha256:5d50835fdf0a7edf0b55e311b7c887786504efea1177abd7e69329a8e5ea619e
 # pbr is required by mock
-pbr==3.1.0 \
-    --hash=sha256:283986d680683a36af097194599a47b866cd5f1dd59acb0fdba9fb20a54ba342 \
-    --hash=sha256:b8af6ec309f4f3ab419b998b22073d66da55b36414e0b729cb04a408f6d73697
+pbr==3.1.1 \
+    --hash=sha256:60c25b7dfd054ef9bb0ae327af949dd4676aa09ac3a9471cdc871d8a9213f9ac \
+    --hash=sha256:05f61c71aaefc02d8e37c0a3eeb9815ff526ea28b3b76324769e6158d7f95be1
 # polib is required by dennis
 polib==1.0.8 \
     --hash=sha256:8e5bdabacdad16afe409d120d7111ed8bc697f85d43b5b9f0095d9e726893b26 \
