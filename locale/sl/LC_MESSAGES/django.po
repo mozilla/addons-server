@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-07 19:01+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"PO-Revision-Date: 2017-06-19 15:07+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -675,7 +675,7 @@ msgstr "Vseeno prenesi"
 
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
-msgstr "predlaga se <b>%(amt)s</b>"
+msgstr "Predlaga se <b>%(amt)s</b>"
 
 msgid "Enjoy this add-on?"
 msgstr "Vam je dodatek všeč?"
@@ -4807,8 +4807,8 @@ msgstr "Obvesti me, ko bo ta dodatek naslednjič posodobljen. (Nadaljnje posodob
 msgid "Clear Admin Review Flag"
 msgstr "Zbriši zastavico za skrbnikov pregled"
 
-msgid "Clear more info requested flag"
-msgstr "Počisti zastavico zahtevanih več podatkov"
+msgid "Is more info requested?"
+msgstr "Je zahtevanih več podatkov?"
 
 msgid "Choose a canned response..."
 msgstr "Izberi pripravljen odgovor ..."
@@ -8323,8 +8323,8 @@ msgstr "moj na osnovi sdk zgrajen dodatek je uspešno nadgrajen"
 msgid "someone writes a review of my add-on"
 msgstr "nekdo oceni moj dodatek"
 
-msgid "add-on contests or events are announced"
-msgstr "objavlja se tekmovanja ali prireditve za dodatke"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr "ostanite na tekočem z novicami in dogodki, zanimivimi za razvijalce dodatkov"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "združljivosti za moj dodatek ni mogoče nadgraditi"

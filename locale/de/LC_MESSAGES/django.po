@@ -1,10 +1,10 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-07 18:12+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"PO-Revision-Date: 2017-06-15 07:15+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4746,8 +4746,8 @@ msgstr "Mich beim nächsten Mal benachrichtigen, wenn dieses Add-on aktualisiert
 msgid "Clear Admin Review Flag"
 msgstr "Markierung für Admin-Überprüfung löschen"
 
-msgid "Clear more info requested flag"
-msgstr "Markierung „Weitere Informationen anfordern“ entfernen"
+msgid "Is more info requested?"
+msgstr "Wurden weitere Informationen angefordert?"
 
 msgid "Choose a canned response..."
 msgstr "Eine fertige Antwort auswählen …"
@@ -8223,8 +8223,8 @@ msgstr "Mein SDK-basiertes Add-on wurde erfolgreich aktualisiert"
 msgid "someone writes a review of my add-on"
 msgstr "Jemand schreibt eine Bewertung für mein Add-on"
 
-msgid "add-on contests or events are announced"
-msgstr "Add-on-Wettbewerbe oder -Veranstaltungen werden angekündigt"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr "Bleiben Sie auf dem neuesten Stand und erhalten Sie Nachrichten und Informationen zu Veranstaltungen für Add-on-Entwickler"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "Die Komatibilität meines Add-ons kann nicht erhöht werden"

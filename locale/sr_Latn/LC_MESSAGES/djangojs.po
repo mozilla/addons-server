@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -828,14 +828,6 @@ msgstr "Ova mogućnost je privremeno onemogućena dok obavljamo zadatak održa
 
 msgid "Remove this localization"
 msgstr "Ukloni ovu lokalizaciju"
-
-msgid "Password strength:"
-msgstr "Jačina lozinke:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Ostao je još najmanje {0} karater."
-msgstr[1] "Ostalo je još najmanje {0} karatera."
 
 msgid "Requested Info"
 msgstr "Zahtevane informacije"

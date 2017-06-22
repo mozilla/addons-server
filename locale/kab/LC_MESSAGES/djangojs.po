@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-01-27 12:24+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -827,14 +827,6 @@ msgstr "Tamahilt-agi tensa akka tura makken nettseggim asmel web. Uɣal-d ticki.
 
 msgid "Remove this localization"
 msgstr "Kkes asideg agi"
-
-msgid "Password strength:"
-msgstr "Tazmert n wawal uffir:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Ɣarṣum {0} n usekkil yettwattu."
-msgstr[1] "Ɛarṣum {0} n isekkiel ttwattun."
 
 msgid "Requested Info"
 msgstr "Talɣut n usuter"

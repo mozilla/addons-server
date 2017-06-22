@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-19 13:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.4.0\n"
 
 msgid "No links are allowed."
@@ -450,7 +450,7 @@ msgstr "ʇıpƎ"
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr "%d%-ɯ%%-⅄%%"
+msgstr "%%Y-%%m-%%d"
 
 msgid "by {0} on {1}"
 msgstr "{1} uo {0} ʎq"
@@ -4681,8 +4681,8 @@ msgstr "(ʅıɐɯǝ uɐ ǝʇɐɹǝuǝƃ ʇou ʅʅıʍ sǝʇɐpdn ʇuǝnbǝsqnS) 
 msgid "Clear Admin Review Flag"
 msgstr "ƃɐʅℲ ʍǝıʌǝᴚ uıɯp∀ ɹɐǝʅↃ"
 
-msgid "Clear more info requested flag"
-msgstr "ƃɐʅɟ pǝʇsǝnbǝɹ oɟuı ǝɹoɯ ɹɐǝʅↃ"
+msgid "Is more info requested?"
+msgstr "¿pǝʇsǝnbǝɹ oɟuı ǝɹoɯ sI"
 
 msgid "Choose a canned response..."
 msgstr "...ǝsuodsǝɹ pǝuuɐɔ ɐ ǝsooɥↃ"
@@ -8113,8 +8113,8 @@ msgstr "ʎʅʅnɟssǝɔɔns pǝpɐɹƃdn sı uo-ppɐ pǝsɐq-ʞps ʎɯ"
 msgid "someone writes a review of my add-on"
 msgstr "uo-ppɐ ʎɯ ɟo ʍǝıʌǝɹ ɐ sǝʇıɹʍ ǝuoǝɯos"
 
-msgid "add-on contests or events are announced"
-msgstr "pǝɔunouuɐ ǝɹɐ sʇuǝʌǝ ɹo sʇsǝʇuoɔ uo-ppɐ"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr "sɹǝdoʅǝʌǝp uo-ppɐ oʇ ʇuɐʌǝʅǝɹ sʇuǝʌǝ puɐ sʍǝu ɥʇıʍ ǝʇɐp-oʇ-dn ʎɐʇs"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "pǝpɐɹƃdn ǝq ʇouuɐɔ ʎʇıʅıqıʇɐdɯoɔ s,uo-ppɐ ʎɯ"

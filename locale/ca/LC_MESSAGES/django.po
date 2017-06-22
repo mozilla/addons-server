@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2013-10-23 18:28+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -4848,8 +4848,9 @@ msgstr "Quan es torni a actualitzar aquest complement, notifica-m'ho. (A partir 
 msgid "Clear Admin Review Flag"
 msgstr ""
 
-msgid "Clear more info requested flag"
-msgstr ""
+#, fuzzy
+msgid "Is more info requested?"
+msgstr "S'ha sol·licitat més informació"
 
 msgid "Choose a canned response..."
 msgstr "Escolliu una resposta predefinida..."
@@ -8251,7 +8252,7 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr ""
 
-msgid "add-on contests or events are announced"
+msgid "stay up-to-date with news and events relevant to add-on developers"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"

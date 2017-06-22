@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-11-10 20:32+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -830,14 +830,6 @@ msgstr "Diese Funktion wurde zeitweilig deaktiviert, während wir Wartungsarbeit
 
 msgid "Remove this localization"
 msgstr "Diese Übersetzung entfernen"
-
-msgid "Password strength:"
-msgstr "Passwort-Stärke:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Mindestens {0} Zeichen übrig."
-msgstr[1] "Mindestens {0} Zeichen übrig."
 
 msgid "Requested Info"
 msgstr "Informationen angefordert"

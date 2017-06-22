@@ -1790,6 +1790,30 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['latest_unlisted_version']
         assert result['latest_unlisted_version']['id'] == unlisted_version.pk
 
+    def test_with_lang(self):
+        self.addon.name = {
+            'en-US': u'My Addôn, mine',
+            'fr': u'Mon Addôn, le mien',
+        }
+        self.addon.save()
+        response = self.client.get(self.url, {'lang': 'en-US'})
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.addon.pk
+        assert result['name'] == u'My Addôn, mine'
+
+        response = self.client.get(self.url, {'lang': 'fr'})
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.addon.pk
+        assert result['name'] == u'Mon Addôn, le mien'
+
+        response = self.client.get(self.url, {'lang': 'en-US'})
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.addon.pk
+        assert result['name'] == u'My Addôn, mine'
+
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClient

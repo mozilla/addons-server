@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-02-12 09:07+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -836,15 +836,6 @@ msgstr "Дана функція тимчасово вимкнута доки м�
 
 msgid "Remove this localization"
 msgstr "Вилучити цю локалізацію"
-
-msgid "Password strength:"
-msgstr "Стійкість паролю:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Залишився щонайменше {0} символ."
-msgstr[1] "Залишилось щонайменше {0} символи."
-msgstr[2] "Залишилось щонайменше {0} символів."
 
 msgid "Requested Info"
 msgstr "Запитана інформація"

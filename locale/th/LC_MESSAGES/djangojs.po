@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-10-17 14:02+0000\n"
 "Last-Translator: Googleโครม! <tamisun32646@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -818,13 +818,6 @@ msgstr "คุณสมบัตินี้ถูกปิดใช้งาน
 
 msgid "Remove this localization"
 msgstr "ลบการแปลนี้"
-
-msgid "Password strength:"
-msgstr "ความแข็งแกร่งของรหัสผ่าน:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "ยังเหลืออีกอย่างน้อย {0} ตัวอักษร"
 
 msgid "Requested Info"
 msgstr "ข้อมูลที่ร้องขอ"

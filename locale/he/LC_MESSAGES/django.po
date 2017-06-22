@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-06 20:07+0000\n"
-"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"PO-Revision-Date: 2017-06-14 06:09+0000\n"
+"Last-Translator: Tomer Cohen <tomer.mozilla@tomercohen.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -3459,14 +3459,14 @@ msgstr ""
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32×32 פיקסלים"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr ""
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64×64 פיקסלים"
 
 msgid "Used in add-on detail pages."
 msgstr ""
@@ -4752,8 +4752,9 @@ msgstr ""
 msgid "Clear Admin Review Flag"
 msgstr ""
 
-msgid "Clear more info requested flag"
-msgstr ""
+#, fuzzy
+msgid "Is more info requested?"
+msgstr "נשלחה בקשה לסקירה."
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -8098,7 +8099,7 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr ""
 
-msgid "add-on contests or events are announced"
+msgid "stay up-to-date with news and events relevant to add-on developers"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"

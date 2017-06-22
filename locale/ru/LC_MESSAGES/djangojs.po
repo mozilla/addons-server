@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-10-27 14:27+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -837,15 +837,6 @@ msgstr "Пока мы производим техническое обслужи
 
 msgid "Remove this localization"
 msgstr "Удалить эту локализацию"
-
-msgid "Password strength:"
-msgstr "Стойкость пароля:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Остался по меньшей мере {0} символ."
-msgstr[1] "Осталось по меньшей мере {0} символа."
-msgstr[2] "Осталось по меньшей мере {0} символов."
 
 msgid "Requested Info"
 msgstr "Требуемая информация"

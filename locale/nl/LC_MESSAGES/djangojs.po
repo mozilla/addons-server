@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-03-18 12:26+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -832,14 +832,6 @@ msgstr "Deze functie is tijdelijk uitgeschakeld vanwege onderhoud aan de website
 
 msgid "Remove this localization"
 msgstr "Deze vertaling verwijderen"
-
-msgid "Password strength:"
-msgstr "Wachtwoordsterkte:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Ten minste {0} teken resterend."
-msgstr[1] "Ten minste {0} tekens resterend."
 
 msgid "Requested Info"
 msgstr "Aangevraagde informatie"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-12-23 22:41+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -838,15 +838,6 @@ msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu.
 
 msgid "Remove this localization"
 msgstr "Odebrat lokalizaci"
-
-msgid "Password strength:"
-msgstr "Síla hesla:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Zbývá {0} znak."
-msgstr[1] "Zbývají {0} znaky."
-msgstr[2] "Zbývá {0} znaků."
 
 msgid "Requested Info"
 msgstr "Požadovány informace"

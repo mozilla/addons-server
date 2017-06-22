@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-10 02:06+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"PO-Revision-Date: 2017-06-18 07:32+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -746,7 +746,7 @@ msgstr "Última atualização:"
 
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Lançado sobre <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Lançado sob <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Custom License"
 msgstr "Licença personalizada"
@@ -770,8 +770,8 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"O canal de desenvolvimento permite que teste uma nova versão experimental deste extra antes de ser lançado ao público em geral. Assim que instalar a versão de desenvolvimento, vai continuar a "
-"receber as atualizações deste canal. Para parar de receber atualizações de desenvolvimento, reinstale a versão normal a partir da ligação em cima."
+"O canal de desenvolvimento permite que teste uma nova versão experimental deste extra antes de ser lançado ao público geral. Assim que instalar a versão de desenvolvimento, irá continuar a receber "
+"atualizações deste canal. Para parar de receber atualizações de desenvolvimento, reinstale a versão predefinida a partir da ligação acima."
 
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
 msgstr "<strong>Atenção:</strong> As versões de desenvolvimento deste extra não foram revistas pela Mozilla."
@@ -4739,8 +4739,8 @@ msgstr "Notificar-me da próxima vez que este extra for atualizado. (As atualiza
 msgid "Clear Admin Review Flag"
 msgstr "Limpar etiqueta de revisão de administrador"
 
-msgid "Clear more info requested flag"
-msgstr "Limpar a etiqueta de mais informação solicitada"
+msgid "Is more info requested?"
+msgstr "Mais informação solicitada?"
 
 msgid "Choose a canned response..."
 msgstr "Escolha um modelo de resposta ..."
@@ -8224,8 +8224,8 @@ msgstr "o meu extra baseado no sdk foi atualizado com sucesso"
 msgid "someone writes a review of my add-on"
 msgstr "alguém escreve uma análise sobre o meu extra"
 
-msgid "add-on contests or events are announced"
-msgstr "concursos ou eventos de extras são anunciados"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr "fique atualizado(a) com notícias e eventos relevantes a programadores de extras"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a compatibilidade do meu extra não pode ser atualizada"
@@ -8528,7 +8528,7 @@ msgstr "Ligação permanente para esta versão"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr "Lançado {0}"
+msgstr "Lançado a {0}"
 
 # 77%
 #, python-format

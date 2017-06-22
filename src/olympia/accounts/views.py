@@ -15,6 +15,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
+from rest_framework.decorators import detail_route
 from rest_framework.mixins import (
     DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.permissions import (
@@ -33,6 +34,7 @@ from olympia.amo.decorators import write
 from olympia.api.authentication import (
     JWTKeyAuthentication, WebTokenAuthentication)
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
+from olympia.users import tasks
 from olympia.users.models import UserProfile, UserNotification
 from olympia.users.notifications import NOTIFICATIONS
 
@@ -397,7 +399,9 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
                 amo.permissions.USERS_EDIT)),
         }),
     ]
-    queryset = UserProfile.objects.all()
+
+    def get_queryset(self):
+        return UserProfile.objects.all()
 
     def get_object(self):
         if hasattr(self, 'instance'):
@@ -437,6 +441,16 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
                 u'account. You must delete all add-ons and themes linked to '
                 u'this account, or transfer them to other users.'))
         return super(AccountViewSet, self).perform_destroy(instance)
+
+    @detail_route(
+        methods=['delete'], permission_classes=[
+            AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))])
+    def picture(self, request, pk=None):
+        user = self.get_object()
+        user.update(picture_type='')
+        log.debug(u'User (%s) deleted photo' % user)
+        tasks.delete_photo.delay(user.picture_path)
+        return self.retrieve(request)
 
 
 class ProfileView(APIView):

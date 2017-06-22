@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-02-15 16:57+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -816,13 +816,6 @@ msgstr "Bakım nedeniyle bu özellik şu anda devre dışıdır. Lütfen daha so
 
 msgid "Remove this localization"
 msgstr "Bu yerelleştirmeyi kaldır"
-
-msgid "Password strength:"
-msgstr "Parola gücü:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "En az {0} karakter kaldı."
 
 msgid "Requested Info"
 msgstr "İstenen Bilgi"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4848,7 +4848,8 @@ msgstr "Notificar-me da próxima vez que este extra for atualizado (as atualiza�
 msgid "Clear Admin Review Flag"
 msgstr "Limpar etiqueta de revisão de administração"
 
-msgid "Clear more info requested flag"
+#, fuzzy
+msgid "Is more info requested?"
 msgstr "Limpar a etiqueta de mais informação solicitada"
 
 msgid "Choose a canned response..."
@@ -8350,8 +8351,8 @@ msgstr "o meu extra baseado no sdk foi atualizado com sucesso"
 msgid "someone writes a review of my add-on"
 msgstr "alguém escreveu um comentário sobre o meu extra"
 
-msgid "add-on contests or events are announced"
-msgstr "concursos ou eventos de extras estão anunciados"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a compatibilidade do meu extra não pode ser atualizada"

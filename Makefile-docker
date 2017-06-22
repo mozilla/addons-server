@@ -1,0 +1,128 @@
+NUM_ADDONS=10
+NUM_THEMES=$(NUM_ADDONS)
+
+NPM_ARGS :=
+
+ifneq ($(NPM_CONFIG_PREFIX),)
+	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
+endif
+
+NODE_MODULES := $(NPM_CONFIG_PREFIX)node_modules/
+STATIC_CSS := static/css/node_lib/
+STATIC_JS := static/js/node_lib/
+STATIC_JQUERY_UI := static/js/node_lib/ui/
+
+NODE_LIBS_CSS := \
+@claviska/jquery-minicolors/jquery.minicolors.css \
+@claviska/jquery-minicolors/jquery.minicolors.png \
+
+NODE_LIBS_JS := \
+less/dist/less.js \
+jqmodal/jqModal.js \
+jquery/dist/jquery.js \
+jquery.browser/dist/jquery.browser.js \
+jquery.cookie/jquery.cookie.js \
+@claviska/jquery-minicolors/jquery.minicolors.js \
+jquery-pjax/jquery.pjax.js \
+raven-js/dist/raven.js \
+timeago/jquery.timeago.js \
+underscore/underscore.js \
+
+NODE_LIBS_JQUERY_UI := \
+jquery-ui/ui/version.js \
+jquery-ui/ui/data.js \
+jquery-ui/ui/disable-selection.js \
+jquery-ui/ui/ie.js \
+jquery-ui/ui/keycode.js \
+jquery-ui/ui/escape-selector.js \
+jquery-ui/ui/labels.js \
+jquery-ui/ui/jquery-1-7.js \
+jquery-ui/ui/plugin.js \
+jquery-ui/ui/safe-active-element.js \
+jquery-ui/ui/safe-blur.js \
+jquery-ui/ui/scroll-parent.js \
+jquery-ui/ui/focusable.js \
+jquery-ui/ui/tabbable.js \
+jquery-ui/ui/unique-id.js \
+jquery-ui/ui/position.js \
+jquery-ui/ui/widget.js \
+jquery-ui/ui/widgets/menu.js \
+jquery-ui/ui/widgets/mouse.js \
+jquery-ui/ui/widgets/autocomplete.js \
+jquery-ui/ui/widgets/datepicker.js \
+jquery-ui/ui/widgets/sortable.js
+
+help_redirect:
+	@$(MAKE) help --no-print-directory
+
+help_submake:
+	@echo "Commands that are designed be run in the container:"
+	@echo "  initialize        to init the dependencies, the database, and assets"
+	@echo "  update            to update the dependencies, the database, and assets"
+	@echo "  initialize_db     to create a new database"
+	@echo "  populate_data     to populate a new database"
+	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
+	@echo "  update_deps       to update the pythondependencies"
+	@echo "  update_db         to run the database migrations"
+
+initialize_db:
+	rm -rf ./user-media/* ./tmp/*
+	python manage.py reset_db
+	python manage.py syncdb --noinput
+	python manage.py loaddata initial.json
+	python manage.py import_prod_versions
+	schematic --fake src/olympia/migrations/
+	python manage.py createsuperuser
+	python manage.py loaddata zadmin/users
+	python manage.py update_permissions_from_mc
+
+populate_data:
+	# reindex --wipe will force the ES mapping to be re-installed. Useful to
+	# make sure the mapping is correct before adding a bunch of add-ons.
+	python manage.py reindex --wipe --force --noinput
+	python manage.py generate_addons --app firefox $(NUM_ADDONS)
+	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
+	python manage.py generate_addons --app android $(NUM_ADDONS)
+	python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
+	python manage.py generate_themes $(NUM_THEMES)
+	# Now that addons have been generated, reindex.
+	python manage.py reindex --force --noinput
+	# Also update category counts (denormalized field)
+	python manage.py cron category_totals
+	python manage.py update_permissions_from_mc
+
+install_python_dependencies:
+	pip install six
+	pip install --upgrade pip setuptools
+	pip install -e .
+	pip install --no-deps --exists-action=w -r requirements/flake8.txt
+	pip install --no-deps --exists-action=w -r requirements/dev.txt
+	pip install --no-deps --exists-action=w -r requirements/docs.txt
+	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
+
+install_node_dependencies: install_node_js copy_node_js
+
+install_node_js:
+	npm install $(NPM_ARGS)
+
+copy_node_js:
+	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
+	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
+	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
+
+update_deps: install_python_dependencies install_node_dependencies
+
+update_db:
+	schematic src/olympia/migrations
+
+update_assets:
+	python manage.py compress_assets --use-uuid
+	python manage.py collectstatic --noinput
+
+update: update_deps update_db update_assets
+	python manage.py update_permissions_from_mc
+
+reindex:
+	python manage.py reindex $(ARGS)
+
+initialize: update_deps initialize_db update_assets populate_data

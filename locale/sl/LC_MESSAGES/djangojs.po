@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2016-11-04 10:22+0000\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -846,16 +846,6 @@ msgstr "Ta funkcija je začasno onemogočena, medtem ko na strani izvajamo vzdr�
 
 msgid "Remove this localization"
 msgstr "Odstrani to lokalizacijo"
-
-msgid "Password strength:"
-msgstr "Moč gesla:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "Najmanj {0} znak še preostane."
-msgstr[1] "Najmanj {0} znaka še preostaneta."
-msgstr[2] "Najmanj {0} znaki še preostanejo."
-msgstr[3] "Najmanj {0} znakov še preostane."
 
 msgid "Requested Info"
 msgstr "Zahtevani podatki"

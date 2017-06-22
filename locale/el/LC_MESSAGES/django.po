@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-05-30 12:34+0000\n"
 "Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -4719,8 +4719,9 @@ msgstr "Να ειδοποιηθώ την επόμενη φορά που θα ε�
 msgid "Clear Admin Review Flag"
 msgstr ""
 
-msgid "Clear more info requested flag"
-msgstr ""
+#, fuzzy
+msgid "Is more info requested?"
+msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 
 msgid "Choose a canned response..."
 msgstr "Επιλέξτε τυποποιημένη απάντηση..."
@@ -8090,7 +8091,7 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr ""
 
-msgid "add-on contests or events are announced"
+msgid "stay up-to-date with news and events relevant to add-on developers"
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"

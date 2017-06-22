@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-09 11:50+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"PO-Revision-Date: 2017-06-16 07:22+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4783,8 +4783,8 @@ msgstr "Invia una notifica al prossimo aggiornamento del componente aggiuntivo (
 msgid "Clear Admin Review Flag"
 msgstr "Cancella il flag per la revisione da parte di un amministratore"
 
-msgid "Clear more info requested flag"
-msgstr "Cancella flag di richiesta informazioni"
+msgid "Is more info requested?"
+msgstr "Sono richieste informazioni aggiuntive?"
 
 msgid "Choose a canned response..."
 msgstr "Scegli una risposta predefinita…"
@@ -8276,8 +8276,8 @@ msgstr "il mio componente aggiuntivo basato su SDK si è aggiornato correttament
 msgid "someone writes a review of my add-on"
 msgstr "qualcuno scrive una recensione del mio componente aggiuntivo"
 
-msgid "add-on contests or events are announced"
-msgstr "vengono annunciati concorsi o eventi relativi ai componenti aggiuntivi"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr "Rimani aggiornato su notizie e eventi di rilievo per gli sviluppatori di componenti aggiuntivi"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "la compatibilità del mio componente aggiuntivo non può essere aggiornata"

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
-"PO-Revision-Date: 2017-06-07 19:24+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
+"PO-Revision-Date: 2017-06-15 10:54+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4763,8 +4763,8 @@ msgstr "Informěrujśo mě pśiducy raz, gaž se toś ten dodank aktualizěrujo.
 msgid "Clear Admin Review Flag"
 msgstr "Markěrowanje za pśeglědanje pśez administratora wótpóraś"
 
-msgid "Clear more info requested flag"
-msgstr "Marku „Dalšne informacije pominaś“ wótpóraś"
+msgid "Is more info requested?"
+msgstr "Su se dalšne informacije pominali?"
 
 msgid "Choose a canned response..."
 msgstr "Wubjeŕśo pśigótowane wótegrono..."
@@ -8257,8 +8257,8 @@ msgstr "mój dodank, kótaryž bazěrujo na SDK, jo se wuspěšnje aktualizěrow
 msgid "someone writes a review of my add-on"
 msgstr "něchten pišo pógódnośenje mójogo dodanka"
 
-msgid "add-on contests or events are announced"
-msgstr "dodankowe wuběźowanja abo tšojenja su se pśipowěźeli"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr "wostańśo aktualny z powěsćami a tšojenjami, kótarež su relewantne za wuwijarje"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "kompatibelnosć mójogo dodanka njedajo se aktualizěrowaś"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-06 03:35+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2017-03-27 06:56+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -817,13 +817,6 @@ msgstr "この機能はサイトメンテナンスのため一時的に無効に
 
 msgid "Remove this localization"
 msgstr "このローカライズを削除"
-
-msgid "Password strength:"
-msgstr "パスワードの強度:"
-
-msgid "At least {0} character left."
-msgid_plural "At least {0} characters left."
-msgstr[0] "あと {0} 文字以上入力してください。"
 
 msgid "Requested Info"
 msgstr "求められている情報"

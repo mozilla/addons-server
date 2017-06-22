@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-06-07 15:15+0000\n"
+"POT-Creation-Date: 2017-06-15 03:41+0000\n"
 "PO-Revision-Date: 2013-10-24 09:38+0300\n"
 "Last-Translator: Ellery <linux.anas@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -4792,8 +4792,9 @@ msgstr "نبّهني عند وجود تحديث لهذه الإضافة (الت�
 msgid "Clear Admin Review Flag"
 msgstr ""
 
-msgid "Clear more info requested flag"
-msgstr ""
+#, fuzzy
+msgid "Is more info requested?"
+msgstr "التعليق"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -8143,8 +8144,8 @@ msgstr ""
 msgid "someone writes a review of my add-on"
 msgstr "عندما يكتب شخصا ما تعليقا على إضافتي"
 
-msgid "add-on contests or events are announced"
-msgstr "عند الإعلان على مسابقات أو أحداث للإضافات"
+msgid "stay up-to-date with news and events relevant to add-on developers"
+msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "عندما تتعذّر ترقية التوافقية لإضافتي"

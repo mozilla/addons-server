@@ -3,7 +3,9 @@ from datetime import datetime, timedelta
 from subprocess import Popen, PIPE
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.db import connection
+
 
 import waffle
 
@@ -14,6 +16,7 @@ from olympia.amo.utils import chunked
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.bandwagon.models import Collection
 from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
+from olympia.files.models import FileUpload
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 from olympia.stats.models import Contribution
 
@@ -91,6 +94,19 @@ def gc(test_result=True):
 
         for line in output.split("\n"):
             log.debug(line)
+
+    # Delete stale FileUploads.
+    stale_uploads = FileUpload.objects.filter(
+        created__lte=days_ago(180)).order_by('id')
+    for file_upload in stale_uploads:
+        log.debug(u'[FileUpload:{uuid}] Removing file: {path}'
+                  .format(uuid=file_upload.uuid, path=file_upload.path))
+        if file_upload.path:
+            try:
+                storage.delete(file_upload.path)
+            except OSError:
+                pass
+        file_upload.delete()
 
 
 def category_totals():
