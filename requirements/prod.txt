@@ -431,8 +431,9 @@ schematic==0.4 \
 setuptools==36.0.1 \
     --hash=sha256:f2900e560efc479938a219433c48f15a4ff4ecfe575a65de385eeb44f2425587 \
     --hash=sha256:e17c4687fddd6d70a6604ac0ad25e33324cec71b5137267dd5c45e103c4b288a
-signing-clients==0.1.14 \
-    --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
+signing-clients==1.1 \
+    --hash=sha256:ade7a04b66ecb30e910a210ff92a86d2d7fe049d0df4ced51f156d411c900bc3 \
+    --hash=sha256:32c9774f3abcef527231fa70efc9acdfc4e42af93f9559e1ae83377ef944a1e9
 # simplejson is required by amo-validator
 simplejson==3.11.1 \
     --hash=sha256:38c2b563cd03363e7cb2bbba6c20ae4eaafd853a83954c8c8dd345ee391787bf \
