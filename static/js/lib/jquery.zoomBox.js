@@ -65,7 +65,7 @@
 		function onMouseLeave(e)
 		{
 			$(img).stop(false, true);
-			$(box).unbind('mousemove', onMouseMove);
+			$(box).off('mousemove', onMouseMove);
 			$(img).animate(imageCenter(), opts.zoomSpeed, 'linear');
 			box = img = null;
 		}

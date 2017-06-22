@@ -138,7 +138,7 @@
         }
 
         // Disable links if they don't fit into the date range.
-        $('.group a, .range a').removeClass('inactive').unbind('click', false);
+        $('.group a, .range a').removeClass('inactive').off('click', false);
         if (group == 'week') {
             $('a.days-7').addClass('inactive').on('click', false);
         } else if (group == 'month') {

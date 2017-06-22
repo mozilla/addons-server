@@ -105,7 +105,7 @@ $(document).ready(function () {
             unsavedModal.children(".msg")
                 .html(format(unsavedModalMsg,[$("#change-locale").text()]));
             unsavedModal.render();
-            $("#l10n-save-changes").unbind().click(function () {
+            $("#l10n-save-changes").off().click(function () {
                 var unsavedForms = $('form:has(.trans .unsaved)');
                 var numFormsLeft = unsavedForms.length;
                 var erroredForms = 0;
@@ -184,12 +184,12 @@ $(document).ready(function () {
                 var toRemove = $(this).closest("li").find("a:not(.remove)").attr("href").substring(1);
                 rmLocaleModal.children(".msg").html(format(rmLocaleModalMsg,toRemove));
                 rmLocaleModal.render();
-                $('#l10n-cancel-rm').unbind().click(rmLocaleModal.hideMe);
+                $('#l10n-cancel-rm').off().click(rmLocaleModal.hideMe);
                 function cleanUp() {
                     $(".modal-actions", rmLocaleModal).removeClass('ajax-loading');
                     rmLocaleModal.hideMe();
                 }
-                $('#l10n-confirm-rm').unbind().click(function(e) {
+                $('#l10n-confirm-rm').off().click(function(e) {
                     $(".modal-actions", rmLocaleModal).addClass('ajax-loading');
                     $.ajax({
                         url: $('#l10n-menu').attr('data-rm-locale'),

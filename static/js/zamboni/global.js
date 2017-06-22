@@ -184,9 +184,8 @@ $.fn.popup = function(click_target, o) {
 
     $popup.hideMe = function() {
         $popup.hide();
-        $popup.unbind();
         $popup.off();
-        $(document.body).unbind('click.'+uid, $popup.hider);
+        $(document.body).off('click.'+uid, $popup.hider);
         return $popup;
     };
 
@@ -310,10 +309,9 @@ $.fn.modal = function(click_target, o) {
     $modal.hideMe = function() {
         var p = $modal.o;
         $modal.hide();
-        $modal.unbind();
         $modal.off();
-        $(document.body).unbind('click newmodal', $modal.hider);
-        $(window).unbind('keydown.lightboxDismiss');
+        $(document.body).off('click newmodal', $modal.hider);
+        $(window).off('keydown.lightboxDismiss');
         $(window).on('resize', p.onresize);
         $('.modal-overlay').remove();
         return $modal;

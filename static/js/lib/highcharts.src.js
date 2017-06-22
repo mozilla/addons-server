@@ -1188,7 +1188,7 @@ pathAnim = {
 				el[func] = function () {};
 			}
 	
-			$(el).unbind(eventType, handler);
+			$(el).off(eventType, handler);
 		},
 	
 		/**

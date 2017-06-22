@@ -446,9 +446,9 @@ jQuery.fn.addPopup = function(html, allowClick) {
         if (this.hasPopup) {
             // We've been here before, queue a follow-up button.
             $this.on('newPopup', function(e, popup) {
-                $this.unbind('newPopup');
+                $this.off('newPopup');
                 $(popup).find('.installer').click(function(e) {
-                    $this.unbind('click');  // Drop the current popup.
+                    $this.off('click');  // Drop the current popup.
                     self.hasPopup = false;
                     var next = self.popupQueue.pop();
                     if (!next[1]) { // allowClick
@@ -487,7 +487,7 @@ jQuery.fn.addPopup = function(html, allowClick) {
                         return;
                     }
                     _html.remove();
-                    $body.unbind('click newPopup', cb);
+                    $body.off('click newPopup', cb);
                     $body.trigger('closeStatic');
                 };
                 // Trampoline the binding so it isn't triggered by the current click.

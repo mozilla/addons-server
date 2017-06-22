@@ -27,7 +27,7 @@
         $window.trigger('buttons_loaded_click');
 
         // Clean up after ourselves
-        $window.unbind('buttons_loaded buttons_loaded_click');
+        $window.off('buttons_loaded buttons_loaded_click');
         $window.off('click', '.install-button a.button');
     });
 })();

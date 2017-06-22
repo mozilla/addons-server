@@ -73,7 +73,7 @@
                   formData.append("upload", domfile);
                 }
 
-                $upload_field.unbind("upload_action_abort").on("upload_action_abort", function() {
+                $upload_field.off("upload_action_abort").on("upload_action_abort", function() {
                     aborted = true;
                     formData.xhr.abort();
                     errors = [gettext("You cancelled the upload.")];

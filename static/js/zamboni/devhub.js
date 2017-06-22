@@ -121,7 +121,7 @@ $(document).ready(function() {
             $(window).on('keydown.lightboxDismiss', function(e) {
                 if (e.which == 27) {
                     $overlay.remove();
-                    $(window).unbind('keydown.lightboxDismiss');
+                    $(window).off('keydown.lightboxDismiss');
                 }
             });
             $overlay.append($video);
@@ -133,7 +133,7 @@ $(document).ready(function() {
             $video.click(function(e){ e.stopPropagation(); });
             $overlay.click(function() {
                 $(this).remove();
-                $(window).unbind('keydown.lightboxDismiss');
+                $(window).off('keydown.lightboxDismiss');
             });
         }));
     }
@@ -303,7 +303,7 @@ $(document).ready(function() {
         $primary.find("span.handle, a.remove").hide();
         $(".primary h3 a.button").remove();
         $(document).ready(function() {
-            $els.unbind().off();
+            $els.off().off();
         });
     }
 })();

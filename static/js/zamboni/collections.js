@@ -209,7 +209,7 @@ $(document).ready(function() {
                         return;
                     }
                     dropdown.hide();
-                    $(document.body).unbind('click newPopup', cb);
+                    $(document.body).off('click newPopup', cb);
                 }
 
                 $(document.body).on('click newPopup', cb);
@@ -532,7 +532,7 @@ $(document).ready(function () {
             };
 
             $widget.hideMe();
-            $widget.unbind('click.popup', stopPropagation);
+            $widget.off('click.popup', stopPropagation);
             $widget.on('click.popup', stopPropagation);
 
             loadList();

@@ -53,7 +53,7 @@ $(function () {
             setTimeout(function() {
                 $lightbox.hide();
             }, 500);
-            $(window).unbind('keydown.lightboxDismiss');
+            $(window).off('keydown.lightboxDismiss');
         }
         function showImage(a) {
             var $a = $(a),

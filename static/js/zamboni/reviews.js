@@ -66,9 +66,9 @@ $(document).ready(function() {
         $form.show();
 
         function done_edit() {
-            $form.unbind().hide();
+            $form.off().hide();
             $review.show();
-            $cancel.unbind();
+            $cancel.off();
         }
 
         $cancel.click(function(e) {

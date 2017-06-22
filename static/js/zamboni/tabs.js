@@ -50,7 +50,7 @@ Tabs.prototype = {
             self.select($(e.target).attr('href'), true);
             $("a", this).blur();
         };
-        this.tabs.unbind('click', cb).click(cb);
+        this.tabs.off('click', cb).click(cb);
     },
 
     /* Get the fragment this tab points to. */

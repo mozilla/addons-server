@@ -67,7 +67,7 @@ $(document).ready(function() {
                 title_selector;
 
             clearErrors($form);
-            $form.unbind().hide();
+            $form.off().hide();
             $('.review').not($review).show();
             $form.detach().insertAfter($review);
 
@@ -88,9 +88,9 @@ $(document).ready(function() {
 
             function done_edit() {
                 clearErrors($form);
-                $form.unbind().hide();
+                $form.off().hide();
                 $review.show();
-                $cancel.unbind();
+                $cancel.off();
                 $window.resize();
             }
 

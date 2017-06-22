@@ -54,7 +54,7 @@
 			ob.hoverIntent_t = clearTimeout(ob.hoverIntent_t);
 			// compare mouse positions to see if they've crossed the threshold
 			if ( ( Math.abs(pX-cX) + Math.abs(pY-cY) ) < cfg.sensitivity ) {
-				$(ob).unbind("mousemove",track);
+				$(ob).off("mousemove",track);
 				// set hoverIntent state to true (so mouseOut can be called)
 				ob.hoverIntent_s = 1;
 				return cfg.over.apply(ob,[ev]);
@@ -94,7 +94,7 @@
 			// else e.type == "mouseleave"
 			} else {
 				// unbind expensive mousemove event
-				$(ob).unbind("mousemove",track);
+				$(ob).off("mousemove",track);
 				// if hoverIntent state is true, then call the mouseOut function after the specified delay
 				if (ob.hoverIntent_s == 1) { ob.hoverIntent_t = setTimeout( function(){delay(ev,ob);} , cfg.timeout );}
 			}

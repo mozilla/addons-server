@@ -46,7 +46,7 @@ function initPreviewTheme(mktTheme) {
 function bindPreviewListeners($themes) {
     $themes.each(function() {
         var $theme = $(this).find('div[data-browsertheme]');
-        $theme.unbind('click').click(_pd(function(e) {
+        $theme.off('click').click(_pd(function(e) {
             var $this = $(this),
                 elm = e.target.nodeName == 'EM' ? e.target.parentNode : e.target;
             $('.theme-preview').find('em').addClass('hidden');
