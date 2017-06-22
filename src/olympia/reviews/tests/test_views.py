@@ -858,10 +858,10 @@ class TestReviewViewSetGet(TestCase):
         assert 'grouped_ratings' not in data
 
     def test_list_addon_guid(self):
-        self.test_list_addon(addon_pk=self.addon.guid)
+        self.test_list_addon(addon=self.addon.guid)
 
     def test_list_addon_slug(self):
-        self.test_list_addon(addon_pk=self.addon.slug)
+        self.test_list_addon(addon=self.addon.slug)
 
     def test_list_with_empty_reviews(self):
         def create_review(body='review text', user=None):
