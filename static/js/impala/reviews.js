@@ -117,7 +117,7 @@ $(document).ready(function() {
                         done_edit();
                     },
                     error: function(xhr) {
-                        var errors = $.parseJSON(xhr.responseText);
+                        var errors = JSON.parse(xhr.responseText);
                         populateErrors($form, errors);
                     },
                     dataType: 'json'

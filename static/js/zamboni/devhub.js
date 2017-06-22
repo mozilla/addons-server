@@ -90,7 +90,7 @@ $(document).ready(function() {
                     }
                 },
                 error: function(xhr) {
-                    var errors = $.parseJSON(xhr.responseText);
+                    var errors = JSON.parse(xhr.responseText);
                     $("#upload-file").find(".errorlist").remove();
                     $("#upload-file").find(".upload-status").before(generateErrorList(errors));
                     $('#upload-file-finish').prop('disabled', false);
@@ -721,7 +721,7 @@ function initVersions() {
     function loadReviewHistory(div, nextLoad) {
         div.removeClass("hidden");
         replybox = div.children('.dev-review-reply')
-        if (replybox.size() == 1) {
+        if (replybox.length == 1) {
             replybox[0].scrollIntoView(false);
         }
         var token = div.data('token');
@@ -884,7 +884,7 @@ function initEditVersions() {
                     $modal.hideMe();
                 },
                 error: function(xhr) {
-                    var errors = $.parseJSON(xhr.responseText);
+                    var errors = JSON.parse(xhr.responseText);
                     $("#upload-file").find(".errorlist").remove();
                     $("#upload-file").find(".upload-status").before(generateErrorList(errors));
                     $modal.setPos();
