@@ -41,4 +41,4 @@ DEALLOCATE PREPARE stmt;
 ALTER TABLE `theme_user_counts` ADD CONSTRAINT `addon_id_refs_id_ac19f783` FOREIGN KEY (`addon_id`) REFERENCES `addons` (`id`);
 
 -- Now create our new, proper index.
-ALTER TABLE `theme_user_counts` ADD CONSTRAINT `theme_user_counts_date_cc9034dde90789f_uniq` UNIQUE (`date`, `addon_id`);
+CREATE INDEX `theme_user_counts_date_cc9034dde90789f` ON `theme_user_counts` (`date`, `addon_id`);

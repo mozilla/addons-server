@@ -306,4 +306,4 @@ class ThemeUserCount(StatsSearchMixin, models.Model):
 
     class Meta:
         db_table = 'theme_user_counts'
-        unique_together = ('date', 'addon')
+        index_together = ('date', 'addon')
