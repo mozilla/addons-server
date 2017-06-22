@@ -247,7 +247,7 @@ function initQueue() {
         (function checkCurrentlyViewing() {
             $.post(url, {'addon_ids': addon_ids.join(',')}, function(data) {
                 $('#addon-queue .locked').removeClass('locked')
-                                         .removeAttr('title');
+                                         .prop('title', '');
                 $.each(data, function(k, v) {
                     $('#addon-' + k).addClass('locked')
                                     .attr('title',

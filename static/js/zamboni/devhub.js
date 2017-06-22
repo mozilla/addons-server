@@ -1385,7 +1385,7 @@ function initMerchantAccount() {
             if(ajax) {
                 ajax.abort();
             }
-            $paypal_verify.removeAttr('class');
+            $paypal_verify.removeClass();
             keyup = true;
         }
         current = $paypal_field.val();

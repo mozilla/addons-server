@@ -328,7 +328,7 @@
 
                 clearReview: function(i) {
                     $('input.action, input.comment, input.reject-reason',
-                      nthTheme(i)).removeAttr('value');
+                      nthTheme(i)).prop('value', '');
                     $(nthTheme(i)).removeClass('reviewed');
                     $('.status', nthTheme(i)).removeClass('reviewed');
 
