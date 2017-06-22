@@ -431,8 +431,15 @@ class File(OnChangeMixin, ModelBase):
             return []
         try:
             # Filter out any errant non-strings included in the manifest JSON.
-            return [p for p in self._webext_permissions.permissions
-                    if isinstance(p, basestring)]
+            # Remove any duplicate permissions.
+            permissions = [p for p in self._webext_permissions.permissions
+                           if isinstance(p, basestring)]
+            filtered_permissions = set()
+            filtered_permissions_add = filtered_permissions.add
+            return [p for p in permissions if
+                    not (p in filtered_permissions or
+                         filtered_permissions_add(p))]
+
         except WebextPermission.DoesNotExist:
             return []
 
