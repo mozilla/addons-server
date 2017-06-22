@@ -71,7 +71,7 @@ $(function () {
             } else {
                 $img = $(lbImage([current, $a.attr("href")]));
                 $content.append($img);
-                $img.load(function(e) {
+                $img.on("load", function(e) {
                     $oldimg.css({"opacity": "0", "z-index": "0"});
                     $img.css({
                         "opacity": "1", "z-index": "1"

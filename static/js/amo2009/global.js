@@ -286,7 +286,7 @@ jQuery(function($) {
 	contributions.init();
 });
 
-jQuery(window).load(function() {
+jQuery(window).on("load", function() {
 	// Crazyweird fix lets us style abbr using CSS in IE
 	// - do NOT run onDomReady, must be onload
 	document.createElement('abbr');
