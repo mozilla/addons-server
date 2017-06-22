@@ -975,9 +975,11 @@ function initPayments(delegate) {
 function initCatFields(delegate) {
     var $delegate = $(delegate || '#addon-categories-edit');
     $delegate.find('div.addon-app-cats').each(function() {
+        var main_selector = ".addon-categories",
+            misc_selector = ".addon-misc-category"
         var $parent = $(this).closest("[data-max-categories]"),
-            $main = $(this).find(".addon-categories"),
-            $misc = $(this).find(".addon-misc-category"),
+            $main = $(this).find(main_selector),
+            $misc = $(this).find(misc_selector),
             maxCats = parseInt($parent.attr("data-max-categories"), 10);
         var checkMainDefault = function() {
             var checkedLength = $("input:checked", $main).length,
@@ -993,8 +995,8 @@ function initCatFields(delegate) {
             $("input", $main).prop("checked", false).prop("disabled", false);
         };
         checkMainDefault();
-        $(document).on('change', $main.selector + ' input', checkMain);
-        $(document).on('change', $misc.selector + ' input', checkOther);
+        $(document).on('change', main_selector + ' input', checkMain);
+        $(document).on('change', misc_selector + ' input', checkOther);
     });
 }
 
