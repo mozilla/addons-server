@@ -93,7 +93,7 @@ class Command(BaseCommand):
                 self.log_final_summary(self.stats)
             else:
                 # We didn't get the lock...
-                log.info('auto-approve lock present, aborting.')
+                log.error('auto-approve lock present, aborting.')
 
     @transaction.atomic
     def process(self, version):
