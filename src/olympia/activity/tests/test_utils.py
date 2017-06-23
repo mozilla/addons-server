@@ -524,6 +524,11 @@ def test_send_activity_mail():
     assert len(mail.outbox) == 1
     assert mail.outbox[0].body == message
     assert mail.outbox[0].subject == subject
+    reference_header = '{addon}/{version}@{site}'.format(
+        addon=latest_version.addon.id, version=latest_version.id,
+        site=settings.INBOUND_EMAIL_DOMAIN)
+    assert mail.outbox[0].extra_headers['In-Reply-To'] == reference_header
+    assert mail.outbox[0].extra_headers['References'] == reference_header
 
     uuid = latest_version.token.get(user=user).uuid.hex
     reply_email = 'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN)

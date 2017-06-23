@@ -286,11 +286,18 @@ def send_activity_mail(subject, message, version, recipients, from_email,
                 token.uuid, recipient.id))
         reply_to = "%s%s@%s" % (
             REPLY_TO_PREFIX, token.uuid.hex, settings.INBOUND_EMAIL_DOMAIN)
+        reference_header = '{addon}/{version}@{site}'.format(
+            addon=version.addon.id, version=version.id,
+            site=settings.INBOUND_EMAIL_DOMAIN)
+        headers = {
+            'In-Reply-To': reference_header,
+            'References': reference_header
+        }
         log.info('Sending activity email to %s for %s version %s' % (
             recipient, version.addon.pk, version.pk))
         send_mail(
             subject, message, recipient_list=[recipient.email],
-            from_email=from_email, use_deny_list=False,
+            from_email=from_email, use_deny_list=False, headers=headers,
             perm_setting=perm_setting, reply_to=[reply_to])
 
 
