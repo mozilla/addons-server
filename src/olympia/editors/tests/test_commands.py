@@ -18,6 +18,7 @@ from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, get_reviewing_cache)
 from olympia.files.models import FileValidation
+from olympia.files.utils import atomic_lock
 from olympia.zadmin.models import Config, get_config, set_config
 
 
@@ -406,3 +407,12 @@ class TestAutoApproveCommand(TestCase):
             'too_many_average_daily_users': 1,
             'too_few_approved_updates': 1,
         })
+
+    def test_prevent_multiple_runs_in_parallel(self):
+        # Create a lock manually, the command should exit immediately without
+        # doing anything.
+        with atomic_lock(settings.TMP_PATH, auto_approve.Command.lock_name):
+            call_command('auto_approve')
+
+        assert self.log_final_summary_mock.call_count == 0
+        assert self.file.reload().status == amo.STATUS_AWAITING_REVIEW
