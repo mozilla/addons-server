@@ -55,10 +55,6 @@ SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
     'fields.W342',
-
-    # TEMPLATE_DIRS is required by jingo, remove this line here once we
-    # get rid of jingo
-    '1_8.W001',
 )
 
 # LESS CSS OPTIONS (Debug only).
@@ -305,8 +301,6 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'registration\/password_reset_subject.txt'
 )
 
-from django_jinja.builtins import DEFAULT_EXTENSIONS
-
 TEMPLATES = [
     {
         'BACKEND': 'django_jinja.backend.Jinja2',
@@ -338,14 +332,21 @@ TEMPLATES = [
                 'olympia.amo.context_processors.static_url',
                 'jingo_minify.helpers.build_ids',
             ),
-            'extensions': tuple(DEFAULT_EXTENSIONS) + (
+            'extensions': (
+                'jinja2.ext.autoescape',
+                'jinja2.ext.do',
+                # 'jinja2.ext.i18n',
+                'jinja2.ext.loopcontrols',
+                'jinja2.ext.with_',
+                'django_jinja.builtins.extensions.CacheExtension',
+                'django_jinja.builtins.extensions.CsrfExtension',
+                'django_jinja.builtins.extensions.DjangoFiltersExtension',
+                'django_jinja.builtins.extensions.StaticFilesExtension',
+                'django_jinja.builtins.extensions.TimezoneExtension',
+                'django_jinja.builtins.extensions.UrlsExtension',
                 'olympia.amo.ext.cache',
                 'puente.ext.i18n',
                 'waffle.jinja.WaffleExtension',
-                'jinja2.ext.do',
-                'jinja2.ext.with_',
-                'jinja2.ext.loopcontrols',
-                'jinja2.ext.autoescape',
             ),
             'finalize': lambda x: x if x is not None else '',
             'translation_engine': 'django.utils.translation',

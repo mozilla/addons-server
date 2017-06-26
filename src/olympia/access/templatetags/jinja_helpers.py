@@ -1,10 +1,10 @@
 import jinja2
-from jingo import register
+from django_jinja import library
 
-from . import acl
+from .. import acl
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def check_ownership(context, object, require_owner=False,
                     require_author=False, ignore_disabled=True):
@@ -14,7 +14,7 @@ def check_ownership(context, object, require_owner=False,
                                ignore_disabled=ignore_disabled)
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def action_allowed(context, permission):
     return acl.action_allowed(context['request'], permission)

@@ -35,7 +35,7 @@ pytestmark = pytest.mark.django_db
 def render(s, context=None):
     if context is None:
         context = {}
-    t = jingo.get_env().from_string(s)
+    t = utils.from_string(s)
     return t.render(context)
 
 

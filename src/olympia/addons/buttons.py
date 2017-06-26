@@ -1,8 +1,8 @@
 from django.db.transaction import non_atomic_requests
+from django.template.loader import render_to_string
 from django.utils.translation import (
     ugettext, ugettext_lazy as _, pgettext_lazy)
 
-import jingo
 import jinja2
 
 from olympia import amo
@@ -37,14 +37,14 @@ def install_button(context, addon, version=None, show_contrib=True,
                                     latest_beta)
     installed = (request.user.is_authenticated() and
                  addon.id in request.user.mobile_addons)
-    c = {'button': button, 'addon': addon, 'version': button.version,
-         'installed': installed}
+    context = {
+        'button': button, 'addon': addon, 'version': button.version,
+        'installed': installed}
     if impala:
         template = 'addons/impala/button.html'
     else:
         template = 'addons/button.html'
-    t = jingo.render_to_string(request, template, c)
-    return jinja2.Markup(t)
+    return jinja2.Markup(render_to_string(template, context, request=request))
 
 
 @jinja2.contextfunction

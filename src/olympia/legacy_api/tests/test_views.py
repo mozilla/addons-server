@@ -6,8 +6,8 @@ from django.conf import settings
 from django.test.client import Client
 from django.utils import translation
 
-import jingo
 import pytest
+import jinja2
 from mock import patch
 from pyquery import PyQuery as pq
 
@@ -397,10 +397,8 @@ class APITest(TestCase):
         # Link to the developer's profile
         # File size
         """
-        e = jingo.get_env().filters['e']
-
         def urlparams(x, *args, **kwargs):
-            return e(jinja_helpers.urlparams(x, *args, **kwargs))
+            return jinja2.escape(jinja_helpers.urlparams(x, *args, **kwargs))
 
         needles = (
             '<addon id="4664">',

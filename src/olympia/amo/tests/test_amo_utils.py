@@ -17,7 +17,7 @@ from olympia.amo.utils import (
     cache_ns_key, escape_all, find_language,
     LocalFileStorage, no_jinja_autoescape, no_translation,
     resize_image, rm_local_tmp_dir, slugify, slug_validator,
-    to_language)
+    to_language, from_string)
 
 
 pytestmark = pytest.mark.django_db
@@ -295,8 +295,8 @@ def test_no_jinja_autoescape():
     val = 'some double quote: " and a <'
     tpl = '{{ val }}'
     ctx = {'val': val}
-    template = jingo.get_env().from_string(tpl)
+    template = from_string(tpl)
     assert template.render(ctx) == 'some double quote: &#34; and a &lt;'
     with no_jinja_autoescape():
-        template = jingo.get_env().from_string(tpl)
+        template = from_string(tpl)
         assert template.render(ctx) == 'some double quote: " and a <'

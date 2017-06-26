@@ -6,6 +6,7 @@ import pytest
 from mock import Mock, patch
 
 from olympia.amo.tests import TestCase
+from olympia.amo.utils import from_string
 from olympia.addons.models import Addon
 from olympia.translations.templatetags import jinja_helpers
 from olympia.translations.fields import save_signal
@@ -14,10 +15,6 @@ from olympia.translations.tests.testapp.models import TranslatedModel
 
 
 pytestmark = pytest.mark.django_db
-
-
-def super():
-    jingo.load_helpers()
 
 
 def test_locale_html():
@@ -62,8 +59,7 @@ def test_empty_locale_html():
 def test_truncate_purified_field():
     s = '<i>one</i><i>two</i>'
     t = PurifiedTranslation(localized_string=s)
-    env = jingo.get_env()
-    actual = env.from_string('{{ s|truncate(6) }}').render({'s': t})
+    actual = from_string('{{ s|truncate(6) }}').render({'s': t})
     assert actual == s
 
 
@@ -71,10 +67,9 @@ def test_truncate_purified_field_xss():
     """Truncating should not introduce xss issues."""
     s = 'safe <script>alert("omg")</script>'
     t = PurifiedTranslation(localized_string=s)
-    env = jingo.get_env()
-    actual = env.from_string('{{ s|truncate(100) }}').render({'s': t})
+    actual = from_string('{{ s|truncate(100) }}').render({'s': t})
     assert actual == 'safe &lt;script&gt;alert("omg")&lt;/script&gt;'
-    actual = env.from_string('{{ s|truncate(5) }}').render({'s': t})
+    actual = from_string('{{ s|truncate(5) }}').render({'s': t})
     assert actual == 'safe ...'
 
 
@@ -87,30 +82,30 @@ def test_clean():
 
 def test_clean_in_template():
     s = '<a href="#woo">yeah</a>'
-    assert jingo.get_env().from_string('{{ s|clean }}').render({'s': s}) == s
+    assert from_string('{{ s|clean }}').render({'s': s}) == s
 
 
 def test_clean_strip_all_html():
     s = '<a href="#woo">yeah</a>'
 
     expected = 'yeah'
-    assert jingo.get_env().from_string(
-        '{{ s|clean(true) }}').render({'s': s}) == expected
+    assert from_string('{{ s|clean(true) }}').render({'s': s}) == expected
 
 
 def test_no_links():
-    env = jingo.get_env().from_string('{{ s|no_links }}')
+    template = from_string('{{ s|no_links }}')
 
     s = 'a <a href="http://url.link">http://example.com</a>, http://text.link'
-    assert env.render({'s': s}) == 'a http://example.com, http://text.link'
+    expected = 'a http://example.com, http://text.link'
+    assert template.render({'s': s}) == expected
 
     # Bad markup.
     s = '<http://bad.markup.com'
-    assert env.render({'s': s}) == ''
+    assert template.render({'s': s}) == ''
 
     # Bad markup.
     s = 'some text <http://bad.markup.com'
-    assert env.render({'s': s}) == 'some text'
+    assert template.render({'s': s}) == 'some text'
 
 
 def test_l10n_menu():
