@@ -313,8 +313,9 @@ TEMPLATES = [
         'OPTIONS': {
             # http://jinja.pocoo.org/docs/dev/extensions/#newstyle-gettext
             'newstyle_gettext': True,
-            # Match our regular .html file ending except for the admin
-            'match_extension': '.html',
+            # Match our regular .html and .txt file endings except
+            # for the admin and a handful of other paths
+            'match_extension': None,
             'match_regex': r'^(?!({paths})).*'.format(
                 paths='|'.join(JINJA_EXCLUDE_TEMPLATE_PATHS)),
             'context_processors': (
