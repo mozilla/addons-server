@@ -886,7 +886,7 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_uses_implied_eval(cls, version):
-        return cls.check_for_linter_flag(version, 'IMPLIED_EVAL')
+        return cls.check_for_linter_flag(version, 'NO_IMPLIED_EVAL')
 
     @classmethod
     def check_uses_innerhtml(cls, version):

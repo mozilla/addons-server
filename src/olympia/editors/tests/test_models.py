@@ -952,7 +952,7 @@ class TestAutoApprovalSummary(TestCase):
     def test_calculate_weight_uses_implied_eval(self):
         validation_data = {
             'messages': [{
-                'id': ['IMPLIED_EVAL'],
+                'id': ['NO_IMPLIED_EVAL'],
             }]
         }
         self.file_validation.update(validation=json.dumps(validation_data))
@@ -999,7 +999,7 @@ class TestAutoApprovalSummary(TestCase):
             'messages': [
                 {'id': ['MANIFEST_CSP']},
                 {'id': ['UNSAFE_VAR_ASSIGNMENT']},
-                {'id': ['IMPLIED_EVAL']},
+                {'id': ['NO_IMPLIED_EVAL']},
                 {'id': ['DANGEROUS_EVAL']},
             ]
         }
