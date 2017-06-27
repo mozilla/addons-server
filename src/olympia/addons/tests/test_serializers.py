@@ -30,6 +30,13 @@ class AddonSerializerOutputTestMixin(object):
         super(AddonSerializerOutputTestMixin, self).setUp()
         self.request = APIRequestFactory().get('/')
 
+    def check_author(self, author, result):
+        assert result == {
+            'id': author.pk,
+            'name': author.name,
+            'url': absolutify(author.get_url_path()),
+            'picture_url': absolutify(author.picture_url)}
+
     def _test_version(self, version, data):
         assert data['id'] == version.pk
 
@@ -151,14 +158,8 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['authors']
         assert len(result['authors']) == 2
-        assert result['authors'][0] == {
-            'id': first_author.pk,
-            'name': first_author.name,
-            'url': absolutify(first_author.get_url_path())}
-        assert result['authors'][1] == {
-            'id': second_author.pk,
-            'name': second_author.name,
-            'url': absolutify(second_author.get_url_path())}
+        self.check_author(first_author, result['authors'][0])
+        self.check_author(second_author, result['authors'][1])
 
         assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale
@@ -481,6 +482,13 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         with self.assertNumQueries(0):
             result = self.serializer.to_representation(obj)
         return result
+
+    def check_author(self, author, result):
+        """Override because the ES serializer doesn't include picture_url."""
+        assert result == {
+            'id': author.pk,
+            'name': author.name,
+            'url': absolutify(author.get_url_path())}
 
 
 class TestVersionSerializerOutput(TestCase):
