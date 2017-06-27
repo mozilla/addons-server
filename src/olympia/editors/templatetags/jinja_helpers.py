@@ -123,6 +123,7 @@ def queue_tabnav(context):
     return tabnav
 
 
+@library.global_function
 @library.render_with('editors/includes/reviewers_score_bar.html')
 @jinja2.contextfunction
 def reviewers_score_bar(context, types=None, addon_type=None):
@@ -137,6 +138,7 @@ def reviewers_score_bar(context, types=None, addon_type=None):
                                          addon_type=addon_type)))
 
 
+@library.global_function
 @library.render_with('editors/includes/files_view.html')
 @jinja2.contextfunction
 def all_distinct_files(context, version):

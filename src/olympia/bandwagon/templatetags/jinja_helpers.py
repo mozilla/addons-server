@@ -11,6 +11,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 
 
+@library.global_function
 @library.render_with('bandwagon/collection_listing_items.html')
 @jinja2.contextfunction
 def collection_listing_items(context, collections, field=None):
@@ -19,6 +20,7 @@ def collection_listing_items(context, collections, field=None):
     return c
 
 
+@library.global_function
 @library.render_with('bandwagon/impala/collection_listing_items.html')
 @jinja2.contextfunction
 def impala_collection_listing_items(context, collections, field=None):
@@ -38,6 +40,7 @@ def user_collection_list(collections=None, heading='', id='', link=None):
     return jinja2.Markup(template.render(c))
 
 
+@library.global_function
 @library.render_with('bandwagon/barometer.html')
 @jinja2.contextfunction
 def barometer(context, collection):

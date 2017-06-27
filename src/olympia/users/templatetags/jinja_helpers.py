@@ -60,6 +60,7 @@ def users_list(users, size=None, max_text_length=None):
     return jinja2.Markup(', '.join(user_list + tail))
 
 
+@library.global_function
 @library.render_with('users/helpers/addon_users_list.html')
 @jinja2.contextfunction
 def addon_users_list(context, addon):
@@ -94,6 +95,7 @@ def user_vcard(context, user, table_class='person-info', is_profile=False):
     return jinja2.Markup(t)
 
 
+@library.global_function
 @library.render_with('users/report_abuse.html')
 @jinja2.contextfunction
 def user_report_abuse(context, hide, profile):

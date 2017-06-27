@@ -635,3 +635,9 @@ def datetime_filter(t, fmt=None):
 
     fmt = fmt.encode('utf-8')
     return smart_text(t.strftime(fmt)) if t else ''
+
+
+@library.filter
+def class_selected(a, b):
+    """Return ``'class="selected"'`` if ``a == b``."""
+    return mark_safe('class="selected"' if a == b else '')

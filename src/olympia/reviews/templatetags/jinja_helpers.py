@@ -52,6 +52,7 @@ def edit_review_form(context):
     return {'form': forms.ReviewForm()}
 
 
+@library.global_function
 @library.render_with('reviews/edit_review.html')
 @jinja2.contextfunction
 def edit_review_reply_form():

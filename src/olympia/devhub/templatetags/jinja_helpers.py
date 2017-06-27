@@ -19,6 +19,7 @@ from olympia.files.models import File
 library.global_function(acl.check_addon_ownership)
 
 
+@library.global_function
 @library.render_with('devhub/addons/listing/items.html')
 @jinja2.contextfunction
 def dev_addon_listing_items(context, addons, src=None, notes=None):
@@ -48,11 +49,13 @@ def docs_page_title(context, title=None):
     return page_title(context, title)
 
 
+@library.global_function
 @library.render_with('devhub/includes/source_form_field.html')
 def source_form_field(field):
     return {'field': field}
 
 
+@library.global_function
 @library.render_with('devhub/versions/file_status_message.html')
 def file_status_message(file):
     choices = File.STATUS_CHOICES

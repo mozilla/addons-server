@@ -49,6 +49,7 @@ def truncate(s, length=255, killwords=True, end='...'):
     return jinja2.filters.do_truncate(force_text(s), length, killwords, end)
 
 
+@library.global_function
 @library.render_with('translations/trans-menu.html')
 @jinja2.contextfunction
 def l10n_menu(context, default_locale='en-us', remove_locale_url=''):
