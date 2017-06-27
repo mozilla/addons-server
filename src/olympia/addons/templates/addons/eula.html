@@ -22,7 +22,7 @@
         End-User License Agreement before installation can proceed:
       {% endtrans %}
     </p>
-    <div class="policy-statement">{{ addon.eula|nl2br }}</div>
+    <div class="policy-statement">{{ addon.eula|nl2br_xhtml }}</div>
     <div class="policy-install">
       {{ install_button(addon, version=version, show_contrib=False,
                         show_warning=False, impala=True) }}

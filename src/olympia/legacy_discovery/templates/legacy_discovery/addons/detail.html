@@ -5,7 +5,7 @@
   {{ disco_persona_preview(addon.persona, linked=False, caption=True) }}
 {% endif %}
 
-<p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
+<p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br_xhtml }}</p>
 
 <ul id="install">
   <li class="install-action">

@@ -9,7 +9,7 @@
           <span class="author">{{ _('by {0}')|format_html(c.author|user_link) }}</span>
         {% endif %}
       </h3>
-      <p class="desc">{{ c.description|truncate(250)|nl2br }}</p>
+      <p class="desc">{{ c.description|truncate(250)|nl2br_xhtml }}</p>
       <div class="vitals c">
         <div class="followers">
           {% if field == 'popular' %}

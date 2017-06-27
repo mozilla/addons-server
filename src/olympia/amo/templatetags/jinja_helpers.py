@@ -613,3 +613,11 @@ def css(bundle, media=False, debug=None):
 
     return _build_html(urls, '<link rel="stylesheet" media="%s" href="%%s" />'
                              % media)
+
+
+@library.filter
+def nl2br_xhtml(string):
+    """Turn newlines into <br/>."""
+    if not string:
+        return ''
+    return jinja2.Markup('<br/>'.join(jinja2.escape(string).splitlines()))

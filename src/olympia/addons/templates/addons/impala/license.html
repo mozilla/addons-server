@@ -20,7 +20,7 @@
       <p><a href="{{ license.url }}">{{ license.name }}</a></p>
     {% else %}
       <h3>{{ license.name }}</h3>
-      <pre class="license">{{ license.text|nl2br }}</pre>
+      <pre class="license">{{ license.text|nl2br_xhtml }}</pre>
     {% endif %}
   </div>
 </section>

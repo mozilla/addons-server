@@ -18,7 +18,7 @@
           <a class="permalink"
              href="{{ url('addons.reviews.detail', addon.slug, review.id) }}">{{ _('permalink') }}</a>
         </p>
-        <p class="description">{{ review.body|nl2br }}</p>
+        <p class="description">{{ review.body|nl2br_xhtml }}</p>
         {% if replies[review.id] %}
           <a class="more-info" href="{{ replies[review.id].get_url_path() }}">
             {{ _("Show the developer's reply to this review") }}</a>
