@@ -411,7 +411,7 @@ class TestAutoApproveCommand(TestCase):
     def test_prevent_multiple_runs_in_parallel(self):
         # Create a lock manually, the command should exit immediately without
         # doing anything.
-        with atomic_lock(settings.TMP_PATH, auto_approve.Command.lock_name):
+        with atomic_lock(settings.TMP_PATH, auto_approve.LOCK_NAME):
             call_command('auto_approve')
 
         assert self.log_final_summary_mock.call_count == 0

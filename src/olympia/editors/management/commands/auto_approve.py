@@ -21,10 +21,11 @@ from olympia.zadmin.models import get_config
 
 log = olympia.core.logger.getLogger('z.editors.auto_approve')
 
+LOCK_NAME = 'auto-approve'  # Name of the atomic_lock() used.
+
 
 class Command(BaseCommand):
     help = 'Auto-approve add-ons based on predefined criteria'
-    lock_name = 'auto-approve'  # Name of the atomic_lock() used.
     post_review = False
 
     def add_arguments(self, parser):
@@ -81,7 +82,7 @@ class Command(BaseCommand):
 
         # Get a lock before doing anything, we don't want to have multiple
         # instances of the command running in parallel.
-        lock = atomic_lock(settings.TMP_PATH, self.lock_name, lifetime=15 * 60)
+        lock = atomic_lock(settings.TMP_PATH, LOCK_NAME, lifetime=15 * 60)
         with lock as lock_attained:
             if lock_attained:
                 qs = self.fetch_candidates()
