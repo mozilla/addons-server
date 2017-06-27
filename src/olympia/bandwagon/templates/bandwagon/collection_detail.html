@@ -2,7 +2,7 @@
 
 {% set c = collection %}
 
-{% block title %}{{ page_title(_('{0} :: Collections')|format(c.name)) }}{% endblock %}
+{% block title %}{{ page_title(_('{0} :: Collections')|format_html(c.name)) }}{% endblock %}
 
 {% block bodyclass %}inverse{% endblock %}
 
@@ -41,7 +41,7 @@
             {% endtrans %}
           </li>
         {% endif %}
-        <li>{{ _('Updated {0}')|format(c.modified|datetime) }}</li>
+        <li>{{ _('Updated {0}')|format_html(c.modified|datetime) }}</li>
       </ul>
     </div>
     <div class='object-details'>

@@ -43,7 +43,7 @@
             <span class="note">
               {{ ngettext('Comma-separated, minimum of {0} character.',
                           'Comma-separated, minimum of {0} characters.',
-                          amo.MIN_TAG_LENGTH)|format(amo.MIN_TAG_LENGTH) }}
+                          amo.MIN_TAG_LENGTH)|format_html(amo.MIN_TAG_LENGTH) }}
               {{ _('Example: dark, cinema, noir. Limit 20.') }}
             </span>
           </li>

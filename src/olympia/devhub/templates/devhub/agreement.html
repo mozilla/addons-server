@@ -19,7 +19,7 @@
     <button id="accept-agreement" type="submit">
       {{ _('I Accept this Agreement') }}
     </button>
-  {{ _('or <a href="{0}">Cancel</a>')|format(url('devhub.index')) }}
+  {{ _('or <a href="{0}">Cancel</a>')|format_html(url('devhub.index')) }}
   </form>
 </div>
 
