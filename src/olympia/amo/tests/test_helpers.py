@@ -10,7 +10,6 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils.encoding import force_bytes
 
-import jingo
 import pytest
 from mock import Mock, patch
 from pyquery import PyQuery
@@ -270,7 +269,9 @@ def test_external_url():
         settings.REDIRECT_SECRET_KEY = secretkey
 
 
-@patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
+@patch(
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
+    'get_outgoing_url')
 def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
@@ -281,7 +282,9 @@ def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.assert_called_with('foo')
 
 
-@patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback')
+@patch(
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
+    'linkify_bounce_url_callback')
 def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'
@@ -305,7 +308,9 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'http://example.com'
 
 
-@patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback')
+@patch(
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.'
+    'linkify_bounce_url_callback')
 def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
     def side_effect(attrs, new=False):
         attrs['href'] = 'bar'

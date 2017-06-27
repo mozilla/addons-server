@@ -17,7 +17,8 @@ from freezegun import freeze_time
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.files.templatetags.jinja_helpers import FileViewer, DiffHelper, extract_file
+from olympia.files.templatetags.jinja_helpers import (
+    FileViewer, DiffHelper, extract_file)
 from olympia.files.models import File
 from olympia.files.utils import SafeUnzip, get_all_files
 
@@ -316,7 +317,8 @@ class TestFileViewer(TestCase):
         files_to_verify = get_all_files(self.viewer.dest)
         files_to_verify.pop()
 
-        with patch('olympia.files.templatetags.jinja_helpers.get_all_files') as get_all_files_mck:
+        module_path = 'olympia.files.templatetags.jinja_helpers.get_all_files'
+        with patch(module_path) as get_all_files_mck:
             get_all_files_mck.return_value = files_to_verify
 
             with pytest.raises(ValueError):
@@ -376,7 +378,8 @@ class TestDiffSearchEngine(TestCase):
         self.helper.cleanup()
         super(TestDiffSearchEngine, self).tearDown()
 
-    @patch('olympia.files.templatetags.jinja_helpers.FileViewer.is_search_engine')
+    @patch(
+        'olympia.files.templatetags.jinja_helpers.FileViewer.is_search_engine')
     def test_diff_search(self, is_search_engine):
         is_search_engine.return_value = True
         self.helper.extract()
