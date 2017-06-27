@@ -352,6 +352,7 @@ TEMPLATES = [
             'finalize': lambda x: x if x is not None else '',
             'translation_engine': 'django.utils.translation',
             'autoescape': True,
+            'trim_blocks': True,
         }
     },
     {
