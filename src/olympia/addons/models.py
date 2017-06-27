@@ -519,7 +519,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @classmethod
     def initialize_addon_from_upload(cls, data, upload, channel):
-        fields = cls._meta.get_all_field_names()
+        fields = [field.name for field in cls._meta.get_fields()]
         guid = data.get('guid')
         old_guid_addon = None
         if guid:  # It's an extension.
