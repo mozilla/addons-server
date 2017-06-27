@@ -623,7 +623,6 @@ def nl2br_xhtml(string):
     return jinja2.Markup('<br/>'.join(jinja2.escape(string).splitlines()))
 
 
-
 @library.filter(name='datetime')
 def datetime_filter(t, fmt=None):
     """Call ``datetime.strftime`` with the given format string.

@@ -14,7 +14,6 @@ from django.utils.translation import trim_whitespace
 
 import mock
 import waffle
-from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
 
 from olympia import amo, core, paypal
@@ -22,7 +21,8 @@ from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, AddonUser, Charity)
-from olympia.amo.templatetags.jinja_helpers import url as url_reverse
+from olympia.amo.templatetags.jinja_helpers import (
+    url as url_reverse, datetime_filter)
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse

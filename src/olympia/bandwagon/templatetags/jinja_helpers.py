@@ -1,7 +1,6 @@
 import math
 
 import jinja2
-from jingo import register
 from django.utils.translation import ugettext
 from django.template import loader
 from django_jinja import library

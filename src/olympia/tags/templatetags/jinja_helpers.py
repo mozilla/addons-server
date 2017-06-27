@@ -1,8 +1,8 @@
-from jingo import register
 import jinja2
+from django_jinja import library
 
 
-@register.inclusion_tag('tags/tag_list.html')
+@library.render_with('tags/tag_list.html')
 @jinja2.contextfunction
 def tag_list(context, addon, tags=None):
     """Display list of tags, with delete buttons."""

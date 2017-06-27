@@ -7,10 +7,10 @@ from django.template import Context, loader
 from django.utils.encoding import force_text
 from django.utils import translation
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
+from django_jinja import library
 
 import django_tables2 as tables
 import jinja2
-from jingo import register
 
 import olympia.core.logger
 from olympia import amo
@@ -33,7 +33,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
-@register.function
+@library.global_function
 def file_compare(file_obj, version):
     # Compare this file to the one in the version with same platform
     file_obj = version.files.filter(platform=file_obj.platform)
@@ -47,7 +47,7 @@ def file_compare(file_obj, version):
     return file_obj[0]
 
 
-@register.function
+@library.global_function
 def file_review_status(addon, file):
     if file.status == amo.STATUS_DISABLED:
         if file.reviewed is not None:
@@ -60,14 +60,14 @@ def file_review_status(addon, file):
         file.status, ugettext('[status:%s]') % file.status)
 
 
-@register.function
+@library.global_function
 def version_status(addon, version):
     if version.deleted:
         return ugettext(u'Deleted')
     return ','.join(unicode(s) for s in version.status)
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def editor_page_title(context, title=None, addon=None):
     """Wrapper for editor page titles.  Eerily similar to dev_page_title."""
@@ -79,7 +79,7 @@ def editor_page_title(context, title=None, addon=None):
     return page_title(context, title)
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def queue_tabnav(context):
     """Returns tuple of tab navigation for the queue pages.
@@ -123,7 +123,7 @@ def queue_tabnav(context):
     return tabnav
 
 
-@register.inclusion_tag('editors/includes/reviewers_score_bar.html')
+@library.render_with('editors/includes/reviewers_score_bar.html')
 @jinja2.contextfunction
 def reviewers_score_bar(context, types=None, addon_type=None):
     user = context.get('user')
@@ -137,7 +137,7 @@ def reviewers_score_bar(context, types=None, addon_type=None):
                                          addon_type=addon_type)))
 
 
-@register.inclusion_tag('editors/includes/files_view.html')
+@library.render_with('editors/includes/files_view.html')
 @jinja2.contextfunction
 def all_distinct_files(context, version):
     """Only display a file once even if it's been uploaded
@@ -338,7 +338,7 @@ PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_NULL,
                     amo.STATUS_PENDING, amo.STATUS_PUBLIC)
 
 
-@register.function
+@library.global_function
 def get_position(addon):
     if addon.is_persona() and addon.is_pending():
         qs = (Addon.objects.filter(status=amo.STATUS_PENDING,
@@ -836,7 +836,7 @@ class ReviewUnlisted(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def logs_tabnav_themes(context):
     """
@@ -854,7 +854,7 @@ def logs_tabnav_themes(context):
     return rv
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def queue_tabnav_themes(context):
     """Similar to queue_tabnav, but for themes."""
@@ -877,7 +877,7 @@ def queue_tabnav_themes(context):
     return tabs
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def queue_tabnav_themes_interactive(context):
     """Tabnav for the interactive shiny theme queues."""
@@ -897,7 +897,7 @@ def queue_tabnav_themes_interactive(context):
     return tabs
 
 
-@register.function
+@library.global_function
 @jinja2.contextfunction
 def is_expired_lock(context, lock):
     return lock.expiry < datetime.datetime.now()

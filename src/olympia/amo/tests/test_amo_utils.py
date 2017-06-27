@@ -7,7 +7,6 @@ from django.core.cache import cache
 from django.core.validators import ValidationError
 from django.utils import translation
 
-import jingo
 import mock
 import pytest
 from product_details import product_details

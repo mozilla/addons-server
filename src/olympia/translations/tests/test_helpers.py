@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.utils import translation
 
-import jingo
 import pytest
 from mock import Mock, patch
 

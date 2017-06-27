@@ -3,7 +3,6 @@ from uuid import UUID
 
 from django.core.urlresolvers import reverse
 
-import jingo
 from mock import Mock
 from pyquery import PyQuery as pq
 
