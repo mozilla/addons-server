@@ -6,7 +6,7 @@ from olympia.accounts.templatetags import jinja_helpers
 
 
 @mock.patch(
-    'olympia.accounts.helpers.utils.default_fxa_login_url',
+    'olympia.accounts.templatetags.jinja_helpers.utils.default_fxa_login_url',
     lambda c: 'http://auth.ca')
 def test_login_link():
     request = RequestFactory().get('/en-US/firefox/addons')
@@ -15,7 +15,8 @@ def test_login_link():
 
 
 @mock.patch(
-    'olympia.accounts.helpers.utils.default_fxa_register_url',
+    'olympia.accounts.templatetags.jinja_helpers.utils.'
+    'default_fxa_register_url',
     lambda c: 'http://auth.ca')
 def test_register_link():
     request = RequestFactory().get('/en-US/firefox/addons')

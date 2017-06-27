@@ -255,7 +255,7 @@ class TestAutoApproveCommand(TestCase):
             unicode(self.addon.name), self.version.version)
 
     @override_switch('post-review', active=True)
-    @mock.patch('olympia.editors.helpers.sign_file')
+    @mock.patch('olympia.editors.templatetags.jinja_helpers.sign_file')
     def test_full_post_review(self, sign_file_mock):
         # Simple integration test with as few mocks as possible, and
         # post-review waffle enabled.

@@ -13,7 +13,7 @@ from django.forms import CheckboxInput
 from django.utils.translation import (
     ugettext, trim_whitespace, to_locale, get_language)
 from django.utils.encoding import smart_text
-from django.utils.html import format_html
+from django.utils.html import format_html as django_format_html
 from django.template import defaultfilters, loader
 from django.utils.functional import lazy
 from django.utils.safestring import mark_safe
@@ -222,7 +222,7 @@ def page_title(context, title):
     # The following line doesn't use string formatting because we want to
     # preserve the type of `title` in case it's a jinja2 `Markup` (safe,
     # escaped) object.
-    return format_html(u'{} :: {}', title, base_title)
+    return django_format_html(u'{} :: {}', title, base_title)
 
 
 @library.filter
@@ -576,7 +576,7 @@ def format_html(string, *args, **kwargs):
     Checks both, *args and **kwargs for potentially unsafe arguments (
     not marked as `mark_safe`) and escapes them appropriately.
     """
-    return format_html(smart_text(string), *args, **kwargs)
+    return django_format_html(smart_text(string), *args, **kwargs)
 
 
 @library.global_function
@@ -621,3 +621,18 @@ def nl2br_xhtml(string):
     if not string:
         return ''
     return jinja2.Markup('<br/>'.join(jinja2.escape(string).splitlines()))
+
+
+
+@library.filter(name='datetime')
+def datetime_filter(t, fmt=None):
+    """Call ``datetime.strftime`` with the given format string.
+
+    This is a copy from jingo until we have time to port all our templates
+    to use django's datetime filter.
+    """
+    if fmt is None:
+        fmt = ugettext(u'%B %e, %Y')
+
+    fmt = fmt.encode('utf-8')
+    return smart_text(t.strftime(fmt)) if t else ''

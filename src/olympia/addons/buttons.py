@@ -49,7 +49,7 @@ def install_button(context, addon, version=None, show_contrib=True,
 
 @jinja2.contextfunction
 def big_install_button(context, addon, **kwargs):
-    from olympia.addons.helpers import statusflags
+    from olympia.addons.templatetags.jinja_helpers import statusflags
     flags = jinja2.escape(statusflags(context, addon))
     button = install_button(context, addon, detailed=True, size='prominent',
                             **kwargs)
