@@ -30,7 +30,7 @@
 </hgroup>
 
 <form method="POST" action="#review-actions" class="review-form">
-  {{ csrf() }}
+  {% csrf_token %} }}
   <div id="addon" class="primary" role="main" data-id="{{ addon.id }}" data-url="{{ url('editors.review_viewing') }}">
 
   {% include 'editors/addon_details_box.html' %}
@@ -252,7 +252,7 @@
 </form>
 
 <form method="POST" action="{{ url('editors.whiteboard', addon.slug if addon.slug else addon.pk) }}">
-  {{ csrf() }}
+  {% csrf_token %} }}
   <div class="whiteboard">
     <div class="whiteboard-inner">
       <label for="id_whiteboard">{{ whiteboard_form.whiteboard.label }}</label>

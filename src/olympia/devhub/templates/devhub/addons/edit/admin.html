@@ -5,7 +5,7 @@
 {% endif %}
 
 <form method="post" action="{{ url('devhub.addons.admin', addon.slug) }}">
-  {{ csrf() }}
+  {% csrf_token %} }}
   <h3>
     Admin Settings
     {% if not editable %}
