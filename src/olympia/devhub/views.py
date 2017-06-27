@@ -1709,6 +1709,8 @@ def api_key_agreement(request):
 
 def render_agreement(request, template, next_step, **extra_context):
     new_style_agreement = waffle.switch_is_active('post-review')
+    # If using the new style agreement, use AgreementForm, otherwise just an
+    # empty django Form that will always be valid when you POST things to it.
     form_class = AgreementForm if new_style_agreement else Form
     form = form_class(request.POST if request.method == 'POST' else None)
     if request.method == 'POST' and form.is_valid():
