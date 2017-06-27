@@ -381,7 +381,7 @@ def ajax_new(request):
 
     if request.method == 'POST' and form.is_valid():
         collection = form.save()
-        addon_id = request.REQUEST['addon_id']
+        addon_id = request.POST['addon_id']
         collection.add_addon(Addon.objects.get(pk=addon_id))
         log.info('Created collection %s' % collection.id)
         return http.HttpResponseRedirect(reverse('collections.ajax_list') +
