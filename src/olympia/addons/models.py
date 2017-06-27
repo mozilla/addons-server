@@ -75,7 +75,7 @@ def clean_slug(instance, slug_field='slug'):
         else:
             slug = instance.__class__.__name__
 
-    max_length = instance._meta.get_field_by_name(slug_field)[0].max_length
+    max_length = instance._meta.get_field(slug_field).max_length
     slug = slugify(slug)[:max_length]
 
     if DeniedSlug.blocked(slug):
