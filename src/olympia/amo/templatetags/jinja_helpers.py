@@ -570,8 +570,8 @@ def format_html(string, *args, **kwargs):
 
     Uses ``django.utils.html:format_html`` internally.
 
-    >>> {{ "{0} arguments, {x} arguments"|format_html('positional', x='keyword') }}
-    "positional arguments, keyword arguments"
+    >>> {{ "{0} arguments, {x} arguments"|format_html('args', x='kwargs') }}
+    "positional args, kwargs arguments"
 
     Checks both, *args and **kwargs for potentially unsafe arguments (
     not marked as `mark_safe`) and escapes them appropriately.

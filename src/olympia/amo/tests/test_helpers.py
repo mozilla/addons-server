@@ -87,7 +87,8 @@ def test_page_title_markup():
     request.APP = amo.FIREFOX
     # Markup isn't double escaped.
     res = render(
-        '{{ page_title("{0}"|format_html("It\'s all text")) }}', {'request': request})
+        '{{ page_title("{0}"|format_html("It\'s all text")) }}',
+        {'request': request})
     assert res == 'It&#39;s all text :: Add-ons for Firefox'
 
 
@@ -99,16 +100,19 @@ def test_template_escaping():
     expected = '<a href="...">This is a test</a>'
     assert render('{{ _(\'<a href="...">This is a test</a>\') }}') == expected
 
-    # Simple HTML in a translatable string, with |format_html works as expected
+    # Simple HTML in a translatable string, with |format_html works
+    # as expected
     expected = '<a href="...">This is a test</a>'
-    original = '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a test") }}'
+    original = (
+        '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a test") }}')
     assert render(original) == expected
 
     # The html provided in the translatable string won't be escaped
     # but all arguments are.
     expected = '<a href="...">This is a &lt;h1&gt;test&lt;/h1&gt;</a>'
     original = (
-        '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a <h1>test</h1>") }}')
+        '{{ _(\'<a href="...">{0}</a>\')|format_html('
+        '"This is a <h1>test</h1>") }}')
     assert render(original) == expected
 
     # Unless marked explicitly as safe
@@ -208,7 +212,8 @@ def test_urlparams_returns_safe_string():
     s = render('{{ "https://foo.com/"|urlparams(param="help+me") }}', {})
     assert s == 'https://foo.com/?param=help%2Bme'
 
-    s = render(u'{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
+    s = render(
+        u'{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
     assert s == 'https://foo.com/?param=obiwank%C3%A9nobi'
 
     s = render(u'{{ "https://foo.com/"|urlparams(param=42) }}', {})
