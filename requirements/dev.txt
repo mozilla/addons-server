@@ -46,8 +46,8 @@ pytest-cache==1.0 \
 pytest-django==2.9.1 \
     --hash=sha256:8be15b637738c8cbd1422a6461465c0aeab7839cf76ad2b5d190b6f1f53facd6 \
     --hash=sha256:743d0056e127ef424850ea76d93d45c92c313da0e56765806a59fc7680c25ab7 # pyup: ==2.9.1
-pytest-xdist==1.17.1 \
-    --hash=sha256:525d3708d6d3488dc5e47eac3f569484ca171e9af173ec2827e523a1b3d65f92
+pytest-xdist==1.18.0 \
+    --hash=sha256:97d2237b3acd11195c54a80af9ca2e951ef356363e052938fec1e83b67015fa3
 freezegun==0.3.9 \
     --hash=sha256:8842688de9497c82ecb40c30274ecc676e97ac78765b0ade105a97063d5b7a11 \
     --hash=sha256:783ccccd7f60968bfe49ad9e114c18ea2b63831faaaf61c1f1f71ddfde1c0eee
