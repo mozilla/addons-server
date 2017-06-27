@@ -339,7 +339,6 @@ TEMPLATES = [
                 # 'jinja2.ext.i18n',
                 'jinja2.ext.loopcontrols',
                 'jinja2.ext.with_',
-                'django_jinja.builtins.extensions.CacheExtension',
                 'django_jinja.builtins.extensions.CsrfExtension',
                 'django_jinja.builtins.extensions.DjangoFiltersExtension',
                 'django_jinja.builtins.extensions.StaticFilesExtension',
