@@ -14,11 +14,14 @@ from olympia.editors.helpers import ReviewHelper
 from olympia.editors.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
+from olympia.files.utils import atomic_lock
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config
 
 
 log = olympia.core.logger.getLogger('z.editors.auto_approve')
+
+LOCK_NAME = 'auto-approve'  # Name of the atomic_lock() used.
 
 
 class Command(BaseCommand):
@@ -76,13 +79,22 @@ class Command(BaseCommand):
             else amo.AUTO_APPROVED)
 
         self.stats = Counter()
-        qs = self.fetch_candidates()
-        self.stats['total'] = len(qs)
 
-        for version in qs:
-            self.process(version)
+        # Get a lock before doing anything, we don't want to have multiple
+        # instances of the command running in parallel.
+        lock = atomic_lock(settings.TMP_PATH, LOCK_NAME, lifetime=15 * 60)
+        with lock as lock_attained:
+            if lock_attained:
+                qs = self.fetch_candidates()
+                self.stats['total'] = len(qs)
 
-        self.log_final_summary(self.stats)
+                for version in qs:
+                    self.process(version)
+
+                self.log_final_summary(self.stats)
+            else:
+                # We didn't get the lock...
+                log.error('auto-approve lock present, aborting.')
 
     @transaction.atomic
     def process(self, version):
