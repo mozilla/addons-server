@@ -59,7 +59,6 @@
   <p class="msg m-not-updated">{% trans app=APP.pretty %}
     This add-on has not been updated to work with your version of {{ app }}.
   {% endtrans %}</p>
-  <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
 </div>
 {% endmacro %}
 
@@ -136,7 +135,6 @@
     This add-on is not compatible with your version of {{ app }} because of the
     following:{% endtrans %}</p>
   <ul>{reasons}</ul>
-  <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
   <p><a href="{versions_url}">{{ _('View other versions') }}</a></p>
 </div>
 {% endmacro %}
@@ -146,7 +144,6 @@
 <div class="install-note">
   <p class="msg m-not-compatible">{% trans app=APP.pretty %}
     This add-on is not compatible with your version of {{ app }}.{% endtrans %}</p>
-  <p><a href="{url}" class="button installer">{{ _('Install Anyway') }}</a></p>
   <p><a href="{versions_url}">{{ _('View other versions') }}</a></p>
 </div>
 {% endmacro %}
