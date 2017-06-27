@@ -1,7 +1,7 @@
 {% extends "impala/base_shared.html" %}
 {% from 'includes/forms.html' import pretty_field, required_note %}
 
-{% set title = _('Reply to review by {0}')|f(review.user.name) %}
+{% set title = _('Reply to review by {0}')|format(review.user.name) %}
 
 {% block bodyclass %}reviews gutter{% endblock %}
 

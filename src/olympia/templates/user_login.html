@@ -34,7 +34,7 @@
 <p class="context">
   {% if user.is_authenticated() %}
     <span class="greeting">
-      {{ _('Welcome, {0}')|f(user.welcome_name) }}
+      {{ _('Welcome, {0}')|format(user.welcome_name) }}
     </span>
   {% else %}
     {% trans reg=register_link(), login=login_link() %}

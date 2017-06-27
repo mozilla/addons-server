@@ -2,7 +2,7 @@
 
 {% block title %}
 {# L10n: {0} is the name of the collection. #}
-{{ page_title(_('Edit {0}')|fe(collection.name)) }}
+{{ page_title(_('Edit {0}')|format(collection.name)) }}
 {% endblock %}
 {% set owner = (collection.owned_by(user) or is_admin) %}
 
@@ -12,7 +12,7 @@
   </div>
   <div class="primary">
     <header>
-      <h2>{{ _('Edit {0}')|fe(collection.name) }}</h2>
+      <h2>{{ _('Edit {0}')|format(collection.name) }}</h2>
     </header>
 
     <div id="a" class="tab-wrapper">

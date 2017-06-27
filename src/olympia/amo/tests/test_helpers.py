@@ -87,7 +87,7 @@ def test_page_title_markup():
     request.APP = amo.FIREFOX
     # Markup isn't double escaped.
     res = render(
-        '{{ page_title("{0}"|fe("It\'s all text")) }}', {'request': request})
+        '{{ page_title("{0}"|format("It\'s all text")) }}', {'request': request})
     assert res == 'It&#39;s all text :: Add-ons for Firefox'
 
 
@@ -477,10 +477,10 @@ def test_timesince():
     assert jinja_helpers.timesince(None) == u''
 
 
-def test_f():
+def test_format_unicode():
     # This makes sure there's no UnicodeEncodeError when doing the string
     # interpolation.
-    assert render(u'{{ "foo {0}"|f("baré") }}') == u'foo baré'
+    assert render(u'{{ "foo {0}"|format("baré") }}') == u'foo baré'
 
 
 class TestStoragePath(TestCase):

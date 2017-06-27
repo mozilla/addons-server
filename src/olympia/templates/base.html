@@ -14,7 +14,7 @@
     {% block rss_feed %}{% endblock %}
 
     {# L10n: {0} is an application, like Firefox. #}
-    <link title="{{ _('{0} Add-ons')|f(APP.pretty) }}"
+    <link title="{{ _('{0} Add-ons')|format(APP.pretty) }}"
           rel="search" type="application/opensearchdescription+xml"
           href="{{ url('amo.opensearch') }}" />
 

@@ -1,6 +1,6 @@
 <h1 class="site-title">
 {% macro heading(app, text, icon) -%}
-<a href="{{ url('home') }}" title="{{ _('Return to the {0} Add-ons homepage')|f(request.APP.pretty) }}">
+<a href="{{ url('home') }}" title="{{ _('Return to the {0} Add-ons homepage')|format(request.APP.pretty) }}">
   {% if request.APP == amo.FIREFOX %}
   <img alt="{{ APP.pretty }}" src="{{ static('img/icons/firefox.png')|safe }}">
   {% else %}

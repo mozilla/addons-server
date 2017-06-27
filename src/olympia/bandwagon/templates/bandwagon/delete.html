@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block title %}
 {# L10n: %s is the name of the collection. #}
-{{ page_title(_('Delete {0}')|fe(collection.name)) }}
+{{ page_title(_('Delete {0}')|format(collection.name)) }}
 {% endblock %}
 
 {% block content %}
 
   <header>
-    <h2>{{ _('Delete {0}')|fe(collection.name) }}</h2>
+    <h2>{{ _('Delete {0}')|format(collection.name) }}</h2>
     <h3>{{ _('Are you sure?') }}</h3>
   </header>
 
