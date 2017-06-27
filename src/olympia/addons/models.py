@@ -374,6 +374,14 @@ class Addon(OnChangeMixin, ModelBase):
 
     class Meta:
         db_table = 'addons'
+        index_together = [
+            ['weekly_downloads', 'type'],
+            ['created', 'type'],
+            ['bayesian_rating', 'type'],
+            ['last_updated', 'type'],
+            ['average_daily_users', 'type'],
+            ['type', 'status', 'disabled_by_user'],
+        ]
 
     @staticmethod
     def __new__(cls, *args, **kw):
