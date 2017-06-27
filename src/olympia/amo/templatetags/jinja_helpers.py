@@ -565,31 +565,18 @@ def hidden_field(field):
 
 
 @library.filter
-def f(s, *args, **kwargs):
+def format(string, *args, **kwargs):
+    """Uses ``str.format`` for string interpolation.
+
+    Uses ``django.utils.html:format_html`` internally.
+
+    >>> {{ "{0} arguments, {x} arguments"|format('positional', x='keyword') }}
+    "positional arguments, keyword arguments"
+
+    Checks both, *args and **kwargs for potentially unsafe arguments (
+    not marked as `mark_safe`) and escapes them appropriately.
     """
-    Uses ``str.format`` for string interpolation.
-
-    **Note**: Always converts to s to text type before interpolation.
-
-    >>> {{ "{0} arguments and {x} arguments"|f('positional', x='keyword') }}
-    "positional arguments and keyword arguments"
-    """
-    return smart_text(s).format(*args, **kwargs)
-
-
-@library.filter
-def fe(s, *args, **kwargs):
-    """Format a safe string with potentially unsafe arguments, then return a
-    safe string."""
-
-    s = smart_text(s)
-
-    args = [jinja2.escape(smart_text(v)) for v in args]
-
-    for k in kwargs:
-        kwargs[k] = jinja2.escape(smart_text(kwargs[k]))
-
-    return jinja2.Markup(s.format(*args, **kwargs))
+    return format_html(string, *args, **kwargs)
 
 
 @library.global_function
