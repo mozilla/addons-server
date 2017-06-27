@@ -576,7 +576,7 @@ def format(string, *args, **kwargs):
     Checks both, *args and **kwargs for potentially unsafe arguments (
     not marked as `mark_safe`) and escapes them appropriately.
     """
-    return format_html(string, *args, **kwargs)
+    return format_html(smart_text(string), *args, **kwargs)
 
 
 @library.global_function
