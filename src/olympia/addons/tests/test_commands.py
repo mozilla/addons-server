@@ -26,7 +26,7 @@ def test_no_overridden_settings(monkeypatch):
         assert not settings.SIGNING_SERVER
 
     monkeypatch.setattr(SIGN_ADDONS, no_endpoint)
-    call_command('sign_addons', 123)
+    call_command('sign_addons', '123')
 
 
 def test_override_SIGNING_SERVER_setting(monkeypatch):
@@ -37,7 +37,7 @@ def test_override_SIGNING_SERVER_setting(monkeypatch):
         assert settings.SIGNING_SERVER == 'http://example.com'
 
     monkeypatch.setattr(SIGN_ADDONS, signing_server)
-    call_command('sign_addons', 123, signing_server='http://example.com')
+    call_command('sign_addons', '123', signing_server='http://example.com')
 
 
 def test_force_signing(monkeypatch):
@@ -45,12 +45,12 @@ def test_force_signing(monkeypatch):
     def not_forced(ids, force, reason):
         assert not force
     monkeypatch.setattr(SIGN_ADDONS, not_forced)
-    call_command('sign_addons', 123)
+    call_command('sign_addons', '123')
 
     def is_forced(ids, force, reason):
         assert force
     monkeypatch.setattr(SIGN_ADDONS, is_forced)
-    call_command('sign_addons', 123, force=True)
+    call_command('sign_addons', '123', force=True)
 
 
 def test_reason(monkeypatch):
@@ -58,7 +58,7 @@ def test_reason(monkeypatch):
     def has_reason(ids, force, reason):
         assert reason == 'expiry'
     monkeypatch.setattr(SIGN_ADDONS, has_reason)
-    call_command('sign_addons', 123, reason='expiry')
+    call_command('sign_addons', '123', reason='expiry')
 
 # Test the "approve_addons" command.
 

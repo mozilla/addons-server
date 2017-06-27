@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from optparse import make_option
-
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
@@ -11,10 +9,15 @@ from olympia.files.tasks import update_webext_descriptions_all
 class Command(BaseCommand):
     help = ('Download and update webextension permission descriptions from '
             'mozilla-central.')
-    option_list = BaseCommand.option_list + (
-        make_option('--clear', action='store_true', dest='clear',
-                    help='Clear existing descriptions in the database first'),
-    )
+
+    def add_arguments(self, parser):
+        """Handle command arguments."""
+        parser.add_argument(
+            '--clear',
+            action='store_true',
+            dest='clear',
+            default=False,
+            help='Clear existing descriptions in the database first.')
 
     def handle(self, *args, **options):
         if options['clear']:

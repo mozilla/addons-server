@@ -1,5 +1,3 @@
-from optparse import make_option
-
 from django.core.management.base import BaseCommand, CommandError
 
 import olympia.core.logger
@@ -12,11 +10,12 @@ class Command(BaseCommand):
     args = u'<token_uuid token_uuid ...>'
     help = u'Force expire a list of Activity Email tokens.'
 
-    option_list = BaseCommand.option_list + (
-        make_option('--version_id', action='store', type='long',
-                    dest='version_id',
-                    help='Expire all tokens on this version.'),
-    )
+    def add_arguments(self, parser):
+        """Handle command arguments."""
+        parser.add_argument(
+            '--version_id', action='store', type=long,
+            dest='version_id',
+            help='Expire all tokens on this version.')
 
     def handle(self, *args, **options):
         version_pk = options.get('version_id')

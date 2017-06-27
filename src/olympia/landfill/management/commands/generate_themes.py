@@ -1,5 +1,3 @@
-from optparse import make_option
-
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import translation
@@ -26,11 +24,13 @@ class Command(BaseCommand):
     """
 
     help = __doc__
-    option_list = BaseCommand.option_list + (
-        make_option('--owner', action='store', dest='email',
-                    default='nobody@mozilla.org',
-                    help="Specific owner's email to be created."),
-    )
+
+    def add_arguments(self, parser):
+        """Handle command arguments."""
+        parser.add_argument(
+            '--owner', action='store', dest='email',
+            default='nobody@mozilla.org',
+            help="Specific owner's email to be created.")
 
     def handle(self, *args, **kwargs):
         if not settings.DEBUG:

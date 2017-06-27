@@ -1,5 +1,3 @@
-from optparse import make_option
-
 from django.core.management.base import BaseCommand, CommandError
 
 from olympia.access.models import Group, GroupUser
@@ -11,12 +9,14 @@ class Command(BaseCommand):
     args = 'email'
     help = 'Activate a registered user by its email.'
 
-    option_list = BaseCommand.option_list + (
-        make_option('--set-admin',
-                    action='store_true',
-                    dest='set_admin',
-                    default=False,
-                    help='Give superuser/admin rights to the user.'),)
+    def add_arguments(self, parser):
+        """Handle command arguments."""
+        parser.add_argument(
+            '--set-admin',
+            action='store_true',
+            dest='set_admin',
+            default=False,
+            help='Give superuser/admin rights to the user.')
 
     def handle(self, *args, **options):
         if len(args) != 1:

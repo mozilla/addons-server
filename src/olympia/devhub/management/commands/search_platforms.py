@@ -1,4 +1,3 @@
-from optparse import make_option
 from datetime import datetime
 
 from django.core.management.base import BaseCommand
@@ -12,13 +11,16 @@ from olympia.files.models import File
 
 
 class Command(BaseCommand):
-    option_list = BaseCommand.option_list + (
-        make_option('--change', action='store_true',
-                    dest='change', help='Changes files to platform all.'),
-        make_option('--report', action='store_true',
-                    dest='report', help='Reports files that might conflict.'),
-    )
     help = 'Report conflicting files for search engine Addons'
+
+    def add_arguments(self, parser):
+        """Handle command arguments."""
+        parser.add_argument(
+            '--change', action='store_true',
+            dest='change', help='Changes files to platform all.')
+        parser.add_argument(
+            '--report', action='store_true',
+            dest='report', help='Reports files that might conflict.')
 
     def handle(self, *args, **options):
         if options.get('change', False):
