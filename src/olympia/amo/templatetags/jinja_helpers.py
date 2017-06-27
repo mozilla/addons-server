@@ -565,12 +565,12 @@ def hidden_field(field):
 
 
 @library.filter
-def format(string, *args, **kwargs):
+def format_html(string, *args, **kwargs):
     """Uses ``str.format`` for string interpolation.
 
     Uses ``django.utils.html:format_html`` internally.
 
-    >>> {{ "{0} arguments, {x} arguments"|format('positional', x='keyword') }}
+    >>> {{ "{0} arguments, {x} arguments"|format_html('positional', x='keyword') }}
     "positional arguments, keyword arguments"
 
     Checks both, *args and **kwargs for potentially unsafe arguments (

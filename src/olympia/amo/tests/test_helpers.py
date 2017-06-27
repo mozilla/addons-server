@@ -87,7 +87,7 @@ def test_page_title_markup():
     request.APP = amo.FIREFOX
     # Markup isn't double escaped.
     res = render(
-        '{{ page_title("{0}"|format("It\'s all text")) }}', {'request': request})
+        '{{ page_title("{0}"|format_html("It\'s all text")) }}', {'request': request})
     assert res == 'It&#39;s all text :: Add-ons for Firefox'
 
 
@@ -99,23 +99,23 @@ def test_template_escaping():
     expected = '<a href="...">This is a test</a>'
     assert render('{{ _(\'<a href="...">This is a test</a>\') }}') == expected
 
-    # Simple HTML in a translatable string, with |format works as expected
+    # Simple HTML in a translatable string, with |format_html works as expected
     expected = '<a href="...">This is a test</a>'
-    original = '{{ _(\'<a href="...">{0}</a>\')|format("This is a test") }}'
+    original = '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a test") }}'
     assert render(original) == expected
 
     # The html provided in the translatable string won't be escaped
     # but all arguments are.
     expected = '<a href="...">This is a &lt;h1&gt;test&lt;/h1&gt;</a>'
     original = (
-        '{{ _(\'<a href="...">{0}</a>\')|format("This is a <h1>test</h1>") }}')
+        '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a <h1>test</h1>") }}')
     assert render(original) == expected
 
     # Unless marked explicitly as safe
     expected = '<a href="...">This is a <h1>test</h1></a>'
     original = (
         '{{ _(\'<a href="...">{0}</a>\')'
-        '|format("This is a <h1>test</h1>"|safe) }}')
+        '|format_html("This is a <h1>test</h1>"|safe) }}')
     assert render(original) == expected
 
     # Document how newstyle gettext behaves, everything that get's passed in
@@ -130,16 +130,16 @@ def test_template_escaping():
     expected = '<b>5 users</b>'
     assert render(
         '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
-        '|format(5) }}'
+        '|format_html(5) }}'
     ) == expected
 
     # You could also mark the whole output as |safe but note that this
-    # still escapes the arguments of |format unless explicitly
+    # still escapes the arguments of |format_html unless explicitly
     # marked as safe
     expected = '<b>&lt;script&gt; users</b>'
     assert render(
         '{{ ngettext(\'<b>{0} user</b>\', \'<b>{0} users</b>\', 2)'
-        '|format("<script>")|safe }}'
+        '|format_html("<script>")|safe }}'
     ) == expected
 
 
@@ -480,7 +480,7 @@ def test_timesince():
 def test_format_unicode():
     # This makes sure there's no UnicodeEncodeError when doing the string
     # interpolation.
-    assert render(u'{{ "foo {0}"|format("baré") }}') == u'foo baré'
+    assert render(u'{{ "foo {0}"|format_html("baré") }}') == u'foo baré'
 
 
 class TestStoragePath(TestCase):
