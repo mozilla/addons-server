@@ -338,8 +338,8 @@ lxml==3.8.0 \
     --hash=sha256:14e4dedfd4f0bb0fbb79c1df7b61cf8fcb236f208ee9a3d6ffa83bab1862bb72 \
     --hash=sha256:66157afa19e185beb9840117a3227c91168b46a8d72621bef055aa62a8c2b771
 # m2secret is required by django-aesfield
-m2secret==0.1.1 \
-    --hash=sha256:4174f4967b378d751e758894d6c394db506c4f8753d1db66494320c31667d8a0
+m2secret-py3==1.3 \
+    --hash=sha256:94dfae937e8a61bf48812fab6a0b8de300781c4e1dbee0cee3aa57cb01915864
 # mock is required by amo-validator
 mock==2.0.0 \
     --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
