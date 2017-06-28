@@ -1728,3 +1728,6 @@ CRON_JOBS = {
     'update_user_ratings': 'olympia.users.cron',
     'reindex_users': 'olympia.users.cron',
 }
+
+# Are all AclPermission rules available.
+ADMIN_ACL_ENABLED = env.bool('ADMIN_ACL_ENABLED', default=False)

@@ -61,3 +61,5 @@ MAILING_LISTS_VIEW = AclPermission('MailingLists', 'View')
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]
+ADMIN_ACL_SAFE_LIST = [
+    ADDONS_REVIEW, THEMES_REVIEW, STATS_VIEW, EXPERIMENTS_SUBMIT]

@@ -1,15 +1,18 @@
 import mock
 import pytest
 
+from django.test.utils import override_settings
+
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.amo.tests import TestCase, req_factory_factory
+from olympia.amo.tests import TestCase, req_factory_factory, user_factory
 from olympia.addons.models import Addon, AddonUser
 from olympia.users.models import UserProfile
 
-from .acl import (action_allowed, check_addon_ownership, check_ownership,
-                  check_addons_reviewer, check_personas_reviewer,
-                  check_unlisted_addons_reviewer, is_editor, match_rules)
+from .acl import (
+    action_allowed, action_allowed_user, check_addon_ownership,
+    check_ownership, check_addons_reviewer, check_personas_reviewer,
+    check_unlisted_addons_reviewer, is_editor, match_rules)
 
 
 pytestmark = pytest.mark.django_db
@@ -260,3 +263,28 @@ class TestCheckReviewer(TestCase):
         req = req_factory_factory('noop', user=self.user)
         assert is_editor(req, self.persona)
         assert not is_editor(req, self.addon)
+
+
+class TestAdminAclEnabled(TestCase):
+
+    def test_admin_is_blocked(self):
+        admin = user_factory()
+        self.grant_permission(admin, '*:*')
+        assert action_allowed_user(admin, amo.permissions.ADMIN)
+        with override_settings(ADMIN_ACL_ENABLED=False):
+            assert not action_allowed_user(admin, amo.permissions.ADMIN)
+
+    def test_addons_edit_is_blocked(self):
+        admin = user_factory()
+        self.grant_permission(admin, 'Addons:Edit')
+        assert action_allowed_user(admin, amo.permissions.ADDONS_EDIT)
+        with override_settings(ADMIN_ACL_ENABLED=False):
+            assert not action_allowed_user(admin, amo.permissions.ADDONS_EDIT)
+
+    def test_addons_review_is_okay(self):
+        admin = user_factory()
+        self.grant_permission(admin, 'Addons:Review')
+        assert action_allowed_user(admin, amo.permissions.ADDONS_REVIEW)
+        with override_settings(ADMIN_ACL_ENABLED=False):
+            # Still okay
+            assert action_allowed_user(admin, amo.permissions.ADDONS_REVIEW)
