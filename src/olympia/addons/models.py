@@ -1250,18 +1250,11 @@ class Addon(OnChangeMixin, ModelBase):
         return [app for app, ver in self.compatible_apps.items() if ver and
                 version_int(ver.max.version) < version_int(app.latest_version)]
 
-    def has_author(self, user, roles=None):
-        """True if ``user`` is an author with any of the specified ``roles``.
-
-        ``roles`` should be a list of valid roles (see amo.AUTHOR_ROLE_*). If
-        not specified, has_author will return true if the user has any role.
-        """
+    def has_author(self, user):
+        """True if ``user`` is an author of the add-on."""
         if user is None or user.is_anonymous():
             return False
-        if roles is None:
-            roles = dict(amo.AUTHOR_CHOICES).keys()
-        return AddonUser.objects.filter(addon=self, user=user,
-                                        role__in=roles).exists()
+        return AddonUser.objects.filter(addon=self, user=user).exists()
 
     @property
     def takes_contributions(self):

@@ -8,6 +8,7 @@ from django import forms
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.contrib.auth.models import AnonymousUser
 from django.db import IntegrityError
 from django.utils import translation
 
@@ -1445,6 +1446,25 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(id=3615)
         assert addon.has_complete_metadata()  # Still complete
         assert not addon.has_complete_metadata(has_listed_versions=True)
+
+    def test_can_review(self):
+        user = AnonymousUser()
+        addon = Addon.objects.get(id=3615)
+        assert not addon.can_review(user)
+
+        user = addon.addonuser_set.all()[0].user
+        assert not addon.can_review(user)
+
+        user = UserProfile.objects.get(pk=2519)
+        assert addon.can_review(user)
+
+    def test_has_author(self):
+        addon = Addon.objects.get(id=3615)
+        user = addon.addonuser_set.all()[0].user
+        assert addon.has_author(user)
+
+        user = UserProfile.objects.get(pk=2519)
+        assert not addon.has_author(user)
 
 
 class TestShouldRedirectToSubmitFlow(TestCase):
