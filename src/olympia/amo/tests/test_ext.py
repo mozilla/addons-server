@@ -14,7 +14,7 @@ def test_app_in_fragment_cache_key(cache_mock):
     request.APP.id = '<app>'
     request.user.is_authenticated.return_value = False
     template = from_string('{% cache 1 %}{% endcache %}')
-    render(request, template)
+    template.render(request=request)
     assert cache_mock.call_args[0][0].endswith('<app>')
 
 
