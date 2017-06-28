@@ -384,7 +384,7 @@ class TestDeveloperPages(TestCase):
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('.biography').html() == (
-            'Bio: This is line one.<br><br>This is line two')
+            'Bio: This is line one.<br/><br/>This is line two')
         addon_reasons = doc('#about-addon p')
         assert addon_reasons.eq(0).html() == (
             'Why: This is line one.<br/><br/>This is line two')
@@ -398,9 +398,9 @@ class TestDeveloperPages(TestCase):
         assert r.status_code == 200
         bios = pq(r.content)('.biography')
         assert bios.eq(0).html() == (
-            'Bio1: This is line one.<br><br>This is line two')
+            'Bio1: This is line one.<br/><br/>This is line two')
         assert bios.eq(1).html() == (
-            'Bio2: This is line one.<br><br>This is line two')
+            'Bio2: This is line one.<br/><br/>This is line two')
 
     def test_roadblock_src(self):
         url = reverse('addons.roadblock', args=['a11730'])
