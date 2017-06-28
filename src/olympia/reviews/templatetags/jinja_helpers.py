@@ -48,7 +48,7 @@ def report_review_popup():
 
 @library.global_function
 @library.render_with('reviews/edit_review.html')
-def edit_review_form(context):
+def edit_review_form():
     return {'form': forms.ReviewForm()}
 
 
