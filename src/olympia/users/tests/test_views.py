@@ -808,7 +808,7 @@ class TestProfileSections(TestCase):
         assert 'http://spam.com/' not in response.content
 
         assert 'alert("xss")' in response.content
-        assert 'line<br>break' in response.content
+        assert 'line<br/>break' in response.content
         assert 'linkylink' in response.content
         assert '<b>acceptably bold</b>' in response.content
 
