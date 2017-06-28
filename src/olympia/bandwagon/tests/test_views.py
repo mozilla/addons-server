@@ -370,7 +370,7 @@ class TestCRUD(TestCase):
         r = self.client.get(url)
         self.assertContains(
             r,
-            '&#34;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
+            '&quot;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
         )
         assert name not in r.content
 
@@ -713,7 +713,7 @@ class TestCRUD(TestCase):
         r = self.client.get(url)
         self.assertContains(
             r,
-            '&#34;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
+            '&quot;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
         )
         assert name not in r.content
 
