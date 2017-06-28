@@ -119,7 +119,8 @@ class Review(ModelBase):
             self.user_responsible = user_responsible
 
     def get_url_path(self):
-        return jinja_helpers.url('addons.reviews.detail', self.addon.slug, self.id)
+        return jinja_helpers.url(
+            'addons.reviews.detail', self.addon.slug, self.id)
 
     def approve(self, user):
         from olympia.editors.models import ReviewerScore
@@ -190,8 +191,9 @@ class Review(ModelBase):
     def send_notification_email(self):
         if self.reply_to:
             # It's a reply.
-            reply_url = jinja_helpers.url('addons.reviews.detail', self.addon.slug,
-                                    self.reply_to.pk, add_prefix=False)
+            reply_url = jinja_helpers.url(
+                'addons.reviews.detail', self.addon.slug,
+                self.reply_to.pk, add_prefix=False)
             data = {
                 'name': self.addon.name,
                 'reply_title': self.title,
@@ -204,8 +206,9 @@ class Review(ModelBase):
             perm_setting = 'reply'
         else:
             # It's a new review.
-            reply_url = jinja_helpers.url('addons.reviews.reply', self.addon.slug,
-                                    self.pk, add_prefix=False)
+            reply_url = jinja_helpers.url(
+                'addons.reviews.reply', self.addon.slug, self.pk,
+                add_prefix=False)
             data = {
                 'name': self.addon.name,
                 'rating': '%s out of 5 stars' % self.rating,

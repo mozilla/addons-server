@@ -52,7 +52,8 @@ def addon_with_files(db):
         # Approved addon with a new file.
         # scenario2: should succeed, files approved.
         ('process_public', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-         jinja_helpers.ReviewFiles, 'pending', amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
+         jinja_helpers.ReviewFiles, 'pending', amo.STATUS_PUBLIC,
+         amo.STATUS_PUBLIC),
         # scenario3: should succeed, files rejected.
         ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
          jinja_helpers.ReviewFiles, 'pending', amo.STATUS_NOMINATED,

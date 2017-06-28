@@ -42,18 +42,21 @@ class ReviewTest(TestCase):
 class TestViews(ReviewTest):
 
     def test_dev_reply(self):
-        url = jinja_helpers.url('addons.reviews.detail', self.addon.slug, 218468)
+        url = jinja_helpers.url(
+            'addons.reviews.detail', self.addon.slug, 218468)
         r = self.client.get(url)
         assert r.status_code == 200
 
     def test_dev_no_rss(self):
-        url = jinja_helpers.url('addons.reviews.detail', self.addon.slug, 218468)
+        url = jinja_helpers.url(
+            'addons.reviews.detail', self.addon.slug, 218468)
         r = self.client.get(url)
         doc = pq(r.content)
         assert doc('link[title=RSS]').length == 0
 
     def test_404_user_page(self):
-        url = jinja_helpers.url('addons.reviews.user', self.addon.slug, 233452342)
+        url = jinja_helpers.url(
+            'addons.reviews.user', self.addon.slug, 233452342)
         r = self.client.get(url)
         assert r.status_code == 404
 
@@ -63,24 +66,24 @@ class TestViews(ReviewTest):
         assert r.status_code == 200
 
     def test_abuse_form(self):
-        r = self.client.get(jinja_helpers.url('addons.reviews.list',
-                                        self.addon.slug))
+        r = self.client.get(jinja_helpers.url(
+            'addons.reviews.list', self.addon.slug))
         self.assertTemplateUsed(r, 'reviews/report_review.html')
-        r = self.client.get(jinja_helpers.url('addons.reviews.detail',
-                                        self.addon.slug, 218468))
+        r = self.client.get(jinja_helpers.url(
+            'addons.reviews.detail', self.addon.slug, 218468))
         self.assertTemplateUsed(r, 'reviews/report_review.html')
 
     def test_edit_review_form(self):
-        r = self.client.get(jinja_helpers.url('addons.reviews.list',
-                                        self.addon.slug))
+        r = self.client.get(jinja_helpers.url(
+            'addons.reviews.list', self.addon.slug))
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
-        r = self.client.get(jinja_helpers.url('addons.reviews.detail',
-                                        self.addon.slug, 218468))
+        r = self.client.get(jinja_helpers.url(
+            'addons.reviews.detail', self.addon.slug, 218468))
         self.assertTemplateUsed(r, 'reviews/edit_review.html')
 
     def test_list(self):
-        r = self.client.get(jinja_helpers.url('addons.reviews.list',
-                                        self.addon.slug))
+        r = self.client.get(jinja_helpers.url(
+            'addons.reviews.list', self.addon.slug))
         assert r.status_code == 200
         doc = pq(r.content)
         reviews = doc('#reviews .item')
@@ -130,16 +133,16 @@ class TestViews(ReviewTest):
         assert len(self.client.get(url).context['reviews']) == 4
 
     def test_list_rss(self):
-        r = self.client.get(jinja_helpers.url('addons.reviews.list',
-                                        self.addon.slug))
+        r = self.client.get(jinja_helpers.url(
+            'addons.reviews.list', self.addon.slug))
         doc = pq(r.content)
         assert doc('link[title=RSS]').length == 1
 
     def test_empty_list(self):
         Review.objects.all().delete()
         assert Review.objects.count() == 0
-        r = self.client.get(jinja_helpers.url('addons.reviews.list',
-                                        self.addon.slug))
+        r = self.client.get(jinja_helpers.url(
+            'addons.reviews.list', self.addon.slug))
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('#reviews .item').length == 0
@@ -150,8 +153,8 @@ class TestViews(ReviewTest):
     def test_list_item_actions(self):
         self.login_admin()
         self.make_it_my_review()
-        r = self.client.get(jinja_helpers.url('addons.reviews.list',
-                                        self.addon.slug))
+        r = self.client.get(jinja_helpers.url(
+            'addons.reviews.list', self.addon.slug))
         reviews = pq(r.content)('#reviews .item')
 
         r = Review.objects.get(id=218207)
@@ -171,15 +174,16 @@ class TestViews(ReviewTest):
     def test_cant_view_unlisted_addon_reviews(self):
         """An unlisted addon doesn't have reviews."""
         self.make_addon_unlisted(self.addon)
-        assert self.client.get(jinja_helpers.url('addons.reviews.list',
-                                           self.addon.slug)).status_code == 404
+        assert self.client.get(jinja_helpers.url(
+            'addons.reviews.list', self.addon.slug)).status_code == 404
 
 
 class TestFlag(ReviewTest):
 
     def setUp(self):
         super(TestFlag, self).setUp()
-        self.url = jinja_helpers.url('addons.reviews.flag', self.addon.slug, 218468)
+        self.url = jinja_helpers.url(
+            'addons.reviews.flag', self.addon.slug, 218468)
         self.login_admin()
 
     def test_no_login(self):
@@ -238,8 +242,8 @@ class TestDelete(ReviewTest):
 
     def setUp(self):
         super(TestDelete, self).setUp()
-        self.url = jinja_helpers.url('addons.reviews.delete',
-                               self.addon.slug, 218207)
+        self.url = jinja_helpers.url(
+            'addons.reviews.delete', self.addon.slug, 218207)
         self.login_admin()
 
     def test_no_login(self):
@@ -274,7 +278,8 @@ class TestDelete(ReviewTest):
     def test_delete_own_review(self):
         self.client.logout()
         self.login_dev()
-        url = jinja_helpers.url('addons.reviews.delete', self.addon.slug, 218468)
+        url = jinja_helpers.url(
+            'addons.reviews.delete', self.addon.slug, 218468)
         cnt = Review.objects.count()
         response = self.client.post(url)
         assert response.status_code == 200
@@ -347,7 +352,8 @@ class TestCreate(ReviewTest):
         self.user = UserProfile.objects.get(email='root_x@ukr.net')
         self.qs = Review.objects.filter(addon=self.addon)
         self.more_url = self.addon.get_url_path(more=True)
-        self.list_url = jinja_helpers.url('addons.reviews.list', self.addon.slug)
+        self.list_url = jinja_helpers.url(
+            'addons.reviews.list', self.addon.slug)
 
     def test_add_logged(self):
         r = self.client.get(self.add_url)
@@ -386,7 +392,8 @@ class TestCreate(ReviewTest):
         self.assertTemplateUsed(response, 'reviews/emails/add_review.ltxt')
 
     def test_reply_not_author_or_admin(self):
-        url = jinja_helpers.url('addons.reviews.reply', self.addon.slug, 218207)
+        url = jinja_helpers.url(
+            'addons.reviews.reply', self.addon.slug, 218207)
         response = self.client.get(url)
         assert response.status_code == 403
 
@@ -395,7 +402,8 @@ class TestCreate(ReviewTest):
 
     def test_get_reply(self):
         self.login_dev()
-        url = jinja_helpers.url('addons.reviews.reply', self.addon.slug, 218207)
+        url = jinja_helpers.url(
+            'addons.reviews.reply', self.addon.slug, 218207)
         response = self.client.get(url)
         assert response.status_code == 200
         # We should have a form with title and body in that order.
@@ -409,11 +417,13 @@ class TestCreate(ReviewTest):
         # would be considered like an edit and not send the email.
         review = Review.objects.create(
             user=user, addon=self.addon, body='A review', rating=3)
-        url = jinja_helpers.url('addons.reviews.reply', self.addon.slug, review.pk)
+        url = jinja_helpers.url(
+            'addons.reviews.reply', self.addon.slug, review.pk)
         response = self.client.post(url, {'body': 'unst unst'})
         self.assertRedirects(
             response,
-            jinja_helpers.url('addons.reviews.detail', self.addon.slug, review.pk))
+            jinja_helpers.url(
+                'addons.reviews.detail', self.addon.slug, review.pk))
         assert self.qs.filter(reply_to=review.pk).count() == 1
 
         assert len(mail.outbox) == 1
@@ -421,11 +431,13 @@ class TestCreate(ReviewTest):
 
     def test_double_reply(self):
         self.login_dev()
-        url = jinja_helpers.url('addons.reviews.reply', self.addon.slug, 218207)
+        url = jinja_helpers.url(
+            'addons.reviews.reply', self.addon.slug, 218207)
         response = self.client.post(url, {'body': 'unst unst'})
         self.assertRedirects(
             response,
-            jinja_helpers.url('addons.reviews.detail', self.addon.slug, 218207))
+            jinja_helpers.url(
+                'addons.reviews.detail', self.addon.slug, 218207))
         assert self.qs.filter(reply_to=218207).count() == 1
         review = Review.objects.get(id=218468)
         assert unicode(review.body) == u'unst unst'
@@ -468,8 +480,8 @@ class TestCreate(ReviewTest):
         self.login_dev()
         r = self.client.get_ajax(self.more_url)
         assert pq(r.content)('#add-review').length == 0
-        r = self.client.get(jinja_helpers.url('addons.reviews.list',
-                                        self.addon.slug))
+        r = self.client.get(jinja_helpers.url(
+            'addons.reviews.list', self.addon.slug))
         doc = pq(r.content)
         assert doc('#add-review').length == 0
         assert doc('#add-first-review').length == 0

@@ -69,7 +69,7 @@ class ButtonTest(TestCase):
     @patch('olympia.addons.buttons.render_to_string')
     def get_button(self, render_mock, **kwargs):
         """Proxy for calling install_button."""
-        response = install_button(self.context, self.addon, **kwargs)
+        install_button(self.context, self.addon, **kwargs)
         # Extract button from the kwargs from the first call.
         return render_mock.call_args[0][1]['button']
 

@@ -312,9 +312,11 @@ class APITest(TestCase):
         assert data['version'] == '2.1.072'
         assert data['status'] == 'public'
         assert data['authors'] == (
-            [{'id': 55021, 'name': u'55021 \u0627\u0644\u062a\u0637\u0628',
-              'link': jinja_helpers.absolutify(
-                u'/en-US/firefox/user/55021/?src=api')}])
+            [{
+                'id': 55021,
+                'name': u'55021 \u0627\u0644\u062a\u0637\u0628',
+                'link': jinja_helpers.absolutify(
+                    u'/en-US/firefox/user/55021/?src=api')}])
         assert data['summary'] == unicode(addon.summary)
         assert data['description'] == (
             'This extension integrates your browser with Delicious '

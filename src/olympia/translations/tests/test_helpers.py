@@ -117,8 +117,8 @@ def test_l10n_menu():
     assert 'data-rm-locale="/some/url/"' in menu, menu
 
     # Use the remove_locale_url taken from the addon in the context.
-    menu = jinja_helpers.l10n_menu({'addon': Addon()},
-                             remove_locale_url='some/url/')
+    menu = jinja_helpers.l10n_menu(
+        {'addon': Addon()}, remove_locale_url='some/url/')
     assert 'data-rm-locale="/en-US/developers/addon/None/rmlocale"' in menu
 
 
@@ -168,7 +168,8 @@ class TestAllLocales(TestCase):
         assert u'<span lang="es">Is No</span>' in result
         assert u'<span lang="fr"></span>' in result
 
-        result = jinja_helpers.all_locales(obj, 'description', prettify_empty=True)
+        result = jinja_helpers.all_locales(
+            obj, 'description', prettify_empty=True)
         assert u'<div class="trans" data-name="description">' in result
         assert u'<span lang="en-us">There</span>' in result
         assert u'<span lang="es">Is No</span>' in result

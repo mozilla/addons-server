@@ -860,7 +860,8 @@ class TestReviewHelper(TestCase):
         assert not storage.exists(self.file.file_path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file', lambda *a, **kw: None)
+    @patch('olympia.editors.templatetags.jinja_helpers.sign_file',
+           lambda *a, **kw: None)
     def test_nomination_to_public_webextension(self):
         self.file.update(is_webextension=True)
         self.setup_data(amo.STATUS_NOMINATED)
@@ -869,7 +870,8 @@ class TestReviewHelper(TestCase):
             set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
             set(['firefox57']))
 
-    @patch('olympia.editors.templatetags.jinja_helpers.sign_file', lambda *a, **kw: None)
+    @patch('olympia.editors.templatetags.jinja_helpers.sign_file',
+           lambda *a, **kw: None)
     def test_public_to_public_already_had_webextension_tag(self):
         self.file.update(is_webextension=True)
         Tag(tag_text='firefox57').save_tag(self.addon)
@@ -1128,14 +1130,16 @@ class TestCompareLink(TestCase):
     def test_same_platform(self):
         file = File.objects.create(version=self.version,
                                    platform=self.current.platform)
-        assert file.pk == jinja_helpers.file_compare(self.current, self.version).pk
+        assert file.pk == jinja_helpers.file_compare(
+            self.current, self.version).pk
 
     def test_different_platform(self):
         file = File.objects.create(version=self.version,
                                    platform=self.current.platform)
         File.objects.create(version=self.version,
                             platform=amo.PLATFORM_LINUX.id)
-        assert file.pk == jinja_helpers.file_compare(self.current, self.version).pk
+        assert file.pk == jinja_helpers.file_compare(
+            self.current, self.version).pk
 
     def test_specific_platform(self):
         self.current.platform_id = amo.PLATFORM_LINUX.id
@@ -1143,14 +1147,16 @@ class TestCompareLink(TestCase):
 
         linux = File.objects.create(version=self.version,
                                     platform=amo.PLATFORM_LINUX.id)
-        assert linux.pk == jinja_helpers.file_compare(self.current, self.version).pk
+        assert linux.pk == jinja_helpers.file_compare(
+            self.current, self.version).pk
 
     def test_no_platform(self):
         self.current.platform_id = amo.PLATFORM_LINUX.id
         self.current.save()
         file = File.objects.create(version=self.version,
                                    platform=amo.PLATFORM_WIN.id)
-        assert file.pk == jinja_helpers.file_compare(self.current, self.version).pk
+        assert file.pk == jinja_helpers.file_compare(
+            self.current, self.version).pk
 
 
 def test_version_status():
@@ -1171,4 +1177,5 @@ def test_file_review_status_handles_invalid_status_id():
         jinja_helpers.file_review_status(None, File(status=amo.STATUS_PUBLIC)))
 
     # 99 isn't a valid status, so return the status code for reference.
-    assert u'[status:99]' == jinja_helpers.file_review_status(None, File(status=99))
+    status = jinja_helpers.file_review_status(None, File(status=99))
+    assert u'[status:99]' == status

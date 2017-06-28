@@ -5,7 +5,6 @@ from django.core.cache import cache
 from django.forms import ValidationError
 import django.test
 from django.utils.datastructures import MultiValueDict
-from django.utils.encoding import force_bytes
 
 import pytest
 from mock import patch, Mock

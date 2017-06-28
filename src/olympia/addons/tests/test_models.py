@@ -993,7 +993,8 @@ class TestAddonModels(TestCase):
 
         assert self.newlines_helper(before) == after
 
-    @patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
+    @patch(
+        'olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
     def test_newlines_attribute_link_doublequote(self, mock_get_outgoing_url):
         mock_get_outgoing_url.return_value = 'http://google.com'
         before = '<a href="http://google.com">test</a>'
