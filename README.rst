@@ -32,7 +32,7 @@ You can access the AMO dev environment at https://addons-dev.allizom.org/
 
 You can access the AMO stage environment at https://addons.allizom.org/
 
-You can join our mailing list at: https://mail.mozilla.org/listinfo/dev-addons
+You can join our mailing list at https://mail.mozilla.org/listinfo/dev-addons
 
 .. _`addons.mozilla.org`: https://addons.mozilla.org
 .. _`install docs`: https://addons-server.readthedocs.io/en/latest/topics/install/docker.html
