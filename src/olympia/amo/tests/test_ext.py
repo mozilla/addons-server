@@ -1,7 +1,7 @@
 import mock
 import pytest
 
-from olympia.amo.utils import render, from_string
+from olympia.amo.utils import from_string
 
 
 pytestmark = pytest.mark.django_db

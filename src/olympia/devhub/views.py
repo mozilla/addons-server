@@ -43,7 +43,8 @@ from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import CheckCompatibilityForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import process_validation
-from olympia.editors.templatetags.jinja_helpers import get_position, ReviewHelper
+from olympia.editors.templatetags.jinja_helpers import (
+    get_position, ReviewHelper)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import is_beta, parse_addon
 from olympia.lib.crypto.packaged import sign_file

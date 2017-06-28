@@ -126,7 +126,7 @@ class TestDevFilesStatus(TestCase):
 
 
 @pytest.mark.parametrize(
-    'action1,action2,action3,count', (
+    'action1,action2,action3,expected_count', (
         (LOG.REQUEST_INFORMATION, LOG.REQUEST_INFORMATION,
          LOG.REQUEST_INFORMATION, 3),
         # Tests with Developer_Reply
@@ -153,7 +153,7 @@ class TestDevFilesStatus(TestCase):
     )
 )
 def test_pending_activity_log_count_for_developer(
-        action1, action2, action3, count):
+        action1, action2, action3, expected_count):
     user = user_factory()
     addon = addon_factory()
     version = addon.current_version
@@ -164,4 +164,5 @@ def test_pending_activity_log_count_for_developer(
     ActivityLog.create(action3, addon, version, user=user).update(
         created=days_ago(0))
 
-    assert jinja_helpers.pending_activity_log_count_for_developer(version) == count
+    count = jinja_helpers.pending_activity_log_count_for_developer(version)
+    assert count == expected_count

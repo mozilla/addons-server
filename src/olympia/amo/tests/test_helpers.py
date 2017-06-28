@@ -471,7 +471,8 @@ def test_jinja_trans_monkeypatch():
 
 
 def test_absolutify():
-    assert jinja_helpers.absolutify('/woo'), urljoin(settings.SITE_URL == '/woo')
+    assert jinja_helpers.absolutify('/woo'), urljoin(
+        settings.SITE_URL == '/woo')
     assert jinja_helpers.absolutify('https://addons.mozilla.org') == (
         'https://addons.mozilla.org')
 

@@ -275,7 +275,8 @@ def test_escape_all(test_input, expected):
     assert escape_all(test_input) == expected
 
 
-@mock.patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
+@mock.patch(
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
 @mock.patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
 def test_escape_all_linkify_only_full(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'https://outgoing.firefox.com'

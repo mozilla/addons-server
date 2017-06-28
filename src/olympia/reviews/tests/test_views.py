@@ -443,15 +443,15 @@ class TestCreate(ReviewTest):
     def test_add_link_visitor(self):
         """
         Ensure non-logged user can see Add Review links on details page
-        but not on Reviews listing page.
+        and Reviews listing page.
         """
         self.client.logout()
         r = self.client.get_ajax(self.more_url)
         assert pq(r.content)('#add-review').length == 1
-        r = self.client.get(jinja_helpers.url('addons.reviews.list',
-                                        self.addon.slug))
+        r = self.client.get(jinja_helpers.url(
+            'addons.reviews.list', self.addon.slug))
         doc = pq(r.content)
-        assert doc('#add-review').length == 0
+        assert doc('#add-review').length == 1
         assert doc('#add-first-review').length == 0
 
     def test_add_link_logged(self):

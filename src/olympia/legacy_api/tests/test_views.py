@@ -282,7 +282,8 @@ class APITest(TestCase):
         self.assertContains(response, "<summary>Delicious Bookmarks is the")
         self.assertContains(response, "<description>This extension integrates")
 
-        icon_url = "%s3/3615-32.png" % jinja_helpers.user_media_url('addon_icons')
+        icon_url = "%s3/3615-32.png" % jinja_helpers.user_media_url(
+            'addon_icons')
         self.assertContains(response, '<icon size="32">' + icon_url)
         self.assertContains(response, "<application>")
         self.assertContains(response, "<name>Firefox</name>")
@@ -312,15 +313,16 @@ class APITest(TestCase):
         assert data['status'] == 'public'
         assert data['authors'] == (
             [{'id': 55021, 'name': u'55021 \u0627\u0644\u062a\u0637\u0628',
-              'link': jinja_helpers.absolutify(u'/en-US/firefox/user/55021/?src=api')}])
+              'link': jinja_helpers.absolutify(
+                u'/en-US/firefox/user/55021/?src=api')}])
         assert data['summary'] == unicode(addon.summary)
         assert data['description'] == (
             'This extension integrates your browser with Delicious '
             '(http://delicious.com), the leading social bookmarking '
             'service on the Web.')
         assert data['icon'] == (
-            '%s3/3615-32.png?modified=1275037317' % jinja_helpers.user_media_url(
-                'addon_icons'))
+            '%s3/3615-32.png?modified=1275037317' %
+            jinja_helpers.user_media_url('addon_icons'))
         assert data['compatible_apps'] == (
             [{'Firefox': {'max': '4.0', 'min': '2.0'}}])
         assert data['eula'] == unicode(addon.eula)
@@ -354,7 +356,8 @@ class APITest(TestCase):
         assert doc('license name').length == 1
         assert doc('license url').length == 1
         assert doc('license name').text() == unicode(license.name)
-        assert doc('license url').text() == jinja_helpers.absolutify(license.url)
+        assert (
+            doc('license url').text() == jinja_helpers.absolutify(license.url))
 
         license.url = ''
         license.save()
@@ -362,7 +365,8 @@ class APITest(TestCase):
         response = self.client.get(api_url)
         doc = pq(response.content)
         license_url = addon.current_version.license_url()
-        assert doc('license url').text() == jinja_helpers.absolutify(license_url)
+        assert (
+            doc('license url').text() == jinja_helpers.absolutify(license_url))
 
         license.delete()
         response = self.client.get(api_url)
