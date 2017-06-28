@@ -45,7 +45,6 @@ AUTHENTICATION_BACKENDS = (
 
 CELERY_ALWAYS_EAGER = True
 DEBUG = False
-TEMPLATE_DEBUG = False
 
 # We won't actually send an email.
 SEND_REAL_EMAIL = True

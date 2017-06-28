@@ -954,7 +954,7 @@ class TestDeleteProfilePicture(TestCase):
         self.login(UserProfile.objects.get(pk=4043307))
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert response.context['user'] == self.user
+        assert response.context['target_user'] == self.user
 
     def test_admin_post(self):
         self.admin = UserProfile.objects.get(pk=4043307)
