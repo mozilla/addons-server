@@ -166,7 +166,7 @@
         }
 
         $(document).on('click', '.pjax-trigger a', _pd(hijackLink));
-        $container.bind('start.pjax', loading).bind('end.pjax', finished);
+        $container.on('pjax:start', loading).on('pjax:end', finished);
         $(document).keyup(_.throttle(turnPages, 300));
     };
 
