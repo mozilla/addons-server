@@ -1,5 +1,4 @@
 <div id="review-add-box" class="modal">
-{% set user = user if user.is_authenticated() else None %}
 {% if addon.can_review(user) %}
   <a class="close" href="#">{{ _('close') }}</a>
   <h2>{{ _('What do you think?') }}</h2>

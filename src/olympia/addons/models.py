@@ -1334,7 +1334,7 @@ class Addon(OnChangeMixin, ModelBase):
         return ''
 
     def can_review(self, user):
-        return not(user and self.has_author(user))
+        return user.is_authenticated() and not self.has_author(user)
 
     @property
     def all_dependencies(self):

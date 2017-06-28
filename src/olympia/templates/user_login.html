@@ -1,4 +1,3 @@
-{% set user = request.user %}
 {% if user.is_authenticated() %}
   {% if tools_links and tools_links|count > 1 %}
     <ul class="tools">

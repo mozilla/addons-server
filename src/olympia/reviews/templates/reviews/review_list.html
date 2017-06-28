@@ -1,5 +1,4 @@
 {% extends "impala/base_shared.html" %}
-{% set user = request.user if request.user.is_authenticated() else None %}
 
 {# L10n: {0} is an add-on name. #}
 {% block title %}{{ page_title(_('{0} :: Reviews')|format_html(addon.name)) }}{% endblock %}
@@ -64,7 +63,7 @@
       {% include "reviews/grouped_ratings.html" %}
     </section>
     <section>
-      {% if user and addon.can_review(user) %}
+      {% if addon.can_review(user) %}
         <a class="button" id="add-review" href="{{ url('addons.reviews.add', addon.slug) }}">
           {{ _('Write a New Review') }}</a>
       {% endif %}
