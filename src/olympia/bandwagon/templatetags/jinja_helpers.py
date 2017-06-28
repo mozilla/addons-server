@@ -99,12 +99,9 @@ def barometer(context, collection):
 
 @library.render_with('addons/includes/collection_add_widget.html')
 @library.global_function
-@jinja2.contextfunction
-def collection_add_widget(context, addon, condensed=False):
+def collection_add_widget(addon, condensed=False):
     """Displays 'Add to Collection' widget"""
-    c = dict(context.items())
-    c.update(locals())
-    return c
+    return {'addon': addon}
 
 
 @library.filter
