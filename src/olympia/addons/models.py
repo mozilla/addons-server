@@ -1327,7 +1327,8 @@ class Addon(OnChangeMixin, ModelBase):
         return ''
 
     def can_review(self, user):
-        return user.is_authenticated() and not self.has_author(user)
+        """Check whether the user should be prompted to add a review or not."""
+        return not user.is_authenticated() or not self.has_author(user)
 
     @property
     def all_dependencies(self):

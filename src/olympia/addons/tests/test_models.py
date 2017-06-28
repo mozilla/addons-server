@@ -1450,7 +1450,7 @@ class TestAddonModels(TestCase):
     def test_can_review(self):
         user = AnonymousUser()
         addon = Addon.objects.get(id=3615)
-        assert not addon.can_review(user)
+        assert addon.can_review(user)
 
         user = addon.addonuser_set.all()[0].user
         assert not addon.can_review(user)
