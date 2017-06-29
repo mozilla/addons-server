@@ -336,7 +336,6 @@ TEMPLATES = [
             'extensions': (
                 'jinja2.ext.autoescape',
                 'jinja2.ext.do',
-                # 'jinja2.ext.i18n',
                 'jinja2.ext.loopcontrols',
                 'jinja2.ext.with_',
                 'django_jinja.builtins.extensions.CsrfExtension',
