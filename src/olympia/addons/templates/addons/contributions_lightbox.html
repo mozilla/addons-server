@@ -1,6 +1,6 @@
 <div id="contribute-box" class="jqmWindow modal">
   <form action="{{ url('addons.contribute', addon.slug) }}" method="post" data-no-csrf="anon-only">
-    {% csrf_token %} }}
+    {% csrf_token %}
     <input type="hidden" name="source" value="{{ contribution_src }}"/>
     <h2>{{ _('Make a Contribution') }}</h2>
     <p class="support">
