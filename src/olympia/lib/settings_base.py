@@ -331,7 +331,7 @@ TEMPLATES = [
                 'olympia.amo.context_processors.i18n',
                 'olympia.amo.context_processors.global_settings',
                 'olympia.amo.context_processors.static_url',
-                'jingo_minify.helpers.build_ids',
+                'olympia.lib.jingo_minify_helpers.build_ids',
             ),
             'extensions': (
                 'jinja2.ext.autoescape',
