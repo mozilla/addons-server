@@ -6,8 +6,7 @@ from django.template.response import SimpleTemplateResponse
 
 # We monkeypatch SimpleTemplateResponse.rendered_content to use our jinja
 # rendering pipeline (most of the time). The exception is the admin app, where
-# we render their Django templates and pipe the result through jinja to render
-# our page skeleton.
+# we render their Django templates.
 
 
 def rendered_content(self):
@@ -20,13 +19,8 @@ def rendered_content(self):
 
     # Gross, let's figure out if we're in the admin.
     if getattr(self._request, 'current_app', None) == 'admin':
-        source = loader.render_to_string(
+        return loader.render_to_string(
             template, RequestContext(self._request, context_instance))
-        template = jingo.get_env().from_string(source)
-
-        # This interferes with our media() helper.
-        if 'media' in self.context_data:
-            del self.context_data['media']
 
     # ``render_to_string`` only accepts a Template instance or a template name,
     # not a list.
