@@ -1286,6 +1286,7 @@ LOGGING = {
 
 PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
 ANALYTICS_HOST = 'https://ssl.google-analytics.com'
+STATCOUNTER_IMG = 'https://c.statcounter.com/11365629/0/d1b4d3fb/1/'
 
 CSP_REPORT_URI = '/__cspreport__'
 CSP_REPORT_ONLY = False
@@ -1327,6 +1328,7 @@ CSP_IMG_SRC = (
     'blob:',  # Needed for image uploads.
     'https://www.paypal.com/webapps/checkout/',  # Needed for contrib.
     'https://www.paypal.com/webapps/hermes/api/logger',  # Needed for contrib.
+    STATCOUNTER_IMG,
     ANALYTICS_HOST,
     PROD_CDN_HOST,
     'https://static.addons.mozilla.net',  # CDN origin server.
