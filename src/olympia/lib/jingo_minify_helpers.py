@@ -5,7 +5,6 @@ import time
 from django.conf import settings
 
 import jinja2
-from django_jinja import library
 
 from jingo_minify.utils import get_media_url, get_path
 
