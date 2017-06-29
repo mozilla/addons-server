@@ -17,13 +17,12 @@ def truncate_text(text, limit, killwords=False, end='...'):
     if text_length < limit:
         return text, limit - text_length
 
-    env = engines['jinja2'].env
-
     # Explicitly add "end" in any case, as Jinja can't know we're truncating
     # for real here, even though we might be at the end of a word.
-    # FIXME: Behaviour of truncate_text changed with Jinja2 2.8 so this might
-    # not make much sense to continue doing our own thing, investigate.
-    text = jinja2.filters.do_truncate(env, text, limit, killwords, end='')
+    text = jinja2.filters.do_truncate(
+        engines['jinja2'].env, text, length=limit, killwords=killwords,
+        leeway=0, end='')
+
     return text + end, 0
 
 
