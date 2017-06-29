@@ -39,8 +39,7 @@ class TestMonitor(TestCase):
     def test_libraries(self):
         status, libraries_result = monitors.libraries()
         assert status == ''
-        assert libraries_result == [('PIL+JPEG', True, 'Got it!'),
-                                    ('M2Crypto', True, 'Got it!')]
+        assert libraries_result == [('PIL+JPEG', True, 'Got it!')]
 
     def test_elastic(self):
         status, elastic_result = monitors.elastic()
