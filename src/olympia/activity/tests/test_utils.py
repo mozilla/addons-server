@@ -266,7 +266,7 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == u'Thïs is á reply'
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
-        sender = '%s <notifications@%s>' % (
+        sender = '"%s" <notifications@%s>' % (
             self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
@@ -306,7 +306,7 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == u'Thîs ïs a revïewer replyîng'
 
         assert send_mail_mock.call_count == 2  # Both authors.
-        sender = '%s <notifications@%s>' % (
+        sender = '"%s" <notifications@%s>' % (
             self.reviewer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
@@ -339,7 +339,7 @@ class TestLogAndNotify(TestCase):
         assert not logs[0].details  # No details json because no comment.
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
-        sender = '%s <notifications@%s>' % (
+        sender = '"%s" <notifications@%s>' % (
             self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
@@ -368,7 +368,7 @@ class TestLogAndNotify(TestCase):
         assert len(logs) == 1
 
         recipients = self._recipients(send_mail_mock)
-        sender = '%s <notifications@%s>' % (
+        sender = '"%s" <notifications@%s>' % (
             self.developer.name, settings.INBOUND_EMAIL_DOMAIN)
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         assert len(recipients) == 2
@@ -493,6 +493,20 @@ class TestLogAndNotify(TestCase):
                           review_url, 'Developer Reply',
                           'you reviewed this add-on.')
 
+    @mock.patch('olympia.activity.utils.send_mail')
+    def test_from_name_escape(self, send_mail_mock):
+        self.reviewer.update(display_name='mr "quote" escape')
+
+        # One from the reviewer.
+        self._create(amo.LOG.REJECT_VERSION, self.reviewer)
+        action = amo.LOG.REVIEWER_REPLY_VERSION
+        comments = u'Thîs ïs a revïewer replyîng'
+        log_and_notify(action, comments, self.reviewer, self.version)
+
+        sender = '"%s" <notifications@%s>' % (
+            'mr \"quote\" escape', settings.INBOUND_EMAIL_DOMAIN)
+        assert sender == send_mail_mock.call_args_list[0][1]['from_email']
+
 
 @pytest.mark.django_db
 def test_send_activity_mail():
@@ -510,6 +524,11 @@ def test_send_activity_mail():
     assert len(mail.outbox) == 1
     assert mail.outbox[0].body == message
     assert mail.outbox[0].subject == subject
+    reference_header = '{addon}/{version}@{site}'.format(
+        addon=latest_version.addon.id, version=latest_version.id,
+        site=settings.INBOUND_EMAIL_DOMAIN)
+    assert mail.outbox[0].extra_headers['In-Reply-To'] == reference_header
+    assert mail.outbox[0].extra_headers['References'] == reference_header
 
     uuid = latest_version.token.get(user=user).uuid.hex
     reply_email = 'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN)

@@ -836,3 +836,9 @@ class DistributionChoiceForm(happyforms.Form):
             ('listed', mark_safe_lazy(LISTED_LABEL)),
             ('unlisted', mark_safe_lazy(UNLISTED_LABEL))),
         widget=forms.RadioSelect(attrs={'class': 'channel'}))
+
+
+class AgreementForm(happyforms.Form):
+    distribution_agreement = forms.BooleanField()
+    review_policy = forms.BooleanField()
+    review_rules = forms.BooleanField()

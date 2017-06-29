@@ -251,27 +251,22 @@ def log_and_notify(action, comments, note_creator, version, perm_setting=None,
         subject = u'Mozilla Add-ons: %s %s %s' % (
             version.addon.name, version.version, action.short)
     template = template_from_user(note_creator, version)
-
+    from_name = unicode(note_creator.name).replace('"', '\"')
+    from_email = '"%s" <%s>' % (from_name, NOTIFICATIONS_FROM_EMAIL)
     send_activity_mail(
         subject, template.render(Context(
             author_context_dict, autoescape=False)),
-        version, addon_authors,
-        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
-        perm_setting)
+        version, addon_authors, from_email, perm_setting)
 
     send_activity_mail(
         subject, template.render(Context(
             reviewer_context_dict, autoescape=False)),
-        version, reviewers,
-        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
-        perm_setting)
+        version, reviewers, from_email, perm_setting)
 
     send_activity_mail(
         subject, template.render(Context(
             staff_cc_context_dict, autoescape=False)),
-        version, staff_cc,
-        '%s <%s>' % (note_creator.name, NOTIFICATIONS_FROM_EMAIL),
-        perm_setting)
+        version, staff_cc, from_email, perm_setting)
 
     if action == amo.LOG.DEVELOPER_REPLY_VERSION:
         version.update(has_info_request=False)
@@ -291,11 +286,18 @@ def send_activity_mail(subject, message, version, recipients, from_email,
                 token.uuid, recipient.id))
         reply_to = "%s%s@%s" % (
             REPLY_TO_PREFIX, token.uuid.hex, settings.INBOUND_EMAIL_DOMAIN)
+        reference_header = '{addon}/{version}@{site}'.format(
+            addon=version.addon.id, version=version.id,
+            site=settings.INBOUND_EMAIL_DOMAIN)
+        headers = {
+            'In-Reply-To': reference_header,
+            'References': reference_header
+        }
         log.info('Sending activity email to %s for %s version %s' % (
             recipient, version.addon.pk, version.pk))
         send_mail(
             subject, message, recipient_list=[recipient.email],
-            from_email=from_email, use_deny_list=False,
+            from_email=from_email, use_deny_list=False, headers=headers,
             perm_setting=perm_setting, reply_to=[reply_to])
 
 

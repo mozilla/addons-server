@@ -13,7 +13,8 @@ from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.users.models import UserProfile
-from olympia.users.serializers import BaseUserSerializer
+from olympia.users.serializers import (
+    AddonDeveloperSerializer, BaseUserSerializer)
 from olympia.versions.models import ApplicationsVersions, License, Version
 
 
@@ -146,7 +147,7 @@ class AddonEulaPolicySerializer(serializers.ModelSerializer):
 
 
 class AddonSerializer(serializers.ModelSerializer):
-    authors = BaseUserSerializer(many=True, source='listed_authors')
+    authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
     current_beta_version = SimpleVersionSerializer()
     current_version = SimpleVersionSerializer()
@@ -441,11 +442,15 @@ class ESBaseAddonSerializer(BaseESSerializer):
 
 
 class ESAddonSerializer(ESBaseAddonSerializer, AddonSerializer):
+    # Override authors because we don't want picture_url in serializer.
+    authors = BaseUserSerializer(many=True, source='listed_authors')
     previews = ESPreviewSerializer(many=True, source='all_previews')
 
 
 class ESAddonSerializerWithUnlistedData(
         ESBaseAddonSerializer, AddonSerializerWithUnlistedData):
+    # Override authors because we don't want picture_url in serializer.
+    authors = BaseUserSerializer(many=True, source='listed_authors')
     previews = ESPreviewSerializer(many=True, source='all_previews')
 
 

@@ -710,7 +710,7 @@ class TestAutoApprovalSummary(TestCase):
             'reputation': 0,
             'past_rejection_history': 0,
             'uses_custom_csp': 0,
-            'uses_dangerous_eval': 0,
+            'uses_eval_or_document_write': 0,
             'uses_implied_eval': 0,
             'uses_innerhtml': 0,
             'uses_native_messaging': 0
@@ -912,7 +912,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.weight == 100
         assert weight_info['past_rejection_history'] == 100
 
-    def test_calculate_weight_uses_dangerous_eval(self):
+    def test_calculate_weight_uses_eval_or_document_write(self):
         validation_data = {
             'messages': [{
                 'id': ['DANGEROUS_EVAL'],
@@ -922,12 +922,37 @@ class TestAutoApprovalSummary(TestCase):
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
         assert summary.weight == 20
-        assert weight_info['uses_dangerous_eval'] == 20
+        assert weight_info['uses_eval_or_document_write'] == 20
+
+        validation_data = {
+            'messages': [{
+                'id': ['NO_DOCUMENT_WRITE'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['uses_eval_or_document_write'] == 20
+
+        # Still only 20 if both appear.
+        validation_data = {
+            'messages': [{
+                'id': ['DANGEROUS_EVAL'],
+            }, {
+                'id': ['NO_DOCUMENT_WRITE'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 20
+        assert weight_info['uses_eval_or_document_write'] == 20
 
     def test_calculate_weight_uses_implied_eval(self):
         validation_data = {
             'messages': [{
-                'id': ['IMPLIED_EVAL'],
+                'id': ['NO_IMPLIED_EVAL'],
             }]
         }
         self.file_validation.update(validation=json.dumps(validation_data))
@@ -974,7 +999,7 @@ class TestAutoApprovalSummary(TestCase):
             'messages': [
                 {'id': ['MANIFEST_CSP']},
                 {'id': ['UNSAFE_VAR_ASSIGNMENT']},
-                {'id': ['IMPLIED_EVAL']},
+                {'id': ['NO_IMPLIED_EVAL']},
                 {'id': ['DANGEROUS_EVAL']},
             ]
         }
@@ -990,7 +1015,7 @@ class TestAutoApprovalSummary(TestCase):
             'reputation': 0,
             'past_rejection_history': 0,
             'uses_custom_csp': 30,
-            'uses_dangerous_eval': 20,
+            'uses_eval_or_document_write': 20,
             'uses_implied_eval': 5,
             'uses_innerhtml': 20,
             'uses_native_messaging': 0
