@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.template import loader
+from django.template import loader, engines
 from django.utils import translation
 from django.utils.translation.trans_real import to_language
 from django.utils.encoding import force_text
@@ -46,7 +46,9 @@ def truncate(s, length=255, killwords=True, end='...'):
         return ''
     if hasattr(s, '__truncate__'):
         return s.__truncate__(length, killwords, end)
-    return jinja2.filters.do_truncate(force_text(s), length, killwords, end)
+
+    return jinja2.filters.do_truncate(
+        engines['jinja2'].env, force_text(s), length, killwords, end)
 
 
 @library.global_function
