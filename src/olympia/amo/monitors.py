@@ -70,12 +70,6 @@ def libraries():
         msg = "Failed to create a jpeg image: %s" % e
         libraries_results.append(('PIL+JPEG', False, msg))
 
-    try:
-        import M2Crypto  # NOQA
-        libraries_results.append(('M2Crypto', True, 'Got it!'))
-    except ImportError:
-        libraries_results.append(('M2Crypto', False, 'Failed to import'))
-
     missing_libs = [l for l, s, m in libraries_results if not s]
     if missing_libs:
         status = 'missing libs: %s' % ",".join(missing_libs)
