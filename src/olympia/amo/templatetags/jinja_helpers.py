@@ -23,8 +23,8 @@ import jinja2
 import waffle
 from django_jinja import library
 from babel.support import Format
-# Needed to make sure our own |f filter overrides jingo's one.
-from jingo_minify.helpers import (
+
+from olympia.lib.jingo_minify_helpers import (
     _build_html, _get_compiled_css_url, get_path, is_external,
     get_js_urls, get_css_urls)
 
