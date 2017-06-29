@@ -98,7 +98,7 @@
                 <th>{{ _('Version Notes') }}</th>
                 <td class="activity_version">
                   <div class="history-notes">
-                    {{ version.releasenotes|nl2br_xhtml }}
+                    {{ version.releasenotes|nl2br }}
                   </div>
                 </td>
               </tr>
@@ -108,7 +108,7 @@
                 <th>{{ _('Notes for Reviewers') }}</th>
                 <td class="activity_approval">
                   <div class="history-notes">
-                    {{ version.approvalnotes|urlize(100)|nl2br_xhtml }}
+                    {{ version.approvalnotes|urlize(100)|nl2br }}
                   </div>
                 </td>
               </tr>

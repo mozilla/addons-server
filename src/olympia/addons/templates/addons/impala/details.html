@@ -111,7 +111,7 @@
         </h1>
         <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
       </hgroup>
-      <p id="addon-summary" itemprop="description" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br_xhtml }}</p>
+      <p id="addon-summary" itemprop="description" {{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
       {% if version %}
         {{ big_install_button(addon, show_warning=False, impala=True) }}
       {% endif %}
@@ -229,9 +229,9 @@
   <h2>{{ _('About this Add-on') }}</h2>
   <div class="prose">
   {% if addon.description %}
-    <div id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.description|nl2br_xhtml }}</div>
+    <div id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.description|nl2br }}</div>
   {% else %}
-    <div id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.summary|nl2br_xhtml }}</div>
+    <div id="addon-description" class="prose" {{ addon.description|locale_html }}>{{ addon.summary|nl2br }}</div>
   {% endif %}
   </div>
 </section>
@@ -245,7 +245,7 @@
       <h2>{{ _('Developer’s Comments') }}<a class="toggle" href="#developer-comments"><b></b></a></h2>
       <div class="content prose">
         <p{{ addon.developer_comments|locale_html }}>
-          {{ addon.developer_comments|nl2br_xhtml }}</p>
+          {{ addon.developer_comments|nl2br }}</p>
       </div>
     </section>
   {% endif %}
@@ -318,7 +318,7 @@
       <a href="#" class="close">{{ _('close') }}</a>
       <h2>{{ _('Privacy Policy') }}</h2>
       <div class="prose">
-        {{ addon.privacy_policy|nl2br_xhtml }}
+        {{ addon.privacy_policy|nl2br }}
       </div>
     </div>
   {% endif %}
@@ -363,7 +363,7 @@
       <a href="#" class="close">{{ _('close') }}</a>
       <h2>{{ _('End-User License Agreement') }}</h2>
       <div class="prose">
-        {{ addon.eula|nl2br_xhtml }}
+        {{ addon.eula|nl2br }}
       </div>
     </div>
   {% endif %}

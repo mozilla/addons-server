@@ -9,7 +9,7 @@
         {% if review.title %}
           <h5>{{ review.title }}</h5>
         {% endif %}
-        <p class="description">{{ review.body|nl2br_xhtml }}</p>
+        <p class="description">{{ review.body|nl2br }}</p>
         <p>{{ review.rating|stars }}
           {% trans user=review.user|user_link, date=review.created|datetime %}
             by {{ user }} on {{ date }}

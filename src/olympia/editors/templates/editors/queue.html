@@ -84,7 +84,7 @@
               {{ stars }} ({{ locale }})
             {% endtrans %}
             </p>
-            <p class="description">{{ review.instance.body|nl2br_xhtml }}</p>
+            <p class="description">{{ review.instance.body|nl2br }}</p>
             <ul class="reviews-flagged-reasons">
               {% for reason in review.instance.reviewflag_set.all() %}
               <li>

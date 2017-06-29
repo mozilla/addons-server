@@ -616,7 +616,7 @@ def css(bundle, media=False, debug=None):
 
 
 @library.filter
-def nl2br_xhtml(string):
+def nl2br(string):
     """Turn newlines into <br/>."""
     if not string:
         return ''

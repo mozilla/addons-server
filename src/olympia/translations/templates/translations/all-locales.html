@@ -5,7 +5,7 @@
       {% set klass='empty' %}
       {% set text=_('None') %}
     {% elif nl2br %}
-      {% set text=trans|nl2br_xhtml %}
+      {% set text=trans|nl2br %}
     {% else %}
       {% set text=trans %}
     {% endif %}

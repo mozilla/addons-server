@@ -39,7 +39,7 @@
     <a class="permalink"
       href="{{ url('addons.reviews.detail', addon.slug, review.id) }}">{{ _('permalink') }}</a>
   </p>
-  <p class="description">{{ review.body|nl2br_xhtml }}</p>
+  <p class="description">{{ review.body|nl2br }}</p>
   {% if outdated and not is_reply %}
     {# L10n: {0} is a version number (like 1.01) #}
     <span class="item-note">{{ _('This review is for a previous version of the add-on ({0}).')|format_html(review.version.version) }}&nbsp;</span>
