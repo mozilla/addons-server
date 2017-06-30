@@ -28,5 +28,8 @@
       {% endblock %}
       {% include "copyright.html" %}
     {% endblock %}
+    {% if range(1, 101)|random <= 30 %}
+      <img style="position: absolute;" src="{{ settings.STATCOUNTER_IMG }}" alt="" />
+    {% endif %}
 </div>
 
