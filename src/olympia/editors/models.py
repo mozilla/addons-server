@@ -571,6 +571,11 @@ class ReviewerScore(ModelBase):
         query = (cls.objects
                     .values_list('user__id', 'user__display_name')
                     .annotate(total=Sum('score'))
+                    .filter(user__groups__name__in=(
+                        'Add-on Reviewers',
+                        'Senior Add-on Reviewers',
+                        'Persona Reviewers',
+                        'Senior Personas Reviewers'))
                     .exclude(user__groups__name__in=('No Reviewer Incentives',
                                                      'Staff', 'Admins'))
                     .order_by('-total'))
