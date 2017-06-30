@@ -58,7 +58,7 @@ def get_js_urls(bundle, debug=None):
         bundle.
     """
     if debug is None:
-        debug = settings.TEMPLATE_DEBUG
+        debug = settings.DEBUG
 
     if debug:
         # Add timestamp to avoid caching.
@@ -99,7 +99,7 @@ def get_css_urls(bundle, debug=None):
         bundle.
     """
     if debug is None:
-        debug = settings.TEMPLATE_DEBUG
+        debug = settings.DEBUG
 
     if debug:
         items = []
