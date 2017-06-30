@@ -289,16 +289,16 @@ SECRET_KEY = 'this-is-a-dummy-key-and-its-overridden-for-prod-servers'
 
 # Templates
 JINJA_EXCLUDE_TEMPLATE_PATHS = (
-    r'admin\/',
-    r'users\/email',
-    r'reviews\/emails',
-    r'editors\/emails',
-    r'amo\/emails',
-    r'devhub\/email\/revoked-key-email.ltxt',
-    r'devhub\/email\/new-key-email.ltxt',
+    r'^admin\/',
+    r'^users\/email',
+    r'^reviews\/emails',
+    r'^editors\/emails',
+    r'^amo\/emails',
+    r'^devhub\/email\/revoked-key-email.ltxt',
+    r'^devhub\/email\/new-key-email.ltxt',
 
     # Django specific templates
-    r'registration\/password_reset_subject.txt'
+    r'^registration\/password_reset_subject.txt'
 )
 
 TEMPLATES = [
